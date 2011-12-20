@@ -60,7 +60,7 @@
 
 #ifdef __cplusplus
 extern "C"
-//{
+{
 #endif
 
 #include <sys/types.h>
