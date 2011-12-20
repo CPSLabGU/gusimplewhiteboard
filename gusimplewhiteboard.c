@@ -59,6 +59,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include <limits.h>
@@ -66,11 +67,24 @@
 #include <sys/param.h>
 #include <sys/file.h>
 #include <sys/mman.h>
+#include <sys/ipc.h>
 #include <sys/sem.h>
+#include <gu_util.h>
 #include "gusimplewhiteboard.h"
 
+#define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
 #define SEM_ERROR               -1
+
+void gsw_init_semaphores(gsw_sema_t s)
+{
+        union semun init;
+        init.val = 1;
+        for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
+                if (semctl(s, 1, SETVAL, init) == -1)
+                        fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+}
+
 
 gsw_sema_t gsw_setup_semaphores(void)
 {
@@ -82,11 +96,7 @@ gsw_sema_t gsw_setup_semaphores(void)
                 s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg | IPC_CREAT);
                 if (s == SEM_ERROR) return s;
 
-                union semun init;
-                init.val = 1;
-                for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
-                        if (semctl(s, 1, SETVAL, init) == -1)
-                                fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+                gsw_init_semaphores(s);
         }
         return s;
 }
@@ -105,16 +115,19 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
         if (wbd->sem == SEM_ERROR)
                 fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY, name, strerror(errno));
 
-        wbd->wb = gsw_create(name, &wbd->fd);
+        bool init = false;
+        wbd->wb = gsw_create(name, &wbd->fd, &init);
         if (!wbd->wb)
         {
                 gsw_free_whiteboard(wbd);
                 return NULL;
         }
+        if (init) gsw_init_semaphores(wbd->sem);
+
         return wbd;
 }
 
-gu_simple_whiteboard *gsw_create(const char *name, int *fdp)
+gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
         char path[PATH_MAX] = "/tmp/";
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
@@ -137,6 +150,31 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp)
         }
         else if (fdp) *fdp = fd;
 
+        if (wb->magic != WHITEBOARD_MAGIC)      // new whiteboard? -> initialise
+        {
+                memset(wb, 0, sizeof(*wb));
+                wb->version      = GU_SIMPLE_WHITEBOARD_VERSION;
+                wb->max_lifespan = GU_SIMPLE_WHITEBOARD_GENERATIONS;
+                wb->num_reserved = GSW_NUM_RESERVED;
+                wb->magic = WHITEBOARD_MAGIC;
+
+                DBG(printf("New Whiteboard version %d created and initialised at '%s'\n", wb->version, path));
+        }
+
+        bool bailout = wb->version != GU_SIMPLE_WHITEBOARD_VERSION;
+        if (bailout) fprintf(stderr, "*** Unexpected Whiteboard version %d (expected %d for '%s')\n", wb->version, GU_SIMPLE_WHITEBOARD_VERSION, path);
+
+        bailout |= wb->max_lifespan != GU_SIMPLE_WHITEBOARD_GENERATIONS;
+        if (bailout) fprintf(stderr, "*** Invalid maximum lifespan %d (expected %d for '%s')\n", wb->max_lifespan, GU_SIMPLE_WHITEBOARD_GENERATIONS, path);
+        
+        bailout |= wb->num_reserved != GSW_NUM_RESERVED;
+        if (bailout) fprintf(stderr, "*** Invalid number of reserved messages: %d (expected %d for '%s')\n", wb->num_reserved, GSW_NUM_RESERVED, path);
+
+        if (bailout)
+        {
+                gsw_free(wb, fd);
+                return NULL;
+        }
         return wb;
 }
 
@@ -169,6 +207,79 @@ int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s)
                 if (errno != EAGAIN)
                         break;
         return rv;
+}
+
+
+static u_int32_t hash_of(const char *s)
+{
+        u_int32_t hash = *s;
+        while (*s++)
+        {
+                u_int32_t stir = hash & 0xf8000000U;
+                hash &= 0x07ffffffU;
+                hash <<= 5;
+                hash ^= stir >> 27;
+                hash ^= *s;
+        }
+        return hash;
+}
+
+
+static u_int32_t alt_hash(const char *s)
+{
+        u_int32_t hash = *s;
+        while (*s++)
+        {
+                hash &= 0x0fffffffU;
+                hash <<= 4;
+                hash += *s;
+                u_int32_t stir = hash & 0xf0000000U;
+                if (stir != 0)
+                {
+                        hash ^= stir >> 24;
+                        hash ^= stir;
+                }
+        }
+        return hash;
+}
+
+
+int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name)
+{
+        gsw_procure(wbd->sem, GSW_SEM_MSGTYPE);
+
+        bool exists = false;
+        gu_simple_whiteboard *wb = wbd->wb;
+        unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
+        gu_simple_message *type = &wb->hashes[offs];
+
+        while (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
+        {
+                gu_simple_message *type = &wb->hashes[offs];
+                if (!*type->hash.string)
+                {
+                        strlcpy(type->hash.string, name, sizeof(type->hash.string));
+                        type->hash.value = wb->num_types++;
+                        break;
+                }
+                if (strcmp(type->hash.string, name) == 0)
+                {
+                        exists = true;
+                        break;
+                }
+                /* collision, add to the offset */
+                offs += alt_hash(name);
+                offs %= GSW_TOTAL_MESSAGE_TYPES;
+        }
+
+        gsw_vacate(wbd->sem, GSW_SEM_MSGTYPE);
+
+        if (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
+                return type->hash.value;
+
+        fprintf(stderr, "Cannot register whiteboard message type '%s': hash table capacity %d reached!\n", name, wb->num_types);
+
+        return -1;
 }
 
 

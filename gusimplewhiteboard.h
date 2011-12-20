@@ -58,6 +58,11 @@
 #ifndef gusimplewhiteboard_gusimplewhiteboard_h
 #define gusimplewhiteboard_gusimplewhiteboard_h
 
+#ifdef __cplusplus
+extern "C"
+//{
+#endif
+
 #include <sys/types.h>
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            1       // version
@@ -80,6 +85,7 @@ enum gsw_semaphores
 {
         GSW_SEM_PUTMSG,                 /// semaphore for adding to the whiteboard
         GSW_SEM_CALLBACK,               /// semaphore for callback data
+        GSW_SEM_MSGTYPE,                /// semaphore for message type registration
         GSW_NUM_SEM                     /// number of semaphores
 };
 
@@ -174,6 +180,11 @@ typedef struct gsw_simple_whiteboard_s
          * hashes for registered message types
          */
         gu_simple_message       hashes[GSW_TOTAL_MESSAGE_TYPES];
+
+        /**
+         * end of whiteboard marker
+         */
+        u_int64_t               magic;
 } gu_simple_whiteboard;
 
 typedef int gsw_sema_t;
@@ -200,11 +211,20 @@ extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
 extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
 
 /**
+ * register a new whiteboard message type
+ * @param name  string to use for identification
+ * @return numerical identifier to use
+ */
+extern int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
+
+
+/**
  * create a simple whiteboard
  * @param name  name of the whiteboard
  * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
+ * @param ini   pointer to boolean recording wb initialisation
  */
-extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp);
+extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *ini);
 
 /**
  * free the whiteboard
@@ -242,5 +262,9 @@ gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i);
  * get the next shared memory location for the given whiteboard message type i
  */
 gu_simple_message *gsw_next_index_of(gu_simple_whiteboard *wb, int i);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
