@@ -183,4 +183,14 @@ extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp);
  */
 extern void gsw_free(gu_simple_whiteboard *wb, int fd);
 
+/**
+ * get the current shared memory location for the given whiteboard message type i
+ */
+gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i);
+
+/**
+ * get the next shared memory location for the given whiteboard message type i
+ */
+gu_simple_message *gsw_next_index_of(gu_simple_whiteboard *wb, int i);
+
 #endif

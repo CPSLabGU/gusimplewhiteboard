@@ -101,3 +101,21 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
         if (fd >= 0) if (close(fd) == -1)
                 fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", wb, fd, strerror(errno));
 }
+
+
+gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i)
+{
+        u_int8_t j = wb->indexes[i];
+        if (j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
+        return &wb->messages[i][j];
+}
+
+
+gu_simple_message *gsw_next_index_of(gu_simple_whiteboard *wb, int i)
+{
+        u_int8_t j = wb->indexes[i];
+        if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
+        wb->indexes[i] = j;
+        return &wb->messages[i][j];
+}
+
