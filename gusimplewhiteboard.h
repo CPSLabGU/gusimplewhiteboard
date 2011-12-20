@@ -160,6 +160,9 @@ typedef union gsw_simple_message
 
         /** whiteboard hash type */
         struct { u_int16_t value; char string[GU_SIMPLE_WHITEBOARD_BUFSIZE-sizeof(u_int16_t)]; } hash;
+
+        /** compatibility WBMsg type */
+        struct { char data[GU_SIMPLE_WHITEBOARD_BUFSIZE-2]; unsigned char len; unsigned char type; } wbmsg;
 } gu_simple_message;
 
 typedef struct gsw_simple_whiteboard_s
@@ -217,6 +220,12 @@ extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
  */
 extern int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
 
+/**
+ * get the numerical index of a whiteboard message type
+ * @param name  string to use for identification
+ * @return numerical identifier to use
+ */
+extern int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
 
 /**
  * create a simple whiteboard

@@ -254,6 +254,8 @@ static u_int32_t alt_hash(const char *s)
                         hash ^= stir;
                 }
         }
+        hash |= 1;              // needs to be an odd number
+
         return hash;
 }
 
@@ -273,6 +275,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                 if (!*type->hash.string)
                 {
                         strlcpy(type->hash.string, name, sizeof(type->hash.string));
+                        DBG(printf(" - registering wb message type #%d for '%s' at %d", wb->num_types, type->hash.string, offs));
                         type->hash.value = wb->num_types++;
                         break;
                 }
@@ -296,6 +299,27 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
         return -1;
 }
 
+
+int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name)
+{
+        gu_simple_whiteboard *wb = wbd->wb;
+        unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
+        gu_simple_message *type = &wb->hashes[offs];
+        for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++)
+        {
+                if (!*type->hash.string)                        // new message type?
+                        return gsw_register_message_type(wbd, name);
+                if (strcmp(type->hash.string, name) == 0)
+                        return offs;
+                /* hash collision, add to the offset */
+                offs += alt_hash(name);
+                offs %= GSW_TOTAL_MESSAGE_TYPES;
+        }
+
+        fprintf(stderr, "Cannot get offset for message type '%s': hash table full (%d entries)\n", name, wb->num_types);
+
+        return -1;
+}
 
 gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
 {
