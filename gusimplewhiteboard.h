@@ -70,10 +70,17 @@
 
 enum gsw_message_types
 {
-        GSW_PRINT,                      // print to stdout
-        GSW_SAY,                        // text to speech
-        GSW_SPEECH,                     // debug speech message
+        GSW_PRINT,                      /// print to stdout
+        GSW_SAY,                        /// text to speech
+        GSW_SPEECH,                     /// debug speech message
         GSW_NUM_RESERVED
+};
+
+enum gsw_semaphores
+{
+        GSW_SEM_PUTMSG,                 /// semaphore for adding to the whiteboard
+        GSW_SEM_CALLBACK,               /// semaphore for callback data
+        GSW_NUM_SEM                     /// number of semaphores
 };
 
 typedef union gsw_simple_message
@@ -169,6 +176,29 @@ typedef struct gsw_simple_whiteboard_s
         gu_simple_message       hashes[GSW_TOTAL_MESSAGE_TYPES];
 } gu_simple_whiteboard;
 
+typedef int gsw_sema_t;
+
+typedef struct gsw_whiteboard_s
+{
+        gu_simple_whiteboard    *wb;            /// the actual whiteboard in shared mem
+        gsw_sema_t               sem;           /// semaphore to use
+        int                      fd;            /// the associated memory-mapped file
+} gu_simple_whiteboard_descriptor;
+
+/**
+ * access a named whiteboard: this is the designated constructore for C programs
+ * @param name  name of the whiteboard
+ * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
+ */
+extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
+
+/**
+ * free the given whiteboard descriptor
+ * @param name  name of the whiteboard
+ * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
+ */
+extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
+
 /**
  * create a simple whiteboard
  * @param name  name of the whiteboard
@@ -182,6 +212,26 @@ extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp);
  * @param fd    file descriptor to close (-1 to skip)
  */
 extern void gsw_free(gu_simple_whiteboard *wb, int fd);
+
+/**
+ * set up a semaphore array for the whiteboard
+ */
+extern gsw_sema_t gsw_setup_semaphores(void);
+
+/**
+ * grab a whiteboard semaphore
+ * @param sem   semaphore descriptor
+ * @param s     semaphore to procure
+ */
+extern int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s);
+
+/**
+ * release a whiteboard semaphore
+ * @param sem   semaphore descriptor
+ * @param s     semaphore to vacate
+ */
+extern int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s);
+
 
 /**
  * get the current shared memory location for the given whiteboard message type i

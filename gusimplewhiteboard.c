@@ -55,17 +55,64 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <limits.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/file.h>
 #include <sys/mman.h>
+#include <sys/sem.h>
 #include "gusimplewhiteboard.h"
+
+#define SEMAPHORE_MAGIC_KEY     4242
+#define SEM_ERROR               -1
+
+gsw_sema_t gsw_setup_semaphores(void)
+{
+        int semflg = SEM_R|SEM_A|(SEM_R>>3)|(SEM_A>>3);
+        gsw_sema_t s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg);
+
+        if (s == SEM_ERROR)
+        {
+                s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg | IPC_CREAT);
+                if (s == SEM_ERROR) return s;
+
+                union semun init;
+                init.val = 1;
+                for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
+                        if (semctl(s, 1, SETVAL, init) == -1)
+                                fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+        }
+        return s;
+}
+
+
+gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
+{
+        gu_simple_whiteboard_descriptor *wbd = calloc(sizeof(gu_simple_whiteboard_descriptor), 1);
+        if (!wbd)
+        {
+                fprintf(stderr, "Not enough memory to create whiteboard '%s': %s\n", name, strerror(errno));
+                return NULL;
+        }
+
+        wbd->sem = gsw_setup_semaphores();
+        if (wbd->sem == SEM_ERROR)
+                fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY, name, strerror(errno));
+
+        wbd->wb = gsw_create(name, &wbd->fd);
+        if (!wbd->wb)
+        {
+                gsw_free_whiteboard(wbd);
+                return NULL;
+        }
+        return wbd;
+}
 
 gu_simple_whiteboard *gsw_create(const char *name, int *fdp)
 {
@@ -100,6 +147,28 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
                 fprintf(stderr, "Cannot unmap whiteboard at %p with fd %d: %s\n", wb, fd, strerror(errno));
         if (fd >= 0) if (close(fd) == -1)
                 fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", wb, fd, strerror(errno));
+}
+
+
+int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s)
+{
+        struct sembuf op = { s, -1, 0 };
+        int rv;
+        while ((rv = semop(sem, &op, 1)) == -1)
+               if (errno != EAGAIN)
+                       break;
+        return rv;
+}
+
+
+int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s)
+{
+        struct sembuf op = { s, 1, 0 };
+        int rv;
+        while ((rv = semop(sem, &op, 1)) == -1)
+                if (errno != EAGAIN)
+                        break;
+        return rv;
 }
 
 
