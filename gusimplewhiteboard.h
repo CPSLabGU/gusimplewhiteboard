@@ -252,16 +252,15 @@ extern int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s);
  */
 extern int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s);
 
-
 /**
  * get the current shared memory location for the given whiteboard message type i
  */
-gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i);
+gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
 
 /**
  * get the next shared memory location for the given whiteboard message type i
  */
-gu_simple_message *gsw_next_index_of(gu_simple_whiteboard *wb, int i);
+gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i);
 
 #ifdef __cplusplus
 }

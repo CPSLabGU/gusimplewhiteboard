@@ -76,6 +76,12 @@
 #define SEMAPHORE_MAGIC_KEY     4242
 #define SEM_ERROR               -1
 
+static const char *known_message_types[GSW_NUM_RESERVED] =
+{
+        "Print", "Say", "Speech"
+};
+
+
 void gsw_init_semaphores(gsw_sema_t s)
 {
         union semun init;
@@ -122,8 +128,13 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
                 gsw_free_whiteboard(wbd);
                 return NULL;
         }
-        if (init) gsw_init_semaphores(wbd->sem);
+        if (init)
+        {
+                gsw_init_semaphores(wbd->sem);
 
+                for (enum gsw_message_types i = 0; i < GSW_NUM_RESERVED; i++)
+                        gsw_register_message_type(wbd, known_message_types[i]);
+        }
         return wbd;
 }
 
@@ -158,8 +169,11 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
                 wb->num_reserved = GSW_NUM_RESERVED;
                 wb->magic = WHITEBOARD_MAGIC;
 
+                if (initial) *initial = true;
+
                 DBG(printf("New Whiteboard version %d created and initialised at '%s'\n", wb->version, path));
         }
+        else if (initial) *initial = false;
 
         bool bailout = wb->version != GU_SIMPLE_WHITEBOARD_VERSION;
         if (bailout) fprintf(stderr, "*** Unexpected Whiteboard version %d (expected %d for '%s')\n", wb->version, GU_SIMPLE_WHITEBOARD_VERSION, path);
@@ -283,7 +297,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
 }
 
 
-gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i)
+gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
 {
         u_int8_t j = wb->indexes[i];
         if (j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
@@ -291,7 +305,7 @@ gu_simple_message *gsw_current_index_of(gu_simple_whiteboard *wb, int i)
 }
 
 
-gu_simple_message *gsw_next_index_of(gu_simple_whiteboard *wb, int i)
+gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i)
 {
         u_int8_t j = wb->indexes[i];
         if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
