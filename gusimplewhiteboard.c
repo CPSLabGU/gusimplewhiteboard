@@ -87,8 +87,14 @@ void gsw_init_semaphores(gsw_sema_t s)
         union semun init;
         init.val = 1;
         for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
-                if (semctl(s, 1, SETVAL, init) == -1)
+        {
+                if (semctl(s, i, SETVAL, init) == -1)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+#ifdef DEBUG
+                if (semctl(s, i, GETVAL, NULL) != init.val)
+                        fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+#endif
+        }
 }
 
 
@@ -138,10 +144,18 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
         return wbd;
 }
 
+
+void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
+{
+        if (wbd) free(wbd);
+}
+
+
 gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
         char path[PATH_MAX] = "/tmp/";
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
+        strlcat(path, name, sizeof(path));
 
         int fd = open(path, O_CREAT|O_RDWR, 0660);
         if (fd == -1)

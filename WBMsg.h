@@ -138,6 +138,13 @@ public:
 	WBMsg(const std::string &val): type(TypeString), stringVal(val) {}
 
 	/**
+	 * WBMsg - String constructor.
+	 * Initialises a WBMsg with a standard C string value.
+	 * @param val String to store in the Whiteboard message.
+	 */
+	WBMsg(const char *val): type(TypeString), stringVal(val) {}
+
+	/**
 	 * WBMsg - Binary data constructor.
 	 * Initialises a WBMsg with some binary data.
 	 * @param data Pointer to a data constrct to store in the Whiteboard
@@ -146,7 +153,7 @@ public:
 	 * @param needsFree If this is non-zero, will free the contents of the data 
 	 *                  buffer when this WBMsg is deleted.
 	 */
-	WBMsg(const void *data, int nBytes = GU_SIMPLE_WHITEBOARD_BUFSIZE, int needsFree = 0): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
+	WBMsg(const void *data, int nBytes, int needsFree = 0): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
 
 	/**
 	 * getType.
