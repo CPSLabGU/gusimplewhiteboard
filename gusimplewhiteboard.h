@@ -316,6 +316,11 @@ extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
 void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
 
 /**
+ * remove process for subscription signalling
+ */
+void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
+
+/**
  * signal all subscribing processes
  */
 void gsw_signal_subscribers(const gu_simple_whiteboard *wb);

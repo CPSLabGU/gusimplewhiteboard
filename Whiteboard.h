@@ -62,6 +62,7 @@
 #include <vector>
 #include <iostream>
 #include "gusimplewhiteboard.h"
+#include "WhiteboardConstants.h"
 #include "WBFunctor.h"
 #include "WBMsg.h"
 
@@ -153,6 +154,14 @@ namespace guWhiteboard
 		 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
 		 */
 		void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);
+
+		/**
+		 * Unsubscribe To Message (sic!)
+		 * Unsubscribes from a message type on a whiteboard or whiteboards
+		 * @param[in] type The string type to unsubscribe from
+		 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+		 */		
+		void unsubscribeToMessage(std::string type, WBResult &result);
 
                 /**
                  * subscription callback: not really public!

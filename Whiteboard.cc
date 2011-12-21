@@ -213,3 +213,20 @@ void Whiteboard::subscriptionCallback(void)
                 }
         }
 }
+
+
+void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
+{
+        gu_simple_whiteboard *wb = _wbd->wb;
+
+        for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
+        {
+                callback_descr &descr = *i;
+                int offs = descr.type;
+                if (offs == -1) continue;               // XXX: nyi
+                if (type == wb->typenames[offs].hash.string) continue;
+                _sub.erase(i);
+                break;
+        }
+        if (!_sub.size()) gsw_remove_process(_wbd, getpid());
+}

@@ -383,6 +383,25 @@ void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 
+
+void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
+{
+        gsw_procure(wbd->sem, GSW_SEM_PROC);
+        gu_simple_whiteboard *wb = wbd->wb;
+        u_int16_t i;
+        for (i = 0; i < wb->subscribed; i++)
+                if (proc == wb->processes[i])
+                        break;
+        if (i < GSW_TOTAL_PROCESSES)
+        {
+                wb->processes[i] = 0;
+                if (i == wb->subscribed-1)
+                         wb->subscribed = i;
+        }
+        else fprintf(stderr, "Warning: cannot subscribe %d -- process not foun!d\n", proc);
+        gsw_vacate(wbd->sem, GSW_SEM_PROC);
+}
+
 void gsw_signal_subscribers(const gu_simple_whiteboard *wb)
 {
         for (int i = 0; i < wb->subscribed; i++)
