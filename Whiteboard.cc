@@ -91,7 +91,8 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
 
         gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
 
-        gu_simple_message *m = gsw_next_message(_wbd->wb, t);
+        gu_simple_whiteboard *wb = _wbd->wb;
+        gu_simple_message *m = gsw_next_message(wb, t);
         m->wbmsg.type = msg.getType();
 
         switch (m->wbmsg.type)
@@ -127,7 +128,9 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
                         if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
                         break;
         }
+        gsw_increment(wb, t);
         gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
+        if (wb->subscribed) gsw_signal_subscribers(wb);
 }
 
 

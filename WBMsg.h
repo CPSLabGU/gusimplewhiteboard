@@ -58,7 +58,7 @@
 #ifndef gusimplewhiteboard_WBMsg_h
 #define gusimplewhiteboard_WBMsg_h
 
-#ifndef _BOOST_WHITEBOARD_H_
+#ifndef gusimplewhiteboard_Whiteboard_h
 #ifndef NO_WARN_WBMSG_H
 #warning *** Warning: attempt to include simple WBMsg directly without including Whiteboard.h first!
 #endif

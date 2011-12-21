@@ -292,6 +292,12 @@ gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
  */
 gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i);
 
+/**
+ * get the next shared memory location for the given whiteboard message type i
+ */
+void gsw_increment(gu_simple_whiteboard *wb, int i);
+        
+
 #pragma mark - subscription and callbacks
 
 /**
@@ -308,6 +314,11 @@ extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
  * add process for subscription signalling
  */
 void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
+
+/**
+ * signal all subscribing processes
+ */
+void gsw_signal_subscribers(const gu_simple_whiteboard *wb);
 
 #ifdef __cplusplus
 }

@@ -61,8 +61,27 @@
 using namespace guWhiteboard;
 using namespace std;
 
+class WBSubscriber
+{
+        SimpleWhiteboardTest *self;
+public:
+        WBSubscriber(Whiteboard *w, SimpleWhiteboardTest *t): self(t)
+        {
+                Whiteboard::WBResult r;
+                w->subscribeToMessage("subtest", WB_BIND(WBSubscriber::sub), r);
+                STAssertEquals(r, Whiteboard::METHOD_OK, @"Subscription 'subtest' failed");
+        }
+
+        void sub(string type, WBMsg *m)
+        {
+                self.callbackCount++;
+                STAssertTrue(type == "subtest", @"Message of type '%s', but expected 'subtest'", type.c_str());
+                STAssertEquals(m->getIntValue(), 42, @"Message '%s' with incorrect value", type.c_str());
+        }
+};
+
 @implementation SimpleWhiteboardTest
-@synthesize whiteboard;
+@synthesize whiteboard, callbackCount;
 
 - (void) setUp
 {
@@ -84,6 +103,15 @@ using namespace std;
         WBMsg msg = self.whiteboard->getMessage("test");
         STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
         STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+}
+
+
+- (void) testCallback
+{
+        WBSubscriber subscriber(self.whiteboard, self);
+        self.whiteboard->addMessage("subtest", WBMsg("subval"));
+        sleep(1);
+        STAssertEquals(self.callbackCount, 1, @"Invalid callback count");
 }
 
 @end

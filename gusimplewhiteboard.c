@@ -352,8 +352,15 @@ gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i)
 {
         u_int8_t j = wb->indexes[i];
         if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
-        wb->indexes[i] = j;
         return &wb->messages[i][j];
+}
+
+
+void gsw_increment(gu_simple_whiteboard *wb, int i)
+{
+        u_int8_t j = wb->indexes[i];
+        if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
+        wb->indexes[i] = j;
 }
 
 #pragma mark - subscription and callbacks
@@ -368,12 +375,21 @@ void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
                         break;
         if (i < GSW_TOTAL_PROCESSES)
         {
-                wb->processes[i] = proc;
+                wb->processes[i++] = proc;
                 if (i > wb->subscribed)
                         wb->subscribed = i;
         }
         else fprintf(stderr, "Warning: process table full (%d): cannot subscribe %d\n", i, proc);
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
+}
+
+void gsw_signal_subscribers(const gu_simple_whiteboard *wb)
+{
+        for (int i = 0; i < wb->subscribed; i++)
+        {
+                pid_t proc = wb->processes[i];
+                if (proc) kill(proc, WHITEBOARD_SIGNAL);
+        }
 }
 
 static void subscription_callback(void *param)
@@ -408,7 +424,7 @@ void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         int n = sizeof(subscribed_whiteboards)/sizeof(subscribed_whiteboards[0]);
         if (i < n)
         {
-                subscribed_whiteboards[i] = wbd;
+                subscribed_whiteboards[i++] = wbd;
                 if (i > num_subscribed_whiteboards)
                         num_subscribed_whiteboards = i;
         }
