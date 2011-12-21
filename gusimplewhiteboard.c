@@ -443,6 +443,7 @@ void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         int n = sizeof(subscribed_whiteboards)/sizeof(subscribed_whiteboards[0]);
         if (i < n)
         {
+                if (!i) signal(WHITEBOARD_SIGNAL, sig_handler);
                 subscribed_whiteboards[i++] = wbd;
                 if (i > num_subscribed_whiteboards)
                         num_subscribed_whiteboards = i;
