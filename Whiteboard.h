@@ -142,7 +142,7 @@ namespace guWhiteboard
 		 * @param[in] type The string type associated with the message object
 		 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
 		 * @return The message object
-		 */		
+		 */
 		WBMsg getMessage(std::string type, WBResult *result = NULL);
 
 		/**
