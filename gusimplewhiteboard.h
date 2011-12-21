@@ -283,6 +283,12 @@ extern int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s);
 extern int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s);
 
 /**
+ * initialise the whiteboard semaphores
+ * @param sem   whiteboard semaphore descriptor
+ */
+extern void gsw_init_semaphores(gsw_sema_t s);
+
+/**
  * get the current shared memory location for the given whiteboard message type i
  */
 gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
