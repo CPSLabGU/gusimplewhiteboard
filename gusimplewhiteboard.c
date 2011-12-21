@@ -289,11 +289,11 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
 
         while (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
         {
-                gu_simple_message *type = &wb->hashes[offs];
+                type = &wb->hashes[offs];
                 if (!*type->hash.string)
                 {
                         strlcpy(type->hash.string, name, sizeof(type->hash.string));
-                        DBG(printf(" - registering wb message type #%d for '%s' at %d", wb->num_types, type->hash.string, offs));
+                        DBG(printf(" - registering wb message type #%d for '%s' at %d\n", wb->num_types, type->hash.string, offs));
                         type->hash.value = wb->num_types++;
                         wb->typenames[type->hash.value] = *type;
                         break;
@@ -326,10 +326,11 @@ int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char
         gu_simple_message *type = &wb->hashes[offs];
         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++)
         {
+                type = &wb->hashes[offs];
                 if (!*type->hash.string)                        // new message type?
                         return gsw_register_message_type(wbd, name);
                 if (strcmp(type->hash.string, name) == 0)
-                        return offs;
+                        return type->hash.value;
                 /* hash collision, add to the offset */
                 offs += alt_hash(name);
                 offs %= GSW_TOTAL_MESSAGE_TYPES;

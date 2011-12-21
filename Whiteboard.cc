@@ -160,7 +160,7 @@ static WBMsg getWBMsg(gu_simple_message *m)
 }
 
 
-WBMsg Whiteboard::getMessage(std::string type, WBResult *result)
+WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
         gu_simple_message *m = gsw_current_message(_wbd->wb, t);
@@ -177,7 +177,7 @@ WBMsg Whiteboard::getMessage(std::string type, WBResult *result)
 
 #pragma mark - subscription and callbacks
 
-void Whiteboard::subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result)
+void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
 {
         result = Whiteboard::METHOD_OK;
         
