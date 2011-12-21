@@ -60,6 +60,13 @@
 using namespace guWhiteboard;
 using namespace std;
 
+static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
+{
+        Whiteboard *self = (Whiteboard *) wbd->context;
+        if (self) self->subscriptionCallback();
+}
+
+
 Whiteboard::Whiteboard(const char *name, bool checkVersion)
 {
         if (!(_wbd = gsw_new_whiteboard(name)))
@@ -67,6 +74,8 @@ Whiteboard::Whiteboard(const char *name, bool checkVersion)
                 cerr << "Unable to create whiteboard '" << name << "'" << endl;
                 throw "Cannot create whiteboard";
         }
+        _wbd->context = this;
+        _wbd->callback = subscription_callback;
 }
 
 
@@ -122,6 +131,32 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
 }
 
 
+static WBMsg getWBMsg(gu_simple_message *m)
+{
+        switch (m->wbmsg.type)
+        {
+                case WBMsg::TypeBool:
+                        return WBMsg((bool)m->sint);
+                        
+                case WBMsg::TypeInt:
+                        return WBMsg(m->sint);
+                        
+                case WBMsg::TypeFloat:
+                        return WBMsg(m->sfloat);
+                        
+                case WBMsg::TypeString:
+                        return WBMsg(m->wbmsg.data);
+                        
+                case WBMsg::TypeBinary:
+                        return WBMsg(m->wbmsg.data, m->wbmsg.len);
+                        
+                default:
+                        return WBMsg();
+        }
+        /* NOTREACHED */
+}
+
+
 WBMsg Whiteboard::getMessage(std::string type, WBResult *result)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
@@ -134,26 +169,44 @@ WBMsg Whiteboard::getMessage(std::string type, WBResult *result)
                 else
                         *result = METHOD_FAIL;
         }
+        return getWBMsg(m);
+}
 
-        switch (m->wbmsg.type)
+#pragma mark - subscription and callbacks
+
+void Whiteboard::subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result)
+{
+        result = Whiteboard::METHOD_OK;
+        
+        int offs = -1, current = -1;
+        if (type != "*")
         {
-                case WBMsg::TypeBool:
-                        return WBMsg((bool)m->sint);
-
-                case WBMsg::TypeInt:
-                        return WBMsg(m->sint);
-
-                case WBMsg::TypeFloat:
-                        return WBMsg(m->sfloat);
-
-                case WBMsg::TypeString:
-                        return WBMsg(m->wbmsg.data);
-                        
-                case WBMsg::TypeBinary:
-                        return WBMsg(m->wbmsg.data, m->wbmsg.len);
-
-                default:
-                        return WBMsg();
+                offs = gsw_offset_for_message_type(_wbd, type.c_str());
+                current = _wbd->wb->indexes[offs];
         }
-        /* NOTREACHED */
+        _sub.push_back(callback_descr(func, offs, current));
+
+        gsw_add_wbd_signal_handler(_wbd);
+        gsw_add_process(_wbd, getpid());
+}
+
+
+void Whiteboard::subscriptionCallback(void)
+{
+        gu_simple_whiteboard *wb = _wbd->wb;
+        for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
+        {
+                callback_descr &descr = *i;
+                int offs = descr.type;
+                int curr = descr.current;
+                if (offs == -1) continue;               // XXX: nyi
+                while (curr != wb->indexes[offs])
+                {
+                        if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
+                                curr = 0;
+                        descr.current = curr;
+                        WBMsg msg = getWBMsg(&wb->messages[offs][curr]);
+                        descr.func->call(wb->typenames[offs].hash.string, &msg);
+                }
+        }
 }

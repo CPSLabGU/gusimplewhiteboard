@@ -59,8 +59,10 @@
 #define gusimplewhiteboard_Whiteboard_h
 
 #include <string>
+#include <vector>
 #include <iostream>
 #include "gusimplewhiteboard.h"
+#include "WBFunctor.h"
 #include "WBMsg.h"
 
 #ifdef WHITEBOARD_OLD_H
@@ -77,7 +79,17 @@ namespace guWhiteboard
          */
         class Whiteboard
         {
+                struct callback_descr
+                {
+                        int type;                       /// message type
+                        int current;                    /// last message index
+                        WBFunctorBase *func;            /// functor to call
+
+                        callback_descr(WBFunctorBase *f, int t = -1, int o = -1): type(t), current(o), func(f) {}
+                };
+
                 gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard
+                std::vector<callback_descr> _sub;  /// subscription indexes
         public:
                 /**
 		 * API Constructor
@@ -132,6 +144,20 @@ namespace guWhiteboard
 		 * @return The message object
 		 */		
 		WBMsg getMessage(std::string type, WBResult *result = NULL);
+
+		/**
+		 * Subscribe To Message
+		 * Subscribes to a message type on a whiteboard or whiteboards
+		 * @param[in] type The string type to subscribe to
+		 * @param[in] func The function to call when a message of the type enter is added		 
+		 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+		 */
+		void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);
+
+                /**
+                 * subscription callback: not really public!
+                 */
+                void subscriptionCallback(void);
         };
 }
 

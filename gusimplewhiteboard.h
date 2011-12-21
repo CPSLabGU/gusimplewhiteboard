@@ -63,12 +63,15 @@ extern "C"
 {
 #endif
 
+#include <dispatch/dispatch.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            1       // version
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       // lifespan (max)
 #define GU_SIMPLE_WHITEBOARD_BUFSIZE            64      // message len (max)
 #define GSW_TOTAL_MESSAGE_TYPES                 1024    // message types (max)
+#define GSW_TOTAL_PROCESSES                     256     // maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
 #define GSW_DEFAULT_NAME "simple_whiteboard"
@@ -86,8 +89,13 @@ enum gsw_semaphores
         GSW_SEM_PUTMSG,                 /// semaphore for adding to the whiteboard
         GSW_SEM_CALLBACK,               /// semaphore for callback data
         GSW_SEM_MSGTYPE,                /// semaphore for message type registration
+        GSW_SEM_PROC,                   /// semaphore for process registration
         GSW_NUM_SEM                     /// number of semaphores
 };
+
+struct gsw_whiteboard_s;
+
+typedef void (*gsw_subscription_f)(struct gsw_whiteboard_s *wbd);
 
 typedef union gsw_simple_message
 {
@@ -169,7 +177,7 @@ typedef struct gsw_simple_whiteboard_s
 {
         u_int16_t               version;        /// whiteboard version
         u_int16_t               num_reserved;   /// number of reserved message types
-        u_int16_t               max_lifespan;   /// number of generations
+        u_int16_t               subscribed;     /// subscribed processes
         u_int16_t               num_types;      /// total number of current, registered types
 
         u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       /// ring buffer indexes
@@ -185,6 +193,16 @@ typedef struct gsw_simple_whiteboard_s
         gu_simple_message       hashes[GSW_TOTAL_MESSAGE_TYPES];
 
         /**
+         * message types for numbers
+         */
+        gu_simple_message       typenames[GSW_TOTAL_MESSAGE_TYPES];
+
+        /**
+         * list of subscribed processes
+         */
+        pid_t                   processes[GSW_TOTAL_PROCESSES];
+
+        /**
          * end of whiteboard marker
          */
         u_int64_t               magic;
@@ -197,6 +215,9 @@ typedef struct gsw_whiteboard_s
         gu_simple_whiteboard    *wb;            /// the actual whiteboard in shared mem
         gsw_sema_t               sem;           /// semaphore to use
         int                      fd;            /// the associated memory-mapped file
+        dispatch_queue_t         callback_queue;/// subscription callback queue
+        gsw_subscription_f       callback;      /// subscription callback function
+        void                    *context;       /// callback context
 } gu_simple_whiteboard_descriptor;
 
 /**
@@ -270,6 +291,23 @@ gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
  * get the next shared memory location for the given whiteboard message type i
  */
 gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i);
+
+#pragma mark - subscription and callbacks
+
+/**
+ * subscribe a new process to receive signals
+ */
+extern void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
+
+/**
+ * add subscription signal handler
+ */
+extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
+
+/**
+ * add process for subscription signalling
+ */
+void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
 
 #ifdef __cplusplus
 }

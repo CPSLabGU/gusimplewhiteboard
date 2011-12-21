@@ -61,6 +61,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <signal.h>
 #include <unistd.h>
 #include <limits.h>
 #include <sys/types.h>
@@ -75,6 +76,7 @@
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
 #define SEM_ERROR               -1
+#define WHITEBOARD_SIGNAL       SIGUSR2
 
 static const char *known_message_types[GSW_NUM_RESERVED] =
 {
@@ -100,7 +102,7 @@ void gsw_init_semaphores(gsw_sema_t s)
 
 gsw_sema_t gsw_setup_semaphores(void)
 {
-        int semflg = SEM_R|SEM_A|(SEM_R>>3)|(SEM_A>>3);
+        int semflg = SEM_R|SEM_A|(SEM_R>>3)|(SEM_A>>3)|(SEM_R>>6)|(SEM_A>>6);
         gsw_sema_t s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg);
 
         if (s == SEM_ERROR)
@@ -141,13 +143,19 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
                 for (enum gsw_message_types i = 0; i < GSW_NUM_RESERVED; i++)
                         gsw_register_message_type(wbd, known_message_types[i]);
         }
+        wbd->callback_queue = dispatch_queue_create(name, NULL);
         return wbd;
 }
 
 
 void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 {
-        if (wbd) free(wbd);
+        if (wbd)
+        {
+                if (wbd->wb) gsw_free(wbd->wb, wbd->fd);
+                if (wbd->callback_queue) dispatch_release(wbd->callback_queue);
+                free(wbd);
+        }
 }
 
 
@@ -157,7 +165,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
         strlcat(path, name, sizeof(path));
 
-        int fd = open(path, O_CREAT|O_RDWR, 0660);
+        int fd = open(path, O_CREAT|O_RDWR, 0666);
         if (fd == -1)
         {
                 fprintf(stderr, "Cannot open/create '%s': %s\n", path, strerror(errno));
@@ -179,7 +187,6 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         {
                 memset(wb, 0, sizeof(*wb));
                 wb->version      = GU_SIMPLE_WHITEBOARD_VERSION;
-                wb->max_lifespan = GU_SIMPLE_WHITEBOARD_GENERATIONS;
                 wb->num_reserved = GSW_NUM_RESERVED;
                 wb->magic = WHITEBOARD_MAGIC;
 
@@ -192,9 +199,6 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         bool bailout = wb->version != GU_SIMPLE_WHITEBOARD_VERSION;
         if (bailout) fprintf(stderr, "*** Unexpected Whiteboard version %d (expected %d for '%s')\n", wb->version, GU_SIMPLE_WHITEBOARD_VERSION, path);
 
-        bailout |= wb->max_lifespan != GU_SIMPLE_WHITEBOARD_GENERATIONS;
-        if (bailout) fprintf(stderr, "*** Invalid maximum lifespan %d (expected %d for '%s')\n", wb->max_lifespan, GU_SIMPLE_WHITEBOARD_GENERATIONS, path);
-        
         bailout |= wb->num_reserved != GSW_NUM_RESERVED;
         if (bailout) fprintf(stderr, "*** Invalid number of reserved messages: %d (expected %d for '%s')\n", wb->num_reserved, GSW_NUM_RESERVED, path);
 
@@ -291,6 +295,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                         strlcpy(type->hash.string, name, sizeof(type->hash.string));
                         DBG(printf(" - registering wb message type #%d for '%s' at %d", wb->num_types, type->hash.string, offs));
                         type->hash.value = wb->num_types++;
+                        wb->typenames[type->hash.value] = *type;
                         break;
                 }
                 if (strcmp(type->hash.string, name) == 0)
@@ -349,5 +354,65 @@ gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i)
         if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
         wb->indexes[i] = j;
         return &wb->messages[i][j];
+}
+
+#pragma mark - subscription and callbacks
+
+void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
+{
+        gsw_procure(wbd->sem, GSW_SEM_PROC);
+        gu_simple_whiteboard *wb = wbd->wb;
+        u_int16_t i;
+        for (i = 0; i < wb->subscribed; i++)
+                if (!wb->processes[i] || proc == wb->processes[i])
+                        break;
+        if (i < GSW_TOTAL_PROCESSES)
+        {
+                wb->processes[i] = proc;
+                if (i > wb->subscribed)
+                        wb->subscribed = i;
+        }
+        else fprintf(stderr, "Warning: process table full (%d): cannot subscribe %d\n", i, proc);
+        gsw_vacate(wbd->sem, GSW_SEM_PROC);
+}
+
+static void subscription_callback(void *param)
+{
+        gu_simple_whiteboard_descriptor *wbd = param;
+        if (wbd->callback) wbd->callback(wbd);
+}
+
+static int num_subscribed_whiteboards = 0;
+static gu_simple_whiteboard_descriptor *subscribed_whiteboards[32];
+
+/* signal handler */
+static void sig_handler(int signum)
+{
+        for (int i = 0; i < num_subscribed_whiteboards; i++)
+        {
+                gu_simple_whiteboard_descriptor *wbd = subscribed_whiteboards[i];
+                if (wbd && wbd->callback_queue)
+                        dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
+        }
+}
+
+
+void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
+{
+        gsw_procure(wbd->sem, GSW_SEM_PROC);
+        gu_simple_whiteboard *wb = wbd->wb;
+        int i;
+        for (i = 0; i < num_subscribed_whiteboards; i++)
+                if (!subscribed_whiteboards[i] || wbd == subscribed_whiteboards[i])
+                        break;
+        int n = sizeof(subscribed_whiteboards)/sizeof(subscribed_whiteboards[0]);
+        if (i < n)
+        {
+                subscribed_whiteboards[i] = wbd;
+                if (i > num_subscribed_whiteboards)
+                        num_subscribed_whiteboards = i;
+        }
+        else fprintf(stderr, "Warning: whiteboard table full (%d): cannot subscribe %p\n", i, wb);
+        gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 

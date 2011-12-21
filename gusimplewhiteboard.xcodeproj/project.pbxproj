@@ -13,6 +13,7 @@
 		F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1D925FD14A13BAA00BDAEED /* InfoPlist.strings */; };
 		F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */; };
 		F1D9260A14A13BCD00BDAEED /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
+		F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D9265914A151C500BDAEED /* WBFunctor.h */; };
 		F1F4536414A1226D005C40A6 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		F1D9260014A13BAA00BDAEED /* SimpleWhiteboardTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWhiteboardTest.h; sourceTree = "<group>"; };
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
+		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBFunctor.h; sourceTree = "<group>"; };
 		F1F4536114A11E90005C40A6 /* Whiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Whiteboard.h; sourceTree = "<group>"; };
 		F1F4536314A1226D005C40A6 /* Whiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whiteboard.cc; sourceTree = "<group>"; };
 		F1F4536514A123C7005C40A6 /* WBMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBMsg.h; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				F1F4536114A11E90005C40A6 /* Whiteboard.h */,
 				F1F4536314A1226D005C40A6 /* Whiteboard.cc */,
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
+				F1D9265914A151C500BDAEED /* WBFunctor.h */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
@@ -137,6 +140,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
