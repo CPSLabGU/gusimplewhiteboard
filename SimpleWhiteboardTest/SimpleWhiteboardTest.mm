@@ -103,6 +103,11 @@ public:
         WBMsg msg = self.whiteboard->getMessage("test");
         STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
         STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+
+        self.whiteboard->addMessage("test", WBMsg("testval2"));
+        msg = self.whiteboard->getMessage("test");
+        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
 }
 
 
