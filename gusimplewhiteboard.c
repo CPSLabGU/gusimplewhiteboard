@@ -455,7 +455,7 @@ static void sig_handler(int signum)
                 if (wbd && wbd->callback_queue)
                         dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
         }
-        if (old_handler && old_handler != SIG_ERR && old_handler > (void (*)(int))5)
+        if (old_handler && old_handler != SIG_ERR && old_handler != SIG_DFL)
                 old_handler(signum);
 }
 
