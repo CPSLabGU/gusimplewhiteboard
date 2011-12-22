@@ -67,7 +67,7 @@ extern "C"
 #include <sys/types.h>
 #include <unistd.h>
 
-#define GU_SIMPLE_WHITEBOARD_VERSION            1       // version
+#define GU_SIMPLE_WHITEBOARD_VERSION            2       // version
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       // lifespan (max)
 #define GU_SIMPLE_WHITEBOARD_BUFSIZE            64      // message len (max)
 #define GSW_TOTAL_MESSAGE_TYPES                 1024    // message types (max)
@@ -176,7 +176,7 @@ typedef union gsw_simple_message
 typedef struct gsw_simple_whiteboard_s
 {
         u_int16_t               version;        /// whiteboard version
-        u_int16_t               num_reserved;   /// number of reserved message types
+        u_int16_t               eventcount;     /// current event count
         u_int16_t               subscribed;     /// subscribed processes
         u_int16_t               num_types;      /// total number of current, registered types
 
@@ -218,6 +218,7 @@ typedef struct gsw_whiteboard_s
         dispatch_queue_t         callback_queue;/// subscription callback queue
         gsw_subscription_f       callback;      /// subscription callback function
         void                    *context;       /// callback context
+        bool                     got_monitor;   /// have a running monitor
 } gu_simple_whiteboard_descriptor;
 
 /**
@@ -329,7 +330,7 @@ void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
 /**
  * signal all subscribing processes
  */
-void gsw_signal_subscribers(const gu_simple_whiteboard *wb);
+void gsw_signal_subscribers(gu_simple_whiteboard *wb);
 
 #ifdef __cplusplus
 }

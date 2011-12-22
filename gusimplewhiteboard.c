@@ -210,7 +210,6 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         {
                 memset(wb, 0, sizeof(*wb));
                 wb->version      = GU_SIMPLE_WHITEBOARD_VERSION;
-                wb->num_reserved = GSW_NUM_RESERVED;
                 wb->magic = WHITEBOARD_MAGIC;
 
                 if (initial) *initial = true;
@@ -221,9 +220,6 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 
         bool bailout = wb->version != GU_SIMPLE_WHITEBOARD_VERSION;
         if (bailout) fprintf(stderr, "*** Unexpected Whiteboard version %d (expected %d for '%s')\n", wb->version, GU_SIMPLE_WHITEBOARD_VERSION, path);
-
-        bailout |= wb->num_reserved != GSW_NUM_RESERVED;
-        if (bailout) fprintf(stderr, "*** Invalid number of reserved messages: %d (expected %d for '%s')\n", wb->num_reserved, GSW_NUM_RESERVED, path);
 
         if (bailout)
         {
@@ -426,8 +422,9 @@ void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 
-void gsw_signal_subscribers(const gu_simple_whiteboard *wb)
+void gsw_signal_subscribers(gu_simple_whiteboard *wb)
 {
+        wb->eventcount++;
         for (int i = 0; i < wb->subscribed; i++)
         {
                 pid_t proc = wb->processes[i];
@@ -442,42 +439,41 @@ static void subscription_callback(void *param)
 }
 
 typedef void (*gsw_sig_t)(int sig);
-static int num_subscribed_whiteboards = 0;
-static gu_simple_whiteboard_descriptor *subscribed_whiteboards[32];
-static gsw_sig_t old_handler = SIG_ERR;
+static gsw_sig_t old_handler = SIG_DFL;
+
+static void monitor_subscriptions(void *param)
+{
+        gu_simple_whiteboard_descriptor *wbd = param;
+        gu_simple_whiteboard *wb = wbd->wb;
+        u_int16_t counter = wb->eventcount;
+        for (;;)
+        {
+                if (counter != wb->eventcount)
+                {
+                        counter = wb->eventcount;
+                        if (wbd && wbd->callback_queue)
+                                dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
+                }
+                else usleep(1000);
+        }
+}
 
 /* signal handler */
 static void sig_handler(int signum)
 {
-        for (int i = 0; i < num_subscribed_whiteboards; i++)
-        {
-                gu_simple_whiteboard_descriptor *wbd = subscribed_whiteboards[i];
-                if (wbd && wbd->callback_queue)
-                        dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
-        }
-        if (old_handler && old_handler != SIG_ERR && old_handler != SIG_DFL)
-                old_handler(signum);
+        /* do nothing */
 }
-
 
 void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
 {
         gsw_procure(wbd->sem, GSW_SEM_PROC);
-        gu_simple_whiteboard *wb = wbd->wb;
-        int i;
-        for (i = 0; i < num_subscribed_whiteboards; i++)
-                if (!subscribed_whiteboards[i] || wbd == subscribed_whiteboards[i])
-                        break;
-        int n = sizeof(subscribed_whiteboards)/sizeof(subscribed_whiteboards[0]);
-        if (i < n)
+        if (old_handler == SIG_DFL)
+                old_handler = signal(WHITEBOARD_SIGNAL, sig_handler);
+        if (!wbd->got_monitor)
         {
-                if (!i && old_handler == SIG_ERR)
-                        old_handler = signal(WHITEBOARD_SIGNAL, sig_handler);
-                subscribed_whiteboards[i++] = wbd;
-                if (i > num_subscribed_whiteboards)
-                        num_subscribed_whiteboards = i;
+                wbd->got_monitor = true;
+                dispatch_async_f(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), wbd, monitor_subscriptions);
         }
-        else fprintf(stderr, "Warning: whiteboard table full (%d): cannot subscribe %p\n", i, wb);
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 
