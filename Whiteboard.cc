@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#include <cstring>
+#include <gu_util.h>
 #include "Whiteboard.h"
 
 using namespace guWhiteboard;
@@ -117,7 +119,7 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
                         break;
 
                 case WBMsg::TypeString:
-                        strlcpy(m->wbmsg.data, msg.getStringValue().c_str(), sizeof(m->wbmsg.data));
+                        gu_strlcpy(m->wbmsg.data, msg.getStringValue().c_str(), sizeof(m->wbmsg.data));
                         m->wbmsg.len = strlen(m->wbmsg.data) + 1;
                         break;
 

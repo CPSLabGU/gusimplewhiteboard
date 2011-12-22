@@ -71,6 +71,7 @@
 #error *** Error: attempt to mix boost and simple Whiteboard in WBMsg!
 #endif
 
+#include <cstdlib>
 
 class WBMsg
 {

@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#define _BSD_SOURCE
+#define _POSIX_SOURCE
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
@@ -77,6 +79,21 @@
 #define SEMAPHORE_MAGIC_KEY     4242
 #define SEM_ERROR               -1
 #define WHITEBOARD_SIGNAL       SIGUSR2
+
+#ifndef SEM_A
+#define SEM_A		0200	/* alter permission */
+#define SEM_R		0400	/* read permission */
+#endif
+
+#ifdef _SEM_SEMUN_UNDEFINED
+union semun
+{
+        int val;                           // value for SETVAL
+        struct semid_ds *buf;              // buffer for IPC_STAT & IPC_SET
+        unsigned short int *array;         // array for GETALL & SETALL
+        struct seminfo *__buf;             // buffer for IPC_INFO
+};
+#endif
 
 static const char *known_message_types[GSW_NUM_RESERVED] =
 {
@@ -163,7 +180,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
         char path[PATH_MAX] = "/tmp/";
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
-        strlcat(path, name, sizeof(path));
+        gu_strlcat(path, name, sizeof(path));
 
         int fd = open(path, O_CREAT|O_RDWR, 0666);
         if (fd == -1)
@@ -173,7 +190,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         }
 
         if (ftruncate(fd, sizeof(gu_simple_whiteboard)) == -1)
-            fprintf(stderr, "Warning; cannot reserve %lu bytes for '%s': %s\n", sizeof(gu_simple_whiteboard), path, strerror(errno));
+            fprintf(stderr, "Warning; cannot reserve %lu bytes for '%s': %s\n", (unsigned long) sizeof(gu_simple_whiteboard), path, strerror(errno));
 
         gu_simple_whiteboard *wb = mmap(NULL, sizeof(*wb), PROT_READ|PROT_WRITE, MAP_FILE|MAP_SHARED, fd, 0);
         if (!wb)
@@ -292,7 +309,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                 type = &wb->hashes[offs];
                 if (!*type->hash.string)
                 {
-                        strlcpy(type->hash.string, name, sizeof(type->hash.string));
+                        gu_strlcpy(type->hash.string, name, sizeof(type->hash.string));
                         DBG(printf(" - registering wb message type #%d for '%s' at %d\n", wb->num_types, type->hash.string, offs));
                         type->hash.value = wb->num_types++;
                         wb->typenames[type->hash.value] = *type;
