@@ -55,8 +55,14 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#ifdef __linux
+#ifndef _BSD_SOURCE
 #define _BSD_SOURCE
+#endif
+#ifndef _POSIX_SOURCE
 #define _POSIX_SOURCE
+#endif
+#endif
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
