@@ -441,8 +441,10 @@ static void subscription_callback(void *param)
         if (wbd->callback) wbd->callback(wbd);
 }
 
+typedef void (*gsw_sig_t)(int sig);
 static int num_subscribed_whiteboards = 0;
 static gu_simple_whiteboard_descriptor *subscribed_whiteboards[32];
+static gsw_sig_t old_handler = SIG_ERR;
 
 /* signal handler */
 static void sig_handler(int signum)
@@ -453,6 +455,8 @@ static void sig_handler(int signum)
                 if (wbd && wbd->callback_queue)
                         dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
         }
+        if (old_handler && old_handler != SIG_ERR && old_handler > (void (*)(int))5)
+                old_handler(signum);
 }
 
 
@@ -467,7 +471,8 @@ void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         int n = sizeof(subscribed_whiteboards)/sizeof(subscribed_whiteboards[0]);
         if (i < n)
         {
-                if (!i) signal(WHITEBOARD_SIGNAL, sig_handler);
+                if (!i && old_handler == SIG_ERR)
+                        old_handler = signal(WHITEBOARD_SIGNAL, sig_handler);
                 subscribed_whiteboards[i++] = wbd;
                 if (i > num_subscribed_whiteboards)
                         num_subscribed_whiteboards = i;
