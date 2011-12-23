@@ -189,6 +189,8 @@ void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBR
                 offs = gsw_offset_for_message_type(_wbd, type.c_str());
                 current = _wbd->wb->indexes[offs];
         }
+        else for (int i = 0; i < _wbd->wb->num_types; i++)      // subscribe to all
+                cball_indexes[i] = _wbd->wb->indexes[i];
         _sub.push_back(callback_descr(func, offs, current));
 
         gsw_add_wbd_signal_handler(_wbd);
@@ -204,8 +206,23 @@ void Whiteboard::subscriptionCallback(void)
                 callback_descr &descr = *i;
                 int offs = descr.type;
                 int curr = descr.current;
-                if (offs == -1) continue;               // XXX: nyi
-                while (curr != wb->indexes[offs])
+                /*
+                 * offs == -1 means all types "*", otherwise only check
+                 * new postings for a specific message type
+                 */
+                if (offs == -1) for (offs = 0; offs < wb->num_types; offs++)
+                {
+                        curr = cball_indexes[offs];
+                        while (curr != wb->indexes[offs])       // every new message
+                        {
+                                if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
+                                        curr = 0;
+                                cball_indexes[offs] = curr;
+                                WBMsg msg = getWBMsg(&wb->messages[offs][curr]);
+                                descr.func->call(wb->typenames[offs].hash.string, &msg);
+                        }
+                }
+                else while (curr != wb->indexes[offs])  // for every new message
                 {
                         if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
                                 curr = 0;
@@ -221,14 +238,19 @@ void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
 {
         gu_simple_whiteboard *wb = _wbd->wb;
 
+        result = Whiteboard::METHOD_FAIL;
+
         for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
         {
                 callback_descr &descr = *i;
                 int offs = descr.type;
-                if (offs == -1) continue;               // XXX: nyi
-                if (type == wb->typenames[offs].hash.string) continue;
-                _sub.erase(i);
-                break;
+                if ((offs == -1 && type == "*") ||
+                    type == wb->typenames[offs].hash.string)
+                {
+                        _sub.erase(i);
+                        result = Whiteboard::METHOD_OK;
+                        break;
+                }
         }
         if (!_sub.size()) gsw_remove_process(_wbd, getpid());
 }

@@ -91,6 +91,7 @@ namespace guWhiteboard
 
                 gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard
                 std::vector<callback_descr> _sub;  /// subscription indexes
+                u_int8_t cball_indexes[GSW_TOTAL_MESSAGE_TYPES];        /// all-subscription indexes
         public:
                 /**
 		 * API Constructor
