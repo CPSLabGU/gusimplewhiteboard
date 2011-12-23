@@ -90,13 +90,16 @@ public:
 		TypeBinary,
 		TypeEmpty
 	} WBType;
-private:        
-        bool boolVal;
-	int intVal;
-	float floatVal;
+private:
+        union
+        {
+                bool boolVal;
+                int intVal;
+                float floatVal;
+                const void *binaryVal;
+        };
 	std::string stringVal;
 	WBType type;
-	const void* binaryVal;
 	int binarySize;
 	std::string specificRecipient;
 	std::string typeName;
