@@ -98,12 +98,11 @@ private:
                 float floatVal;
                 const void *binaryVal;
         };
-	std::string stringVal;
 	WBType type;
 	int binarySize;
-	std::string specificRecipient;
 	std::string typeName;
-	int doFree;
+	std::string stringVal;
+	bool doFree;
 
 public:
         /**
