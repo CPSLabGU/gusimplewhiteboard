@@ -323,6 +323,9 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                         break;
                 }
                 /* collision, add to the offset */
+                DBG(printf("Hash collision at offset %d: %d == %d %% %d for:\n'%s' <> '%s'",
+                           offs, hash_of(name), hash_of(type->hash.string), GSW_TOTAL_MESSAGE_TYPES,
+                           name, type->hash.string));
                 offs += alt_hash(name);
                 offs %= GSW_TOTAL_MESSAGE_TYPES;
         }
