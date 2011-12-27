@@ -72,6 +72,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <limits.h>
+#include <assert.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/file.h>
@@ -175,6 +176,7 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 {
         if (wbd)
         {
+                gsw_remove_wbd_signal_handler(wbd);
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);
                 if (wbd->callback_queue) dispatch_release(wbd->callback_queue);
                 free(wbd);
@@ -184,6 +186,8 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 
 gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
+        assert(sizeof(gu_simple_message) == GU_SIMPLE_WHITEBOARD_BUFSIZE);
+
         char path[PATH_MAX] = "/tmp/";
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
         gu_strlcat(path, name, sizeof(path));
@@ -323,7 +327,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                         break;
                 }
                 /* collision, add to the offset */
-                DBG(printf("Hash collision at offset %d: %d == %d %% %d for:\n'%s' <> '%s'",
+                DBG(printf("Hash collision at offset %u: %u == %u %% %d for:\n'%s' <> '%s'",
                            offs, hash_of(name), hash_of(type->hash.string), GSW_TOTAL_MESSAGE_TYPES,
                            name, type->hash.string));
                 offs += alt_hash(name);
@@ -449,7 +453,7 @@ static void monitor_subscriptions(void *param)
         gu_simple_whiteboard_descriptor *wbd = param;
         gu_simple_whiteboard *wb = wbd->wb;
         u_int16_t counter = wb->eventcount;
-        for (;;)
+        while (!wbd->exit_monitor)
         {
                 if (counter != wb->eventcount)
                 {
@@ -459,6 +463,7 @@ static void monitor_subscriptions(void *param)
                 }
                 else usleep(1000);
         }
+        wbd->got_monitor = false;
 }
 
 /* signal handler */
@@ -480,3 +485,12 @@ void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 
+
+void gsw_remove_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
+{
+        while (wbd->got_monitor)
+        {
+                wbd->exit_monitor = true;
+                usleep(1000);
+        }
+}

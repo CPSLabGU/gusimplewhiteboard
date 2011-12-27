@@ -219,6 +219,7 @@ typedef struct gsw_whiteboard_s
         gsw_subscription_f       callback;      /// subscription callback function
         void                    *context;       /// callback context
         bool                     got_monitor;   /// have a running monitor
+        bool                     exit_monitor;  /// exit the monitor
 } gu_simple_whiteboard_descriptor;
 
 /**
@@ -316,6 +317,11 @@ extern void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t pr
  * add subscription signal handler
  */
 extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
+
+/**
+ * remove subscription signal handler
+ */
+extern void gsw_remove_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
 
 /**
  * add process for subscription signalling
