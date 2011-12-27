@@ -77,16 +77,18 @@ public:
                 self.callbackCount++;
                 STAssertTrue(type == "subtest", @"Message of type '%s', but expected 'subtest'", type.c_str());
                 STAssertEquals(m->getIntValue(), 42, @"Message '%s' with incorrect value", type.c_str());
+                dispatch_semaphore_signal(self.semaphore);
         }
 };
 
 @implementation SimpleWhiteboardTest
-@synthesize whiteboard, callbackCount;
+@synthesize whiteboard, callbackCount, semaphore;
 
 - (void) setUp
 {
         [super setUp];
 
+        self.semaphore = dispatch_semaphore_create(0);
         self.whiteboard = new Whiteboard();
 }
 
@@ -114,8 +116,9 @@ public:
 - (void) testCallback
 {
         WBSubscriber subscriber(self.whiteboard, self);
-        self.whiteboard->addMessage("subtest", WBMsg("subval"));
-        sleep(1);
+        self.whiteboard->addMessage("subtest", WBMsg(42));
+        dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC);
+        dispatch_semaphore_wait(self.semaphore, t);
         STAssertEquals(self.callbackCount, 1, @"Invalid callback count");
 }
 

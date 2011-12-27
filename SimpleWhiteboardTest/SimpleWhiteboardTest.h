@@ -62,4 +62,5 @@
 @interface SimpleWhiteboardTest: SenTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
 @property (nonatomic, assign) int callbackCount;
+@property (nonatomic, assign) dispatch_semaphore_t semaphore;
 @end

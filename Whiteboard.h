@@ -112,21 +112,9 @@ namespace guWhiteboard
 		 * Adds a message to the whiteboard that the API is connected to
 		 * @param[in] type The string type associated with the message object
 		 * @param[in] msg The message object to post to the whiteboard
+                 * @param[in] nonatomic Add quickly without grabbing the semaphore
 		 */
-                void addMessage(const std::string &type, const WBMsg &msg);
-
-                /**
-		 * Compatibility Add Message (ignores life span and prints a warning)
-		 * Adds a message to the whiteboard that the API is connected to
-		 * @param[in] type The string type associated with the message object
-		 * @param[in] msg The message object to post to the whiteboard
-		 * @param[in] lifespan (ignored) Every message will remain on the whiteboard until its default lifespan has expired.
-		 */
-                void addMessage(const std::string &type, const WBMsg &msg, int lifespan)
-                {
-                        std::cerr << "Life span (%d) not supported on addMessage()\n" << std::endl;
-                        addMessage(type, msg);
-                }
+                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false);
 
 		/**
 		 * Return Type Enum

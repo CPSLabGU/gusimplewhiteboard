@@ -87,11 +87,15 @@ Whiteboard::~Whiteboard()
 }
 
 
-void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
+void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
 
-        gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
+#ifdef DEBUG
+        if (nonatomic < 0 || nonatomic > 1)
+                cerr << " *** Nonatomic parameter " << nonatomic << " not bool (are you using a life span?) ***" << endl;
+#endif
+        if (!nonatomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
 
         gu_simple_whiteboard *wb = _wbd->wb;
         gu_simple_message *m = gsw_next_message(wb, t);
@@ -141,7 +145,7 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
                 }
         }
         gsw_increment(wb, t);
-        gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
+        if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         if (wb->subscribed) gsw_signal_subscribers(wb);
 }
 

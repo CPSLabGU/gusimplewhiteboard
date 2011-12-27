@@ -432,11 +432,13 @@ void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
 void gsw_signal_subscribers(gu_simple_whiteboard *wb)
 {
         wb->eventcount++;
+#ifndef __APPLE__
         for (int i = 0; i < wb->subscribed; i++)
         {
                 pid_t proc = wb->processes[i];
                 if (proc) kill(proc, WHITEBOARD_SIGNAL);
         }
+#endif
 }
 
 static void subscription_callback(void *param)
