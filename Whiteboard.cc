@@ -123,12 +123,22 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg)
                         m->wbmsg.len = strlen(m->wbmsg.data) + 1;
                         break;
 
+                case WBMsg::TypeArray:
+                {
+                        int k = 0;
+                        for (vector<int>::const_iterator i = msg.getArrayValue().begin(); i < msg.getArrayValue().end(); i++)
+                                m->ivec[k++] = *i;
+                        m->wbmsg.len = k;
+                        break;
+                }
                 case WBMsg::TypeBinary:
+                {
                         int len = msg.getSizeInBytes();
                         if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
                         m->wbmsg.len = len;
                         if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
                         break;
+                }
         }
         gsw_increment(wb, t);
         gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
@@ -155,6 +165,13 @@ static WBMsg getWBMsg(gu_simple_message *m)
                 case WBMsg::TypeBinary:
                         return WBMsg(m->wbmsg.data, m->wbmsg.len);
                         
+                case WBMsg::TypeArray:
+                {
+                        vector<int> *v = new vector<int>();
+                        for (int i = 0; i < m->wbmsg.len; i++)
+                                v->push_back(m->ivec[i]);
+                        return WBMsg(*v, true);
+                }
                 default:
                         return WBMsg();
         }

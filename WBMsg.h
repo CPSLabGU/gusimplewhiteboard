@@ -157,14 +157,14 @@ public:
 	 * @param needsFree If this is non-zero, will free the contents of the data 
 	 *                  buffer when this WBMsg is deleted.
 	 */
-	WBMsg(const void *data, int nBytes, int needsFree = 0): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
+	WBMsg(const void *data, int nBytes, bool needsFree = false): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
 
 	/**
 	 * WBMsg - Vector<int> constructor.
 	 * Initialises a WBMsg with a standard C++ string value.
 	 * @param val String to store in the Whiteboard message.
 	 */
-	WBMsg(const std::vector<int> &val): type(TypeArray), arrayVal(&val) {}
+	WBMsg(const std::vector<int> &val, bool needsFree = false): type(TypeArray), arrayVal(&val), doFree(needsFree) {}
         
 	/**
 	 * getType.
@@ -249,7 +249,7 @@ public:
         /**
          * default destructor
          */
-	~WBMsg() { if (type == TypeBinary && doFree) free((void *) binaryVal); }
+	~WBMsg() { if (doFree) { if (type == TypeBinary) free((void *) binaryVal); else if (type == TypeArray) delete arrayVal; } }
 };
 
 #endif
