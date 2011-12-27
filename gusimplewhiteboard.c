@@ -425,7 +425,7 @@ void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
                 if (i == wb->subscribed-1)
                          wb->subscribed = i;
         }
-        else fprintf(stderr, "Warning: cannot subscribe %d -- process not foun!d\n", proc);
+        else fprintf(stderr, "Warning: cannot remove %d -- process not found!\n", proc);
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 
