@@ -97,6 +97,7 @@ private:
                 int intVal;
                 float floatVal;
                 const void *binaryVal;
+                const std::vector<int> *arrayVal;
         };
 	WBType type;
 	int binarySize;
@@ -158,6 +159,13 @@ public:
 	 */
 	WBMsg(const void *data, int nBytes, int needsFree = 0): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
 
+	/**
+	 * WBMsg - Vector<int> constructor.
+	 * Initialises a WBMsg with a standard C++ string value.
+	 * @param val String to store in the Whiteboard message.
+	 */
+	WBMsg(const std::vector<int> &val): type(TypeArray), arrayVal(&val) {}
+        
 	/**
 	 * getType.
 	 * @return The data type this WBMsg represents as a WBType.
@@ -223,6 +231,13 @@ public:
 	 *         Returns NULL otherwise.
 	 */
 	const void *getBinaryValue() const { return binaryVal; }
+
+	/**
+	 * getArrayValue.
+	 * @return The array<int> value of this WBMsg if it is storing an array.
+	 *         undefined otherwise.
+	 */ 
+	const std::vector<int> &getArrayValue() const { return *arrayVal; }
 
 	/**
 	 * getSizeInBytes.
