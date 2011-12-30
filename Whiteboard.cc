@@ -87,7 +87,7 @@ Whiteboard::~Whiteboard()
 }
 
 
-void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic)
+void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
 
@@ -146,7 +146,7 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nona
         }
         gsw_increment(wb, t);
         if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
-        if (wb->subscribed) gsw_signal_subscribers(wb);
+        if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
 
 

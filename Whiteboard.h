@@ -113,8 +113,9 @@ namespace guWhiteboard
 		 * @param[in] type The string type associated with the message object
 		 * @param[in] msg The message object to post to the whiteboard
                  * @param[in] nonatomic Add quickly without grabbing the semaphore
+                 * @param[in] notifySubscribers Signal subscribers (default: true)
 		 */
-                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false);
+                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);
 
 		/**
 		 * Return Type Enum
