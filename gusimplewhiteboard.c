@@ -207,6 +207,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         {
                 fprintf(stderr, "Cannot mmap '%s': %s\n", path, strerror(errno));
                 close(fd);
+                return NULL;
         }
         else if (fdp) *fdp = fd;
 
@@ -305,7 +306,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
 {
         gsw_procure(wbd->sem, GSW_SEM_MSGTYPE);
 
-        bool exists = false;
+        //bool exists = false;
         gu_simple_whiteboard *wb = wbd->wb;
         unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
         gu_simple_message *type = &wb->hashes[offs];
@@ -323,7 +324,7 @@ int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
                 }
                 if (strcmp(type->hash.string, name) == 0)
                 {
-                        exists = true;
+                        //exists = true;
                         break;
                 }
                 /* collision, add to the offset */
@@ -349,7 +350,7 @@ int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char
 {
         gu_simple_whiteboard *wb = wbd->wb;
         unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
-        gu_simple_message *type = &wb->hashes[offs];
+        gu_simple_message *type; // = &wb->hashes[offs];
         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++)
         {
                 type = &wb->hashes[offs];
