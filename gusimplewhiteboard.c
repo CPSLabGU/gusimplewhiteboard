@@ -167,7 +167,7 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
                 for (enum gsw_message_types i = 0; i < GSW_NUM_RESERVED; i++)
                         gsw_register_message_type(wbd, known_message_types[i]);
         }
-        wbd->callback_queue = dispatch_queue_create(name, NULL);
+        wbd->callback_queue = dispatch_queue_create(NULL, NULL);
         return wbd;
 }
 
