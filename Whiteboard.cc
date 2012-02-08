@@ -247,6 +247,21 @@ static WBMsg getWBMsg(gu_simple_message *m)
         /* NOTREACHED */
 }
 
+WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
+{
+    int t = hashinfo->msg_offset;
+    
+    gu_simple_message *m = gsw_current_message(_wbd->wb, t);
+    
+    if (result)
+    {
+        if (m->wbmsg.type || m->wbmsg.len)
+            *result = METHOD_OK;
+        else
+            *result = METHOD_FAIL;
+    }
+    return getWBMsg(m);
+}
 
 WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {

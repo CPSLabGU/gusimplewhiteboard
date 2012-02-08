@@ -154,12 +154,21 @@ namespace guWhiteboard
 		 * Get Message
 		 * Gets a message from a simple whiteboard
 		 * @param[in] type The string type associated with the message object
-		 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
-         * @param[out] avoidhash Stores the message index, only hashes once (default: NULL)                          
+		 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not                  
 		 * @return The message object
 		 */
 		WBMsg getMessage(std::string type, WBResult *result = NULL);
 
+            
+        /**
+         * Get Message
+         * Gets a message from a simple whiteboard
+         * @param[in] hashinfo Contains the offset index to access a message
+         * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
+         * @return The message object
+         */
+        WBMsg getMessage(gsw_hash_info *hashinfo, WBResult *result = NULL);
+            
 		/**
 		 * Subscribe To Message
 		 * Subscribes to a message type on a whiteboard or whiteboards
