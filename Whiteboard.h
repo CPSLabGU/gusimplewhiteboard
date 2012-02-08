@@ -73,8 +73,20 @@
 #error *** Error: attempt to mix boost and simple Whiteboard!
 #endif
 
+#define NEW_MSG_ID -1
+
 namespace guWhiteboard 
 {
+        /**
+         * Message offset holder
+         * @brief Allows the user to avoid running the hashing function more than once to get a message offset
+         */            
+        typedef struct gsw_msg_id
+        {
+            gsw_msg_id() { msg_offset = NEW_MSG_ID; }    
+            int msg_offset;
+        } gsw_msg_id;
+    
         /**
          * compatibility API for accessing the whiteboard
          */
@@ -105,7 +117,7 @@ namespace guWhiteboard
 		 * Destructor.
 		 * shuts down the whiteboard
 		 */		
-                ~Whiteboard();
+                ~Whiteboard();           
 
 		/**
 		 * Add Message
@@ -114,8 +126,19 @@ namespace guWhiteboard
 		 * @param[in] msg The message object to post to the whiteboard
                  * @param[in] nonatomic Add quickly without grabbing the semaphore
                  * @param[in] notifySubscribers Signal subscribers (default: true)
+                 * @param[out] hashinfo Allows use of second addMessage method to avoid hashing again
 		 */
-                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);
+                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true, gsw_msg_id *hashinfo = NULL);
+
+        /**
+         * Add Message
+         * Adds a message to the whiteboard that the API is connected to
+         * @param[in] hashinfo Contains the offset index to access a message
+         * @param[in] msg The message object to post to the whiteboard
+         * @param[in] nonatomic Add quickly without grabbing the semaphore
+         * @param[in] notifySubscribers Signal subscribers (default: true)
+         */            
+                void addMessage(gsw_msg_id *hashinfo, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);            
 
 		/**
 		 * Return Type Enum
@@ -132,9 +155,10 @@ namespace guWhiteboard
 		 * Gets a message from a simple whiteboard
 		 * @param[in] type The string type associated with the message object
 		 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
+         * @param[out] avoidhash Stores the message index, only hashes once (default: NULL)                          
 		 * @return The message object
 		 */
-		WBMsg getMessage(std::string type, WBResult *result = NULL);
+		WBMsg getMessage(std::string type, WBResult *result = NULL, gsw_msg_id *avoidhash = NULL);
 
 		/**
 		 * Subscribe To Message
