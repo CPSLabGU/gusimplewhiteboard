@@ -86,7 +86,7 @@ Whiteboard::~Whiteboard()
 }
 
 
-void Whiteboard::addMessage(gsw_msg_id *hashinfo, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
+void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
 {
     int t = hashinfo->msg_offset;
      
@@ -149,7 +149,7 @@ void Whiteboard::addMessage(gsw_msg_id *hashinfo, const WBMsg &msg, bool nonatom
         if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
         
-void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers, gsw_msg_id *hashinfo)
+void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers, gsw_hash_info *hashinfo)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
         if(hashinfo != NULL)
@@ -248,25 +248,9 @@ static WBMsg getWBMsg(gu_simple_message *m)
 }
 
 
-WBMsg Whiteboard::getMessage(string type, WBResult *result, gsw_msg_id *avoidhash)
+WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {
-        int t;
-        if(avoidhash != NULL)
-        {   
-            if(avoidhash->msg_offset == NEW_MSG_ID)
-            {
-                t = gsw_offset_for_message_type(_wbd, type.c_str());
-                avoidhash->msg_offset = t;
-            }
-            else
-            {
-                t = avoidhash->msg_offset;
-            }
-        }
-        else
-        {
-            t = gsw_offset_for_message_type(_wbd, type.c_str());
-        }
+        int t = gsw_offset_for_message_type(_wbd, type.c_str());
     
         gu_simple_message *m = gsw_current_message(_wbd->wb, t);
 

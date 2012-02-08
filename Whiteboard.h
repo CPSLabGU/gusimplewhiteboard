@@ -81,11 +81,11 @@ namespace guWhiteboard
          * Message offset holder
          * @brief Allows the user to avoid running the hashing function more than once to get a message offset
          */            
-        typedef struct gsw_msg_id
+        typedef struct gsw_hash_info
         {
-            gsw_msg_id() { msg_offset = NEW_MSG_ID; }    
+            gsw_hash_info() { msg_offset = NEW_MSG_ID; }    
             int msg_offset;
-        } gsw_msg_id;
+        } gsw_hash_info;
     
         /**
          * compatibility API for accessing the whiteboard
@@ -128,7 +128,7 @@ namespace guWhiteboard
                  * @param[in] notifySubscribers Signal subscribers (default: true)
                  * @param[out] hashinfo Allows use of second addMessage method to avoid hashing again
 		 */
-                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true, gsw_msg_id *hashinfo = NULL);
+                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true, gsw_hash_info *hashinfo = NULL);
 
         /**
          * Add Message
@@ -138,7 +138,7 @@ namespace guWhiteboard
          * @param[in] nonatomic Add quickly without grabbing the semaphore
          * @param[in] notifySubscribers Signal subscribers (default: true)
          */            
-                void addMessage(gsw_msg_id *hashinfo, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);            
+                void addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);            
 
 		/**
 		 * Return Type Enum
@@ -158,7 +158,7 @@ namespace guWhiteboard
          * @param[out] avoidhash Stores the message index, only hashes once (default: NULL)                          
 		 * @return The message object
 		 */
-		WBMsg getMessage(std::string type, WBResult *result = NULL, gsw_msg_id *avoidhash = NULL);
+		WBMsg getMessage(std::string type, WBResult *result = NULL);
 
 		/**
 		 * Subscribe To Message
