@@ -68,7 +68,6 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
         if (self) self->subscriptionCallback();
 }
 
-
 Whiteboard::Whiteboard(const char *name, bool checkVersion)
 {
         if (!(_wbd = gsw_new_whiteboard(name)))
@@ -87,10 +86,75 @@ Whiteboard::~Whiteboard()
 }
 
 
-void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
+void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
+{
+    int t = hashinfo->msg_offset;
+     
+#ifdef DEBUG
+    if (nonatomic < 0 || nonatomic > 1)
+        cerr << " *** Nonatomic parameter " << nonatomic << " not bool (are you using a life span?) ***" << endl;
+#endif
+        if (!nonatomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
+        
+        gu_simple_whiteboard *wb = _wbd->wb;
+        gu_simple_message *m = gsw_next_message(wb, t);
+        m->wbmsg.type = msg.getType();
+        
+        
+        switch (m->wbmsg.type)
+        {
+            case WBMsg::TypeEmpty:
+                m->wbmsg.len = 0;
+                break;
+                
+            case WBMsg::TypeBool:
+                m->wbmsg.len = sizeof(int);
+                m->sint = msg.getBoolValue();
+                break;
+                
+            case WBMsg::TypeInt:
+                m->wbmsg.len = sizeof(int);
+                m->sint = msg.getIntValue();
+                break;
+                
+            case WBMsg::TypeFloat:
+                m->wbmsg.len = sizeof(float);
+                m->sfloat = msg.getFloatValue();
+                break;
+                
+            case WBMsg::TypeString:
+                gu_strlcpy(m->wbmsg.data, msg.getStringValue().c_str(), sizeof(m->wbmsg.data));
+                m->wbmsg.len = strlen(m->wbmsg.data) + 1;
+                break;
+                
+            case WBMsg::TypeArray:
+            {
+                int k = 0;
+                for (vector<int>::const_iterator i = msg.getArrayValue().begin(); i < msg.getArrayValue().end(); i++)
+                    m->ivec[k++] = *i;
+                m->wbmsg.len = k;
+                break;
+            }
+            case WBMsg::TypeBinary:
+            {
+                int len = msg.getSizeInBytes();
+                if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
+                m->wbmsg.len = len;
+                if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
+                break;
+            }
+        }
+        gsw_increment(wb, t);
+        if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
+        if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
+}
+        
+void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers, gsw_hash_info *hashinfo)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
-
+        if(hashinfo != NULL)
+            hashinfo->msg_offset = t;
+    
 #ifdef DEBUG
         if (nonatomic < 0 || nonatomic > 1)
                 cerr << " *** Nonatomic parameter " << nonatomic << " not bool (are you using a life span?) ***" << endl;
@@ -100,6 +164,7 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nona
         gu_simple_whiteboard *wb = _wbd->wb;
         gu_simple_message *m = gsw_next_message(wb, t);
         m->wbmsg.type = msg.getType();
+    
 
         switch (m->wbmsg.type)
         {
@@ -182,10 +247,26 @@ static WBMsg getWBMsg(gu_simple_message *m)
         /* NOTREACHED */
 }
 
+WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
+{
+    int t = hashinfo->msg_offset;
+    
+    gu_simple_message *m = gsw_current_message(_wbd->wb, t);
+    
+    if (result)
+    {
+        if (m->wbmsg.type || m->wbmsg.len)
+            *result = METHOD_OK;
+        else
+            *result = METHOD_FAIL;
+    }
+    return getWBMsg(m);
+}
 
 WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {
         int t = gsw_offset_for_message_type(_wbd, type.c_str());
+    
         gu_simple_message *m = gsw_current_message(_wbd->wb, t);
 
         if (result)
