@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */; };
+		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
 		F1D925F314A13BAA00BDAEED /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */; };
 		F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
@@ -28,6 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
+		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
+		C3FCE02214FF2C57003AC195 /* guudpbridgebroadcaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgebroadcaster.cpp; sourceTree = "<group>"; };
+		C3FCE02314FF2C57003AC195 /* guudpbridgelistener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgelistener.cpp; sourceTree = "<group>"; };
+		C3FCE02414FF2C57003AC195 /* guudpbridgemanager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgemanager.cpp; sourceTree = "<group>"; };
+		C3FCE02514FF2C57003AC195 /* guudpbridgemanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgemanager.h; sourceTree = "<group>"; };
+		C3FCE02614FF2C57003AC195 /* guudpbridgenetworkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkconfig.h; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
@@ -69,15 +78,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3FCE02014FF2C57003AC195 /* guudpbridge */ = {
+			isa = PBXGroup;
+			children = (
+				C3FCE02214FF2C57003AC195 /* guudpbridgebroadcaster.cpp */,
+				C3FCE02314FF2C57003AC195 /* guudpbridgelistener.cpp */,
+				C3FCE02414FF2C57003AC195 /* guudpbridgemanager.cpp */,
+				C3FCE02514FF2C57003AC195 /* guudpbridgemanager.h */,
+				C3FCE02614FF2C57003AC195 /* guudpbridgenetworkconfig.h */,
+			);
+			path = guudpbridge;
+			sourceTree = "<group>";
+		};
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
 				F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */,
 				F14C46C314A07024006B6953 /* gusimplewhiteboard.c */,
+				C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */,
+				C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */,
 				F1F4536114A11E90005C40A6 /* Whiteboard.h */,
 				F1F4536314A1226D005C40A6 /* Whiteboard.cc */,
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
+				C3FCE02014FF2C57003AC195 /* guudpbridge */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
@@ -141,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
+				C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +269,7 @@
 			files = (
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				F1F4536414A1226D005C40A6 /* Whiteboard.cc in Sources */,
+				C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +418,7 @@
 				F1D9260514A13BAA00BDAEED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
