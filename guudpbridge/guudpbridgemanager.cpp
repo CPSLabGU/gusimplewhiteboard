@@ -68,6 +68,27 @@
 
 int my_udp_id = -1;
 
+std::vector<std::string> dynamic_msg_types_to_broadcast = std::vector<std::string>();
+
+class BridgeManager
+{
+public:
+    guWhiteboard::Whiteboard *wb;
+    BridgeManager(guWhiteboard::Whiteboard *wbd)
+    {
+        wb = wbd;
+        guWhiteboard::Whiteboard::WBResult r;
+        wb->subscribeToMessage(ADD_BROADCAST_TYPE_MSG_TYPE, WB_BIND(BridgeManager::addBroadcastMsgType), r);
+    }
+    
+    void addBroadcastMsgType(std::string dataName, WBMsg *value)
+    {
+        if(value->getType() == WBMsg::TypeString)
+        {
+            dynamic_msg_types_to_broadcast.push_back(value->getStringValue());
+        }
+    }
+};
 
 int main(int argc, char *argv[])
 {
@@ -86,8 +107,6 @@ int main(int argc, char *argv[])
     }
     else
         fprintf(stderr, " **** Running Bridge (Listener Only) ****\n");            
-
-
     
     int op; 
 	char *specAddressOfWB = (char *)"";
@@ -110,7 +129,7 @@ int main(int argc, char *argv[])
 	}	
     
     int udp_id = getplayernumber();
-
+    udp_id=2;    
     if(udp_id > (NUM_OF_BROADCASTERS))
     {
         fprintf(stderr, "Bad UDP_ID passed in, exiting...\n\n");
@@ -122,13 +141,12 @@ int main(int argc, char *argv[])
     //----------------------------------------
     
     //Setup broadcast wb
-    gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard to broadcast from
+    guWhiteboard::Whiteboard *whiteboard = new guWhiteboard::Whiteboard();
+    gu_simple_whiteboard_descriptor *_wbd = whiteboard->_wbd;  /// underlying whiteboard to broadcast from
 
-    if (!(_wbd = gsw_new_whiteboard("guWhiteboard")))
-    {
-        fprintf(stderr, "Unable to create whiteboard '%s'\n", (char *)"guWhiteboard");
-        throw "Cannot create whiteboard";
-    }
+    BridgeManager *bm = new BridgeManager(whiteboard);
+    
+    
 
     //Setup listener wbs    
     gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
@@ -156,11 +174,10 @@ int main(int argc, char *argv[])
     }
     
     //Setup sockets
-    setupbroadcaster(_wbd);
+    setupbroadcaster(_wbd, &dynamic_msg_types_to_broadcast);
     setuplistener(_wbds);    
 
-    
-    
+
     timeval tim;
     gettimeofday(&tim, NULL);
     
@@ -233,6 +250,38 @@ int main(int argc, char *argv[])
     dispatch_main();                // run the dispatcher "forever"
     
 	return 0;
+}
+
+
+std::vector<std::string> readMessageTypesFile()
+{
+    std::vector<std::string> results = std::vector<std::string>();
+    char *file_path = (char *)malloc(sizeof(char)*PATH_MAX);
+    char *home_dir = getenv("HOME");
+    char *path_from_home_to_types_file = (char *)PATH_TO_TYPES_FILE;
+    
+    strncat(file_path, home_dir, strlen(home_dir)+1);                   
+    strncat(file_path, path_from_home_to_types_file, strlen(path_from_home_to_types_file)+1);               
+    
+    if(file_exists(file_path))
+    {
+        char *fileContent = new_string_from_file(file_path);
+        
+        char *p = strtok(fileContent, "\n");
+        while (p) 
+        {
+            results.push_back(std::string(p));
+            p = strtok(NULL, "\n");
+        }
+        free(fileContent);
+    }
+    else
+    {
+        fprintf(stderr, "\n\n~/data/udpTypes file missing, this is the file containing the message types that are sent by default, it is not optional.\nExiting . . . . \n");
+        exit(1);
+    }
+                
+    return results;
 }
 
 int get_udp_id()

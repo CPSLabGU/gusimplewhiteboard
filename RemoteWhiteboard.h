@@ -103,12 +103,7 @@ namespace guWhiteboard
                 Machine1 = 0,
                 Machine2,
                 Machine3,
-                Machine4,
-                Machine5,
-                Machine6,
-                Machine7,
-                Machine8,
-                Machine9,            
+                Machine4            
             } RWBMachine;            
 
             /**

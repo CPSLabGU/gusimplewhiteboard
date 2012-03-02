@@ -96,6 +96,11 @@
 //Might want to look into MTU Path Descovery however for the moment assume MTU of 1500 (-100 for overhead) 1400
 #define MTU 1400
 #define REMOTE_WHITEBOARD_BASENAME "guudpwhiteboard"
+#define ADD_BROADCAST_TYPE_MSG_TYPE "GSW_AddBroadcastType"
+
+//Not used, using known_types from simplewhiteboard header
+#define PATH_TO_TYPES_FILE "/data/udpTypes" //From $HOME
+
 
 
 /* Don't change */

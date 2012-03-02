@@ -98,6 +98,10 @@ dispatch_source_t CreateDispatchTimer(timespec *when,
                                       dispatch_queue_t queue,
                                       void (*function)(void *));    
     
+void addBroadcastMsgType(std::string dataName, WBMsg *value);
+
+//Not needed, using known msg types from wb instead
+std::vector<std::string> readMessageTypesFile();
 
 void buf2hash(gsw_hash_message *dst, unsigned char *src);
 void hash2buf(unsigned char *dst, gsw_hash_message *src);
@@ -112,6 +116,6 @@ int setuplistener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS]);
 //Broadcaster Methods
 void broadcastMonitor(void *para);
 void broadcastSingleMethod(void *para);
-int setupbroadcaster(gu_simple_whiteboard_descriptor *_wbd);
+int setupbroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types);
 
 #endif //guudpbridgemanager_h

@@ -18,6 +18,7 @@
 #include "guudpbridgemanager.h"
 
 gu_simple_whiteboard_descriptor *_wbd_broadcaster;  /// underlying whiteboard
+std::vector<std::string> *msg_types_to_broadcast;
 
 int sockfd;
 struct sockaddr_in mc_addr; // connector's address information
@@ -95,6 +96,9 @@ void broadcastSingleMethod(void *para)
     {
         startSendTime = get_utime();
         
+        if(msg_types_to_broadcast->size() == 0)
+            currently_sending = Msg;
+        
         if(currently_sending == Hash)
         {
             gsw_hash_message hashToSend;
@@ -111,10 +115,11 @@ void broadcastSingleMethod(void *para)
 #endif            
             for(int j = 0; j < HASHES_PER_PACKET; j++)
             {
-                hashToSend.offset[j] = offset;
-                hashToSend.typeName[j] = _wbd_broadcaster->wb->typenames[offset];
+                int currOff = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset).c_str());
+                hashToSend.offset[j] = currOff;
+                hashToSend.typeName[j] = _wbd_broadcaster->wb->typenames[currOff];
                 offset++;
-                if(offset >= _wbd_broadcaster->wb->num_types) 
+                if(offset >= msg_types_to_broadcast->size()) 
                 {
                     currently_sending = Msg;
                     offset = 0;
@@ -167,9 +172,8 @@ void broadcastSingleMethod(void *para)
 #else
                 messageToSend.message_generations[j] =  _wbd_broadcaster->wb->messages[offset][_wbd_broadcaster->wb->indexes[offset]];
 #endif
-                
                 offset++;
-                if(offset >= _wbd_broadcaster->wb->num_types) 
+                if(offset >= GSW_NUM_RESERVED) 
                 {
                     msg_loops++;
                     if(msg_loops >= MESSAGES_TO_SEND_PER_HASH)
@@ -206,8 +210,9 @@ void broadcastSingleMethod(void *para)
     }
 }
 
-int setupbroadcaster(gu_simple_whiteboard_descriptor *_wbd)
+int setupbroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types)
 {
+    msg_types_to_broadcast = types;
     _wbd_broadcaster = _wbd;
     
     //Setup socket
