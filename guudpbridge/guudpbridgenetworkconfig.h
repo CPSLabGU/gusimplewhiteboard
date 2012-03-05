@@ -63,7 +63,7 @@
 
 /* Network config */
 
-#define DEBUG
+//#define DEBUG
 //#define UNICAST
 //#define MULTICASTADDRESS "192.168.0.194"	// the multicast address
 #define READ_LOOP

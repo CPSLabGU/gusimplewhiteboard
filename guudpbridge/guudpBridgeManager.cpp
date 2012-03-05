@@ -138,7 +138,6 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;        
     }
     
-    udp_id = 2;
     set_udp_id(udp_id-1);
     
     //End cmd line arg parsing
