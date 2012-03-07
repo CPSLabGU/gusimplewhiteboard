@@ -56,6 +56,7 @@
  *
  */
 #include <cstring>
+#include <cstdio>
 #include <gu_util.h>
 #include <sstream>
 #include "RemoteWhiteboard.h"
