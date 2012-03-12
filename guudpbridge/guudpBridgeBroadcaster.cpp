@@ -59,20 +59,29 @@
 
 #include "guudpBridgeBroadcaster.h"
 
+
+
+
 void BridgeBroadcaster::broadcastMonitor(void *para)
 {
-    //toggle broadcasting
-    if(sending_count == NUM_OF_BROADCASTERS-1)
+    if(sending_count == (get_udp_id()+1))
     {
-        sending_currently = true;
-        sending_count = 0;
+        sending_currently = true;      
         
 #ifdef BURST_SEND
-        for (int i = 0; i < (PACKETS_PER_TS_INTERVAL/NUM_OF_BROADCASTERS); i++) 
+        for (int i = 0; i < (PACKETS_PER_TS_INTERVAL); i++) 
         {
             broadcastSingleMethod(NULL);
         }
 #endif
+        sending_count++;     
+#ifdef DEBUG
+#ifdef OUTPUT_IN_DEBUG
+        if(iter > 0)
+            fprintf(stderr, "Sent %d   \tavg time %llu\t\ttotal sent %d\n", sent, (avgSendTime/iter), total_sent);
+        sent = 0;
+#endif
+#endif        
     }
     else
     {
@@ -81,15 +90,83 @@ void BridgeBroadcaster::broadcastMonitor(void *para)
 #else
         sending_currently = false;
 #endif        
-        sending_count++;
+        sending_count++;        
+#ifdef DEBUG
+#ifdef OUTPUT_IN_DEBUG
+        if(iter > 0)
+            fprintf(stderr, "Not My Send Slot\n");
+#endif
+#endif        
     }
     
-#ifdef DEBUG
-    if(iter > 0)
-        fprintf(stderr, "Sent %d   \tavg time %llu\t\ttotal sent %d\n", sent, (avgSendTime/iter), total_sent);
-    sent = 0;
-    return;
+    if((sending_count-1) >= NUM_OF_BROADCASTERS+PADDING_SLOTS)
+    {
+#if PADDING_SLOTS > 0     
+        pthread_mutex_lock(_injection_mutex);                    
+        for (int i = 0; i < (PACKETS_PER_TS_INTERVAL); i++) 
+        {
+            broadcastInjection();
+        }        
+        pthread_mutex_unlock(_injection_mutex);                    
 #endif
+        sending_count = 1;        
+#ifdef DEBUG
+#ifdef OUTPUT_IN_DEBUG        
+        if(iter > 0)
+            fprintf(stderr, "Injected %d Packets  \tavg time %llu\t\ttotal sent %d\n", sent, (avgSendTime/iter), total_sent);
+        sent = 0;
+#endif
+#endif                
+    }    
+}
+
+void BridgeBroadcaster::broadcastInjection()
+{
+    //    if(uniqueId >= 1000)
+    //        sending_currently = false;
+    if(!(messages_to_inject->size() > 0))
+        return;
+
+    startSendTime = get_utime();
+        
+    gsw_injection_packet injectionPacket;
+    injectionPacket.packetInfo = Injection;           
+    if(messages_to_inject->size() > INJECTIONS_PER_PACKET)
+        injectionPacket.numOfInjectionMsgs = INJECTIONS_PER_PACKET;
+    else
+        injectionPacket.numOfInjectionMsgs = (int8_t)messages_to_inject->size();
+
+    uniqueId++;            
+
+    gsw_injection_message msg;
+    for(int j = 0; j < INJECTIONS_PER_PACKET; j++)
+    {
+        if(messages_to_inject->size() > 0)
+        {
+            msg = messages_to_inject->front();
+            injectionPacket.targetMachineId[j] = msg.machineId;        
+            injectionPacket.type[j] = msg.type;
+            injectionPacket.content[j] = msg.m;
+            messages_to_inject->pop_front();
+        }
+    }
+    
+    inj2buf(&buffer[0], &injectionPacket);
+    
+    if ((numbytes=sendto(sockfd, buffer, sizeof(buffer), 0,
+                         (struct sockaddr *)&mc_addr, sizeof(mc_addr))) == -1) {
+        if(errno != 65) //ENETUNREACH - no route to host
+        {
+            perror("sendto");
+            exit(1);
+        }
+    }
+    sent++;
+    total_sent++;        
+
+    endSendTime = get_utime();    
+    iter++;
+    avgSendTime += (endSendTime - startSendTime);
 }
 
 void BridgeBroadcaster::broadcastSingleMethod(void *para)
@@ -215,7 +292,7 @@ void BridgeBroadcaster::broadcastSingleMethod(void *para)
     }
 }
 
-BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types, timeval currTime)
+BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types, std::list<gsw_injection_message> *injectionVec, pthread_mutex_t *injection_mutex, timeval currTime)
 {
     //Default vars
     //----------------------------------------    
@@ -229,7 +306,7 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     
     padding = 0;
     sending_currently = false;
-    sending_count = 0;    
+    sending_count = 1;    
     
     offset = 0;    
     msg_loops = 0;  
@@ -237,6 +314,8 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     
     
     msg_types_to_broadcast = types;
+    messages_to_inject = injectionVec;
+    _injection_mutex = injection_mutex;
     _wbd_broadcaster = _wbd;
     
     //Setup socket
@@ -274,14 +353,6 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     
     memset(buffer, 0, sizeof(buffer));
 
-
-#ifdef DEBUG
-    fprintf(stderr, "\nMessage on the wb: %d\n\nMessages to a packet: %d\nPackets to send all messages: %d\nHashes to a packet: %d\nPackets to send all hashes: %d\n\nFinished sending all messages\n", _wbd_broadcaster->wb->num_types, MESSAGES_PER_PACKET, TOTAL_MESSAGE_PACKETS, HASHES_PER_PACKET, TOTAL_HASH_PACKETS);
-    
-    fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
-#endif
-    
-    
     
     
     
@@ -299,7 +370,7 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     when.tv_nsec = 0;
     
     timespec tmp = when;
-    tmp.tv_nsec += (BROADCASTER_TS*get_udp_id()) * 1000ull;
+//    tmp.tv_nsec += (BROADCASTER_TS*get_udp_id()) * 1000ull;
     
     //Stop non robots from broadcasting
     if(!(get_udp_id() < 0))

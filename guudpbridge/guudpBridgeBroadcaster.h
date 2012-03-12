@@ -79,6 +79,8 @@ class BridgeBroadcaster
 {
     gu_simple_whiteboard_descriptor *_wbd_broadcaster;  /// underlying whiteboard
     std::vector<std::string> *msg_types_to_broadcast;
+    std::list<gsw_injection_message> *messages_to_inject;
+    pthread_mutex_t *_injection_mutex;
     
     int sockfd;
     struct sockaddr_in mc_addr; // connector's address information
@@ -116,8 +118,10 @@ public:
     void broadcastMonitor(void *para);    
 
     void broadcastSingleMethod(void *para);
-
-    BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types, timeval currTime);
+    
+    void broadcastInjection();
+    
+    BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types, std::list<gsw_injection_message> *injectionVec, pthread_mutex_t *injection_mutex, timeval currTime);
 };
 
 #endif //guudpbridgebroadcaster_h

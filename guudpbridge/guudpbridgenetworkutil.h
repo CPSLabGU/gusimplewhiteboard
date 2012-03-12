@@ -64,6 +64,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <string.h>
+#include <list>
 #include <dispatch/dispatch.h>
 #include <time.h>
 #include <sys/time.h>
@@ -88,6 +89,8 @@ void buf2hash(gsw_hash_message *dst, unsigned char *src);
 void hash2buf(unsigned char *dst, gsw_hash_message *src);
 void buf2msg(gsw_single_message *dst, unsigned char *src);
 void msg2buf(unsigned char *dst, gsw_single_message *src);    
+void buf2inj(gsw_injection_packet *dst, unsigned char *src);
+void inj2buf(unsigned char *dst, gsw_injection_packet *src);    
 
 
 dispatch_source_t CreateDispatchTimer(timespec *when,

@@ -63,29 +63,35 @@
 
 /* Network config */
 
-//#define DEBUG
-//#define UNICAST
-//#define MULTICASTADDRESS "192.168.0.194"	// the multicast address
+#define DEBUG
+#define OUTPUT_IN_DEBUG
+#define RUN_FAST_IN_DEBUG
+
+//FAST SPEED
+#define FAST_SPEED_PACKETS_PER_SECOND 1000
+#define FAST_CYCLES_PER_SEC 25
+
+//ROBOCUP SPEED
+#define ROBOCUP_SPEED_PACKETS_PER_SECOND 44
+#define ROBOCUP_CYCLES_PER_SEC 5
+
+
+
 #define READ_LOOP
 //#define IGNORE_TT_ARCH
+#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
 
 #ifndef IGNORE_TT_ARCH
     #define BURST_SEND
 #endif
 //#define SEND_TO_SELF    
+//#define UNICAST
 
 #define NUM_OF_LISTENERS 3 //Does not listen to itself (four total)
 #define NUM_OF_BROADCASTERS (NUM_OF_LISTENERS+1)
 
 #define READ_TIMEOUT 300
 //#define GENERATION_BROADCASTING
-#define PACKETS_PER_SECOND 44//44 //Robocup limit
-
-#ifndef IGNORE_TT_ARCH
-    #define PACKETS_PER_TS_INTERVAL PACKETS_PER_SECOND
-#else
-    #define PACKETS_PER_TS_INTERVAL (PACKETS_PER_SECOND/NUM_OF_BROADCASTERS)
-#endif
 
 #define MESSAGES_TO_SEND_PER_HASH 3 //3 works well
 
@@ -97,9 +103,8 @@
 #define MTU 1400
 #define REMOTE_WHITEBOARD_BASENAME "guudpwhiteboard"
 #define ADD_BROADCAST_TYPE_MSG_TYPE "GSW_AddBroadcastType"
+#define INJECTION_MSG_TYPE "GSW_InjectMessageOnMachine"
 
-//Not used, using known_types from simplewhiteboard header
-#define PATH_TO_TYPES_FILE "/data/udpTypes" //From $HOME
 
 
 
@@ -107,6 +112,27 @@
 
 //#define DETECT_AND_STOP_UDP_DUPLICATION
 //#define DETECTION_BUFFER_SIZE 20000
+
+#ifdef DEBUG
+    #ifdef RUN_FAST_IN_DEBUG
+        #define PACKETS_PER_SECOND FAST_SPEED_PACKETS_PER_SECOND
+        #define CYCLES_PER_SEC FAST_CYCLES_PER_SEC
+    #else
+        #define PACKETS_PER_SECOND ROBOCUP_SPEED_PACKETS_PER_SECOND
+        #define CYCLES_PER_SEC ROBOCUP_CYCLES_PER_SEC
+    #endif
+    #define PADDING_SLOTS 1
+#else
+    #define PADDING_SLOTS 0
+    #define PACKETS_PER_SECOND ROBOCUP_SPEED_PACKETS_PER_SECOND
+    #define CYCLES_PER_SEC ROBOCUP_CYCLES_PER_SEC
+#endif
+
+#ifndef IGNORE_TT_ARCH
+    #define PACKETS_PER_TS_INTERVAL ((PACKETS_PER_SECOND/(NUM_OF_BROADCASTERS+PADDING_SLOTS))/CYCLES_PER_SEC)
+#else
+    #define PACKETS_PER_TS_INTERVAL (PACKETS_PER_SECOND/(NUM_OF_BROADCASTERS+PADDING_SLOTS))
+#endif
 
 
 #ifndef DETECT_AND_STOP_UDP_DUPLICATION
@@ -125,14 +151,17 @@
     #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
 #endif
 
+#define INJECTIONS_PER_PACKET ((int)((MTU - sizeof(int16_t))/(int)(sizeof(int8_t)+sizeof(gu_simple_message)+(sizeof(gu_simple_message)))))
+
+
 #define TOTAL_MESSAGE_PACKETS (GSW_TOTAL_MESSAGE_TYPES+MESSAGES_PER_PACKET-1)/MESSAGES_PER_PACKET
 #define TOTAL_HASH_PACKETS (GSW_TOTAL_MESSAGE_TYPES+HASHES_PER_PACKET-1)/HASHES_PER_PACKET
 
 #define TS_INTERVAL 1000000 //Micro seconds
 
-#define PADDING_SLOTS 0
+
 //#define PADDING_PER_TS (TS_INTERVAL/(NUM_OF_BROADCASTERS+PADDING_SLOTS))
-#define BROADCASTER_TS (TS_INTERVAL/(NUM_OF_BROADCASTERS+PADDING_SLOTS))
+#define BROADCASTER_TS (TS_INTERVAL/((NUM_OF_BROADCASTERS+PADDING_SLOTS)*CYCLES_PER_SEC))
 //#define PADDING_EACH_MSG_TS (PADDING_PER_TS/NUM_OF_BROADCASTERS)
 
 #define MSG_INTERVAL ((TS_INTERVAL)/PACKETS_PER_TS_INTERVAL) //Micro seconds between sending packets
@@ -147,7 +176,7 @@
 enum PacketType {
     Hash = 0,
     Msg = 1,
-    Dummy = 2
+    Injection = 2
     };
 
 typedef struct gsw_simple_whiteboard_hash_message
@@ -224,6 +253,47 @@ typedef struct gsw_simple_whiteboard_single_message
     
 } gsw_single_message;
 
+typedef struct gsw_simple_whiteboard_injection_packet
+{
+    /**
+     * message type, ie. Hash or Message
+     */        
+    int8_t packetInfo;
+    
+    /**
+     * num of messages in packet
+     */            
+    int8_t numOfInjectionMsgs;    
+
+    /**
+     * target id, all others ignore
+     */            
+    int8_t                  targetMachineId[INJECTIONS_PER_PACKET];
+    
+    /**
+     * message type for injection
+     */
+    gu_simple_message       type[INJECTIONS_PER_PACKET];    
+    
+    /**
+     * message content to be injected
+     */
+    gu_simple_message       content[INJECTIONS_PER_PACKET];    
+
+} gsw_injection_packet;
+
+class gsw_injection_message {
+public:
+    u_int8_t machineId;
+    gu_simple_message type;
+    gu_simple_message m;    //content
+};
+//}; gsw_remote_injection_message
+//{
+//    u_int8_t machineId;
+//    gu_simple_message type;
+//    gu_simple_message m;    //content
+//} gsw_injection_message;
 
 
 #endif //guudpbridgenetworkconfig_h

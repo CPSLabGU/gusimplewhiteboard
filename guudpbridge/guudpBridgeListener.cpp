@@ -62,9 +62,12 @@
 #ifdef DEBUG
 void BridgeListener::listenMonitor(void *para)
 {
+#ifdef OUTPUT_IN_DEBUG    
     if(iter_listener > 0)
-        fprintf(stderr, "got: %d  \tlost: %d  \ttotal got: %d\thash: %d  \tmsg: %d  \tavg read %llu\traw %llu\n\n", gotHashPackets+gotMessagePackets, lostPackets, total_recv, gotHashPackets*HASHES_PER_PACKET, gotMessagePackets*MESSAGES_PER_PACKET, (avgRecvTime/iter_listener), rawRecvTime);
+        fprintf(stderr, "got: %d  \ttotal got: %d\thash: %d  \tmsg: %d  \t Inj: %d\tavg read %llu\n", gotHashPackets+gotMessagePackets+gotInjectionPackets, total_recv, gotHashPackets, gotMessagePackets, gotInjectionPackets, (avgRecvTime/iter_listener));
+#endif    
     gotHashPackets = 0;
+    gotInjectionPackets = 0;
     lostPackets = 0;
     gotMessagePackets = 0;
     
@@ -173,6 +176,33 @@ void BridgeListener::listenSingleMethod(void *para)
                     gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string, hashToRecv.offset[j]);
                 }
             }
+            else if(recv_buffer[0] == Injection)
+            {
+#ifdef DEBUG            
+                gotInjectionPackets++;
+                total_recv++;
+#endif
+                gsw_injection_packet injToRecv;   
+                buf2inj(&injToRecv, (unsigned char *)&recv_buffer[0]);
+                
+                int targetMachine = -1;
+                for(int j = 0; j < injToRecv.numOfInjectionMsgs; j++)
+                {
+                    targetMachine = injToRecv.targetMachineId[j];
+                    if((get_udp_id()+1) == targetMachine)
+                    {
+                        int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
+                        gsw_procure(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
+                        
+                        gu_simple_whiteboard *wb = _wbd_injection->_wbd->wb;
+                        gu_simple_message *m = gsw_next_message(wb, t);
+                        memcpy(m, &injToRecv.content[j], sizeof(gu_simple_message));
+                        gsw_increment(wb, t);
+                        gsw_vacate(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
+//                        if (wb->subscribed) gsw_signal_subscribers(wb);
+                    }
+                }
+            }
             else
             {
                 //DO NOTHING
@@ -203,7 +233,7 @@ void *BridgeListener::get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], timeval currTime)
+BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, timeval currTime)
 {
     //Default vars
     //------------------------------
@@ -211,6 +241,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     flag_on = 1;
 #ifdef DEBUG    
     gotHashPackets = 0; //Num of hash gotten
+    gotInjectionPackets = 0; //Num of injections gotten
     gotMessagePackets = 0; //Num of msg gotten
     lostPackets = 0; //Num of packets missed
     total_recv = 0;
@@ -225,7 +256,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     
     
     
-    
+    _wbd_injection = _wbd_for_injections;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) {
         _wbd_listeners[i] = _wbd[i];
     }

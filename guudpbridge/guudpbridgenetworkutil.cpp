@@ -388,3 +388,47 @@ void buf2msg(gsw_single_message *dst, unsigned char *src)
     off += sizeof dst->message_generations;    
 #endif    
 }
+
+void buf2inj(gsw_injection_packet *dst, unsigned char *src)
+{
+    unsigned char *off;
+    
+    off = src;
+    
+    memcpy((void*)&dst->packetInfo, off, sizeof dst->packetInfo);
+    off += sizeof dst->packetInfo;
+    
+    memcpy((void*)&dst->numOfInjectionMsgs, off, sizeof dst->numOfInjectionMsgs);
+    off += sizeof dst->numOfInjectionMsgs;
+    
+    memcpy((void*)&dst->targetMachineId, off, sizeof dst->targetMachineId);
+    off += sizeof dst->targetMachineId;    
+    
+    memcpy((void*)&dst->type, off, sizeof dst->type);
+    off += sizeof dst->type;    
+    
+    memcpy((void*)&dst->content, off, sizeof dst->content);
+    off += sizeof dst->content;        
+}
+
+void inj2buf(unsigned char *dst, gsw_injection_packet *src)
+{
+    unsigned char *off;
+    
+    off = dst;
+    
+    memcpy(off, (void*)&src->packetInfo, sizeof src->packetInfo);
+    off += sizeof src->packetInfo;
+
+    memcpy(off, (void*)&src->numOfInjectionMsgs, sizeof src->numOfInjectionMsgs);
+    off += sizeof src->numOfInjectionMsgs;
+    
+    memcpy(off, (void*)&src->targetMachineId, sizeof src->targetMachineId);
+    off += sizeof src->targetMachineId;
+    
+    memcpy(off, (void*)&src->type, sizeof src->type);
+    off += sizeof src->type;
+    
+    memcpy(off, (void*)&src->content, sizeof src->content);
+    off += sizeof src->content;    
+}

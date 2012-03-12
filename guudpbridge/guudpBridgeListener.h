@@ -76,6 +76,7 @@
 class BridgeListener
 {
     gu_simple_whiteboard_descriptor *_wbd_listeners[NUM_OF_BROADCASTERS];  /// underlying whiteboard
+    guWhiteboard::Whiteboard *_wbd_injection;  /// underlying whiteboard    
     int current_poster;
     
     int sock;                     /* socket descriptor */
@@ -86,6 +87,7 @@ class BridgeListener
     
 #ifdef DEBUG    
     int gotHashPackets; //Num of hash gotten
+    int gotInjectionPackets; //Num of injections gotten
     int gotMessagePackets; //Num of msg gotten
     int lostPackets; //Num of packets missed
     int total_recv;
@@ -105,7 +107,7 @@ class BridgeListener
 #endif
     //Would rather make this global to avoid malloc calls, only work without timers. ie. Loop read.    
     char recv_buffer[MTU];
-    
+        
 public:
     
 #ifdef DEBUG    
@@ -119,7 +121,7 @@ public:
     // get sockaddr, IPv4 or IPv6:
     void *get_in_addr(struct sockaddr *sa);
 
-    BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], timeval currTime);
+    BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, timeval currTime);
 
 };
 
