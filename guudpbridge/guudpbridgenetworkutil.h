@@ -82,7 +82,6 @@ static u_int32_t hash_of(const char *s);
 static void printWBMsg(std::string dataName, WBMsg *value);
 static WBMsg getWBMsg(gu_simple_message *m);    
 
-int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name, int32_t msgIndex);
 int gsw_hash_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
 
 void buf2hash(gsw_hash_message *dst, unsigned char *src);

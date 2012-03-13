@@ -73,8 +73,15 @@
 
 #include "guudpbridgenetworkutil.h"
 
+#ifdef DEBUG    
+static void listenMonitor(void *listener);
+#endif
+
+
 class BridgeListener
 {
+public:    
+    u_int16_t                indexLookup[GSW_TOTAL_MESSAGE_TYPES];
     gu_simple_whiteboard_descriptor *_wbd_listeners[NUM_OF_BROADCASTERS];  /// underlying whiteboard
     guWhiteboard::Whiteboard *_wbd_injection;  /// underlying whiteboard    
     int current_poster;
@@ -107,14 +114,9 @@ class BridgeListener
 #endif
     //Would rather make this global to avoid malloc calls, only work without timers. ie. Loop read.    
     char recv_buffer[MTU];
-        
-public:
+       
     
-#ifdef DEBUG    
-    void listenMonitor(void *para);
-#endif
-    
-    void listenSingleMethod(void *para);
+    void listenSingleMethod();
 
     void set_nonblock(int socket);
 

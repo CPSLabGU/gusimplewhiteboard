@@ -64,8 +64,9 @@
 /* Network config */
 
 #define DEBUG
-#define OUTPUT_IN_DEBUG
-#define RUN_FAST_IN_DEBUG
+#define OUTPUT_LISTENER_IN_DEBUG
+//#define OUTPUT_BROADCASTER_IN_DEBUG
+//#define RUN_FAST_IN_DEBUG
 
 //FAST SPEED
 #define FAST_SPEED_PACKETS_PER_SECOND 1000
@@ -79,7 +80,7 @@
 
 #define READ_LOOP
 //#define IGNORE_TT_ARCH
-#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
+//#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
 
 #ifndef IGNORE_TT_ARCH
     #define BURST_SEND
@@ -103,7 +104,8 @@
 #define MTU 1400
 #define REMOTE_WHITEBOARD_BASENAME "guudpwhiteboard"
 #define ADD_BROADCAST_TYPE_MSG_TYPE "GSW_AddBroadcastType"
-#define INJECTION_MSG_TYPE "GSW_InjectMessageOnMachine"
+#define INJECTION_TYPE "GSW_InjectMessageOnMachineT"
+#define INJECTION_CONTENT "GSW_InjectMessageOnMachineC"
 
 
 

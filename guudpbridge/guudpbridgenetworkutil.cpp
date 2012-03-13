@@ -209,49 +209,7 @@ int gsw_hash_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
     return -1;
 }
 
-int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name, int32_t msgIndex)
-{
-    gsw_procure(wbd->sem, GSW_SEM_MSGTYPE);
-    
-    //bool exists = false;
-    gu_simple_whiteboard *wb = wbd->wb;
-    unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
-    gu_simple_message *type = &wb->hashes[offs];
-    
-    while (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
-    {
-        type = &wb->hashes[offs];
-        if (!*type->hash.string)
-        {
-            gu_strlcpy(type->hash.string, name, sizeof(type->hash.string));
-            DBG(printf(" - registering wb message type #%d for '%s' at %d\n", wb->num_types, type->hash.string, offs));
-            type->hash.value = msgIndex;
-            wb->num_types++;
-            wb->typenames[type->hash.value] = *type;
-            break;
-        }
-        if (strcmp(type->hash.string, name) == 0)
-        {
-            //exists = true;
-            break;
-        }
-        /* collision, add to the offset */
-        DBG(printf("Hash collision at offset %u: %u == %u %% %d for:\n'%s' <> '%s'",
-                   offs, hash_of(name), hash_of(type->hash.string), GSW_TOTAL_MESSAGE_TYPES,
-                   name, type->hash.string));
-        offs += alt_hash(name);
-        offs %= GSW_TOTAL_MESSAGE_TYPES;
-    }
-    
-    gsw_vacate(wbd->sem, GSW_SEM_MSGTYPE);
-    
-    if (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
-        return type->hash.value;
-    
-    fprintf(stderr, "Cannot register whiteboard message type '%s': hash table capacity %d reached!\n", name, wb->num_types);
-    
-    return -1;
-}
+
 
 //https://developer.apple.com/library/mac/#documentation/General/Conceptual/ConcurrencyProgrammingGuide/GCDWorkQueues/GCDWorkQueues.html
 dispatch_source_t CreateDispatchTimer(timespec *when,

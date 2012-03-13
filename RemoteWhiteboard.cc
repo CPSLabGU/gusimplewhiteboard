@@ -67,6 +67,7 @@ using namespace std;
 
 RemoteWhiteboard::RemoteWhiteboard(const char *name)
 {
+    wb = new Whiteboard();
     playerNum = getplayernumber();
     
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
@@ -133,6 +134,28 @@ static WBMsg getWBMsg(gu_simple_message *m)
         /* NOTREACHED */
 }
 
+void RemoteWhiteboard::injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine)
+{    
+    //Add type
+    const char *base_injection_type = INJECTION_TYPE;
+    std::stringstream ss;
+    ss << base_injection_type << (machine+1);
+    
+    wb->addMessage((char *)ss.str().c_str(), WBMsg(type));
+    
+    //Add content
+    const char *base_injection_content = INJECTION_CONTENT;
+    std::stringstream ss2;
+    ss2 << base_injection_content << (machine+1);
+    
+    wb->addMessage((char *)ss2.str().c_str(), msg);
+}
+
+void RemoteWhiteboard::addReplicationType(const std::string &type, RWBMachine machine)
+{
+    injectRemoteMessage(string(ADD_BROADCAST_TYPE_MSG_TYPE), WBMsg(type), machine);
+}
+
 WBMsg RemoteWhiteboard::getMessage(string type, RWBMachine machine, WBResult *result)
 {
         if(machine >= NUM_OF_BROADCASTERS)
@@ -154,4 +177,24 @@ WBMsg RemoteWhiteboard::getMessage(string type, RWBMachine machine, WBResult *re
         return getWBMsg(m);
 
     return WBMsg();
+}
+
+std::vector<std::string> RemoteWhiteboard::getKnownTypesForMachine(RWBMachine machine)
+{
+    gsw_procure(_wbds[machine]->sem, GSW_SEM_MSGTYPE);
+    std::vector<std::string> known_types;
+    int i = 0;
+    while (i < GSW_TOTAL_MESSAGE_TYPES)
+    {
+        if(strlen(_wbds[machine]->wb->typenames[i].hash.string) > 0)
+        {
+            known_types.push_back(std::string(_wbds[machine]->wb->typenames[i].hash.string));
+            if(known_types.size() > _wbds[machine]->wb->num_types)
+                break;
+        }
+        i++;
+    }
+    gsw_vacate(_wbds[machine]->sem, GSW_SEM_MSGTYPE);
+
+    return known_types;
 }

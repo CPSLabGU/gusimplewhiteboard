@@ -74,9 +74,11 @@
 
 #include "guudpbridgenetworkutil.h"
 
+static void broadcastMonitor(void *broadcaster); 
 
 class BridgeBroadcaster
 {
+public:    
     gu_simple_whiteboard_descriptor *_wbd_broadcaster;  /// underlying whiteboard
     std::vector<std::string> *msg_types_to_broadcast;
     std::list<gsw_injection_message> *messages_to_inject;
@@ -113,11 +115,8 @@ class BridgeBroadcaster
     int msg_loops;  
     unsigned char buffer[MTU];
 
-public:
-    
-    void broadcastMonitor(void *para);    
 
-    void broadcastSingleMethod(void *para);
+    void broadcastSingleMethod();
     
     void broadcastInjection();
     

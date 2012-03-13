@@ -60,23 +60,21 @@
 #include "guudpBridgeListener.h"
 
 #ifdef DEBUG
-void BridgeListener::listenMonitor(void *para)
+static void listenMonitor(void *listener)
 {
-#ifdef OUTPUT_IN_DEBUG    
-    if(iter_listener > 0)
-        fprintf(stderr, "got: %d  \ttotal got: %d\thash: %d  \tmsg: %d  \t Inj: %d\tavg read %llu\n", gotHashPackets+gotMessagePackets+gotInjectionPackets, total_recv, gotHashPackets, gotMessagePackets, gotInjectionPackets, (avgRecvTime/iter_listener));
+    BridgeListener *c = (BridgeListener *)listener;
+#ifdef OUTPUT_LISTENER_IN_DEBUG    
+    if(c->iter_listener > 0)
+        fprintf(stderr, "got: %d  \ttotal got: %d\thash: %d  \tmsg: %d  \t Inj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
 #endif    
-    gotHashPackets = 0;
-    gotInjectionPackets = 0;
-    lostPackets = 0;
-    gotMessagePackets = 0;
-    
-    return;
-   
+    c->gotHashPackets = 0;
+    c->gotInjectionPackets = 0;
+    c->lostPackets = 0;
+    c->gotMessagePackets = 0;
 }
 #endif
 
-void BridgeListener::listenSingleMethod(void *para)
+void BridgeListener::listenSingleMethod()
 {   
 #ifdef DEBUG    
     startRecvTime = get_utime();    
@@ -144,7 +142,11 @@ void BridgeListener::listenSingleMethod(void *para)
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
                     //Don't need sem, this is the only writer and readers don't need the sem either
-                    int t = msg.typeOffset[i];
+                    int t;
+                    if(msg.typeOffset[i] >= GSW_NUM_RESERVED)
+                        t = indexLookup[msg.typeOffset[i]];
+                    else
+                        t = msg.typeOffset[i];
 #ifdef GENERATION_BROADCASTING                    
                     _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
                     
@@ -173,7 +175,7 @@ void BridgeListener::listenSingleMethod(void *para)
                 
                 for(int j = 0; j < HASHES_PER_PACKET; j++)
                 {
-                    gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string, hashToRecv.offset[j]);
+                    indexLookup[hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
                 }
             }
             else if(recv_buffer[0] == Injection)
@@ -199,7 +201,7 @@ void BridgeListener::listenSingleMethod(void *para)
                         memcpy(m, &injToRecv.content[j], sizeof(gu_simple_message));
                         gsw_increment(wb, t);
                         gsw_vacate(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
-//                        if (wb->subscribed) gsw_signal_subscribers(wb);
+                        if (wb->subscribed) gsw_signal_subscribers(wb);
                     }
                 }
             }
@@ -371,7 +373,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
 #ifdef READ_LOOP
     while(true)
     {
-        listenSingleMethod(NULL);
+        listenSingleMethod();
     }    
 #else
     timespec when2 = when;

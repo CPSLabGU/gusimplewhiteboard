@@ -62,59 +62,60 @@
 
 
 
-void BridgeBroadcaster::broadcastMonitor(void *para)
+static void broadcastMonitor(void *broadcaster)
 {
-    if(sending_count == (get_udp_id()+1))
+    BridgeBroadcaster *c = (BridgeBroadcaster *)broadcaster;
+    
+    if(c->sending_count == (get_udp_id()+1))
     {
-        sending_currently = true;      
+        c->sending_currently = true;      
         
 #ifdef BURST_SEND
         for (int i = 0; i < (PACKETS_PER_TS_INTERVAL); i++) 
         {
-            broadcastSingleMethod(NULL);
+            c->broadcastSingleMethod();
         }
 #endif
-        sending_count++;     
+        c->sending_count++;     
 #ifdef DEBUG
-#ifdef OUTPUT_IN_DEBUG
-        if(iter > 0)
-            fprintf(stderr, "Sent %d   \tavg time %llu\t\ttotal sent %d\n", sent, (avgSendTime/iter), total_sent);
-        sent = 0;
+#ifdef OUTPUT_BROADCASTER_IN_DEBUG
+        if(c->iter > 0)
+            fprintf(stderr, "Sent %d   \tavg time %llu\t\ttotal sent %d\n", c->sent, (c->avgSendTime/c->iter), c->total_sent);
+        c->sent = 0;
 #endif
 #endif        
     }
     else
     {
 #ifdef IGNORE_TT_ARCH
-        sending_currently = true;        
+        c->sending_currently = true;        
 #else
-        sending_currently = false;
+        c->sending_currently = false;
 #endif        
-        sending_count++;        
+        c->sending_count++;        
 #ifdef DEBUG
-#ifdef OUTPUT_IN_DEBUG
-        if(iter > 0)
+#ifdef OUTPUT_BROADCASTER_IN_DEBUG
+        if(c->iter > 0)
             fprintf(stderr, "Not My Send Slot\n");
 #endif
 #endif        
     }
-    
-    if((sending_count-1) >= NUM_OF_BROADCASTERS+PADDING_SLOTS)
+    if((c->sending_count-1) >= NUM_OF_BROADCASTERS+PADDING_SLOTS)
     {
 #if PADDING_SLOTS > 0     
-        pthread_mutex_lock(_injection_mutex);                    
+        pthread_mutex_lock(c->_injection_mutex);                    
         for (int i = 0; i < (PACKETS_PER_TS_INTERVAL); i++) 
         {
-            broadcastInjection();
+            c->broadcastInjection();
         }        
-        pthread_mutex_unlock(_injection_mutex);                    
+        pthread_mutex_unlock(c->_injection_mutex);                    
 #endif
-        sending_count = 1;        
+        c->sending_count = 1;        
 #ifdef DEBUG
-#ifdef OUTPUT_IN_DEBUG        
-        if(iter > 0)
-            fprintf(stderr, "Injected %d Packets  \tavg time %llu\t\ttotal sent %d\n", sent, (avgSendTime/iter), total_sent);
-        sent = 0;
+#ifdef OUTPUT_BROADCASTER_IN_DEBUG        
+        if(c->iter > 0)
+            fprintf(stderr, "Injected %d Packets  \tavg time %llu\t\ttotal sent %d\n", c->sent, (c->avgSendTime/c->iter), c->total_sent);
+        c->sent = 0;
 #endif
 #endif                
     }    
@@ -169,7 +170,7 @@ void BridgeBroadcaster::broadcastInjection()
     avgSendTime += (endSendTime - startSendTime);
 }
 
-void BridgeBroadcaster::broadcastSingleMethod(void *para)
+void BridgeBroadcaster::broadcastSingleMethod()
 {    
 //    if(uniqueId >= 1000)
 //        sending_currently = false;
@@ -240,23 +241,30 @@ void BridgeBroadcaster::broadcastSingleMethod(void *para)
             
             for(int j = 0; j < MESSAGES_PER_PACKET; j++)
             {
-                messageToSend.typeOffset[j] = offset;
+                int tmpOffset = offset;
+                if(offset >= GSW_NUM_RESERVED)
+                {
+                    tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-GSW_NUM_RESERVED).c_str());
+                }
+                
+                messageToSend.typeOffset[j] = tmpOffset;
 #ifdef GENERATION_BROADCASTING
-                u_int8_t h = _wbd_broadcaster->wb->indexes[offset];
+                u_int8_t h = _wbd_broadcaster->wb->indexes[tmpOffset];
                 if (h >= GU_SIMPLE_WHITEBOARD_GENERATIONS) h = 0;
                 
                 messageToSend.current_generation[j] = h;
                 
                 for (int g = 0; g < GU_SIMPLE_WHITEBOARD_GENERATIONS; g++)
                 {
-                    messageToSend.message_generations[j][g] =  _wbd_broadcaster->wb->messages[offset][g];
+                    messageToSend.message_generations[j][g] =  _wbd_broadcaster->wb->messages[tmpOffset][g];
                 }
 #else
-                messageToSend.message_generations[j] =  _wbd_broadcaster->wb->messages[offset][_wbd_broadcaster->wb->indexes[offset]];
+                messageToSend.message_generations[j] =  _wbd_broadcaster->wb->messages[tmpOffset][_wbd_broadcaster->wb->indexes[tmpOffset]];
 #endif
                 offset++;
-                if(offset >= GSW_NUM_RESERVED) 
-                {
+
+                if(offset >= GSW_NUM_RESERVED + msg_types_to_broadcast->size()) 
+                {   
                     msg_loops++;
                     if(msg_loops >= MESSAGES_TO_SEND_PER_HASH)
                     {
@@ -372,14 +380,11 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     timespec tmp = when;
 //    tmp.tv_nsec += (BROADCASTER_TS*get_udp_id()) * 1000ull;
     
-    //Stop non robots from broadcasting
-    if(!(get_udp_id() < 0))
-    {
-        dispatch_source_t broadcast_monitor = CreateDispatchTimer(&tmp,
-                                                                  (BROADCASTER_TS*1000ull),
-                                                                  0ull,
-                                                                  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                                                                  *broadcastMonitor, this);
+    dispatch_source_t broadcast_monitor = CreateDispatchTimer(&tmp,
+                                                              (BROADCASTER_TS*1000ull),
+                                                              0ull,
+                                                              dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
+                                                              *broadcastMonitor, this);
 #ifndef BURST_SEND
         //Run Broadcaster    
         dispatch_source_t broadcaster = CreateDispatchTimer(&when,
@@ -388,5 +393,5 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
                                                             dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
                                                             *broadcastSingleMethod, this);        
 #endif    
-    }
+    
 }

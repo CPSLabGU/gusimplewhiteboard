@@ -66,6 +66,7 @@
 #include "guudpbridge/guudpbridgenetworkconfig.h"
 #include "gusimplewhiteboard.h"
 #include "WhiteboardConstants.h"
+#include "Whiteboard.h"
 #include "WBFunctor.h"
 #include "WBMsg.h"
 
@@ -80,6 +81,7 @@ namespace guWhiteboard
             int playerNum;
         public:
             gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];  /// underlying whiteboards
+            Whiteboard *wb;
                     /**
              * API Constructor
              * This sets up the API and the callback soap server
@@ -122,8 +124,9 @@ namespace guWhiteboard
              * Adds a message to a remote whiteboard that the API is connected to
              * @param[in] type The string type associated with the message object
              * @param[in] msg
+             * @param[in] machine Target machine id             
              */
-//            void injectRemoteMessage(const std::string &type, const WBMsg &msg);            
+            void injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine);            
 #endif            
             
             /**
@@ -132,7 +135,7 @@ namespace guWhiteboard
              * @param[in] type The string type associated with the message object
              * @param[in] machine Target machine id
              */
-//            void addReplicationType(const std::string &type, RWBMachine machine);
+            void addReplicationType(const std::string &type, RWBMachine machine);
 
             /**
              * Get Message
@@ -143,6 +146,14 @@ namespace guWhiteboard
              * @return The message object
              */
             WBMsg getMessage(std::string type, RWBMachine machine, WBResult *result = NULL);
+
+            /**
+             * Get Known Types For Machine
+             * Gets all the currently known types for a machine
+             * @param[in] machine The target machine id / player number
+             * @return A vector of string containing the types
+             */
+            std::vector<std::string> getKnownTypesForMachine(RWBMachine machine);            
         };
 }
 

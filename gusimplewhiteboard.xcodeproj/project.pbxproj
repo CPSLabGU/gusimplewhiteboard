@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C33D92941504907300524671 /* guudpBridgeBroadcaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D928A1504907300524671 /* guudpBridgeBroadcaster.cpp */; };
-		C33D92951504907300524671 /* guudpBridgeBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = C33D928B1504907300524671 /* guudpBridgeBroadcaster.h */; };
-		C33D92961504907300524671 /* guudpBridgeListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D928C1504907300524671 /* guudpBridgeListener.cpp */; };
-		C33D92971504907300524671 /* guudpBridgeListener.h in Headers */ = {isa = PBXBuildFile; fileRef = C33D928D1504907300524671 /* guudpBridgeListener.h */; };
-		C33D92981504907300524671 /* guudpbridgemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D928E1504907300524671 /* guudpbridgemanager.cpp */; };
-		C33D92991504907300524671 /* guudpBridgeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C33D928F1504907300524671 /* guudpBridgeManager.h */; };
-		C33D929A1504907300524671 /* guudpbridgenetworkconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = C33D92901504907300524671 /* guudpbridgenetworkconfig.h */; };
-		C33D929B1504907300524671 /* guudpbridgenetworkutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92911504907300524671 /* guudpbridgenetworkutil.cpp */; };
-		C33D929C1504907300524671 /* guudpbridgenetworkutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C33D92921504907300524671 /* guudpbridgenetworkutil.h */; };
 		C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */; };
 		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
@@ -39,15 +30,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C33D928A1504907300524671 /* guudpBridgeBroadcaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeBroadcaster.cpp; sourceTree = "<group>"; };
-		C33D928B1504907300524671 /* guudpBridgeBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpBridgeBroadcaster.h; sourceTree = "<group>"; };
-		C33D928C1504907300524671 /* guudpBridgeListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeListener.cpp; sourceTree = "<group>"; };
-		C33D928D1504907300524671 /* guudpBridgeListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpBridgeListener.h; sourceTree = "<group>"; };
-		C33D928E1504907300524671 /* guudpbridgemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgemanager.cpp; sourceTree = "<group>"; };
-		C33D928F1504907300524671 /* guudpBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpBridgeManager.h; sourceTree = "<group>"; };
-		C33D92901504907300524671 /* guudpbridgenetworkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkconfig.h; sourceTree = "<group>"; };
-		C33D92911504907300524671 /* guudpbridgenetworkutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgenetworkutil.cpp; sourceTree = "<group>"; };
-		C33D92921504907300524671 /* guudpbridgenetworkutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkutil.h; sourceTree = "<group>"; };
+		C33D92BD150491F500524671 /* guudpBridgeBroadcaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeBroadcaster.cpp; sourceTree = "<group>"; };
+		C33D92BE150491F500524671 /* guudpBridgeBroadcaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpBridgeBroadcaster.h; sourceTree = "<group>"; };
+		C33D92BF150491F500524671 /* guudpBridgeListener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeListener.cpp; sourceTree = "<group>"; };
+		C33D92C0150491F500524671 /* guudpBridgeListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpBridgeListener.h; sourceTree = "<group>"; };
+		C33D92C1150491F500524671 /* guudpBridgeManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeManager.cpp; sourceTree = "<group>"; };
+		C33D92C2150491F500524671 /* guudpBridgeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpBridgeManager.h; sourceTree = "<group>"; };
+		C33D92C3150491F500524671 /* guudpbridgenetworkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkconfig.h; sourceTree = "<group>"; };
+		C33D92C4150491F500524671 /* guudpbridgenetworkutil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgenetworkutil.cpp; sourceTree = "<group>"; };
+		C33D92C5150491F500524671 /* guudpbridgenetworkutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkutil.h; sourceTree = "<group>"; };
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,18 +82,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C33D92881504907300524671 /* guudpbridge */ = {
+		C33D92BB150491F500524671 /* guudpbridge */ = {
 			isa = PBXGroup;
 			children = (
-				C33D928A1504907300524671 /* guudpBridgeBroadcaster.cpp */,
-				C33D928B1504907300524671 /* guudpBridgeBroadcaster.h */,
-				C33D928C1504907300524671 /* guudpBridgeListener.cpp */,
-				C33D928D1504907300524671 /* guudpBridgeListener.h */,
-				C33D928E1504907300524671 /* guudpbridgemanager.cpp */,
-				C33D928F1504907300524671 /* guudpBridgeManager.h */,
-				C33D92901504907300524671 /* guudpbridgenetworkconfig.h */,
-				C33D92911504907300524671 /* guudpbridgenetworkutil.cpp */,
-				C33D92921504907300524671 /* guudpbridgenetworkutil.h */,
+				C33D92BD150491F500524671 /* guudpBridgeBroadcaster.cpp */,
+				C33D92BE150491F500524671 /* guudpBridgeBroadcaster.h */,
+				C33D92BF150491F500524671 /* guudpBridgeListener.cpp */,
+				C33D92C0150491F500524671 /* guudpBridgeListener.h */,
+				C33D92C1150491F500524671 /* guudpBridgeManager.cpp */,
+				C33D92C2150491F500524671 /* guudpBridgeManager.h */,
+				C33D92C4150491F500524671 /* guudpbridgenetworkutil.cpp */,
+				C33D92C5150491F500524671 /* guudpbridgenetworkutil.h */,
+				C33D92C3150491F500524671 /* guudpbridgenetworkconfig.h */,
 			);
 			path = guudpbridge;
 			sourceTree = "<group>";
@@ -118,7 +109,7 @@
 				F1F4536314A1226D005C40A6 /* Whiteboard.cc */,
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
-				C33D92881504907300524671 /* guudpbridge */,
+				C33D92BB150491F500524671 /* guudpbridge */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
@@ -183,11 +174,6 @@
 			files = (
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
 				C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */,
-				C33D92951504907300524671 /* guudpBridgeBroadcaster.h in Headers */,
-				C33D92971504907300524671 /* guudpBridgeListener.h in Headers */,
-				C33D92991504907300524671 /* guudpBridgeManager.h in Headers */,
-				C33D929A1504907300524671 /* guudpbridgenetworkconfig.h in Headers */,
-				C33D929C1504907300524671 /* guudpbridgenetworkutil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,10 +278,6 @@
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				F1F4536414A1226D005C40A6 /* Whiteboard.cc in Sources */,
 				C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */,
-				C33D92941504907300524671 /* guudpBridgeBroadcaster.cpp in Sources */,
-				C33D92961504907300524671 /* guudpBridgeListener.cpp in Sources */,
-				C33D92981504907300524671 /* guudpbridgemanager.cpp in Sources */,
-				C33D929B1504907300524671 /* guudpbridgenetworkutil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +362,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					"$(SRCROOT)/../../Common",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -388,6 +374,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					"$(SRCROOT)/../../Common",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

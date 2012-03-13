@@ -90,7 +90,7 @@ public:
         for (int i = 1; i <= NUM_OF_BROADCASTERS; i++) 
         {
             std::stringstream ss;
-            ss << INJECTION_MSG_TYPE << i;
+            ss << INJECTION_CONTENT << i;
             wb->subscribeToMessage(ss.str().c_str(), WB_BIND(BridgeManager::addInjectionMessage), r);                    
         }
     }
@@ -146,16 +146,26 @@ public:
     void addInjectionMessage(std::string dataName, WBMsg *value)
     {
         if(value->getType() == WBMsg::TypeString)
-        {        
+        {   
             gsw_injection_message msg;
+            int machine = atoi(dataName.substr(dataName.length()-1, dataName.length()).c_str());            
+            msg.machineId = machine;
             
-            strcpy(msg.type.hash.string, (char *)value->getStringValue().c_str());
-            WBMsg tmp = wb->getMessage(msg.type.string);
+            //Get Type
+            std::stringstream ss;
+            ss << INJECTION_TYPE << machine;
+            WBMsg tmp = wb->getMessage((char *)ss.str().c_str());            
             
-            convWBMsgToSimpleMsg(&tmp, &msg.m);        
+            if(tmp.getType() != WBMsg::TypeString)
+                return;
             
-            msg.machineId = atoi(dataName.substr(dataName.length()-1, dataName.length()).c_str());
-//            fprintf(stderr, "Machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.string, (char *)tmp.getStringValue().c_str());
+            strcpy(msg.type.hash.string, (char *)tmp.getStringValue().c_str());
+
+            
+            convWBMsgToSimpleMsg(value, &msg.m);        
+            
+
+            //fprintf(stderr, "Machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
   
             pthread_mutex_lock(&injection_mutex);
             dynamic_messages_to_inject.push_back(msg);
@@ -277,10 +287,6 @@ int main(int argc, char *argv[])
 
     
     BridgeManager *bm = new BridgeManager(whiteboard);
-
-    WBMsg *msg = new WBMsg("TestMsg");
-    bm->addInjectionMessage(std::string("GSW_InjectMessageOnMachine1"), msg);
-
     
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
     BridgeListener *listener = new BridgeListener(_wbds, whiteboard, tim);    //May not end if loop reading
