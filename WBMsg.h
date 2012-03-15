@@ -72,6 +72,9 @@
 #endif
 
 #include <cstdlib>
+#include <string>
+#include <iostream> //for cerr
+#include <gusimplewhiteboard.h> //for GU_SIMPLE_WHITEBOARD_GENERATIONS
 
 class WBMsg
 {
