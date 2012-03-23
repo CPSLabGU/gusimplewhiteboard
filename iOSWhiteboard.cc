@@ -196,7 +196,7 @@ void iOSWhiteboard::injectRemoteMessage(const std::string &type, const WBMsg &va
     convWBMsgToSimpleMsg((WBMsg *)&value, &msg.m);        
     
     
-    fprintf(stderr, "Machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
+    fprintf(stderr, "Machine: %d\tType %s\tContent %s\n", (msg.machineId+1), msg.type.hash.string, (char *)msg.m.wbmsg.data);
     
     pthread_mutex_lock(&injection_mutex);
     dynamic_messages_to_inject.push_back(msg);

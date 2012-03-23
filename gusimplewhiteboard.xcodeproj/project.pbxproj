@@ -39,6 +39,8 @@
 		C33D92C3150491F500524671 /* guudpbridgenetworkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkconfig.h; sourceTree = "<group>"; };
 		C33D92C4150491F500524671 /* guudpbridgenetworkutil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpbridgenetworkutil.cpp; sourceTree = "<group>"; };
 		C33D92C5150491F500524671 /* guudpbridgenetworkutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpbridgenetworkutil.h; sourceTree = "<group>"; };
+		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
+		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,8 @@
 				F14C46C314A07024006B6953 /* gusimplewhiteboard.c */,
 				C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */,
 				C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */,
+				C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */,
+				C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */,
 				F1F4536114A11E90005C40A6 /* Whiteboard.h */,
 				F1F4536314A1226D005C40A6 /* Whiteboard.cc */,
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,

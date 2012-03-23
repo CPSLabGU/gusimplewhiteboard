@@ -191,7 +191,7 @@ void BridgeListener::listenSingleMethod()
                 for(int j = 0; j < injToRecv.numOfInjectionMsgs; j++)
                 {
                     targetMachine = injToRecv.targetMachineId[j];
-                    if((get_udp_id()+1) == targetMachine)
+                    if((get_udp_id()) == targetMachine)
                     {
                         int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
                         gsw_procure(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
