@@ -112,8 +112,7 @@ void gsw_init_semaphores(gsw_sema_t s)
 {
         union semun init;
         init.val = 1;
-        enum gsw_semaphores i = 0;
-    for (; i < GSW_NUM_SEM; i++)
+        for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
         {
                 if (semctl(s, i, SETVAL, init) == -1)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
@@ -164,8 +163,8 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
         if (init)
         {
                 gsw_init_semaphores(wbd->sem);
-                enum gsw_message_types i = 0;
-                for (; i < GSW_NUM_RESERVED; i++)
+
+                for (enum gsw_message_types i = 0; i < GSW_NUM_RESERVED; i++)
                         gsw_register_message_type(wbd, known_message_types[i]);
         }
         wbd->callback_queue = dispatch_queue_create(NULL, NULL);
@@ -352,8 +351,7 @@ int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char
         gu_simple_whiteboard *wb = wbd->wb;
         unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
         gu_simple_message *type; // = &wb->hashes[offs];
-        int i = 0;
-        for (; i < GSW_TOTAL_MESSAGE_TYPES; i++)
+        for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++)
         {
                 type = &wb->hashes[offs];
                 if (!*type->hash.string)                        // new message type?
