@@ -63,7 +63,7 @@
 
 /* Network config */
 
-#define DEBUG
+//#define DEBUG
 #define OUTPUT_LISTENER_IN_DEBUG
 //#define OUTPUT_BROADCASTER_IN_DEBUG
 //#define RUN_FAST_IN_DEBUG
