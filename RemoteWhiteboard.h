@@ -126,8 +126,7 @@ namespace guWhiteboard
              * @param[in] msg
              * @param[in] machine Target machine id             
              */
-            void injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine);            
-#endif            
+            void injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine);                        
             
             /**
              * Add Message
@@ -136,7 +135,8 @@ namespace guWhiteboard
              * @param[in] machine Target machine id
              */
             void addReplicationType(const std::string &type, RWBMachine machine);
-
+#endif
+            
             /**
              * Get Message
              * Gets a message from a remote simple whiteboard

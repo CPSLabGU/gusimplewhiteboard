@@ -134,6 +134,7 @@ static WBMsg getWBMsg(gu_simple_message *m)
         /* NOTREACHED */
 }
 
+#ifdef DEBUG   
 void RemoteWhiteboard::injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine)
 {    
     //Add type
@@ -155,6 +156,7 @@ void RemoteWhiteboard::addReplicationType(const std::string &type, RWBMachine ma
 {
     injectRemoteMessage(string(ADD_BROADCAST_TYPE_MSG_TYPE), WBMsg(type), machine);
 }
+#endif
 
 WBMsg RemoteWhiteboard::getMessage(string type, RWBMachine machine, WBResult *result)
 {
