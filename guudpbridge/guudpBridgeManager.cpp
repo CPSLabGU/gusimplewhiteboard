@@ -62,7 +62,7 @@
 #include <string.h>
 #include <iostream>
 #include <sstream>
-#include <cstdlib> //for system()
+//#include <cstdlib> //for system()
 
 #include "guudpbridgemanager.h"
 
@@ -190,13 +190,13 @@ int main(int argc, char *argv[])
 
     if(getplayernumber() > 0) //Use actual id to avoid running NTP on other machines, assumes it has its own clock sync
     {
-        fprintf(stderr, " **** Running NTP ****\n");        
+        /*fprintf(stderr, " **** Running NTP ****\n");        
         if(system("ntpd -s") != 0)
         {
             fprintf(stderr, " **** Failed to Run NTP, Exiting . . . ****\n");                    
             exit(EXIT_FAILURE);
         }
-        fprintf(stderr, " **** Done Running NTP ****\n\n\n");        
+        fprintf(stderr, " **** Done Running NTP ****\n\n\n");        */
         fprintf(stderr, " **** Running Bridge ****\n");                    
     }
     else
