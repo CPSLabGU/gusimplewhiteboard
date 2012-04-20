@@ -63,10 +63,12 @@
 
 /* Network config */
 
-//#define DEBUG
+#define DEBUG
 #define OUTPUT_LISTENER_IN_DEBUG
-//#define OUTPUT_BROADCASTER_IN_DEBUG
+#define OUTPUT_BROADCASTER_IN_DEBUG
 //#define RUN_FAST_IN_DEBUG
+
+#define USE_BROADCAST //Defaults to MULTICAST
 
 //FAST SPEED
 #define FAST_SPEED_PACKETS_PER_SECOND 1000
@@ -77,10 +79,10 @@
 #define ROBOCUP_CYCLES_PER_SEC 5
 
 
-
+#define MESSAGES_IN_READ_BUFFER 10
 #define READ_LOOP
 //#define IGNORE_TT_ARCH
-//#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
+#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
 
 #ifndef IGNORE_TT_ARCH
     #define BURST_SEND
@@ -99,6 +101,7 @@
 #define SERVERPORT 4242	// the port users will be connecting to
 #define SERVERPORT2 "4242"	// the port users will be connecting to
 #define MULTICASTADDRESS "224.42.42.42"	// the multicast address
+#define BROADCASTADDRESS "255.255.255.255"
 
 //Might want to look into MTU Path Descovery however for the moment assume MTU of 1500 (-100 for overhead) 1400
 #define MTU 1400

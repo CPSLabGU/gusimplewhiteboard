@@ -65,7 +65,7 @@
 static void broadcastMonitor(void *broadcaster)
 {
     BridgeBroadcaster *c = (BridgeBroadcaster *)broadcaster;
-    
+
     if(c->sending_count == (get_udp_id()+1))
     {
         c->sending_currently = true;      
@@ -325,21 +325,32 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     messages_to_inject = injectionVec;
     _injection_mutex = injection_mutex;
     _wbd_broadcaster = _wbd;
-    
+
     //Setup socket
 	if ((sockfd = socket(PF_INET, SOCK_DGRAM, 0)) == -1) {
 		perror("socket");
 		exit(1);
 	}
 
-#ifndef UNICAST    
-	// this call is what allows broadcast packets to be sent:
+#ifndef UNICAST
+#ifdef USE_BROADCAST
+    // this call is what allows broadcast packets to be sent:
+    int broadcastOn = 1;    
+	if (setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &broadcastOn, sizeof(broadcastOn)) == -1)
+    {
+		perror("setsockopt (SO_BROADCAST)");
+		exit(1);
+	}    
+#else
+	// this call is what allows multicast packets to be sent:
 	if (setsockopt(sockfd, IPPROTO_IP, IP_MULTICAST_TTL, (void*) &mc_ttl, sizeof(mc_ttl)) == -1)
     {
 		perror("setsockopt (MULTICAST_TTL)");
 		exit(1);
 	}
-    
+#endif    
+
+#ifndef USE_BROADCAST
 #ifndef SEND_TO_SELF    
 	// this call stops packets I send coming back to me
     int  val=0;
@@ -352,7 +363,18 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     fprintf(stderr, "WARNING: Sending all packets to self as well\n");
 #endif
 #endif
+#endif
 
+
+#ifdef USE_BROADCAST    
+    /* construct address structure */
+    memset(&mc_addr, 0, sizeof(mc_addr));
+    mc_addr.sin_family      = PF_INET;
+    mc_addr.sin_addr.s_addr = inet_addr(BROADCASTADDRESS);
+    mc_addr.sin_port        = htons(SERVERPORT);
+    
+    memset(buffer, 0, sizeof(buffer));   	
+#else
     /* construct address structure */
     memset(&mc_addr, 0, sizeof(mc_addr));
     mc_addr.sin_family      = PF_INET;
@@ -360,9 +382,9 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     mc_addr.sin_port        = htons(SERVERPORT);
     
     memset(buffer, 0, sizeof(buffer));
+#endif
+    
 
-    
-    
     
     long int min = currTime.tv_sec / 60;
     long int target = min * 60; //removes seconds
@@ -371,15 +393,15 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     
     //Start at next 10s mark
     target += ((secs/10)+1)*10;
-    
+
     
     timespec when;
     when.tv_sec = target;
     when.tv_nsec = 0;
-    
+
     timespec tmp = when;
 //    tmp.tv_nsec += (BROADCASTER_TS*get_udp_id()) * 1000ull;
-    
+
     dispatch_source_t broadcast_monitor = CreateDispatchTimer(&tmp,
                                                               (BROADCASTER_TS*1000ull),
                                                               0ull,

@@ -271,9 +271,9 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     struct sockaddr_in from_addr; /* packet source */
     unsigned int from_len;        /* source addr length */
 
-    
-    
+#ifndef USE_BROADCAST
     mc_addr_str = (char *)MULTICASTADDRESS;     /* assign multicast ip address */
+#endif    
     mc_port = SERVERPORT;               /* assign multicast port number */
 
     
@@ -291,19 +291,19 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     
     
 //    int buffsize = 400000;
-    int buffsize = MTU+100;    
+    int buffsize = (MTU+100)*MESSAGES_IN_READ_BUFFER;    
     if ((setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &buffsize, sizeof(buffsize))) < 0) {
         perror("setsockopt() failed changing SO_RCVBUF");
         exit(1);
     }
-    
-    
+
     /* set reuse port to on to allow multiple binds per host */
     if ((setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &flag_on,
                     sizeof(flag_on))) < 0) {
         perror("setsockopt() failed");
         exit(1);
     }
+
     
     /* construct a multicast address structure */
     memset(&mc_addr, 0, sizeof(mc_addr));
@@ -318,17 +318,19 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
         exit(1);
     }
     
+#ifndef USE_BROADCAST    
+#ifndef UNICAST
     /* construct an IGMP join request structure */
     mc_req.imr_multiaddr.s_addr = inet_addr(mc_addr_str);
     mc_req.imr_interface.s_addr = htonl(INADDR_ANY);
     
-#ifndef UNICAST
     /* send an ADD MEMBERSHIP message via setsockopt */
     if ((setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, 
                     (void*) &mc_req, sizeof(mc_req))) < 0) {
         perror("setsockopt() failed");
         exit(1);
     }
+#endif
 #endif
     
     /* clear the receive buffers & structs */

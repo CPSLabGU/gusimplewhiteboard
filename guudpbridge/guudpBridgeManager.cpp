@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
     BridgeListener *listener = new BridgeListener(_wbds, whiteboard, tim);    //May not end if loop reading
 
-    
+
 
     dispatch_main();                // run the dispatcher "forever"
     
