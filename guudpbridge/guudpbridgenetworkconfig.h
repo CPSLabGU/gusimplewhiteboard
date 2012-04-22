@@ -65,7 +65,7 @@
 
 #define DEBUG
 #define OUTPUT_LISTENER_IN_DEBUG
-#define OUTPUT_BROADCASTER_IN_DEBUG
+//#define OUTPUT_BROADCASTER_IN_DEBUG
 //#define RUN_FAST_IN_DEBUG
 
 #define USE_BROADCAST //Defaults to MULTICAST
@@ -82,7 +82,7 @@
 #define MESSAGES_IN_READ_BUFFER 10
 #define READ_LOOP
 //#define IGNORE_TT_ARCH
-#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
+//#define FAKE_BROADCAST 1 //Uses the id given to pretend to be that robot
 
 #ifndef IGNORE_TT_ARCH
     #define BURST_SEND

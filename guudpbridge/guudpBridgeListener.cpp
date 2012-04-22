@@ -130,15 +130,26 @@ void BridgeListener::listenSingleMethod()
 #endif  
             if(recv_buffer[0] == Msg)
             {
-#ifdef DEBUG            
-                gotMessagePackets++;
-                total_recv++;            
-#endif
                 gsw_single_message msg;   
                 buf2msg(&msg, (unsigned char *)&recv_buffer[0]);
                 
                 current_poster = msg.udpId;
-                
+#ifndef SEND_TO_SELF
+                if(current_poster == get_udp_id()) //Ignore messages from self, generally only happens with broadcast
+                {
+#ifdef DEBUG
+                    endRecvTime = get_utime();
+                    iter_listener++;
+                    avgRecvTime += (endRecvTime - startRecvTime);
+                    rawRecvTime = (endRecvTime - startRecvTime);
+#endif
+                    return;
+                }   
+#endif
+#ifdef DEBUG            
+                gotMessagePackets++;
+                total_recv++;            
+#endif                
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
                     //Don't need sem, this is the only writer and readers don't need the sem either
@@ -164,15 +175,27 @@ void BridgeListener::listenSingleMethod()
             }
             else if(recv_buffer[0] == Hash)
             {
-#ifdef DEBUG            
-                gotHashPackets++;
-                total_recv++;
-#endif
                 gsw_hash_message hashToRecv;   
                 buf2hash(&hashToRecv, (unsigned char *)&recv_buffer[0]);
                 
                 current_poster = hashToRecv.udpId;
-                
+#ifndef SEND_TO_SELF
+                if(current_poster == get_udp_id()) //Ignore messages from self, generally only happens with broadcast
+                {
+#ifdef DEBUG
+                    endRecvTime = get_utime();
+                    iter_listener++;
+                    avgRecvTime += (endRecvTime - startRecvTime);
+                    rawRecvTime = (endRecvTime - startRecvTime);
+#endif
+                    return;
+                }   
+#endif
+#ifdef DEBUG            
+                gotHashPackets++;
+                total_recv++;
+#endif
+
                 for(int j = 0; j < HASHES_PER_PACKET; j++)
                 {
                     indexLookup[hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
