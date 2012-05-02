@@ -104,7 +104,7 @@
 #define BROADCASTADDRESS "255.255.255.255"
 
 //Might want to look into MTU Path Descovery however for the moment assume MTU of 1500 (-100 for overhead) 1400
-#define MTU 1400
+#define MTU 1459 //1500 WiFi MTU (assumed) - 40 for IP Header & - 1 to keep us under the MTU
 #define REMOTE_WHITEBOARD_BASENAME "guudpwhiteboard"
 #define ADD_BROADCAST_TYPE_MSG_TYPE "GSW_AddBroadcastType"
 #define INJECTION_TYPE "GSW_InjectMessageOnMachineT"
