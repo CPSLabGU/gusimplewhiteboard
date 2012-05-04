@@ -120,7 +120,7 @@ public:
 	 * Initialises a WBMsg with a given boolean value.
 	 * @param val Boolean value to store in the Whiteboard message.
 	 */
-	WBMsg(bool val): type(TypeBool), boolVal(val) {}
+	WBMsg(bool val): boolVal(val), type(TypeBool) {}
 
 	/**
 	 * WBMsg - Integer constructor.
@@ -128,14 +128,14 @@ public:
 	 * @param val Int value to store in the Whiteboard message.
 	 */
 
-	WBMsg(int val): type(TypeInt), intVal(val) {}
+	WBMsg(int val): intVal(val), type(TypeInt) {}
 	/**
 	 * WBMsg - Float constructor.
 	 * Initialises a WBMsg with a given float value.
 	 * @param val Float value to store in the Whiteboard message.
 	 */
 
-	WBMsg(float val): type(TypeFloat), floatVal(val) {}
+	WBMsg(float val): floatVal(val), type(TypeFloat) {}
 
 	/**
 	 * WBMsg - String constructor.
@@ -160,14 +160,14 @@ public:
 	 * @param needsFree If this is non-zero, will free the contents of the data 
 	 *                  buffer when this WBMsg is deleted.
 	 */
-	WBMsg(const void *data, int nBytes, bool needsFree = false): type(TypeBinary), binaryVal(data), binarySize(nBytes), doFree(needsFree) {}
+	WBMsg(const void *data, int nBytes, bool needsFree = false): binaryVal(data), type(TypeBinary), binarySize(nBytes), doFree(needsFree) {}
 
 	/**
 	 * WBMsg - Vector<int> constructor.
 	 * Initialises a WBMsg with a standard C++ string value.
 	 * @param val String to store in the Whiteboard message.
 	 */
-	WBMsg(const std::vector<int> &val, bool needsFree = false): type(TypeArray), arrayVal(&val), doFree(needsFree) {}
+	WBMsg(const std::vector<int> &val, bool needsFree = false): arrayVal(&val), type(TypeArray), doFree(needsFree) {}
         
 	/**
 	 * getType.
