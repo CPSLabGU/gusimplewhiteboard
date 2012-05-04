@@ -90,8 +90,11 @@ void BridgeListener::listenSingleMethod()
     msgSelectTimeout.tv_usec = READ_TIMEOUT;
     
         if (select(sock+1,&socketReadSet,0,0,&msgSelectTimeout) == -1) {
-            fprintf(stderr, "Socket Error\n");
-            return;
+            if (errno != EINTR)            
+            {
+                perror("select() failed");
+                return;
+            }
         }
     
         /* receive a packet */
