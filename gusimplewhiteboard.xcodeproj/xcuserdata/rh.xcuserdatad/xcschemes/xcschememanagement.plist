@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>31</integer>
 		</dict>
+		<key>gusimplewhiteboardios.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>43</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>F1C94D701555CA8E00B717DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1C94DA21555D3C300B717DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

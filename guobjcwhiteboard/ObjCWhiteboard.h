@@ -59,11 +59,10 @@
 #import <Foundation/Foundation.h>
 
 #ifdef __cplusplus
-#define OC_WHITEBOARD   guWhiteboard::Whiteboard
-class OC_WHITEBOARD;
+typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
 #else
-#define OC_WHITEBOARD   Whiteboard
-struct OC_WHITEBOARD;
+struct Whiteboard;
+typedef struct Whiteboard oc_whiteboard_t;
 #endif
 
 @class ObjCWhiteboard;
@@ -78,7 +77,7 @@ struct OC_WHITEBOARD;
 
 @interface ObjCWhiteboard: NSObject
 @property (nonatomic, assign) id<ObjCWhiteboardDelegate> delegate;
-@property (nonatomic, assign) OC_WHITEBOARD *whiteboard;
+@property (nonatomic, assign) oc_whiteboard_t *whiteboard;
 @property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
 
 - (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
