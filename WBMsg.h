@@ -173,8 +173,9 @@ public:
 	 * WBMsg - Vector<int> constructor.
 	 * Initialises a WBMsg with a standard C++ string value.
 	 * @param val String to store in the Whiteboard message.
+         * @param needsFree destroys the original vector immediately if true
 	 */
-	WBMsg(const std::vector<int> &val): arrayVal(new std::vector<int>(val)), type(TypeArray), doFree(true) {}
+	WBMsg(const std::vector<int> &val, bool needsFree = false): arrayVal(new std::vector<int>(val)), type(TypeArray), doFree(true) { if (needsFree) delete &val; }
 
 	/**
 	 * getType.
