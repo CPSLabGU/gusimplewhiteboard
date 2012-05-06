@@ -65,7 +65,7 @@ using namespace std;
 
 
 
-RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(n), Whiteboard(wbName), local_wb_needs_free(local_wb != NULL)
+RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(RWBMachine(n+1)), Whiteboard(wbName), local_wb_needs_free(local_wb != NULL)
 {
     if(local_whiteboard == NULL)
     {
