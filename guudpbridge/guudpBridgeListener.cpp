@@ -163,7 +163,7 @@ void BridgeListener::listenSingleMethod()
                         t = msg.typeOffset[i];
                     
                     _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
-
+                    recieved_generations[current_poster][t] = msg.current_generation[i];
 #ifdef GENERATION_BROADCASTING                    
                     for (int g = 0; g < GU_SIMPLE_WHITEBOARD_GENERATIONS; g++)
                     {
@@ -261,7 +261,7 @@ void *BridgeListener::get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, timeval currTime)
+BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime): recieved_generations(recieved_generations_array)
 {
     //Default vars
     //------------------------------
@@ -281,9 +281,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     //TEMP
     oldId = -1;
 #endif
-    
-    
-    
+
     _wbd_injection = _wbd_for_injections;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) {
         _wbd_listeners[i] = _wbd[i];

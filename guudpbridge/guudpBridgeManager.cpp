@@ -70,13 +70,14 @@
 class BridgeManager
 {
 public:
-    std::vector<std::string> dynamic_msg_types_to_broadcast;
-    std::list<gsw_injection_message> dynamic_messages_to_inject;
-    pthread_mutex_t injection_mutex;
-
+    std::vector<std::string>            dynamic_msg_types_to_broadcast;
+    std::list<gsw_injection_message>    dynamic_messages_to_inject;
+    pthread_mutex_t                     injection_mutex;
+    u_int8_t                            recieved_generations[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES];
+    guWhiteboard::Whiteboard                          **_wbds;    
     
     guWhiteboard::Whiteboard *wb;
-    BridgeManager(guWhiteboard::Whiteboard *wbd)
+    BridgeManager(guWhiteboard::Whiteboard *wbd, guWhiteboard::Whiteboard **_whiteboards): _wbds(_whiteboards)
     {
         dynamic_msg_types_to_broadcast = std::vector<std::string>();
         dynamic_messages_to_inject = std::list<gsw_injection_message>();
@@ -86,7 +87,11 @@ public:
         guWhiteboard::Whiteboard::WBResult r;
         wb->subscribeToMessage(ADD_BROADCAST_TYPE_MSG_TYPE, WB_BIND(BridgeManager::addBroadcastMsgType), r);
         
-
+        _wbds[0]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback1), r);
+        _wbds[1]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback2), r);
+        _wbds[2]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback3), r);
+        _wbds[3]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback4), r);        
+        
         for (int i = 1; i <= NUM_OF_BROADCASTERS; i++) 
         {
             std::stringstream ss;
@@ -142,6 +147,35 @@ public:
             }
         }
     }
+    
+    void monitorCallback(std::string type, WBMsg *value, int machineNum)
+    {
+        int t = gsw_offset_for_message_type(_wbds[machineNum-1]->_wbd, type.c_str());
+        
+        if(recieved_generations[machineNum-1][t] == _wbds[machineNum-1]->_wbd->wb->indexes[t])
+            return;
+    
+        gsw_injection_message msg;
+        int machine = machineNum;
+        msg.machineId = machine;
+
+        strcpy(msg.type.hash.string, (char *)type.c_str());
+        
+        convWBMsgToSimpleMsg(value, &msg.m);        
+        
+        
+        fprintf(stderr, "Injection to machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
+        
+        pthread_mutex_lock(&injection_mutex);
+        dynamic_messages_to_inject.push_back(msg);
+        pthread_mutex_unlock(&injection_mutex);  
+    }
+    
+    void monitorCallback1(std::string dataName, WBMsg *value) { monitorCallback(dataName, value, 1); }
+    void monitorCallback2(std::string dataName, WBMsg *value) { monitorCallback(dataName, value, 2); }
+    void monitorCallback3(std::string dataName, WBMsg *value) { monitorCallback(dataName, value, 3); }
+    void monitorCallback4(std::string dataName, WBMsg *value) { monitorCallback(dataName, value, 4); }    
+    
     
     void addInjectionMessage(std::string dataName, WBMsg *value)
     {
@@ -251,6 +285,7 @@ int main(int argc, char *argv[])
 
     //Setup listener wbs    
     gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
+    guWhiteboard::Whiteboard *_whiteboards[NUM_OF_BROADCASTERS];    
     
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
     {
@@ -261,14 +296,15 @@ int main(int argc, char *argv[])
             
         if((get_udp_id()+1) != (i+1))
         {
-            if (!(_wbds[i] = gsw_new_whiteboard(ss.str().c_str())))
-            {
-                fprintf(stderr, "Unable to create whiteboard '%s'\n", (char *)"guWhiteboard");
-                throw "Cannot create whiteboard";
-            }
+            _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());
+            if(_whiteboards[i])
+                _wbds[i] = _whiteboards[i]->_wbd;
         }
         else
-            _wbds[i] = _wbd;
+        {
+            if(whiteboard)
+                _wbds[i] = whiteboard->_wbd;
+        }
     }
 
     
@@ -283,10 +319,10 @@ int main(int argc, char *argv[])
 #endif
 
     
-    BridgeManager *bm = new BridgeManager(whiteboard);
+    BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
     
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
-    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, tim);    //May not end if loop reading
+    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim);    //May not end if loop reading
 
 
 

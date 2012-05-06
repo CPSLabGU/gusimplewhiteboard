@@ -84,6 +84,7 @@ public:
     u_int16_t                indexLookup[GSW_TOTAL_MESSAGE_TYPES];
     gu_simple_whiteboard_descriptor *_wbd_listeners[NUM_OF_BROADCASTERS];  /// underlying whiteboard
     guWhiteboard::Whiteboard *_wbd_injection;  /// underlying whiteboard    
+    u_int8_t (&recieved_generations)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES];
     int current_poster;
     
     int sock;                     /* socket descriptor */
@@ -123,7 +124,7 @@ public:
     // get sockaddr, IPv4 or IPv6:
     void *get_in_addr(struct sockaddr *sa);
 
-    BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, timeval currTime);
+    BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime);
 
 };
 
