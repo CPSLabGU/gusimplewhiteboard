@@ -117,7 +117,7 @@ namespace guWhiteboard
 		 * Destructor.
 		 * shuts down the whiteboard
 		 */		
-                ~Whiteboard();           
+                virtual ~Whiteboard();           
 
 		/**
 		 * Add Message

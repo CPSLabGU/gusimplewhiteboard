@@ -71,7 +71,10 @@ typedef struct Whiteboard oc_whiteboard_t;
 @property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
 @property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
 
+- (id) init;
+- (id) initWithRobotNumbered: (NSInteger) n;
 - (id) initWithWhiteboardNamed: (NSString *) wbname;
+- (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
 
 - (NSArray *) knownWhiteboardMessagesSortedByName;
 - (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)

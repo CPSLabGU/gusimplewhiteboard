@@ -103,6 +103,7 @@ namespace guWhiteboard
         {
             RWBMachine machine;
             Whiteboard *local_wb;
+            bool local_wb_needs_free;
         public:
             /**
              * API Constructor
@@ -110,13 +111,13 @@ namespace guWhiteboard
              * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
                      * @param[in] checkVersion              indicate whether to check wb version (default: true)
              */
-            RemoteWhiteboard(const char *wbName, Whiteboard *local_whiteboard = NULL);
+            RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard = NULL);
 
             /**
              * Destructor.
              * shuts down the whiteboard
              */		
-            ~RemoteWhiteboard();           
+            virtual ~RemoteWhiteboard();           
 
             /**
              * Add Message
