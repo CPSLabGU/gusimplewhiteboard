@@ -120,7 +120,9 @@ public:
         if (knownWhiteboardMessages) return knownWhiteboardMessages;
         
         self.knownWhiteboardMessages = [NSMutableDictionary dictionaryWithCapacity: GSW_TOTAL_MESSAGE_TYPES];
-        
+
+        if (!gu_whiteboard) return knownWhiteboardMessages;
+
         /*
          * populate array of known whiteboard message types
          */
@@ -213,6 +215,8 @@ public:
 
 - (NSString *) contentForMessageType: (NSString *) msgType
 {
+        if (!gu_whiteboard) return @"- nowb -";
+
         Whiteboard::WBResult result;
         const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
         
@@ -242,6 +246,7 @@ static NSArray *wbtypes;
 - (NSString *) dataTypeForMessageType: (NSString *) msgType
 {
         if (!msgType) return @"- empty -";
+        if (!gu_whiteboard) return @"- nowb -";
         
         Whiteboard::WBResult result;
         const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
@@ -328,6 +333,8 @@ static vector<int> convToArrayType(const char *s)
                content: (NSString *) content
               withType: (NSString *) dataType
 {
+        if (!gu_whiteboard) return;
+
         WBMsg wbmsg = [self wbMsg: msg ofType: dataType withContent: content];
         gu_whiteboard->addMessage([msg UTF8String], wbmsg);
 }
