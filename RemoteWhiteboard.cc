@@ -65,11 +65,8 @@ using namespace std;
 
 
 
-RemoteWhiteboard::RemoteWhiteboard(const char *wbName, Whiteboard *local_whiteboard) : Whiteboard(wbName)
+RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(n), Whiteboard(wbName), local_wb_needs_free(local_wb != NULL)
 {
-    std::string str = std::string(wbName);
-    machine = (RWBMachine)atoi(str.substr(str.length()-1, str.length()).c_str()); //Will fail if machine name is greater than 9
-    
     if(local_whiteboard == NULL)
     {
         local_whiteboard = new Whiteboard();
@@ -79,6 +76,7 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, Whiteboard *local_whitebo
 
 RemoteWhiteboard::~RemoteWhiteboard()
 {
+        if (local_wb_needs_free && local_wb) delete local_wb;
 }
 
 void RemoteWhiteboard::addReplicationType(const std::string &type)

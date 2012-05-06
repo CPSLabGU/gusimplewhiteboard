@@ -63,6 +63,7 @@
 #include <vector>
 #include <gusimplewhiteboard.h>
 #include <Whiteboard.h>
+#include <RemoteWhiteboard.h>
 #import "ObjCWhiteboard.h"
 
 using namespace guWhiteboard;
@@ -110,6 +111,25 @@ public:
         return self;
 }
 
+
+- (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname
+{
+        if (!(self = [super init]))
+                return nil;
+
+        if (!wbname || n < 0 || n >= RWBMachine::NUM_OF_MACHINES)
+        {
+                [self release];
+                return nil;
+        }
+        
+        gu_whiteboard = new RemoteWhiteboard([wbname UTF8String], RWBMachine(n));
+
+        wbcallback = new ObjCWBCallback(self, gu_whiteboard);
+        
+        return self;
+}
+
 - (id) init
 {
 #ifdef GSW_IOS
@@ -119,6 +139,21 @@ public:
         return [self initWithWhiteboardNamed: nil];
 #endif
 }
+
+- (id) initWithRobotNumbered: (NSInteger) n
+{
+        if (n <= 0 || n > RWBMachine::NUM_OF_MACHINES)
+                return [self init];
+
+        string name = nameForMachine(RWBMachine(--n));
+        NSString *wbname = [NSString stringWithFormat: @"%s", name.c_str()];
+#ifdef GSW_IOS
+        NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        wbname = [docsDir stringByAppendingPathComponent: wbname];
+#endif
+        return [self initWithRobotWhiteboard: n named: wbname];
+}
+
 
 - (void) dealloc
 {
