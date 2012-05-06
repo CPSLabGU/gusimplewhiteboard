@@ -148,7 +148,7 @@ public:
         if(value->getType() == WBMsg::TypeString)
         {   
             gsw_injection_message msg;
-            int machine = atoi(dataName.substr(dataName.length()-1, dataName.length()).c_str());            
+            int machine = atoi(dataName.substr(dataName.length()-1, dataName.length()).c_str());  //Only works up to 9          
             msg.machineId = machine;
             
             //Get Type
