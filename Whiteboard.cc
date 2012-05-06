@@ -239,7 +239,7 @@ static WBMsg getWBMsg(gu_simple_message *m)
                         vector<int> *v = new vector<int>();
                         for (int i = 0; i < m->wbmsg.len; i++)
                                 v->push_back(m->ivec[i]);
-                        return WBMsg(*v, true);
+                        return WBMsg(v, true);
                 }
                 default:
                         return WBMsg();
