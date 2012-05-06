@@ -62,10 +62,16 @@
 extern "C"
 {
 #endif
-
+#ifdef __APPLE__
+#include <AvailabilityMacros.h>
+#endif
 #include <dispatch/dispatch.h>
 #include <sys/types.h>
 #include <unistd.h>
+
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
+#define GSW_IOS                                         // simplify for IOS
+#endif
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            2       // version
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       // lifespan (max)
@@ -208,7 +214,11 @@ typedef struct gsw_simple_whiteboard_s
         u_int64_t               magic;
 } gu_simple_whiteboard;
 
+#ifdef GSW_IOS
+typedef dispatch_semaphore_t *gsw_sema_t;
+#else
 typedef int gsw_sema_t;
+#endif
 
 typedef struct gsw_whiteboard_s
 {
