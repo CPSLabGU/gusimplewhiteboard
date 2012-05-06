@@ -148,6 +148,9 @@ void BridgeBroadcaster::broadcastInjection()
             injectionPacket.targetMachineId[j] = msg.machineId;        
             injectionPacket.type[j] = msg.type;
             injectionPacket.content[j] = msg.m;
+            
+//            fprintf(stderr, "Injection: \tMachine: %d, Type: %s, Content: %s\n", msg.machineId, msg.type.hash.string, msg.m.wbmsg.data);
+            
             messages_to_inject->pop_front();
         }
     }
