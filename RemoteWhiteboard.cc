@@ -78,7 +78,7 @@ RemoteWhiteboard::RemoteWhiteboard(const char *name)
         
         if(playerNum != i+1)
         {
-            if (!(_wbds[i] = gsw_new_whiteboard(ss.str().c_str())))
+            if (!(_wbds[i] = new Whiteboard(ss.str().c_str())))
             {
                 fprintf(stderr, "Unable to create whiteboard '%s'\n", (char *)"guWhiteboard");
                 throw "Cannot create whiteboard";
@@ -86,11 +86,11 @@ RemoteWhiteboard::RemoteWhiteboard(const char *name)
         }
         else
         {
-            if (!(_wbds[i] = gsw_new_whiteboard(name)))
+            if (!(_wbds[i] = new Whiteboard(name)))
             {
                 cerr << "Unable to create whiteboard '" << name << "'" << endl;
                 throw "Cannot create whiteboard";
-            }            
+            }                            
         }
     }    
 }
@@ -98,8 +98,6 @@ RemoteWhiteboard::RemoteWhiteboard(const char *name)
 
 RemoteWhiteboard::~RemoteWhiteboard()
 {
-    for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
-        if (_wbds[i]) gsw_free_whiteboard(_wbds[i]);
 }
 
 static WBMsg getWBMsg(gu_simple_message *m)
@@ -166,8 +164,8 @@ WBMsg RemoteWhiteboard::getMessage(string type, RWBMachine machine, WBResult *re
             return WBMsg();
         }
         
-        int t = gsw_offset_for_message_type(_wbds[machine], type.c_str());
-        gu_simple_message *m = gsw_current_message(_wbds[machine]->wb, t);
+        int t = gsw_offset_for_message_type(_wbds[machine]->_wbd, type.c_str());
+        gu_simple_message *m = gsw_current_message(_wbds[machine]->_wbd->wb, t);
 
         if (result)
         {
@@ -183,20 +181,20 @@ WBMsg RemoteWhiteboard::getMessage(string type, RWBMachine machine, WBResult *re
 
 std::vector<std::string> RemoteWhiteboard::getKnownTypesForMachine(RWBMachine machine)
 {
-    gsw_procure(_wbds[machine]->sem, GSW_SEM_MSGTYPE);
+    gsw_procure(_wbds[machine]->_wbd->sem, GSW_SEM_MSGTYPE);
     std::vector<std::string> known_types;
     int i = 0;
     while (i < GSW_TOTAL_MESSAGE_TYPES)
     {
-        if(strlen(_wbds[machine]->wb->typenames[i].hash.string) > 0)
+        if(strlen(_wbds[machine]->_wbd->wb->typenames[i].hash.string) > 0)
         {
-            known_types.push_back(std::string(_wbds[machine]->wb->typenames[i].hash.string));
-            if(known_types.size() > _wbds[machine]->wb->num_types)
+            known_types.push_back(std::string(_wbds[machine]->_wbd->wb->typenames[i].hash.string));
+            if(known_types.size() > _wbds[machine]->_wbd->wb->num_types)
                 break;
         }
         i++;
     }
-    gsw_vacate(_wbds[machine]->sem, GSW_SEM_MSGTYPE);
+    gsw_vacate(_wbds[machine]->_wbd->sem, GSW_SEM_MSGTYPE);
 
     return known_types;
 }

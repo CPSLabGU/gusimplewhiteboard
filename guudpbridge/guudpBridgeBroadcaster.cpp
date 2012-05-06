@@ -238,7 +238,7 @@ void BridgeBroadcaster::broadcastSingleMethod()
 #else
             uniqueId++;
 #endif                        
-            
+            gsw_procure(_wbd_broadcaster->sem, GSW_SEM_PUTMSG);
             for(int j = 0; j < MESSAGES_PER_PACKET; j++)
             {
                 int tmpOffset = offset;
@@ -248,12 +248,8 @@ void BridgeBroadcaster::broadcastSingleMethod()
                 }
                 
                 messageToSend.typeOffset[j] = tmpOffset;
+                messageToSend.current_generation[j] = _wbd_broadcaster->wb->indexes[tmpOffset];                
 #ifdef GENERATION_BROADCASTING
-                u_int8_t h = _wbd_broadcaster->wb->indexes[tmpOffset];
-                if (h >= GU_SIMPLE_WHITEBOARD_GENERATIONS) h = 0;
-                
-                messageToSend.current_generation[j] = h;
-                
                 for (int g = 0; g < GU_SIMPLE_WHITEBOARD_GENERATIONS; g++)
                 {
                     messageToSend.message_generations[j][g] =  _wbd_broadcaster->wb->messages[tmpOffset][g];
@@ -274,6 +270,7 @@ void BridgeBroadcaster::broadcastSingleMethod()
                     offset = 0;
                 }
             }
+            gsw_vacate(_wbd_broadcaster->sem, GSW_SEM_PUTMSG);
                 
             msg2buf(&buffer[0], &messageToSend);
             

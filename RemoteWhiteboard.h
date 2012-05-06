@@ -80,7 +80,7 @@ namespace guWhiteboard
         {
             int playerNum;
         public:
-            gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];  /// underlying whiteboards
+            Whiteboard *_wbds[NUM_OF_BROADCASTERS];  /// underlying whiteboards
             Whiteboard *wb;
                     /**
              * API Constructor
@@ -153,7 +153,8 @@ namespace guWhiteboard
              * @param[in] machine The target machine id / player number
              * @return A vector of string containing the types
              */
-            std::vector<std::string> getKnownTypesForMachine(RWBMachine machine);            
+            std::vector<std::string> getKnownTypesForMachine(RWBMachine machine);       
+            
         };
 }
 

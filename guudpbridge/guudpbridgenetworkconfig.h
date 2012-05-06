@@ -145,14 +145,14 @@
     #ifdef GENERATION_BROADCASTING
         #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int8_t)))
     #else
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int8_t)+sizeof(int8_t)))
     #endif
     #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int8_t)))
 #else
     #ifdef GENERATION_BROADCASTING
         #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
     #else
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)+sizeof(int8_t)))
     #endif
     #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
 #endif
@@ -240,16 +240,16 @@ typedef struct gsw_simple_whiteboard_single_message
      */    
     int32_t typeOffset[MESSAGES_PER_PACKET];
     
+    /**
+     * message generation
+     */
+    u_int8_t                current_generation[MESSAGES_PER_PACKET];    
+    
 #ifdef GENERATION_BROADCASTING
     /**
      * the actual messages stored in the whiteboard
      */    
     gu_simple_message       message_generations[MESSAGES_PER_PACKET][GU_SIMPLE_WHITEBOARD_GENERATIONS];
-    
-    /**
-     * message generation
-     */
-    u_int8_t                current_generation[MESSAGES_PER_PACKET];
 #else
     /**
      * the actual messages stored in the whiteboard

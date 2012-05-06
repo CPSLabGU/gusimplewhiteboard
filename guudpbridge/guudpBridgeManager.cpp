@@ -258,9 +258,6 @@ int main(int argc, char *argv[])
         std::stringstream ss;
         std::stringstream ss2;
         ss << base_wb_name << (i+1); //line the wb names up to the player names
-        ss2 << "rm -f /tmp/" << ss.str().c_str();
-        
-        system(ss2.str().c_str()); //Don't care about return
             
         if((get_udp_id()+1) != (i+1))
         {

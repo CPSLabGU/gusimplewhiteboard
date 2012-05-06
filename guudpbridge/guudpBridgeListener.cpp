@@ -153,28 +153,28 @@ void BridgeListener::listenSingleMethod()
                 gotMessagePackets++;
                 total_recv++;            
 #endif                
+                gsw_procure(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
-                    //Don't need sem, this is the only writer and readers don't need the sem either
                     int t;
                     if(msg.typeOffset[i] >= GSW_NUM_RESERVED)
                         t = indexLookup[msg.typeOffset[i]];
                     else
                         t = msg.typeOffset[i];
-#ifdef GENERATION_BROADCASTING                    
-                    _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
                     
+                    _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
+
+#ifdef GENERATION_BROADCASTING                    
                     for (int g = 0; g < GU_SIMPLE_WHITEBOARD_GENERATIONS; g++)
                     {
                         _wbd_listeners[current_poster]->wb->messages[t][g] = msg.message_generations[i][g];
                     }
 #else
-                    u_int8_t j = _wbd_listeners[current_poster]->wb->indexes[t];
-                    if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
-                    _wbd_listeners[current_poster]->wb->messages[t][j] = msg.message_generations[i];
-                    gsw_increment(_wbd_listeners[current_poster]->wb, t);
+                    _wbd_listeners[current_poster]->wb->messages[t][_wbd_listeners[current_poster]->wb->indexes[t]] = msg.message_generations[i];
 #endif
                 }
+                gsw_vacate(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);                
+                gsw_signal_subscribers(_wbd_listeners[current_poster]->wb); //Done getting new messages, notify subs
             }
             else if(recv_buffer[0] == Hash)
             {
