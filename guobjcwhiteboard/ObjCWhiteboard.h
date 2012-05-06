@@ -76,6 +76,9 @@ typedef struct Whiteboard oc_whiteboard_t;
 - (id) initWithWhiteboardNamed: (NSString *) wbname;
 - (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
 
++ (NSArray *) whiteboardTypes;  /// supported whiteboard data types
++ (NSArray *) whiteboardNames;  /// names of local and remote robot whiteboards
+
 - (NSArray *) knownWhiteboardMessagesSortedByName;
 - (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
 - (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message

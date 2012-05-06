@@ -293,18 +293,34 @@ public:
         return [self contentForWBMsg: &msg];
 }
 
+static NSArray *wbnames;
+
++ (NSArray *) whiteboardNames
+{
+        if (!wbnames) wbnames = [[NSArray arrayWithObjects:
+                                  @"local", @"Robot 1", @"Robot 2", @"Robot 3",
+                                  @"Robot 4", nil] retain];
+        return wbnames;
+}
+
 
 static NSArray *wbtypes;
 
-- (NSString *) dataTypeForWBMsg: (const WBMsg *) msg
++ (NSArray *) whiteboardTypes
 {
         if (!wbtypes) wbtypes = [[NSArray arrayWithObjects:
                                   @"bool", @"int", @"float", @"string",
                                   @"array", @"binary", @"empty", nil] retain];
-        
+        return wbtypes;
+}
+
+- (NSString *) dataTypeForWBMsg: (const WBMsg *) msg
+{
+        NSArray *types = [ObjCWhiteboard whiteboardTypes];
+
         enum WBMsg::wb_type type = msg->getType();
-        if (type < [wbtypes count])
-                return [wbtypes objectAtIndex: type];
+        if (type < [types count])
+                return [types objectAtIndex: type];
         
         return @"- unknown -";
 }
