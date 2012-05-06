@@ -63,6 +63,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include "guudpbridge/guudpbridgenetworkconfig.h"
 #include "gusimplewhiteboard.h"
 #include "WhiteboardConstants.h"
@@ -73,88 +74,65 @@
 
 namespace guWhiteboard 
 {
+    
+    /**
+     * Remote WB enum
+     * @brief Allows the user specify a remote wb to talk about
+     */
+    typedef enum remote_wb_id
+    {
+        Machine1 = 0,
+        Machine2,
+        Machine3,
+        Machine4,
+        NUM_OF_MACHINES
+    } RWBMachine;  
+    
+    static std::string nameForMachine(RWBMachine machine)
+    {
+        const char *base_wb_name = REMOTE_WHITEBOARD_BASENAME;
+        std::stringstream ss;
+        ss << base_wb_name << (machine+1);
+        return ss.str();
+    }    
+    
         /**
          * compatibility API for accessing the remote whiteboard
          */
-        class RemoteWhiteboard
+        class RemoteWhiteboard : public Whiteboard
         {
-            int playerNum;
+            RWBMachine machine;
+            Whiteboard *local_wb;
         public:
-            Whiteboard *_wbds[NUM_OF_BROADCASTERS];  /// underlying whiteboards
-            Whiteboard *wb;
-                    /**
+            /**
              * API Constructor
              * This sets up the API and the callback soap server
              * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
                      * @param[in] checkVersion              indicate whether to check wb version (default: true)
              */
-            RemoteWhiteboard(const char *name = "guWhiteboard");
+            RemoteWhiteboard(const char *wbName, Whiteboard *local_whiteboard = NULL);
 
             /**
              * Destructor.
              * shuts down the whiteboard
              */		
-            ~RemoteWhiteboard();
+            ~RemoteWhiteboard();           
 
-            /**
-             * Remote WB enum
-             * @brief Allows the user specify a remote wb to talk about
-             */
-            typedef enum remote_wb_id
-            {
-                Machine1 = 0,
-                Machine2,
-                Machine3,
-                Machine4            
-            } RWBMachine;            
-
-            /**
-             * Return Type Enum
-             * @brief Allows the user to test if an error has occured
-             */
-            typedef enum wb_method_result
-            {
-                METHOD_OK,		/**< No errors detected. */ 
-                METHOD_FAIL,		/**< Errors detected. */ 
-            } WBResult;            
-
-#ifdef DEBUG            
-            /**
-             * Inject Message
-             * Adds a message to a remote whiteboard that the API is connected to
-             * @param[in] type The string type associated with the message object
-             * @param[in] msg
-             * @param[in] machine Target machine id             
-             */
-            void injectRemoteMessage(const std::string &type, const WBMsg &msg, RWBMachine machine);                        
-            
             /**
              * Add Message
              * Adds a message to the whiteboard that the API is connected to
              * @param[in] type The string type associated with the message object
              * @param[in] machine Target machine id
              */
-            void addReplicationType(const std::string &type, RWBMachine machine);
-#endif
+            void addReplicationType(const std::string &type);
             
-            /**
-             * Get Message
-             * Gets a message from a remote simple whiteboard
-             * @param[in] type The string type associated with the message object
-             * @param[in] machine The target machine id / player number
-             * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
-             * @return The message object
-             */
-            WBMsg getMessage(std::string type, RWBMachine machine, WBResult *result = NULL);
-
             /**
              * Get Known Types For Machine
              * Gets all the currently known types for a machine
              * @param[in] machine The target machine id / player number
              * @return A vector of string containing the types
              */
-            std::vector<std::string> getKnownTypesForMachine(RWBMachine machine);       
-            
+            std::vector<std::string> getKnownTypesForMachine();       
         };
 }
 

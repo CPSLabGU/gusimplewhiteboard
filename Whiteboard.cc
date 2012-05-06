@@ -214,39 +214,6 @@ void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nona
         if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
 
-
-static WBMsg getWBMsg(gu_simple_message *m)
-{
-        switch (m->wbmsg.type)
-        {
-                case WBMsg::TypeBool:
-                        return WBMsg((bool)m->sint);
-                        
-                case WBMsg::TypeInt:
-                        return WBMsg(m->sint);
-                        
-                case WBMsg::TypeFloat:
-                        return WBMsg(m->sfloat);
-                        
-                case WBMsg::TypeString:
-                        return WBMsg(m->wbmsg.data);
-                        
-                case WBMsg::TypeBinary:
-                        return WBMsg(m->wbmsg.data, m->wbmsg.len);
-                        
-                case WBMsg::TypeArray:
-                {
-                        vector<int> *v = new vector<int>();
-                        for (int i = 0; i < m->wbmsg.len; i++)
-                                v->push_back(m->ivec[i]);
-                        return WBMsg(v, true);
-                }
-                default:
-                        return WBMsg();
-        }
-        /* NOTREACHED */
-}
-
 WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
 {
     int t = hashinfo->msg_offset;
