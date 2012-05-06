@@ -29,6 +29,7 @@
 		F1C94DB51555D44D00B717DF /* guudpBridgeListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92BF150491F500524671 /* guudpBridgeListener.cpp */; };
 		F1C94DB61555D44D00B717DF /* guudpBridgeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C1150491F500524671 /* guudpBridgeManager.cpp */; };
 		F1C94DB71555D44D00B717DF /* guudpbridgenetworkutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C4150491F500524671 /* guudpbridgenetworkutil.cpp */; };
+		F1C94DE81555D78400B717DF /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94DE71555D78400B717DF /* libc++.dylib */; };
 		F1D925F314A13BAA00BDAEED /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */; };
 		F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1D925FD14A13BAA00BDAEED /* InfoPlist.strings */; };
@@ -94,6 +95,8 @@
 		F1C94DA81555D3C300B717DF /* gusimplewhiteboardios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gusimplewhiteboardios-Prefix.pch"; sourceTree = "<group>"; };
 		F1C94DA91555D3C300B717DF /* gusimplewhiteboardios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboardios.h; sourceTree = "<group>"; };
 		F1C94DAA1555D3C300B717DF /* gusimplewhiteboardios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gusimplewhiteboardios.m; sourceTree = "<group>"; };
+		F1C94DE61555D6C200B717DF /* ObjCWhiteboardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboardDelegate.h; sourceTree = "<group>"; };
+		F1C94DE71555D78400B717DF /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
 		F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F1D925F414A13BAA00BDAEED /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -142,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1C94DE81555D78400B717DF /* libc++.dylib in Frameworks */,
 				F1C94DA51555D3C300B717DF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +182,7 @@
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
+				F1C94DE71555D78400B717DF /* libc++.dylib */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */,
 				F14C46C314A07024006B6953 /* gusimplewhiteboard.c */,
@@ -214,6 +219,7 @@
 		F1C94D661555CA8E00B717DF /* guobjcwhiteboard */ = {
 			isa = PBXGroup;
 			children = (
+				F1C94DE61555D6C200B717DF /* ObjCWhiteboardDelegate.h */,
 				F1C94D691555CA8E00B717DF /* ObjCWhiteboard.h */,
 				F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */,
 				F1C94D671555CA8E00B717DF /* Supporting Files */,

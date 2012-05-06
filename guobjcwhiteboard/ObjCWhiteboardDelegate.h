@@ -57,27 +57,13 @@
  *
  */
 #import <Foundation/Foundation.h>
-#import "ObjCWhiteboardDelegate.h"
 
-#ifdef __cplusplus
-typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
-#else
-struct Whiteboard;
-typedef struct Whiteboard oc_whiteboard_t;
-#endif
+@class ObjCWhiteboard;
 
-@interface ObjCWhiteboard: NSObject
-@property (nonatomic, assign) id<ObjCWhiteboardDelegate> delegate;
-@property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
-@property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
-
-- (NSArray *) knownWhiteboardMessagesSortedByName;
-- (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
-- (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message
-- (NSString *) contentForMessageType: (NSString *) msgType;             /// return WB content of given message
-
-- (void) postWBMessage: (NSString *) msg
-               content: (NSString *) content
-              withType: (NSString *) dataType;
-
+@protocol ObjCWhiteboardDelegate <NSObject>
+@optional
+- (void) objcWhiteboard: (ObjCWhiteboard *) wb
+                message: (NSString *) msg 
+                 ofType: (NSString *) type
+    receivedWithContent: (NSString *) content;
 @end

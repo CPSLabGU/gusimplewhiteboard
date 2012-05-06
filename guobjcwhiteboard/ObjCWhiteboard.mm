@@ -92,7 +92,7 @@ public:
 
 @implementation ObjCWhiteboard
 @synthesize delegate;
-@synthesize whiteboard;
+@synthesize gu_whiteboard;
 @synthesize wbcallback;
 @synthesize knownWhiteboardMessages;
 
@@ -100,10 +100,10 @@ public:
 
 - (void) setWhiteboard: (Whiteboard *) wb
 {
-        if (wb == whiteboard) return;
+        if (wb == gu_whiteboard) return;
         
-        Whiteboard *oldwb = whiteboard;
-        whiteboard = wb;
+        Whiteboard *oldwb = gu_whiteboard;
+        gu_whiteboard = wb;
         if (oldwb)
         {
                 if (wbcallback) wbcallback->unsubscribe(oldwb);
@@ -124,7 +124,7 @@ public:
         /*
          * populate array of known whiteboard message types
          */
-        gu_simple_whiteboard *wb = whiteboard->_wbd->wb;
+        gu_simple_whiteboard *wb = gu_whiteboard->_wbd->wb;
         for (int i = 0; i < wb->num_types; i++)
         {
                 NSString *type = [NSString stringWithUTF8String: wb->typenames[i].hash.string];
@@ -133,6 +133,11 @@ public:
         }
         
         return knownWhiteboardMessages;
+}
+
+- (NSArray *) knownWhiteboardMessagesSortedByName
+{
+        return [self.knownWhiteboardMessages.allKeys sortedArrayUsingSelector: @selector(compare:)];
 }
 
 
@@ -209,7 +214,7 @@ public:
 - (NSString *) contentForMessageType: (NSString *) msgType
 {
         Whiteboard::WBResult result;
-        const WBMsg msg = whiteboard->getMessage([msgType UTF8String], &result);
+        const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
         
         if (result == Whiteboard::METHOD_FAIL)
                 return @"- nonexistent -";
@@ -239,7 +244,7 @@ static NSArray *wbtypes;
         if (!msgType) return @"- empty -";
         
         Whiteboard::WBResult result;
-        const WBMsg msg = whiteboard->getMessage([msgType UTF8String], &result);
+        const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
         
         if (result == Whiteboard::METHOD_FAIL)
                 return @"- none -";
@@ -324,7 +329,7 @@ static vector<int> convToArrayType(const char *s)
               withType: (NSString *) dataType
 {
         WBMsg wbmsg = [self wbMsg: msg ofType: dataType withContent: content];
-        whiteboard->addMessage([msg UTF8String], wbmsg);
+        gu_whiteboard->addMessage([msg UTF8String], wbmsg);
 }
 
 
