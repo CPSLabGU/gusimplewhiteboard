@@ -96,9 +96,41 @@ public:
 @synthesize wbcallback;
 @synthesize knownWhiteboardMessages;
 
+- (id) initWithWhiteboardNamed: (NSString *) wbname
+{
+        if (!(self = [super init]))
+                return nil;
+
+        if (wbname)
+                gu_whiteboard = new Whiteboard([wbname UTF8String]);
+        else
+                gu_whiteboard = new Whiteboard();
+        wbcallback = new ObjCWBCallback(self, gu_whiteboard);
+
+        return self;
+}
+
+- (id) init
+{
+#ifdef GSW_IOS
+        NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        return [self initWithWhiteboardNamed: [docsDir stringByAppendingPathComponent: @"guWhiteboard"]];
+#else
+        return [self initWithWhiteboardNamed: nil];
+#endif
+}
+
+- (void) dealloc
+{
+        if (gu_whiteboard) delete gu_whiteboard;
+
+        [super dealloc];
+}
+
+
 #pragma mark - access methods
 
-- (void) setWhiteboard: (Whiteboard *) wb
+- (void) setGu_whiteboard: (Whiteboard *) wb
 {
         if (wb == gu_whiteboard) return;
         
