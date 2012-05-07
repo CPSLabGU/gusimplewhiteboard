@@ -143,18 +143,18 @@
 
 #ifndef DETECT_AND_STOP_UDP_DUPLICATION
     #ifdef GENERATION_BROADCASTING
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int16_t)+sizeof(int8_t)))
     #else
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int8_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int16_t)+sizeof(int8_t)+sizeof(int8_t)))
     #endif
-    #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int8_t)))
+    #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int16_t)+sizeof(int8_t)))
 #else
     #ifdef GENERATION_BROADCASTING
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message[GU_SIMPLE_WHITEBOARD_GENERATIONS])+sizeof(u_int8_t)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int16_t)+sizeof(int8_t)))
     #else
-        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)+sizeof(int8_t)))
+        #define MESSAGES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(u_int8_t)+sizeof(int32_t)+sizeof(int16_t)+sizeof(int8_t)+sizeof(int8_t)))
     #endif
-    #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int32_t)+sizeof(int8_t)))
+    #define HASHES_PER_PACKET (MTU/(int)(sizeof(gu_simple_message)+sizeof(int32_t)+sizeof(int16_t)+sizeof(int8_t)))
 #endif
 
 #define INJECTIONS_PER_PACKET ((int)((MTU - sizeof(int16_t))/(int)(sizeof(int8_t)+sizeof(gu_simple_message)+(sizeof(gu_simple_message)))))
@@ -207,7 +207,7 @@ typedef struct gsw_simple_whiteboard_hash_message
     /**
      * message offset
      */
-    int32_t       offset[HASHES_PER_PACKET];
+    int16_t       offset[HASHES_PER_PACKET];
 
     /**
      * message type pointed to by the hash
@@ -238,7 +238,7 @@ typedef struct gsw_simple_whiteboard_single_message
     /**
      * type name offset information
      */    
-    int32_t typeOffset[MESSAGES_PER_PACKET];
+    int16_t typeOffset[MESSAGES_PER_PACKET];
     
     /**
      * message generation
