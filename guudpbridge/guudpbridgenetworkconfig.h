@@ -243,7 +243,7 @@ typedef struct gsw_simple_whiteboard_single_message
     /**
      * message generation
      */
-    u_int8_t                current_generation[MESSAGES_PER_PACKET];    
+    int8_t                current_generation[MESSAGES_PER_PACKET];    
     
 #ifdef GENERATION_BROADCASTING
     /**
