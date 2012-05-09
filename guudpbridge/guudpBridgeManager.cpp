@@ -282,7 +282,6 @@ int main(int argc, char *argv[])
     guWhiteboard::Whiteboard *whiteboard = new guWhiteboard::Whiteboard();
     gu_simple_whiteboard_descriptor *_wbd = whiteboard->_wbd;  /// underlying whiteboard to broadcast from
 
-
     //Setup listener wbs    
     gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
     guWhiteboard::Whiteboard *_whiteboards[NUM_OF_BROADCASTERS];    
@@ -293,18 +292,10 @@ int main(int argc, char *argv[])
         std::stringstream ss;
         std::stringstream ss2;
         ss << base_wb_name << (i+1); //line the wb names up to the player names
-            
-        if((get_udp_id()+1) != (i+1))
-        {
-            _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());
-            if(_whiteboards[i])
-                _wbds[i] = _whiteboards[i]->_wbd;
-        }
-        else
-        {
-            if(whiteboard)
-                _wbds[i] = whiteboard->_wbd;
-        }
+        
+        _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());
+        if(_whiteboards[i])
+            _wbds[i] = _whiteboards[i]->_wbd;
     }
 
     
@@ -322,9 +313,7 @@ int main(int argc, char *argv[])
     BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
     
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
-    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim);    //May not end if loop reading
-
-
+    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
 
     dispatch_main();                // run the dispatcher "forever"
     

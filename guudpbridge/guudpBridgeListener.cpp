@@ -58,6 +58,7 @@
 
 
 #include "guudpBridgeListener.h"
+#include <algorithm>
 
 #ifdef DEBUG
 static void listenMonitor(void *listener)
@@ -219,6 +220,14 @@ void BridgeListener::listenSingleMethod()
                     targetMachine = injToRecv.targetMachineId[j];
                     if((get_udp_id()+1) == targetMachine)
                     {
+                        std::vector<std::string>::iterator it;                        
+                        // iterator to vector element:
+                        it = find (msg_types_to_broadcast->begin(), msg_types_to_broadcast->end(), std::string(injToRecv.type[j].hash.string));
+                        if(it == msg_types_to_broadcast->end())
+                        {
+                            msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
+                        }
+                           
                         int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
                         gsw_procure(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
                         
@@ -261,7 +270,7 @@ void *BridgeListener::get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime): recieved_generations(recieved_generations_array)
+BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime, std::vector<std::string> *typesSent): recieved_generations(recieved_generations_array)
 {
     //Default vars
     //------------------------------
@@ -281,7 +290,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     //TEMP
     oldId = -1;
 #endif
-
+    msg_types_to_broadcast = typesSent;
     _wbd_injection = _wbd_for_injections;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) {
         _wbd_listeners[i] = _wbd[i];
