@@ -7,9 +7,7 @@ BIN=guudpbridge
 
 ALL_TARGETS=host robot
 
-CPP_SRCS=guudpBridgeManager.cpp guudpBridgeListener.cpp guudpBridgeBroadcaster.cpp guudpbridgenetworkutil.cpp
-CPP_HDRS=guudpBridgeManager.h guudpBridgeListener.h guudpBridgeBroadcaster.h guudpbridgenetworkutil.h
+SPECIFIC_CPPFLAGS=-DBRIDGE_MAIN=1
 
-
-.include "../../../mk/whiteboard.mk"	# required for whiteboard clients
+.include "../../../mk/remotewhiteboard.mk"	# required for whiteboard clients
 .include "../../../mk/mipal.mk"		# comes last!
