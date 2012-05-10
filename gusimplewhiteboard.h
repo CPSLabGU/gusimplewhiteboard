@@ -85,6 +85,7 @@ extern "C"
 enum gsw_message_types
 {
         GSW_PRINT,                      /// print to stdout
+        GSW_SAY,                        /// speech output message
         GSW_SPEECH,                     /// debug speech message
         GSW_NUM_RESERVED
 };
