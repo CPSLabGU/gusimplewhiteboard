@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31EE6AE155BA7DF00D55934 /* guudpBridgeBroadcaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92BD150491F500524671 /* guudpBridgeBroadcaster.cpp */; };
+		C31EE6AF155BA7DF00D55934 /* guudpBridgeListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92BF150491F500524671 /* guudpBridgeListener.cpp */; };
+		C31EE6B0155BA7DF00D55934 /* guudpBridgeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C1150491F500524671 /* guudpBridgeManager.cpp */; };
+		C31EE6B1155BA7DF00D55934 /* guudpbridgenetworkutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C4150491F500524671 /* guudpbridgenetworkutil.cpp */; };
+		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */; };
 		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
@@ -64,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31EE6B3155BA83B00D55934 /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		C33D92BD150491F500524671 /* guudpBridgeBroadcaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeBroadcaster.cpp; sourceTree = "<group>"; };
 		C33D92BE150491F500524671 /* guudpBridgeBroadcaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpBridgeBroadcaster.h; sourceTree = "<group>"; };
 		C33D92BF150491F500524671 /* guudpBridgeListener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBridgeListener.cpp; sourceTree = "<group>"; };
@@ -275,6 +281,7 @@
 		F1D925F114A13BAA00BDAEED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C31EE6B3155BA83B00D55934 /* gu_util.cpp */,
 				F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */,
 				F1D925F414A13BAA00BDAEED /* Cocoa.framework */,
 				F1C94DA41555D3C300B717DF /* Foundation.framework */,
@@ -526,6 +533,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */,
+				C31EE6AE155BA7DF00D55934 /* guudpBridgeBroadcaster.cpp in Sources */,
+				C31EE6AF155BA7DF00D55934 /* guudpBridgeListener.cpp in Sources */,
+				C31EE6B0155BA7DF00D55934 /* guudpBridgeManager.cpp in Sources */,
+				C31EE6B1155BA7DF00D55934 /* guudpbridgenetworkutil.cpp in Sources */,
+				C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,10 +625,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -692,6 +701,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "guobjcwhiteboard/guobjcwhiteboard-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
