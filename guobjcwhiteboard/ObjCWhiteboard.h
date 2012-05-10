@@ -1,8 +1,9 @@
 /*
- *  RemoteWhiteboard.h
+ *  ObjCWhiteboard.h
+ *  guobjcwhiteboard
  *  
- *  Created by Carl Lusty on 21/12/11.
- *  Copyright (c) 2011 Carl Lusty.
+ *  Created by René Hexel on 6/05/12.
+ *  Copyright (c) 2012 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,86 +56,36 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef gusimplewhiteboard_RemoteWhiteboard_h
-#define gusimplewhiteboard_RemoteWhiteboard_h
+#import <Foundation/Foundation.h>
+#import "ObjCWhiteboardDelegate.h"
 
-#define NO_WARN_WBMSG_H
-
-#include <string>
-#include <vector>
-#include <iostream>
-#include <sstream>
-#include "guudpbridge/guudpbridgenetworkconfig.h"
-#include "gusimplewhiteboard.h"
-#include "WhiteboardConstants.h"
-#include "Whiteboard.h"
-#include "WBFunctor.h"
-#include "WBMsg.h"
-
-
-namespace guWhiteboard 
-{
-    
-    /**
-     * Remote WB enum
-     * @brief Allows the user specify a remote wb to talk about
-     */
-    typedef enum remote_wb_id
-    {
-        Machine1 = 0,
-        Machine2,
-        Machine3,
-        Machine4,
-        NUM_OF_MACHINES
-    } RWBMachine;  
-    
-    static std::string nameForMachine(RWBMachine machine)
-    {
-        const char *base_wb_name = REMOTE_WHITEBOARD_BASENAME;
-        std::stringstream ss;
-        ss << base_wb_name << (machine+1);
-        return ss.str();
-    }    
-    
-        /**
-         * compatibility API for accessing the remote whiteboard
-         */
-        class RemoteWhiteboard : public Whiteboard
-        {
-            RWBMachine machine;
-            Whiteboard *local_wb;
-            bool local_wb_needs_free;
-        public:
-            /**
-             * API Constructor
-             * This sets up the API and the callback soap server
-             * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
-                     * @param[in] checkVersion              indicate whether to check wb version (default: true)
-             */
-            RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard = NULL);
-
-            /**
-             * Destructor.
-             * shuts down the whiteboard
-             */		
-            virtual ~RemoteWhiteboard();           
-
-            /**
-             * Add Message
-             * Adds a message to the whiteboard that the API is connected to
-             * @param[in] type The string type associated with the message object
-             * @param[in] machine Target machine id
-             */
-            void addReplicationType(const std::string &type);
-            
-            /**
-             * Get Known Types For Machine
-             * Gets all the currently known types for a machine
-             * @param[in] machine The target machine id / player number
-             * @return A vector of string containing the types
-             */
-            std::vector<std::string> getKnownTypesForMachine();       
-        };
-}
-
+#ifdef __cplusplus
+typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
+#else
+struct Whiteboard;
+typedef struct Whiteboard oc_whiteboard_t;
 #endif
+
+@interface ObjCWhiteboard: NSObject
+@property (nonatomic, assign) id<ObjCWhiteboardDelegate> delegate;
+@property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
+@property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
+
+- (id) init;
+- (id) initWithRobotNumbered: (NSInteger) n;
+- (id) initWithWhiteboardNamed: (NSString *) wbname;
+- (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
+
++ (NSArray *) whiteboardTypes;  /// supported whiteboard data types
++ (NSArray *) whiteboardNames;  /// names of local and remote robot whiteboards
+
+- (NSArray *) knownWhiteboardMessagesSortedByName;
+- (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
+- (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message
+- (NSString *) contentForMessageType: (NSString *) msgType;             /// return WB content of given message
+
+- (void) postWBMessage: (NSString *) msg
+               content: (NSString *) content
+              withType: (NSString *) dataType;
+
+@end

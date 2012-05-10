@@ -163,12 +163,20 @@ public:
 	WBMsg(const void *data, int nBytes, bool needsFree = false): binaryVal(data), type(TypeBinary), binarySize(nBytes), doFree(needsFree) {}
 
 	/**
-	 * WBMsg - Vector<int> constructor.
+	 * WBMsg - Vector<int> pointer constructor.
 	 * Initialises a WBMsg with a standard C++ string value.
 	 * @param val String to store in the Whiteboard message.
 	 */
-	WBMsg(const std::vector<int> &val, bool needsFree = false): arrayVal(&val), type(TypeArray), doFree(needsFree) {}
-        
+	WBMsg(const std::vector<int> *val, bool needsFree = false): arrayVal(val), type(TypeArray), doFree(needsFree) {}
+
+	/**
+	 * WBMsg - Vector<int> constructor.
+	 * Initialises a WBMsg with a standard C++ string value.
+	 * @param val String to store in the Whiteboard message.
+         * @param needsFree destroys the original vector immediately if true
+	 */
+	WBMsg(const std::vector<int> &val, bool needsFree = false): arrayVal(new std::vector<int>(val)), type(TypeArray), doFree(true) { if (needsFree) delete &val; }
+
 	/**
 	 * getType.
 	 * @return The data type this WBMsg represents as a WBType.

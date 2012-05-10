@@ -117,7 +117,7 @@ namespace guWhiteboard
 		 * Destructor.
 		 * shuts down the whiteboard
 		 */		
-                ~Whiteboard();           
+                virtual ~Whiteboard();           
 
 		/**
 		 * Add Message
@@ -190,7 +190,40 @@ namespace guWhiteboard
                  * subscription callback: not really public!
                  */
                 void subscriptionCallback(void);
-        };
+            
+            
+            static WBMsg getWBMsg(gu_simple_message *m)
+            {
+                switch (m->wbmsg.type)
+                {
+                    case WBMsg::TypeBool:
+                        return WBMsg((bool)m->sint);
+                        
+                    case WBMsg::TypeInt:
+                        return WBMsg(m->sint);
+                        
+                    case WBMsg::TypeFloat:
+                        return WBMsg(m->sfloat);
+                        
+                    case WBMsg::TypeString:
+                        return WBMsg(m->wbmsg.data);
+                        
+                    case WBMsg::TypeBinary:
+                        return WBMsg(m->wbmsg.data, m->wbmsg.len);
+                        
+                    case WBMsg::TypeArray:
+                    {
+                        std::vector<int> *v = new std::vector<int>();
+                        for (int i = 0; i < m->wbmsg.len; i++)
+                            v->push_back(m->ivec[i]);
+                        return WBMsg(v, true);
+                    }
+                    default:
+                        return WBMsg();
+                }
+                /* NOTREACHED */
+            }            
+        };    
 }
 
 #endif

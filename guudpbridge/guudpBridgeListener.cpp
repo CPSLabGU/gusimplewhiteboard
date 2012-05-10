@@ -58,6 +58,7 @@
 
 
 #include "guudpBridgeListener.h"
+#include <algorithm>
 
 #ifdef DEBUG
 static void listenMonitor(void *listener)
@@ -90,8 +91,11 @@ void BridgeListener::listenSingleMethod()
     msgSelectTimeout.tv_usec = READ_TIMEOUT;
     
         if (select(sock+1,&socketReadSet,0,0,&msgSelectTimeout) == -1) {
-            fprintf(stderr, "Socket Error\n");
-            return;
+            if (errno != EINTR)            
+            {
+                perror("select() failed");
+                return;
+            }
         }
     
         /* receive a packet */
@@ -150,28 +154,28 @@ void BridgeListener::listenSingleMethod()
                 gotMessagePackets++;
                 total_recv++;            
 #endif                
+                gsw_procure(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
-                    //Don't need sem, this is the only writer and readers don't need the sem either
                     int t;
                     if(msg.typeOffset[i] >= GSW_NUM_RESERVED)
                         t = indexLookup[msg.typeOffset[i]];
                     else
                         t = msg.typeOffset[i];
-#ifdef GENERATION_BROADCASTING                    
-                    _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
                     
+                    _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
+                    recieved_generations[current_poster][t] = msg.current_generation[i];
+#ifdef GENERATION_BROADCASTING                    
                     for (int g = 0; g < GU_SIMPLE_WHITEBOARD_GENERATIONS; g++)
                     {
                         _wbd_listeners[current_poster]->wb->messages[t][g] = msg.message_generations[i][g];
                     }
 #else
-                    u_int8_t j = _wbd_listeners[current_poster]->wb->indexes[t];
-                    if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
-                    _wbd_listeners[current_poster]->wb->messages[t][j] = msg.message_generations[i];
-                    gsw_increment(_wbd_listeners[current_poster]->wb, t);
+                    _wbd_listeners[current_poster]->wb->messages[t][_wbd_listeners[current_poster]->wb->indexes[t]] = msg.message_generations[i];
 #endif
                 }
+                gsw_vacate(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);                
+                gsw_signal_subscribers(_wbd_listeners[current_poster]->wb); //Done getting new messages, notify subs
             }
             else if(recv_buffer[0] == Hash)
             {
@@ -214,8 +218,16 @@ void BridgeListener::listenSingleMethod()
                 for(int j = 0; j < injToRecv.numOfInjectionMsgs; j++)
                 {
                     targetMachine = injToRecv.targetMachineId[j];
-                    if((get_udp_id()) == targetMachine)
+                    if((get_udp_id()+1) == targetMachine)
                     {
+                        std::vector<std::string>::iterator it;                        
+                        // iterator to vector element:
+                        it = find (msg_types_to_broadcast->begin(), msg_types_to_broadcast->end(), std::string(injToRecv.type[j].hash.string));
+                        if(it == msg_types_to_broadcast->end())
+                        {
+                            msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
+                        }
+                           
                         int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
                         gsw_procure(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
                         
@@ -258,7 +270,7 @@ void *BridgeListener::get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, timeval currTime)
+BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime, std::vector<std::string> *typesSent): recieved_generations(recieved_generations_array)
 {
     //Default vars
     //------------------------------
@@ -278,9 +290,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     //TEMP
     oldId = -1;
 #endif
-    
-    
-    
+    msg_types_to_broadcast = typesSent;
     _wbd_injection = _wbd_for_injections;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) {
         _wbd_listeners[i] = _wbd[i];

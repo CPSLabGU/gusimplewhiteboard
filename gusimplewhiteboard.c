@@ -114,11 +114,16 @@ void gsw_init_semaphores(gsw_sema_t s)
         init.val = 1;
         for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
         {
+#ifdef GSW_IOS
+                if (s[i]) dispatch_release(s[i]);
+                s[i] = dispatch_semaphore_create(init.val);
+#else
                 if (semctl(s, i, SETVAL, init) == -1)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
 #ifdef DEBUG
                 if (semctl(s, i, GETVAL, NULL) != init.val)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
+#endif
 #endif
         }
 }
@@ -126,6 +131,11 @@ void gsw_init_semaphores(gsw_sema_t s)
 
 gsw_sema_t gsw_setup_semaphores(void)
 {
+#ifdef GSW_IOS
+        gsw_sema_t s = calloc(sizeof(dispatch_semaphore_t), GSW_NUM_SEM);
+        if (!s) return (gsw_sema_t) SEM_ERROR;
+        gsw_init_semaphores(s);
+#else
         int semflg = SEM_R|SEM_A|(SEM_R>>3)|(SEM_A>>3)|(SEM_R>>6)|(SEM_A>>6);
         gsw_sema_t s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg);
 
@@ -136,6 +146,7 @@ gsw_sema_t gsw_setup_semaphores(void)
 
                 gsw_init_semaphores(s);
         }
+#endif
         return s;
 }
 
@@ -150,7 +161,7 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
         }
 
         wbd->sem = gsw_setup_semaphores();
-        if (wbd->sem == SEM_ERROR)
+        if (wbd->sem == (gsw_sema_t) SEM_ERROR)
                 fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY, name, strerror(errno));
 
         bool init = false;
@@ -187,8 +198,12 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
         assert(sizeof(gu_simple_message) == GU_SIMPLE_WHITEBOARD_BUFSIZE);
-
-        char path[PATH_MAX] = "/tmp/";
+        char path[PATH_MAX]
+#ifdef GSW_IOS
+        = "";
+#else
+        = "/tmp/";
+#endif
         if (!name || strlen(name) > PATH_MAX-strlen(path)-1) name = GSW_DEFAULT_NAME;
         gu_strlcat(path, name, sizeof(path));
 
@@ -246,23 +261,37 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
 
 int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s)
 {
+#ifdef GSW_IOS
+        while (dispatch_semaphore_wait(sem[s], DISPATCH_TIME_FOREVER))
+        {
+                if (errno != EAGAIN)
+                        return -1;
+        }
+        return 0;
+#else
         struct sembuf op = { s, -1, 0 };
         int rv;
         while ((rv = semop(sem, &op, 1)) == -1)
                if (errno != EAGAIN)
                        break;
         return rv;
+#endif
 }
 
 
 int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s)
 {
+#ifdef GSW_IOS
+        dispatch_semaphore_signal(sem[s]);
+        return 0;
+#else
         struct sembuf op = { s, 1, 0 };
         int rv;
         while ((rv = semop(sem, &op, 1)) == -1)
                 if (errno != EAGAIN)
                         break;
         return rv;
+#endif
 }
 
 

@@ -301,13 +301,13 @@ void msg2buf(unsigned char *dst, gsw_single_message *src)
     memcpy(off, (void*)&src->typeOffset, sizeof src->typeOffset);
     off += sizeof src->typeOffset;
     
+    memcpy(off, (void*)&src->current_generation, sizeof src->current_generation);
+    off += sizeof src->current_generation;    
+    
 #ifdef GENERATION_BROADCASTING
     //sub array might not copy, untested
     memcpy(off, (void*)&src->message_generations, sizeof src->message_generations);
     off += sizeof src->message_generations;
-    
-    memcpy(off, (void*)&src->current_generation, sizeof src->current_generation);
-    off += sizeof src->current_generation;
 #else 
     memcpy(off, (void*)&src->message_generations, sizeof src->message_generations);
     off += sizeof src->message_generations;    
@@ -334,13 +334,13 @@ void buf2msg(gsw_single_message *dst, unsigned char *src)
     memcpy((void*)&dst->typeOffset, off, sizeof dst->typeOffset);
     off += sizeof dst->typeOffset;
     
+    memcpy((void*)&dst->current_generation, off, sizeof dst->current_generation);
+    off += sizeof dst->current_generation;
+    
 #ifdef GENERATION_BROADCASTING
     //sub array might not copy, untested    
     memcpy((void*)&dst->message_generations, off, sizeof dst->message_generations);
     off += sizeof dst->message_generations;
-    
-    memcpy((void*)&dst->current_generation, off, sizeof dst->current_generation);
-    off += sizeof dst->current_generation;
 #else 
     memcpy((void*)&dst->message_generations, off, sizeof dst->message_generations);
     off += sizeof dst->message_generations;    
