@@ -126,7 +126,7 @@ public:
     void *get_in_addr(struct sockaddr *sa);
 
     BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime, std::vector<std::string> *typesSent);
-
+    virtual ~BridgeListener();
 };
 
 

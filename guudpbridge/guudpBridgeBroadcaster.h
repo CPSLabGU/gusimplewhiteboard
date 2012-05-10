@@ -83,7 +83,7 @@ public:
     std::vector<std::string> *msg_types_to_broadcast;
     std::list<gsw_injection_message> *messages_to_inject;
     pthread_mutex_t *_injection_mutex;
-    
+    dispatch_source_t broadcast_monitor;    
     int sockfd;
     struct sockaddr_in mc_addr; // connector's address information
     int numbytes;
@@ -121,6 +121,8 @@ public:
     void broadcastInjection();
     
     BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std::vector<std::string> *types, std::list<gsw_injection_message> *injectionVec, pthread_mutex_t *injection_mutex, timeval currTime);
+    
+    ~BridgeBroadcaster();
 };
 
 #endif //guudpbridgebroadcaster_h

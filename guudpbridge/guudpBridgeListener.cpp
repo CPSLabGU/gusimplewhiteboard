@@ -347,9 +347,14 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     /* bind to multicast address to socket */
     if ((bind(sock, (struct sockaddr *) &mc_addr, 
               sizeof(mc_addr))) < 0) {
-        perror("bind() failed");
-        exit(1);
+        perror("bind() failed");        
+        return;
     }
+    fprintf(stderr, "UDP Bridge running . . .\n");
+    
+    
+    //Add pid to whiteboard, used for checking if the bridge is running
+    _wbd_for_injections->addMessage("UDP_BRIDGE_PID", WBMsg((int)getpid()));    
     
 #ifndef USE_BROADCAST    
 #ifndef UNICAST
@@ -420,3 +425,11 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
                                                      *listenSingleMethod, this);
 #endif    
 }
+
+BridgeListener::~BridgeListener()
+{
+    shutdown(sock, SHUT_WR);
+    close(sock);
+}
+
+

@@ -402,7 +402,7 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     timespec tmp = when;
 //    tmp.tv_nsec += (BROADCASTER_TS*get_udp_id()) * 1000ull;
 
-    dispatch_source_t broadcast_monitor = CreateDispatchTimer(&tmp,
+    broadcast_monitor = CreateDispatchTimer(&tmp,
                                                               (BROADCASTER_TS*1000ull),
                                                               0ull,
                                                               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
@@ -416,4 +416,13 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
                                                             *broadcastSingleMethod, this);        
 #endif    
     
+}
+
+BridgeBroadcaster::~BridgeBroadcaster()
+{
+    dispatch_source_cancel(broadcast_monitor);
+    dispatch_release(broadcast_monitor);
+    
+    shutdown(sockfd, SHUT_WR);
+    close(sockfd);
 }

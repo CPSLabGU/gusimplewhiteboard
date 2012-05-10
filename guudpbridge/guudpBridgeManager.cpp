@@ -83,11 +83,11 @@ public:
         dynamic_msg_types_to_broadcast = std::vector<std::string>();
         dynamic_messages_to_inject = std::list<gsw_injection_message>();
         pthread_mutex_init(&injection_mutex, NULL);
-        
+
         wb = wbd;
         guWhiteboard::Whiteboard::WBResult r;
         wb->subscribeToMessage(ADD_BROADCAST_TYPE_MSG_TYPE, WB_BIND(BridgeManager::addBroadcastMsgType), r);
-        
+ 
         _wbds[0]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback1), r);
         _wbds[1]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback2), r);
         _wbds[2]->subscribeToMessage("*", WB_BIND(BridgeManager::monitorCallback3), r);
@@ -241,8 +241,6 @@ int setup_udp()
     gu_simple_whiteboard_descriptor *_wbd = whiteboard->_wbd;  /// underlying whiteboard to broadcast from
     
     
-    //Add pid to whiteboard, used for checking if the bridge is running
-    whiteboard->addMessage("UDP_BRIDGE_PID", WBMsg((int)getpid()));
     
     //Setup listener wbs    
     gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
@@ -271,13 +269,19 @@ int setup_udp()
     fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
 #endif
     
-    
+
     BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
-    
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
     BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
     
-    dispatch_main();                // run the dispatcher "forever"
+    delete bm;    
+    delete broadcaster;
+    delete listener;
+    delete whiteboard;
+    for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
+    {
+        delete _wbds[i];
+    }
     
 	return 0;
 }

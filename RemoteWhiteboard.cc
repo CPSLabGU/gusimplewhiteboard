@@ -61,14 +61,69 @@
 #include "RemoteWhiteboard.h"
 #include "guudpbridge/guudpbridgemanager.h"
 #include <signal.h> // for kill()
-#include <stdlib.h> // for daemon()
-#include <sys/types.h>
-#include <sys/stat.h>
+//#include <stdlib.h> // for daemon()
+//#include <sys/types.h>
+//#include <sys/stat.h>
+#include <pthread.h>
 
 using namespace guWhiteboard;
 using namespace std;
 
 
+static void *monitor_bridge(void *local_whiteboard)
+{
+    guWhiteboard::Whiteboard *whiteboard = (guWhiteboard::Whiteboard *)local_whiteboard;
+    while(true)
+    {
+        protected_usleep(1000000);
+        int pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
+        if(kill(pid, WHITEBOARD_SIGNAL) != 0 || pid == 0)
+        {
+            fprintf(stderr, "Attempt UDP Bridge start . . . \n");
+            setup_udp();
+            /*
+             pid_t  pid;
+             pid = fork();
+             if (pid == -1)
+             {   
+             fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
+             exit(EXIT_FAILURE);
+             }
+             if (pid == 0)
+             {
+             #if 0
+             #pragma clang diagnostic push
+             #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+             int d = daemon(0, 0);
+             if (d == -1)
+             {   
+             fprintf(stderr, "Error, daemon failed: %d\n", errno);
+             exit(EXIT_FAILURE);
+             }
+             #pragma clang diagnostic pop
+             setsid();
+             umask(0);
+             #endif            
+             pid = fork();
+             if (pid == -1)
+             {   
+             fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
+             exit(EXIT_FAILURE);
+             }
+             if (pid == 0)
+             {
+             //Child
+             exit(setup_udp());
+             }
+             exit(EXIT_SUCCESS);
+             }
+             //int status;
+             //wait(&status);
+             */
+            
+        }
+    }
+}
 
 RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(RWBMachine(n+1)), Whiteboard(wbName), local_wb_needs_free(local_wb != NULL)
 {
@@ -78,45 +133,9 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard 
     }
     local_wb = local_whiteboard;
     
-    if(kill(local_whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue(), WHITEBOARD_SIGNAL) != 0)
-    {
-        pid_t  pid;
-        pid = fork();
-        if (pid == -1)
-        {   
-            fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
-            exit(EXIT_FAILURE);
-        }
-        if (pid == 0)
-        {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            int d = daemon(0, 0);
-            if (d == -1)
-            {   
-                fprintf(stderr, "Error, daemon failed: %d\n", errno);
-                exit(EXIT_FAILURE);
-            }
-#pragma clang diagnostic pop
-            setsid();
-            umask(0);
-            
-            pid = fork();
-            if (pid == -1)
-            {   
-                fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
-                exit(EXIT_FAILURE);
-            }
-            if (pid == 0)
-            {
-                /* Child process: */
-                exit(setup_udp());
-            }
-            exit(EXIT_SUCCESS);
-        }
-        int status;
-        wait(&status);
-    }
+    
+    pthread_t child;
+    pthread_create(&child, NULL, monitor_bridge, local_whiteboard);
 }
 
 RemoteWhiteboard::~RemoteWhiteboard()
