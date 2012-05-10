@@ -62,6 +62,7 @@
 #include <string.h>
 #include <iostream>
 #include <sstream>
+#include <unistd.h> //for getpid()
 //#include <cstdlib> //for system()
 
 #include "guudpbridgemanager.h"
@@ -216,6 +217,72 @@ public:
     }
 };
 
+int setup_udp()
+{
+    
+    int udp_id = getplayernumber();    
+    
+    if(udp_id > (NUM_OF_BROADCASTERS))
+    {
+        fprintf(stderr, "Bad UDP_ID passed in, exiting...\n\n");
+        return EXIT_FAILURE;        
+    }
+#ifdef FAKE_BROADCAST
+    udp_id = FAKE_BROADCAST;
+#endif
+    
+    set_udp_id(udp_id-1);
+    
+    //End cmd line arg parsing
+    //----------------------------------------
+    
+    //Setup broadcast wb
+    guWhiteboard::Whiteboard *whiteboard = new guWhiteboard::Whiteboard();
+    gu_simple_whiteboard_descriptor *_wbd = whiteboard->_wbd;  /// underlying whiteboard to broadcast from
+    
+    
+    //Add pid to whiteboard, used for checking if the bridge is running
+    whiteboard->addMessage("UDP_BRIDGE_PID", WBMsg((int)getpid()));
+    
+    //Setup listener wbs    
+    gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
+    guWhiteboard::Whiteboard *_whiteboards[NUM_OF_BROADCASTERS];    
+    
+    for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
+    {
+        const char *base_wb_name = REMOTE_WHITEBOARD_BASENAME;
+        std::stringstream ss;
+        std::stringstream ss2;
+        ss << base_wb_name << (i+1); //line the wb names up to the player names
+        
+        _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());
+        if(_whiteboards[i])
+            _wbds[i] = _whiteboards[i]->_wbd;
+    }
+    
+    
+    timeval tim;
+    gettimeofday(&tim, NULL);
+    
+    
+#ifdef DEBUG
+    fprintf(stderr, "\nMessage on the wb: %d\n\nMessages to a packet: %d\nPackets to send all messages: %d\nHashes to a packet: %d\nPackets to send all hashes: %d\nInjections to a packet: %d\n\nCYCLES_PER_SECOND: %d\nPACKETS_PER_TS_INTERVAL %d\n", _wbd->wb->num_types, MESSAGES_PER_PACKET, TOTAL_MESSAGE_PACKETS, HASHES_PER_PACKET, TOTAL_HASH_PACKETS, INJECTIONS_PER_PACKET, CYCLES_PER_SEC, PACKETS_PER_TS_INTERVAL);
+    
+    fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
+#endif
+    
+    
+    BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
+    
+    BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
+    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
+    
+    dispatch_main();                // run the dispatcher "forever"
+    
+	return 0;
+}
+
+#ifdef BRIDGE_MAIN
 
 int main(int argc, char *argv[])
 {
@@ -262,60 +329,7 @@ int main(int argc, char *argv[])
 		}
 	}	
     
-    int udp_id = getplayernumber();    
-
-    if(udp_id > (NUM_OF_BROADCASTERS))
-    {
-        fprintf(stderr, "Bad UDP_ID passed in, exiting...\n\n");
-        return EXIT_FAILURE;        
-    }
-#ifdef FAKE_BROADCAST
-    udp_id = FAKE_BROADCAST;
-#endif
-    
-    set_udp_id(udp_id-1);
-    
-    //End cmd line arg parsing
-    //----------------------------------------
-
-    //Setup broadcast wb
-    guWhiteboard::Whiteboard *whiteboard = new guWhiteboard::Whiteboard();
-    gu_simple_whiteboard_descriptor *_wbd = whiteboard->_wbd;  /// underlying whiteboard to broadcast from
-
-    //Setup listener wbs    
-    gu_simple_whiteboard_descriptor *_wbds[NUM_OF_BROADCASTERS];
-    guWhiteboard::Whiteboard *_whiteboards[NUM_OF_BROADCASTERS];    
-    
-    for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
-    {
-        const char *base_wb_name = REMOTE_WHITEBOARD_BASENAME;
-        std::stringstream ss;
-        std::stringstream ss2;
-        ss << base_wb_name << (i+1); //line the wb names up to the player names
-        
-        _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());
-        if(_whiteboards[i])
-            _wbds[i] = _whiteboards[i]->_wbd;
-    }
-
-    
-    timeval tim;
-    gettimeofday(&tim, NULL);
-    
-        
-#ifdef DEBUG
-    fprintf(stderr, "\nMessage on the wb: %d\n\nMessages to a packet: %d\nPackets to send all messages: %d\nHashes to a packet: %d\nPackets to send all hashes: %d\nInjections to a packet: %d\n\nCYCLES_PER_SECOND: %d\nPACKETS_PER_TS_INTERVAL %d\n", _wbd->wb->num_types, MESSAGES_PER_PACKET, TOTAL_MESSAGE_PACKETS, HASHES_PER_PACKET, TOTAL_HASH_PACKETS, INJECTIONS_PER_PACKET, CYCLES_PER_SEC, PACKETS_PER_TS_INTERVAL);
-    
-    fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
-#endif
-
-    
-    BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
-    
-    BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
-    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
-
-    dispatch_main();                // run the dispatcher "forever"
-    
-	return 0;
+    return setup_udp(); //Should never return
 }
+
+#endif //BRIDGE_MAIN

@@ -79,8 +79,11 @@
 #include "guudpbridgenetworkutil.h"
 
 
-int main(int argc, char *argv[]);
+int setup_udp();
 
+#ifdef BRIDGE_MAIN
+int main(int argc, char *argv[]);
+#endif //BRIDGE_MAIN
 
     
 

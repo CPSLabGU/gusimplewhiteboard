@@ -81,6 +81,7 @@ extern "C"
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
 #define GSW_DEFAULT_NAME "simple_whiteboard"
+#define WHITEBOARD_SIGNAL       SIGUSR2
 
 enum gsw_message_types
 {

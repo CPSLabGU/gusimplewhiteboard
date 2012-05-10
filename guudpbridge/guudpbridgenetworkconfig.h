@@ -63,7 +63,7 @@
 
 /* Network config */
 #ifndef DEBUG
-#define DEBUG
+//#define DEBUG
 #endif
 //#define OUTPUT_LISTENER_IN_DEBUG
 #define OUTPUT_BROADCASTER_IN_DEBUG

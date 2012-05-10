@@ -85,7 +85,7 @@
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
 #define SEM_ERROR               -1
-#define WHITEBOARD_SIGNAL       SIGUSR2
+
 
 #ifndef SEM_A
 #define SEM_A		0200	/* alter permission */
