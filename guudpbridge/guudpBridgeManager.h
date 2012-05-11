@@ -58,10 +58,9 @@
 #ifndef guudpbridgemanager_h
 #define guudpbridgemanager_h
 
-
+#include <gu_util.h>
 #include <Whiteboard.h>
 #include <WBMsg.h>
-#include <gu_util.h>
 #include <sstream>
 #include <stdio.h>
 #include <string.h>
