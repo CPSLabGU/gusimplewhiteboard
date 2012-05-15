@@ -81,46 +81,6 @@ static void *monitor_bridge(void *local_whiteboard)
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
             setup_udp();
-            /*
-             pid_t  pid;
-             pid = fork();
-             if (pid == -1)
-             {   
-             fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
-             exit(EXIT_FAILURE);
-             }
-             if (pid == 0)
-             {
-             #if 0
-             #pragma clang diagnostic push
-             #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-             int d = daemon(0, 0);
-             if (d == -1)
-             {   
-             fprintf(stderr, "Error, daemon failed: %d\n", errno);
-             exit(EXIT_FAILURE);
-             }
-             #pragma clang diagnostic pop
-             setsid();
-             umask(0);
-             #endif            
-             pid = fork();
-             if (pid == -1)
-             {   
-             fprintf(stderr, "Error, can't start UDP Bridge: %d\n", errno);
-             exit(EXIT_FAILURE);
-             }
-             if (pid == 0)
-             {
-             //Child
-             exit(setup_udp());
-             }
-             exit(EXIT_SUCCESS);
-             }
-             //int status;
-             //wait(&status);
-             */
-            
         }
     }
 }
@@ -178,4 +138,10 @@ std::vector<std::string> RemoteWhiteboard::getKnownTypesForMachine()
     gsw_vacate(_wbd->sem, GSW_SEM_MSGTYPE);
 
     return known_types;
+}
+
+void RemoteWhiteboard::subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result)
+{
+    addReplicationType(type);
+    Whiteboard::subscribeToMessage(type, func, result);
 }

@@ -176,7 +176,7 @@ namespace guWhiteboard
 		 * @param[in] func The function to call when a message of the type enter is added		 
 		 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
 		 */
-		void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);
+		virtual void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);
 
 		/**
 		 * Unsubscribe To Message (sic!)
