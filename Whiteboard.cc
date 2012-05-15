@@ -251,7 +251,8 @@ WBMsg Whiteboard::getMessage(string type, WBResult *result)
 void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
 {
         result = Whiteboard::METHOD_OK;
-        
+
+        gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
         int offs = -1, current = -1;
         if (type != "*")
         {
@@ -261,6 +262,7 @@ void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBR
         else for (int i = 0; i < _wbd->wb->num_types; i++)      // subscribe to all
                 cball_indexes[i] = _wbd->wb->indexes[i];
         _sub.push_back(callback_descr(func, offs, current));
+        gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
 
         gsw_add_wbd_signal_handler(_wbd);
         gsw_add_process(_wbd, getpid());
@@ -270,6 +272,7 @@ void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBR
 void Whiteboard::subscriptionCallback(void)
 {
         gu_simple_whiteboard *wb = _wbd->wb;
+        gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
         for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
         {
                 callback_descr &descr = *i;
@@ -300,6 +303,7 @@ void Whiteboard::subscriptionCallback(void)
                         descr.func->call(wb->typenames[offs].hash.string, &msg);
                 }
         }
+        gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
 }
 
 
@@ -309,6 +313,7 @@ void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
 
         result = Whiteboard::METHOD_FAIL;
 
+        gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
         for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
         {
                 callback_descr &descr = *i;
@@ -322,4 +327,5 @@ void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
                 }
         }
         if (!_sub.size()) gsw_remove_process(_wbd, getpid());
+        gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
 }
