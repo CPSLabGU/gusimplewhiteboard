@@ -77,7 +77,7 @@ static void *monitor_bridge(void *local_whiteboard)
     {
         protected_usleep(1000000);
         int pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
-        if(kill(pid, WHITEBOARD_SIGNAL) != 0 || pid == 0)
+        if(pid == 0 || kill(pid, WHITEBOARD_SIGNAL) != 0)
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
             setup_udp();
