@@ -105,19 +105,7 @@ RemoteWhiteboard::~RemoteWhiteboard()
 
 void RemoteWhiteboard::addReplicationType(const std::string &type)
 {    
-    //Add type
-    const char *base_injection_type = INJECTION_TYPE;
-    std::stringstream ss;
-    ss << base_injection_type << (machine);
-    
-    local_wb->addMessage((char *)ss.str().c_str(), WBMsg(string(ADD_BROADCAST_TYPE_MSG_TYPE)));
-    
-    //Add content
-    const char *base_injection_content = INJECTION_CONTENT;
-    std::stringstream ss2;
-    ss2 << base_injection_content << (machine);
-    
-    local_wb->addMessage((char *)ss2.str().c_str(), WBMsg(type));
+        Whiteboard::addMessage(string(ADD_BROADCAST_TYPE_MSG_TYPE), WBMsg(type));
 }
 
 std::vector<std::string> RemoteWhiteboard::getKnownTypesForMachine()
