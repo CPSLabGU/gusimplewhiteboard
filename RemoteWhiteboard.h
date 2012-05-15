@@ -133,7 +133,16 @@ namespace guWhiteboard
              * @param[in] machine The target machine id / player number
              * @return A vector of string containing the types
              */
-            std::vector<std::string> getKnownTypesForMachine();       
+            std::vector<std::string> getKnownTypesForMachine();  
+            
+            /**
+             * Subscribe To Message
+             * Subscribes to a message type on a whiteboard or whiteboards
+             * @param[in] type The string type to subscribe to
+             * @param[in] func The function to call when a message of the type enter is added		 
+             * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+             */
+            virtual void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);            
         };
 }
 
