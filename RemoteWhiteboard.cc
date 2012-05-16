@@ -72,16 +72,22 @@ using namespace std;
 
 static void *monitor_bridge(void *local_whiteboard)
 {
+    bool init_run = true;
     guWhiteboard::Whiteboard *whiteboard = (guWhiteboard::Whiteboard *)local_whiteboard;
     while(true)
     {
-        protected_usleep(1000000);
         int pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
         if (pid == 0 || kill(pid, WHITEBOARD_SIGNAL) != 0)
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
             setup_udp();
         }
+        if(init_run)
+        {
+            init_run = false;
+//            gsw_vacate(whiteboard->_wbd->sem, GSW_SEM_UDP);
+        }
+        protected_usleep(1000000);        
     }
 }
 
@@ -93,19 +99,23 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard 
     }
     local_wb = local_whiteboard;
     
-    
+//    gsw_procure(local_wb->_wbd->sem, GSW_SEM_UDP);  
+
     pthread_t child;
-    pthread_create(&child, NULL, monitor_bridge, local_whiteboard);
+    pthread_create(&child, NULL, monitor_bridge, local_wb);
+    
+//    gsw_procure(local_wb->_wbd->sem, GSW_SEM_UDP);      
+//    gsw_vacate(local_wb->_wbd->sem, GSW_SEM_UDP);    
 }
 
 RemoteWhiteboard::~RemoteWhiteboard()
 {
-        if (local_wb_needs_free && local_wb) delete local_wb;
+    if (local_wb_needs_free && local_wb) delete local_wb;
 }
 
 void RemoteWhiteboard::addReplicationType(const std::string &type)
 {    
-        Whiteboard::addMessage(string(ADD_BROADCAST_TYPE_MSG_TYPE), WBMsg(type));
+    Whiteboard::addMessage(string(ADD_BROADCAST_TYPE_MSG_TYPE), WBMsg(type));
 }
 
 std::vector<std::string> RemoteWhiteboard::getKnownTypesForMachine()

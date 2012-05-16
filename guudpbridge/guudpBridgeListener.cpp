@@ -163,6 +163,17 @@ void BridgeListener::listenSingleMethod()
                     else
                         t = msg.typeOffset[i];
                     
+                    if(t < 0 || t >= GSW_TOTAL_MESSAGE_TYPES)
+                    {
+                        endRecvTime = get_utime();
+                        iter_listener++;
+                        avgRecvTime += (endRecvTime - startRecvTime);
+                        rawRecvTime = (endRecvTime - startRecvTime);
+                        gsw_vacate(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);
+                        fprintf(stderr, "Listener: Access to bad index %d for type offset %d\n", t, msg.typeOffset[i]);
+                        return;
+                    }
+                    
                     _wbd_listeners[current_poster]->wb->indexes[t] = msg.current_generation[i];
                     recieved_generations[current_poster][t] = msg.current_generation[i];
 #ifdef GENERATION_BROADCASTING                    
@@ -236,6 +247,7 @@ void BridgeListener::listenSingleMethod()
                         memcpy(m, &injToRecv.content[j], sizeof(gu_simple_message));
                         gsw_increment(wb, t);
                         gsw_vacate(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
+                        fprintf(stderr, "Got Injection:\nType %s\nContent %s\n\n", injToRecv.type[j].hash.string, (char *)m->wbmsg.data);
                         if (wb->subscribed) gsw_signal_subscribers(wb);
                     }
                 }
@@ -276,6 +288,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     //------------------------------
     current_poster = 0;
     flag_on = 1;
+    memset(indexLookup, -1, sizeof(indexLookup));
 #ifdef DEBUG    
     gotHashPackets = 0; //Num of hash gotten
     gotInjectionPackets = 0; //Num of injections gotten

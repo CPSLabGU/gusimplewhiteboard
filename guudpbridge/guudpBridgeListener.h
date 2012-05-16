@@ -81,7 +81,7 @@ static void listenMonitor(void *listener);
 class BridgeListener
 {
 public:    
-    u_int16_t                indexLookup[GSW_TOTAL_MESSAGE_TYPES];
+    int16_t                indexLookup[GSW_TOTAL_MESSAGE_TYPES];
     gu_simple_whiteboard_descriptor *_wbd_listeners[NUM_OF_BROADCASTERS];  /// underlying whiteboard
     guWhiteboard::Whiteboard *_wbd_injection;  /// underlying whiteboard    
     std::vector<std::string> *msg_types_to_broadcast;    
