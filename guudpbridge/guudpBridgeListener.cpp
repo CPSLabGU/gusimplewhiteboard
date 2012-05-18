@@ -58,6 +58,7 @@
 
 
 #include "guudpBridgeListener.h"
+#include <RemoteWhiteboard.h>
 #include <algorithm>
 
 #ifdef DEBUG
@@ -229,7 +230,7 @@ void BridgeListener::listenSingleMethod()
                 for(int j = 0; j < injToRecv.numOfInjectionMsgs; j++)
                 {
                     targetMachine = injToRecv.targetMachineId[j];
-                    if((get_udp_id()+1) == targetMachine)
+                    if((get_udp_id()+1) == targetMachine || targetMachine == guWhiteboard::NUM_OF_MACHINES)
                     {
                         std::vector<std::string>::iterator it;                        
                         // iterator to vector element:

@@ -104,7 +104,8 @@ namespace guWhiteboard
                 Machine1 = 0,
                 Machine2,
                 Machine3,
-                Machine4            
+                Machine4,
+                Global                
             } RWBMachine;            
 
             /**
