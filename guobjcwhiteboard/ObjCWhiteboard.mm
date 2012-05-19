@@ -66,6 +66,14 @@
 #include <RemoteWhiteboard.h>
 #import "ObjCWhiteboard.h"
 
+const NSString *kWBTypeBool = @"bool";
+const NSString *kWBTypeInt = @"int";
+const NSString *kWBTypeArray = @"array";
+const NSString *kWBTypeFloat = @"float";
+const NSString *kWBTypeString = @"string";
+const NSString *kWBTypeBinary = @"binary";
+const NSString *kWBTypeEmpty =  @"empty";
+
 using namespace guWhiteboard;
 using namespace std;
 
@@ -310,8 +318,8 @@ static NSArray *wbtypes;
 + (NSArray *) whiteboardTypes
 {
         if (!wbtypes) wbtypes = [[NSArray arrayWithObjects:
-                                  @"bool", @"int", @"float", @"string",
-                                  @"array", @"binary", @"empty", nil] retain];
+                                  kWBTypeBool, kWBTypeInt, kWBTypeFloat, kWBTypeString,
+                                  kWBTypeArray, kWBTypeBinary, kWBTypeEmpty, nil] retain];
         return wbtypes;
 }
 
@@ -377,9 +385,9 @@ static vector<int> convToArrayType(const char *s)
 
 
 
-- (WBMsg) wbMsg: (NSString *) msg
-         ofType: (NSString *) dataType
-    withContent: (NSString *) content
+- (WBMsg) wbMsg: (const NSString *) msg
+         ofType: (const NSString *) dataType
+    withContent: (const NSString *) content
 {
         switch ([self wbTypeForType: dataType])
         {
@@ -413,9 +421,9 @@ static vector<int> convToArrayType(const char *s)
         }
 }
 
-- (void) postWBMessage: (NSString *) msg
-               content: (NSString *) content
-              withType: (NSString *) dataType
+- (void) postWBMessage: (const NSString *) msg
+               content: (const NSString *) content
+              withType: (const NSString *) dataType
 {
         if (!gu_whiteboard || !msg.length) return;
 

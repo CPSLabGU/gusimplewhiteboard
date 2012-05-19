@@ -59,6 +59,14 @@
 #import <Foundation/Foundation.h>
 #import "ObjCWhiteboardDelegate.h"
 
+extern const NSString *kWBTypeBool;
+extern const NSString *kWBTypeInt;
+extern const NSString *kWBTypeArray;
+extern const NSString *kWBTypeFloat;
+extern const NSString *kWBTypeString;
+extern const NSString *kWBTypeBinary;
+extern const NSString *kWBTypeEmpty;
+
 #ifdef __cplusplus
 typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
 #else
@@ -84,8 +92,8 @@ typedef struct Whiteboard oc_whiteboard_t;
 - (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message
 - (NSString *) contentForMessageType: (NSString *) msgType;             /// return WB content of given message
 
-- (void) postWBMessage: (NSString *) msg
-               content: (NSString *) content
-              withType: (NSString *) dataType;
+- (void) postWBMessage: (const NSString *) msg
+               content: (const NSString *) content
+              withType: (const NSString *) dataType;
 
 @end
