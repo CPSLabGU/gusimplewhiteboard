@@ -69,7 +69,12 @@
 using namespace guWhiteboard;
 using namespace std;
 
-#define UDP_PID_FAIL(pid) (pid == 0 || (pid != getpid() && kill(pid, WHITEBOARD_SIGNAL) != 0))
+static inline bool udp_pid_fail(const pid_t pid)
+{
+        return pid == 0 ||
+                (pid != getpid() &&
+                 kill(pid, WHITEBOARD_SIGNAL) != 0);
+}
 
 static void *monitor_bridge(void *local_whiteboard)
 {
@@ -78,7 +83,7 @@ static void *monitor_bridge(void *local_whiteboard)
     while(true)
     {
         pid_t pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
-        if (UDP_PID_FAIL(pid))
+        if (udp_pid_fail(pid))
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
             setup_udp();
@@ -110,7 +115,7 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard 
         for (i = 0; i < timeout; i++)
         {
                 pid = local_wb->getMessage("UDP_BRIDGE_PID").getIntValue();
-                if (UDP_PID_FAIL(pid))
+                if (udp_pid_fail(pid))
                         usleep(50000);
                 else break;
         }
