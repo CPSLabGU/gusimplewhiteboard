@@ -59,6 +59,16 @@
 #include <gu_util.h>
 #include "Whiteboard.h"
 
+extern "C" {
+#ifdef GSW_IOS
+extern void init_ios_whiteboard_name(void);
+extern const char *wbname_prefixed_with_path(const char *wbname);
+#else                           // IOS needs to define this in ObjC-Whiteboard
+#define init_ios_whiteboard_name();
+const char *gsw_global_whiteboard_name = "guWhiteboard";
+#endif
+}
+
 using namespace guWhiteboard;
 using namespace std;
 
@@ -70,6 +80,12 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
 
 Whiteboard::Whiteboard(const char *name, bool checkVersion)
 {
+        init_ios_whiteboard_name();
+
+        if (!name) name = gsw_global_whiteboard_name;
+#ifdef GSW_IOS
+        else name = wbname_prefixed_with_path(name);
+#endif
         if (!(_wbd = gsw_new_whiteboard(name)))
         {
                 cerr << "Unable to create whiteboard '" << name << "'" << endl;

@@ -74,6 +74,31 @@ const NSString *kWBTypeString = @"string";
 const NSString *kWBTypeBinary = @"binary";
 const NSString *kWBTypeEmpty =  @"empty";
 
+#ifdef GSW_IOS
+extern "C"
+{
+        const char *gsw_global_whiteboard_name;
+
+        void init_ios_whiteboard_name(void)
+        {
+                if (gsw_global_whiteboard_name) return;
+                NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *wbname = [docsDir stringByAppendingPathComponent: @"guWhiteboard"];
+                gsw_global_whiteboard_name = strdup([wbname UTF8String]);
+        }
+
+        const char *wbname_prefixed_with_path(const char *name)
+        {
+                if (strchr(name, '/')) return name;     // don't touch abs path
+
+                NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *wbname = [docsDir stringByAppendingPathComponent: [NSString stringWithUTF8String: name]];
+                return [wbname UTF8String];             // autoreleased!
+        }
+}
+#endif
+
+
 using namespace guWhiteboard;
 using namespace std;
 
@@ -110,7 +135,7 @@ public:
         if (!(self = [super init]))
                 return nil;
 
-        if (wbname)
+        if ([wbname length])
                 gu_whiteboard = new Whiteboard([wbname UTF8String]);
         else
                 gu_whiteboard = new Whiteboard();
@@ -360,7 +385,7 @@ static NSArray *wbtypes;
 }
 
 
-- (WBMsg::WBType) wbTypeForType: (NSString *) dataType
+- (WBMsg::WBType) wbTypeForType: (const NSString *) dataType
 {
         NSUInteger i = [wbtypes indexOfObject: dataType];
         if (i == NSNotFound)

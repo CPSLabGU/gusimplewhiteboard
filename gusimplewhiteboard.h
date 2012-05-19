@@ -234,6 +234,11 @@ typedef struct gsw_whiteboard_s
 } gu_simple_whiteboard_descriptor;
 
 /**
+ * global whiteboard name
+ */
+extern const char *gsw_global_whiteboard_name;
+
+/**
  * access a named whiteboard: this is the designated constructore for C programs
  * @param name  name of the whiteboard
  * @param fdp   pointer to internal file descriptor storage (NULL if not needed)

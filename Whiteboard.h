@@ -111,7 +111,7 @@ namespace guWhiteboard
 		 * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
                  * @param[in] checkVersion              indicate whether to check wb version (default: true)
 		 */
-                Whiteboard(const char *sharedMemoryObjectName = "guWhiteboard", bool checkVersion = true);
+                Whiteboard(const char *sharedMemoryObjectName = gsw_global_whiteboard_name, bool checkVersion = true);
 
 		/**
 		 * Destructor.

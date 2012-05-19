@@ -69,6 +69,7 @@
 using namespace guWhiteboard;
 using namespace std;
 
+#define UDP_PID_FAIL(pid) (pid == 0 || (pid != getpid() && kill(pid, WHITEBOARD_SIGNAL) != 0))
 
 static void *monitor_bridge(void *local_whiteboard)
 {
@@ -76,8 +77,8 @@ static void *monitor_bridge(void *local_whiteboard)
     guWhiteboard::Whiteboard *whiteboard = (guWhiteboard::Whiteboard *)local_whiteboard;
     while(true)
     {
-        int pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
-        if (pid == 0 || kill(pid, WHITEBOARD_SIGNAL) != 0)
+        pid_t pid = whiteboard->getMessage("UDP_BRIDGE_PID").getIntValue();
+        if (UDP_PID_FAIL(pid))
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
             setup_udp();
@@ -103,7 +104,18 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard 
 
     pthread_t child;
     pthread_create(&child, NULL, monitor_bridge, local_wb);
-    
+
+        pid_t pid;
+        int i, timeout = 20;
+        for (i = 0; i < timeout; i++)
+        {
+                pid = local_wb->getMessage("UDP_BRIDGE_PID").getIntValue();
+                if (UDP_PID_FAIL(pid))
+                        usleep(50000);
+                else break;
+        }
+        if (i >= timeout)
+                fprintf(stderr, " *** Warning: UDP bridge failed to start, pid = %d\n", pid);
 //    gsw_procure(local_wb->_wbd->sem, GSW_SEM_UDP);      
 //    gsw_vacate(local_wb->_wbd->sem, GSW_SEM_UDP);    
 }
