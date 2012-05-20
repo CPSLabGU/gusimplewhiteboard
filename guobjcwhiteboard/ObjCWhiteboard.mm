@@ -86,7 +86,7 @@ extern "C"
 #ifdef GSW_IOS_DEVICE
                 NSString *wbDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 #else
-                NSSTRING *wbDir = @"/tmp";
+                NSString *wbDir = @"/tmp";
 #endif
                 NSString *wbname = [wbDir stringByAppendingPathComponent: @"guWhiteboard"];
                 gsw_global_whiteboard_name = strdup([wbname UTF8String]);

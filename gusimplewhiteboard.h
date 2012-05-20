@@ -69,14 +69,14 @@ extern "C"
 #include <sys/types.h>
 #include <unistd.h>
 
-#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
-#define GSW_IOS_DEVICE                                  // IOS device (but not simulator)
-#endif
-
 #if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
 #define GSW_IOS_SIMULATOR                               // IOS device (but not simulator)
 #endif
 
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE && !defined (GSW_IOS_SIMULATOR)
+#define GSW_IOS_DEVICE                                  // IOS device (but not simulator)
+#endif
+        
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
 #define GSW_IOS                                         // IOS device or simulator
 #endif
