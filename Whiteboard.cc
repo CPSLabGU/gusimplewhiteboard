@@ -60,7 +60,7 @@
 #include "Whiteboard.h"
 
 extern "C" {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
 extern void init_ios_whiteboard_name(void);
 extern const char *wbname_prefixed_with_path(const char *wbname);
 #else                           // IOS needs to define this in ObjC-Whiteboard
@@ -83,7 +83,7 @@ Whiteboard::Whiteboard(const char *name, bool checkVersion)
         init_ios_whiteboard_name();
 
         if (!name) name = gsw_global_whiteboard_name;
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         else name = wbname_prefixed_with_path(name);
 #endif
         if (!(_wbd = gsw_new_whiteboard(name)))

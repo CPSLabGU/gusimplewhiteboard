@@ -114,7 +114,7 @@ void gsw_init_semaphores(gsw_sema_t s)
         init.val = 1;
         for (enum gsw_semaphores i = 0; i < GSW_NUM_SEM; i++)
         {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
                 if (s[i]) dispatch_release(s[i]);
                 s[i] = dispatch_semaphore_create(init.val);
 #else
@@ -131,7 +131,7 @@ void gsw_init_semaphores(gsw_sema_t s)
 
 gsw_sema_t gsw_setup_semaphores(void)
 {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         gsw_sema_t s = calloc(sizeof(dispatch_semaphore_t), GSW_NUM_SEM);
         if (!s) return (gsw_sema_t) SEM_ERROR;
         gsw_init_semaphores(s);
@@ -199,7 +199,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
         assert(sizeof(gu_simple_message) == GU_SIMPLE_WHITEBOARD_BUFSIZE);
         char path[PATH_MAX]
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         = "";
 #else
         = "/tmp/";
@@ -261,7 +261,7 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
 
 int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s)
 {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         while (dispatch_semaphore_wait(sem[s], DISPATCH_TIME_FOREVER))
         {
                 if (errno != EAGAIN)
@@ -281,7 +281,7 @@ int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s)
 
 int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s)
 {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         dispatch_semaphore_signal(sem[s]);
         return 0;
 #else

@@ -77,13 +77,18 @@ const NSString *kWBTypeEmpty =  @"empty";
 #ifdef GSW_IOS
 extern "C"
 {
+#ifdef GSW_IOS_DEVICE
         const char *gsw_global_whiteboard_name;
-
+#endif
         void init_ios_whiteboard_name(void)
         {
                 if (gsw_global_whiteboard_name) return;
-                NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-                NSString *wbname = [docsDir stringByAppendingPathComponent: @"guWhiteboard"];
+#ifdef GSW_IOS_DEVICE
+                NSString *wbDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+#else
+                NSSTRING *wbDir = @"/tmp";
+#endif
+                NSString *wbname = [wbDir stringByAppendingPathComponent: @"guWhiteboard"];
                 gsw_global_whiteboard_name = strdup([wbname UTF8String]);
         }
 
@@ -165,7 +170,7 @@ public:
 
 - (id) init
 {
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         return [self initWithWhiteboardNamed: [docsDir stringByAppendingPathComponent: @"guWhiteboard"]];
 #else
@@ -180,7 +185,7 @@ public:
 
         string name = nameForMachine(RWBMachine(--n));
         NSString *wbname = [NSString stringWithFormat: @"%s", name.c_str()];
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
         NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         wbname = [docsDir stringByAppendingPathComponent: wbname];
 #endif

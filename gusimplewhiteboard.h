@@ -69,10 +69,18 @@ extern "C"
 #include <sys/types.h>
 #include <unistd.h>
 
-#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
-#define GSW_IOS                                         // simplify for IOS
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
+#define GSW_IOS_DEVICE                                  // IOS device (but not simulator)
 #endif
 
+#if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
+#define GSW_IOS_SIMULATOR                               // IOS device (but not simulator)
+#endif
+
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
+#define GSW_IOS                                         // IOS device or simulator
+#endif
+        
 #define GU_SIMPLE_WHITEBOARD_VERSION            2       // version
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       // lifespan (max)
 #define GU_SIMPLE_WHITEBOARD_BUFSIZE            64      // message len (max)
@@ -215,7 +223,7 @@ typedef struct gsw_simple_whiteboard_s
         u_int64_t               magic;
 } gu_simple_whiteboard;
 
-#ifdef GSW_IOS
+#ifdef GSW_IOS_DEVICE
 typedef dispatch_semaphore_t *gsw_sema_t;
 #else
 typedef int gsw_sema_t;
