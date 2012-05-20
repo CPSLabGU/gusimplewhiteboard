@@ -96,4 +96,6 @@ typedef struct Whiteboard oc_whiteboard_t;
                content: (const NSString *) content
               withType: (const NSString *) dataType;
 
+- (id) getWBMessage: (const NSString *) msg;
+
 @end

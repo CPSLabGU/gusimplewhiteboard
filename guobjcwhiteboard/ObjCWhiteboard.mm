@@ -462,4 +462,45 @@ static vector<int> convToArrayType(const char *s)
 }
 
 
+- (id) getWBMessage: (const NSString *) msg
+{
+        Whiteboard::WBResult result = Whiteboard::METHOD_FAIL;
+        WBMsg wbmsg = gu_whiteboard->getMessage([msg UTF8String], &result);
+
+        if (result == Whiteboard::METHOD_FAIL)
+                return nil;
+
+        switch (wbmsg.getType())
+        {
+                case WBMsg::TypeBool:
+                        return [NSNumber numberWithBool: wbmsg.getBoolValue()];
+
+                case WBMsg::TypeInt:
+                        return [NSNumber numberWithInt: wbmsg.getIntValue()];
+
+                case WBMsg::TypeFloat:
+                        return [NSNumber numberWithFloat: wbmsg.getFloatValue()];
+
+                case WBMsg::TypeString:
+                        return [NSString stringWithUTF8String: wbmsg.getStringValue().c_str()];
+
+                case WBMsg::TypeArray:
+                {
+                        const vector<int> vec = wbmsg.getArrayValue();
+                        NSMutableArray *array = [NSMutableArray arrayWithCapacity: vec.size()];
+                        for (int i: vec)
+                                [array addObject: [NSNumber numberWithInt: i]];
+                        return array;
+                }
+
+                case WBMsg::TypeBinary:
+                        return [NSData dataWithBytes: wbmsg.getBinaryValue()
+                                              length: wbmsg.getSizeInBytes()];
+                default:
+                        return [NSNull null];
+        }
+        /* NOTREACHED */
+}
+
+
 @end
