@@ -98,4 +98,6 @@ typedef struct Whiteboard oc_whiteboard_t;
 
 - (id) getWBMessage: (const NSString *) msg;
 
+- (void) subscribeTo: (const NSString *) msg;
+
 @end

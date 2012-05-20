@@ -503,4 +503,9 @@ static vector<int> convToArrayType(const char *s)
 }
 
 
+- (void) subscribeTo: (const NSString *) msg
+{
+        wbcallback->subscribe(gu_whiteboard, [msg UTF8String]);
+}
+
 @end
