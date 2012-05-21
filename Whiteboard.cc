@@ -59,6 +59,10 @@
 #include <gu_util.h>
 #include "Whiteboard.h"
 
+#ifndef DISPATCH_QUEUE_SERIAL
+#define DISPATCH_QUEUE_SERIAL NULL
+#endif
+
 extern "C" {
 #ifdef GSW_IOS_DEVICE
 extern void init_ios_whiteboard_name(void);
@@ -86,6 +90,12 @@ Whiteboard::Whiteboard(const char *name, bool checkVersion)
 #ifdef GSW_IOS_DEVICE
         else name = wbname_prefixed_with_path(name);
 #endif
+        if (!(callback_group = dispatch_group_create()))
+                throw "Whiteboard cannot create callback queue";
+
+        if (!(callback_queue = dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)))
+                throw "Whiteboard cannot create dispatch queue";
+
         if (!(_wbd = gsw_new_whiteboard(name)))
         {
                 cerr << "Unable to create whiteboard '" << name << "'" << endl;
@@ -98,7 +108,12 @@ Whiteboard::Whiteboard(const char *name, bool checkVersion)
 
 Whiteboard::~Whiteboard()
 {
+        _wbd->callback = NULL;                  // avoid starvation
+        dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
+
         if (_wbd) gsw_free_whiteboard(_wbd);
+        dispatch_release(callback_queue);
+        dispatch_release(callback_group);
 }
 
 
@@ -285,6 +300,26 @@ void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBR
 }
 
 
+struct callback_helper
+{
+        Whiteboard *self;
+        gu_simple_whiteboard *wb;
+        int offs, curr;
+        Whiteboard::callback_descr descr;
+
+        callback_helper(Whiteboard *s, gu_simple_whiteboard *w, int o, int c, const Whiteboard::callback_descr &d): self(s), wb(w), offs(o), curr(c), descr(d) {}
+};
+
+static void do_callback(void *m)
+{
+        callback_helper *h = (callback_helper *) m;
+
+        WBMsg msg = h->self->getWBMsg(&h->wb->messages[h->offs][h->curr]);
+        h->descr.func->call(h->wb->typenames[h->offs].hash.string, &msg);
+
+        delete h;
+}
+
 void Whiteboard::subscriptionCallback(void)
 {
         gu_simple_whiteboard *wb = _wbd->wb;
@@ -306,8 +341,8 @@ void Whiteboard::subscriptionCallback(void)
                                 if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
                                         curr = 0;
                                 cball_indexes[offs] = curr;
-                                WBMsg msg = getWBMsg(&wb->messages[offs][curr]);
-                                descr.func->call(wb->typenames[offs].hash.string, &msg);
+                                callback_helper *h = new callback_helper(this, wb, offs, curr, descr);
+                                dispatch_group_async_f(callback_group, callback_queue, h, do_callback);
                         }
                 }
                 else while (curr != wb->indexes[offs])  // for every new message
@@ -315,8 +350,8 @@ void Whiteboard::subscriptionCallback(void)
                         if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
                                 curr = 0;
                         descr.current = curr;
-                        WBMsg msg = getWBMsg(&wb->messages[offs][curr]);
-                        descr.func->call(wb->typenames[offs].hash.string, &msg);
+                        callback_helper *h = new callback_helper(this, wb, offs, curr, descr);
+                        dispatch_group_async_f(callback_group, callback_queue, h, do_callback);
                 }
         }
         gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);

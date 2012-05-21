@@ -58,6 +58,7 @@
 #ifndef gusimplewhiteboard_Whiteboard_h
 #define gusimplewhiteboard_Whiteboard_h
 
+#include <dispatch/dispatch.h>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -92,6 +93,7 @@ namespace guWhiteboard
          */
         class Whiteboard
         {
+        public:
                 struct callback_descr
                 {
                         int type;                       /// message type
@@ -100,8 +102,10 @@ namespace guWhiteboard
 
                         callback_descr(WBFunctorBase *f, int t = -1, int o = -1): type(t), current(o), func(f) {}
                 };
-
-                std::vector<callback_descr> _sub;  /// subscription indexes
+        private:
+                dispatch_group_t callback_group;        /// wait for all callbacks to have finished
+                dispatch_queue_t callback_queue;        /// subscription callback queue
+                std::vector<callback_descr> _sub;       /// subscription indexes
                 u_int8_t cball_indexes[GSW_TOTAL_MESSAGE_TYPES];        /// all-subscription indexes
         public:
                 gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard            
