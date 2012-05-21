@@ -114,8 +114,9 @@ namespace guWhiteboard
 		 * This sets up the API and the callback soap server
 		 * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
                  * @param[in] checkVersion              indicate whether to check wb version (default: true)
+                 * @param[in] number                    whiteboard number (0 = local, 1..4 = reserved for robots)
 		 */
-                Whiteboard(const char *sharedMemoryObjectName = gsw_global_whiteboard_name, bool checkVersion = true);
+                Whiteboard(const char *sharedMemoryObjectName = gsw_global_whiteboard_name, bool checkVersion = true, int number = 0);
 
 		/**
 		 * Destructor.

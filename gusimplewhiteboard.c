@@ -129,7 +129,7 @@ void gsw_init_semaphores(gsw_sema_t s)
 }
 
 
-gsw_sema_t gsw_setup_semaphores(void)
+gsw_sema_t gsw_setup_semaphores(int key)
 {
 #ifdef GSW_IOS_DEVICE
         gsw_sema_t s = calloc(sizeof(dispatch_semaphore_t), GSW_NUM_SEM);
@@ -137,11 +137,11 @@ gsw_sema_t gsw_setup_semaphores(void)
         gsw_init_semaphores(s);
 #else
         int semflg = SEM_R|SEM_A|(SEM_R>>3)|(SEM_A>>3)|(SEM_R>>6)|(SEM_A>>6);
-        gsw_sema_t s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg);
+        gsw_sema_t s = semget(key, GSW_NUM_SEM, semflg);
 
         if (s == SEM_ERROR)
         {
-                s = semget(SEMAPHORE_MAGIC_KEY, GSW_NUM_SEM, semflg | IPC_CREAT);
+                s = semget(key, GSW_NUM_SEM, semflg | IPC_CREAT);
                 if (s == SEM_ERROR) return s;
 
                 gsw_init_semaphores(s);
@@ -151,7 +151,7 @@ gsw_sema_t gsw_setup_semaphores(void)
 }
 
 
-gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
+gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int n)
 {
         gu_simple_whiteboard_descriptor *wbd = calloc(sizeof(gu_simple_whiteboard_descriptor), 1);
         if (!wbd)
@@ -160,9 +160,9 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
                 return NULL;
         }
 
-        wbd->sem = gsw_setup_semaphores();
+        wbd->sem = gsw_setup_semaphores(SEMAPHORE_MAGIC_KEY + n);
         if (wbd->sem == (gsw_sema_t) SEM_ERROR)
-                fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY, name, strerror(errno));
+                fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY + n, name, strerror(errno));
 
         bool init = false;
         wbd->wb = gsw_create(name, &wbd->fd, &init);
@@ -180,6 +180,12 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
         }
         wbd->callback_queue = dispatch_queue_create(NULL, NULL);
         return wbd;
+}
+
+
+gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
+{
+        return gsw_new_numbered_whiteboard(name, 0);
 }
 
 

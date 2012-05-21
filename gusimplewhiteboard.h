@@ -76,7 +76,7 @@ extern "C"
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE && !defined (GSW_IOS_SIMULATOR)
 #define GSW_IOS_DEVICE                                  // IOS device (but not simulator)
 #endif
-        
+
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
 #define GSW_IOS                                         // IOS device or simulator
 #endif
@@ -249,9 +249,16 @@ extern const char *gsw_global_whiteboard_name;
 /**
  * access a named whiteboard: this is the designated constructore for C programs
  * @param name  name of the whiteboard
- * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
  */
 extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
+
+/**
+ * access a named whiteboard: this is the designated constructore for C programs
+ * that want to assign a whiteboard number (uses a different semaphore than the default)
+ * @param name  name of the whiteboard
+ * @param num   whiteboard number (0 for local, default whiteboard)
+ */
+extern gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int num);
 
 /**
  * free the given whiteboard descriptor
@@ -291,8 +298,10 @@ extern void gsw_free(gu_simple_whiteboard *wb, int fd);
 
 /**
  * set up a semaphore array for the whiteboard
+ * @param key   semaphore key
+ * @return semaphore array to use
  */
-extern gsw_sema_t gsw_setup_semaphores(void);
+extern gsw_sema_t gsw_setup_semaphores(int key);
 
 /**
  * grab a whiteboard semaphore

@@ -82,7 +82,7 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
         if (self) self->subscriptionCallback();
 }
 
-Whiteboard::Whiteboard(const char *name, bool checkVersion)
+Whiteboard::Whiteboard(const char *name, bool checkVersion, int number)
 {
         init_ios_whiteboard_name();
 
@@ -91,14 +91,18 @@ Whiteboard::Whiteboard(const char *name, bool checkVersion)
         else name = wbname_prefixed_with_path(name);
 #endif
         if (!(callback_group = dispatch_group_create()))
-                throw "Whiteboard cannot create callback queue";
-
-        if (!(callback_queue = dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)))
-                throw "Whiteboard cannot create dispatch queue";
-
-        if (!(_wbd = gsw_new_whiteboard(name)))
         {
-                cerr << "Unable to create whiteboard '" << name << "'" << endl;
+                cerr << "Unable to create dispatch group " << number << ": '" << name << "'" << endl;
+                throw "Whiteboard cannot create callback queue";
+        }
+        if (!(callback_queue = dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)))
+        {
+                cerr << "Unable to create dispatch queue " << number << ": '" << name << "'" << endl;
+                throw "Whiteboard cannot create dispatch queue";
+        }
+        if (!(_wbd = gsw_new_numbered_whiteboard(name, number)))
+        {
+                cerr << "Unable to create whiteboard " << number << ": '" << name << "'" << endl;
                 throw "Cannot create whiteboard";
         }
         _wbd->context = this;

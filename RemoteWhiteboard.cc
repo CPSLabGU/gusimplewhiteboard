@@ -97,7 +97,7 @@ static void *monitor_bridge(void *local_whiteboard)
     }
 }
 
-RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(RWBMachine(n+1)), Whiteboard(wbName), local_wb_needs_free(local_wb != NULL)
+RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard): machine(RWBMachine(n+1)), Whiteboard(wbName, true, n+1), local_wb_needs_free(local_wb != NULL)
 {
     if(local_whiteboard == NULL)
     {
