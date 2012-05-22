@@ -274,14 +274,14 @@ int setup_udp()
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
     BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
     
-    delete bm;    
-    delete broadcaster;
     delete listener;
-    delete whiteboard;
+    delete broadcaster;
+    delete bm;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) 
     {
         delete _wbds[i];
     }
+    delete whiteboard;
     
 	return 0;
 }
