@@ -59,7 +59,7 @@
 #include <cstdio>
 #include <gu_util.h>
 #include "RemoteWhiteboard.h"
-#include "guudpbridge/guudpbridgemanager.h"
+#include "guudpbridge/guudpBridgeManager.h"
 #include <signal.h> // for kill()
 //#include <stdlib.h> // for daemon()
 //#include <sys/types.h>
