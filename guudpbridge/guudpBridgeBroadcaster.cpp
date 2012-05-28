@@ -66,7 +66,11 @@ static void broadcastMonitor(void *broadcaster)
 {
     BridgeBroadcaster *c = (BridgeBroadcaster *)broadcaster;
 
-    if(c->sending_count == (get_udp_id()+1))
+#ifdef IGNORE_TT_ARCH
+    if(c->sending_count == 1 && (get_udp_id()+1) > 0)    
+#else
+    if(c->sending_count == (get_udp_id()+1))    
+#endif    
     {
         c->sending_currently = true;      
         
@@ -87,11 +91,7 @@ static void broadcastMonitor(void *broadcaster)
     }
     else
     {
-#ifdef IGNORE_TT_ARCH
-        c->sending_currently = true;        
-#else
         c->sending_currently = false;
-#endif        
         c->sending_count++;        
 #ifdef DEBUG
 #ifdef OUTPUT_BROADCASTER_IN_DEBUG
@@ -123,8 +123,6 @@ static void broadcastMonitor(void *broadcaster)
 
 void BridgeBroadcaster::broadcastInjection()
 {
-    //    if(uniqueId >= 1000)
-    //        sending_currently = false;
     if(!(messages_to_inject->size() > 0))
         return;
 
@@ -175,8 +173,10 @@ void BridgeBroadcaster::broadcastInjection()
 
 void BridgeBroadcaster::broadcastSingleMethod()
 {    
-//    if(uniqueId >= 1000)
-//        sending_currently = false;
+#ifdef DETECT_AND_STOP_UDP_DUPLICATION            
+    if(uniqueId >= STOP_AFTER_X_PACKETS)
+        sending_currently = false;
+#endif    
     
     if(sending_currently)
     {

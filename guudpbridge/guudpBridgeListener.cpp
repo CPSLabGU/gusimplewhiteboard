@@ -332,8 +332,8 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
   
     struct timeval tv;
     tv.tv_sec = 0;    
-    tv.tv_usec = 2500;
-    //setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO,(struct timeval *)&tv,sizeof(struct timeval));
+    tv.tv_usec = READ_TIMEOUT;
+//    setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO,(struct timeval *)&tv,sizeof(struct timeval));
       set_nonblock(sock);
     
     
