@@ -65,7 +65,7 @@
 #include <unistd.h> //for getpid()
 //#include <cstdlib> //for system()
 
-#include "guudpbridgemanager.h"
+#include "guudpBridgeManager.h"
 
 
 class BridgeManager
