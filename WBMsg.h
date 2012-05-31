@@ -209,6 +209,33 @@ public:
         }
 
 	/**
+	 * boolValue.
+	 * @return The value of this message "intelligently" interpreted as a boolean
+	 */
+	bool boolValue() const
+        {
+                switch (type)
+                {
+                        case TypeBool:
+                                return boolVal;
+                        case TypeInt:
+                                return intVal != 0;
+                        case TypeFloat:
+                                return floatVal != 0.0;
+                        case TypeString:
+                                return toupper(stringVal[0]) == 'Y' ||
+                                       toupper(stringVal[0]) == 'T' ||
+                                       stringVal == "on" || stringVal == "On" ||
+                                       stringVal == "ON" ||
+                                       atoi(stringVal.c_str()) != 0;
+                        case TypeArray:
+                                return !arrayVal->size() || (*arrayVal)[0];
+                        default:
+                                return true;
+                }
+        }
+
+	/**
 	 * getBoolValue.
 	 * @return The boolean value of this WBMsg if it is storing a boolean.
 	 *         Returns NULL otherwise.
