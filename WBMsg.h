@@ -235,6 +235,52 @@ public:
                 }
         }
 
+        /**
+         * intValue.
+         * @return Message value "intelligently" interpreted as integer
+         */
+         int intValue() const
+         {
+                 switch (type)
+                 {
+                         case TypeBool:
+                                 return int(boolVal);
+                         case TypeInt:
+                                 return intVal;
+                         case TypeFloat:
+                                 return int(floatVal);
+                         case TypeString:
+                                 return atoi(stringVal.c_str());
+                         case TypeArray:
+                                 if (arrayVal->size()) return (*arrayVal)[0];
+                         default:
+                                 return 0;
+                 }
+         }
+
+        /**
+         * floatValue.
+         * @return Message value "intelligently" interpreted as float
+         */
+        int floatValue() const
+        {
+                switch (type)
+                {
+                        case TypeBool:
+                                return float(boolVal);
+                        case TypeInt:
+                                return float(intVal);
+                        case TypeFloat:
+                                return floatVal;
+                        case TypeString:
+                                return atof(stringVal.c_str());
+                        case TypeArray:
+                                if (arrayVal->size()) return (*arrayVal)[0];
+                        default:
+                                return 0;
+                }
+        }
+
 	/**
 	 * getBoolValue.
 	 * @return The boolean value of this WBMsg if it is storing a boolean.
