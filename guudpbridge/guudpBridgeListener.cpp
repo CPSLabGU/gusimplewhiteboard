@@ -67,7 +67,7 @@ static void listenMonitor(void *listener)
     BridgeListener *c = (BridgeListener *)listener;
 #ifdef OUTPUT_LISTENER_IN_DEBUG    
     if(c->iter_listener > 0)
-        fprintf(stderr, "got: %d  \ttotal got: %d\thash: %d  \tmsg: %d  \t Inj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
+        fprintf(stderr, "got: %d\ttotal: %d\thash: %d\tmsg: %d\tInj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
 #endif    
     c->gotHashPackets = 0;
     c->gotInjectionPackets = 0;
