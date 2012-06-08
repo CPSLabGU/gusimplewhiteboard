@@ -65,6 +65,42 @@
 static void listenMonitor(void *listener)
 {
     BridgeListener *c = (BridgeListener *)listener;
+
+    pthread_mutex_lock(c->_injection_mutex);                        
+    std::list<std::pair<std::string, int> >::iterator it;
+    fprintf(stderr, "Missing %d\n",     (int)c->msg_types_to_listen_for->size());
+    
+    srand ( time(NULL) );
+    int startHere;
+    if((int)c->msg_types_to_listen_for->size() < 3)
+       startHere = 0;
+    else
+       startHere = rand() % ((int)c->msg_types_to_listen_for->size()-2) + 1;
+    int i = 0;
+    
+    for (it = c->msg_types_to_listen_for->begin(); it != c->msg_types_to_listen_for->end(); it++)
+    {
+        i++;
+        if(i > startHere && i < startHere+2)
+        {
+            gsw_procure(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
+            
+            int t = gsw_offset_for_message_type(c->_wbd_listeners[(*it).second], ADD_BROADCAST_TYPE_MSG_TYPE);
+
+            gu_simple_whiteboard *wb = c->_wbd_listeners[(*it).second]->wb;
+            gu_simple_message *m = gsw_next_message(wb, t);
+            gu_strlcpy(m->wbmsg.data, (*it).first.c_str(), sizeof(m->wbmsg.data));
+            m->wbmsg.len = strlen(m->wbmsg.data) + 1;        
+            m->wbmsg.type = 3;//string type
+            gsw_increment(wb, t);
+            
+            gsw_vacate(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
+            gsw_signal_subscribers(c->_wbd_listeners[(*it).second]->wb);        
+            fprintf(stderr, "\t\t%s\t%d\n", (char *)(*it).first.c_str(), (int)(*it).second);
+        }
+    }
+    pthread_mutex_unlock(c->_injection_mutex);                        
+    
 #ifdef OUTPUT_LISTENER_IN_DEBUG    
     if(c->iter_listener > 0)
         fprintf(stderr, "got: %d\ttotal: %d\thash: %d\tmsg: %d\tInj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
@@ -160,7 +196,7 @@ void BridgeListener::listenSingleMethod()
                 {
                     int t;
                     if(msg.typeOffset[i] >= GSW_NUM_RESERVED)
-                        t = indexLookup[msg.typeOffset[i]];
+                        t = indexLookup[current_poster][msg.typeOffset[i]];
                     else
                         t = msg.typeOffset[i];
                     
@@ -214,7 +250,21 @@ void BridgeListener::listenSingleMethod()
 
                 for(int j = 0; j < HASHES_PER_PACKET; j++)
                 {
-                    indexLookup[hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
+
+                    pthread_mutex_lock(_injection_mutex);                        
+                    std::list<std::pair<std::string, int> >::iterator it;
+                    
+                    for (it = msg_types_to_listen_for->begin(); it != msg_types_to_listen_for->end(); it++)
+                    {
+                        if((*it).first.compare(std::string(hashToRecv.typeName[j].hash.string)) == 0 && (current_poster) == ((*it).second))
+                        {
+                            msg_types_to_listen_for->erase(it);
+                            break;
+                        }
+                    }
+                    pthread_mutex_unlock(_injection_mutex);                    
+                    
+                    indexLookup[current_poster][hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
                 }
             }
             else if(recv_buffer[0] == Injection)
@@ -230,14 +280,22 @@ void BridgeListener::listenSingleMethod()
                 for(int j = 0; j < injToRecv.numOfInjectionMsgs; j++)
                 {
                     targetMachine = injToRecv.targetMachineId[j];
-                    if((get_udp_id()+1) == targetMachine || targetMachine == guWhiteboard::NUM_OF_MACHINES)
+                    if((get_udp_id()+1) == targetMachine || targetMachine == guWhiteboard::NUM_OF_MACHINES+1)
                     {
                         std::vector<std::string>::iterator it;                        
                         // iterator to vector element:
-                        it = find (msg_types_to_broadcast->begin(), msg_types_to_broadcast->end(), std::string(injToRecv.type[j].hash.string));
-                        if(it == msg_types_to_broadcast->end())
+                        if(std::string(injToRecv.type[j].hash.string).compare(std::string(ADD_BROADCAST_TYPE_MSG_TYPE)) != 0)
                         {
-                            msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
+                            for (it = msg_types_to_broadcast->begin(); it != msg_types_to_broadcast->end(); it++)
+                            {
+                                if(strncmp((*it).c_str(), std::string(injToRecv.type[j].hash.string).c_str(), std::string(injToRecv.type[j].hash.string).length()) == 0)
+                                    break;
+                            }                        
+                            if(it == msg_types_to_broadcast->end())
+                            {
+                                fprintf(stderr, "Will now replicate:\t%s\n", injToRecv.type[j].hash.string);                            
+                                msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
+                            }
                         }
                            
                         int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
@@ -248,7 +306,6 @@ void BridgeListener::listenSingleMethod()
                         memcpy(m, &injToRecv.content[j], sizeof(gu_simple_message));
                         gsw_increment(wb, t);
                         gsw_vacate(_wbd_injection->_wbd->sem, GSW_SEM_PUTMSG);
-                        fprintf(stderr, "Got Injection:\nType %s\nContent %s\n\n", injToRecv.type[j].hash.string, (char *)m->wbmsg.data);
                         if (wb->subscribed) gsw_signal_subscribers(wb);
                     }
                 }
@@ -283,7 +340,7 @@ void *BridgeListener::get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime, std::vector<std::string> *typesSent): recieved_generations(recieved_generations_array)
+BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROADCASTERS], guWhiteboard::Whiteboard *_wbd_for_injections, u_int8_t (&recieved_generations_array)[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES], timeval currTime, std::vector<std::string> *typesSent, std::list<std::pair<std::string, int> > *listen_for_types, pthread_mutex_t *injection_mutex): recieved_generations(recieved_generations_array)
 {
     //Default vars
     //------------------------------
@@ -305,6 +362,9 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     oldId = -1;
 #endif
     msg_types_to_broadcast = typesSent;
+    msg_types_to_listen_for = listen_for_types;
+    _injection_mutex = injection_mutex;
+    
     _wbd_injection = _wbd_for_injections;
     for (int i = 0; i < NUM_OF_BROADCASTERS; i++) {
         _wbd_listeners[i] = _wbd[i];

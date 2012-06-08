@@ -72,6 +72,7 @@ class BridgeManager
 {
 public:
     std::vector<std::string>            dynamic_msg_types_to_broadcast;
+    std::list<std::pair<std::string, int> >            dynamic_msg_types_to_listen_for;    
     std::list<gsw_injection_message>    dynamic_messages_to_inject;
     pthread_mutex_t                     injection_mutex;
     u_int8_t                            recieved_generations[NUM_OF_BROADCASTERS][GSW_TOTAL_MESSAGE_TYPES];
@@ -163,11 +164,22 @@ public:
         strcpy(msg.type.hash.string, (char *)type.c_str());
         
         convWBMsgToSimpleMsg(value, &msg.m);        
-        
-        
-        fprintf(stderr, "Injection to machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
-        
+//        fprintf(stderr, "Injection to machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
+    
         pthread_mutex_lock(&injection_mutex);
+        if(type.compare(std::string(ADD_BROADCAST_TYPE_MSG_TYPE)) == 0)
+        {
+            std::list<std::pair<std::string, int> >::iterator it; 
+            for (it = dynamic_msg_types_to_listen_for.begin(); it != dynamic_msg_types_to_listen_for.end(); it++)
+            {
+                if(strncmp((*it).first.c_str(), value->getStringValue().c_str(), value->getStringValue().length()) == 0 && (*it).second == machine-1)
+                   break;
+            }
+            if(it == dynamic_msg_types_to_listen_for.end())
+            {
+                dynamic_msg_types_to_listen_for.push_back(make_pair(value->getStringValue(), machine-1));
+            }
+        }        
         dynamic_messages_to_inject.push_back(msg);
         pthread_mutex_unlock(&injection_mutex);  
     }
@@ -272,7 +284,7 @@ int setup_udp()
 
     BridgeManager *bm = new BridgeManager(whiteboard, _whiteboards);
     BridgeBroadcaster *broadcaster = new BridgeBroadcaster(_wbd, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_messages_to_inject, &bm->injection_mutex, tim);
-    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast);    //May not end if loop reading
+    BridgeListener *listener = new BridgeListener(_wbds, whiteboard, bm->recieved_generations, tim, &bm->dynamic_msg_types_to_broadcast, &bm->dynamic_msg_types_to_listen_for, &bm->injection_mutex);    //May not end if loop reading
     
     delete listener;
     delete broadcaster;
