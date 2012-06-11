@@ -73,7 +73,8 @@
 
 #include <cstdlib>
 #include <string>
-#include <iostream> //for cerr
+#include <iostream>             //for cerr
+#include <sstream>              // for stringValue()
 #include "gusimplewhiteboard.h" //for GU_SIMPLE_WHITEBOARD_GENERATIONS
 
 class WBMsg
@@ -279,6 +280,55 @@ public:
                         default:
                                 return 0;
                 }
+        }
+
+        /**
+	 * stringValue.
+	 * @return The value of this message "intelligently" interpreted as a string
+	 */
+	const std::string stringValue() const
+        {
+                std::stringstream ss;
+                switch (type)
+                {
+                        case TypeBool:
+                                ss << boolVal;
+                                break;
+                        case TypeInt:
+                                ss << intVal;
+                                break;
+                        case TypeFloat:
+                                ss << floatVal;
+                                break;
+                        case TypeString:
+                                return stringVal;
+                        case TypeArray:
+                        {
+                                std::vector<int>::const_iterator i = arrayVal->begin();
+                                ss << *i++;
+                                while (i != arrayVal->end())
+                                {
+                                        ss << ", ";
+                                        ss << *i++;
+                                }
+                                break;
+                        }
+                        case TypeBinary:
+                        {
+                                const unsigned char *c = (const unsigned char *) binaryVal;
+                                ss.setf(std::ios::hex);
+                                for (int i = 0; i < binarySize; i++)
+                                {
+                                        ss << static_cast<unsigned>(c[i]);
+                                        if (i < binarySize-1)
+                                                ss << " ";
+                                }
+                                break;
+                        }
+                        default:
+                                break;
+                }
+                return ss.str();
         }
 
 	/**
