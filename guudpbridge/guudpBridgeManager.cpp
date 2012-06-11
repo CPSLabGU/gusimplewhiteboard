@@ -167,19 +167,19 @@ public:
 //        fprintf(stderr, "Injection to machine: %d\nType %s\nContent %s\n\n", msg.machineId, msg.type.hash.string, (char *)msg.m.wbmsg.data);
     
         pthread_mutex_lock(&injection_mutex);
-        if(type.compare(std::string(ADD_BROADCAST_TYPE_MSG_TYPE)) == 0)
-        {
-            std::list<std::pair<std::string, int> >::iterator it; 
-            for (it = dynamic_msg_types_to_listen_for.begin(); it != dynamic_msg_types_to_listen_for.end(); it++)
-            {
-                if(strncmp((*it).first.c_str(), value->getStringValue().c_str(), value->getStringValue().length()) == 0 && (*it).second == machine-1)
-                   break;
-            }
-            if(it == dynamic_msg_types_to_listen_for.end())
-            {
-                dynamic_msg_types_to_listen_for.push_back(make_pair(value->getStringValue(), machine-1));
-            }
-        }        
+//        if(type.compare(std::string(ADD_BROADCAST_TYPE_MSG_TYPE)) == 0)
+//        {
+//            std::list<std::pair<std::string, int> >::iterator it; 
+//            for (it = dynamic_msg_types_to_listen_for.begin(); it != dynamic_msg_types_to_listen_for.end(); it++)
+//            {
+//                if(strncmp((*it).first.c_str(), value->getStringValue().c_str(), value->getStringValue().length()) == 0 && (*it).second == machine-1)
+//                   break;
+//            }
+//            if(it == dynamic_msg_types_to_listen_for.end())
+//            {
+//                dynamic_msg_types_to_listen_for.push_back(make_pair(value->getStringValue(), machine-1));
+//            }
+//        }        
         dynamic_messages_to_inject.push_back(msg);
         pthread_mutex_unlock(&injection_mutex);  
     }

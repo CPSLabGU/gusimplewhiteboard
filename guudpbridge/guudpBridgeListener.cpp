@@ -65,42 +65,42 @@
 static void listenMonitor(void *listener)
 {
     BridgeListener *c = (BridgeListener *)listener;
-
-    pthread_mutex_lock(c->_injection_mutex);                        
-    std::list<std::pair<std::string, int> >::iterator it;
-    fprintf(stderr, "Missing %d\n",     (int)c->msg_types_to_listen_for->size());
-    
-    srand ( time(NULL) );
-    int startHere;
-    if((int)c->msg_types_to_listen_for->size() < 3)
-       startHere = 0;
-    else
-       startHere = rand() % ((int)c->msg_types_to_listen_for->size()-2) + 1;
-    int i = 0;
-    
-    for (it = c->msg_types_to_listen_for->begin(); it != c->msg_types_to_listen_for->end(); it++)
-    {
-        i++;
-        if(i > startHere && i < startHere+2)
-        {
-            gsw_procure(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
-            
-            int t = gsw_offset_for_message_type(c->_wbd_listeners[(*it).second], ADD_BROADCAST_TYPE_MSG_TYPE);
-
-            gu_simple_whiteboard *wb = c->_wbd_listeners[(*it).second]->wb;
-            gu_simple_message *m = gsw_next_message(wb, t);
-            gu_strlcpy(m->wbmsg.data, (*it).first.c_str(), sizeof(m->wbmsg.data));
-            m->wbmsg.len = strlen(m->wbmsg.data) + 1;        
-            m->wbmsg.type = 3;//string type
-            gsw_increment(wb, t);
-            
-            gsw_vacate(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
-            gsw_signal_subscribers(c->_wbd_listeners[(*it).second]->wb);        
-            fprintf(stderr, "\t\t%s\t%d\n", (char *)(*it).first.c_str(), (int)(*it).second);
-        }
-    }
-    pthread_mutex_unlock(c->_injection_mutex);                        
-    
+//
+//    pthread_mutex_lock(c->_injection_mutex);                        
+//    std::list<std::pair<std::string, int> >::iterator it;
+//    fprintf(stderr, "Missing %d\n",     (int)c->msg_types_to_listen_for->size());
+//    
+//    srand ( time(NULL) );
+//    int startHere;
+//    if((int)c->msg_types_to_listen_for->size() < 3)
+//       startHere = 0;
+//    else
+//       startHere = rand() % ((int)c->msg_types_to_listen_for->size()-2) + 1;
+//    int i = 0;
+//    
+//    for (it = c->msg_types_to_listen_for->begin(); it != c->msg_types_to_listen_for->end(); it++)
+//    {
+//        i++;
+//        if(i > startHere && i < startHere+2)
+//        {
+//            gsw_procure(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
+//            
+//            int t = gsw_offset_for_message_type(c->_wbd_listeners[(*it).second], ADD_BROADCAST_TYPE_MSG_TYPE);
+//
+//            gu_simple_whiteboard *wb = c->_wbd_listeners[(*it).second]->wb;
+//            gu_simple_message *m = gsw_next_message(wb, t);
+//            gu_strlcpy(m->wbmsg.data, (*it).first.c_str(), sizeof(m->wbmsg.data));
+//            m->wbmsg.len = strlen(m->wbmsg.data) + 1;        
+//            m->wbmsg.type = 3;//string type
+//            gsw_increment(wb, t);
+//            
+//            gsw_vacate(c->_wbd_listeners[(*it).second]->sem, GSW_SEM_PUTMSG);
+//            gsw_signal_subscribers(c->_wbd_listeners[(*it).second]->wb);        
+//            fprintf(stderr, "\t\t%s\t%d\n", (char *)(*it).first.c_str(), (int)(*it).second);
+//        }
+//    }
+//    pthread_mutex_unlock(c->_injection_mutex);                        
+//    
 #ifdef OUTPUT_LISTENER_IN_DEBUG    
     if(c->iter_listener > 0)
         fprintf(stderr, "got: %d\ttotal: %d\thash: %d\tmsg: %d\tInj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
@@ -250,20 +250,20 @@ void BridgeListener::listenSingleMethod()
 
                 for(int j = 0; j < HASHES_PER_PACKET; j++)
                 {
-
-                    pthread_mutex_lock(_injection_mutex);                        
-                    std::list<std::pair<std::string, int> >::iterator it;
-                    
-                    for (it = msg_types_to_listen_for->begin(); it != msg_types_to_listen_for->end(); it++)
-                    {
-                        if((*it).first.compare(std::string(hashToRecv.typeName[j].hash.string)) == 0 && (current_poster) == ((*it).second))
-                        {
-                            msg_types_to_listen_for->erase(it);
-                            break;
-                        }
-                    }
-                    pthread_mutex_unlock(_injection_mutex);                    
-                    
+//
+//                    pthread_mutex_lock(_injection_mutex);                        
+//                    std::list<std::pair<std::string, int> >::iterator it;
+//                    
+//                    for (it = msg_types_to_listen_for->begin(); it != msg_types_to_listen_for->end(); it++)
+//                    {
+//                        if((*it).first.compare(std::string(hashToRecv.typeName[j].hash.string)) == 0 && (current_poster) == ((*it).second))
+//                        {
+//                            msg_types_to_listen_for->erase(it);
+//                            break;
+//                        }
+//                    }
+//                    pthread_mutex_unlock(_injection_mutex);                    
+//                    
                     indexLookup[current_poster][hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
                 }
             }
@@ -282,6 +282,7 @@ void BridgeListener::listenSingleMethod()
                     targetMachine = injToRecv.targetMachineId[j];
                     if((get_udp_id()+1) == targetMachine || targetMachine == guWhiteboard::NUM_OF_MACHINES+1)
                     {
+                        /*
                         std::vector<std::string>::iterator it;                        
                         // iterator to vector element:
                         if(std::string(injToRecv.type[j].hash.string).compare(std::string(ADD_BROADCAST_TYPE_MSG_TYPE)) != 0)
@@ -296,6 +297,15 @@ void BridgeListener::listenSingleMethod()
                                 fprintf(stderr, "Will now replicate:\t%s\n", injToRecv.type[j].hash.string);                            
                                 msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
                             }
+                        }*/
+                        
+                        //Old but working
+                        std::vector<std::string>::iterator it;                        
+                        // iterator to vector element:
+                        it = find (msg_types_to_broadcast->begin(), msg_types_to_broadcast->end(), std::string(injToRecv.type[j].hash.string));
+                        if(it == msg_types_to_broadcast->end())
+                        {
+                            msg_types_to_broadcast->push_back(std::string(injToRecv.type[j].hash.string));
                         }
                            
                         int t = gsw_offset_for_message_type(_wbd_injection->_wbd, injToRecv.type[j].hash.string);
