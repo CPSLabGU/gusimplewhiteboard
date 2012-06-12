@@ -90,6 +90,7 @@ extern "C"
 
 #define GSW_DEFAULT_NAME "simple_whiteboard"
 #define WHITEBOARD_SIGNAL       SIGUSR2
+#define WHITEBOARD_POLL_PERIOD  10000
 
 enum gsw_message_types
 {

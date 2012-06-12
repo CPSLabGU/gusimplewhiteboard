@@ -468,7 +468,7 @@ void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc)
 void gsw_signal_subscribers(gu_simple_whiteboard *wb)
 {
         wb->eventcount++;
-#ifndef __APPLE__
+#ifdef USE_WHITEBOARD_SIGNAL
         for (int i = 0; i < wb->subscribed; i++)
         {
                 pid_t proc = wb->processes[i];
@@ -499,7 +499,7 @@ static void monitor_subscriptions(void *param)
                         if (wbd && wbd->callback_queue)
                                 dispatch_async_f(wbd->callback_queue, wbd, subscription_callback);
                 }
-                else usleep(1000);
+                else usleep(WHITEBOARD_POLL_PERIOD);
         }
         wbd->got_monitor = false;
 }
@@ -529,6 +529,6 @@ void gsw_remove_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         while (wbd->got_monitor)
         {
                 wbd->exit_monitor = true;
-                usleep(1000);
+                usleep(2*WHITEBOARD_POLL_PERIOD);
         }
 }
