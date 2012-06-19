@@ -93,7 +93,7 @@
 #define NUM_OF_LISTENERS 3 //Does not listen to itself (four total)
 #define NUM_OF_BROADCASTERS (NUM_OF_LISTENERS+1)
 
-#define READ_TIMEOUT 300
+#define READ_TIMEOUT 1000
 //#define GENERATION_BROADCASTING
 
 #define MESSAGES_TO_SEND_PER_HASH 3 //3 works well
