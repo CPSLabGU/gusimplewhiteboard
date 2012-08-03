@@ -75,6 +75,7 @@
 #endif
 
 #define NEW_MSG_ID -1
+#define GLOBAL_MSG_ID -2
 
 namespace guWhiteboard 
 {
@@ -85,6 +86,7 @@ namespace guWhiteboard
         typedef struct gsw_hash_info
         {
             gsw_hash_info() { msg_offset = NEW_MSG_ID; }    
+            gsw_hash_info(int offset) { msg_offset = offset; }                
             int msg_offset;
         } gsw_hash_info;
     
@@ -124,25 +126,14 @@ namespace guWhiteboard
 		 */		
                 virtual ~Whiteboard();           
 
-		/**
-		 * Add Message
-		 * Adds a message to the whiteboard that the API is connected to
-		 * @param[in] type The string type associated with the message object
-		 * @param[in] msg The message object to post to the whiteboard
+                /**
+                 * Add Message
+                 * Adds a message to the whiteboard that the API is connected to
+                 * @param[in] hashinfo Contains the offset index to access a message
+                 * @param[in] msg The message object to post to the whiteboard
                  * @param[in] nonatomic Add quickly without grabbing the semaphore
                  * @param[in] notifySubscribers Signal subscribers (default: true)
-                 * @param[out] hashinfo Allows use of second addMessage method to avoid hashing again
-		 */
-                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true, gsw_hash_info *hashinfo = NULL);
-
-        /**
-         * Add Message
-         * Adds a message to the whiteboard that the API is connected to
-         * @param[in] hashinfo Contains the offset index to access a message
-         * @param[in] msg The message object to post to the whiteboard
-         * @param[in] nonatomic Add quickly without grabbing the semaphore
-         * @param[in] notifySubscribers Signal subscribers (default: true)
-         */            
+                 */            
                 void addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);            
 
 		/**
@@ -154,25 +145,100 @@ namespace guWhiteboard
 			METHOD_OK,		/**< No errors detected. */ 
 			METHOD_FAIL,		/**< Errors detected. */ 
 		} WBResult;
-
-                /**
-		 * Get Message
-		 * Gets a message from a simple whiteboard
-		 * @param[in] type The string type associated with the message object
-		 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not                  
-		 * @return The message object
-		 */
-		WBMsg getMessage(std::string type, WBResult *result = NULL);
-
             
-        /**
-         * Get Message
-         * Gets a message from a simple whiteboard
-         * @param[in] hashinfo Contains the offset index to access a message
-         * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
-         * @return The message object
-         */
-        WBMsg getMessage(gsw_hash_info *hashinfo, WBResult *result = NULL);
+                /**
+                 * Get Message
+                 * Gets a message from a simple whiteboard
+                 * @param[in] hashinfo Contains the offset index to access a message
+                 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
+                 * @return The message object
+                 */
+                WBMsg getMessage(gsw_hash_info *hashinfo, WBResult *result = NULL);
+            
+                /**
+                 * subscription callback: not really public!
+                 */
+                void subscriptionCallback(void);
+                
+                /**
+                 * Subscribe To Message
+                 * Subscribes to a message type on a whiteboard or whiteboards
+                 * @param[in] type The string type to subscribe to
+                 * @param[in] func The function to call when a message of the type enter is added		 
+                 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+                 */
+                virtual void subscribeToMessage(gsw_hash_info *hashinfo, WBFunctorBase *func, WBResult &result);
+                
+                /**
+                 * Unsubscribe To Message (sic!)
+                 * Unsubscribes from a message type on a whiteboard or whiteboards
+                 * @param[in] type The string type to unsubscribe from
+                 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+                 */		
+                void unsubscribeToMessage(gsw_hash_info *hashinfo, WBResult &result);            
+                
+                /**
+                 * create a hash offset from message type, needed for adding, getting from WB
+                 * @param[in] type The string type get the offset for
+                 */
+                gsw_hash_info *getTypeOffset(std::string type);            
+                
+                static WBMsg getWBMsg(gu_simple_message *m)
+                {
+                    switch (m->wbmsg.type)
+                    {
+                        case WBMsg::TypeBool:
+                            return WBMsg((bool)m->sint);
+                            
+                        case WBMsg::TypeInt:
+                            return WBMsg(m->sint);
+                            
+                        case WBMsg::TypeFloat:
+                            return WBMsg(m->sfloat);
+                            
+                        case WBMsg::TypeString:
+                            return WBMsg(m->wbmsg.data);
+                            
+                        case WBMsg::TypeBinary:
+                            return WBMsg(m->wbmsg.data, m->wbmsg.len);
+                            
+                        case WBMsg::TypeArray:
+                        {
+                            std::vector<int> *v = new std::vector<int>();
+                            for (int i = 0; i < m->wbmsg.len; i++)
+                                v->push_back(m->ivec[i]);
+                            return WBMsg(v, true);
+                        }
+                        default:
+                            return WBMsg();
+                    }
+                    /* NOTREACHED */
+                }                     
+    
+            
+            
+            
+            
+            
+                /**
+                 * Add Message
+                 * Adds a message to the whiteboard that the API is connected to
+                 * @param[in] type The string type associated with the message object
+                 * @param[in] msg The message object to post to the whiteboard
+                 * @param[in] nonatomic Add quickly without grabbing the semaphore
+                 * @param[in] notifySubscribers Signal subscribers (default: true)
+                 */
+                void addMessage(const std::string &type, const WBMsg &msg, bool nonatomic=false, bool notifySubscribers=true);
+                
+                /**
+                 * Get Message
+                 * Gets a message from a simple whiteboard
+                 * @param[in] type The string type associated with the message object
+                 * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not                  
+                 * @return The message object
+                 */
+                WBMsg getMessage(std::string type, WBResult *result = NULL);
+            
             
 		/**
 		 * Subscribe To Message
@@ -190,45 +256,8 @@ namespace guWhiteboard
 		 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
 		 */		
 		void unsubscribeToMessage(std::string type, WBResult &result);
-
-                /**
-                 * subscription callback: not really public!
-                 */
-                void subscriptionCallback(void);
             
-            
-            static WBMsg getWBMsg(gu_simple_message *m)
-            {
-                switch (m->wbmsg.type)
-                {
-                    case WBMsg::TypeBool:
-                        return WBMsg((bool)m->sint);
-                        
-                    case WBMsg::TypeInt:
-                        return WBMsg(m->sint);
-                        
-                    case WBMsg::TypeFloat:
-                        return WBMsg(m->sfloat);
-                        
-                    case WBMsg::TypeString:
-                        return WBMsg(m->wbmsg.data);
-                        
-                    case WBMsg::TypeBinary:
-                        return WBMsg(m->wbmsg.data, m->wbmsg.len);
-                        
-                    case WBMsg::TypeArray:
-                    {
-                        std::vector<int> *v = new std::vector<int>();
-                        for (int i = 0; i < m->wbmsg.len; i++)
-                            v->push_back(m->ivec[i]);
-                        return WBMsg(v, true);
-                    }
-                    default:
-                        return WBMsg();
-                }
-                /* NOTREACHED */
-            }            
-        };    
+        };       
 }
 
 #endif

@@ -183,72 +183,7 @@ void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nona
         if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
-        
-void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers, gsw_hash_info *hashinfo)
-{
-        int t = gsw_offset_for_message_type(_wbd, type.c_str());
-        if(hashinfo != NULL)
-            hashinfo->msg_offset = t;
-    
-#ifdef DEBUG
-        if (nonatomic < 0 || nonatomic > 1)
-                cerr << " *** Nonatomic parameter " << nonatomic << " not bool (are you using a life span?) ***" << endl;
-#endif
-        if (!nonatomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
-
-        gu_simple_whiteboard *wb = _wbd->wb;
-        gu_simple_message *m = gsw_next_message(wb, t);
-        m->wbmsg.type = msg.getType();
-    
-
-        switch (m->wbmsg.type)
-        {
-                case WBMsg::TypeEmpty:
-                        m->wbmsg.len = 0;
-                        break;
-
-                case WBMsg::TypeBool:
-                        m->wbmsg.len = sizeof(int);
-                        m->sint = msg.getBoolValue();
-                        break;
-
-                case WBMsg::TypeInt:
-                        m->wbmsg.len = sizeof(int);
-                        m->sint = msg.getIntValue();
-                        break;
-
-                case WBMsg::TypeFloat:
-                        m->wbmsg.len = sizeof(float);
-                        m->sfloat = msg.getFloatValue();
-                        break;
-
-                case WBMsg::TypeString:
-                        gu_strlcpy(m->wbmsg.data, msg.getStringValue().c_str(), sizeof(m->wbmsg.data));
-                        m->wbmsg.len = strlen(m->wbmsg.data) + 1;
-                        break;
-
-                case WBMsg::TypeArray:
-                {
-                        int k = 0;
-                        for (vector<int>::const_iterator i = msg.getArrayValue().begin(); i < msg.getArrayValue().end(); i++)
-                                m->ivec[k++] = *i;
-                        m->wbmsg.len = k;
-                        break;
-                }
-                case WBMsg::TypeBinary:
-                {
-                        int len = msg.getSizeInBytes();
-                        if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
-                        m->wbmsg.len = len;
-                        if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
-                        break;
-                }
-        }
-        gsw_increment(wb, t);
-        if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
-        if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
-}
-
+ 
 WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
 {
     int t = hashinfo->msg_offset;
@@ -265,44 +200,39 @@ WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
     return getWBMsg(m);
 }
 
-WBMsg Whiteboard::getMessage(string type, WBResult *result)
+gsw_hash_info *Whiteboard::getTypeOffset(std::string type)
 {
-        int t = gsw_offset_for_message_type(_wbd, type.c_str());
-    
-        gu_simple_message *m = gsw_current_message(_wbd->wb, t);
-
-        if (result)
-        {
-                if (m->wbmsg.type || m->wbmsg.len)
-                        *result = METHOD_OK;
-                else
-                        *result = METHOD_FAIL;
-        }
-        return getWBMsg(m);
+    if (type != "*")
+    {
+        return new gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
+    }
+    else 
+    {
+        return new gsw_hash_info(GLOBAL_MSG_ID);
+    }
 }
 
 #pragma mark - subscription and callbacks
 
-void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
+void Whiteboard::subscribeToMessage(gsw_hash_info *hashinfo, WBFunctorBase *func, WBResult &result)
 {
-        result = Whiteboard::METHOD_OK;
-
-        gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
-        int offs = -1, current = -1;
-        if (type != "*")
-        {
-                offs = gsw_offset_for_message_type(_wbd, type.c_str());
-                current = _wbd->wb->indexes[offs];
-        }
-        else for (int i = 0; i < _wbd->wb->num_types; i++)      // subscribe to all
-                cball_indexes[i] = _wbd->wb->indexes[i];
-        _sub.push_back(callback_descr(func, offs, current));
-        gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
-
-        gsw_add_wbd_signal_handler(_wbd);
-        gsw_add_process(_wbd, getpid());
+    result = Whiteboard::METHOD_OK;
+    
+    gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
+    int offs = -1, current = -1;
+    if (hashinfo->msg_offset != GLOBAL_MSG_ID) // type != "*"
+    {
+        offs = hashinfo->msg_offset;
+        current = _wbd->wb->indexes[offs];
+    }
+    else for (int i = 0; i < _wbd->wb->num_types; i++)      // subscribe to all
+        cball_indexes[i] = _wbd->wb->indexes[i];
+    _sub.push_back(callback_descr(func, offs, current));
+    gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
+    
+    gsw_add_wbd_signal_handler(_wbd);
+    gsw_add_process(_wbd, getpid());
 }
-
 
 struct callback_helper
 {
@@ -362,25 +292,49 @@ void Whiteboard::subscriptionCallback(void)
 }
 
 
+void Whiteboard::unsubscribeToMessage(gsw_hash_info *hashinfo, WBResult &result)
+{
+    result = Whiteboard::METHOD_FAIL;
+    
+    gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
+    for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
+    {
+        callback_descr &descr = *i;
+        int offs = descr.type;
+        if ((offs == -1 && hashinfo->msg_offset == GLOBAL_MSG_ID) ||
+            hashinfo->msg_offset == offs)
+        {
+            _sub.erase(i);
+            result = Whiteboard::METHOD_OK;
+            break;
+        }
+    }
+    if (!_sub.size()) gsw_remove_process(_wbd, getpid());
+    gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
+}
+
+#pragma mark - functions NOT using hash container
+
+void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
+{
+    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));
+    addMessage(&tmp, msg, nonatomic, notifySubscribers);
+}
+
+WBMsg Whiteboard::getMessage(string type, WBResult *result)
+{
+    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    return getMessage(&tmp, result);
+}
+
+void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
+{
+    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    return subscribeToMessage(&tmp, func, result);
+}
+
 void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
 {
-        gu_simple_whiteboard *wb = _wbd->wb;
-
-        result = Whiteboard::METHOD_FAIL;
-
-        gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
-        for (vector<callback_descr>::iterator i = _sub.begin(); i != _sub.end(); i++)
-        {
-                callback_descr &descr = *i;
-                int offs = descr.type;
-                if ((offs == -1 && type == "*") ||
-                    type == wb->typenames[offs].hash.string)
-                {
-                        _sub.erase(i);
-                        result = Whiteboard::METHOD_OK;
-                        break;
-                }
-        }
-        if (!_sub.size()) gsw_remove_process(_wbd, getpid());
-        gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
+    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    return unsubscribeToMessage(&tmp, result);
 }
