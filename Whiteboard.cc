@@ -329,7 +329,16 @@ WBMsg Whiteboard::getMessage(string type, WBResult *result)
 
 void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
 {
-    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    gsw_hash_info tmp;
+    if (type != "*")
+    {
+        tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    }
+    else 
+    {
+        tmp = gsw_hash_info(GLOBAL_MSG_ID);
+    }    
+
     return subscribeToMessage(&tmp, func, result);
 }
 
