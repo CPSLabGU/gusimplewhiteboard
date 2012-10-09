@@ -159,5 +159,5 @@ void RemoteWhiteboard::subscribeToMessage(const std::string &type, WBFunctorBase
 {
     addReplicationType(type);
     Whiteboard::subscribeToMessage(type, func, result);
-    protected_usleep(200000);
+    protected_usleep(30000);
 }
