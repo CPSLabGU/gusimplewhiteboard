@@ -389,10 +389,10 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     long int min = currTime.tv_sec / 60;
     long int target = min * 60; //removes seconds
     
-    int secs = currTime.tv_sec - target;
+    int secs = (int)currTime.tv_sec - target;
     
     //Start at next 10s mark
-    target += ((secs/10)+1)*10;
+    target += secs+1;//((secs/10)+1)*10;
 
     
     timespec when;
