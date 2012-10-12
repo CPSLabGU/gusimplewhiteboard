@@ -102,9 +102,9 @@ static void listenMonitor(void *listener)
 //    pthread_mutex_unlock(c->_injection_mutex);                        
 //    
 #ifdef OUTPUT_LISTENER_IN_DEBUG    
-    if(c->iter_listener > 0)
-        fprintf(stderr, "got: %d\ttotal: %d\thash: %d\tmsg: %d\tInj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
-#endif    
+//    if(c->iter_listener > 0)
+//        fprintf(stderr, "got: %d\ttotal: %d\thash: %d\tmsg: %d\tInj: %d\tavg read %llu\n", c->gotHashPackets+c->gotMessagePackets+c->gotInjectionPackets, c->total_recv, c->gotHashPackets, c->gotMessagePackets, c->gotInjectionPackets, (c->avgRecvTime/c->iter_listener));
+#endif
     c->gotHashPackets = 0;
     c->gotInjectionPackets = 0;
     c->lostPackets = 0;
@@ -434,7 +434,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
         perror("bind() failed");        
         return;
     }
-    fprintf(stderr, "UDP Bridge running . . .\n");
+//    fprintf(stderr, "UDP Bridge running . . .\n");
     
     
     //Add pid to whiteboard, used for checking if the bridge is running
@@ -483,7 +483,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     
     //Debug output methods
 #ifdef DEBUG
-    fprintf(stderr, "\t\t\t\t\t\t\t\tWait %ld seconds\n", (target-(min*60))-secs);
+//    fprintf(stderr, "\t\t\t\t\t\t\t\tWait %ld seconds\n", (target-(min*60))-secs);
     
     dispatch_source_t listener_monitor = CreateDispatchTimer(&when,
                                                              (TS_INTERVAL*1000ull),

@@ -276,9 +276,9 @@ int setup_udp()
     
     
 #ifdef DEBUG
-    fprintf(stderr, "\nMessage on the wb: %d\n\nMessages to a packet: %d\nPackets to send all messages: %d\nHashes to a packet: %d\nPackets to send all hashes: %d\nInjections to a packet: %d\n\nCYCLES_PER_SECOND: %d\nPACKETS_PER_TS_INTERVAL %d\n", _wbd->wb->num_types, MESSAGES_PER_PACKET, TOTAL_MESSAGE_PACKETS, HASHES_PER_PACKET, TOTAL_HASH_PACKETS, INJECTIONS_PER_PACKET, CYCLES_PER_SEC, PACKETS_PER_TS_INTERVAL);
-    
-    fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
+//    fprintf(stderr, "\nMessage on the wb: %d\n\nMessages to a packet: %d\nPackets to send all messages: %d\nHashes to a packet: %d\nPackets to send all hashes: %d\nInjections to a packet: %d\n\nCYCLES_PER_SECOND: %d\nPACKETS_PER_TS_INTERVAL %d\n", _wbd->wb->num_types, MESSAGES_PER_PACKET, TOTAL_MESSAGE_PACKETS, HASHES_PER_PACKET, TOTAL_HASH_PACKETS, INJECTIONS_PER_PACKET, CYCLES_PER_SEC, PACKETS_PER_TS_INTERVAL);
+//    
+//    fprintf(stderr, "\nMessages sizes:\n\tgsw_single_message:\t%d\n\tgsw_hash_message:\t%d\n\n", (int)sizeof(gsw_single_message), (int)sizeof(gsw_hash_message));
 #endif
     
 
@@ -302,7 +302,7 @@ int setup_udp()
 
 int main(int argc, char *argv[])
 {
-    fprintf(stderr, "\n **** GU UDP WHITEBOARD BRIDGE ****\n (c) 2012 Carl Lusty\n\n");    
+    fprintf(stderr, " **** GU UDP WHITEBOARD BRIDGE ****\t (c) 2012 Carl Lusty\n\n");    
     
 
     if(getplayernumber() > 0) //Use actual id to avoid running NTP on other machines, assumes it has its own clock sync
@@ -314,7 +314,7 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
         fprintf(stderr, " **** Done Running NTP ****\n\n\n");        */
-        fprintf(stderr, " **** Running Bridge ****\n");                    
+//        fprintf(stderr, " **** Running Bridge ****\n");
     }
     else
     {
