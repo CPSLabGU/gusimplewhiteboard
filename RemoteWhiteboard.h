@@ -64,7 +64,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include "guudpbridge/guudpbridgenetworkconfig.h"
+#include "guudpbridge/guudpConfig.h"
 #include "gusimplewhiteboard.h"
 #include "WhiteboardConstants.h"
 #include "Whiteboard.h"

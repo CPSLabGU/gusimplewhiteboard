@@ -59,7 +59,7 @@
 #include <cstdio>
 #include <gu_util.h>
 #include "RemoteWhiteboard.h"
-#include "guudpbridge/guudpBridgeManager.h"
+#include "guudpbridge/guudpManager.h"
 #include <signal.h> // for kill()
 //#include <stdlib.h> // for daemon()
 //#include <sys/types.h>
@@ -86,7 +86,7 @@ static void *monitor_bridge(void *local_whiteboard)
         if (udp_pid_fail(pid))
         {
             fprintf(stderr, "Attempt UDP Bridge start . . . \n");
-            setup_udp();
+            setup_udp_with_id(-1);
         }
         if(init_run)
         {
