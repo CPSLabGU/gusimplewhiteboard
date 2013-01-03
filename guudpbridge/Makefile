@@ -7,7 +7,7 @@ BIN=guudpbridge
 
 ALL_TARGETS=host robot
 
-SPECIFIC_CPPFLAGS=-DBRIDGE_MAIN=1
+CPP_SRCS=main.cpp
 
 .include "../../../mk/remotewhiteboard.mk"	# required for whiteboard clients
 .include "../../../mk/mipal.mk"		# comes last!

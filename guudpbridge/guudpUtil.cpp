@@ -1,62 +1,12 @@
 /*
- *  guudpbridgenetworkutil.h
- *  
- *  Created by Carl Lusty on 15/2/12.
+ *  guudpbridgenetworkutil.cpp
+ *
+ *  Created by Carl Lusty on 2/1/13.
  *  Copyright (c) 2011 Carl Lusty.
  *  All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above
- *    copyright notice, this list of conditions and the following
- *    disclaimer in the documentation and/or other materials
- *    provided with the distribution.
- *
- * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgement:
- *
- *        This product includes software developed by Rene Hexel.
- *
- * 4. Neither the name of the author nor the names of contributors
- *    may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * -----------------------------------------------------------------------
- * This program is free software; you can redistribute it and/or
- * modify it under the above terms or under the terms of the GNU
- * General Public License as published by the Free Software Foundation;
- * either version 2 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see http://www.gnu.org/licenses/
- * or write to the Free Software Foundation, Inc., 51 Franklin Street,
- * Fifth Floor, Boston, MA  02110-1301, USA.
- *
  */
 
-#include "guudpbridgenetworkutil.h"
+#include "guudpUtil.h"
 
 
 
@@ -210,6 +160,53 @@ int gsw_hash_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *
 }
 
 
+void convWBMsgToSimpleMsg(WBMsg *value, gsw_simple_message *m)
+{
+        m->wbmsg.type = value->getType();
+        switch (m->wbmsg.type)
+        {
+                case WBMsg::TypeEmpty:
+                        m->wbmsg.len = 0;
+                        break;
+                        
+                case WBMsg::TypeBool:
+                        m->wbmsg.len = sizeof(int);
+                        m->sint = value->getBoolValue();
+                        break;
+                        
+                case WBMsg::TypeInt:
+                        m->wbmsg.len = sizeof(int);
+                        m->sint = value->getIntValue();
+                        break;
+                        
+                case WBMsg::TypeFloat:
+                        m->wbmsg.len = sizeof(float);
+                        m->sfloat = value->getFloatValue();
+                        break;
+                        
+                case WBMsg::TypeString:
+                        gu_strlcpy(m->wbmsg.data, value->getStringValue().c_str(), sizeof(m->wbmsg.data));
+                        m->wbmsg.len = strlen(m->wbmsg.data) + 1;
+                        break;
+                        
+                case WBMsg::TypeArray:
+                {
+                        int k = 0;
+                        for (std::vector<int>::const_iterator i = value->getArrayValue().begin(); i < value->getArrayValue().end(); i++)
+                                m->ivec[k++] = *i;
+                        m->wbmsg.len = k;
+                        break;
+                }
+                case WBMsg::TypeBinary:
+                {
+                        int len = value->getSizeInBytes();
+                        if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
+                        m->wbmsg.len = len;
+                        if (len) memcpy(m->wbmsg.data, value->getBinaryValue(), len);
+                        break;
+                }
+        }
+}
 
 //https://developer.apple.com/library/mac/#documentation/General/Conceptual/ConcurrencyProgrammingGuide/GCDWorkQueues/GCDWorkQueues.html
 dispatch_source_t CreateDispatchTimer(timespec *when,
@@ -230,163 +227,4 @@ dispatch_source_t CreateDispatchTimer(timespec *when,
         dispatch_resume(timer);
     }
     return timer;
-}
-
-
-void hash2buf(unsigned char *dst, gsw_hash_message *src)
-{
-    unsigned char *off;
-    
-    off = dst;
-    
-    memcpy(off, (void*)&src->packetInfo, sizeof src->packetInfo);
-    off += sizeof src->packetInfo;
-    
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    memcpy(off, (void*)&src->uniquePacketId, sizeof src->uniquePacketId);
-    off += sizeof src->uniquePacketId;
-#endif
-    
-    memcpy(off, (void*)&src->udpId, sizeof src->udpId);
-    off += sizeof src->udpId;
-    
-    memcpy(off, (void*)&src->offset, sizeof src->offset);
-    off += sizeof src->offset;
-    
-    memcpy(off, (void*)&src->typeName, sizeof src->typeName);
-    off += sizeof src->typeName;
-}
-
-void buf2hash(gsw_hash_message *dst, unsigned char *src)
-{
-    unsigned char *off;
-    
-    off = src;
-    
-    memcpy((void*)&dst->packetInfo, off, sizeof dst->packetInfo);
-    off += sizeof dst->packetInfo;
-    
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    memcpy((void*)&dst->uniquePacketId, off, sizeof dst->uniquePacketId);
-    off += sizeof dst->uniquePacketId;
-#endif  
-    
-    memcpy((void*)&dst->udpId, off, sizeof dst->udpId);
-    off += sizeof dst->udpId;
-    
-    memcpy((void*)&dst->offset, off, sizeof dst->offset);
-    off += sizeof dst->offset;
-    
-    memcpy((void*)&dst->typeName, off, sizeof dst->typeName);
-    off += sizeof dst->typeName;
-}
-
-void msg2buf(unsigned char *dst, gsw_single_message *src)
-{
-    unsigned char *off;
-    
-    off = dst;
-    
-    memcpy(off, (void*)&src->packetInfo, sizeof src->packetInfo);
-    off += sizeof src->packetInfo;
-    
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    memcpy(off, (void*)&src->uniquePacketId, sizeof src->uniquePacketId);
-    off += sizeof src->uniquePacketId;
-#endif
-    
-    memcpy(off, (void*)&src->udpId, sizeof src->udpId);
-    off += sizeof src->udpId;
-    
-    memcpy(off, (void*)&src->typeOffset, sizeof src->typeOffset);
-    off += sizeof src->typeOffset;
-    
-    memcpy(off, (void*)&src->current_generation, sizeof src->current_generation);
-    off += sizeof src->current_generation;    
-    
-#ifdef GENERATION_BROADCASTING
-    //sub array might not copy, untested
-    memcpy(off, (void*)&src->message_generations, sizeof src->message_generations);
-    off += sizeof src->message_generations;
-#else 
-    memcpy(off, (void*)&src->message_generations, sizeof src->message_generations);
-    off += sizeof src->message_generations;    
-#endif    
-}
-
-void buf2msg(gsw_single_message *dst, unsigned char *src)
-{
-    unsigned char *off;
-    
-    off = src;
-    
-    memcpy((void*)&dst->packetInfo, off, sizeof dst->packetInfo);
-    off += sizeof dst->packetInfo;
-    
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    memcpy((void*)&dst->uniquePacketId, off, sizeof dst->uniquePacketId);
-    off += sizeof dst->uniquePacketId;
-#endif  
-    
-    memcpy((void*)&dst->udpId, off, sizeof dst->udpId);
-    off += sizeof dst->udpId;
-    
-    memcpy((void*)&dst->typeOffset, off, sizeof dst->typeOffset);
-    off += sizeof dst->typeOffset;
-    
-    memcpy((void*)&dst->current_generation, off, sizeof dst->current_generation);
-    off += sizeof dst->current_generation;
-    
-#ifdef GENERATION_BROADCASTING
-    //sub array might not copy, untested    
-    memcpy((void*)&dst->message_generations, off, sizeof dst->message_generations);
-    off += sizeof dst->message_generations;
-#else 
-    memcpy((void*)&dst->message_generations, off, sizeof dst->message_generations);
-    off += sizeof dst->message_generations;    
-#endif    
-}
-
-void buf2inj(gsw_injection_packet *dst, unsigned char *src)
-{
-    unsigned char *off;
-    
-    off = src;
-    
-    memcpy((void*)&dst->packetInfo, off, sizeof dst->packetInfo);
-    off += sizeof dst->packetInfo;
-    
-    memcpy((void*)&dst->numOfInjectionMsgs, off, sizeof dst->numOfInjectionMsgs);
-    off += sizeof dst->numOfInjectionMsgs;
-    
-    memcpy((void*)&dst->targetMachineId, off, sizeof dst->targetMachineId);
-    off += sizeof dst->targetMachineId;    
-    
-    memcpy((void*)&dst->type, off, sizeof dst->type);
-    off += sizeof dst->type;    
-    
-    memcpy((void*)&dst->content, off, sizeof dst->content);
-    off += sizeof dst->content;        
-}
-
-void inj2buf(unsigned char *dst, gsw_injection_packet *src)
-{
-    unsigned char *off;
-    
-    off = dst;
-    
-    memcpy(off, (void*)&src->packetInfo, sizeof src->packetInfo);
-    off += sizeof src->packetInfo;
-
-    memcpy(off, (void*)&src->numOfInjectionMsgs, sizeof src->numOfInjectionMsgs);
-    off += sizeof src->numOfInjectionMsgs;
-    
-    memcpy(off, (void*)&src->targetMachineId, sizeof src->targetMachineId);
-    off += sizeof src->targetMachineId;
-    
-    memcpy(off, (void*)&src->type, sizeof src->type);
-    off += sizeof src->type;
-    
-    memcpy(off, (void*)&src->content, sizeof src->content);
-    off += sizeof src->content;    
 }

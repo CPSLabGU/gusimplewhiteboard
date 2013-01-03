@@ -1,60 +1,11 @@
 /*
  *  guudpbridgenetworkconfig.h
  *  
- *  Created by Carl Lusty on 15/2/12.
+ *  Created by Carl Lusty on 2/1/13.
  *  Copyright (c) 2011 Carl Lusty.
  *  All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above
- *    copyright notice, this list of conditions and the following
- *    disclaimer in the documentation and/or other materials
- *    provided with the distribution.
- *
- * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgement:
- *
- *        This product includes software developed by Rene Hexel.
- *
- * 4. Neither the name of the author nor the names of contributors
- *    may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * -----------------------------------------------------------------------
- * This program is free software; you can redistribute it and/or
- * modify it under the above terms or under the terms of the GNU
- * General Public License as published by the Free Software Foundation;
- * either version 2 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see http://www.gnu.org/licenses/
- * or write to the Free Software Foundation, Inc., 51 Franklin Street,
- * Fifth Floor, Boston, MA  02110-1301, USA.
- *
- */
+*/
+
 #ifndef guudpbridgenetworkconfig_h
 #define guudpbridgenetworkconfig_h
 
@@ -103,7 +54,6 @@
 #define MULTICASTADDRESS "224.42.42.42"	// the multicast address
 #define BROADCASTADDRESS "255.255.255.255"
 
-//Might want to look into MTU Path Descovery however for the moment assume MTU of 1500 (-100 for overhead) 1400
 #define MTU 1459 //1500 WiFi MTU (assumed) - 40 for IP Header & - 1 to keep us under the MTU
 #define REMOTE_WHITEBOARD_BASENAME "guudpwhiteboard"
 #define ADD_BROADCAST_TYPE_MSG_TYPE "GSW_AddBroadcastType"
@@ -187,13 +137,6 @@ typedef struct gsw_simple_whiteboard_hash_message
      * message type, ie. Hash or Message
      */    
     int8_t packetInfo;
-
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    /**
-     * ID for detecting duplicated packets
-     */    
-    int32_t uniquePacketId;    
-#endif    
     
     /**
      * broadcaster id, used for timing and error checking
@@ -218,13 +161,6 @@ typedef struct gsw_simple_whiteboard_single_message
      * message type, ie. Hash or Message
      */        
     int8_t packetInfo;
-    
-#ifdef DETECT_AND_STOP_UDP_DUPLICATION
-    /**
-     * ID for detecting duplicated packets
-     */    
-    int32_t uniquePacketId;    
-#endif    
 
     /**
      * broadcaster id, used for timing and error checking
@@ -284,8 +220,7 @@ typedef struct gsw_simple_whiteboard_injection_packet
 
 } gsw_injection_packet;
 
-class gsw_injection_message {
-public:
+struct gsw_injection_message {
     u_int8_t machineId;
     gu_simple_message type;
     gu_simple_message m;    //content
