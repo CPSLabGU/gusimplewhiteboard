@@ -21,6 +21,21 @@ namespace guWhiteboard
 	const char *kUpdateAllProofs = "updateProofs";
 	const char *kUpdateProof = "updateProofsForOutput";
 	const char *kUpdateAllProofsForTheory = "updateProofsForTheory";
+
+	/*!
+	 * This variable is 1 if we are playng as RED and
+	 * is 0 if we are playng as BLUE
+	 */
+	const char *kRobocup_ourTeam = "Robocup_ourTeam";
+
+	/*!
+	 * This variable is 1 if we it is our kickoff 
+	 * is 0 if we are NOT having the kickoff.
+	 * Regardless of what team we are playing kRobocup_ourTeam==kRobocup_kickOffTeam
+	 * tests if we are kicking off
+	 * 
+	 */
+	const char *kRobocup_kickOffTeam = "Robocup_kickOffTeam";
 	
 	const char *kOn = "On";
 	const char *kOff = "Off";

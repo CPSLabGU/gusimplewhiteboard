@@ -18,7 +18,7 @@
  *    provided with the distribution.
  *
  * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgement:
+ *    software must display the following acknowledgment:
  *
  *        This product includes software developed by Rene Hexel.
  *

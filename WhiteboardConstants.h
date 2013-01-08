@@ -90,8 +90,27 @@ namespace guWhiteboard
          */
         extern const char *kSpeechOutput;
 
+
+	/*!
+	 * This variable is 1 if we are playng as RED and
+	 * is 0 if we are playng as BLUE
+	 */
+	extern const char *kRobocup_ourTeam;
+
+	/*!
+	 * This variable is 1 if we it is our kickoff 
+	 * is 0 if we are NOT having the kickoff.
+	 * Regardless of what team we are playing kRobocup_ourTeam==kRobocup_kickOffTeam
+	 * tests if we are kicking off
+	 * 
+	 */
+	extern const char *kRobocup_kickOffTeam;
+	
+
 	/** Whiteboard message (string) for updating all proofs */
 	extern const char *kUpdateAllProofs;
+
+
 
 	/** Whiteboard message (string) for updating proofs for a given theory */
 	extern const char *kUpdateAllProofsForTheory;
