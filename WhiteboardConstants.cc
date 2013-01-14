@@ -40,5 +40,23 @@ namespace guWhiteboard
 	const char *kOn = "On";
 	const char *kOff = "Off";
 	
+	const char *kDifferentialMotorFoward = "gudifferential_motorFoward";
+	const char *kDifferentialMotorBackward = "gudifferential_motorBackward";
+	const char *kDifferentialMotorStop = "gudifferential_motorStop";
+	const char *kDifferentialStopTouch = "gudifferential_stopTouchSensor";
+	const char *kDifferentialStartTouch = "gudifferential_startTouchSensor";
+	const char *kDifferentialTouchValue = "gudifferential_touchSensorValue";
+	const char *kDifferentialStartDistance = "gudifferential_startDistanceSensor";
+	const char *kDifferentialStopDistance = "gudifferential_stopDistanceSensor";
+	const char *kDifferentialDistanceValue = "gudifferential_distanceSensorValue";
+	const char *kDifferentialStartLight = "gudifferential_startLightSensor";
+	const char *kDifferentialStopLight = "gudifferential_stopLightSensor";
+	const char *kDifferentialLightValue = "gudifferential_lightSensorValue";
+	const char *kDifferentialLedOn = "gudifferential_ledOn";
+	const char *kDifferentialLedOff = "gudifferential_ledOff";
+	const char *kDifferentialPlaySound = "gudifferential_playSound";
+	const char *kDifferentialStopSound = "gudifferential_stopSound";
+	const char *kDifferentialStartRotationSensor = "gudifferential_startRotationSensor";
+	const char *kDifferentialStopRotationSensor = "gudifferential_stopRotationSensor";
 	
 }

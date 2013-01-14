@@ -123,6 +123,68 @@ namespace guWhiteboard
 	
 	/** Whiteboard message (string) for turn off modules */
 	extern const char *kOff;
+
+	/**Differential Robot Whiteboard message to turn a motor on in the forwards direction */
+	extern const char *kDifferentialMotorFoward;
+
+	/**Differential Robot Whiteboard message to turn a motor on in the backwards direction */
+	extern const char *kDifferentialMotorBackward;
+
+	/**Differential Robot Whiteboard message to turn a motor off */
+	extern const char *kDifferentialMotorStop;
+
+	/**Differential Robot Whiteboard message to stop a touch sensor*/
+	extern const char *kDifferentialStopTouch;
+
+	/**Differential Robot Whiteboard message to start a touch sensor*/
+	extern const char *kDifferentialStartTouch;
+
+	/**Differential Robot Whiteboard message providing the value of a touch sensor*/
+	extern const char *kDifferentialTouchValue;
+
+	/**Differential Robot Whiteboard message to start a distance sensor*/
+	extern const char *kDifferentialStartDistance;
+
+	/**Differential Robot Whiteboard message to stop a distance sensor*/
+	extern const char *kDifferentialStopDistance;
+
+	/**Differential Robot Whiteboard message providing the value of a distance sensor*/
+	extern const char *kDifferentialDistanceValue;
+
+	/**Differential Robot Whiteboard message to start a light sensor*/
+	extern const char *kDifferentialStartLight;
+
+	/**Differential Robot Whiteboard message to stop a light sensor*/
+	extern const char *kDifferentialStopLight;
+
+	/**Differential Robot Whiteboard message providing the value of a light sensor*/
+	extern const char *kDifferentialLightValue;
+
+	/**Differential Robot Whiteboard message to turn on a led*/
+	extern const char *kDifferentialLedOn;
+
+	/**Differential Robot Whiteboard message to turn off a led*/
+	extern const char *kDifferentialLedOff;
+
+	/**Differential Robot Whiteboard message to start playing a sound*/
+	extern const char *kDifferentialPlaySound;
+
+	/**Differential Robot Whiteboard message to stop playing a sound*/
+	extern const char *kDifferentialStopSound;
+
+	/**Differential Robot Whiteboard message to start a rotation sensor*/
+	extern const char *kDifferentialStartRotationSensor;
+
+	/**Differential Robot Whiteboard message to stop a rotation sensor*/
+	extern const char *kDifferentialStopRotationSensor;
+
+	//ID's for motor's in differential robots
+	enum DifferentialMotor {
+		LEFT = 0,
+		RIGHT = 1,
+		NXT_MOTOR3 = 2 //constant for the third motor on nxt's
+	};
+
 }
 
 #endif // _WHITEBOARD_CONSTANTS_H_
