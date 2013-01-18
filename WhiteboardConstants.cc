@@ -58,5 +58,6 @@ namespace guWhiteboard
 	const char *kDifferentialStopSound = "gudifferential_stopSound";
 	const char *kDifferentialStartRotationSensor = "gudifferential_startRotationSensor";
 	const char *kDifferentialStopRotationSensor = "gudifferential_stopRotationSensor";
+	const char *kDifferentialRotationValue = "gudifferential_rotationSensorValue";
 	
 }

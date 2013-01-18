@@ -124,37 +124,55 @@ namespace guWhiteboard
 	/** Whiteboard message (string) for turn off modules */
 	extern const char *kOff;
 
-	/**Differential Robot Whiteboard message to turn a motor on in the forwards direction */
+	/**Differential Robot Whiteboard message to turn a motor on in the forwards direction
+	 * Content (Array): Motor(left = 0, right = 1), power %
+	 * */
 	extern const char *kDifferentialMotorForward;
 
-	/**Differential Robot Whiteboard message to turn a motor on in the backwards direction */
+	/**Differential Robot Whiteboard message to turn a motor on in the backwards direction
+	 * Content (Array): Motor(left = 0, right = 1), power %
+	 * */
 	extern const char *kDifferentialMotorBackward;
 
-	/**Differential Robot Whiteboard message to turn a motor off */
+	/**Differential Robot Whiteboard message to turn a motor off
+	 * Content (Int): Motor(left = 0, right = 1)
+	 * */
 	extern const char *kDifferentialMotorStop;
 
-	/**Differential Robot Whiteboard message to stop a touch sensor*/
+	/**Differential Robot Whiteboard message to stop a touch sensor
+	 * Content (Int): Id of touch sensor for NXT(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStopTouch;
 
-	/**Differential Robot Whiteboard message to start a touch sensor*/
+	/**Differential Robot Whiteboard message to start a touch sensor
+	 * Content (Int): Id of touch sensor for NXT(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStartTouch;
 
 	/**Differential Robot Whiteboard message providing the value of a touch sensor*/
 	extern const char *kDifferentialTouchValue;
 
-	/**Differential Robot Whiteboard message to start a distance sensor*/
+	/**Differential Robot Whiteboard message to start a distance sensor
+	 * Content (Int): Id of distance sensor for NXT Sonar sensors(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStartDistance;
 
-	/**Differential Robot Whiteboard message to stop a distance sensor*/
+	/**Differential Robot Whiteboard message to stop a distance sensor
+	 * Content (Int): Id of distance sensor for NXT Sonar sensors(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStopDistance;
 
 	/**Differential Robot Whiteboard message providing the value of a distance sensor*/
 	extern const char *kDifferentialDistanceValue;
 
-	/**Differential Robot Whiteboard message to start a light sensor*/
+	/**Differential Robot Whiteboard message to start a light sensor
+	 * Content (Int): Id of light sensor for NXT sensors(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStartLight;
 
-	/**Differential Robot Whiteboard message to stop a light sensor*/
+	/**Differential Robot Whiteboard message to stop a light sensor
+	 * Content (Int): Id of light sensor for NXT sensors(1, 2, 3 or 4)
+	 * */
 	extern const char *kDifferentialStopLight;
 
 	/**Differential Robot Whiteboard message providing the value of a light sensor*/
@@ -166,17 +184,28 @@ namespace guWhiteboard
 	/**Differential Robot Whiteboard message to turn off a led*/
 	extern const char *kDifferentialLedOff;
 
-	/**Differential Robot Whiteboard message to start playing a sound*/
+	/**Differential Robot Whiteboard message to start playing a sound
+	 * Content (Int): Duration
+	 * */
 	extern const char *kDifferentialPlaySound;
 
-	/**Differential Robot Whiteboard message to stop playing a sound*/
+	/**Differential Robot Whiteboard message to stop playing a sound
+	 * Content(Any) N/A
+	 * */
 	extern const char *kDifferentialStopSound;
 
-	/**Differential Robot Whiteboard message to start a rotation sensor*/
+	/**Differential Robot Whiteboard message to start a rotation sensor
+	 * Content (Int): Motor(left = 0, right = 1)
+	 * */
 	extern const char *kDifferentialStartRotationSensor;
 
-	/**Differential Robot Whiteboard message to stop a rotation sensor*/
+	/**Differential Robot Whiteboard message to stop a rotation sensor
+	 * Content (Int): Motor(left = 0, right = 1)
+	 * */
 	extern const char *kDifferentialStopRotationSensor;
+
+	/**Differential Robot Whiteboard message providing the value of a rotation sensor*/
+		extern const char *kDifferentialRotationValue;
 
 	//ID's for motor's in differential robots
 	enum DifferentialMotor {
