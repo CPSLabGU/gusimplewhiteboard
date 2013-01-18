@@ -125,7 +125,7 @@ namespace guWhiteboard
 	extern const char *kOff;
 
 	/**Differential Robot Whiteboard message to turn a motor on in the forwards direction */
-	extern const char *kDifferentialMotorFoward;
+	extern const char *kDifferentialMotorForward;
 
 	/**Differential Robot Whiteboard message to turn a motor on in the backwards direction */
 	extern const char *kDifferentialMotorBackward;

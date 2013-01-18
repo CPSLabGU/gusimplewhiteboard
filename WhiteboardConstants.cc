@@ -40,7 +40,7 @@ namespace guWhiteboard
 	const char *kOn = "On";
 	const char *kOff = "Off";
 	
-	const char *kDifferentialMotorFoward = "gudifferential_motorFoward";
+	const char *kDifferentialMotorForward = "gudifferential_motorForward";
 	const char *kDifferentialMotorBackward = "gudifferential_motorBackward";
 	const char *kDifferentialMotorStop = "gudifferential_motorStop";
 	const char *kDifferentialStopTouch = "gudifferential_stopTouchSensor";
