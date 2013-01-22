@@ -175,7 +175,7 @@ namespace guWhiteboard
 	extern const char *kDifferentialLedOff;
 
 	/**Differential Robot Whiteboard message to start playing a sound
-	 * Content (Int): Duration
+	 * Content (Int): Duration in milisecond
 	 * */
 	extern const char *kDifferentialPlaySound;
 

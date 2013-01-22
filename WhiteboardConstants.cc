@@ -56,6 +56,16 @@ namespace guWhiteboard
 	*/
 	const char *kDifferentialMotorPower = "gudifferential_motorPower";
 
+	/**Differential Robot Whiteboard message to start playing a sound
+	 * Content (Int): Duration in milisecond
+	 * */
+	const char *kDifferentialPlaySound = "gudifferential_playSound";
+
+	/**Differential Robot Whiteboard message to stop playing a sound
+	 * Content (Int): Duration in milisecond
+	 * */
+	const char *kDifferentialStopSound = "gudifferential_stopSound";
+
 	const char *kDifferentialStopTouch = "gudifferential_stopTouchSensor";
 	const char *kDifferentialStartTouch = "gudifferential_startTouchSensor";
 	const char *kDifferentialTouchValue = "gudifferential_touchSensorValue";
@@ -67,8 +77,6 @@ namespace guWhiteboard
 	const char *kDifferentialLightValue = "gudifferential_lightSensorValue";
 	const char *kDifferentialLedOn = "gudifferential_ledOn";
 	const char *kDifferentialLedOff = "gudifferential_ledOff";
-	const char *kDifferentialPlaySound = "gudifferential_playSound";
-	const char *kDifferentialStopSound = "gudifferential_stopSound";
 	const char *kDifferentialStartRotationSensor = "gudifferential_startRotationSensor";
 	const char *kDifferentialStopRotationSensor = "gudifferential_stopRotationSensor";
 	const char *kDifferentialRotationValue = "gudifferential_rotationSensorValue";
