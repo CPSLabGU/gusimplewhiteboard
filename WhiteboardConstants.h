@@ -124,20 +124,10 @@ namespace guWhiteboard
 	/** Whiteboard message (string) for turn off modules */
 	extern const char *kOff;
 
-	/**Differential Robot Whiteboard message to turn a motor on in the forwards direction
+	/**Differential Robot Whiteboard message to turn a motor on 
 	 * Content (Array): Motor(left = 0, right = 1), power %
 	 * */
-	extern const char *kDifferentialMotorForward;
-
-	/**Differential Robot Whiteboard message to turn a motor on in the backwards direction
-	 * Content (Array): Motor(left = 0, right = 1), power %
-	 * */
-	extern const char *kDifferentialMotorBackward;
-
-	/**Differential Robot Whiteboard message to turn a motor off
-	 * Content (Int): Motor(left = 0, right = 1)
-	 * */
-	extern const char *kDifferentialMotorStop;
+	extern const char *kDifferentialMotorPower;
 
 	/**Differential Robot Whiteboard message to stop a touch sensor
 	 * Content (Int): Id of touch sensor for NXT(1, 2, 3 or 4)

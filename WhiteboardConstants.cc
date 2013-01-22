@@ -40,9 +40,22 @@ namespace guWhiteboard
 	const char *kOn = "On";
 	const char *kOff = "Off";
 	
-	const char *kDifferentialMotorForward = "gudifferential_motorForward";
-	const char *kDifferentialMotorBackward = "gudifferential_motorBackward";
-	const char *kDifferentialMotorStop = "gudifferential_motorStop";
+	//const char *kDifferentialMotorForward = "gudifferential_motorForward";
+	//const char *kDifferentialMotorBackward = "gudifferential_motorBackward";
+	//const char *kDifferentialMotorStop = "gudifferential_motorStop";
+	/*!
+         * This is the new message-type for controlling a motor
+	 * content type is ALWAYS ARRAY
+	 * the first value is the motor ID, 0=left, 1=right 2 third
+	 * for MiPAL NXT wired robots, C=left adn B= right
+	 * the second value is POWER
+	 * The power shall be beteen [-100,100], abs(power) is a percentage
+	 * Negative values means running backwards
+	 * 0 is a stop
+	 * positive forwards
+	*/
+	const char *kDifferentialMotorPower = "gudifferential_motorPower";
+
 	const char *kDifferentialStopTouch = "gudifferential_stopTouchSensor";
 	const char *kDifferentialStartTouch = "gudifferential_startTouchSensor";
 	const char *kDifferentialTouchValue = "gudifferential_touchSensorValue";
