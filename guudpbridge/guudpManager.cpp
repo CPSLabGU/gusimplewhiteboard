@@ -30,7 +30,7 @@ int setup_udp_with_id(int id)
 {
     
         int udp_id;
-        if(id != -1)
+        if(id == -1)
                 udp_id = getplayernumber();
         else
                 udp_id = id;
