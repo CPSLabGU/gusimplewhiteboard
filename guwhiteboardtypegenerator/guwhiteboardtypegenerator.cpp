@@ -31,7 +31,7 @@ static char *include_str = (char *)"\
 #ifndef _GUGENERICWHITEBOARDOBJECT_H_                                   \n\
 #define _GUGENERICWHITEBOARDOBJECT_H_                                   \n\
                                                                         \n\
-#include \"create_map.h\" //std::map template creation shorthand        \n\
+#include \"guwhiteboardtypegenerator/create_map.h\" //std::map template creation shorthand        \n\
                                                                         \n\
 ";
 
@@ -46,7 +46,7 @@ static char *opening_enum = (char *)"        typedef enum wb_types      \n\
 
 static char *closing_enum = (char *)"        } WBTypes;\n\n";
 
-static char *opening_map_definition = (char *)"        static std::map<int, int> mymap = create_map<int, int>";
+static char *opening_map_definition = (char *)"        static std::map<int, int> type_map = create_map<int, int>";
 
 static char *closing_map_definition = (char *)";\n\n";
 
@@ -71,21 +71,19 @@ int main(int argc, char **argv)
         }
         
         
-        
-        
         ifstream list_h;
         ifstream list_c;
         ofstream output_file;
-        list_h.open ("guwhiteboardtypelist.h");
-        list_c.open ("guwhiteboardtypelist.c");
-        output_file.open ("guwhiteboardtypelist_generated.h");
+        list_h.open ("../guwhiteboardtypelist.h");
+        list_c.open ("../guwhiteboardtypelist.c");
+        output_file.open ("../guwhiteboardtypelist_generated.h");
 
         if(!list_h.is_open() || !list_c.is_open() || !output_file.is_open())
         {
                 //just incase someone runs it from inside the build directory
-                list_h.open ("../guwhiteboardtypelist.h");
-                list_c.open ("../guwhiteboardtypelist.c");
-                output_file.open ("../guwhiteboardtypelist_generated.h");
+                list_h.open ("../../guwhiteboardtypelist.h");
+                list_c.open ("../../guwhiteboardtypelist.c");
+                output_file.open ("../../guwhiteboardtypelist_generated.h");
                 
                 if(!list_h.is_open() || !list_c.is_open() || !output_file.is_open())
                 {
