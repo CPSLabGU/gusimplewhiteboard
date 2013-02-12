@@ -10,6 +10,8 @@
 #ifndef guudpmanager_h
 #define guudpmanager_h
 
+#include "guwhiteboardtypelist_generated.h"
+
 int setup_udp_with_id(int id);
 
 #endif //guudpmanager_h

@@ -92,14 +92,6 @@ extern "C"
 #define WHITEBOARD_SIGNAL       SIGUSR2
 #define WHITEBOARD_POLL_PERIOD  10000
 
-enum gsw_message_types
-{
-        GSW_PRINT,                      /// print to stdout
-        GSW_SAY,                        /// speech output message
-        GSW_SPEECH,                     /// debug speech message
-        GSW_NUM_RESERVED
-};
-
 enum gsw_semaphores
 {
         GSW_SEM_PUTMSG,                 /// semaphore for adding to the whiteboard
@@ -197,6 +189,7 @@ typedef struct gsw_simple_whiteboard_s
         u_int16_t               num_types;      /// total number of current, registered types
 
         u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       /// ring buffer indexes
+        u_int16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       /// event counter loops
 
         /**
          * the actual messages stored in the whiteboard
@@ -289,7 +282,12 @@ extern int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, con
  * @param ini   pointer to boolean recording wb initialisation
  */
 extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *ini);
-
+	
+/**
+ * create a simple whiteboard for the local singleton wb pointer
+ */
+extern gu_simple_whiteboard_descriptor *get_local_singleton_whiteboard(void);
+	
 /**
  * free the whiteboard
  * @param wb    whiteboard to free
@@ -338,6 +336,11 @@ gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i);
  * get the next shared memory location for the given whiteboard message type i
  */
 void gsw_increment(gu_simple_whiteboard *wb, int i);
+
+/**
+* add to a messages event counter on the wb
+*/
+void gsw_increment_event_counter(gu_simple_whiteboard *wb, int i);
         
 
 #pragma mark - subscription and callbacks

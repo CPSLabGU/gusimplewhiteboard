@@ -25,6 +25,7 @@
 
 #include "guudpConfig.h"
 #include <Whiteboard.h>
+#include "guwhiteboardtypelist_generated.h"
 #include <time.h>
 #include <list>
 

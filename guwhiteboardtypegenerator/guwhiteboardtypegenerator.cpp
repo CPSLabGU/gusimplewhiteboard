@@ -14,13 +14,14 @@
 #include <fstream>
 #include <sstream>
 #include <time.h>
-#include "gusimplewhiteboard.h"
+
+#define DDEBUG
 
 using namespace std;
 
 static char *include_str = (char *)"\
-/*                                                                      \n\
- *  guwhiteboardtypelist_generated.h                                    \n\
+/**                                                                     \n\
+ *  /file guwhiteboardtypelist_generated.h                              \n\
  *                                                                      \n\
  *  Created by Carl Lusty in 2013.                                      \n\
  *  Copyright (c) 2013 Carl Lusty                                       \n\
@@ -28,16 +29,41 @@ static char *include_str = (char *)"\
  */                                                                     \n\
                                                                         \n\
                                                                         \n\
-#ifndef _GUGENERICWHITEBOARDOBJECT_H_                                   \n\
-#define _GUGENERICWHITEBOARDOBJECT_H_                                   \n\
+#ifndef _GUWHITEBOARD_TYPELIST_H_                                       \n\
+#define _GUWHITEBOARD_TYPELIST_H_                                       \n\
                                                                         \n\
-#include \"guwhiteboardtypegenerator/create_map.h\" //std::map template creation shorthand        \n\
+#include \"gugenericwhiteboardobject.h\"                                \n\
                                                                         \n\
+                                                                        \n\
+";
+
+static char *include_str_c = (char *)"\
+/**                                                                     \n\
+ *  /file guwhiteboardtypelist_c_generated.h                            \n\
+ *                                                                      \n\
+ *  Created by Carl Lusty in 2013.                                      \n\
+ *  Copyright (c) 2013 Carl Lusty                                       \n\
+ *  All rights reserved.                                                \n\
+ */                                                                     \n\
+\n\
+\n\
+#ifndef _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
+#define _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
+\n\
+\n\
+//extern + c file\
+//ifdef WANT_WB_STRINGS\
 ";
 
 static char *opening_namespace = (char *)"                              \n\
 namespace guWhiteboard                                                  \n\
 {                                                                       \n\
+                                                                        \n\
+extern \"C\"                                                            \n\
+{                                                                       \n\
+#include \"guwhiteboardtypelist_c_generated.h\"                         \n\
+}                                                                       \n\
+                                                                        \n\
 ";
 
 static char *opening_enum = (char *)"        typedef enum wb_types      \n\
@@ -46,158 +72,266 @@ static char *opening_enum = (char *)"        typedef enum wb_types      \n\
 
 static char *closing_enum = (char *)"        } WBTypes;\n\n";
 
-static char *opening_map_definition = (char *)"        static std::map<int, int> type_map = create_map<int, int>";
+static char *opening_string_array_definition = (char *)"        static const char *WBTypes_stringValues[] = \n        {    \n";
 
-static char *closing_map_definition = (char *)";\n\n";
-
-static char *opening_string_array_definition = (char *)"        const std::string WBTypes_stringValues[] = {    \n";
-
-static char *closing_string_array_definition = (char *)"        };      \n";
+static char *closing_string_array_definition = (char *)"        };      \n\n";
 
 static char *closing_namespace = (char *)"}\n\n";
 
-static char *end_include_str = (char *)"#endif // _GUGENERICWHITEBOARDOBJECT_H_                                 \n\
+static char *end_include_str = (char *)"#endif                          \n\
 ";
+
+enum ClassType {
+	None = 0,
+	POD_Class,
+	Custom_Class
+	};
+
+struct gu_type_info {
+	ClassType class_info;
+	std::string class_name;
+	std::string type_const_name;
+	std::string type_name;
+	std::string comment;
+};
 
 int main(int argc, char **argv)
 {
-        gu_simple_whiteboard_descriptor *_wbd;
-        char *name = (char *)GSW_DEFAULT_NAME;
-
-        if (!(_wbd = gsw_new_numbered_whiteboard(name, 0)))
-        {
-                cerr << "Unable to create whiteboard ";
-                exit(EXIT_FAILURE);
-        }
-        
-        
-        ifstream list_h;
-        ifstream list_c;
+	ifstream tsl_file;
         ofstream output_file;
-        list_h.open ("../guwhiteboardtypelist.h");
-        list_c.open ("../guwhiteboardtypelist.c");
+        ofstream output_c_file;
+	
+        tsl_file.open ("../guwhiteboardtypelist.tsl");
         output_file.open ("../guwhiteboardtypelist_generated.h");
+        output_c_file.open ("../guwhiteboardtypelist_c_generated.h");
+	
 
-        if(!list_h.is_open() || !list_c.is_open() || !output_file.is_open())
+        if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open())
         {
                 //just incase someone runs it from inside the build directory
-                list_h.open ("../../guwhiteboardtypelist.h");
-                list_c.open ("../../guwhiteboardtypelist.c");
+                tsl_file.open ("../../guwhiteboardtypelist.tsl");
                 output_file.open ("../../guwhiteboardtypelist_generated.h");
+		output_c_file.open ("../../guwhiteboardtypelist_c_generated.h");
                 
-                if(!list_h.is_open() || !list_c.is_open() || !output_file.is_open())
+                if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open())
                 {
                         perror("could not open one of the files");
                         return EXIT_FAILURE;
                 }
         }
 
-        std::stringstream h_file_stream;
-        std::stringstream c_file_stream;
-        h_file_stream << list_h.rdbuf();
-        c_file_stream << list_c.rdbuf();
+        std::stringstream tsl_file_stream;
+        tsl_file_stream << tsl_file.rdbuf();
         
-        std::string h_file_str = h_file_stream.str();
-        std::string c_file_str = c_file_stream.str();
+        std::string tsl_file_str = tsl_file_stream.str();
         
-        std::string header_token = std::string("extern const char *");
+        std::string header_token = std::string("\n");
 
-        std::vector<std::string> const_names;
+        std::vector<gu_type_info> types;
         int pos = 0;
-        while((pos = h_file_str.find(header_token, pos+header_token.length())) != string::npos)
+        do
         {
-                int start_p = pos+header_token.length();
-                int end_p = h_file_str.find(";", start_p);
-                const_names.push_back(h_file_str.substr(start_p, end_p-start_p));
-        }
-        
-        std::string start_c_token = std::string("const char *");
-        std::vector<std::string> const_values;
-        
-        for (int i = 0; i < const_names.size(); i++) {
-                std::string full_c_token = start_c_token;
-                full_c_token.append(const_names[i]);
+                int start_p = 0;
+                if(pos > 0)
+                        start_p = pos+header_token.length();
                 
-                if((pos = c_file_str.find(full_c_token)) == string::npos)
+                int end_p = tsl_file_str.find("\n", start_p);
+                pos = end_p;
+
+		std::string type_line = tsl_file_str.substr(start_p, end_p-start_p);
+                if(type_line.size() == 0)
+                        break;
+
+		std::string line_token = std::string(",");
+		int line_pos = 0;
+		std::vector<std::string> elements;
+                
+                for (int i = 0; i < 4; i++)
                 {
-                        fprintf(stderr, "parsing issue, could not find definition to match the type const: '%s', exiting...\n", (char *)const_names[i].c_str());
-                        exit(EXIT_FAILURE);
+                        int start = line_pos;
+			int end = type_line.find(line_token, start);
+                        
+                        line_pos = end+line_token.length();
+
+                        std::string type_info_element;
+                        if(i == 3) //comment, just give me the rest of the string
+                                type_info_element = type_line.substr(start, type_line.length()-start);
+                        else
+                                type_info_element = type_line.substr(start, end-start);
+                        
+                        int start_non_whitespace = type_info_element.find_first_not_of(' ');
+                        if(start_non_whitespace != std::string::npos)
+                                type_info_element.erase(0, start_non_whitespace);
+                        
+                        elements.push_back(type_info_element);
                 }
-                
-                int start_p = c_file_str.find("\"", pos+full_c_token.length())+1;
-                int end_p = c_file_str.find("\"", start_p);
-                const_values.push_back(c_file_str.substr(start_p, end_p-start_p));
-        }
+		
+		if(elements.size() != 4)
+		{
+			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %d\nexiting...", (int)types.size());
+			exit(1);
+		}
 
-        std::map<std::string, int> enum_pairs;  //const name, hash offset
-        std::vector<std::string> array_values;  //index in array, index in string array
-        std::map<int, int> map_pairs;           //hash offset, index in string array
-        
-        for (int i = 0; i < const_names.size(); i++)
-        {
-                std::string type_const_name = const_names[i];
-                std::string type_const_value = const_values[i];
-
-                //get hash offset
-                int hash_offset = gsw_offset_for_message_type(_wbd, (char *)type_const_value.c_str());
-                
-                //add to enum
-                enum_pairs[type_const_name] = hash_offset;
-                
-                //string to array
-                array_values.push_back(type_const_value);
-                
-                //add length of array to hash offset in map
-                map_pairs[hash_offset] = array_values.size()-1;
-        }
-         
-        
+		struct gu_type_info info;
+		//Splitting logic from parsing
+		for (int i = 0; i < elements.size(); i++)
+		{
+			switch (i) {
+				case 1:
+				{
+					info.type_const_name = elements.at(i);
+#ifdef DDEBUG
+					fprintf(stderr, "const:\t'%s'\n", (char *)info.type_const_name.c_str());
+#endif
+					break;
+				}
+				case 2:
+				{
+					info.type_name = elements.at(i).substr(1, elements.at(i).length()-2); //substr to remove the quotes
+#ifdef DDEBUG
+					fprintf(stderr, "value:\t'%s'\n", (char *)info.type_name.c_str());
+#endif
+					break;
+				}
+				case 0:
+					if(elements.at(i).size() == 0)
+					{
+                                                //warning if no type is given, however allow it for now.
+						info.class_info = None;
+					}
+					else
+					{
+						if(elements.at(i).find("class:") != string::npos) //custom class?
+						{
+							info.class_info = Custom_Class;
+							info.class_name = elements.at(i).substr(std::string("class:").length());
+						}
+						else
+						{
+							info.class_info = POD_Class;
+							info.class_name = elements.at(i);
+						}
+					}
+#ifdef DDEBUG
+					switch (info.class_info) {
+						case None:
+							fprintf(stderr, "class info:\tNone, just a WB Type, no class\n");
+							break;
+						case POD_Class:
+							fprintf(stderr, "class info:\tPOD_Class, type: %s\n", (char *)info.class_name.c_str());
+							break;
+						case Custom_Class:
+							fprintf(stderr, "class info:\tCustom_Class, class name: %s\n", (char *)info.class_name.c_str());
+							break;
+						default:
+							break;
+					}
+#endif
+					break;
+				case 3:
+				{
+					info.comment = elements.at(i);
+#ifdef DDEBUG
+					fprintf(stderr, "comments:\t'%s'\n", (char *)info.comment.c_str());
+#endif
+					break;
+				}
+				default:
+					break;
+			}
+		}
+		types.push_back(info);
+	} while((pos = tsl_file_str.find(header_token, pos)) != string::npos);
+		
+	
+	//output to file
         output_file << include_str;
+        output_c_file << include_str_c;
         
         //print current date
         time_t rawtime;
         struct tm * timeinfo;
         time ( &rawtime );
         timeinfo = localtime ( &rawtime );
-        output_file << "//Generated on: " << asctime (timeinfo);
-        
+	//get user name
+	char * pPath;
+	pPath = getenv ("USER");
+	
+		
+	
+        output_file << "//Generated on: " << asctime (timeinfo) << "//Generated by user: ";
+        output_c_file << "//Generated on: " << asctime (timeinfo) << "//Generated by user: ";
+	if (pPath!=NULL)
+	{
+		output_file << pPath << "\n";
+		output_c_file << pPath << "\n\n";
+	}
+	else
+	{
+		output_file << "unknown\n";
+		output_c_file << "unknown\n\n";
+	}
+
         
         output_file << opening_namespace;
-        output_file << opening_enum;
+	
+		
+	
+        output_c_file << opening_enum;
+
         //enum
-        std::map<std::string,int>::iterator enum_it;
+	for (int i = 0; i < types.size(); i++)
+	{
+		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
+		output_c_file << "                " << (char *)types.at(i).type_const_name.c_str() << " = " << hash_offset << ",";
+		
+		types.at(i).class_info == None ? output_c_file << "\t///<" << (char *)types.at(i).comment.c_str() : output_c_file << "";
+		
+		output_c_file << "\n";
+		
+		if(i+1 == types.size())
+		   	output_c_file << "                GSW_NUM_RESERVED = " << (i+1) << "\n";
+	}
+	
+        output_c_file << closing_enum;
+        output_c_file << opening_string_array_definition;
         
-        for (std::map<std::string,int>::iterator enum_it = enum_pairs.begin(); enum_it != enum_pairs.end(); ++enum_it)
-        {
-                output_file << "                " << (char *)enum_it->first.c_str() << " = " << enum_it->second;
-                ++enum_it != enum_pairs.end() ? output_file << ",\n" : output_file << "\n";
-                enum_it--;
-        }
-        
-        output_file << closing_enum;
-        output_file << opening_map_definition;
-        //map
-        std::map<int,int>::iterator map_it;
-        
-        for (std::map<int,int>::iterator map_it = map_pairs.begin(); map_it != map_pairs.end(); ++map_it)
-        {
-                output_file << "(" << map_it->first << "," << map_it->second << ")";
-        }
-        
-        output_file << closing_map_definition;
-        output_file << opening_string_array_definition;
-        //string array
-        for (int i = 0; i < array_values.size(); i++)
-        {//                "US/Left/Sensor/Value",
-                output_file << "                \"" << (char *)array_values[i].c_str();
-                i+1 != array_values.size() ? output_file << "\",\n" : output_file << "\"\n";
-        }
-        
-        output_file << closing_string_array_definition;
+	//string array
+	for (int i = 0; i < types.size(); i++)
+	{
+		output_c_file << "                \"" << (char *)types.at(i).type_name.c_str();
+                i+1 != types.size() ? output_c_file << "\",\n" : output_c_file << "\"\n";
+	}
+
+        output_c_file << closing_string_array_definition;
+	
+	//type classes
+	for (int i = 0; i < types.size(); i++)
+	{
+		switch (types.at(i).class_info) {
+			case None:
+				break;
+			case POD_Class:
+			{
+				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << ") {} };\n\n";
+				break;
+			}
+			case Custom_Class:
+			{
+				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).class_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).class_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << ") {} };\n\n";
+				break;
+			}
+			default:
+				break;
+		}
+	}
+	
+	
         output_file << closing_namespace;
         output_file << end_include_str;
+        output_c_file << end_include_str;
         
-        
-        list_h.close();
-        list_c.close();
+        tsl_file.close();
+        output_file.close();
+	output_c_file.close();
 }

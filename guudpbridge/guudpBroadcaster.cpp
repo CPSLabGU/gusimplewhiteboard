@@ -151,10 +151,10 @@ void BridgeBroadcaster::send_content()
         for(int j = 0; j < MESSAGES_PER_PACKET; j++)
         {
                 int tmpOffset = offset;
-                if(offset >= GSW_NUM_RESERVED)
+                if(offset >= guWhiteboard::GSW_NUM_RESERVED)
                 {
                         //dynamic messages (not reserved message types)
-                        tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-GSW_NUM_RESERVED).c_str());
+                        tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-guWhiteboard::GSW_NUM_RESERVED).c_str());
                 }
                 
                 messageToSend.typeOffset[j] = tmpOffset; //offset in hash table for content pointer
@@ -171,7 +171,7 @@ void BridgeBroadcaster::send_content()
 #endif
                 offset++; //move to the next message in the queue
                 
-                if(offset >= GSW_NUM_RESERVED + msg_types_to_broadcast->size())
+                if(offset >= guWhiteboard::GSW_NUM_RESERVED + msg_types_to_broadcast->size())
                 {
                         offset = 0;
                 }

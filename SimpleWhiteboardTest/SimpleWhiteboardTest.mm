@@ -67,16 +67,27 @@ class WBSubscriber
 public:
         WBSubscriber(Whiteboard *w, SimpleWhiteboardTest *t): self(t)
         {
-                Whiteboard::WBResult r;
-                w->subscribeToMessage("subtest", WB_BIND(WBSubscriber::sub), r);
-                STAssertEquals(r, Whiteboard::METHOD_OK, @"Subscription 'subtest' failed");
+                generic_whiteboard_watcher *watcher = new generic_whiteboard_watcher(self.whiteboard->_wbd);
+//                watcher->subscribe(WB_BIND(WBSubscriber::sub));
+//                watcher->subscribe(WB_TYPE_BIND(WBTypes::kNaoIsReadyToRun, WBSubscriber::sub));
+                usleep(1000000); //gives the monitor thread in the whiteboard a chance to get started.
+                
+//                Whiteboard::WBResult r;
+//                w->subscribeToMessage("subtest", WB_BIND(WBSubscriber::sub), r);
+//                STAssertEquals(r, Whiteboard::METHOD_OK, @"Subscription 'subtest' failed");
         }
 
-        void sub(string type, WBMsg *m)
+        void sub(std::string str, WBMsg *m)
+        {
+                
+        }
+        
+        void sub(WBTypes t, gu_simple_message *m)
         {
                 self.callbackCount++;
-                STAssertTrue(type == "subtest", @"Message of type '%s', but expected 'subtest'", type.c_str());
-                STAssertEquals(m->getIntValue(), 42, @"Message '%s' with incorrect value", type.c_str());
+//                fprintf(stdout, "Type: %s\tm: %d\n", (char *)WBTypes_stringValues[type_map[t]].c_str(), m->sint);
+//                STAssertTrue(type == "subtest", @"Message of type '%s', but expected 'subtest'", type.c_str());
+//                STAssertEquals(m->getIntValue(), 42, @"Message '%s' with incorrect value", type.c_str());
                 dispatch_semaphore_signal(self.semaphore);
         }
 };
@@ -84,12 +95,30 @@ public:
 @implementation SimpleWhiteboardTest
 @synthesize whiteboard, callbackCount, semaphore;
 
+
 - (void) setUp
 {
         [super setUp];
 
+        
+        
         self.semaphore = dispatch_semaphore_create(0);
         self.whiteboard = new Whiteboard();
+        
+        
+        //generic wb object testing
+
+        generic_whiteboard_object<gu_simple_message> *testInt = new generic_whiteboard_object<gu_simple_message>(self.whiteboard->_wbd, 20);
+//        gu_simple_message m;
+//        m.sint = 2300;
+//        testInt->set(m);
+//
+//        fprintf(stderr, "Got %d\n", testInt->get()->sint);
+//        
+
+        
+        
+//        exit(0);
 }
 
 - (void) tearDown
@@ -101,22 +130,35 @@ public:
 
 - (void) testPutGet
 {
-        self.whiteboard->addMessage("test", WBMsg("testval"));
-        WBMsg msg = self.whiteboard->getMessage("test");
-        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
-
-        self.whiteboard->addMessage("test", WBMsg("testval2"));
-        msg = self.whiteboard->getMessage("test");
-        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+//        self.whiteboard->addMessage("test", WBMsg("testval"));
+//        WBMsg msg = self.whiteboard->getMessage("test");
+//        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+//        STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+//
+//        self.whiteboard->addMessage("test", WBMsg("testval2"));
+//        msg = self.whiteboard->getMessage("test");
+//        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+//        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
 }
 
 
 - (void) testCallback
 {
         WBSubscriber subscriber(self.whiteboard, self);
-        self.whiteboard->addMessage("subtest", WBMsg(42));
+//                generic_whiteboard_object<int> testInt(self.whiteboard->_wbd, WBTypes::kNaoIsReadyToRun);
+                int m;
+//        for (int i = 0; i<1000; i++) {
+//                usleep(10000);
+                m = 42;
+//                testInt = m;
+//        }
+        
+	guWhiteboard::kRunVisionPipelineTest_t runVision;
+//	guWhiteboard::kRunVisionPipeline *runVision = new guWhiteboard::kRunVisionPipeline();
+	bool on = true;
+	runVision.set(on);
+	
+//        self.whiteboard->addMessage("subtest", WBMsg(42));
         dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC);
         dispatch_semaphore_wait(self.semaphore, t);
         STAssertEquals(self.callbackCount, 1, @"Invalid callback count");
