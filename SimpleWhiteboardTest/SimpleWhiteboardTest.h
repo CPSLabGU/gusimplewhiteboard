@@ -56,8 +56,11 @@
  *
  */
 #import <SenTestingKit/SenTestingKit.h>
-#include "gusimplewhiteboard.h"
 #include "Whiteboard.h"
+#include "gusimplewhiteboard.h"
+#include "gugenericwhiteboardobject.h"
+#include "gugenericwhiteboardwatcher.h"
+
 
 @interface SimpleWhiteboardTest: SenTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;

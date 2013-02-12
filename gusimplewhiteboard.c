@@ -81,6 +81,7 @@
 #include <sys/sem.h>
 #include <gu_util.h>
 #include "gusimplewhiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
 
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
@@ -102,10 +103,7 @@ union semun
 };
 #endif
 
-static const char *known_message_types[GSW_NUM_RESERVED] =
-{
-        "Print", "Say", "Speech"
-};
+static gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 
 void gsw_init_semaphores(gsw_sema_t s)
@@ -175,8 +173,8 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         {
                 gsw_init_semaphores(wbd->sem);
 
-                for (enum gsw_message_types i = 0; i < GSW_NUM_RESERVED; i++)
-                        gsw_register_message_type(wbd, known_message_types[i]);
+                for (enum wb_types i = 0; i < GSW_NUM_RESERVED; i++)
+                        gsw_register_message_type(wbd, WBTypes_stringValues[i]);
         }
         wbd->callback_queue = dispatch_queue_create(NULL, NULL);
         return wbd;
@@ -200,6 +198,18 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
         }
 }
 
+static void create_singleton_whiteboard(void *context)
+{
+	local_whiteboard_descriptor = gsw_new_whiteboard("guWhiteboard");
+}
+
+gu_simple_whiteboard_descriptor *get_local_singleton_whiteboard(void)
+{
+	static dispatch_once_t onceToken;
+	dispatch_once_f(&onceToken, NULL, create_singleton_whiteboard);
+
+	return local_whiteboard_descriptor;
+}
 
 gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 {
@@ -424,6 +434,11 @@ void gsw_increment(gu_simple_whiteboard *wb, int i)
         u_int8_t j = wb->indexes[i];
         if (++j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
         wb->indexes[i] = j;
+}
+
+void gsw_increment_event_counter(gu_simple_whiteboard *wb, int i)
+{
+        wb->event_counters[i]++; //unsigned, will wrap if exceeds UINT16_MAX
 }
 
 #pragma mark - subscription and callbacks
