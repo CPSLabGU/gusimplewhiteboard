@@ -149,7 +149,7 @@ void BridgeListener::listenSingleMethod()
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
                     int t;
-                    if(msg.typeOffset[i] >= guWhiteboard::GSW_NUM_RESERVED)
+                    if(msg.typeOffset[i] >= GSW_NUM_TYPES_DEFINED)
                         t = indexLookup[current_poster][msg.typeOffset[i]];
                     else
                         t = msg.typeOffset[i];

@@ -248,6 +248,11 @@ int main(int argc, char **argv)
         output_file << include_str;
         output_c_file << include_str_c;
         
+        output_c_file << "\n#define GSW_NUM_TYPES_DEFINED " << types.size() << "\n\n";
+        output_c_file << "#if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED\n";
+        output_c_file << "#error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.\n";
+        output_c_file << "#endif\n";      
+        
         //print current date
         time_t rawtime;
         struct tm * timeinfo;
@@ -283,14 +288,14 @@ int main(int argc, char **argv)
 	for (int i = 0; i < types.size(); i++)
 	{
 		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
-		output_c_file << "                " << (char *)types.at(i).type_const_name.c_str() << " = " << hash_offset << ",";
+		output_c_file << "                " << (char *)types.at(i).type_const_name.c_str() << " = " << hash_offset;
+                
+                if(i+1 != types.size())
+                       output_c_file << ",";
 		
 		types.at(i).class_info == None ? output_c_file << "\t///<" << (char *)types.at(i).comment.c_str() : output_c_file << "";
 		
 		output_c_file << "\n";
-		
-		if(i+1 == types.size())
-		   	output_c_file << "                GSW_NUM_RESERVED = " << (i+1) << "\n";
 	}
 	
         output_c_file << closing_enum;
