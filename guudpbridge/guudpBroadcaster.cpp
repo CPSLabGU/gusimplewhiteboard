@@ -14,7 +14,7 @@
 #include "guudpUtil.h"
 #include "guudpSerialize.h"
 
-
+static int content_packet_count = 0;
 static void broadcastLoop(void *broadcaster)
 {
         BridgeBroadcaster *c = (BridgeBroadcaster *)broadcaster;
@@ -31,17 +31,17 @@ static void broadcastLoop(void *broadcaster)
                 }
                 pthread_mutex_unlock(c->_injection_mutex);
                 
-                int sent_content = 0;
+
                 while (sent < PACKETS_PER_TS_INTERVAL)
                 {
-                        if(sent_content < MESSAGES_TO_SEND_PER_HASH)
+                        if(content_packet_count < MESSAGES_TO_SEND_PER_HASH)
                         {
-                                sent_content++;
+                                content_packet_count++;
                                 c->send_content();
                         }
                         else
                         {
-                                sent_content = 0;
+                                content_packet_count = 0;
                                 c->send_hash();
                         }
                         sent++;                    
