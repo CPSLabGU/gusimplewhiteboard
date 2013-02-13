@@ -42,7 +42,10 @@ static void broadcastLoop(void *broadcaster)
                         else
                         {
                                 content_packet_count = 0;
-                                c->send_hash();
+                                if(c->msg_types_to_broadcast->size() > 0)
+                                        c->send_hash();
+                                else
+                                        c->send_content();
                         }
                         sent++;                    
                 }
@@ -70,19 +73,18 @@ void BridgeBroadcaster::send_hash()
         hashToSend.packetInfo = Hash;
         hashToSend.udpId = get_udp_id();
         
-        
         for(int j = 0; j < HASHES_PER_PACKET; j++)
         {
-                int currOff = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset).c_str());
-                
+                int currOff = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(hash_offset).c_str());
+
                 hashToSend.offset[j] = currOff; //Sends the offset in the current wb and the type name, these are inserted directly into the hash table on the target machines. Can definiately cause issues with the hash lookup on the other machine if some of these go missing (NEEDS ATTENTION)
+
                 hashToSend.typeName[j] = _wbd_broadcaster->wb->typenames[currOff];
                 
-                
-                offset++; //points to the next hash to send in the dynamic type broadcasting vector (msg_types_to_broadcast)
-                offset >= msg_types_to_broadcast->size() ? offset = 0 : offset = offset; //offset = offset is only because shorthand if requires an else statement
+                hash_offset++; //points to the next hash to send in the dynamic type broadcasting vector (msg_types_to_broadcast)
+                hash_offset >= msg_types_to_broadcast->size() ? hash_offset = 0 : hash_offset = hash_offset; //offset = offset is only because shorthand if requires an else statement
         }
-        
+
         hash2buf(&buffer[0], &hashToSend); //serialize
         
         //Broadcast hash packet
@@ -150,11 +152,18 @@ void BridgeBroadcaster::send_content()
         
         for(int j = 0; j < MESSAGES_PER_PACKET; j++)
         {
-                int tmpOffset = offset;
-                if(offset >= GSW_NUM_TYPES_DEFINED)
+                if(offset >= GSW_NUM_TYPES_DEFINED && offset <= GSW_NUM_RESERVED)
                 {
                         //dynamic messages (not reserved message types)
-                        tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-GSW_NUM_TYPES_DEFINED).c_str());
+                        offset = GSW_NUM_RESERVED; //move past the unused reserved types
+                }
+                if(offset >= GSW_NUM_RESERVED + msg_types_to_broadcast->size())
+                {
+                        offset = 0;
+                }
+                int tmpOffset = offset;
+                if (offset >= GSW_NUM_RESERVED) {
+                        tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-GSW_NUM_RESERVED).c_str());
                 }
                 
                 messageToSend.typeOffset[j] = tmpOffset; //offset in hash table for content pointer
@@ -170,11 +179,6 @@ void BridgeBroadcaster::send_content()
                 messageToSend.message_generations[j] =  _wbd_broadcaster->wb->messages[tmpOffset][_wbd_broadcaster->wb->indexes[tmpOffset]];
 #endif
                 offset++; //move to the next message in the queue
-                
-                if(offset >= GSW_NUM_TYPES_DEFINED + msg_types_to_broadcast->size())
-                {
-                        offset = 0;
-                }
         }
         
         gsw_vacate(_wbd_broadcaster->sem, GSW_SEM_PUTMSG);
@@ -208,7 +212,8 @@ BridgeBroadcaster::BridgeBroadcaster(gu_simple_whiteboard_descriptor *_wbd, std:
     sending_currently = false;
     sending_count = 1;    
     
-    offset = 0;    
+    offset = 0;
+    hash_offset = 0;
     msg_loops = 0;  
     //----------------------------------------
     

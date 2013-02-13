@@ -67,7 +67,7 @@ static void listenMonitor(void *listener)
 #endif
 
 void BridgeListener::listenSingleMethod()
-{   
+{
 #ifdef DEBUG    
     startRecvTime = get_utime();    
     long long startTime = get_utime();    
@@ -146,10 +146,11 @@ void BridgeListener::listenSingleMethod()
                 total_recv++;            
 #endif                
                 gsw_procure(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);
+
                 for(int i = 0; i < MESSAGES_PER_PACKET; i++)
                 {
                     int t;
-                    if(msg.typeOffset[i] >= GSW_NUM_TYPES_DEFINED)
+                    if(msg.typeOffset[i] >= GSW_NUM_RESERVED)
                         t = indexLookup[current_poster][msg.typeOffset[i]];
                     else
                         t = msg.typeOffset[i];
@@ -174,6 +175,7 @@ void BridgeListener::listenSingleMethod()
                     }
 #else
                     _wbd_listeners[current_poster]->wb->messages[t][_wbd_listeners[current_poster]->wb->indexes[t]] = msg.message_generations[i];
+                    gsw_increment_event_counter(_wbd_listeners[current_poster]->wb, t);
 #endif
                 }
                 gsw_vacate(_wbd_listeners[current_poster]->sem, GSW_SEM_PUTMSG);                
@@ -201,7 +203,6 @@ void BridgeListener::listenSingleMethod()
                 gotHashPackets++;
                 total_recv++;
 #endif
-
                 for(int j = 0; j < HASHES_PER_PACKET; j++)
                 {
 //
@@ -217,7 +218,7 @@ void BridgeListener::listenSingleMethod()
 //                        }
 //                    }
 //                    pthread_mutex_unlock(_injection_mutex);                    
-//                    
+//
                     indexLookup[current_poster][hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
                 }
             }
@@ -236,6 +237,7 @@ void BridgeListener::listenSingleMethod()
                     targetMachine = injToRecv.targetMachineId[j];
                     if((get_udp_id()+1) == targetMachine || targetMachine == guWhiteboard::NUM_OF_MACHINES+1)
                     {
+
                         /*
                         std::vector<std::string>::iterator it;                        
                         // iterator to vector element:

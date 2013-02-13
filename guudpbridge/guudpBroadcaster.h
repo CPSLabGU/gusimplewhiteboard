@@ -66,7 +66,8 @@ public:
     bool sending_currently;
     int sending_count;    
     
-    int offset;    
+    int offset;
+    int hash_offset;
     int msg_loops;  
     unsigned char buffer[MTU];
 
