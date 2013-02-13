@@ -180,6 +180,7 @@ void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nona
             }
         }
         gsw_increment(wb, t);
+        gsw_increment_event_counter(wb, t);
         if (!nonatomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         if (notifySubscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }

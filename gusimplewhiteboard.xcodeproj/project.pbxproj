@@ -19,6 +19,7 @@
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
+		C3C74EE716CB318200565270 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3FCE01214FF248B003AC195 /* RemoteWhiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */; };
 		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
@@ -93,6 +94,10 @@
 		C33D92C5150491F500524671 /* guudpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpUtil.h; sourceTree = "<group>"; };
 		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
 		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
+		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
+		C3BE8AE916CB27CF004BFE81 /* guudpSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
+		C3BE8AEA16CB27CF004BFE81 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
+		C3BE8AEB16CB27CF004BFE81 /* guudpWhiteboardLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpWhiteboardLayer.h; sourceTree = "<group>"; };
 		C3BEDEE41693EADD00119F2E /* guudpSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
 		C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guwhiteboardtypelist_c_typestrings_generated.c; sourceTree = "<group>"; };
 		C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardobject.h; sourceTree = "<group>"; };
@@ -200,6 +205,10 @@
 				C33D92C2150491F500524671 /* guudpManager.h */,
 				C33D92C4150491F500524671 /* guudpUtil.cpp */,
 				C33D92C5150491F500524671 /* guudpUtil.h */,
+				C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */,
+				C3BE8AE916CB27CF004BFE81 /* guudpSerialize.h */,
+				C3BE8AEA16CB27CF004BFE81 /* guudpWhiteboardLayer.cpp */,
+				C3BE8AEB16CB27CF004BFE81 /* guudpWhiteboardLayer.h */,
 				C33D92C3150491F500524671 /* guudpConfig.h */,
 			);
 			path = guudpbridge;
@@ -573,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C74EE716CB318200565270 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */,
 				C31EE6AE155BA7DF00D55934 /* guudpBroadcaster.cpp in Sources */,
 				C31EE6AF155BA7DF00D55934 /* guudpListener.cpp in Sources */,
