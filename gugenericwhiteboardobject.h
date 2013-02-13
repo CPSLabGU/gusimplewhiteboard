@@ -14,8 +14,6 @@
 #include <iostream>
 #include <assert.h>
 
-using namespace std;
-
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 template <class object_type> class generic_whiteboard_object
@@ -27,16 +25,16 @@ template <class object_type> class generic_whiteboard_object
         gu_simple_whiteboard_descriptor *_wbd;
         
 public:
-        generic_whiteboard_object(gu_simple_whiteboard_descriptor *wbd, int type_offset, bool atomic = true, bool notify_subscribers = true) //Constructor
+        generic_whiteboard_object(gu_simple_whiteboard_descriptor *wbd, uint16_t toffs, bool want_atomic = true, bool do_notify_subscribers = true) //Constructor
         {
                 if(!wbd)
                 {
 			wbd = get_local_singleton_whiteboard();
                 }
-                this->type_offset = type_offset;
-                this->atomic = atomic;
-                this->notify_subscribers = notify_subscribers;
-                this->_wbd = wbd;
+                type_offset = toffs;
+                atomic = want_atomic;
+                notify_subscribers = do_notify_subscribers;
+                _wbd = wbd;
         }
 
         //void set(object_type *msg) { set(*msg); }
