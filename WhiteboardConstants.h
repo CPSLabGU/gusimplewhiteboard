@@ -199,8 +199,8 @@ namespace guWhiteboard
 
 	//ID's for motor's in differential robots
 	enum DifferentialMotor {
-		LEFT = 0,
-		RIGHT = 1,
+		LEFT_MOTOR_DIFFERENTIAL = 0,
+		RIGHT_MOTOR_DIFFERENTIAL = 1,
 		NXT_MOTOR3 = 2 //constant for the third motor on nxt's
 	};
 
