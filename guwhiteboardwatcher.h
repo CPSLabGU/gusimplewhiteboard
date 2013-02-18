@@ -1,5 +1,5 @@
 /*
- *  gugenericwhiteboardwatcher.h
+ *  guwhiteboardwatcher.h
  *
  *  Created by Carl Lusty in 2013.
  *  Copyright (c) 2013 Carl Lusty

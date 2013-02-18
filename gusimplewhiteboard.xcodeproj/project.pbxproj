@@ -102,7 +102,7 @@
 		C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = guwhiteboardtypelist.tsl; sourceTree = "<group>"; };
 		C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardobject.h; sourceTree = "<group>"; };
 		C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_generated.h; sourceTree = "<group>"; };
-		C3EC3D0D16AD2158002FF8D4 /* gugenericwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardwatcher.h; sourceTree = "<group>"; };
+		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardwatcher.h; sourceTree = "<group>"; };
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,7 +230,7 @@
 				F1C94DE71555D78400B717DF /* libc++.dylib */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
-				C3EC3D0D16AD2158002FF8D4 /* gugenericwhiteboardwatcher.h */,
+				C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */,
 				C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */,
 				C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */,
 				C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */,

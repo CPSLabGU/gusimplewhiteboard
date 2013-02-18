@@ -59,7 +59,7 @@
 #include "Whiteboard.h"
 #include "gusimplewhiteboard.h"
 #include "gugenericwhiteboardobject.h"
-#include "gugenericwhiteboardwatcher.h"
+#include "guwhiteboardwatcher.h"
 
 
 @interface SimpleWhiteboardTest: SenTestCase
