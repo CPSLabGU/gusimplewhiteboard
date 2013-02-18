@@ -22,40 +22,7 @@ void set_udp_id(int udp_id)
     my_udp_id = udp_id;
 }
 
-
-
-static WBMsg getWBMsg(gu_simple_message *m)
-{
-    switch (m->wbmsg.type)
-    {
-        case WBMsg::TypeBool:
-            return WBMsg((bool)m->sint);
-            
-        case WBMsg::TypeInt:
-            return WBMsg(m->sint);
-            
-        case WBMsg::TypeFloat:
-            return WBMsg(m->sfloat);
-            
-        case WBMsg::TypeString:
-            return WBMsg(m->wbmsg.data);
-            
-        case WBMsg::TypeBinary:
-            return WBMsg(m->wbmsg.data, m->wbmsg.len);
-            
-        case WBMsg::TypeArray:
-        {
-            std::vector<int> *v = new std::vector<int>();
-            for (int i = 0; i < m->wbmsg.len; i++)
-                v->push_back(m->ivec[i]);
-            return WBMsg(*v, true);
-        }
-        default:
-            return WBMsg();
-    }
-    /* NOTREACHED */
-}
-
+/*
 static void printWBMsg(std::string dataName, WBMsg *value)
 {
 	std::ostringstream out;
@@ -99,10 +66,10 @@ static void printWBMsg(std::string dataName, WBMsg *value)
 		}
 	}
 	printf("Type: \t%s\t\tValue:\t%s\n", (char *)dataName.c_str(), (char *)out.str().c_str());
-}
+}*/
 
 
-static u_int32_t hash_of(const char *s)
+u_int32_t hash_of(const char *s)
 {
     u_int32_t hash = *s;
     while (*s++)
@@ -117,7 +84,7 @@ static u_int32_t hash_of(const char *s)
 }
 
 
-static u_int32_t alt_hash(const char *s)
+u_int32_t alt_hash(const char *s)
 {
     u_int32_t hash = *s;
     while (*s++)
@@ -200,7 +167,7 @@ void convWBMsgToSimpleMsg(WBMsg *value, gsw_simple_message *m)
                 case WBMsg::TypeBinary:
                 {
                         int len = value->getSizeInBytes();
-                        if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
+                        if (len > (int)sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
                         m->wbmsg.len = len;
                         if (len) memcpy(m->wbmsg.data, value->getBinaryValue(), len);
                         break;

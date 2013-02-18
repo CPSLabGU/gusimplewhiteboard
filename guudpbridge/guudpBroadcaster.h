@@ -29,7 +29,7 @@
 #include <time.h>
 #include <list>
 
-static void broadcastLoop(void *broadcaster); 
+void broadcastLoop(void *broadcaster); 
 
 class BridgeBroadcaster
 {

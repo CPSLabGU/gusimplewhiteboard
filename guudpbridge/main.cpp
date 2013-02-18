@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "-w, The name of the Whiteboard to connect to.\n");
 				fprintf(stderr, "-r, Robot id to utilise impersonate.\n");
 				return EXIT_FAILURE;
-				break;
 			default:
 				break;
 		}
