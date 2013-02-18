@@ -108,7 +108,7 @@ struct gu_type_info {
 	std::string comment;
 };
 
-int main(int argc, char **argv)
+int main()
 {
 	ifstream tsl_file;
         ofstream output_file;
@@ -148,13 +148,13 @@ int main(int argc, char **argv)
         {
                 int start_p = 0;
                 if(pos > 0)
-                        start_p = pos+header_token.length();
+                        start_p = pos+(int)header_token.length();
                 
-                int end_p = tsl_file_str.find("\n", start_p);
+                int end_p = (int)tsl_file_str.find("\n", start_p);
                 pos = end_p;
 
 		std::string type_line = tsl_file_str.substr(start_p, end_p-start_p);
-                if(type_line.size() == 0)
+                if((int)type_line.size() == 0)
                         break;
 
 		std::string line_token = std::string(",");
@@ -164,9 +164,9 @@ int main(int argc, char **argv)
                 for (int i = 0; i < 4; i++)
                 {
                         int start = line_pos;
-			int end = type_line.find(line_token, start);
+			int end = (int)type_line.find(line_token, start);
                         
-                        line_pos = end+line_token.length();
+                        line_pos = end+(int)line_token.length();
 
                         std::string type_info_element;
                         if(i == 3) //comment, just give me the rest of the string
@@ -174,14 +174,14 @@ int main(int argc, char **argv)
                         else
                                 type_info_element = type_line.substr(start, end-start);
                         
-                        int start_non_whitespace = type_info_element.find_first_not_of(' ');
-                        if(start_non_whitespace != std::string::npos)
+                        int start_non_whitespace = (int)type_info_element.find_first_not_of(' ');
+                        if(start_non_whitespace != (int)std::string::npos)
                                 type_info_element.erase(0, start_non_whitespace);
                         
                         elements.push_back(type_info_element);
                 }
 		
-		if(elements.size() != 4)
+		if((int)elements.size() != 4)
 		{
 			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %d\nexiting...", (int)types.size());
 			exit(1);
@@ -189,7 +189,7 @@ int main(int argc, char **argv)
 
 		struct gu_type_info info;
 		//Splitting logic from parsing
-		for (int i = 0; i < elements.size(); i++)
+		for (int i = 0; i < (int)elements.size(); i++)
 		{
 			switch (i) {
 				case 1:
@@ -209,14 +209,14 @@ int main(int argc, char **argv)
 					break;
 				}
 				case 0:
-					if(elements.at(i).size() == 0)
+					if((int)elements.at(i).size() == 0)
 					{
                                                 //warning if no type is given, however allow it for now.
 						info.class_info = None;
 					}
 					else
 					{
-						if(elements.at(i).find("class:") != string::npos) //custom class?
+						if((int)elements.at(i).find("class:") != (int)string::npos) //custom class?
 						{
 							info.class_info = Custom_Class;
 							info.class_name = elements.at(i).substr(std::string("class:").length());
@@ -256,7 +256,7 @@ int main(int argc, char **argv)
 			}
 		}
 		types.push_back(info);
-	} while((pos = tsl_file_str.find(header_token, pos)) != string::npos);
+	} while((pos = (int)tsl_file_str.find(header_token, pos)) != (int)string::npos);
 		
 	
 	//output to file
@@ -305,12 +305,12 @@ int main(int argc, char **argv)
         output_c_file << opening_enum;
 
         //enum
-	for (int i = 0; i < types.size(); i++)
+	for (int i = 0; i < (int)types.size(); i++)
 	{
 		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
 		output_c_file << "                " << (char *)types.at(i).type_const_name.c_str() << " = " << hash_offset;
                 
-                if(i+1 != types.size())
+                if(i+1 != (int)types.size())
                        output_c_file << ",";
 		
 		types.at(i).class_info == None ? output_c_file << "\t///<" << (char *)types.at(i).comment.c_str() : output_c_file << "";
@@ -324,16 +324,16 @@ int main(int argc, char **argv)
         
         
 	//string array
-	for (int i = 0; i < types.size(); i++)
+	for (int i = 0; i < (int)types.size(); i++)
 	{
 		output_string_array_c_file << "        \"" << (char *)types.at(i).type_name.c_str();
-                i+1 != types.size() ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
+                i+1 != (int)types.size() ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
 	}
 
         output_string_array_c_file << closing_string_array_definition;
 	
 	//type classes
-	for (int i = 0; i < types.size(); i++)
+	for (int i = 0; i < (int)types.size(); i++)
 	{
 		switch (types.at(i).class_info) {
 			case None:
@@ -348,8 +348,6 @@ int main(int argc, char **argv)
 				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).class_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).class_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << ") {} };\n\n";
 				break;
 			}
-			default:
-				break;
 		}
 	}
 	
