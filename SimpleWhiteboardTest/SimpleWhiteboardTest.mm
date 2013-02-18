@@ -67,7 +67,7 @@ class WBSubscriber
 public:
         WBSubscriber(Whiteboard *w, SimpleWhiteboardTest *t): self(t)
         {
-                generic_whiteboard_watcher *watcher = new generic_whiteboard_watcher(self.whiteboard->_wbd);
+                whiteboard_watcher *watcher = new whiteboard_watcher(self.whiteboard->_wbd);
 //                watcher->subscribe(WB_BIND(WBSubscriber::sub));
 //                watcher->subscribe(WB_TYPE_BIND(WBTypes::kNaoIsReadyToRun, WBSubscriber::sub));
                 usleep(1000000); //gives the monitor thread in the whiteboard a chance to get started.

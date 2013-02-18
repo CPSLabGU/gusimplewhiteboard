@@ -47,7 +47,7 @@ static void do_callback(void *m) //makes the callback call, via GCD queue
         delete h;
 }
 
-class generic_whiteboard_watcher
+class whiteboard_watcher
 {
         gu_simple_whiteboard_descriptor         *_wbd;
         std::list<WBFunctorBase *>              _sub;
@@ -56,7 +56,7 @@ class generic_whiteboard_watcher
         u_int16_t                               local_event_counters[GSW_TOTAL_MESSAGE_TYPES];  // local event counter for all types, used by the global subscription
         
 public:
-        generic_whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd) //Constructor
+        whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd) //Constructor
         {
                 _wbd = wbd;
                 if(!_wbd)
@@ -84,7 +84,7 @@ public:
         {
                 if(!func->is_simple_wb_version())
                 {
-                        fprintf(stderr, "generic_whiteboard_watcher: Only use WB_BIND for the original Whiteboard class, for the simplewhiteboard watcher please use WB_TYPE_BIND(type const enum, function pointer). This is not optional, exiting...\n");
+                        fprintf(stderr, "whiteboard_watcher: Only use WB_BIND for the original Whiteboard class, for the simplewhiteboard watcher please use WB_TYPE_BIND(type const enum, function pointer). This is not optional, exiting...\n");
                         exit(1);
                 }
                 
@@ -148,7 +148,7 @@ public:
                                         {
                                                 if(local_event_counters[e]+1 != wb->event_counters[e])
                                                 {
-                                                        fprintf(stderr, "generic_whiteboard_watcher: missed one or more event with type offset %d\n", e);
+                                                        fprintf(stderr, "whiteboard_watcher: missed one or more event with type offset %d\n", e);
                                                 }
                                                 local_event_counters[e] = wb->event_counters[e];
                                                 uint16_t t_overwrite = e;
@@ -161,7 +161,7 @@ public:
                                 {
                                         if(event_count+1 != wb->event_counters[offs])
                                         {
-                                                fprintf(stderr, "generic_whiteboard_watcher: missed one or more event with type offset %d\n", offs);
+                                                fprintf(stderr, "whiteboard_watcher: missed one or more event with type offset %d\n", offs);
                                         }
                                         f->set_event_count(wb->event_counters[offs]);
                                         callback_helper *h = new callback_helper(wb, offs, f, 0, false, wb->indexes[offs]);
@@ -175,7 +175,7 @@ public:
 
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd) //called by simplewhiteboard whenever the global event count increases
 {
-        generic_whiteboard_watcher *self = (generic_whiteboard_watcher *) wbd->context;
+        whiteboard_watcher *self = (whiteboard_watcher *) wbd->context;
         if (self) self->receive_callback();
 }
 
