@@ -66,31 +66,6 @@ namespace guWhiteboard
 	/** Hello World message name */
 	extern const char *kHelloWBMsg;
         
-	/** Speech message (string) */
-	extern const char *kSay;
-
-	/** Queuing speech message (string) */
-	extern const char *kQSay;
-        
-	/** Debug speech message (string) -- only use for debugging,
-         *  as this will only work if "SpeechOutput" "On" was sent
-         *  previously
-         */
-	extern const char *kSpeechWBMsg;
-
-	/** Queuing debug speech message (string) -- only use for debugging,
-         *  as this will only work if "SpeechOutput" "On" was sent
-         *  previously
-         */
-	extern const char *kQSpeech;
-
-        /** Whiteboard message for conditional speech output.
-         *  Content (string) should be "On" to turn on speech or "Off"
-         *  to turn off speech (will not affect the "Say" command).
-         */
-        extern const char *kSpeechOutput;
-
-
 	/*!
 	 * This variable is 1 if we are playng as RED and
 	 * is 0 if we are playng as BLUE

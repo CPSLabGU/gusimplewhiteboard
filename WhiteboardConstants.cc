@@ -11,11 +11,6 @@ namespace guWhiteboard
 {
         /* generic whiteboard messages */
 	const char *kHelloWBMsg = "HELLO_MESSAGE";	// hello world message
-	const char *kSay = "Say";                       // speech message
-	const char *kQSay = "QSay";                     // speech message (queuing)
-	const char *kSpeechWBMsg = "Speech";		// speech message for debugging
-	const char *kQSpeech = "QSpeech";		// speech message (queuing) for debugging
-	const char *kSpeechOutput = "SpeechOutput";	// activate/deactivate Speech
 
         /* expert system whiteboard messages */
 	const char *kUpdateAllProofs = "updateProofs";

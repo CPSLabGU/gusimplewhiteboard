@@ -56,7 +56,7 @@ class whiteboard_watcher
         u_int16_t                               local_event_counters[GSW_TOTAL_MESSAGE_TYPES];  // local event counter for all types, used by the global subscription
         
 public:
-        whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd) //Constructor
+        whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd = NULL) //Constructor
         {
                 _wbd = wbd;
                 if(!_wbd)
