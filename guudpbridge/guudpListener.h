@@ -30,7 +30,7 @@
 #include <list>
 
 #ifdef DEBUG    
-static void listenMonitor(void *listener);
+void listenMonitor(void *listener);
 #endif
 
 

@@ -15,7 +15,7 @@
 #include "guudpSerialize.h"
 
 static int content_packet_count = 0;
-static void broadcastLoop(void *broadcaster)
+void broadcastLoop(void *broadcaster)
 {
         BridgeBroadcaster *c = (BridgeBroadcaster *)broadcaster;
         int sent = 0;
@@ -82,7 +82,7 @@ void BridgeBroadcaster::send_hash()
                 hashToSend.typeName[j] = _wbd_broadcaster->wb->typenames[currOff];
                 
                 hash_offset++; //points to the next hash to send in the dynamic type broadcasting vector (msg_types_to_broadcast)
-                hash_offset >= msg_types_to_broadcast->size() ? hash_offset = 0 : hash_offset = hash_offset; //offset = offset is only because shorthand if requires an else statement
+                hash_offset >= (int)msg_types_to_broadcast->size() ? hash_offset = 0 : hash_offset = hash_offset; //offset = offset is only because shorthand if requires an else statement
         }
 
         hash2buf(&buffer[0], &hashToSend); //serialize
@@ -157,7 +157,7 @@ void BridgeBroadcaster::send_content()
                         //dynamic messages (not reserved message types)
                         offset = GSW_NUM_RESERVED; //move past the unused reserved types
                 }
-                if(offset >= GSW_NUM_RESERVED + msg_types_to_broadcast->size())
+                if(offset >= GSW_NUM_RESERVED + (int)msg_types_to_broadcast->size())
                 {
                         offset = 0;
                 }

@@ -16,7 +16,7 @@
 
 
 #ifdef DEBUG
-static void listenMonitor(void *listener)
+void listenMonitor(void *listener)
 {
     BridgeListener *c = (BridgeListener *)listener;
 //
@@ -69,8 +69,7 @@ static void listenMonitor(void *listener)
 void BridgeListener::listenSingleMethod()
 {
 #ifdef DEBUG    
-    startRecvTime = get_utime();    
-    long long startTime = get_utime();    
+    startRecvTime = get_utime();
 #endif    
     fd_set socketReadSet;
     struct timeval msgSelectTimeout;
@@ -338,15 +337,11 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
 
 
     struct sockaddr_in mc_addr;   /* socket address structure */
-    struct ip_mreq mc_req;        /* multicast request structure */
-    char* mc_addr_str;            /* multicast IP address */
     unsigned short mc_port;       /* multicast port */
     struct sockaddr_in from_addr; /* packet source */
     unsigned int from_len;        /* source addr length */
 
-#ifndef USE_BROADCAST
-    mc_addr_str = (char *)MULTICASTADDRESS;     /* assign multicast ip address */
-#endif    
+
     mc_port = SERVERPORT;               /* assign multicast port number */
 
     
@@ -398,6 +393,10 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     
 #ifndef USE_BROADCAST    
 #ifndef UNICAST
+    struct ip_mreq mc_req;        /* multicast request structure */
+    char* mc_addr_str;            /* multicast IP address */
+    mc_addr_str = (char *)MULTICASTADDRESS;     /* assign multicast ip address */
+        
     /* construct an IGMP join request structure */
     mc_req.imr_multiaddr.s_addr = inet_addr(mc_addr_str);
     mc_req.imr_interface.s_addr = htonl(INADDR_ANY);
@@ -454,7 +453,8 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     while(true)
     {
         listenSingleMethod();
-    }    
+    }
+        dispatch_source_cancel(listener_monitor); //I know, this just avoids an unused var warning
 #else
     timespec when2 = when;
     when2.tv_nsec += RECV_NETWORK_DELAY * 1000ull;
