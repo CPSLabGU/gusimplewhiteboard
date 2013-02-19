@@ -5,7 +5,10 @@ std::string,    kSpeech,                                "Speech",       debug sp
 std::string,    kQSay,                                  "QSay",         speech output message (queued)
 std::string,    kQSpeech,                               "QSpeech",      debug speech message (queued)
 bool,           kSpeechOutput,                          "SpeechOutput", toggle, treat speech messages as silent output unless this is turned on
-bool,           kRunVisionPipelineTest,                 "guvision_runVisionPipeline",          This is a test to see of the vision pipeline runs from the new wb to the old one using a generated class template.
-class:RunningClass,  kNaoIsReadyToRun,                  "gu_whatever",  Is the walk engine ready to run.
-bool,           kNaoIsReadyToRun2,                      "gu_whatever2", uiyguh
-,               kNaoIsReadyToRun3,                      "gu_whatever3", uiyguh
+bool,           kBoolExample,                           "example_bool", This is an example of a type definition that generates a basic type class for getters / setters
+class:CustClass,kCustomClassExample,                    "example_class",This is an example of a type definition that indicates that a custom accessor class will be defined later
+,               kSoloTypeExample,                       "example_type", This is an example of a type definition that does not generate anything other than a wb type
+
+
+
+
