@@ -58,19 +58,6 @@
 #ifndef gusimplewhiteboard_WBMsg_h
 #define gusimplewhiteboard_WBMsg_h
 
-#ifndef gusimplewhiteboard_Whiteboard_h
-#ifndef NO_WARN_WBMSG_H
-#warning *** Warning: attempt to include simple WBMsg directly without including Whiteboard.h first!
-#endif
-#endif
-
-#ifdef WHITEBOARD_OLD_H
-#error *** Error: attempt to mix old and simple Whiteboard in WBMsg!
-#endif
-#ifdef _BOOST_WHITEBOARD_H_
-#error *** Error: attempt to mix boost and simple Whiteboard in WBMsg!
-#endif
-
 #include <cstdlib>
 #include <string>
 #include <iostream>             //for cerr

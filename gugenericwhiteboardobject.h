@@ -37,7 +37,6 @@ public:
                 _wbd = wbd;
         }
 
-        //void set(object_type *msg) { set(*msg); }
         void set(object_type &msg)
         {
                 int t = type_offset;
@@ -57,12 +56,14 @@ public:
                 if (atomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
                 if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
         }
-        
+
         object_type &get()
         {
                 return *(object_type *)gsw_current_message(_wbd->wb, type_offset);
         }
 
+        static object_type get_from(gu_simple_message *msg);
+//#endif
         void operator=(object_type value)
         {
                 set(value);
@@ -74,7 +75,28 @@ public:
         }
 };
 
+template <class object_type> 
+object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
+{
+        return *(object_type *)msg;
+}
 
+//template<>
+//std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg)
+//{
+//        return std::string(msg->string);
+//}
+
+
+/*
+ template<>
+ std::string &<std::string>::get();
+ 
+ std::string &get(gu_simple_message *msg)
+ {
+ std::string val((char *)msg);
+ }
+ */
 
 
 #endif //GENERIC_WB_OBJ_H

@@ -52,7 +52,7 @@ public:
         uint16_t get_event_count() { return event_count; };
         void set_event_count(uint16_t e) { event_count = e; };
         bool is_simple_wb_version() { return simple_wb_version; };
-private:
+protected:
 	C* fObject;
 	typedef void (C::*func) (std::string, WBMsg*);
 	func fFunction;
@@ -73,5 +73,27 @@ WBFunctorBase* createWBFunctor(C *obj, void (C::*f) (guWhiteboard::WBTypes, gu_s
 {
 	return new WBFunctor<C>(obj, f, t);
 }
+
+
+
+/*template <typename T>
+class WBFunctor_Say: public WBFunctor<T>
+{
+public:
+        WBFunctor_Say(T* obj, void (T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t):
+                WBFunctor<T>(obj, pFunc, t) { };
+        
+        static WBFunctorBase *bind(T *obj, void (T::*f)(guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t) { return new WBFunctor_Say<T>(obj, T::func(f), t); }
+        
+        void call(gu_simple_message *m)
+        {
+                std::string result = guWhiteboard::kSay_t::get_from(m);
+                (Say_function_t(*WBFunctor<T>::fObject->fFunction))(WBFunctor<T>::type_enum, &result);
+        }
+        
+        typedef void (T::*Say_function_t) (guWhiteboard::WBTypes, std::string &);
+};*/
+
+//#include "WBFunctor_types_generated.h"
 
 #endif
