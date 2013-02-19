@@ -94,6 +94,6 @@ public:
         typedef void (T::*Say_function_t) (guWhiteboard::WBTypes, std::string &);
 };*/
 
-//#include "WBFunctor_types_generated.h"
+#include "WBFunctor_types_generated.h"
 
 #endif

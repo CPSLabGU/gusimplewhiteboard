@@ -364,7 +364,7 @@ int main()
 			}
 			case Custom_Class:
 			{
-				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).class_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).class_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << "_v) {} };\n\n";
+				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << "_v) {} };\n\n";
 				break;
 			}
 		}
@@ -407,34 +407,31 @@ int main()
                 ss2 << (char *)types.at(i).type_const_name.c_str() << "_WBFunctor_T";
                 std::string type_name = ss2.str();
                 
-		switch (types.at(i).class_info) {
-			case None:
-				break;
-			case POD_Class:
-			{
-				output_functor_templates        << "         template <typename " << type_name << ">\n"
-                                                                << "         class " << class_name << ": public WBFunctor<" << type_name << "> {\n"
-                                                                << "         public:\n"
-                                                                << "         " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << types.at(i).class_name << " &), guWhiteboard::WBTypes t):          WBFunctor<T>(obj, pFunc, t) { };\n"
-                                                                << "        static WBFunctorBase *bind(" << type_name << " *obj, void (" << type_name << "::*f)(guWhiteboard::WBTypes, " << types.at(i).class_name << " &), guWhiteboard::WBTypes t) { return new " << class_name << "<" << type_name << ">(obj, " << type_name << "::func(f), t); }\n"
-                                                                << "         void call(gu_simple_message *m)\n";
-//                                                                << "         {\n";
-//                                                                << "         " << types.at(i).class_name << " result = guWhiteboard::kSay_t::get_from(m);\n";
-//                                                                << "         (Say_function_t(*WBFunctor<" << type_name << ">::fObject->fFunction))(WBFunctor<" << type_name << ">::type_enum, &result);\n";
-//                                                                << "         }\n";
-//                                                                << "         \n";
-//                                                                << "         \n";
-//
-//                                
-//                                
-//                                "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << ") {} };\n\n";
-				break;
-			}
-			case Custom_Class:
-			{
-
-				break;
-			}
+                std::string datatype;
+                if(types.at(i).class_info == POD_Class)
+                        datatype = types.at(i).class_name;
+                else
+                        datatype = std::string("guWhiteboard::").append(types.at(i).class_name);
+                
+		if (types.at(i).class_info != None)
+                {
+                        if(types.at(i).class_info == Custom_Class)
+                                output_functor_templates << "#ifdef CUSTOM_CLASS_" << types.at(i).class_name << "\n";
+                        output_functor_templates        << "template <typename " << type_name << ">\n"
+                        << "class " << class_name << ": public WBFunctor<" << type_name << "> \n{\n"
+                        << "public:\n"
+                        << "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << ">(obj, pFunc, t) { };\n"
+                        << "        static WBFunctorBase *bind(" << type_name << " *obj, void (" << type_name << "::*f)(guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t) { return new " << class_name << "<" << type_name << ">(obj, " << type_name << "::func(f), t); }\n"
+                        << "        void call(gu_simple_message *m)\n"
+                        << "        {\n"
+                        << "                " << datatype << " result = guWhiteboard::" << types.at(i).type_const_name << "_t::get_from(m);\n"
+                        << "                (" << types.at(i).type_const_name << "_function_t(*WBFunctor<" << type_name << ">::fObject->fFunction))(WBFunctor<" << type_name << ">::type_enum, &result);\n"
+                        << "        }\n"
+                        << "        \n"
+                        << "        typedef void (" << type_name << "::*" << types.at(i).type_const_name << "_function_t) (guWhiteboard::WBTypes, " << datatype << " &);\n};\n";
+                        if(types.at(i).class_info == Custom_Class)
+                                output_functor_templates << "#endif //" << types.at(i).class_name << "\n";
+                        output_functor_templates << "\n\n";
 		}
         }
         
