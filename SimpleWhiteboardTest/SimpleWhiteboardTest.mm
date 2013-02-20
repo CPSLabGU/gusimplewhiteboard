@@ -108,7 +108,11 @@ public:
         
         //generic wb object testing
 
-        generic_whiteboard_object<gu_simple_message> *testInt = new generic_whiteboard_object<gu_simple_message>(self.whiteboard->_wbd, 20);
+//        generic_whiteboard_object<gu_simple_message> *testInt = new generic_whiteboard_object<gu_simple_message>(self.whiteboard->_wbd, 20);
+
+        
+        
+        
 //        gu_simple_message m;
 //        m.sint = 2300;
 //        testInt->set(m);
@@ -145,6 +149,8 @@ public:
 - (void) testCallback
 {
         WBSubscriber subscriber(self.whiteboard, self);
+        
+        
 //                generic_whiteboard_object<int> testInt(self.whiteboard->_wbd, WBTypes::kNaoIsReadyToRun);
                 int m;
 //        for (int i = 0; i<1000; i++) {
@@ -153,10 +159,10 @@ public:
 //                testInt = m;
 //        }
         
-	guWhiteboard::kRunVisionPipelineTest_t runVision;
+//	guWhiteboard::kRunVisionPipelineTest_t runVision;
 //	guWhiteboard::kRunVisionPipeline *runVision = new guWhiteboard::kRunVisionPipeline();
 	bool on = true;
-	runVision.set(on);
+//	runVision.set(on);
 	
 //        self.whiteboard->addMessage("subtest", WBMsg(42));
         dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC);

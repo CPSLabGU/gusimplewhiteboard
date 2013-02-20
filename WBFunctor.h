@@ -11,6 +11,7 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #include "WBMsg.h"
 #include "guwhiteboardtypelist_generated.h" //for type enum
 #include "gusimplewhiteboard.h" //for gu_simple_message
+
 #define WB_BIND( f ) createWBFunctor(this, &f)
 #define WB_TYPE_BIND( t, f ) createWBFunctor(this, &f, t)
 
@@ -52,11 +53,12 @@ public:
         uint16_t get_event_count() { return event_count; };
         void set_event_count(uint16_t e) { event_count = e; };
         bool is_simple_wb_version() { return simple_wb_version; };
+       	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation 
+        s_func get_s_func_ptr() { return s_fFunction; };
 protected:
 	C* fObject;
 	typedef void (C::*func) (std::string, WBMsg*);
 	func fFunction;
-	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation
 	s_func s_fFunction;
         guWhiteboard::WBTypes type_enum;
         uint16_t event_count;
