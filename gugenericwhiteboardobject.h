@@ -21,7 +21,6 @@ template <class object_type> class generic_whiteboard_object
         uint16_t type_offset;
         bool atomic;
         bool notify_subscribers;
-//        gu_simple_message *_data;
         gu_simple_whiteboard_descriptor *_wbd;
         
 public:
@@ -37,66 +36,64 @@ public:
                 _wbd = wbd;
         }
 
-        void set(object_type &msg)
-        {
-                int t = type_offset;
-
-#ifdef DEBUG
-		assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= sizeof(object_type));
-#endif
-                if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
-                
-                gu_simple_whiteboard *wb = _wbd->wb;
-                gu_simple_message *m = gsw_next_message(wb, t);
-		object_type *wbobj = (object_type*)(m);
-		*wbobj = msg;
-
-                gsw_increment(wb, t);
-                gsw_increment_event_counter(wb, t);
-                if (atomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
-                if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
-        }
+        void set(const object_type &msg);
 
         object_type &get()
         {
                 return *(object_type *)gsw_current_message(_wbd->wb, type_offset);
         }
 
-        static object_type get_from(gu_simple_message *msg);
-//#endif
-        void operator=(object_type value)
-        {
-                set(value);
-        }
+        object_type get_from(gu_simple_message *msg);
+        
 
-        operator object_type()
-        {
-                return *get();
-        }
+        //operators not working yet
+//        void operator=(const object_type &value)
+//        {
+//                set(value);
+//        }
+//
+//        void operator=(object_type value)
+//        {
+//                set(value);
+//        }
+//        
+//
+//        operator object_type()
+//        {
+//                return *get();
+//        }
 };
 
-template <class object_type> 
+template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
 {
         return *(object_type *)msg;
 }
 
-//template<>
-//std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg)
-//{
-//        return std::string(msg->string);
-//}
+
+template <class object_type>
+void generic_whiteboard_object<object_type>::set(const object_type &msg)
+{
+        int t = type_offset;
+        
+#ifdef DEBUG
+        assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= sizeof(object_type));
+#endif
+        if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
+        
+        gu_simple_whiteboard *wb = _wbd->wb;
+        gu_simple_message *m = gsw_next_message(wb, t);
+        object_type *wbobj = (object_type*)(m);
+        *wbobj = msg;
+        
+        gsw_increment(wb, t);
+        gsw_increment_event_counter(wb, t);
+        if (atomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
+        if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
+}
 
 
-/*
- template<>
- std::string &<std::string>::get();
- 
- std::string &get(gu_simple_message *msg)
- {
- std::string val((char *)msg);
- }
- */
+
 
 
 #endif //GENERIC_WB_OBJ_H

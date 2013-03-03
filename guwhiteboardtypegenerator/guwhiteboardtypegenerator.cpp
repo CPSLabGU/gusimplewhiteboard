@@ -33,6 +33,7 @@ static char *include_str = (char *)"\
 #define _GUWHITEBOARD_TYPELIST_H_                                       \n\
                                                                         \n\
 #include \"gugenericwhiteboardobject.h\"                                \n\
+#include \"guwhiteboardobjects.h\"                                      \n\
                                                                         \n\
                                                                         \n\
 ";
@@ -423,7 +424,7 @@ int main()
                         << "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << ">(obj, (void (" << type_name << "::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { };\n\n"
                         << "        void call(gu_simple_message *m)\n"
                         << "        {\n"
-                        << "                " << datatype << " result = guWhiteboard::" << types.at(i).type_const_name << "_t::get_from(m);\n"
+                        << "                " << datatype << " result = guWhiteboard::" << types.at(i).type_const_name << "_t().get_from(m);\n"
                         << "                " << types.at(i).type_const_name << "_function_t funct((void (" << type_name << "::*)(guWhiteboard::WBTypes, " << datatype << " &))WBFunctor<" << type_name << ">::get_s_func_ptr());\n"
                         << "                (WBFunctor<" << type_name << ">::fObject->*funct)(WBFunctor<" << type_name << ">::type_enum, result);\n"
                         << "        }\n"

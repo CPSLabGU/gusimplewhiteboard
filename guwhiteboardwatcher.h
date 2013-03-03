@@ -18,6 +18,8 @@
 
 #define DISPATCH_QUEUE_NAME "guWhiteboard"
 
+#define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, t ## _v)))
+
 using namespace std;
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
