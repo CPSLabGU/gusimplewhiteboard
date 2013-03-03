@@ -20,6 +20,9 @@
 		C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3C74EE716CB318200565270 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
+		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
+		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
+		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
 		F166897D155CBBF400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
@@ -101,6 +104,7 @@
 		C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guwhiteboardtypelist_c_typestrings_generated.c; sourceTree = "<group>"; };
 		C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = guwhiteboardtypelist.tsl; sourceTree = "<group>"; };
 		C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBFunctor_types_generated.h; sourceTree = "<group>"; };
+		C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gugenericwhiteboardobject.cpp; sourceTree = "<group>"; };
 		C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardobject.h; sourceTree = "<group>"; };
 		C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_generated.h; sourceTree = "<group>"; };
 		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardwatcher.h; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				F1C94DE71555D78400B717DF /* libc++.dylib */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
+				C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */,
 				C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */,
 				C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */,
 				C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */,
@@ -574,9 +579,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */,
 				C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
+				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +629,7 @@
 				F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */,
 				C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */,
 				C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
+				C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
