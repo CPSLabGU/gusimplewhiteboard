@@ -318,13 +318,13 @@ void Whiteboard::unsubscribeToMessage(gsw_hash_info *hashinfo, WBResult &result)
 
 void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
 {
-    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));
+    gsw_hash_info tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
     addMessage(&tmp, msg, nonatomic, notifySubscribers);
 }
 
 WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {
-    gsw_hash_info tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+    gsw_hash_info tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
     return getMessage(&tmp, result);
 }
 
@@ -333,7 +333,7 @@ void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBR
     gsw_hash_info tmp;
     if (type != "*")
     {
-        tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+        tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
     }
     else 
     {
@@ -348,7 +348,7 @@ void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
     gsw_hash_info tmp;
     if (type != "*")
     {
-        tmp = gsw_hash_info(gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str())));    
+        tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));    
     }
     else 
     {
