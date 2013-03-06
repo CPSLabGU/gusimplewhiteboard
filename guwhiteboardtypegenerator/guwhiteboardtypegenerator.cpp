@@ -33,7 +33,6 @@ static char *include_str = (char *)"\
 #define _GUWHITEBOARD_TYPELIST_H_                                       \n\
                                                                         \n\
 #include \"gugenericwhiteboardobject.h\"                                \n\
-#include \"guwhiteboardobjects.h\"                                      \n\
                                                                         \n\
                                                                         \n\
 ";
