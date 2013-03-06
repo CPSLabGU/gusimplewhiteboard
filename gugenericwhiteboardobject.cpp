@@ -34,7 +34,7 @@ void generic_whiteboard_object<std::string>::set(const std::string &msg)
 }
 
 template <>
-void generic_whiteboard_object<std::vector<int>>::set(const std::vector<int> &msg)
+void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg)
 {
 //        fprintf(stderr, "vector<int> specialisation\n");
         int t = type_offset;
@@ -63,7 +63,7 @@ std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *
 }
 
 template<>
-std::vector<int> generic_whiteboard_object<std::vector<int>>::get_from(gu_simple_message *msg)
+std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simple_message *msg)
 {
         return std::vector<int> (msg->ivec, msg->ivec + sizeof msg->ivec / sizeof msg->ivec[0]);
 }

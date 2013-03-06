@@ -203,14 +203,26 @@ WBMsg Whiteboard::getMessage(gsw_hash_info *hashinfo, WBResult *result)
 
 gsw_hash_info *Whiteboard::getTypeOffset(std::string type)
 {
-    if (type != "*")
-    {
-        return new gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
-    }
-    else 
-    {
-        return new gsw_hash_info(GLOBAL_MSG_ID);
-    }
+        return new gsw_hash_info(getTypeOffset_private(type.c_str()));
+}
+
+int Whiteboard::getTypeOffset_private(std::string type)
+{
+        if (type != "*")
+        {
+                return gsw_offset_for_message_type(_wbd, type.c_str());
+        }
+        else
+        {
+                return GLOBAL_MSG_ID;
+        }
+        
+        //loop array of strings, if found, then return the enum value, if not found, then, run the hash function
+        //for string array
+                //if type == str
+                        //return str index
+        //end
+        //return gsw_offset_for_message_type(_wbd, type.c_str());
 }
 
 #pragma mark - subscription and callbacks
@@ -318,42 +330,24 @@ void Whiteboard::unsubscribeToMessage(gsw_hash_info *hashinfo, WBResult &result)
 
 void Whiteboard::addMessage(const std::string &type, const WBMsg &msg, bool nonatomic, bool notifySubscribers)
 {
-    gsw_hash_info tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
+    gsw_hash_info tmp = gsw_hash_info(getTypeOffset_private(type.c_str()));
     addMessage(&tmp, msg, nonatomic, notifySubscribers);
 }
 
 WBMsg Whiteboard::getMessage(string type, WBResult *result)
 {
-    gsw_hash_info tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
+    gsw_hash_info tmp = gsw_hash_info(getTypeOffset_private(type.c_str()));
     return getMessage(&tmp, result);
 }
 
 void Whiteboard::subscribeToMessage(const string &type, WBFunctorBase *func, WBResult &result)
 {
-    gsw_hash_info tmp;
-    if (type != "*")
-    {
-        tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));
-    }
-    else 
-    {
-        tmp = gsw_hash_info(GLOBAL_MSG_ID);
-    }    
-
+    gsw_hash_info tmp = gsw_hash_info(getTypeOffset_private(type.c_str()));
     return subscribeToMessage(&tmp, func, result);
 }
 
 void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
 {
-    gsw_hash_info tmp;
-    if (type != "*")
-    {
-        tmp = gsw_hash_info(gsw_offset_for_message_type(_wbd, type.c_str()));    
-    }
-    else 
-    {
-        tmp = gsw_hash_info(GLOBAL_MSG_ID);
-    }    
-
+    gsw_hash_info tmp = gsw_hash_info(getTypeOffset_private(type.c_str()));
     return unsubscribeToMessage(&tmp, result);
 }

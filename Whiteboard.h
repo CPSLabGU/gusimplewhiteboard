@@ -109,6 +109,7 @@ namespace guWhiteboard
                 dispatch_queue_t callback_queue;        /// subscription callback queue
                 std::vector<callback_descr> _sub;       /// subscription indexes
                 u_int8_t cball_indexes[GSW_TOTAL_MESSAGE_TYPES];        /// all-subscription indexes
+                int getTypeOffset_private(std::string type);
         public:
                 gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard            
                 /**
