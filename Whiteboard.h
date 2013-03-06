@@ -75,7 +75,7 @@
 #endif
 
 #define NEW_MSG_ID -1
-#define GLOBAL_MSG_ID -2
+#define GLOBAL_MSG_ID 0
 
 namespace guWhiteboard 
 {

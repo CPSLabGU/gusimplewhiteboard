@@ -58,6 +58,9 @@
 #include <cstring>
 #include <gu_util.h>
 #include "Whiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
+
+#warning using depricated whiteboard version
 
 #ifndef DISPATCH_QUEUE_SERIAL
 #define DISPATCH_QUEUE_SERIAL NULL
@@ -208,21 +211,12 @@ gsw_hash_info *Whiteboard::getTypeOffset(std::string type)
 
 int Whiteboard::getTypeOffset_private(std::string type)
 {
-        if (type != "*")
+        for(int i = 0; i < GSW_NUM_TYPES_DEFINED; i++)
         {
-                return gsw_offset_for_message_type(_wbd, type.c_str());
+                if (type.compare(WBTypes_stringValues[i]) == 0)
+                        return i;
         }
-        else
-        {
-                return GLOBAL_MSG_ID;
-        }
-        
-        //loop array of strings, if found, then return the enum value, if not found, then, run the hash function
-        //for string array
-                //if type == str
-                        //return str index
-        //end
-        //return gsw_offset_for_message_type(_wbd, type.c_str());
+        return gsw_offset_for_message_type(_wbd, type.c_str());
 }
 
 #pragma mark - subscription and callbacks
