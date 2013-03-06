@@ -13,6 +13,8 @@
 #include "gusimplewhiteboard.h"
 #include <iostream>
 #include <assert.h>
+#include <string.h>
+#include <vector.h>
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
@@ -64,16 +66,21 @@ public:
 //        }
 };
 
+template<> void generic_whiteboard_object<std::string>::set(const std::string &msg);
+template<> void generic_whiteboard_object<std::vector<int>>::set(const std::vector<int> &msg);
+template<> std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg);
+template<> std::vector<int> generic_whiteboard_object<std::vector<int>>::get_from(gu_simple_message *msg);
+
 template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
 {
         return *(object_type *)msg;
 }
 
-
 template <class object_type>
 void generic_whiteboard_object<object_type>::set(const object_type &msg)
 {
+//        fprintf(stderr, "no specialisation\n");
         int t = type_offset;
         
 #ifdef DEBUG
@@ -91,8 +98,6 @@ void generic_whiteboard_object<object_type>::set(const object_type &msg)
         if (atomic) gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
-
-
 
 
 
