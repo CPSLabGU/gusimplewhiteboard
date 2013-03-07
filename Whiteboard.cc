@@ -176,7 +176,7 @@ void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nona
             case WBMsg::TypeBinary:
             {
                 int len = msg.getSizeInBytes();
-                if (len > sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
+                if (len > (int)sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
                 m->wbmsg.len = len;
                 if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
                 break;

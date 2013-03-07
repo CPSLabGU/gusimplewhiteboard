@@ -40,9 +40,10 @@ public:
 
         void set(const object_type &msg);
 
-        object_type &get()
+        object_type get()
         {
-                return *(object_type *)gsw_current_message(_wbd->wb, type_offset);
+//              return *(object_type *)gsw_current_message(_wbd->wb, type_offset);
+                return get_from(gsw_current_message(_wbd->wb, type_offset));
         }
 
         object_type get_from(gu_simple_message *msg);

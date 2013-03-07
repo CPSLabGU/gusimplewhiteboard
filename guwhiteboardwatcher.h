@@ -15,8 +15,14 @@
 #include "WBFunctor.h"
 #include <iostream> //cerr
 #include <list> //local sub std::list
+#include <dispatch/dispatch.h>
+
 
 #define DISPATCH_QUEUE_NAME "guWhiteboard"
+
+#ifndef DISPATCH_QUEUE_SERIAL
+#define DISPATCH_QUEUE_SERIAL NULL
+#endif
 
 #define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, t ## _v)))
 
@@ -95,7 +101,7 @@ public:
                 func->set_event_count(_wbd->wb->event_counters[func->get_type()]);
                 _sub.push_back(func); //Kept locally for actually making the callbacks
                 
-                if (func->get_type() == guWhiteboard::WBTypes::wb_reserved_SubscribeToAllTypes_v)
+                if (func->get_type() == guWhiteboard::wb_reserved_SubscribeToAllTypes_v)
                 {
                         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++) //get current event counts for all types
                         {
@@ -143,7 +149,7 @@ public:
                          * offs == -1 means all types "*", otherwise only check
                          * new postings for a specific message type
                          */
-                        if (f->get_type() == guWhiteboard::WBTypes::wb_reserved_SubscribeToAllTypes_v)
+                        if (f->get_type() == guWhiteboard::wb_reserved_SubscribeToAllTypes_v)
                                 for (int e = 0; e < GSW_TOTAL_MESSAGE_TYPES; e++)      // check all message type event counters
                                 {
                                         if (local_event_counters[e] != wb->event_counters[e]) //check for new event using event counters
