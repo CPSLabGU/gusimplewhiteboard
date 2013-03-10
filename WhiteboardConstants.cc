@@ -50,7 +50,7 @@ namespace guWhiteboard
          * This is the new message-type for controlling a motor
 	 * content type is ALWAYS ARRAY
 	 * the first value is the motor ID, 0=left, 1=right 2 third
-	 * for MiPAL NXT wired robots, C=left adn B= right
+	 * for MiPAL NXT wired robots, C=left adn B= right  THIRD is A in nxt.
 	 * the second value is POWER
 	 * The power shall be beteen [-100,100], abs(power) is a percentage
 	 * Negative values means running backwards
