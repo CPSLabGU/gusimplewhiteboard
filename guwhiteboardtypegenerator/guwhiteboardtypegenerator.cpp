@@ -416,7 +416,7 @@ int main()
 		if (types.at(i).class_info != None)
                 {
                         if(types.at(i).class_info == Custom_Class)
-                                output_functor_templates << "#ifdef CUSTOM_CLASS_" << types.at(i).class_name << "\n";
+                                output_functor_templates << "#ifdef " << types.at(i).class_name << "_DEFINED\n";
                         output_functor_templates        << "template <typename " << type_name << ">\n"
                         << "class " << class_name << ": public WBFunctor<" << type_name << "> \n{\n"
                         << "public:\n"
@@ -432,7 +432,7 @@ int main()
                         << "        static WBFunctorBase *bind(" << type_name << " *obj, void (" << type_name << "::*f)(guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t) { return new " << class_name << "<" << type_name << ">(obj, f, t); }\n};\n\n";
                         
                         if(types.at(i).class_info == Custom_Class)
-                                output_functor_templates << "#endif //" << types.at(i).class_name << "\n";
+                                output_functor_templates << "#endif //" << types.at(i).class_name << "_DEFINED\n";
                         output_functor_templates << "\n\n";
 		}
         }

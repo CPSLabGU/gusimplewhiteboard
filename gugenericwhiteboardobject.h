@@ -16,6 +16,10 @@
 #include <string>
 #include <vector>
 
+//type class files
+#include <typeClassDefs/HAL_HeadTarget.h> //couldn't find the include path in xcode, feel free to update hte xcode project and include the file without the directory. The whiteboard.mk file has been updated to include the directory already.
+
+
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 template <class object_type> class generic_whiteboard_object
@@ -71,6 +75,7 @@ template<> void generic_whiteboard_object<std::string>::set(const std::string &m
 template<> void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg);
 template<> std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg);
 template<> std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simple_message *msg);
+
 
 template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)

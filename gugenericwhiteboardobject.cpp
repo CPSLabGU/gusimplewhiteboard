@@ -10,7 +10,6 @@
 #include <gu_util.h>
 
 
-
 template <>
 void generic_whiteboard_object<std::string>::set(const std::string &msg)
 {
@@ -67,4 +66,3 @@ std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simpl
 {
         return std::vector<int> (msg->ivec, msg->ivec + sizeof msg->ivec / sizeof msg->ivec[0]);
 }
-
