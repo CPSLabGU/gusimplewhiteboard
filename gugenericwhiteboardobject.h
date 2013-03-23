@@ -53,6 +53,26 @@ public:
         object_type get_from(gu_simple_message *msg);
 
         /*
+         * shift left operator (calls set())
+         */
+        generic_whiteboard_object<object_type> &operator<<(const object_type &value)
+        {
+                set(value);
+
+                return *this;
+        }
+
+        /*
+         * shift right operator (calls get())
+         */
+        generic_whiteboard_object<object_type> &operator>>(object_type &value)
+        {
+                value = get();
+
+                return *this;
+        }
+        
+        /*
          * assignment operator (calls set())
          */
         generic_whiteboard_object<object_type> &operator=(const object_type &value)
