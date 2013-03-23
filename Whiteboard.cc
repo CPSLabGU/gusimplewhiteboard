@@ -2,7 +2,7 @@
  *  Whiteboard.cc
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011-2013 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,7 +60,15 @@
 #include "Whiteboard.h"
 #include "guwhiteboardtypelist_c_generated.h"
 
-#warning using depricated whiteboard version
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Werror"
+
+#warning using deprecated whiteboard version
+
+#pragma clang diagnostic pop
 
 #ifndef DISPATCH_QUEUE_SERIAL
 #define DISPATCH_QUEUE_SERIAL NULL
@@ -345,3 +353,6 @@ void Whiteboard::unsubscribeToMessage(string type, WBResult &result)
     gsw_hash_info tmp = gsw_hash_info(getTypeOffset_private(type.c_str()));
     return unsubscribeToMessage(&tmp, result);
 }
+
+#pragma clang diagnostic pop
+

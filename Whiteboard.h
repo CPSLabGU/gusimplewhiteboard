@@ -144,7 +144,7 @@ namespace guWhiteboard
 		typedef enum wb_method_result
 		{
 			METHOD_OK,		/**< No errors detected. */ 
-			METHOD_FAIL,		/**< Errors detected. */ 
+			METHOD_FAIL		/**< Errors detected. */ 
 		} WBResult;
             
                 /**
@@ -164,8 +164,8 @@ namespace guWhiteboard
                 /**
                  * Subscribe To Message
                  * Subscribes to a message type on a whiteboard or whiteboards
-                 * @param[in] type The string type to subscribe to
-                 * @param[in] func The function to call when a message of the type enter is added		 
+                 * @param[in] hashinfo  The string type to subscribe to
+                 * @param[in] func      The function to call when a message of the type enter is added		 
                  * @param[out] result An enum showing that either an error occured or the operation was completed successfully
                  */
                 virtual void subscribeToMessage(gsw_hash_info *hashinfo, WBFunctorBase *func, WBResult &result);
@@ -173,8 +173,8 @@ namespace guWhiteboard
                 /**
                  * Unsubscribe To Message (sic!)
                  * Unsubscribes from a message type on a whiteboard or whiteboards
-                 * @param[in] type The string type to unsubscribe from
-                 * @param[out] result An enum showing that either an error occured or the operation was completed successfully
+                 * @param[in] hashinfo  The string type to unsubscribe from
+                 * @param[out] result   An enum showing that either an error occured or the operation was completed successfully
                  */		
                 void unsubscribeToMessage(gsw_hash_info *hashinfo, WBResult &result);            
                 

@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,10 +58,14 @@
 #ifndef gusimplewhiteboard_gusimplewhiteboard_h
 #define gusimplewhiteboard_gusimplewhiteboard_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
 #ifdef __cplusplus
 extern "C"
 {
-#endif
+#endif // __cplusplus
 #ifdef __APPLE__
 #include <AvailabilityMacros.h>
 #endif
@@ -69,24 +73,35 @@ extern "C"
 #include <sys/types.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+#endif // __cplusplus
+
 #if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
-#define GSW_IOS_SIMULATOR                               // IOS device (but not simulator)
+#define GSW_IOS_SIMULATOR                               ///< IOS device (but not simulator)
 #endif
 
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE && !defined (GSW_IOS_SIMULATOR)
-#define GSW_IOS_DEVICE                                  // IOS device (but not simulator)
+#define GSW_IOS_DEVICE                                  ///< IOS device (but not simulator)
 #endif
 
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE || defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
-#define GSW_IOS                                         // IOS device or simulator
+#define GSW_IOS                                         ///< IOS device or simulator
 #endif
-        
-#define GU_SIMPLE_WHITEBOARD_VERSION            3       // version
-#define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       // lifespan (max)
-#define GU_SIMPLE_WHITEBOARD_BUFSIZE            64      // message len (max)
-#define GSW_TOTAL_MESSAGE_TYPES                 1024    // message types (max)
+
+#define GU_SIMPLE_WHITEBOARD_VERSION            3       ///< version
+#define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
+#define GU_SIMPLE_WHITEBOARD_BUFSIZE            64      ///< message len (max)
+#define GSW_TOTAL_MESSAGE_TYPES                 1024    ///< message types (max)
 #define GSW_NUM_RESERVED                        (GSW_TOTAL_MESSAGE_TYPES/2)    // message types (max)
-#define GSW_TOTAL_PROCESSES                     256     // maximum subscriber procs
+#define GSW_TOTAL_PROCESSES                     256     ///< maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
 #define GSW_DEFAULT_NAME "simple_whiteboard"
@@ -95,11 +110,11 @@ extern "C"
 
 enum gsw_semaphores
 {
-        GSW_SEM_PUTMSG,                 /// semaphore for adding to the whiteboard
-        GSW_SEM_CALLBACK,               /// semaphore for callback data
-        GSW_SEM_MSGTYPE,                /// semaphore for message type registration
-        GSW_SEM_PROC,                   /// semaphore for process registration
-        GSW_NUM_SEM                     /// number of semaphores
+        GSW_SEM_PUTMSG,                 ///< semaphore for adding to the whiteboard
+        GSW_SEM_CALLBACK,               ///< semaphore for callback data
+        GSW_SEM_MSGTYPE,                ///< semaphore for message type registration
+        GSW_SEM_PROC,                   ///< semaphore for process registration
+        GSW_NUM_SEM                     ///< number of semaphores
 };
 
 struct gsw_whiteboard_s;
@@ -111,34 +126,34 @@ typedef union gsw_simple_message
         /*
          * standard types
          */
-        unsigned long long      ulonglong;      /// unsigned long long value
-        long long               slonglong;      /// long long value
-        unsigned long           ulong;          /// unsigned long value
-        long                    slong;          /// singed long value
-        unsigned                uint;           /// unsigned integer
-        int                     sint;           /// signed integer
-        unsigned short          ushort;         /// unsigned short
-        short                   sshort;         /// signed short
-        unsigned char           uchar;          /// unsigned char
-        signed char             schar;          /// signed char
-        char                    xchar;          /// standard char
+        unsigned long long      ulonglong;      ///< unsigned long long value
+        long long               slonglong;      ///< long long value
+        unsigned long           ulong;          ///< unsigned long value
+        long                    slong;          ///< singed long value
+        unsigned                uint;           ///< unsigned integer
+        int                     sint;           ///< signed integer
+        unsigned short          ushort;         ///< unsigned short
+        short                   sshort;         ///< signed short
+        unsigned char           uchar;          ///< unsigned char
+        signed char             schar;          ///< signed char
+        char                    xchar;          ///< standard char
 
-        long double             slongdouble;    /// long double
-        double                  sdouble;        /// signed double
-        float                   sfloat;         /// signed float
+        long double             slongdouble;    ///< long double
+        double                  sdouble;        ///< signed double
+        float                   sfloat;         ///< signed float
 
         /*
          * POSIX defined length types
          */
-        u_int64_t               u64;            /// unsigned 64 bit value
-        u_int32_t               u32;            /// unsigned 32 bit value
-        u_int16_t               u16;            /// unsigned 16 bit value
-        u_int8_t                u8;             /// unsigned  8 bit value
+        u_int64_t               u64;            ///< unsigned 64 bit value
+        u_int32_t               u32;            ///< unsigned 32 bit value
+        u_int16_t               u16;            ///< unsigned 16 bit value
+        u_int8_t                u8;             ///< unsigned  8 bit value
         
-        int64_t                 s64;            /// signed 64 bit value
-        int32_t                 s32;            /// signed 32 bit value
-        int16_t                 s16;            /// signed 16 bit value
-        int8_t                  s8;             /// signed  8 bit value
+        int64_t                 s64;            ///< signed 64 bit value
+        int32_t                 s32;            ///< signed 32 bit value
+        int16_t                 s16;            ///< signed 16 bit value
+        int8_t                  s8;             ///< signed  8 bit value
 
         /**
          * vector types
@@ -168,9 +183,9 @@ typedef union gsw_simple_message
         /*
          * simple compound types
          */
-        struct { int x,y,z,a,b,c,d,e; } coord;  /// simple integer coordinates
-        struct {double x,y,z,a,b,c,d,e;} dcoord;/// simple double coordinates
-        struct {float x,y,z,a,b,c,d,e;} fcoord; /// simple float coordinates
+        struct { int x,y,z,a,b,c,d,e; } coord;  ///< simple integer coordinates
+        struct {double x,y,z,a,b,c,d,e;} dcoord;///< simple double coordinates
+        struct {float x,y,z,a,b,c,d,e;} fcoord; ///< simple float coordinates
 
         /** string type */
         char                    string[GU_SIMPLE_WHITEBOARD_BUFSIZE];
@@ -184,10 +199,10 @@ typedef union gsw_simple_message
 
 typedef struct gsw_simple_whiteboard_s
 {
-        u_int16_t               version;        /// whiteboard version
-        u_int16_t               eventcount;     /// current event count
-        u_int16_t               subscribed;     /// subscribed processes
-        u_int16_t               num_types;      /// total number of current, registered types
+        u_int16_t               version;        ///< whiteboard version
+        u_int16_t               eventcount;     ///< current event count
+        u_int16_t               subscribed;     ///< subscribed processes
+        u_int16_t               num_types;      ///< total number of current, registered types
 
         u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       /// ring buffer indexes
         u_int16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       /// event counter loops
@@ -257,8 +272,7 @@ extern gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *
 
 /**
  * free the given whiteboard descriptor
- * @param name  name of the whiteboard
- * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
+ * @param wbd  descriptor for the whiteboard
  */
 extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
 
@@ -321,7 +335,7 @@ extern int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s);
  * initialise the whiteboard semaphores
  * @param sem   whiteboard semaphore descriptor
  */
-extern void gsw_init_semaphores(gsw_sema_t s);
+extern void gsw_init_semaphores(gsw_sema_t sem);
 
 /**
  * get the current shared memory location for the given whiteboard message type i
@@ -379,5 +393,7 @@ void gsw_signal_subscribers(gu_simple_whiteboard *wb);
 #ifdef __cplusplus
 }
 #endif
+
+#pragma clang diagnostic pop
 
 #endif

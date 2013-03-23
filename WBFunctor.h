@@ -1,5 +1,5 @@
 /* MiPAL 2010
-Author: Tyrone Trevorrow & Carl Lusty
+Author: Tyrone Trevorrow, Carl Lusty, and Rene Hexel
 Purpose: Provides a more generic mechanism for function callbacks.
 		 Feel free to extend this to support any function's parameter lists.
  Change Log:
@@ -11,6 +11,19 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #include "WBMsg.h"
 #include "guwhiteboardtypelist_generated.h" //for type enum
 #include "gusimplewhiteboard.h" //for gu_simple_message
+
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
 
 #define WB_BIND( f ) createWBFunctor(this, &f)
 #define WB_TYPE_BIND( t, f ) createWBFunctor(this, &f, t)
@@ -33,28 +46,28 @@ class WBFunctor: public WBFunctorBase
 {
 public:
 	WBFunctor(C* obj, void (C::*pFunc) (std::string, WBMsg*)):
-		fObject(obj), fFunction(pFunc), simple_wb_version(false) { };
+		fObject(obj), fFunction(pFunc), simple_wb_version(false) { }
 	WBFunctor(C* obj, void (C::*pFunc) (guWhiteboard::WBTypes, gu_simple_message*), guWhiteboard::WBTypes t):
-                fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { };
+                fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { }
 	
 	void call(std::string s, WBMsg* m)
 	{
 		(fObject->*fFunction)(s,m);
-	};
+	}
         void call(gu_simple_message* m)
         {
 		(fObject->*s_fFunction)(type_enum, m);
-        };
+        }
         void call(guWhiteboard::WBTypes t, gu_simple_message* m)
         {
 		(fObject->*s_fFunction)(t, m);
-        };
-        guWhiteboard::WBTypes type() { return type_enum; };
-        uint16_t get_event_count() { return event_count; };
-        void set_event_count(uint16_t e) { event_count = e; };
-        bool is_simple_wb_version() { return simple_wb_version; };
+        }
+        guWhiteboard::WBTypes type() { return type_enum; }
+        uint16_t get_event_count() { return event_count; }
+        void set_event_count(uint16_t e) { event_count = e; }
+        bool is_simple_wb_version() { return simple_wb_version; }
        	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation 
-        s_func get_s_func_ptr() { return s_fFunction; };
+        s_func get_s_func_ptr() { return s_fFunction; }
 protected:
 	C* fObject;
 	typedef void (C::*func) (std::string, WBMsg*);
@@ -95,6 +108,8 @@ public:
         
         typedef void (T::*Say_function_t) (guWhiteboard::WBTypes, std::string &);
 };*/
+
+#pragma clang diagnostic pop
 
 #include "WBFunctor_types_generated.h"
 

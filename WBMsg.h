@@ -2,7 +2,7 @@
  *  WBMsg.h
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,6 +63,20 @@
 #include <iostream>             //for cerr
 #include <sstream>              // for stringValue()
 #include "gusimplewhiteboard.h" //for GU_SIMPLE_WHITEBOARD_GENERATIONS
+
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wimplicit-fallthrough"
 
 class WBMsg
 {
@@ -196,6 +210,9 @@ public:
                 std::cerr << "Setting a life span (" << life << ") not supported on WBMsg()\n" << std::endl;
         }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch-enum"
+
 	/**
 	 * boolValue.
 	 * @return The value of this message "intelligently" interpreted as a boolean
@@ -318,6 +335,8 @@ public:
                 return ss.str();
         }
 
+#pragma clang diagnostic pop
+
 	/**
 	 * getBoolValue.
 	 * @return The boolean value of this WBMsg if it is storing a boolean.
@@ -372,5 +391,7 @@ public:
          */
 	~WBMsg() { if (doFree) { if (type == TypeBinary) free((void *) binaryVal); else if (type == TypeArray) delete arrayVal; } }
 };
+
+#pragma clang diagnostic pop
 
 #endif

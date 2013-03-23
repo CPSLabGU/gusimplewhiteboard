@@ -19,16 +19,29 @@
 //type class files
 #include <typeClassDefs/HAL_HeadTarget.h> //couldn't find the include path in xcode, feel free to update hte xcode project and include the file without the directory. The whiteboard.mk file has been updated to include the directory already.
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 template <class object_type> class generic_whiteboard_object
 {
+        gu_simple_whiteboard_descriptor *_wbd;
         uint16_t type_offset;
         bool atomic;
         bool notify_subscribers;
-        gu_simple_whiteboard_descriptor *_wbd;
-        
+
 public:
         /**
          * designated constructor
@@ -163,6 +176,7 @@ void generic_whiteboard_object<object_type>::set(const object_type &msg)
         if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
 
+#pragma clang diagnostic pop
 
 
 #endif //GENERIC_WB_OBJ_H
