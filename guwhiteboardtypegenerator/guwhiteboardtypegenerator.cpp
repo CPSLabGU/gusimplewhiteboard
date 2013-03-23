@@ -327,8 +327,8 @@ int main()
 	for (int i = 0; i < (int)types.size(); i++)
 	{
 		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
-		output_c_file << "                " << (char *)types.at(i).type_const_name.c_str() << "_v = " << hash_offset;
-                
+		output_c_file << "                k" << types[i].type_const_name << "_v = " << hash_offset;
+
                 if(i+1 != (int)types.size())
                        output_c_file << ",";
 		

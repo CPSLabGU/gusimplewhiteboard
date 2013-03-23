@@ -24,7 +24,7 @@
 #define DISPATCH_QUEUE_SERIAL NULL
 #endif
 
-#define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, t ## _v)))
+#define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, k##t ## _v)))
 
 using namespace std;
 
