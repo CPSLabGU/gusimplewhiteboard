@@ -14,9 +14,6 @@
 #include "guudpUtil.h"
 #include "guudpSerialize.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wshorten-64-to-32"
-
 #ifdef DEBUG
 void listenMonitor(void *listener)
 {
@@ -423,9 +420,14 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     
     long int min = currTime.tv_sec / 60;
     long int target = min * 60; //removes seconds
-    
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+
     int secs = currTime.tv_sec - target;
-    
+
+#pragma clang diagnostic pop
+
     //Start at next 10s mark
     target += ((secs/10)+1)*10;
     
@@ -474,5 +476,4 @@ BridgeListener::~BridgeListener()
     close(sock);
 }
 
-#pragma clang diagnostic pop
 
