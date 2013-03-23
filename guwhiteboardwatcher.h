@@ -98,10 +98,10 @@ public:
                 
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
         
-                func->set_event_count(_wbd->wb->event_counters[func->get_type()]);
+                func->set_event_count(_wbd->wb->event_counters[func->type()]);
                 _sub.push_back(func); //Kept locally for actually making the callbacks
                 
-                if (func->get_type() == guWhiteboard::wb_reserved_SubscribeToAllTypes_v)
+                if (func->type() == guWhiteboard::kwb_reserved_SubscribeToAllTypes_v)
                 {
                         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++) //get current event counts for all types
                         {
@@ -123,7 +123,7 @@ public:
                 for (list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
-                        guWhiteboard::WBTypes offs = f->get_type();
+                        guWhiteboard::WBTypes offs = f->type();
                         if (offs == t)
                         {
                                 _sub.erase(i);
@@ -142,14 +142,14 @@ public:
                 for (list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
-                        int offs = (int)f->get_type();
+                        int offs = (int)f->type();
                         uint16_t event_count = f->get_event_count();
                         
                         /*
                          * offs == -1 means all types "*", otherwise only check
                          * new postings for a specific message type
                          */
-                        if (f->get_type() == guWhiteboard::wb_reserved_SubscribeToAllTypes_v)
+                        if (f->type() == guWhiteboard::kwb_reserved_SubscribeToAllTypes_v)
                                 for (int e = 0; e < GSW_TOTAL_MESSAGE_TYPES; e++)      // check all message type event counters
                                 {
                                         if (local_event_counters[e] != wb->event_counters[e]) //check for new event using event counters

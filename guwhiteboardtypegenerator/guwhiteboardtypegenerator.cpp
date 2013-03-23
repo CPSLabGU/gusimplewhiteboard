@@ -359,12 +359,12 @@ int main()
 				break;
 			case POD_Class:
 			{
-				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << "_v) {} };\n\n";
+				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << ">(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
 				break;
 			}
 			case Custom_Class:
 			{
-				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, " << (char *)types.at(i).type_const_name.c_str() << "_v) {} };\n\n";
+				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << "> { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << ">(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
 				break;
 			}
 		}

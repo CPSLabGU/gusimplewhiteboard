@@ -19,10 +19,10 @@ namespace guWhiteboard
 {                                                                       
         typedef enum wb_types     //remove the reserved types in the simplewb
         {                                                               
-                kNaoIsReadyToRun = 4,
-                kNaogtrfedRun = 5,
-                kSuperTest = 6,
-                wb_reserved_SubscribeToAllTypes = 3
+                kNaoIsReadyToRun_v = 4,
+                kNaogtrfedRun_v = 5,
+                kSuperTest_v = 6,
+                kwb_reserved_SubscribeToAllTypes = 3
         } WBTypes;
 
         //remove and reorder string array to match the enum values

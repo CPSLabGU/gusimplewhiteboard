@@ -21,7 +21,7 @@ public:
 	virtual void call(std::string s, WBMsg* m) = 0;                         //old wbmsg format for callbacks
 	virtual void call(gu_simple_message* m) = 0;                            //new simple_message callbacks
 	virtual void call(guWhiteboard::WBTypes t, gu_simple_message* m) = 0;   //new simple_message callbacks (with type overwrite for subscribe to all special type)
-        virtual guWhiteboard::WBTypes get_type() = 0;
+        virtual guWhiteboard::WBTypes type() = 0;
         virtual uint16_t get_event_count() = 0;
         virtual void set_event_count(uint16_t e) = 0;
         virtual bool is_simple_wb_version() = 0;
@@ -49,7 +49,7 @@ public:
         {
 		(fObject->*s_fFunction)(t, m);
         };
-        guWhiteboard::WBTypes get_type() { return type_enum; };
+        guWhiteboard::WBTypes type() { return type_enum; };
         uint16_t get_event_count() { return event_count; };
         void set_event_count(uint16_t e) { event_count = e; };
         bool is_simple_wb_version() { return simple_wb_version; };

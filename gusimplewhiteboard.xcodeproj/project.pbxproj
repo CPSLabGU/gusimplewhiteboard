@@ -109,7 +109,7 @@
 		C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gugenericwhiteboardobject.cpp; sourceTree = "<group>"; };
 		C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardobject.h; sourceTree = "<group>"; };
 		C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_generated.h; sourceTree = "<group>"; };
-		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardwatcher.h; sourceTree = "<group>"; };
+		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = guwhiteboardwatcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +146,7 @@
 		F1D9260014A13BAA00BDAEED /* SimpleWhiteboardTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWhiteboardTest.h; sourceTree = "<group>"; };
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
-		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBFunctor.h; sourceTree = "<group>"; };
+		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F1F4536114A11E90005C40A6 /* Whiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Whiteboard.h; sourceTree = "<group>"; };
 		F1F4536314A1226D005C40A6 /* Whiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whiteboard.cc; sourceTree = "<group>"; };
 		F1F4536514A123C7005C40A6 /* WBMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBMsg.h; sourceTree = "<group>"; };
