@@ -51,24 +51,24 @@ public:
         }
 
         object_type get_from(gu_simple_message *msg);
-        
 
-        //operators not working yet
-//        void operator=(const object_type &value)
-//        {
-//                set(value);
-//        }
-//
-//        void operator=(object_type value)
-//        {
-//                set(value);
-//        }
-//        
-//
-//        operator object_type()
-//        {
-//                return *get();
-//        }
+        /*
+         * assignment operator (calls set())
+         */
+        generic_whiteboard_object<object_type> &operator=(const object_type &value)
+        {
+                set(value);
+
+                return *this;
+        }
+
+        /*
+         * cast operator (calls get())
+         */
+        operator object_type()
+        {
+                return get();
+        }
 };
 
 template<> void generic_whiteboard_object<std::string>::set(const std::string &msg);

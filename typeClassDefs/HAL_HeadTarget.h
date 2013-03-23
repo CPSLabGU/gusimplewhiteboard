@@ -36,12 +36,12 @@ namespace guWhiteboard
         public:                
                 HAL_HeadTarget(int target_pitchAngle = 0, int target_yawAngle = 0, movement_type target_movement_type = MoveOverTime, int target_movement_time = 1000000, int target_movement_speed = 50, bool head_stopped = true)
                 {
-                        this->target_pitchAngle(target_pitchAngle);
-                        this->target_yawAngle(target_yawAngle);
-                        this->target_movement_speed(target_movement_type);
-                        this->target_movement_time(target_movement_time);
-                        this->target_movement_speed(target_movement_speed);
-                        this->head_stopped(head_stopped);
+                        set_target_pitchAngle(target_pitchAngle);
+                        set_target_yawAngle(target_yawAngle);
+                        set_target_movement_speed(target_movement_type);
+                        set_target_movement_time(target_movement_time);
+                        set_target_movement_speed(target_movement_speed);
+                        set_head_stopped(head_stopped);
                 }
         };
 }
