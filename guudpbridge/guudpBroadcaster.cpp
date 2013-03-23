@@ -14,6 +14,9 @@
 #include "guudpUtil.h"
 #include "guudpSerialize.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+
 static int content_packet_count = 0;
 void broadcastLoop(void *broadcaster)
 {
@@ -314,3 +317,5 @@ BridgeBroadcaster::~BridgeBroadcaster()
     shutdown(sockfd, SHUT_WR);
     close(sockfd);
 }
+
+#pragma clang diagnostic pop

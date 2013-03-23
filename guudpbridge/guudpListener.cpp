@@ -14,6 +14,8 @@
 #include "guudpUtil.h"
 #include "guudpSerialize.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
 
 #ifdef DEBUG
 void listenMonitor(void *listener)
@@ -472,4 +474,5 @@ BridgeListener::~BridgeListener()
     close(sock);
 }
 
+#pragma clang diagnostic pop
 
