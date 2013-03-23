@@ -359,12 +359,18 @@ int main()
 				break;
 			case POD_Class:
 			{
-				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << " > { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<" << (char *)types.at(i).class_name.c_str() << " >(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
+				output_file << "\t/// " <<  types[i].comment << "\n        class " << types[i].type_const_name
+                                            << "_t: public generic_whiteboard_object<" << types[i].class_name
+                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v) {}\n\t\t"
+                                            << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
+                                            << types[i].type_const_name << "_v, wbd) {} };\n\n";
 				break;
 			}
 			case Custom_Class:
 			{
-				output_file << "\t///" <<  (char *)types.at(i).comment.c_str()<< "\n        class " << (char *)types.at(i).type_const_name.c_str() << "_t : public generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << " > { public: " << (char *)types.at(i).type_const_name.c_str() << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << (char *)types.at(i).class_name.c_str() << " >(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
+				output_file << "\t///" <<  types[i].comment << "\n        class " << types[i].type_const_name
+                                            << "_t: public generic_whiteboard_object<class " << types[i].class_name
+                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
 				break;
 			}
 		}

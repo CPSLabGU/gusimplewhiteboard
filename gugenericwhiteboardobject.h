@@ -30,7 +30,35 @@ template <class object_type> class generic_whiteboard_object
         gu_simple_whiteboard_descriptor *_wbd;
         
 public:
+        /**
+         * designated constructor
+         */
         generic_whiteboard_object(gu_simple_whiteboard_descriptor *wbd, uint16_t toffs, bool want_atomic = true, bool do_notify_subscribers = true) //Constructor
+        {
+                init(toffs, wbd, want_atomic, do_notify_subscribers);
+        }
+
+        /**
+         * copy constructor
+         */
+        generic_whiteboard_object(const generic_whiteboard_object<object_type> &source)
+        {
+                init(source->type_offset, source->wbd, source->want_atomic, source->notify_subscribers);
+        }
+
+        /**
+         * value conversion reference constructor (needs to be overridden by subclasses to set toffs to be useful)
+         */
+        generic_whiteboard_object(const object_type &value, uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL)
+        {
+                init(toffs, wbd);
+                set(value);
+        }
+
+        /**
+         * intialiser (called from constructors)
+         */
+        void init(uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL, bool want_atomic = true, bool do_notify_subscribers = true)
         {
                 if(!wbd)
                 {
@@ -55,11 +83,11 @@ public:
         /*
          * shift left operator (calls set())
          */
-        generic_whiteboard_object<object_type> &operator<<(const object_type &value)
+        const object_type &operator<<(const object_type &value)
         {
                 set(value);
 
-                return *this;
+                return value;
         }
 
         /*
@@ -71,15 +99,25 @@ public:
 
                 return *this;
         }
-        
+
         /*
          * assignment operator (calls set())
          */
-        generic_whiteboard_object<object_type> &operator=(const object_type &value)
+        const object_type &operator=(const object_type &value)
         {
                 set(value);
 
-                return *this;
+                return value;
+        }
+
+        /*
+         * assignment copy operator (calls set())
+         */
+        object_type operator=(object_type value)
+        {
+                set(value);
+
+                return value;
         }
 
         /*
