@@ -110,7 +110,7 @@ RemoteWhiteboard::RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard 
     pthread_t child;
     pthread_create(&child, NULL, monitor_bridge, local_wb);
 
-        pid_t pid;
+        pid_t pid = -1;
         int i, timeout = 20;
         for (i = 0; i < timeout; i++)
         {

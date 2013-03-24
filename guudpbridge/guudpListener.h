@@ -29,6 +29,19 @@
 #include <time.h>
 #include <list>
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+
 #ifdef DEBUG    
 void listenMonitor(void *listener);
 #endif
@@ -58,11 +71,11 @@ public:
     int gotMessagePackets; //Num of msg gotten
     int lostPackets; //Num of packets missed
     int total_recv;
-    
+
+    int iter_listener;
     long long startRecvTime;
     long long endRecvTime;
     long long avgRecvTime;
-    int iter_listener;
     long long rawRecvTime;
     
     //TEMP
@@ -87,5 +100,6 @@ public:
     virtual ~BridgeListener();
 };
 
+#pragma clang diagnostic pop
 
 #endif //guudplistener_h

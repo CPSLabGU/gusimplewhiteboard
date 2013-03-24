@@ -11,6 +11,17 @@
 
 #include <gusimplewhiteboard.h>
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 
 /* Network config */
 #ifndef DEBUG
@@ -231,6 +242,8 @@ struct gsw_injection_message {
 //    gu_simple_message type;
 //    gu_simple_message m;    //content
 //} gsw_injection_message;
+
+#pragma clang diagnostic pop
 
 
 #endif //guudpbridgenetworkconfig_h

@@ -71,6 +71,17 @@
 #include "WBFunctor.h"
 #include "WBMsg.h"
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 
 namespace guWhiteboard 
 {
@@ -108,8 +119,9 @@ namespace guWhiteboard
             /**
              * API Constructor
              * This sets up the API and the callback soap server
-             * @param[in] sharedMemoryObjectName    (optional) Allows the user to specify a local shared-memory whiteboard to use.
-                     * @param[in] checkVersion              indicate whether to check wb version (default: true)
+             * @param[in] wbName    name of the whiteboard
+             * @param[in] n         whiteboard number
+             * @param[in] local_whiteboard local whiteboard to use
              */
             RemoteWhiteboard(const char *wbName, RWBMachine n, Whiteboard *local_whiteboard = NULL);
 
@@ -123,14 +135,12 @@ namespace guWhiteboard
              * Add Message
              * Adds a message to the whiteboard that the API is connected to
              * @param[in] type The string type associated with the message object
-             * @param[in] machine Target machine id
-             */
+\             */
             void addReplicationType(const std::string &type);
             
             /**
              * Get Known Types For Machine
              * Gets all the currently known types for a machine
-             * @param[in] machine The target machine id / player number
              * @return A vector of string containing the types
              */
             std::vector<std::string> getKnownTypesForMachine();  
@@ -145,5 +155,7 @@ namespace guWhiteboard
             virtual void subscribeToMessage(const std::string &type, WBFunctorBase *func, WBResult &result);            
         };
 }
+
+#pragma clang diagnostic pop
 
 #endif

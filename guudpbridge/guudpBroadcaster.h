@@ -29,6 +29,18 @@
 #include <time.h>
 #include <list>
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
 void broadcastLoop(void *broadcaster); 
 
 class BridgeBroadcaster
@@ -80,5 +92,7 @@ public:
     
     ~BridgeBroadcaster();
 };
+
+#pragma clang diagnostic pop
 
 #endif //guudpbroadcaster_h
