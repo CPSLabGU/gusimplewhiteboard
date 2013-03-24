@@ -170,7 +170,7 @@ void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nona
                 
             case WBMsg::TypeString:
                 gu_strlcpy(m->wbmsg.data, msg.getStringValue().c_str(), sizeof(m->wbmsg.data));
-                m->wbmsg.len = strlen(m->wbmsg.data) + 1;
+                m->wbmsg.len = static_cast<unsigned char>(strlen(m->wbmsg.data) + 1);
                 break;
                 
             case WBMsg::TypeArray:
@@ -178,14 +178,14 @@ void Whiteboard::addMessage(gsw_hash_info *hashinfo, const WBMsg &msg, bool nona
                 int k = 0;
                 for (vector<int>::const_iterator i = msg.getArrayValue().begin(); i < msg.getArrayValue().end(); i++)
                     m->ivec[k++] = *i;
-                m->wbmsg.len = k;
+                m->wbmsg.len = static_cast<unsigned char>(k);
                 break;
             }
             case WBMsg::TypeBinary:
             {
                 int len = msg.getSizeInBytes();
                 if (len > (int)sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
-                m->wbmsg.len = len;
+                m->wbmsg.len = static_cast<unsigned char>(len);
                 if (len) memcpy(m->wbmsg.data, msg.getBinaryValue(), len);
                 break;
             }
@@ -289,7 +289,7 @@ void Whiteboard::subscriptionCallback(void)
                         {
                                 if (++curr >= GU_SIMPLE_WHITEBOARD_GENERATIONS)
                                         curr = 0;
-                                cball_indexes[offs] = curr;
+                                cball_indexes[offs] = static_cast<uint8_t>(curr);
                                 callback_helper *h = new callback_helper(this, wb, offs, curr, descr);
                                 dispatch_group_async_f(callback_group, callback_queue, h, do_callback);
                         }
