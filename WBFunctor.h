@@ -8,10 +8,6 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #ifndef WBFUNCTOR_H
 #define WBFUNCTOR_H
 
-#include "WBMsg.h"
-#include "guwhiteboardtypelist_generated.h" //for type enum
-#include "gusimplewhiteboard.h" //for gu_simple_message
-
 #ifdef bool
 #undef bool
 #endif
@@ -24,6 +20,10 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
+
+#include "WBMsg.h"
+#include "guwhiteboardtypelist_generated.h" //for type enum
+#include "gusimplewhiteboard.h" //for gu_simple_message
 
 #define WB_BIND( f ) createWBFunctor(this, &f)
 #define WB_TYPE_BIND( t, f ) createWBFunctor(this, &f, t)

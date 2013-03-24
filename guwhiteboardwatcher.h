@@ -9,14 +9,26 @@
 #ifndef GENERIC_WB_WATCHER_H
 #define GENERIC_WB_WATCHER_H
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
 
 #include "guwhiteboardtypelist_generated.h" //Not required here but it saves everyone else including it
 #include "gusimplewhiteboard.h"
 #include "WBFunctor.h"
 #include <iostream> //cerr
 #include <list> //local sub std::list
-#include <dispatch/dispatch.h>
 
+#ifdef bool
+#undef bool
+#endif
+
+#ifdef true
+#undef true
+#undef false
+#endif
+
+#include <dispatch/dispatch.h>
 
 #define DISPATCH_QUEUE_NAME "guWhiteboard"
 
