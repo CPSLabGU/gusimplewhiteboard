@@ -26,8 +26,6 @@
 
 #define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, k##t ## _v)))
 
-using namespace std;
-
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd);
@@ -35,13 +33,13 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd);
 struct callback_helper //struct passed to do_callback
 {
         gu_simple_whiteboard *wb;
-        int offs;
         WBFunctorBase *f;
+        int offs;
         uint16_t t_overwrite;
         bool use_type_overwrite; //for global subscriptions
         uint8_t gen_to_use; //generation to pass as value, mod 4 of current event count
-        
-        callback_helper(gu_simple_whiteboard *w, int o, WBFunctorBase *d, uint16_t t, bool use_t, uint8_t gen): wb(w), offs(o), f(d), t_overwrite(t), use_type_overwrite(use_t), gen_to_use(gen) {}
+
+        callback_helper(gu_simple_whiteboard *w, int o, WBFunctorBase *d, uint16_t t, bool use_t, uint8_t gen): wb(w), f(d), offs(o), t_overwrite(t), use_type_overwrite(use_t), gen_to_use(gen) {}
 };
 
 static void do_callback(void *m) //makes the callback call, via GCD queue
@@ -75,12 +73,12 @@ public:
                 
                 if (!(callback_group = dispatch_group_create()))
                 {
-                        cerr << "Unable to create dispatch group" << endl;
+                        std::cerr << "Unable to create dispatch group" << std::endl;
                         throw "Whiteboard cannot create callback queue";
                 }
                 if (!(callback_queue = dispatch_queue_create(DISPATCH_QUEUE_NAME, DISPATCH_QUEUE_SERIAL)))
                 {
-                        cerr << "Unable to create dispatch queue" << endl;
+                        std::cerr << "Unable to create dispatch queue" << std::endl;
                         throw "Whiteboard cannot create dispatch queue";
                 }
                 
@@ -120,7 +118,7 @@ public:
         {
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
                 
-                for (list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
+                for (std::list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
                         guWhiteboard::WBTypes offs = f->type();
@@ -139,7 +137,7 @@ public:
         {
                 gu_simple_whiteboard *wb = _wbd->wb;
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
-                for (list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
+                for (std::list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
                         int offs = (int)f->type();
