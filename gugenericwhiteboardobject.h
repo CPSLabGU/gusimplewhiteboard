@@ -83,17 +83,26 @@ public:
                 _wbd = wbd;
         }
 
+        /**
+         * designated setter for posting whiteboard messages
+         */
         void set(const object_type &msg);
 
+        /**
+         * designated getter for getting a whiteboard message
+         */
         object_type get()
         {
 //              return *(object_type *)gsw_current_message(_wbd->wb, type_offset);
                 return get_from(gsw_current_message(_wbd->wb, type_offset));
         }
 
+        /**
+         * access method to get data from an existing, low-level message
+         */
         object_type get_from(gu_simple_message *msg);
 
-        /*
+        /**
          * shift left operator (calls set())
          */
         const object_type &operator<<(const object_type &value)
@@ -103,7 +112,7 @@ public:
                 return value;
         }
 
-        /*
+        /**
          * shift right operator (calls get())
          */
         generic_whiteboard_object<object_type> &operator>>(object_type &value)
@@ -113,7 +122,7 @@ public:
                 return *this;
         }
 
-        /*
+        /**
          * assignment operator (calls set())
          */
         const object_type &operator=(const object_type &value)
@@ -123,7 +132,7 @@ public:
                 return value;
         }
 
-        /*
+        /**
          * assignment copy operator (calls set())
          */
         object_type operator=(object_type value)
@@ -133,12 +142,28 @@ public:
                 return value;
         }
 
-        /*
+        /**
          * cast operator (calls get())
          */
         operator object_type()
         {
                 return get();
+        }
+
+        /**
+         * empty function operator (calls get())
+         */
+        object_type operator()()
+        {
+                return get;
+        }
+
+        /**
+         * function operator with object_type copy parameter (calls set())
+         */
+        void operator()(object_type value)
+        {
+                set(value);
         }
 };
 
