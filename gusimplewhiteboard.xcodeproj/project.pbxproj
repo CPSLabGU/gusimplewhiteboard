@@ -13,6 +13,9 @@
 		C31EE6B1155BA7DF00D55934 /* guudpUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C4150491F500524671 /* guudpUtil.cpp */; };
 		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */; };
+		C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */; };
+		C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */; };
+		C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */; };
 		C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
@@ -95,6 +98,9 @@
 		C33D92C3150491F500524671 /* guudpConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpConfig.h; sourceTree = "<group>"; };
 		C33D92C4150491F500524671 /* guudpUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpUtil.cpp; sourceTree = "<group>"; };
 		C33D92C5150491F500524671 /* guudpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpUtil.h; sourceTree = "<group>"; };
+		C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
+		C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
+		C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
 		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
 		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
 		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
@@ -233,6 +239,9 @@
 		C3D04F8716F961F30061D0BB /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */,
+				C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */,
+				C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */,
 				C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */,
 				F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */,
 			);
@@ -400,6 +409,9 @@
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				C3D04F8916F961F30061D0BB /* HAL_HeadTarget.h in Headers */,
+				C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */,
+				C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */,
+				C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
