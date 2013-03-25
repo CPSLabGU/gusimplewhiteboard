@@ -16,6 +16,11 @@
 		C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */; };
 		C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */; };
 		C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */; };
+		C372CAEB1700142D007EB2E0 /* SENSORS_SonarSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */; };
+		C372CAED170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */; };
+		C372CAEF17001939007EB2E0 /* SENSORS_LegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */; };
+		C372CAF21700198C007EB2E0 /* SENSORS_LegJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */; };
+		C372CAF31700198C007EB2E0 /* SENSORS_TorsoJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */; };
 		C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
@@ -101,6 +106,11 @@
 		C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
 		C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
 		C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
+		C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_SonarSensors.h; sourceTree = "<group>"; };
+		C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointSensors.h; sourceTree = "<group>"; };
+		C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointSensors.h; sourceTree = "<group>"; };
+		C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointTemps.h; sourceTree = "<group>"; };
+		C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
 		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
 		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
 		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
@@ -239,9 +249,14 @@
 		C3D04F8716F961F30061D0BB /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */,
+				C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */,
+				C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */,
+				C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */,
 				C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */,
 				C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */,
 				C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */,
+				C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */,
 				C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */,
 				F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */,
 			);
@@ -412,6 +427,11 @@
 				C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */,
 				C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */,
 				C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */,
+				C372CAEB1700142D007EB2E0 /* SENSORS_SonarSensors.h in Headers */,
+				C372CAED170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h in Headers */,
+				C372CAEF17001939007EB2E0 /* SENSORS_LegJointSensors.h in Headers */,
+				C372CAF21700198C007EB2E0 /* SENSORS_LegJointTemps.h in Headers */,
+				C372CAF31700198C007EB2E0 /* SENSORS_TorsoJointTemps.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
