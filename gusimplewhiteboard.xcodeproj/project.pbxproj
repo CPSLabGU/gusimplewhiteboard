@@ -118,6 +118,7 @@
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		F17380BC16CA032F00485FD8 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = guudpSerialize.c; path = guudpbridge/guudpSerialize.c; sourceTree = "<group>"; };
 		F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guudpWhiteboardLayer.cpp; path = guudpbridge/guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
+		F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
 		F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libguobjcwhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C94D681555CA8E00B717DF /* guobjcwhiteboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "guobjcwhiteboard-Prefix.pch"; sourceTree = "<group>"; };
 		F1C94D691555CA8E00B717DF /* ObjCWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboard.h; sourceTree = "<group>"; };
@@ -233,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */,
+				F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */,
 			);
 			path = typeClassDefs;
 			sourceTree = "<group>";
