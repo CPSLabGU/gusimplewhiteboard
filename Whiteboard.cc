@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#define _FROM_WHITEBOARD_CC_
+
 #include <cstring>
 #include <gu_util.h>
 #include "Whiteboard.h"
@@ -62,13 +64,6 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Werror"
-
-#warning using deprecated whiteboard version
-
-#pragma clang diagnostic pop
 
 #ifndef DISPATCH_QUEUE_SERIAL
 #define DISPATCH_QUEUE_SERIAL NULL

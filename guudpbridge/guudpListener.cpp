@@ -5,6 +5,7 @@
  *  Copyright (c) 2011 Carl Lusty.
  *  All rights reserved.
  */
+#define _FROM_WHITEBOARD_CC_
 
 
 #include "guudpListener.h"

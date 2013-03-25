@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#define _FROM_WHITEBOARD_CC_
+
 #include <cstring>
 #include <cstdio>
 #include <gu_util.h>

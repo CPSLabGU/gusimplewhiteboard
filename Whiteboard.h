@@ -67,6 +67,15 @@
 #include "WBFunctor.h"
 #include "WBMsg.h"
 
+#ifndef _FROM_WHITEBOARD_CC_
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Werror"
+
+#warning using deprecated whiteboard version
+
+#pragma clang diagnostic pop
+#endif // _FROM_WHITEBOARD_CC_
+
 #ifdef WHITEBOARD_OLD_H
 #error *** Error: attempt to mix old and simple Whiteboard!
 #endif
