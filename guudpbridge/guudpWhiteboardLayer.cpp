@@ -5,6 +5,8 @@
  *  Copyright (c) 2011 Carl Lusty.
  *  All rights reserved.
  */
+#define _FROM_WHITEBOARD_CC_
+
 
 #include "guudpWhiteboardLayer.h"
 #include "guudpUtil.h"
