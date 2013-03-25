@@ -62,6 +62,12 @@
 #include <gu_util.h>
 #include "gusimplewhiteboard.h"
 
+#define CONTROLSTATUS_SIZE          ((sizeof(gsw_simple_message))*8)
+#define CONTROLSTATUS_BITS_RESERVED 2   // must be big enough for enum
+#define CONTROLSTATUS_NUM_FSMS      (CONTROLSTATUS_SIZE - CONTROLSTATUS_BITS_RESERVED)
+#define CONTROLSTATUS_CMD_LO        CONTROLSTATUS_NUM_FSMS
+#define CONTROLSTATUS_CMD_HI        (CONTROLSTATUS_CMD_LO + 1)
+
 namespace guWhiteboard
 {
     namespace FSM
@@ -84,15 +90,14 @@ namespace guWhiteboard
          */
         class ControlStatus
         {
-            uint8_t _command;   ///< the command to execute (one of the enum values above)
-            PROPERTY(std::bitset<(sizeof(gsw_simple_message)-1)*8>, fsms)
+            PROPERTY(std::bitset<CONTROLSTATUS_SIZE>, fsms) ///< bit set for fsms affected by command
 
         public:
             /** command getter */
-            ControlType command() { return static_cast<ControlType>(_command); }
+            ControlType command() { return static_cast<ControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
 
             /** command setter */
-            void set_command(ControlType command) { _command = command; }
+            void set_command(ControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
         };
     }
 }
