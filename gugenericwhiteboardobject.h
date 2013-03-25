@@ -18,6 +18,7 @@
 
 //type class files
 #include <typeClassDefs/HAL_HeadTarget.h> //couldn't find the include path in xcode, feel free to update hte xcode project and include the file without the directory. The whiteboard.mk file has been updated to include the directory already.
+#include <typeClassDefs/FSM_Control.h>
 
 #ifdef bool
 #undef bool
