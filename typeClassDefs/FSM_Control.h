@@ -70,7 +70,7 @@
 
 namespace guWhiteboard
 {
-    namespace FSM
+    namespace fsm
     {
         /**
          * command for ControlStatus
