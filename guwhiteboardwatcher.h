@@ -169,7 +169,7 @@ public:
                                                         fprintf(stderr, "whiteboard_watcher: missed one or more event with type offset %d\n", e);
                                                 }
                                                 local_event_counters[e] = wb->event_counters[e];
-                                                uint16_t t_overwrite = e;
+                                                uint16_t t_overwrite = uint16_t(e);
                                                 callback_helper *h = new callback_helper(wb, e, f, t_overwrite, true, wb->indexes[e]);
                                                 dispatch_group_async_f(callback_group, callback_queue, h, do_callback);
                                         }

@@ -77,10 +77,10 @@ namespace guWhiteboard
          */
         enum FSMControlType
         {
-            Status,             ///< check status only
-            Suspend,            ///< suspend the corresponding state machines
-            Resume,             ///< resume the corresponding state machines
-            Restart             ///< restart the corresponding state machine
+            FSMStatus,          ///< check status only
+            FSMSuspend,         ///< suspend the corresponding state machines
+            FSMResume,          ///< resume the corresponding state machines
+            FSMRestart          ///< restart the corresponding state machine
         };
 
         /**
@@ -94,10 +94,10 @@ namespace guWhiteboard
 
         public:
             /** command getter */
-            ControlType command() { return static_cast<ControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
+            FSMControlType command() { return static_cast<FSMControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
 
             /** command setter */
-            void set_command(ControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
+            void set_command(FSMControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
         };
 //    }
 }
