@@ -152,7 +152,7 @@ public:
          */
         object_type operator()()
         {
-                return get;
+                return get();
         }
 
         /**
