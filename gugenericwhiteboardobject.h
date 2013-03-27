@@ -152,7 +152,7 @@ public:
          */
         object_type operator()()
         {
-                return get;
+                return get();
         }
 
         /**
@@ -199,10 +199,6 @@ void generic_whiteboard_object<object_type>::set(const object_type &msg)
 }
 
 #pragma clang diagnostic pop
-
-//type class files
-#include <typeClassDefs/HAL_HeadTarget.h> //couldn't find the include path in xcode, feel free to update hte xcode project and include the file without the directory. The whiteboard.mk file has been updated to include the directory already.
-#include <typeClassDefs/FSM_Control.h>
 
 
 #endif //GENERIC_WB_OBJ_H
