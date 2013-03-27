@@ -70,12 +70,12 @@
 
 namespace guWhiteboard
 {
-    namespace fsm
-    {
+//    namespace fsm
+//    {
         /**
          * command for ControlStatus
          */
-        enum ControlType
+        enum FSMControlType
         {
             Status,             ///< check status only
             Suspend,            ///< suspend the corresponding state machines
@@ -88,7 +88,7 @@ namespace guWhiteboard
          * This is implemented as a bit vector with an enum for control and
          * one bit per FSM.
          */
-        class ControlStatus
+        class FSMControlStatus
         {
             PROPERTY(std::bitset<CONTROLSTATUS_SIZE>, fsms) ///< bit set for fsms affected by command
 
@@ -99,7 +99,7 @@ namespace guWhiteboard
             /** command setter */
             void set_command(ControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
         };
-    }
+//    }
 }
 
 

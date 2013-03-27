@@ -25,5 +25,5 @@ class:SENSORS_TorsoJointTemps, SENSORS_TorsoJointTemps, "SENSORS_TorsoJointTemps
 class:SENSORS_LegJointSensors, SENSORS_LegJointSensors, "SENSORS_LegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
 class:SENSORS_TorsoJointSensors, SENSORS_TorsoJointSensors, "SENSORS_TorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
 class:SENSORS_SonarSensors, SENSORS_SonarSensors,       "SENSORS_SonarSensors", Posts the sonar readings via the DCM loop (read only)
-
-
+class:FSMControlStatus, Suspend,       "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
+class:FSMControlStatus, Status,       "fsm_status", Current status indicating the running state of all FSMs.  The highest bit that is always set is the number of machines plus one.
