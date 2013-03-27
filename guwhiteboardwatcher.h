@@ -30,7 +30,7 @@
 
 #include <dispatch/dispatch.h>
 
-#define DISPATCH_QUEUE_NAME "guWhiteboard"
+#define DISPATCH_QUEUE_NAME_WB "guWhiteboard"
 
 #ifndef DISPATCH_QUEUE_SERIAL
 #define DISPATCH_QUEUE_SERIAL NULL
@@ -88,7 +88,7 @@ public:
                         std::cerr << "Unable to create dispatch group" << std::endl;
                         throw "Whiteboard cannot create callback queue";
                 }
-                if (!(callback_queue = dispatch_queue_create(DISPATCH_QUEUE_NAME, DISPATCH_QUEUE_SERIAL)))
+                if (!(callback_queue = dispatch_queue_create(DISPATCH_QUEUE_NAME_WB, DISPATCH_QUEUE_SERIAL)))
                 {
                         std::cerr << "Unable to create dispatch queue" << std::endl;
                         throw "Whiteboard cannot create dispatch queue";
