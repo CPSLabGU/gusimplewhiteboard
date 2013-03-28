@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef gusimplewhiteboard_FSM_Control_h
-#define gusimplewhiteboard_FSM_Control_h
+#ifndef FSMControlStatus_DEFINED
+#define FSMControlStatus_DEFINED
 
 #include <bitset>
 #include <gu_util.h>
@@ -99,8 +99,39 @@ namespace guWhiteboard
             /** command setter */
             void set_command(FSMControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
         };
+
+        /**
+         * Class for transmitting machine names over the whiteboard
+         */
+        class FSMNames
+        {
+            PROPERTY(uint16_t, _startoffs)      ///< start offset
+            char _names[sizeof(gsw_simple_message)-sizeof(uint16_t)];
+        public:
+            /** names getter */
+            char *names() { return _names; }
+
+            /** end of string */
+            const char *end() { return &_names[sizeof(_names)]; }
+
+            /** get the next name */
+            char *next_name(char *name = NULL) { if (!name) return names(); while (name < end() && *name++) {} return name; }
+
+            /** get the next empty slot */
+            char *next_slot(char *name = NULL) { while (*(name = next_name(name)) && name < end()) {} ; return name; }
+
+            /** try to add a new name */
+            char *add_name(char *name)
+            {
+                char *pos = next_slot();
+                int n = int(end() - pos);
+                if (n <= 0) return NULL;
+                gu_strlcpy(pos, name, n);
+                return pos;
+            }
+        };
 //    }
 }
 
 
-#endif
+#endif // FSMControlStatus_DEFINED

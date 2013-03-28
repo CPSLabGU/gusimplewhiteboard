@@ -53,7 +53,7 @@ public:
          */
         generic_whiteboard_object(const generic_whiteboard_object<object_type> &source)
         {
-                init(source->type_offset, source->wbd, source->want_atomic, source->notify_subscribers);
+                init(source.type_offset, source._wbd, source.atomic, source.notify_subscribers);
         }
 
         /**
