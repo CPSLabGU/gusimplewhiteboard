@@ -305,6 +305,8 @@ namespace guWhiteboard
                                         changeLedColour(led, target_colour_or_numOfEars);
                                         break;
                                 }
+                                case NUMBER_OF_LEDS_GROUPS:
+                                        break;
                                 default:
                                         break;
                         }
@@ -340,6 +342,8 @@ namespace guWhiteboard
                                         changeLed(led[0], (u_int8_t)100);
                                         changeLed(led[1], (u_int8_t)25);
                                         changeLed(led[2], (u_int8_t)0);
+                                        break;
+                                case NUMBER_OF_LEDS_COLOURS:
                                         break;
                                 default:
                                         break;
