@@ -13,6 +13,7 @@
 
 #include <bitset>
 #include <gu_util.h>
+#include <assert.h>
 
 namespace guWhiteboard                                                  
 {
