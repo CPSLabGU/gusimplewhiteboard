@@ -204,7 +204,7 @@ namespace guWhiteboard
                         "RFoot/Led/Green/Actuator/Value",
                         "RFoot/Led/Blue/Actuator/Value",
                 };
-        };
+        }
         
         class SENSORS_LedsSensors
         {
@@ -307,8 +307,6 @@ namespace guWhiteboard
                                 }
                                 case NUMBER_OF_LEDS_GROUPS:
                                         break;
-                                default:
-                                        break;
                         }
                 }
                 
@@ -344,8 +342,6 @@ namespace guWhiteboard
                                         changeLed(led[2], (u_int8_t)0);
                                         break;
                                 case NUMBER_OF_LEDS_COLOURS:
-                                        break;
-                                default:
                                         break;
                         }
                 }
