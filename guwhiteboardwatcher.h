@@ -17,6 +17,7 @@
 #include "gusimplewhiteboard.h"
 #include "WBFunctor.h"
 #include <iostream> //cerr
+#include <cstdio> //stderr etc..
 #include <list> //local sub std::list
 
 #ifdef bool
