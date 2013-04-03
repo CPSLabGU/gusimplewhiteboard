@@ -28,3 +28,4 @@ class:SENSORS_SonarSensors, SENSORS_SonarSensors,       "SENSORS_SonarSensors", 
 class:FSMControlStatus, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
+class:WALK_Status, WALK_Status,                         "WALK_Status", Class used to interact with the walk engine (UNSW)
