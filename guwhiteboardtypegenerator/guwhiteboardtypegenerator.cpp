@@ -5,7 +5,7 @@
  *  Copyright (c) 2013 Carl Lusty
  *  All rights reserved.
  */
-
+#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <vector>
