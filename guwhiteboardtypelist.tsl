@@ -31,3 +31,4 @@ class:FSMNames, FSM_Names,                              "fsm_names", Request or 
 class:WALK_Status, WALK_Status,                         "WALK_Status", Class used to interact with the walk engine (UNSW)
 class:Point2D, BallBelief,                              "BallBelief", WIP Class that contains the belief of the ball position from Localisation
 class:FilteredVisionObject, FVOsighting,                              "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
+class:NAO_State, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
