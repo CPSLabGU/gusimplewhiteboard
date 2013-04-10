@@ -62,28 +62,57 @@
 #include <sstream>
 #include <gu_util.h>
 
-const int SPL_NUM_PLAYERS 5
-const int SPL_NUM_TEAM 2
+#define SPL_NUM_PLAYERS 5
+#define SPL_NUM_TEAMS 2
 
-const int DEFAULT_PLAYER_NUMBER 2
+#define DEFAULT_PLAYER_NUMBER 2
+
+#define kFirstHalf "FirstHalf"
+#define kSecondHalf "SecondHalf"
+
+#define kNormalGame "NormalGame"
+#define kPenaltyShots "PenaltyShots"
+
+#define kInitialReceived "InitialReceived"
+#define kReadyReceived "ReadyReceived"
+#define kSetReceived "SetReceived"
+#define kPlayingReceived "PlayingReceived"
+#define kFinishedReceived "FinishedReceived"
+
+#define kNoPenalty "NoPenalty"
+#define kBallHolding "BallHolding"
+#define kPlayerPushing "PlayerPushing"
+#define kObstruction "Obstruction"
+#define kInactivePlayer "InactivePlayer"
+#define kIllegalDefender "IllegalDefender"
+#define kLeavingTheField "LeavingTheField"
+#define kPlayingWithHands "PlayingWithHands"
+#define kRequestForPickup "RequestForPickup"
+
+
+#define kNoUDPsignal "NoUDPsignal"
+#define kUDPOurGoalSignalPushed "UDPOurGoalSignalPushed"
+#define kUDPTheirGoalSignalPushed "UDPTheirGoalSignalPushed"
+#define kUDPBlueKickOffSignalPushed "UDPBlueKickOffSignalPushed"
+#define kUDPRedKickOffSignalPushed "UDPRedKickOffSignalPushed"
 
 namespace guWhiteboard
 {
 	enum GameHalf
-	{  SecondHalf, FirstHalf }
+	{  SecondHalf, FirstHalf };
 
 	enum GameFormat
-	{  NormalGame, PenaltyShots, }
+	{  NormalGame, PenaltyShots };
 
 	enum GameState
-	{  Initial, Ready, Set, Playing, Finished }
+	{  Initial, Ready, Set, Playing, Finished };
 
 	enum GameContollerCommand
-	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived }
+	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
 	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup
-	}
+	};
 
 	enum GameContollerSignal
 	{  NoUDPsignal,
@@ -91,7 +120,7 @@ namespace guWhiteboard
 	   UDPTheirGoalSignalPushed,
 	   UDPBlueKickOffSignalPushed,
  	   UDPRedKickOffSignalPushed
-	}
+	};
 
         /**
 	 * Class to annoucne to out class-oriented whiteboard what we got in UDPreceiver
@@ -99,14 +128,14 @@ namespace guWhiteboard
 
         class UDPRecevierNotification
         {
-	   private;
-		 bool whoFromUsIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
-	         bool whoFromThemIsPenalizedInUDPgameController[UDP_PLAYERS_PER_TEAM];
+	   private:
+		 bool _whoFromUsIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
+	         bool _whoFromThemIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
 
-		 int16_t score [SPM_NUM_TEAMS];
-		 bool dropInTeam;
+		 int16_t _score [SPL_NUM_TEAMS];
+		 bool _dropInTeam;
 
-		GameState theInternalGameState; 
+		GameState _theInternalGameState; 
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
@@ -125,15 +154,15 @@ namespace guWhiteboard
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat), 
                                       _theUDPPenaltyFormat(theUDPPenaltyFormat), 
-                                      _theUDPGameContollerSignal(theUDPGameContollerSignal), 
+                                      _theUDPGameContollerSignal(theUDPGameContollerSignal)
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				whoFromUsIsPenalizedInUDPgameController[i]=false;
-				whoFromThemIsPenalizedInUDPgameController[i]=false;
+				_whoFromUsIsPenalizedInUDPgameController[i]=false;
+				_whoFromThemIsPenalizedInUDPgameController[i]=false;
 			}
-			dropInTeam=false;
-			for (int i=0; i< SPM_NUM_TEAMS; i++) score[i]=0;
+			_dropInTeam=false;
+			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
                 }
 
             /** string constructor */
@@ -152,30 +181,64 @@ namespace guWhiteboard
 				_whoFromThemIsPenalizedInUDPgameController[i]=
 				  other._whoFromThemIsPenalizedInUDPgameController[i];
 			}
-			dropInTeam=other._dropInTeam;
-			for (int i=0; i< SPM_NUM_TEAMS; i++) score[i]=other._score[i];
+			_dropInTeam=other._dropInTeam;
+			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
 
             /** convert to a string */
             std::string description()
             {
                 std::ostringstream ss;
-		switch (landmarkType() )
-		{ case FVOBall : ss << "aBall:";
+	        if  ( FirstHalf == theUDPHalf() ) ss << kFirstHalf<<","; else ss << kSecondHalf<<",";
+
+	        if  ( NormalGame == theUDPGameformat() ) ss << kNormalGame<<","; else ss << kPenaltyShots<<",";
+
+		switch (theUDPGameContollerCommand() )
+		{ case InitialReceived : ss << kInitialReceived<<",";
 			break;
-		  case FVOGoalPost : ss << "aGoalPost:";
+		  case ReadyReceived : ss << kReadyReceived<<",";
 			break;
-		  case FVOGoalCrossBar : ss << "aCrossbar:";
+		  case SetReceived : ss << kSetReceived<<",";
+			break;
+		  case PlayingReceived : ss << kPlayingReceived<<",";
+			break;
+		  case FinishedReceived : ss << kFinishedReceived<<",";
 			break;
 		}
 
-		if ( isVisible())
-                { ss<<" is visible ";
-		  ss << "at distance " << distance() << "with location ("  <<  x() << "," << y() << ")";
+		switch (theUDPPenaltyFormat() )
+		{ case NoPenalty : ss << kNoPenalty<<",";
+			break;
+		  case BallHolding : ss << kBallHolding<<",";
+			break;
+		  case PlayerPushing : ss << kPlayerPushing<<",";
+			break;
+		  case Obstruction : ss << kObstruction<<",";
+			break;
+		  case InactivePlayer : ss << kInactivePlayer<<",";
+			break;
+		  case IllegalDefender : ss << kIllegalDefender<<",";
+			break;
+		  case LeavingTheField : ss << kLeavingTheField<<",";
+			break;
+		  case PlayingWithHands : ss << kPlayingWithHands<<",";
+			break;
+		  case RequestForPickup : ss << kRequestForPickup<<",";
+			break;
 		}
-		else ss << " is NOT visible ";
 
-		ss << " at frame  " << frameCounter();
+		switch (theUDPGameContollerSignal() )
+		{ case NoUDPsignal : ss << kNoUDPsignal<<",";
+			break;
+		  case UDPOurGoalSignalPushed : ss << kUDPOurGoalSignalPushed<<",";
+			break;
+		  case UDPTheirGoalSignalPushed : ss << kUDPTheirGoalSignalPushed<<",";
+			break;
+		  case  UDPBlueKickOffSignalPushed: ss << kUDPBlueKickOffSignalPushed<<",";
+			break;
+		  case UDPRedKickOffSignalPushed : ss << kUDPRedKickOffSignalPushed<<",";
+			break;
+		}
 
                 return ss.str();
             }
@@ -185,15 +248,7 @@ namespace guWhiteboard
             {
                 std::istringstream iss(str);
                 std::string token;
-                if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
-                    if (getline(iss, token, ','))
-                    {
-		        set_y(int16_t(atoi(token.c_str())));
-                    }
-                }
+                getline(iss, token, ',');
             }
         };
 }
