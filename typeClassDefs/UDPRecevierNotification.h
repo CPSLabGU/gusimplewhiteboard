@@ -73,21 +73,21 @@
 #define kNormalGame "NormalGame"
 #define kPenaltyShots "PenaltyShots"
 
-#define kInitialReceived "InitialReceived"
-#define kReadyReceived "ReadyReceived"
-#define kSetReceived "SetReceived"
-#define kPlayingReceived "PlayingReceived"
-#define kFinishedReceived "FinishedReceived"
+#define kUDPInitialReceived "InitialReceived"
+#define kUDPReadyReceived "ReadyReceived"
+#define kUDPSetReceived "SetReceived"
+#define kUDPPlayingReceived "PlayingReceived"
+#define kUDPFinishedReceived "FinishedReceived"
 
-#define kNoPenalty "NoPenalty"
-#define kBallHolding "BallHolding"
-#define kPlayerPushing "PlayerPushing"
-#define kObstruction "Obstruction"
-#define kInactivePlayer "InactivePlayer"
-#define kIllegalDefender "IllegalDefender"
-#define kLeavingTheField "LeavingTheField"
-#define kPlayingWithHands "PlayingWithHands"
-#define kRequestForPickup "RequestForPickup"
+#define kUSPNoPenalty "NoPenalty"
+#define kUDPBallHolding "BallHolding"
+#define kUDPPlayerPushing "PlayerPushing"
+#define kUDPObstruction "Obstruction"
+#define kUDPInactivePlayer "InactivePlayer"
+#define kUDPIllegalDefender "IllegalDefender"
+#define kUDPLeavingTheField "LeavingTheField"
+#define kUDPPlayingWithHands "PlayingWithHands"
+#define kUDPRequestForPickup "RequestForPickup"
 
 
 #define kNoUDPsignal "NoUDPsignal"
@@ -194,36 +194,36 @@ namespace guWhiteboard
 	        if  ( NormalGame == theUDPGameformat() ) ss << kNormalGame<<","; else ss << kPenaltyShots<<",";
 
 		switch (theUDPGameContollerCommand() )
-		{ case InitialReceived : ss << kInitialReceived<<",";
+		{ case InitialReceived : ss << kUDPInitialReceived<<",";
 			break;
-		  case ReadyReceived : ss << kReadyReceived<<",";
+		  case ReadyReceived : ss << kUDPReadyReceived<<",";
 			break;
-		  case SetReceived : ss << kSetReceived<<",";
+		  case SetReceived : ss << kUDPSetReceived<<",";
 			break;
-		  case PlayingReceived : ss << kPlayingReceived<<",";
+		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
 			break;
-		  case FinishedReceived : ss << kFinishedReceived<<",";
+		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
 			break;
 		}
 
 		switch (theUDPPenaltyFormat() )
-		{ case NoPenalty : ss << kNoPenalty<<",";
+		{ case NoPenalty : ss << kUSPNoPenalty<<",";
 			break;
-		  case BallHolding : ss << kBallHolding<<",";
+		  case BallHolding : ss << kUDPBallHolding<<",";
 			break;
-		  case PlayerPushing : ss << kPlayerPushing<<",";
+		  case PlayerPushing : ss << kUDPPlayerPushing<<",";
 			break;
-		  case Obstruction : ss << kObstruction<<",";
+		  case Obstruction : ss << kUDPObstruction<<",";
 			break;
-		  case InactivePlayer : ss << kInactivePlayer<<",";
+		  case InactivePlayer : ss << kUDPInactivePlayer<<",";
 			break;
-		  case IllegalDefender : ss << kIllegalDefender<<",";
+		  case IllegalDefender : ss << kUDPIllegalDefender<<",";
 			break;
-		  case LeavingTheField : ss << kLeavingTheField<<",";
+		  case LeavingTheField : ss << kUDPLeavingTheField<<",";
 			break;
-		  case PlayingWithHands : ss << kPlayingWithHands<<",";
+		  case PlayingWithHands : ss << kUDPPlayingWithHands<<",";
 			break;
-		  case RequestForPickup : ss << kRequestForPickup<<",";
+		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
 			break;
 		}
 
