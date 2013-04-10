@@ -67,8 +67,8 @@
 
 #define DEFAULT_PLAYER_NUMBER 2
 
-#define kFirstHalf "FirstHalf"
-#define kSecondHalf "SecondHalf"
+#define kUDPFirstHalf "FirstHalf"
+#define kUDPSecondHalf "SecondHalf"
 
 #define kNormalGame "NormalGame"
 #define kPenaltyShots "PenaltyShots"
@@ -189,7 +189,7 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-	        if  ( FirstHalf == theUDPHalf() ) ss << kFirstHalf<<","; else ss << kSecondHalf<<",";
+	        if  ( FirstHalf == theUDPHalf() ) ss << kUDPFirstHalf<<","; else ss << kUDPSecondHalf<<",";
 
 	        if  ( NormalGame == theUDPGameformat() ) ss << kNormalGame<<","; else ss << kPenaltyShots<<",";
 
