@@ -28,3 +28,8 @@ class:SENSORS_SonarSensors, SENSORS_SonarSensors,       "SENSORS_SonarSensors", 
 class:FSMControlStatus, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
+class:WALK_Status, WALK_Status,                         "WALK_Status", Class used to interact with the walk engine (UNSW)
+class:Point2D, BallBelief,                              "BallBelief", WIP Class that contains the belief of the ball position from Localisation
+class:FilteredVisionObject, FVOsighting,                              "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
+class:NAO_State, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
+class:UDPRecevierNotification, UDPRN,                             "UDPRecevierNotification", the notfication for the UDP receiver.
