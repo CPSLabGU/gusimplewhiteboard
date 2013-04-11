@@ -32,3 +32,4 @@ class:WALK_Status, WALK_Status,                         "WALK_Status", Class use
 class:Point2D, BallBelief,                              "BallBelief", WIP Class that contains the belief of the ball position from Localisation
 class:FilteredVisionObject, FVOsighting,                              "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
 class:NAO_State, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
+class:UDPRecevierNotification, UDPRN,                             "UDPRecevierNotification", the notfication for the UDP receiver.

@@ -81,7 +81,7 @@
 #define kUDPFinishedReceived "FinishedReceived"
 
 #define kUDPInitial "UDPInitial"
-#define kUDPReady "UDPReceived"
+#define kUDPReady "UDPReady"
 #define kUDPSet  "UDPSet"
 #define kUDPPlaying  "UDPPlaying"
 #define kUDPFinished  "UDPFinished"
