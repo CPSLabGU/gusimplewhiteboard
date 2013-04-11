@@ -12,6 +12,11 @@
 
 #include <gu_util.h>
 
+#define DEG_GETTER(t, n) public: t n##_degrees () { return (_##n * (180/M_PI)) ; }
+#define DEG_PROPERTY(type, name) PROPERTY_DECLARATION(type,name); PROPERTY_GETTER(type,name) DEG_GETTER(type,name) PROPERTY_SETTER(type,name)
+
+
+
 namespace guWhiteboard                                                  
 {
         class SENSORS_BodySensors
@@ -22,8 +27,8 @@ namespace guWhiteboard
                 PROPERTY(float, InertialSensor_GyrX);
                 PROPERTY(float, InertialSensor_GyrY);
                 PROPERTY(float, InertialSensor_GyrRef);
-                PROPERTY(float, InertialSensor_AngleX);
-                PROPERTY(float, InertialSensor_AngleY);
+                DEG_PROPERTY(float, InertialSensor_AngleX);
+                DEG_PROPERTY(float, InertialSensor_AngleY);
                 
                 PROPERTY(bool, ChestBoard_Button); //could use a 1 bit var here
                 PROPERTY(float, Battery_Charge); //check if this is a float or not
