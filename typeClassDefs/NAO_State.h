@@ -44,13 +44,19 @@ namespace guWhiteboard
         {
                 PROPERTY(Robot_Stance, Stance) //Currently SMRobotPosition detects if the robot has fallen over. If not fallen over SMRobotPosition posts Standing.
                 
-                PROPERTY(bool, Chest_Pressed) //This is the fudged version of this information, it last for half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMChestButton
+                PROPERTY(bool, Chest_Pressed) //This is the fudged version of this information, it lasts for half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMChestButton
+                
+                PROPERTY(bool, Left_Foot_Pressed) //This is the fudged version of this information, it lasts for half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMLeftFootButton
+                
+                PROPERTY(bool, Right_Foot_Pressed) //This is the fudged version of this information, it lasts for half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMRightFootButton
                 
         public:
                 NAO_State()
                 {
                         _Stance = Standing;
                         _Chest_Pressed = false;
+                        _Left_Foot_Pressed = false;
+                        _Right_Foot_Pressed = false;
                 }
                 
                 /** convert to a string */
@@ -58,7 +64,7 @@ namespace guWhiteboard
                 {
                         std::stringstream ss;
 
-                        ss << "Stance: " << Robot_Stance_stringValues[(int)Stance()] << ", Chest_Pressed: " << Chest_Pressed() << ";";
+                        ss << "Stance: " << Robot_Stance_stringValues[(int)Stance()] << ", Chest_Pressed: " << Chest_Pressed() << ", Left_Foot_Pressed: " << Left_Foot_Pressed() << ", Right_Foot_Pressed: " << Right_Foot_Pressed() << ";";
                         
                         return ss.str();
                 }
