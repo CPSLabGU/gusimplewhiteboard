@@ -68,6 +68,7 @@
 #include "WBMsg.h"
 
 #ifndef _FROM_WHITEBOARD_CC_
+#ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpedantic"
 #pragma clang diagnostic warning "-W#warnings"
@@ -75,6 +76,11 @@
 #warning using deprecated whiteboard version
 
 #pragma clang diagnostic pop
+#else
+#pragma message "************************************************************"
+#pragma message "using deprecated whiteboard version " __FILE__ "!!!"
+#pragma message "************************************************************"
+#endif
 #endif // _FROM_WHITEBOARD_CC_
 
 #ifdef WHITEBOARD_OLD_H
