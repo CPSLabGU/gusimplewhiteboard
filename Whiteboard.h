@@ -69,7 +69,8 @@
 
 #ifndef _FROM_WHITEBOARD_CC_
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Werror"
+#pragma clang diagnostic ignored "-Wpedantic"
+#pragma clang diagnostic warning "-W#warnings"
 
 #warning using deprecated whiteboard version
 
