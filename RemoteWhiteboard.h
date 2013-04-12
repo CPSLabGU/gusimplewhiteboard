@@ -113,7 +113,7 @@ namespace guWhiteboard
          */
         class RemoteWhiteboard : public Whiteboard
         {
-            RWBMachine machine;
+            RWBMachine _machine;
             Whiteboard *local_wb;
             bool local_wb_needs_free;
         public:
@@ -131,6 +131,9 @@ namespace guWhiteboard
              * shuts down the whiteboard
              */		
             virtual ~RemoteWhiteboard();           
+
+            /// machine getter
+            RWBMachine machine() const { return _machine; }
 
             /**
              * Add Message
