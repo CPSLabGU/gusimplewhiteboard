@@ -46,6 +46,6 @@ const char *WBTypes_stringValues[] =
         "BallBelief",
         "FVOsighting",
         "NAO_State",
-        "UDPRecevierNotification"
+        "UDPReceiverNotification"
 };      
 

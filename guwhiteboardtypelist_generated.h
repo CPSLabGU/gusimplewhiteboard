@@ -136,7 +136,7 @@ extern "C"
         class NAO_State_t: public generic_whiteboard_object<class NAO_State > { public: NAO_State_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class NAO_State >(wbd, kNAO_State_v) {} };
 
 	///the notfication for the UDP receiver.
-        class UDPRN_t: public generic_whiteboard_object<class UDPRecevierNotification > { public: UDPRN_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class UDPRecevierNotification >(wbd, kUDPRN_v) {} };
+        class UDPRN_t: public generic_whiteboard_object<class UDPReceiverNotification > { public: UDPRN_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class UDPReceiverNotification >(wbd, kUDPRN_v) {} };
 
 }
 

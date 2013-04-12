@@ -684,25 +684,25 @@ public:
 #endif //NAO_State_DEFINED
 
 
-#ifdef UDPRecevierNotification_DEFINED
+#ifdef UDPReceiverNotification_DEFINED
 template <typename UDPRN_WBFunctor_T >
 class UDPRN_WBFunctor: public WBFunctor<UDPRN_WBFunctor_T > 
 {
 public:
-        UDPRN_WBFunctor(UDPRN_WBFunctor_T* obj, void (UDPRN_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::UDPRecevierNotification &), guWhiteboard::WBTypes t): WBFunctor<UDPRN_WBFunctor_T >(obj, (void (UDPRN_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+        UDPRN_WBFunctor(UDPRN_WBFunctor_T* obj, void (UDPRN_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::UDPReceiverNotification &), guWhiteboard::WBTypes t): WBFunctor<UDPRN_WBFunctor_T >(obj, (void (UDPRN_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
         void call(gu_simple_message *m)
         {
-                guWhiteboard::UDPRecevierNotification result = guWhiteboard::UDPRN_t().get_from(m);
-                UDPRN_function_t funct((void (UDPRN_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::UDPRecevierNotification &))WBFunctor<UDPRN_WBFunctor_T >::get_s_func_ptr());
+                guWhiteboard::UDPReceiverNotification result = guWhiteboard::UDPRN_t().get_from(m);
+                UDPRN_function_t funct((void (UDPRN_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::UDPReceiverNotification &))WBFunctor<UDPRN_WBFunctor_T >::get_s_func_ptr());
                 (WBFunctor<UDPRN_WBFunctor_T >::fObject->*funct)(WBFunctor<UDPRN_WBFunctor_T >::type_enum, result);
         }
         
-        typedef void (UDPRN_WBFunctor_T::*UDPRN_function_t) (guWhiteboard::WBTypes, guWhiteboard::UDPRecevierNotification &);
+        typedef void (UDPRN_WBFunctor_T::*UDPRN_function_t) (guWhiteboard::WBTypes, guWhiteboard::UDPReceiverNotification &);
 
-        static WBFunctorBase *bind(UDPRN_WBFunctor_T *obj, void (UDPRN_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::UDPRecevierNotification &), guWhiteboard::WBTypes t) { return new UDPRN_WBFunctor<UDPRN_WBFunctor_T >(obj, f, t); }
+        static WBFunctorBase *bind(UDPRN_WBFunctor_T *obj, void (UDPRN_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::UDPReceiverNotification &), guWhiteboard::WBTypes t) { return new UDPRN_WBFunctor<UDPRN_WBFunctor_T >(obj, f, t); }
 };
 
-#endif //UDPRecevierNotification_DEFINED
+#endif //UDPReceiverNotification_DEFINED
 
 

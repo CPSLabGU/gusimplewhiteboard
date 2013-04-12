@@ -1,5 +1,5 @@
 /*
- *  /UDPRecevierNotification.h
+ *  /UDPReceiverNotification.h
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 25/03/13.
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef UDPRecevierNotification_DEFINED
-#define UDPRecevierNotification_DEFINED
+#ifndef UDPReceiverNotification_DEFINED
+#define UDPReceiverNotification_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -136,7 +136,7 @@ namespace guWhiteboard
 	 * Class to annoucne to out class-oriented whiteboard what we got in UDPreceiver
          */
 
-        class UDPRecevierNotification
+        class UDPReceiverNotification
         {
 	   private:
 		 bool _whoFromUsIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
@@ -159,7 +159,7 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            UDPRecevierNotification(GameHalf theUDPHalf = FirstHalf, 
+            UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
                                        GameFormat theUDPGameformat = NormalGame
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
 				       ///PenaltyFormat  theUDPPenaltyFormat=NoPenalty,
@@ -180,10 +180,10 @@ namespace guWhiteboard
                 }
 
             /** string constructor */
-            UDPRecevierNotification(const std::string &names) { from_string(names); }
+            UDPReceiverNotification(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            UDPRecevierNotification(const UDPRecevierNotification &other):
+            UDPReceiverNotification(const UDPReceiverNotification &other):
                       _theUDPHalf(other._theUDPHalf),
                       _theUDPGameformat(other._theUDPGameformat)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
@@ -271,4 +271,4 @@ namespace guWhiteboard
 }
 
 
-#endif // UDPRecevierNotification_DEFINED
+#endif // UDPReceiverNotification_DEFINED
