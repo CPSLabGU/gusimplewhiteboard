@@ -17,7 +17,8 @@
 
 namespace guWhiteboard                                                  
 {
-        enum LEDColour {
+        enum LEDColour
+        {
                 Off = -1,
                 Red = 0,
                 Green,
@@ -26,7 +27,8 @@ namespace guWhiteboard
                 NUMBER_OF_LEDS_COLOURS
         };
         
-        enum LEDGroups {
+        enum LEDGroups
+        {
                 AllLEDs = 0,        //Only off is supported regardless of what is passed in
                 Ears,               //Number of leds to turn on is the value
                 LEar,               //All others have the desired colour as the passed value
@@ -41,9 +43,10 @@ namespace guWhiteboard
                 NUMBER_OF_LEDS_GROUPS
         };
         
-        namespace LEDs {
-                
-                enum LEDCode {
+        namespace LEDs
+        {
+                enum LEDCode
+                {
                         LeftEar1 = 0,
                         LeftEar2,
                         LeftEar3,
@@ -125,7 +128,8 @@ namespace guWhiteboard
                 };
                 
                 
-                const std::string ledNames[NUMBER_OF_LEDS] = {
+                static const char *ledNames[NUMBER_OF_LEDS] =
+                {
                         "Ears/Led/Left/0Deg/Actuator/Value",
                         "Ears/Led/Left/36Deg/Actuator/Value",
                         "Ears/Led/Left/72Deg/Actuator/Value",
