@@ -114,7 +114,7 @@ namespace guWhiteboard
 	enum BallOut
 	{  OutByBlue, OutByRed };
 
-	//enum GameState {  Initial, Ready, Set, Playing, Finished };
+	enum GameState {  Initial, Ready, Set, Playing, Finished };
 
 	enum GameContollerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
@@ -148,7 +148,7 @@ namespace guWhiteboard
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
-                //PROPERTY(GameState, theUDPGameState )  
+                PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
                 //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
 		//  UDP PenaltyFormat
@@ -159,13 +159,15 @@ namespace guWhiteboard
         public:
             /** designated constructor */
             UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
-                                       GameFormat theUDPGameformat = NormalGame
+                                       GameFormat theUDPGameformat = NormalGame,
+				       GameState theUDPGameState = Initial 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
 				       ///PenaltyFormat  theUDPPenaltyFormat=NoPenalty,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
-                                      _theUDPGameformat(theUDPGameformat)
+                                      _theUDPGameformat(theUDPGameformat),
+                                      _theUDPGameState(theUDPGameState)
                                       //_theUDPPenaltyFormat(theUDPPenaltyFormat), 
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
@@ -184,7 +186,8 @@ namespace guWhiteboard
             /** copy constructor */
             UDPReceiverNotification(const UDPReceiverNotification &other):
                       _theUDPHalf(other._theUDPHalf),
-                      _theUDPGameformat(other._theUDPGameformat)
+                      _theUDPGameformat(other._theUDPGameformat),
+                       _theUDPGameState(other._theUDPGameState)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
                       //_theUDPPenaltyFormat(other._theUDPPenaltyFormat),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
@@ -206,6 +209,20 @@ namespace guWhiteboard
 	        if  ( FirstHalf == theUDPHalf() ) ss << kUDPFirstHalf<<","; else ss << kUDPSecondHalf<<",";
 
 	        if  ( NormalGame == theUDPGameformat() ) ss << kUDPNormalGame<<","; else ss << kUDPPenaltyShots<<",";
+
+		switch(int (_theUDPGameState))
+		{ case Initial: ss << kUDPInitial<<",";
+			break;
+		  case Ready: ss << kUDPReady<<",";
+			break;
+		  case Set: ss << kUDPSet<<",";
+			break;
+		  case Playing: ss << kUDPPlaying<<",";
+			break;
+		  case Finished: ss << kUDPFinished<<",";
+			break;
+	          default: ss << _theUDPGameState <<",";
+		}
 
 		/*
 		switch (theUDPGameContollerCommand() )
