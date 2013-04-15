@@ -114,8 +114,7 @@ namespace guWhiteboard
 	enum BallOut
 	{  OutByBlue, OutByRed };
 
-	enum GameState
-	{  Initial, Ready, Set, Playing, Finished };
+	//enum GameState {  Initial, Ready, Set, Playing, Finished };
 
 	enum GameContollerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
@@ -145,11 +144,11 @@ namespace guWhiteboard
 		 int16_t _score [SPL_NUM_TEAMS];
 		 bool _dropInTeam;
 
-		GameState _theInternalGameState; 
+		//GameState _theInternalGameState; 
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
-                PROPERTY(GameState, theUDPGameState )  //  UDP game format
+                //PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
                 //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
 		//  UDP PenaltyFormat
