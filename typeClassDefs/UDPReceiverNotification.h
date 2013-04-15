@@ -86,7 +86,7 @@
 #define kUDPPlaying  "UDPPlaying"
 #define kUDPFinished  "UDPFinished"
 
-#define kUSPNoPenalty "NoPenalty"
+#define kUDPNoPenalty "NoPenalty"
 #define kUDPBallHolding "BallHolding"
 #define kUDPPlayerPushing "PlayerPushing"
 #define kUDPObstruction "Obstruction"
@@ -138,8 +138,8 @@ namespace guWhiteboard
         class UDPReceiverNotification
         {
 	   private:
-		 bool _whoFromUsIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
-	         bool _whoFromThemIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
+		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
+		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
 		 int16_t _score [SPL_NUM_TEAMS];
 		 bool _dropInTeam;
@@ -151,8 +151,6 @@ namespace guWhiteboard
                 PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
                 //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP PenaltyFormat
-                //PROPERTY(PenaltyFormat, theUDPPenaltyFormat )
 		//  UDP GameContollerSignal
                 //PROPERTY(GameContollerSignal, theUDPGameContollerSignal )  
 
@@ -162,19 +160,17 @@ namespace guWhiteboard
                                        GameFormat theUDPGameformat = NormalGame,
 				       GameState theUDPGameState = Initial 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
-				       ///PenaltyFormat  theUDPPenaltyFormat=NoPenalty,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat),
                                       _theUDPGameState(theUDPGameState)
-                                      //_theUDPPenaltyFormat(theUDPPenaltyFormat), 
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whoFromUsIsPenalizedInUDPgameController[i]=false;
-				_whoFromThemIsPenalizedInUDPgameController[i]=false;
+				_whatPenaltyFromUsInUDPgameController[i]=NoPenalty;
+				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
@@ -189,18 +185,27 @@ namespace guWhiteboard
                       _theUDPGameformat(other._theUDPGameformat),
                        _theUDPGameState(other._theUDPGameState)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
-                      //_theUDPPenaltyFormat(other._theUDPPenaltyFormat),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whoFromUsIsPenalizedInUDPgameController[i]=
-				  other._whoFromUsIsPenalizedInUDPgameController[i];
-				_whoFromThemIsPenalizedInUDPgameController[i]=
-				  other._whoFromThemIsPenalizedInUDPgameController[i];
+				_whatPenaltyFromUsInUDPgameController[i]=other._whatPenaltyFromUsInUDPgameController[i];
+				_whatPenaltyFromThemInUDPgameController[i]=other._whatPenaltyFromThemInUDPgameController[i];
 			}
 			_dropInTeam=other._dropInTeam;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
+
+            /** Set the Penalty vectors */
+	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS],
+		                    const PenaltyFormat thePenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS])
+			    {
+				    for (int i=0; i<SPL_NUM_PLAYERS; i++)
+				    {
+						_whatPenaltyFromUsInUDPgameController[i]=thePenaltyFromUsInUDPgameController[i];
+						_whatPenaltyFromThemInUDPgameController[i]=thePenaltyFromThemInUDPgameController[i];
+				    }
+			    }
+
 
             /** convert to a string */
             std::string description()
@@ -224,22 +229,10 @@ namespace guWhiteboard
 	          default: ss << _theUDPGameState <<",";
 		}
 
-		/*
-		switch (theUDPGameContollerCommand() )
-		{ case InitialReceived : ss << kUDPInitialReceived<<",";
-			break;
-		  case ReadyReceived : ss << kUDPReadyReceived<<",";
-			break;
-		  case SetReceived : ss << kUDPSetReceived<<",";
-			break;
-		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
-			break;
-		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
-			break;
-		}
 
-		switch (theUDPPenaltyFormat() )
-		{ case NoPenalty : ss << kUSPNoPenalty<<",";
+                for (int i=0; i< SPL_NUM_PLAYERS; i++)
+		switch (_whatPenaltyFromUsInUDPgameController[i] )
+		{ case NoPenalty : ss << kUDPNoPenalty<<",";
 			break;
 		  case BallHolding : ss << kUDPBallHolding<<",";
 			break;
@@ -256,6 +249,20 @@ namespace guWhiteboard
 		  case PlayingWithHands : ss << kUDPPlayingWithHands<<",";
 			break;
 		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
+			break;
+		}
+
+		/*
+		switch (theUDPGameContollerCommand() )
+		{ case InitialReceived : ss << kUDPInitialReceived<<",";
+			break;
+		  case ReadyReceived : ss << kUDPReadyReceived<<",";
+			break;
+		  case SetReceived : ss << kUDPSetReceived<<",";
+			break;
+		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
+			break;
+		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
 			break;
 		}
 
