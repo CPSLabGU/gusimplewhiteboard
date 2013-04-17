@@ -67,6 +67,9 @@
 
 #define DEFAULT_PLAYER_NUMBER 2
 
+#define kUDPTeamBlue "TeamBlue"
+#define kUDPTeamRed "TeamRed"
+
 #define kUDPFirstHalf "FirstHalf"
 #define kUDPSecondHalf "SecondHalf"
 
@@ -105,6 +108,9 @@
 
 namespace guWhiteboard
 {
+	enum TeamColors
+	{  TeamBlue=0, TeamRed=1, SentinelTeamColors=SPL_NUM_TEAMS };
+
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
 
@@ -120,16 +126,10 @@ namespace guWhiteboard
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
-	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup
-	};
+	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup };
 
 	enum GameContollerSignal
-	{  NoUDPsignal,
-	   UDPOurGoalSignalPushed,
-	   UDPTheirGoalSignalPushed,
-	   UDPBlueKickOffSignalPushed,
- 	   UDPRedKickOffSignalPushed
-	};
+	{  NoUDPsignal, UDPOurGoalSignalPushed, UDPTheirGoalSignalPushed, UDPBlueKickOffSignalPushed, UDPRedKickOffSignalPushed };
 
         /**
 	 * Class to annoucne to out class-oriented whiteboard what we got in UDPreceiver
@@ -141,30 +141,37 @@ namespace guWhiteboard
 		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
 		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
-		 int16_t _score [SPL_NUM_TEAMS];
+		 int16_t _score [SentinelTeamColors];
 		 bool _dropInTeam;
-
-		//GameState _theInternalGameState; 
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
                 PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
-                //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP GameContollerSignal
-                //PROPERTY(GameContollerSignal, theUDPGameContollerSignal )  
+                PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
+		//  UDP team that has kickoff
+                PROPERTY(TeamColors, theUDPteamThatHasKickOf )  
+		//  UDP team that has ball after it went out
+                PROPERTY(TeamColors, theUDPteamCausedlastDropIn )  
+                PROPERTY(int16_t, theSecondReminingInHalf )  
 
         public:
             /** designated constructor */
             UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
                                        GameFormat theUDPGameformat = NormalGame,
-				       GameState theUDPGameState = Initial 
+				       GameState theUDPGameState = Initial,
+				       TeamColors theUDPteamThatHasKickOf = TeamBlue,
+				       TeamColors theUDPteamCausedlastDropIn = TeamBlue,
+				       int16_t theSecondReminingInHalf = TeamBlue 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat),
-                                      _theUDPGameState(theUDPGameState)
+                                      _theUDPGameState(theUDPGameState),
+                                      _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf),
+                                      _theUDPteamCausedlastDropIn(theUDPteamCausedlastDropIn),
+                                      _theSecondReminingInHalf(theSecondReminingInHalf)
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
@@ -173,7 +180,7 @@ namespace guWhiteboard
 				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
-			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
+			for (TeamColors i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
                 }
 
             /** string constructor */
@@ -183,7 +190,10 @@ namespace guWhiteboard
             UDPReceiverNotification(const UDPReceiverNotification &other):
                       _theUDPHalf(other._theUDPHalf),
                       _theUDPGameformat(other._theUDPGameformat),
-                       _theUDPGameState(other._theUDPGameState)
+                       _theUDPGameState(other._theUDPGameState),
+                       _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf),
+                       _theUDPteamCausedlastDropIn(other._theUDPteamCausedlastDropIn),
+                       _theSecondReminingInHalf(other._theSecondReminingInHalf)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
@@ -206,11 +216,37 @@ namespace guWhiteboard
 				    }
 			    }
 
+            /** Set the score */
+	    void setScore(int16_t goalsByBlue, int16_t goalsByRed)
+		{  _score[TeamBlue] = goalsByBlue;
+		   _score[TeamRed] = goalsByRed;
+		}
+
+		int16_t getScoreBlue() { return _score[TeamBlue];}
+		int16_t getScoreRed() { return _score[TeamRed];}
+
+		PenaltyFormat myPenaltyIs (int PlayerNumber)
+		{
+			return _whatPenaltyFromUsInUDPgameController[PlayerNumber];
+		}
+
+		bool amIPenalized(int PlayerNumber)
+		{
+
+			if (NoPenalty==myPenaltyIs(PlayerNumber))
+			   return false;
+			else return(true);
+		}
+
+
+
 
             /** convert to a string */
             std::string description()
             {
                 std::ostringstream ss;
+	        if  ( TeamBlue == theUDPteamThatHasKickOf() ) ss << kUDPTeamBlue<<","; else ss << kUDPTeamRed<<",";
+
 	        if  ( FirstHalf == theUDPHalf() ) ss << kUDPFirstHalf<<","; else ss << kUDPSecondHalf<<",";
 
 	        if  ( NormalGame == theUDPGameformat() ) ss << kUDPNormalGame<<","; else ss << kUDPPenaltyShots<<",";
@@ -251,6 +287,10 @@ namespace guWhiteboard
 		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
 			break;
 		}
+
+		ss << getScoreBlue() << "," <<  getScoreRed() << ",";
+
+
 
 		/*
 		switch (theUDPGameContollerCommand() )
