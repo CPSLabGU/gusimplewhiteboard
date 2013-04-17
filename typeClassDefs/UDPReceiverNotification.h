@@ -109,7 +109,7 @@
 namespace guWhiteboard
 {
 	enum TeamColors
-	{  TeamBlue, TeamRed };
+	{  TeamBlue=0, TeamRed=1, SentinelTeamColors=SPL_NUM_TEAMS };
 
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
@@ -126,12 +126,10 @@ namespace guWhiteboard
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
-	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup
-	};
+	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup };
 
 	enum GameContollerSignal
-	{  NoUDPsignal, UDPOurGoalSignalPushed, UDPTheirGoalSignalPushed, UDPBlueKickOffSignalPushed, UDPRedKickOffSignalPushed
-	};
+	{  NoUDPsignal, UDPOurGoalSignalPushed, UDPTheirGoalSignalPushed, UDPBlueKickOffSignalPushed, UDPRedKickOffSignalPushed };
 
         /**
 	 * Class to annoucne to out class-oriented whiteboard what we got in UDPreceiver
@@ -143,10 +141,8 @@ namespace guWhiteboard
 		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
 		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
-		 int16_t _score [SPL_NUM_TEAMS];
+		 int16_t _score [SentinelTeamColors];
 		 bool _dropInTeam;
-
-		//GameState _theInternalGameState; 
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
@@ -177,7 +173,7 @@ namespace guWhiteboard
 				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
-			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
+			for (TeamColors i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
                 }
 
             /** string constructor */
@@ -211,6 +207,14 @@ namespace guWhiteboard
 				    }
 			    }
 
+            /** Set the score */
+	    void setScore(int16_t goalsByBlue, int16_t goalsByRed)
+		{  _score[TeamBlue] = goalsByBlue;
+		   _score[TeamRed] = goalsByRed;
+		}
+
+		int16_t getScoreBlue() { return _score[TeamBlue];}
+		int16_t getScoreRed() { return _score[TeamRed];}
 
             /** convert to a string */
             std::string description()
@@ -258,6 +262,10 @@ namespace guWhiteboard
 		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
 			break;
 		}
+
+		ss << getScoreBlue() << "," <<  getScoreRed() << ",";
+
+
 
 		/*
 		switch (theUDPGameContollerCommand() )
