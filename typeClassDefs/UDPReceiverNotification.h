@@ -68,7 +68,7 @@
 #define DEFAULT_PLAYER_NUMBER 2
 
 #define kUDPTeamBlue "TeamBlue"
-#define kUDPTeamRed "ReamRed"
+#define kUDPTeamRed "TeamRed"
 
 #define kUDPFirstHalf "FirstHalf"
 #define kUDPSecondHalf "SecondHalf"
