@@ -149,22 +149,29 @@ namespace guWhiteboard
                 PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
                 PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP team that ahs kickoff
+		//  UDP team that has kickoff
                 PROPERTY(TeamColors, theUDPteamThatHasKickOf )  
+		//  UDP team that has ball after it went out
+                PROPERTY(TeamColors, theUDPteamCausedlastDropIn )  
+                PROPERTY(int16_t, theSecondReminingInHalf )  
 
         public:
             /** designated constructor */
             UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
                                        GameFormat theUDPGameformat = NormalGame,
 				       GameState theUDPGameState = Initial,
-				       TeamColors theUDPteamThatHasKickOf = TeamBlue 
+				       TeamColors theUDPteamThatHasKickOf = TeamBlue,
+				       TeamColors theUDPteamCausedlastDropIn = TeamBlue,
+				       int16_t theSecondReminingInHalf = TeamBlue 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat),
                                       _theUDPGameState(theUDPGameState),
-                                      _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf)
+                                      _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf),
+                                      _theUDPteamCausedlastDropIn(theUDPteamCausedlastDropIn),
+                                      _theSecondReminingInHalf(theSecondReminingInHalf)
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
@@ -184,7 +191,9 @@ namespace guWhiteboard
                       _theUDPHalf(other._theUDPHalf),
                       _theUDPGameformat(other._theUDPGameformat),
                        _theUDPGameState(other._theUDPGameState),
-                       _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf)
+                       _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf),
+                       _theUDPteamCausedlastDropIn(other._theUDPteamCausedlastDropIn),
+                       _theSecondReminingInHalf(other._theSecondReminingInHalf)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
