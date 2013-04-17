@@ -26,9 +26,9 @@
 		C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
-		C3A77981171E55730055CAD5 /* MOTION_SDK_Commands.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A7797E171E55730055CAD5 /* MOTION_SDK_Commands.h */; };
 		C3A77982171E55730055CAD5 /* UDPReceiverNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */; };
 		C3A77983171E55730055CAD5 /* FilteredVisionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A77980171E55730055CAD5 /* FilteredVisionObject.h */; };
+		C3AC9C97171E80C000DF3997 /* MOTION_SDK_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */; };
 		C3B8CE39170BE5C400846B9C /* WALK_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8CE38170BE5C400846B9C /* WALK_Status.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
@@ -121,9 +121,9 @@
 		C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
 		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
 		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
-		C3A7797E171E55730055CAD5 /* MOTION_SDK_Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTION_SDK_Commands.h; sourceTree = "<group>"; };
 		C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPReceiverNotification.h; sourceTree = "<group>"; };
 		C3A77980171E55730055CAD5 /* FilteredVisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredVisionObject.h; sourceTree = "<group>"; };
+		C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTION_SDK_Interface.h; sourceTree = "<group>"; };
 		C3B8CE38170BE5C400846B9C /* WALK_Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK_Status.h; sourceTree = "<group>"; };
 		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
 		C3BE8AE916CB27CF004BFE81 /* guudpSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 		C3D04F8716F961F30061D0BB /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
-				C3A7797E171E55730055CAD5 /* MOTION_SDK_Commands.h */,
+				C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */,
 				C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */,
 				C3A77980171E55730055CAD5 /* FilteredVisionObject.h */,
 				C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */,
@@ -453,9 +453,9 @@
 				C3B8CE39170BE5C400846B9C /* WALK_Status.h in Headers */,
 				C34904FC1715246900242DD7 /* NAO_State.h in Headers */,
 				C34904FD1715246900242DD7 /* Point2D.h in Headers */,
-				C3A77981171E55730055CAD5 /* MOTION_SDK_Commands.h in Headers */,
 				C3A77982171E55730055CAD5 /* UDPReceiverNotification.h in Headers */,
 				C3A77983171E55730055CAD5 /* FilteredVisionObject.h in Headers */,
+				C3AC9C97171E80C000DF3997 /* MOTION_SDK_Interface.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
