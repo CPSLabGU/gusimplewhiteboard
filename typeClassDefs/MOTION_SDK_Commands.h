@@ -1,5 +1,5 @@
 /**                                                                     
- *  /file HAL_HeadTarget.h
+ *  /file MOTION_SDK_Commands.h
  *                                                                      
  *  Created by Carl Lusty in 2013.                                      
  *  Copyright (c) 2013 Carl Lusty                                       
@@ -7,43 +7,56 @@
  */                                                                     
 
                                                                         
-#ifndef HAL_HeadTarget_DEFINED                                       
-#define HAL_HeadTarget_DEFINED
+#ifndef MOTION_SDK_Commands_DEFINED
+#define MOTION_SDK_Commands_DEFINED
 
 #include <gu_util.h>
 
 namespace guWhiteboard                                                  
 {
-        enum movement_type
+        enum recorded_motions
         {
-                MoveOverTime = 0,
-                MoveWithSpeed
+                right_goalie_block = 0,
+                finish_right_goalie_block,
+                left_goalie_block,
+                finish_left_goalie_block,
+                get_up_from_back_lie_down,
+                get_up_from_front_lie_down,
+                get_up_from_kneel,
+                get_up_from_sit,
+                goalie_stand_pose,
+                hip_turn_left_kick,
+                hip_turn_right_kick,
+                kneel,
+                left_kick,
+                left_ninja_kick,
+                pass_ball_left,
+                pass_ball_right,
+                right_kick,
+                right_ninja_kick,
+                side_to_lie_down,
+                sit_form_front_lie_down,
+                sit_from_back_lie_down,
+                sit_from_kneel_or_stand,
+                dcm_from_getup,
+                OFF
         };
-        
-        class HAL_HeadTarget
+                
+        class MOTION_SDK_Commands
         {
-                //Angles are in degrees
-                PROPERTY(int, target_pitchAngle) ///< not sure, look it up in the AL_Docs
-                PROPERTY(int, target_yawAngle) ///< -90 to 90
+                BITPROPERTY(head_stiffness)
+                BITPROPERTY(body_stiffness)
+                PROPERTY(recorded_motions, motion_player)
                 
-                PROPERTY(movement_type, target_movement_type) ///< Move over time or with a percentage of max speed
-                
-                //One of these values will be ignored base on the movement_type selected
-                PROPERTY(int, target_movement_time) ///< usec
-                PROPERTY(int, target_movement_speed) ///< percentage of a predefined max speed (potentially slower than moving with time, but a good deal safer)
-                PROPERTY(bool, head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
 
         public:                
-                HAL_HeadTarget(int target_pitchAngle = 0, int target_yawAngle = 0, movement_type target_movement_type = MoveOverTime, int target_movement_time = 1000000, int target_movement_speed = 50, bool head_stopped = true)
+                MOTION_SDK_Commands(bool head_stiffness = false, bool body_stiffness = false, recorded_motions motion_player = OFF)
                 {
-                        set_target_pitchAngle(target_pitchAngle);
-                        set_target_yawAngle(target_yawAngle);
-                        set_target_movement_speed(target_movement_type);
-                        set_target_movement_time(target_movement_time);
-                        set_target_movement_speed(target_movement_speed);
-                        set_head_stopped(head_stopped);
+                        _head_stiffness = head_stiffness;
+                        _body_stiffness = body_stiffness;
+                        _motion_player = motion_player;
                 }
         };
 }
 
-#endif //HAL_HeadTarget_DEFINED
+#endif //MOTION_SDK_Commands_DEFINED
