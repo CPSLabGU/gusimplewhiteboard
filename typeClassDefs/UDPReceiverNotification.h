@@ -67,6 +67,9 @@
 
 #define DEFAULT_PLAYER_NUMBER 2
 
+#define kUDPTeamBlue "TeamBlue"
+#define kUDPTeamRed "ReamRed"
+
 #define kUDPFirstHalf "FirstHalf"
 #define kUDPSecondHalf "SecondHalf"
 
@@ -105,6 +108,9 @@
 
 namespace guWhiteboard
 {
+	enum TeamColors
+	{  TeamBlue, TeamRed };
+
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
 
@@ -124,11 +130,7 @@ namespace guWhiteboard
 	};
 
 	enum GameContollerSignal
-	{  NoUDPsignal,
-	   UDPOurGoalSignalPushed,
-	   UDPTheirGoalSignalPushed,
-	   UDPBlueKickOffSignalPushed,
- 	   UDPRedKickOffSignalPushed
+	{  NoUDPsignal, UDPOurGoalSignalPushed, UDPTheirGoalSignalPushed, UDPBlueKickOffSignalPushed, UDPRedKickOffSignalPushed
 	};
 
         /**
@@ -150,21 +152,23 @@ namespace guWhiteboard
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
                 PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
-                //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP GameContollerSignal
-                //PROPERTY(GameContollerSignal, theUDPGameContollerSignal )  
+                PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
+		//  UDP team that ahs kickoff
+                PROPERTY(TeamColors, theUDPteamThatHasKickOf )  
 
         public:
             /** designated constructor */
             UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
                                        GameFormat theUDPGameformat = NormalGame,
-				       GameState theUDPGameState = Initial 
+				       GameState theUDPGameState = Initial,
+				       TeamColors theUDPteamThatHasKickOf = TeamBlue 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat),
-                                      _theUDPGameState(theUDPGameState)
+                                      _theUDPGameState(theUDPGameState),
+                                      _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf)
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
@@ -183,7 +187,8 @@ namespace guWhiteboard
             UDPReceiverNotification(const UDPReceiverNotification &other):
                       _theUDPHalf(other._theUDPHalf),
                       _theUDPGameformat(other._theUDPGameformat),
-                       _theUDPGameState(other._theUDPGameState)
+                       _theUDPGameState(other._theUDPGameState),
+                       _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
@@ -211,6 +216,8 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
+	        if  ( TeamBlue == theUDPteamThatHasKickOf() ) ss << kUDPTeamBlue<<","; else ss << kUDPTeamRed<<",";
+
 	        if  ( FirstHalf == theUDPHalf() ) ss << kUDPFirstHalf<<","; else ss << kUDPSecondHalf<<",";
 
 	        if  ( NormalGame == theUDPGameformat() ) ss << kUDPNormalGame<<","; else ss << kUDPPenaltyShots<<",";
