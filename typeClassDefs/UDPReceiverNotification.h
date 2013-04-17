@@ -86,7 +86,7 @@
 #define kUDPPlaying  "UDPPlaying"
 #define kUDPFinished  "UDPFinished"
 
-#define kUSPNoPenalty "NoPenalty"
+#define kUDPNoPenalty "NoPenalty"
 #define kUDPBallHolding "BallHolding"
 #define kUDPPlayerPushing "PlayerPushing"
 #define kUDPObstruction "Obstruction"
@@ -114,8 +114,7 @@ namespace guWhiteboard
 	enum BallOut
 	{  OutByBlue, OutByRed };
 
-	enum GameState
-	{  Initial, Ready, Set, Playing, Finished };
+	enum GameState {  Initial, Ready, Set, Playing, Finished };
 
 	enum GameContollerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
@@ -139,41 +138,39 @@ namespace guWhiteboard
         class UDPReceiverNotification
         {
 	   private:
-		 bool _whoFromUsIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
-	         bool _whoFromThemIsPenalizedInUDPgameController[SPL_NUM_PLAYERS];
+		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
+		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
 		 int16_t _score [SPL_NUM_TEAMS];
 		 bool _dropInTeam;
 
-		GameState _theInternalGameState; 
+		//GameState _theInternalGameState; 
 
                 PROPERTY(GameHalf, theUDPHalf )  //  UDP half
                 PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
-                PROPERTY(GameState, theUDPGameState )  //  UDP game format
+                PROPERTY(GameState, theUDPGameState )  
 		//  UDP GameContollerCommand
                 //PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP PenaltyFormat
-                //PROPERTY(PenaltyFormat, theUDPPenaltyFormat )
 		//  UDP GameContollerSignal
                 //PROPERTY(GameContollerSignal, theUDPGameContollerSignal )  
 
         public:
             /** designated constructor */
             UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
-                                       GameFormat theUDPGameformat = NormalGame
+                                       GameFormat theUDPGameformat = NormalGame,
+				       GameState theUDPGameState = Initial 
                                        //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
-				       ///PenaltyFormat  theUDPPenaltyFormat=NoPenalty,
                                        //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
 				       ):
                                       _theUDPHalf(theUDPHalf), 
-                                      _theUDPGameformat(theUDPGameformat)
-                                      //_theUDPPenaltyFormat(theUDPPenaltyFormat), 
+                                      _theUDPGameformat(theUDPGameformat),
+                                      _theUDPGameState(theUDPGameState)
                                       //_theUDPGameContollerSignal(theUDPGameContollerSignal
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whoFromUsIsPenalizedInUDPgameController[i]=false;
-				_whoFromThemIsPenalizedInUDPgameController[i]=false;
+				_whatPenaltyFromUsInUDPgameController[i]=NoPenalty;
+				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
@@ -185,20 +182,30 @@ namespace guWhiteboard
             /** copy constructor */
             UDPReceiverNotification(const UDPReceiverNotification &other):
                       _theUDPHalf(other._theUDPHalf),
-                      _theUDPGameformat(other._theUDPGameformat)
+                      _theUDPGameformat(other._theUDPGameformat),
+                       _theUDPGameState(other._theUDPGameState)
                       //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
-                      //_theUDPPenaltyFormat(other._theUDPPenaltyFormat),
                       //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whoFromUsIsPenalizedInUDPgameController[i]=
-				  other._whoFromUsIsPenalizedInUDPgameController[i];
-				_whoFromThemIsPenalizedInUDPgameController[i]=
-				  other._whoFromThemIsPenalizedInUDPgameController[i];
+				_whatPenaltyFromUsInUDPgameController[i]=other._whatPenaltyFromUsInUDPgameController[i];
+				_whatPenaltyFromThemInUDPgameController[i]=other._whatPenaltyFromThemInUDPgameController[i];
 			}
 			_dropInTeam=other._dropInTeam;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
+
+            /** Set the Penalty vectors */
+	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS],
+		                    const PenaltyFormat thePenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS])
+			    {
+				    for (int i=0; i<SPL_NUM_PLAYERS; i++)
+				    {
+						_whatPenaltyFromUsInUDPgameController[i]=thePenaltyFromUsInUDPgameController[i];
+						_whatPenaltyFromThemInUDPgameController[i]=thePenaltyFromThemInUDPgameController[i];
+				    }
+			    }
+
 
             /** convert to a string */
             std::string description()
@@ -208,22 +215,24 @@ namespace guWhiteboard
 
 	        if  ( NormalGame == theUDPGameformat() ) ss << kUDPNormalGame<<","; else ss << kUDPPenaltyShots<<",";
 
-		/*
-		switch (theUDPGameContollerCommand() )
-		{ case InitialReceived : ss << kUDPInitialReceived<<",";
+		switch(int (_theUDPGameState))
+		{ case Initial: ss << kUDPInitial<<",";
 			break;
-		  case ReadyReceived : ss << kUDPReadyReceived<<",";
+		  case Ready: ss << kUDPReady<<",";
 			break;
-		  case SetReceived : ss << kUDPSetReceived<<",";
+		  case Set: ss << kUDPSet<<",";
 			break;
-		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
+		  case Playing: ss << kUDPPlaying<<",";
 			break;
-		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
+		  case Finished: ss << kUDPFinished<<",";
 			break;
+	          default: ss << _theUDPGameState <<",";
 		}
 
-		switch (theUDPPenaltyFormat() )
-		{ case NoPenalty : ss << kUSPNoPenalty<<",";
+
+                for (int i=0; i< SPL_NUM_PLAYERS; i++)
+		switch (_whatPenaltyFromUsInUDPgameController[i] )
+		{ case NoPenalty : ss << kUDPNoPenalty<<",";
 			break;
 		  case BallHolding : ss << kUDPBallHolding<<",";
 			break;
@@ -240,6 +249,20 @@ namespace guWhiteboard
 		  case PlayingWithHands : ss << kUDPPlayingWithHands<<",";
 			break;
 		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
+			break;
+		}
+
+		/*
+		switch (theUDPGameContollerCommand() )
+		{ case InitialReceived : ss << kUDPInitialReceived<<",";
+			break;
+		  case ReadyReceived : ss << kUDPReadyReceived<<",";
+			break;
+		  case SetReceived : ss << kUDPSetReceived<<",";
+			break;
+		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
+			break;
+		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
 			break;
 		}
 
