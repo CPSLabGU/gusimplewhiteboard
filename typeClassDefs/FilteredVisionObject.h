@@ -71,7 +71,7 @@ namespace guWhiteboard
         {
             FVOBall,          ///< Filtered informaiton for the Ball
             FVOGoalPost,          ///< Filtered informaiton for the Ball
-            FVOGoalCrossBar,          ///< Filtered informaiton for the Ball
+            FVOGoalCrossBar          ///< Filtered informaiton for the Ball
         };
 
         /**
