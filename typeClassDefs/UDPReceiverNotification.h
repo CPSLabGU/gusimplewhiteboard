@@ -225,6 +225,22 @@ namespace guWhiteboard
 		int16_t getScoreBlue() { return _score[TeamBlue];}
 		int16_t getScoreRed() { return _score[TeamRed];}
 
+		PenaltyFormat myPenaltyIs (int PlayerNumber)
+		{
+			return _whatPenaltyFromUsInUDPgameController[PlayerNumber];
+		}
+
+		bool amIPenalized(int PlayerNumber)
+		{
+
+			if (NoPenalty==myPenaltyIs(PlayerNumber))
+			   return false;
+			else return(true);
+		}
+
+
+
+
             /** convert to a string */
             std::string description()
             {
