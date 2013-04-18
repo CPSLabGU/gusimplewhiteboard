@@ -48,11 +48,14 @@ namespace guWhiteboard
         class MOTION_SDK_Interface
         {
                 BITPROPERTY(head_stiffness)
-                BITPROPERTY(head_stiffness_mask)
                 BITPROPERTY(body_stiffness)
+                
+                PROPERTY(Motions::recorded_motions, motion_player)
+                
+                /* Control bits */
+                BITPROPERTY(head_stiffness_mask)
                 BITPROPERTY(body_stiffness_mask)
-  
-                CONTROLLED_PROPERTY(Motions::recorded_motions, motion_player)
+                BITPROPERTY(motion_player_mask)
 
         public:                
                 MOTION_SDK_Interface(bool head_stiffness = false, bool body_stiffness = false, Motions::recorded_motions motion_player = Motions::OFF)

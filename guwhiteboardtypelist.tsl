@@ -1,36 +1,36 @@
-,               wb_reserved_SubscribeToAllTypes,        "*",            Global subscription type. Do not add content to this type, it is for global subscriptions only
-std::string,    Print,                                  "Print",        print to stdout
-std::string,    Say,                                    "Say",          speech output message
-std::string,    Speech,                                 "Speech",       debug speech message
-std::string,    QSay,                                   "QSay",         speech output message (queued)
-std::string,    QSpeech,                                "QSpeech",      debug speech message (queued)
-bool,           SpeechOutput,                           "SpeechOutput", toggle, treat speech messages as silent output unless this is turned on
-bool,           BoolExample,                            "example_bool", This is an example of a type definition that generates a basic type class for getters / setters
-class:CustClass,CustomClassExample,                     "example_class",This is an example of a type definition that indicates that a custom accessor class will be defined later
-,               SoloTypeExample,                        "example_type", This is an example of a type definition that does not generate anything other than a wb type
-class:MOTION_SDK_Interface, MOTION_SDK_Commands,        "MOTION_SDK_Commands", WB interface for sending motion commands to the SDK
-class:MOTION_SDK_Interface, MOTION_SDK_Status,          "MOTION_SDK_Status", WB interface for checking the status of commands sent to the SDK
-std::vector<int>,NaoWalk,                               "gunaomotion_naoWalk", *deprecated commented out of motion* Commands the slow walk that is built into the SDK
-bool,           NaoWalkIsRunning,                       "gunaomotion_naoWalkIsRunning", *deprecated commented out of motion* State variable, is the slow SDK walk running (NaoWalk)
-float,          HeadStiffness,                          "gunaomotion_headStiffness", *deprecated use MOTION_SDK_Commands* Sets the head stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
-float,          HoldingStiffness,                       "gunaomotion_holdingStiffness", *deprecated use MOTION_SDK_Commands* Sets the body stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
-std::vector<int>,GenericAngleChange,                    "gunaomotion_genericAngleChange", SDK wrapper function for moving any joint, be very careful
-bool,           GenericAngleChangeIsRunning,            "gunaomotion_genericAngleChangeIsRunning", *deprecated use MOTION_SDK_Commands* State variable, is the joint SDK wrapper function running (kGenericAngleChange)
-class:HAL_HeadTarget, HAL_HeadTarget,                   "HAL_HeadTarget", Used to alter the head position via the DCM
-class:SENSORS_FootSensors, SENSORS_FootSensors,         "SENSORS_FootSensors", Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORS_BodySensors, SENSORS_BodySensors,         "SENSORS_BodySensors", Posts the sensor information for the body via the DCM loop (read only)
-class:SENSORS_LedsSensors, SENSORS_LedsSensors,         "SENSORS_LedsSensors", Posts the current LEDs info, can be modified. (read/write)
-class:SENSORS_LegJointTemps, SENSORS_LegJointTemps,     "SENSORS_LegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
-class:SENSORS_TorsoJointTemps, SENSORS_TorsoJointTemps, "SENSORS_TorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
-class:SENSORS_LegJointSensors, SENSORS_LegJointSensors, "SENSORS_LegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
-class:SENSORS_TorsoJointSensors, SENSORS_TorsoJointSensors, "SENSORS_TorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
-class:SENSORS_SonarSensors, SENSORS_SonarSensors,       "SENSORS_SonarSensors", Posts the sonar readings via the DCM loop (read only)
-class:FSMControlStatus, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
-class:FSMControlStatus, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
-class:FSMNames, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
-class:WALK_Status, WALK_Status,                         "WALK_Status", Class used to interact with the walk engine (UNSW)
-class:Point2D, BallBelief,                              "BallBelief", WIP Class that contains the belief of the ball position from Localisation
-class:FilteredVisionObject, FVOsighting,                "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
-class:NAO_State, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
-class:UDPReceiverNotification, UDPRN,                   "UDPReceiverNotification", the notfication for the UDP receiver.
-int,          PlayerNumber,                          "PlayerNumber", what palyer number is this robocup whearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
+,               atomic, wb_reserved_SubscribeToAllTypes,        "*",            Global subscription type. Do not add content to this type, it is for global subscriptions only
+std::string,    atomic, Print,                                  "Print",        print to stdout
+std::string,    atomic, Say,                                    "Say",          speech output message
+std::string,    atomic, Speech,                                 "Speech",       debug speech message
+std::string,    atomic, QSay,                                   "QSay",         speech output message (queued)
+std::string,    atomic, QSpeech,                                "QSpeech",      debug speech message (queued)
+bool,           atomic, SpeechOutput,                           "SpeechOutput", toggle, treat speech messages as silent output unless this is turned on
+bool,           atomic, BoolExample,                            "example_bool", This is an example of a type definition that generates a basic type class for getters / setters
+class:CustClass, atomic, CustomClassExample,                     "example_class",This is an example of a type definition that indicates that a custom accessor class will be defined later
+,               atomic, SoloTypeExample,                        "example_type", This is an example of a type definition that does not generate anything other than a wb type
+class:MOTION_SDK_Interface, atomic, MOTION_SDK_Commands,        "MOTION_SDK_Commands", WB interface for sending motion commands to the SDK
+class:MOTION_SDK_Interface, atomic, MOTION_SDK_Status,          "MOTION_SDK_Status", WB interface for checking the status of commands sent to the SDK
+std::vector<int>,atomic, NaoWalk,                               "gunaomotion_naoWalk", *deprecated commented out of motion* Commands the slow walk that is built into the SDK
+bool,           atomic, NaoWalkIsRunning,                       "gunaomotion_naoWalkIsRunning", *deprecated commented out of motion* State variable, is the slow SDK walk running (NaoWalk)
+float,          atomic, HeadStiffness,                          "gunaomotion_headStiffness", *deprecated use MOTION_SDK_Commands* Sets the head stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
+float,          atomic, HoldingStiffness,                       "gunaomotion_holdingStiffness", *deprecated use MOTION_SDK_Commands* Sets the body stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
+std::vector<int>,atomic, GenericAngleChange,                    "gunaomotion_genericAngleChange", SDK wrapper function for moving any joint, be very careful
+bool,           atomic, GenericAngleChangeIsRunning,            "gunaomotion_genericAngleChangeIsRunning", *deprecated use MOTION_SDK_Commands* State variable, is the joint SDK wrapper function running (kGenericAngleChange)
+class:HAL_HeadTarget, atomic, HAL_HeadTarget,                   "HAL_HeadTarget", Used to alter the head position via the DCM
+class:SENSORS_FootSensors, not_atomic, SENSORS_FootSensors,         "SENSORS_FootSensors", Posts the sensor information for the feet via the DCM loop (read only)
+class:SENSORS_BodySensors, not_atomic, SENSORS_BodySensors,         "SENSORS_BodySensors", Posts the sensor information for the body via the DCM loop (read only)
+class:SENSORS_LedsSensors, not_atomic, SENSORS_LedsSensors,         "SENSORS_LedsSensors", Posts the current LEDs info, can be modified. (read/write)
+class:SENSORS_LegJointTemps, not_atomic, SENSORS_LegJointTemps,     "SENSORS_LegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
+class:SENSORS_TorsoJointTemps, not_atomic, SENSORS_TorsoJointTemps, "SENSORS_TorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
+class:SENSORS_LegJointSensors, not_atomic, SENSORS_LegJointSensors, "SENSORS_LegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
+class:SENSORS_TorsoJointSensors, not_atomic, SENSORS_TorsoJointSensors, "SENSORS_TorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
+class:SENSORS_SonarSensors, not_atomic, SENSORS_SonarSensors,       "SENSORS_SonarSensors", Posts the sonar readings via the DCM loop (read only)
+class:FSMControlStatus, atomic, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
+class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
+class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
+class:WALK_Status, atomic, WALK_Status,                         "WALK_Status", Class used to interact with the walk engine (UNSW)
+class:Point2D, atomic, BallBelief,                              "BallBelief", WIP Class that contains the belief of the ball position from Localisation
+class:FilteredVisionObject, atomic, FVOsighting,                "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
+class:NAO_State, atomic, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
+class:UDPReceiverNotification, atomic, UDPRN,                   "UDPReceiverNotification", the notfication for the UDP receiver.
+int,          atomic, PlayerNumber,                          "PlayerNumber", what palyer number is this robocup whearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver

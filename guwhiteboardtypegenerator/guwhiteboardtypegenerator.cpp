@@ -118,6 +118,16 @@ struct gu_type_info {
 	std::string type_const_name;
 	std::string type_name;
 	std::string comment;
+        std::string atomic;
+};
+
+enum ParseTarget {
+	dataType = 0,
+	atomic,
+	constName,
+        stringName,
+        comment,
+        NUM_OF_TARGETS
 };
 
 int main()
@@ -176,7 +186,7 @@ int main()
 		int line_pos = 0;
 		std::vector<std::string> elements;
                 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i <= ParseTarget::comment; i++)
                 {
                         int start = line_pos;
 			int end = (int)type_line.find(line_token, start);
@@ -184,7 +194,8 @@ int main()
                         line_pos = end+(int)line_token.length();
 
                         std::string type_info_element;
-                        if(i == 3) //comment, just give me the rest of the string
+                        
+                        if(i == ParseTarget::comment) //comment, just give me the rest of the string
                                 type_info_element = type_line.substr(start, type_line.length()-start);
                         else
                                 type_info_element = type_line.substr(start, end-start);
@@ -196,7 +207,7 @@ int main()
                         elements.push_back(type_info_element);
                 }
 		
-		if((int)elements.size() != 4)
+		if((int)elements.size() != NUM_OF_TARGETS)
 		{
 			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %d\nexiting...", (int)types.size());
 			exit(1);
@@ -207,7 +218,18 @@ int main()
 		for (int i = 0; i < (int)elements.size(); i++)
 		{
 			switch (i) {
-				case 1:
+				case ParseTarget::atomic:
+				{
+                                        if((int)elements.at(i).compare("atomic") == 0) //atomic type?
+                                                info.atomic = std::string("true");
+                                        else
+                                                info.atomic = std::string("false");
+#ifdef DDEBUG
+					fprintf(stderr, "is_atomic:\t'%s'\n", (char *)elements.at(i).c_str());
+#endif
+					break;
+				}
+				case ParseTarget::constName:
 				{
 					info.type_const_name = elements.at(i);
 #ifdef DDEBUG
@@ -215,7 +237,7 @@ int main()
 #endif
 					break;
 				}
-				case 2:
+				case ParseTarget::stringName:
 				{
 					info.type_name = elements.at(i).substr(1, elements.at(i).length()-2); //substr to remove the quotes
 #ifdef DDEBUG
@@ -223,7 +245,7 @@ int main()
 #endif
 					break;
 				}
-				case 0:
+				case ParseTarget::dataType:
 					if((int)elements.at(i).size() == 0)
 					{
                                                 //warning if no type is given, however allow it for now.
@@ -253,12 +275,10 @@ int main()
 						case Custom_Class:
 							fprintf(stderr, "class info:\tCustom_Class, class name: %s\n", (char *)info.class_name.c_str());
 							break;
-						default:
-							break;
 					}
 #endif
 					break;
-				case 3:
+				case ParseTarget::comment:
 				{
 					info.comment = elements.at(i);
 #ifdef DDEBUG
@@ -361,16 +381,16 @@ int main()
 			{
 				output_file << "\t/// " <<  types[i].comment << "\n        class " << types[i].type_const_name
                                             << "_t: public generic_whiteboard_object<" << types[i].class_name
-                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v) {}\n\t\t"
+                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {}\n\t\t"
                                             << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
-                                            << types[i].type_const_name << "_v, wbd) {} };\n\n";
+                                            << types[i].type_const_name << "_v, wbd, " << types[i].atomic << ") {} };\n\n";
 				break;
 			}
 			case Custom_Class:
 			{
 				output_file << "\t///" <<  types[i].comment << "\n        class " << types[i].type_const_name
                                             << "_t: public generic_whiteboard_object<class " << types[i].class_name
-                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v) {} };\n\n";
+                                            << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {} };\n\n";
 				break;
 			}
 		}
