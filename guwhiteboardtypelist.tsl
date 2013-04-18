@@ -33,4 +33,6 @@ class:Point2D, BallBelief,                              "BallBelief", WIP Class 
 class:FilteredVisionObject, FVOsighting,                "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
 class:NAO_State, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
 class:UDPReceiverNotification, UDPRN,                   "UDPReceiverNotification", the notfication for the UDP receiver.
-int,          PlayerNumber,                          "PlayerNumber", what palyer number is this robocup whearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
+int,          PlayerNumber,                             "PlayerNumber", what palyer number is this robocup whearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
+class:VisionControlStatus, Vision_Control,              "guvision_control", control various attributes of the vision pipeline.
+class:VisionControlStatus, Vision_Status,               "guvision_status", message sent by vision that contains the current status of vision
