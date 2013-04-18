@@ -33,4 +33,5 @@ class:Point2D, atomic, BallBelief,                              "BallBelief", WI
 class:FilteredVisionObject, atomic, FVOsighting,                "FVOsighting", Class that contains the Klamna filtered  information of an object sigthing
 class:NAO_State, atomic, NAO_State,                             "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
 class:UDPReceiverNotification, atomic, UDPRN,                   "UDPReceiverNotification", the notfication for the UDP receiver.
-int,          atomic, PlayerNumber,                          "PlayerNumber", what palyer number is this robocup whearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
+int,          atomic, PlayerNumber,                          "PlayerNumber", what palyer number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
+int,          atomic, ManuallyPenalized,                          "PlayerNumber", what palyer number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
