@@ -59,6 +59,8 @@
 #define UDPReceiverNotification_DEFINED
 
 #include <cstdlib>
+#include <stdint.h>
+#include <sys/types.h>
 #include <sstream>
 #include <gu_util.h>
 
@@ -138,8 +140,8 @@ namespace guWhiteboard
         class UDPReceiverNotification
         {
 	   private:
-		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
-		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
+		 uint8_t  _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
+		 uint8_t _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
 		 int16_t _score [SentinelTeamColors];
 		 bool _dropInTeam;
@@ -180,7 +182,7 @@ namespace guWhiteboard
 				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
-			for (TeamColors i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
+			for (int i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
                 }
 
             /** string constructor */
@@ -227,7 +229,7 @@ namespace guWhiteboard
 
 		PenaltyFormat myPenaltyIs (int PlayerNumber)
 		{
-			return _whatPenaltyFromUsInUDPgameController[PlayerNumber];
+			return static_cast<PenaltyFormat>(_whatPenaltyFromUsInUDPgameController[PlayerNumber]);
 		}
 
 		bool amIPenalized(int PlayerNumber)
