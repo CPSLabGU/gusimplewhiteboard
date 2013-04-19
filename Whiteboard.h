@@ -73,7 +73,7 @@
 #pragma clang diagnostic ignored "-Wpedantic"
 #pragma clang diagnostic warning "-W#warnings"
 
-#warning using deprecated whiteboard version
+#pragma warning using deprecated whiteboard version
 
 #pragma clang diagnostic pop
 #else

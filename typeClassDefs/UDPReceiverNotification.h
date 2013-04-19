@@ -59,6 +59,8 @@
 #define UDPReceiverNotification_DEFINED
 
 #include <cstdlib>
+#include <stdint.h>
+#include <sys/types.h>
 #include <sstream>
 #include <gu_util.h>
 
@@ -138,8 +140,8 @@ namespace guWhiteboard
         class UDPReceiverNotification
         {
 	   private:
-		 PenaltyFormat _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
-		 PenaltyFormat _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
+		 uint8_t  _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
+		 uint8_t _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
 
 		 int16_t _score [SentinelTeamColors];
 		 bool _dropInTeam;
@@ -154,6 +156,8 @@ namespace guWhiteboard
 		//  UDP team that has ball after it went out
                 PROPERTY(TeamColors, theUDPteamCausedlastDropIn )  
                 PROPERTY(int16_t, theSecondReminingInHalf )  
+		//  UDP team that has ball after it went out
+                PROPERTY(TeamColors, theUDPcolorWePlayWith )  
 
         public:
             /** designated constructor */
@@ -162,17 +166,16 @@ namespace guWhiteboard
 				       GameState theUDPGameState = Initial,
 				       TeamColors theUDPteamThatHasKickOf = TeamBlue,
 				       TeamColors theUDPteamCausedlastDropIn = TeamBlue,
-				       int16_t theSecondReminingInHalf = TeamBlue 
-                                       //GameContollerCommand theUDPGameContollerCommand =InitialReceived,
-                                       //GameContollerSignal theUDPGameContollerSignal = NoUDPsignal
+				       int16_t theSecondReminingInHalf = TeamBlue ,
+				       TeamColors theUDPcolorWePlayWith = TeamBlue
 				       ):
                                       _theUDPHalf(theUDPHalf), 
                                       _theUDPGameformat(theUDPGameformat),
                                       _theUDPGameState(theUDPGameState),
                                       _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf),
                                       _theUDPteamCausedlastDropIn(theUDPteamCausedlastDropIn),
-                                      _theSecondReminingInHalf(theSecondReminingInHalf)
-                                      //_theUDPGameContollerSignal(theUDPGameContollerSignal
+                                      _theSecondReminingInHalf(theSecondReminingInHalf),
+                                      _theUDPcolorWePlayWith(theUDPcolorWePlayWith)
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
@@ -180,7 +183,7 @@ namespace guWhiteboard
 				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
-			for (TeamColors i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
+			for (int i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
                 }
 
             /** string constructor */
@@ -193,9 +196,8 @@ namespace guWhiteboard
                        _theUDPGameState(other._theUDPGameState),
                        _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf),
                        _theUDPteamCausedlastDropIn(other._theUDPteamCausedlastDropIn),
-                       _theSecondReminingInHalf(other._theSecondReminingInHalf)
-                      //_theUDPGameContollerCommand(other._theUDPGameContollerCommand),
-                      //_theUDPGameContollerSignal(other._theUDPGameContollerSignal
+                       _theSecondReminingInHalf(other._theSecondReminingInHalf),
+                       _theUDPcolorWePlayWith(other._theUDPcolorWePlayWith)
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
 				_whatPenaltyFromUsInUDPgameController[i]=other._whatPenaltyFromUsInUDPgameController[i];
@@ -224,6 +226,29 @@ namespace guWhiteboard
 
 		int16_t getScoreBlue() { return _score[TeamBlue];}
 		int16_t getScoreRed() { return _score[TeamRed];}
+
+		int16_t getOurScore() { return _score[_theUDPcolorWePlayWith];}
+		int16_t getTheirScore() { 
+				if (TeamBlue== _theUDPcolorWePlayWith ) return getScoreRed();
+				else return getScoreBlue(); }
+
+		PenaltyFormat myPenaltyIs (int PlayerNumber)
+		{	// the idnex in the structure starts at 0, numebrs on robot's backs start at 1
+			  if ((0<=PlayerNumber) && (PlayerNumber<SPL_NUM_PLAYERS ))
+					return static_cast<PenaltyFormat>(_whatPenaltyFromUsInUDPgameController[PlayerNumber-1]);
+			  else return NoPenalty;
+		}
+
+		bool amIPenalized(int PlayerNumber)
+		{
+
+			if (NoPenalty==myPenaltyIs(PlayerNumber))
+			   return false;
+			else return true;
+		}
+
+
+
 
             /** convert to a string */
             std::string description()

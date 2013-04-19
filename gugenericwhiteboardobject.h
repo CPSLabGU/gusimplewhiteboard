@@ -59,9 +59,9 @@ public:
         /**
          * value conversion reference constructor (needs to be overridden by subclasses to set toffs to be useful)
          */
-        generic_whiteboard_object(const object_type &value, uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL)
+        generic_whiteboard_object(const object_type &value, uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL, bool want_atomic = true)
         {
-                init(toffs, wbd);
+                init(toffs, wbd, want_atomic);
                 set(value);
         }
 
