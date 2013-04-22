@@ -121,14 +121,14 @@ struct gu_type_info {
         std::string atomic;
 };
 
-enum ParseTarget {
+namespace ParseTarget { enum kind {
 	dataType = 0,
 	atomic,
 	constName,
         stringName,
         comment,
         NUM_OF_TARGETS
-};
+}; }
 
 int main()
 {
@@ -207,7 +207,7 @@ int main()
                         elements.push_back(type_info_element);
                 }
 		
-		if((int)elements.size() != NUM_OF_TARGETS)
+		if((int)elements.size() != ParseTarget::NUM_OF_TARGETS)
 		{
 			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %d\nexiting...", (int)types.size());
 			exit(1);
