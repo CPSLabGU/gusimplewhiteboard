@@ -50,10 +50,10 @@ enum VisionMessages {
 	};
 
 	enum CalibrationFile {
+		Calibration0,
 		Calibration1,
 		Calibration2,
-		Calibration3,
-		Calibration4
+		Calibration3
 	};
 
 namespace guWhiteboard
@@ -63,6 +63,29 @@ class VisionControlStatus {
 public:
 	VisionControlStatus() {
 			memset(this, 0, sizeof(*this));
+		}
+		VisionControlStatus operator+=(VisionControlStatus a) {
+			if(a.resolution_mask())
+				this->set_resolution(a.resolution());
+			if(a.pipelineRunning_mask())
+				this->set_pipelineRunning(a.pipelineRunning());
+			if(a.selectedCamera_mask())
+				this->set_selectedCamera(a.selectedCamera());
+			if(a.saveImage_mask())
+				this->set_saveImage(a.saveImage());
+			if(a.saveClassifiedImage_mask())
+				this->set_saveClassifiedImage(a.saveClassifiedImage());
+			if(a.activatePipeline_mask())
+				this->set_activatePipeline(a.activatePipeline());
+			if(a.streamingSource_mask())
+				this->set_streamingSource(a.streamingSource());
+			if(a.conservativeMode_mask())
+				this->set_conservativeMode(a.conservativeMode());
+			if(a.imageInput_mask())
+				this->set_imageInput(a.imageInput());
+			if(a.loadCalibration_mask())
+				this->set_loadCalibration(a.loadCalibration());
+			return *this;
 		}
 
 		CONTROLLED_PROPERTY(ResolutionType, resolution)
