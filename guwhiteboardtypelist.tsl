@@ -37,3 +37,4 @@ int,          atomic, PlayerNumber,                          "PlayerNumber", wha
 int,          atomic, ManuallyPenalized,                          "PlayerNumber", what palyer number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
 class:VisionControlStatus, not_atomic, Vision_Control,              "guvision_control", control various attributes of the vision pipeline.
 class:VisionControlStatus, not_atomic, Vision_Status,               "guvision_status", message sent by vision that contains the current status of 
+class:VisionObjects, not_atomic, Vision_Objects,                     "guvision_objects", message containing information about objects detected in last run of the pipeline
