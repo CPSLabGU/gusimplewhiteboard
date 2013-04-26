@@ -16,7 +16,7 @@ float,          atomic, HeadStiffness,                          "gunaomotion_hea
 float,          atomic, HoldingStiffness,                       "gunaomotion_holdingStiffness", *deprecated use MOTION_SDK_Commands* Sets the body stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
 std::vector<int>,atomic, GenericAngleChange,                    "gunaomotion_genericAngleChange", SDK wrapper function for moving any joint, be very careful
 bool,           atomic, GenericAngleChangeIsRunning,            "gunaomotion_genericAngleChangeIsRunning", *deprecated use MOTION_SDK_Commands* State variable, is the joint SDK wrapper function running (kGenericAngleChange)
-class:HAL_HeadTarget, atomic, HAL_HeadTarget,                   "HAL_HeadTarget", Used to alter the head position via the DCM
+class:HAL_HeadTarget, not_atomic, HAL_HeadTarget,                   "HAL_HeadTarget", Used to alter the head position via the DCM
 class:SENSORS_FootSensors, not_atomic, SENSORS_FootSensors,         "SENSORS_FootSensors", Posts the sensor information for the feet via the DCM loop (read only)
 class:SENSORS_BodySensors, not_atomic, SENSORS_BodySensors,         "SENSORS_BodySensors", Posts the sensor information for the body via the DCM loop (read only)
 class:SENSORS_LedsSensors, not_atomic, SENSORS_LedsSensors,         "SENSORS_LedsSensors", Posts the current LEDs info, can be modified. (read/write)
