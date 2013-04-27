@@ -86,7 +86,7 @@ extern "C"
 		GenericAngleChangeIsRunning_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kGenericAngleChangeIsRunning_v, wbd, true) {} };
 
 	///Used to alter the head position via the DCM
-        class HAL_HeadTarget_t: public generic_whiteboard_object<class HAL_HeadTarget > { public: HAL_HeadTarget_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class HAL_HeadTarget >(wbd, kHAL_HeadTarget_v, true) {} };
+        class HAL_HeadTarget_t: public generic_whiteboard_object<class HAL_HeadTarget > { public: HAL_HeadTarget_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class HAL_HeadTarget >(wbd, kHAL_HeadTarget_v, false) {} };
 
 	///Posts the sensor information for the feet via the DCM loop (read only)
         class SENSORS_FootSensors_t: public generic_whiteboard_object<class SENSORS_FootSensors > { public: SENSORS_FootSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class SENSORS_FootSensors >(wbd, kSENSORS_FootSensors_v, false) {} };
@@ -149,6 +149,9 @@ extern "C"
 
 	///message sent by vision that contains the current status of 
         class Vision_Status_t: public generic_whiteboard_object<class VisionControlStatus > { public: Vision_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Status_v, false) {} };
+
+	///message containing information about objects detected in last run of the pipeline
+        class Vision_Objects_t: public generic_whiteboard_object<class VisionObjects > { public: Vision_Objects_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class VisionObjects >(wbd, kVision_Objects_v, false) {} };
 
 }
 

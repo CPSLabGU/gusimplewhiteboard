@@ -50,6 +50,7 @@ const char *WBTypes_stringValues[] =
         "PlayerNumber",
         "PlayerNumber",
         "guvision_control",
-        "guvision_status"
+        "guvision_status",
+        "guvision_objects"
 };      
 
