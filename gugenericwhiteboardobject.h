@@ -100,6 +100,11 @@ public:
         object_type get_from(gu_simple_message *msg);
 
         /**
+         * post method (calls set())
+         */
+        void post(const object_type &msg) { set(msg); }
+
+        /**
          * shift left operator (calls set())
          */
         const object_type &operator<<(const object_type &value)

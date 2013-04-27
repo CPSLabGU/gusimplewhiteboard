@@ -137,14 +137,16 @@ int main()
         ofstream output_c_file;
         ofstream output_string_array_c_file;
         ofstream output_functor_templates;
+        ofstream output_generic_poster;
 	
         tsl_file.open ("../guwhiteboardtypelist.tsl");
         output_file.open ("../guwhiteboardtypelist_generated.h");
         output_c_file.open ("../guwhiteboardtypelist_c_generated.h");
         output_string_array_c_file.open ("../guwhiteboardtypelist_c_typestrings_generated.c");
         output_functor_templates.open ("../WBFunctor_types_generated.h");
+        output_generic_poster.open ("../guwhiteboardposter.cpp");
 	
-        if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open())
+        if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
         {
                 //just incase someone runs it from inside the build directory
                 tsl_file.open ("../../guwhiteboardtypelist.tsl");
@@ -152,20 +154,66 @@ int main()
 		output_c_file.open ("../../guwhiteboardtypelist_c_generated.h");
                 output_string_array_c_file.open ("../../guwhiteboardtypelist_c_typestrings_generated.c");
                 output_functor_templates.open ("../../WBFunctor_types_generated.h");
-                
-                if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open())
+                output_generic_poster.open ("../../guwhiteboardposter.cpp");
+
+                if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
                 {
                         perror("could not open one of the files");
                         return EXIT_FAILURE;
                 }
         }
 
-        std::stringstream tsl_file_stream;
+        output_generic_poster << "/** Auto-generated, don't modify! */\n\n"
+        "#include <string>\n"
+        "#include <vector>\n"
+        "#include <cstdlib>\n\n"
+        "#include \"guwhiteboardtypelist_generated.h\"\n"
+        "#include \"guwhiteboardposter.h\"\n\n"
+        "using namespace std;\n"
+        "using namespace guWhiteboard;\n\n"
+        "extern \"C\"\n{\n"
+        "\tWBTypes whiteboard_type_for_message_named(const char *message_type)\n"
+        "\t{\n"
+        "\t\treturn types_map[message_type];\n"
+        "\t}\n\n\n"
+        "\tbool whiteboard_post(const char *message_type, const char *message_content)\n"
+        "\t{\n"
+        "\t\treturn whiteboard_postmsg(types_map[message_type], message_content);\n"
+        "\t}\n\n\n"
+        "\tbool whiteboard_postmsg(int message_index, const char *message_content)\n"
+        "\t{\n"
+        "\t\treturn postmsg(WBTypes(message_index), message_content);\n"
+        "\t}\n"
+        "} // extern C\n\n"
+        "static vector<int> strtointvec(string str)\n"
+        "{\n"
+        "\tconst char *sep = \"|,\";\n"
+        "\tchar *context = NULL;\n"
+        "\tvector<int> array;\n"
+        "\tfor (char *element = strtok_r((char *)str.c_str(), sep, &context); element; element = strtok_r(NULL, sep, &context))\n"
+        "\t\tarray.push_back(atoi(element));\n"
+        "\treturn array;\n"
+        "}\n\n"
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wglobal-constructors\"\n"
+        "#pragma clang diagnostic ignored \"-Wexit-time-destructors\"\n\n"
+        "whiteboard_types_map types_map; ///< global types map\n\n"
+        "#pragma clang diagnostic pop\n\n"
+        "bool guWhiteboard::post(string message_type, string message_content)\n"
+        "{\n"
+        "\treturn postmsg(types_map[message_type], message_content);\n"
+        "}\n\n\n"
+        "bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)\n"
+        "{\n"
+        "\tswitch (message_index)\n"
+        "\t{\n";
+
+        stringstream tsl_file_stream;
         tsl_file_stream << tsl_file.rdbuf();
         
-        std::string tsl_file_str = tsl_file_stream.str();
+        string tsl_file_str = tsl_file_stream.str();
         
-        std::string header_token = std::string("\n");
+        string header_token = std::string("\n");
 
         std::vector<gu_type_info> types;
         int pos = 0;
@@ -346,41 +394,92 @@ int main()
         //enum
 	for (int i = 0; i < (int)types.size(); i++)
 	{
+                const gu_type_info &type = types[i];
 		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
-		output_c_file << "                k" << types[i].type_const_name << "_v = " << hash_offset;
+		output_c_file << "                k" << type.type_const_name << "_v = " << hash_offset;
 
                 if(i+1 != (int)types.size())
                        output_c_file << ",";
-		
-		types.at(i).class_info == None ? output_c_file << "\t///<" << (char *)types.at(i).comment.c_str() : output_c_file << "";
-		
-		output_c_file << "\n";
+
+                output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wcovered-switch-default"
+#pragma clang diagnostic ignored "-Wimplicit-fallthrough"
+                
+                switch (type.class_info)
+                {
+                        case None:
+                                output_c_file << "\t///<" << type.comment << endl;
+                                output_generic_poster << "\t\t\treturn false;\n\n";
+                                break;
+
+                        case POD_Class:
+                                if (type.class_name == "bool" ||
+                                    type.class_name == "int" ||
+                                    type.class_name == "unsigned" ||
+                                    type.class_name == "unsigned int")
+                                {
+                                        output_c_file << endl;
+                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        break;
+                                }
+                                if (type.class_name == "long" ||
+                                    type.class_name == "unsigned long")
+                                {
+                                        output_c_file << endl;
+                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        break;
+                                }
+                                if (type.class_name == "std::vector<int>")
+                                {
+                                        output_c_file << endl;
+                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
+                                        break;
+                                }
+                        case Custom_Class:
+                        default:
+                                output_c_file << endl;
+                                output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(message_content);\n\t\t\treturn true;\n\t\t}\n\n" ;
+                }
 	}
-	
+
+#pragma clang diagnostic pop
+
         output_c_file << closing_enum;
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
-        
-        
+
+        output_generic_poster << "\t\tdefault:\n\t\t\treturn false;\n\t}\n\treturn false;\n}\n\n";
+        output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): unordered_map<string, WBTypes>()\n"
+        "{\n"
+        "\twhiteboard_types_map &self = *this;\n"
+        "\tself.reserve(" << types.size() << ");\n\n";
+
 	//string array
-	for (int i = 0; i < (int)types.size(); i++)
+	for (int i = 0; i < int(types.size()); i++)
 	{
-		output_string_array_c_file << "        \"" << (char *)types.at(i).type_name.c_str();
+                const gu_type_info &type = types[i];
+                output_generic_poster << "\tself[\"" << types[i].type_name << "\"] = k" << type.type_const_name << "_v;\n";
+		output_string_array_c_file << "        \"" << types[i].type_name;
                 i+1 != (int)types.size() ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
 	}
+        output_generic_poster << "}\n\n";
 
         output_string_array_c_file << closing_string_array_definition;
 	
 	//type classes
 	for (int i = 0; i < (int)types.size(); i++)
 	{
-		switch (types.at(i).class_info) {
+                const gu_type_info &type = types[i];
+		switch (type.class_info)
+                {
 			case None:
 				break;
 			case POD_Class:
 			{
-				output_file << "\t/// " <<  types[i].comment << "\n        class " << types[i].type_const_name
-                                            << "_t: public generic_whiteboard_object<" << types[i].class_name
+				output_file << "\t/// " <<  type.comment << "\n        class " << type.type_const_name
+                                            << "_t: public generic_whiteboard_object<" << type.class_name
                                             << " > { public: " << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {}\n\t\t"
                                             << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
                                             << types[i].type_const_name << "_v, wbd, " << types[i].atomic << ") {} };\n\n";
@@ -468,4 +567,5 @@ int main()
         output_file.close();
 	output_c_file.close();
         output_functor_templates.close();
+        output_generic_poster.close();
 }
