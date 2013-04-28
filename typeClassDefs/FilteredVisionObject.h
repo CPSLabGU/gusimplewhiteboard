@@ -70,7 +70,9 @@ namespace guWhiteboard
         enum FilteredVisionObjectType
         {
             FVOBall,          ///< Filtered informaiton for the Ball
-            FVOGoalPost,          ///< Filtered informaiton for the Ball
+            FVOGoalPost,          ///< Filtered informaiton for a post we cannot tell is Left or right
+            FVOGoalPostLeft,          ///< Filtered informaiton for a post we know is Left 
+            FVOGoalPostRight,          ///< Filtered informaiton for a post we know is right 
             FVOGoalCrossBar          ///< Filtered informaiton for the Ball
         };
 
@@ -82,7 +84,7 @@ namespace guWhiteboard
             PROPERTY(FilteredVisionObjectType, landmarkType) //  x-coordinaee
             PROPERTY(bool, isVisible) //  x-coordinate
             PROPERTY(int16_t, distance) //  distance to landmark in cm
-            PROPERTY(int32_t, frameCounter) //  distance to landmark in cm
+            PROPERTY(int32_t, frameCounter) //  frame counter in cm
             PROPERTY(int16_t, x) //  center x-coordinate in image
             PROPERTY(int16_t, y) //  cneter y-coordinate in image
 
@@ -119,6 +121,10 @@ namespace guWhiteboard
 		{ case FVOBall : ss << "aBall:";
 			break;
 		  case FVOGoalPost : ss << "aGoalPost:";
+			break;
+		  case FVOGoalPostLeft : ss << "aLeftGoalPost:";
+			break;
+		  case FVOGoalPostRight : ss << "aRightGoalPost:";
 			break;
 		  case FVOGoalCrossBar : ss << "aCrossbar:";
 			break;
