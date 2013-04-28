@@ -74,6 +74,9 @@ extern "C"
 #include <unistd.h>
 
 #ifdef __cplusplus
+
+#pragma clang diagnostic ignored "-Wc++11-long-long"
+
 #ifdef bool
 #undef bool
 #endif
