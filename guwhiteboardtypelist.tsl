@@ -6,7 +6,7 @@ std::string,    atomic, QSay,                                   "QSay",         
 std::string,    atomic, QSpeech,                                "QSpeech",      debug speech message (queued)
 bool,           nonatomic, SpeechOutput,                        "SpeechOutput", toggle, treat speech messages as silent output unless this is turned on
 bool,           nonatomic, BoolExample,                         "example_bool", This is an example of a type definition that generates a basic type class for getters / setters
-bool,           nonatomic, CustomClassExample,                  "example_class",class:CustClass example removed, for an example see the class:FOO defintitions below -- THIS INDEX CAN BE REUSED
+class:CustClass, atomic, CustomClassExample,                     "example_class",This is an example of a type definition that indicates that a custom accessor class will be defined later
 ,               nonatomic, SoloTypeExample,                     "example_type", This is an example of a type definition that does not generate anything other than a wb type
 class:MOTION_SDK_Interface, nonatomic, MOTION_SDK_Commands,     "MOTION_SDK_Commands", WB interface for sending motion commands to the SDK
 class:MOTION_SDK_Interface, nonatomic, MOTION_SDK_Status,       "MOTION_SDK_Status", WB interface for checking the status of commands sent to the SDK

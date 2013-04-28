@@ -34,6 +34,9 @@ static char *include_str = (char *)"\
                                                                         \n\
 #include \"gugenericwhiteboardobject.h\"                                \n\
                                                                         \n\
+#pragma clang diagnostic push                                           \n\
+#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
+                                                                        \n\
                                                                         \n\
 ";
 
@@ -167,6 +170,7 @@ int main()
         "#include <string>\n"
         "#include <vector>\n"
         "#include <cstdlib>\n\n"
+        "#define WHITEBOARD_POSTER_STRING_CONVERSION\n\n"
         "#include \"guwhiteboardtypelist_generated.h\"\n"
         "#include \"guwhiteboardposter.h\"\n\n"
         "using namespace std;\n"
@@ -431,6 +435,13 @@ int main()
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
                                         break;
                                 }
+                                if (type.class_name == "float" ||
+                                    type.class_name == "double")
+                                {
+                                        output_c_file << endl;
+                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        break;
+                                }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_c_file << endl;
@@ -440,7 +451,15 @@ int main()
                         case Custom_Class:
                         default:
                                 output_c_file << endl;
-                                output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(message_content);\n\t\t\treturn true;\n\t\t}\n\n" ;
+                                if (type.class_info == Custom_Class)
+                                        output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
+                                output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                if (type.class_info == Custom_Class)
+                                {
+                                        output_generic_poster << "#else\n";
+                                        output_generic_poster << "\t\t\treturn false;\n";
+                                        output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
+                                }
                 }
 	}
 
@@ -450,7 +469,7 @@ int main()
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
 
-        output_generic_poster << "\t\tdefault:\n\t\t\treturn false;\n\t}\n\treturn false;\n}\n\n";
+        output_generic_poster << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): unordered_map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
@@ -497,6 +516,7 @@ int main()
 	
 	
         output_file << closing_namespace;
+        output_file << "#pragma clang diagnostic pop\n" << endl;
         output_file << end_include_str;
         output_c_file << end_include_str;
         

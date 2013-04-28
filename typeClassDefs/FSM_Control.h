@@ -130,7 +130,7 @@ namespace guWhiteboard
                     set_command(static_cast<enum FSMControlType>(atoi(token.c_str())));
                     while (getline(iss, token, ','))
                     {
-                        size_t i = atoi(token.c_str());
+                        size_t i = static_cast<size_t>(atol(token.c_str()));
                         if (i < CONTROLSTATUS_SIZE)
                             fsms().set(i);
                     }
@@ -186,7 +186,7 @@ namespace guWhiteboard
                 char *pos = next_slot();
                 int n = available_space(pos);
                 if (n <= 0) return NULL;
-                gu_strlcpy(pos, name, n);
+                gu_strlcpy(pos, name, size_t(n));
                 return pos;
             }
 

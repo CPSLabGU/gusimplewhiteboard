@@ -63,6 +63,15 @@
 #include <cstdbool>
 #include <unordered_map>
 
+/*
+ * Include your classes below if they have description methods and
+ * string constructors!
+ */
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include "MOTION_SDK_Interface.h"
+#include "FSM_Control.h"
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 extern "C"
 {
 #else
