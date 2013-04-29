@@ -60,8 +60,8 @@
 
 #ifdef __cplusplus
 #include <string>
-#include <cstdbool>
-#include <unordered_map>
+#include <map>
+#include <stdbool.h>
 
 /*
  * Include your classes below if they have description methods and
@@ -120,7 +120,7 @@ namespace guWhiteboard
         /**
          * Map structure from strings to message types
          */
-        struct whiteboard_types_map: public std::unordered_map<std::string, guWhiteboard::WBTypes>
+        struct whiteboard_types_map: public std::map<std::string, guWhiteboard::WBTypes>
         {
                 whiteboard_types_map(); ///< default constructor
         };

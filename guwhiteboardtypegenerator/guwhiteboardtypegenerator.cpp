@@ -204,7 +204,7 @@ int main()
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wglobal-constructors\"\n"
         "#pragma clang diagnostic ignored \"-Wexit-time-destructors\"\n\n"
-        "whiteboard_types_map types_map; ///< global types map\n\n"
+        "whiteboard_types_map guWhiteboard::types_map; ///< global types map\n\n"
         "#pragma clang diagnostic pop\n\n"
         "bool guWhiteboard::post(string message_type, string message_content)\n"
         "{\n"
@@ -526,10 +526,10 @@ int main()
         output_string_array_c_file << opening_string_array_definition;
 
         output_generic_poster << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
-        output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): unordered_map<string, WBTypes>()\n"
+        output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
-        "\tself.reserve(" << types.size() << ");\n\n";
+        "\t// self.reserve(" << types.size() << ");\n\n";
 
         output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\tthrow \"noclass\";\n#pragma clang diagnostic pop\n}\n\n";
 
