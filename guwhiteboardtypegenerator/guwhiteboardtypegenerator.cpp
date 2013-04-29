@@ -141,6 +141,7 @@ int main()
         ofstream output_string_array_c_file;
         ofstream output_functor_templates;
         ofstream output_generic_poster;
+        ofstream output_generic_getter;
 	
         tsl_file.open ("../guwhiteboardtypelist.tsl");
         output_file.open ("../guwhiteboardtypelist_generated.h");
@@ -148,7 +149,8 @@ int main()
         output_string_array_c_file.open ("../guwhiteboardtypelist_c_typestrings_generated.c");
         output_functor_templates.open ("../WBFunctor_types_generated.h");
         output_generic_poster.open ("../guwhiteboardposter.cpp");
-	
+        output_generic_getter.open ("../guwhiteboardgetter.cpp");
+
         if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
         {
                 //just incase someone runs it from inside the build directory
@@ -158,6 +160,7 @@ int main()
                 output_string_array_c_file.open ("../../guwhiteboardtypelist_c_typestrings_generated.c");
                 output_functor_templates.open ("../../WBFunctor_types_generated.h");
                 output_generic_poster.open ("../../guwhiteboardposter.cpp");
+                output_generic_getter.open ("../../guwhiteboardgetter.cpp");
 
                 if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
                 {
@@ -208,6 +211,46 @@ int main()
         "\treturn postmsg(types_map[message_type], message_content);\n"
         "}\n\n\n"
         "bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)\n"
+        "{\n"
+        "\tswitch (message_index)\n"
+        "\t{\n";
+
+        output_generic_getter << "/** Auto-generated, don't modify! */\n\n"
+        "#include <string>\n"
+        "#include <vector>\n"
+        "#include <cstdlib>\n\n"
+        "#define WHITEBOARD_POSTER_STRING_CONVERSION\n\n"
+        "#include \"guwhiteboardtypelist_generated.h\"\n"
+        "#include \"guwhiteboardgetter.h\"\n\n"
+        "using namespace std;\n"
+        "using namespace guWhiteboard;\n\n"
+        "extern \"C\"\n{\n"
+        "\tchar *whiteboard_get(const char *message_type)\n"
+        "\t{\n"
+        "\t\treturn whiteboard_getmsg(types_map[message_type]);\n"
+        "\t}\n\n\n"
+        "\tchar *whiteboard_getmsg(int message_index)\n"
+        "\t{\n"
+        "\t\treturn gu_strdup(getmsg(WBTypes(message_index)).c_str());\n"
+        "\t}\n"
+        "} // extern C\n\n"
+        "static string intvectostring(const vector<int> &vec)\n"
+        "{\n"
+        "\tstringstream ss;\n"
+        "\t\n"
+        "\tfor (vector<int>::const_iterator it = vec.begin(); it != vec.end(); it++)\n"
+        "\t{\n"
+        "\t\tif (it != vec.begin()) ss << \",\";\n"
+        "\t\tss << *it;\n"
+        "\t}\n"
+        "\n"
+        "\treturn ss.str();\n"
+        "}\n\n"
+        "string guWhiteboard::getmsg(string message_type)\n"
+        "{\n"
+        "\treturn getmsg(types_map[message_type]);\n"
+        "}\n\n\n"
+        "string guWhiteboard::getmsg(WBTypes message_index)\n"
         "{\n"
         "\tswitch (message_index)\n"
         "\t{\n";
@@ -406,6 +449,7 @@ int main()
                        output_c_file << ",";
 
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
+                output_generic_getter << "\t\tcase k" << type.type_const_name << "_v:\n";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
@@ -416,6 +460,7 @@ int main()
                         case None:
                                 output_c_file << "\t///<" << type.comment << endl;
                                 output_generic_poster << "\t\t\treturn false;\n\n";
+                                output_generic_getter << "\t\t\tthrow \"noclass\";\n\n";
                                 break;
 
                         case POD_Class:
@@ -426,6 +471,7 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_ltos(long(msg.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "long" ||
@@ -433,6 +479,7 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_ltos(long(msg.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "float" ||
@@ -440,26 +487,35 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_dtos(msg.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn intvectostring(msg.get());\n\t\t}\n" ;
+                                        break;
+                                }
+                                if (type.class_name == "std::string")
+                                {
+                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn msg.get();\n\t\t}\n" ;
                                         break;
                                 }
                         case Custom_Class:
                         default:
                                 output_c_file << endl;
-                                if (type.class_info == Custom_Class)
-                                        output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
+                                output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
+                                output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                if (type.class_info == Custom_Class)
-                                {
-                                        output_generic_poster << "#else\n";
-                                        output_generic_poster << "\t\t\treturn false;\n";
-                                        output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
-                                }
+                                output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn msg.get().description();\n\t\t}\n" ;
+                                output_generic_poster << "#else\n";
+                                output_generic_poster << "\t\t\treturn false;\n";
+                                output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
+                                output_generic_getter << "#else\n";
+                                output_generic_getter << "\t\t\tthrow \"noclass\";\n\n";
+                                output_generic_getter << "#endif // !" << type.class_name << "_DEFINED\n\n";
                 }
 	}
 
@@ -474,6 +530,8 @@ int main()
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
         "\tself.reserve(" << types.size() << ");\n\n";
+
+        output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\tthrow \"noclass\";\n#pragma clang diagnostic pop\n}\n\n";
 
 	//string array
 	for (int i = 0; i < int(types.size()); i++)
@@ -588,4 +646,5 @@ int main()
 	output_c_file.close();
         output_functor_templates.close();
         output_generic_poster.close();
+        output_generic_getter.close();
 }
