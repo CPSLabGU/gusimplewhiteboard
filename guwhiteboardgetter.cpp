@@ -14,15 +14,15 @@ using namespace guWhiteboard;
 
 extern "C"
 {
-	char *whiteboard_get(const char *message_type)
+	char *whiteboard_get(const char *message_type, gu_simple_message *msg)
 	{
-		return whiteboard_getmsg(types_map[message_type]);
+		return whiteboard_getmsg(types_map[message_type], msg);
 	}
 
 
-	char *whiteboard_getmsg(int message_index)
+	char *whiteboard_getmsg(int message_index, gu_simple_message *msg)
 	{
-		return gu_strdup(getmsg(WBTypes(message_index)).c_str());
+		return gu_strdup(getmsg(WBTypes(message_index), msg).c_str());
 	}
 } // extern C
 
@@ -39,13 +39,13 @@ static string intvectostring(const vector<int> &vec)
 	return ss.str();
 }
 
-string guWhiteboard::getmsg(string message_type)
+string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)
 {
-	return getmsg(types_map[message_type]);
+	return getmsg(types_map[message_type], msg);
 }
 
 
-string guWhiteboard::getmsg(WBTypes message_index)
+string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 {
 	switch (message_index)
 	{
@@ -54,44 +54,44 @@ string guWhiteboard::getmsg(WBTypes message_index)
 
 		case kPrint_v:
 		{
-			class Print_t msg;
-			return msg.get();
+			class Print_t m;
+			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSay_v:
 		{
-			class Say_t msg;
-			return msg.get();
+			class Say_t m;
+			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSpeech_v:
 		{
-			class Speech_t msg;
-			return msg.get();
+			class Speech_t m;
+			return msg ? m.get_from(msg) : m.get();
 		}
 		case kQSay_v:
 		{
-			class QSay_t msg;
-			return msg.get();
+			class QSay_t m;
+			return msg ? m.get_from(msg) : m.get();
 		}
 		case kQSpeech_v:
 		{
-			class QSpeech_t msg;
-			return msg.get();
+			class QSpeech_t m;
+			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSpeechOutput_v:
 		{
-			class SpeechOutput_t msg;
-			return gu_ltos(long(msg.get()));
+			class SpeechOutput_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kBoolExample_v:
 		{
-			class BoolExample_t msg;
-			return gu_ltos(long(msg.get()));
+			class BoolExample_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kCustomClassExample_v:
 #ifdef CustClass_DEFINED
 		{
-			class CustomClassExample_t msg;
-			return msg.get().description();
+			class CustomClassExample_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -104,8 +104,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kMOTION_SDK_Commands_v:
 #ifdef MOTION_SDK_Interface_DEFINED
 		{
-			class MOTION_SDK_Commands_t msg;
-			return msg.get().description();
+			class MOTION_SDK_Commands_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -115,8 +115,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kMOTION_SDK_Status_v:
 #ifdef MOTION_SDK_Interface_DEFINED
 		{
-			class MOTION_SDK_Status_t msg;
-			return msg.get().description();
+			class MOTION_SDK_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -125,39 +125,39 @@ string guWhiteboard::getmsg(WBTypes message_index)
 
 		case kNaoWalk_v:
 		{
-			class NaoWalk_t msg;
-			return intvectostring(msg.get());
+			class NaoWalk_t m;
+			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
 		}
 		case kNaoWalkIsRunning_v:
 		{
-			class NaoWalkIsRunning_t msg;
-			return gu_ltos(long(msg.get()));
+			class NaoWalkIsRunning_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kHeadStiffness_v:
 		{
-			class HeadStiffness_t msg;
-			return gu_dtos(msg.get());
+			class HeadStiffness_t m;
+			return msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());
 		}
 		case kHoldingStiffness_v:
 		{
-			class HoldingStiffness_t msg;
-			return gu_dtos(msg.get());
+			class HoldingStiffness_t m;
+			return msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());
 		}
 		case kGenericAngleChange_v:
 		{
-			class GenericAngleChange_t msg;
-			return intvectostring(msg.get());
+			class GenericAngleChange_t m;
+			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
 		}
 		case kGenericAngleChangeIsRunning_v:
 		{
-			class GenericAngleChangeIsRunning_t msg;
-			return gu_ltos(long(msg.get()));
+			class GenericAngleChangeIsRunning_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kHAL_HeadTarget_v:
 #ifdef HAL_HeadTarget_DEFINED
 		{
-			class HAL_HeadTarget_t msg;
-			return msg.get().description();
+			class HAL_HeadTarget_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -167,8 +167,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_FootSensors_v:
 #ifdef SENSORS_FootSensors_DEFINED
 		{
-			class SENSORS_FootSensors_t msg;
-			return msg.get().description();
+			class SENSORS_FootSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -178,8 +178,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_BodySensors_v:
 #ifdef SENSORS_BodySensors_DEFINED
 		{
-			class SENSORS_BodySensors_t msg;
-			return msg.get().description();
+			class SENSORS_BodySensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -189,8 +189,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_LedsSensors_v:
 #ifdef SENSORS_LedsSensors_DEFINED
 		{
-			class SENSORS_LedsSensors_t msg;
-			return msg.get().description();
+			class SENSORS_LedsSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -200,8 +200,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_LegJointTemps_v:
 #ifdef SENSORS_LegJointTemps_DEFINED
 		{
-			class SENSORS_LegJointTemps_t msg;
-			return msg.get().description();
+			class SENSORS_LegJointTemps_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -211,8 +211,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_TorsoJointTemps_v:
 #ifdef SENSORS_TorsoJointTemps_DEFINED
 		{
-			class SENSORS_TorsoJointTemps_t msg;
-			return msg.get().description();
+			class SENSORS_TorsoJointTemps_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -222,8 +222,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_LegJointSensors_v:
 #ifdef SENSORS_LegJointSensors_DEFINED
 		{
-			class SENSORS_LegJointSensors_t msg;
-			return msg.get().description();
+			class SENSORS_LegJointSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -233,8 +233,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_TorsoJointSensors_v:
 #ifdef SENSORS_TorsoJointSensors_DEFINED
 		{
-			class SENSORS_TorsoJointSensors_t msg;
-			return msg.get().description();
+			class SENSORS_TorsoJointSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -244,8 +244,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kSENSORS_SonarSensors_v:
 #ifdef SENSORS_SonarSensors_DEFINED
 		{
-			class SENSORS_SonarSensors_t msg;
-			return msg.get().description();
+			class SENSORS_SonarSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -255,8 +255,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kFSM_Control_v:
 #ifdef FSMControlStatus_DEFINED
 		{
-			class FSM_Control_t msg;
-			return msg.get().description();
+			class FSM_Control_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -266,8 +266,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kFSM_Status_v:
 #ifdef FSMControlStatus_DEFINED
 		{
-			class FSM_Status_t msg;
-			return msg.get().description();
+			class FSM_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -277,8 +277,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kFSM_Names_v:
 #ifdef FSMNames_DEFINED
 		{
-			class FSM_Names_t msg;
-			return msg.get().description();
+			class FSM_Names_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -288,8 +288,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kWALK_Status_v:
 #ifdef WALK_Status_DEFINED
 		{
-			class WALK_Status_t msg;
-			return msg.get().description();
+			class WALK_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -299,8 +299,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kBallBelief_v:
 #ifdef Point2D_DEFINED
 		{
-			class BallBelief_t msg;
-			return msg.get().description();
+			class BallBelief_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -310,8 +310,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kFVOsighting_v:
 #ifdef FilteredVisionObject_DEFINED
 		{
-			class FVOsighting_t msg;
-			return msg.get().description();
+			class FVOsighting_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -321,8 +321,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
 		{
-			class NAO_State_t msg;
-			return msg.get().description();
+			class NAO_State_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -332,8 +332,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kUDPRN_v:
 #ifdef UDPReceiverNotification_DEFINED
 		{
-			class UDPRN_t msg;
-			return msg.get().description();
+			class UDPRN_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -342,19 +342,19 @@ string guWhiteboard::getmsg(WBTypes message_index)
 
 		case kPlayerNumber_v:
 		{
-			class PlayerNumber_t msg;
-			return gu_ltos(long(msg.get()));
+			class PlayerNumber_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kManuallyPenalized_v:
 		{
-			class ManuallyPenalized_t msg;
-			return gu_ltos(long(msg.get()));
+			class ManuallyPenalized_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
 		{
-			class Vision_Control_t msg;
-			return msg.get().description();
+			class Vision_Control_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -364,8 +364,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kVision_Status_v:
 #ifdef VisionControlStatus_DEFINED
 		{
-			class Vision_Status_t msg;
-			return msg.get().description();
+			class Vision_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";
@@ -375,8 +375,8 @@ string guWhiteboard::getmsg(WBTypes message_index)
 		case kVision_Objects_v:
 #ifdef VisionObjects_DEFINED
 		{
-			class Vision_Objects_t msg;
-			return msg.get().description();
+			class Vision_Objects_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			throw "noclass";

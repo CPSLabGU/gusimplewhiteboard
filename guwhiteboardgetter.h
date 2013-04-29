@@ -70,14 +70,14 @@ extern "C"
  * Both the message type and the message content are strings.
  * The returned message string has to be freed!
  */
-char *whiteboard_get(const char *message_type);
+char *whiteboard_get(const char *message_type, gu_simple_message *msg);
 
 /**
  * Generic C function that posts a message with a given message number
  * to the whiteboard.
  * The returned message string has to be freed!
  */
-char *whiteboard_getmsg(int message_index);
+char *whiteboard_getmsg(int message_index, gu_simple_message *msg);
 
 #ifdef __cplusplus
 } // extern "C"
@@ -88,13 +88,13 @@ namespace guWhiteboard
          * A generic C++ function that gets a string from the whiteboard.
          * Both the message type and the message content are strings.
          */
-        std::string getmsg(std::string message_type);
+        std::string getmsg(std::string message_type, gu_simple_message *msg = NULL);
 
         /**
          * Generic C++ function that gets a message with a given message number
          * to the whiteboard.
          */
-        std::string getmsg(guWhiteboard::WBTypes message_index);
+        std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULL);
 }
 #endif // __cplusplus
 

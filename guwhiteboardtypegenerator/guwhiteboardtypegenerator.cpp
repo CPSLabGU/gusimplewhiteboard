@@ -225,13 +225,13 @@ int main()
         "using namespace std;\n"
         "using namespace guWhiteboard;\n\n"
         "extern \"C\"\n{\n"
-        "\tchar *whiteboard_get(const char *message_type)\n"
+        "\tchar *whiteboard_get(const char *message_type, gu_simple_message *msg)\n"
         "\t{\n"
-        "\t\treturn whiteboard_getmsg(types_map[message_type]);\n"
+        "\t\treturn whiteboard_getmsg(types_map[message_type], msg);\n"
         "\t}\n\n\n"
-        "\tchar *whiteboard_getmsg(int message_index)\n"
+        "\tchar *whiteboard_getmsg(int message_index, gu_simple_message *msg)\n"
         "\t{\n"
-        "\t\treturn gu_strdup(getmsg(WBTypes(message_index)).c_str());\n"
+        "\t\treturn gu_strdup(getmsg(WBTypes(message_index), msg).c_str());\n"
         "\t}\n"
         "} // extern C\n\n"
         "static string intvectostring(const vector<int> &vec)\n"
@@ -246,11 +246,11 @@ int main()
         "\n"
         "\treturn ss.str();\n"
         "}\n\n"
-        "string guWhiteboard::getmsg(string message_type)\n"
+        "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)\n"
         "{\n"
-        "\treturn getmsg(types_map[message_type]);\n"
+        "\treturn getmsg(types_map[message_type], msg);\n"
         "}\n\n\n"
-        "string guWhiteboard::getmsg(WBTypes message_index)\n"
+        "string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)\n"
         "{\n"
         "\tswitch (message_index)\n"
         "\t{\n";
@@ -471,7 +471,7 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_ltos(long(msg.get()));\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "long" ||
@@ -479,7 +479,7 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_ltos(long(msg.get()));\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "float" ||
@@ -487,20 +487,20 @@ int main()
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn gu_dtos(msg.get());\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_c_file << endl;
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn intvectostring(msg.get());\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::string")
                                 {
                                         output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn msg.get();\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
                                         break;
                                 }
                         case Custom_Class:
@@ -509,7 +509,7 @@ int main()
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t msg;\n\t\t\treturn msg.get().description();\n\t\t}\n" ;
+                                output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
                                 output_generic_poster << "#else\n";
                                 output_generic_poster << "\t\t\treturn false;\n";
                                 output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
