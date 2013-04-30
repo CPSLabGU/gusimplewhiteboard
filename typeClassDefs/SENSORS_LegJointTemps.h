@@ -16,12 +16,12 @@ namespace guWhiteboard
 {
         class SENSORS_LegJointTemps
         {
-                PROPERTY(float, LKneePitch);
-                PROPERTY(float, LAnklePitch);
-                PROPERTY(float, LAnkleRoll);
-                PROPERTY(float, RKneePitch);
-                PROPERTY(float, RAnklePitch);
-                PROPERTY(float, RAnkleRoll);
+                PROPERTY(float, LKneePitch)
+                PROPERTY(float, LAnklePitch)
+                PROPERTY(float, LAnkleRoll)
+                PROPERTY(float, RKneePitch)
+                PROPERTY(float, RAnklePitch)
+                PROPERTY(float, RAnkleRoll)
                 
         public:
                 SENSORS_LegJointTemps()
