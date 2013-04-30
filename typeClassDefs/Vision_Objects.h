@@ -54,12 +54,15 @@ public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
 	}
-	VisionObjects(std::string s) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+	VisionObjects(std::string) {
 		fprintf(stderr, "Error VisionObject String constructor NYI\n");
-		memset(this, 0, sizeof(*this));
+		throw "NotImplemented";
 	}
-	void setBall(WbBallInfo ball) {
-		this->ball = ball;
+#pragma clang diagnostic pop
+	void setBall(WbBallInfo ballInfo) {
+		ball = ballInfo;
 		objectMask[VisionObjectTypes::Ball]  = 1;
 	}
 	WbBallInfo* Ball() {
@@ -67,8 +70,8 @@ public:
 			return &ball;
 		return NULL;
 	}
-	void setGoal(WbGoalInfo ball) {
-		this->goal = goal;
+	void setGoal(WbGoalInfo goalInfo) {
+		goal = goalInfo;
 		objectMask[VisionObjectTypes::Goal]  = 1;
 	}
 	WbGoalInfo* Goal() {
