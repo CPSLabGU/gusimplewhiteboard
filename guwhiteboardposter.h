@@ -70,6 +70,7 @@
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include "MOTION_SDK_Interface.h"
 #include "FSM_Control.h"
+#include "Vision_Objects.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

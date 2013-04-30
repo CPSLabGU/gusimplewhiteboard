@@ -7,19 +7,38 @@
 
 #include <bitset>
 #include <gu_util.h>
+#include <stdint.h>
+#include <sstream>
+#include <stdio.h>
+
 
 #ifndef VisionObjects_DEFINED
 #define VisionObjects_DEFINED
 
 struct WbBallInfo {
-	int radius;
-	int x;
-	int y;
+	uint16_t radius;
+	uint16_t x;
+	uint16_t y;
+};
+
+struct WbGoalInfo {
+	uint16_t rightX, rightY, leftX, leftY;
+	uint16_t rightWidth, rightHeight, leftWidth, leftHeight;
+};
+
+struct WbLineInfo {
+	uint16_t startX, startY, endX, endY;
 };
 
 
 namespace VisionObjectTypes {enum object {
 	Ball = 0,
+	Goal,
+	Line1,
+	Line2,
+	Line3,
+	Line4,
+	Line5,
 	NUM_VISION_OBJECTS
 };}
 
@@ -28,17 +47,74 @@ namespace guWhiteboard
 class VisionObjects {
 private:
 	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> objectMask;
+	WbLineInfo lines[5];
 	WbBallInfo ball;
+	WbGoalInfo goal;
 public:
 	VisionObjects() {
+		memset(this, 0, sizeof(*this));
+	}
+	VisionObjects(std::string s) {
+		fprintf(stderr, "Error VisionObject String constructor NYI\n");
 		memset(this, 0, sizeof(*this));
 	}
 	void setBall(WbBallInfo ball) {
 		this->ball = ball;
 		objectMask[VisionObjectTypes::Ball]  = 1;
 	}
-	WbBallInfo Ball() {
-		return ball;
+	WbBallInfo* Ball() {
+		if(objectMask[VisionObjectTypes::Ball])
+			return &ball;
+		return NULL;
+	}
+	void setGoal(WbGoalInfo ball) {
+		this->goal = goal;
+		objectMask[VisionObjectTypes::Goal]  = 1;
+	}
+	WbGoalInfo* Goal() {
+		if(objectMask[VisionObjectTypes::Goal])
+			return &goal;
+		return NULL;
+	}
+
+	void addLine(WbLineInfo line) {
+		for(int i = VisionObjectTypes::Line1; i<VisionObjectTypes::Line5; ++i) {
+			if(objectMask[i] == 0) {
+				lines[i-VisionObjectTypes::Line1] = line;
+				objectMask[i] = 1;
+				break;
+			}
+		}
+	}
+
+	WbLineInfo* Line(VisionObjectTypes::object line) {
+		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
+			if(objectMask[line])
+				return &lines[line - VisionObjectTypes::Line1];
+		return NULL;
+	}
+
+
+	void ClearMask() {
+		objectMask.reset();
+	}
+
+	std::string description() {
+		std::stringstream result;
+		if(objectMask[VisionObjectTypes::Ball]) {
+			result << "Ball:(" << ball.x << "," << ball.y << "," << ball.radius << ")\n";
+		}
+		if(objectMask[VisionObjectTypes::Goal])
+			result << "Goal:(" << goal.leftX << "," << goal.leftY << ","
+			<< goal.rightX << "," << goal.rightY << "," << goal.leftWidth << ","
+			<< goal.leftHeight << "," << goal.rightWidth << "," << goal.rightHeight << ")\n";
+		for(int i = VisionObjectTypes::Line1; i<=VisionObjectTypes::Line5; ++i)
+			if(objectMask[i])
+				result << "Line" << i << "(" << lines[i-VisionObjectTypes::Line1].startX
+				<< "," << lines[i-VisionObjectTypes::Line1].startY
+				<< "," << lines[i-VisionObjectTypes::Line1].endX
+				<< "," << lines[i-VisionObjectTypes::Line1].endY << ")\n";
+		return result.str();
 	}
 };
 }
