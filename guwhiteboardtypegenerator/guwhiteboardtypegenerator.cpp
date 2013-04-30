@@ -460,7 +460,7 @@ int main()
                         case None:
                                 output_c_file << "\t///<" << type.comment << endl;
                                 output_generic_poster << "\t\t\treturn false;\n\n";
-                                output_generic_getter << "\t\t\tthrow \"noclass\";\n\n";
+                                output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
                                 break;
 
                         case POD_Class:
@@ -514,7 +514,7 @@ int main()
                                 output_generic_poster << "\t\t\treturn false;\n";
                                 output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
                                 output_generic_getter << "#else\n";
-                                output_generic_getter << "\t\t\tthrow \"noclass\";\n\n";
+                                output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
                                 output_generic_getter << "#endif // !" << type.class_name << "_DEFINED\n\n";
                 }
 	}
@@ -531,7 +531,7 @@ int main()
         "\twhiteboard_types_map &self = *this;\n"
         "\t// self.reserve(" << types.size() << ");\n\n";
 
-        output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\tthrow \"noclass\";\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n}\n\n";
 
 	//string array
 	for (int i = 0; i < int(types.size()); i++)
