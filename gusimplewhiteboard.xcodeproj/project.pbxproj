@@ -29,7 +29,7 @@
 		C3A77982171E55730055CAD5 /* UDPReceiverNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */; };
 		C3A77983171E55730055CAD5 /* FilteredVisionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A77980171E55730055CAD5 /* FilteredVisionObject.h */; };
 		C3AC9C97171E80C000DF3997 /* MOTION_SDK_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */; };
-		C3B8CE39170BE5C400846B9C /* WALK_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8CE38170BE5C400846B9C /* WALK_Status.h */; };
+		C3B8CE39170BE5C400846B9C /* WALK_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
@@ -125,7 +125,7 @@
 		C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPReceiverNotification.h; sourceTree = "<group>"; };
 		C3A77980171E55730055CAD5 /* FilteredVisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredVisionObject.h; sourceTree = "<group>"; };
 		C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTION_SDK_Interface.h; sourceTree = "<group>"; };
-		C3B8CE38170BE5C400846B9C /* WALK_Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK_Status.h; sourceTree = "<group>"; };
+		C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK_ControlStatus.h; sourceTree = "<group>"; };
 		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
 		C3BE8AE916CB27CF004BFE81 /* guudpSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
 		C3BE8AEA16CB27CF004BFE81 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
@@ -142,8 +142,8 @@
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
-		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = file; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
-		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = file; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
+		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
+		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				C3A7797F171E55730055CAD5 /* UDPReceiverNotification.h */,
 				F1D601C7172CED45004B56C5 /* Vision_Control.h */,
 				F1D601C8172CED45004B56C5 /* Vision_Objects.h */,
-				C3B8CE38170BE5C400846B9C /* WALK_Status.h */,
+				C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */,
 			);
 			path = typeClassDefs;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 				C372CAEF17001939007EB2E0 /* SENSORS_LegJointSensors.h in Headers */,
 				C372CAF21700198C007EB2E0 /* SENSORS_LegJointTemps.h in Headers */,
 				C372CAF31700198C007EB2E0 /* SENSORS_TorsoJointTemps.h in Headers */,
-				C3B8CE39170BE5C400846B9C /* WALK_Status.h in Headers */,
+				C3B8CE39170BE5C400846B9C /* WALK_ControlStatus.h in Headers */,
 				C34904FC1715246900242DD7 /* NAO_State.h in Headers */,
 				C34904FD1715246900242DD7 /* Point2D.h in Headers */,
 				C3A77982171E55730055CAD5 /* UDPReceiverNotification.h in Headers */,
