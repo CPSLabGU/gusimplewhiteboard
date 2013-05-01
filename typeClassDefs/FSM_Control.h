@@ -103,13 +103,13 @@ namespace guWhiteboard
             FSMControlStatus(const FSMControlStatus &other): _fsms(other._fsms) {}
 
             /** command getter */
-            FSMControlType command() { return static_cast<FSMControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
+            FSMControlType command() const { return static_cast<FSMControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
 
             /** command setter */
             void set_command(FSMControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
 
             /** convert to a string */
-            std::string description()
+            std::string description() const
             {
                 std::ostringstream ss;
                 ss << command();
