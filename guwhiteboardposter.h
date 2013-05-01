@@ -68,6 +68,7 @@
  * string constructors!
  */
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include "WALK_ControlStatus.h"
 #include "MOTION_SDK_Interface.h"
 #include "FSM_Control.h"
 #include "Vision_Objects.h"

@@ -117,12 +117,12 @@ namespace guWhiteboard
                 /** convert to a string */
                 std::string description() const
                 {
-                        std::string status(statusNames[get_controlStatus()]);
-                        if (get_controlStatus() != WALK_Run)
+                        std::string status(WALK_statusNames[controlStatus()]);
+                        if (controlStatus() != WALK_Run)
                                 return status;
 
                         std::ostringstream ss(status);
-                        ss << "(" << forward << "," << left "," << turn << "," << power << ")";
+                        ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ")";
 
                         return ss.str();
                 }
@@ -130,12 +130,12 @@ namespace guWhiteboard
                 /** convert from a string */
                 void from_string(const std::string &command)
                 {
-                        for (WALK_ControlStatus_Mode cmd = WALK_Disconnected; cmd <= WALK_Run; cmd++)
+                        for (int cmd = WALK_Disconnected; cmd <= WALK_Run; cmd++)
                         {
                                 if (command == WALK_statusNames[cmd] ||
                                     command == WALK_commandNames[cmd])
                                 {
-                                        set_controlStatus(cmd);
+                                        set_controlStatus(WALK_ControlStatus_Mode(cmd));
                                         if (cmd != WALK_Run)
                                                 return;
                                         std::istringstream iss(command);
