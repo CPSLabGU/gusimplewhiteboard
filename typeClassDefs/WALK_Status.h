@@ -16,7 +16,7 @@ namespace guWhiteboard
 {
         class WALK_Status
         {
-                PROPERTY(float, HeadYaw);
+                PROPERTY(float, HeadYaw)
 
                 /*
                  float currentForward;
