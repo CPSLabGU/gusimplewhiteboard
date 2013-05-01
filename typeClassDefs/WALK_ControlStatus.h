@@ -84,11 +84,11 @@ namespace guWhiteboard
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *WALK_statusNames[] =
         {
-                "disconnected", "ready", "stopped", "walking"
+                "disconnected", "stopped", "ready", "walking"
         };
         static const char *WALK_commandNames[] =
         {
-                "disconnect", "connect", "stop", "walk"
+                "disconnect", "stop", "connect", "walk"
         };
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         /**
@@ -117,12 +117,15 @@ namespace guWhiteboard
                 /** convert to a string */
                 std::string description() const
                 {
-                        std::string status(WALK_statusNames[controlStatus()]);
-                        if (controlStatus() != WALK_Run)
-                                return status;
+                        std::ostringstream ss;
+                        int statval = controlStatus();
+                        if (statval < 0 || statval > WALK_Run)
+                                ss << "Corrupt WALK control status value " << statval;
+                        else
+                                ss << WALK_statusNames[statval];
 
-                        std::ostringstream ss(status);
-                        ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ")";
+                        if (controlStatus() == WALK_Run)
+                                ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ")";
 
                         return ss.str();
                 }
@@ -130,10 +133,11 @@ namespace guWhiteboard
                 /** convert from a string */
                 void from_string(const std::string &command)
                 {
+                        const char *ccmd = command.c_str();
                         for (int cmd = WALK_Disconnected; cmd <= WALK_Run; cmd++)
                         {
-                                if (command == WALK_statusNames[cmd] ||
-                                    command == WALK_commandNames[cmd])
+                                if (strstr(ccmd, WALK_statusNames[cmd]) ||
+                                    strstr(ccmd, WALK_commandNames[cmd]))
                                 {
                                         set_controlStatus(WALK_ControlStatus_Mode(cmd));
                                         if (cmd != WALK_Run)
@@ -143,7 +147,7 @@ namespace guWhiteboard
                                         if (getline(iss, token, ','))
                                         {
                                                 const char *str = token.c_str();
-                                                while (!isdigit(*str))
+                                                while (*str != '-' && !isdigit(*str))
                                                 {
                                                         if (!*str) break;
                                                         str++;
@@ -155,7 +159,7 @@ namespace guWhiteboard
                                         if (getline(iss, token, ','))
                                         {
                                                 const char *str = token.c_str();
-                                                while (!isdigit(*str))
+                                                while (*str != '-' && !isdigit(*str))
                                                 {
                                                         if (!*str) break;
                                                         str++;
@@ -167,7 +171,19 @@ namespace guWhiteboard
                                         if (getline(iss, token, ','))
                                         {
                                                 const char *str = token.c_str();
-                                                while (!isdigit(*str))
+                                                while (*str != '-' && !isdigit(*str))
+                                                {
+                                                        if (!*str) break;
+                                                        str++;
+                                                }
+                                                set_turn(float(atof(str)));
+                                        }
+                                        else set_turn(0);
+                                        
+                                        if (getline(iss, token, ','))
+                                        {
+                                                const char *str = token.c_str();
+                                                while (*str != '-' && !isdigit(*str))
                                                 {
                                                         if (!*str) break;
                                                         str++;
