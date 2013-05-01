@@ -7,6 +7,7 @@
 
 #include <bitset>
 #include <gu_util.h>
+#include <SimpleShapes.h>
 #include <stdint.h>
 #include <sstream>
 #include <stdio.h>
@@ -17,13 +18,15 @@
 
 struct WbBallInfo {
 	uint16_t radius;
-	uint16_t x;
-	uint16_t y;
+	GUPoint<uint16_t> position;
 };
 
-struct WbGoalInfo {
-	uint16_t rightX, rightY, leftX, leftY;
-	uint16_t rightWidth, rightHeight, leftWidth, leftHeight;
+struct WbGoalPostInfo {
+	GUPoint<uint16_t> outerBottom;
+	GUPoint<uint16_t> outerTop;
+
+	GUPoint<uint16_t> innerBottom;
+	GUPoint<uint16_t> innerTop;
 };
 
 struct WbLineInfo {
@@ -33,7 +36,8 @@ struct WbLineInfo {
 
 namespace VisionObjectTypes {enum object {
 	Ball = 0,
-	Goal,
+	LeftGoalPost,
+	RightGoalPost,
 	Line1,
 	Line2,
 	Line3,
@@ -49,7 +53,8 @@ private:
 	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> objectMask;
 	WbLineInfo lines[5];
 	WbBallInfo ball;
-	WbGoalInfo goal;
+	WbGoalPostInfo leftGoalPost;
+	WbGoalPostInfo rightGoalPost;
 public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
@@ -70,13 +75,23 @@ public:
 			return &ball;
 		return NULL;
 	}
-	void setGoal(WbGoalInfo goalInfo) {
-		goal = goalInfo;
-		objectMask[VisionObjectTypes::Goal]  = 1;
+	void setLeftGoalPost(WbGoalPostInfo postInfo) {
+		leftGoalPost = postInfo;
+		objectMask[VisionObjectTypes::LeftGoalPost]  = 1;
 	}
-	WbGoalInfo* Goal() {
-		if(objectMask[VisionObjectTypes::Goal])
-			return &goal;
+	WbGoalPostInfo* LeftGoalPost() {
+		if(objectMask[VisionObjectTypes::LeftGoalPost])
+			return &leftGoalPost;
+		return NULL;
+	}
+
+	void setRightGoalPost(WbGoalPostInfo postInfo) {
+		rightGoalPost = postInfo;
+		objectMask[VisionObjectTypes::RightGoalPost]  = 1;
+	}
+	WbGoalPostInfo* RightGoalPost() {
+		if(objectMask[VisionObjectTypes::RightGoalPost])
+			return &rightGoalPost;
 		return NULL;
 	}
 
@@ -101,24 +116,31 @@ public:
 	void ClearMask() {
 		objectMask.reset();
 	}
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 	std::string description() {
 		std::stringstream result;
 		if(objectMask[VisionObjectTypes::Ball]) {
-			result << "Ball:(" << ball.x << "," << ball.y << "," << ball.radius << ") ";
+			result << "Ball:(" << ball.position.x << "," << ball.position.y << "," << ball.radius << ") ";
 		}
-		if(objectMask[VisionObjectTypes::Goal])
-			result << "Goal:(" << goal.leftX << "," << goal.leftY << ","
-			<< goal.rightX << "," << goal.rightY << "," << goal.leftWidth << ","
-			<< goal.leftHeight << "," << goal.rightWidth << "," << goal.rightHeight << ") ";
+		if(objectMask[VisionObjectTypes::LeftGoalPost])
+			result << "LeftGoalPost:(" << leftGoalPost.outerBottom.x << "," << leftGoalPost.outerBottom.y << ","
+			<< leftGoalPost.outerTop.x << "," << leftGoalPost.outerTop.y << ","
+			<< leftGoalPost.innerBottom.x << "," << leftGoalPost.innerBottom.y << ","
+			<< leftGoalPost.innerBottom.x << "," << leftGoalPost.innerBottom.y << ") ";
+		if(objectMask[VisionObjectTypes::RightGoalPost])
+			result << "RightGoalPost:(" << rightGoalPost.outerBottom.x << "," << rightGoalPost.outerBottom.y << ","
+			<< rightGoalPost.outerTop.x << "," << rightGoalPost.outerTop.y << ","
+			<< rightGoalPost.innerBottom.x << "," << rightGoalPost.innerBottom.y << ","
+			<< rightGoalPost.innerBottom.x << "," << rightGoalPost.innerBottom.y << ") ";
 		for(int i = VisionObjectTypes::Line1; i<=VisionObjectTypes::Line5; ++i)
 			if(objectMask[i])
-				result << "Line" << i << "(" << lines[i-VisionObjectTypes::Line1].startX
+				result << "Line" << (i-VisionObjectTypes::Line1+1) << "(" << lines[i-VisionObjectTypes::Line1].startX
 				<< "," << lines[i-VisionObjectTypes::Line1].startY
 				<< "," << lines[i-VisionObjectTypes::Line1].endX
 				<< "," << lines[i-VisionObjectTypes::Line1].endY << ") ";
 		return result.str();
 	}
+#endif
 };
 }
 
