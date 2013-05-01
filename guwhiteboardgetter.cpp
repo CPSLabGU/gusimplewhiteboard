@@ -87,19 +87,27 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class BoolExample_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case kCustomClassExample_v:
-#ifdef CustClass_DEFINED
+		case kWALK_Command_v:
+#ifdef WALK_ControlStatus_DEFINED
 		{
-			class CustomClassExample_t m;
+			class WALK_Command_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !CustClass_DEFINED
+#endif // !WALK_ControlStatus_DEFINED
 
-		case kSoloTypeExample_v:
+		case kWALK_Status_v:
+#ifdef WALK_ControlStatus_DEFINED
+		{
+			class WALK_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
 			return "##unsupported##";
+
+#endif // !WALK_ControlStatus_DEFINED
 
 		case kMOTION_SDK_Commands_v:
 #ifdef MOTION_SDK_Interface_DEFINED
@@ -285,16 +293,8 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !FSMNames_DEFINED
 
-		case kWALK_Status_v:
-#ifdef WALK_Status_DEFINED
-		{
-			class WALK_Status_t m;
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
+		case kSoloTypeExample_v:
 			return "##unsupported##";
-
-#endif // !WALK_Status_DEFINED
 
 		case kBallBelief_v:
 #ifdef Point2D_DEFINED

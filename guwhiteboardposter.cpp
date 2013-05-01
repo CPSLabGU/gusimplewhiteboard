@@ -107,19 +107,27 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
-		case kCustomClassExample_v:
-#ifdef CustClass_DEFINED
+		case kWALK_Command_v:
+#ifdef WALK_ControlStatus_DEFINED
 		{
-			class CustomClassExample_t CustomClassExample_msg;
-			CustomClassExample_msg.post(CustClass(message_content));
+			class WALK_Command_t WALK_Command_msg;
+			WALK_Command_msg.post(WALK_ControlStatus(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !CustClass_DEFINED
+#endif // !WALK_ControlStatus_DEFINED
 
-		case kSoloTypeExample_v:
+		case kWALK_Status_v:
+#ifdef WALK_ControlStatus_DEFINED
+		{
+			class WALK_Status_t WALK_Status_msg;
+			WALK_Status_msg.post(WALK_ControlStatus(message_content));
+			return true;
+		}
+#else
 			return false;
+#endif // !WALK_ControlStatus_DEFINED
 
 		case kMOTION_SDK_Commands_v:
 #ifdef MOTION_SDK_Interface_DEFINED
@@ -317,16 +325,8 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !FSMNames_DEFINED
 
-		case kWALK_Status_v:
-#ifdef WALK_Status_DEFINED
-		{
-			class WALK_Status_t WALK_Status_msg;
-			WALK_Status_msg.post(WALK_Status(message_content));
-			return true;
-		}
-#else
+		case kSoloTypeExample_v:
 			return false;
-#endif // !WALK_Status_DEFINED
 
 		case kBallBelief_v:
 #ifdef Point2D_DEFINED
@@ -440,8 +440,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["QSpeech"] = kQSpeech_v;
 	self["SpeechOutput"] = kSpeechOutput_v;
 	self["example_bool"] = kBoolExample_v;
-	self["example_class"] = kCustomClassExample_v;
-	self["example_type"] = kSoloTypeExample_v;
+	self["WALK_Command"] = kWALK_Command_v;
+	self["WALK_Status"] = kWALK_Status_v;
 	self["MOTION_SDK_Commands"] = kMOTION_SDK_Commands_v;
 	self["MOTION_SDK_Status"] = kMOTION_SDK_Status_v;
 	self["gunaomotion_naoWalk"] = kNaoWalk_v;
@@ -462,7 +462,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["fsm_control"] = kFSM_Control_v;
 	self["fsm_status"] = kFSM_Status_v;
 	self["fsm_names"] = kFSM_Names_v;
-	self["WALK_Status"] = kWALK_Status_v;
+	self["example_type"] = kSoloTypeExample_v;
 	self["BallBelief"] = kBallBelief_v;
 	self["FVOsighting"] = kFVOsighting_v;
 	self["NAO_State"] = kNAO_State_v;

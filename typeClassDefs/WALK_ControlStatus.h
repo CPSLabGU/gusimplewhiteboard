@@ -76,8 +76,8 @@ namespace guWhiteboard
         enum WALK_ControlStatus_Mode
         {
                 WALK_Disconnected,  ///< walk is disconnected
-                WALK_Ready,         ///< walk ready
                 WALK_Stop,          ///< walk stopped / stop walk
+                WALK_Ready,         ///< walk ready
                 WALK_Run            ///< walking
         };
 
@@ -105,14 +105,14 @@ namespace guWhiteboard
 
         public:
                 /** designated constructor */
-                WALK_Status(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c) {}
+                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c) {}
 
                 /** copy constructor */
-                WALK_Status(const WALK_Status &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus) {}
+                WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus) {}
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
-                WALK_Status(const std::string &command) { from_string(command); }
+                WALK_ControlStatus(const std::string &command) { from_string(command); }
 
                 /** convert to a string */
                 std::string description() const
