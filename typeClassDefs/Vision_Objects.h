@@ -105,18 +105,18 @@ public:
 	std::string description() {
 		std::stringstream result;
 		if(objectMask[VisionObjectTypes::Ball]) {
-			result << "Ball:(" << ball.x << "," << ball.y << "," << ball.radius << ")\n";
+			result << "Ball:(" << ball.x << "," << ball.y << "," << ball.radius << ") ";
 		}
 		if(objectMask[VisionObjectTypes::Goal])
 			result << "Goal:(" << goal.leftX << "," << goal.leftY << ","
 			<< goal.rightX << "," << goal.rightY << "," << goal.leftWidth << ","
-			<< goal.leftHeight << "," << goal.rightWidth << "," << goal.rightHeight << ")\n";
+			<< goal.leftHeight << "," << goal.rightWidth << "," << goal.rightHeight << ") ";
 		for(int i = VisionObjectTypes::Line1; i<=VisionObjectTypes::Line5; ++i)
 			if(objectMask[i])
 				result << "Line" << i << "(" << lines[i-VisionObjectTypes::Line1].startX
 				<< "," << lines[i-VisionObjectTypes::Line1].startY
 				<< "," << lines[i-VisionObjectTypes::Line1].endX
-				<< "," << lines[i-VisionObjectTypes::Line1].endY << ")\n";
+				<< "," << lines[i-VisionObjectTypes::Line1].endY << ") ";
 		return result.str();
 	}
 };

@@ -50,7 +50,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 	switch (message_index)
 	{
 		case kwb_reserved_SubscribeToAllTypes_v:
-			throw "noclass";
+			return "##unsupported##";
 
 		case kPrint_v:
 		{
@@ -94,12 +94,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !CustClass_DEFINED
 
 		case kSoloTypeExample_v:
-			throw "noclass";
+			return "##unsupported##";
 
 		case kMOTION_SDK_Commands_v:
 #ifdef MOTION_SDK_Interface_DEFINED
@@ -108,7 +108,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !MOTION_SDK_Interface_DEFINED
 
@@ -119,7 +119,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !MOTION_SDK_Interface_DEFINED
 
@@ -160,7 +160,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !HAL_HeadTarget_DEFINED
 
@@ -171,7 +171,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_FootSensors_DEFINED
 
@@ -182,7 +182,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_BodySensors_DEFINED
 
@@ -193,7 +193,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_LedsSensors_DEFINED
 
@@ -204,7 +204,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_LegJointTemps_DEFINED
 
@@ -215,7 +215,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_TorsoJointTemps_DEFINED
 
@@ -226,7 +226,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_LegJointSensors_DEFINED
 
@@ -237,7 +237,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_TorsoJointSensors_DEFINED
 
@@ -248,7 +248,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !SENSORS_SonarSensors_DEFINED
 
@@ -259,7 +259,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !FSMControlStatus_DEFINED
 
@@ -270,7 +270,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !FSMControlStatus_DEFINED
 
@@ -281,7 +281,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !FSMNames_DEFINED
 
@@ -292,7 +292,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !WALK_Status_DEFINED
 
@@ -303,7 +303,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !Point2D_DEFINED
 
@@ -314,7 +314,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !FilteredVisionObject_DEFINED
 
@@ -325,7 +325,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !NAO_State_DEFINED
 
@@ -336,7 +336,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !UDPReceiverNotification_DEFINED
 
@@ -357,7 +357,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !VisionControlStatus_DEFINED
 
@@ -368,7 +368,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !VisionControlStatus_DEFINED
 
@@ -379,7 +379,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
-			throw "noclass";
+			return "##unsupported##";
 
 #endif // !VisionObjects_DEFINED
 
@@ -387,7 +387,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 
-	throw "noclass";
+	return "##unsupported##";
 #pragma clang diagnostic pop
 }
 
