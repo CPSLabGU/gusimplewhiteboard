@@ -1,5 +1,5 @@
 /**                                                                     
- *  /file SENSORS_LegJointTemps.h
+ *  /file WALK_Status.h
  *                                                                      
  *  Created by Carl Lusty in 2013.                                      
  *  Copyright (c) 2013 Carl Lusty                                       
@@ -7,28 +7,33 @@
  */                                                                     
 
                                                                         
-#ifndef SENSORS_LegJointTemps_DEFINED
-#define SENSORS_LegJointTemps_DEFINED
+#ifndef WALK_Status_DEFINED
+#define WALK_Status_DEFINED
 
 #include <gu_util.h>
 
 namespace guWhiteboard                                                  
 {
-        class SENSORS_LegJointTemps
+        class WALK_Status
         {
-                PROPERTY(float, LKneePitch)
-                PROPERTY(float, LAnklePitch)
-                PROPERTY(float, LAnkleRoll)
-                PROPERTY(float, RKneePitch)
-                PROPERTY(float, RAnklePitch)
-                PROPERTY(float, RAnkleRoll)
+                PROPERTY(float, HeadYaw)
+
+                /*
+                 float currentForward;
+                 float currentLeft;
+                 float currentTurn;
+                 float currentPower;
+                 bool readyRequested;
+                 bool walkReadyState;
+                 bool connected;
+                 */
                 
         public:
-                SENSORS_LegJointTemps()
+                WALK_Status()
                 {
 
                 }
         };
 }
 
-#endif //SENSORS_LegJointTemps_DEFINED
+#endif //WALK_Status_DEFINED
