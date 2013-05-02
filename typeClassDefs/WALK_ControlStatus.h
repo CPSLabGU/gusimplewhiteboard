@@ -179,8 +179,8 @@ namespace guWhiteboard
                                                 set_turn(float(atof(str)));
                                         }
                                         else set_turn(0);
-                                        
-                                        if (getline(iss, token, ','))
+
+                                        if (getline(iss, token, ')'))
                                         {
                                                 const char *str = token.c_str();
                                                 while (*str != '-' && !isdigit(*str))
