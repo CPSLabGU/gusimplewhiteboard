@@ -68,6 +68,15 @@
 #include <ctype.h>
 #endif
 
+#ifndef USE_UNSW_ODOMETRY
+struct Odometry                         ///< needs to mimic UNSW odometry!
+{
+        float forward;
+        float left;
+        float turn;
+};
+#endif
+
 namespace guWhiteboard
 {
         /**
@@ -75,20 +84,21 @@ namespace guWhiteboard
          */
         enum WALK_ControlStatus_Mode
         {
-                WALK_Disconnected,  ///< walk is disconnected
-                WALK_Stop,          ///< walk stopped / stop walk
-                WALK_Ready,         ///< walk ready
-                WALK_Run            ///< walking
+                WALK_Disconnected,      ///< walk is disconnected
+                WALK_Stop,              ///< walk stopped / stop walk
+                WALK_Ready,             ///< walk ready
+                WALK_Run,               ///< walking
+                WALK_Ignore             ///< only interested in odomentry
         };
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *WALK_statusNames[] =
         {
-                "disconnected", "stopped", "ready", "walking"
+                "disconnected", "stopped", "ready", "walking", "odometry"
         };
         static const char *WALK_commandNames[] =
         {
-                "disconnect", "stop", "connect", "walk"
+                "disconnect", "stop", "connect", "walk", "set_odometry"
         };
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         /**
@@ -102,13 +112,14 @@ namespace guWhiteboard
                 PROPERTY(float, power)
 
                 PROPERTY(WALK_ControlStatus_Mode, controlStatus)
-
+                PROPERTY(Odometry, odometry)
+                PROPERTY(bool, odometry_mask)
         public:
                 /** designated constructor */
-                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c) {}
+                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
 
                 /** copy constructor */
-                WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus) {}
+                WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus), _odometry(other._odometry), _odometry_mask(other._odometry_mask) {}
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
@@ -127,6 +138,9 @@ namespace guWhiteboard
                         if (controlStatus() == WALK_Run)
                                 ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ")";
 
+                        if (odometry_mask())
+                                ss << " @(" << odometry().forward << "," << odometry().left << "," << odometry().turn << ")";
+
                         return ss.str();
                 }
 
@@ -134,13 +148,14 @@ namespace guWhiteboard
                 void from_string(const std::string &command)
                 {
                         const char *ccmd = command.c_str();
-                        for (int cmd = WALK_Disconnected; cmd <= WALK_Run; cmd++)
+                        set_odometry_mask(false);
+                        for (int cmd = WALK_Disconnected; cmd <= WALK_Ignore; cmd++)
                         {
                                 if (strstr(ccmd, WALK_statusNames[cmd]) ||
                                     strstr(ccmd, WALK_commandNames[cmd]))
                                 {
                                         set_controlStatus(WALK_ControlStatus_Mode(cmd));
-                                        if (cmd != WALK_Run)
+                                        if (cmd != WALK_Run && cmd != WALK_Ignore)
                                                 return;
                                         std::istringstream iss(command);
                                         std::string token;
@@ -180,7 +195,7 @@ namespace guWhiteboard
                                         }
                                         else set_turn(0);
 
-                                        if (getline(iss, token, ')'))
+                                        if (getline(iss, token, '@'))
                                         {
                                                 const char *str = token.c_str();
                                                 while (*str != '-' && !isdigit(*str))
@@ -191,6 +206,46 @@ namespace guWhiteboard
                                                 set_power(float(atof(str)));
                                         }
                                         else set_power(0);
+
+                                        /*
+                                         * odometry after the '@'
+                                         */
+                                        if (getline(iss, token, ','))
+                                        {
+                                                const char *str = token.c_str();
+                                                while (*str != '-' && !isdigit(*str))
+                                                {
+                                                        if (!*str) break;
+                                                        str++;
+                                                }
+                                                set_odometry_mask(true);
+                                                _odometry.forward = float(atof(str));
+                                        }
+                                        else _odometry.forward = 0.0f;
+
+                                        if (getline(iss, token, ','))
+                                        {
+                                                const char *str = token.c_str();
+                                                while (*str != '-' && !isdigit(*str))
+                                                {
+                                                        if (!*str) break;
+                                                        str++;
+                                                }
+                                                _odometry.left = float(atof(str));
+                                        }
+                                        else _odometry.left = 0.0f;
+
+                                        if (getline(iss, token, ')'))
+                                        {
+                                                const char *str = token.c_str();
+                                                while (*str != '-' && !isdigit(*str))
+                                                {
+                                                        if (!*str) break;
+                                                        str++;
+                                                }
+                                                _odometry.turn = float(atof(str));
+                                        }
+                                        else _odometry.turn = 0.0f;
                                 }
                         }
                 }
