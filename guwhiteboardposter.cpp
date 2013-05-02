@@ -46,7 +46,7 @@ static vector<int> strtointvec(string str)
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
 
-whiteboard_types_map types_map; ///< global types map
+whiteboard_types_map guWhiteboard::types_map; ///< global types map
 
 #pragma clang diagnostic pop
 
@@ -427,10 +427,10 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #pragma clang diagnostic pop
 }
 
-whiteboard_types_map::whiteboard_types_map(): unordered_map<string, WBTypes>()
+whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	self.reserve(40);
+	// self.reserve(40);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
