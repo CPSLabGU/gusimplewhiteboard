@@ -72,6 +72,7 @@
 #include "MOTION_SDK_Interface.h"
 #include "FSM_Control.h"
 #include "Vision_Objects.h"
+#include "Vision_Control.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
