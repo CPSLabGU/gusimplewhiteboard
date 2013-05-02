@@ -51,10 +51,10 @@ namespace guWhiteboard
 class VisionObjects {
 private:
 	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> objectMask;
-	WbLineInfo lines[5];
-	WbBallInfo ball;
-	WbGoalPostInfo leftGoalPost;
-	WbGoalPostInfo rightGoalPost;
+	WbLineInfo _lines[5];
+	WbBallInfo _ball;
+	WbGoalPostInfo _leftGoalPost;
+	WbGoalPostInfo _rightGoalPost;
 public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
@@ -67,38 +67,38 @@ public:
 	}
 #pragma clang diagnostic pop
 	void setBall(WbBallInfo ballInfo) {
-		ball = ballInfo;
+		_ball = ballInfo;
 		objectMask[VisionObjectTypes::Ball]  = 1;
 	}
-	WbBallInfo* Ball() {
+	WbBallInfo* ball() {
 		if(objectMask[VisionObjectTypes::Ball])
-			return &ball;
+			return &_ball;
 		return NULL;
 	}
 	void setLeftGoalPost(WbGoalPostInfo postInfo) {
-		leftGoalPost = postInfo;
+		_leftGoalPost = postInfo;
 		objectMask[VisionObjectTypes::LeftGoalPost]  = 1;
 	}
 	WbGoalPostInfo* LeftGoalPost() {
 		if(objectMask[VisionObjectTypes::LeftGoalPost])
-			return &leftGoalPost;
+			return &_leftGoalPost;
 		return NULL;
 	}
 
 	void setRightGoalPost(WbGoalPostInfo postInfo) {
-		rightGoalPost = postInfo;
+		_rightGoalPost = postInfo;
 		objectMask[VisionObjectTypes::RightGoalPost]  = 1;
 	}
 	WbGoalPostInfo* RightGoalPost() {
 		if(objectMask[VisionObjectTypes::RightGoalPost])
-			return &rightGoalPost;
+			return &_rightGoalPost;
 		return NULL;
 	}
 
 	void addLine(WbLineInfo line) {
 		for(int i = VisionObjectTypes::Line1; i<VisionObjectTypes::Line5; ++i) {
 			if(objectMask[i] == 0) {
-				lines[i-VisionObjectTypes::Line1] = line;
+				_lines[i-VisionObjectTypes::Line1] = line;
 				objectMask[i] = 1;
 				break;
 			}
@@ -108,7 +108,7 @@ public:
 	WbLineInfo* Line(VisionObjectTypes::object line) {
 		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
 			if(objectMask[line])
-				return &lines[line - VisionObjectTypes::Line1];
+				return & _lines[line - VisionObjectTypes::Line1];
 		return NULL;
 	}
 
