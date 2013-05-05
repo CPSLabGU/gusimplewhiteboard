@@ -89,7 +89,7 @@ public:
 
 	VisionControlStatus(std::string s) {
 		memset(this, 0, sizeof(*this));
-		uint n;
+		size_t n;
 		std::string command;
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
 		for(uint i = 0; i<NUMBER_VISION_MESSAGES; ++i) {
