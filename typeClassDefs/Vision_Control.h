@@ -77,6 +77,11 @@ static const bool BoolValues[] = {true, false};
 
 static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, BoolStrings,
 		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, CalibrationStrings};
+static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
+                                                sizeof(CameraStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
+                                                sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
+                                                sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
+                                                sizeof(BoolStrings)/sizeof(char*), sizeof(CalibrationStrings)/sizeof(char*)};
 
 namespace guWhiteboard
 {
@@ -96,8 +101,9 @@ public:
 			command = std::string(Commands[i]);
 			n = s.find(command);
 			if (n!=std::string::npos) {
-				for(uint j = 0; j<sizeof(*(MessageParamaters[i]))/sizeof((*(MessageParamaters[i]))[0]); ++j) {
-					if(s.substr(n+command.length()+1).compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j])) {
+                                std::string t = s.substr(n+command.length()+1);
+				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
+					if(t.compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j]) == 0) {
 						switch(i) {
 						case Resolution:
 							set_resolution(ResolutionValues[j]);
