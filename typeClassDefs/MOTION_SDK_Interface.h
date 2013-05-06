@@ -97,12 +97,14 @@ namespace guWhiteboard
                                 set_head_stiffness(unsigned(atoi(s)));
                                 while (isdigit(*s)) s++;
                         }
+                        else set_head_stiffness_mask(false);
                         if (*s == ',' && isdigit(*++s)) // check body stiffness?
                         {
                                 set_body_stiffness_mask();
                                 set_body_stiffness(unsigned(atoi(s)));
                                 while (isdigit(*s)) s++;
                         }
+                        else set_body_stiffness_mask(false);
                         set_motion_player_mask();
                         CHECK_ENUM(s, motion_player, right_goalie_block);
                         else CHECK_ENUM(s, motion_player, finish_right_goalie_block);

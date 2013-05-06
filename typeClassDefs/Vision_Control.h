@@ -92,10 +92,10 @@ public:
 		size_t n;
 		std::string command;
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
-		for(uint i = 0; i<NUMBER_VISION_MESSAGES; ++i) {
+		for (unsigned i = 0; i<NUMBER_VISION_MESSAGES; ++i) {
 			command = std::string(Commands[i]);
 			n = s.find(command);
-			if(n!=std::string::npos) {
+			if (n!=std::string::npos) {
 				for(uint j = 0; j<sizeof(*(MessageParamaters[i]))/sizeof((*(MessageParamaters[i]))[0]); ++j) {
 					if(s.substr(n+command.length()+1).compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j])) {
 						switch(i) {
