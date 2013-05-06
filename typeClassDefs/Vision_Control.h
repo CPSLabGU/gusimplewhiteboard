@@ -58,6 +58,11 @@ enum CalibrationFile {
 	Calibration3
 };
 
+enum SaveFileType {
+    AI2,
+    JPG
+};
+
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
 		"IMAGEINPUT", "LOADCALIBRATION"};
@@ -68,17 +73,19 @@ static const char* CameraStrings[] = {"TOP", "BOTTOM"};
 static const VisionCamera CameraValues[] = {Top, Bottom};
 static const char* PipelineStrings[] = {"SOCCER"};
 static const NamedPipeline PipelineValues[] = {Soccer};
-static const char* StreamingSourceStrings[] = {"NORMAL", "CLASSIFED", "RECOGNIZED"};
+static const char* StreamingSourceStrings[] = {"NORMAL", "CLASSIFIED", "RECOGNIZED"};
 static const StreamingType StreamingSourceValues[] = {Normal, Classified, Recognized};
 static const char* CalibrationStrings[] = {"CALIBRATION0", "CALIBRATION1", "CALIBRATION2", "CALIBRATION3"};
 static const CalibrationFile CalibrationValues[] = {Calibration0, Calibration1, Calibration2, Calibration3};
 static const char* BoolStrings[] = {"YES", "NO"};
 static const bool BoolValues[] = {true, false};
+static const char* SaveImageStrings[] = {"AI2", "JPG"};
+static const SaveFileType SaveImageValues[] = {AI2, JPG};
 
-static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, BoolStrings,
+static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, SaveImageStrings,
 		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, CalibrationStrings};
 static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
-                                                sizeof(CameraStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
+                                                sizeof(CameraStrings)/sizeof(char*), sizeof(SaveImageStrings)/sizeof(char*),
                                                 sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
                                                 sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
                                                 sizeof(BoolStrings)/sizeof(char*), sizeof(CalibrationStrings)/sizeof(char*)};
@@ -115,7 +122,7 @@ public:
 							set_selectedCamera(CameraValues[j]);
 							break;
 						case SaveImage:
-							set_saveImage(BoolValues[j]);
+							set_saveImage(SaveImageValues[j]);
 							break;
 						case SaveClassifiedImage:
 							set_saveClassifiedImage(BoolValues[j]);
@@ -173,7 +180,7 @@ public:
 	CONTROLLED_PROPERTY(ResolutionType, resolution)
 	CONTROLLED_PROPERTY(bool, pipelineRunning)
 	CONTROLLED_PROPERTY(VisionCamera, selectedCamera)
-	CONTROLLED_PROPERTY(bool, saveImage)
+	CONTROLLED_PROPERTY(SaveFileType, saveImage)
 	CONTROLLED_PROPERTY(bool, saveClassifiedImage)
 	CONTROLLED_PROPERTY(NamedPipeline, activatePipeline)
 	CONTROLLED_PROPERTY(StreamingType, streamingSource)
