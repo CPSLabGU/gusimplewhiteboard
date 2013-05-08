@@ -10,6 +10,7 @@
 
 #include <gu_util.h>
 #include <string>
+#include <sstream>
 #include <algorithm>
 #include <stdio.h>
 #include <bitset>
@@ -29,11 +30,39 @@ enum VisionMessages {
 		NUMBER_VISION_MESSAGES
 };
 
-enum ResolutionType {
+enum Resolutions {
 	QQVGA,  // 160 x 120
 	QVGA,   // 320 x 240
 	VGA,    // 640 x 480
 	HD_4VGA    // 1280x960
+};
+
+class ResolutionType {
+public:
+    ResolutionType(Resolutions res) {
+        resolution = res;
+    }
+    
+    ResolutionType() {
+        resolution = VGA;
+    }
+    
+    int getResolution() {
+        return resolution;
+    }
+    
+    int Width() {
+        static const int Widths[] = {160, 320, 640, 1280};
+        return Widths[resolution];
+    }
+    
+    int Height() {
+        static const int Heights[] = {120, 240, 480, 960};
+        return Heights[resolution];
+    }
+    
+private:
+    Resolutions resolution;
 };
 
 enum VisionCamera {
@@ -65,10 +94,13 @@ enum SaveFileType {
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "LOADCALIBRATION"};
+		"IMAGEINPUT", "LOADCALIBRATION", "Undefined"};
+static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
+		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
+		"ImageInput", "CalibrationLoaded", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
-static const ResolutionType ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
+static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
 static const char* CameraStrings[] = {"TOP", "BOTTOM"};
 static const VisionCamera CameraValues[] = {Top, Bottom};
 static const char* PipelineStrings[] = {"SOCCER"};
@@ -150,7 +182,31 @@ public:
 	}
 
 	std::string description() {
-		return std::string("NYI");
+		std::stringstream result;
+                
+		if(resolution_mask())
+			result << Statuses[0] << "=" << ResolutionStrings[resolution().getResolution()] << " ";//fixme
+		if(pipelineRunning_mask())
+			result << Statuses[1] << "=" << BoolStrings[pipelineRunning()?0:1] << " ";
+		if(selectedCamera_mask())
+			result << Statuses[2] << "=" << CameraStrings[selectedCamera()] << " ";
+		if(saveImage_mask())
+			result << Statuses[3] << "=" << BoolStrings[saveImage()?0:1] << " ";
+		if(saveClassifiedImage_mask())
+			result << Statuses[4] << "=" << BoolStrings[saveClassifiedImage()?0:1] << " ";
+		if(activatePipeline_mask())
+			result << Statuses[5] << "=" << PipelineStrings[activatePipeline()] << " ";
+		if(streamingSource_mask())
+			result << Statuses[6] << "=" << StreamingSourceStrings[streamingSource()] << " ";
+		if(conservativeMode_mask())
+			result << Statuses[7] << "=" << BoolStrings[conservativeMode()?0:1] << " ";
+		if(imageInput_mask())
+			result << Statuses[8] << "=" << BoolStrings[imageInput()?0:1] << " ";
+		if(loadCalibration_mask())
+			result << Statuses[9] << "=" << CalibrationStrings[loadCalibration()] << " ";
+                if(frameRate_mask())
+                        result << Statuses[10] << "=" << CalibrationStrings[loadCalibration()] << " ";
+		return result.str();
 	}
 
 	VisionControlStatus operator+=(VisionControlStatus a) {
@@ -187,6 +243,7 @@ public:
 	CONTROLLED_PROPERTY(bool, conservativeMode)
 	CONTROLLED_PROPERTY(bool, imageInput)
 	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
+        CONTROLLED_PROPERTY(int, frameRate)
 
 	CONTROL_BIT(resolution)
 	CONTROL_BIT(pipelineRunning)
@@ -198,6 +255,7 @@ public:
 	CONTROL_BIT(conservativeMode)
 	CONTROL_BIT(imageInput)
 	CONTROL_BIT(loadCalibration)
+        CONTROL_BIT(frameRate)
 
 };
 }
