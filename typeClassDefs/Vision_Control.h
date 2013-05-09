@@ -205,7 +205,7 @@ public:
 		if(loadCalibration_mask())
 			result << Statuses[9] << "=" << CalibrationStrings[loadCalibration()] << " ";
                 if(frameRate_mask())
-                        result << Statuses[10] << "=" << CalibrationStrings[loadCalibration()] << " ";
+                        result << Statuses[10] << "=" << frameRate() << " ";
 		return result.str();
 	}
 

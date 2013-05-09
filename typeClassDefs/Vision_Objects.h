@@ -55,6 +55,7 @@ private:
 	WbBallInfo _ball;
 	WbGoalPostInfo _leftGoalPost;
 	WbGoalPostInfo _rightGoalPost;
+        int frameNumber;
 public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
@@ -111,6 +112,13 @@ public:
 				return & _lines[line - VisionObjectTypes::Line1];
 		return NULL;
 	}
+        void setFrameNumber(int fn) {
+            frameNumber = fn;
+        }
+        
+        int FrameNumer() {
+            return frameNumber;
+        }
 
 
 	void ClearMask() {
@@ -138,6 +146,7 @@ public:
 				<< "," << _lines[i-VisionObjectTypes::Line1].startY
 				<< "," << _lines[i-VisionObjectTypes::Line1].endX
 				<< "," << _lines[i-VisionObjectTypes::Line1].endY << ") ";
+                result << "FrameNumber=" << frameNumber;
 		return result.str();
 	}
 #endif
