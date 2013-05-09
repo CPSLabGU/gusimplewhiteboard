@@ -15,21 +15,17 @@
 #include <cmath>
 
 
-#define JOINT_DEG_GETTER(t, n) public: t n##_degrees () { return float(_##n * (float)(180/M_PI)) ; }
-#define JOINT_PROPERTY(type, name) PROPERTY_DECLARATION(type,name) PROPERTY_GETTER(type,name) JOINT_DEG_GETTER(type,name) PROPERTY_SETTER(type,name)
-
-
 
 namespace guWhiteboard                                                  
 {
         class SENSORS_LegJointSensors
         {
-                JOINT_PROPERTY(float, LKneePitch)
-                JOINT_PROPERTY(float, LAnklePitch)
-                JOINT_PROPERTY(float, LAnkleRoll)
-                JOINT_PROPERTY(float, RKneePitch)
-                JOINT_PROPERTY(float, RAnklePitch)
-                JOINT_PROPERTY(float, RAnkleRoll)
+                PROPERTY(float, LKneePitch)
+                PROPERTY(float, LAnklePitch)
+                PROPERTY(float, LAnkleRoll)
+                PROPERTY(float, RKneePitch)
+                PROPERTY(float, RAnklePitch)
+                PROPERTY(float, RAnkleRoll)
                 
         public:
                 SENSORS_LegJointSensors()
