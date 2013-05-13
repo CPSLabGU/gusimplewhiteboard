@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef FilteredVisionObject_DEFINED
-#define FilteredVisionObject_DEFINED
+#ifndef FilteredVisionObjects_DEFINED
+#define FilteredVisionObjects_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -166,6 +166,7 @@ namespace guWhiteboard
 	{
 		class FilteredVisionObject _objects[FVO_NUM_OBJECTS];
 
+        public:
             /** string constructor */
             FilteredVisionObjects(const std::string &names) { from_string(names); }
 
@@ -208,7 +209,7 @@ namespace guWhiteboard
 			break;
 		    case FVOGoalCrossBar : ss << "aLeftGoalPost:";
 			break;
-		    case FVO_NUM_OBJECTS : std::cerr <<  "ERROR:";
+		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
 			break;
 		  }// switch
 		  ss <<_objects[FVOBall].description();
@@ -229,4 +230,4 @@ namespace guWhiteboard
 }
 
 
-#endif // FilteredVisionObject_DEFINED
+#endif // FilteredVisionObjects_DEFINED
