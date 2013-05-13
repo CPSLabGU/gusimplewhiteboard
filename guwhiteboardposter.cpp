@@ -340,15 +340,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #endif // !Point2D_DEFINED
 
 		case kFVOsighting_v:
-#ifdef FilteredVisionObject_DEFINED
+#ifdef FilteredVisionObjects_DEFINED
 		{
 			class FVOsighting_t FVOsighting_msg;
-			FVOsighting_msg.post(FilteredVisionObject(message_content));
+			FVOsighting_msg.post(FilteredVisionObjects(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredVisionObject_DEFINED
+#endif // !FilteredVisionObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
