@@ -18,7 +18,7 @@
 
 struct WbBallInfo {
 	uint16_t radius;
-	GUPoint<uint16_t> position;
+	GUPoint<int16_t> position;
 };
 
 struct WbGoalPostInfo {
