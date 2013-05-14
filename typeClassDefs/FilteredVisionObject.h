@@ -77,6 +77,15 @@ namespace guWhiteboard
             FVO_NUM_OBJECTS          ///< number of different kind of objects
         };
 
+	FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value);
+
+	FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value)
+	{
+		int i =value; i++ ;
+	        FilteredVisionObjectType temp  = FilteredVisionObjectType(i);
+		return temp;
+	}
+
         /**
          * Class for a single sigthing.
          */
