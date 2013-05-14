@@ -90,7 +90,7 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            FilteredVisionObject( bool isVisible = true,
+            FilteredVisionObject( bool isVisible = false,
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
                                        int16_t x = 0,
@@ -164,7 +164,7 @@ namespace guWhiteboard
 	 */
         class FilteredVisionObjects
 	{
-		class FilteredVisionObject _objects[FVO_NUM_OBJECTS];
+	class FilteredVisionObject     _objects[FVO_NUM_OBJECTS];
 
         public:
 	    /** single vision object setter */
@@ -223,7 +223,7 @@ namespace guWhiteboard
 		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
 			break;
 		  }// switch
-		  ss <<_objects[FVOBall].description();
+		  ss <<_objects[landmarkType].description();
 		} //for
                 return ss.str();
 	  }
