@@ -167,6 +167,17 @@ namespace guWhiteboard
 		class FilteredVisionObject _objects[FVO_NUM_OBJECTS];
 
         public:
+	    /** single vision object setter */
+	    FilteredVisionObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    {
+		    /*
+		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
+		{ FilteredVisionObjectType iThLandmarkType = FilteredVisionObjectType(i);
+		}
+			*/
+		_objects[landmarkType]=obj;
+	    }
+
             /** string constructor */
             FilteredVisionObjects(const std::string &names) { from_string(names); }
 
