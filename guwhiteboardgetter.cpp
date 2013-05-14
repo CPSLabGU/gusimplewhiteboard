@@ -249,10 +249,10 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !SENSORS_TorsoJointSensors_DEFINED
 
-		case kSENSORS_SonarSensors_v:
+		case kSENSORS_LeftSonarSensors_v:
 #ifdef SENSORS_SonarSensors_DEFINED
 		{
-			class SENSORS_SonarSensors_t m;
+			class SENSORS_LeftSonarSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -382,6 +382,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return "##unsupported##";
 
 #endif // !VisionObjects_DEFINED
+
+		case kSENSORS_RightSonarSensors_v:
+#ifdef SENSORS_SonarSensors_DEFINED
+		{
+			class SENSORS_RightSonarSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !SENSORS_SonarSensors_DEFINED
 
 	}
 #pragma clang diagnostic push

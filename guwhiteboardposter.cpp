@@ -281,11 +281,11 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !SENSORS_TorsoJointSensors_DEFINED
 
-		case kSENSORS_SonarSensors_v:
+		case kSENSORS_LeftSonarSensors_v:
 #ifdef SENSORS_SonarSensors_DEFINED
 		{
-			class SENSORS_SonarSensors_t SENSORS_SonarSensors_msg;
-			SENSORS_SonarSensors_msg.post(SENSORS_SonarSensors(message_content));
+			class SENSORS_LeftSonarSensors_t SENSORS_LeftSonarSensors_msg;
+			SENSORS_LeftSonarSensors_msg.post(SENSORS_SonarSensors(message_content));
 			return true;
 		}
 #else
@@ -419,6 +419,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !VisionObjects_DEFINED
 
+		case kSENSORS_RightSonarSensors_v:
+#ifdef SENSORS_SonarSensors_DEFINED
+		{
+			class SENSORS_RightSonarSensors_t SENSORS_RightSonarSensors_msg;
+			SENSORS_RightSonarSensors_msg.post(SENSORS_SonarSensors(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !SENSORS_SonarSensors_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -430,7 +441,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(40);
+	// self.reserve(41);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -458,7 +469,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["SENSORS_TorsoJointTemps"] = kSENSORS_TorsoJointTemps_v;
 	self["SENSORS_LegJointSensors"] = kSENSORS_LegJointSensors_v;
 	self["SENSORS_TorsoJointSensors"] = kSENSORS_TorsoJointSensors_v;
-	self["SENSORS_SonarSensors"] = kSENSORS_SonarSensors_v;
+	self["SENSORS_LeftSonarSensors"] = kSENSORS_LeftSonarSensors_v;
 	self["fsm_control"] = kFSM_Control_v;
 	self["fsm_status"] = kFSM_Status_v;
 	self["fsm_names"] = kFSM_Names_v;
@@ -472,5 +483,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["guvision_control"] = kVision_Control_v;
 	self["guvision_status"] = kVision_Status_v;
 	self["guvision_objects"] = kVision_Objects_v;
+	self["SENSORS_RightSonarSensors"] = kSENSORS_RightSonarSensors_v;
 }
 
