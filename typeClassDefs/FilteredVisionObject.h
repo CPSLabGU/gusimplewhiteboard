@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef FilteredVisionObject_DEFINED
-#define FilteredVisionObject_DEFINED
+#ifndef FilteredVisionObjects_DEFINED
+#define FilteredVisionObjects_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -73,15 +73,26 @@ namespace guWhiteboard
             FVOGoalPost,          ///< Filtered informaiton for a post we cannot tell is Left or right
             FVOGoalPostLeft,          ///< Filtered informaiton for a post we know is Left 
             FVOGoalPostRight,          ///< Filtered informaiton for a post we know is right 
-            FVOGoalCrossBar          ///< Filtered informaiton for the Ball
+            FVOGoalCrossBar,          ///< Filtered informaiton for the Ball
+            FVO_NUM_OBJECTS          ///< number of different kind of objects
         };
 
+	/*
+	static FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value);
+
+	static FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value)
+	{
+		int i =value; i++ ;
+	        FilteredVisionObjectType temp  = FilteredVisionObjectType(i);
+		return temp;
+	}
+	*/
+
         /**
-         * Class for for demonstrating OO-messages.
+         * Class for a single sigthing.
          */
         class FilteredVisionObject
         {
-            PROPERTY(FilteredVisionObjectType, landmarkType) //  x-coordinaee
             PROPERTY(bool, isVisible) //  x-coordinate
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
@@ -90,13 +101,11 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            FilteredVisionObject(FilteredVisionObjectType landmarkType = FVOBall, 
-                                       bool isVisible = true,
+            FilteredVisionObject( bool isVisible = false,
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
                                        int16_t x = 0,
 				       int16_t y = 0):
-                                      _landmarkType(landmarkType), 
                                       _isVisible(isVisible), 
                                       _distance(distance), 
                                       _frameCounter(frameCounter), 
@@ -107,7 +116,6 @@ namespace guWhiteboard
 
             /** copy constructor */
             FilteredVisionObject(const FilteredVisionObject &other):
-                      _landmarkType(other._landmarkType),
                       _isVisible(other._isVisible),
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
@@ -117,6 +125,7 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
+		/*
 		switch (landmarkType() )
 		{ case FVOBall : ss << "aBall:";
 			break;
@@ -129,6 +138,7 @@ namespace guWhiteboard
 		  case FVOGoalCrossBar : ss << "aCrossbar:";
 			break;
 		}
+		*/
 
 		if ( isVisible())
                 { ss<<" is visible ";
@@ -141,7 +151,8 @@ namespace guWhiteboard
                 return ss.str();
             }
 
-            /** TODO: convert from a string */
+            /** Only grab the distance x,y positions convert from a string */
+	    //*** TODO: still incomplete */
             void from_string(const std::string &str)
             {
                 std::istringstream iss(str);
@@ -156,8 +167,89 @@ namespace guWhiteboard
                     }
                 }
             }
+
         };
+
+	/**
+	 * Filtered vision objects on the whiteboard
+	 */
+        class FilteredVisionObjects
+	{
+	class FilteredVisionObject     _objects[FVO_NUM_OBJECTS];
+
+        public:
+	    /** single vision object setter */
+	    FilteredVisionObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    {
+		    /*
+		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
+		{ FilteredVisionObjectType iThLandmarkType = FilteredVisionObjectType(i);
+		}
+			*/
+		_objects[landmarkType]=obj;
+	    }
+
+            /** string constructor */
+            FilteredVisionObjects(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            FilteredVisionObjects(const FilteredVisionObjects &other)
+	    {
+		    memcpy(this, &other, sizeof(other));
+	    }
+
+	    /** property getter */
+	    class FilteredVisionObject *objects() { return _objects; }
+
+	    /** property setter */
+	    void set_objects(const class FilteredVisionObject *objects)
+	    {
+		    memcpy(_objects, objects, sizeof(_objects));
+	    }
+
+	    /** single vision object setter */
+	    void set_object(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    {
+		_objects[landmarkType]=obj;
+	    }
+
+            /** convert to a string */
+            std::string description()
+            {
+                std::ostringstream ss;
+		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
+		{ 
+			FilteredVisionObjectType landmarkType = FilteredVisionObjectType(i);
+		  switch (landmarkType )
+		   { case FVOBall : ss << "aBall:"; 
+			break;
+		    case FVOGoalPost : ss << "aGoalPost:";
+			break;
+		    case FVOGoalPostLeft : ss << "aLeftGoalPost:";
+			break;
+		    case FVOGoalPostRight : ss << "aLeftGoalPost:";
+			break;
+		    case FVOGoalCrossBar : ss << "aLeftGoalPost:";
+			break;
+		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
+			break;
+		  }// switch
+		  ss <<_objects[landmarkType].description();
+		} //for
+                return ss.str();
+	  }
+
+	    /*
+	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
+	     * NOT WORKING
+	     */
+            void from_string(const std::string &str)
+            {
+		  _objects[FVOBall].from_string( str );
+            }
+
+	};
 }
 
 
-#endif // FilteredVisionObject_DEFINED
+#endif // FilteredVisionObjects_DEFINED

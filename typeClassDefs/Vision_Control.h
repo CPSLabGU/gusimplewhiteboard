@@ -37,6 +37,9 @@ enum Resolutions {
 	HD_4VGA    // 1280x960
 };
 
+        static const int Widths[] = {160, 320, 640, 1280};
+
+
 class ResolutionType {
 public:
     ResolutionType(Resolutions res) {
@@ -52,7 +55,6 @@ public:
     }
     
     int Width() {
-        static const int Widths[] = {160, 320, 640, 1280};
         return Widths[resolution];
     }
     

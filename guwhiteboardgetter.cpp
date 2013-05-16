@@ -249,10 +249,10 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !SENSORS_TorsoJointSensors_DEFINED
 
-		case kSENSORS_SonarSensors_v:
+		case kSENSORS_LeftSonarSensors_v:
 #ifdef SENSORS_SonarSensors_DEFINED
 		{
-			class SENSORS_SonarSensors_t m;
+			class SENSORS_LeftSonarSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -308,7 +308,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #endif // !Point2D_DEFINED
 
 		case kFVOsighting_v:
-#ifdef FilteredVisionObject_DEFINED
+#ifdef FilteredVisionObjects_DEFINED
 		{
 			class FVOsighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -316,7 +316,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !FilteredVisionObject_DEFINED
+#endif // !FilteredVisionObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
@@ -383,56 +383,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionObjects_DEFINED
 
-		case kLoadGridMap_v:
+		case kSENSORS_RightSonarSensors_v:
+#ifdef SENSORS_SonarSensors_DEFINED
 		{
-			class LoadGridMap_t m;
-			return msg ? m.get_from(msg) : m.get();
+			class SENSORS_RightSonarSensors_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
-		case kLoadDynamicPDDL_v:
-		{
-			class LoadDynamicPDDL_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kLoadPDDL_v:
-		{
-			class LoadPDDL_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kStartPlanner_v:
-		{
-			class StartPlanner_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kExitModule_v:
-		{
-			class ExitModule_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kNextAction_v:
-		{
-			class NextAction_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kReplanning_v:
-		{
-			class Replanning_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kDoAll_v:
-		{
-			class DoAll_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kIsObstacleKnow_v:
-		{
-			class IsObstacleKnow_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
-		case kGeneratePolicy_v:
-		{
-			class GeneratePolicy_t m;
-			return msg ? m.get_from(msg) : m.get();
-		}
+#else
+			return "##unsupported##";
+
+#endif // !SENSORS_SonarSensors_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
