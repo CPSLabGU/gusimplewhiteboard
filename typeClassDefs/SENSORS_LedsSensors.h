@@ -127,7 +127,7 @@ namespace guWhiteboard
                         NUMBER_OF_LEDS
                 };
                 
-                
+#ifdef WANT_LED_NAMES //shut the compiler up, if this is used later please remove the ifdef - Carl.
                 static const char *ledNames[NUMBER_OF_LEDS] =
                 {
                         "Ears/Led/Left/0Deg/Actuator/Value",
@@ -208,6 +208,7 @@ namespace guWhiteboard
                         "RFoot/Led/Green/Actuator/Value",
                         "RFoot/Led/Blue/Actuator/Value",
                 };
+#endif
         }
         
         class SENSORS_LedsSensors

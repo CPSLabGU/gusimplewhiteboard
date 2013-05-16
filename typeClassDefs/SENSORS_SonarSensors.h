@@ -14,18 +14,37 @@
 
 namespace guWhiteboard                                                  
 {
+        namespace Sonar
+        {
+                typedef enum ReadingCodesEnum {
+                        Left0,
+                        Left1,
+                        Left2,
+                        Left3,
+                        Left4,
+                        Left5,
+                        Left6,
+                        Left7,
+                        Left8,
+                        Left9,
+                        Right0,
+                        Right1,
+                        Right2,
+                        Right3,
+                        Right4,
+                        Right5,
+                        Right6,
+                        Right7,
+                        Right8,
+                        Right9,
+                        NUMBER_OF_READINGS
+                } ReadingCode;
+        }
+        
+        
         class SENSORS_SonarSensors
         {
-                PROPERTY(float, Value0)
-                PROPERTY(float, Value1)
-                PROPERTY(float, Value2)
-                PROPERTY(float, Value3)
-                PROPERTY(float, Value4)
-                PROPERTY(float, Value5)
-                PROPERTY(float, Value6)
-                PROPERTY(float, Value7)
-                PROPERTY(float, Value8)
-                PROPERTY(float, Value9)
+                ARRAY_PROPERTY(u_int8_t, sonar, Sonar::NUMBER_OF_READINGS)
                 
         public:
                 SENSORS_SonarSensors()
@@ -52,8 +71,10 @@ namespace guWhiteboard
                 {
                         std::stringstream ss;
 
-                        ss << Value0() << ", " << Value1() << ", " << Value2() << ", " << Value3() << ", " << Value4() << ", " << Value5() << ", " << Value6() << ", " << Value7() << ", " << Value8() << ", " << Value9();
-
+                        for (int i = 0; i < (Sonar::NUMBER_OF_READINGS-1); i++)
+                                ss << (int)sonar(i) << ",";
+                        ss << (int)sonar(Sonar::NUMBER_OF_READINGS-1); //Don't want a ', ' for the last element.
+                        
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
