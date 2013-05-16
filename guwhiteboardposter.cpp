@@ -419,6 +419,66 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !VisionObjects_DEFINED
 
+		case kLoadGridMap_v:
+		{
+			class LoadGridMap_t LoadGridMap_msg;
+			LoadGridMap_msg.post(std::string(message_content));
+			return true;
+		}
+		case kLoadDynamicPDDL_v:
+		{
+			class LoadDynamicPDDL_t LoadDynamicPDDL_msg;
+			LoadDynamicPDDL_msg.post(std::string(message_content));
+			return true;
+		}
+		case kLoadPDDL_v:
+		{
+			class LoadPDDL_t LoadPDDL_msg;
+			LoadPDDL_msg.post(std::string(message_content));
+			return true;
+		}
+		case kStartPlanner_v:
+		{
+			class StartPlanner_t StartPlanner_msg;
+			StartPlanner_msg.post(std::string(message_content));
+			return true;
+		}
+		case kExitModule_v:
+		{
+			class ExitModule_t ExitModule_msg;
+			ExitModule_msg.post(std::string(message_content));
+			return true;
+		}
+		case kNextAction_v:
+		{
+			class NextAction_t NextAction_msg;
+			NextAction_msg.post(std::string(message_content));
+			return true;
+		}
+		case kReplanning_v:
+		{
+			class Replanning_t Replanning_msg;
+			Replanning_msg.post(std::string(message_content));
+			return true;
+		}
+		case kDoAll_v:
+		{
+			class DoAll_t DoAll_msg;
+			DoAll_msg.post(std::string(message_content));
+			return true;
+		}
+		case kIsObstacleKnow_v:
+		{
+			class IsObstacleKnow_t IsObstacleKnow_msg;
+			IsObstacleKnow_msg.post(std::string(message_content));
+			return true;
+		}
+		case kGeneratePolicy_v:
+		{
+			class GeneratePolicy_t GeneratePolicy_msg;
+			GeneratePolicy_msg.post(std::string(message_content));
+			return true;
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -430,7 +490,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(40);
+	// self.reserve(50);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -472,5 +532,15 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["guvision_control"] = kVision_Control_v;
 	self["guvision_status"] = kVision_Status_v;
 	self["guvision_objects"] = kVision_Objects_v;
+	self["load_map"] = kLoadGridMap_v;
+	self["load_dynamicMap"] = kLoadDynamicPDDL_v;
+	self["load_PDDL"] = kLoadPDDL_v;
+	self["start_planner"] = kStartPlanner_v;
+	self["exit_module"] = kExitModule_v;
+	self["next_action"] = kNextAction_v;
+	self["replanting"] = kReplanning_v;
+	self["doAll"] = kDoAll_v;
+	self["is_obstacleKnow"] = kIsObstacleKnow_v;
+	self["generate_policy"] = kGeneratePolicy_v;
 }
 

@@ -383,6 +383,56 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionObjects_DEFINED
 
+		case kLoadGridMap_v:
+		{
+			class LoadGridMap_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kLoadDynamicPDDL_v:
+		{
+			class LoadDynamicPDDL_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kLoadPDDL_v:
+		{
+			class LoadPDDL_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kStartPlanner_v:
+		{
+			class StartPlanner_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kExitModule_v:
+		{
+			class ExitModule_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kNextAction_v:
+		{
+			class NextAction_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kReplanning_v:
+		{
+			class Replanning_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kDoAll_v:
+		{
+			class DoAll_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kIsObstacleKnow_v:
+		{
+			class IsObstacleKnow_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kGeneratePolicy_v:
+		{
+			class GeneratePolicy_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

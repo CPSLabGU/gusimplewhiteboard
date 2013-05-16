@@ -38,10 +38,12 @@ namespace guWhiteboard
                 PROPERTY(u_int8_t, Right9)
                 
         public:
-                SENSORS_SonarSensors()
+			SENSORS_SonarSensors()
                 {
 
                 }
+			
+			
         };
 }
 
