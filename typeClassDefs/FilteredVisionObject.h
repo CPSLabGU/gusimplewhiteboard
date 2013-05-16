@@ -93,7 +93,7 @@ namespace guWhiteboard
          */
         class FilteredVisionObject
         {
-            PROPERTY(bool, isVisible) //  x-coordinate
+            PROPERTY(bool, isVisible) //  is this a credible sighting
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
             PROPERTY(int16_t, x) //  center x-coordinate in image
