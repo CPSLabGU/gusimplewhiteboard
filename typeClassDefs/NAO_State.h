@@ -69,7 +69,7 @@ namespace guWhiteboard
                 {
                         std::stringstream ss;
 
-                        ss << Robot_Stance_stringValues[int(stance())] << ", " << int(chest_pressed()) << " @chest, " << int(left_foot_pressed()) << " @lfoot, " << int(right_foot_pressed()) << " @rfoot";
+                        ss << Robot_Stance_stringValues[int(stance())] << ", " << (chest_pressed_long() ? "L" : "") << int(chest_pressed()) << " @chest, " << (left_foot_pressed_long() ? "L" : "") << int(left_foot_pressed()) << " @lfoot, " << (right_foot_pressed_long() ? "L" : "") << int(right_foot_pressed()) << " @rfoot";
 
                         return ss.str();
                 }
