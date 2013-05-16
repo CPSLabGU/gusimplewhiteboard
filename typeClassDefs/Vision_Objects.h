@@ -22,11 +22,11 @@ struct WbBallInfo {
 };
 
 struct WbGoalPostInfo {
-	GUPoint<uint16_t> outerBottom;
-	GUPoint<uint16_t> outerTop;
+	GUPoint<int16_t> outerBottom;
+	GUPoint<int16_t> outerTop;
 
-	GUPoint<uint16_t> innerBottom;
-	GUPoint<uint16_t> innerTop;
+	GUPoint<int16_t> innerBottom;
+	GUPoint<int16_t> innerTop;
 };
 
 struct WbLineInfo {
