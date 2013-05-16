@@ -178,6 +178,9 @@ namespace guWhiteboard
 	class FilteredVisionObject     _objects[FVO_NUM_OBJECTS];
 
         public:
+	    FilteredVisionObjects()
+	    {}
+
 	    /** single vision object setter */
 	    FilteredVisionObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
@@ -211,6 +214,12 @@ namespace guWhiteboard
 	    void set_object(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
 		_objects[landmarkType]=obj;
+	    }
+
+	    /** single vision object setter */
+	    FilteredVisionObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    {
+		return _objects[landmarkType];
 	    }
 
             /** convert to a string */
