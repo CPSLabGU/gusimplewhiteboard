@@ -75,6 +75,7 @@
 #include "Vision_Control.h"
 #include "FilteredVisionObject.h"
 #include "SENSORS_SonarSensors.h"
+#include "NAO_State.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

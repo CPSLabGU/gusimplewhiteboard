@@ -63,6 +63,9 @@
 #include <sstream>
 #include <gu_util.h>
 #include "gusimplewhiteboard.h"
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <ctype.h>
+#endif
 
 #define CONTROLSTATUS_SIZE          ((sizeof(gsw_simple_message))*8)
 #define CONTROLSTATUS_BITS_RESERVED 2   // must be big enough for enum
