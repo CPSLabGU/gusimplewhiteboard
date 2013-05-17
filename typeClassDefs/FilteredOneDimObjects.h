@@ -1,5 +1,5 @@
 /*
- *  FilteredVisionObject.h
+ *  FilteredKalmanObject.h
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 25/03/13.
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef FilteredVisionObjects_DEFINED
-#define FilteredVisionObjects_DEFINED
+#ifndef FilteredOneDimObjects_DEFINED
+#define FilteredOneDimObjects_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -67,23 +67,25 @@ namespace guWhiteboard
         /**
          * Discriminate sigthings 
          */
-        enum FilteredVisionObjectType
+        enum FilteredKalmanObjectType
         {
             FVOBall,          ///< Filtered informaiton for the Ball
             FVOGoalPost,          ///< Filtered informaiton for a post we cannot tell is Left or right
             FVOGoalPostLeft,          ///< Filtered informaiton for a post we know is Left 
             FVOGoalPostRight,          ///< Filtered informaiton for a post we know is right 
             FVOGoalCrossBar,          ///< Filtered informaiton for the Ball
-            FVO_NUM_OBJECTS          ///< number of different kind of objects
+	    FSLeft,
+	    FSRight,
+            FO_NUM_OBJECTS          ///< number of different kind of objects
         };
 
 	/*
-	static FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value);
+	static FilteredKalmanObjectType nextLandmark ( FilteredKalmanObjectType value);
 
-	static FilteredVisionObjectType nextLandmark ( FilteredVisionObjectType value)
+	static FilteredKalmanObjectType nextLandmark ( FilteredKalmanObjectType value)
 	{
 		int i =value; i++ ;
-	        FilteredVisionObjectType temp  = FilteredVisionObjectType(i);
+	        FilteredKalmanObjectType temp  = FilteredKalmanObjectType(i);
 		return temp;
 	}
 	*/
@@ -91,7 +93,7 @@ namespace guWhiteboard
         /**
          * Class for a single sigthing.
          */
-        class FilteredVisionObject
+        class FilteredKalmanObject
         {
             PROPERTY(bool, isVisible) //  is this a credible sighting
             PROPERTY(int16_t, distance) //  distance to landmark in cm
@@ -101,7 +103,7 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            FilteredVisionObject( bool isVisible = false,
+            FilteredKalmanObject( bool isVisible = false,
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
                                        int16_t x = 0,
@@ -112,10 +114,10 @@ namespace guWhiteboard
                                        _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
-            FilteredVisionObject(const std::string &names) { from_string(names); }
+            FilteredKalmanObject(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            FilteredVisionObject(const FilteredVisionObject &other):
+            FilteredKalmanObject(const FilteredKalmanObject &other):
                       _isVisible(other._isVisible),
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
@@ -173,51 +175,51 @@ namespace guWhiteboard
 	/**
 	 * Filtered vision objects on the whiteboard
 	 */
-        class FilteredVisionObjects
+        class FilteredOneDimObjects
 	{
-	class FilteredVisionObject     _objects[FVO_NUM_OBJECTS];
+	class FilteredKalmanObject     _objects[FO_NUM_OBJECTS];
 
         public:
-	    FilteredVisionObjects()
+	    FilteredOneDimObjects()
 	    {}
 
 	    /** single vision object setter */
-	    FilteredVisionObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    FilteredOneDimObjects(const class FilteredKalmanObject &obj, enum FilteredKalmanObjectType landmarkType  = FVOBall)
 	    {
 		    /*
-		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
-		{ FilteredVisionObjectType iThLandmarkType = FilteredVisionObjectType(i);
+		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
+		{ FilteredKalmanObjectType iThLandmarkType = FilteredKalmanObjectType(i);
 		}
 			*/
 		_objects[landmarkType]=obj;
 	    }
 
             /** string constructor */
-            FilteredVisionObjects(const std::string &names) { from_string(names); }
+            FilteredOneDimObjects(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            FilteredVisionObjects(const FilteredVisionObjects &other)
+            FilteredOneDimObjects(const FilteredOneDimObjects &other)
 	    {
 		    memcpy(this, &other, sizeof(other));
 	    }
 
 	    /** property getter */
-	    class FilteredVisionObject *objects() { return _objects; }
+	    class FilteredKalmanObject *objects() { return _objects; }
 
 	    /** property setter */
-	    void set_objects(const class FilteredVisionObject *objects)
+	    void set_objects(const class FilteredKalmanObject *objects)
 	    {
 		    memcpy(_objects, objects, sizeof(_objects));
 	    }
 
 	    /** single vision object setter */
-	    void set_object(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    void set_object(const class FilteredKalmanObject &obj, enum FilteredKalmanObjectType landmarkType  = FVOBall)
 	    {
 		_objects[landmarkType]=obj;
 	    }
 
 	    /** single vision object setter */
-	    FilteredVisionObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    FilteredKalmanObject  get_object( enum FilteredKalmanObjectType landmarkType  = FVOBall)
 	    {
 		return _objects[landmarkType];
 	    }
@@ -226,9 +228,9 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
+		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
 		{ 
-			FilteredVisionObjectType landmarkType = FilteredVisionObjectType(i);
+			FilteredKalmanObjectType landmarkType = FilteredKalmanObjectType(i);
 		  switch (landmarkType )
 		   { case FVOBall : ss << "aBall:"; 
 			break;
@@ -240,7 +242,11 @@ namespace guWhiteboard
 			break;
 		    case FVOGoalCrossBar : ss << "aLeftGoalPost:";
 			break;
-		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
+		    case FSLeft : ss << "aLeftSonar:";
+			break;
+		    case FSRight : ss << "aRightSonar:";
+			break;
+		    case FO_NUM_OBJECTS : mipal_warn( "ERROR:");
 			break;
 		  }// switch
 		  ss <<_objects[landmarkType].description();
@@ -261,4 +267,4 @@ namespace guWhiteboard
 }
 
 
-#endif // FilteredVisionObjects_DEFINED
+#endif // FilteredOneDimObjects_DEFINED

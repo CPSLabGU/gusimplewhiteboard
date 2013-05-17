@@ -307,16 +307,16 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Point2D_DEFINED
 
-		case kFVOsighting_v:
-#ifdef FilteredVisionObjects_DEFINED
+		case kFOsighting_v:
+#ifdef FilteredOneDimObjects_DEFINED
 		{
-			class FVOsighting_t m;
+			class FOsighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !FilteredVisionObjects_DEFINED
+#endif // !FilteredOneDimObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED

@@ -30,7 +30,7 @@ class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Cu
 class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
 ,               nonatomic, SoloTypeExample,                     "example_type", This is an example of a type definition that does not generate anything other than a wb type
 class:Point2D, nonatomic, BallBelief,                           "BallBelief", WIP Class that contains the belief of the ball position from Localisation
-class:FilteredVisionObjects, nonatomic, FVOsighting,             "FVOsighting", Class that contains the Karman filtered  information of objects sightings
+class:FilteredOneDimObjects, nonatomic, FOsighting,             "FOsighting", Class that contains the Karman filtered  information of objects sightings
 class:NAO_State, nonatomic, NAO_State,                          "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
 class:UDPReceiverNotification, nonatomic, UDPRN,                "UDPReceiverNotification", the notfication for the UDP receiver.
 int,          nonatomic, PlayerNumber,                          "PlayerNumber", what palyer number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver

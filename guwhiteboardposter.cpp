@@ -339,16 +339,16 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Point2D_DEFINED
 
-		case kFVOsighting_v:
-#ifdef FilteredVisionObjects_DEFINED
+		case kFOsighting_v:
+#ifdef FilteredOneDimObjects_DEFINED
 		{
-			class FVOsighting_t FVOsighting_msg;
-			FVOsighting_msg.post(FilteredVisionObjects(message_content));
+			class FOsighting_t FOsighting_msg;
+			FOsighting_msg.post(FilteredOneDimObjects(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredVisionObjects_DEFINED
+#endif // !FilteredOneDimObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
@@ -464,7 +464,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["fsm_names"] = kFSM_Names_v;
 	self["example_type"] = kSoloTypeExample_v;
 	self["BallBelief"] = kBallBelief_v;
-	self["FVOsighting"] = kFVOsighting_v;
+	self["FOsighting"] = kFOsighting_v;
 	self["NAO_State"] = kNAO_State_v;
 	self["UDPReceiverNotification"] = kUDPRN_v;
 	self["PlayerNumber"] = kPlayerNumber_v;

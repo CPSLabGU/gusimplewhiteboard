@@ -73,7 +73,7 @@
 #include "FSM_Control.h"
 #include "Vision_Objects.h"
 #include "Vision_Control.h"
-#include "FilteredVisionObject.h"
+#include "FilteredOneDimObjects.h"
 #include "SENSORS_SonarSensors.h"
 #include "NAO_State.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
