@@ -58,7 +58,12 @@ namespace guWhiteboard
                 
                 void from_string(const std::string &str)
                 {
-                        //NYI, good luck, the values will be garbage.
+	                std::istringstream iss(str);
+	                std::string token;
+			for (int i=0; i< Sonar::NUMBER_OF_READINGS && getline(iss, token, ','); i++  )  
+			{ u_int8_t value = static_cast<u_int8_t>(atoi(token.c_str())); 
+					set_sonar(value,i); 
+			}
                 }
                 
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
