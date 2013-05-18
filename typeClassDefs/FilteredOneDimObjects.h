@@ -320,14 +320,9 @@ namespace guWhiteboard
 	    FilteredSonarObjects()
 	    {}
 
-	    /** single vision object setter */
+	    /** constructor with one setter */
 	    FilteredSonarObjects(const class FiltereSonarObject &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
 	    {
-		    /*
-		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
-		{ FilteredSonarObjectType iThLandmarkType = FilteredSonarObjectType(i);
-		}
-			*/
 		_objects[landmarkType]=obj;
 	    }
 

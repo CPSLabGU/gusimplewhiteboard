@@ -339,11 +339,11 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Point2D_DEFINED
 
-		case kFOsighting_v:
+		case kFVOsighting_v:
 #ifdef FilteredOneDimObjects_DEFINED
 		{
-			class FOsighting_t FOsighting_msg;
-			FOsighting_msg.post(FilteredOneDimObjects(message_content));
+			class FVOsighting_t FVOsighting_msg;
+			FVOsighting_msg.post(FilteredOneDimObjects(message_content));
 			return true;
 		}
 #else
@@ -419,6 +419,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !VisionObjects_DEFINED
 
+		case kFSOsighting_v:
+#ifdef FilteredSonarObjects_DEFINED
+		{
+			class FSOsighting_t FSOsighting_msg;
+			FSOsighting_msg.post(FilteredSonarObjects(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !FilteredSonarObjects_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -430,7 +441,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(40);
+	// self.reserve(41);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -464,7 +475,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["fsm_names"] = kFSM_Names_v;
 	self["example_type"] = kSoloTypeExample_v;
 	self["BallBelief"] = kBallBelief_v;
-	self["FOsighting"] = kFOsighting_v;
+	self["FOsighting"] = kFVOsighting_v;
 	self["NAO_State"] = kNAO_State_v;
 	self["UDPReceiverNotification"] = kUDPRN_v;
 	self["PlayerNumber"] = kPlayerNumber_v;
@@ -472,5 +483,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["guvision_control"] = kVision_Control_v;
 	self["guvision_status"] = kVision_Status_v;
 	self["guvision_objects"] = kVision_Objects_v;
+	self["FSOsighting"] = kFSOsighting_v;
 }
 
