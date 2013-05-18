@@ -67,33 +67,80 @@ namespace guWhiteboard
         /**
          * Discriminate sigthings 
          */
-        enum FilteredKalmanObjectType
+        enum FilteredVisionObjectType
         {
             FVOBall,          ///< Filtered informaiton for the Ball
             FVOGoalPost,          ///< Filtered informaiton for a post we cannot tell is Left or right
             FVOGoalPostLeft,          ///< Filtered informaiton for a post we know is Left 
             FVOGoalPostRight,          ///< Filtered informaiton for a post we know is right 
             FVOGoalCrossBar,          ///< Filtered informaiton for the Ball
-	    FSLeft,
-	    FSRight,
-            FO_NUM_OBJECTS          ///< number of different kind of objects
+            FVO_NUM_OBJECTS          ///< number of different kind of objects
         };
 
-	/*
-	static FilteredKalmanObjectType nextLandmark ( FilteredKalmanObjectType value);
+        enum FilteredSonarObjectType
+        {
+	    FSLeft,
+	    FSRight,
+            FSO_NUM_OBJECTS          ///< number of different kind SONAR of objects
+        };
 
-	static FilteredKalmanObjectType nextLandmark ( FilteredKalmanObjectType value)
-	{
-		int i =value; i++ ;
-	        FilteredKalmanObjectType temp  = FilteredKalmanObjectType(i);
-		return temp;
-	}
-	*/
 
         /**
-         * Class for a single sigthing.
+         * Class for a single Sonar sigthing.
          */
-        class FilteredKalmanObject
+        class FiltereSonarObject
+        {
+            PROPERTY(bool, isVisible) //  is this a credible sighting
+            PROPERTY(int16_t, distance) //  distance to landmark in cm
+            PROPERTY(int32_t, frameCounter) //  frame counter in cm
+
+        public:
+            /** designated constructor */
+            FiltereSonarObject( bool isVisible = false,
+                                       int16_t distance =0,
+				       int32_t frameCounter =0
+				       ):
+                                      _isVisible(isVisible), 
+                                      _distance(distance), 
+                                      _frameCounter(frameCounter)
+                                         { /*  */ }
+
+            /** string constructor */
+            FiltereSonarObject(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            FiltereSonarObject(const FiltereSonarObject &other):
+                      _isVisible(other._isVisible),
+                      _distance(other._distance),
+                      _frameCounter(other._frameCounter)
+                       {}
+
+            /** convert to a string */
+            std::string description()
+            {
+                std::ostringstream ss;
+
+		if ( isVisible())
+                { ss<<" is visible at distance " << distance() <<  " "; }
+		else ss << " is NOT visible ";
+
+		ss << " at frame  " << frameCounter();
+                return ss.str();
+            }
+
+	    //*** TODO: still incomplete */
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+            }
+
+        };
+
+
+        /**
+         * Class for a single Vision sigthing.
+         */
+        class FiltereVisionObject
         {
             PROPERTY(bool, isVisible) //  is this a credible sighting
             PROPERTY(int16_t, distance) //  distance to landmark in cm
@@ -103,7 +150,7 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            FilteredKalmanObject( bool isVisible = false,
+            FiltereVisionObject( bool isVisible = false,
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
                                        int16_t x = 0,
@@ -114,10 +161,10 @@ namespace guWhiteboard
                                        _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
-            FilteredKalmanObject(const std::string &names) { from_string(names); }
+            FiltereVisionObject(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            FilteredKalmanObject(const FilteredKalmanObject &other):
+            FiltereVisionObject(const FiltereVisionObject &other):
                       _isVisible(other._isVisible),
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
@@ -177,18 +224,18 @@ namespace guWhiteboard
 	 */
         class FilteredOneDimObjects
 	{
-	class FilteredKalmanObject     _objects[FO_NUM_OBJECTS];
+	class FiltereVisionObject     _objects[FVO_NUM_OBJECTS];
 
         public:
 	    FilteredOneDimObjects()
 	    {}
 
 	    /** single vision object setter */
-	    FilteredOneDimObjects(const class FilteredKalmanObject &obj, enum FilteredKalmanObjectType landmarkType  = FVOBall)
+	    FilteredOneDimObjects(const class FiltereVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
 		    /*
 		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
-		{ FilteredKalmanObjectType iThLandmarkType = FilteredKalmanObjectType(i);
+		{ FilteredVisionObjectType iThLandmarkType = FilteredVisionObjectType(i);
 		}
 			*/
 		_objects[landmarkType]=obj;
@@ -204,22 +251,22 @@ namespace guWhiteboard
 	    }
 
 	    /** property getter */
-	    class FilteredKalmanObject *objects() { return _objects; }
+	    class FiltereVisionObject *objects() { return _objects; }
 
 	    /** property setter */
-	    void set_objects(const class FilteredKalmanObject *objects)
+	    void set_objects(const class FiltereVisionObject *objects)
 	    {
 		    memcpy(_objects, objects, sizeof(_objects));
 	    }
 
 	    /** single vision object setter */
-	    void set_object(const class FilteredKalmanObject &obj, enum FilteredKalmanObjectType landmarkType  = FVOBall)
+	    void set_object(const class FiltereVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
 		_objects[landmarkType]=obj;
 	    }
 
 	    /** single vision object setter */
-	    FilteredKalmanObject  get_object( enum FilteredKalmanObjectType landmarkType  = FVOBall)
+	    FiltereVisionObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
 		return _objects[landmarkType];
 	    }
@@ -228,9 +275,9 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
+		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
 		{ 
-			FilteredKalmanObjectType landmarkType = FilteredKalmanObjectType(i);
+			FilteredVisionObjectType landmarkType = FilteredVisionObjectType(i);
 		  switch (landmarkType )
 		   { case FVOBall : ss << "aBall:"; 
 			break;
@@ -242,11 +289,92 @@ namespace guWhiteboard
 			break;
 		    case FVOGoalCrossBar : ss << "aLeftGoalPost:";
 			break;
+		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
+			break;
+		  }// switch
+		  ss <<_objects[landmarkType].description();
+		} //for
+                return ss.str();
+	  }
+
+	    /*
+	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
+	     * NOT WORKING
+	     */
+            void from_string(const std::string &str)
+            {
+		  _objects[FVOBall].from_string( str );
+            }
+
+	};
+
+
+	/**
+	 * Filtered sonar objects on the whiteboard
+	 */
+        class FilteredSonarObjects
+	{
+	class FiltereSonarObject     _objects[FSO_NUM_OBJECTS];
+
+        public:
+	    FilteredSonarObjects()
+	    {}
+
+	    /** single vision object setter */
+	    FilteredSonarObjects(const class FiltereSonarObject &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
+	    {
+		    /*
+		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
+		{ FilteredSonarObjectType iThLandmarkType = FilteredSonarObjectType(i);
+		}
+			*/
+		_objects[landmarkType]=obj;
+	    }
+
+            /** string constructor */
+            FilteredSonarObjects(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            FilteredSonarObjects(const FilteredSonarObjects &other)
+	    {
+		    memcpy(this, &other, sizeof(other));
+	    }
+
+	    /** property getter */
+	    class FiltereSonarObject *objects() { return _objects; }
+
+	    /** property setter */
+	    void set_objects(const class FiltereSonarObject *objects)
+	    {
+		    memcpy(_objects, objects, sizeof(_objects));
+	    }
+
+	    /** single vision object setter */
+	    void set_object(const class FiltereSonarObject &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
+	    {
+		_objects[landmarkType]=obj;
+	    }
+
+	    /** single vision object setter */
+	    FiltereSonarObject  get_object( enum FilteredSonarObjectType landmarkType  = FSLeft)
+	    {
+		return _objects[landmarkType];
+	    }
+
+            /** convert to a string */
+            std::string description()
+            {
+                std::ostringstream ss;
+		for ( int i =FSLeft; i< FSO_NUM_OBJECTS; i++ )
+		{ 
+			FilteredSonarObjectType landmarkType = FilteredSonarObjectType(i);
+		  switch (landmarkType )
+		   { 
 		    case FSLeft : ss << "aLeftSonar:";
 			break;
 		    case FSRight : ss << "aRightSonar:";
 			break;
-		    case FO_NUM_OBJECTS : mipal_warn( "ERROR:");
+		    case FSO_NUM_OBJECTS : mipal_warn( "ERROR:");
 			break;
 		  }// switch
 		  ss <<_objects[landmarkType].description();
@@ -267,4 +395,4 @@ namespace guWhiteboard
 }
 
 
-#endif // FilteredOneDimObjects_DEFINED
+#endif // FilteredSonarObjects_DEFINED
