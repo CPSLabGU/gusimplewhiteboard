@@ -43,14 +43,24 @@ namespace guWhiteboard
                 {
 
                 }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+                /// string constructor (see from_string() below)
+                SENSORS_TorsoJointSensors(const std::string &str) { from_string(str); }
                 
-                //temp method, testing only, will be removed soon - Carl.
-                std::string description()
+                void from_string(const std::string &str)
+                {
+                        //NYI, Good luck
+                }
+                
+                std::string description() const
                 {
                         std::stringstream ss;
-                    ss << HeadYaw() << ", " << HeadPitch() << ", " << LShoulderPitch() << ", " << LShoulderRoll() << ", " << LElbowYaw() << ", " << LElbowRoll() << ", " << LHipYawPitch() << ", " << LHipRoll() << ", " << LHipPitch() << ", " << RHipRoll() << ", " << RHipPitch() << ", " << RShoulderPitch() << ", " << RShoulderRoll() << ", " << RElbowYaw() << ", " << RElbowRoll();
-                    return ss.str();
+                        ss << RAD2DEG(HeadYaw()) << ", " << RAD2DEG(HeadPitch()) << ", " << RAD2DEG(LShoulderPitch()) << ", " << RAD2DEG(LShoulderRoll()) << ", " << RAD2DEG(LElbowYaw()) << ", " << RAD2DEG(LElbowRoll()) << ", " << RAD2DEG(LHipYawPitch()) << ", " << RAD2DEG(LHipRoll()) << ", " << RAD2DEG(LHipPitch()) << ", " << RAD2DEG(RHipRoll()) << ", " << RAD2DEG(RHipPitch()) << ", " << RAD2DEG(RShoulderPitch()) << ", " << RAD2DEG(RShoulderRoll()) << ", " << RAD2DEG(RElbowYaw()) << ", " << RAD2DEG(RElbowRoll());
+                        return ss.str();
                 }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+                
         };
 }
 

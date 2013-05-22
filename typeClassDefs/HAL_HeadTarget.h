@@ -12,6 +12,11 @@
 
 #include <gu_util.h>
 
+#define YAW_LIMIT_POS 90
+#define YAW_LIMIT_NEG -YAW_LIMIT_POS
+#define PITCH_LIMIT_POS 28
+#define PITCH_LIMIT_NEG -20
+
 namespace guWhiteboard                                                  
 {
         class HAL_HeadTarget
@@ -49,12 +54,40 @@ namespace guWhiteboard
             
                 void GoToWithTime_rad(float yaw, float pitch, int time = 1000000)
                 {
+                        if(yaw > DEG2RAD(YAW_LIMIT_POS))
+                                yaw = DEG2RAD(YAW_LIMIT_POS);
+                        else if (yaw < DEG2RAD(YAW_LIMIT_NEG))
+                                yaw = DEG2RAD(YAW_LIMIT_NEG);
+                        
+                        if(pitch > DEG2RAD(PITCH_LIMIT_POS))
+                                pitch = DEG2RAD(PITCH_LIMIT_POS);
+                        else if (pitch < DEG2RAD(PITCH_LIMIT_NEG))
+                                pitch = DEG2RAD(PITCH_LIMIT_NEG);
+                        
                         set_target_pitchAngle(pitch);
                         set_target_yawAngle(yaw);
                         set_target_movement_time(time);
                         set_head_stopped(false);
                         set_head_cmd_mask(true);
                 }
+                
+                
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+                /// string constructor (see from_string() below)
+                HAL_HeadTarget(const std::string &str) { from_string(str); }
+                
+                void from_string(const std::string &str)
+                {
+                       //NYI, Good luck
+                }
+                
+                std::string description() const
+                {
+                        std::stringstream ss;
+                        ss << target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
+                        return ss.str();
+                }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
 
