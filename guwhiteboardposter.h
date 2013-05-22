@@ -76,6 +76,8 @@
 #include "FilteredOneDimObjects.h"
 #include "SENSORS_SonarSensors.h"
 #include "NAO_State.h"
+#include "HAL_HeadTarget.h"
+#include "SENSORS_TorsoJointSensors.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
