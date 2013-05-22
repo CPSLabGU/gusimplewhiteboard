@@ -148,6 +148,7 @@ public:
 
         void receive_callback()
         {
+                static int lastmsg;
                 gu_simple_whiteboard *wb = _wbd->wb;
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
                 for (std::list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
@@ -167,7 +168,10 @@ public:
                                         {
                                                 if(local_event_counters[e]+1 != wb->event_counters[e])
                                                 {
-                                                        fprintf(stderr, "whiteboard_watcher: missed one or more event with type offset %d\n", e);
+                                                        fputc('*', stderr);
+                                                        if (lastmsg != e)
+                                                                fprintf(stderr, " @%d\n", e);
+                                                        lastmsg = e;
                                                 }
                                                 local_event_counters[e] = wb->event_counters[e];
                                                 uint16_t t_overwrite = uint16_t(e);
@@ -180,7 +184,10 @@ public:
                                 {
                                         if(event_count+1 != wb->event_counters[offs])
                                         {
-                                                fprintf(stderr, "whiteboard_watcher: missed one or more event with type offset %d\n", offs);
+                                                fputc('*', stderr);
+                                                if (lastmsg != offs)
+                                                        fprintf(stderr, " @%d\n", offs);
+                                                lastmsg = offs;
                                         }
                                         f->set_event_count(wb->event_counters[offs]);
                                         callback_helper *h = new callback_helper(wb, offs, f, 0, false, wb->indexes[offs]);
