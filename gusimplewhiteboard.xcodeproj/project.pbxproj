@@ -31,9 +31,6 @@
 		C3AC9C97171E80C000DF3997 /* MOTION_SDK_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3AC9C96171E80C000DF3997 /* MOTION_SDK_Interface.h */; };
 		C3B8CE39170BE5C400846B9C /* WALK_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
-		C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
-		C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
-		C3C74EE716CB318200565270 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		C3D04F8916F961F30061D0BB /* HAL_HeadTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */; };
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
@@ -145,7 +142,6 @@
 		C3BE8AEA16CB27CF004BFE81 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
 		C3BE8AEB16CB27CF004BFE81 /* guudpWhiteboardLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpWhiteboardLayer.h; sourceTree = "<group>"; };
 		C3BEDEE41693EADD00119F2E /* guudpSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
-		C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guwhiteboardtypelist_c_typestrings_generated.c; sourceTree = "<group>"; };
 		C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAL_HeadTarget.h; sourceTree = "<group>"; };
 		C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = guwhiteboardtypelist.tsl; sourceTree = "<group>"; };
 		C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBFunctor_types_generated.h; sourceTree = "<group>"; };
@@ -356,7 +352,6 @@
 				C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */,
 				C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */,
 				C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */,
-				C3C6146B16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c */,
 				C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */,
 				C3D04F8716F961F30061D0BB /* typeClassDefs */,
 				F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */,
@@ -715,7 +710,6 @@
 				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */,
-				C3C6146C16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -724,7 +718,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C74EE716CB318200565270 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */,
 				C31EE6AE155BA7DF00D55934 /* guudpBroadcaster.cpp in Sources */,
 				C31EE6AF155BA7DF00D55934 /* guudpListener.cpp in Sources */,
@@ -761,7 +754,6 @@
 				F1C94DB71555D44D00B717DF /* guudpUtil.cpp in Sources */,
 				F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */,
 				C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */,
-				C3C6146D16CB0354005B9984 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
