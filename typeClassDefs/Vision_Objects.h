@@ -134,12 +134,12 @@ public:
 			result << "LeftGoalPost:(" << _leftGoalPost.outerBottom.x << "," << _leftGoalPost.outerBottom.y << ","
 			<< _leftGoalPost.outerTop.x << "," << _leftGoalPost.outerTop.y << ","
 			<< _leftGoalPost.innerBottom.x << "," << _leftGoalPost.innerBottom.y << ","
-			<< _leftGoalPost.innerBottom.x << "," << _leftGoalPost.innerBottom.y << ") ";
+			<< _leftGoalPost.innerTop.x << "," << _leftGoalPost.innerTop.y << ") ";
 		if(objectMask[VisionObjectTypes::RightGoalPost])
 			result << "RightGoalPost:(" << _rightGoalPost.outerBottom.x << "," << _rightGoalPost.outerBottom.y << ","
 			<< _rightGoalPost.outerTop.x << "," << _rightGoalPost.outerTop.y << ","
 			<< _rightGoalPost.innerBottom.x << "," << _rightGoalPost.innerBottom.y << ","
-			<< _rightGoalPost.innerBottom.x << "," << _rightGoalPost.innerBottom.y << ") ";
+			<< _rightGoalPost.innerTop.x << "," << _rightGoalPost.innerTop.y << ") ";
 		for(int i = VisionObjectTypes::Line1; i<=VisionObjectTypes::Line5; ++i)
 			if(objectMask[i])
 				result << "Line" << (i-VisionObjectTypes::Line1+1) << "(" << _lines[i-VisionObjectTypes::Line1].startX
