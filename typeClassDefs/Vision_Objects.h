@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include <sstream>
 #include <stdio.h>
+#include <string>
+#include <algorithm>
 
 
 #ifndef VisionObjects_DEFINED
@@ -46,6 +48,8 @@ namespace VisionObjectTypes {enum object {
 	NUM_VISION_OBJECTS
 };}
 
+
+static const char* Objects[] = {"BALL", "LEFTGOAL", "RIGHTGOAL", "LINE1", "LINE2", "LINE3", "LINE4", "LINE5"};
 namespace guWhiteboard
 {
 class VisionObjects {
@@ -60,13 +64,50 @@ public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
 	}
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-	VisionObjects(std::string) {
-		fprintf(stderr, "Error VisionObject String constructor NYI\n");
-		throw "NotImplemented";
-	}
-#pragma clang diagnostic pop
+        
+private:
+        GUPoint<int16_t> getPoint(std::string *str) {
+            GUPoint<int16_t> point;
+            point.x = (short)atoi(str->substr(1, str->find(",")-1).c_str());
+            int pointEnd = (int)str->find(")")-1;
+            point.y = (short)atoi(str->substr(str->find(",")+1, pointEnd).c_str());
+            pointEnd += 2;
+            *str = str->substr(pointEnd, str->length()-pointEnd);
+            return point;
+        }
+public:
+        VisionObjects(std::string s) {
+		memset(this, 0, sizeof(*this));
+		size_t n;
+		std::string command;
+		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+		for (unsigned i = 0; i<VisionObjectTypes::NUM_VISION_OBJECTS; ++i) {
+			command = std::string(Objects[i]);
+			n = s.find(command);
+			if (n!=std::string::npos) {
+                                std::string t = s.substr(n+command.length()+1);
+                                WbGoalPostInfo goalInfo;
+                                switch(i) {
+                                    case VisionObjectTypes::LeftGoalPost://formate of LeftGoal=(9,9)(9,9)(9,9)(9,9)
+                                        goalInfo.outerBottom = getPoint(&t);
+                                        goalInfo.outerTop = getPoint(&t);
+                                        goalInfo.innerBottom = getPoint(&t);
+                                        goalInfo.innerTop = getPoint(&t);
+                                        setLeftGoalPost(goalInfo);
+                                        break;
+                                    case VisionObjectTypes::RightGoalPost:
+                                        goalInfo.outerBottom = getPoint(&t);
+                                        goalInfo.outerTop = getPoint(&t);
+                                        goalInfo.innerBottom = getPoint(&t);
+                                        goalInfo.innerTop = getPoint(&t);
+                                        setRightGoalPost(goalInfo);
+                                        break;
+                                        
+                                }
+                        }
+                }
+        }
+        
 	void setBall(WbBallInfo ballInfo) {
 		_ball = ballInfo;
 		objectMask[VisionObjectTypes::Ball]  = 1;
