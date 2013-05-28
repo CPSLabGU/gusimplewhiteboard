@@ -27,6 +27,7 @@ enum VisionMessages {
 		ConservativeMode,
 		ImageInput,
 		LoadCalibration,
+                HorizionFactor,
 		NUMBER_VISION_MESSAGES
 };
 
@@ -96,10 +97,10 @@ enum SaveFileType {
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "LOADCALIBRATION", "Undefined"};
+		"IMAGEINPUT", "LOADCALIBRATION", "HORIZIONFACTOR", "Undefined"};
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "CalibrationLoaded", "FrameRate"};
+		"ImageInput", "CalibrationLoaded", "HorizionFactor", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -143,6 +144,11 @@ public:
 			n = s.find(command);
 			if (n!=std::string::npos) {
                                 std::string t = s.substr(n+command.length()+1);
+                                if(i == HorizionFactor) {
+                                    //get value
+                                    set_horizionValue((float)atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                                    continue;
+                                }
 				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
 					if(t.compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j]) == 0) {
 						switch(i) {
@@ -207,7 +213,9 @@ public:
 		if(loadCalibration_mask())
 			result << Statuses[9] << "=" << CalibrationStrings[loadCalibration()] << " ";
                 if(frameRate_mask())
-                        result << Statuses[10] << "=" << frameRate() << " ";
+                        result << Statuses[11] << "=" << frameRate() << " ";
+                if(horizionValue_mask())
+                    result << Statuses[10] << "=" << horizionValue();
 		return result.str();
 	}
 
@@ -245,6 +253,7 @@ public:
 	CONTROLLED_PROPERTY(bool, conservativeMode)
 	CONTROLLED_PROPERTY(bool, imageInput)
 	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
+        CONTROLLED_PROPERTY(float, horizionValue)
         CONTROLLED_PROPERTY(int, frameRate)
 
 	CONTROL_BIT(resolution)
@@ -257,6 +266,7 @@ public:
 	CONTROL_BIT(conservativeMode)
 	CONTROL_BIT(imageInput)
 	CONTROL_BIT(loadCalibration)
+        CONTROL_BIT(horizionValue)
         CONTROL_BIT(frameRate)
 
 };
