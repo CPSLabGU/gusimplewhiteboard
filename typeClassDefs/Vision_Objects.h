@@ -48,7 +48,6 @@ namespace VisionObjectTypes {enum object {
 	NUM_VISION_OBJECTS
 };}
 
-
 static const char* Objects[] = {"BALL", "LEFTGOAL", "RIGHTGOAL", "LINE1", "LINE2", "LINE3", "LINE4", "LINE5"};
 namespace guWhiteboard
 {
