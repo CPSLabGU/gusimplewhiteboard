@@ -1,5 +1,5 @@
 /*
- *  /UDPReceiverNotification.h
+ *  /GCGameState.h
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 25/03/13.
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef UDPReceiverNotification_DEFINED
-#define UDPReceiverNotification_DEFINED
+#ifndef GCGameState_DEFINED
+#define GCGameState_DEFINED
 
 #include <cstdlib>
 #include <stdint.h>
@@ -69,49 +69,49 @@
 
 #define DEFAULT_PLAYER_NUMBER 2
 
-#define kUDPTeamBlue "TeamBlue"
-#define kUDPTeamRed "TeamRed"
+#define kGSTeamBlue "TeamBlue"
+#define kGSTeamRed "TeamRed"
 
-#define kUDPFirstHalf "FirstHalf"
-#define kUDPSecondHalf "SecondHalf"
+#define kGSFirstHalf "FirstHalf"
+#define kGSSecondHalf "SecondHalf"
 
-#define kUDPNormalGame "NormalGame"
-#define kUDPPenaltyShots "PenaltyShots"
-#define kUDPOverTime "OverTime"
+#define kGSNormalGame "NormalGame"
+#define kGSPenaltyShots "PenaltyShots"
+#define kGSOverTime "OverTime"
 
-#define kUDPInitialReceived "InitialReceived"
-#define kUDPReadyReceived "ReadyReceived"
-#define kUDPSetReceived "SetReceived"
-#define kUDPPlayingReceived "PlayingReceived"
-#define kUDPFinishedReceived "FinishedReceived"
+#define kGSInitialReceived "InitialReceived"
+#define kGSReadyReceived "ReadyReceived"
+#define kGSSetReceived "SetReceived"
+#define kGSPlayingReceived "PlayingReceived"
+#define kGSFinishedReceived "FinishedReceived"
 
-#define kUDPInitial "UDPInitial"
-#define kUDPReady "UDPReady"
-#define kUDPSet  "UDPSet"
-#define kUDPPlaying  "UDPPlaying"
-#define kUDPFinished  "UDPFinished"
+#define kGSInitial "GSInitial"
+#define kGSReady "GSReady"
+#define kGSSet  "GSSet"
+#define kGSPlaying  "GSPlaying"
+#define kGSFinished  "GSFinished"
 
-#define kUDPNoPenalty "NoPenalty"
-#define kUDPBallHolding "BallHolding"
-#define kUDPPlayerPushing "PlayerPushing"
-#define kUDPObstruction "Obstruction"
-#define kUDPInactivePlayer "InactivePlayer"
-#define kUDPIllegalDefender "IllegalDefender"
-#define kUDPLeavingTheField "LeavingTheField"
-#define kUDPPlayingWithHands "PlayingWithHands"
-#define kUDPRequestForPickup "RequestForPickup"
+#define kGSNoPenalty "NoPenalty"
+#define kGSBallHolding "BallHolding"
+#define kGSPlayerPushing "PlayerPushing"
+#define kGSObstruction "Obstruction"
+#define kGSInactivePlayer "InactivePlayer"
+#define kGSIllegalDefender "IllegalDefender"
+#define kGSLeavingTheField "LeavingTheField"
+#define kGSPlayingWithHands "PlayingWithHands"
+#define kGSRequestForPickup "RequestForPickup"
 
 
-#define kNoUDPsignal "NoUDPsignal"
-#define kUDPOurGoalSignalPushed "UDPOurGoalSignalPushed"
-#define kUDPTheirGoalSignalPushed "UDPTheirGoalSignalPushed"
-#define kUDPBlueKickOffSignalPushed "UDPBlueKickOffSignalPushed"
-#define kUDPRedKickOffSignalPushed "UDPRedKickOffSignalPushed"
+#define kNoGSsignal "NoGSsignal"
+#define kGSOurGoalSignalPushed "GSOurGoalSignalPushed"
+#define kGSTheirGoalSignalPushed "GSTheirGoalSignalPushed"
+#define kGSBlueKickOffSignalPushed "GSBlueKickOffSignalPushed"
+#define kGSRedKickOffSignalPushed "GSRedKickOffSignalPushed"
 
 namespace guWhiteboard
 {
-	enum TeamColors
-	{  TeamBlue=0, TeamRed=1, SentinelTeamColors=SPL_NUM_TEAMS };
+	enum TeamColours
+	{  TeamBlue=0, TeamRed=1, SentinelTeamColours=SPL_NUM_TEAMS };
 
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
@@ -124,97 +124,97 @@ namespace guWhiteboard
 
 	enum GameState {  Initial, Ready, Set, Playing, Finished };
 
-	enum GameContollerCommand
+	enum GameControllerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
 	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup };
 
 	enum GameContollerSignal
-	{  NoUDPsignal, UDPOurGoalSignalPushed, UDPTheirGoalSignalPushed, UDPBlueKickOffSignalPushed, UDPRedKickOffSignalPushed };
+	{  NoGSsignal, GSOurGoalSignalPushed, GSTheirGoalSignalPushed, GSBlueKickOffSignalPushed, GSRedKickOffSignalPushed };
 
         /**
-	 * Class to annoucne to out class-oriented whiteboard what we got in UDPreceiver
+	 * Class to annoucne to out class-oriented whiteboard what we got in GSreceiver
          */
 
-        class UDPReceiverNotification
+        class GCGameState
         {
 	   private:
-		 uint8_t  _whatPenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS];
-		 uint8_t _whatPenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS];
+		 uint8_t  _whatPenaltyFromUsInGSgameController[SPL_NUM_PLAYERS];
+		 uint8_t _whatPenaltyFromThemInGSgameController[SPL_NUM_PLAYERS];
 
-		 int16_t _score [SentinelTeamColors];
+		 int16_t _score [SentinelTeamColours];
 		 bool _dropInTeam;
 
-                PROPERTY(GameHalf, theUDPHalf )  //  UDP half
-                PROPERTY(GameFormat, theUDPGameformat )  //  UDP game format
-                PROPERTY(GameState, theUDPGameState )  
-		//  UDP GameContollerCommand
-                PROPERTY(GameContollerCommand, theUDPGameContollerCommand )  
-		//  UDP team that has kickoff
-                PROPERTY(TeamColors, theUDPteamThatHasKickOf )  
-		//  UDP team that has ball after it went out
-                PROPERTY(TeamColors, theUDPteamCausedlastDropIn )  
+                PROPERTY(GameHalf, theGSHalf )  //  GS half
+                PROPERTY(GameFormat, theGSGameformat )  //  GS game format
+                PROPERTY(GameState, theGSGameState )  
+		//  GS GameControllerCommand
+                PROPERTY(GameControllerCommand, theGSGameControllerCommand )  
+		//  GS team that has kickoff
+                PROPERTY(TeamColours, theGSteamThatHasKickOf )  
+		//  GS team that has ball after it went out
+                PROPERTY(TeamColours, theGSteamCausedlastDropIn )  
                 PROPERTY(int16_t, theSecondReminingInHalf )  
-		//  UDP team that has ball after it went out
-                PROPERTY(TeamColors, theUDPcolorWePlayWith )  
+		//  GS team that has ball after it went out
+                PROPERTY(TeamColours, theGScolourWePlayWith )  
 
         public:
             /** designated constructor */
-            UDPReceiverNotification(GameHalf theUDPHalf = FirstHalf, 
-                                       GameFormat theUDPGameformat = NormalGame,
-				       GameState theUDPGameState = Initial,
-				       TeamColors theUDPteamThatHasKickOf = TeamBlue,
-				       TeamColors theUDPteamCausedlastDropIn = TeamBlue,
+            GCGameState(GameHalf theGSHalf = FirstHalf, 
+                                       GameFormat theGSGameformat = NormalGame,
+				       GameState theGSGameState = Initial,
+				       TeamColours theGSteamThatHasKickOf = TeamBlue,
+				       TeamColours theGSteamCausedlastDropIn = TeamBlue,
 				       int16_t theSecondReminingInHalf = TeamBlue ,
-				       TeamColors theUDPcolorWePlayWith = TeamBlue
+				       TeamColours theGScolourWePlayWith = TeamBlue
 				       ):
-                                      _theUDPHalf(theUDPHalf), 
-                                      _theUDPGameformat(theUDPGameformat),
-                                      _theUDPGameState(theUDPGameState),
-                                      _theUDPteamThatHasKickOf(theUDPteamThatHasKickOf),
-                                      _theUDPteamCausedlastDropIn(theUDPteamCausedlastDropIn),
+                                      _theGSHalf(theGSHalf), 
+                                      _theGSGameformat(theGSGameformat),
+                                      _theGSGameState(theGSGameState),
+                                      _theGSteamThatHasKickOf(theGSteamThatHasKickOf),
+                                      _theGSteamCausedlastDropIn(theGSteamCausedlastDropIn),
                                       _theSecondReminingInHalf(theSecondReminingInHalf),
-                                      _theUDPcolorWePlayWith(theUDPcolorWePlayWith)
+                                      _theGScolourWePlayWith(theGScolourWePlayWith)
                                         {
 			for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whatPenaltyFromUsInUDPgameController[i]=NoPenalty;
-				_whatPenaltyFromThemInUDPgameController[i]=NoPenalty;
+				_whatPenaltyFromUsInGSgameController[i]=NoPenalty;
+				_whatPenaltyFromThemInGSgameController[i]=NoPenalty;
 			}
 			_dropInTeam=false;
-			for (int i=TeamBlue; i< SentinelTeamColors; i++) _score[i]=0;
+			for (int i=TeamBlue; i< SentinelTeamColours; i++) _score[i]=0;
                 }
 
             /** string constructor */
-            UDPReceiverNotification(const std::string &names) { from_string(names); }
+            GCGameState(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            UDPReceiverNotification(const UDPReceiverNotification &other):
-                      _theUDPHalf(other._theUDPHalf),
-                      _theUDPGameformat(other._theUDPGameformat),
-                       _theUDPGameState(other._theUDPGameState),
-                       _theUDPteamThatHasKickOf(other._theUDPteamThatHasKickOf),
-                       _theUDPteamCausedlastDropIn(other._theUDPteamCausedlastDropIn),
+            GCGameState(const GCGameState &other):
+                      _theGSHalf(other._theGSHalf),
+                      _theGSGameformat(other._theGSGameformat),
+                       _theGSGameState(other._theGSGameState),
+                       _theGSteamThatHasKickOf(other._theGSteamThatHasKickOf),
+                       _theGSteamCausedlastDropIn(other._theGSteamCausedlastDropIn),
                        _theSecondReminingInHalf(other._theSecondReminingInHalf),
-                       _theUDPcolorWePlayWith(other._theUDPcolorWePlayWith)
+                       _theGScolourWePlayWith(other._theGScolourWePlayWith)
                        { for (int i=0; i< SPL_NUM_PLAYERS; i++)
 			{
-				_whatPenaltyFromUsInUDPgameController[i]=other._whatPenaltyFromUsInUDPgameController[i];
-				_whatPenaltyFromThemInUDPgameController[i]=other._whatPenaltyFromThemInUDPgameController[i];
+				_whatPenaltyFromUsInGSgameController[i]=other._whatPenaltyFromUsInGSgameController[i];
+				_whatPenaltyFromThemInGSgameController[i]=other._whatPenaltyFromThemInGSgameController[i];
 			}
 			_dropInTeam=other._dropInTeam;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
 
             /** Set the Penalty vectors */
-	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInUDPgameController[SPL_NUM_PLAYERS],
-		                    const PenaltyFormat thePenaltyFromThemInUDPgameController[SPL_NUM_PLAYERS])
+	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInGSgameController[SPL_NUM_PLAYERS],
+		                    const PenaltyFormat thePenaltyFromThemInGSgameController[SPL_NUM_PLAYERS])
 			    {
 				    for (int i=0; i<SPL_NUM_PLAYERS; i++)
 				    {
-						_whatPenaltyFromUsInUDPgameController[i]=thePenaltyFromUsInUDPgameController[i];
-						_whatPenaltyFromThemInUDPgameController[i]=thePenaltyFromThemInUDPgameController[i];
+						_whatPenaltyFromUsInGSgameController[i]=thePenaltyFromUsInGSgameController[i];
+						_whatPenaltyFromThemInGSgameController[i]=thePenaltyFromThemInGSgameController[i];
 				    }
 			    }
 
@@ -227,15 +227,15 @@ namespace guWhiteboard
 		int16_t getScoreBlue() { return _score[TeamBlue];}
 		int16_t getScoreRed() { return _score[TeamRed];}
 
-		int16_t getOurScore() { return _score[_theUDPcolorWePlayWith];}
+		int16_t getOurScore() { return _score[_theGScolourWePlayWith];}
 		int16_t getTheirScore() { 
-				if (TeamBlue== _theUDPcolorWePlayWith ) return getScoreRed();
+				if (TeamBlue== _theGScolourWePlayWith ) return getScoreRed();
 				else return getScoreBlue(); }
 
 		PenaltyFormat myPenaltyIs (int PlayerNumber)
 		{	// the idnex in the structure starts at 0, numebrs on robot's backs start at 1
 			  if ((0<=PlayerNumber) && (PlayerNumber<SPL_NUM_PLAYERS ))
-					return static_cast<PenaltyFormat>(_whatPenaltyFromUsInUDPgameController[PlayerNumber-1]);
+					return static_cast<PenaltyFormat>(_whatPenaltyFromUsInGSgameController[PlayerNumber-1]);
 			  else return NoPenalty;
 		}
 
@@ -254,46 +254,46 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-	        if  ( TeamBlue == theUDPteamThatHasKickOf() ) ss << kUDPTeamBlue<<","; else ss << kUDPTeamRed<<",";
+	        if  ( TeamBlue == theGSteamThatHasKickOf() ) ss << kGSTeamBlue<<","; else ss << kGSTeamRed<<",";
 
-	        if  ( FirstHalf == theUDPHalf() ) ss << kUDPFirstHalf<<","; else ss << kUDPSecondHalf<<",";
+	        if  ( FirstHalf == theGSHalf() ) ss << kGSFirstHalf<<","; else ss << kGSSecondHalf<<",";
 
-	        if  ( NormalGame == theUDPGameformat() ) ss << kUDPNormalGame<<","; else ss << kUDPPenaltyShots<<",";
+	        if  ( NormalGame == theGSGameformat() ) ss << kGSNormalGame<<","; else ss << kGSPenaltyShots<<",";
 
-		switch(int (_theUDPGameState))
-		{ case Initial: ss << kUDPInitial<<",";
+		switch(int (_theGSGameState))
+		{ case Initial: ss << kGSInitial<<",";
 			break;
-		  case Ready: ss << kUDPReady<<",";
+		  case Ready: ss << kGSReady<<",";
 			break;
-		  case Set: ss << kUDPSet<<",";
+		  case Set: ss << kGSSet<<",";
 			break;
-		  case Playing: ss << kUDPPlaying<<",";
+		  case Playing: ss << kGSPlaying<<",";
 			break;
-		  case Finished: ss << kUDPFinished<<",";
+		  case Finished: ss << kGSFinished<<",";
 			break;
-	          default: ss << _theUDPGameState <<",";
+	          default: ss << _theGSGameState <<",";
 		}
 
 
                 for (int i=0; i< SPL_NUM_PLAYERS; i++)
-		switch (_whatPenaltyFromUsInUDPgameController[i] )
-		{ case NoPenalty : ss << kUDPNoPenalty<<",";
+		switch (_whatPenaltyFromUsInGSgameController[i] )
+		{ case NoPenalty : ss << kGSNoPenalty<<",";
 			break;
-		  case BallHolding : ss << kUDPBallHolding<<",";
+		  case BallHolding : ss << kGSBallHolding<<",";
 			break;
-		  case PlayerPushing : ss << kUDPPlayerPushing<<",";
+		  case PlayerPushing : ss << kGSPlayerPushing<<",";
 			break;
-		  case Obstruction : ss << kUDPObstruction<<",";
+		  case Obstruction : ss << kGSObstruction<<",";
 			break;
-		  case InactivePlayer : ss << kUDPInactivePlayer<<",";
+		  case InactivePlayer : ss << kGSInactivePlayer<<",";
 			break;
-		  case IllegalDefender : ss << kUDPIllegalDefender<<",";
+		  case IllegalDefender : ss << kGSIllegalDefender<<",";
 			break;
-		  case LeavingTheField : ss << kUDPLeavingTheField<<",";
+		  case LeavingTheField : ss << kGSLeavingTheField<<",";
 			break;
-		  case PlayingWithHands : ss << kUDPPlayingWithHands<<",";
+		  case PlayingWithHands : ss << kGSPlayingWithHands<<",";
 			break;
-		  case RequestForPickup : ss << kUDPRequestForPickup<<",";
+		  case RequestForPickup : ss << kGSRequestForPickup<<",";
 			break;
 		}
 
@@ -302,29 +302,29 @@ namespace guWhiteboard
 
 
 		/*
-		switch (theUDPGameContollerCommand() )
-		{ case InitialReceived : ss << kUDPInitialReceived<<",";
+		switch (theGSGameControllerCommand() )
+		{ case InitialReceived : ss << kGSInitialReceived<<",";
 			break;
-		  case ReadyReceived : ss << kUDPReadyReceived<<",";
+		  case ReadyReceived : ss << kGSReadyReceived<<",";
 			break;
-		  case SetReceived : ss << kUDPSetReceived<<",";
+		  case SetReceived : ss << kGSSetReceived<<",";
 			break;
-		  case PlayingReceived : ss << kUDPPlayingReceived<<",";
+		  case PlayingReceived : ss << kGSPlayingReceived<<",";
 			break;
-		  case FinishedReceived : ss << kUDPFinishedReceived<<",";
+		  case FinishedReceived : ss << kGSFinishedReceived<<",";
 			break;
 		}
 
-		switch (theUDPGameContollerSignal() )
-		{ case NoUDPsignal : ss << kNoUDPsignal<<",";
+		switch (theGSGameContollerSignal() )
+		{ case NoGSsignal : ss << kNoGSsignal<<",";
 			break;
-		  case UDPOurGoalSignalPushed : ss << kUDPOurGoalSignalPushed<<",";
+		  case GSOurGoalSignalPushed : ss << kGSOurGoalSignalPushed<<",";
 			break;
-		  case UDPTheirGoalSignalPushed : ss << kUDPTheirGoalSignalPushed<<",";
+		  case GSTheirGoalSignalPushed : ss << kGSTheirGoalSignalPushed<<",";
 			break;
-		  case  UDPBlueKickOffSignalPushed: ss << kUDPBlueKickOffSignalPushed<<",";
+		  case  GSBlueKickOffSignalPushed: ss << kGSBlueKickOffSignalPushed<<",";
 			break;
-		  case UDPRedKickOffSignalPushed : ss << kUDPRedKickOffSignalPushed<<",";
+		  case GSRedKickOffSignalPushed : ss << kGSRedKickOffSignalPushed<<",";
 			break;
 		}
 		*/
@@ -343,4 +343,4 @@ namespace guWhiteboard
 }
 
 
-#endif // UDPReceiverNotification_DEFINED
+#endif // GCGameState_DEFINED
