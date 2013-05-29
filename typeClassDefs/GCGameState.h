@@ -128,7 +128,7 @@ namespace guWhiteboard
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
-	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup };
+	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup, ManualButtonPenalty };
 
 	enum GameContollerSignal
 	{  NoGSsignal, GSOurGoalSignalPushed, GSTheirGoalSignalPushed, GSBlueKickOffSignalPushed, GSRedKickOffSignalPushed };
@@ -246,6 +246,14 @@ namespace guWhiteboard
 			   return false;
 			else return true;
 		}
+
+		void setMyPenalty(int PlayerNumber, PenaltyFormat thePenalty)
+				{
+					if (ManualButtonPenalty==thePenalty )
+					   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=thePenalty;
+					else 
+					    _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
+				}
 
 
 
