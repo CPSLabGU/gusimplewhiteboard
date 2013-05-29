@@ -100,12 +100,16 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
-		case kBoolExample_v:
+		case kGCGameState_v:
+#ifdef GCGameState_DEFINED
 		{
-			class BoolExample_t BoolExample_msg;
-			BoolExample_msg.post(atoi(message_content.c_str()));
+			class GCGameState_t GCGameState_msg;
+			GCGameState_msg.post(GCGameState(message_content));
 			return true;
 		}
+#else
+			return false;
+#endif // !GCGameState_DEFINED
 
 		case kWALK_Command_v:
 #ifdef WALK_ControlStatus_DEFINED
@@ -362,15 +366,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #endif // !NAO_State_DEFINED
 
 		case kUDPRN_v:
-#ifdef UDPReceiverNotification_DEFINED
+#ifdef GCGameState_DEFINED
 		{
 			class UDPRN_t UDPRN_msg;
-			UDPRN_msg.post(UDPReceiverNotification(message_content));
+			UDPRN_msg.post(GCGameState(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !UDPReceiverNotification_DEFINED
+#endif // !GCGameState_DEFINED
 
 		case kPlayerNumber_v:
 		{
@@ -450,7 +454,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["QSay"] = kQSay_v;
 	self["QSpeech"] = kQSpeech_v;
 	self["SpeechOutput"] = kSpeechOutput_v;
-	self["example_bool"] = kBoolExample_v;
+	self["GCGameState"] = kGCGameState_v;
 	self["WALK_Command"] = kWALK_Command_v;
 	self["WALK_Status"] = kWALK_Status_v;
 	self["MOTION_SDK_Commands"] = kMOTION_SDK_Commands_v;

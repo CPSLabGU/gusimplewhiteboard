@@ -82,11 +82,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class SpeechOutput_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case kBoolExample_v:
+		case kGCGameState_v:
+#ifdef GCGameState_DEFINED
 		{
-			class BoolExample_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			class GCGameState_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !GCGameState_DEFINED
+
 		case kWALK_Command_v:
 #ifdef WALK_ControlStatus_DEFINED
 		{
@@ -330,7 +336,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #endif // !NAO_State_DEFINED
 
 		case kUDPRN_v:
-#ifdef UDPReceiverNotification_DEFINED
+#ifdef GCGameState_DEFINED
 		{
 			class UDPRN_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -338,7 +344,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !UDPReceiverNotification_DEFINED
+#endif // !GCGameState_DEFINED
 
 		case kPlayerNumber_v:
 		{
