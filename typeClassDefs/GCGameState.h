@@ -249,10 +249,10 @@ namespace guWhiteboard
 
 		void setMyPenalty(int PlayerNumber, PenaltyFormat thePenalty)
 				{
-					if (ManualButtonPenalty==thePenalty )
+					//if (ManualButtonPenalty==thePenalty )
 					   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=thePenalty;
-					else 
-					    _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
+					//else 
+					 //   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
 				}
 
 
