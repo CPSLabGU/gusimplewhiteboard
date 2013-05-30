@@ -60,6 +60,8 @@ namespace guWhiteboard
         public:
                 NAO_State(): _stance(Standing), _chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) {}
 
+                bool fallen() const { return stance() == FallenForward || stance() == FallenBack || stance() == FallenLeft || stance() == FallenRight; }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
                 NAO_State(const std::string &command): _stance(Standing), _chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) { from_string(command); }

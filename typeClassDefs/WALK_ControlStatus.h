@@ -91,6 +91,8 @@ namespace guWhiteboard
                 WALK_Ignore             ///< only interested in odomentry
         };
 
+#define WALK_Disconnect WALK_Disconnected ///< alias for WALK_Disconnected
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *WALK_statusNames[] =
         {

@@ -234,7 +234,7 @@ namespace guWhiteboard
 
 		PenaltyFormat myPenaltyIs (int PlayerNumber)
 		{	// the idnex in the structure starts at 0, numebrs on robot's backs start at 1
-			  if ((0<=PlayerNumber) && (PlayerNumber<SPL_NUM_PLAYERS ))
+			  if ((0<PlayerNumber) && (PlayerNumber<=SPL_NUM_PLAYERS ))
 					return static_cast<PenaltyFormat>(_whatPenaltyFromUsInGSgameController[PlayerNumber-1]);
 			  else return NoPenalty;
 		}
@@ -249,10 +249,10 @@ namespace guWhiteboard
 
 		void setMyPenalty(int PlayerNumber, PenaltyFormat thePenalty)
 				{
-					if (ManualButtonPenalty==thePenalty )
+					//if (ManualButtonPenalty==thePenalty )
 					   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=thePenalty;
-					else 
-					    _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
+					//else 
+					 //   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
 				}
 
 
