@@ -95,20 +95,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B68705E1757080C00A13AAE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8B68705F1757080C00A13AAE /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		8B6870601757080C00A13AAE /* udp_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_config.h; sourceTree = "<group>"; };
+		8B6870611757080C00A13AAE /* udp_util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_util.cpp; sourceTree = "<group>"; };
+		8B6870621757080C00A13AAE /* udp_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_util.h; sourceTree = "<group>"; };
 		8BC60E6F174079FD00800829 /* GNUmakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
-		8BC60E70174079FD00800829 /* guudpBroadcaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpBroadcaster.cpp; sourceTree = "<group>"; };
-		8BC60E71174079FD00800829 /* guudpBroadcaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpBroadcaster.h; sourceTree = "<group>"; };
-		8BC60E72174079FD00800829 /* udp_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_config.h; sourceTree = "<group>"; };
-		8BC60E73174079FD00800829 /* guudpListener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpListener.cpp; sourceTree = "<group>"; };
-		8BC60E74174079FD00800829 /* guudpListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpListener.h; sourceTree = "<group>"; };
-		8BC60E77174079FD00800829 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
-		8BC60E78174079FD00800829 /* guudpSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
-		8BC60E79174079FD00800829 /* udp_util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_util.cpp; sourceTree = "<group>"; };
-		8BC60E7A174079FD00800829 /* udp_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_util.h; sourceTree = "<group>"; };
-		8BC60E7B174079FD00800829 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
-		8BC60E7C174079FD00800829 /* guudpWhiteboardLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpWhiteboardLayer.h; sourceTree = "<group>"; };
-		8BC60E7D174079FD00800829 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		8BC60E7E174079FD00800829 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		C31EE6B3155BA83B00D55934 /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_c_generated.h; sourceTree = "<group>"; };
 		C32D01E816CA0A50002561B7 /* guwhiteboardtypegenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardtypegenerator.cpp; sourceTree = "<group>"; };
@@ -250,13 +242,12 @@
 		8BC60E6E174079FD00800829 /* guudpwhiteboard */ = {
 			isa = PBXGroup;
 			children = (
-				8BC60E7F17407B0100800829 /* Old */,
 				8BC60E6F174079FD00800829 /* GNUmakefile */,
-				8BC60E79174079FD00800829 /* udp_util.cpp */,
-				8BC60E7A174079FD00800829 /* udp_util.h */,
-				8BC60E72174079FD00800829 /* udp_config.h */,
-				8BC60E7D174079FD00800829 /* main.cpp */,
-				8BC60E7E174079FD00800829 /* Makefile */,
+				8B68705E1757080C00A13AAE /* main.cpp */,
+				8B68705F1757080C00A13AAE /* Makefile */,
+				8B6870611757080C00A13AAE /* udp_util.cpp */,
+				8B6870621757080C00A13AAE /* udp_util.h */,
+				8B6870601757080C00A13AAE /* udp_config.h */,
 				C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */,
 				C33D92BB150491F500524671 /* guudpbridge */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
@@ -264,21 +255,6 @@
 				F1C94D771555CA8E00B717DF /* guobjcwhiteboardTests */,
 			);
 			path = guudpwhiteboard;
-			sourceTree = "<group>";
-		};
-		8BC60E7F17407B0100800829 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				8BC60E70174079FD00800829 /* guudpBroadcaster.cpp */,
-				8BC60E71174079FD00800829 /* guudpBroadcaster.h */,
-				8BC60E73174079FD00800829 /* guudpListener.cpp */,
-				8BC60E74174079FD00800829 /* guudpListener.h */,
-				8BC60E77174079FD00800829 /* guudpSerialize.c */,
-				8BC60E78174079FD00800829 /* guudpSerialize.h */,
-				8BC60E7B174079FD00800829 /* guudpWhiteboardLayer.cpp */,
-				8BC60E7C174079FD00800829 /* guudpWhiteboardLayer.h */,
-			);
-			name = Old;
 			sourceTree = "<group>";
 		};
 		C33D92BB150491F500524671 /* guudpbridge */ = {

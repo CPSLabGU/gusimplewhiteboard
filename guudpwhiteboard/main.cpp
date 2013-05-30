@@ -18,11 +18,8 @@
 #include <string.h>
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
-//Our stuff
-#include "guwhiteboardtypelist_generated.h"
-#include "gusimplewhiteboard.h"
-#include <gu_util.h>
 
 //module files
 #include "udp_config.h"
@@ -36,7 +33,7 @@
 
 
 void setup_udp_whiteboard_with_id(int id);
-std::vector<std::string> basic_parse(std::string string, char *tok);
+
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
@@ -83,25 +80,13 @@ int main(int argc, char *argv[])
 
 #pragma GCC diagnostic pop
 
-std::vector<std::string> basic_parse(std::string string, char *tok)
-{
-        std::vector<std::string> results;
-        char *str = (char *)string.c_str();
-        char *part = strtok(str, tok); // passing a string starts a new iteration
-        while (part) {
-                results.push_back(std::string(part));
-                part = strtok(NULL, tok); // passing NULL continues with the last string
-        }
-        return results;
-}
 
 void setup_udp_whiteboard_with_id(int id)
 {
-        int udp_id;
         if(id == -1)
-                udp_id = getplayernumber();
+                set_udp_id(getplayernumber());
         else
-                udp_id = id;
+                set_udp_id(id);
         
         std::string schedule_file = getenv("HOME");
         schedule_file += SCHEDULE_FILE;
@@ -113,60 +98,68 @@ void setup_udp_whiteboard_with_id(int id)
         }
 
         std::string schedule_file_content = string_from_file((char *)schedule_file.c_str());
-        std::string machine_token("machines:");
-        std::string delay_token("usec slot time:");
+        std::string machine_token("messages_per_packet:");
+        std::string delay_token("packet_interval:");
 
         //Get the num of machines and the delay (usec)
-        int num_of_broadcasters = atoi((char *)schedule_file_content.substr(schedule_file_content.find(machine_token)+machine_token.length(), schedule_file_content.find("\n", schedule_file_content.find(machine_token))).c_str());
+        int types_per_packet = atoi((char *)schedule_file_content.substr(schedule_file_content.find(machine_token)+machine_token.length(), schedule_file_content.find("\n", schedule_file_content.find(machine_token))).c_str());
         int schedule_delay = atoi((char *)schedule_file_content.substr(schedule_file_content.find(delay_token)+delay_token.length(), schedule_file_content.find("\n", schedule_file_content.find(delay_token))).c_str());
-
-        mipal_warn("Machines in the network: %d\tBroadcast delay:%d\n", num_of_broadcasters, schedule_delay);
         
         std::remove(schedule_file_content.begin(), schedule_file_content.end(), ' '); //remove whitespace
+        
 
-        
-        
-        
         //Get the lines
         std::vector<std::string> lines = basic_parse(schedule_file_content, (char *)"\n");
         lines.erase(lines.end()); //I seem to get a newline at the end of a line regardless of there not being a new line under it.
-        
+
         std::vector<std::vector<std::string> > types_to_send;
-        
+        int packet_destination_ids[MAX_NODES];
         //start at two in order to ignore the header info
         for(int i = 2; i < (int)lines.size(); i++)
         {
-                std::vector<std::string> types = basic_parse(lines.at(i), (char *)",");
+                int start_of_type_definition = ((int)lines.at(i).find(':'))+1;
+                packet_destination_ids[i-2] = atoi((char *)lines.at(i).substr(0, start_of_type_definition).c_str());
+
+                std::vector<std::string> types = basic_parse(lines.at(i).substr(start_of_type_definition, lines.at(i).length()), (char *)",");
                 types_to_send.push_back(types);
         }
-        
-        
-        /* Parse debug printing
-        for (int i = 0; i < (int)types_to_send.size(); i++)
+
+
+        // Construct packet data structures
+        int number_of_packets = (int)types_to_send.size();
+        gsw_udp_packet_info *packets = (gsw_udp_packet_info *) malloc(sizeof(gsw_udp_packet_info) * number_of_packets);
+
+        for (int i = 0; i < number_of_packets; i++)
         {
+                packets[i].sender = (u_int8_t)packet_destination_ids[i];
+                packets[i].num_of_types = (u_int8_t)types_to_send.at(i).size();
+                packets[i].offset = (u_int16_t *) malloc(sizeof(u_int16_t) * packets[i].num_of_types);
+
                 for (int g = 0; g < (int)types_to_send.at(i).size(); g++)
                 {
-                        fprintf(stderr, "\t%s", (char *)types_to_send.at(i).at(g).c_str());
+//                        fprintf(stderr, "\t%s", (char *)types_to_send.at(i).at(g).c_str());
+                        packets[i].offset[g] = (u_int16_t)get_wb_offset_from_string(types_to_send.at(i).at(g));
                 }
-                fprintf(stderr, "\n");
+//                fprintf(stderr, "\n");
         }
-         */
+
+//        float iterations_per_sec = USEC_PER_SEC/(float)schedule_delay;
+//        int size_of_all_packets = 
+//        float bytes_per_sec = iterations_per_sec * GU_SIMPLE_WHITEBOARD_BUFSIZE;
+//        int kilobytes_per_sec = ceil(bytes_per_sec / 1024);
+
+        mipal_warn("Messages per packet: %d\tBroadcast interval:%d\tKilobytes per sec: %d\n", types_per_packet, schedule_delay, -1);
+        pretty_print_packet_types(packets, number_of_packets);
+
+
+
         
-        
-        if(udp_id > num_of_broadcasters)
-        {
-                fprintf(stderr, "Bad UDP_ID passed in, exiting...\n\n");
-                exit(1);
-        }
-        
-        set_udp_id(udp_id);
-        
-        fprintf(stdout, "Bandwidth usage: %dkbps\n", );
+       // fprintf(stdout, "Bandwidth usage: %dkbps\n", );
         
         //gu_simple_whiteboard_descriptor *_wbd = get_local_singleton_whiteboard();
         
         
-        
+
         
         /*
         
