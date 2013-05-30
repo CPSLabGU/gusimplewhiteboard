@@ -266,11 +266,17 @@ namespace guWhiteboard
 	    }
 
 	    /** single vision object setter */
-	    FilteredVisionObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
 	    {
 		return _objects[landmarkType];
 	    }
 
+                /** single vision object getter */
+                const FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOBall) const
+                {
+                        return _objects[landmarkType];
+                }
+                
             /** convert to a string */
             std::string description() const
             {
