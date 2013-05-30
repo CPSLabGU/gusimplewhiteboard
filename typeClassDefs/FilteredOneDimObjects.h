@@ -116,7 +116,7 @@ namespace guWhiteboard
                        {}
 
             /** convert to a string */
-            std::string description()
+            std::string description() const
             {
                 std::ostringstream ss;
 
@@ -171,7 +171,7 @@ namespace guWhiteboard
                       _x(other._x), _y(other._y) {}
 
             /** convert to a string */
-            std::string description()
+            std::string description() const
             {
                 std::ostringstream ss;
 		/*
@@ -272,7 +272,7 @@ namespace guWhiteboard
 	    }
 
             /** convert to a string */
-            std::string description()
+            std::string description() const
             {
                 std::ostringstream ss;
 		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
