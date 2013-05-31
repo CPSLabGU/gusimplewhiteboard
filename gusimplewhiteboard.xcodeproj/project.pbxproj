@@ -100,6 +100,8 @@
 		8B6870601757080C00A13AAE /* udp_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_config.h; sourceTree = "<group>"; };
 		8B6870611757080C00A13AAE /* udp_util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_util.cpp; sourceTree = "<group>"; };
 		8B6870621757080C00A13AAE /* udp_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_util.h; sourceTree = "<group>"; };
+		8B6870761758562A00A13AAE /* udp_sender.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp_sender.cpp; sourceTree = "<group>"; };
+		8B6870771758562A00A13AAE /* udp_sender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_sender.h; sourceTree = "<group>"; };
 		8BC60E6F174079FD00800829 /* GNUmakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
 		C31EE6B3155BA83B00D55934 /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_c_generated.h; sourceTree = "<group>"; };
@@ -248,6 +250,8 @@
 				8B6870611757080C00A13AAE /* udp_util.cpp */,
 				8B6870621757080C00A13AAE /* udp_util.h */,
 				8B6870601757080C00A13AAE /* udp_config.h */,
+				8B6870771758562A00A13AAE /* udp_sender.h */,
+				8B6870761758562A00A13AAE /* udp_sender.cpp */,
 				C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */,
 				C33D92BB150491F500524671 /* guudpbridge */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,

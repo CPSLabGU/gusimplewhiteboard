@@ -7,7 +7,7 @@ BIN=guudpwhiteboard
 
 ALL_TARGETS=host robot
 
-CPP_SRCS=main.cpp udp_util.cpp
+CPP_SRCS=main.cpp udp_util.cpp udp_sender.cpp
 
 .include "../../../mk/whiteboard.mk"
 .include "../../../mk/mipal.mk"		# comes last!

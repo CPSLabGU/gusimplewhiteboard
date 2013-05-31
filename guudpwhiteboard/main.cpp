@@ -24,6 +24,7 @@
 //module files
 #include "udp_config.h"
 #include "udp_util.h"
+#include "udp_sender.h"
 
 //#include "guudpUtil.h"
 //#include "guudpBroadcaster.h"
@@ -75,6 +76,7 @@ int main(int argc, char *argv[])
         mipal_err_file(WARNINGS_FILE); //setup warning file
         
         setup_udp_whiteboard_with_id(robot_id); //Should never return
+
         return EXIT_SUCCESS;
 }
 
@@ -151,8 +153,14 @@ void setup_udp_whiteboard_with_id(int id)
         mipal_warn("Messages per packet: %d\tBroadcast interval:%d\tKilobytes per sec: %d\n", types_per_packet, schedule_delay, -1);
         pretty_print_packet_types(packets, number_of_packets);
 
+        Sender sender(packets, number_of_packets, schedule_delay, (types_per_packet * GU_SIMPLE_WHITEBOARD_BUFSIZE)); //size is wrong!
 
 
+
+        while(true)
+        {
+                protected_usleep(1000000);
+        }
         
        // fprintf(stdout, "Bandwidth usage: %dkbps\n", );
         
