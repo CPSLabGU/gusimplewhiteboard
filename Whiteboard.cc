@@ -88,7 +88,7 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
         if (self) self->subscriptionCallback();
 }
 
-Whiteboard::Whiteboard(const char *name, bool checkVersion, int number)
+Whiteboard::Whiteboard(const char *name, bool /*checkVersion*/, int number)
 {
         init_ios_whiteboard_name();
 

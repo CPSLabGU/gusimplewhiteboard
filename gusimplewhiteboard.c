@@ -63,6 +63,9 @@
 #define _POSIX_SOURCE
 #endif
 #endif
+#ifndef _XOPEN_SOURCE
+#define _XOPEN_SOURCE
+#endif
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
