@@ -434,6 +434,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !FilteredSonarObjects_DEFINED
 
+		case kTopParticles_v:
+#ifdef TopParticles_DEFINED
+		{
+			class TopParticles_t TopParticles_msg;
+			TopParticles_msg.post(TopParticles(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !TopParticles_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -445,7 +456,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(41);
+	// self.reserve(42);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -488,5 +499,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["guvision_status"] = kVision_Status_v;
 	self["guvision_objects"] = kVision_Objects_v;
 	self["FSOsighting"] = kFSOsighting_v;
+	self["TopParticles"] = kTopParticles_v;
 }
 

@@ -70,8 +70,8 @@ namespace guWhiteboard
          */
         class Point2D
         {
-            PROPERTY(int16_t, x) //  x-coordinate
-            PROPERTY(int16_t, y) //  y-coordinate
+            PROPERTY(int16_t, x) ///<  x-coordinate
+            PROPERTY(int16_t, y) ///<  y-coordinate
 
         public:
             /** designated constructor */
