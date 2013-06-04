@@ -39,5 +39,5 @@ class:VisionControlStatus, not_atomic, Vision_Control,          "guvision_contro
 class:VisionControlStatus, not_atomic, Vision_Status,           "guvision_status", message sent by vision that contains the current status of
 class:VisionObjects, atomic, Vision_Objects,                "guvision_objects", message containing information about objects detected in last run of the pipeline
 class:FilteredSonarObjects, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  iSONAR objects after a sighting
-
+class:TopParticles, nonatomic, TopParticles,                    "TopParticles", Class that contains the top particles for possible robot positions
 
