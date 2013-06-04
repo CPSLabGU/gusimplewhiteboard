@@ -74,7 +74,8 @@ enum VisionCamera {
 };
 
 enum NamedPipeline {
-	Soccer
+	Soccer,
+        OpenChallenge
 };
 
 enum StreamingType {
@@ -106,8 +107,8 @@ static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
 static const char* CameraStrings[] = {"TOP", "BOTTOM"};
 static const VisionCamera CameraValues[] = {Top, Bottom};
-static const char* PipelineStrings[] = {"SOCCER"};
-static const NamedPipeline PipelineValues[] = {Soccer};
+static const char* PipelineStrings[] = {"SOCCER", "OPENCHALLENGE"};
+static const NamedPipeline PipelineValues[] = {Soccer, OpenChallenge};
 static const char* StreamingSourceStrings[] = {"NORMAL", "CLASSIFIED", "RECOGNIZED"};
 static const StreamingType StreamingSourceValues[] = {Normal, Classified, Recognized};
 static const char* CalibrationStrings[] = {"CALIBRATION0", "CALIBRATION1", "CALIBRATION2", "CALIBRATION3"};
