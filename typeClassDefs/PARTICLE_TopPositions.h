@@ -77,7 +77,7 @@ namespace guWhiteboard
                 PROPERTY(int16_t, confidence)            ///< total confidence
         public:
                 /** designated constructor */
-                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
+                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, int16_t weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
 
                 /** copy constructor */
                 ParticlePosition(const ParticlePosition &other): Point2D(other),  _headingInDegrees(other.headingInDegrees()), _confidence(other.confidence()) {}
@@ -86,7 +86,7 @@ namespace guWhiteboard
                 float heading() const { return float(DEG2RAD(headingInDegrees())); }
 
                 /** radians setter */
-                void set_heading(float hdg) { set_headingInDegrees(RAD2DEG(hdg)); }
+                void set_heading(float hdg) { set_headingInDegrees(int16_t(RAD2DEG(hdg))); }
 
                 /** string constructor */
                 ParticlePosition(const std::string &names) { from_string(names); }
