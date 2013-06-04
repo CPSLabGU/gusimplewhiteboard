@@ -58,7 +58,7 @@ private:
 	WbBallInfo _ball;
 	WbGoalPostInfo _leftGoalPost;
 	WbGoalPostInfo _rightGoalPost;
-        int frameNumber;
+        unsigned long frameNumber;
 public:
 	VisionObjects() {
 		memset(this, 0, sizeof(*this));
@@ -152,11 +152,11 @@ public:
 				return & _lines[line - VisionObjectTypes::Line1];
 		return NULL;
 	}
-        void setFrameNumber(int fn) {
+        void setFrameNumber(unsigned long fn) {
             frameNumber = fn;
         }
         
-        int FrameNumer() {
+        unsigned long FrameNumer() {
             return frameNumber;
         }
 
