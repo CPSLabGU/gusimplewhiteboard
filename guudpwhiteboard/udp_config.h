@@ -27,7 +27,7 @@
 /* Network config */
 #define UDP_STATS
 
-#define READ_TIMEOUT 1000 //usec
+#define READ_TIMEOUT 999999 //usec
 #define MESSAGES_IN_READ_BUFFER 10
 
 #define SCHEDULE_FILE "/data/udp_schedule"
@@ -113,7 +113,7 @@ typedef struct gsw_udp_packet
         /**
          * event counter
          */
-        u_int8_t            *event_counter;
+        u_int16_t           *event_counter;
 
         /**
          * the actual messages stored in the whiteboard

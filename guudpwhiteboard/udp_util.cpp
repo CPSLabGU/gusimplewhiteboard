@@ -83,3 +83,51 @@ int get_wb_offset_from_string(std::string type)
         fprintf(stderr, "Type unknown %s\nexiting...\n", (char *)type.c_str());
         exit(1);
 }
+
+
+void packet2buf(unsigned char *dst, gsw_udp_packet *src)
+{
+        unsigned char *off;
+
+        off = dst;
+
+        memcpy(off, (void*)&src->schedule_index, sizeof src->schedule_index);
+        off += sizeof src->schedule_index;
+
+        memcpy(off, (void*)&src->event_counter[0], sizeof(src->event_counter[0]) * src->num_of_types);
+        off += sizeof(src->event_counter[0]) * src->num_of_types;
+
+        memcpy(off, (void*)&src->content[0], sizeof(src->content[0]) * src->num_of_types);
+        off += sizeof(src->content[0]) * src->num_of_types;
+}
+
+void buf2packet(gsw_udp_packet *dst, unsigned char *src, int num_of_types)
+{
+        unsigned char *off;
+
+        off = src;
+
+        memcpy((void*)&dst->schedule_index, off, sizeof dst->schedule_index);
+        off += sizeof dst->schedule_index;
+
+        memcpy((void*)&dst->event_counter[0], off, sizeof(u_int16_t) * num_of_types);
+        off += sizeof(u_int16_t) * num_of_types;
+
+        memcpy((void*)&dst->content[0], off, sizeof(gu_simple_message) * num_of_types);
+        off += sizeof(gu_simple_message) * num_of_types;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

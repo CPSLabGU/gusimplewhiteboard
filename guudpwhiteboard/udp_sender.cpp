@@ -18,13 +18,7 @@
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Wshorten-64-to-32"
 
-void sender_func(void *sender)
-{
-        Sender *s = (Sender *)sender;
-        s->_sender_timer = NULL;
-        //read  current index of send vector
-        fprintf(stderr, ".");
-}
+
 /*
 void Sender::send_content()
 {
@@ -76,8 +70,31 @@ void Sender::send_content()
         }
 }
 */
-Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay, int packet_size) :
-                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule)
+void Sender::construct_packets_array()
+{
+        _packets = (gsw_udp_packet *)malloc(sizeof(gsw_udp_packet) * _packets_in_schedule);
+
+        for (int i = 0; i < _packets_in_schedule; i++)
+        {
+                gsw_udp_packet *packet = &_packets[i];
+                packet->schedule_index = (u_int8_t)i;
+                packet->num_of_types = _packet_data[i].num_of_types;
+
+                packet->offset = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
+
+                for (int g = 0; g < packet->num_of_types; g++)
+                        packet->offset[g] = _packet_data[i].offset[g];
+
+                if((int)_packet_data[i].sender != get_udp_id())
+                        continue; //don't bother allocating for types that we won't ever send
+
+                packet->event_counter = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
+                packet->content = (gu_simple_message *) malloc(sizeof(gu_simple_message) * packet->num_of_types);
+        }
+}
+
+Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay) :
+                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _current_sender_index(0)
 {
         //Setup socket
 	if ((_send_socket = socket(PF_INET, SOCK_DGRAM, 0)) == -1) {
@@ -101,6 +118,7 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 //		exit(1);
 //	}
 
+
         /* construct address structure */
         memset(&_mc_addr, 0, sizeof(_mc_addr));
         _mc_addr.sin_family      = PF_INET;
@@ -108,8 +126,14 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
         _mc_addr.sin_port        = htons(PORT);
 
 
-        send_buffer = (void *) malloc(packet_size);
-//        memset(send_buffer, 0, packet_size);
+        construct_packets_array();
+        int packet_size = 0;
+        for (int i = 0; i < _packets_in_schedule; i++)
+                packet_size += sizeof(u_int8_t) + (sizeof(u_int16_t)*_packet_data[i].num_of_types) + (sizeof(gu_simple_message)*_packet_data[i].num_of_types);
+
+
+
+        _send_buffer = (unsigned char *) malloc(packet_size);
 
         int duration_of_schedule = timer_delay*packets_in_schedule;
         long long now = get_utime();
@@ -117,20 +141,60 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 
 
         timespec spec;
-        spec.tv_sec = floor(start_of_next_round / USEC_PER_SEC);
+        spec.tv_sec = (long)floor(start_of_next_round / USEC_PER_SEC);
         spec.tv_nsec = (start_of_next_round % USEC_PER_SEC) * NSEC_PER_USEC;
 
-        _sender_timer = CreateDispatchTimer(&spec,
-                                                (timer_delay*NSEC_PER_USEC),
-                                                0ull,
-                                                dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
-                                                *sender_func, this);
+
+        gu_simple_whiteboard_descriptor *wbd = get_local_singleton_whiteboard();
+
+        
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+        if (timer)
+        {
+                dispatch_source_set_timer(timer, dispatch_walltime(&spec, 0), (timer_delay*NSEC_PER_USEC), 0ull);
+                dispatch_source_set_event_handler(timer, ^{
+
+                        gsw_udp_packet_info *packet_info = &packet_data[_current_sender_index];
+                        if((int)packet_info->sender == get_udp_id())
+                        {
+                                gsw_udp_packet *packet = &_packets[_current_sender_index];
+                                for (int i = 0; i < packet->num_of_types; i++)
+                                {
+                                        u_int16_t offset = packet->offset[i];
+                                        packet->event_counter[i] = wbd->wb->event_counters[offset];
+                                        packet->content[i] = wbd->wb->messages[offset][wbd->wb->indexes[offset]];
+                                }
+
+                                packet2buf(_send_buffer, &_packets[_current_sender_index]);
+
+                                int this_packet_size = sizeof(u_int8_t) + (sizeof(u_int16_t)*_packet_data[_current_sender_index].num_of_types) + (sizeof(gu_simple_message)*_packet_data[_current_sender_index].num_of_types);
+                                ssize_t bytes_sent = sendto(_send_socket, _send_buffer, this_packet_size, 0, (struct sockaddr *)&_mc_addr, sizeof(_mc_addr));
+                                if(bytes_sent == -1)
+                                {
+                                        fprintf(stderr, "!Sent index %d\n", _current_sender_index+1);
+                                        if(errno != 65) //ENETUNREACH - no route to host
+                                        {
+                                                perror("sendto");
+                                                exit(1);
+                                        }
+                                }
+                                else
+                                        fprintf(stderr, "Sent index %d\tbytes %d\n", _current_sender_index+1, (int)bytes_sent);
+                        }
+                        _current_sender_index++;
+                        if(_current_sender_index == packets_in_schedule)
+                                _current_sender_index = 0;
+                });
+                dispatch_resume(timer);
+        }
 }
+
+
 
 Sender::~Sender()
 {
-//        dispatch_source_cancel(_sender_timer);
-//        dispatch_release(_sender_timer);
+        dispatch_source_cancel(_sender_timer);
+        dispatch_release(_sender_timer);
 
         shutdown(_send_socket, SHUT_WR);
         close(_send_socket);

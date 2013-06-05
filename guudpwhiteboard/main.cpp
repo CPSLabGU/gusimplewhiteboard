@@ -25,6 +25,8 @@
 #include "udp_config.h"
 #include "udp_util.h"
 #include "udp_sender.h"
+#include "udp_receiver.h"
+
 
 //#include "guudpUtil.h"
 //#include "guudpBroadcaster.h"
@@ -150,10 +152,11 @@ void setup_udp_whiteboard_with_id(int id)
 //        float bytes_per_sec = iterations_per_sec * GU_SIMPLE_WHITEBOARD_BUFSIZE;
 //        int kilobytes_per_sec = ceil(bytes_per_sec / 1024);
 
-        mipal_warn("Messages per packet: %d\tBroadcast interval:%d\tKilobytes per sec: %d\n", types_per_packet, schedule_delay, -1);
+        mipal_warn("Max Messages per packet: %d\tBroadcast interval:%d\tKilobytes per sec: %d\n", types_per_packet, schedule_delay, -1);
         pretty_print_packet_types(packets, number_of_packets);
 
-        Sender sender(packets, number_of_packets, schedule_delay, (types_per_packet * GU_SIMPLE_WHITEBOARD_BUFSIZE)); //size is wrong!
+        Sender sender(packets, number_of_packets, schedule_delay);
+        Receiver receiver(packets, number_of_packets, schedule_delay, types_per_packet);
 
 
 

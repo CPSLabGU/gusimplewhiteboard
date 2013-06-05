@@ -40,4 +40,7 @@ void pretty_print_packet_types(gsw_udp_packet_info *packets, int size);
 std::vector<std::string> basic_parse(std::string string, char *tok);
 int get_wb_offset_from_string(std::string type);
 
+void buf2packet(gsw_udp_packet *dst, unsigned char *src, int num_of_types);
+void packet2buf(unsigned char *dst, gsw_udp_packet *src);
+
 #endif //guudputil_h
