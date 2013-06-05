@@ -400,6 +400,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !FilteredSonarObjects_DEFINED
 
+		case kTopParticles_v:
+#ifdef TopParticles_DEFINED
+		{
+			class TopParticles_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !TopParticles_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

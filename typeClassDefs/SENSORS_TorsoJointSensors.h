@@ -48,7 +48,7 @@ namespace guWhiteboard
                 /// string constructor (see from_string() below)
                 SENSORS_TorsoJointSensors(const std::string &str) { from_string(str); }
                 
-                void from_string(const std::string &str)
+                void from_string(const std::string &/*str*/)
                 {
                         //NYI, Good luck
                 }
