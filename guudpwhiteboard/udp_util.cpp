@@ -6,9 +6,8 @@
  *  All rights reserved.
  */
 
-
+#include <cstdlib> //exit
 #include "udp_util.h"
-
 
 
 static int my_udp_id = -1;

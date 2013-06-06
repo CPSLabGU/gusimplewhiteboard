@@ -9,7 +9,16 @@
 #ifndef guudputil_h
 #define guudputil_h
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#undef __block
+#define __block _xblock
 #include <sstream>
+#undef __block
+#define __block __attribute__((__blocks__(byref)))
+#pragma clang diagnostic pop
+
 #include <stdio.h>
 #include <string.h>
 #include <list>

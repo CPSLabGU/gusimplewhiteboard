@@ -73,7 +73,16 @@
 #include <stdbool.h>
 #include <string.h>
 #include <signal.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#undef __block
+#define __block _xblock
 #include <unistd.h>
+#undef __block
+#define __block __attribute__((__blocks__(byref)))
+#pragma clang diagnostic pop
+
 #include <limits.h>
 #include <assert.h>
 #include <sys/types.h>

@@ -57,16 +57,16 @@ void Receiver::construct_packets_array()
 
 
 // get sockaddr, IPv4 or IPv6:
-void *Receiver::get_in_addr(struct sockaddr *sa)
+void *Receiver::get_in_addr(struct sockaddr_in *sa)
 {
-	if (sa->sa_family == AF_INET) {
-		return &(((struct sockaddr_in*)sa)->sin_addr);
+	if (sa->sin_family == AF_INET) {
+		return &(sa->sin_addr);
 	}
 
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay, int max_types_per_packet, int machines_in_the_network) :
+[[ noreturn ]] Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network) :
                 _packet_data(packet_data), _packets_in_schedule(packets_in_schedule)
 {
         remote_wbd = (gu_simple_whiteboard_descriptor **)malloc(sizeof(gu_simple_whiteboard_descriptor *) * machines_in_the_network);
@@ -82,13 +82,13 @@ Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, in
         construct_packets_array();
 
 //taken from http://www.beej.us/guide/bgnet/output/html/multipage/clientserver.html#datagram
-        int sockfd;
+        int sockfd = 0;
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
-	int numbytes;
+	ssize_t numbytes;
 	struct sockaddr_storage their_addr;
 	socklen_t addr_len;
-	char s[INET6_ADDRSTRLEN];
+	char a[INET6_ADDRSTRLEN];
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
@@ -138,9 +138,9 @@ Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, in
 
                 printf("listener: got packet from %s\n",
                        inet_ntop(their_addr.ss_family,
-                                 get_in_addr((struct sockaddr *)&their_addr),
-                                 s, sizeof s));
-                printf("listener: packet is %d bytes long\n", numbytes);
+                                 get_in_addr((struct sockaddr_in *)&their_addr),
+                                 a, sizeof a));
+                printf("listener: packet is %d bytes long\n", (int)numbytes);
 
                 //printf("listener: packet contains \"%s\"\n", buf);
 
@@ -174,7 +174,7 @@ Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, in
         }
 
 
-	close(sockfd);
+	//close(sockfd);
 
 
 
