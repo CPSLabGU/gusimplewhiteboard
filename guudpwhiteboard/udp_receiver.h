@@ -54,9 +54,9 @@ public:
         int _packets_in_schedule;
         gsw_udp_packet *_packets;
 
-
+        gu_simple_whiteboard_descriptor **remote_wbd;
         
-        Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay, int max_types_per_packet);
+        Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay, int max_types_per_packet, int machines_in_the_network);
         void construct_packets_array();
         void set_nonblock(int socket);
         // get sockaddr, IPv4 or IPv6:

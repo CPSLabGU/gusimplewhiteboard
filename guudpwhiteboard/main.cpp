@@ -12,6 +12,7 @@
 #include <stdlib.h> //atoi
 #include <sys/time.h> //gettimeofday
 #include <vector> //for vectors, clearly
+#include <algorithm> //std::remove
 
 //Might not need all of these
 #include <errno.h>
@@ -132,6 +133,7 @@ void setup_udp_whiteboard_with_id(int id)
         // Construct packet data structures
         int number_of_packets = (int)types_to_send.size();
         gsw_udp_packet_info *packets = (gsw_udp_packet_info *) malloc(sizeof(gsw_udp_packet_info) * number_of_packets);
+        int machines_in_the_network = 0;
 
         for (int i = 0; i < number_of_packets; i++)
         {
@@ -145,6 +147,8 @@ void setup_udp_whiteboard_with_id(int id)
                         packets[i].offset[g] = (u_int16_t)get_wb_offset_from_string(types_to_send.at(i).at(g));
                 }
 //                fprintf(stderr, "\n");
+                if(packets[i].sender > machines_in_the_network)
+                        machines_in_the_network = packets[i].sender;
         }
 
 //        float iterations_per_sec = USEC_PER_SEC/(float)schedule_delay;
@@ -156,7 +160,7 @@ void setup_udp_whiteboard_with_id(int id)
         pretty_print_packet_types(packets, number_of_packets);
 
         Sender sender(packets, number_of_packets, schedule_delay);
-        Receiver receiver(packets, number_of_packets, schedule_delay, types_per_packet);
+        Receiver receiver(packets, number_of_packets, schedule_delay, types_per_packet, machines_in_the_network);
 
 
 

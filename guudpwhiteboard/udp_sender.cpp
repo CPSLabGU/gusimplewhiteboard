@@ -110,15 +110,6 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 		exit(1);
 	}
 
-	// this call stops packets I send coming back to me
-//        int  val=0;
-//	if (setsockopt(sockfd, IPPROTO_IP, IP_MULTICAST_LOOP, (const char *)&val, sizeof(val)) == -1)
-//        {
-//		perror("setsockopt (IP_MULTICAST_LOOP)");
-//		exit(1);
-//	}
-
-
         /* construct address structure */
         memset(&_mc_addr, 0, sizeof(_mc_addr));
         _mc_addr.sin_family      = PF_INET;
