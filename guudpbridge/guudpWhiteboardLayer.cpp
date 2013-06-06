@@ -103,7 +103,7 @@ void WhiteboardLayer::addInjectionMessage(std::string dataName, WBMsg *value)
         }
 }
 
-void WhiteboardLayer::addBroadcastMsgType(std::string dataName, WBMsg *value)
+void WhiteboardLayer::addBroadcastMsgType(std::string, WBMsg *value)
 {
         if(value->getType() == WBMsg::TypeString)
         {
