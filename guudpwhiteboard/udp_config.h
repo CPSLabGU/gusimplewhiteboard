@@ -34,9 +34,9 @@
 #define WARNINGS_FILE "/tmp/guudpwhiteboard.warnings"
 
 
-#define REMOTE_WHITEBOARD_BASENAME "udpwhiteboard"
 #define BROADCASTADDRESS "255.255.255.255"
 #define PORT 4242	// the port users will be connecting to
+#define PORT_STR "4242"
 
 #define MAX_NODES 1024
 
