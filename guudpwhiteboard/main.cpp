@@ -8,7 +8,16 @@
 
 
 #include <stdio.h> //fprintf
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#undef __block
+#define __block _xblock
 #include <unistd.h> //optargs
+#undef __block
+#define __block __attribute__((__blocks__(byref)))
+#pragma clang diagnostic pop
+
 #include <stdlib.h> //atoi
 #include <sys/time.h> //gettimeofday
 #include <vector> //for vectors, clearly
@@ -160,14 +169,8 @@ void setup_udp_whiteboard_with_id(int id)
         pretty_print_packet_types(packets, number_of_packets);
 
         Sender sender(packets, number_of_packets, schedule_delay);
-        Receiver receiver(packets, number_of_packets, schedule_delay, types_per_packet, machines_in_the_network);
+        Receiver receiver(packets, number_of_packets, types_per_packet, machines_in_the_network);
 
-
-
-        while(true)
-        {
-                protected_usleep(1000000);
-        }
         
        // fprintf(stdout, "Bandwidth usage: %dkbps\n", );
         
