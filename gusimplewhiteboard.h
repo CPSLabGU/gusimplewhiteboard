@@ -113,6 +113,7 @@ extern "C"
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
 #define GSW_DEFAULT_NAME "simple_whiteboard"
+#define GSWR_BASE_NAME "guudpwhiteboard"
 #define WHITEBOARD_SIGNAL       SIGUSR2
 #define WHITEBOARD_POLL_PERIOD  10000
 
@@ -269,6 +270,12 @@ extern const char *gsw_global_whiteboard_name;
  * @param name  name of the whiteboard
  */
 extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
+
+/**
+ * access a remote named whiteboard: this is the designated constructore for C programs
+ * @param i  machine id of the remote whiteboard
+ */
+extern gu_simple_whiteboard_descriptor *gswr_new_whiteboard(int i);
 
 /**
  * access a named whiteboard: this is the designated constructore for C programs

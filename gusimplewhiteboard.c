@@ -190,6 +190,12 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         return wbd;
 }
 
+gu_simple_whiteboard_descriptor *gswr_new_whiteboard(int i)
+{
+        char name [19]; //allows 999 remote wbs + terminator
+        snprintf(name, 19, "%s%d", GSWR_BASE_NAME, i);
+        return gsw_new_numbered_whiteboard(&name[0], 0);
+}
 
 gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
 {
