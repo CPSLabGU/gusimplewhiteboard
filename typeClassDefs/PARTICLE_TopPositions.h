@@ -74,7 +74,7 @@ namespace guWhiteboard
         class ParticlePosition: public Point2D
         {
                 PROPERTY(int16_t, headingInDegrees)     ///< heading in degrees
-                PROPERTY(int16_t, confidence)            ///< total confidence
+                PROPERTY(float, confidence)            ///< total confidence
         public:
                 /** designated constructor */
                 ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, int16_t weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
