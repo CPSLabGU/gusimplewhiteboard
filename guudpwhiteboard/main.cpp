@@ -2,7 +2,7 @@
  *  main.c
  *
  *  Created by Carl Lusty on 11/5/13.
- *  Copyright (c) 2011 Carl Lusty.
+ *  Copyright (c) 2011, 2013 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
@@ -21,7 +21,7 @@
 #include <stdlib.h> //atoi
 #include <sys/time.h> //gettimeofday
 #include <vector> //for vectors, clearly
-#include <algorithm> //std::remove
+#include <algorithm> //remove
 
 //Might not need all of these
 #include <errno.h>
@@ -43,7 +43,7 @@
 //#include "guudpListener.h"
 //#include "guudpWhiteboardLayer.h"
 
-
+using namespace std;
 
 void setup_udp_whiteboard_with_id(int id);
 
@@ -53,7 +53,7 @@ void setup_udp_whiteboard_with_id(int id);
 
 int main(int argc, char *argv[])
 {
-        fprintf(stderr, " **** UDP WHITEBOARD ****\t (c) 2013 Carl Lusty\n\n");
+        cerr << " **** UDP WHITEBOARD ****\t(c) 2013 Carl Lusty and Rene Hexel\n\n" << endl;
         
         int robot_id = -1;
         
@@ -102,7 +102,7 @@ void setup_udp_whiteboard_with_id(int id)
         else
                 set_udp_id(id);
         
-        std::string schedule_file = getenv("HOME");
+        string schedule_file = getenv("HOME");
         schedule_file += SCHEDULE_FILE;
         if(!file_exists((char *)schedule_file.c_str()))
         {
@@ -111,49 +111,59 @@ void setup_udp_whiteboard_with_id(int id)
                 exit(1);
         }
 
-        std::string schedule_file_content = string_from_file((char *)schedule_file.c_str());
-        std::string machine_token("messages_per_packet:");
-        std::string delay_token("packet_interval:");
+        string schedule_file_content = string_from_file((char *)schedule_file.c_str());
+        string machine_token("messages_per_packet:");
+        string delay_token("packet_interval:");
 
+        if (!schedule_file_content.length())
+        {
+                cerr << "Could not open '" << schedule_file << "': " << strerror(errno) << endl;
+                exit(EXIT_FAILURE);
+        }
         //Get the num of machines and the delay (usec)
         int types_per_packet = atoi((char *)schedule_file_content.substr(schedule_file_content.find(machine_token)+machine_token.length(), schedule_file_content.find("\n", schedule_file_content.find(machine_token))).c_str());
         int schedule_delay = atoi((char *)schedule_file_content.substr(schedule_file_content.find(delay_token)+delay_token.length(), schedule_file_content.find("\n", schedule_file_content.find(delay_token))).c_str());
-        
-        std::remove(schedule_file_content.begin(), schedule_file_content.end(), ' '); //remove whitespace
-        
 
         //Get the lines
-        std::vector<std::string> lines = basic_parse(schedule_file_content, (char *)"\n");
-        lines.erase(lines.end()); //I seem to get a newline at the end of a line regardless of there not being a new line under it.
+        vector<string> lines = components_of_string_separated(schedule_file_content, '\n', true);
+        string line;
+        while (!(line = lines.back()).length())
+                lines.pop_back();
 
-        std::vector<std::vector<std::string> > types_to_send;
+        if (lines.size() < 2)
+        {
+                cerr << "Invalid '" << schedule_file << "': only contains " << lines.size() << " empty line" << (lines.size() ? "" : "s") << endl;
+                exit(EXIT_FAILURE);
+        }
+
+        vector<vector<string> > types_to_send;
         int packet_destination_ids[MAX_NODES];
         //start at two in order to ignore the header info
-        for(int i = 2; i < (int)lines.size(); i++)
+        for (size_t i = 2; i < lines.size(); i++)
         {
-                int start_of_type_definition = ((int)lines.at(i).find(':'))+1;
-                packet_destination_ids[i-2] = atoi((char *)lines.at(i).substr(0, start_of_type_definition).c_str());
+                int start_of_type_definition = int(lines[i].find(':'))+1;
+                packet_destination_ids[i-2] = atoi(lines[i].substr(0, start_of_type_definition).c_str());
 
-                std::vector<std::string> types = basic_parse(lines.at(i).substr(start_of_type_definition, lines.at(i).length()), (char *)",");
+                vector<string> types = components_of_string_separated(lines[i].substr(start_of_type_definition, lines[i].length()), ',', true);
                 types_to_send.push_back(types);
         }
 
 
         // Construct packet data structures
         int number_of_packets = (int)types_to_send.size();
-        gsw_udp_packet_info *packets = (gsw_udp_packet_info *) malloc(sizeof(gsw_udp_packet_info) * number_of_packets);
+        gsw_udp_packet_info *packets = (gsw_udp_packet_info *) calloc(number_of_packets, sizeof(gsw_udp_packet_info));
         int machines_in_the_network = 0;
 
         for (int i = 0; i < number_of_packets; i++)
         {
-                packets[i].sender = (u_int8_t)packet_destination_ids[i];
-                packets[i].num_of_types = (u_int8_t)types_to_send.at(i).size();
-                packets[i].offset = (u_int16_t *) malloc(sizeof(u_int16_t) * packets[i].num_of_types);
+                packets[i].sender = u_int8_t(packet_destination_ids[i]);
+                packets[i].num_of_types = u_int8_t(types_to_send[i].size());
+                packets[i].offset = static_cast<u_int16_t *>(calloc(packets[i].num_of_types, sizeof(u_int16_t)));
 
-                for (int g = 0; g < (int)types_to_send.at(i).size(); g++)
+                for (size_t g = 0; g < types_to_send[i].size(); g++)
                 {
-//                        fprintf(stderr, "\t%s", (char *)types_to_send.at(i).at(g).c_str());
-                        packets[i].offset[g] = (u_int16_t)get_wb_offset_from_string(types_to_send.at(i).at(g));
+//                        fprintf(stderr, "\t%s", (char *)types_to_send[i].at(g).c_str());
+                        packets[i].offset[g] = u_int16_t(get_wb_offset_from_string(types_to_send[i][g]));
                 }
 //                fprintf(stderr, "\n");
                 if(packets[i].sender > machines_in_the_network)
@@ -188,8 +198,8 @@ void setup_udp_whiteboard_with_id(int id)
         for (int i = 0; i < NUM_OF_BROADCASTERS; i++)
         {
                 const char *base_wb_name = REMOTE_WHITEBOARD_BASENAME;
-                std::stringstream ss;
-                std::stringstream ss2;
+                stringstream ss;
+                stringstream ss2;
                 ss << base_wb_name << (i+1); //line the wb names up to the player names
                 
                 _whiteboards[i] = new guWhiteboard::Whiteboard(ss.str().c_str());

@@ -2,7 +2,7 @@
  *  udp_sender.cpp
  *
  *  Created by Carl Lusty on 1/6/13.
- *  Copyright (c) 2013 Carl Lusty.
+ *  Copyright (c) 2013 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
@@ -34,7 +34,7 @@
 
 void Receiver::construct_packets_array()
 {
-        _packets = (gsw_udp_packet *)malloc(sizeof(gsw_udp_packet) * _packets_in_schedule);
+        _packets = static_cast<gsw_udp_packet *>(calloc(_packets_in_schedule, sizeof(gsw_udp_packet)));
 
         for (int i = 0; i < _packets_in_schedule; i++)
         {
@@ -42,7 +42,7 @@ void Receiver::construct_packets_array()
                 packet->schedule_index = (u_int8_t)i;
                 packet->num_of_types = _packet_data[i].num_of_types;
 
-                packet->offset = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
+                packet->offset = static_cast<u_int16_t *>(calloc(packet->num_of_types, sizeof(u_int16_t)));
 
                 for (int g = 0; g < packet->num_of_types; g++)
                         packet->offset[g] = _packet_data[i].offset[g];
@@ -50,8 +50,8 @@ void Receiver::construct_packets_array()
 //                if((int)_packet_data[i].sender == get_udp_id())
 //                        continue; //don't bother allocating for types that we won't ever read
 
-                packet->event_counter = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
-                packet->content = (gu_simple_message *) malloc(sizeof(gu_simple_message) * packet->num_of_types);
+                packet->event_counter = static_cast<u_int16_t *>(calloc(packet->num_of_types, sizeof(u_int16_t)));
+                packet->content = static_cast<gu_simple_message *>(calloc(packet->num_of_types, sizeof(gu_simple_message)));
         }
 }
 
@@ -59,23 +59,21 @@ void Receiver::construct_packets_array()
 // get sockaddr, IPv4 or IPv6:
 void *Receiver::get_in_addr(struct sockaddr_in *sa)
 {
-	if (sa->sin_family == AF_INET) {
+	if (sa->sin_family == AF_INET)
 		return &(sa->sin_addr);
-	}
 
-	return &(((struct sockaddr_in6*)sa)->sin6_addr);
+	return &reinterpret_cast<struct sockaddr_in6 *>(sa)->sin6_addr;
 }
 
 [[ noreturn ]] Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network) :
-                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule)
+                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _machines_in_the_network(machines_in_the_network)
 {
-        remote_wbd = (gu_simple_whiteboard_descriptor **)malloc(sizeof(gu_simple_whiteboard_descriptor *) * machines_in_the_network);
+        dispatch_queue_t stdout_queue = dispatch_queue_create("net.mipal.guudpwhiteboard.receiver.stdout", 0);
+
+        remote_wbd = static_cast<gu_simple_whiteboard_descriptor **>(calloc(machines_in_the_network, sizeof(gu_simple_whiteboard_descriptor *)));
 
         for (int i = 0; i < machines_in_the_network; i++)
-        {
                 remote_wbd[i] = gswr_new_whiteboard(i);
-        }
-
 
         int max_packet_size = sizeof(u_int8_t) + (sizeof(u_int16_t)*max_types_per_packet) + (sizeof(gu_simple_message)*max_types_per_packet);
         _recv_buffer = (unsigned char *) malloc(max_packet_size);
@@ -88,7 +86,6 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
 	ssize_t numbytes;
 	struct sockaddr_storage their_addr;
 	socklen_t addr_len;
-	char a[INET6_ADDRSTRLEN];
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
@@ -133,20 +130,22 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
                 if ((numbytes = recvfrom(sockfd, _recv_buffer, max_packet_size , 0,
                                          (struct sockaddr *)&their_addr, &addr_len)) == -1) {
                         perror("recvfrom");
-                        exit(1);
+                        protected_msleep(10);
+                        continue;
                 }
-
-                printf("listener: got packet from %s\n",
-                       inet_ntop(their_addr.ss_family,
-                                 get_in_addr((struct sockaddr_in *)&their_addr),
-                                 a, sizeof a));
-                printf("listener: packet is %d bytes long\n", (int)numbytes);
-
-                //printf("listener: packet contains \"%s\"\n", buf);
-
-
-                u_int8_t index;
-                memcpy((void*)&index, _recv_buffer, sizeof index);
+#ifdef DEBUG
+                dispatch_async(stdout_queue,
+                ^{
+                        char inetaddr_name[INET6_ADDRSTRLEN];
+                        printf("listener: got packet from %s\n",
+                               inet_ntop(their_addr.ss_family,
+                                         get_in_addr((struct sockaddr_in *)&their_addr),
+                                         inetaddr_name, sizeof inetaddr_name));
+                        printf("listener: packet is %d bytes long\n", (int)numbytes);
+                        //printf("listener: packet contains \"%s\"\n", buf);
+                });
+#endif
+                u_int8_t index = _recv_buffer[0];
 
                 buf2packet(&_packets[index], _recv_buffer, _packet_data[index].num_of_types);
 
@@ -170,6 +169,10 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
                                 wb->event_counters[t] = new_e; //set event counter rather than increment it
                                 if (wb->subscribed) gsw_signal_subscribers(wb); //notify_subscribers is always true for the udp whiteboard
                         }
+                        else dispatch_async(stdout_queue,
+                        ^{
+                                write(STDOUT_FILENO, ".", 1);
+                        });
                 }
         }
 
@@ -303,6 +306,9 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
 
 Receiver::~Receiver()
 {
+        for (int i = 0; i < _machines_in_the_network; i++)
+                if (remote_wbd[i]) gsw_free_whiteboard(remote_wbd[i]);
+
         shutdown(_recv_socket, SHUT_WR);
         close(_recv_socket);
 }

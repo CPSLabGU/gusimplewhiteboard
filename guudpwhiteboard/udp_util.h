@@ -2,7 +2,7 @@
  *  udp_util.h
  *
  *  Created by Carl Lusty on 2/1/13.
- *  Copyright (c) 2011 Carl Lusty.
+ *  Copyright (c) 2011 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
@@ -14,6 +14,7 @@
 #pragma clang diagnostic ignored "-Wunused-macros"
 #undef __block
 #define __block _xblock
+#include <string>
 #include <sstream>
 #undef __block
 #define __block __attribute__((__blocks__(byref)))
@@ -49,7 +50,7 @@ void pretty_print_packet_types(gsw_udp_packet_info *packets, int size);
 std::vector<std::string> basic_parse(std::string string, char *tok);
 int get_wb_offset_from_string(std::string type);
 
-void buf2packet(gsw_udp_packet *dst, unsigned char *src, int num_of_types);
-void packet2buf(unsigned char *dst, gsw_udp_packet *src);
+void buf2packet(gsw_udp_packet *dst, uint8_t *src, int num_of_types);
+void packet2buf(uint8_t *dst, gsw_udp_packet *src);
 
 #endif //guudputil_h

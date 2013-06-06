@@ -2,13 +2,14 @@
  *  udp_util.cpp
  *
  *  Created by Carl Lusty on 2/1/13.
- *  Copyright (c) 2011 Carl Lusty.
+ *  Copyright (c) 2011 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
 #include <cstdlib> //exit
 #include "udp_util.h"
 
+using namespace std;
 
 static int my_udp_id = -1;
 
@@ -59,20 +60,8 @@ void pretty_print_packet_types(gsw_udp_packet_info *packets, int size)
 }
 
 
-std::vector<std::string> basic_parse(std::string string, char *tok)
-{
-        std::vector<std::string> results;
-        char *str = (char *)string.c_str();
-        char *part = strtok(str, tok); // passing a string starts a new iteration
-        while (part) {
-                results.push_back(std::string(part));
-                part = strtok(NULL, tok); // passing NULL continues with the last string
-        }
-        return results;
-}
-
 //Only for new types (generated not dynamic)
-int get_wb_offset_from_string(std::string type)
+int get_wb_offset_from_string(string type)
 {
         for(int i = 0; i < GSW_NUM_TYPES_DEFINED; i++)
         {
@@ -84,11 +73,9 @@ int get_wb_offset_from_string(std::string type)
 }
 
 
-void packet2buf(unsigned char *dst, gsw_udp_packet *src)
+void packet2buf(uint8_t *dst, gsw_udp_packet *src)
 {
-        unsigned char *off;
-
-        off = dst;
+        uint8_t *off = dst;
 
         memcpy(off, (void*)&src->schedule_index, sizeof src->schedule_index);
         off += sizeof src->schedule_index;
@@ -100,11 +87,9 @@ void packet2buf(unsigned char *dst, gsw_udp_packet *src)
         off += sizeof(src->content[0]) * src->num_of_types;
 }
 
-void buf2packet(gsw_udp_packet *dst, unsigned char *src, int num_of_types)
+void buf2packet(gsw_udp_packet *dst, uint8_t *src, int num_of_types)
 {
-        unsigned char *off;
-
-        off = src;
+        uint8_t *off = src;
 
         memcpy((void*)&dst->schedule_index, off, sizeof dst->schedule_index);
         off += sizeof dst->schedule_index;
@@ -115,18 +100,3 @@ void buf2packet(gsw_udp_packet *dst, unsigned char *src, int num_of_types)
         memcpy((void*)&dst->content[0], off, sizeof(gu_simple_message) * num_of_types);
         off += sizeof(gu_simple_message) * num_of_types;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@
  *  udp_sender.cpp
  *
  *  Created by Carl Lusty on 1/6/13.
- *  Copyright (c) 2013 Carl Lusty.
+ *  Copyright (c) 2013 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
@@ -74,32 +74,35 @@ void Sender::send_content()
 */
 void Sender::construct_packets_array()
 {
-        _packets = (gsw_udp_packet *)malloc(sizeof(gsw_udp_packet) * _packets_in_schedule);
+        _packets = static_cast<gsw_udp_packet *>(calloc(_packets_in_schedule, sizeof(gsw_udp_packet)));
 
         for (int i = 0; i < _packets_in_schedule; i++)
         {
                 gsw_udp_packet *packet = &_packets[i];
-                packet->schedule_index = (u_int8_t)i;
+                packet->schedule_index = u_int8_t(i);
                 packet->num_of_types = _packet_data[i].num_of_types;
 
-                packet->offset = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
+                packet->offset = static_cast<u_int16_t *>(calloc(packet->num_of_types, sizeof(u_int16_t)));
 
                 for (int g = 0; g < packet->num_of_types; g++)
                         packet->offset[g] = _packet_data[i].offset[g];
 
-                if((int)_packet_data[i].sender != get_udp_id())
+                if (int(_packet_data[i].sender) != get_udp_id())
                         continue; //don't bother allocating for types that we won't ever send
 
-                packet->event_counter = (u_int16_t *) malloc(sizeof(u_int16_t) * packet->num_of_types);
-                packet->content = (gu_simple_message *) malloc(sizeof(gu_simple_message) * packet->num_of_types);
+                packet->event_counter = static_cast<u_int16_t *>(calloc(packet->num_of_types, sizeof(u_int16_t)));
+                packet->content = static_cast<gu_simple_message *>(calloc(packet->num_of_types, sizeof(gu_simple_message)));
         }
 }
 
 Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int timer_delay) :
-                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _current_sender_index(0)
+                _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _current_sender_index(0), _sender_timer(NULL)
 {
+        if (!packets_in_schedule) return;
+
         //Setup socket
-	if ((_send_socket = socket(PF_INET, SOCK_DGRAM, 0)) == -1) {
+	if ((_send_socket = socket(PF_INET, SOCK_DGRAM, 0)) == -1)
+        {
 		perror("socket");
 		exit(1);
 	}
@@ -114,7 +117,7 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 
         /* construct address structure */
         memset(&_mc_addr, 0, sizeof(_mc_addr));
-        _mc_addr.sin_family      = PF_INET;
+        _mc_addr.sin_family      = AF_INET;
         _mc_addr.sin_addr.s_addr = inet_addr(BROADCASTADDRESS);
         _mc_addr.sin_port        = htons(PORT);
 
@@ -126,7 +129,7 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 
 
 
-        _send_buffer = (unsigned char *) malloc(packet_size);
+        _send_buffer = static_cast<unsigned char *>(malloc(packet_size));
 
         int duration_of_schedule = timer_delay*packets_in_schedule;
         long long now = get_utime();
@@ -134,7 +137,7 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 
 
         timespec spec;
-        spec.tv_sec = (long)floor(start_of_next_round / USEC_PER_SEC);
+        spec.tv_sec = long(floor(start_of_next_round / USEC_PER_SEC));
         spec.tv_nsec = (start_of_next_round % USEC_PER_SEC) * NSEC_PER_USEC;
 
 
@@ -145,10 +148,10 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
         if (timer)
         {
                 dispatch_source_set_timer(timer, dispatch_walltime(&spec, 0), (timer_delay*NSEC_PER_USEC), 0ull);
-                dispatch_source_set_event_handler(timer, ^{
-
+                dispatch_source_set_event_handler(timer,
+                ^{
                         gsw_udp_packet_info *packet_info = &packet_data[_current_sender_index];
-                        if((int)packet_info->sender == get_udp_id())
+                        if (int(packet_info->sender) == get_udp_id())
                         {
                                 gsw_udp_packet *packet = &_packets[_current_sender_index];
                                 for (int i = 0; i < packet->num_of_types; i++)
@@ -162,23 +165,20 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 
                                 int this_packet_size = sizeof(u_int8_t) + (sizeof(u_int16_t)*_packet_data[_current_sender_index].num_of_types) + (sizeof(gu_simple_message)*_packet_data[_current_sender_index].num_of_types);
                                 ssize_t bytes_sent = sendto(_send_socket, _send_buffer, this_packet_size, 0, (struct sockaddr *)&_mc_addr, sizeof(_mc_addr));
-                                if(bytes_sent == -1)
-                                {
-                                        fprintf(stderr, "!Sent index %d\n", _current_sender_index+1);
-                                        if(errno != 65) //ENETUNREACH - no route to host
-                                        {
-                                                perror("sendto");
-                                                exit(1);
-                                        }
-                                }
+                                if (bytes_sent == -1)
+                                        fprintf(stderr, "!Sent index %d: %s\n", _current_sender_index+1, strerror(errno));
                                 else
-                                        fprintf(stderr, "Sent index %d\tbytes %d\n", _current_sender_index+1, (int)bytes_sent);
+                                        DBG(printf("Sent index %d\tbytes %d\n", _current_sender_index+1, (int)bytes_sent));
                         }
-                        _current_sender_index++;
-                        if(_current_sender_index == packets_in_schedule)
+                        if (++_current_sender_index == packets_in_schedule)
                                 _current_sender_index = 0;
                 });
                 dispatch_resume(timer);
+        }
+        else
+        {
+                perror("Cannot create dispatch timer for transmission");
+                exit(EXIT_FAILURE);
         }
 }
 

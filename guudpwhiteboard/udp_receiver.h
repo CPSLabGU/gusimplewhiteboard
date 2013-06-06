@@ -2,7 +2,7 @@
  *  udp_receiver.h
  *
  *  Created by Carl Lusty on 1/6/13.
- *  Copyright (c) 2013 Carl Lusty.
+ *  Copyright (c) 2013 Carl Lusty and Rene Hexel.
  *  All rights reserved.
  */
 
@@ -45,7 +45,7 @@ class Receiver
 public:
         int _recv_socket;
         struct sockaddr_in _mc_addr; // address information
-        unsigned char *_recv_buffer; //The address of the data to be sent
+        uint8_t *_recv_buffer; //The address of the data to be sent
 
         fd_set _sock_read_fd_set;
         struct timeval _select_timeout;
@@ -55,6 +55,7 @@ public:
         gsw_udp_packet *_packets;
 
         gu_simple_whiteboard_descriptor **remote_wbd;
+        int _machines_in_the_network;
         
         Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network);
         void construct_packets_array();
