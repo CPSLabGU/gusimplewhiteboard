@@ -12,6 +12,7 @@
 #include <stdlib.h> //atoi
 #include <sys/time.h> //gettimeofday
 #include <vector> //for vectors, clearly
+#include <algorithm> //std::remove
 
 //Might not need all of these
 #include <errno.h>
