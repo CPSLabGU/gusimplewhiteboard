@@ -77,7 +77,7 @@ namespace guWhiteboard
                 PROPERTY(float, confidence)            ///< total confidence
         public:
                 /** designated constructor */
-                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, int16_t weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
+                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
 
                 /** copy constructor */
                 ParticlePosition(const ParticlePosition &other): Point2D(other),  _headingInDegrees(other.headingInDegrees()), _confidence(other.confidence()) {}
@@ -132,7 +132,8 @@ namespace guWhiteboard
                 ARRAY_PROPERTY(ParticlePosition, particles, NUM_TOP_PARTICLES)  ///< top whiteboard particles
         public:
                 /** designated constructor */
-                TopParticles() { memset(_particles, 0, sizeof(_particles)); }
+                TopParticles() { memset(_particles, 0, sizeof(_particles));
+                        for (int i=0; i<NUM_TOP_PARTICLES ; i++) particles(i).set_confidence(-HUGE_VALF); }
 
                 /** copy constructor */
                 TopParticles(const TopParticles &other) { memcpy(_particles, other._particles, sizeof(_particles)); }
