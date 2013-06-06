@@ -125,14 +125,33 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
 
 	addr_len = sizeof their_addr;
 
+        __block bool got_timeout;
+        __block unsigned packet_sequence = 0UL;
         while (true)
         {
+                unsigned current_packet = packet_sequence;
+                got_timeout = false;
+
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+                dispatch_after(popTime, stdout_queue,
+                ^{
+                        if (current_packet == packet_sequence)
+                        {
+                                got_timeout = true;
+                                write(STDOUT_FILENO, "*", 1);
+                        }
+                });
                 if ((numbytes = recvfrom(sockfd, _recv_buffer, max_packet_size , 0,
                                          (struct sockaddr *)&their_addr, &addr_len)) == -1) {
                         perror("recvfrom");
                         protected_msleep(10);
                         continue;
                 }
+                packet_sequence++;
+                if (got_timeout) dispatch_async(stdout_queue,
+                ^{
+                        write(STDOUT_FILENO, "\b \b", 3);
+                });
 #ifdef DEBUG
                 dispatch_async(stdout_queue,
                 ^{
@@ -169,7 +188,7 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
                                 wb->event_counters[t] = new_e; //set event counter rather than increment it
                                 if (wb->subscribed) gsw_signal_subscribers(wb); //notify_subscribers is always true for the udp whiteboard
                         }
-                        else dispatch_async(stdout_queue,
+                        else if (new_e != old_e) dispatch_async(stdout_queue,
                         ^{
                                 write(STDOUT_FILENO, ".", 1);
                         });
