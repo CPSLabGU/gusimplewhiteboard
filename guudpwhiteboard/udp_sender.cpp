@@ -14,6 +14,8 @@
 #include <arpa/inet.h> //PF_INET
 #include <sys/time.h> //gettimeofday
 #include <cmath> //floor
+#include <cstdlib> //malloc
+
 
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Wshorten-64-to-32"
@@ -109,15 +111,6 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
 		perror("setsockopt (SO_BROADCAST)");
 		exit(1);
 	}
-
-	// this call stops packets I send coming back to me
-//        int  val=0;
-//	if (setsockopt(sockfd, IPPROTO_IP, IP_MULTICAST_LOOP, (const char *)&val, sizeof(val)) == -1)
-//        {
-//		perror("setsockopt (IP_MULTICAST_LOOP)");
-//		exit(1);
-//	}
-
 
         /* construct address structure */
         memset(&_mc_addr, 0, sizeof(_mc_addr));

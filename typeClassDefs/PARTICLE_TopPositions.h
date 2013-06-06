@@ -74,13 +74,13 @@ namespace guWhiteboard
         class ParticlePosition: public Point2D
         {
                 PROPERTY(int16_t, headingInDegrees)     ///< heading in degrees
-                PROPERTY(int16_t, confidence)            ///< total confidence
+                PROPERTY(float, confidence)            ///< total confidence
         public:
                 /** designated constructor */
-                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, int16_t weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
+                ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
 
                 /** copy constructor */
-                ParticlePosition(const ParticlePosition &other): Point2D(other),  _headingInDegrees(other.headingInDegrees()), _confidence(other.confidence()) {}
+                ParticlePosition(const ParticlePosition &other) { *this = other; }
 
                 /** radians getter */
                 float heading() const { return float(DEG2RAD(headingInDegrees())); }
@@ -95,7 +95,7 @@ namespace guWhiteboard
                 std::string description()
                 {
                         std::ostringstream ss;
-                        ss << Point2D::description() << "," << headingInDegrees() << "," << confidence();
+                        ss << Point2D::description() << "," << headingInDegrees() << "," << confidence()*100;
                         return ss.str();
                 }
                 
@@ -132,10 +132,11 @@ namespace guWhiteboard
                 ARRAY_PROPERTY(ParticlePosition, particles, NUM_TOP_PARTICLES)  ///< top whiteboard particles
         public:
                 /** designated constructor */
-                TopParticles() { memset(_particles, 0, sizeof(_particles)); }
+                TopParticles() { memset(_particles, 0, sizeof(_particles));
+                        for (int i=0; i<NUM_TOP_PARTICLES ; i++) particles(i).set_confidence(-HUGE_VALF); }
 
                 /** copy constructor */
-                TopParticles(const TopParticles &other) { memcpy(_particles, other._particles, sizeof(_particles)); }
+                TopParticles(const TopParticles &other) { *this = other; }
 
                 /** string constructor */
                 TopParticles(const std::string &names) { from_string(names); }

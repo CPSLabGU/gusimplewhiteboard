@@ -73,7 +73,16 @@
 #include <stdbool.h>
 #include <string.h>
 #include <signal.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#undef __block
+#define __block _xblock
 #include <unistd.h>
+#undef __block
+#define __block __attribute__((__blocks__(byref)))
+#pragma clang diagnostic pop
+
 #include <limits.h>
 #include <assert.h>
 #include <sys/types.h>
@@ -176,7 +185,7 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         {
                 gsw_init_semaphores(wbd->sem);
 
-                for (enum wb_types i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
+                for (int i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
                         if(i < GSW_NUM_TYPES_DEFINED)
                                 gsw_register_message_type(wbd, WBTypes_stringValues[i]);
                         else
@@ -190,6 +199,12 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         return wbd;
 }
 
+gu_simple_whiteboard_descriptor *gswr_new_whiteboard(int i)
+{
+        char name [19]; //allows 999 remote wbs + terminator
+        snprintf(name, 19, "%s%d", GSWR_BASE_NAME, i);
+        return gsw_new_numbered_whiteboard(&name[0], 0);
+}
 
 gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
 {
