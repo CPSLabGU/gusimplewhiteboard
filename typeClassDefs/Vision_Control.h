@@ -27,6 +27,7 @@ enum VisionMessages {
 		ConservativeMode,
 		ImageInput,
 		LoadCalibration,
+		PipelineRunOnce,
                 HorizionFactor,
 		NUMBER_VISION_MESSAGES
 };
@@ -98,10 +99,10 @@ enum SaveFileType {
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "LOADCALIBRATION", "HORIZIONFACTOR", "Undefined"};
+		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "HORIZIONFACTOR", "Undefined"};
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "CalibrationLoaded", "HorizionFactor", "FrameRate"};
+		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "HorizionFactor", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -119,12 +120,13 @@ static const char* SaveImageStrings[] = {"AI2", "JPG"};
 static const SaveFileType SaveImageValues[] = {AI2, JPG};
 
 static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, SaveImageStrings,
-		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, CalibrationStrings};
+		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, CalibrationStrings, BoolStrings};
 static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
                                                 sizeof(CameraStrings)/sizeof(char*), sizeof(SaveImageStrings)/sizeof(char*),
                                                 sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
                                                 sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
-                                                sizeof(BoolStrings)/sizeof(char*), sizeof(CalibrationStrings)/sizeof(char*)};
+                                                sizeof(BoolStrings)/sizeof(char*), sizeof(CalibrationStrings)/sizeof(char*),
+						sizeof(BoolStrings)/sizeof(char*)};
 
 namespace guWhiteboard
 {
@@ -183,6 +185,8 @@ public:
 						case LoadCalibration:
 							set_loadCalibration(CalibrationValues[j]);
 							break;
+						case PipelineRunOnce:
+							set_pipelineRunOnce(BoolValues[j]);
 						}
 					}
 				}
@@ -213,10 +217,12 @@ public:
 			result << Statuses[8] << "=" << BoolStrings[imageInput()?0:1] << " ";
 		if(loadCalibration_mask())
 			result << Statuses[9] << "=" << CalibrationStrings[loadCalibration()] << " ";
+		if(pipelineRunOnce_mask())
+			result << Statuses[10] << "=" << BoolStrings[pipelineRunOnce()?0:1] << " ";
                 if(frameRate_mask())
-                        result << Statuses[11] << "=" << frameRate() << " ";
+                        result << Statuses[12] << "=" << frameRate() << " ";
                 if(horizionValue_mask())
-                    result << Statuses[10] << "=" << horizionValue();
+                    result << Statuses[11] << "=" << horizionValue();
 		return result.str();
 	}
 
@@ -241,6 +247,8 @@ public:
 			this->set_imageInput(a.imageInput());
 		if(a.loadCalibration_mask())
 			this->set_loadCalibration(a.loadCalibration());
+		if(a.pipelineRunOnce_mask())
+			this->set_pipelineRunOnce(a.pipelineRunOnce());
 		return *this;
 	}
 
@@ -256,6 +264,7 @@ public:
 	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
         CONTROLLED_PROPERTY(float, horizionValue)
         CONTROLLED_PROPERTY(int, frameRate)
+	CONTROLLED_PROPERTY(bool, pipelineRunOnce)
 
 	CONTROL_BIT(resolution)
 	CONTROL_BIT(pipelineRunning)
@@ -269,6 +278,9 @@ public:
 	CONTROL_BIT(loadCalibration)
         CONTROL_BIT(horizionValue)
         CONTROL_BIT(frameRate)
+	CONTROL_BIT(pipelineRunOnce)
+	    
+	PROPERTY(uint8_t, openChallengeStep)
 
 };
 }

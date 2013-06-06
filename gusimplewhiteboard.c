@@ -185,7 +185,7 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         {
                 gsw_init_semaphores(wbd->sem);
 
-                for (enum wb_types i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
+                for (int i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
                         if(i < GSW_NUM_TYPES_DEFINED)
                                 gsw_register_message_type(wbd, WBTypes_stringValues[i]);
                         else
