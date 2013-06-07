@@ -57,6 +57,9 @@
  */
 #ifndef FilteredOneDimObjects_DEFINED
 #define FilteredOneDimObjects_DEFINED
+#define FilteredVisionObject_DEFINED
+#define FilteredSonarObject_DEFINED
+#define FilteredSonarObjects_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -179,7 +182,7 @@ namespace guWhiteboard
 
 		if ( isVisible())
                 { ss<<"Visible ";
-		  ss << "at distance " << distance() << "with location ("  <<  x() << "," << y() << ")";
+		  ss << "at distance=" << distance() << " with location ("  <<  x() << "," << y() << ")";
 		}
 		else ss << "NOT visible ";
 
@@ -278,9 +281,9 @@ namespace guWhiteboard
 			break;
 		    case FVOGoalPostLeft : ss << "aLeftGoalPost:";
 			break;
-		    case FVOGoalPostRight : ss << "aLeftGoalPost:";
+		    case FVOGoalPostRight : ss << "aRightGoalPost:";
 			break;
-		    case FVOGoalCrossBar : ss << "aLeftGoalPost:";
+		    case FVOGoalCrossBar : ss << "aCrossBar:";
 			break;
 		    case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
 			break;
