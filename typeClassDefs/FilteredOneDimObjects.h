@@ -69,13 +69,13 @@ namespace guWhiteboard
          */
         enum FilteredVisionObjectType
         {
-            FVOBall,          ///< Filtered informaiton for the Ball
             FVOGoalPost,          ///< Filtered informaiton for a post we cannot tell is Left or right
             FVOGoalPostLeft,          ///< Filtered informaiton for a post we know is Left 
             FVOGoalPostRight,          ///< Filtered informaiton for a post we know is right 
             FVOGoalCrossBar,          ///< Filtered informaiton for the Ball
             FVO_NUM_OBJECTS          ///< number of different kind of objects
         };
+
 
         enum FilteredSonarObjectType
         {
@@ -147,6 +147,7 @@ namespace guWhiteboard
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
             PROPERTY(int16_t, x) //  center x-coordinate in image
             PROPERTY(int16_t, y) //  cneter y-coordinate in image
+            PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was alst used to generated filtered values
 
         public:
             /** designated constructor */
@@ -154,11 +155,12 @@ namespace guWhiteboard
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
                                        int16_t x = 0,
-				       int16_t y = 0):
+				       int16_t y = 0,
+				       int16_t yaw=0):
                                       _isVisible(isVisible), 
                                       _distance(distance), 
                                       _frameCounter(frameCounter), 
-                                       _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
+                                       _x(x), _y(y), _yaw(yaw)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             FilteredVisionObject(const std::string &names) { from_string(names); }
@@ -168,32 +170,18 @@ namespace guWhiteboard
                       _isVisible(other._isVisible),
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
-                      _x(other._x), _y(other._y) {}
+                      _x(other._x), _y(other._y), _yaw(other._yaw) {}
 
             /** convert to a string */
             std::string description() const
             {
                 std::ostringstream ss;
-		/*
-		switch (landmarkType() )
-		{ case FVOBall : ss << "aBall:";
-			break;
-		  case FVOGoalPost : ss << "aGoalPost:";
-			break;
-		  case FVOGoalPostLeft : ss << "aLeftGoalPost:";
-			break;
-		  case FVOGoalPostRight : ss << "aRightGoalPost:";
-			break;
-		  case FVOGoalCrossBar : ss << "aCrossbar:";
-			break;
-		}
-		*/
 
 		if ( isVisible())
-                { ss<<" is visible ";
+                { ss<<"Visible ";
 		  ss << "at distance " << distance() << "with location ("  <<  x() << "," << y() << ")";
 		}
-		else ss << " is NOT visible ";
+		else ss << "NOT visible ";
 
 		ss << " at frame  " << frameCounter();
 
@@ -231,10 +219,10 @@ namespace guWhiteboard
 	    {}
 
 	    /** single vision object setter */
-	    FilteredOneDimObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    FilteredOneDimObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
 	    {
 		    /*
-		for ( int i =FVOBall; i< FO_NUM_OBJECTS; i++ )
+		for ( int i =FVOGoalPost; i< FO_NUM_OBJECTS; i++ )
 		{ FilteredVisionObjectType iThLandmarkType = FilteredVisionObjectType(i);
 		}
 			*/
@@ -260,19 +248,19 @@ namespace guWhiteboard
 	    }
 
 	    /** single vision object setter */
-	    void set_object(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    void set_object(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
 	    {
 		_objects[landmarkType]=obj;
 	    }
 
 	    /** single vision object setter */
-	    FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOBall)
+	    FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
 	    {
 		return _objects[landmarkType];
 	    }
 
                 /** single vision object getter */
-                const FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOBall) const
+                const FilteredVisionObject &get_object( enum FilteredVisionObjectType landmarkType  = FVOGoalPost) const
                 {
                         return _objects[landmarkType];
                 }
@@ -281,12 +269,11 @@ namespace guWhiteboard
             std::string description() const
             {
                 std::ostringstream ss;
-		for ( int i =FVOBall; i< FVO_NUM_OBJECTS; i++ )
+		for ( int i =FVOGoalPost; i< FVO_NUM_OBJECTS; i++ )
 		{ 
 			FilteredVisionObjectType landmarkType = FilteredVisionObjectType(i);
 		  switch (landmarkType )
-		   { case FVOBall : ss << "aBall:"; 
-			break;
+		   {
 		    case FVOGoalPost : ss << "aGoalPost:";
 			break;
 		    case FVOGoalPostLeft : ss << "aLeftGoalPost:";
@@ -299,6 +286,8 @@ namespace guWhiteboard
 			break;
 		  }// switch
 		  ss <<_objects[landmarkType].description();
+                        if (i < FVO_NUM_OBJECTS-1)
+                                ss << ", ";
 		} //for
                 return ss.str();
 	  }
@@ -309,7 +298,7 @@ namespace guWhiteboard
 	     */
             void from_string(const std::string &str)
             {
-		  _objects[FVOBall].from_string( str );
+		  _objects[FVOGoalPost].from_string( str );
             }
 
 	};
@@ -389,7 +378,7 @@ namespace guWhiteboard
 	     */
             void from_string(const std::string &str)
             {
-		  _objects[FVOBall].from_string( str );
+		  _objects[FVOGoalPost].from_string( str );
             }
 
 	};

@@ -343,11 +343,11 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Point2D_DEFINED
 
-		case kFVOsighting_v:
+		case kFilteredGoalSighting_v:
 #ifdef FilteredOneDimObjects_DEFINED
 		{
-			class FVOsighting_t FVOsighting_msg;
-			FVOsighting_msg.post(FilteredOneDimObjects(message_content));
+			class FilteredGoalSighting_t FilteredGoalSighting_msg;
+			FilteredGoalSighting_msg.post(FilteredOneDimObjects(message_content));
 			return true;
 		}
 #else
@@ -445,6 +445,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !TopParticles_DEFINED
 
+		case kFilteredBallSighting_v:
+#ifdef FilteredVisionObject_DEFINED
+		{
+			class FilteredBallSighting_t FilteredBallSighting_msg;
+			FilteredBallSighting_msg.post(FilteredVisionObject(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !FilteredVisionObject_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -456,7 +467,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(42);
+	// self.reserve(43);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -490,7 +501,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["fsm_names"] = kFSM_Names_v;
 	self["example_type"] = kSoloTypeExample_v;
 	self["BallBelief"] = kBallBelief_v;
-	self["FOsighting"] = kFVOsighting_v;
+	self["FilteredGoalSighting"] = kFilteredGoalSighting_v;
 	self["NAO_State"] = kNAO_State_v;
 	self["UDPReceiverNotification"] = kUDPRN_v;
 	self["PlayerNumber"] = kPlayerNumber_v;
@@ -500,5 +511,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["guvision_objects"] = kVision_Objects_v;
 	self["FSOsighting"] = kFSOsighting_v;
 	self["TopParticles"] = kTopParticles_v;
+	self["FilteredBallSighting"] = kFilteredBallSighting_v;
 }
 

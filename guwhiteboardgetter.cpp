@@ -313,10 +313,10 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Point2D_DEFINED
 
-		case kFVOsighting_v:
+		case kFilteredGoalSighting_v:
 #ifdef FilteredOneDimObjects_DEFINED
 		{
-			class FVOsighting_t m;
+			class FilteredGoalSighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -410,6 +410,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return "##unsupported##";
 
 #endif // !TopParticles_DEFINED
+
+		case kFilteredBallSighting_v:
+#ifdef FilteredVisionObject_DEFINED
+		{
+			class FilteredBallSighting_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !FilteredVisionObject_DEFINED
 
 	}
 #pragma clang diagnostic push
