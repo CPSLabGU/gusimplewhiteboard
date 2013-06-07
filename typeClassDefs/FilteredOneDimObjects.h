@@ -182,11 +182,9 @@ namespace guWhiteboard
 
 		if ( isVisible())
                 { ss<<"Visible ";
-		  ss << "at distance=" << distance() << " with location ("  <<  x() << "," << y() << ")";
+		  ss << "dist=" << distance() << " ("  <<  x() << "," << y() << "," << yaw() << ")";
 		}
-		else ss << "NOT visible ";
-
-		ss << " at frame  " << frameCounter();
+		//else ss << "NOT visible "; ss << " at frame  " << frameCounter();
 
                 return ss.str();
             }
