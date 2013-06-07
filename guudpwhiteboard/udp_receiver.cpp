@@ -65,7 +65,7 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
 	return &reinterpret_cast<struct sockaddr_in6 *>(sa)->sin6_addr;
 }
 
-[[ noreturn ]] Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network) :
+__attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network) :
                 _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _machines_in_the_network(machines_in_the_network)
 {
         dispatch_queue_t stdout_queue = dispatch_queue_create("net.mipal.guudpwhiteboard.receiver.stdout", 0);
