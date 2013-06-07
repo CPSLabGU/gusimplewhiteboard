@@ -249,6 +249,7 @@ public:
 			this->set_loadCalibration(a.loadCalibration());
 		if(a.pipelineRunOnce_mask())
 			this->set_pipelineRunOnce(a.pipelineRunOnce());
+        set_openChallengeStep(a.openChallengeStep());
 		return *this;
 	}
 
