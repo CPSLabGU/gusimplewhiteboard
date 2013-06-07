@@ -86,6 +86,7 @@ public:
 			if (n!=std::string::npos) {
                                 std::string t = s.substr(n+command.length()+1);
                                 WbGoalPostInfo goalInfo;
+				WbBallInfo ballInfo;
                                 switch(i) {
                                     case VisionObjectTypes::LeftGoalPost://formate of LeftGoal=(9,9)(9,9)(9,9)(9,9)
                                         goalInfo.outerBottom = getPoint(&t);
@@ -101,7 +102,11 @@ public:
                                         goalInfo.innerTop = getPoint(&t);
                                         setRightGoalPost(goalInfo);
                                         break;
-                                        
+				    case VisionObjectTypes::Ball: //formate of Ball=(x,y)@r
+					ballInfo.position = getPoint(&t);
+					ballInfo.radius = short(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
+					setBall(ballInfo);
+					break;
                                 }
                         }
                 }
