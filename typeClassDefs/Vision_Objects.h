@@ -116,7 +116,13 @@ public:
 		_ball = ballInfo;
 		objectMask[VisionObjectTypes::Ball]  = 1;
 	}
-	WbBallInfo* ball() {
+	const WbBallInfo *ball() const
+        {
+		if(objectMask[VisionObjectTypes::Ball])
+			return &_ball;
+		return NULL;
+	}
+	WbBallInfo *ball() {
 		if(objectMask[VisionObjectTypes::Ball])
 			return &_ball;
 		return NULL;
@@ -125,7 +131,14 @@ public:
 		_leftGoalPost = postInfo;
 		objectMask[VisionObjectTypes::LeftGoalPost]  = 1;
 	}
-	WbGoalPostInfo* LeftGoalPost() {
+	const WbGoalPostInfo* LeftGoalPost() const
+        {
+		if(objectMask[VisionObjectTypes::LeftGoalPost])
+			return &_leftGoalPost;
+		return NULL;
+	}
+	WbGoalPostInfo *LeftGoalPost()
+        {
 		if(objectMask[VisionObjectTypes::LeftGoalPost])
 			return &_leftGoalPost;
 		return NULL;
@@ -135,7 +148,14 @@ public:
 		_rightGoalPost = postInfo;
 		objectMask[VisionObjectTypes::RightGoalPost]  = 1;
 	}
-	WbGoalPostInfo* RightGoalPost() {
+	const WbGoalPostInfo *RightGoalPost() const
+        {
+		if(objectMask[VisionObjectTypes::RightGoalPost])
+			return &_rightGoalPost;
+		return NULL;
+	}
+	WbGoalPostInfo *RightGoalPost()
+        {
 		if(objectMask[VisionObjectTypes::RightGoalPost])
 			return &_rightGoalPost;
 		return NULL;
@@ -151,7 +171,15 @@ public:
 		}
 	}
 
-	WbLineInfo* Line(VisionObjectTypes::object line) {
+	const WbLineInfo *Line(VisionObjectTypes::object line) const
+        {
+		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
+			if(objectMask[line])
+				return & _lines[line - VisionObjectTypes::Line1];
+		return NULL;
+	}
+	WbLineInfo *Line(VisionObjectTypes::object line)
+        {
 		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
 			if(objectMask[line])
 				return & _lines[line - VisionObjectTypes::Line1];
@@ -161,7 +189,8 @@ public:
             frameNumber = fn;
         }
         
-        unsigned long FrameNumer() {
+        unsigned long FrameNumer() const
+        {
             return frameNumber;
         }
 

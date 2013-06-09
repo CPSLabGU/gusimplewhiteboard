@@ -94,6 +94,7 @@ namespace guWhiteboard
         class FilteredSonarObject
         {
             PROPERTY(bool, isVisible) //  is this a credible sighting
+            bool _padding;
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
 
@@ -146,12 +147,13 @@ namespace guWhiteboard
         class FilteredVisionObject
         {
             PROPERTY(bool, isVisible) //  is this a credible sighting
+            bool _padding;
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
             PROPERTY(int16_t, x) //  center x-coordinate in image
             PROPERTY(int16_t, y) //  cneter y-coordinate in image
             PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was alst used to generated filtered values
-
+            int16_t _padding2;
         public:
             /** designated constructor */
             FilteredVisionObject( bool isVisible = false,
