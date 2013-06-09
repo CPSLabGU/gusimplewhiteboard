@@ -105,13 +105,11 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 			continue;
 		}
 
-		if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
-			close(sockfd);
-			perror("listener: bind");
-			continue;
-		}
+		if (bind(sockfd, p->ai_addr, p->ai_addrlen) != -1)
+                        break;  // found a place to bind, break loop
 
-		break;
+                close(sockfd);
+                perror("listener: bind");
 	}
 
 	if (p == NULL) {

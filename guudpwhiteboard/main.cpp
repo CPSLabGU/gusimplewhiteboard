@@ -7,19 +7,21 @@
  */
 
 
-#include <stdio.h> //fprintf
+#include <cstdio> //fprintf
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-macros"
 #undef __block
 #define __block _xblock
+#include <fcntl.h>
 #include <unistd.h> //optargs
 #undef __block
 #define __block __attribute__((__blocks__(byref)))
 #pragma clang diagnostic pop
 
-#include <stdlib.h> //atoi
+#include <cstdlib> //atoi
 #include <sys/time.h> //gettimeofday
+#include <sys/file.h> //flock
 #include <vector> //for vectors, clearly
 #include <algorithm> //remove
 
@@ -101,9 +103,28 @@ void setup_udp_whiteboard_with_id(int id)
                 set_udp_id(getplayernumber());
         else
                 set_udp_id(id);
-        
-        string schedule_file = getenv("HOME");
-        schedule_file += SCHEDULE_FILE;
+
+        string home = getenv("HOME");
+        ostringstream ss;
+        ss << home << "/" << LOCK_FILE << get_udp_id();
+        string lock_file = ss.str();
+
+        int fd = open(lock_file.c_str(), O_RDWR | O_CREAT, 0666);
+        if (flock(fd, LOCK_EX | LOCK_NB) < 0)
+        {
+                char buffer[20] = "";
+                ssize_t n = read(fd, buffer, sizeof(buffer));
+                if (n >= 0) buffer[n] = 0;
+                cerr << lock_file << " is locked by process " << buffer << ":\n" << strerror(errno) << endl;
+                exit(EXIT_FAILURE);
+        }
+        pid_t pid = getpid();
+        ostringstream pidss;
+        pidss << pid;
+        const char *pidstr = pidss.str().c_str();
+        write(fd, pidstr, strlen(pidstr)+1);
+
+        string schedule_file = (home + "/") + SCHEDULE_FILE;
         if(!file_exists((char *)schedule_file.c_str()))
         {
                 fprintf(stderr, "No schedule file found. It should be at: '%s'\nExiting.\n", (char *)schedule_file.c_str());

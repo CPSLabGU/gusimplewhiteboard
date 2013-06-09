@@ -32,7 +32,7 @@
 
 #define SCHEDULE_FILE "/data/udp_schedule"
 #define WARNINGS_FILE "/tmp/guudpwhiteboard.warnings"
-
+#define LOCK_FILE "data/guudpwhiteboard.lock-"
 
 #define BROADCASTADDRESS "255.255.255.255"
 #define PORT 4242	// the port users will be connecting to
