@@ -104,6 +104,10 @@ void setup_udp_whiteboard_with_id(int id)
         else
                 set_udp_id(id);
 
+        /*
+         * set up a lock file so that only one instance will run
+         * per player number
+         */
         string home = getenv("HOME");
         ostringstream ss;
         ss << home << "/" << LOCK_FILE << get_udp_id();
@@ -115,15 +119,18 @@ void setup_udp_whiteboard_with_id(int id)
                 char buffer[20] = "";
                 ssize_t n = read(fd, buffer, sizeof(buffer));
                 if (n >= 0) buffer[n] = 0;
-                cerr << lock_file << " is locked by process " << buffer << ":\n" << strerror(errno) << endl;
+                cerr << lock_file << " is locked by process " << buffer << " *** " << strerror(errno) << " *** " << endl;
                 exit(EXIT_FAILURE);
         }
         pid_t pid = getpid();
         ostringstream pidss;
-        pidss << pid;
+        pidss << pid << endl;
         const char *pidstr = pidss.str().c_str();
         write(fd, pidstr, strlen(pidstr)+1);
 
+        /*
+         * get the schedule to use
+         */
         string schedule_file = (home + "/") + SCHEDULE_FILE;
         if(!file_exists((char *)schedule_file.c_str()))
         {
