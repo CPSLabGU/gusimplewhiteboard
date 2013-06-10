@@ -73,7 +73,14 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
         remote_wbd = static_cast<gu_simple_whiteboard_descriptor **>(calloc(machines_in_the_network, sizeof(gu_simple_whiteboard_descriptor *)));
 
         for (int i = 0; i < machines_in_the_network; i++)
+        {
                 remote_wbd[i] = gswr_new_whiteboard(i);
+
+                /*
+                 * reset wb event counters (if the robot restarts then its event counters will be zero, aka less than the current counters on record)
+                 */
+                memset(&remote_wbd[i]->wb->event_counters, 0, sizeof remote_wbd[i]->wb->event_counters);
+        }
 
         int max_packet_size = sizeof(u_int8_t) + (sizeof(u_int16_t)*max_types_per_packet) + (sizeof(gu_simple_message)*max_types_per_packet);
         _recv_buffer = (unsigned char *) malloc(max_packet_size);
