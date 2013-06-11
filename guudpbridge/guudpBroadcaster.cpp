@@ -74,13 +74,13 @@ void BridgeBroadcaster::send_hash()
 {
         gsw_hash_message hashToSend;
         hashToSend.packetInfo = Hash;
-        hashToSend.udpId = get_udp_id();
+        hashToSend.udpId = int8_t (get_udp_id());
         
         for(int j = 0; j < HASHES_PER_PACKET; j++)
         {
                 int currOff = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(hash_offset).c_str());
 
-                hashToSend.offset[j] = currOff; //Sends the offset in the current wb and the type name, these are inserted directly into the hash table on the target machines. Can definiately cause issues with the hash lookup on the other machine if some of these go missing (NEEDS ATTENTION)
+                hashToSend.offset[j] = int16_t(currOff) ; //Sends the offset in the current wb and the type name, these are inserted directly into the hash table on the target machines. Can definiately cause issues with the hash lookup on the other machine if some of these go missing (NEEDS ATTENTION)
 
                 hashToSend.typeName[j] = _wbd_broadcaster->wb->typenames[currOff];
                 
@@ -149,7 +149,7 @@ void BridgeBroadcaster::send_content()
         //packet to send
         gsw_single_message messageToSend;
         messageToSend.packetInfo = Msg; //packet type info
-        messageToSend.udpId = get_udp_id(); //senders id
+        messageToSend.udpId = int8_t (get_udp_id() ); //senders id
         
         
         gsw_procure(_wbd_broadcaster->sem, GSW_SEM_PUTMSG); //reading whiteboards need to lock.
@@ -170,7 +170,7 @@ void BridgeBroadcaster::send_content()
                         tmpOffset = gsw_offset_for_message_type(_wbd_broadcaster, (char *)msg_types_to_broadcast->at(offset-GSW_NUM_RESERVED).c_str());
                 }
                 
-                messageToSend.typeOffset[j] = tmpOffset; //offset in hash table for content pointer
+                messageToSend.typeOffset[j] = int16_t (tmpOffset); //offset in hash table for content pointer
                 messageToSend.current_generation[j] = _wbd_broadcaster->wb->indexes[tmpOffset]; //current generation pointer
 #ifdef GENERATION_BROADCASTING
                 //Loop and add all generation of a message

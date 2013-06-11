@@ -45,7 +45,7 @@ void WhiteboardLayer::monitorCallback(std::string type, WBMsg *value, int machin
         
         gsw_injection_message msg;
         int machine = machineNum;
-        msg.machineId = machine;
+        msg.machineId = int8_t(machine);
         
         strcpy(msg.type.hash.string, (char *)type.c_str());
         
@@ -79,7 +79,7 @@ void WhiteboardLayer::addInjectionMessage(std::string dataName, WBMsg *value)
         {
                 gsw_injection_message msg;
                 int machine = atoi(dataName.substr(dataName.length()-1, dataName.length()).c_str());  //Only works up to 9
-                msg.machineId = machine;
+                msg.machineId = int8_t( machine );
                 
                 //Get Type
                 std::stringstream ss;

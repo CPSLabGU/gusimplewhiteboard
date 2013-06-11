@@ -232,7 +232,7 @@ void BridgeListener::listenSingleMethod()
 //                    }
 //                    pthread_mutex_unlock(_injection_mutex);                    
 //
-                    indexLookup[current_poster][hashToRecv.offset[j]] = gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string);
+                    indexLookup[current_poster][hashToRecv.offset[j]] = int16_t(gsw_register_message_type(_wbd_listeners[current_poster], hashToRecv.typeName[j].hash.string) );
                 }
             }
             else if(recv_buffer[0] == Injection)
@@ -459,7 +459,8 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
 #ifdef DEBUG
 //    fprintf(stderr, "\t\t\t\t\t\t\t\tWait %ld seconds\n", (target-(min*60))-secs);
     
-    dispatch_source_t listener_monitor = CreateDispatchTimer(&when,
+    /*dispatch_source_t listener_monitor = */
+        CreateDispatchTimer(&when,
                                                              (TS_INTERVAL*1000ull),
                                                              0ull,
                                                              dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
@@ -473,7 +474,7 @@ BridgeListener::BridgeListener(gu_simple_whiteboard_descriptor *_wbd[NUM_OF_BROA
     {
         listenSingleMethod();
     }
-        dispatch_source_cancel(listener_monitor); //I know, this just avoids an unused var warning
+        //dispatch_source_cancel(listener_monitor); //I know, this just avoids an unused var warning
 #else
     timespec when2 = when;
     when2.tv_nsec += RECV_NETWORK_DELAY * 1000ull;

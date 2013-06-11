@@ -12,7 +12,7 @@
 
 
 
-int my_udp_id = -1;
+static int my_udp_id = -1;
 
 int get_udp_id()
 {
@@ -155,7 +155,7 @@ void convWBMsgToSimpleMsg(WBMsg *value, gsw_simple_message *m)
                         
                 case WBMsg::TypeString:
                         gu_strlcpy(m->wbmsg.data, value->getStringValue().c_str(), sizeof(m->wbmsg.data));
-                        m->wbmsg.len = strlen(m->wbmsg.data) + 1;
+                        m->wbmsg.len = static_cast <unsigned char> (strlen(m->wbmsg.data) + 1);
                         break;
                         
                 case WBMsg::TypeArray:
@@ -163,14 +163,14 @@ void convWBMsgToSimpleMsg(WBMsg *value, gsw_simple_message *m)
                         int k = 0;
                         for (std::vector<int>::const_iterator i = value->getArrayValue().begin(); i < value->getArrayValue().end(); i++)
                                 m->ivec[k++] = *i;
-                        m->wbmsg.len = k;
+                        m->wbmsg.len = static_cast <unsigned char> (k);
                         break;
                 }
                 case WBMsg::TypeBinary:
                 {
                         int len = value->getSizeInBytes();
                         if (len > (int)sizeof(m->wbmsg.data)) len = sizeof(m->wbmsg.data);
-                        m->wbmsg.len = len;
+                        m->wbmsg.len = static_cast <unsigned char> (len);
                         if (len) memcpy(m->wbmsg.data, value->getBinaryValue(), len);
                         break;
                 }
