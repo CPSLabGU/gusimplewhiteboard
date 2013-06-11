@@ -150,8 +150,8 @@ namespace guWhiteboard
             bool _padding;
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
-            PROPERTY(int16_t, x) //  center x-coordinate in image
-            PROPERTY(int16_t, y) //  cneter y-coordinate in image
+            PROPERTY(int16_t, x) //  centre x-coordinate in image
+            PROPERTY(int16_t, y) //  centre y-coordinate in image
             PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was alst used to generated filtered values
             int16_t _padding2;
         public:
@@ -176,6 +176,22 @@ namespace guWhiteboard
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
                       _x(other._x), _y(other._y), _yaw(other._yaw) {}
+
+            /** return the angle of the object as seen from the robot (in radians) */
+            float horizontal_angle(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
+            {
+                float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
+                float D = guvision_width / 2 / sinf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
+                float alpha = atanf(float(x())/D);                                  // negative angle of x on screen
+
+                return yaw_in_radians - alpha;
+            }
+#if 0
+            /** XXX: this needs pitch on the WB first! */
+            float vertical_angle(const float guvision_height = 960.0f, const float vert_fov = 48.0f) const
+            {
+            }
+#endif
 
             /** convert to a string */
             std::string description() const

@@ -238,7 +238,7 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
-		F11BC1151761278E0069F6FB /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
+		F11BC1151761278E0069F6FB /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
 		F11BC1161761278E0069F6FB /* GCGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
 		F11BC1171761278E0069F6FB /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
@@ -1319,6 +1319,7 @@
 				F11BC0C3176123DB0069F6FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F14C46A914A064D8006B6953 /* Build configuration list for PBXProject "gusimplewhiteboard" */ = {
 			isa = XCConfigurationList;

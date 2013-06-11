@@ -39,34 +39,33 @@ enum Resolutions {
 	HD_4VGA    // 1280x960
 };
 
-        static const int Widths[] = {160, 320, 640, 1280};
 
 
 class ResolutionType {
-public:
-    ResolutionType(Resolutions res) {
-        resolution = res;
-    }
-    
-    ResolutionType() {
-        resolution = VGA;
-    }
-    
-    int getResolution() {
-        return resolution;
-    }
-    
-    int Width() {
-        return Widths[resolution];
-    }
-    
-    int Height() {
-        static const int Heights[] = {120, 240, 480, 960};
-        return Heights[resolution];
-    }
-    
 private:
-    Resolutions resolution;
+        PROPERTY(Resolutions, resolution)
+public:
+        ResolutionType(Resolutions res = VGA): _resolution(res) {}
+
+        /** Deprecated: use standard getter resolution() instead! */
+        int getResolution() const { return _resolution; } // XXX: deprecated, will be phased out!!!
+
+        /** get the width of the current resolution */
+        int width() const
+        {
+                static const int Widths[] = {160, 320, 640, 1280};
+                return Widths[_resolution];
+        }
+    
+        /** get the height of the current resolution */
+        int height() const
+        {
+                static const int Heights[] = {120, 240, 480, 960};
+                return Heights[_resolution];
+        }
+
+        int Width() const { return width(); }           // XXX: deprecated, use width() instead!
+        int Height() const { return height(); }         // XXX: deprecated, use height() instead!
 };
 
 enum VisionCamera {
@@ -194,7 +193,8 @@ public:
 		}
 	}
 
-	std::string description() {
+	std::string description() const
+        {
 		std::stringstream result;
                 
 		if(resolution_mask())
