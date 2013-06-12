@@ -149,7 +149,7 @@ namespace guWhiteboard
             PROPERTY(bool, isVisible) //  is this a credible sighting
             bool _padding;
             PROPERTY(int16_t, distance) //  distance to landmark in cm
-            PROPERTY(int32_t, frameCounter) //  frame counter in cm
+            PROPERTY(int32_t, frameCounter) //  frame counter 
             PROPERTY(int16_t, x) //  centre x-coordinate in image
             PROPERTY(int16_t, y) //  centre y-coordinate in image
             PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was alst used to generated filtered values
@@ -214,13 +214,23 @@ namespace guWhiteboard
                 std::istringstream iss(str);
                 std::string token;
                 if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
+                {   set_isVisible((0!=atoi(token.c_str())));
                     if (getline(iss, token, ','))
                     {
-		        set_y(int16_t(atoi(token.c_str())));
+                         set_distance(  int16_t(atoi(token.c_str())));
                     }
+                    if (getline(iss, token, ','))
+                    {
+                        set_x(  int16_t(atoi(token.c_str())));
+		        set_y(0);
+                        if (getline(iss, token, ','))
+                         {
+                             set_y(int16_t(atoi(token.c_str())));
+                             set_yaw(0);
+                             if (getline(iss, token, ','))
+                             {
+                                 set_yaw(int16_t(atoi(token.c_str())));
+                             }}}
                 }
             }
 
@@ -317,7 +327,14 @@ namespace guWhiteboard
 	     */
             void from_string(const std::string &str)
             {
-		  _objects[FVOGoalPost].from_string( str );
+                std::istringstream iss(str);
+                std::string token;
+                for (int object = FVOGoalPost; object < FVO_NUM_OBJECTS; object++)
+                {
+                    if (!getline(iss, token, '\t')) break;
+                    _objects[object].from_string( token );
+                }
+
             }
 
 	};
