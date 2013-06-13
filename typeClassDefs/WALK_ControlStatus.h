@@ -132,7 +132,7 @@ namespace guWhiteboard
                 {
                         std::ostringstream ss;
                         int statval = controlStatus();
-                        if (statval < 0 || statval > WALK_Run)
+                        if (statval < 0 || statval > WALK_Ignore)
                                 ss << "Corrupt WALK control status value " << statval;
                         else
                                 ss << WALK_statusNames[statval];
