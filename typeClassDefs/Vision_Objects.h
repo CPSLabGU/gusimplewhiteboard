@@ -68,7 +68,7 @@ private:
         GUPoint<int16_t> getPoint(std::string *str) {
             GUPoint<int16_t> point;
             point.x = (short)atoi(str->substr(1, str->find(",")-1).c_str());
-            int pointEnd = (int)str->find(")")-1;
+            size_t pointEnd = size_t(str->find(")")-1);
             point.y = (short)atoi(str->substr(str->find(",")+1, pointEnd).c_str());
             pointEnd += 2;
             *str = str->substr(pointEnd, str->length()-pointEnd);
@@ -104,7 +104,7 @@ public:
                                         break;
 				    case VisionObjectTypes::Ball: //formate of Ball=(x,y)@r
 					ballInfo.position = getPoint(&t);
-					ballInfo.radius = short(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
+					ballInfo.radius = u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
 					setBall(ballInfo);
 					break;
                                 }
@@ -162,7 +162,7 @@ public:
 	}
 
 	void addLine(WbLineInfo line) {
-		for(int i = VisionObjectTypes::Line1; i<VisionObjectTypes::Line5; ++i) {
+		for(size_t i = VisionObjectTypes::Line1; i<VisionObjectTypes::Line5; ++i) {
 			if(objectMask[i] == 0) {
 				_lines[i-VisionObjectTypes::Line1] = line;
 				objectMask[i] = 1;
