@@ -144,7 +144,7 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
         gu_simple_whiteboard_descriptor *wbd = get_local_singleton_whiteboard();
 
         
-        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0));
         if (timer)
         {
                 dispatch_source_set_timer(timer, dispatch_walltime(&spec, 0), (timer_delay*NSEC_PER_USEC), 0ull);
