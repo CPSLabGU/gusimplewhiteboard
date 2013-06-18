@@ -28,21 +28,11 @@ namespace guWhiteboard
                 PROPERTY(float, LShoulderRoll)
                 PROPERTY(float, LElbowYaw)
                 PROPERTY(float, LElbowRoll)
-                PROPERTY(float, LHipYawPitch)
-                PROPERTY(float, LHipRoll)
-                PROPERTY(float, LHipPitch)
-                PROPERTY(float, RHipRoll)
-                PROPERTY(float, RHipPitch)
                 PROPERTY(float, RShoulderPitch)
                 PROPERTY(float, RShoulderRoll)
                 PROPERTY(float, RElbowYaw)
                 PROPERTY(float, RElbowRoll)
-                
         public:
-                SENSORS_TorsoJointSensors()
-                {
-
-                }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /// string constructor (see from_string() below)
@@ -56,11 +46,10 @@ namespace guWhiteboard
                 std::string description() const
                 {
                         std::stringstream ss;
-                        ss << RAD2DEG(HeadYaw()) << ", " << RAD2DEG(HeadPitch()) << ", " << RAD2DEG(LShoulderPitch()) << ", " << RAD2DEG(LShoulderRoll()) << ", " << RAD2DEG(LElbowYaw()) << ", " << RAD2DEG(LElbowRoll()) << ", " << RAD2DEG(LHipYawPitch()) << ", " << RAD2DEG(LHipRoll()) << ", " << RAD2DEG(LHipPitch()) << ", " << RAD2DEG(RHipRoll()) << ", " << RAD2DEG(RHipPitch()) << ", " << RAD2DEG(RShoulderPitch()) << ", " << RAD2DEG(RShoulderRoll()) << ", " << RAD2DEG(RElbowYaw()) << ", " << RAD2DEG(RElbowRoll());
+                        ss << RAD2DEG(HeadYaw()) << " HY, " << RAD2DEG(HeadPitch()) << " HP, " << RAD2DEG(LShoulderPitch()) << " LSP, " << RAD2DEG(LShoulderRoll()) << " LSR, " << RAD2DEG(LElbowYaw()) << " LEY, " << RAD2DEG(LElbowRoll()) << " LER, " << RAD2DEG(RShoulderPitch()) << " rsp, " << RAD2DEG(RShoulderRoll()) << "rsr, " << RAD2DEG(RElbowYaw()) << " rey, " << RAD2DEG(RElbowRoll());
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
-                
         };
 }
 

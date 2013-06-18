@@ -78,6 +78,7 @@
 #include "NAO_State.h"
 #include "HAL_HeadTarget.h"
 #include "SENSORS_TorsoJointSensors.h"
+#include "SENSORS_LegJointSensors.h"
 #include "PARTICLE_TopPositions.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 

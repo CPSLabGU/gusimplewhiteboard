@@ -24,9 +24,9 @@
 #pragma clang diagnostic ignored "-Wpadded"
 
 /* Network config */
-#ifndef DEBUG
-#define DEBUG
-#endif
+//#ifndef DEBUG
+//#define DEBUG
+//#endif
 #define OUTPUT_LISTENER_IN_DEBUG
 //#define OUTPUT_BROADCASTER_IN_DEBUG
 //#define RUN_FAST_IN_DEBUG
