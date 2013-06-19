@@ -68,7 +68,7 @@ void *Receiver::get_in_addr(struct sockaddr_in *sa)
 __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, int packets_in_schedule, int max_types_per_packet, int machines_in_the_network) :
                 _packet_data(packet_data), _packets_in_schedule(packets_in_schedule), _machines_in_the_network(machines_in_the_network)
 {
-        dispatch_queue_t stdout_queue = dispatch_queue_create("net.mipal.guudpwhiteboard.receiver.stdout", 0);
+        //dispatch_queue_t stdout_queue = dispatch_queue_create("net.mipal.guudpwhiteboard.receiver.stdout", 0);
 
         remote_wbd = static_cast<gu_simple_whiteboard_descriptor **>(calloc(machines_in_the_network, sizeof(gu_simple_whiteboard_descriptor *)));
 
@@ -130,33 +130,34 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 
 	addr_len = sizeof their_addr;
 
-        __block bool got_timeout;
+        //__block bool got_timeout;
         __block unsigned packet_sequence = 0UL;
         while (true)
         {
-                unsigned current_packet = packet_sequence;
-                got_timeout = false;
+                //unsigned current_packet = packet_sequence;
+//                got_timeout = false;
 
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-                dispatch_after(popTime, stdout_queue,
-                ^{
-                        if (current_packet == packet_sequence)
-                        {
-                                got_timeout = true;
-                                write(STDOUT_FILENO, "*", 1);
-                        }
-                });
-                if ((numbytes = recvfrom(sockfd, _recv_buffer, max_packet_size , 0,
-                                         (struct sockaddr *)&their_addr, &addr_len)) == -1) {
+//                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+//                dispatch_after(popTime, stdout_queue,
+//                ^{
+//                        if (current_packet == packet_sequence)
+//                        {
+//                                got_timeout = true;
+//                                write(STDOUT_FILENO, "*", 1);
+//                        }
+//                });
+                                        protected_msleep(10);
+                if ((numbytes = recvfrom(sockfd, _recv_buffer, max_packet_size , 0, (struct sockaddr *)&their_addr, &addr_len)
+                     ) == -1) {
                         perror("recvfrom");
                         protected_msleep(10);
                         continue;
                 }
                 packet_sequence++;
-                if (got_timeout) dispatch_async(stdout_queue,
-                ^{
-                        write(STDOUT_FILENO, "\b \b", 3);
-                });
+//                if (got_timeout) dispatch_async(stdout_queue,
+//                ^{
+//                        write(STDOUT_FILENO, "\b \b", 3);
+//                });
 #ifdef DEBUG
                 dispatch_async(stdout_queue,
                 ^{
@@ -182,7 +183,7 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
                         gu_simple_whiteboard *wb = remote_wbd[s]->wb;
                         u_int16_t old_e = wb->event_counters[t];
 
-                        if(new_e > old_e || (new_e < old_e && new_e < 1000)) //event counter in the packet is different to the one in the wb (for that type)
+                        if(new_e > old_e || (new_e < old_e && new_e < 100)) //event counter in the packet is different to the one in the wb (for that type)
                         {                       //This is here because the event counter will eventually wrap around
                                 gu_simple_message *m = gsw_next_message(wb, t);
                                 gu_simple_message *wbobj = (gu_simple_message*)(m);
@@ -193,10 +194,10 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
                                 wb->event_counters[t] = new_e; //set event counter rather than increment it
                                 if (wb->subscribed) gsw_signal_subscribers(wb); //notify_subscribers is always true for the udp whiteboard
                         }
-                        else if (new_e != old_e) dispatch_async(stdout_queue,
-                        ^{
-                                write(STDOUT_FILENO, ".", 1);
-                        });
+//                        else if (new_e != old_e) dispatch_async(stdout_queue,
+//                        ^{
+//                                write(STDOUT_FILENO, ".", 1);
+//                        });
                 }
         }
 
