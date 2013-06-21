@@ -68,6 +68,21 @@
 
 namespace guWhiteboard
 {
+        
+        /**
+         * command for Particle Status
+         */
+        enum PF_ControlStatus_Modes
+        {
+                PF_Running,             ///< PF is running
+                PF_New_Game,      ///< A FSM should set this, the PF is reset as per playerNumber
+                PF_After_Penalized,              ///< Sides of our field are the reset positions
+                PF_After_Fall,             ///< headings are reset randomly
+                PF_Manual_Placement          ///< maybe after 34 seconds and manual placelemnt
+           
+        };
+        
+        
         /**
          * Class for a top particle position
          */

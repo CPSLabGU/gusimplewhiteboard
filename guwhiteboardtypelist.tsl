@@ -41,5 +41,7 @@ class:VisionObjects, atomic, Vision_Objects,                "guvision_objects", 
 class:FilteredSonarObjects, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  iSONAR objects after a sighting
 class:TopParticles, nonatomic, TopParticles,                    "TopParticles", Class that contains the top particles for possible robot positions
 class:FilteredVisionObject, nonatomic, FilteredBallSighting,    "FilteredBallSighting", Class that contains the Kalman filtered ball object after sighting from vision
+int,          nonatomic, PF_ControlStatus_Modes,                "PF_ControlStatus_Modes", what to post in the whiteboard to cause the Particle Filetr to reset, but running has no effect, it is the PF response
+
 
 

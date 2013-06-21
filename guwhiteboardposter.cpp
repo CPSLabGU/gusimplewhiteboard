@@ -456,6 +456,13 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !FilteredVisionObject_DEFINED
 
+		case kPF_ControlStatus_Modes_v:
+		{
+			class PF_ControlStatus_Modes_t PF_ControlStatus_Modes_msg;
+			PF_ControlStatus_Modes_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -467,7 +474,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(43);
+	// self.reserve(44);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -512,5 +519,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["FSOsighting"] = kFSOsighting_v;
 	self["TopParticles"] = kTopParticles_v;
 	self["FilteredBallSighting"] = kFilteredBallSighting_v;
+	self["PF_ControlStatus_Modes"] = kPF_ControlStatus_Modes_v;
 }
 
