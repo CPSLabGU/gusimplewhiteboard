@@ -146,7 +146,7 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 //                                write(STDOUT_FILENO, "*", 1);
 //                        }
 //                });
-                                        protected_msleep(10);
+
                 if ((numbytes = recvfrom(sockfd, _recv_buffer, max_packet_size , 0, (struct sockaddr *)&their_addr, &addr_len)
                      ) == -1) {
                         perror("recvfrom");
@@ -177,7 +177,9 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
                 for (int i = 0; i < _packet_data[index].num_of_types; i++)
                 {
                         u_int16_t t = _packet_data[index].offset[i];
-                        u_int8_t s = _packet_data[index].sender;
+                        u_int8_t s = _packet_data[index].sender - 1;
+                        if(s < 0 || s >= machines_in_the_network)
+                                continue;
                         u_int16_t new_e = _packets[index].event_counter[i];
                         
                         gu_simple_whiteboard *wb = remote_wbd[s]->wb;
