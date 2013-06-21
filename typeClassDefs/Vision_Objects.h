@@ -54,7 +54,7 @@ namespace guWhiteboard
 class VisionObjects {
 private:
 	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> objectMask;
-	WbLineInfo _lines[5];
+	SimpleLine _lines[5];
 	WbBallInfo _ball;
 	WbGoalPostInfo _leftGoalPost;
 	WbGoalPostInfo _rightGoalPost;
@@ -161,7 +161,7 @@ public:
 		return NULL;
 	}
 
-	void addLine(WbLineInfo line) {
+	void addLine(SimpleLine line) {
 		for(size_t i = VisionObjectTypes::Line1; i<VisionObjectTypes::Line5; ++i) {
 			if(objectMask[i] == 0) {
 				_lines[i-VisionObjectTypes::Line1] = line;
@@ -171,14 +171,14 @@ public:
 		}
 	}
 
-	const WbLineInfo *Line(VisionObjectTypes::object line) const
+	const SimpleLine *Line(VisionObjectTypes::object line) const
         {
 		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
 			if(objectMask[line])
 				return & _lines[line - VisionObjectTypes::Line1];
 		return NULL;
 	}
-	WbLineInfo *Line(VisionObjectTypes::object line)
+	SimpleLine *Line(VisionObjectTypes::object line)
         {
 		if(line >= VisionObjectTypes::Line1 && line <= VisionObjectTypes::Line5)
 			if(objectMask[line])
@@ -216,10 +216,10 @@ public:
 			<< _rightGoalPost.innerTop.x << "," << _rightGoalPost.innerTop.y << ") ";
 		for(int i = VisionObjectTypes::Line1; i<=VisionObjectTypes::Line5; ++i)
 			if(objectMask[i])
-				result << "Line" << (i-VisionObjectTypes::Line1+1) << "(" << _lines[i-VisionObjectTypes::Line1].startX
-				<< "," << _lines[i-VisionObjectTypes::Line1].startY
-				<< "," << _lines[i-VisionObjectTypes::Line1].endX
-				<< "," << _lines[i-VisionObjectTypes::Line1].endY << ") ";
+				result << "Line" << (i-VisionObjectTypes::Line1+1) << "(" << _lines[i-VisionObjectTypes::Line1].start.x
+				<< "," << _lines[i-VisionObjectTypes::Line1].start.y
+				<< "," << _lines[i-VisionObjectTypes::Line1].end.x
+				<< "," << _lines[i-VisionObjectTypes::Line1].end.y << ") ";
                 result << "FrameNumber=" << frameNumber;
 		return result.str();
 	}

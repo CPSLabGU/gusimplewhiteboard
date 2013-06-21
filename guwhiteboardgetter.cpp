@@ -422,6 +422,11 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !FilteredVisionObject_DEFINED
 
+		case kPF_ControlStatus_Modes_v:
+		{
+			class PF_ControlStatus_Modes_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
