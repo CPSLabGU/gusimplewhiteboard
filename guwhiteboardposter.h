@@ -80,6 +80,7 @@
 #include "SENSORS_TorsoJointSensors.h"
 #include "SENSORS_LegJointSensors.h"
 #include "PARTICLE_TopPositions.h"
+#include "SENSORS_BodySensors.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
