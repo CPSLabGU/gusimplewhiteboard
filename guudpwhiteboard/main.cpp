@@ -38,6 +38,8 @@
 #include "udp_util.h"
 #include "udp_sender.h"
 #include "udp_receiver.h"
+#include "tcp_receiver.h"
+
 
 
 //#include "guudpUtil.h"
@@ -207,6 +209,7 @@ void setup_udp_whiteboard_with_id(int id)
         DBG(pretty_print_packet_types(packets, number_of_packets));
 
         Sender sender(packets, number_of_packets, schedule_delay);
+        TCPInjectionReceiver injection_receiver;
         Receiver receiver(packets, number_of_packets, types_per_packet, machines_in_the_network);
 
         

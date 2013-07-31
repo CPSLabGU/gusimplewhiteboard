@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */; };
+		8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BC17A0F63E00CF2365 /* tcp_config.h */; };
+		8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */; };
+		8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BF17A2349600CF2365 /* tcp_receiver.h */; };
+		8B19F9C317A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F9C217A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp */; };
 		C31EE6AE155BA7DF00D55934 /* guudpBroadcaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92BD150491F500524671 /* guudpBroadcaster.cpp */; };
 		C31EE6AF155BA7DF00D55934 /* guudpListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92BF150491F500524671 /* guudpListener.cpp */; };
 		C31EE6B0155BA7DF00D55934 /* guudpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C1150491F500524671 /* guudpManager.cpp */; };
@@ -122,6 +127,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gutcpinjectionwhiteboardobject.h; sourceTree = "<group>"; };
+		8B19F9BC17A0F63E00CF2365 /* tcp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_config.h; sourceTree = "<group>"; };
+		8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_receiver.cpp; sourceTree = "<group>"; };
+		8B19F9BF17A2349600CF2365 /* tcp_receiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_receiver.h; sourceTree = "<group>"; };
+		8B19F9C217A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gutcpinjectionwhiteboardobject.cpp; sourceTree = "<group>"; };
 		8B68705E1757080C00A13AAE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8B68705F1757080C00A13AAE /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		8B6870601757080C00A13AAE /* udp_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp_config.h; sourceTree = "<group>"; };
@@ -355,10 +365,13 @@
 				8B6870611757080C00A13AAE /* udp_util.cpp */,
 				8B6870621757080C00A13AAE /* udp_util.h */,
 				8B6870601757080C00A13AAE /* udp_config.h */,
+				8B19F9BC17A0F63E00CF2365 /* tcp_config.h */,
 				8B6870771758562A00A13AAE /* udp_sender.h */,
 				8B6870761758562A00A13AAE /* udp_sender.cpp */,
 				8B68708C175EE1AA00A13AAE /* udp_receiver.h */,
 				8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */,
+				8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */,
+				8B19F9BF17A2349600CF2365 /* tcp_receiver.h */,
 				F11BC0CB176124CB0069F6FB /* Common */,
 				C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */,
 				C33D92BB150491F500524671 /* guudpbridge */,
@@ -586,6 +599,8 @@
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
 				C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */,
+				8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */,
+				8B19F9C217A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp */,
 				F1F0A2871729F81900194F59 /* guwhiteboardposter.h */,
 				F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */,
 				F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */,
@@ -755,6 +770,9 @@
 				C34904FC1715246900242DD7 /* NAO_State.h in Headers */,
 				C34904FD1715246900242DD7 /* Point2D.h in Headers */,
 				C3AC9C97171E80C000DF3997 /* MOTION_SDK_Interface.h in Headers */,
+				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
+				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
+				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,6 +1003,8 @@
 				C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 				F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
+				8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */,
+				8B19F9C317A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
