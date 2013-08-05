@@ -20,11 +20,16 @@ const char *robot_network_names[] =
         "pris.local",
 };
 
-void async_transmit_c_func(void *info)
+void transmit(void *info)
 {
-
+        transmit_info *i = (transmit_info *)info;
+        if (write(i->sfd, &i->p, BUF_SIZE) != BUF_SIZE)
+        {
+                fprintf(stderr, "partial/failed write\n");
+                delete i;
+        }
+        delete i;
 }
-
 
 template <>
 bool injection_whiteboard_object<std::string>::send_message(const std::string &msg)

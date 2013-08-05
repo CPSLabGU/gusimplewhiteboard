@@ -45,13 +45,11 @@
 
 
 extern const char *robot_network_names[];
-
-extern void async_transmit_c_func(void *info);
-
+void transmit(void *);
 struct transmit_info
 {
+        int sfd;
         gsw_message_packet p;
-        void *parent;
 };
 
 template <class object_type> class injection_whiteboard_object
@@ -152,29 +150,18 @@ public:
         bool send_message(const object_type &msg);
 
 private:
-        
         bool send_tcp(gsw_message_packet p)
         {
+                transmit_info *info = new transmit_info();
+                info->sfd = sfd;
+                info->p = p;
+
                 if(async)
-                {
-                        transmit_info info;
-                        info.p = p;
-//                        info.transmit_func = &injection_whiteboard_object<object_type>::transmit;
-                        info.parent = this;
-
-                        dispatch_async_f(send_queue, (void *)&info, &async_transmit_c_func);
-                }
+                        dispatch_async_f(send_queue, (void *)info, transmit);
                 else
-                        return transmit(p);
-                return true;
-        }
-
-        bool transmit(gsw_message_packet p)
-        {
-                if (write(sfd, &p, BUF_SIZE) != BUF_SIZE)
                 {
-                        fprintf(stderr, "partial/failed write\n");
-                        return false;
+                        transmit((void *)info);
+                        delete info;
                 }
                 return true;
         }
