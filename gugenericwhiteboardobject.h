@@ -187,9 +187,8 @@ void generic_whiteboard_object<object_type>::set(const object_type &msg)
 //        fprintf(stderr, "no specialisation\n");
         int t = type_offset;
         
-#ifdef DEBUG
         assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= sizeof(object_type));
-#endif
+
         if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
         
         gu_simple_whiteboard *wb = _wbd->wb;
