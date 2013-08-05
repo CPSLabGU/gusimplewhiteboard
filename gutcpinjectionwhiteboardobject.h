@@ -24,6 +24,7 @@
 
 #include <string>
 #include <vector>
+#include <cstring> //memset
 
 #ifdef bool
 #undef bool
@@ -44,6 +45,14 @@
 
 
 extern const char *robot_network_names[];
+
+extern void async_transmit_c_func(void *info);
+
+struct transmit_info
+{
+        gsw_message_packet p;
+        void *parent;
+};
 
 template <class object_type> class injection_whiteboard_object
 {
@@ -143,12 +152,18 @@ public:
         bool send_message(const object_type &msg);
 
 private:
+        
         bool send_tcp(gsw_message_packet p)
         {
                 if(async)
-                        dispatch_async(send_queue, ^(void){
-                                transmit(p);
-                        });
+                {
+                        transmit_info info;
+                        info.p = p;
+//                        info.transmit_func = &injection_whiteboard_object<object_type>::transmit;
+                        info.parent = this;
+
+                        dispatch_async_f(send_queue, (void *)&info, &async_transmit_c_func);
+                }
                 else
                         return transmit(p);
                 return true;
