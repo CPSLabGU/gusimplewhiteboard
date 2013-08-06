@@ -35,8 +35,8 @@
 #define LOCK_FILE "data/.guudpwhiteboard.lock-"
 
 #define BROADCASTADDRESS "255.255.255.255"
-#define PORT 21041	// the port users will be connecting to
-#define PORT_STR "21041"
+#define PORT 21031	// the port users will be connecting to
+#define PORT_STR "21031"
 
 #define MAX_NODES 1024
 

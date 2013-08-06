@@ -74,7 +74,7 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 
         for (int i = 0; i < machines_in_the_network; i++)
         {
-                remote_wbd[i] = gswr_new_whiteboard(i);
+                remote_wbd[i] = gswr_new_whiteboard(i+1);
 
                 /*
                  * reset wb event counters (if the robot restarts then its event counters will be zero, aka less than the current counters on record)
@@ -111,6 +111,11 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 			perror("listener: socket");
 			continue;
 		}
+
+                int yes = 1;
+                if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
+                        perror("listener: setsockopt");
+
 
 		if (bind(sockfd, p->ai_addr, p->ai_addrlen) != -1)
                         break;  // found a place to bind, break loop
