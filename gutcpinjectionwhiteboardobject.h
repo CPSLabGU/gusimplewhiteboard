@@ -161,7 +161,6 @@ private:
                 else
                 {
                         transmit((void *)info);
-                        delete info;
                 }
                 return true;
         }
