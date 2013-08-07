@@ -20,6 +20,8 @@
 
 #define CONN_QUEUE_SIZE 10
 
+void *connection(void *args);
+void addToWB(uint16_t t, gsw_simple_message *m);
 
 TCPInjectionReceiver::TCPInjectionReceiver()
 {
@@ -86,21 +88,7 @@ TCPInjectionReceiver::TCPInjectionReceiver()
                         if (cfd == -1)
                                 continue;               /* Ignore failed request */
 
-                        dispatch_async(sys_queue, ^(void) {
-                                bool socket_open = true;
-                                while(socket_open)
-                                {
-                                        gsw_message_packet buff;
-                                        ssize_t n = 0;
-                                        while ((n += read(cfd, &buff, sizeof(buff))) < (int)sizeof(buff) || n < 0) {}
-
-                                        if(n < 0)
-                                                socket_open = false;
-                                        else
-                                                addToWB(buff.t, &buff.m);
-                                }
-                        });
-
+                        create_connection_thread(&cfd);
 #ifdef DEBUG
                         char host[NI_MAXHOST], service[NI_MAXSERV];
                         s = getnameinfo((struct sockaddr *) &peer_addr,
@@ -116,13 +104,64 @@ TCPInjectionReceiver::TCPInjectionReceiver()
         });
 }
 
-
 TCPInjectionReceiver::~TCPInjectionReceiver()
 {
         close(sfd);
 }
 
-void TCPInjectionReceiver::addToWB(uint16_t t, gsw_simple_message *m)
+void TCPInjectionReceiver::create_connection_thread(int *cfd)
+{
+        pthread_attr_t        attr;
+        pthread_t             thread;
+        int                   rc=0;
+
+        rc = pthread_attr_init(&attr);
+        if(rc)
+                fprintf(stderr, "TCPInjectionReceiver: pthread_attr_init failed");
+
+        rc = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+        if(rc)
+                fprintf(stderr, "TCPInjectionReceiver: pthread_attr_setdetachstate failed");
+
+        rc = pthread_create(&thread, &attr, connection, (void *)cfd);
+        if(rc)
+                fprintf(stderr, "TCPInjectionReceiver: pthread_create failed");
+
+        rc = pthread_attr_destroy(&attr);
+        if(rc)
+                fprintf(stderr, "TCPInjectionReceiver: pthread_attr_destroy failed");
+}
+
+void *connection(void *args)
+{
+        int cfd = *(int *)args;
+
+        fprintf(stderr, "Connected!\n");
+        bool socket_open = true;
+        while(socket_open)
+        {
+                fprintf(stderr, "Read\n");
+
+                gsw_message_packet buff;
+                ssize_t n = 0;
+                do
+                {
+                        n += recv(cfd, &buff, sizeof(buff), 0);
+                        fprintf(stderr, "Reading...\n");
+
+                } while (n < (int)sizeof(buff) && n > 0);
+
+                if(n <= 0)
+                        socket_open = false;
+                else
+                        addToWB(buff.t, &buff.m);
+        }
+        fprintf(stderr, "Disconnected!\n");
+
+        return NULL;
+}
+
+void addToWB(uint16_t t, gsw_simple_message *m)
 {
         gu_simple_whiteboard_descriptor *_wbd = get_local_singleton_whiteboard();
         gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);

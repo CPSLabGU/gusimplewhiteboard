@@ -33,7 +33,7 @@ class TCPInjectionReceiver
 
         dispatch_queue_t                        recv_queue;
 
-        void addToWB(uint16_t t, gsw_simple_message *m);
+        void create_connection_thread(int *cfd);
 public:
 
         
