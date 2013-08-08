@@ -136,18 +136,15 @@ void *connection(void *args)
 {
         int cfd = *(int *)args;
 
-        fprintf(stderr, "Connected!\n");
+//        fprintf(stderr, "Connected!\n");
         bool socket_open = true;
         while(socket_open)
         {
-                fprintf(stderr, "Read\n");
-
                 gsw_message_packet buff;
                 ssize_t n = 0;
                 do
                 {
                         n += recv(cfd, &buff, sizeof(buff), 0);
-                        fprintf(stderr, "Reading...\n");
 
                 } while (n < (int)sizeof(buff) && n > 0);
 
@@ -156,7 +153,7 @@ void *connection(void *args)
                 else
                         addToWB(buff.t, &buff.m);
         }
-        fprintf(stderr, "Disconnected!\n");
+//        fprintf(stderr, "Disconnected!\n");
 
         return NULL;
 }
