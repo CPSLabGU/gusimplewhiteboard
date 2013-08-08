@@ -36,7 +36,7 @@
 #define TCP_PORT 21045	// the port users will be connecting to
 #define TCP_PORT_STR "21045"
 
-#define BUF_SIZE GU_SIMPLE_WHITEBOARD_BUFSIZE+sizeof(uint16_t) //68 bytes
+#define BUF_SIZE GU_SIMPLE_WHITEBOARD_BUFSIZE+sizeof(int) //68 bytes
 
 
 
@@ -75,11 +75,11 @@
 
 typedef struct gsw_message_packet
 {
-        gsw_message_packet(uint16_t type, gsw_simple_message *message) : m(*message), t(type) { }
+        gsw_message_packet(int type, gsw_simple_message *message) : m(*message), t(type) { }
         gsw_message_packet() : m(), t() { }
 
         gsw_simple_message m;
-        uint16_t t;
+        int t;
 } gsw_message_packet;
 
 
