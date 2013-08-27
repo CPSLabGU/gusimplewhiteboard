@@ -173,6 +173,8 @@ void addToWB(uint16_t t, gsw_simple_message *m)
         *wbobj = *m;
 
         gsw_increment(wb, (int)t);
+
+        fprintf(stderr, "Adding to offset %d\n", (int)t);
         gsw_increment_event_counter(wb, (int)t);
         gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         gsw_signal_subscribers(wb);
