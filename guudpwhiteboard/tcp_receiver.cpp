@@ -142,15 +142,17 @@ void *connection(void *args)
         {
                 gsw_message_packet buff;
                 ssize_t n = 0;
+                ssize_t r;
                 do
                 {
-                        n += recv(cfd, &buff, sizeof(buff), 0);
+                        r = recv(cfd, &buff, sizeof(buff), 0);
+                        n += r;
 //                        fprintf(stderr, "Reading... %d of %d\n", (int)n, (int)sizeof(buff));
 
-                } while ((int)n < (int)sizeof(buff) && n > 0);
+                } while ((int)n < (int)sizeof(buff) && r > 0);
 
 //                fprintf(stderr, "Got Msg\n");
-                if(n <= 0)
+                if(r <= 0)
                         socket_open = false;
                 else
                         addToWB((uint16_t)buff.t, &buff.m);
