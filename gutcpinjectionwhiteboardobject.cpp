@@ -28,7 +28,7 @@ void transmit(void *info)
                 fprintf(stderr, "partial/failed write\n");
                 delete i;
         }
-        fprintf(stderr, "Sent %d\n", BUF_SIZE);
+        
         delete i;
 }
 

@@ -145,13 +145,12 @@ void *connection(void *args)
                 ssize_t r;
                 do
                 {
-                        r = recv(cfd, &buff, sizeof(buff), 0);
+                        r = recv(cfd, &buff, BUF_SIZE, 0);
                         n += r;
-                        fprintf(stderr, "Reading... %d of %d\n", (int)n, (int)sizeof(buff));
+                        fprintf(stderr, "Reading... %d of %d\n", (int)n, (int)BUF_SIZE);
 
-                } while ((int)n < (int)sizeof(buff) && r > 0);
+                } while ((int)n < (int)BUF_SIZE && r > 0);
 
-                fprintf(stderr, "Got Msg\n");
                 if(r <= 0)
                         socket_open = false;
                 else
@@ -174,7 +173,6 @@ void addToWB(uint16_t t, gsw_simple_message *m)
 
         gsw_increment(wb, (int)t);
 
-        fprintf(stderr, "Adding to offset %d\n", (int)t);
         gsw_increment_event_counter(wb, (int)t);
         gsw_vacate(_wbd->sem, GSW_SEM_PUTMSG);
         gsw_signal_subscribers(wb);

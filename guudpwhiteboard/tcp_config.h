@@ -36,7 +36,7 @@
 #define TCP_PORT 21045	// the port users will be connecting to
 #define TCP_PORT_STR "21045"
 
-#define BUF_SIZE GU_SIMPLE_WHITEBOARD_BUFSIZE+sizeof(int) //68 bytes
+#define BUF_SIZE (GU_SIMPLE_WHITEBOARD_BUFSIZE+sizeof(int)) //68 bytes
 
 
 
