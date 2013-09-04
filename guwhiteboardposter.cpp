@@ -133,27 +133,27 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WALK_ControlStatus_DEFINED
 
-		case kMOTION_SDK_Commands_v:
-#ifdef MOTION_SDK_Interface_DEFINED
+		case kMOTION_Commands_v:
+#ifdef MOTION_Commands_DEFINED
 		{
-			class MOTION_SDK_Commands_t MOTION_SDK_Commands_msg;
-			MOTION_SDK_Commands_msg.post(MOTION_SDK_Interface(message_content));
+			class MOTION_Commands_t MOTION_Commands_msg;
+			MOTION_Commands_msg.post(MOTION_Commands(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !MOTION_SDK_Interface_DEFINED
+#endif // !MOTION_Commands_DEFINED
 
-		case kMOTION_SDK_Status_v:
-#ifdef MOTION_SDK_Interface_DEFINED
+		case kMOTION_Status_v:
+#ifdef MOTION_Status_DEFINED
 		{
-			class MOTION_SDK_Status_t MOTION_SDK_Status_msg;
-			MOTION_SDK_Status_msg.post(MOTION_SDK_Interface(message_content));
+			class MOTION_Status_t MOTION_Status_msg;
+			MOTION_Status_msg.post(MOTION_Status(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !MOTION_SDK_Interface_DEFINED
+#endif // !MOTION_Status_DEFINED
 
 		case kNaoWalk_v:
 		{
@@ -486,8 +486,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["GCGameState"] = kGCGameState_v;
 	self["WALK_Command"] = kWALK_Command_v;
 	self["WALK_Status"] = kWALK_Status_v;
-	self["MOTION_SDK_Commands"] = kMOTION_SDK_Commands_v;
-	self["MOTION_SDK_Status"] = kMOTION_SDK_Status_v;
+	self["MOTION_Commands"] = kMOTION_Commands_v;
+	self["MOTION_Status"] = kMOTION_Status_v;
 	self["gunaomotion_naoWalk"] = kNaoWalk_v;
 	self["gunaomotion_naoWalkIsRunning"] = kNaoWalkIsRunning_v;
 	self["gunaomotion_headStiffness"] = kHeadStiffness_v;

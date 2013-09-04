@@ -115,27 +115,27 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WALK_ControlStatus_DEFINED
 
-		case kMOTION_SDK_Commands_v:
-#ifdef MOTION_SDK_Interface_DEFINED
+		case kMOTION_Commands_v:
+#ifdef MOTION_Commands_DEFINED
 		{
-			class MOTION_SDK_Commands_t m;
+			class MOTION_Commands_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !MOTION_SDK_Interface_DEFINED
+#endif // !MOTION_Commands_DEFINED
 
-		case kMOTION_SDK_Status_v:
-#ifdef MOTION_SDK_Interface_DEFINED
+		case kMOTION_Status_v:
+#ifdef MOTION_Status_DEFINED
 		{
-			class MOTION_SDK_Status_t m;
+			class MOTION_Status_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !MOTION_SDK_Interface_DEFINED
+#endif // !MOTION_Status_DEFINED
 
 		case kNaoWalk_v:
 		{

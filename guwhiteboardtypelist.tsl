@@ -8,8 +8,8 @@ bool,           nonatomic, SpeechOutput,                        "SpeechOutput", 
 class:GCGameState, nonatomic, GCGameState,                      "GCGameState",  game state as posted by the game controller state machine
 class:WALK_ControlStatus, nonatomic, WALK_Command,              "WALK_Command", Class used to control the walk engine (UNSW)
 class:WALK_ControlStatus, nonatomic, WALK_Status,               "WALK_Status",  Class used to check the status of the walk engine (UNSW)
-class:MOTION_SDK_Interface, nonatomic, MOTION_SDK_Commands,     "MOTION_SDK_Commands", WB interface for sending motion commands to the SDK
-class:MOTION_SDK_Interface, nonatomic, MOTION_SDK_Status,       "MOTION_SDK_Status", WB interface for checking the status of commands sent to the SDK
+class:MOTION_Commands, nonatomic, MOTION_Commands,              "MOTION_Commands", WB interface for sending motion commands
+class:MOTION_Status, nonatomic, MOTION_Status,                  "MOTION_Status", WB interface for checking the status of commands sent
 std::vector<int>,nonatomic, NaoWalk,                            "gunaomotion_naoWalk", *deprecated commented out of motion* Commands the slow walk that is built into the SDK
 bool,           nonatomic, NaoWalkIsRunning,                    "gunaomotion_naoWalkIsRunning", *deprecated commented out of motion* State variable, is the slow SDK walk running (NaoWalk)
 float,          nonatomic, HeadStiffness,                       "gunaomotion_headStiffness", *deprecated use MOTION_SDK_Commands* Sets the head stiffness level, warning: this call may change and become part of the sensors / HAL module at a later date
