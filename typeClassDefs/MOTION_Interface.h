@@ -322,11 +322,16 @@ namespace guWhiteboard
                         }
                         else set_body_stiffness_mask(false);
 
-
+                        if(*s != ',')
+                        {
+                                set_stance_action_mask(false);
+                                return;
+                        }
                         const char *ss = s;
                         ss++;
                         const char *p = ss;
                         p = strchr(ss, ',');
+                        p != NULL ? set_stance_action_mask(true) : set_stance_action_mask(false);
                         std::string str2(ss);
                         str2 = str2.substr(0, p-ss+1);
                         
