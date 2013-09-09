@@ -152,7 +152,7 @@ namespace guWhiteboard
                 };
                 
 
-                struct Stance_Path
+                class Stance_Path
                 {
                 private:
                         int _cost;
@@ -167,21 +167,20 @@ namespace guWhiteboard
                         void invalidate() { _cost = -1; }
                         void reached() { _reached = true; }
                         int cost() { return _cost; }
-                        void add_stance(stance s, int cost) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
-                        void add_stance(stance s, int cost, int transition) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = (u_int8_t)transition+NUM_OF_STANCES+NUM_OF_ACTIONS; _off++; _stances[_off] = s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+                        void add_stance(stance s, int cost) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = (u_int8_t)s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+                        void add_stance(stance s, int cost, int transition) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = (u_int8_t)transition+NUM_OF_STANCES+NUM_OF_ACTIONS; _off++; _stances[_off] = (u_int8_t)s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
                         void pretty_print()
                         {
                                 std::stringstream ss;
-                                ss << "Stance_Path: ";
+                                ss << "Stance_Path: " << (int)_off << " ";
                                 for(int i = 0; i < _off; i++)
                                 {
                                         if(_stances[i] < NUM_OF_STANCES)
-                                                ss << "-> " << _stances[i] << " " << stance_strings[_stances[i]];
+                                                ss << "-> " << (int)_stances[i] << " " << stance_strings[_stances[i]];
                                         else
-                                                ss << " transition " << _stances[i] << " ";
+                                                ss << " transition: " << (int)_stances[i] << " ";
                                 }
-                                ss << std::endl;
-                                fprintf(stderr, "%s", ss.str().c_str());
+                                fprintf(stderr, "%s\n", ss.str().c_str());
                         }
                         bool contains(stance s)
                         {
