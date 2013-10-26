@@ -1,8 +1,7 @@
 /*
- *  Point2D.h
- *  gusimplewhiteboard / clfsm
+ *  WEBOTS_NXT_bridge.h
  *
- *  Created by Rene Hexel on 25/03/13.
+ *  Created by Vald Estivill-Castro on 25/10/13.
  *  Copyright (c) 2013 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,14 +54,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-
-
-/****************** I M P O R T A N T   */
-/* is <class_name>_DEFINED              */
-/***************************************/
-
-#ifndef Point2D_DEFINED
-#define Point2D_DEFINED
+#ifndef WEBOTS_NXT_bridge_DEFINED
+#define WEBOTS_NXT_bridge_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -70,31 +63,50 @@
 
 namespace guWhiteboard
 {
+       //ID's for motor's in differential robots
+        enum DifferentialMotor {
+                LEFT_MOTOR_DIFFERENTIAL = 0,
+                RIGHT_MOTOR_DIFFERENTIAL = 1,
+                NXT_MOTOR3 = 2 //constant for the third motor on nxt's
+             };
+
+       enum DifferentialInstructions {
+                MOVE_FORWARDS= 0,
+		PLAY_SOUND= 1,
+		LIGHTUP_LED = 2 //constant for the third motor on nxt's
+             };
 
         /**
          * Class for for demonstrating OO-messages.
          */
-        class Point2D
+        class WEBOTS_NXT_bridge
         {
-            PROPERTY(int16_t, x) ///<  x-coordinate
-            PROPERTY(int16_t, y) ///<  y-coordinate
+            PROPERTY(DifferentialInstructions, theInstruction) ///<  The command
+            PROPERTY(int16_t, firstParameter) ///<  the first parameter
+            PROPERTY(int16_t, secondParameter) ///<  the first parameter
 
         public:
             /** designated constructor */
-            Point2D(int16_t x = 0, int16_t y = 0): _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
+            WEBOTS_NXT_bridge(DifferentialInstructions  theInstruction = MOVE_FORWARDS, int16_t firstParameter = 0, int16_t secondParameter=0): _theInstruction(theInstruction), _firstParameter(firstParameter), _secondParameter(secondParameter)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
-            Point2D(const std::string &names) { from_string(names); }
+            WEBOTS_NXT_bridge(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            Point2D(const Point2D &other): _x(other._x), _y(other._y) {}
-
+            WEBOTS_NXT_bridge(const WEBOTS_NXT_bridge &other): _theInstruction(other._theInstruction), _firstParameter(other._firstParameter), _secondParameter(other._secondParameter) {}
 
             /** convert to a string */
             std::string description()
             {
                 std::ostringstream ss;
-                ss << x() << "," << y();
+		switch(_theInstruction)
+		{ case MOVE_FORWARDS : ss << "MOVE_FORWARDS" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << ",";
+			               break;
+		  case LIGHTUP_LED : ss << "LIGHTUP_LED" << _firstParameter << ",";
+			               break;
+		}
                 return ss.str();
             }
 
@@ -104,17 +116,32 @@ namespace guWhiteboard
                 std::istringstream iss(str);
                 std::string token;
                 if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
-                    if (getline(iss, token, ','))
-                    {
-		        set_y(int16_t(atoi(token.c_str())));
-                    }
+                { set_firstParameter(0);
+		    set_secondParameter(0);
+		    switch (token[0])
+		    { case 'M' :  // expect a MOVE_FORWARDS
+                                   if (getline(iss, token, ','))
+                                     { set_firstParameter(int16_t(atoi(token.c_str())));
+                                      }
+                                   if (getline(iss, token, ','))
+                                     { set_secondParameter(int16_t(atoi(token.c_str())));
+                                      }
+			    break;
+		      case 'P' : // expect a PLAY_SOUND
+                                   if (getline(iss, token, ','))
+                                     { set_firstParameter(int16_t(atoi(token.c_str())));
+                                      }
+			    break;
+		      case 'L' : // expect a LIGHTUP_LED
+                                   if (getline(iss, token, ','))
+                                     { set_firstParameter(int16_t(atoi(token.c_str())));
+                                      }
+			    break;
+		    }
                 }
             }
         };
 }
 
 
-#endif // Point2D_DEFINED
+#endif // WEBOTS_NXT_bridge_DEFINED

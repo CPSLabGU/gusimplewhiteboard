@@ -427,6 +427,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class PF_ControlStatus_Modes_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kWEBOTS_NXT_bridge_v:
+#ifdef WEBOTS_NXT_bridge_DEFINED
+		{
+			class WEBOTS_NXT_bridge_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WEBOTS_NXT_bridge_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
