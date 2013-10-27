@@ -70,8 +70,17 @@ namespace guWhiteboard
                 NXT_MOTOR3 = 2 //constant for the third motor on nxt's
              };
 
+	/**
+	 * The MOVE_MOTORS instruction sets the sppeds of a Webots Differential Robot
+	 * the FIRST parameter will be the LEFT motor
+	 * the SECOND parameter will be the SECOND motor
+	 * according to the Webots documentaiton, this is radians per second.
+	 * but it does not seem tight.
+	 * TODO: CHECK OR DETERMINE THE SPEED
+	 */
+
        enum DifferentialInstructions {
-                MOVE_FORWARDS= 0,
+                MOVE_MOTORS= 0,
 		PLAY_SOUND= 1,
 		LIGHTUP_LED = 2 //constant for the third motor on nxt's
              };
@@ -87,7 +96,7 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            WEBOTS_NXT_bridge(DifferentialInstructions  theInstruction = MOVE_FORWARDS, int16_t firstParameter = 0, int16_t secondParameter=0): _theInstruction(theInstruction), _firstParameter(firstParameter), _secondParameter(secondParameter)  { /* better than set_x(x); set_y(y) */ }
+            WEBOTS_NXT_bridge(DifferentialInstructions  theInstruction = MOVE_MOTORS, int16_t firstParameter = 0, int16_t secondParameter=0): _theInstruction(theInstruction), _firstParameter(firstParameter), _secondParameter(secondParameter)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             WEBOTS_NXT_bridge(const std::string &names) { from_string(names); }
@@ -100,7 +109,7 @@ namespace guWhiteboard
             {
                 std::ostringstream ss;
 		switch(_theInstruction)
-		{ case MOVE_FORWARDS : ss << "MOVE_FORWARDS" << "," << _firstParameter << "," << _secondParameter << "," ;
+		{ case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << ",";
 			               break;
@@ -119,7 +128,7 @@ namespace guWhiteboard
                 { set_firstParameter(0);
 		    set_secondParameter(0);
 		    switch (token[0])
-		    { case 'M' :  // expect a MOVE_FORWARDS
+		    { case 'M' :  // expect a MOVE_MOTORS
                                    if (getline(iss, token, ','))
                                      { set_firstParameter(int16_t(atoi(token.c_str())));
                                       }
