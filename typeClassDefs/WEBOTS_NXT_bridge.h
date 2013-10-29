@@ -70,6 +70,22 @@ namespace guWhiteboard
                 NXT_MOTOR3 = 2 //constant for the third motor on nxt's
              };
 
+        enum SonarSensorID {
+                LEFT_SONAR_SENSOR = 0,
+                RIGHT_SONAR_SENSOR = 1
+	};
+
+        enum LightSensorID {
+                LEFT_LIGHT_SENSOR = 0,
+                RIGHT_LIGHT_SENSOR = 1
+	};
+
+        enum NXT_Sensor_Ports {
+                NXT_PORT_1= 1,
+                NXT_PORT_2= 2,
+                NXT_PORT_3= 3,
+                NXT_PORT_4= 4
+             };
 	/**
 	 * The MOVE_MOTORS instruction sets the sppeds of a Webots Differential Robot
 	 * the FIRST parameter will be the LEFT motor
@@ -80,9 +96,14 @@ namespace guWhiteboard
 	 */
 
        enum DifferentialInstructions {
+	       // ACTUATROS
                 MOVE_MOTORS= 0,
 		PLAY_SOUND= 1,
-		LIGHTUP_LED = 2 //constant for the third motor on nxt's
+		LIGHTUP_LED = 2, //constant for the third motor on nxt's
+	       // SENSORS
+                DISTANCE= 3,
+		INTENSITY_LIGHT= 4,
+		ROTATION_ENCODER = 5 //constant for the third motor on nxt's
              };
 
         /**
@@ -109,11 +130,39 @@ namespace guWhiteboard
             {
                 std::ostringstream ss;
 		switch(_theInstruction)
+			/*
+			 * Apply power=_firstParameter to LEFT MOTOR
+			 * Apply power=_secondParameter to RIGHT MOTOR
+			 */
 		{ case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
+			/*
+			 * Play sound for as long as _firstParameter
+			 */
 		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << ",";
 			               break;
-		  case LIGHTUP_LED : ss << "LIGHTUP_LED" << _firstParameter << ",";
+			/*
+			 * LIGHTUP_LED if 0<> _firstParameter
+			 */
+		  case LIGHTUP_LED : ss << "LIGHTUP_LED" << "," << ((0!=_firstParameter)? 1: 0) << ",";
+			               break;
+			/*
+			 * Start posting Distance from SOnar in potrt _firstParameter if 0<> _secondParameter
+			 * Stop posting Distance from SOnar in potrt _firstParameter if 0== _secondParameter
+			 */
+		  case DISTANCE : ss << "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+			/*
+			 * Start posting light measurement from light sensor in port _firstParameter if 0<> _secondParameter
+			 * Stop posting lisght measurement from light in port _firstParameter if 0== _secondParameter
+			 */
+		  case INTENSITY_LIGHT : ss << "INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+			/*
+			 * Start posting rotations from encoder in port _firstParameter if 0<> _secondParameter
+			 * Stop posting rotations from encoder in port _firstParameter if 0== _secondParameter
+			 */
+		  case ROTATION_ENCODER : ss << "ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 		}
                 return ss.str();
@@ -129,6 +178,7 @@ namespace guWhiteboard
 		    set_secondParameter(0);
 		    switch (token[0])
 		    { case 'M' :  // expect a MOVE_MOTORS
+		     case 'm' : set_theInstruction(MOVE_MOTORS);
                                    if (getline(iss, token, ','))
                                      { set_firstParameter(int16_t(atoi(token.c_str())));
                                       }
@@ -136,19 +186,65 @@ namespace guWhiteboard
                                      { set_secondParameter(int16_t(atoi(token.c_str())));
                                       }
 			    break;
+		     case 'p' :
 		      case 'P' : // expect a PLAY_SOUND
+		               set_theInstruction(PLAY_SOUND);
                                    if (getline(iss, token, ','))
-                                     { set_firstParameter(int16_t(atoi(token.c_str())));
+                                     { // always positive
+					     int16_t value= int16_t ( atoi(token.c_str()) );
+					     value = value >0 ? value : -1*value;
+					     set_firstParameter(value);
                                       }
 			    break;
+		     case 'l' :
 		      case 'L' : // expect a LIGHTUP_LED
+		                   set_theInstruction(LIGHTUP_LED);
                                    if (getline(iss, token, ','))
-                                     { set_firstParameter(int16_t(atoi(token.c_str())));
+                                     { set_firstParameter(int16_t(
+					   (0== atoi(token.c_str())? 0 :1 )
+					    ));
                                       }
 			    break;
+		     case 'd' :
+		      case 'D' : // expect a DISTANCE
+		                   set_theInstruction(DISTANCE);
+				   set_parameters(str);
+			           break;	
+		     case 'i' :
+		      case 'I' : // expect a INTENSITY_LIGHT
+		                   set_theInstruction(INTENSITY_LIGHT);
+				   set_parameters(str);
+			           break;	
+		     case 'r' :
+		      case 'R' : // expect a ROTATION_ENCODER
+		                   set_theInstruction(ROTATION_ENCODER);
+				   set_parameters(str);
+			           break;	
 		    }
                 }
             }
+
+	private :
+	void set_parameters ( const std::string &str  )
+	                 { 
+                              std::istringstream iss(str);
+                              std::string token;
+			      // advance the token
+                               getline(iss, token, ',');
+
+                                   if (getline(iss, token, ','))
+                                     { int16_t value = int16_t ( atoi(token.c_str())) ;
+					     if (NXT_PORT_1 <= value && value <= NXT_PORT_4)
+						     set_firstParameter(value);
+					     else 
+						     set_firstParameter(NXT_PORT_1);
+                                      }
+                                   if (getline(iss, token, ','))
+                                     { set_secondParameter(int16_t(
+					   (0== atoi(token.c_str())? 0 :1 )
+					    ));
+				     }
+	                  }
         };
 }
 
