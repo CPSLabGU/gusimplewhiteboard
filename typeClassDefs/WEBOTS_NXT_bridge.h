@@ -142,7 +142,7 @@ namespace guWhiteboard
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
-			 case LIGHTUP_LED: std::cerr << "LOG-error ** This shoudl not hold data" << std::endl;
+			 case LIGHTUP_LED: //std::cerr << "LOG-error ** This shoudl not hold data" << std::endl;
 					   break;
 		     }
 		}
@@ -213,15 +213,13 @@ namespace guWhiteboard
 			           break;	
 		      case 's' :
 		      case 'S' : // expect SENSOR data
-				   std:: cerr<< "Sensor data detected " << std:: endl;
+				   //std:: cerr<< "Sensor data detected " << std:: endl;
 		                   set_isSensorData(true);
 				   // remove the prefix SENSOR
 				   std::string sensorStr ("SENSOR");
 				    std::size_t found = str.find(sensorStr);
-				   if (std::string::npos==found )
-						   { std::cerr<< "error" << std::endl;
-						   } 
-				   else { std::string strWithoutPrefix =str.substr (found+sensorStr.size());
+				   if (std::string::npos!=found )
+				   { std::string strWithoutPrefix =str.substr (found+sensorStr.size());
 					   measurement_from_string ( strWithoutPrefix );
 				   }
 				   break;
