@@ -348,6 +348,16 @@ namespace guWhiteboard
 
                         while (*(++s) != ',') ;
                         
+                        action a2;
+                        MY_CHECK_ENUM(s, a2, Standing_leftkick);
+                        else a2 = NUM_OF_ACTIONS;
+
+			if(a2 != NUM_OF_ACTIONS)   
+			{
+				DoAction(s1, a2);
+				return;
+			}
+
                         stance s2;
                         MY_CHECK_ENUM(s, s2, Standby_stance);
                         else MY_CHECK_ENUM(s, s2, Kneeling_stance);
