@@ -111,6 +111,7 @@ namespace guWhiteboard
          */
         class WEBOTS_NXT_bridge
         {
+            PROPERTY(int16_t, theRobotID) /// Which robot are we talking to 
             PROPERTY(DifferentialInstructions, theInstruction) ///  The command (when it is not data)
             PROPERTY(int16_t, firstParameter) ///  the first parameter
             PROPERTY(int16_t, secondParameter) ///  the first parameter
@@ -118,18 +119,19 @@ namespace guWhiteboard
 
         public:
             /** designated constructor */
-            WEBOTS_NXT_bridge(DifferentialInstructions  theInstruction = MOVE_MOTORS, int16_t firstParameter = 0, int16_t secondParameter=0, bool isSensorData =false): _theInstruction(theInstruction), _firstParameter(firstParameter), _secondParameter(secondParameter), _isSensorData(isSensorData)  { /* better than set_x(x); set_y(y) */ }
+            WEBOTS_NXT_bridge(int16_t theRobotID =0 ,DifferentialInstructions  theInstruction = MOVE_MOTORS, int16_t firstParameter = 0, int16_t secondParameter=0, bool isSensorData =false): _theRobotID(theRobotID),  _theInstruction(theInstruction), _firstParameter(firstParameter), _secondParameter(secondParameter), _isSensorData(isSensorData)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             WEBOTS_NXT_bridge(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            WEBOTS_NXT_bridge(const WEBOTS_NXT_bridge &other): _theInstruction(other._theInstruction), _firstParameter(other._firstParameter), _secondParameter(other._secondParameter), _isSensorData(other._isSensorData) {}
+            WEBOTS_NXT_bridge(const WEBOTS_NXT_bridge &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _firstParameter(other._firstParameter), _secondParameter(other._secondParameter), _isSensorData(other._isSensorData) {}
 
             /** convert to a string */
             std::string description()
             {
                 std::ostringstream ss;
+		ss<< _theRobotID <<",";
 		if (_isSensorData)
 		{
 		     switch(_theInstruction)
@@ -188,12 +190,20 @@ namespace guWhiteboard
             }
 
             /** convert from a string */
-            void from_string(const std::string &str)
+            void from_string(const std::string &strWithID)
             {
-                std::istringstream iss(str);
+                std::istringstream iss(strWithID);
                 std::string token;
                 if (getline(iss, token, ','))
-                { set_firstParameter(0);
+		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
+			// Robots id are 0,1,2 .....
+		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(-numberForID);
+		   std::string comaDel (",");
+		   std::size_t found = strWithID.find(comaDel);
+		   if (std::string::npos!=found )
+		   { std::string str=strWithID.substr (found+comaDel.size());
+			// string without the Robot ID
+                    set_firstParameter(0);
 		    set_secondParameter(0);
 		    set_isSensorData(false);
 		    switch (token[0])
@@ -217,14 +227,15 @@ namespace guWhiteboard
 		                   set_isSensorData(true);
 				   // remove the prefix SENSOR
 				   std::string sensorStr ("SENSOR");
-				    std::size_t found = str.find(sensorStr);
+				   found = str.find(sensorStr);
 				   if (std::string::npos!=found )
 				   { std::string strWithoutPrefix =str.substr (found+sensorStr.size());
 					   measurement_from_string ( strWithoutPrefix );
 				   }
 				   break;
 		    }
-                }
+		  }
+		}
             }
 
 	private :
