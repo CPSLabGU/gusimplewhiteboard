@@ -63,6 +63,8 @@
 
 namespace guWhiteboard
 {
+	// FOR the arrays of FLAGS, the ENUMS shal, start from zero
+	//
        //ID's for motor's in differential robots
         enum DifferentialMotor {
                 LEFT_MOTOR_DIFFERENTIAL = 0,
@@ -81,11 +83,18 @@ namespace guWhiteboard
 	};
 
         enum NXT_Sensor_Ports {
-                NXT_PORT_1= 1,
-                NXT_PORT_2= 2,
-                NXT_PORT_3= 3,
-                NXT_PORT_4= 4
+                NXT_PORT_1= 0,
+                NXT_PORT_2= 1,
+                NXT_PORT_3= 2,
+                NXT_PORT_4= 3
              };
+
+	enum CAMERA_E_PUCK_CHANNELS {
+		BLUE_CHANNEL = NXT_PORT_1,
+		RED_CHANNEL = NXT_PORT_2,
+		GREEN_CHANNEL = NXT_PORT_3,
+		GREY_CHANNEL = NXT_PORT_4
+	};
 	/**
 	 * The MOVE_MOTORS instruction sets the sppeds of a Webots Differential Robot
 	 * the FIRST parameter will be the LEFT motor
@@ -103,7 +112,8 @@ namespace guWhiteboard
 	       // SENSORS
                 DISTANCE= 3,
 		INTENSITY_LIGHT= 4,
-		ROTATION_ENCODER = 5 //constant for the third motor on nxt's
+		ROTATION_ENCODER = 5, //constant for the third motor on nxt's
+                CAMERA=6
              };
 
         /**
@@ -141,6 +151,8 @@ namespace guWhiteboard
 		          case INTENSITY_LIGHT : ss << "SENSOR"<<"INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << "," ;
 					break;
 		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
@@ -184,6 +196,12 @@ namespace guWhiteboard
 			 */
 		  case ROTATION_ENCODER : ss << "ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
+			/*
+			 * Start posting rotations from encoder in port _firstParameter if 0<> _secondParameter
+			 * Stop posting rotations from encoder in port _firstParameter if 0== _secondParameter
+			 */
+		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
 		   };
 		}
                 return ss.str();
@@ -203,7 +221,9 @@ namespace guWhiteboard
 		   if (std::string::npos!=found )
 		   { std::string str=strWithID.substr (found+comaDel.size());
 			// string without the Robot ID
-                    set_firstParameter(0);
+                    std::istringstream second_iss(str);
+                    if (getline(second_iss, token, ','))
+		    { set_firstParameter(0);
 		    set_secondParameter(0);
 		    set_isSensorData(false);
 		    switch (token[0])
@@ -219,6 +239,8 @@ namespace guWhiteboard
 		      case 'I' : // expect a INTENSITY_LIGHT
 		     case 'r' :
 		      case 'R' : // expect a ROTATION_ENCODER
+		     case 'c' :
+		      case 'C' : // expect a ROTATION_ENCODER
 	                           instruction_from_string ( str );
 			           break;	
 		      case 's' :
@@ -233,7 +255,7 @@ namespace guWhiteboard
 					   measurement_from_string ( strWithoutPrefix );
 				   }
 				   break;
-		    }
+		    }}
 		  }
 		}
             }
@@ -334,6 +356,11 @@ namespace guWhiteboard
 		     case 'r' :
 		      case 'R' : // expect a ROTATION_ENCODER
 		                   set_theInstruction(ROTATION_ENCODER);
+				   set_parameters2ndBinary(str);
+			           break;	
+		     case 'c' :
+		      case 'C' : // expect a ROTATION_ENCODER
+		                   set_theInstruction(CAMERA);
 				   set_parameters2ndBinary(str);
 			           break;	
 		    }//switch
