@@ -110,10 +110,14 @@ namespace guWhiteboard
 		PLAY_SOUND= 1,
 		LIGHTUP_LED = 2, //constant for the third motor on nxt's
 	       // SENSORS
+	       // This can ce turned On or Off and with the Word SENSOR we get a value 
                 DISTANCE= 3,
 		INTENSITY_LIGHT= 4,
 		ROTATION_ENCODER = 5, //constant for the third motor on nxt's
-                CAMERA=6
+	       // This can be turned On or Off for channels like blue,red,green,grey and with the Word SENSOR we get a value after signal processing
+                CAMERA=6,
+		// advertise the Camera width in first parameter, only the first parameter is meaningfull
+                WIDTH=7
              };
 
         /**
@@ -153,6 +157,8 @@ namespace guWhiteboard
 		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+		          case WIDTH : ss << "WIDTH"<< "CAMERA" << "," << _firstParameter << "," << 0 << "," ;
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
@@ -202,6 +208,9 @@ namespace guWhiteboard
 			 */
 		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
+		  case WIDTH : ss << "WIDTHCAMERA" << "," << _firstParameter << "," << 0 << "," ;
+			       DBG(std::cerr<< "Invalid message " << std::endl;)
+			               break;
 		   };
 		}
                 return ss.str();
@@ -215,7 +224,7 @@ namespace guWhiteboard
                 if (getline(iss, token, ','))
 		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
 			// Robots id are 0,1,2 .....
-		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(-numberForID);
+		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(numberForID);
 		   std::string comaDel (",");
 		   std::size_t found = strWithID.find(comaDel);
 		   if (std::string::npos!=found )
@@ -226,6 +235,7 @@ namespace guWhiteboard
 		    { set_firstParameter(0);
 		    set_secondParameter(0);
 		    set_isSensorData(false);
+		    std::string sensorStr ("SENSOR");
 		    switch (token[0])
 		    { case 'M' :  // expect a MOVE_MOTORS
 		     case 'm' :
@@ -243,12 +253,23 @@ namespace guWhiteboard
 		      case 'C' : // expect a ROTATION_ENCODER
 	                           instruction_from_string ( str );
 			           break;	
+		      case 'w' :
+		      case 'W' : // expect WITHCAMERA data and we only want first parameter
+		                   set_theInstruction(WIDTH);
+		                   set_isSensorData(true);
+			           // advance the token
+                                   if (getline(second_iss, token, ','))
+                                     { int16_t value = int16_t ( atoi(token.c_str())) ;
+						     set_firstParameter(value);
+				     }
+				   else
+						     set_firstParameter(0);
+				   break;
 		      case 's' :
 		      case 'S' : // expect SENSOR data
 				   //std:: cerr<< "Sensor data detected " << std:: endl;
 		                   set_isSensorData(true);
 				   // remove the prefix SENSOR
-				   std::string sensorStr ("SENSOR");
 				   found = str.find(sensorStr);
 				   if (std::string::npos!=found )
 				   { std::string strWithoutPrefix =str.substr (found+sensorStr.size());
@@ -359,7 +380,7 @@ namespace guWhiteboard
 				   set_parameters2ndBinary(str);
 			           break;	
 		     case 'c' :
-		      case 'C' : // expect a ROTATION_ENCODER
+		      case 'C' : // expect a CAMERA
 		                   set_theInstruction(CAMERA);
 				   set_parameters2ndBinary(str);
 			           break;	
