@@ -43,7 +43,8 @@ class:TopParticles, nonatomic, TopParticles,                    "TopParticles", 
 class:FilteredVisionObject, nonatomic, FilteredBallSighting,    "FilteredBallSighting", Class that contains the Kalman filtered ball object after sighting from vision
 int,          nonatomic, PF_ControlStatus_Modes,                "PF_ControlStatus_Modes", what to post in the whiteboard to cause the Particle Filetr to reset, but running has no effect, it is the PF response
 class:WEBOTS_NXT_bridge, nonatomic, WEBOTS_NXT_bridge,                           "WEBOTS_NXT_bridge", WIP Class that contains a command for WEBOTS or NXt trough a bridge
-class:WEBOTS_NXT_encoders, nonatomic, WEBOTS_NXT_encoders,                           "WEBOTS_NXT_encoders", Class that contains data from all for WEBOTS or NXt trough a bridge
+class:WEBOTS_NXT_encoders, nonatomic, WEBOTS_NXT_encoders,                           "WEBOTS_NXT_encoders", Class that contains data from encoders all for WEBOTS or NXt trough a bridge
+class:WEBOTS_NXT_camera, nonatomic, WEBOTS_NXT_camera,                           "WEBOTS_NXT_camera", Class that contains data from cameta channels of  WEBOTS trough a bridge
 
 
 

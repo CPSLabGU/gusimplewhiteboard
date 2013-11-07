@@ -485,6 +485,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WEBOTS_NXT_encoders_DEFINED
 
+		case kWEBOTS_NXT_camera_v:
+#ifdef WEBOTS_NXT_camera_DEFINED
+		{
+			class WEBOTS_NXT_camera_t WEBOTS_NXT_camera_msg;
+			WEBOTS_NXT_camera_msg.post(WEBOTS_NXT_camera(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WEBOTS_NXT_camera_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -496,7 +507,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(46);
+	// self.reserve(47);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -544,5 +555,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["PF_ControlStatus_Modes"] = kPF_ControlStatus_Modes_v;
 	self["WEBOTS_NXT_bridge"] = kWEBOTS_NXT_bridge_v;
 	self["WEBOTS_NXT_encoders"] = kWEBOTS_NXT_encoders_v;
+	self["WEBOTS_NXT_camera"] = kWEBOTS_NXT_camera_v;
 }
 

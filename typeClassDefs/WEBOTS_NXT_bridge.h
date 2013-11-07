@@ -57,6 +57,7 @@
 #ifndef WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_encoders_DEFINED
+#define WEBOTS_NXT_camera_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -446,7 +447,7 @@ namespace guWhiteboard
 	    class WEBOTS_NXT_bridge *encoders() { return _encoders; }
 
 	    /** property setter */
-	    void set_objects(const class WEBOTS_NXT_bridge *objects)
+	    void set_encoders(const class WEBOTS_NXT_bridge *objects)
 	    {
 		    memcpy(_encoders, objects, sizeof(_encoders));
 	    }
@@ -495,6 +496,116 @@ namespace guWhiteboard
                     if (!getline(iss, token, ',')) break;
                     _encoders[object].from_string( token );
                 }
+
+            }
+
+
+	}; // WEBOTS_NXT_encoders
+
+        class WEBOTS_NXT_camera {
+		private:
+			class WEBOTS_NXT_bridge _channels[GREY_CHANNEL+1];
+			class WEBOTS_NXT_bridge _width; 
+
+		public :
+			 WEBOTS_NXT_camera()
+	                 { 
+			   WEBOTS_NXT_bridge theBlueChannel(0,CAMERA,BLUE_CHANNEL,0,true);
+	                   _channels[BLUE_CHANNEL]= theBlueChannel; 
+
+			   WEBOTS_NXT_bridge theRedChannel(0,CAMERA,RED_CHANNEL,0,true);
+	                   _channels[RED_CHANNEL]= theRedChannel; 
+
+			   WEBOTS_NXT_bridge theGreenChannel(0,CAMERA,GREEN_CHANNEL,0,true);
+	                   _channels[GREEN_CHANNEL]= theGreenChannel; 
+
+			   WEBOTS_NXT_bridge theGreyChannel(0,CAMERA,GREY_CHANNEL,0,true);
+	                   _channels[GREY_CHANNEL]= theGreyChannel; 
+
+			   WEBOTS_NXT_bridge theWidth(0,WIDTH,0,0,true);
+	                   _width= theWidth; 
+			 }
+
+	             /** single channel with width  constructor */
+	             WEBOTS_NXT_camera(const class WEBOTS_NXT_bridge &obj, const class WEBOTS_NXT_bridge &a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
+                    {
+	                 _channels[channelID]=obj;
+	                 _width=a_width;
+	            }
+
+            /** string constructor */
+            WEBOTS_NXT_camera(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            WEBOTS_NXT_camera(const WEBOTS_NXT_camera &other)
+	    {
+		    memcpy(this, &other, sizeof(other));
+	    }
+
+	    /** property getter */
+	    class WEBOTS_NXT_bridge *channels() { return _channels; }
+
+	    /** property setter */
+	    void set_channels(const class WEBOTS_NXT_bridge *objects)
+	    {
+		    memcpy(_channels, objects, sizeof(_channels));
+	    }
+
+	    /** single channel with width  setter */
+	    void set_encoder(const class WEBOTS_NXT_bridge &obj,const class WEBOTS_NXT_bridge &a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
+	    {
+		_channels[channelID]=obj;
+	         _width=a_width;
+	    }
+
+	    /** single channel  object getter */
+	    WEBOTS_NXT_bridge &get_channel( enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
+	    {
+		return _channels[channelID];
+	    }
+
+	    /** single width  object getter */
+	    WEBOTS_NXT_bridge &get_width( )
+	    {
+		return _width;
+	    }
+
+                /** single channel  object getter */
+                const WEBOTS_NXT_bridge &get_object( enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL) const
+                {
+		return _channels[channelID];
+                }
+                
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		for ( int i =BLUE_CHANNEL; i<= GREY_CHANNEL; i++ )
+		{ 
+		  CAMERA_E_PUCK_CHANNELS channelID = CAMERA_E_PUCK_CHANNELS(i);
+		  ss <<  _channels[channelID].description();
+		} //for
+
+		ss <<  _width.description();
+                return ss.str();
+	  }
+
+	    /*
+	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
+	     * NOT WORKING
+	     */
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                for (int object = BLUE_CHANNEL; object <= GREY_CHANNEL; object++)
+                {
+                    //if (!getline(iss, token, '\t')) break;
+                    if (!getline(iss, token, ',')) break;
+                    _channels[object].from_string( token );
+                }
+                if (getline(iss, token, ',')) 
+                    _width.from_string( token );
 
             }
 
