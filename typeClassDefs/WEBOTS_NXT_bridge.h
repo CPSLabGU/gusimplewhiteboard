@@ -63,6 +63,8 @@
 #include <sstream>
 #include <gu_util.h>
 
+const char SEPARATOR_COMMA = ',';
+
 namespace guWhiteboard
 {
 	// FOR the arrays of FLAGS, the ENUMS shal, start from zero
@@ -147,7 +149,7 @@ namespace guWhiteboard
             std::string description() const
             {
                 std::ostringstream ss;
-		ss<< _theRobotID <<",";
+		ss<< _theRobotID << SEPARATOR_COMMA;
 		if (_isSensorData)
 		{
 		     switch(_theInstruction)
@@ -223,7 +225,7 @@ namespace guWhiteboard
             {
                 std::istringstream iss(strWithID);
                 std::string token;
-                if (getline(iss, token, ','))
+                if (getline(iss, token, SEPARATOR_COMMA))
 		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
 			// Robots id are 0,1,2 .....
 		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(numberForID);
@@ -233,7 +235,7 @@ namespace guWhiteboard
 		   { std::string str=strWithID.substr (found+comaDel.size());
 			// string without the Robot ID
                     std::istringstream second_iss(str);
-                    if (getline(second_iss, token, ','))
+                    if (getline(second_iss, token, SEPARATOR_COMMA))
 		    { set_firstParameter(0);
 		    set_secondParameter(0);
 		    set_isSensorData(false);
@@ -260,7 +262,7 @@ namespace guWhiteboard
 		                   set_theInstruction(WIDTH);
 		                   set_isSensorData(true);
 			           // advance the token
-                                   if (getline(second_iss, token, ','))
+                                   if (getline(second_iss, token, SEPARATOR_COMMA))
                                      { int16_t value = int16_t ( atoi(token.c_str())) ;
 						     set_firstParameter(value);
 				     }
@@ -293,16 +295,16 @@ namespace guWhiteboard
                               std::istringstream iss(str);
                               std::string token;
 			      // advance the token
-                               getline(iss, token, ',');
+                               getline(iss, token, SEPARATOR_COMMA);
 
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { int16_t value = int16_t ( atoi(token.c_str())) ;
 					     if (NXT_PORT_1 <= value && value <= NXT_PORT_4)
 						     set_firstParameter(value);
 					     else 
 						     set_firstParameter(NXT_PORT_1);
                                       }
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_secondParameter(int16_t(
 					   (0== atoi(token.c_str())? 0 :1 )
 					    ));
@@ -314,16 +316,16 @@ namespace guWhiteboard
                               std::istringstream iss(str);
                               std::string token;
 			      // advance the token
-                               getline(iss, token, ',');
+                               getline(iss, token, SEPARATOR_COMMA);
 
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { int16_t value = int16_t ( atoi(token.c_str())) ;
 					     if (NXT_PORT_1 <= value && value <= NXT_PORT_4)
 						     set_firstParameter(value);
 					     else 
 						     set_firstParameter(NXT_PORT_1);
                                       }
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_secondParameter(int16_t(
 					    atoi(token.c_str())
 					    ));
@@ -335,19 +337,19 @@ namespace guWhiteboard
 	void instruction_from_string ( const std::string &str )
 	{ std::istringstream iss(str);
           std::string token;
-                getline(iss, token, ',');
+                getline(iss, token, SEPARATOR_COMMA);
 		switch (token[0])
 		    { case 'M' :  // expect a MOVE_MOTORS
 		     case 'm' : set_theInstruction(MOVE_MOTORS);
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_firstParameter(int16_t(atoi(token.c_str()))); }
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_secondParameter(int16_t(atoi(token.c_str()))); }
 			    break;
 		     case 'p' :
 		      case 'P' : // expect a PLAY_SOUND
 		               set_theInstruction(PLAY_SOUND);
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { // always positive
 					     int16_t value= int16_t ( atoi(token.c_str()) );
 					     value = value >0 ? value : -1*value;
@@ -357,7 +359,7 @@ namespace guWhiteboard
 		     case 'l' :
 		      case 'L' : // expect a LIGHTUP_LED
 		                   set_theInstruction(LIGHTUP_LED);
-                                   if (getline(iss, token, ','))
+                                   if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_firstParameter(int16_t(
 					   (0== atoi(token.c_str())? 0 :1 )
 					    ));
@@ -392,7 +394,7 @@ namespace guWhiteboard
 	void measurement_from_string ( const std::string &str )
 	{ std::istringstream iss(str);
           std::string token;
-                getline(iss, token, ',');
+                getline(iss, token, SEPARATOR_COMMA);
 		switch (token[0])
 		    { 
 		     case 'd' :
@@ -414,6 +416,56 @@ namespace guWhiteboard
 	}
 
         };
+
+        class WEBOTS_NXT_deadReakoning_walk {
+                        PROPERTY(int16_t, robotID) //  ID of the robot
+                        PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
+			// the robot does a spin and then a straight walk with ony odometry input
+			//  spin of the robot, motors in oposite directions in degrees
+                        PROPERTY(int16_t, spin) 
+			//  forward move of the robot, motors in same direction, in cm in Webots worlds
+                        PROPERTY(int16_t, forward) 
+
+            /** designated constructor */
+            WEBOTS_NXT_deadReakoning_walk(int16_t robotID =0 , int16_t power = 0, int16_t spin=0, int16_t forward =0): _robotID(robotID),  _power(power), _spin(spin), _forward(forward)   { /* better than set_x(x); set_y(y) */ }
+
+            /** string constructor */
+            WEBOTS_NXT_deadReakoning_walk(const std::string &names) { from_string(names); }
+
+
+            /** copy constructor */
+            WEBOTS_NXT_deadReakoning_walk(const WEBOTS_NXT_deadReakoning_walk &other): _robotID(other._robotID), _power(other._power), _spin(other._spin), _forward(other._forward)  {}
+
+
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _robotID << SEPARATOR_COMMA;
+		ss<< _power << SEPARATOR_COMMA;
+		ss<< _spin << SEPARATOR_COMMA;
+		ss<< _forward << SEPARATOR_COMMA;
+                return ss.str();
+	    }
+
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_COMMA))
+		    { _robotID = int16_t ( atoi(token.c_str())) ;
+                      if (getline(iss, token, SEPARATOR_COMMA))
+		      { _power = int16_t ( atoi(token.c_str())) ;
+                         if (getline(iss, token, SEPARATOR_COMMA))
+		         { _spin = int16_t ( atoi(token.c_str())) ;
+                            if (getline(iss, token, SEPARATOR_COMMA))
+		              _forward = int16_t ( atoi(token.c_str())) ;
+			 }
+		      }
+		    }
+
+	    }
+		}; // class WEBOTS_NXT_deadReakoning_walk
 
         class WEBOTS_NXT_encoders {
 		private:
@@ -487,8 +539,6 @@ namespace guWhiteboard
 	  }
 
 	    /*
-	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
-	     * NOT WORKING
 	     */
             void from_string(const std::string &str)
             {
@@ -497,11 +547,11 @@ namespace guWhiteboard
                 for (int object = LEFT_MOTOR_DIFFERENTIAL; object < NXT_MOTOR3; object++)
                 {
                     //if (!getline(iss, token, '\t')) break;
-                    if (!getline(iss, token, ',')) break;
+                    if (!getline(iss, token, SEPARATOR_COMMA)) break;
                     _encoders[object].from_string( token );
                 }
 		_maxSpeed=0;
-                if (getline(iss, token, ','))
+                if (getline(iss, token, SEPARATOR_COMMA))
 		 _maxSpeed = int16_t ( atoi(token.c_str())) ;
             }
 
@@ -590,8 +640,6 @@ namespace guWhiteboard
 	  }
 
 	    /*
-	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
-	     * NOT WORKING
 	     */
             void from_string(const std::string &str)
             {
@@ -600,11 +648,11 @@ namespace guWhiteboard
                 for (int object = BLUE_CHANNEL; object <= GREY_CHANNEL; object++)
                 {
                     //if (!getline(iss, token, '\t')) break;
-                    if (!getline(iss, token, ',')) break;
+                    if (!getline(iss, token, SEPARATOR_COMMA)) break;
                     _channels[object].from_string( token );
                 }
 		_width=0;
-                if (getline(iss, token, ','))
+                if (getline(iss, token, SEPARATOR_COMMA))
 		 _width = int16_t ( atoi(token.c_str())) ;
 
             }
