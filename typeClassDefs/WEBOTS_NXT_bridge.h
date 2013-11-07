@@ -417,6 +417,7 @@ namespace guWhiteboard
 
         class WEBOTS_NXT_encoders {
 		private:
+                        PROPERTY(int16_t, maxSpeed) ///  PI*maxSpped radinas per second 
 			class WEBOTS_NXT_bridge _encoders[NXT_MOTOR3];
 
 		public :
@@ -426,12 +427,14 @@ namespace guWhiteboard
 	                   _encoders[LEFT_MOTOR_DIFFERENTIAL]= theLeft; 
 			   WEBOTS_NXT_bridge theRight(0,ROTATION_ENCODER,RIGHT_MOTOR_DIFFERENTIAL,0,true);
 	                   _encoders[RIGHT_MOTOR_DIFFERENTIAL]= theRight; 
+                           _maxSpeed=0;
 			 }
 
 	             /** single encoder constructor */
 	             WEBOTS_NXT_encoders(const class WEBOTS_NXT_bridge &obj, enum DifferentialMotor encoderID  = NXT_MOTOR3)
                     {
 	                 _encoders[encoderID]=obj;
+                         _maxSpeed=0;
 	            }
 
             /** string constructor */
@@ -479,6 +482,7 @@ namespace guWhiteboard
 		  DifferentialMotor encoderID = DifferentialMotor(i);
 		  ss <<  _encoders[encoderID].description();
 		} //for
+		ss << _maxSpeed;
                 return ss.str();
 	  }
 
@@ -496,7 +500,9 @@ namespace guWhiteboard
                     if (!getline(iss, token, ',')) break;
                     _encoders[object].from_string( token );
                 }
-
+		_maxSpeed=0;
+                if (getline(iss, token, ','))
+		 _maxSpeed = int16_t ( atoi(token.c_str())) ;
             }
 
 
