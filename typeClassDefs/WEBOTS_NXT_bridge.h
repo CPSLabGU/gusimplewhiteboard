@@ -510,8 +510,8 @@ namespace guWhiteboard
 
         class WEBOTS_NXT_camera {
 		private:
+                        PROPERTY(int16_t, width) ///  PI*maxSpped radinas per second 
 			class WEBOTS_NXT_bridge _channels[GREY_CHANNEL+1];
-			class WEBOTS_NXT_bridge _width; 
 
 		public :
 			 WEBOTS_NXT_camera()
@@ -528,12 +528,11 @@ namespace guWhiteboard
 			   WEBOTS_NXT_bridge theGreyChannel(0,CAMERA,GREY_CHANNEL,0,true);
 	                   _channels[GREY_CHANNEL]= theGreyChannel; 
 
-			   WEBOTS_NXT_bridge theWidth(0,WIDTH,0,0,true);
-	                   _width= theWidth; 
+	                   _width= 0; 
 			 }
 
 	             /** single channel with width  constructor */
-	             WEBOTS_NXT_camera(const class WEBOTS_NXT_bridge &obj, const class WEBOTS_NXT_bridge &a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
+	             WEBOTS_NXT_camera(const class WEBOTS_NXT_bridge &obj, int16_t a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
                     {
 	                 _channels[channelID]=obj;
 	                 _width=a_width;
@@ -558,7 +557,7 @@ namespace guWhiteboard
 	    }
 
 	    /** single channel with width  setter */
-	    void set_encoder(const class WEBOTS_NXT_bridge &obj,const class WEBOTS_NXT_bridge &a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
+	    void set_encoder(const class WEBOTS_NXT_bridge &obj,  int16_t a_width,  enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
 	    {
 		_channels[channelID]=obj;
 	         _width=a_width;
@@ -568,12 +567,6 @@ namespace guWhiteboard
 	    WEBOTS_NXT_bridge &get_channel( enum CAMERA_E_PUCK_CHANNELS channelID  = GREY_CHANNEL)
 	    {
 		return _channels[channelID];
-	    }
-
-	    /** single width  object getter */
-	    WEBOTS_NXT_bridge &get_width( )
-	    {
-		return _width;
 	    }
 
                 /** single channel  object getter */
@@ -592,7 +585,7 @@ namespace guWhiteboard
 		  ss <<  _channels[channelID].description();
 		} //for
 
-		ss <<  _width.description();
+		ss <<  _width;
                 return ss.str();
 	  }
 
@@ -610,8 +603,9 @@ namespace guWhiteboard
                     if (!getline(iss, token, ',')) break;
                     _channels[object].from_string( token );
                 }
-                if (getline(iss, token, ',')) 
-                    _width.from_string( token );
+		_width=0;
+                if (getline(iss, token, ','))
+		 _width = int16_t ( atoi(token.c_str())) ;
 
             }
 
