@@ -56,6 +56,7 @@
  */
 #ifndef WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_bridge_DEFINED
+#define WEBOTS_NXT_encoders_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -142,7 +143,7 @@ namespace guWhiteboard
             WEBOTS_NXT_bridge(const WEBOTS_NXT_bridge &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _firstParameter(other._firstParameter), _secondParameter(other._secondParameter), _isSensorData(other._isSensorData) {}
 
             /** convert to a string */
-            std::string description()
+            std::string description() const
             {
                 std::ostringstream ss;
 		ss<< _theRobotID <<",";
@@ -327,9 +328,6 @@ namespace guWhiteboard
 					    ));
 				     }
 	                  }
-
-
-
 	/*
 	 * Extract the effector type and its parameters
 	 */
@@ -415,6 +413,93 @@ namespace guWhiteboard
 	}
 
         };
+
+        class WEBOTS_NXT_encoders {
+		private:
+			class WEBOTS_NXT_bridge _encoders[NXT_MOTOR3];
+
+		public :
+			 WEBOTS_NXT_encoders()
+	                 { 
+			   WEBOTS_NXT_bridge theLeft(0,ROTATION_ENCODER,LEFT_MOTOR_DIFFERENTIAL,0,true);
+	                   _encoders[LEFT_MOTOR_DIFFERENTIAL]= theLeft; 
+			   WEBOTS_NXT_bridge theRight(0,ROTATION_ENCODER,RIGHT_MOTOR_DIFFERENTIAL,0,true);
+	                   _encoders[RIGHT_MOTOR_DIFFERENTIAL]= theRight; 
+			 }
+
+	             /** single encoder constructor */
+	             WEBOTS_NXT_encoders(const class WEBOTS_NXT_bridge &obj, enum DifferentialMotor encoderID  = NXT_MOTOR3)
+                    {
+	                 _encoders[encoderID]=obj;
+	            }
+
+            /** string constructor */
+            WEBOTS_NXT_encoders(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            WEBOTS_NXT_encoders(const WEBOTS_NXT_encoders &other)
+	    {
+		    memcpy(this, &other, sizeof(other));
+	    }
+
+	    /** property getter */
+	    class WEBOTS_NXT_bridge *encoders() { return _encoders; }
+
+	    /** property setter */
+	    void set_objects(const class WEBOTS_NXT_bridge *objects)
+	    {
+		    memcpy(_encoders, objects, sizeof(_encoders));
+	    }
+
+	    /** single encoder object setter */
+	    void set_encoder(const class WEBOTS_NXT_bridge &obj, enum DifferentialMotor encoderID  = NXT_MOTOR3)
+	    {
+		_encoders[encoderID]=obj;
+	    }
+
+	    /** single encoder  object getter */
+	    WEBOTS_NXT_bridge &get_object( enum DifferentialMotor encoderID  = NXT_MOTOR3)
+	    {
+		return _encoders[encoderID];
+	    }
+
+                /** single encoder object getter */
+                const WEBOTS_NXT_bridge &get_object( enum DifferentialMotor encoderID  = NXT_MOTOR3) const
+                {
+		return _encoders[encoderID];
+                }
+                
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		for ( int i =LEFT_MOTOR_DIFFERENTIAL; i< NXT_MOTOR3; i++ )
+		{ 
+		  DifferentialMotor encoderID = DifferentialMotor(i);
+		  ss <<  _encoders[encoderID].description();
+		} //for
+                return ss.str();
+	  }
+
+	    /*
+	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
+	     * NOT WORKING
+	     */
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                for (int object = LEFT_MOTOR_DIFFERENTIAL; object < NXT_MOTOR3; object++)
+                {
+                    //if (!getline(iss, token, '\t')) break;
+                    if (!getline(iss, token, ',')) break;
+                    _encoders[object].from_string( token );
+                }
+
+            }
+
+
+	}; // WEBOTS_NXT_encoders
 }
 
 
