@@ -496,6 +496,28 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WEBOTS_NXT_camera_DEFINED
 
+		case kWEBOTS_NXT_deadReakoning_walk_isRunning_v:
+#ifdef WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
+		{
+			class WEBOTS_NXT_deadReakoning_walk_isRunning_t WEBOTS_NXT_deadReakoning_walk_isRunning_msg;
+			WEBOTS_NXT_deadReakoning_walk_isRunning_msg.post(WEBOTS_NXT_deadReakoning_walk_isRunning(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
+
+		case kWEBOTS_NXT_deadReakoning_walk_v:
+#ifdef WEBOTS_NXT_deadReakoning_walk_DEFINED
+		{
+			class WEBOTS_NXT_deadReakoning_walk_t WEBOTS_NXT_deadReakoning_walk_msg;
+			WEBOTS_NXT_deadReakoning_walk_msg.post(WEBOTS_NXT_deadReakoning_walk(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WEBOTS_NXT_deadReakoning_walk_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -507,7 +529,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(47);
+	// self.reserve(49);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -556,5 +578,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WEBOTS_NXT_bridge"] = kWEBOTS_NXT_bridge_v;
 	self["WEBOTS_NXT_encoders"] = kWEBOTS_NXT_encoders_v;
 	self["WEBOTS_NXT_camera"] = kWEBOTS_NXT_camera_v;
+	self["WEBOTS_NXT_deadReakoning_walk_isRunning"] = kWEBOTS_NXT_deadReakoning_walk_isRunning_v;
+	self["WEBOTS_NXT_deadReakoning_walk"] = kWEBOTS_NXT_deadReakoning_walk_v;
 }
 

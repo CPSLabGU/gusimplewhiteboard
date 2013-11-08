@@ -58,6 +58,8 @@
 #define WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_encoders_DEFINED
 #define WEBOTS_NXT_camera_DEFINED
+#define WEBOTS_NXT_deadReakoning_walk_DEFINED
+#define WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -417,13 +419,49 @@ namespace guWhiteboard
 
         };
 
+        class WEBOTS_NXT_deadReakoning_walk_isRunning {
+                        PROPERTY(int16_t, robotID) //  ID of the robot
+                        PROPERTY(bool, runningFlag) //  ID of the robot
+                        /** designated constructor */
+                       WEBOTS_NXT_deadReakoning_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
+            		/** string constructor */
+            	WEBOTS_NXT_deadReakoning_walk_isRunning(const std::string &names) { from_string(names); }
+            /** copy constructor */
+            WEBOTS_NXT_deadReakoning_walk_isRunning(const WEBOTS_NXT_deadReakoning_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
+
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _robotID << SEPARATOR_COMMA;
+		ss<< (_runningFlag ? "1" :"0") << SEPARATOR_COMMA;
+                return ss.str();
+	    }
+
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_COMMA))
+		    { _robotID = int16_t ( atoi(token.c_str())) ;
+                      if (getline(iss, token, SEPARATOR_COMMA))
+		      { _runningFlag = 0 != atoi(token.c_str());
+		      }
+		    }
+	    }
+
+
+	}; // class WEBOTS_NXT_deadReakoning_walk_isRunning
+
         class WEBOTS_NXT_deadReakoning_walk {
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
 			// the robot does a spin and then a straight walk with ony odometry input
 			//  spin of the robot, motors in oposite directions in degrees
+			//  THETA positive is clockwise, negative is counter clockwise
                         PROPERTY(int16_t, spin) 
 			//  forward move of the robot, motors in same direction, in cm in Webots worlds
+			//   X positive is forwards, X negative is backwards
                         PROPERTY(int16_t, forward) 
 
             /** designated constructor */
@@ -435,7 +473,6 @@ namespace guWhiteboard
 
             /** copy constructor */
             WEBOTS_NXT_deadReakoning_walk(const WEBOTS_NXT_deadReakoning_walk &other): _robotID(other._robotID), _power(other._power), _spin(other._spin), _forward(other._forward)  {}
-
 
             /** convert to a string */
             std::string description() const
@@ -554,7 +591,6 @@ namespace guWhiteboard
                 if (getline(iss, token, SEPARATOR_COMMA))
 		 _maxSpeed = int16_t ( atoi(token.c_str())) ;
             }
-
 
 	}; // WEBOTS_NXT_encoders
 
