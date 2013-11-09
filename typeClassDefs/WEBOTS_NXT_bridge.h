@@ -121,9 +121,14 @@ namespace guWhiteboard
 		INTENSITY_LIGHT= 4,
 		ROTATION_ENCODER = 5, //constant for the third motor on nxt's
 	       // This can be turned On or Off for channels like blue,red,green,grey and with the Word SENSOR we get a value after signal processing
-                CAMERA=6,
-		// advertise the Camera width in first parameter, only the first parameter is meaningfull
-                WIDTH=7
+                CAMERA=6
+             };
+
+       enum ColorLineInstructions {
+	       // ACTUATROS
+                FOLLOW_COLOR= 0,
+		TURN_RIGTH_UNTIL_COLOR_FOUND= 1,
+		TURN_LEFT_UNTIL_COLOR_FOUND= 2
              };
 
         /**
@@ -163,8 +168,6 @@ namespace guWhiteboard
 		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
-			               break;
-		          case WIDTH : ss << "WIDTH"<< "CAMERA" << "," << _firstParameter << "," << 0 << "," ;
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
@@ -214,9 +217,6 @@ namespace guWhiteboard
 			 */
 		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
-		  case WIDTH : ss << "WIDTHCAMERA" << "," << _firstParameter << "," << 0 << "," ;
-			       DBG(std::cerr<< "Invalid message " << std::endl;)
-			               break;
 		   };
 		}
                 return ss.str();
@@ -259,18 +259,6 @@ namespace guWhiteboard
 		      case 'C' : // expect a ROTATION_ENCODER
 	                           instruction_from_string ( str );
 			           break;	
-		      case 'w' :
-		      case 'W' : // expect WITHCAMERA data and we only want first parameter
-		                   set_theInstruction(WIDTH);
-		                   set_isSensorData(true);
-			           // advance the token
-                                   if (getline(second_iss, token, SEPARATOR_COMMA))
-                                     { int16_t value = int16_t ( atoi(token.c_str())) ;
-						     set_firstParameter(value);
-				     }
-				   else
-						     set_firstParameter(0);
-				   break;
 		      case 's' :
 		      case 'S' : // expect SENSOR data
 				   //std:: cerr<< "Sensor data detected " << std:: endl;
@@ -419,6 +407,121 @@ namespace guWhiteboard
 
         };
 
+        class WEBOTS_NXT_colorLine_walk_isRunning {
+                        PROPERTY(int16_t, robotID) //  ID of the robot
+                        PROPERTY(bool, runningFlag) //  ID of the robot
+                        /** designated constructor */
+                       WEBOTS_NXT_colorLine_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
+            		/** string constructor */
+            	WEBOTS_NXT_colorLine_walk_isRunning(const std::string &names) { from_string(names); }
+            /** copy constructor */
+            WEBOTS_NXT_colorLine_walk_isRunning(const WEBOTS_NXT_colorLine_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
+
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _robotID << SEPARATOR_COMMA;
+		ss<< (_runningFlag ? "1" :"0") << SEPARATOR_COMMA;
+                return ss.str();
+	    }
+
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_COMMA))
+		    { _robotID = int16_t ( atoi(token.c_str())) ;
+                      if (getline(iss, token, SEPARATOR_COMMA))
+		      { _runningFlag = 0 != atoi(token.c_str());
+		      }
+		    }
+	    }
+
+
+	}; // class WEBOTS_NXT_colorLine_walk_isRunning
+
+        class WEBOTS_NXT_colorLine_walk {
+                        PROPERTY(int16_t, robotID) //  ID of the robot
+                        PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
+                        PROPERTY(ColorLineInstructions, theInstruction) ///  The command (when it is not data)
+                        PROPERTY(CAMERA_E_PUCK_CHANNELS, color) 
+                        PROPERTY(int16_t, threshold) 
+
+            /** designated constructor */
+            WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t threshold=100): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _threshold(threshold)    { /* better than set_x(x); set_y(y) */ }
+
+            /** string constructor */
+            WEBOTS_NXT_colorLine_walk(const std::string &names) { from_string(names); }
+
+
+            /** copy constructor */
+            WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _threshold(other._threshold)  {}
+
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _robotID << SEPARATOR_COMMA;
+		ss<< _power << SEPARATOR_COMMA;
+		switch(_theInstruction)
+		{ case FOLLOW_COLOR : ss << "FOLLOW_COLOR" << SEPARATOR_COMMA; break;
+		  case TURN_RIGTH_UNTIL_COLOR_FOUND : ss << "TURN_RIGTH_UNTIL_COLOR_FOUND" << SEPARATOR_COMMA; break;
+		  case TURN_LEFT_UNTIL_COLOR_FOUND : ss << "TURN_LEFT_UNTIL_COLOR_FOUND" << SEPARATOR_COMMA; break;
+		}
+		switch(_color)
+		{ case BLUE_CHANNEL : ss << "BLUE_CHANNEL" << SEPARATOR_COMMA; break;
+		  case RED_CHANNEL : ss << "RED_CHANNEL" << SEPARATOR_COMMA; break;
+		  case GREEN_CHANNEL : ss << "GREEN_CHANNEL" << SEPARATOR_COMMA; break;
+		  case GREY_CHANNEL : ss << "GREY_CHANNEL" << SEPARATOR_COMMA; break;
+		}
+		ss<< _threshold << SEPARATOR_COMMA;
+                return ss.str();
+	    }
+
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_COMMA))
+		    { _robotID = int16_t ( atoi(token.c_str())) ;
+                      if (getline(iss, token, SEPARATOR_COMMA))
+		      { _power = int16_t ( atoi(token.c_str())) ;
+                         if (getline(iss, token, SEPARATOR_COMMA))
+		         { _theInstruction = FOLLOW_COLOR; 
+			   std::size_t found = token.find("RIGHT");
+				 if (std::string::npos!=found)
+					 _theInstruction = TURN_RIGTH_UNTIL_COLOR_FOUND;
+				 else
+				 { found = token.find("LEFT");
+				   if (std::string::npos!=found)
+					 _theInstruction = TURN_LEFT_UNTIL_COLOR_FOUND;
+				 }
+
+                            if (getline(iss, token, SEPARATOR_COMMA))
+			    {   _color = BLUE_CHANNEL;
+				found = token.find("RED");
+				if (std::string::npos!=found)
+					 _color = RED_CHANNEL;
+				else { found = token.find("GREEN");
+				       if (std::string::npos!=found)
+					 _color = GREEN_CHANNEL;
+				       else { found = token.find("GREY");
+				              if (std::string::npos!=found)
+					           _color = GREY_CHANNEL;
+				            }
+				    }
+			    }
+
+                            if (getline(iss, token, SEPARATOR_COMMA))
+		                 _threshold = int16_t ( atoi(token.c_str())) ;
+			    }
+			 }
+		      }
+		    } // from string
+
+		}; // WEBOTS_NXT_colorLine_walk
+       
         class WEBOTS_NXT_deadReakoning_walk_isRunning {
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(bool, runningFlag) //  ID of the robot
