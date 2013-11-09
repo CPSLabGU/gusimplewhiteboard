@@ -45,8 +45,6 @@ int,          nonatomic, PF_ControlStatus_Modes,                "PF_ControlStatu
 class:WEBOTS_NXT_bridge, nonatomic, WEBOTS_NXT_bridge,                           "WEBOTS_NXT_bridge", WIP Class that contains a command for WEBOTS or NXt trough a bridge
 class:WEBOTS_NXT_encoders, nonatomic, WEBOTS_NXT_encoders,                           "WEBOTS_NXT_encoders", Class that contains data from encoders all for WEBOTS or NXt trough a bridge
 class:WEBOTS_NXT_camera, nonatomic, WEBOTS_NXT_camera,                           "WEBOTS_NXT_camera", Class that contains data from cameta channels of  WEBOTS trough a bridge
-class:WEBOTS_NXT_deadReakoning_walk_isRunning, nonatomic, WEBOTS_NXT_deadReakoning_walk_isRunning,                           "WEBOTS_NXT_deadReakoning_walk_isRunning", Class that contains boolean for checking if dead reckoning walks is running in  WEBOTS trough a bridge
+class:WEBOTS_NXT_walk_isRunning, nonatomic, WEBOTS_NXT_walk_isRunning,                           "WEBOTS_NXT_walk_isRunning", Class that contains boolean for checking if dead reckoning walks is running in  WEBOTS trough a bridge
 class:WEBOTS_NXT_deadReakoning_walk, nonatomic, WEBOTS_NXT_deadReakoning_walk,                           "WEBOTS_NXT_deadReakoning_walk", Class for dead reckoning walks in  WEBOTS trough a bridge
-
-
-
+class:WEBOTS_NXT_colorLine_walk, nonatomic, WEBOTS_NXT_colorLine_walk,                           "WEBOTS_NXT_colorLine_walk", Class for walks followign a line in  WEBOTS trough a bridge

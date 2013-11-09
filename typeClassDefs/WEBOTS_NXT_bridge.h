@@ -59,7 +59,8 @@
 #define WEBOTS_NXT_encoders_DEFINED
 #define WEBOTS_NXT_camera_DEFINED
 #define WEBOTS_NXT_deadReakoning_walk_DEFINED
-#define WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
+#define WEBOTS_NXT_WEBOTS_NXT_walk_isRunning_DEFINED
+#define WEBOTS_NXT_colorLine_walk_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -167,6 +168,7 @@ namespace guWhiteboard
 					break;
 		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
+					  // as a sensor first parameter is total pixele sof color, second para emetr is middle of the color
 		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
                          case MOVE_MOTORS:
@@ -212,8 +214,9 @@ namespace guWhiteboard
 		  case ROTATION_ENCODER : ss << "ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 			/*
-			 * Start posting rotations from encoder in port _firstParameter if 0<> _secondParameter
-			 * Stop posting rotations from encoder in port _firstParameter if 0== _secondParameter
+			 * Start posting from camera, the first paramer is the color channel
+			 * the second aprameter is a threshold to comapre how many pixels have intensity abvoe the threshoold
+			 * Stop posting for color channel in first aprameter if 0==_secondParameter
 			 */
 		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
@@ -407,56 +410,23 @@ namespace guWhiteboard
 
         };
 
-        class WEBOTS_NXT_colorLine_walk_isRunning {
-                        PROPERTY(int16_t, robotID) //  ID of the robot
-                        PROPERTY(bool, runningFlag) //  ID of the robot
-                        /** designated constructor */
-                       WEBOTS_NXT_colorLine_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
-            		/** string constructor */
-            	WEBOTS_NXT_colorLine_walk_isRunning(const std::string &names) { from_string(names); }
-            /** copy constructor */
-            WEBOTS_NXT_colorLine_walk_isRunning(const WEBOTS_NXT_colorLine_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
-
-            /** convert to a string */
-            std::string description() const
-            {
-                std::ostringstream ss;
-		ss<< _robotID << SEPARATOR_COMMA;
-		ss<< (_runningFlag ? "1" :"0") << SEPARATOR_COMMA;
-                return ss.str();
-	    }
-
-            void from_string(const std::string &str)
-            {
-                std::istringstream iss(str);
-                std::string token;
-                if (getline(iss, token, SEPARATOR_COMMA))
-		    { _robotID = int16_t ( atoi(token.c_str())) ;
-                      if (getline(iss, token, SEPARATOR_COMMA))
-		      { _runningFlag = 0 != atoi(token.c_str());
-		      }
-		    }
-	    }
-
-
-	}; // class WEBOTS_NXT_colorLine_walk_isRunning
-
         class WEBOTS_NXT_colorLine_walk {
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
                         PROPERTY(ColorLineInstructions, theInstruction) ///  The command (when it is not data)
                         PROPERTY(CAMERA_E_PUCK_CHANNELS, color) 
                         PROPERTY(int16_t, threshold) 
+                        PROPERTY(int16_t, limit) /// limit of the run in degrees or of the walk in cm 
 
             /** designated constructor */
-            WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t threshold=100): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _threshold(threshold)    { /* better than set_x(x); set_y(y) */ }
+            WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t threshold=100, int16_t limit=90): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _threshold(threshold), _limit(limit)    { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             WEBOTS_NXT_colorLine_walk(const std::string &names) { from_string(names); }
 
 
             /** copy constructor */
-            WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _threshold(other._threshold)  {}
+            WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _threshold(other._threshold), _limit(other._limit)  {}
 
             /** convert to a string */
             std::string description() const
@@ -476,6 +446,7 @@ namespace guWhiteboard
 		  case GREY_CHANNEL : ss << "GREY_CHANNEL" << SEPARATOR_COMMA; break;
 		}
 		ss<< _threshold << SEPARATOR_COMMA;
+		ss<< _limit << SEPARATOR_COMMA;
                 return ss.str();
 	    }
 
@@ -514,7 +485,9 @@ namespace guWhiteboard
 			    }
 
                             if (getline(iss, token, SEPARATOR_COMMA))
-		                 _threshold = int16_t ( atoi(token.c_str())) ;
+			      { _threshold = int16_t ( atoi(token.c_str())) ;
+                                if (getline(iss, token, SEPARATOR_COMMA)) _limit = int16_t ( atoi(token.c_str())) ;
+			       }
 			    }
 			 }
 		      }
@@ -522,15 +495,15 @@ namespace guWhiteboard
 
 		}; // WEBOTS_NXT_colorLine_walk
        
-        class WEBOTS_NXT_deadReakoning_walk_isRunning {
+        class WEBOTS_NXT_walk_isRunning {
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(bool, runningFlag) //  ID of the robot
                         /** designated constructor */
-                       WEBOTS_NXT_deadReakoning_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
+                       WEBOTS_NXT_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
             		/** string constructor */
-            	WEBOTS_NXT_deadReakoning_walk_isRunning(const std::string &names) { from_string(names); }
+            	WEBOTS_NXT_walk_isRunning(const std::string &names) { from_string(names); }
             /** copy constructor */
-            WEBOTS_NXT_deadReakoning_walk_isRunning(const WEBOTS_NXT_deadReakoning_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
+            WEBOTS_NXT_walk_isRunning (const WEBOTS_NXT_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
 
             /** convert to a string */
             std::string description() const
@@ -554,7 +527,7 @@ namespace guWhiteboard
 	    }
 
 
-	}; // class WEBOTS_NXT_deadReakoning_walk_isRunning
+	}; // class WEBOTS_NXT_walk_isRunning 
 
         class WEBOTS_NXT_deadReakoning_walk {
                         PROPERTY(int16_t, robotID) //  ID of the robot

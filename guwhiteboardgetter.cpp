@@ -460,16 +460,16 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WEBOTS_NXT_camera_DEFINED
 
-		case kWEBOTS_NXT_deadReakoning_walk_isRunning_v:
-#ifdef WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
+		case kWEBOTS_NXT_walk_isRunning_v:
+#ifdef WEBOTS_NXT_walk_isRunning_DEFINED
 		{
-			class WEBOTS_NXT_deadReakoning_walk_isRunning_t m;
+			class WEBOTS_NXT_walk_isRunning_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !WEBOTS_NXT_deadReakoning_walk_isRunning_DEFINED
+#endif // !WEBOTS_NXT_walk_isRunning_DEFINED
 
 		case kWEBOTS_NXT_deadReakoning_walk_v:
 #ifdef WEBOTS_NXT_deadReakoning_walk_DEFINED
@@ -481,6 +481,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return "##unsupported##";
 
 #endif // !WEBOTS_NXT_deadReakoning_walk_DEFINED
+
+		case kWEBOTS_NXT_colorLine_walk_v:
+#ifdef WEBOTS_NXT_colorLine_walk_DEFINED
+		{
+			class WEBOTS_NXT_colorLine_walk_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WEBOTS_NXT_colorLine_walk_DEFINED
 
 	}
 #pragma clang diagnostic push
