@@ -415,18 +415,19 @@ namespace guWhiteboard
                         PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
                         PROPERTY(ColorLineInstructions, theInstruction) ///  The command (when it is not data)
                         PROPERTY(CAMERA_E_PUCK_CHANNELS, color) 
-                        PROPERTY(int16_t, threshold) 
+                        PROPERTY(int16_t, colorIntensityThreshold)  // color threshold to count a pixel in the total
+                        PROPERTY(int16_t, visibilityCountThreshold)  // color count to consider line visible  
                         PROPERTY(int16_t, limit) /// limit of the run in degrees or of the walk in cm 
 
             /** designated constructor */
-            WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t threshold=100, int16_t limit=90): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _threshold(threshold), _limit(limit)    { /* better than set_x(x); set_y(y) */ }
+            WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t colorIntensityThreshold=100, int16_t  visibilityCountThreshold=10, int16_t limit=90): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _colorIntensityThreshold(colorIntensityThreshold), _visibilityCountThreshold(visibilityCountThreshold),  _limit(limit)    { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             WEBOTS_NXT_colorLine_walk(const std::string &names) { from_string(names); }
 
 
             /** copy constructor */
-            WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _threshold(other._threshold), _limit(other._limit)  {}
+            WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _colorIntensityThreshold(other._colorIntensityThreshold), _visibilityCountThreshold(other._visibilityCountThreshold),  _limit(other._limit)  {}
 
             /** convert to a string */
             std::string description() const
@@ -445,7 +446,8 @@ namespace guWhiteboard
 		  case GREEN_CHANNEL : ss << "GREEN_CHANNEL" << SEPARATOR_COMMA; break;
 		  case GREY_CHANNEL : ss << "GREY_CHANNEL" << SEPARATOR_COMMA; break;
 		}
-		ss<< _threshold << SEPARATOR_COMMA;
+		ss<< _colorIntensityThreshold << SEPARATOR_COMMA;
+		ss<< _visibilityCountThreshold << SEPARATOR_COMMA;
 		ss<< _limit << SEPARATOR_COMMA;
                 return ss.str();
 	    }
@@ -485,9 +487,12 @@ namespace guWhiteboard
 			    }
 
                             if (getline(iss, token, SEPARATOR_COMMA))
-			      { _threshold = int16_t ( atoi(token.c_str())) ;
-                                if (getline(iss, token, SEPARATOR_COMMA)) _limit = int16_t ( atoi(token.c_str())) ;
-			       }
+			      { _colorIntensityThreshold = int16_t ( atoi(token.c_str())) ;
+                                if (getline(iss, token, SEPARATOR_COMMA)) { 
+					      _visibilityCountThreshold = int16_t ( atoi(token.c_str())) ;
+                                              if (getline(iss, token, SEPARATOR_COMMA))  _limit = int16_t ( atoi(token.c_str())) ;
+				           } 
+			      }
 			    }
 			 }
 		      }
@@ -677,17 +682,17 @@ namespace guWhiteboard
 
 		public :
 			 WEBOTS_NXT_camera()
-	                 { 
-			   WEBOTS_NXT_bridge theBlueChannel(0,CAMERA,BLUE_CHANNEL,0,true);
+	                 {  //first parameter is the total pixels, second parameter is the middle of the pixels
+			   WEBOTS_NXT_bridge theBlueChannel(0,CAMERA,0,0,true);
 	                   _channels[BLUE_CHANNEL]= theBlueChannel; 
 
-			   WEBOTS_NXT_bridge theRedChannel(0,CAMERA,RED_CHANNEL,0,true);
+			   WEBOTS_NXT_bridge theRedChannel(0,CAMERA,0,0,true);
 	                   _channels[RED_CHANNEL]= theRedChannel; 
 
-			   WEBOTS_NXT_bridge theGreenChannel(0,CAMERA,GREEN_CHANNEL,0,true);
+			   WEBOTS_NXT_bridge theGreenChannel(0,CAMERA,0,0,true);
 	                   _channels[GREEN_CHANNEL]= theGreenChannel; 
 
-			   WEBOTS_NXT_bridge theGreyChannel(0,CAMERA,GREY_CHANNEL,0,true);
+			   WEBOTS_NXT_bridge theGreyChannel(0,CAMERA,0,0,true);
 	                   _channels[GREY_CHANNEL]= theGreyChannel; 
 
 	                   _width= 0; 
