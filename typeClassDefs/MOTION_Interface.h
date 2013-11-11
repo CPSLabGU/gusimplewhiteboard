@@ -212,6 +212,41 @@ namespace guWhiteboard
 
 		bool isRunning() { return _running; }
 		Motions::stance expectedStance() { return (Motions::stance)_expected_stance; }
+		Motions::stance verifiedStance() { return (Motions::stance)_verified_stance; }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+                /// string constructor (see from_string() below)
+                MOTION_Statis(const std::string &str) { from_string(str); }
+
+		void from_string(const std::string &str)
+                {
+			//NYI
+                }
+#pragma clang diagnostic ignored "-Wcovered-switch-default"
+#pragma clang diagnostic ignored "-Wunreachable-code"
+                std::string description() const
+                {
+                        std::stringstream ss;
+			ss << "Running: " << isRunning() << ", ";
+
+			ss << "Expected Stance: ";
+			Motions::stance e = expectedStance();
+			if(e != Motions::NUM_OF_STANCES)
+				ss << stance_strings[e];
+			else
+				ss << "unknown";	
+			ss << ", ";
+
+			ss << "Verified Stance (NYI): ";
+			Motions::stance v = verifiedStance();
+			if(v != Motions::NUM_OF_STANCES)
+				ss << stance_strings[v];
+			else
+				ss << "unknown";	
+
+			return ss.str();
+                }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 	};
         
         class MOTION_Commands
