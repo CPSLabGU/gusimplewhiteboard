@@ -10,6 +10,7 @@
 #ifndef MOTION_Interface_DEFINED
 #define MOTION_Interface_DEFINED
 #define MOTION_Commands_DEFINED
+#define MOTION_Status_DEFINED
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cctype>
@@ -195,6 +196,23 @@ namespace guWhiteboard
                         }
                 };
         }
+
+	class MOTION_Status
+	{
+                BITPROPERTY(running)
+                PROPERTY(int8_t, expected_stance)
+                PROPERTY(int8_t, verified_stance) //NYI
+		public:
+		MOTION_Status(bool running, int8_t expected, int8_t verified)
+		{
+			_running = running;
+			_expected_stance = expected;
+			_verified_stance = verified;
+		}
+
+		bool isRunning() { return _running; }
+		Motions::stance expectedStance() { return (Motions::stance)_expected_stance; }
+	};
         
         class MOTION_Commands
         {
