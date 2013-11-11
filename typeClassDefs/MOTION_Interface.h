@@ -220,6 +220,8 @@ namespace guWhiteboard
 
 		void from_string(const std::string &str)
                 {
+			if(str.size() == 0)
+				return;
 			//NYI
                 }
                 std::string description() 
