@@ -128,7 +128,7 @@ namespace guWhiteboard
        enum ColorLineInstructions {
 	       // ACTUATROS
                 FOLLOW_COLOR= 0,
-		TURN_RIGTH_UNTIL_COLOR_FOUND= 1,
+		TURN_RIGHT_UNTIL_COLOR_FOUND= 1,
 		TURN_LEFT_UNTIL_COLOR_FOUND= 2
              };
 
@@ -437,7 +437,7 @@ namespace guWhiteboard
 		ss<< _power << SEPARATOR_COMMA;
 		switch(_theInstruction)
 		{ case FOLLOW_COLOR : ss << "FOLLOW_COLOR" << SEPARATOR_COMMA; break;
-		  case TURN_RIGTH_UNTIL_COLOR_FOUND : ss << "TURN_RIGTH_UNTIL_COLOR_FOUND" << SEPARATOR_COMMA; break;
+		  case TURN_RIGHT_UNTIL_COLOR_FOUND : ss << "TURN_RIGHT_UNTIL_COLOR_FOUND" << SEPARATOR_COMMA; break;
 		  case TURN_LEFT_UNTIL_COLOR_FOUND : ss << "TURN_LEFT_UNTIL_COLOR_FOUND" << SEPARATOR_COMMA; break;
 		}
 		switch(_color)
@@ -464,7 +464,7 @@ namespace guWhiteboard
 		         { _theInstruction = FOLLOW_COLOR; 
 			   std::size_t found = token.find("RIGHT");
 				 if (std::string::npos!=found)
-					 _theInstruction = TURN_RIGTH_UNTIL_COLOR_FOUND;
+					 _theInstruction = TURN_RIGHT_UNTIL_COLOR_FOUND;
 				 else
 				 { found = token.find("LEFT");
 				   if (std::string::npos!=found)
