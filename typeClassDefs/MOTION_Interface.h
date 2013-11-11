@@ -216,31 +216,29 @@ namespace guWhiteboard
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /// string constructor (see from_string() below)
-                MOTION_Statis(const std::string &str) { from_string(str); }
+                MOTION_Status(const std::string &str) { from_string(str); }
 
 		void from_string(const std::string &str)
                 {
 			//NYI
                 }
-#pragma clang diagnostic ignored "-Wcovered-switch-default"
-#pragma clang diagnostic ignored "-Wunreachable-code"
-                std::string description() const
+                std::string description() 
                 {
                         std::stringstream ss;
 			ss << "Running: " << isRunning() << ", ";
 
-			ss << "Expected Stance: ";
+			ss << "Expected: ";
 			Motions::stance e = expectedStance();
 			if(e != Motions::NUM_OF_STANCES)
-				ss << stance_strings[e];
+				ss << Motions::stance_strings[e];
 			else
 				ss << "unknown";	
 			ss << ", ";
 
-			ss << "Verified Stance (NYI): ";
+			ss << "Verified (NYI): ";
 			Motions::stance v = verifiedStance();
 			if(v != Motions::NUM_OF_STANCES)
-				ss << stance_strings[v];
+				ss << Motions::stance_strings[v];
 			else
 				ss << "unknown";	
 
