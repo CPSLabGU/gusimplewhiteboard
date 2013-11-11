@@ -311,12 +311,12 @@ namespace guWhiteboard
                 long long GoToStance(Motions::stance current, Motions::stance desired)
                 {
                         Motions::Stance_Path p;
-                       // p.add_stance(current, 1);                        
+                        p.add_stance(current, 1);                        
                         p = decide_stance(current, desired, p);
                         p.pretty_print();
 
                         memcpy(_stance_action, p._stances, sizeof(p._stances));
-                        _num_of_stance_actions = (int8_t)p.offset()-1;
+                        _num_of_stance_actions = (int8_t)p.offset();
                         _stance_action_mask = true;
 
                         return p.cost();
