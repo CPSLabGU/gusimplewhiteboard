@@ -90,15 +90,15 @@ TCPInjectionReceiver::TCPInjectionReceiver()
 
                         create_connection_thread(&cfd);
 #ifdef DEBUG
-                        char host[NI_MAXHOST], service[NI_MAXSERV];
-                        s = getnameinfo((struct sockaddr *) &peer_addr,
-                                        peer_addr_len, host, NI_MAXHOST,
-                                        service, NI_MAXSERV, NI_NUMERICSERV);
-                        if (s == 0)
-                                printf("Received %ld bytes from %s:%s\n",
-                                       (long) n, host, service);
-                        else
-                                fprintf(stderr, "getnameinfo: %s\n", gai_strerror(s));
+//                        char host[NI_MAXHOST], service[NI_MAXSERV];
+//                        s = getnameinfo((struct sockaddr *) &peer_addr,
+//                                        peer_addr_len, host, NI_MAXHOST,
+//                                        service, NI_MAXSERV, NI_NUMERICSERV);
+//                        if (s == 0)
+//                                printf("Received %ld bytes from %s:%s\n",
+//                                       (long) n, host, service);
+//                        else
+//                                fprintf(stderr, "getnameinfo: %s\n", gai_strerror(s));
 #endif
                 }
         });
@@ -163,6 +163,9 @@ void *connection(void *args)
 
 void addToWB(uint16_t t, gsw_simple_message *m)
 {
+#ifdef DEBUG
+	fprintf(stderr, "TCP Message of Type: %d\n", t);
+#endif
         gu_simple_whiteboard_descriptor *_wbd = get_local_singleton_whiteboard();
         gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
 
