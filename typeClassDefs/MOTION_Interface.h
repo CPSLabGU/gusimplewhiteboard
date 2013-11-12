@@ -400,9 +400,14 @@ namespace guWhiteboard
                         else s1 = NUM_OF_STANCES;
 
                         while (*(++s) != ',') ;
-                        
+
                         action a2;
-                        MY_CHECK_ENUM(s, a2, Standing_leftkick);
+                        MY_CHECK_ENUM(s, a2, Kneeling_wave);
+			else MY_CHECK_ENUM(s, a2, Standing_leftkick);
+			else MY_CHECK_ENUM(s, a2, Standing_rightkick);
+			else MY_CHECK_ENUM(s, a2, Standing_leftpass);
+			else MY_CHECK_ENUM(s, a2, Standing_rightpass);
+			else MY_CHECK_ENUM(s, a2, Standing_wave);
                         else a2 = NUM_OF_ACTIONS;
 
 			if(a2 != NUM_OF_ACTIONS)   
