@@ -167,16 +167,16 @@ __attribute__((noreturn))  Receiver::Receiver(gsw_udp_packet_info *packet_data, 
 //                        write(STDOUT_FILENO, "\b \b", 3);
 //                });
 #ifdef DEBUG
-                dispatch_async(stdout_queue,
-                ^{
-                        char inetaddr_name[INET6_ADDRSTRLEN];
-                        printf("listener: got packet from %s\n",
-                               inet_ntop(their_addr.ss_family,
-                                         get_in_addr((struct sockaddr_in *)&their_addr),
-                                         inetaddr_name, sizeof inetaddr_name));
-                        printf("listener: packet is %d bytes long\n", (int)numbytes);
+//                dispatch_async(stdout_queue,
+//                ^{
+//                        char inetaddr_name[INET6_ADDRSTRLEN];
+//                        printf("listener: got packet from %s\n",
+//                               inet_ntop(their_addr.ss_family,
+//                                         get_in_addr((struct sockaddr_in *)&their_addr),
+//                                         inetaddr_name, sizeof inetaddr_name));
+//                        printf("listener: packet is %d bytes long\n", (int)numbytes);
                         //printf("listener: packet contains \"%s\"\n", buf);
-                });
+//                });
 #endif
                 u_int8_t index = _recv_buffer[0];
 
