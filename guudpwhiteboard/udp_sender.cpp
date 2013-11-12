@@ -167,8 +167,8 @@ Sender::Sender(gsw_udp_packet_info *packet_data, int packets_in_schedule, int ti
                                 ssize_t bytes_sent = sendto(_send_socket, _send_buffer, this_packet_size, 0, (struct sockaddr *)&_mc_addr, sizeof(_mc_addr));
                                 if (bytes_sent == -1)
                                         fprintf(stderr, "!Sent index %d: %s\n", _current_sender_index+1, strerror(errno));
-                                else
-                                        DBG(printf("Sent index %d\tbytes %d\n", _current_sender_index+1, (int)bytes_sent));
+                                //else
+                                       // DBG(printf("Sent index %d\tbytes %d\n", _current_sender_index+1, (int)bytes_sent));
                         }
                         if (++_current_sender_index == packets_in_schedule)
                                 _current_sender_index = 0;
