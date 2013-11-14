@@ -59,14 +59,16 @@
 #define WEBOTS_NXT_encoders_DEFINED
 #define WEBOTS_NXT_camera_DEFINED
 #define WEBOTS_NXT_deadReakoning_walk_DEFINED
-#define WEBOTS_NXT_WEBOTS_NXT_walk_isRunning_DEFINED
+#define WEBOTS_NXT_walk_isRunning_DEFINED
 #define WEBOTS_NXT_colorLine_walk_DEFINED
+#define WEBOTS_NXT_gridMotions_DEFINED
 
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
 
 const char SEPARATOR_COMMA = ',';
+const char SEPARATOR_IS_COMMA = ',';
 
 namespace guWhiteboard
 {
@@ -502,13 +504,14 @@ namespace guWhiteboard
        
         class WEBOTS_NXT_walk_isRunning {
                         PROPERTY(int16_t, robotID) //  ID of the robot
-                        PROPERTY(bool, runningFlag) //  ID of the robot
+                        PROPERTY(bool, runningFlag) //  The motion module is still executing a move
+                        PROPERTY(bool, successLastMove) //  In the last move cmmand there were activ emotors for some time
                         /** designated constructor */
-                       WEBOTS_NXT_walk_isRunning(int16_t robotID =0 , bool runningFlag = false ): _robotID(robotID),  _runningFlag(runningFlag) { /* better than set_x(x); set_y(y) */ }
+                       WEBOTS_NXT_walk_isRunning(int16_t robotID =0 , bool runningFlag = false, bool successLastMove=false ): _robotID(robotID),  _runningFlag(runningFlag), _successLastMove(successLastMove) { /* better than set_x(x); set_y(y) */ }
             		/** string constructor */
             	WEBOTS_NXT_walk_isRunning(const std::string &names) { from_string(names); }
             /** copy constructor */
-            WEBOTS_NXT_walk_isRunning (const WEBOTS_NXT_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag)  {}
+            WEBOTS_NXT_walk_isRunning (const WEBOTS_NXT_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag), _successLastMove(other._successLastMove)  {}
 
             /** convert to a string */
             std::string description() const
@@ -516,6 +519,7 @@ namespace guWhiteboard
                 std::ostringstream ss;
 		ss<< _robotID << SEPARATOR_COMMA;
 		ss<< (_runningFlag ? "1" :"0") << SEPARATOR_COMMA;
+		ss<< (_successLastMove ? "1" :"0") << SEPARATOR_COMMA;
                 return ss.str();
 	    }
 
@@ -527,6 +531,9 @@ namespace guWhiteboard
 		    { _robotID = int16_t ( atoi(token.c_str())) ;
                       if (getline(iss, token, SEPARATOR_COMMA))
 		      { _runningFlag = 0 != atoi(token.c_str());
+                         if (getline(iss, token, SEPARATOR_COMMA))
+		           {    _successLastMove = 0 != atoi(token.c_str());
+		           }
 		      }
 		    }
 	    }
@@ -776,7 +783,111 @@ namespace guWhiteboard
 
 
 	}; // WEBOTS_NXT_encoders
-}
+
+
+       //ID's for motins of the differential robot
+        enum GridStep {
+                YELLOW_LINE_STRAIGHT_STEP= 0,
+                MAGENTA_LINE_STRAIGHT_STEP= 1,
+                PLAIN_LINE_STRAIGHT_STEP= 2,
+                TURN_LEFT_STEP= 3,
+                TURN_RIGHT_STEP= 4,
+                COMPLETED= 5
+             };
+
+	/**
+	 *  This class of messages are for the motion module for the miPal demo grid world
+	 */
+        class WEBOTS_NXT_gridMotions
+        {
+            PROPERTY(int16_t, theRobotID) /// Which robot are we talking to 
+            PROPERTY(GridStep, theInstruction) ///  The command on the grid
+            PROPERTY(int16_t, howMany) ///  how many of these in sequence before we do another
+
+        public:
+            /** designated constructor */
+            WEBOTS_NXT_gridMotions(int16_t theRobotID =0 ,GridStep  theInstruction = PLAIN_LINE_STRAIGHT_STEP, int16_t howMany = 1): _theRobotID(theRobotID),  _theInstruction(theInstruction), _howMany(howMany)   { /* better than set_x(x); set_y(y) */ }
+
+            /** string constructor */
+            WEBOTS_NXT_gridMotions(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            WEBOTS_NXT_gridMotions(const WEBOTS_NXT_gridMotions &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _howMany(other._howMany)  {}
+
+            /** convert to a string */
+
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _theRobotID << SEPARATOR_IS_COMMA;
+		switch(_theInstruction)
+			/* Move forward ona yellow line ignored if no yellow line
+			 */
+		  { case YELLOW_LINE_STRAIGHT_STEP : ss << "YELLOW_LINE_STRAIGHT_STEP" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		    case MAGENTA_LINE_STRAIGHT_STEP : ss << "MAGENTA_LINE_STRAIGHT_STEP" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		    case PLAIN_LINE_STRAIGHT_STEP : ss << "PLAIN_LINE_STRAIGHT_STEP" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		    case TURN_LEFT_STEP : ss << "TURN_LEFT_STEP" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		    case TURN_RIGHT_STEP : ss << "TURN_RIGHT_STEP" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		    case COMPLETED : ss << "COMPLETED" << SEPARATOR_IS_COMMA << _howMany << SEPARATOR_IS_COMMA  ; break;
+		   };
+                return ss.str();
+            }
+
+            /** convert from a string */
+            void from_string(const std::string &strWithID)
+            {
+		  set_theRobotID(0);
+		  _theInstruction = PLAIN_LINE_STRAIGHT_STEP;
+		  set_howMany(1);
+                std::istringstream iss(strWithID);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_IS_COMMA))
+		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
+			// Robots id are 0,1,2 .....
+		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(numberForID);
+
+		  // defaults
+
+                  if (getline(iss, token, SEPARATOR_IS_COMMA))
+		   { std::size_t found = token.find("RIGHT");
+                     if (std::string::npos!=found) 
+			     _theInstruction = TURN_RIGHT_STEP; 
+		     else { found = token.find("LEFT"); 
+			     if (std::string::npos!=found) 
+				     _theInstruction = TURN_LEFT_STEP; 
+			     else { found = token.find("YELLOW"); 
+			            if (std::string::npos!=found) 
+				         _theInstruction = YELLOW_LINE_STRAIGHT_STEP; 
+				    else{ found = token.find("MAGENTA"); 
+			                  if (std::string::npos!=found) 
+				         _theInstruction = MAGENTA_LINE_STRAIGHT_STEP; 
+					  else
+					  { found = token.find("COMPLETED"); 
+			                  if (std::string::npos!=found) 
+				           _theInstruction = COMPLETED; 
+					  }
+				        }
+			          }
+		           } 
+		   }
+                  if (getline(iss, token, SEPARATOR_IS_COMMA))
+		     {
+		            int16_t numberofTimes = int16_t ( atoi(token.c_str())) ;
+		            if (numberofTimes <0) set_howMany(-numberofTimes); else set_howMany(numberofTimes >0 ? numberofTimes : 1);
+		     }
+
+		  }
+            }
+
+	private :
+
+        };
+
+
+
+
+
+}// namespace
 
 
 #endif // WEBOTS_NXT_bridge_DEFINED

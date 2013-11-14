@@ -493,6 +493,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WEBOTS_NXT_colorLine_walk_DEFINED
 
+		case kWEBOTS_NXT_gridMotions_v:
+#ifdef WEBOTS_NXT_gridMotions_DEFINED
+		{
+			class WEBOTS_NXT_gridMotions_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WEBOTS_NXT_gridMotions_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
