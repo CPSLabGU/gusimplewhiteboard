@@ -271,9 +271,9 @@ namespace guWhiteboard
                         _head_stiffness = head_stiffness;
                         _body_stiffness = body_stiffness;
                         _stance_action_mask = false;
-                        _head_stiffness_mask = false;
-                        _body_stiffness_mask = false;
                         _ignore_chain_mask = false;
+                        _head_stiffness_mask = head_stiffness;
+                        _body_stiffness_mask = body_stiffness;
                         //goto stance stance_action! NYI
 //                        _motion_player = motion_player;
                 }
