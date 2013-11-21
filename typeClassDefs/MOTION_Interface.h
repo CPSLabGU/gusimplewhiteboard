@@ -266,14 +266,14 @@ namespace guWhiteboard
                 BITPROPERTY(body_stiffness_mask)
 
         public:                
-                MOTION_Commands(bool head_stiffness = false, bool body_stiffness = false/*, Motions::stance stance = Motions::Kneeling_stance*/)
+                MOTION_Commands(bool head_stiffness = false, bool body_stiffness = false, bool masks = false/*, Motions::stance stance = Motions::Kneeling_stance*/)
                 {
                         _head_stiffness = head_stiffness;
                         _body_stiffness = body_stiffness;
                         _stance_action_mask = false;
                         _ignore_chain_mask = false;
-                        _head_stiffness_mask = head_stiffness;
-                        _body_stiffness_mask = body_stiffness;
+                        _head_stiffness_mask = masks;
+                        _body_stiffness_mask = masks;
                         //goto stance stance_action! NYI
 //                        _motion_player = motion_player;
                 }
