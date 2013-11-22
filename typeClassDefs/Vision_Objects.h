@@ -189,7 +189,7 @@ public:
             frameNumber = fn;
         }
         
-        unsigned long FrameNumer() const
+        unsigned long FrameNumber() const
         {
             return frameNumber;
         }
