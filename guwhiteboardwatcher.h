@@ -98,6 +98,17 @@ public:
                 _wbd->context = this;
                 _wbd->callback = subscription_callback;
         }
+
+	~whiteboard_watcher()
+	{
+		_wbd->exit_monitor = true;
+	        _wbd->callback = NULL;                  // avoid starvation
+       		dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
+
+      		if (_wbd) gsw_free_whiteboard(_wbd);
+        	dispatch_release(callback_queue);
+       	 	dispatch_release(callback_group);
+	}
         
         void subscribe(WBFunctorBase *func)
         {
