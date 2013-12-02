@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <bitset>
+#include "../../guvision/guvision_parameters.h"
 
 
 enum VisionMessages {
@@ -31,70 +32,6 @@ enum VisionMessages {
 		PipelineRunOnce,
                 HorizionFactor,
 		NUMBER_VISION_MESSAGES
-};
-
-enum Resolutions {
-	QQVGA,  // 160 x 120
-	QVGA,   // 320 x 240
-	VGA,    // 640 x 480
-	HD_4VGA    // 1280x960
-};
-
-
-
-class ResolutionType {
-private:
-        PROPERTY(Resolutions, resolution)
-public:
-        ResolutionType(Resolutions res = VGA): _resolution(res) {}
-
-        /** Deprecated: use standard getter resolution() instead! */
-        int getResolution() const { return _resolution; } // XXX: deprecated, will be phased out!!!
-
-        /** get the width of the current resolution */
-        int width() const
-        {
-                static const int Widths[] = {160, 320, 640, 1280};
-                return Widths[_resolution];
-        }
-    
-        /** get the height of the current resolution */
-        int height() const
-        {
-                static const int Heights[] = {120, 240, 480, 960};
-                return Heights[_resolution];
-        }
-
-        int Width() const { return width(); }           // XXX: deprecated, use width() instead!
-        int Height() const { return height(); }         // XXX: deprecated, use height() instead!
-};
-
-enum VisionCamera {
-	Top,
-	Bottom
-};
-
-enum NamedPipeline {
-	Soccer,
-        OpenChallenge
-};
-
-enum StreamingType {
-	Normal,
-	Classified,
-	Recognized //NYI
-};
-
-enum CalibrationFile {
-	Calibration0,
-	Calibration1,
-	Calibration2,
-	Calibration3
-};
-
-enum SaveFileType {
-    AI2,
-    JPG
 };
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",

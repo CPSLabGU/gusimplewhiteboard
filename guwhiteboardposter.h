@@ -82,6 +82,8 @@
 #include "PARTICLE_TopPositions.h"
 #include "SENSORS_BodySensors.h"
 #include "WEBOTS_NXT_bridge.h"
+#include "VisionBall.h"
+#include "VisionGoals.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

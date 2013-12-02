@@ -49,3 +49,5 @@ class:WEBOTS_NXT_walk_isRunning, nonatomic, WEBOTS_NXT_walk_isRunning,          
 class:WEBOTS_NXT_deadReakoning_walk, nonatomic, WEBOTS_NXT_deadReakoning_walk,                           "WEBOTS_NXT_deadReakoning_walk", Class for dead reckoning walks in  WEBOTS trough a bridge
 class:WEBOTS_NXT_colorLine_walk, nonatomic, WEBOTS_NXT_colorLine_walk,                           "WEBOTS_NXT_colorLine_walk", Class for commands followign a line in  WEBOTS trough a bridge
 class:WEBOTS_NXT_gridMotions, nonatomic, WEBOTS_NXT_gridMotions,                           "WEBOTS_NXT_gridMotions", Class for walks on a grid of colored lines for WEBOTS trough a bridge
+class:VisionBall, nonatomic, VisionBall,                        "VisionBall", Class that reports the ball that vision sees.
+class:VisionGoals, nonatomic, VisionGoals,                        "VisionGoals", Class that reports the goals that vision sees.

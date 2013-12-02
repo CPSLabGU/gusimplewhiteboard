@@ -540,6 +540,28 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WEBOTS_NXT_gridMotions_DEFINED
 
+		case kVisionBall_v:
+#ifdef VisionBall_DEFINED
+		{
+			class VisionBall_t VisionBall_msg;
+			VisionBall_msg.post(VisionBall(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !VisionBall_DEFINED
+
+		case kVisionGoals_v:
+#ifdef VisionGoals_DEFINED
+		{
+			class VisionGoals_t VisionGoals_msg;
+			VisionGoals_msg.post(VisionGoals(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !VisionGoals_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -551,7 +573,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(51);
+	// self.reserve(53);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -604,5 +626,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WEBOTS_NXT_deadReakoning_walk"] = kWEBOTS_NXT_deadReakoning_walk_v;
 	self["WEBOTS_NXT_colorLine_walk"] = kWEBOTS_NXT_colorLine_walk_v;
 	self["WEBOTS_NXT_gridMotions"] = kWEBOTS_NXT_gridMotions_v;
+	self["VisionBall"] = kVisionBall_v;
+	self["VisionGoals"] = kVisionGoals_v;
 }
 

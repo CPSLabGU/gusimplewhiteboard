@@ -504,6 +504,28 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WEBOTS_NXT_gridMotions_DEFINED
 
+		case kVisionBall_v:
+#ifdef VisionBall_DEFINED
+		{
+			class VisionBall_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !VisionBall_DEFINED
+
+		case kVisionGoals_v:
+#ifdef VisionGoals_DEFINED
+		{
+			class VisionGoals_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !VisionGoals_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
