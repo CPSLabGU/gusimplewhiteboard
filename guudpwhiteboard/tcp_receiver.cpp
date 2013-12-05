@@ -136,7 +136,9 @@ void *connection(void *args)
 {
         int cfd = *(int *)args;
 
-//        fprintf(stderr, "Connected!\n");
+#ifdef DEBUG
+        fprintf(stderr, "Connected!\n");
+#endif
         bool socket_open = true;
         while(socket_open)
         {
@@ -147,7 +149,9 @@ void *connection(void *args)
                 {
                         r = recv(cfd, &buff, BUF_SIZE, 0);
                         n += r;
-//                        fprintf(stderr, "Reading... %d of %d\n", (int)n, (int)BUF_SIZE);
+#ifdef DEBUG
+                        fprintf(stderr, "Reading... %d of %d\n", (int)n, (int)BUF_SIZE);
+#endif
 
                 } while ((int)n < (int)BUF_SIZE && r > 0);
 
@@ -156,8 +160,9 @@ void *connection(void *args)
                 else
                         addToWB((uint16_t)buff.t, &buff.m);
         }
-//        fprintf(stderr, "Disconnected!\n");
-
+#ifdef DEBUG
+        fprintf(stderr, "Disconnected!\n");
+#endif
         return NULL;
 }
 
