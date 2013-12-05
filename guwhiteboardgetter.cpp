@@ -526,6 +526,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionGoals_DEFINED
 
+		case kWalkData_v:
+#ifdef WalkData_DEFINED
+		{
+			class WalkData_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WalkData_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

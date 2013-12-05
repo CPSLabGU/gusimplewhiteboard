@@ -51,3 +51,4 @@ class:WEBOTS_NXT_colorLine_walk, nonatomic, WEBOTS_NXT_colorLine_walk,          
 class:WEBOTS_NXT_gridMotions, nonatomic, WEBOTS_NXT_gridMotions,                           "WEBOTS_NXT_gridMotions", Class for walks on a grid of colored lines for WEBOTS trough a bridge
 class:VisionBall, nonatomic, VisionBall,                        "VisionBall", Class that reports the ball that vision sees.
 class:VisionGoals, nonatomic, VisionGoals,                        "VisionGoals", Class that reports the goals that vision sees.
+class:WalkData, nonatomic, WalkData,                             "WalkData", Class to report Walk Data.
