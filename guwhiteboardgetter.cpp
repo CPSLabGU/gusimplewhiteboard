@@ -137,36 +137,6 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !MOTION_Status_DEFINED
 
-		case kNaoWalk_v:
-		{
-			class NaoWalk_t m;
-			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
-		}
-		case kNaoWalkIsRunning_v:
-		{
-			class NaoWalkIsRunning_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-		}
-		case kHeadStiffness_v:
-		{
-			class HeadStiffness_t m;
-			return msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());
-		}
-		case kHoldingStiffness_v:
-		{
-			class HoldingStiffness_t m;
-			return msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());
-		}
-		case kGenericAngleChange_v:
-		{
-			class GenericAngleChange_t m;
-			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
-		}
-		case kGenericAngleChangeIsRunning_v:
-		{
-			class GenericAngleChangeIsRunning_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-		}
 		case kHAL_HeadTarget_v:
 #ifdef HAL_HeadTarget_DEFINED
 		{
@@ -301,17 +271,6 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 		case kSoloTypeExample_v:
 			return "##unsupported##";
-
-		case kBallBelief_v:
-#ifdef Point2D_DEFINED
-		{
-			class BallBelief_t m;
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !Point2D_DEFINED
 
 		case kFilteredGoalSighting_v:
 #ifdef FilteredOneDimObjects_DEFINED

@@ -155,48 +155,6 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !MOTION_Status_DEFINED
 
-		case kNaoWalk_v:
-		{
-			class NaoWalk_t NaoWalk_msg(strtointvec(message_content));
-			(void)NaoWalk_msg;
-			return true;
-		}
-
-		case kNaoWalkIsRunning_v:
-		{
-			class NaoWalkIsRunning_t NaoWalkIsRunning_msg;
-			NaoWalkIsRunning_msg.post(atoi(message_content.c_str()));
-			return true;
-		}
-
-		case kHeadStiffness_v:
-		{
-			class HeadStiffness_t HeadStiffness_msg;
-			HeadStiffness_msg.post(float(atof(message_content.c_str())));
-			return true;
-		}
-
-		case kHoldingStiffness_v:
-		{
-			class HoldingStiffness_t HoldingStiffness_msg;
-			HoldingStiffness_msg.post(float(atof(message_content.c_str())));
-			return true;
-		}
-
-		case kGenericAngleChange_v:
-		{
-			class GenericAngleChange_t GenericAngleChange_msg(strtointvec(message_content));
-			(void)GenericAngleChange_msg;
-			return true;
-		}
-
-		case kGenericAngleChangeIsRunning_v:
-		{
-			class GenericAngleChangeIsRunning_t GenericAngleChangeIsRunning_msg;
-			GenericAngleChangeIsRunning_msg.post(atoi(message_content.c_str()));
-			return true;
-		}
-
 		case kHAL_HeadTarget_v:
 #ifdef HAL_HeadTarget_DEFINED
 		{
@@ -331,17 +289,6 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kSoloTypeExample_v:
 			return false;
-
-		case kBallBelief_v:
-#ifdef Point2D_DEFINED
-		{
-			class BallBelief_t BallBelief_msg;
-			BallBelief_msg.post(Point2D(message_content));
-			return true;
-		}
-#else
-			return false;
-#endif // !Point2D_DEFINED
 
 		case kFilteredGoalSighting_v:
 #ifdef FilteredOneDimObjects_DEFINED
@@ -584,7 +531,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(54);
+	// self.reserve(47);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -598,12 +545,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WALK_Status"] = kWALK_Status_v;
 	self["MOTION_Commands"] = kMOTION_Commands_v;
 	self["MOTION_Status"] = kMOTION_Status_v;
-	self["gunaomotion_naoWalk"] = kNaoWalk_v;
-	self["gunaomotion_naoWalkIsRunning"] = kNaoWalkIsRunning_v;
-	self["gunaomotion_headStiffness"] = kHeadStiffness_v;
-	self["gunaomotion_holdingStiffness"] = kHoldingStiffness_v;
-	self["gunaomotion_genericAngleChange"] = kGenericAngleChange_v;
-	self["gunaomotion_genericAngleChangeIsRunning"] = kGenericAngleChangeIsRunning_v;
 	self["HAL_HeadTarget"] = kHAL_HeadTarget_v;
 	self["SENSORS_FootSensors"] = kSENSORS_FootSensors_v;
 	self["SENSORS_BodySensors"] = kSENSORS_BodySensors_v;
@@ -617,7 +558,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["fsm_status"] = kFSM_Status_v;
 	self["fsm_names"] = kFSM_Names_v;
 	self["example_type"] = kSoloTypeExample_v;
-	self["BallBelief"] = kBallBelief_v;
 	self["FilteredGoalSighting"] = kFilteredGoalSighting_v;
 	self["NAO_State"] = kNAO_State_v;
 	self["UDPReceiverNotification"] = kUDPRN_v;
