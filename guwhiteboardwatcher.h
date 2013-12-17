@@ -12,6 +12,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 
 #include "guwhiteboardtypelist_generated.h" //Not required here but it saves everyone else including it
 #include "gusimplewhiteboard.h"

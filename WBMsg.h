@@ -59,6 +59,7 @@
 #define gusimplewhiteboard_WBMsg_h
 
 #include <cstdlib>
+#include <cstring>
 #include <string>
 #include <iostream>             //for cerr
 #include <sstream>              // for stringValue()
@@ -112,6 +113,12 @@ private:
 	bool doFree;
 
 public:
+        /**
+	 * WBMsg - copy constructor.
+	 * Initialises a WBMsg with copied data.
+	 */
+	WBMsg(const WBMsg &orig) { memcpy(this, &orig, sizeof(orig)); }
+
         /**
 	 * WBMsg - empty constructor.
 	 * Initialises a WBMsg with no attached data.
