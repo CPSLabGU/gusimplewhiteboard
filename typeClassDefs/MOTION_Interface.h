@@ -292,12 +292,12 @@ namespace guWhiteboard
                         Motions::Stance_Path r;
                         r.invalidate();
 
-                        for (int i = 0; i < (int)_transitions.size(); i++)
+                        for (unsigned i = 0; i < _transitions.size(); i++)
                         {
-                                if(_transitions.at(i)._s == current && !p.contains(_transitions.at(i)._e)) // I can use this transiton from my current stance
+                                if(_transitions[i]._s == current && !p.contains(_transitions.at(i)._e)) // I can use this transiton from my current stance
                                 {
                                         Motions::Stance_Path p2 = p;
-                                        p2.add_stance(_transitions.at(i)._e, _transitions.at(i)._cost, i);
+                                        p2.add_stance(_transitions.at(i)._e, _transitions.at(i)._cost, int(i));
 
                                         Motions::Stance_Path c = decide_stance(_transitions.at(i)._e, desired, p2);
                                         if(!r.valid() || (c.cost() < r.cost() && c.valid()))
@@ -310,7 +310,7 @@ namespace guWhiteboard
 
 
         public:
-                long long GoToStance(Motions::stance current, Motions::stance desired)
+                long GoToStance(Motions::stance current, Motions::stance desired)
                 {
                         Motions::Stance_Path p;
                         p.add_stance(current, 1);                        
@@ -324,7 +324,7 @@ namespace guWhiteboard
                         return p.cost();
                 }
 
-                long long DoAction(Motions::stance current, Motions::action a)
+                long DoAction(Motions::stance current, Motions::action a)
                 {
                         std::map<Motions::action, Motions::Action_Transition> _actions = Motions::A::create_actions(); // move this out of here!
                         Motions::Action_Transition at = _actions[a];
@@ -385,9 +385,9 @@ namespace guWhiteboard
                         ss++;
                         const char *p = ss;
                         p = strchr(ss, ',');
-                        p != NULL ? set_stance_action_mask(true) : set_stance_action_mask(false);
+                        set_stance_action_mask(p != NULL);
                         std::string str2(ss);
-                        str2 = str2.substr(0, p-ss+1);
+                        str2 = str2.substr(0, unsigned(p-ss+1));
                         
                         stance s1;
                         MY_CHECK_ENUM(str2.c_str(), s1, Standby_stance);
