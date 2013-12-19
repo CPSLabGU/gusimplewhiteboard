@@ -84,6 +84,7 @@
 #include "WEBOTS_NXT_bridge.h"
 #include "VisionBall.h"
 #include "VisionGoals.h"
+#include "WalkData.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
