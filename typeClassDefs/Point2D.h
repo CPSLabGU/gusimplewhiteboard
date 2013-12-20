@@ -89,6 +89,8 @@ namespace guWhiteboard
             /** copy constructor */
             Point2D(const Point2D &other): _x(other._x), _y(other._y) {}
 
+            /** copy assignment operator */
+            Point2D &operator=(const Point2D &other) { _x = other._x; _y = other._y; return *this; }
 
             /** convert to a string */
             std::string description()

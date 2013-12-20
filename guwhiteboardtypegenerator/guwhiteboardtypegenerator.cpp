@@ -67,6 +67,7 @@ static char *include_str_c_typestrings = (char *)"\
  *  All rights reserved.                                                \n\
  */                                                                     \n\
 \n\
+#include \"guwhiteboardtypelist_c_generated.h\"\n\
 \n\
 ";
 

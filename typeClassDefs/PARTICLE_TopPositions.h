@@ -95,7 +95,10 @@ namespace guWhiteboard
                 ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
 
                 /** copy constructor */
-                ParticlePosition(const ParticlePosition &other) { *this = other; }
+                ParticlePosition(const ParticlePosition &other): Point2D(other), _headingInDegrees(other._headingInDegrees), _confidence(other._confidence) { }
+
+                /** copy assignment operator */
+                ParticlePosition &operator=(const ParticlePosition &other) { _headingInDegrees=other._headingInDegrees; _confidence=other._confidence; return ParticlePosition::operator=(other); }
 
                 /** radians getter */
                 float heading() const { return float(DEG2RAD(headingInDegrees())); }
