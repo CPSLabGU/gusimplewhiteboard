@@ -13,7 +13,7 @@ namespace guWhiteboard {
 
 class WalkData {
 public:
-	float data[4][3];
+	float data[4][7];
 	int numPoints;
 	WalkData() {}
 	WalkData(std::string) {
