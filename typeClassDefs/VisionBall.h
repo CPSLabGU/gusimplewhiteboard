@@ -17,12 +17,12 @@ private:
     WbBallInfo _ball[2];
 	unsigned long _frameNumber;
 public:
-    VisionBall() {
-        memset(this, 0, sizeof(*this));
+    VisionBall() : _frameNumber(0) {
+        objectMask.reset();
     }
 	
-	VisionBall(std::string s) {
-		memset(this, 0, sizeof(*this));
+	VisionBall(std::string s) : _frameNumber(0) {
+		objectMask.reset();
 		size_t n = -4;
 		std::string command = "BALL";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);

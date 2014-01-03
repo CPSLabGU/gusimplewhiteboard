@@ -70,13 +70,13 @@ private:
 	WbGoalPostInfo _rightGoalPost;
         unsigned long frameNumber;
 public:
-	VisionObjects() {
-		memset(this, 0, sizeof(*this));
+	VisionObjects() : frameNumber(0){
+		objectMask.reset();
 	}
 
 public:
-        VisionObjects(std::string s) {
-		memset(this, 0, sizeof(*this));
+        VisionObjects(std::string s) : frameNumber(0) {
+		objectMask.reset();
 		size_t n;
 		std::string command;
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);

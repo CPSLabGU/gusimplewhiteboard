@@ -17,11 +17,11 @@ private:
     SimpleLine _lines[10];
 public:
     VisionBall() {
-        memset(this, 0, sizeof(*this));
+		objectMask.reset();
     }
 	
 	VisionBall(std::string s) {
-		memset(this, 0, sizeof(*this));
+		objectMask.reset();
 		size_t n = -4;
 		std::string command = "BALL";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);

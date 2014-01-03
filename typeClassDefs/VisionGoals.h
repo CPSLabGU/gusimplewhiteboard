@@ -18,12 +18,12 @@ private:
 	WbGoalPostInfo _rightPost[2];
 	unsigned long _frameNumber;
 public:
-    VisionGoals() {
-        memset(this, 0, sizeof(*this));
+    VisionGoals() : _frameNumber(0) {
+        objectMask.reset();
     }
 	
-	VisionGoals(std::string s) {
-		memset(this, 0, sizeof(*this));
+	VisionGoals(std::string s) : _frameNumber(0) {
+		objectMask.reset();
 		
 		size_t n = -8;
 		std::string command = "LEFTPOST";
