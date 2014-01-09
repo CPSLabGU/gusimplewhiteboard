@@ -58,13 +58,15 @@ inline GUPoint<int16_t> getPoint(std::string *str) {
 	return point;
 }
 
+#define NUM_LINES 5
+
 static const char* Objects[] = {"BALL", "LEFTGOAL", "RIGHTGOAL", "LINE1", "LINE2", "LINE3", "LINE4", "LINE5"};
 namespace guWhiteboard
 {
 class VisionObjects {
-private:
+public:
 	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> objectMask;
-	SimpleLine _lines[5];
+	SimpleLine _lines[NUM_LINES];
 	WbBallInfo _ball;
 	WbGoalPostInfo _leftGoalPost;
 	WbGoalPostInfo _rightGoalPost;
@@ -72,6 +74,19 @@ private:
 public:
 	VisionObjects() : frameNumber(0){
 		objectMask.reset();
+	}
+	
+	VisionObjects &operator=(const VisionObjects& a) {
+		objectMask = a.objectMask;
+		for(int i = 0; i<NUM_LINES; ++i) {
+				_lines[i].start = a._lines[i].start;
+				_lines[i].end = a._lines[i].end;
+		}
+		_ball = a._ball;
+		_leftGoalPost = a._leftGoalPost;
+		_rightGoalPost = a._rightGoalPost;
+		frameNumber = a.frameNumber;
+		return *this;
 	}
 
 public:
@@ -197,6 +212,10 @@ public:
 
 	void ClearMask() {
 		objectMask.reset();
+	}
+	
+	std::bitset<VisionObjectTypes::NUM_VISION_OBJECTS> Mask() {
+		return this->objectMask;
 	}
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 	std::string description() {
