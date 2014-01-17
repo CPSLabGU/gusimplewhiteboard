@@ -14,12 +14,45 @@ namespace guWhiteboard {
 class VisionBall {
 private:
     std::bitset<2> objectMask;
-    WbBallInfo _ball[2];
+    SimpleCircle _ball[2];
 	unsigned long _frameNumber;
 public:
     VisionBall() : _frameNumber(0) {
         objectMask.reset();
     }
+	
+	VisionBall &operator=(const VisionBall& a) {
+		objectMask = a.getMask();
+		_frameNumber = a.frameNumber();
+		const SimpleCircle** b = a.ball();
+		if(b[0]) {
+			_ball[0].setCenter(b[0]->GetCenter());
+			_ball[0].setRadius(b[0]->GetRadius());
+		}
+		if(b[1]) {
+			_ball[1].setCenter(b[1]->GetCenter());
+			_ball[1].setRadius(b[1]->GetRadius());
+		}
+		return *this;
+	}
+	
+	VisionBall(const VisionBall &ball) {
+		objectMask = ball.getMask();
+		_frameNumber = ball.frameNumber();
+		const SimpleCircle** b = ball.ball();
+		if(b[0]) {
+			_ball[0].setCenter(b[0]->GetCenter());
+			_ball[0].setRadius(b[0]->GetRadius());
+		}
+		if(b[1]) {
+			_ball[1].setCenter(b[1]->GetCenter());
+			_ball[1].setRadius(b[1]->GetRadius());
+		}
+	}
+	
+	std::bitset<2> getMask() const {
+		return objectMask;
+	}
 	
 	VisionBall(std::string s) : _frameNumber(0) {
 		objectMask.reset();
@@ -30,27 +63,28 @@ public:
 			n = s.find(command, n+4);
 			if (n!=std::string::npos) {
 				std::string t = s.substr(n+command.length()+1);
-				WbBallInfo ballInfo;
+				SimpleCircle ballInfo;
 				VisionCamera cam;
 				if(s.substr(n-3, 3).find("TOP") != std::string::npos)
 					cam = Top;
 				else
 					cam = Bottom;
 				
-				ballInfo.position = getPoint(&t);
-				ballInfo.radius = u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
+				ballInfo.setCenter(getPoint(&t));
+				ballInfo.setRadius(u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str())));
 				setBall(ballInfo, cam);
+				objectMask[cam] = 1;
 			}
 		}
 	}
-	void setBall(WbBallInfo ballInfo, VisionCamera camera) {
+	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
 		_ball[camera] = ballInfo;
 		objectMask[camera]  = 1;
 	}
 	
-	const WbBallInfo **ball() const
+	const SimpleCircle **ball() const
 	{
-		static const WbBallInfo* ret[2];
+		static const SimpleCircle* ret[2];
 		if(objectMask[Top])
 			ret[Top] = &(_ball[Top]);
 		else
@@ -77,10 +111,10 @@ public:
 	std::string description() {
 		std::stringstream result;
 		if(objectMask[Top]) {
-			result << "TopBall:(" << ball()[Top]->position.x << "," << ball()[Top]->position.y << "," << ball()[Top]->radius << ") ";
+			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << "," << ball()[Top]->GetRadius() << ") ";
 		}
 		if(objectMask[Bottom]) {
-			result << "BottomBall:(" << ball()[Bottom]->position.x << "," << ball()[Bottom]->position.y << ")@" << ball()[Bottom]->radius;
+			result << "BottomBall:(" << ball()[Bottom]->GetCenter().x << "," << ball()[Bottom]->GetCenter().y << ")@" << ball()[Bottom]->GetRadius();
 		}
 		return result.str();
 	}
