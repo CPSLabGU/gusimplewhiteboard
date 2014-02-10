@@ -520,6 +520,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WalkData_DEFINED
 
+		case kTeleoperationControlStatus_v:
+#ifdef TeleoperationControlStatus_DEFINED
+		{
+			class TeleoperationControlStatus_t TeleoperationControlStatus_msg;
+			TeleoperationControlStatus_msg.post(TeleoperationControlStatus(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !TeleoperationControlStatus_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -531,7 +542,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(47);
+	// self.reserve(48);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -580,5 +591,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["VisionBall"] = kVisionBall_v;
 	self["VisionGoals"] = kVisionGoals_v;
 	self["WalkData"] = kWalkData_v;
+	self["TeleoperationControlStatus"] = kTeleoperationControlStatus_v;
 }
 
