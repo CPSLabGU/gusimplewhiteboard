@@ -45,3 +45,4 @@ class:WEBOTS_NXT_gridMotions, nonatomic, WEBOTS_NXT_gridMotions,                
 class:VisionBall, nonatomic, VisionBall,                        "VisionBall", Class that reports the ball that vision sees.
 class:VisionGoals, nonatomic, VisionGoals,                        "VisionGoals", Class that reports the goals that vision sees.
 class:WalkData, nonatomic, WalkData,                             "WalkData", Class to report Walk Data.
+class:TeleoperationControlStatus, nonatomic, TeleoperationControlStatus, "TeleoperationControlStatus", Class for sending teleoperation commands
