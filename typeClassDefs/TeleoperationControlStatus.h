@@ -33,8 +33,8 @@ private:
 	PROPERTY(float, turnWalkSpeed)
 	PROPERTY(float, headPitch)
 	PROPERTY(float, headYaw)
-	PROPERTY(guWhiteboard::Motions::action, action)
-	PROPERTY(guWhiteboard::Motions::stance, stance)
+	VERSIONED_PROPERTY(guWhiteboard::Motions::action, action)
+	VERSIONED_PROPERTY(guWhiteboard::Motions::stance, stance)
 	PROPERTY(StreamingType, streamType)
 	PROPERTY(VisionCamera, selectedCamera)
 };
