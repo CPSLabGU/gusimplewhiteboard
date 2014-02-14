@@ -112,7 +112,7 @@ public:
 	std::string description() {
 		std::stringstream result;
 		if(objectMask[Top]) {
-			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << "," << ball()[Top]->GetRadius() << ") ";
+			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << ")@" << ball()[Top]->GetRadius();
 		}
 		if(objectMask[Bottom]) {
 			result << "BottomBall:(" << ball()[Bottom]->GetCenter().x << "," << ball()[Bottom]->GetCenter().y << ")@" << ball()[Bottom]->GetRadius();
