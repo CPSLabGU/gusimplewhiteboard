@@ -507,6 +507,11 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !TeleoperationControlStatus_DEFINED
 
+		case kTeleoperationConnection_v:
+		{
+			class TeleoperationConnection_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

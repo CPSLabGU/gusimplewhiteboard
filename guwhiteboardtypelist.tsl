@@ -46,3 +46,4 @@ class:VisionBall, nonatomic, VisionBall,                        "VisionBall", Cl
 class:VisionGoals, nonatomic, VisionGoals,                        "VisionGoals", Class that reports the goals that vision sees.
 class:WalkData, nonatomic, WalkData,                             "WalkData", Class to report Walk Data.
 class:TeleoperationControlStatus, nonatomic, TeleoperationControlStatus, "TeleoperationControlStatus", Class for sending teleoperation commands
+int, nonatomic, TeleoperationConnection, "TeleoperationConnection", "Integer indication which remote whiteboard teleoperation instructions are on"

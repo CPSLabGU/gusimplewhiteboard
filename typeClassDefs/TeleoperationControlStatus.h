@@ -22,11 +22,20 @@ public:
 		set_headPitch(0.0f);
 		set_headYaw(0.0f);
 		set_turnWalkSpeed(0.0f);
-		initBit = 1;
+		initBit = 0;
 	}
-	bool initilized() {
+	bool connected() {
 		return initBit == 1;
 	}
+	
+	void connect() {
+		initBit = 1;
+	}
+	
+	void disconnect() {
+		initBit = 0;
+	}
+	
 private:
 	unsigned initBit : 1;
 	PROPERTY(int, fowardWalkSpeed)
