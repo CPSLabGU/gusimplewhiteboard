@@ -28,6 +28,8 @@ enum VisionMessages {
 		StreamingSource,
 		ConservativeMode,
 		ImageInput,
+		JPEGStreamQuality,
+		JPEGStreamStride,
 		LoadCalibration,
 		PipelineRunOnce,
                 HorizionFactor,
@@ -36,10 +38,10 @@ enum VisionMessages {
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "HORIZIONFACTOR", "Undefined"};
+		"IMAGEINPUT", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "LOADCALIBRATION", "RUNPIPELINEONCE", "HORIZIONFACTOR", "Undefined"};
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "HorizionFactor", "FrameRate"};
+		"ImageInput", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "CalibrationLoaded", "PipelineRunningOnce", "HorizionFactor", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -87,6 +89,16 @@ public:
                                 if(i == HorizionFactor) {
                                     //get value
                                     set_horizionValue((float)atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                                    continue;
+                                }
+								if(i == JPEGStreamQuality) {
+                                    //get value
+                                    set_jpegStreamQuality(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                                    continue;
+                                }
+								if(i == JPEGStreamStride) {
+                                    //get value
+                                    set_jpegStreamStride(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
                                     continue;
                                 }
 				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
@@ -153,14 +165,18 @@ public:
 			result << Statuses[7] << "=" << BoolStrings[conservativeMode()?0:1] << " ";
 		if(imageInput_mask())
 			result << Statuses[8] << "=" << BoolStrings[imageInput()?0:1] << " ";
+		if(jpegStreamQuality_mask())
+			result << Statuses[9] << "=" << jpegStreamQuality();
+		if(jpegStreamStride_mask())
+			result << Statuses[10] << "=" << jpegStreamStride();
 		if(loadCalibration_mask())
-			result << Statuses[9] << "=" << CalibrationStrings[loadCalibration()] << " ";
+			result << Statuses[11] << "=" << CalibrationStrings[loadCalibration()] << " ";
 		if(pipelineRunOnce_mask())
-			result << Statuses[10] << "=" << BoolStrings[pipelineRunOnce()?0:1] << " ";
+			result << Statuses[12] << "=" << BoolStrings[pipelineRunOnce()?0:1] << " ";
                 if(frameRate_mask())
-                        result << Statuses[12] << "=" << frameRate() << " ";
+                        result << Statuses[14] << "=" << frameRate() << " ";
                 if(horizionValue_mask())
-                    result << Statuses[11] << "=" << horizionValue();
+                    result << Statuses[13] << "=" << horizionValue();
 		return result.str();
 	}
 
@@ -187,6 +203,10 @@ public:
 			this->set_loadCalibration(a.loadCalibration());
 		if(a.pipelineRunOnce_mask())
 			this->set_pipelineRunOnce(a.pipelineRunOnce());
+		if(a.jpegStreamQuality_mask())
+			this->set_jpegStreamQuality(a.jpegStreamQuality());
+		if(a.jpegStreamStride_mask())
+			this->set_jpegStreamStride(a.jpegStreamStride());
         set_openChallengeStep(a.openChallengeStep());
 		return *this;
 	}
@@ -200,6 +220,8 @@ public:
 	CONTROLLED_PROPERTY(StreamingType, streamingSource)
 	CONTROLLED_PROPERTY(bool, conservativeMode)
 	CONTROLLED_PROPERTY(bool, imageInput)
+	CONTROLLED_PROPERTY(int, jpegStreamQuality)
+	CONTROLLED_PROPERTY(int, jpegStreamStride)
 	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
         CONTROLLED_PROPERTY(float, horizionValue)
         CONTROLLED_PROPERTY(int, frameRate)
@@ -214,11 +236,13 @@ public:
 	CONTROL_BIT(streamingSource)
 	CONTROL_BIT(conservativeMode)
 	CONTROL_BIT(imageInput)
+	CONTROL_BIT(jpegStreamQuality)
+	CONTROL_BIT(jpegStreamStride)
 	CONTROL_BIT(loadCalibration)
         CONTROL_BIT(horizionValue)
         CONTROL_BIT(frameRate)
 	CONTROL_BIT(pipelineRunOnce)
-	    
+		
 	PROPERTY(uint8_t, openChallengeStep)
 
 };
