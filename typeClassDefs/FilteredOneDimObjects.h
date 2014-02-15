@@ -64,6 +64,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
+#include <../../guvision/guvision_parameters.h>
 
 namespace guWhiteboard
 {
@@ -146,43 +147,80 @@ namespace guWhiteboard
          */
         class FilteredVisionObject
         {
-            PROPERTY(bool, isVisible) //  is this a credible sighting
-            bool _padding;
+            PROPERTY(bool, isVisibleTop) //  is this a credible sighting
+            PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter 
-            PROPERTY(int16_t, x) //  centre x-coordinate in image
-            PROPERTY(int16_t, y) //  centre y-coordinate in image
-            PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was alst used to generated filtered values
+            PROPERTY(int16_t, xTop) //  centre x-coordinate in image
+            PROPERTY(int16_t, yTop) //  centre y-coordinate in image
+            PROPERTY(int16_t, xBottom) //  centre x-coordinate in image
+            PROPERTY(int16_t, yBottom) //  centre y-coordinate in image
+            PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
             int16_t _padding2;
         public:
             /** designated constructor */
-            FilteredVisionObject( bool isVisible = false,
+            FilteredVisionObject( bool isVisibleTop = false, bool isVisibleBottom = false,
                                        int16_t distance =0,
 				       int32_t frameCounter =0,
-                                       int16_t x = 0,
-				       int16_t y = 0,
+                                       int16_t xTop = 0,
+				       int16_t yTop = 0,
+                                       int16_t xBottom = 0,
+				       int16_t yBottom = 0,
 				       int16_t yaw=0):
-                                      _isVisible(isVisible), 
+                                      _isVisibleTop(isVisibleTop), 
+                                      _isVisibleBottom(isVisibleBottom), 
                                       _distance(distance), 
                                       _frameCounter(frameCounter), 
-                                       _x(x), _y(y), _yaw(yaw)  { /* better than set_x(x); set_y(y) */ }
+                                       _xTop(xTop), _yTop(yTop), _xBottom(xBottom), _yBottom(yBottom), _yaw(yaw)  { /* better than set_x(x); set_y(y) */ }
 
             /** string constructor */
             FilteredVisionObject(const std::string &names) { from_string(names); }
 
             /** copy constructor */
             FilteredVisionObject(const FilteredVisionObject &other):
-                      _isVisible(other._isVisible),
+                      _isVisibleTop(other._isVisibleTop),
+                      _isVisibleBottom(other._isVisibleBottom),
                       _distance(other._distance),
                       _frameCounter(other._frameCounter),
-                      _x(other._x), _y(other._y), _yaw(other._yaw) {}
+                      _xTop(other._xTop), _yTop(other._yTop),
+                      _xBottom(other._xBottom), _yBottom(other._yBottom),
+		      _yaw(other._yaw) {}
 
             /** return the angle of the object as seen from the robot (in radians) */
-            float horizontal_angle(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
+            float horizontal_angleTop(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
             {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
                 float D = guvision_width / 2 / sinf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
-                float alpha = atanf(float(x())/D);                                  // negative angle of x on screen
+                float alpha = atanf(float(xTop())/D);                                  // negative angle of x on screen
+
+                return yaw_in_radians - alpha;
+            }
+
+	    int16_t get_x(VisionCamera whichCamera )
+	    { if (Top==whichCamera) return xTop();
+		    else return xBottom();
+	    }
+
+	    int16_t get_y(VisionCamera whichCamera )
+	    { if (Top==whichCamera) return yTop();
+		    else return yBottom();
+	    }
+
+	    void set_x(VisionCamera whichCamera, int16_t value)
+	    { if (Top==whichCamera) set_xTop(value);
+		    else set_xBottom(value);
+	    }
+
+	    void set_y(VisionCamera whichCamera, int16_t value)
+	    { if (Top==whichCamera) set_yTop(value);
+		    else set_yBottom(value);
+	    }
+
+            float horizontal_angleBottom(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
+            {
+                float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
+                float D = guvision_width / 2 / sinf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
+                float alpha = atanf(float(xBottom())/D);                                  // negative angle of x on screen
 
                 return yaw_in_radians - alpha;
             }
@@ -198,12 +236,14 @@ namespace guWhiteboard
             {
                 std::ostringstream ss;
 
-		if ( isVisible())
-                { ss<<"Visible ";
-		  ss << "dist=" << distance() << " ("  <<  x() << "," << y() << "," << yaw() << ")";
+		if ( isVisibleTop())
+                { ss<<"TopVisible ";
+		  ss <<  " ("  <<  xTop() << "," << yTop() << "," << yaw() << ")@" << distance() <<",";
 		}
-		//else ss << "NOT visible "; ss << " at frame  " << frameCounter();
-
+		if ( isVisibleBottom())
+                { ss<<"BottomVisible ";
+		  ss <<  " ("  <<  xBottom() << "," << yBottom() << "," << yaw() << ")@" << distance() << ",";
+		}
                 return ss.str();
             }
 
@@ -212,25 +252,62 @@ namespace guWhiteboard
             void from_string(const std::string &str)
             {
                 std::istringstream iss(str);
+
+		set_isVisibleBottom(false);
+		set_isVisibleBottom(false);
+		std::string openP ("(");
+
+		//std::cerr << "Input to parser" << str << std::endl;
                 std::string token;
                 if (getline(iss, token, ','))
-                {   set_isVisible((0!=atoi(token.c_str())));
-                    if (getline(iss, token, ','))
-                    {
-                         set_distance(  int16_t(atoi(token.c_str())));
-                    }
-                    if (getline(iss, token, ','))
-                    {
-                        set_x(  int16_t(atoi(token.c_str())));
-		        set_y(0);
-                        if (getline(iss, token, ','))
-                         {
-                             set_y(int16_t(atoi(token.c_str())));
-                             set_yaw(0);
-                             if (getline(iss, token, ','))
-                             {
-                                 set_yaw(int16_t(atoi(token.c_str())));
-                             }}}
+                {  
+                    if ('T'==token[0])  // for the top camera
+		    {
+		           set_isVisibleTop(true);
+		           set_xTop(0); set_yTop(0); set_yaw(0); set_distance(0);
+			   std::size_t found = str.find(openP);
+			   if (std::string::npos!=found )
+			            { std::string strCoordinates=str.substr (found+openP.size()); 
+				      std::istringstream second_iss(strCoordinates); //string with the Visible
+				      if (getline(second_iss, token, ','))
+				      { set_xTop(  int16_t(atoi(token.c_str())));
+                                        if (getline(iss, token, ','))
+                                            { set_yTop(int16_t(atoi(token.c_str())));
+                                             if (getline(iss, token, ')'))
+                                             { set_yaw(int16_t(atoi(token.c_str())));
+                                               if (getline(iss, token, ','))
+                                                  { set_distance(int16_t(atoi(token.substr(1,token.length()).c_str())));
+		                                    //std::cerr << "token" << token << std::endl;
+				                  }
+				            }
+				           }
+				      }
+				    }
+
+		    }
+		    else // for the bottom camera
+		    {
+		           set_isVisibleBottom(true);
+		           set_xBottom(0); set_yBottom(0); set_yaw(0); set_distance(0);
+			   std::size_t found = str.find(openP);
+			   if (std::string::npos!=found )
+			            { std::string strCoordinates=str.substr (found+openP.size()); 
+				      std::istringstream second_iss(strCoordinates); //string with the Visible
+				      if (getline(second_iss, token, ','))
+				      { set_xBottom(  int16_t(atoi(token.c_str())));
+                                        if (getline(iss, token, ','))
+                                            { set_yBottom(int16_t(atoi(token.c_str())));
+                                             if (getline(iss, token, ')'))
+                                             { set_yaw(int16_t(atoi(token.c_str())));
+                                               if (getline(iss, token, ','))
+                                                  { set_distance(int16_t(atoi(token.substr(1,token.length()).c_str())));
+		                                    //std::cerr << "token" << token << std::endl;
+				                  }
+				            }
+				           }
+				      }
+				    }
+		    }
                 }
             }
 
