@@ -16,8 +16,8 @@ namespace guWhiteboard
 class TeleoperationControlStatus {
 public:
 	TeleoperationControlStatus() {
-		set_action((Motions::action)-1);
-		set_stance((Motions::stance)-1);
+		//set_action((Motions::action)-1);
+		//set_stance((Motions::stance)-1);
 		set_fowardWalkSpeed(0);
 		set_headPitch(0.0f);
 		set_headYaw(0.0f);
