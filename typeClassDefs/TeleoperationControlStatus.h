@@ -36,6 +36,11 @@ public:
 		initBit = 0;
 	}
 	
+	void resetVersions() {
+		reset_action_version();
+		reset_stance_version();
+	}
+	
 private:
 	unsigned initBit : 1;
 	PROPERTY(int, fowardWalkSpeed)
