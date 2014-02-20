@@ -186,7 +186,14 @@ namespace guWhiteboard
                       _xBottom(other._xBottom), _yBottom(other._yBottom),
 		      _yaw(other._yaw) {}
 
+	    bool isVisible() const { return isVisibleTop() || isVisibleBottom(); }
+
             /** return the angle of the object as seen from the robot (in radians) */
+            float horizontal_angle(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
+	    {
+		return (horizontal_angleTop(guvision_width, horiz_fov) + horizontal_angleBottom(guvision_width, horiz_fov)) / 2;
+	    }
+
             float horizontal_angleTop(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
             {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
