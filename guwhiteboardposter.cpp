@@ -538,6 +538,13 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kUDPWBNumber_v:
+		{
+			class UDPWBNumber_t UDPWBNumber_msg;
+			UDPWBNumber_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -549,7 +556,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(49);
+	// self.reserve(50);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -600,5 +607,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WalkData"] = kWalkData_v;
 	self["TeleoperationControlStatus"] = kTeleoperationControlStatus_v;
 	self["TeleoperationConnection"] = kTeleoperationConnection_v;
+	self["UDPWBNumber"] = kUDPWBNumber_v;
 }
 

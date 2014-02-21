@@ -47,3 +47,4 @@ class:VisionGoals, nonatomic, VisionGoals,                        "VisionGoals",
 class:WalkData, nonatomic, WalkData,                             "WalkData", Class to report Walk Data.
 class:TeleoperationControlStatus, nonatomic, TeleoperationControlStatus, "TeleoperationControlStatus", Class for sending teleoperation commands
 int, nonatomic, TeleoperationConnection, "TeleoperationConnection", "Integer indication which remote whiteboard teleoperation instructions are on"
+int, nonatomic, UDPWBNumber, "UDPWBNumber", "ID number being used to broadcast udp whiteboard"

@@ -102,9 +102,9 @@ int main(int argc, char *argv[])
 void setup_udp_whiteboard_with_id(int id)
 {
         if(id == -1)
-                set_udp_id(getplayernumber());
-        else
-                set_udp_id(id);
+                id = getplayernumber();
+	set_udp_id(id);
+	delete new guWhiteboard::UDPWBNumber_t(id); 
 
         /*
          * set up a lock file so that only one instance will run
