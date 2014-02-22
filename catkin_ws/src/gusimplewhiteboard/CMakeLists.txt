@@ -89,12 +89,13 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
+include_directories(include)
 
 ## Declare a cpp library
 add_library(gusimplewhiteboard
    src/gusimplewhiteboard.c
    src/gugenericwhiteboardobject.cpp
+   src/guwhiteboardtypelist_c_typestrings_generated.c
 )
 
 ## Declare a cpp executable
