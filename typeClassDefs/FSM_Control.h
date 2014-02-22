@@ -171,6 +171,9 @@ namespace guWhiteboard
                 memcpy(_names, other._names, sizeof(_names));
             }
 
+            /** assignment operator */
+            const FSMNames &operator=(const FSMNames &other) { _startoffs = other._startoffs; return *this; }
+
             /** names getter */
             char *names() { return _names; }
 
