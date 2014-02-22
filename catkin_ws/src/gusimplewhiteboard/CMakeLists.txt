@@ -87,10 +87,13 @@ catkin_package(
 ## Build ##
 ###########
 
+set(CMAKE_C_FLAGS "-std=c99")
+set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)
-set(CMAKE_C_FLAGS "-std=c99")
 
 ## Declare a cpp library
 add_library(gusimplewhiteboard
