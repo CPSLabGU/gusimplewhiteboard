@@ -105,6 +105,9 @@ namespace guWhiteboard
             /** copy constructor */
             FSMControlStatus(const FSMControlStatus &other): _fsms(other._fsms) {}
 
+            /** assignment operator */
+            const FSMControlStatus &operator=(const FSMControlStatus &other) { _fsms = other._fsms; return *this; }
+
             /** command getter */
             FSMControlType command() const { return static_cast<FSMControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
 
