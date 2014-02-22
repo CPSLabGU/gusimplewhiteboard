@@ -10,6 +10,20 @@ find_package(catkin REQUIRED)
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(Threads REQUIRED COMPONENTS system)
 
+## Needs clang++
+find_program(CLANGPP clang++ HINTS /usr/local/bin /usr/bin /opt/local/bin)
+if(${CLANGPP} MATCHES "clang")
+set(CXX ${CLANGPP})
+message("CXX = ${CXX}")
+endif(${CLANGPP} MATCHES "clang")
+
+## Needs clang
+find_program(CLANG clang HINTS /usr/local/bin /usr/bin /opt/local/bin)
+if(${CLANG} MATCHES "clang")
+set(CC ${CLANG})
+message("CC = ${CC}")
+endif(${CLANG} MATCHES "clang")
+
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
