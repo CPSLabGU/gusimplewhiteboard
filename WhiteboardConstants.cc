@@ -7,6 +7,8 @@
  *
  */
 
+#include <WhiteboardConstants.h>
+
 namespace guWhiteboard 
 {
         /* generic whiteboard messages */
