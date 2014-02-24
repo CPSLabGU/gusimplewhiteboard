@@ -188,9 +188,9 @@ namespace guWhiteboard
 		  { case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
 			/*
-			 * Play sound for as long as _firstParameter
+			 * Play sound for as long as _firstParameter, use second parameter as NXT frequency
 			 */
-		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << ",";
+		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << "," << _secondParameter << ",";
 			               break;
 			/*
 			 * LIGHTUP_LED if 0<> _firstParameter
@@ -344,11 +344,18 @@ namespace guWhiteboard
 		     case 'p' :
 		      case 'P' : // expect a PLAY_SOUND
 		               set_theInstruction(PLAY_SOUND);
-                                   if (getline(iss, token, SEPARATOR_COMMA))
+				    set_firstParameter(0);
+				    set_set_secondParameter(0);
+                                   if (getline(iss, token, SEPARATOR_COMMA))  // duration
                                      { // always positive
 					     int16_t value= int16_t ( atoi(token.c_str()) );
-					     value = value >0 ? value : -1*value;
+					     value = value >=0 ? value : -1*value;
 					     set_firstParameter(value);
+                                   if (getline(iss, token, SEPARATOR_COMMA)) //frequency
+                                     { // always positive
+					     int16_t value= int16_t ( atoi(token.c_str()) );
+					     value = value >=0 ? value : -1*value;
+                                          set_secondParameter(int16_t(atoi(token.c_str()))); }
                                       }
 			    break;
 		     case 'l' :
