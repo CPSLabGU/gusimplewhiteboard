@@ -345,18 +345,19 @@ namespace guWhiteboard
 		      case 'P' : // expect a PLAY_SOUND
 		               set_theInstruction(PLAY_SOUND);
 				    set_firstParameter(0);
-				    set_set_secondParameter(0);
+				    set_secondParameter(0);
                                    if (getline(iss, token, SEPARATOR_COMMA))  // duration
                                      { // always positive
 					     int16_t value= int16_t ( atoi(token.c_str()) );
 					     value = value >=0 ? value : -1*value;
 					     set_firstParameter(value);
-                                   if (getline(iss, token, SEPARATOR_COMMA)) //frequency
-                                     { // always positive
-					     int16_t value= int16_t ( atoi(token.c_str()) );
-					     value = value >=0 ? value : -1*value;
-                                          set_secondParameter(int16_t(atoi(token.c_str()))); }
-                                      }
+                                             if (getline(iss, token, SEPARATOR_COMMA)) //frequency
+                                             { // always positive
+					     int16_t frequency_value= int16_t ( atoi(token.c_str()) );
+					     frequency_value = frequency_value >=0 ? frequency_value : -1*frequency_value;
+					     set_secondParameter(frequency_value);
+                                             }
+					}
 			    break;
 		     case 'l' :
 		      case 'L' : // expect a LIGHTUP_LED
