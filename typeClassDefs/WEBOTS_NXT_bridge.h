@@ -179,7 +179,7 @@ namespace guWhiteboard
 					  // as a sensor first parameter is total pixele sof color, second parameter is middle of the color
 		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
-		          case TOUCH : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case TOUCH : ss << "SENSOR"<< "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
