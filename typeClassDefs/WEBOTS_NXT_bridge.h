@@ -91,6 +91,11 @@ namespace guWhiteboard
                 RIGHT_LIGHT_SENSOR = 1
 	};
 
+        enum TouchSensorID {
+                LEFT_TOUCH_SENSOR = 0,
+                RIGHT_TOUCH_SENSOR = 1
+	};
+
         enum NXT_Sensor_Ports {
                 NXT_PORT_1= 0,
                 NXT_PORT_2= 1,
@@ -124,7 +129,8 @@ namespace guWhiteboard
 		INTENSITY_LIGHT= 4,
 		ROTATION_ENCODER = 5, //constant for the third motor on nxt's
 	       // This can be turned On or Off for channels like blue,red,green,grey and with the Word SENSOR we get a value after signal processing
-                CAMERA=6
+                CAMERA=6,
+		TOUCH = 7 //touch sensor on an NXTon nxt's
              };
 
        enum ColorLineInstructions {
@@ -170,8 +176,10 @@ namespace guWhiteboard
 					break;
 		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
-					  // as a sensor first parameter is total pixele sof color, second para emetr is middle of the color
+					  // as a sensor first parameter is total pixele sof color, second parameter is middle of the color
 		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+		          case TOUCH : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
                          case MOVE_MOTORS:
                          case PLAY_SOUND:
@@ -222,6 +230,12 @@ namespace guWhiteboard
 			 */
 		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
+			/*
+			 * Start posting wether the touch sensor in port _firstParameter is pressed, if  0<> _secondParameter
+			 * Stop posting wether the touch sensor in port _firstParameter is pressed, if 0== _secondParameter
+			 */
+		  case TOUCH : ss << "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
 		   };
 		}
                 return ss.str();
@@ -256,6 +270,8 @@ namespace guWhiteboard
 		      case 'L' : // expect a LIGHTUP_LED
 		     case 'd' :
 		      case 'D' : // expect a DISTANCE
+		     case 't' :
+		      case 'T' : // expect a TOUCH sensor on/off instruction
 		     case 'i' :
 		      case 'I' : // expect a INTENSITY_LIGHT
 		     case 'r' :
@@ -371,6 +387,11 @@ namespace guWhiteboard
 		     case 'd' :
 		      case 'D' : // expect a DISTANCE
 		                   set_theInstruction(DISTANCE);
+				   set_parameters2ndBinary(str);
+			           break;	
+		     case 't' :
+		      case 'T' : // expect a TOUCH sensor command
+		                   set_theInstruction(TOUCH);
 				   set_parameters2ndBinary(str);
 			           break;	
 		     case 'i' :
