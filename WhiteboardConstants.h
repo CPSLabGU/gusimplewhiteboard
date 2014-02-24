@@ -198,10 +198,11 @@ namespace guWhiteboard
 		extern const char *kDifferentialRotationValue;
 
 	//ID's for motor's in differential robots
-	enum DifferentialMotor {
-		LEFT_MOTOR_DIFFERENTIAL = 0,
-		RIGHT_MOTOR_DIFFERENTIAL = 1,
-		NXT_MOTOR3 = 2 //constant for the third motor on nxt's
+	//renamed so it doe s not class with OO_Whiteboard types
+	enum OLDDifferentialMotor {
+		OLD_LEFT_MOTOR_DIFFERENTIAL = 0,
+		OLD_RIGHT_MOTOR_DIFFERENTIAL = 1,
+		OLD_NXT_MOTOR3 = 2 //constant for the third motor on nxt's
 	};
 
 }
