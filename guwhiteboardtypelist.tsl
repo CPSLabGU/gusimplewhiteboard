@@ -48,3 +48,4 @@ class:WalkData, nonatomic, WalkData,                             "WalkData", Cla
 class:TeleoperationControlStatus, nonatomic, TeleoperationControlStatus, "TeleoperationControlStatus", Class for sending teleoperation commands
 int, nonatomic, TeleoperationConnection, "TeleoperationConnection", "Integer indication which remote whiteboard teleoperation instructions are on"
 int, nonatomic, UDPWBNumber, "UDPWBNumber", "ID number being used to broadcast udp whiteboard"
+class:WEBOTS_NXT_bumper, nonatomic, WEBOTS_NXT_bumper,                           "WEBOTS_NXT_bumper", Class that contains data from 2 rouch sensors in an NXT bumper by the bridge

@@ -57,6 +57,7 @@
 #ifndef WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_bridge_DEFINED
 #define WEBOTS_NXT_encoders_DEFINED
+#define WEBOTS_NXT_bumper_DEFINED
 #define WEBOTS_NXT_camera_DEFINED
 #define WEBOTS_NXT_deadReakoning_walk_DEFINED
 #define WEBOTS_NXT_walk_isRunning_DEFINED
@@ -93,7 +94,8 @@ namespace guWhiteboard
 
         enum TouchSensorID {
                 LEFT_TOUCH_SENSOR = 0,
-                RIGHT_TOUCH_SENSOR = 1
+                RIGHT_TOUCH_SENSOR = 1,
+                NXT_NUM_SENSORS_IN_BUMBER = 2 //constant for the totals ensot in the  nxt's bumper
 	};
 
         enum NXT_Sensor_Ports {
@@ -620,6 +622,91 @@ namespace guWhiteboard
 
 	    }
 		}; // class WEBOTS_NXT_deadReakoning_walk
+
+
+        class WEBOTS_NXT_bumper {
+		private:
+			class WEBOTS_NXT_bridge _touchSensors[NXT_NUM_SENSORS_IN_BUMBER];
+
+		public :
+			 WEBOTS_NXT_bumper()
+	                 { 
+			   WEBOTS_NXT_bridge theLeft(0,TOUCH,LEFT_TOUCH_SENSOR,0,true);
+	                   _touchSensors[LEFT_TOUCH_SENSOR]= theLeft; 
+			   WEBOTS_NXT_bridge theRight(0,TOUCH,RIGHT_TOUCH_SENSOR,0,true);
+	                   _touchSensors[RIGHT_TOUCH_SENSOR]= theRight; 
+			 }
+
+	             /** single touch sensor constructor */
+	             WEBOTS_NXT_bumper(const class WEBOTS_NXT_bridge &obj, enum TouchSensorID sensorID  = LEFT_TOUCH_SENSOR)
+                    {
+	                 _touchSensors[sensorID]=obj;
+	            }
+
+            /** string constructor */
+            WEBOTS_NXT_bumper(const std::string &names) { from_string(names); }
+
+            /** copy constructor */
+            WEBOTS_NXT_bumper(const WEBOTS_NXT_bumper &other)
+	    {
+		    memcpy(this, &other, sizeof(other));
+	    }
+
+	    /** property getter */
+	    class WEBOTS_NXT_bridge *touchSensors() { return _touchSensors; }
+
+	    /** property setter */
+	    void set_touchSensors(const class WEBOTS_NXT_bridge *objects)
+	    {
+		    memcpy(_touchSensors, objects, sizeof(_touchSensors));
+	    }
+
+	    /** single sensor object setter */
+	    void set_a_sensor(const class WEBOTS_NXT_bridge &obj, enum TouchSensorID sensorID  = LEFT_TOUCH_SENSOR)
+	    {
+		_touchSensors[sensorID]=obj;
+	    }
+
+	    /** single sensor  object getter */
+	    WEBOTS_NXT_bridge &get_object( enum TouchSensorID sensorID  = LEFT_TOUCH_SENSOR)
+	    {
+		return _touchSensors[sensorID];
+	    }
+
+                /** single sensor object getter */
+                const WEBOTS_NXT_bridge &get_object( enum TouchSensorID sensorID  = LEFT_TOUCH_SENSOR) const
+                {
+		return _touchSensors[sensorID];
+                }
+                
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		for ( int i =LEFT_TOUCH_SENSOR; i< NXT_NUM_SENSORS_IN_BUMBER; i++ )
+		{ 
+		  TouchSensorID sensorID = TouchSensorID(i);
+		  ss <<  _touchSensors[sensorID].description();
+		} //for
+                return ss.str();
+	  }
+
+	    /*
+	     */
+            void from_string(const std::string &str)
+            {
+                std::istringstream iss(str);
+                std::string token;
+                for (int object = LEFT_TOUCH_SENSOR; object < NXT_NUM_SENSORS_IN_BUMBER; object++)
+                {
+                    //if (!getline(iss, token, '\t')) break;
+                    if (!getline(iss, token, SEPARATOR_COMMA)) break;
+                    _touchSensors[object].from_string( token );
+                }
+            }
+
+	}; // WEBOTS_NXT_bumper
+
 
         class WEBOTS_NXT_encoders {
 		private:

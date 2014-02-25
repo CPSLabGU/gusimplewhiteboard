@@ -517,6 +517,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class UDPWBNumber_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kWEBOTS_NXT_bumper_v:
+#ifdef WEBOTS_NXT_bumper_DEFINED
+		{
+			class WEBOTS_NXT_bumper_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WEBOTS_NXT_bumper_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
