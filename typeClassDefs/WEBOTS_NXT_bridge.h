@@ -123,16 +123,17 @@ namespace guWhiteboard
        enum DifferentialInstructions {
 	       // ACTUATROS
                 MOVE_MOTORS= 0,
-		PLAY_SOUND= 1,
-		LIGHTUP_LED = 2, //constant for the third motor on nxt's
+                ONE_MOTOR_SETTING= 1,
+		PLAY_SOUND= 2,
+		LIGHTUP_LED = 3, //constant for the third motor on nxt's
 	       // SENSORS
 	       // This can ce turned On or Off and with the Word SENSOR we get a value 
-                DISTANCE= 3,
-		INTENSITY_LIGHT= 4,
-		ROTATION_ENCODER = 5, //constant for the third motor on nxt's
+                DISTANCE= 4,
+		INTENSITY_LIGHT= 5,
+		ROTATION_ENCODER = 6, //constant for the third motor on nxt's
 	       // This can be turned On or Off for channels like blue,red,green,grey and with the Word SENSOR we get a value after signal processing
-                CAMERA=6,
-		TOUCH = 7 //touch sensor on an NXTon nxt's
+                CAMERA=7,
+		TOUCH = 8 //touch sensor on an NXTon nxt's
              };
 
        enum ColorLineInstructions {
@@ -184,6 +185,7 @@ namespace guWhiteboard
 		          case TOUCH : ss << "SENSOR"<< "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
 			               break;
                          case MOVE_MOTORS:
+                         case ONE_MOTOR_SETTING:
                          case PLAY_SOUND:
 			 case LIGHTUP_LED: //std::cerr << "LOG-error ** This shoudl not hold data" << std::endl;
 					   break;
@@ -196,6 +198,12 @@ namespace guWhiteboard
 			 * Apply power=_secondParameter to RIGHT MOTOR
 			 */
 		  { case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+			/*
+			 * Set the motor in  _firstParameter, to the power in the second parameter without
+			 * affecting the other motors
+			 */
+		  case ONE_MOTOR_SETTING : ss << "ONE_MOTOR_SETTING" << "," << _firstParameter  << "," << _secondParameter << ",";
 			               break;
 			/*
 			 * Play sound for as long as _firstParameter, use second parameter as NXT frequency
@@ -266,6 +274,8 @@ namespace guWhiteboard
 		    switch (token[0])
 		    { case 'M' :  // expect a MOVE_MOTORS
 		     case 'm' :
+		     case 'o' :
+		      case 'O' : // expect a ONE_MOTOR_SETTING
 		     case 'p' :
 		      case 'P' : // expect a PLAY_SOUND
 		     case 'l' :
@@ -356,6 +366,14 @@ namespace guWhiteboard
 		     case 'm' : set_theInstruction(MOVE_MOTORS);
                                    if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_firstParameter(int16_t(atoi(token.c_str()))); }
+                                   if (getline(iss, token, SEPARATOR_COMMA))
+                                     { set_secondParameter(int16_t(atoi(token.c_str()))); }
+			    break;
+		     case 'o' :  // expect a ONE_MOTOR_SETTING
+		     case 'O' : set_theInstruction(ONE_MOTOR_SETTING);
+                                   if (getline(iss, token, SEPARATOR_COMMA))
+                                     { int16_t motorID= 0!= atoi(token.c_str()) ? RIGHT_MOTOR_DIFFERENTIAL  : LEFT_MOTOR_DIFFERENTIAL ;
+                                       set_firstParameter(motorID); }
                                    if (getline(iss, token, SEPARATOR_COMMA))
                                      { set_secondParameter(int16_t(atoi(token.c_str()))); }
 			    break;
