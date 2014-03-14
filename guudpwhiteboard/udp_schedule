@@ -1,6 +1,0 @@
-messages_per_packet:	20 //basically the max packet size (64 bytes * 20 = 1280 bytes packet size)
-packet_interval:	10000 //time from start of broadcast to start of the next broadcast (usec)
-1: Say, Speech, gunaomotion_headStiffness, QSay
-2: Say, Speech, gunaomotion_headStiffness
-1: Say, Speech, gunaomotion_headStiffness
-3: Say, Speech, gunaomotion_headStiffness
