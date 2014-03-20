@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.mm
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011-2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,13 +64,14 @@ using namespace std;
 class WBSubscriber
 {
         SimpleWhiteboardTest *self;
+        whiteboard_watcher *watcher;
 public:
         WBSubscriber(Whiteboard *w, SimpleWhiteboardTest *t): self(t)
         {
-                whiteboard_watcher *watcher = new whiteboard_watcher(self.whiteboard->_wbd);
+                watcher = new whiteboard_watcher(self.whiteboard->_wbd);
 //                watcher->subscribe(WB_BIND(WBSubscriber::sub));
 //                watcher->subscribe(WB_TYPE_BIND(WBTypes::kNaoIsReadyToRun, WBSubscriber::sub));
-                usleep(1000000); //gives the monitor thread in the whiteboard a chance to get started.
+                usleep(50000); //gives the monitor thread in the whiteboard a chance to get started.
                 
 //                Whiteboard::WBResult r;
 //                w->subscribeToMessage("subtest", WB_BIND(WBSubscriber::sub), r);
@@ -100,8 +101,6 @@ public:
 {
         [super setUp];
 
-        
-        
         self.semaphore = dispatch_semaphore_create(0);
         self.whiteboard = new Whiteboard();
         
@@ -128,46 +127,49 @@ public:
 - (void) tearDown
 {
         if (self.whiteboard)  delete (Whiteboard *) self.whiteboard;
-    
+        if (self.semaphore) dispatch_release(self.semaphore);
+
         [super tearDown];
 }
 
-- (void) testPutGet
+
+- (void) testOldPutGet
 {
-//        self.whiteboard->addMessage("test", WBMsg("testval"));
-//        WBMsg msg = self.whiteboard->getMessage("test");
-//        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-//        STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
-//
-//        self.whiteboard->addMessage("test", WBMsg("testval2"));
-//        msg = self.whiteboard->getMessage("test");
-//        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-//        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+        self.whiteboard->addMessage("test", WBMsg("testval"));
+        WBMsg msg = self.whiteboard->getMessage("test");
+        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+        STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+
+        self.whiteboard->addMessage("test", WBMsg("testval2"));
+        msg = self.whiteboard->getMessage("test");
+        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
 }
 
 
-- (void) testCallback
+- (void) testStringPutGet
 {
-        WBSubscriber subscriber(self.whiteboard, self);
-        
-        
-//                generic_whiteboard_object<int> testInt(self.whiteboard->_wbd, WBTypes::kNaoIsReadyToRun);
-                int m;
-//        for (int i = 0; i<1000; i++) {
-//                usleep(10000);
-                m = 42;
-//                testInt = m;
-//        }
-        
-//	guWhiteboard::kRunVisionPipelineTest_t runVision;
-//	guWhiteboard::kRunVisionPipeline *runVision = new guWhiteboard::kRunVisionPipeline();
-	bool on = true;
-//	runVision.set(on);
-	
-//        self.whiteboard->addMessage("subtest", WBMsg(42));
-        dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC);
-        dispatch_semaphore_wait(self.semaphore, t);
-        STAssertEquals(self.callbackCount, 1, @"Invalid callback count");
+        string testString("Testing the Whiteboard");
+        Say_t wbSpeech(testString);     // put a message on the whiteboard
+        string result = wbSpeech();     // try and get it back
+
+        STAssertTrue(result == testString, @"Expected result to be '%s', but got '%s'", testString.c_str(), result.c_str());
 }
 
+
+- (void) testIntGetPutGetPut
+{
+        PlayerNumber_t playerNumber;
+        int oldNumber = playerNumber(); // get what is currently on the wb
+        int newNumber = 5;
+        playerNumber = newNumber;       // set new number
+        int result = playerNumber;      // get new number back out
+
+        STAssertEquals(result, newNumber, @"Expected player '%d', but got '%d'", newNumber, result);
+
+        playerNumber.set(oldNumber);
+        result = playerNumber.get();
+
+        STAssertEquals(result, oldNumber, @"Expected old player '%d', but got '%d'", oldNumber, result);
+}
 @end
