@@ -70,6 +70,7 @@
 
 const char SEPARATOR_COMMA = ',';
 const char SEPARATOR_IS_COMMA = ',';
+const char EQUALS = '=';
 
 namespace guWhiteboard
 {
@@ -81,6 +82,8 @@ namespace guWhiteboard
                 RIGHT_MOTOR_DIFFERENTIAL = 1,
                 NXT_MOTOR3 = 2 //constant for the third motor on nxt's
              };
+
+static const char* MotorStrings[] = {"LEFT_MOTOR", "RIGHT_MOTOR", "NXT_MOTOR3"};
 
         enum SonarSensorID {
                 LEFT_SONAR_SENSOR = 0,
@@ -133,7 +136,8 @@ namespace guWhiteboard
 		ROTATION_ENCODER = 6, //constant for the third motor on nxt's
 	       // This can be turned On or Off for channels like blue,red,green,grey and with the Word SENSOR we get a value after signal processing
                 CAMERA=7,
-		TOUCH = 8 //touch sensor on an NXTon nxt's
+		TOUCH = 8, //touch sensor on an NXTon nxt's
+                NUMBER_WEBOTS_NXT_bridge_MESSANGES
              };
 
        enum ColorLineInstructions {
@@ -142,6 +146,57 @@ namespace guWhiteboard
 		TURN_RIGHT_UNTIL_COLOR_FOUND= 1,
 		TURN_LEFT_UNTIL_COLOR_FOUND= 2
              };
+
+static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND", "LIGHTUP_LED",
+	                       "START_DISTANCE", "START_INTENSITY_LIGHT", "START_ROTATION_ENCODER", 
+			       "START_CAMERA", "START_TOUCH", "Undefined"};
+        /**
+         * Class for for demonstrating OO-messages in sequential arrangement of finite state machines
+	 * using a full vector of status and commands
+         */
+        class WEBOTS_NXT_vector_bridge
+	{
+		public: 
+
+		PROPERTY(int16_t, theRobotID)   // the robot this status is for
+		PROPERTY(int16_t, speedLeftMotor) // the current speed of the left motor
+		PROPERTY(int16_t, speedRightMotor) // the current speed of the right motor
+		PROPERTY(int16_t, soundFrequency) // the current frequency for a sound we are playing
+		PROPERTY(int16_t, soundDuration) // the current duration we are playing a sound for
+
+		WEBOTS_NXT_vector_bridge() { memset(this, 0, sizeof(*this)); }  // seeting everything empty in the constructor
+
+                /** string constructor */
+                WEBOTS_NXT_vector_bridge(const std::string &names) { from_string(names); }
+
+                 /** copy constructor */
+                WEBOTS_NXT_vector_bridge(const WEBOTS_NXT_vector_bridge &other): _theRobotID(other._theRobotID), _speedLeftMotor(other._speedLeftMotor), _speedRightMotor(other._speedRightMotor), _soundFrequency(other._soundFrequency), _soundDuration(other._soundDuration) {}
+
+            /** convert to a string */
+            std::string description() const
+            {
+                std::ostringstream ss;
+		ss<< _theRobotID << SEPARATOR_COMMA;
+
+		ss<< _speedLeftMotor << EQUALS <<  MotorStrings[LEFT_MOTOR_DIFFERENTIAL]  << SEPARATOR_COMMA;
+		ss<< _speedRightMotor << EQUALS <<  MotorStrings[RIGHT_MOTOR_DIFFERENTIAL]  << SEPARATOR_COMMA;
+		ss<< _soundFrequency << EQUALS <<  "SOUND_FREQUENCY"  << SEPARATOR_COMMA;
+		ss<< _soundDuration << EQUALS <<  "SOUND_DURATION"  << SEPARATOR_COMMA;
+
+                return ss.str();
+	    }
+
+            void from_string(const std::string &strWithID) // TODO
+            { _theRobotID=0;
+		    _speedLeftMotor=0;
+		    _speedRightMotor=0;
+		    _soundFrequency=0;
+		    _soundDuration=0;
+	    }
+
+	};
+
+
 
         /**
          * Class for for demonstrating OO-messages.
@@ -188,6 +243,7 @@ namespace guWhiteboard
                          case ONE_MOTOR_SETTING:
                          case PLAY_SOUND:
 			 case LIGHTUP_LED: //std::cerr << "LOG-error ** This shoudl not hold data" << std::endl;
+			 case NUMBER_WEBOTS_NXT_bridge_MESSANGES:
 					   break;
 		     }
 		}
@@ -245,6 +301,8 @@ namespace guWhiteboard
 			 * Stop posting wether the touch sensor in port _firstParameter is pressed, if 0== _secondParameter
 			 */
 		  case TOUCH : ss << "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
+			               break;
+		 case NUMBER_WEBOTS_NXT_bridge_MESSANGES:
 			               break;
 		   };
 		}
