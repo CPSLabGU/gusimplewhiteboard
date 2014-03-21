@@ -116,6 +116,7 @@ public:
         /**
 	 * WBMsg - copy constructor.
 	 * Initialises a WBMsg with copied data.
+         * @param orig  oritinal data to copy
 	 */
 	WBMsg(const WBMsg &orig) { memcpy(this, &orig, sizeof(orig)); }
 
@@ -186,6 +187,13 @@ public:
          * @param needsFree destroys the original vector immediately if true
 	 */
 	WBMsg(const std::vector<int> &val, bool needsFree = false): arrayVal(new std::vector<int>(val)), type(TypeArray), doFree(true) { if (needsFree) delete &val; }
+
+        /**
+         * Copy assignment operator
+         * @param orig  oritinal data to copy
+         * @return *this
+         */
+        WBMsg &operator=(const WBMsg &orig) { memcpy(this, &orig, sizeof(orig)); return *this; }
 
 	/**
 	 * getType.
