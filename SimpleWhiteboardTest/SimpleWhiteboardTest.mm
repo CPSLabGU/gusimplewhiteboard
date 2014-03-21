@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.mm
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011-2014 Rene Hexel.
+ *  Copyright (c) 2011, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,29 +67,25 @@ class WBSubscriber
         SimpleWhiteboardTest *self;
         whiteboard_watcher *watcher;
 public:
-        WBSubscriber(Whiteboard *w, SimpleWhiteboardTest *t): self(t)
+        WBSubscriber(SimpleWhiteboardTest *t): self(t)
         {
                 watcher = new whiteboard_watcher(self.whiteboard->_wbd);
-//                watcher->subscribe(WB_BIND(WBSubscriber::sub));
-//                watcher->subscribe(WB_TYPE_BIND(WBTypes::kNaoIsReadyToRun, WBSubscriber::sub));
+                watcher->subscribe(WB_TYPE_BIND(WBTypes::kPrint_v, WBSubscriber::sub));
                 usleep(50000); //gives the monitor thread in the whiteboard a chance to get started.
-                
-//                Whiteboard::WBResult r;
-//                w->subscribeToMessage("subtest", WB_BIND(WBSubscriber::sub), r);
-//                STAssertEquals(r, Whiteboard::METHOD_OK, @"Subscription 'subtest' failed");
         }
 
-        void sub(std::string str, WBMsg *m)
+        ~WBSubscriber()
         {
-                
+                watcher->unsubscribe(kPrint_v);
+                // delete watcher;
         }
-        
+
         void sub(WBTypes t, gu_simple_message *m)
         {
+                Print_t value;
+                string str = value.get_from(m);
+                self.stringValue = [[NSString alloc] initWithUTF8String: str.c_str()];
                 self.callbackCount++;
-//                fprintf(stdout, "Type: %s\tm: %d\n", (char *)WBTypes_stringValues[type_map[t]].c_str(), m->sint);
-//                STAssertTrue(type == "subtest", @"Message of type '%s', but expected 'subtest'", type.c_str());
-//                STAssertEquals(m->getIntValue(), 42, @"Message '%s' with incorrect value", type.c_str());
                 dispatch_semaphore_signal(self.semaphore);
         }
 };
@@ -102,6 +98,7 @@ public:
 {
         [super setUp];
 
+        self.callbackCount = 0;
         self.semaphore = dispatch_semaphore_create(0);
         self.whiteboard = new Whiteboard();
         
@@ -129,6 +126,9 @@ public:
 {
         if (self.whiteboard)  delete (Whiteboard *) self.whiteboard;
         if (self.semaphore) dispatch_release(self.semaphore);
+
+        self.whiteboard = nil;
+        self.semaphore = NULL;
 
         [super tearDown];
 }
@@ -194,5 +194,25 @@ public:
         fsmStatus.set(oldStatus);
         result = fsmStatus.get();
         STAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
+}
+
+
+- (void) testSubscribe
+{
+        WBSubscriber subscriber(self);
+
+        STAssertEquals(callbackCount, 0, @"Expected zero callback count to begin with, but got %d", callbackCount);
+
+        string testString("Testing Whiteboard subscription");
+        Print_t print(testString);
+        STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected callback within a second");
+        STAssertEquals(callbackCount, 1, @"Expected callback count of 1, but got %d", callbackCount);
+        STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
+
+        testString = NSDate.date.description.UTF8String;
+        print(testString);
+        STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected second callback within a second");
+        STAssertEquals(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);
+        STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 @end
