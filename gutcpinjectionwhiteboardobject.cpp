@@ -24,11 +24,8 @@ void transmit(void *info)
 {
         transmit_info *i = (transmit_info *)info;
         if (write(i->sfd, &i->p, BUF_SIZE) != BUF_SIZE)
-        {
                 fprintf(stderr, "partial/failed write\n");
-                delete i;
-        }
-        
+
         delete i;
 }
 
