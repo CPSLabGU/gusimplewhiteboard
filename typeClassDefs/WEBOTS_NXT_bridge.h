@@ -178,20 +178,53 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 std::ostringstream ss;
 		ss<< _theRobotID << SEPARATOR_COMMA;
 
-		ss<< _speedLeftMotor << EQUALS <<  MotorStrings[LEFT_MOTOR_DIFFERENTIAL]  << SEPARATOR_COMMA;
-		ss<< _speedRightMotor << EQUALS <<  MotorStrings[RIGHT_MOTOR_DIFFERENTIAL]  << SEPARATOR_COMMA;
-		ss<< _soundFrequency << EQUALS <<  "SOUND_FREQUENCY"  << SEPARATOR_COMMA;
-		ss<< _soundDuration << EQUALS <<  "SOUND_DURATION"  << SEPARATOR_COMMA;
+		// attmpt to amke it that the order does not matter
+		ss <<  MotorStrings[LEFT_MOTOR_DIFFERENTIAL] << EQUALS << _speedLeftMotor << SEPARATOR_COMMA;
+		ss <<  MotorStrings[RIGHT_MOTOR_DIFFERENTIAL] << EQUALS << _speedRightMotor << SEPARATOR_COMMA;
+		ss <<  "SOUND_FREQUENCY" << EQUALS << _soundFrequency << SEPARATOR_COMMA;
+		ss <<  "SOUND_DURATION" << EQUALS << _soundDuration << SEPARATOR_COMMA;
 
                 return ss.str();
 	    }
 
             void from_string(const std::string &strWithID) // TODO
-            { _theRobotID=0;
-		    _speedLeftMotor=0;
-		    _speedRightMotor=0;
-		    _soundFrequency=0;
-		    _soundDuration=0;
+            { 
+
+                std::istringstream iss(strWithID);
+                std::string token;
+                if (getline(iss, token, SEPARATOR_COMMA))
+		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
+			// Robots id are 0,1,2 .....
+		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(numberForID);
+		   std::string comaDel (1,SEPARATOR_COMMA);
+		   std::size_t found = strWithID.find(comaDel);
+		   if (std::string::npos!=found )
+		   { std::string str=strWithID.substr (found+comaDel.size());
+			// string without the Robot ID
+                    std::istringstream second_iss(str);
+			// lest find pairs where the token is  property=value,
+                    while (getline(second_iss, token, SEPARATOR_COMMA))
+		        { 
+				std::cerr << token << std::endl;   
+			
+				// find enxt comma in the string
+                                found = str.find(comaDel);	
+				if (std::string::npos!=found )  // a comma is found
+                                   { std::string newstr=str.substr (found+comaDel.size());
+				     second_iss.str(newstr);
+                                   }
+                         }
+                     }
+                   }
+		else
+		{  // can parse the input , set all default values
+                    set_theRobotID(0);
+		    set_speedLeftMotor(0);
+		    set_speedRightMotor(0);
+		    set_soundFrequency(0);
+		    set_soundDuration(0);
+		}
+            
 	    }
 
 	};
