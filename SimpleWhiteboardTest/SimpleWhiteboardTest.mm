@@ -56,6 +56,7 @@
  *
  */
 #import <SenTestingKit/SenTestingKit.h>
+#import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 
 using namespace guWhiteboard;
@@ -171,5 +172,27 @@ public:
         result = playerNumber.get();
 
         STAssertEquals(result, oldNumber, @"Expected old player '%d', but got '%d'", oldNumber, result);
+}
+
+- (void) testFSMPutGet
+{
+        FSM_Status_t fsmStatus;
+        FSMControlStatus oldStatus = fsmStatus();       // get old from wb
+        FSMControlStatus newStatus = oldStatus;         // copy
+        newStatus.fsms().reset(0);
+        newStatus.fsms().set(1);
+        newStatus.fsms().reset(2);
+        newStatus.fsms().set(3);
+        newStatus.fsms().set(4);
+        fsmStatus.set(newStatus);                       // write to wb
+        FSMControlStatus result = fsmStatus();          // get back out
+        STAssertFalse(result.fsms()[0], @"Expecting 0 to be unset");
+        STAssertTrue(result.fsms()[1], @"Expecting 1 to be set");
+        STAssertFalse(result.fsms()[2], @"Expecting 2 to be unset");
+        STAssertTrue(result.fsms()[3], @"Expecting 3 to be set");
+        STAssertTrue(result.fsms()[4], @"Expecting 4 to be set");
+        fsmStatus.set(oldStatus);
+        result = fsmStatus.get();
+        STAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
 }
 @end
