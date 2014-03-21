@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,4 +66,5 @@
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
 @property (nonatomic, assign) int callbackCount;
 @property (nonatomic, assign) dispatch_semaphore_t semaphore;
+@property (nonatomic, assign) NSString *stringValue;
 @end
