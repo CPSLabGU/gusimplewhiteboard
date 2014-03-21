@@ -528,6 +528,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WEBOTS_NXT_bumper_DEFINED
 
+		case kWEBOTS_NXT_vector_bridge_v:
+#ifdef WEBOTS_NXT_vector_bridge_DEFINED
+		{
+			class WEBOTS_NXT_vector_bridge_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WEBOTS_NXT_vector_bridge_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

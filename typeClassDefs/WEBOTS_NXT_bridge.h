@@ -63,6 +63,7 @@
 #define WEBOTS_NXT_walk_isRunning_DEFINED
 #define WEBOTS_NXT_colorLine_walk_DEFINED
 #define WEBOTS_NXT_gridMotions_DEFINED
+#define WEBOTS_NXT_vector_bridge_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -84,6 +85,13 @@ namespace guWhiteboard
              };
 
 static const char* MotorStrings[] = {"LEFT_MOTOR", "RIGHT_MOTOR", "NXT_MOTOR3"};
+
+        enum SoundDiscriminators {
+                SOUND_DURATION = 0,
+                SOUND_FREQUENCY = 1,
+             };
+
+static const char* SoundStrings[] = {"SOUND_DURATION", "SOUND_FREQUENCY" };
 
         enum SonarSensorID {
                 LEFT_SONAR_SENSOR = 0,
@@ -181,20 +189,21 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		// attmpt to amke it that the order does not matter
 		ss <<  MotorStrings[LEFT_MOTOR_DIFFERENTIAL] << EQUALS << _speedLeftMotor << SEPARATOR_COMMA;
 		ss <<  MotorStrings[RIGHT_MOTOR_DIFFERENTIAL] << EQUALS << _speedRightMotor << SEPARATOR_COMMA;
-		ss <<  "SOUND_FREQUENCY" << EQUALS << _soundFrequency << SEPARATOR_COMMA;
-		ss <<  "SOUND_DURATION" << EQUALS << _soundDuration << SEPARATOR_COMMA;
+		ss <<  SoundStrings[SOUND_FREQUENCY] << EQUALS << _soundFrequency << SEPARATOR_COMMA;
+		ss <<  SoundStrings[SOUND_DURATION] << EQUALS << _soundDuration << SEPARATOR_COMMA;
 
                 return ss.str();
 	    }
 
-            void from_string(const std::string &strWithID) // TODO
-            { 
+            void from_string(const std::string &strWithID) 
+            { // can parse the input , set all default values
+                    set_theRobotID(0); set_speedLeftMotor(0); set_speedRightMotor(0);
+		    set_soundFrequency(0); set_soundDuration(0);
 
                 std::istringstream iss(strWithID);
                 std::string token;
                 if (getline(iss, token, SEPARATOR_COMMA))
-		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ;
-			// Robots id are 0,1,2 .....
+		{ int16_t numberForID = int16_t ( atoi(token.c_str())) ; // Robots id are 0,1,2 .....
 		  if (numberForID <0) set_theRobotID(-numberForID); else set_theRobotID(numberForID);
 		   std::string comaDel (1,SEPARATOR_COMMA);
 		   std::size_t found = strWithID.find(comaDel);
@@ -205,26 +214,78 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 			// lest find pairs where the token is  property=value,
                     while (getline(second_iss, token, SEPARATOR_COMMA))
 		        { 
-				std::cerr << token << std::endl;   
+				std::size_t postionEQUALS= token.find(EQUALS);
+
+				if ( (std::string::npos!=token.find(MotorStrings[LEFT_MOTOR_DIFFERENTIAL]) )
+               				&& (std::string::npos!=postionEQUALS) )
+				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
+		                    set_speedLeftMotor( (int16_t)atoi (theValue.c_str()) );
+				}
+
+				if ( (std::string::npos!=token.find(MotorStrings[RIGHT_MOTOR_DIFFERENTIAL]) )
+               				&& (std::string::npos!=postionEQUALS) )
+				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
+		                    set_speedRightMotor((int16_t)atoi (theValue.c_str()) );
+				}
+
+				if ( (std::string::npos!=token.find(SoundStrings[SOUND_FREQUENCY]) )
+               				&& (std::string::npos!=postionEQUALS) )
+				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
+		                    set_soundFrequency((int16_t) atoi (theValue.c_str()) );
+				}
+
+				if ( (std::string::npos!=token.find(SoundStrings[SOUND_DURATION]) )
+               				&& (std::string::npos!=postionEQUALS) )
+				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
+		                    set_soundDuration((int16_t) atoi (theValue.c_str()) );
+				}
 			
-				// find enxt comma in the string
+				// find next comma in the string
                                 found = str.find(comaDel);	
 				if (std::string::npos!=found )  // a comma is found
                                    { std::string newstr=str.substr (found+comaDel.size());
 				     second_iss.str(newstr);
+				     //move the string along
+		                     str=str.substr (found+comaDel.size());
                                    }
                          }
                      }
                    }
-		else
-		{  // can parse the input , set all default values
-                    set_theRobotID(0);
-		    set_speedLeftMotor(0);
-		    set_speedRightMotor(0);
-		    set_soundFrequency(0);
-		    set_soundDuration(0);
-		}
             
+	    }
+
+            void set_actuator(DifferentialInstructions theActuator,int16_t firstParameter,int16_t secondParameter) 
+	    { 
+		SoundDiscriminators theInstructionModality =(SoundDiscriminators) firstParameter;
+
+               switch (theActuator)
+		{ case  MOVE_MOTORS :
+			break;
+		  case  ONE_MOTOR_SETTING:
+			break;
+		  case  PLAY_SOUND:
+			switch (theInstructionModality)
+			{ case SOUND_DURATION:  set_soundFrequency(secondParameter );
+			       break;
+                	  case SOUND_FREQUENCY : set_soundDuration(secondParameter );
+			       break;
+			}
+			break;
+		  case  LIGHTUP_LED:
+			break;
+		  case  DISTANCE:
+			break;
+		  case  INTENSITY_LIGHT:
+			break;
+		  case  ROTATION_ENCODER:
+			break;
+		  case  CAMERA:
+			break;
+		  case  TOUCH:
+			break;
+                  case NUMBER_WEBOTS_NXT_bridge_MESSANGES:
+			break;
+                };
 	    }
 
 	};
