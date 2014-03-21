@@ -193,7 +193,7 @@ public:
          * @param orig  oritinal data to copy
          * @return *this
          */
-        WBMsg &operator=(const WBMsg &orig) { memcpy(this, &orig, sizeof(orig)); return *this; }
+        //WBMsg &operator=(const WBMsg &orig) { memcpy(this, &orig, sizeof(orig)); return *this; }
 
 	/**
 	 * getType.
