@@ -556,6 +556,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WEBOTS_NXT_bumper_DEFINED
 
+		case kWEBOTS_NXT_vector_bridge_v:
+#ifdef WEBOTS_NXT_vector_bridge_DEFINED
+		{
+			class WEBOTS_NXT_vector_bridge_t WEBOTS_NXT_vector_bridge_msg;
+			WEBOTS_NXT_vector_bridge_msg.post(WEBOTS_NXT_vector_bridge(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WEBOTS_NXT_vector_bridge_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -567,7 +578,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(51);
+	// self.reserve(52);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -620,5 +631,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["TeleoperationConnection"] = kTeleoperationConnection_v;
 	self["UDPWBNumber"] = kUDPWBNumber_v;
 	self["WEBOTS_NXT_bumper"] = kWEBOTS_NXT_bumper_v;
+	self["WEBOTS_NXT_vector_bridge"] = kWEBOTS_NXT_vector_bridge_v;
 }
 

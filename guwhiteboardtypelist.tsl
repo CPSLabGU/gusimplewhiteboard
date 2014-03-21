@@ -49,3 +49,4 @@ class:TeleoperationControlStatus, nonatomic, TeleoperationControlStatus, "Teleop
 int, nonatomic, TeleoperationConnection, "TeleoperationConnection", "Integer indication which remote whiteboard teleoperation instructions are on"
 int, nonatomic, UDPWBNumber, "UDPWBNumber", "ID number being used to broadcast udp whiteboard"
 class:WEBOTS_NXT_bumper, nonatomic, WEBOTS_NXT_bumper,                           "WEBOTS_NXT_bumper", Class that contains data from 2 rouch sensors in an NXT bumper by the bridge
+class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge,                           "WEBOTS_NXT_vector_bridge", Class that will define actuators for the Diferential motor bridge
