@@ -265,9 +265,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 			break;
 		  case  PLAY_SOUND:
 			switch (theInstructionModality)
-			{ case SOUND_DURATION:  set_soundFrequency(secondParameter );
+			{ case SOUND_DURATION: set_soundDuration(secondParameter );
 			       break;
-                	  case SOUND_FREQUENCY : set_soundDuration(secondParameter );
+                	  case SOUND_FREQUENCY : set_soundFrequency(secondParameter );
 			       break;
 			}
 			break;
