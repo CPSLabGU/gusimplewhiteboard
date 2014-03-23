@@ -55,7 +55,6 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#import <SenTestingKit/SenTestingKit.h>
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 
@@ -127,7 +126,7 @@ public:
         if (self.whiteboard)  delete (Whiteboard *) self.whiteboard;
         if (self.semaphore) dispatch_release(self.semaphore);
 
-        self.whiteboard = nil;
+        self.whiteboard = NULL;
         self.semaphore = NULL;
 
         [super tearDown];
@@ -209,7 +208,7 @@ public:
         STAssertEquals(callbackCount, 1, @"Expected callback count of 1, but got %d", callbackCount);
         STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 
-        testString = NSDate.date.description.UTF8String;
+        testString = [[[NSDate date] description] UTF8String];
         print(testString);
         STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected second callback within a second");
         STAssertEquals(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);

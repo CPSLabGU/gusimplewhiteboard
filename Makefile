@@ -8,7 +8,7 @@ LIB=gusimplewhiteboard
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 USE_READLINE=yes			# command line history and completion
 
-ALL_TARGETS=host-local
+ALL_TARGETS=host-local test
 
 CC_SRCS=libgusimplewhiteboardmain.cc
 
@@ -36,5 +36,15 @@ install: host-local
 	install -m 0644 ${hdr} ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 .endfor
 .endif
+
+test:
+. if !defined(LOCAL) || ${LOCAL} != _LOCAL
+	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} test
+.else
+	$Eecho
+.endif
+
+post-clean:
+	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
 
 .include "../../mk/mipal.mk"		# comes last!
