@@ -3,9 +3,9 @@
 #
 # GU Unit Test Makefile
 #
+BIN=SimpleWhiteboardTest
 ALL_TARGETS=test
-OCUNIT_SUBDIR=SimpleWhiteboardTest
-BIN=${OCUNIT_SUBDIR}.bundle
+OCUNIT_SUBDIR=${BIN}
 
 OCUNIT_HDRS     = SimpleWhiteboardTest.h
 OCUNIT_MMFILES  = SimpleWhiteboardTest.mm
