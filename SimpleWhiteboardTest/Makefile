@@ -5,7 +5,7 @@
 #
 BIN=SimpleWhiteboardTest
 ALL_TARGETS=test
-OCUNIT_SUBDIR=${BIN}
+OCUNIT_SUBDIR=
 
 OCUNIT_HDRS     = SimpleWhiteboardTest.h
 OCUNIT_MMFILES  = SimpleWhiteboardTest.mm
@@ -21,8 +21,6 @@ GNUSTEP_SUBST += NEW_WHITEBOARD_SRCS
 GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CCS
 GNUSTEP_SUBST += NEW_WHITEBOARD_CS
 GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CS
-
-SRCDIR!=cd .. && pwd
 
 .include "../../../mk/libcxx.mk"	# required for C++11
 .include "../../../mk/util.mk"		# required for gu_util
