@@ -79,7 +79,7 @@ public:
                 // delete watcher;
         }
 
-        void sub(WBTypes t, gu_simple_message *m)
+        void sub(WBTypes, gu_simple_message *m)
         {
                 Print_t value;
                 string str = value.get_from(m);
@@ -90,8 +90,11 @@ public:
 };
 
 @implementation SimpleWhiteboardTest
-@synthesize whiteboard, callbackCount, semaphore;
+@synthesize whiteboard, callbackCount, semaphore, stringValue=_stringValue;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdirect-ivar-access"
 
 - (void) setUp
 {
@@ -214,4 +217,7 @@ public:
         STAssertEquals(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);
         STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
+
+#pragma clang diagnostic pop
+
 @end

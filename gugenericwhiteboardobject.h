@@ -29,6 +29,7 @@
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wdeprecated"
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
