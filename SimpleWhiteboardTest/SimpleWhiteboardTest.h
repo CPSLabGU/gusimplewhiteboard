@@ -55,18 +55,19 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#define _FROM_WHITEBOARD_CC_ // shut up warning
-#include "Whiteboard.h"
-#undef _FROM_WHITEBOARD_CC_
 #include "gusimplewhiteboard.h"
 #include "gugenericwhiteboardobject.h"
 #include "guwhiteboardwatcher.h"
-#import <SenTestingKit/SenTestingKit.h>
 
+#define _FROM_WHITEBOARD_CC_ // shut up warning
+#include "Whiteboard.h"
+#undef _FROM_WHITEBOARD_CC_
+
+#import <SenTestingKit/SenTestingKit.h>
 
 @interface SimpleWhiteboardTest: SenTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
 @property (nonatomic, assign) int callbackCount;
 @property (nonatomic, assign) dispatch_semaphore_t semaphore;
-@property (nonatomic, assign) NSString *stringValue;
+@property (nonatomic, retain) NSString *stringValue;
 @end

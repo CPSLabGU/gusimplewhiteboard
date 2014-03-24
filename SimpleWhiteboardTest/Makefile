@@ -7,6 +7,8 @@ BIN=SimpleWhiteboardTest
 ALL_TARGETS=test
 OCUNIT_SUBDIR=
 
+NO_OBJC_ARC= # defined
+
 OCUNIT_HDRS     = SimpleWhiteboardTest.h
 OCUNIT_MMFILES  = SimpleWhiteboardTest.mm
 
