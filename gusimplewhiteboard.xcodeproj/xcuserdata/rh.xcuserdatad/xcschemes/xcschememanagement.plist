@@ -7,22 +7,22 @@
 		<key>SimpleWhiteboardTest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>28</integer>
 		</dict>
 		<key>copy tests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>53</integer>
+			<integer>54</integer>
 		</dict>
 		<key>guobjcwhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>39</integer>
+			<integer>41</integer>
 		</dict>
 		<key>gusimplewhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>52</integer>
+			<integer>53</integer>
 		</dict>
 		<key>gusimplewhiteboard.xcscheme_^#shared#^_</key>
 		<dict>
@@ -32,17 +32,12 @@
 		<key>gusimplewhiteboardios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>41</integer>
-		</dict>
-		<key>gusimplewhiteboardposter_mk.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>54</integer>
+			<integer>43</integer>
 		</dict>
 		<key>guudpwhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>44</integer>
+			<integer>45</integer>
 		</dict>
 		<key>simplewhiteboard_mk.xcscheme_^#shared#^_</key>
 		<dict>
