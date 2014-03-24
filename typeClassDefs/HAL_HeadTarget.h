@@ -30,6 +30,7 @@ namespace guWhiteboard
                 BITPROPERTY(head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
                 
                 BITPROPERTY(head_cmd_mask)
+                unsigned pad: 30;
         public:
             
                 HAL_HeadTarget(float target_pitchAngle = 0, float target_yawAngle = 0, int target_movement_time = 1000000, bool head_stopped = true)

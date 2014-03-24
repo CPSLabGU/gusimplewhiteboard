@@ -59,6 +59,9 @@
 #define PARTICLE_TopPositions_DEFINED
 #define TopParticles_DEFINED
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
@@ -89,7 +92,7 @@ namespace guWhiteboard
         class ParticlePosition: public Point2D
         {
                 PROPERTY(int16_t, headingInDegrees)     ///< heading in degrees
-                PROPERTY(float, confidence)            ///< total confidence
+                PROPERTY(float, confidence)             ///< total confidence
         public:
                 /** designated constructor */
                 ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
@@ -98,7 +101,7 @@ namespace guWhiteboard
                 ParticlePosition(const ParticlePosition &other): Point2D(other), _headingInDegrees(other._headingInDegrees), _confidence(other._confidence) { }
 
                 /** copy assignment operator */
-//                ParticlePosition &operator=(const ParticlePosition &other) { _headingInDegrees=other._headingInDegrees; _confidence=other._confidence; return ParticlePosition::operator=(other); }
+                ParticlePosition &operator=(const ParticlePosition &other) { _headingInDegrees=other._headingInDegrees; _confidence=other._confidence; return *this; }
 
                 /** radians getter */
                 float heading() const { return float(DEG2RAD(headingInDegrees())); }
@@ -156,6 +159,9 @@ namespace guWhiteboard
                 /** copy constructor */
                 TopParticles(const TopParticles &other) { *this = other; }
 
+                /** copy assignment operator */
+                TopParticles &operator=(const TopParticles &other) { memcpy(_particles, other._particles, sizeof(_particles)); return *this; }
+
                 /** string constructor */
                 TopParticles(const std::string &names) { from_string(names); }
 
@@ -180,5 +186,7 @@ namespace guWhiteboard
                 }
         };
 }
+
+#pragma clang diagnostic pop
 
 #endif // PARTICLE_TopPositions_DEFINED

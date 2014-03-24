@@ -55,7 +55,6 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#import <SenTestingKit/SenTestingKit.h>
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 
@@ -70,7 +69,7 @@ public:
         WBSubscriber(SimpleWhiteboardTest *t): self(t)
         {
                 watcher = new whiteboard_watcher(self.whiteboard->_wbd);
-                watcher->subscribe(WB_TYPE_BIND(WBTypes::kPrint_v, WBSubscriber::sub));
+                watcher->subscribe(WB_TYPE_BIND(kPrint_v, WBSubscriber::sub));
                 usleep(50000); //gives the monitor thread in the whiteboard a chance to get started.
         }
 
@@ -80,7 +79,7 @@ public:
                 // delete watcher;
         }
 
-        void sub(WBTypes t, gu_simple_message *m)
+        void sub(WBTypes, gu_simple_message *m)
         {
                 Print_t value;
                 string str = value.get_from(m);
@@ -91,8 +90,11 @@ public:
 };
 
 @implementation SimpleWhiteboardTest
-@synthesize whiteboard, callbackCount, semaphore;
+@synthesize whiteboard, callbackCount, semaphore, stringValue=_stringValue;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdirect-ivar-access"
 
 - (void) setUp
 {
@@ -127,7 +129,7 @@ public:
         if (self.whiteboard)  delete (Whiteboard *) self.whiteboard;
         if (self.semaphore) dispatch_release(self.semaphore);
 
-        self.whiteboard = nil;
+        self.whiteboard = NULL;
         self.semaphore = NULL;
 
         [super tearDown];
@@ -209,10 +211,13 @@ public:
         STAssertEquals(callbackCount, 1, @"Expected callback count of 1, but got %d", callbackCount);
         STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 
-        testString = NSDate.date.description.UTF8String;
+        testString = [[[NSDate date] description] UTF8String];
         print(testString);
         STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected second callback within a second");
         STAssertEquals(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);
         STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
+
+#pragma clang diagnostic pop
+
 @end

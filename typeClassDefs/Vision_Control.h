@@ -18,6 +18,9 @@
 #include "../../guvision/guvision_parameters.h"
 
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
 enum VisionMessages {
 		Resolution,
 		PipelineRunning,
@@ -248,5 +251,6 @@ public:
 };
 }
 
+#pragma clang diagnostic pop
 
 #endif /* VisionController_DEFINED */

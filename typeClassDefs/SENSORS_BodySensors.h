@@ -26,10 +26,13 @@ namespace guWhiteboard
                 PROPERTY(float, InertialSensor_AngleX)
                 PROPERTY(float, InertialSensor_AngleY)
                 
-                PROPERTY(bool, ChestBoard_Button)       //could use a 1 bit var here
                 PROPERTY(float, Battery_Charge)         //check if this is a float or not
                 PROPERTY(float, Battery_Current)        //check if this is a float or not
                 PROPERTY(float, US)                     //Not sure about this type, might only be 1 byte
+
+                PROPERTY(bool, ChestBoard_Button)       //could use a 1 bit var here
+                bool pad1;
+                int16_t pad2;
         public:
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

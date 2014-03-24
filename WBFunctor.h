@@ -21,6 +21,8 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
 
+#include <string>
+
 #include "WBMsg.h"
 #include "guwhiteboardtypelist_generated.h" //for type enum
 #include "gusimplewhiteboard.h" //for gu_simple_message

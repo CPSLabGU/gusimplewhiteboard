@@ -109,8 +109,10 @@ public:
        		dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
 
       		if (_wbd) gsw_free_whiteboard(_wbd);
+#if !__has_feature(objc_arc)
         	dispatch_release(callback_queue);
        	 	dispatch_release(callback_group);
+#endif
 	}
         
         void subscribe(WBFunctorBase *func)

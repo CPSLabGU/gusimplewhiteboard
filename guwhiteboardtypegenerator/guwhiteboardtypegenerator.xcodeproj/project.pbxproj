@@ -1,0 +1,136 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		F1B300CE16FD80EF000FC2AC /* create_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = create_map.h; sourceTree = "<group>"; };
+		F1B300CF16FD80EF000FC2AC /* guwhiteboardtypegenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardtypegenerator.cpp; sourceTree = "<group>"; };
+		F1B300D016FD80EF000FC2AC /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		F1B300C816FD80EF000FC2AC = {
+			isa = PBXGroup;
+			children = (
+				F1B300CE16FD80EF000FC2AC /* create_map.h */,
+				F1B300CF16FD80EF000FC2AC /* guwhiteboardtypegenerator.cpp */,
+				F1B300D016FD80EF000FC2AC /* Makefile */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/guwhiteboardtypegenerator;
+			dependencies = (
+			);
+			name = guwhiteboardtypegenerator;
+			passBuildSettingsInEnvironment = 1;
+			productName = guwhiteboardtypegenerator;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		F1B300C916FD80EF000FC2AC /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F1B300CC16FD80EF000FC2AC /* Build configuration list for PBXProject "guwhiteboardtypegenerator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F1B300C816FD80EF000FC2AC;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		F1B300CA16FD80EF000FC2AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		F1B300CB16FD80EF000FC2AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		F1B300D216FD80EF000FC2AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = guwhiteboardtypegenerator;
+			};
+			name = Debug;
+		};
+		F1B300D316FD80EF000FC2AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = guwhiteboardtypegenerator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1B300CC16FD80EF000FC2AC /* Build configuration list for PBXProject "guwhiteboardtypegenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B300CA16FD80EF000FC2AC /* Debug */,
+				F1B300CB16FD80EF000FC2AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B300D216FD80EF000FC2AC /* Debug */,
+				F1B300D316FD80EF000FC2AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1B300C916FD80EF000FC2AC /* Project object */;
+}

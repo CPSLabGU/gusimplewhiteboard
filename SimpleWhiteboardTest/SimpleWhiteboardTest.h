@@ -55,12 +55,15 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#import <SenTestingKit/SenTestingKit.h>
-#include "Whiteboard.h"
 #include "gusimplewhiteboard.h"
 #include "gugenericwhiteboardobject.h"
 #include "guwhiteboardwatcher.h"
 
+#define _FROM_WHITEBOARD_CC_ // shut up warning
+#include "Whiteboard.h"
+#undef _FROM_WHITEBOARD_CC_
+
+#import <SenTestingKit/SenTestingKit.h>
 
 @interface SimpleWhiteboardTest: SenTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
