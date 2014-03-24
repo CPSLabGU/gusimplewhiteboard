@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>41</integer>
 		</dict>
+		<key>gusimplewhiteboardposter_mk.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>54</integer>
+		</dict>
 		<key>guudpwhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -93,6 +98,11 @@
 			<true/>
 		</dict>
 		<key>F1F42E4F18DFF0360042DDAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1F42EDD18E014FD0042DDAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
