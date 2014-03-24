@@ -14,6 +14,8 @@
 #include <string>
 #include <algorithm>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 
 #ifndef VisionObjects_DEFINED
 #define VisionObjects_DEFINED
@@ -75,7 +77,8 @@ public:
 	VisionObjects() : frameNumber(0){
 		objectMask.reset();
 	}
-	
+
+        VisionObjects(const VisionObjects &other) { *this = other; }
 	VisionObjects &operator=(const VisionObjects& a) {
 		objectMask = a.objectMask;
 		for(int i = 0; i<NUM_LINES; ++i) {

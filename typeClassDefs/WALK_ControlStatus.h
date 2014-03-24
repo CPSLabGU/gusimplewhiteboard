@@ -116,6 +116,8 @@ namespace guWhiteboard
                 PROPERTY(WALK_ControlStatus_Mode, controlStatus)
                 PROPERTY(Odometry, odometry)
                 PROPERTY(bool, odometry_mask)
+                PROPERTY(bool, pad1)
+                PROPERTY(int16_t, pad2)
         public:
                 /** designated constructor */
                 WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power > 49 ? 49 : power), _controlStatus(c), _odometry_mask(false) {}
@@ -123,6 +125,9 @@ namespace guWhiteboard
                 /** copy constructor */
                 WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus), _odometry(other._odometry), _odometry_mask(other._odometry_mask) {}
 
+                /** copy assignment operator */
+                WALK_ControlStatus &operator=(const guWhiteboard::WALK_ControlStatus &other) { _forward = other._forward; _left = other._left; _turn = other._turn; _power = other._power; _controlStatus = other._controlStatus; _odometry = other._odometry; _odometry_mask = other._odometry_mask; return *this; }
+            
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
                 WALK_ControlStatus(const std::string &command) { from_string(command); }

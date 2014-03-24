@@ -61,6 +61,9 @@
 #define FilteredSonarObject_DEFINED
 #define FilteredSonarObjects_DEFINED
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
@@ -95,7 +98,6 @@ namespace guWhiteboard
         class FilteredSonarObject
         {
             PROPERTY(bool, isVisible) //  is this a credible sighting
-            bool _padding;
             PROPERTY(int16_t, distance) //  distance to landmark in cm
             PROPERTY(int32_t, frameCounter) //  frame counter in cm
 
@@ -119,6 +121,16 @@ namespace guWhiteboard
                       _distance(other._distance),
                       _frameCounter(other._frameCounter)
                        {}
+
+            /** copy assignment operator **/
+            FilteredSonarObject &operator=(const FilteredSonarObject &other)
+            {
+                _isVisible = other._isVisible;
+                _distance = other._distance;
+                _frameCounter= other._frameCounter;
+
+                return *this;
+            }
 
             /** convert to a string */
             std::string description() const
@@ -156,7 +168,6 @@ namespace guWhiteboard
             PROPERTY(int16_t, xBottom) //  centre x-coordinate in image
             PROPERTY(int16_t, yBottom) //  centre y-coordinate in image
             PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
-            int16_t _padding2;
         public:
             /** designated constructor */
             FilteredVisionObject( bool isVisibleTop = false, bool isVisibleBottom = false,
@@ -186,6 +197,20 @@ namespace guWhiteboard
                       _xBottom(other._xBottom), _yBottom(other._yBottom),
 		      _yaw(other._yaw) {}
 
+            /** copy assignment operator */
+            FilteredVisionObject &operator=(const FilteredVisionObject &other)
+            {
+                _isVisibleTop = other._isVisibleTop;
+                _isVisibleBottom = other._isVisibleBottom;
+                _distance = other._distance;
+                _frameCounter = other._frameCounter;
+                _xTop = other._xTop; _yTop = other._yTop;
+                _xBottom = other._xBottom; _yBottom = other._yBottom;
+                _yaw = other._yaw;
+
+                return *this;
+            }
+            
 	    bool isVisible() const { return isVisibleTop() || isVisibleBottom(); }
 
             /** return the angle of the object as seen from the robot (in radians) */
@@ -351,6 +376,12 @@ namespace guWhiteboard
 		    memcpy(this, &other, sizeof(other));
 	    }
 
+            FilteredOneDimObjects &operator=(const FilteredOneDimObjects &other)
+            {
+                memcpy(this, &other, sizeof(other));
+                return *this;
+            }
+
 	    /** property getter */
 	    class FilteredVisionObject *objects() { return _objects; }
 
@@ -450,6 +481,14 @@ namespace guWhiteboard
 		    memcpy(this, &other, sizeof(other));
 	    }
 
+            /** copy assignment operator **/
+            FilteredSonarObjects &operator=(const FilteredSonarObjects &other)
+            {
+                memcpy(this, &other, sizeof(other));
+
+                return *this;
+            }
+
 	    /** property getter */
 	    class FilteredSonarObject *objects() { return _objects; }
 
@@ -504,5 +543,6 @@ namespace guWhiteboard
 	};
 }
 
+#pragma clang diagnostic pop
 
 #endif // FilteredSonarObjects_DEFINED

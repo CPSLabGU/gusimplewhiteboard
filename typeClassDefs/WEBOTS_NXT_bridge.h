@@ -65,6 +65,9 @@
 #define WEBOTS_NXT_gridMotions_DEFINED
 #define WEBOTS_NXT_vector_bridge_DEFINED
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
@@ -88,7 +91,7 @@ static const char* MotorStrings[] = {"LEFT_MOTOR", "RIGHT_MOTOR", "NXT_MOTOR3"};
 
         enum SoundDiscriminators {
                 SOUND_DURATION = 0,
-                SOUND_FREQUENCY = 1,
+                SOUND_FREQUENCY = 1
              };
 
 static const char* SoundStrings[] = {"SOUND_DURATION", "SOUND_FREQUENCY" };
@@ -180,6 +183,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                  /** copy constructor */
                 WEBOTS_NXT_vector_bridge(const WEBOTS_NXT_vector_bridge &other): _theRobotID(other._theRobotID), _speedLeftMotor(other._speedLeftMotor), _speedRightMotor(other._speedRightMotor), _soundFrequency(other._soundFrequency), _soundDuration(other._soundDuration) {}
 
+                /** copy assignment operator */
+                WEBOTS_NXT_vector_bridge &operator=(const WEBOTS_NXT_vector_bridge &other) { _theRobotID = other._theRobotID; _speedLeftMotor = other._speedLeftMotor; _speedRightMotor = other._speedRightMotor; _soundFrequency = other._soundFrequency; _soundDuration = other._soundDuration; return *this; }
+            
             /** convert to a string */
             std::string description() const
             {
@@ -297,7 +303,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          */
         class WEBOTS_NXT_bridge
         {
-            PROPERTY(int16_t, theRobotID) /// Which robot are we talking to 
+            PROPERTY(int16_t, theRobotID)   ///< Which robot are we talking to
             PROPERTY(DifferentialInstructions, theInstruction) ///  The command (when it is not data)
             PROPERTY(int16_t, firstParameter) ///  the first parameter
             PROPERTY(int16_t, secondParameter) ///  the first parameter
@@ -312,6 +318,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             /** copy constructor */
             WEBOTS_NXT_bridge(const WEBOTS_NXT_bridge &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _firstParameter(other._firstParameter), _secondParameter(other._secondParameter), _isSensorData(other._isSensorData) {}
+
+            /** copy assignment operator **/
+            WEBOTS_NXT_bridge &operator=(const WEBOTS_NXT_bridge &other) { _theRobotID = other._theRobotID; _theInstruction = other._theInstruction; _firstParameter = other._firstParameter; _secondParameter = other._secondParameter;_isSensorData = other._isSensorData; return *this; }
 
             /** convert to a string */
             std::string description() const
@@ -628,10 +637,12 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             /** string constructor */
             WEBOTS_NXT_colorLine_walk(const std::string &names) { from_string(names); }
 
-
             /** copy constructor */
             WEBOTS_NXT_colorLine_walk(const WEBOTS_NXT_colorLine_walk &other): _robotID(other._robotID), _power(other._power), _theInstruction(other._theInstruction), _color(other._color), _colorIntensityThreshold(other._colorIntensityThreshold), _visibilityCountThreshold(other._visibilityCountThreshold),  _limit(other._limit)  {}
 
+            /** copy assignment oeprator */
+            WEBOTS_NXT_colorLine_walk &operator=(const WEBOTS_NXT_colorLine_walk &other) { _robotID = other._robotID; _power = other._power; _theInstruction = other._theInstruction; _color = other._color; _colorIntensityThreshold = other._colorIntensityThreshold; _visibilityCountThreshold = other._visibilityCountThreshold;  _limit = other._limit; return *this; }
+            
             /** convert to a string */
             std::string description() const
             {
@@ -714,6 +725,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             /** copy constructor */
             WEBOTS_NXT_walk_isRunning (const WEBOTS_NXT_walk_isRunning &other): _robotID(other._robotID), _runningFlag(other._runningFlag), _successLastMove(other._successLastMove)  {}
 
+            /** copy assignment operator */
+            WEBOTS_NXT_walk_isRunning operator=(const WEBOTS_NXT_walk_isRunning &other) { _robotID = other._robotID; _runningFlag = other._runningFlag; _successLastMove = other._successLastMove; return *this; }
+
             /** convert to a string */
             std::string description() const
             {
@@ -763,6 +777,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             /** copy constructor */
             WEBOTS_NXT_deadReakoning_walk(const WEBOTS_NXT_deadReakoning_walk &other): _robotID(other._robotID), _power(other._power), _spin(other._spin), _forward(other._forward)  {}
 
+            /** copy assignment operator */
+            WEBOTS_NXT_deadReakoning_walk operator=(const WEBOTS_NXT_deadReakoning_walk &other) { _robotID = other._robotID; _power = other._power; _spin = other._spin; _forward = other._forward; return *this; }
+            
             /** convert to a string */
             std::string description() const
             {
@@ -817,9 +834,13 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             WEBOTS_NXT_bumper(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            WEBOTS_NXT_bumper(const WEBOTS_NXT_bumper &other)
+            WEBOTS_NXT_bumper(const WEBOTS_NXT_bumper &other) { *this = other; }
+
+            /** copy assignment operator */
+            WEBOTS_NXT_bumper &operator=(const WEBOTS_NXT_bumper &other)
 	    {
 		    memcpy(this, &other, sizeof(other));
+                    return *this;
 	    }
 
 	    /** property getter */
@@ -906,9 +927,17 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             /** copy constructor */
             WEBOTS_NXT_encoders(const WEBOTS_NXT_encoders &other)
 	    {
-		    memcpy(this, &other, sizeof(other));
+		    *this = other;
 	    }
 
+            /** copy assignment operator */
+            WEBOTS_NXT_encoders &operator=(const WEBOTS_NXT_encoders &other)
+	    {
+                memcpy(this, &other, sizeof(other));
+
+                return *this;
+	    }
+            
 	    /** property getter */
 	    class WEBOTS_NXT_bridge *encoders() { return _encoders; }
 
@@ -1002,9 +1031,13 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
             WEBOTS_NXT_camera(const std::string &names) { from_string(names); }
 
             /** copy constructor */
-            WEBOTS_NXT_camera(const WEBOTS_NXT_camera &other)
+            WEBOTS_NXT_camera(const WEBOTS_NXT_camera &other) { *this = other; }
+
+            /** copy assignment operator */
+            WEBOTS_NXT_camera &operator=(const WEBOTS_NXT_camera &other)
 	    {
 		    memcpy(this, &other, sizeof(other));
+                    return *this;
 	    }
 
 	    /** property getter */
@@ -1099,7 +1132,10 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             /** copy constructor */
             WEBOTS_NXT_gridMotions(const WEBOTS_NXT_gridMotions &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _howMany(other._howMany)  {}
-
+            
+            /** copy assignment operator */
+            WEBOTS_NXT_gridMotions &operator=(const WEBOTS_NXT_gridMotions &other) { _theRobotID = other._theRobotID; _theInstruction = other._theInstruction; _howMany = other._howMany; return *this; }
+            
             /** convert to a string */
 
             std::string description() const
@@ -1175,5 +1211,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
 }// namespace
 
+
+#pragma clang diagnostic pop
 
 #endif // WEBOTS_NXT_bridge_DEFINED
