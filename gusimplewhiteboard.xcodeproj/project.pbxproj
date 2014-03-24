@@ -290,6 +290,8 @@
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
 		F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guwhiteboardtypelist_c_typestrings_generated.c; sourceTree = "<group>"; };
+		F14B792118E0E10400BD4128 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		F14B792218E0E10400BD4128 /* libc++abi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++abi.dylib"; path = "usr/lib/libc++abi.dylib"; sourceTree = SDKROOT; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
@@ -744,6 +746,8 @@
 		F1D925F114A13BAA00BDAEED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F14B792118E0E10400BD4128 /* libc++.dylib */,
+				F14B792218E0E10400BD4128 /* libc++abi.dylib */,
 				C31EE6B3155BA83B00D55934 /* gu_util.cpp */,
 				F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */,
 				F1D925F414A13BAA00BDAEED /* Cocoa.framework */,
@@ -1249,6 +1253,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1286,6 +1291,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
