@@ -383,8 +383,7 @@ namespace guWhiteboard
                         }
                         const char *ss = s;
                         ss++;
-                        const char *p = ss;
-                        p = strchr(ss, ',');
+                        const char *p = strchr(ss, ',');
                         set_stance_action_mask(p != NULL);
                         std::string str2(ss);
                         str2 = str2.substr(0, unsigned(p-ss+1));

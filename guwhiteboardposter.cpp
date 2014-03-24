@@ -32,6 +32,7 @@ extern "C"
 	}
 } // extern C
 
+#if 0
 static vector<int> strtointvec(string str)
 {
 	const char *sep = "|,";
@@ -41,6 +42,7 @@ static vector<int> strtointvec(string str)
 		array.push_back(atoi(element));
 	return array;
 }
+#endif
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wglobal-constructors"
