@@ -8,7 +8,7 @@ LIB=gusimplewhiteboard
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 USE_READLINE=yes			# command line history and completion
 
-ALL_TARGETS=host-local test
+ALL_TARGETS=host-local robot-local test
 
 CC_SRCS=libgusimplewhiteboardmain.cc
 
