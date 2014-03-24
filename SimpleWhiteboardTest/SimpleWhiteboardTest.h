@@ -69,5 +69,5 @@
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
 @property (nonatomic, assign) int callbackCount;
 @property (nonatomic, assign) dispatch_semaphore_t semaphore;
-@property (nonatomic, retain) NSString *stringValue;
+@property (nonatomic, assign) NSString *stringValue;
 @end
