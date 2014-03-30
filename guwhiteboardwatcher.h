@@ -15,8 +15,6 @@
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
-#include "guwhiteboardtypelist_generated.h" //Not required here but it saves everyone else including it
-#include "guwhiteboardtypelist_tcp_generated.h" //Not required here but it saves everyone else including it
 #include "gusimplewhiteboard.h"
 #include "WBFunctor.h"
 #include <iostream> //cerr
