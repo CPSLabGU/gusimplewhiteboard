@@ -13,6 +13,8 @@
 #include <guwhiteboardgetter.h>
 #include "perftest.h"
 
+extern long get_test_value;
+
 class get_test: public perftest
 {
     PROPERTY(guWhiteboard::SpeechOutput_t, bool_value)

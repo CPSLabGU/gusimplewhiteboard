@@ -8,9 +8,14 @@
 
 #include "get_test.h"
 
+long get_test_value;
 
 void get_test::run_test(long iterations)
 {
+    long val = 0L;
+
     for (long i = 0; i < iterations; i++)
-        bool_value();
+        val += bool_value();
+
+    get_test_value = val;
 }
