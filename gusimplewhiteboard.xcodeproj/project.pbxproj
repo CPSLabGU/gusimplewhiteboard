@@ -839,7 +839,7 @@
 /* Begin PBXLegacyTarget section */
 		F19FA35718DFDC0A0095B87D /* simplewhiteboard_mk */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "clean host-local analyze";
+			buildArgumentsString = "clean host-local analyze catkin";
 			buildConfigurationList = F19FA35A18DFDC0B0095B87D /* Build configuration list for PBXLegacyTarget "simplewhiteboard_mk" */;
 			buildPhases = (
 			);
