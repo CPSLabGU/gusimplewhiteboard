@@ -33,23 +33,10 @@
 		C31EE6B1155BA7DF00D55934 /* guudpUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C4150491F500524671 /* guudpUtil.cpp */; };
 		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */; };
-		C34904FC1715246900242DD7 /* NAO_State.h in Headers */ = {isa = PBXBuildFile; fileRef = C34904FA1715246900242DD7 /* NAO_State.h */; };
-		C34904FD1715246900242DD7 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C34904FB1715246900242DD7 /* Point2D.h */; };
-		C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */; };
-		C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */; };
-		C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */; };
-		C372CAEB1700142D007EB2E0 /* SENSORS_SonarSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */; };
-		C372CAED170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */; };
-		C372CAEF17001939007EB2E0 /* SENSORS_LegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */; };
-		C372CAF21700198C007EB2E0 /* SENSORS_LegJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */; };
-		C372CAF31700198C007EB2E0 /* SENSORS_TorsoJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */; };
 		C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
-		C3AC9C97171E80C000DF3997 /* MOTION_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3AC9C96171E80C000DF3997 /* MOTION_Interface.h */; };
-		C3B8CE39170BE5C400846B9C /* WALK_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
-		C3D04F8916F961F30061D0BB /* HAL_HeadTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */; };
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
@@ -228,26 +215,13 @@
 		C33D92C3150491F500524671 /* guudpConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpConfig.h; sourceTree = "<group>"; };
 		C33D92C4150491F500524671 /* guudpUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpUtil.cpp; sourceTree = "<group>"; };
 		C33D92C5150491F500524671 /* guudpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpUtil.h; sourceTree = "<group>"; };
-		C34904FA1715246900242DD7 /* NAO_State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAO_State.h; sourceTree = "<group>"; };
-		C34904FB1715246900242DD7 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
-		C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
-		C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
-		C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
-		C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_SonarSensors.h; sourceTree = "<group>"; };
-		C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointSensors.h; sourceTree = "<group>"; };
-		C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointSensors.h; sourceTree = "<group>"; };
-		C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointTemps.h; sourceTree = "<group>"; };
-		C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
 		C397BA661519A89F00FEFB05 /* iOSWhiteboard.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
 		C397BA671519A89F00FEFB05 /* iOSWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
-		C3AC9C96171E80C000DF3997 /* MOTION_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
-		C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK_ControlStatus.h; sourceTree = "<group>"; };
 		C3BE8AE816CB27CF004BFE81 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = guudpSerialize.c; sourceTree = "<group>"; };
 		C3BE8AE916CB27CF004BFE81 /* guudpSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
 		C3BE8AEA16CB27CF004BFE81 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
 		C3BE8AEB16CB27CF004BFE81 /* guudpWhiteboardLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guudpWhiteboardLayer.h; sourceTree = "<group>"; };
 		C3BEDEE41693EADD00119F2E /* guudpSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
-		C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAL_HeadTarget.h; sourceTree = "<group>"; };
 		C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = guwhiteboardtypelist.tsl; sourceTree = "<group>"; };
 		C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBFunctor_types_generated.h; sourceTree = "<group>"; };
 		C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gugenericwhiteboardobject.cpp; sourceTree = "<group>"; };
@@ -322,9 +296,6 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
-		F11BC1151761278E0069F6FB /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
-		F11BC1161761278E0069F6FB /* GCGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
-		F11BC1171761278E0069F6FB /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
@@ -339,7 +310,6 @@
 		F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guudpWhiteboardLayer.cpp; path = guudpbridge/guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
 		F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleWhiteboardTest copy-Info.plist"; path = "/Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/SimpleWhiteboardTest copy-Info.plist"; sourceTree = "<absolute>"; };
-		F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
 		F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libguobjcwhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C94D681555CA8E00B717DF /* guobjcwhiteboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "guobjcwhiteboard-Prefix.pch"; sourceTree = "<group>"; };
 		F1C94D691555CA8E00B717DF /* ObjCWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboard.h; sourceTree = "<group>"; };
@@ -357,8 +327,6 @@
 		F1C94DAA1555D3C300B717DF /* gusimplewhiteboardios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gusimplewhiteboardios.m; sourceTree = "<group>"; };
 		F1C94DE61555D6C200B717DF /* ObjCWhiteboardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboardDelegate.h; sourceTree = "<group>"; };
 		F1C94DE71555D78400B717DF /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
-		F1D601C7172CED45004B56C5 /* Vision_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Control.h; sourceTree = "<group>"; };
-		F1D601C8172CED45004B56C5 /* Vision_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Objects.h; sourceTree = "<group>"; };
 		F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F1D925F414A13BAA00BDAEED /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -371,6 +339,31 @@
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
 		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
+		F1E5542818EBD16D00639B1E /* FSM_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
+		F1E5542918EBD16D00639B1E /* GCGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
+		F1E5542A18EBD16D00639B1E /* HAL_HeadTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAL_HeadTarget.h; sourceTree = "<group>"; };
+		F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
+		F1E5542C18EBD16D00639B1E /* NAO_State.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAO_State.h; sourceTree = "<group>"; };
+		F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
+		F1E5542E18EBD16D00639B1E /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
+		F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
+		F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
+		F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
+		F1E5543218EBD16D00639B1E /* SENSORS_LegJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointSensors.h; sourceTree = "<group>"; };
+		F1E5543318EBD16D00639B1E /* SENSORS_LegJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointTemps.h; sourceTree = "<group>"; };
+		F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_SonarSensors.h; sourceTree = "<group>"; };
+		F1E5543518EBD16D00639B1E /* SENSORS_TorsoJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointSensors.h; sourceTree = "<group>"; };
+		F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
+		F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeleoperationControlStatus.h; sourceTree = "<group>"; };
+		F1E5543818EBD16D00639B1E /* Vision_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Control.h; sourceTree = "<group>"; };
+		F1E5543918EBD16D00639B1E /* Vision_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Objects.h; sourceTree = "<group>"; };
+		F1E5543A18EBD16D00639B1E /* VisionBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionBall.h; sourceTree = "<group>"; };
+		F1E5543B18EBD16D00639B1E /* VisionGoals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionGoals.h; sourceTree = "<group>"; };
+		F1E5543C18EBD16D00639B1E /* VisionLines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionLines.h; sourceTree = "<group>"; };
+		F1E5543D18EBD16D00639B1E /* WALK_ControlStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WALK_ControlStatus.h; sourceTree = "<group>"; };
+		F1E5543E18EBD16D00639B1E /* WalkData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalkData.h; sourceTree = "<group>"; };
+		F1E5543F18EBD16D00639B1E /* WEBOTS_NXT_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WEBOTS_NXT_bridge.h; sourceTree = "<group>"; };
 		F1ED584118E7C93F00864A87 /* wbperf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wbperf; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1ED584318E7C93F00864A87 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
 		F1ED584518E7C93F00864A87 /* wbperf.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = wbperf.1; sourceTree = "<group>"; };
@@ -584,32 +577,6 @@
 			path = ../guwhiteboardtypegenerator;
 			sourceTree = "<group>";
 		};
-		C3D04F8716F961F30061D0BB /* typeClassDefs */ = {
-			isa = PBXGroup;
-			children = (
-				F11BC1151761278E0069F6FB /* FilteredOneDimObjects.h */,
-				F11BC1161761278E0069F6FB /* GCGameState.h */,
-				F11BC1171761278E0069F6FB /* PARTICLE_TopPositions.h */,
-				F1C7CE7216FFE59C00D5D843 /* FSM_Control.h */,
-				C3D04F8816F961F30061D0BB /* HAL_HeadTarget.h */,
-				C3AC9C96171E80C000DF3997 /* MOTION_Interface.h */,
-				C34904FA1715246900242DD7 /* NAO_State.h */,
-				C34904FB1715246900242DD7 /* Point2D.h */,
-				C372CAE41700133B007EB2E0 /* SENSORS_BodySensors.h */,
-				C372CAE51700133B007EB2E0 /* SENSORS_FootSensors.h */,
-				C372CAE61700133B007EB2E0 /* SENSORS_LedsSensors.h */,
-				C372CAEE17001939007EB2E0 /* SENSORS_LegJointSensors.h */,
-				C372CAF01700198B007EB2E0 /* SENSORS_LegJointTemps.h */,
-				C372CAEA1700142C007EB2E0 /* SENSORS_SonarSensors.h */,
-				C372CAEC170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h */,
-				C372CAF11700198B007EB2E0 /* SENSORS_TorsoJointTemps.h */,
-				F1D601C7172CED45004B56C5 /* Vision_Control.h */,
-				F1D601C8172CED45004B56C5 /* Vision_Objects.h */,
-				C3B8CE38170BE5C400846B9C /* WALK_ControlStatus.h */,
-			);
-			path = typeClassDefs;
-			sourceTree = "<group>";
-		};
 		F11BC0BD176123DB0069F6FB /* guudpwhiteboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,7 +749,6 @@
 				C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */,
 				F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */,
 				C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */,
-				C3D04F8716F961F30061D0BB /* typeClassDefs */,
 				F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */,
 				F14C46C314A07024006B6953 /* gusimplewhiteboard.c */,
 				C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */,
@@ -794,6 +760,7 @@
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
 				C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */,
+				F1E5542618EBD16D00639B1E /* typeClassDefs */,
 				8BC60E6E174079FD00800829 /* guudpwhiteboard */,
 				F1C94DA61555D3C300B717DF /* gusimplewhiteboardios */,
 				F11BC0BD176123DB0069F6FB /* guudpwhiteboard */,
@@ -922,6 +889,38 @@
 				F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
+			isa = PBXGroup;
+			children = (
+				F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */,
+				F1E5542818EBD16D00639B1E /* FSM_Control.h */,
+				F1E5542918EBD16D00639B1E /* GCGameState.h */,
+				F1E5542A18EBD16D00639B1E /* HAL_HeadTarget.h */,
+				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
+				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
+				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
+				F1E5542E18EBD16D00639B1E /* Point2D.h */,
+				F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */,
+				F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */,
+				F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */,
+				F1E5543218EBD16D00639B1E /* SENSORS_LegJointSensors.h */,
+				F1E5543318EBD16D00639B1E /* SENSORS_LegJointTemps.h */,
+				F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */,
+				F1E5543518EBD16D00639B1E /* SENSORS_TorsoJointSensors.h */,
+				F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */,
+				F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */,
+				F1E5543818EBD16D00639B1E /* Vision_Control.h */,
+				F1E5543918EBD16D00639B1E /* Vision_Objects.h */,
+				F1E5543A18EBD16D00639B1E /* VisionBall.h */,
+				F1E5543B18EBD16D00639B1E /* VisionGoals.h */,
+				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
+				F1E5543D18EBD16D00639B1E /* WALK_ControlStatus.h */,
+				F1E5543E18EBD16D00639B1E /* WalkData.h */,
+				F1E5543F18EBD16D00639B1E /* WEBOTS_NXT_bridge.h */,
+			);
+			path = typeClassDefs;
 			sourceTree = "<group>";
 		};
 		F1ED584218E7C93F00864A87 /* wbperf */ = {
@@ -1116,19 +1115,6 @@
 				C39197A31693DDA200E5D0C6 /* (null) in Headers */,
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
-				C3D04F8916F961F30061D0BB /* HAL_HeadTarget.h in Headers */,
-				C372CAE71700133B007EB2E0 /* SENSORS_BodySensors.h in Headers */,
-				C372CAE81700133B007EB2E0 /* SENSORS_FootSensors.h in Headers */,
-				C372CAE91700133B007EB2E0 /* SENSORS_LedsSensors.h in Headers */,
-				C372CAEB1700142D007EB2E0 /* SENSORS_SonarSensors.h in Headers */,
-				C372CAED170017E9007EB2E0 /* SENSORS_TorsoJointSensors.h in Headers */,
-				C372CAEF17001939007EB2E0 /* SENSORS_LegJointSensors.h in Headers */,
-				C372CAF21700198C007EB2E0 /* SENSORS_LegJointTemps.h in Headers */,
-				C372CAF31700198C007EB2E0 /* SENSORS_TorsoJointTemps.h in Headers */,
-				C3B8CE39170BE5C400846B9C /* WALK_ControlStatus.h in Headers */,
-				C34904FC1715246900242DD7 /* NAO_State.h in Headers */,
-				C34904FD1715246900242DD7 /* Point2D.h in Headers */,
-				C3AC9C97171E80C000DF3997 /* MOTION_Interface.h in Headers */,
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
@@ -2131,6 +2117,7 @@
 				F1ED584818E7C93F00864A87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1ED58B118E7EF1400864A87 /* Build configuration list for PBXNativeTarget "wbPerfTests" */ = {
 			isa = XCConfigurationList;
@@ -2139,6 +2126,7 @@
 				F1ED58B318E7EF1400864A87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1F42E5018DFF0360042DDAB /* Build configuration list for PBXAggregateTarget "copy tests" */ = {
 			isa = XCConfigurationList;

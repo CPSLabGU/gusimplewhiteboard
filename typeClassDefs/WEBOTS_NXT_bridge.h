@@ -157,10 +157,11 @@ static const char* SoundStrings[] = {"SOUND_DURATION", "SOUND_FREQUENCY" };
 		TURN_RIGHT_UNTIL_COLOR_FOUND= 1,
 		TURN_LEFT_UNTIL_COLOR_FOUND= 2
              };
-
+#if 0 // not used so far: compiler is complaining (put back in when actually used)
 static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND", "LIGHTUP_LED",
 	                       "START_DISTANCE", "START_INTENSITY_LIGHT", "START_ROTATION_ENCODER", 
 			       "START_CAMERA", "START_TOUCH", "Undefined"};
+#endif
         /**
          * Class for for demonstrating OO-messages in sequential arrangement of finite state machines
 	 * using a full vector of status and commands
