@@ -82,7 +82,20 @@ public:
 		_ball[camera] = ballInfo;
 		objectMask[camera]  = 1;
 	}
-	
+	/*	
+	const SimpleCircle *balls() const
+	{
+		return _balls;
+	}
+
+	const SimpleCircle *ball(VisionCamera camera) const
+	{
+		if(objectMask[camera])
+			return &_balls[camera];
+
+		return NULL;
+	}
+*/
 	const SimpleCircle **ball() const
 	{
 		static const SimpleCircle* ret[2];
