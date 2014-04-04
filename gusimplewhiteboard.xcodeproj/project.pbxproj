@@ -1182,7 +1182,7 @@
 		};
 		F1D9C39018EE363B00593DD3 /* catkin */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "clean catkin";
+			buildArgumentsString = catkin;
 			buildConfigurationList = F1D9C39118EE363B00593DD3 /* Build configuration list for PBXLegacyTarget "catkin" */;
 			buildPhases = (
 			);
