@@ -1180,7 +1180,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/bmake;
-			buildWorkingDirectory = "";
+			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 				F1D9C39B18EE378600593DD3 /* PBXTargetDependency */,
 			);
@@ -1195,7 +1195,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/bmake;
-			buildWorkingDirectory = "";
+			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
 			name = catkin;
