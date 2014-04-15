@@ -12,7 +12,8 @@
 #include <cstdio>
 #include <gu_util.h>
 
-#define PERFTEST_DEFAULT_ITERATIONS 1000000000L
+//#define PERFTEST_DEFAULT_ITERATIONS 1000000000L
+#define PERFTEST_DEFAULT_ITERATIONS 100000000L
 
 class perftest
 {
