@@ -11,7 +11,7 @@
 #include "post_test.h"
 #include "get_test.h"
 
-int main(int argc, const char * argv[])
+int main(int , const char * [])
 {
     post_test poster;
     get_test  getter;
