@@ -12,6 +12,7 @@
 #include "get_test.h"
 #ifndef NO_ROS
 #include "ros_publish_test.h"
+#include "ros_subscribe_test.h"
 #endif
 
 int main(int argc, char **argv)
@@ -19,9 +20,10 @@ int main(int argc, char **argv)
     post_test poster;
     get_test  getter;
 #ifndef NO_ROS
-    ros::init(argc, argv, "ros_publish_test");
+    ros::init(argc, argv, "ros_publish_subscribe_test");
 
     ros_publish_test ros_publisher;
+    ros_subscribe_test ros_subscriber;
 #else
     (void) argc;
     (void) argv;
@@ -31,6 +33,7 @@ int main(int argc, char **argv)
     poster.run();
 #ifndef NO_ROS
     ros_publisher.run();
+    ros_subscriber.run();
 #endif
 
     return EXIT_SUCCESS;

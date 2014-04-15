@@ -322,6 +322,8 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
+		F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_subscribe_test.cc; sourceTree = "<group>"; };
+		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
@@ -963,6 +965,8 @@
 				F1ED589E18E7D2EF00864A87 /* get_test.h */,
 				F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */,
 				F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */,
+				F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */,
+				F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */,
 				F1ED584518E7C93F00864A87 /* wbperf.1 */,
 				F1ED58A618E7EF1400864A87 /* wbPerfTests */,
 				F1ED585018E7CB4300864A87 /* Common */,

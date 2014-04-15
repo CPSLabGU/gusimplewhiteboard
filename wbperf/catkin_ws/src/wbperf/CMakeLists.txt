@@ -100,6 +100,7 @@ add_executable(wbperf
 	src/perftest.cc
 	src/post_test.cc
 	src/ros_publish_test.cc
+	src/ros_subscribe_test.cc
 	src/gu_util.cpp
 )
 
