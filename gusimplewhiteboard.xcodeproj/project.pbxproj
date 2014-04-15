@@ -471,6 +471,8 @@
 		F1F4536114A11E90005C40A6 /* Whiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Whiteboard.h; sourceTree = "<group>"; };
 		F1F4536314A1226D005C40A6 /* Whiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whiteboard.cc; sourceTree = "<group>"; };
 		F1F4536514A123C7005C40A6 /* WBMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBMsg.h; sourceTree = "<group>"; };
+		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
+		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -957,6 +959,8 @@
 				F1ED584E18E7CA6500864A87 /* perftest.h */,
 				F1ED589A18E7CF2E00864A87 /* post_test.cc */,
 				F1ED589B18E7CF2E00864A87 /* post_test.h */,
+				F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */,
+				F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */,
 				F1ED589D18E7D2EF00864A87 /* get_test.cc */,
 				F1ED589E18E7D2EF00864A87 /* get_test.h */,
 				F1ED584518E7C93F00864A87 /* wbperf.1 */,
@@ -2062,6 +2066,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NO_ROS=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -2082,6 +2087,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "NO_ROS=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

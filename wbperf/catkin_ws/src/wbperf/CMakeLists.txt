@@ -4,7 +4,7 @@ project(wbperf)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS gusimplewhiteboard)
+find_package(catkin REQUIRED COMPONENTS gusimplewhiteboard roscpp std_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -62,10 +62,7 @@ find_package(Threads REQUIRED COMPONENTS system)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+#generate_messages(DEPENDENCIES std_msgs)
 
 ###################################
 ## catkin specific configuration ##
@@ -79,7 +76,7 @@ find_package(Threads REQUIRED COMPONENTS system)
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES wbperf
-  CATKIN_DEPENDS gusimplewhiteboard
+  CATKIN_DEPENDS gusimplewhiteboard std_msgs
 #  DEPENDS system_lib
 )
 
@@ -102,15 +99,16 @@ add_executable(wbperf
 	src/get_test.cc
 	src/perftest.cc
 	src/post_test.cc
+	src/ros_publish_test.cc
 	src/gu_util.cpp
 )
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(wbperf_node clfsm_generate_messages_cpp)
+add_dependencies(wbperf ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(wbperf gusimplewhiteboard ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(wbperf gusimplewhiteboard ${catkin_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 #############
 ## Install ##
