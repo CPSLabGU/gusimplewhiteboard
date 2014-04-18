@@ -20,4 +20,8 @@ SPECIFIC_CPPFLAGS+=-DNO_ROS=1
 .include "../../../mk/util.mk"		# required for gu_util
 .include "../../../mk/libcxx.mk"	# required for C++11
 .include "../../../mk/whiteboard.mk"	# required for whiteboard clients
+
+test: host
+	${BUILDDIR}/${BIN}
+
 .include "../../../mk/mipal.mk"		# comes last!
