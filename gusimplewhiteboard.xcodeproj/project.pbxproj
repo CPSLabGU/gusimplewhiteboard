@@ -1202,6 +1202,34 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = simplewhiteboard_mk;
 		};
+		F1FABC96190268E7001AD476 /* Lgusimplewhiteboard */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = gusimplewhiteboard;
+			buildConfigurationList = F1FABC99190268E7001AD476 /* Build configuration list for PBXLegacyTarget "Lgusimplewhiteboard" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/jenkinsmon;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Lgusimplewhiteboard;
+			passBuildSettingsInEnvironment = 0;
+			productName = Lgusimplewhiteboard;
+		};
+		F1FABC9A1902692A001AD476 /* Lwbperf */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = wbperf;
+			buildConfigurationList = F1FABC9B1902692A001AD476 /* Build configuration list for PBXLegacyTarget "Lwbperf" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/jenkinsmon;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Lwbperf;
+			passBuildSettingsInEnvironment = 0;
+			productName = Lwbperf;
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -1405,6 +1433,8 @@
 				F19FA35B18DFE6280095B87D /* simplewhiteboardtest_mk */,
 				F1ED584018E7C93F00864A87 /* wbperf */,
 				F1ED58A318E7EF1400864A87 /* wbPerfTests */,
+				F1FABC96190268E7001AD476 /* Lgusimplewhiteboard */,
+				F1FABC9A1902692A001AD476 /* Lwbperf */,
 			);
 		};
 /* End PBXProject section */
@@ -2165,6 +2195,92 @@
 			};
 			name = Release;
 		};
+		F1FABC97190268E7001AD476 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F1FABC98190268E7001AD476 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F1FABC9C1902692A001AD476 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F1FABC9D1902692A001AD476 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2293,6 +2409,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F1FABC99190268E7001AD476 /* Build configuration list for PBXLegacyTarget "Lgusimplewhiteboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FABC97190268E7001AD476 /* Debug */,
+				F1FABC98190268E7001AD476 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F1FABC9B1902692A001AD476 /* Build configuration list for PBXLegacyTarget "Lwbperf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FABC9C1902692A001AD476 /* Debug */,
+				F1FABC9D1902692A001AD476 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
