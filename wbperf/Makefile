@@ -17,8 +17,8 @@ CATKIN_HDRS+=ros_publish_test.h ros_subscribe_test.h
 
 SPECIFIC_CPPFLAGS+=-DNO_ROS=1
 
-.include "../../../mk/util.mk"		# required for gu_util
 .include "../../../mk/libcxx.mk"	# required for C++11
+.include "../../../mk/util.mk"		# required for gu_util
 .include "../../../mk/whiteboard.mk"	# required for whiteboard clients
 
 test: host
