@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS gusimplewhiteboard roscpp std_msgs)
 # find_package(Boost REQUIRED COMPONENTS system)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(LibDispatch REQUIRED)
+find_package(Blocks REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -111,7 +112,7 @@ set_source_files_properties(src/ros_subscribe_test.cc PROPERTIES COMPILE_FLAGS -
 add_dependencies(wbperf ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(wbperf gusimplewhiteboard ${catkin_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(wbperf gusimplewhiteboard ${catkin_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${BLOCKSRUNTIME_OBJC_LIBRARIES} ${BLOCKSRUNTIME_LIBRARIES} ${LIBDISPATCH_LIBRARIES})
 
 #############
 ## Install ##
