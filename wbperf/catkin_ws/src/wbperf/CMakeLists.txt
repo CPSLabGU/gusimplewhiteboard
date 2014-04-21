@@ -84,8 +84,8 @@ catkin_package(
 ## Build ##
 ###########
 
-set(CMAKE_C_FLAGS "-fblocks -std=c99")
-set(CMAKE_CXX_FLAGS "-fblocks -std=c++11 -stdlib=libc++")
+set(CMAKE_C_FLAGS "-std=c99")
+set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
 set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++ -Wl,-rpath -Wl,/usr/local/lib")
 
 ## Specify additional locations of header files
@@ -103,6 +103,8 @@ add_executable(wbperf
 	src/ros_subscribe_test.cc
 	src/gu_util.cpp
 )
+
+set_source_files_properties(src/ros_subscribe_test.cc PROPERTIES COMPILE_FLAGS -fblocks)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
