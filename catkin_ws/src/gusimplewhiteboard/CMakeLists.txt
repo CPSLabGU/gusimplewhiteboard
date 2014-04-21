@@ -7,8 +7,8 @@ project(gusimplewhiteboard)
 find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
-find_package(Threads REQUIRED COMPONENTS system)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+find_package(LibDispatch REQUIRED)
 
 ## Needs clang++
 find_program(CLANGPP clang++ HINTS /usr/local/bin /usr/bin /opt/local/bin)
@@ -124,7 +124,7 @@ add_library(gusimplewhiteboard
 # add_dependencies(gusimplewhiteboard_node gusimplewhiteboard_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(gusimplewhiteboard ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(gusimplewhiteboard ${LIBDISPATCH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 #############
 ## Install ##
