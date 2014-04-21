@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		F1A9E8CE1905D0A600F0150A /* wbperf_ros */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F1A9E8CF1905D0A600F0150A /* Build configuration list for PBXAggregateTarget "wbperf_ros" */;
+			buildPhases = (
+				F1A9E8D61905D0DD00F0150A /* ShellScript */,
+			);
+			dependencies = (
+				F1A9E8D51905D0C300F0150A /* PBXTargetDependency */,
+				F1A9E8D31905D0BC00F0150A /* PBXTargetDependency */,
+			);
+			name = wbperf_ros;
+			productName = wbperf_ros;
+		};
 		F1D9C39418EE376000593DD3 /* wb_ros */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = F1D9C39518EE376000593DD3 /* Build configuration list for PBXAggregateTarget "wb_ros" */;
@@ -117,6 +130,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = F14C46AE14A064D8006B6953;
 			remoteInfo = gusimplewhiteboard;
+		};
+		F1A9E8D21905D0BC00F0150A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F14C46A614A064D8006B6953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1A9E8CA1905D02E00F0150A;
+			remoteInfo = wbperf_catkin;
+		};
+		F1A9E8D41905D0C300F0150A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F14C46A614A064D8006B6953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1D9C39418EE376000593DD3;
+			remoteInfo = wb_ros;
 		};
 		F1C94D741555CA8E00B717DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1188,6 +1215,20 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = simplewhiteboard_mk;
 		};
+		F1A9E8CA1905D02E00F0150A /* wbperf_catkin */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = catkin;
+			buildConfigurationList = F1A9E8CD1905D02E00F0150A /* Build configuration list for PBXLegacyTarget "wbperf_catkin" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/bmake;
+			buildWorkingDirectory = "$(SRCROOT)/wbperf";
+			dependencies = (
+			);
+			name = wbperf_catkin;
+			passBuildSettingsInEnvironment = 1;
+			productName = wbperf_catkin;
+		};
 		F1D9C39018EE363B00593DD3 /* catkin */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = catkin;
@@ -1433,6 +1474,8 @@
 				F19FA35B18DFE6280095B87D /* simplewhiteboardtest_mk */,
 				F1ED584018E7C93F00864A87 /* wbperf */,
 				F1ED58A318E7EF1400864A87 /* wbPerfTests */,
+				F1A9E8CA1905D02E00F0150A /* wbperf_catkin */,
+				F1A9E8CE1905D0A600F0150A /* wbperf_ros */,
 				F1FABC96190268E7001AD476 /* Lgusimplewhiteboard */,
 				F1FABC9A1902692A001AD476 /* Lwbperf */,
 			);
@@ -1467,6 +1510,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F1A9E8D61905D0DD00F0150A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cd \"${SRCROOT}/../../../ros/catkin_ws\"\n. /opt/local/setup.bash\necho '**** BUILDING wbperf ****'\ncatkin_make wbperf\n";
+		};
 		F1C94D6F1555CA8E00B717DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1631,6 +1687,16 @@
 			isa = PBXTargetDependency;
 			target = F14C46AE14A064D8006B6953 /* gusimplewhiteboard */;
 			targetProxy = F11BC0C8176124760069F6FB /* PBXContainerItemProxy */;
+		};
+		F1A9E8D31905D0BC00F0150A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1A9E8CA1905D02E00F0150A /* wbperf_catkin */;
+			targetProxy = F1A9E8D21905D0BC00F0150A /* PBXContainerItemProxy */;
+		};
+		F1A9E8D51905D0C300F0150A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1D9C39418EE376000593DD3 /* wb_ros */;
+			targetProxy = F1A9E8D41905D0C300F0150A /* PBXContainerItemProxy */;
 		};
 		F1C94D751555CA8E00B717DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1915,6 +1981,63 @@
 				INFOPLIST_FILE = "";
 				PRODUCT_NAME = SimpleWhiteboardTest;
 				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		F1A9E8CB1905D02E00F0150A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F1A9E8CC1905D02E00F0150A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F1A9E8D01905D0A600F0150A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F1A9E8D11905D0A600F0150A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -2329,6 +2452,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F1A9E8CD1905D02E00F0150A /* Build configuration list for PBXLegacyTarget "wbperf_catkin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1A9E8CB1905D02E00F0150A /* Debug */,
+				F1A9E8CC1905D02E00F0150A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F1A9E8CF1905D0A600F0150A /* Build configuration list for PBXAggregateTarget "wbperf_ros" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1A9E8D01905D0A600F0150A /* Debug */,
+				F1A9E8D11905D0A600F0150A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F1C94D841555CA8E00B717DF /* Build configuration list for PBXNativeTarget "guobjcwhiteboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2417,6 +2556,7 @@
 				F1FABC98190268E7001AD476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1FABC9B1902692A001AD476 /* Build configuration list for PBXLegacyTarget "Lwbperf" */ = {
 			isa = XCConfigurationList;
@@ -2425,6 +2565,7 @@
 				F1FABC9D1902692A001AD476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
