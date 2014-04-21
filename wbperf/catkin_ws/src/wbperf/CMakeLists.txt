@@ -84,8 +84,8 @@ catkin_package(
 ## Build ##
 ###########
 
-set(CMAKE_C_FLAGS "-std=c99")
-set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+set(CMAKE_C_FLAGS "-fblocks -std=c99")
+set(CMAKE_CXX_FLAGS "-fblocks -std=c++11 -stdlib=libc++")
 set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++ -Wl,-rpath -Wl,/usr/local/lib")
 
 ## Specify additional locations of header files
