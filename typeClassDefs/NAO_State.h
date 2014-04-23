@@ -31,7 +31,6 @@ namespace guWhiteboard
                 NUM_OF_STANCES
         };
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *Robot_Stance_stringValues[NUM_OF_STANCES] =
         {
                 "Standing",
@@ -43,7 +42,6 @@ namespace guWhiteboard
                 "Kneeling",     //NYI
                 "Knitting"      //NYI to be implemented by Rene
         };
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
         class NAO_State //NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously
         {
