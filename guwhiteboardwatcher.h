@@ -107,6 +107,9 @@ public:
        		dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
 
       		if (_wbd) gsw_free_whiteboard(_wbd);
+#if !defined(__clang__)
+#define __has_feature(x)	0
+#endif
 #if !__has_feature(objc_arc)
         	dispatch_release(callback_queue);
        	 	dispatch_release(callback_group);
