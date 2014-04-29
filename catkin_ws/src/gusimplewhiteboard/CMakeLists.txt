@@ -11,18 +11,18 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(LibDispatch REQUIRED)
 
 ## Needs clang++
-find_program(CLANGPP clang++ HINTS /usr/local/bin /usr/bin /opt/local/bin)
-if(${CLANGPP} MATCHES "clang")
-set(CXX ${CLANGPP})
-message("CXX = ${CXX}")
-endif(${CLANGPP} MATCHES "clang")
+#find_program(CLANGPP clang++ HINTS /usr/local/bin /usr/bin /opt/local/bin)
+#if(${CLANGPP} MATCHES "clang")
+#set(CXX ${CLANGPP})
+#message("CXX = ${CXX}")
+#endif(${CLANGPP} MATCHES "clang")
 
 ## Needs clang
-find_program(CLANG clang HINTS /usr/local/bin /usr/bin /opt/local/bin)
-if(${CLANG} MATCHES "clang")
-set(CC ${CLANG})
-message("CC = ${CC}")
-endif(${CLANG} MATCHES "clang")
+#find_program(CLANG clang HINTS /usr/local/bin /usr/bin /opt/local/bin)
+#if(${CLANG} MATCHES "clang")
+#set(CC ${CLANG})
+#message("CC = ${CC}")
+#endif(${CLANG} MATCHES "clang")
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -102,8 +102,8 @@ catkin_package(
 ###########
 
 set(CMAKE_C_FLAGS "-std=c99")
-set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
-set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
+set(CMAKE_CXX_FLAGS "-std=c++11")
+#set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
