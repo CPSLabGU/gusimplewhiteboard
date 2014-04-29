@@ -17,6 +17,21 @@ find_package(Blocks REQUIRED)
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
 # catkin_python_setup()
 
+## Needs clang++
+find_program(CLANGPP clang++ HINTS /usr/local/bin /usr/bin /opt/local/bin)
+if(${CLANGPP} MATCHES "clang")
+set(CXX ${CLANGPP})
+message("CXX = ${CXX}")
+endif(${CLANGPP} MATCHES "clang")
+
+## Needs clang
+find_program(CLANG clang HINTS /usr/local/bin /usr/bin /opt/local/bin)
+if(${CLANG} MATCHES "clang")
+set(CC ${CLANG})
+message("CC = ${CC}")
+endif(${CLANG} MATCHES "clang")
+
+
 ################################################
 ## Declare ROS messages, services and actions ##
 ################################################
