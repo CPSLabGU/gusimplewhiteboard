@@ -350,11 +350,13 @@ namespace guWhiteboard
 	 */
         class FilteredOneDimObjects
 	{
+ 	//ARRAY_PROPERTY(FilteredVisionObject, objects, FVO_NUM_OBJECTS)
 	class FilteredVisionObject     _objects[FVO_NUM_OBJECTS];
 
         public:
 	    FilteredOneDimObjects()
 	    {}
+
 
 	    /** single vision object setter */
 	    FilteredOneDimObjects(const class FilteredVisionObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
@@ -382,7 +384,16 @@ namespace guWhiteboard
                 return *this;
             }
 
+	    bool isVisible() 
+	    { 
+		for(int i = 0; i < FVO_NUM_OBJECTS; i++) 
+	 		if (_objects[i].isVisible())
+				return true; 
+		return false;
+	    }
+
 	    /** property getter */
+	    //REMOVE this. We have an array property #def that includes a getter and setter
 	    class FilteredVisionObject *objects() { return _objects; }
 
 	    /** property setter */
