@@ -100,9 +100,15 @@ catkin_package(
 ## Build ##
 ###########
 
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set(CMAKE_C_FLAGS "-std=c99")
+set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++ -Wl,-rpath -Wl,${CMAKE_INSTALL_PREFIX}/lib")
+ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(CMAKE_C_FLAGS "-std=c99")
 set(CMAKE_CXX_FLAGS "-std=c++11")
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,-rpath -Wl,${CMAKE_INSTALL_PREFIX}/lib")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
