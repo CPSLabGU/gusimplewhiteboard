@@ -51,33 +51,33 @@ public:
 		fObject(obj), fFunction(pFunc), simple_wb_version(false) { }
 	WBFunctor(C* obj, void (C::*pFunc) (guWhiteboard::WBTypes, gu_simple_message*), guWhiteboard::WBTypes t):
                 fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { }
-	
+
 	void call(std::string s, WBMsg* m)
 	{
 		(fObject->*fFunction)(s,m);
 	}
-        void call(gu_simple_message* m)
-        {
+	void call(gu_simple_message* m)
+	{
 		(fObject->*s_fFunction)(type_enum, m);
-        }
-        void call(guWhiteboard::WBTypes t, gu_simple_message* m)
-        {
+	}
+	void call(guWhiteboard::WBTypes t, gu_simple_message* m)
+	{
 		(fObject->*s_fFunction)(t, m);
-        }
-        guWhiteboard::WBTypes type() { return type_enum; }
-        uint16_t get_event_count() { return event_count; }
-        void set_event_count(uint16_t e) { event_count = e; }
-        bool is_simple_wb_version() { return simple_wb_version; }
-       	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation 
-        s_func get_s_func_ptr() { return s_fFunction; }
+	}
+	guWhiteboard::WBTypes type() { return type_enum; }
+	uint16_t get_event_count() { return event_count; }
+	void set_event_count(uint16_t e) { event_count = e; }
+	bool is_simple_wb_version() { return simple_wb_version; }
+	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation
+	s_func get_s_func_ptr() { return s_fFunction; }
 protected:
 	C* fObject;
 	typedef void (C::*func) (std::string, WBMsg*);
 	func fFunction;
 	s_func s_fFunction;
-        guWhiteboard::WBTypes type_enum;
-        uint16_t event_count;
-        bool simple_wb_version;
+	guWhiteboard::WBTypes type_enum;
+	uint16_t event_count;
+	bool simple_wb_version;
 };
 
 template <typename C>
@@ -99,15 +99,15 @@ class WBFunctor_Say: public WBFunctor<T>
 public:
         WBFunctor_Say(T* obj, void (T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t):
                 WBFunctor<T>(obj, pFunc, t) { };
-        
+
         static WBFunctorBase *bind(T *obj, void (T::*f)(guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t) { return new WBFunctor_Say<T>(obj, T::func(f), t); }
-        
+
         void call(gu_simple_message *m)
         {
                 std::string result = guWhiteboard::kSay_t::get_from(m);
                 (Say_function_t(*WBFunctor<T>::fObject->fFunction))(WBFunctor<T>::type_enum, &result);
         }
-        
+
         typedef void (T::*Say_function_t) (guWhiteboard::WBTypes, std::string &);
 };*/
 
