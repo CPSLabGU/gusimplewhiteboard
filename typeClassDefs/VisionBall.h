@@ -11,44 +11,46 @@
 #include "Vision_Objects.h"
 #include "../../guvision/guvision_parameters.h"
 #include <string>
+
+struct wbBall {
+	short x, y, radius;
+};
+
 namespace guWhiteboard {
 class VisionBall {
 private:
     std::bitset<2> objectMask;
     SimpleCircle _ball[2];
+	SimpleCircle* ret[2];	
 	unsigned long _frameNumber;
+	wbBall topBall;
+	wbBall bottomBall;
 public:
     VisionBall() : _frameNumber(0) {
         objectMask.reset();
+		_ball[Top] = SimpleCircle();
+		_ball[Bottom] = SimpleCircle();
     }
 	
 	VisionBall &operator=(const VisionBall& a) {
 		objectMask = a.getMask();
 		_frameNumber = a.frameNumber();
-		const SimpleCircle** b = a.ball();
-		if(b[0]) {
-			_ball[0].setCenter(b[0]->GetCenter());
-			_ball[0].setRadius(b[0]->GetRadius());
-		}
-		if(b[1]) {
-			_ball[1].setCenter(b[1]->GetCenter());
-			_ball[1].setRadius(b[1]->GetRadius());
-		}
+		topBall = a.topBall;
+		bottomBall = a.bottomBall;
+		_ball[Top] = SimpleCircle();
+		_ball[Bottom] = SimpleCircle();
+		setRet();
 		return *this;
 	}
 	
 	VisionBall(const VisionBall &ball) {
 		objectMask = ball.getMask();
 		_frameNumber = ball.frameNumber();
-		const SimpleCircle** b = ball.ball();
-		if(b[0]) {
-			_ball[0].setCenter(b[0]->GetCenter());
-			_ball[0].setRadius(b[0]->GetRadius());
-		}
-		if(b[1]) {
-			_ball[1].setCenter(b[1]->GetCenter());
-			_ball[1].setRadius(b[1]->GetRadius());
-		}
+		topBall = ball.topBall;
+		bottomBall = ball.bottomBall;
+		_ball[Top] = SimpleCircle();
+		_ball[Bottom] = SimpleCircle();
+		setRet();
 	}
 	
 	std::bitset<2> getMask() const {
@@ -77,10 +79,23 @@ public:
 				objectMask[cam] = 1;
 			}
 		}
+		_ball[Top] = SimpleCircle();
+		_ball[Bottom] = SimpleCircle();
+		setRet();
 	}
 	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
-		_ball[camera] = ballInfo;
 		objectMask[camera]  = 1;
+		if(camera == Top) {
+			topBall.x = ballInfo.GetCenter().x;
+			topBall.y = ballInfo.GetCenter().y;
+			topBall.radius  = ballInfo.GetRadius();
+		}
+		if(camera == Bottom) {
+			bottomBall.x = ballInfo.GetCenter().x;
+			bottomBall.y = ballInfo.GetCenter().y;
+			bottomBall.radius  = ballInfo.GetRadius();
+		}
+		setRet();
 	}
 	/*	
 	const SimpleCircle *balls() const
@@ -96,18 +111,26 @@ public:
 		return NULL;
 	}
 */
-	const SimpleCircle **ball() const
+	SimpleCircle*const* ball() const
 	{
-		static const SimpleCircle* ret[2];
-		if(objectMask[Top])
-			ret[Top] = &(_ball[Top]);
+		return ret;
+	}
+	
+	void setRet() {
+		if(objectMask[Top]) {
+			_ball[Top].setCenter(GUPoint<short>(topBall.x, topBall.y));
+			_ball[Top].setRadius(topBall.radius);
+			ret[Top] = &_ball[Top];
+		}
 		else
 			ret[Top] = NULL;
-		if(objectMask[Bottom])
-			ret[Bottom] = &(_ball[Bottom]);
+		if(objectMask[Bottom]) {
+			_ball[Bottom].setCenter(GUPoint<short>(bottomBall.x, bottomBall.y));
+			_ball[Bottom].setRadius(bottomBall.radius);
+			ret[Bottom] = &_ball[Bottom];
+		}
 		else
 			ret[Bottom] = NULL;
-		return ret;
 	}
 	
 	void setFrameNumber(unsigned long fn) {
