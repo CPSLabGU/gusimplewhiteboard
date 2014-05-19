@@ -26,7 +26,6 @@ extern "C"
 	}
 } // extern C
 
-#if 0
 static string intvectostring(const vector<int> &vec)
 {
 	stringstream ss;
@@ -39,7 +38,6 @@ static string intvectostring(const vector<int> &vec)
 
 	return ss.str();
 }
-#endif
 
 string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)
 {
