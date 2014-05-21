@@ -32,6 +32,9 @@ extern "C"
 	}
 } // extern C
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+
 static vector<int> strtointvec(string str)
 {
 	const char *sep = "|,";
@@ -41,6 +44,8 @@ static vector<int> strtointvec(string str)
 		array.push_back(atoi(element));
 	return array;
 }
+
+#pragma clang diagnostic pop
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wglobal-constructors"

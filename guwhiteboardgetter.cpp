@@ -26,6 +26,8 @@ extern "C"
 	}
 } // extern C
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
 static string intvectostring(const vector<int> &vec)
 {
 	stringstream ss;
@@ -38,6 +40,7 @@ static string intvectostring(const vector<int> &vec)
 
 	return ss.str();
 }
+#pragma clang diagnostic pop
 
 string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)
 {
