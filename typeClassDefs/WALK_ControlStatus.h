@@ -120,7 +120,7 @@ namespace guWhiteboard
                 PROPERTY(int16_t, pad2)
         public:
                 /** designated constructor */
-                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power > 49 ? 49 : power), _controlStatus(c), _odometry_mask(false) {}
+                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
 
                 /** copy constructor */
                 WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus), _odometry(other._odometry), _odometry_mask(other._odometry_mask) {}
