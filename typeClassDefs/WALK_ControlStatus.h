@@ -130,13 +130,12 @@ namespace guWhiteboard
 
 		inline bool operator == (const WALK_ControlStatus &s) 
 		{
-    			return (forward() 	== s.forward() &&
-				left() 		== s.left() &&
-				turn() 		== s.turn() &&
-				power() 	== s.power() &&
+    			return (fabs(forward() - s.forward()) < FLT_EPSILON &&
+				fabs(left() - s.left()) < FLT_EPSILON &&
+				fabs(turn() - s.turn()) < FLT_EPSILON &&
+				fabs(power() - s.power()) < FLT_EPSILON &&
 				controlStatus()	== s.controlStatus() &&
-				odometry() 	== s.odometry() &&
-				odometry_mask()	== s.odometry_mask());
+				odometry() 	== s.odometry());
 		}
 
 		inline bool operator != (const WALK_ControlStatus &s) 
