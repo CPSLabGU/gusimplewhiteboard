@@ -31,6 +31,7 @@ namespace guWhiteboard
                 NUM_OF_STANCES
         };
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *Robot_Stance_stringValues[NUM_OF_STANCES] =
         {
                 "Standing",
@@ -42,6 +43,7 @@ namespace guWhiteboard
                 "Kneeling",     //NYI
                 "Knitting"      //NYI to be implemented by Rene
         };
+#endif
 
         enum Robot_Walk{
                 Modded_UNSW_Walk = 0,
@@ -49,11 +51,13 @@ namespace guWhiteboard
                 NUM_OF_WALKS
         };
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         static const char *Robot_Walk_stringValues[NUM_OF_WALKS] =
         {
                 "Modded_UNSW_Walk",
                 "ALMotion_Walk"
         };
+#endif
 
         class NAO_State //NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously
         {
@@ -162,5 +166,6 @@ namespace guWhiteboard
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
+
 
 #endif //NAO_State_DEFINED
