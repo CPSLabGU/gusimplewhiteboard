@@ -127,6 +127,23 @@ namespace guWhiteboard
 
                 /** copy assignment operator */
                 WALK_ControlStatus &operator=(const guWhiteboard::WALK_ControlStatus &other) { _forward = other._forward; _left = other._left; _turn = other._turn; _power = other._power; _controlStatus = other._controlStatus; _odometry = other._odometry; _odometry_mask = other._odometry_mask; return *this; }
+
+		inline bool operator == (const WALK_ControlStatus &s) 
+		{
+    			return (forward() 	== s.forward() &&
+				left() 		== s.left() &&
+				turn() 		== s.turn() &&
+				power() 	== s.power() &&
+				controlStatus()	== s.controlStatus() &&
+				odometry() 	== s.odometry() &&
+				odometry_mask()	== s.odometry_mask());
+		}
+
+		inline bool operator != (const WALK_ControlStatus &s) 
+		{
+			return !((*this) == s);
+		}
+		
             
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
