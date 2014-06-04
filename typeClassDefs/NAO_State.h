@@ -43,9 +43,22 @@ namespace guWhiteboard
                 "Knitting"      //NYI to be implemented by Rene
         };
 
+        enum Robot_Walk{
+                Modded_UNSW_Walk = 0,
+                ALMotion_Walk,
+                NUM_OF_WALKS
+        };
+
+        static const char *Robot_Walk_stringValues[NUM_OF_WALKS] =
+        {
+                "Modded_UNSW_Walk",
+                "ALMotion_Walk"
+        };
+
         class NAO_State //NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously
         {
                 PROPERTY(Robot_Stance, stance)          ///< Currently SMRobotPosition detects if the robot has fallen over. If not fallen over SMRobotPosition posts Standing.
+                PROPERTY(Robot_Walk, walk)          ///< Tells the walk engine which walk to use
                 PROPERTY(bool, chest_pressed_long)      ///< chest pressed for more than half a second
                 PROPERTY(bool, left_foot_pressed_long)  ///< left foot pressed for more than half a second
                 PROPERTY(bool, right_foot_pressed_long)  ///< right foot pressed for more than half a second
@@ -56,20 +69,20 @@ namespace guWhiteboard
                 PROPERTY(int8_t, right_foot_pressed) ///< This is the fudged version of this information, it counts presses within half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMRightFootButton
                 int16_t pad;
         public:
-                NAO_State(): _stance(Standing), _chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) {}
+                NAO_State(): _stance(Standing), _walk(Modded_UNSW_Walk),_chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) {}
 
                 bool fallen() const { return stance() == FallenForward || stance() == FallenBack || stance() == FallenLeft || stance() == FallenRight; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
-                NAO_State(const std::string &command): _stance(Standing), _chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) { from_string(command); }
+                NAO_State(const std::string &command): _stance(Standing), _walk(Modded_UNSW_Walk), _chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) { from_string(command); }
 
                 /** convert to a string */
                 std::string description()
                 {
                         std::stringstream ss;
 
-                        ss << Robot_Stance_stringValues[int(stance())] << ", " << (chest_pressed_long() ? "L" : "") << int(chest_pressed()) << " @chest, " << (left_foot_pressed_long() ? "L" : "") << int(left_foot_pressed()) << " @lfoot, " << (right_foot_pressed_long() ? "L" : "") << int(right_foot_pressed()) << " @rfoot";
+                        ss << Robot_Stance_stringValues[int(stance())] << ", " << Robot_Walk_stringValues[int(walk())] << ", " << (chest_pressed_long() ? "L" : "") << int(chest_pressed()) << " @chest, " << (left_foot_pressed_long() ? "L" : "") << int(left_foot_pressed()) << " @lfoot, " << (right_foot_pressed_long() ? "L" : "") << int(right_foot_pressed()) << " @rfoot";
 
                         return ss.str();
                 }
@@ -92,6 +105,19 @@ namespace guWhiteboard
                                         break;
                                 }
                         }
+
+                        if (!getline(iss, token, ',')) return;
+                        gu_trim(token);
+			
+			for (int i = Modded_UNSW_Walk; i < NUM_OF_WALKS; i++)
+                        {
+                                if (token == Robot_Walk_stringValues[i])
+                                {
+                                        set_walk(Robot_Walk(i));
+                                        break;
+                                }
+                        }
+
                         if (!getline(iss, token, ',')) return;
                         gu_trim(token);
 
