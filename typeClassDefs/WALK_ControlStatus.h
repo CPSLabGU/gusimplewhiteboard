@@ -61,6 +61,7 @@
 #define WALK_ControlStatus_DEFINED
 
 #include <gu_util.h>
+#include <float.h>
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <string>
@@ -74,6 +75,12 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
         float forward;
         float left;
         float turn;
+
+   inline bool operator== (const Odometry& a) {
+      return (	fabs(forward - a.forward) < FLT_EPSILON &&
+		fabs(left - a.left) < FLT_EPSILON &&
+		fabs(turn - a.turn) < FLT_EPSILON);
+   }
 };
 #endif
 
