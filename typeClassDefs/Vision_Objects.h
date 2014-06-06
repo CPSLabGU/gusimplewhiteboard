@@ -7,7 +7,7 @@
 
 #include <bitset>
 #include <gu_util.h>
-#include <VisionCommon/SimpleShapes.h>
+#include <SimpleShapes.h>
 #include <stdint.h>
 #include <sstream>
 #include <stdio.h>
