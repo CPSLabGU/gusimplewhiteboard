@@ -82,7 +82,6 @@
 		F17380BD16CA032F00485FD8 /* guudpSerialize.c in Sources */ = {isa = PBXBuildFile; fileRef = F17380BC16CA032F00485FD8 /* guudpSerialize.c */; };
 		F17380BF16CA035100485FD8 /* guudpWhiteboardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */; };
 		F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */; };
-		F1C94D721555CA8E00B717DF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */; };
 		F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */; };
 		F1C94D7C1555CA8E00B717DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1C94D7A1555CA8E00B717DF /* InfoPlist.strings */; };
@@ -99,7 +98,6 @@
 		F1C94DB61555D44D00B717DF /* guudpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C1150491F500524671 /* guudpManager.cpp */; };
 		F1C94DB71555D44D00B717DF /* guudpUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33D92C4150491F500524671 /* guudpUtil.cpp */; };
 		F1C94DE81555D78400B717DF /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94DE71555D78400B717DF /* libc++.dylib */; };
-		F1D925F314A13BAA00BDAEED /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */; };
 		F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1D925FD14A13BAA00BDAEED /* InfoPlist.strings */; };
 		F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */; };
@@ -112,7 +110,6 @@
 		F1ED589918E7CB4B00864A87 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1ED588418E7CB4300864A87 /* gu_util.cpp */; };
 		F1ED589C18E7CF2E00864A87 /* post_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1ED589A18E7CF2E00864A87 /* post_test.cc */; };
 		F1ED589F18E7D2EF00864A87 /* get_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1ED589D18E7D2EF00864A87 /* get_test.cc */; };
-		F1ED58A518E7EF1400864A87 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */; };
 		F1ED58AB18E7EF1400864A87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1ED58A918E7EF1400864A87 /* InfoPlist.strings */; };
 		F1ED58AD18E7EF1400864A87 /* wbPerfTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1ED58AC18E7EF1400864A87 /* wbPerfTests.mm */; };
 		F1ED58B418E7EFC100864A87 /* post_test.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1ED589A18E7CF2E00864A87 /* post_test.cc */; };
@@ -382,8 +379,7 @@
 		F1C94DAA1555D3C300B717DF /* gusimplewhiteboardios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gusimplewhiteboardios.m; sourceTree = "<group>"; };
 		F1C94DE61555D6C200B717DF /* ObjCWhiteboardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboardDelegate.h; sourceTree = "<group>"; };
 		F1C94DE71555D78400B717DF /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
-		F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D925F414A13BAA00BDAEED /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		F1D925F714A13BAA00BDAEED /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F1D925F814A13BAA00BDAEED /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -533,7 +529,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1C94D721555CA8E00B717DF /* SenTestingKit.framework in Frameworks */,
 				F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */,
 				F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */,
 			);
@@ -552,7 +547,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1D925F314A13BAA00BDAEED /* SenTestingKit.framework in Frameworks */,
 				F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */,
 				F1D9260A14A13BCD00BDAEED /* libgusimplewhiteboard.a in Frameworks */,
 			);
@@ -571,7 +565,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1ED58B718E7F02800864A87 /* libgusimplewhiteboard.a in Frameworks */,
-				F1ED58A518E7EF1400864A87 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,7 +825,7 @@
 			isa = PBXGroup;
 			children = (
 				F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */,
-				F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.octest */,
+				F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.xctest */,
 				F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */,
 				F1C94D711555CA8E00B717DF /* guobjcwhiteboardTests.octest */,
 				F1C94DA31555D3C300B717DF /* libgusimplewhiteboardios.a */,
@@ -909,7 +902,6 @@
 				F14B792118E0E10400BD4128 /* libc++.dylib */,
 				F14B792218E0E10400BD4128 /* libc++abi.dylib */,
 				C31EE6B3155BA83B00D55934 /* gu_util.cpp */,
-				F1D925F214A13BAA00BDAEED /* SenTestingKit.framework */,
 				F1D925F414A13BAA00BDAEED /* Cocoa.framework */,
 				F1C94DA41555D3C300B717DF /* Foundation.framework */,
 				F1D925F614A13BAA00BDAEED /* Other Frameworks */,
@@ -1395,8 +1387,8 @@
 			);
 			name = SimpleWhiteboardTest;
 			productName = SimpleWhiteboardTest;
-			productReference = F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = F1D925F014A13BAA00BDAEED /* SimpleWhiteboardTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F1ED584018E7C93F00864A87 /* wbperf */ = {
 			isa = PBXNativeTarget;
@@ -2129,12 +2121,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -2142,12 +2133,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -2459,6 +2449,7 @@
 				F1A9E8CC1905D02E00F0150A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1A9E8CF1905D0A600F0150A /* Build configuration list for PBXAggregateTarget "wbperf_ros" */ = {
 			isa = XCConfigurationList;
@@ -2467,6 +2458,7 @@
 				F1A9E8D11905D0A600F0150A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1C94D841555CA8E00B717DF /* Build configuration list for PBXNativeTarget "guobjcwhiteboard" */ = {
 			isa = XCConfigurationList;
