@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <bitset>
-#include "../../guvision/guvision_parameters.h"
+#include <guvision_parameters.h>
 
 
 #pragma clang diagnostic push

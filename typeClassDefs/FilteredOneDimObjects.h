@@ -67,7 +67,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
-#include <../../guvision/guvision_parameters.h>
+#include <guvision_parameters.h>
 
 namespace guWhiteboard
 {

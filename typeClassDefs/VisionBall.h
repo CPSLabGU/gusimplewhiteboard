@@ -9,7 +9,7 @@
 #define	VisionBall_DEFINED
 
 #include "Vision_Objects.h"
-#include "../../guvision/guvision_parameters.h"
+#include <guvision_parameters.h>
 #include <string>
 
 struct wbBall {
