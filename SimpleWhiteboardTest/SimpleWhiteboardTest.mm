@@ -140,13 +140,13 @@ public:
 {
         self.whiteboard->addMessage("test", WBMsg("testval"));
         WBMsg msg = self.whiteboard->getMessage("test");
-        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        STAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
+        XCTAssertEqual(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+        XCTAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
 
         self.whiteboard->addMessage("test", WBMsg("testval2"));
         msg = self.whiteboard->getMessage("test");
-        STAssertEquals(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        STAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval2'", msg.getStringValue().c_str());
+        XCTAssertEqual(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
+        XCTAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval2'", msg.getStringValue().c_str());
 }
 
 
@@ -156,7 +156,7 @@ public:
         Say_t wbSpeech(testString);     // put a message on the whiteboard
         string result = wbSpeech();     // try and get it back
 
-        STAssertTrue(result == testString, @"Expected result to be '%s', but got '%s'", testString.c_str(), result.c_str());
+        XCTAssertTrue(result == testString, @"Expected result to be '%s', but got '%s'", testString.c_str(), result.c_str());
 }
 
 
@@ -168,12 +168,12 @@ public:
         playerNumber = newNumber;       // set new number
         int result = playerNumber;      // get new number back out
 
-        STAssertEquals(result, newNumber, @"Expected player '%d', but got '%d'", newNumber, result);
+        XCTAssertEqual(result, newNumber, @"Expected player '%d', but got '%d'", newNumber, result);
 
         playerNumber.set(oldNumber);
         result = playerNumber.get();
 
-        STAssertEquals(result, oldNumber, @"Expected old player '%d', but got '%d'", oldNumber, result);
+        XCTAssertEqual(result, oldNumber, @"Expected old player '%d', but got '%d'", oldNumber, result);
 }
 
 - (void) testFSMPutGet
@@ -188,14 +188,14 @@ public:
         newStatus.fsms().set(4);
         fsmStatus.set(newStatus);                       // write to wb
         FSMControlStatus result = fsmStatus();          // get back out
-        STAssertFalse(result.fsms()[0], @"Expecting 0 to be unset");
-        STAssertTrue(result.fsms()[1], @"Expecting 1 to be set");
-        STAssertFalse(result.fsms()[2], @"Expecting 2 to be unset");
-        STAssertTrue(result.fsms()[3], @"Expecting 3 to be set");
-        STAssertTrue(result.fsms()[4], @"Expecting 4 to be set");
+        XCTAssertFalse(result.fsms()[0], @"Expecting 0 to be unset");
+        XCTAssertTrue(result.fsms()[1], @"Expecting 1 to be set");
+        XCTAssertFalse(result.fsms()[2], @"Expecting 2 to be unset");
+        XCTAssertTrue(result.fsms()[3], @"Expecting 3 to be set");
+        XCTAssertTrue(result.fsms()[4], @"Expecting 4 to be set");
         fsmStatus.set(oldStatus);
         result = fsmStatus.get();
-        STAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
+        XCTAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
 }
 
 
@@ -203,19 +203,19 @@ public:
 {
         WBSubscriber subscriber(self);
 
-        STAssertEquals(callbackCount, 0, @"Expected zero callback count to begin with, but got %d", callbackCount);
+        XCTAssertEqual(callbackCount, 0, @"Expected zero callback count to begin with, but got %d", callbackCount);
 
         string testString("Testing Whiteboard subscription");
         Print_t print(testString);
-        STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected callback within a second");
-        STAssertEquals(callbackCount, 1, @"Expected callback count of 1, but got %d", callbackCount);
-        STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
+        XCTAssertEqual(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected callback within a second");
+        XCTAssertEqual(callbackCount, 1, @"Expected callback count of 1, but got %d", callbackCount);
+        XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 
         testString = [[[NSDate date] description] UTF8String];
         print(testString);
-        STAssertEquals(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected second callback within a second");
-        STAssertEquals(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);
-        STAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
+        XCTAssertEqual(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER), 0L, @"Expected second callback within a second");
+        XCTAssertEqual(callbackCount, 2, @"Expected callback count of 2, but got %d", callbackCount);
+        XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
 #pragma clang diagnostic pop
