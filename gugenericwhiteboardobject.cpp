@@ -17,7 +17,7 @@ void generic_whiteboard_object<std::string>::set(const std::string &msg)
         int t = type_offset;
         
 #ifdef DEBUG
-        assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= sizeof(msg.c_str()-1));
+        assert(GU_SIMPLE_WHITEBOARD_BUFSIZE > msg.length());
 #endif
         if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
         
