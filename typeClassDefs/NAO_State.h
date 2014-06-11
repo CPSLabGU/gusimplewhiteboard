@@ -66,11 +66,9 @@ namespace guWhiteboard
                 PROPERTY(bool, chest_pressed_long)      ///< chest pressed for more than half a second
                 PROPERTY(bool, left_foot_pressed_long)  ///< left foot pressed for more than half a second
                 PROPERTY(bool, right_foot_pressed_long)  ///< right foot pressed for more than half a second
-                PROPERTY(int8_t, chest_pressed) ///< This is the fudged version of this information, it counts presses within half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMChestButton
-
-                PROPERTY(int8_t, left_foot_pressed) ///< This is the fudged version of this information, it counts presses within half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMLeftFootButton
-                
-                PROPERTY(int8_t, right_foot_pressed) ///< This is the fudged version of this information, it counts presses within half a second instead of the actual duration of the push event (which is provided by sensors) - Updated by SMRightFootButton
+                PROPERTY(bool, chest_pressed)      ///< chest pressed 
+                PROPERTY(bool, left_foot_pressed)  ///< left foot pressed 
+                PROPERTY(bool, right_foot_pressed)  ///< right foot pressed 
                 int16_t pad;
         public:
                 NAO_State(): _stance(Standing), _walk(Modded_UNSW_Walk),_chest_pressed_long(false), _left_foot_pressed_long(false), _right_foot_pressed_long(false), _chest_pressed(0), _left_foot_pressed(0), _right_foot_pressed(0) {}
@@ -134,7 +132,7 @@ namespace guWhiteboard
                                         set_chest_pressed_long(true);
                                         value++;
                                 }
-                                set_chest_pressed(static_cast<int8_t>(atoi(value)));
+                                set_chest_pressed(bool(value));
                         }
 
                         if (!getline(iss, token, ',')) return;
@@ -147,7 +145,7 @@ namespace guWhiteboard
                                         set_left_foot_pressed_long(true);
                                         value++;
                                 }
-                                set_left_foot_pressed(static_cast<int8_t>(atoi(value)));
+                                set_left_foot_pressed(bool(value));
                         }
 
                         if (!getline(iss, token, ',')) return;
@@ -160,7 +158,7 @@ namespace guWhiteboard
                                         set_right_foot_pressed_long(true);
                                         value++;
                                 }
-                                set_right_foot_pressed(static_cast<int8_t>(atoi(value)));
+                                set_right_foot_pressed(bool(value));
                         }
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

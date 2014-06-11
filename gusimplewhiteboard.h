@@ -78,6 +78,10 @@ extern "C"
 #undef __block
 #define __block __attribute__((__blocks__(byref)))
 
+#ifndef __has_feature           // Optional of course.
+#define __has_feature(x) 0      // Compatibility with non-clang compilers.
+#endif
+
 #ifdef __cplusplus
 
 #pragma clang diagnostic ignored "-Wc++11-long-long"
@@ -253,7 +257,11 @@ typedef struct gsw_whiteboard_s
         gu_simple_whiteboard    *wb;            /// the actual whiteboard in shared mem
         gsw_sema_t               sem;           /// semaphore to use
         int                      fd;            /// the associated memory-mapped file
+#if __has_feature(objc_arc)
+        void                    *callback_queue;/// subscription callback queue
+#else
         dispatch_queue_t         callback_queue;/// subscription callback queue
+#endif
         gsw_subscription_f       callback;      /// subscription callback function
         void                    *context;       /// callback context
         bool                     got_monitor;   /// have a running monitor

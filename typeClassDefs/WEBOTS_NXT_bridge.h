@@ -72,6 +72,7 @@
 #include <sstream>
 #include <gu_util.h>
 
+const char OBJECT_SEPARATOR = '|';
 const char SEPARATOR_COMMA = ',';
 const char SEPARATOR_IS_COMMA = ',';
 const char EQUALS = '=';
@@ -141,7 +142,7 @@ static const char* SoundStrings[] = {"SOUND_DURATION", "SOUND_FREQUENCY" };
 		PLAY_SOUND= 2,
 		LIGHTUP_LED = 3, //constant for the third motor on nxt's
 	       // SENSORS
-	       // This can ce turned On or Off and with the Word SENSOR we get a value 
+	       // This can ce turned On or Off and with the Word SENSOR we get a value
                 DISTANCE= 4,
 		INTENSITY_LIGHT= 5,
 		ROTATION_ENCODER = 6, //constant for the third motor on nxt's
@@ -159,7 +160,7 @@ static const char* SoundStrings[] = {"SOUND_DURATION", "SOUND_FREQUENCY" };
              };
 #if 0 // not used so far: compiler is complaining (put back in when actually used)
 static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND", "LIGHTUP_LED",
-	                       "START_DISTANCE", "START_INTENSITY_LIGHT", "START_ROTATION_ENCODER", 
+	                       "START_DISTANCE", "START_INTENSITY_LIGHT", "START_ROTATION_ENCODER",
 			       "START_CAMERA", "START_TOUCH", "Undefined"};
 #endif
         /**
@@ -168,7 +169,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          */
         class WEBOTS_NXT_vector_bridge
 	{
-		public: 
+		public:
 
 		PROPERTY(int16_t, theRobotID)   // the robot this status is for
 		PROPERTY(int16_t, speedLeftMotor) // the current speed of the left motor
@@ -186,7 +187,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
                 /** copy assignment operator */
                 WEBOTS_NXT_vector_bridge &operator=(const WEBOTS_NXT_vector_bridge &other) { _theRobotID = other._theRobotID; _speedLeftMotor = other._speedLeftMotor; _speedRightMotor = other._speedRightMotor; _soundFrequency = other._soundFrequency; _soundDuration = other._soundDuration; return *this; }
-            
+
             /** convert to a string */
             std::string description() const
             {
@@ -202,7 +203,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 return ss.str();
 	    }
 
-            void from_string(const std::string &strWithID) 
+            void from_string(const std::string &strWithID)
             { // can parse the input , set all default values
                     set_theRobotID(0); set_speedLeftMotor(0); set_speedRightMotor(0);
 		    set_soundFrequency(0); set_soundDuration(0);
@@ -220,7 +221,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                     std::istringstream second_iss(str);
 			// lest find pairs where the token is  property=value,
                     while (getline(second_iss, token, SEPARATOR_COMMA))
-		        { 
+		        {
 				std::size_t postionEQUALS= token.find(EQUALS);
 
 				if ( (std::string::npos!=token.find(MotorStrings[LEFT_MOTOR_DIFFERENTIAL]) )
@@ -246,9 +247,9 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
 		                    set_soundDuration((int16_t) atoi (theValue.c_str()) );
 				}
-			
+
 				// find next comma in the string
-                                found = str.find(comaDel);	
+                                found = str.find(comaDel);
 				if (std::string::npos!=found )  // a comma is found
                                    { std::string newstr=str.substr (found+comaDel.size());
 				     second_iss.str(newstr);
@@ -258,11 +259,11 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                          }
                      }
                    }
-            
+
 	    }
 
-            void set_actuator(DifferentialInstructions theActuator,int16_t firstParameter,int16_t secondParameter) 
-	    { 
+            void set_actuator(DifferentialInstructions theActuator,int16_t firstParameter,int16_t secondParameter)
+	    {
 		SoundDiscriminators theInstructionModality =(SoundDiscriminators) firstParameter;
 
                switch (theActuator)
@@ -332,16 +333,16 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		{
 		     switch(_theInstruction)
 		     {
-		          case ROTATION_ENCODER : ss << "SENSOR"<<"ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case ROTATION_ENCODER : ss << "SENSOR"<<"ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
-		          case INTENSITY_LIGHT : ss << "SENSOR"<<"INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case INTENSITY_LIGHT : ss << "SENSOR"<<"INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 					break;
-		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case DISTANCE : ss << "SENSOR"<< "DISTANCE" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 					  // as a sensor first parameter is total pixele sof color, second parameter is middle of the color
-		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case CAMERA : ss << "SENSOR"<< "CAMERA" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
-		          case TOUCH : ss << "SENSOR"<< "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
+		          case TOUCH : ss << "SENSOR"<< "TOUCH" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
                          case MOVE_MOTORS:
                          case ONE_MOTOR_SETTING:
@@ -357,54 +358,54 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 			 * Apply power=_firstParameter to LEFT MOTOR
 			 * Apply power=_secondParameter to RIGHT MOTOR
 			 */
-		  { case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  { case MOVE_MOTORS : ss << "MOVE_MOTORS" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 			/*
 			 * Set the motor in  _firstParameter, to the power in the second parameter without
 			 * affecting the other motors
 			 */
-		  case ONE_MOTOR_SETTING : ss << "ONE_MOTOR_SETTING" << "," << _firstParameter  << "," << _secondParameter << ",";
+		  case ONE_MOTOR_SETTING : ss << "ONE_MOTOR_SETTING" << "," << _firstParameter  << "," << _secondParameter << OBJECT_SEPARATOR;
 			               break;
 			/*
 			 * Play sound for as long as _firstParameter, use second parameter as NXT frequency
 			 */
-		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << "," << _secondParameter << ",";
+		  case PLAY_SOUND : ss << "PLAY_SOUND" << "," << _firstParameter  << "," << _secondParameter << OBJECT_SEPARATOR;
 			               break;
 			/*
 			 * LIGHTUP_LED if 0<> _firstParameter
 			 */
-		  case LIGHTUP_LED : ss << "LIGHTUP_LED" << "," << ((0!=_firstParameter)? 1: 0) << ",";
+		  case LIGHTUP_LED : ss << "LIGHTUP_LED" << "," << ((0!=_firstParameter)? 1: 0) << OBJECT_SEPARATOR;
 			               break;
 			/*
 			 * Start posting Distance from SOnar in potrt _firstParameter if 0<> _secondParameter
 			 * Stop posting Distance from SOnar in potrt _firstParameter if 0== _secondParameter
 			 */
-		  case DISTANCE : ss << "DISTANCE" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  case DISTANCE : ss << "DISTANCE" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 			/*
 			 * Start posting light measurement from light sensor in port _firstParameter if 0<> _secondParameter
 			 * Stop posting lisght measurement from light in port _firstParameter if 0== _secondParameter
 			 */
-		  case INTENSITY_LIGHT : ss << "INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  case INTENSITY_LIGHT : ss << "INTENSITY_LIGHT" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 			/*
 			 * Start posting rotations from encoder in port _firstParameter if 0<> _secondParameter
 			 * Stop posting rotations from encoder in port _firstParameter if 0== _secondParameter
 			 */
-		  case ROTATION_ENCODER : ss << "ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  case ROTATION_ENCODER : ss << "ROTATION_ENCODER" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 			/*
 			 * Start posting from camera, the first paramer is the color channel
 			 * the second aprameter is a threshold to comapre how many pixels have intensity abvoe the threshoold
 			 * Stop posting for color channel in first aprameter if 0==_secondParameter
 			 */
-		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  case CAMERA : ss << "CAMERA" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 			/*
 			 * Start posting wether the touch sensor in port _firstParameter is pressed, if  0<> _secondParameter
 			 * Stop posting wether the touch sensor in port _firstParameter is pressed, if 0== _secondParameter
 			 */
-		  case TOUCH : ss << "TOUCH" << "," << _firstParameter << "," << _secondParameter << "," ;
+		  case TOUCH : ss << "TOUCH" << "," << _firstParameter << "," << _secondParameter << OBJECT_SEPARATOR ;
 			               break;
 		 case NUMBER_WEBOTS_NXT_bridge_MESSANGES:
 			               break;
@@ -453,7 +454,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		     case 'c' :
 		      case 'C' : // expect a ROTATION_ENCODER
 	                           instruction_from_string ( str );
-			           break;	
+			           break;
 		      case 's' :
 		      case 'S' : // expect SENSOR data
 				   //std:: cerr<< "Sensor data detected " << std:: endl;
@@ -476,7 +477,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	     * the second parameter as a binary {0,1} value
 	     */
 	void set_parameters2ndBinary ( const std::string &str  )
-	                 { 
+	                 {
                               std::istringstream iss(str);
                               std::string token;
 			      // advance the token
@@ -486,7 +487,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                                      { int16_t value = int16_t ( atoi(token.c_str())) ;
 					     if (NXT_PORT_1 <= value && value <= NXT_PORT_4)
 						     set_firstParameter(value);
-					     else 
+					     else
 						     set_firstParameter(NXT_PORT_1);
                                       }
                                    if (getline(iss, token, SEPARATOR_COMMA))
@@ -497,7 +498,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	                  }
 
 	void set_parameters2ndNum ( const std::string &str  )
-	                 { 
+	                 {
                               std::istringstream iss(str);
                               std::string token;
 			      // advance the token
@@ -507,7 +508,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                                      { int16_t value = int16_t ( atoi(token.c_str())) ;
 					     if (NXT_PORT_1 <= value && value <= NXT_PORT_4)
 						     set_firstParameter(value);
-					     else 
+					     else
 						     set_firstParameter(NXT_PORT_1);
                                       }
                                    if (getline(iss, token, SEPARATOR_COMMA))
@@ -516,6 +517,21 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 					    ));
 				     }
 	                  }
+
+	void set_parametersCamera ( const std::string &str  ) {
+		std::istringstream iss(str);
+		std::string token;
+		// advance the token
+		getline(iss, token, SEPARATOR_COMMA);
+		if (getline(iss, token, SEPARATOR_COMMA)) {
+			int16_t value = int16_t ( atoi(token.c_str())) ;
+			set_firstParameter(value);
+		}
+    if (getline(iss, token, SEPARATOR_COMMA)) {
+			set_secondParameter(int16_t(atoi(token.c_str()) ));
+		}
+	}
+
 	/*
 	 * Extract the effector type and its parameters
 	 */
@@ -570,27 +586,27 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		      case 'D' : // expect a DISTANCE
 		                   set_theInstruction(DISTANCE);
 				   set_parameters2ndBinary(str);
-			           break;	
+			           break;
 		     case 't' :
 		      case 'T' : // expect a TOUCH sensor command
 		                   set_theInstruction(TOUCH);
 				   set_parameters2ndBinary(str);
-			           break;	
+			           break;
 		     case 'i' :
 		      case 'I' : // expect a INTENSITY_LIGHT
 		                   set_theInstruction(INTENSITY_LIGHT);
 				   set_parameters2ndBinary(str);
-			           break;	
+			           break;
 		     case 'r' :
 		      case 'R' : // expect a ROTATION_ENCODER
 		                   set_theInstruction(ROTATION_ENCODER);
 				   set_parameters2ndBinary(str);
-			           break;	
+			           break;
 		     case 'c' :
 		      case 'C' : // expect a CAMERA
 		                   set_theInstruction(CAMERA);
 				   set_parameters2ndBinary(str);
-			           break;	
+			           break;
 		    }//switch
 	}
 
@@ -602,22 +618,27 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
           std::string token;
                 getline(iss, token, SEPARATOR_COMMA);
 		switch (token[0])
-		    { 
+		    {
 		     case 'd' :
 		      case 'D' : // expect a DISTANCE
 		                   set_theInstruction(DISTANCE);
 				   set_parameters2ndNum(str);
-			           break;	
+			           break;
 		     case 'i' :
 		      case 'I' : // expect a INTENSITY_LIGHT
 		                   set_theInstruction(INTENSITY_LIGHT);
 				   set_parameters2ndNum(str);
-			           break;	
+			           break;
 		     case 'r' :
 		      case 'R' : // expect a ROTATION_ENCODER
 		                   set_theInstruction(ROTATION_ENCODER);
 				   set_parameters2ndNum(str);
-			           break;	
+			           break;
+		     case 'c' :
+		      case 'C' : // expect a CAMERA
+		        set_theInstruction(CAMERA);
+				    set_parametersCamera(str);
+			      break;
 		    }//switch
 	}
 
@@ -627,10 +648,10 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(int16_t, power) //  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
                         PROPERTY(ColorLineInstructions, theInstruction) ///  The command (when it is not data)
-                        PROPERTY(CAMERA_E_PUCK_CHANNELS, color) 
+                        PROPERTY(CAMERA_E_PUCK_CHANNELS, color)
                         PROPERTY(int16_t, colorIntensityThreshold)  // color threshold to count a pixel in the total
-                        PROPERTY(int16_t, visibilityCountThreshold)  // color count to consider line visible  
-                        PROPERTY(int16_t, limit) /// limit of the run in degrees or of the walk in cm 
+                        PROPERTY(int16_t, visibilityCountThreshold)  // color count to consider line visible
+                        PROPERTY(int16_t, limit) /// limit of the run in degrees or of the walk in cm
 
             /** designated constructor */
             WEBOTS_NXT_colorLine_walk(int16_t robotID =0 , int16_t power = 0, ColorLineInstructions theInstruction=FOLLOW_COLOR, CAMERA_E_PUCK_CHANNELS color =BLUE_CHANNEL, int16_t colorIntensityThreshold=100, int16_t  visibilityCountThreshold=10, int16_t limit=90): _robotID(robotID),  _power(power), _theInstruction(theInstruction), _color(color), _colorIntensityThreshold(colorIntensityThreshold), _visibilityCountThreshold(visibilityCountThreshold),  _limit(limit)    { /* better than set_x(x); set_y(y) */ }
@@ -643,7 +664,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             /** copy assignment oeprator */
             WEBOTS_NXT_colorLine_walk &operator=(const WEBOTS_NXT_colorLine_walk &other) { _robotID = other._robotID; _power = other._power; _theInstruction = other._theInstruction; _color = other._color; _colorIntensityThreshold = other._colorIntensityThreshold; _visibilityCountThreshold = other._visibilityCountThreshold;  _limit = other._limit; return *this; }
-            
+
             /** convert to a string */
             std::string description() const
             {
@@ -676,7 +697,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                       if (getline(iss, token, SEPARATOR_COMMA))
 		      { _power = int16_t ( atoi(token.c_str())) ;
                          if (getline(iss, token, SEPARATOR_COMMA))
-		         { _theInstruction = FOLLOW_COLOR; 
+		         { _theInstruction = FOLLOW_COLOR;
 			   std::size_t found = token.find("RIGHT");
 				 if (std::string::npos!=found)
 					 _theInstruction = TURN_RIGHT_UNTIL_COLOR_FOUND;
@@ -703,10 +724,10 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
                             if (getline(iss, token, SEPARATOR_COMMA))
 			      { _colorIntensityThreshold = int16_t ( atoi(token.c_str())) ;
-                                if (getline(iss, token, SEPARATOR_COMMA)) { 
+                                if (getline(iss, token, SEPARATOR_COMMA)) {
 					      _visibilityCountThreshold = int16_t ( atoi(token.c_str())) ;
                                               if (getline(iss, token, SEPARATOR_COMMA))  _limit = int16_t ( atoi(token.c_str())) ;
-				           } 
+				           }
 			      }
 			    }
 			 }
@@ -714,7 +735,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		    } // from string
 
 		}; // WEBOTS_NXT_colorLine_walk
-       
+
         class WEBOTS_NXT_walk_isRunning {
                         PROPERTY(int16_t, robotID) //  ID of the robot
                         PROPERTY(bool, runningFlag) //  The motion module is still executing a move
@@ -755,7 +776,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	    }
 
 
-	}; // class WEBOTS_NXT_walk_isRunning 
+	}; // class WEBOTS_NXT_walk_isRunning
 
         class WEBOTS_NXT_deadReakoning_walk {
                         PROPERTY(int16_t, robotID) //  ID of the robot
@@ -763,10 +784,10 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 			// the robot does a spin and then a straight walk with ony odometry input
 			//  spin of the robot, motors in oposite directions in degrees
 			//  THETA positive is clockwise, negative is counter clockwise
-                        PROPERTY(int16_t, spin) 
+                        PROPERTY(int16_t, spin)
 			//  forward move of the robot, motors in same direction, in cm in Webots worlds
 			//   X positive is forwards, X negative is backwards
-                        PROPERTY(int16_t, forward) 
+                        PROPERTY(int16_t, forward)
 
             /** designated constructor */
             WEBOTS_NXT_deadReakoning_walk(int16_t robotID =0 , int16_t power = 0, int16_t spin=0, int16_t forward =0): _robotID(robotID),  _power(power), _spin(spin), _forward(forward)   { /* better than set_x(x); set_y(y) */ }
@@ -780,7 +801,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             /** copy assignment operator */
             WEBOTS_NXT_deadReakoning_walk operator=(const WEBOTS_NXT_deadReakoning_walk &other) { _robotID = other._robotID; _power = other._power; _spin = other._spin; _forward = other._forward; return *this; }
-            
+
             /** convert to a string */
             std::string description() const
             {
@@ -818,11 +839,11 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
 		public :
 			 WEBOTS_NXT_bumper()
-	                 { 
+	                 {
 			   WEBOTS_NXT_bridge theLeft(0,TOUCH,LEFT_TOUCH_SENSOR,0,true);
-	                   _touchSensors[LEFT_TOUCH_SENSOR]= theLeft; 
+	                   _touchSensors[LEFT_TOUCH_SENSOR]= theLeft;
 			   WEBOTS_NXT_bridge theRight(0,TOUCH,RIGHT_TOUCH_SENSOR,0,true);
-	                   _touchSensors[RIGHT_TOUCH_SENSOR]= theRight; 
+	                   _touchSensors[RIGHT_TOUCH_SENSOR]= theRight;
 			 }
 
 	             /** single touch sensor constructor */
@@ -870,13 +891,13 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 {
 		return _touchSensors[sensorID];
                 }
-                
+
             /** convert to a string */
             std::string description() const
             {
                 std::ostringstream ss;
 		for ( int i =LEFT_TOUCH_SENSOR; i< NXT_NUM_SENSORS_IN_BUMBER; i++ )
-		{ 
+		{
 		  TouchSensorID sensorID = TouchSensorID(i);
 		  ss <<  _touchSensors[sensorID].description();
 		} //for
@@ -902,16 +923,16 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
         class WEBOTS_NXT_encoders {
 		private:
-                        PROPERTY(int16_t, maxSpeed) ///  PI*maxSpped radinas per second 
+                        PROPERTY(int16_t, maxSpeed) ///  PI*maxSpped radinas per second
 			class WEBOTS_NXT_bridge _encoders[NXT_MOTOR3];
 
 		public :
 			 WEBOTS_NXT_encoders()
-	                 { 
+	                 {
 			   WEBOTS_NXT_bridge theLeft(0,ROTATION_ENCODER,LEFT_MOTOR_DIFFERENTIAL,0,true);
-	                   _encoders[LEFT_MOTOR_DIFFERENTIAL]= theLeft; 
+	                   _encoders[LEFT_MOTOR_DIFFERENTIAL]= theLeft;
 			   WEBOTS_NXT_bridge theRight(0,ROTATION_ENCODER,RIGHT_MOTOR_DIFFERENTIAL,0,true);
-	                   _encoders[RIGHT_MOTOR_DIFFERENTIAL]= theRight; 
+	                   _encoders[RIGHT_MOTOR_DIFFERENTIAL]= theRight;
                            _maxSpeed=0;
 			 }
 
@@ -938,7 +959,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
                 return *this;
 	    }
-            
+
 	    /** property getter */
 	    class WEBOTS_NXT_bridge *encoders() { return _encoders; }
 
@@ -965,13 +986,13 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 {
 		return _encoders[encoderID];
                 }
-                
+
             /** convert to a string */
             std::string description() const
             {
                 std::ostringstream ss;
 		for ( int i =LEFT_MOTOR_DIFFERENTIAL; i< NXT_MOTOR3; i++ )
-		{ 
+		{
 		  DifferentialMotor encoderID = DifferentialMotor(i);
 		  ss <<  _encoders[encoderID].description();
 		} //for
@@ -988,7 +1009,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 for (int object = LEFT_MOTOR_DIFFERENTIAL; object < NXT_MOTOR3; object++)
                 {
                     //if (!getline(iss, token, '\t')) break;
-                    if (!getline(iss, token, SEPARATOR_COMMA)) break;
+                    if (!getline(iss, token, OBJECT_SEPARATOR)) break;
                     _encoders[object].from_string( token );
                 }
 		_maxSpeed=0;
@@ -1000,25 +1021,25 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
         class WEBOTS_NXT_camera {
 		private:
-                        PROPERTY(int16_t, width) ///  PI*maxSpped radinas per second 
+                        PROPERTY(int16_t, width) ///  PI*maxSpped radinas per second
 			class WEBOTS_NXT_bridge _channels[GREY_CHANNEL+1];
 
 		public :
 			 WEBOTS_NXT_camera()
 	                 {  //first parameter is the total pixels, second parameter is the middle of the pixels
 			   WEBOTS_NXT_bridge theBlueChannel(0,CAMERA,0,0,true);
-	                   _channels[BLUE_CHANNEL]= theBlueChannel; 
+	                   _channels[BLUE_CHANNEL]= theBlueChannel;
 
 			   WEBOTS_NXT_bridge theRedChannel(0,CAMERA,0,0,true);
-	                   _channels[RED_CHANNEL]= theRedChannel; 
+	                   _channels[RED_CHANNEL]= theRedChannel;
 
 			   WEBOTS_NXT_bridge theGreenChannel(0,CAMERA,0,0,true);
-	                   _channels[GREEN_CHANNEL]= theGreenChannel; 
+	                   _channels[GREEN_CHANNEL]= theGreenChannel;
 
 			   WEBOTS_NXT_bridge theGreyChannel(0,CAMERA,0,0,true);
-	                   _channels[GREY_CHANNEL]= theGreyChannel; 
+	                   _channels[GREY_CHANNEL]= theGreyChannel;
 
-	                   _width= 0; 
+	                   _width= 0;
 			 }
 
 	             /** single channel with width  constructor */
@@ -1068,13 +1089,13 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 {
 		return _channels[channelID];
                 }
-                
+
             /** convert to a string */
             std::string description() const
             {
                 std::ostringstream ss;
 		for ( int i =BLUE_CHANNEL; i<= GREY_CHANNEL; i++ )
-		{ 
+		{
 		  CAMERA_E_PUCK_CHANNELS channelID = CAMERA_E_PUCK_CHANNELS(i);
 		  ss <<  _channels[channelID].description();
 		} //for
@@ -1092,7 +1113,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                 for (int object = BLUE_CHANNEL; object <= GREY_CHANNEL; object++)
                 {
                     //if (!getline(iss, token, '\t')) break;
-                    if (!getline(iss, token, SEPARATOR_COMMA)) break;
+                    if (!getline(iss, token, OBJECT_SEPARATOR)) break;
                     _channels[object].from_string( token );
                 }
 		_width=0;
@@ -1120,7 +1141,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	 */
         class WEBOTS_NXT_gridMotions
         {
-            PROPERTY(int16_t, theRobotID) /// Which robot are we talking to 
+            PROPERTY(int16_t, theRobotID) /// Which robot are we talking to
             PROPERTY(GridStep, theInstruction) ///  The command on the grid
             PROPERTY(int16_t, howMany) ///  how many of these in sequence before we do another
 
@@ -1133,10 +1154,10 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             /** copy constructor */
             WEBOTS_NXT_gridMotions(const WEBOTS_NXT_gridMotions &other): _theRobotID(other._theRobotID), _theInstruction(other._theInstruction), _howMany(other._howMany)  {}
-            
+
             /** copy assignment operator */
             WEBOTS_NXT_gridMotions &operator=(const WEBOTS_NXT_gridMotions &other) { _theRobotID = other._theRobotID; _theInstruction = other._theInstruction; _howMany = other._howMany; return *this; }
-            
+
             /** convert to a string */
 
             std::string description() const
@@ -1173,25 +1194,25 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
                   if (getline(iss, token, SEPARATOR_IS_COMMA))
 		   { std::size_t found = token.find("RIGHT");
-                     if (std::string::npos!=found) 
-			     _theInstruction = TURN_RIGHT_STEP; 
-		     else { found = token.find("LEFT"); 
-			     if (std::string::npos!=found) 
-				     _theInstruction = TURN_LEFT_STEP; 
-			     else { found = token.find("YELLOW"); 
-			            if (std::string::npos!=found) 
-				         _theInstruction = YELLOW_LINE_STRAIGHT_STEP; 
-				    else{ found = token.find("MAGENTA"); 
-			                  if (std::string::npos!=found) 
-				         _theInstruction = MAGENTA_LINE_STRAIGHT_STEP; 
+                     if (std::string::npos!=found)
+			     _theInstruction = TURN_RIGHT_STEP;
+		     else { found = token.find("LEFT");
+			     if (std::string::npos!=found)
+				     _theInstruction = TURN_LEFT_STEP;
+			     else { found = token.find("YELLOW");
+			            if (std::string::npos!=found)
+				         _theInstruction = YELLOW_LINE_STRAIGHT_STEP;
+				    else{ found = token.find("MAGENTA");
+			                  if (std::string::npos!=found)
+				         _theInstruction = MAGENTA_LINE_STRAIGHT_STEP;
 					  else
-					  { found = token.find("COMPLETED"); 
-			                  if (std::string::npos!=found) 
-				           _theInstruction = COMPLETED; 
+					  { found = token.find("COMPLETED");
+			                  if (std::string::npos!=found)
+				           _theInstruction = COMPLETED;
 					  }
 				        }
 			          }
-		           } 
+		           }
 		   }
                   if (getline(iss, token, SEPARATOR_IS_COMMA))
 		     {
