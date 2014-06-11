@@ -185,10 +185,9 @@ object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *
 template <class object_type>
 void generic_whiteboard_object<object_type>::set(const object_type &msg)
 {
-//        fprintf(stderr, "no specialisation\n");
         int t = type_offset;
         
-#ifdef DEBUG
+#ifndef NO_SAFETY
         assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= sizeof(object_type));
 #endif
         if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
