@@ -63,9 +63,9 @@
 #include "Whiteboard.h"
 #undef _FROM_WHITEBOARD_CC_
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface SimpleWhiteboardTest: SenTestCase
+@interface SimpleWhiteboardTest: XCTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
 @property (nonatomic, assign) int callbackCount;
 @property (nonatomic, assign) dispatch_semaphore_t semaphore;
