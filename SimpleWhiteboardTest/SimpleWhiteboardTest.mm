@@ -126,7 +126,7 @@ public:
 
 - (void) tearDown
 {
-        if (self.whiteboard)  delete (Whiteboard *) self.whiteboard;
+        if (self.whiteboard)  delete static_cast<Whiteboard *>(self.whiteboard);
         if (self.semaphore) dispatch_release(self.semaphore);
 
         self.whiteboard = NULL;

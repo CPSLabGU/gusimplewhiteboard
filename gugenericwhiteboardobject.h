@@ -179,7 +179,7 @@ template<> std::vector<int> generic_whiteboard_object<std::vector<int> >::get_fr
 template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
 {
-        return *static_cast<object_type *>(msg);
+        return *reinterpret_cast<object_type *>(msg);
 }
 
 template <class object_type>
