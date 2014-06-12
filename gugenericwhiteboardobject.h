@@ -179,7 +179,7 @@ template<> std::vector<int> generic_whiteboard_object<std::vector<int> >::get_fr
 template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
 {
-        return *(object_type *)msg;
+        return *static_cast<object_type *>(msg);
 }
 
 template <class object_type>
@@ -194,7 +194,7 @@ void generic_whiteboard_object<object_type>::set(const object_type &msg)
         
         gu_simple_whiteboard *wb = _wbd->wb;
         gu_simple_message *m = gsw_next_message(wb, t);
-        object_type *wbobj = (object_type*)(m);
+        object_type *wbobj = reinterpret_cast<object_type*>(m);
         *wbobj = msg;
         
         gsw_increment(wb, t);

@@ -181,10 +181,10 @@ namespace guWhiteboard
             const char *end() { return &_names[sizeof(_names)]; }
 
             /** get the next name */
-            char *next_name(const char *name = NULL) { if (!name) return names(); while (name < end() && *name++) {} return (char *) name; }
+            char *next_name(const char *name = NULL) { if (!name) return names(); while (name < end() && *name++) {} return const_cast<char *>(name); }
 
             /** get the next empty slot */
-            char *next_slot(const char *name = NULL) { while (*(name = next_name(name)) && name < end()) {} ; return (char *) name; }
+            char *next_slot(const char *name = NULL) { while (*(name = next_name(name)) && name < end()) {} ; return const_cast<char *>(name); }
 
             /** return the available space after a given pointer */
             int available_space(const char *pos) { return int(end() - pos); }

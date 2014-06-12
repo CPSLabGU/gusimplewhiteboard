@@ -2,7 +2,7 @@
  *  Whiteboard.cc
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011-2013 Rene Hexel.
+ *  Copyright (c) 2011-2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -84,7 +84,7 @@ using namespace std;
 
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd)
 {
-        Whiteboard *self = (Whiteboard *) wbd->context;
+        Whiteboard *self = static_cast<Whiteboard *>(wbd->context);
         if (self) self->subscriptionCallback();
 }
 
@@ -256,7 +256,7 @@ struct callback_helper
 
 static void do_callback(void *m)
 {
-        callback_helper *h = (callback_helper *) m;
+        callback_helper *h = static_cast<callback_helper *>(m);
 
         WBMsg msg = h->self->getWBMsg(&h->wb->messages[h->offs][h->curr]);
         h->descr.func->call(h->wb->typenames[h->offs].hash.string, &msg);

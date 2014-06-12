@@ -329,7 +329,7 @@ public:
                         }
                         case TypeBinary:
                         {
-                                const unsigned char *c = (const unsigned char *) binaryVal;
+                                const unsigned char *c = static_cast<const unsigned char *>(binaryVal);
                                 ss.setf(std::ios::hex);
                                 for (int i = 0; i < binarySize; i++)
                                 {
@@ -399,7 +399,7 @@ public:
         /**
          * default destructor
          */
-	~WBMsg() { if (doFree) { if (type == TypeBinary) free((void *) binaryVal); else if (type == TypeArray) delete arrayVal; } }
+	~WBMsg() { if (doFree) { if (type == TypeBinary) free(const_cast<void *>(binaryVal)); else if (type == TypeArray) delete arrayVal; } }
 };
 
 #pragma clang diagnostic pop
