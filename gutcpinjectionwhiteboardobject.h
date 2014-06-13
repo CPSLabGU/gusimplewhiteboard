@@ -175,7 +175,7 @@ bool injection_whiteboard_object<object_type>::send_message(const object_type &m
         gsw_message_packet p;
 
         gu_simple_message *m = &p.m;
-        object_type *wbobj = static_cast<object_type*>(m);
+        object_type *wbobj = reinterpret_cast<object_type*>(m);
         *wbobj = msg;
 
         p.t = type_offset;
