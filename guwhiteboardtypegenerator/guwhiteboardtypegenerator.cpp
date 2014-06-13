@@ -58,6 +58,7 @@ static const char *include_tcp_str = "\
 \n\
 #pragma clang diagnostic push                                           \n\
 #pragma clang diagnostic ignored \"-Wpadded\"                           \n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
 \n\
 \n\
 ";
@@ -102,6 +103,9 @@ static const char *include_wbfunctor_extension = "\
  *  All rights reserved.                                                \n\
  */                                                                     \n\
 \n\
+#pragma clang diagnostic push                                           \n\
+#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
 \n\
 ";
 
@@ -676,11 +680,11 @@ int main()
                         output_functor_templates        << "template <typename " << type_name << " >\n"
                         << "class " << class_name << ": public WBFunctor<" << type_name << " > \n{\n"
                         << "public:\n"
-                        << "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << " >(obj, static_cast<void (" << type_name << "::*) (guWhiteboard::WBTypes, gu_simple_message*)>(pFunc), t) { }\n\n"
+                        << "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << " >(obj, (void (" << type_name << "::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }\n\n"
                         << "        void call(gu_simple_message *m)\n"
                         << "        {\n"
                         << "                " << datatype << " result = guWhiteboard::" << types.at(i).type_const_name << "_t().get_from(m);\n"
-                        << "                " << types.at(i).type_const_name << "_function_t funct(static_cast<void (" << type_name << "::*)(guWhiteboard::WBTypes, " << datatype << " &)>(WBFunctor<" << type_name << " >::get_s_func_ptr)());\n"
+                        << "                " << types.at(i).type_const_name << "_function_t funct((void (" << type_name << "::*)(guWhiteboard::WBTypes, " << datatype << " &))WBFunctor<" << type_name << " >::get_s_func_ptr());\n"
                         << "                (WBFunctor<" << type_name << " >::fObject->*funct)(WBFunctor<" << type_name << " >::type_enum, result);\n"
                         << "        }\n"
                         << "        \n"
