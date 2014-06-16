@@ -67,7 +67,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
-#include <Vision_Control.h>
+#include "Vision_Control.h"
 
 namespace guWhiteboard
 {

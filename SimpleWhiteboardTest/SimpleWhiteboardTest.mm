@@ -218,6 +218,16 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
+- (void) testStringPostings
+{
+    string testString("000");
+
+    for (int wbtype = 0; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
+    {
+        guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
+    }
+}
+
 #pragma clang diagnostic pop
 
 @end
