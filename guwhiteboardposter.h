@@ -71,7 +71,6 @@
 #include "WALK_ControlStatus.h"
 #include "MOTION_Interface.h"
 #include "FSM_Control.h"
-#include "Vision_Objects.h"
 #include "Vision_Control.h"
 #include "FilteredOneDimObjects.h"
 #include "SENSORS_SonarSensors.h"
