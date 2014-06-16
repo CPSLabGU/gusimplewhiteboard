@@ -9,7 +9,8 @@
 #define	VisionBall_DEFINED
 
 #include <SimpleShapes.h>
-#include <Vision_Control.h>
+#include "Vision_Control.h"
+
 #include <string>
 
 struct wbBall {
