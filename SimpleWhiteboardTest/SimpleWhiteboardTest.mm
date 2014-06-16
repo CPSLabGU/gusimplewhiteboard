@@ -218,14 +218,25 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
+static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kFSM_Names_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v };
+
 - (void) testStringPostings
 {
     string testString("000");
 
-    for (int wbtype = 0; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
+    for (int wbtype = 1; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
     {
         bool result = guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
-        //XCTAssertTrue(result, @"Could not post wb message %d ():")
+        bool needStringConversion = true;
+        for (int i = 0; i < sizeof(nasty_wb_without_string_conversion)/sizeof(nasty_wb_without_string_conversion[0]); i++)
+        {
+            if (wbtype == nasty_wb_without_string_conversion[i])
+            {
+                needStringConversion = false;
+                break;
+            }
+        }
+        XCTAssertTrue(!needStringConversion || result, @"Could not post wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
     }
 }
 
