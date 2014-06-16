@@ -364,16 +364,12 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !VisionControlStatus_DEFINED
 
-		case kVision_Objects_v:
-#ifdef VisionObjects_DEFINED
+		case kdummy_v:
 		{
-			class Vision_Objects_t Vision_Objects_msg;
-			Vision_Objects_msg.post(VisionObjects(message_content));
+			class dummy_t dummy_msg;
+			dummy_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
-#else
-			return false;
-#endif // !VisionObjects_DEFINED
 
 		case kFSOsighting_v:
 #ifdef FilteredSonarObjects_DEFINED
@@ -617,7 +613,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["PlayerNumber"] = kManuallyPenalized_v;
 	self["guvision_control"] = kVision_Control_v;
 	self["guvision_status"] = kVision_Status_v;
-	self["guvision_objects"] = kVision_Objects_v;
+	self["dummy"] = kdummy_v;
 	self["FSOsighting"] = kFSOsighting_v;
 	self["TopParticles"] = kTopParticles_v;
 	self["FilteredBallSighting"] = kFilteredBallSighting_v;
