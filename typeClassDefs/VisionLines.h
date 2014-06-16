@@ -8,8 +8,9 @@
 #ifndef VisionLines_DEFINED
 #define	VisionLines_DEFINED
 
-#include "Vision_Objects.h"
+#include <SimpleShapes.h>
 #include <string>
+
 namespace guWhiteboard {
 class VisionLines {
 private:
@@ -36,7 +37,7 @@ public:
 				else
 					cam = VisionCamera::Bottom;
 				
-				ballInfo.position = getPoint(&t);
+				ballInfo.position = getPoint(t.c_str());
 				ballInfo.radius = u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
 				setBall(ballInfo, cam);
 			}

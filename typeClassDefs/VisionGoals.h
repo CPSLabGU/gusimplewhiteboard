@@ -8,8 +8,19 @@
 #ifndef VisionGoals_DEFINED
 #define	VisionGoals_DEFINED
 
-#include "Vision_Objects.h"
+#include <SimpleShapes.h>
 #include <string>
+#include <gu_util.h>
+
+struct WbGoalPostInfo {
+	GUPoint<int16_t> outerBottom;
+	GUPoint<int16_t> outerTop;
+
+	GUPoint<int16_t> innerBottom;
+	GUPoint<int16_t> innerTop;
+};
+
+
 namespace guWhiteboard {
 class VisionGoals {
 private:
@@ -39,10 +50,10 @@ public:
 				else
 					cam = Bottom;
 				
-				postInfo.outerBottom = getPoint(&t);
-				postInfo.outerTop = getPoint(&t);
-				postInfo.innerBottom = getPoint(&t);
-				postInfo.innerTop = getPoint(&t);
+				postInfo.outerBottom = getPoint(t.c_str());
+				postInfo.outerTop = getPoint(t.c_str());
+				postInfo.innerBottom = getPoint(t.c_str());
+				postInfo.innerTop = getPoint(t.c_str());
 				setLeftGoalPost(postInfo, cam);
 			}
 		}
@@ -61,10 +72,10 @@ public:
 				else
 					cam = Bottom;
 				
-				postInfo.outerBottom = getPoint(&t);
-				postInfo.outerTop = getPoint(&t);
-				postInfo.innerBottom = getPoint(&t);
-				postInfo.innerTop = getPoint(&t);
+				postInfo.outerBottom = getPoint(t.c_str());
+				postInfo.outerTop = getPoint(t.c_str());
+				postInfo.innerBottom = getPoint(t.c_str());
+				postInfo.innerTop = getPoint(t.c_str());
 				setRightGoalPost(postInfo, cam);
 			}
 		}
