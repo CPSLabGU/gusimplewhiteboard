@@ -368,7 +368,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredVisionObject_DEFINED
+#ifdef FilteredOneDimObjects_DEFINED
 		{
 			class FilteredBallSighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -376,7 +376,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !FilteredVisionObject_DEFINED
+#endif // !FilteredOneDimObjects_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 		{

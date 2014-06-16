@@ -69,6 +69,9 @@
 #include <gu_util.h>
 #include "Vision_Control.h"
 
+#define FVOTopBall      FVOGoalPost
+#define FVOBottomBall   FVOGoalPostLeft
+
 namespace guWhiteboard
 {
         /**

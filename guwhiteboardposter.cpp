@@ -394,15 +394,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredVisionObject_DEFINED
+#ifdef FilteredOneDimObjects_DEFINED
 		{
 			class FilteredBallSighting_t FilteredBallSighting_msg;
-			FilteredBallSighting_msg.post(FilteredVisionObject(message_content));
+			FilteredBallSighting_msg.post(FilteredOneDimObjects(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredVisionObject_DEFINED
+#endif // !FilteredOneDimObjects_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 		{
