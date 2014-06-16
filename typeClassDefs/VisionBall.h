@@ -74,7 +74,7 @@ public:
 				else
 					cam = Bottom;
 				
-				ballInfo.setCenter(getPoint(t.c_str()));
+				ballInfo.setCenter(t.c_str());
 				ballInfo.setRadius(u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str())));
 				setBall(ballInfo, cam);
 				objectMask[cam] = 1;

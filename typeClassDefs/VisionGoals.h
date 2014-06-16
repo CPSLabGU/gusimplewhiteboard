@@ -50,10 +50,10 @@ public:
 				else
 					cam = Bottom;
 				
-				postInfo.outerBottom = getPoint(t.c_str());
-				postInfo.outerTop = getPoint(t.c_str());
-				postInfo.innerBottom = getPoint(t.c_str());
-				postInfo.innerTop = getPoint(t.c_str());
+				postInfo.outerBottom = t.c_str();
+				postInfo.outerTop = t.c_str();
+				postInfo.innerBottom = t.c_str();
+				postInfo.innerTop = t.c_str();
 				setLeftGoalPost(postInfo, cam);
 			}
 		}
@@ -72,10 +72,10 @@ public:
 				else
 					cam = Bottom;
 				
-				postInfo.outerBottom = getPoint(t.c_str());
-				postInfo.outerTop = getPoint(t.c_str());
-				postInfo.innerBottom = getPoint(t.c_str());
-				postInfo.innerTop = getPoint(t.c_str());
+				postInfo.outerBottom = t.c_str();
+				postInfo.outerTop = t.c_str();
+				postInfo.innerBottom = t.c_str();
+				postInfo.innerTop = t.c_str();
 				setRightGoalPost(postInfo, cam);
 			}
 		}
