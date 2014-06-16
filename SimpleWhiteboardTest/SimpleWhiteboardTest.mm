@@ -224,7 +224,8 @@ public:
 
     for (int wbtype = 0; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
     {
-        guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
+        bool result = guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
+        XCTAssertTrue(result, @"Could not post wb message %d ():")
     }
 }
 
