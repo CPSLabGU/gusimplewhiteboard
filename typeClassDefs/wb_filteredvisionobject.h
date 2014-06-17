@@ -1,12 +1,12 @@
 
 /**
- * \file  wb_filteredsonarobject.h
+ * \file  wb_filteredvisionobject.h
  *  gusimplewhiteboard
  *
  *  Created by
  *  \author Vlad Estivill-Castro on
  *  \date 18/06/2014.
- *  Copyright 2010-2014 Vlad Estivill-Castro. All rights reserved.
+ *  Copyright 2014 Vlad Estivill-Castro. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,20 +59,23 @@
  *
  */
 
-#ifndef gusimplewhiteboard_wb_filteredsonarobject_h
-#define gusimplewhiteboard_wb_filteredsonarobject_h
-
-
-#include <gu_util.h>
+#ifndef gusimplewhiteboard_wb_filteredvisionobject_h
+#define gusimplewhiteboard_wb_filteredvisionobject_h
 
 /**
- * Simple sonar information for the whiteboard
+ * Simple filtered informaiton (of a sonar object) ifor the whiteboard
+ * One of this is reported for each camera, but we place
+ * a Boolean to indicate it was also visible in the other camera
  */
-struct wb_filteredsonarobject
+struct wb_filteredvisionobject
 {
-        PROPERTY(bool, isVisible) //  is this a credible sighting
+        PROPERTY(bool, isVisibleTop) //  is this a credible sighting
+        PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
         PROPERTY(int16_t, distance) //  distance to landmark in cm
-        PROPERTY(int32_t, frameCounter) //  frame counter in cm
+        PROPERTY(int32_t, frameCounter) //  frame counter
+        PROPERTY(int16_t, x) //  centre x-coordinate in image
+        PROPERTY(int16_t, yT) //  centre y-coordinate in image
+        PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
 };
 
 #endif
