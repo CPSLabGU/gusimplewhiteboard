@@ -67,6 +67,10 @@ struct wb_point2d
 {
     PROPERTY(int16_t, x)
     PROPERTY(int16_t, y)
+
+#ifdef __cplusplus
+    wb_point2d(int16_t x = 0, int16_t y = 0): _x(x), _y(y) {}
+#endif
 };
 
 /**
@@ -77,6 +81,10 @@ struct wb_point3d
     PROPERTY(int16_t, x)
     PROPERTY(int16_t, y)
     PROPERTY(int16_t, z)
+
+#ifdef __cplusplus
+    wb_point3d(int16_t x = 0, int16_t y = 0, int16_t z = 0): _x(x), _y(y), _z(z) {}
+#endif
 };
 
 #endif
