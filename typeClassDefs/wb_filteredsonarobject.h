@@ -1,9 +1,12 @@
-/*
- *  SimpleWhiteboardTestPlainC.m
+
+/**
+ * \file  wb_filteredsonarobject.h
+ *  gusimplewhiteboard
  *
- *  Created by Rene Hexel on 18/06/2014.
- *  Copyright (c) 2014 Rene Hexel.
- *  All rights reserved.
+ *  Created by
+ *  \author Vlad Estivill-Castro on
+ *  \date 18/06/2014.
+ *  Copyright 2010-2014 Vlad Estivill-Castro. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -18,9 +21,9 @@
  *    provided with the distribution.
  *
  * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgement:
+ *    software must display the following acknowledgment:
  *
- *        This product includes software developed by Rene Hexel.
+ *        This product includes software developed by Vlad Estivill-Castro.
  *
  * 4. Neither the name of the author nor the names of contributors
  *    may be used to endorse or promote products derived from this
@@ -29,8 +32,8 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
  * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
@@ -55,19 +58,21 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#import <XCTest/XCTest.h>
-#include "gusimplewhiteboard.h"
-#include "wb_point.h"
-#include "wb_filteredsonarobject.h"
 
-@interface SimpleWhiteboardTestPlainC: XCTestCase
-@property (nonatomic, assign) gu_simple_whiteboard_descriptor *wbd;
-@end
+#ifndef gusimplewhiteboard_wb_filteredsonarobject_h
+#define gusimplewhiteboard_wb_filteredsonarobject_h
 
-@implementation SimpleWhiteboardTestPlainC
 
-- (void) setUp
+#include <gu_util.h>
+
+/**
+ * Simple 2 dimensional point class for the whiteboard
+ */
+struct wb_filteredsonarobject
 {
-    [super setUp];
-}
-@end
+        PROPERTY(bool, isVisible) //  is this a credible sighting
+        PROPERTY(int16_t, distance) //  distance to landmark in cm
+        PROPERTY(int32_t, frameCounter) //  frame counter in cm
+};
+
+#endif
