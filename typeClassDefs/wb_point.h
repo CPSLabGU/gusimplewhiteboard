@@ -1,9 +1,9 @@
 /*
- *  Point2D.h
- *  gusimplewhiteboard / clfsm
+ *  wb_point.h
+ *  gusimplewhiteboard
  *
- *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013 Rene Hexel. All rights reserved.
+ *  Created by Rene Hexel on 18/06/2014.
+ *  Copyright (c) 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,69 +55,23 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#ifndef _WBPoint_h
+#define _WBPoint_h
 
+#include <sys/types.h>
 
-/****************** I M P O R T A N T   */
-/* is <class_name>_DEFINED              */
-/***************************************/
-
-#ifndef Point2D_DEFINED
-#define Point2D_DEFINED
-
-#include <cstdlib>
-#include <sstream>
-#include <gu_util.h>
-#include "wb_point.h"
-
-namespace guWhiteboard
+/**
+ * Simple 2 dimensional point class for the whiteboard
+ */
+struct wb_point2d
 {
+    int16_t _x; ///< x-coordinate
+    int16_t _y; ///< y-coordinate
 
-        /**
-         * Class for for demonstrating OO-messages.
-         */
-        class Point2D
-        {
-            PROPERTY(int16_t, x) ///<  x-coordinate
-            PROPERTY(int16_t, y) ///<  y-coordinate
+#ifdef __cplusplus
+    int16_t x() const { return _x; }
+    int16_t y() const { return _y; }
+#endif
+};
 
-        public:
-            /** designated constructor */
-            Point2D(int16_t x = 0, int16_t y = 0): _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
-
-            /** string constructor */
-            Point2D(const std::string &names) { from_string(names); }
-
-            /** copy constructor */
-            Point2D(const Point2D &other): _x(other._x), _y(other._y) {}
-
-            /** copy assignment operator */
-            Point2D &operator=(const Point2D &other) { _x = other._x; _y = other._y; return *this; }
-
-            /** convert to a string */
-            std::string description()
-            {
-                std::ostringstream ss;
-                ss << x() << "," << y();
-                return ss.str();
-            }
-
-            /** convert from a string */
-            void from_string(const std::string &str)
-            {
-                std::istringstream iss(str);
-                std::string token;
-                if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
-                    if (getline(iss, token, ','))
-                    {
-		        set_y(int16_t(atoi(token.c_str())));
-                    }
-                }
-            }
-        };
-}
-
-
-#endif // Point2D_DEFINED
+#endif

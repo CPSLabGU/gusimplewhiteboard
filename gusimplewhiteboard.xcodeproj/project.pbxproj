@@ -66,8 +66,6 @@
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
-		F11BC0BF176123DB0069F6FB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F11BC0BE176123DB0069F6FB /* main.cpp */; };
-		F11BC0C1176123DB0069F6FB /* guudpwhiteboard.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F11BC0C0176123DB0069F6FB /* guudpwhiteboard.1 */; };
 		F11BC0C5176124510069F6FB /* udp_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870611757080C00A13AAE /* udp_util.cpp */; };
 		F11BC0C6176124510069F6FB /* udp_sender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870761758562A00A13AAE /* udp_sender.cpp */; };
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
@@ -105,6 +103,8 @@
 		F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */; };
 		F1D9260A14A13BCD00BDAEED /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D9265914A151C500BDAEED /* WBFunctor.h */; };
+		F1E2FEED195105630039FFD9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68705E1757080C00A13AAE /* main.cpp */; };
+		F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */; };
 		F1ED584418E7C93F00864A87 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1ED584318E7C93F00864A87 /* main.cc */; };
 		F1ED584618E7C93F00864A87 /* wbperf.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1ED584518E7C93F00864A87 /* wbperf.1 */; };
 		F1ED584C18E7C97E00864A87 /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
@@ -223,7 +223,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				F11BC0C1176123DB0069F6FB /* guudpwhiteboard.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -283,8 +282,6 @@
 		C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
 		C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
 		F11BC0BC176123DB0069F6FB /* guudpwhiteboard */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = guudpwhiteboard; sourceTree = BUILT_PRODUCTS_DIR; };
-		F11BC0BE176123DB0069F6FB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		F11BC0C0176123DB0069F6FB /* guudpwhiteboard.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = guudpwhiteboard.1; sourceTree = "<group>"; };
 		F11BC0CC176124CB0069F6FB /* AlgUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AlgUtil.cpp; sourceTree = "<group>"; };
 		F11BC0CD176124CB0069F6FB /* AlgUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgUtil.h; sourceTree = "<group>"; };
 		F11BC0D0176124CB0069F6FB /* client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
@@ -393,6 +390,9 @@
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
 		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleWhiteboardTestPlainC.m; sourceTree = "<group>"; };
+		F1E2FEF0195105A60039FFD9 /* wb_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_point.h; sourceTree = "<group>"; };
+		F1E2FEF11951071F0039FFD9 /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
 		F1E5542818EBD16D00639B1E /* FSM_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
 		F1E5542918EBD16D00639B1E /* GCGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
@@ -400,7 +400,6 @@
 		F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
 		F1E5542C18EBD16D00639B1E /* NAO_State.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAO_State.h; sourceTree = "<group>"; };
 		F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
-		F1E5542E18EBD16D00639B1E /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
 		F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
 		F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
@@ -594,7 +593,6 @@
 				F11BC0CB176124CB0069F6FB /* Common */,
 				C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */,
 				C33D92BB150491F500524671 /* guudpbridge */,
-				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				F1C94D661555CA8E00B717DF /* guobjcwhiteboard */,
 				F1C94D771555CA8E00B717DF /* guobjcwhiteboardTests */,
 			);
@@ -629,15 +627,6 @@
 			);
 			name = guwhiteboardtypegenerator;
 			path = ../guwhiteboardtypegenerator;
-			sourceTree = "<group>";
-		};
-		F11BC0BD176123DB0069F6FB /* guudpwhiteboard */ = {
-			isa = PBXGroup;
-			children = (
-				F11BC0BE176123DB0069F6FB /* main.cpp */,
-				F11BC0C0176123DB0069F6FB /* guudpwhiteboard.1 */,
-			);
-			path = guudpwhiteboard;
 			sourceTree = "<group>";
 		};
 		F11BC0CB176124CB0069F6FB /* Common */ = {
@@ -815,9 +804,9 @@
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
 				C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */,
 				F1E5542618EBD16D00639B1E /* typeClassDefs */,
+				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				8BC60E6E174079FD00800829 /* guudpwhiteboard */,
 				F1C94DA61555D3C300B717DF /* gusimplewhiteboardios */,
-				F11BC0BD176123DB0069F6FB /* guudpwhiteboard */,
 				F1ED584218E7C93F00864A87 /* wbperf */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
@@ -929,10 +918,10 @@
 			children = (
 				F1D9260014A13BAA00BDAEED /* SimpleWhiteboardTest.h */,
 				F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */,
+				F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */,
 				F1D925FB14A13BAA00BDAEED /* Supporting Files */,
 			);
-			name = SimpleWhiteboardTest;
-			path = ../SimpleWhiteboardTest;
+			path = SimpleWhiteboardTest;
 			sourceTree = "<group>";
 		};
 		F1D925FB14A13BAA00BDAEED /* Supporting Files */ = {
@@ -948,6 +937,8 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
+				F1E2FEF11951071F0039FFD9 /* Point2D.h */,
 				F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */,
 				F1E5542818EBD16D00639B1E /* FSM_Control.h */,
 				F1E5542918EBD16D00639B1E /* GCGameState.h */,
@@ -955,7 +946,6 @@
 				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
 				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
-				F1E5542E18EBD16D00639B1E /* Point2D.h */,
 				F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */,
 				F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */,
 				F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */,
@@ -1579,10 +1569,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F11BC0BF176123DB0069F6FB /* main.cpp in Sources */,
 				F11BC0C5176124510069F6FB /* udp_util.cpp in Sources */,
 				F11BC0C6176124510069F6FB /* udp_sender.cpp in Sources */,
 				F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */,
+				F1E2FEED195105630039FFD9 /* main.cpp in Sources */,
 				F11BC114176124D50069F6FB /* gu_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1649,6 +1639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */,
+				F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */,
 				F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */,
 				F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 			);
