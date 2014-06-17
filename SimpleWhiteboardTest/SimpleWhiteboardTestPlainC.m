@@ -69,5 +69,19 @@
 - (void) setUp
 {
     [super setUp];
+    _wbd = get_local_singleton_whiteboard();
 }
+
+- (void) tearDown
+{
+    _wbd = NULL;
+}
+
+
+- (void) testWhiteboardIsNotNULL
+{
+    XCTAssertNotEqual(_wbd, NULL, @"Whoa, got a NULL singleton Whiteboard");
+}
+
+
 @end
