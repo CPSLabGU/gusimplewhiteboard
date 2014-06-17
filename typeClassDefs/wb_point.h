@@ -69,4 +69,14 @@ struct wb_point2d
     PROPERTY(int16_t, y)
 };
 
+/**
+ * Simple 3 dimensional point class for the whiteboard
+ */
+struct wb_point3d
+{
+    PROPERTY(int16_t, x)
+    PROPERTY(int16_t, y)
+    PROPERTY(int16_t, z)
+};
+
 #endif
