@@ -58,20 +58,15 @@
 #ifndef _WBPoint_h
 #define _WBPoint_h
 
-#include <sys/types.h>
+#include <gu_util.h>
 
 /**
  * Simple 2 dimensional point class for the whiteboard
  */
 struct wb_point2d
 {
-    int16_t _x; ///< x-coordinate
-    int16_t _y; ///< y-coordinate
-
-#ifdef __cplusplus
-    int16_t x() const { return _x; }
-    int16_t y() const { return _y; }
-#endif
+    PROPERTY(int16_t, x)
+    PROPERTY(int16_t, y)
 };
 
 #endif

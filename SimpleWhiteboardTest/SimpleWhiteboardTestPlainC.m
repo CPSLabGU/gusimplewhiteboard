@@ -57,6 +57,7 @@
  */
 #import <XCTest/XCTest.h>
 #include "gusimplewhiteboard.h"
+#include "wb_point.h"
 
 @interface SimpleWhiteboardTestPlainC: XCTestCase
 @property (nonatomic, assign) gu_simple_whiteboard_descriptor *wbd;
@@ -67,6 +68,5 @@
 - (void) setUp
 {
     [super setUp];
-    
 }
 @end
