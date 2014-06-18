@@ -57,6 +57,7 @@
  */
 #import <XCTest/XCTest.h>
 #include "gusimplewhiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
 #include "wb_point.h"
 #include "wb_filteredsonarobject.h"
 #include "wb_filteredvisionobject.h"
@@ -64,8 +65,11 @@
 #include "wb_arrayoffilteredsonarobjects.h"
 #include "wb_arrayoffilteredballobjects.h"
 
+static const int16_t test_x = 1, test_y = 2, test_z = 42;
+
 @interface SimpleWhiteboardTestPlainC: XCTestCase
 @property (nonatomic, assign) gu_simple_whiteboard_descriptor *wbd;
+@property (nonatomic, assign) gu_simple_whiteboard *wb;
 @end
 
 @implementation SimpleWhiteboardTestPlainC
@@ -73,7 +77,8 @@
 - (void) setUp
 {
     [super setUp];
-    _wbd = get_local_singleton_whiteboard();
+    if ((_wbd = get_local_singleton_whiteboard()))
+        _wb = _wbd->wb;
 }
 
 - (void) tearDown
@@ -85,7 +90,61 @@
 - (void) testWhiteboardIsNotNULL
 {
     XCTAssertNotEqual(_wbd, NULL, @"Whoa, got a NULL singleton Whiteboard");
+    XCTAssertNotEqual(_wb, NULL, @"Whoa, got a NULL underlying Whiteboard");
 }
 
+
+- (void) testPostPoint2D
+{
+    struct wb_point2d point = { test_x, test_y };
+    gu_simple_message *m = gsw_next_message(_wb, 0); // using reserved type
+    struct wb_point2d *wbpoint = (struct wb_point2d *) m;
+    *wbpoint = point;
+    gsw_increment(_wb, 0);
+    gsw_increment_event_counter(_wb, 0);
+
+    XCTAssertEqual(point._x, wbpoint->_x, @"Got differing x on wb");
+    XCTAssertEqual(point._y, wbpoint->_y, @"Got differing y on wb");
+}
+
+
+- (void) testGetPoint2D
+{
+    [self testPostPoint2D];
+
+    gu_simple_message *m = gsw_current_message(_wb, 0);
+    struct wb_point2d *wbpoint = (struct wb_point2d *) m;
+
+    XCTAssertEqual(test_x, wbpoint->_x, @"Got differing x from wb");
+    XCTAssertEqual(test_y, wbpoint->_y, @"Got differing y from wb");
+}
+
+
+- (void) testPostPoint3D
+{
+    struct wb_point3d point = { test_x, test_y, test_z };
+    gu_simple_message *m = gsw_next_message(_wb, 0); // using reserved type
+    struct wb_point3d *wbpoint = (struct wb_point3d *) m;
+    *wbpoint = point;
+    gsw_increment(_wb, 0);
+    gsw_increment_event_counter(_wb, 0);
+
+    XCTAssertEqual(point._x, wbpoint->_x, @"Got differing x on wb");
+    XCTAssertEqual(point._y, wbpoint->_y, @"Got differing y on wb");
+    XCTAssertEqual(point._z, wbpoint->_z, @"Got differing z on wb");
+}
+
+
+- (void) testGetPoint3D
+{
+    [self testPostPoint3D];
+
+    gu_simple_message *m = gsw_current_message(_wb, 0);
+    struct wb_point3d *wbpoint = (struct wb_point3d *) m;
+
+    XCTAssertEqual(test_x, wbpoint->_x, @"Got differing x from wb");
+    XCTAssertEqual(test_y, wbpoint->_y, @"Got differing y from wb");
+    XCTAssertEqual(test_z, wbpoint->_z, @"Got differing z from wb");
+}
 
 @end
