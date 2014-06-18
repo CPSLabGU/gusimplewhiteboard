@@ -502,6 +502,7 @@
 		F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_filteredvisionobject.h; sourceTree = "<group>"; };
 		F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredvisionobjects.h; sourceTree = "<group>"; };
 		F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredsonarobjects.h; sourceTree = "<group>"; };
+		F5119EB5195111A3009C87F6 /* wb_arrayoffilteredballobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredballobjects.h; sourceTree = "<group>"; };
 		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
 		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -943,6 +944,7 @@
 			children = (
 				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */,
+				F5119EB5195111A3009C87F6 /* wb_arrayoffilteredballobjects.h */,
 				F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */,
 				F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */,
 				F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */,
