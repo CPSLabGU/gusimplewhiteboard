@@ -73,6 +73,17 @@ struct wb_filteredsonarobject
         PROPERTY(bool, isVisible) //  is this a credible sighting
         PROPERTY(int16_t, distance) //  distance to landmark in cm
         PROPERTY(int32_t, frameCounter) //  frame counter in cm
+        
+#ifdef __cplusplus
+        wb_filteredsonarobject( bool isVisible = false,
+                               int16_t distance =0,
+                               int32_t frameCounter =0):
+        
+        _isVisible(isVisible),
+        _distance(distance),
+        _frameCounter(frameCounter)
+         {}
+#endif
 };
 
 #endif

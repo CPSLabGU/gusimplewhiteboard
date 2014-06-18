@@ -72,13 +72,13 @@
  */
 struct wb_filteredvisionobject
 {
-        PROPERTY(bool, isVisibleTop) //  is this a credible sighting
-        PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
-        PROPERTY(int16_t, distance) //  distance to landmark in cm
         PROPERTY(int32_t, frameCounter) //  frame counter
+        PROPERTY(int16_t, distance) //  distance to landmark in cm
         PROPERTY(int16_t, x) //  centre x-coordinate in image
         PROPERTY(int16_t, y) //  centre y-coordinate in image
         PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
+        PROPERTY(bool, isVisibleTop) //  is this a credible sighting
+        PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
 };
 
 
