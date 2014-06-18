@@ -27,9 +27,9 @@ namespace guWhiteboard
             
                 //One of these values will be ignored base on the movement_type selected
                 PROPERTY(int, target_movement_time) ///< usec
-                BITPROPERTY(head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
+                BIT_PROPERTY(head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
                 
-                BITPROPERTY(head_cmd_mask)
+                BIT_PROPERTY(head_cmd_mask)
                 unsigned pad: 30;
         public:
             
