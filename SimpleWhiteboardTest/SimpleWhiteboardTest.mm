@@ -57,6 +57,7 @@
  */
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
+#import "FilteredOneDimSonar.h"
 
 using namespace guWhiteboard;
 using namespace std;
@@ -198,6 +199,21 @@ public:
         XCTAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
 }
 
+- (void) testSerializaitonFilteredSonarObject
+{
+        FilteredOneDimSonar testA("");
+        
+       XCTAssertFalse(testA.isVisible(), @"Expected not visible");
+        
+        FilteredOneDimSonar testB("IsVisible,10,FREAME:100,");
+        
+        XCTAssertTrue(testB.isVisible(), @"Expected not visible");
+        XCTAssertEqual(10, testB.distance(), @"Distance match");
+        XCTAssertEqual(100, testB.frameCounter(), @"frameCounter match");
+
+        
+        
+}
 
 - (void) testSubscribe
 {

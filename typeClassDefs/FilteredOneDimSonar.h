@@ -71,15 +71,16 @@
 #include <gu_util.h>
 #include "wb_filteredsonarobject.h"
 
-const char SEPARATOR_IS_COMMA = ',';
-
         /**
          * Class for for one filtered sonar message.
          */
-class FilteredOneDimSonar  public wb_filteredsonarobject
+class FilteredOneDimSonar:  public wb_filteredsonarobject
 {
+        static const char SEPARATOR_IS_COMMA = ',';
+        static const char SEPARATOR_IS_COLON = ':';
 
-        
+        static const char IS_VISIBLE_ID = 'I';
+       
         public:
         /** designated constructor */
         FilteredOneDimSonar(bool isVisible = false,
@@ -89,20 +90,21 @@ class FilteredOneDimSonar  public wb_filteredsonarobject
         { /*  */ }
         
         /** string constructor */
-        FilteredSonarObject(const std::string &names) { from_string(names); }
+        FilteredOneDimSonar(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredOneDimSonar(const char *names) { from_string(names); }
         
         /** copy constructor */
-        FilteredOneDimSonar(const FilteredOneDimSonar &other):
-        set_isVisible(other.isVisible()),
-        set_distance(other.distance()),
-        set_frameCounter(other.frameCounter())
-        {}
+        FilteredOneDimSonar(const FilteredOneDimSonar &other):wb_filteredsonarobject(other.isVisible(), other.distance() ,other.frameCounter())
+        {
+        }
         
         /** copy assignment operator **/
         FilteredOneDimSonar &operator=(const FilteredOneDimSonar &other)
         {
                 set_isVisible ( other.isVisible() );
-                set_distance ( other._distance() );
+                set_distance ( other.distance() );
                 set_frameCounter ( other.frameCounter() );
                 
                 return *this;
@@ -117,7 +119,7 @@ class FilteredOneDimSonar  public wb_filteredsonarobject
                 { ss<<"ISvisible"<< SEPARATOR_IS_COMMA << distance() <<  SEPARATOR_IS_COMMA; }
                   else ss << " NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;;
                 
-                ss << "FRAME:"frameCounter() << <<  SEPARATOR_IS_COMMA;;
+                ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
                 return ss.str();
         }
         
@@ -126,8 +128,45 @@ class FilteredOneDimSonar  public wb_filteredsonarobject
         {
                 std::istringstream iss(str);
                 std::string token;
-                 if (getline(iss, token, SEPARATOR_COMMA))
-                 {
+                if (getline(iss, token, SEPARATOR_IS_COMMA))
+                 { if (IS_VISIBLE_ID==token[0])
+                        { set_isVisible ( true );
+                          set_distance ( 0 );
+                          set_frameCounter ( 0 );
+                          std::string comaDel (1,SEPARATOR_IS_COMMA);
+                           std::size_t found = str.find(comaDel);
+                           if (std::string::npos!=found )
+                                { std::string strSecond=str.substr (found+comaDel.size());
+                                  std::istringstream second_iss(strSecond);
+                                if (getline(second_iss, token, SEPARATOR_IS_COMMA))
+                                {
+                                        int16_t distance_value = int16_t ( atoi(token.c_str()));
+                                        set_distance ( distance_value);
+                                        std::string colonDel (1,SEPARATOR_IS_COLON);
+                                        found = strSecond.find(colonDel);
+                                        if (std::string::npos!=found )
+                                        { std::string strThird=strSecond.substr (found+colonDel.size());
+                                            std::istringstream third_iss(strThird);
+                                           if (getline(third_iss, token, SEPARATOR_IS_COMMA))
+                                           {
+                                                   int32_t frameValue=int32_t ( atoi(token.c_str()));
+                                                   set_frameCounter (frameValue);
+                                                   
+                                           }
+                                                
+                                                
+                                        }
+                                        
+                                }
+                                        
+                          }
+              
+                         
+                        }
+                   else
+                          { *this=FilteredOneDimSonar();     }
+                        
+
                          
                  }
                 else

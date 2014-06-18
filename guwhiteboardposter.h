@@ -72,7 +72,7 @@
 #include "MOTION_Interface.h"
 #include "FSM_Control.h"
 #include "Vision_Control.h"
-#include "FilteredOneDimObjects.h"
+#include "FilteredOneDimSonar.h"
 #include "SENSORS_SonarSensors.h"
 #include "NAO_State.h"
 #include "HAL_HeadTarget.h"
