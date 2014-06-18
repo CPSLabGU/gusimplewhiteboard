@@ -74,7 +74,7 @@
 #define CONTROLSTATUS_SET_FSM(s, fsm)   ((s)->_fsms[(fsm)%8] |= (1<<((fsm)%8)))
 #define CONTROLSTATUS_GET_FSM(s, fsm)   ((((s)->_fsms[(fsm)%8]) & (1<<((fsm)%8))) != 0)
 
-#define CONTROLSTATUS_SET_CMD(s, cmd)   ((s)->_fsms[CONTROLSTATUS_CMD] = ((s)->_fsms[CONTROLSTATUS_CMD] & ~CONTROLSTATUS_CMD_MASK) | (((cmd) & 3) << 6))
+#define CONTROLSTATUS_SET_CMD(s, cmd)   ((s)->_fsms[CONTROLSTATUS_CMD] = static_cast<uint8_t>(((s)->_fsms[CONTROLSTATUS_CMD] & ~CONTROLSTATUS_CMD_MASK) | (((cmd) & 3) << 6)))
 #define CONTROLSTATUS_GET_CMD(s)    ((((s)->_fsms[CONTROLSTATUS_CMD]) >> 6) & 3)
 
 #ifdef __cplusplus

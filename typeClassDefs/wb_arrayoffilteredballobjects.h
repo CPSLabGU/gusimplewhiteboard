@@ -1,12 +1,12 @@
 
 /**
- * \file  wb_filteredsonarobject.h
+ * \file  wb_arrayoffilteredballobjects.h
  *  gusimplewhiteboard
  *
  *  Created by
  *  \author Vlad Estivill-Castro on
  *  \date 18/06/2014.
- *  Copyright 2010-2014 Vlad Estivill-Castro. All rights reserved.
+ *  Copyright 2014 Vlad Estivill-Castro. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,31 +59,24 @@
  *
  */
 
-#ifndef gusimplewhiteboard_wb_filteredsonarobject_h
-#define gusimplewhiteboard_wb_filteredsonarobject_h
+#ifndef gusimplewhiteboard_wb_arrayoffilteredballobjects_h
+#define gusimplewhiteboard_wb_arrayoffilteredballobjects_h
 
+#include "wb_filteredsonarobject.h"
 
-#include <gu_util.h>
-
-/**
- * Simple sonar information for the whiteboard
- */
-struct wb_filteredsonarobject
+enum FilteredBallObjectType
 {
-        PROPERTY(bool, isVisible) //  is this a credible sighting
-        PROPERTY(int16_t, distance) //  distance to landmark in cm
-        PROPERTY(int32_t, frameCounter) //  frame counter in cm
-        
-#ifdef __cplusplus
-        wb_filteredsonarobject( bool isVisible = false,
-                               int16_t distance =0,
-                               int32_t frameCounter =0):
-        
-        _isVisible(isVisible),
-        _distance(distance),
-        _frameCounter(frameCounter)
-         {}
-#endif
+        FVOBallTop,
+        FVOBallBottom,
+        FVO_NUM_CAMERAS          ///< number of different kind SONAR of objects
 };
+
+struct wb_arrayoffilteredballobjects
+{
+        struct wb_filteredvisionobject    _objects[FVO_NUM_CAMERAS];
+};
+
+
+
 
 #endif
