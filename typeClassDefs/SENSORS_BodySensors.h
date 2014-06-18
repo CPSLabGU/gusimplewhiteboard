@@ -10,11 +10,11 @@
 #ifndef SENSORS_BodySensors_DEFINED
 #define SENSORS_BodySensors_DEFINED
 
-#include "wb_sensors_bodysensors.h" 
+#include "wb_sensors_body.h" 
 
 namespace guWhiteboard                                                  
 {
-        class SENSORS_BodySensors : public wb_sensors_bodysensors
+        class SENSORS_BodySensors : public wb_sensors_body
         {
         public:
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

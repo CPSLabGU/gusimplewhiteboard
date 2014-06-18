@@ -1,20 +1,20 @@
 /**                                                                     
- *  /file wb_sensors_bodysensors.h 
+ *  /file wb_sensors_body.h 
  *                                                                      
  *  Created by Carl Lusty in 2014.                                      
  *  Copyright (c) 2014 Carl Lusty                                       
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_bodysensors_h
-#define _wb_sensors_bodysensors_h
+#ifndef _wb_sensors_body_h
+#define _wb_sensors_body_h
 
 #include <gu_util.h>
 
 /**
  * Body sensors c struct
  */
-struct wb_sensors_bodysensors
+struct wb_sensors_body
 {
     PROPERTY(float, InertialSensor_AccX)
     PROPERTY(float, InertialSensor_AccY)
@@ -34,4 +34,4 @@ struct wb_sensors_bodysensors
     int16_t pad2;
 };
 
-#endif //_wb_sensors_bodysensors_h
+#endif //_wb_sensors_body_h
