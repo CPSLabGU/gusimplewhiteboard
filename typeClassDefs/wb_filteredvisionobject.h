@@ -62,6 +62,9 @@
 #ifndef gusimplewhiteboard_wb_filteredvisionobject_h
 #define gusimplewhiteboard_wb_filteredvisionobject_h
 
+
+#include <gu_util.h>
+
 /**
  * Simple filtered informaiton (of a sonar object) ifor the whiteboard
  * One of this is reported for each camera, but we place
@@ -74,8 +77,9 @@ struct wb_filteredvisionobject
         PROPERTY(int16_t, distance) //  distance to landmark in cm
         PROPERTY(int32_t, frameCounter) //  frame counter
         PROPERTY(int16_t, x) //  centre x-coordinate in image
-        PROPERTY(int16_t, yT) //  centre y-coordinate in image
+        PROPERTY(int16_t, y) //  centre y-coordinate in image
         PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
 };
+
 
 #endif

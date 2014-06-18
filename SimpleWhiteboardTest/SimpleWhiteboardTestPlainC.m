@@ -60,6 +60,7 @@
 #include "wb_point.h"
 #include "wb_filteredsonarobject.h"
 #include "wb_filteredvisionobject.h"
+#include "wb_arrayoffilteredvisionobjects.h"
 
 @interface SimpleWhiteboardTestPlainC: XCTestCase
 @property (nonatomic, assign) gu_simple_whiteboard_descriptor *wbd;
