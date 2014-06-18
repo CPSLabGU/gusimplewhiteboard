@@ -1,6 +1,6 @@
-
+\
 /**
- * \file  wb_filteredvisionobject.h
+ * \file  wb_arrayoffilteredsonarobjects.h
  *  gusimplewhiteboard
  *
  *  Created by
@@ -59,27 +59,20 @@
  *
  */
 
-#ifndef gusimplewhiteboard_wb_filteredvisionobject_h
-#define gusimplewhiteboard_wb_filteredvisionobject_h
+#ifndef gusimplewhiteboard_wb_arrayoffilteredsonarobjects_h
+#define gusimplewhiteboard_wb_arrayoffilteredsonarobjects_h
 
+#include "wb_filteredsonarobject.h"
 
-#include <gu_util.h>
-
-/**
- * Simple filtered informaiton (of a sonar object) ifor the whiteboard
- * One of this is reported for each camera, but we place
- * a Boolean to indicate it was also visible in the other camera
- */
-struct wb_filteredvisionobject
+enum FilteredSonarObjectType
 {
-        PROPERTY(bool, isVisibleTop) //  is this a credible sighting
-        PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
-        PROPERTY(int16_t, distance) //  distance to landmark in cm
-        PROPERTY(int32_t, frameCounter) //  frame counter
-        PROPERTY(int16_t, x) //  centre x-coordinate in image
-        PROPERTY(int16_t, y) //  centre y-coordinate in image
-        PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
+        FSLeft,
+        FSRight,
+        FSO_NUM_OBJECTS          ///< number of different kind SONAR of objects
 };
 
-
+struct wb_arrayoffilteredsonarobjects
+{
+        struct wb_filteredsonarobject    _objects[FVO_NUM_OBJECTS];
+};
 #endif
