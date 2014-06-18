@@ -11,9 +11,9 @@
 #define SENSORS_LedsSensors_DEFINED
 
 
-#include <bitset>
 #include <gu_util.h>
 #include <assert.h>
+#include "wb_sensors_leds.h" 
 
 namespace guWhiteboard                                                  
 {
@@ -211,10 +211,8 @@ namespace guWhiteboard
 #endif
         }
         
-        class SENSORS_LedsSensors
+        class SENSORS_LedsSensors : public wb_sensors_leds
         {
-                PROPERTY(std::bitset<LEDs::RightEar10>, ears)
-                u_int8_t _leds[LEDs::NUMBER_OF_LEDS-LEDs::RightEar10];
                 
         public:
                 SENSORS_LedsSensors()

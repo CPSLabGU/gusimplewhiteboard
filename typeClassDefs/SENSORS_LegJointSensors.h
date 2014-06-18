@@ -11,27 +11,16 @@
 #define SENSORS_LegJointSensors_DEFINED
 
 #define _USE_MATH_DEFINES
-#include <gu_util.h>
 #include <cmath>
 #include <cstring>
 
+#include "wb_sensors_legs.h" 
 
 namespace guWhiteboard
 {
-        class SENSORS_LegJointSensors
+        class SENSORS_LegJointSensors : public wb_sensors_legs
         {
-                PROPERTY(float, LKneePitch)
-                PROPERTY(float, LAnklePitch)
-                PROPERTY(float, LAnkleRoll)
-                PROPERTY(float, RKneePitch)
-                PROPERTY(float, RAnklePitch)
-                PROPERTY(float, RAnkleRoll)
-                PROPERTY(float, LHipYawPitch)
-                PROPERTY(float, LHipRoll)
-                PROPERTY(float, LHipPitch)
-                PROPERTY(float, RHipYawPitch)
-                PROPERTY(float, RHipRoll)
-                PROPERTY(float, RHipPitch)
+
         public:
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

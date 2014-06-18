@@ -11,27 +11,19 @@
 #define SENSORS_TorsoJointSensors_DEFINED
 
 #define _USE_MATH_DEFINES
-#include <gu_util.h>
 #include <cmath>
 
 
 #include <string>
 #include <sstream>
 
+#include "wb_sensors_torso.h" 
+
 namespace guWhiteboard                                                  
 {
-        class SENSORS_TorsoJointSensors
+        class SENSORS_TorsoJointSensors : public wb_sensors_torso
         {
-                PROPERTY(float, HeadYaw)
-                PROPERTY(float, HeadPitch)
-                PROPERTY(float, LShoulderPitch)
-                PROPERTY(float, LShoulderRoll)
-                PROPERTY(float, LElbowYaw)
-                PROPERTY(float, LElbowRoll)
-                PROPERTY(float, RShoulderPitch)
-                PROPERTY(float, RShoulderRoll)
-                PROPERTY(float, RElbowYaw)
-                PROPERTY(float, RElbowRoll)
+
         public:
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
