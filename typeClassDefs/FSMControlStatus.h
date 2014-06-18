@@ -1,9 +1,9 @@
 /*
- *  FSM_Control.h
+ *  FSMControlStatus.h
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2013, 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -107,6 +107,9 @@ namespace guWhiteboard
 
             /** machine control/status setter / clearer */
             void set(int fsm, bool value) { value ? set(fsm) : clr(fsm); }
+
+            /** clear all machines and reset back to status */
+            void reset() { memset(this, 0, sizeof(*this)); }
 
             /** comparison operator **/
             bool operator==(const FSMControlStatus &other) const { return memcmp(this, &other, sizeof(*this)) == 0; }
