@@ -59,60 +59,57 @@
 #define FSMControlStatus_DEFINED
 
 #include <cstdlib>
+#include <cstring>
 #include <bitset>
 #include <sstream>
 #include <gu_util.h>
-#include "gusimplewhiteboard.h"
+#include "wb_fsm_control_status.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <ctype.h>
 #endif
 
-#define CONTROLSTATUS_SIZE          ((sizeof(gsw_simple_message))*8)
-#define CONTROLSTATUS_BITS_RESERVED 2   // must be big enough for enum
-#define CONTROLSTATUS_NUM_FSMS      (CONTROLSTATUS_SIZE - CONTROLSTATUS_BITS_RESERVED)
-#define CONTROLSTATUS_CMD_LO        CONTROLSTATUS_NUM_FSMS
-#define CONTROLSTATUS_CMD_HI        (CONTROLSTATUS_CMD_LO + 1)
-
 namespace guWhiteboard
 {
-        /**
-         * command for ControlStatus
-         */
-        enum FSMControlType
-        {
-            FSMStatus,          ///< check status only
-            FSMSuspend,         ///< suspend the corresponding state machines
-            FSMResume,          ///< resume the corresponding state machines
-            FSMRestart          ///< restart the corresponding state machine
-        };
-
         /**
          * Class for controlling and getting the status of FSMs.
          * This is implemented as a bit vector with an enum for control and
          * one bit per FSM.
          */
-        class FSMControlStatus
+        class FSMControlStatus: public wb_fsm_control_status
         {
-            PROPERTY(std::bitset<CONTROLSTATUS_SIZE>, fsms) ///< bit set for fsms affected by command
-
         public:
             /** designated constructor */
-            FSMControlStatus(FSMControlType t = FSMStatus): _fsms() { set_command(t); }
+            FSMControlStatus(FSMControlType t = FSMStatus) { memset(this, 0, sizeof(wb_fsm_control_status)); set_command(t); }
 
             /** string constructor */
-            FSMControlStatus(const std::string &names): _fsms() { from_string(names); }
+            FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }
 
             /** copy constructor */
-            FSMControlStatus(const FSMControlStatus &other): _fsms(other._fsms) {}
+            FSMControlStatus(const FSMControlStatus &other) { memcpy(this, &other, sizeof(wb_fsm_control_status)); }
 
             /** assignment operator */
-            const FSMControlStatus &operator=(const FSMControlStatus &other) { _fsms = other._fsms; return *this; }
+            const FSMControlStatus &operator=(const FSMControlStatus &other) { memcpy(this, &other, sizeof(wb_fsm_control_status)); return *this; }
 
             /** command getter */
-            FSMControlType command() const { return static_cast<FSMControlType>(_fsms[CONTROLSTATUS_CMD_LO] + (_fsms[CONTROLSTATUS_CMD_HI] << 1)); }
+            FSMControlType command() const { return static_cast<FSMControlType>(CONTROLSTATUS_GET_CMD(this)); }
 
             /** command setter */
-            void set_command(FSMControlType command) { _fsms[CONTROLSTATUS_CMD_LO] = ((command & (1 << 0)) != 0); _fsms[CONTROLSTATUS_CMD_HI] = ((command & (1 << 1)) != 0); }
+            void set_command(FSMControlType command) { CONTROLSTATUS_SET_CMD(this, command); }
+
+            /** machine status setter */
+            bool get(int fsm) const { return CONTROLSTATUS_GET_FSM(this, fsm); }
+
+            /** machine control/status setter */
+            void set(int fsm) { CONTROLSTATUS_SET_FSM(this, fsm); }
+
+            /** machine control/status clearer */
+            void clr(int fsm) { CONTROLSTATUS_CLR_FSM(this, fsm); }
+
+            /** machine control/status setter / clearer */
+            void set(int fsm, bool value) { value ? set(fsm) : clr(fsm); }
+
+            /** comparison operator **/
+            bool operator==(const FSMControlStatus &other) const { return memcmp(this, &other, sizeof(*this)) == 0; }
 
             /** convert to a string */
             std::string description() const
@@ -120,7 +117,7 @@ namespace guWhiteboard
                 std::ostringstream ss;
                 ss << command();
                 for (size_t i = 0; i < CONTROLSTATUS_NUM_FSMS; i++)
-                    if (_fsms[i])
+                    if (_fsms[i/8] & (1<<(i%8)))
                         ss << "," << i;
 
                 return ss.str();
@@ -137,8 +134,8 @@ namespace guWhiteboard
                     while (getline(iss, token, ','))
                     {
                         size_t i = static_cast<size_t>(atol(token.c_str()));
-                        if (i < CONTROLSTATUS_SIZE)
-                            fsms().set(i);
+                        if (i < CONTROLSTATUS_BIT_SIZE)
+                            CONTROLSTATUS_SET_FSM(this, i);
                     }
                 }
             }

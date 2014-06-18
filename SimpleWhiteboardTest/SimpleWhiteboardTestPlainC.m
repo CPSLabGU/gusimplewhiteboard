@@ -58,11 +58,13 @@
 #import <XCTest/XCTest.h>
 #include "gusimplewhiteboard.h"
 #include "guwhiteboardtypelist_c_generated.h"
+
 #include "wb_point.h"
 #include "wb_filteredsonarobject.h"
 #include "wb_filteredvisionobject.h"
 #include "wb_arrayoffilteredvisionobjects.h"
 #include "wb_arrayoffilteredsonarobjects.h"
+#include "wb_fsm_control_status.h"
 
 static const int16_t test_x = 1, test_y = 2, test_z = 42;
 
