@@ -77,8 +77,25 @@ struct wb_filteredvisionobject
         PROPERTY(int16_t, x) //  centre x-coordinate in image
         PROPERTY(int16_t, y) //  centre y-coordinate in image
         PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
-        PROPERTY(bool, isVisibleTop) //  is this a credible sighting
-        PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
+        PROPERTY(bool, isVisible) //  is this a credible sighting
+
+        
+#ifdef __cplusplus
+        wb_filteredvisionobject(int32_t frameCounter=0,
+                                int16_t distance =0,
+                                int16_t x=0,
+                                int16_t y=0,
+                                int16_t yaw=0,
+                               bool isVisible= false
+                                ):
+        _frameCounter(frameCounter),
+        _distance(distance),
+        _x(x),
+        _y(y),
+        _yaw(yaw),
+        _isVisible(isVisible)
+        {}
+#endif
 };
 
 

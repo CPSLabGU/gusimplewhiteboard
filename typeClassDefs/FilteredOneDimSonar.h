@@ -3,7 +3,7 @@
  *  FilteredOneDimSonar.h
  *  gusimplewhiteboard
  *
- *  Created by Rene Hexel on 18/06/2014..
+ *  Created by Vlad Estivill-Castro  on 18/06/2014..
  *  Copyright (c) 2013, 2014 Vlad Estivill-Castro. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -110,7 +110,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 return *this;
         }
         
-        /** convert to a string */
+        /** convert to a string; string serialization */
         std::string description() const
         {
                 std::ostringstream ss;
@@ -123,7 +123,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 return ss.str();
         }
         
-        //*** TODO: still incomplete */
+        /* build froms tring */
         void from_string(const std::string &str)
         {
                 std::istringstream iss(str);

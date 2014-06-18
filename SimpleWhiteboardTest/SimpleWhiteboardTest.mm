@@ -58,6 +58,7 @@
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 #import "FilteredOneDimSonar.h"
+#import "FilteredOneDimObject.h"
 
 #import "FSMControlStatus.h"
 
@@ -212,8 +213,23 @@ public:
         XCTAssertTrue(testB.isVisible(), @"Expected not visible");
         XCTAssertEqual(10, testB.distance(), @"Distance match");
         XCTAssertEqual(100, testB.frameCounter(), @"frameCounter match");
-
         
+}
+
+- (void) testSerializaitonFilteredOneDimObject
+{
+        FilteredOneDimObject testA("");
+        
+        XCTAssertFalse(testA.isVisible(), @"Expected not visible");
+        
+        FilteredOneDimObject testB("IsVisible,10,20,30,40,FREAME:100,");
+        
+        XCTAssertTrue(testB.isVisible(), @"Expected not visible");
+        XCTAssertEqual(10, testB.distance(), @"distance match");
+        XCTAssertEqual(20, testB.x(), @"'x' match");
+        XCTAssertEqual(30, testB.y(), @"'y' match");
+        XCTAssertEqual(40, testB.yaw(), @"yaw match");
+        XCTAssertEqual(100, testB.frameCounter(), @"frameCounter match");
         
 }
 

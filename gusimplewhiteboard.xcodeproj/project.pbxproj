@@ -506,6 +506,7 @@
 		F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredsonarobjects.h; sourceTree = "<group>"; };
 		F5119EB5195111A3009C87F6 /* wb_arrayoffilteredballobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredballobjects.h; sourceTree = "<group>"; };
 		F5119EB619511511009C87F6 /* FilteredOneDimSonar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimSonar.h; sourceTree = "<group>"; };
+		F5532F7B19516B5E00FE04F1 /* FilteredOneDimObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObject.h; sourceTree = "<group>"; };
 		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
 		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -954,6 +955,7 @@
 				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
 				F1E2FEF11951071F0039FFD9 /* Point2D.h */,
 				F5119EB619511511009C87F6 /* FilteredOneDimSonar.h */,
+				F5532F7B19516B5E00FE04F1 /* FilteredOneDimObject.h */,
 				F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */,
 				F1E5542818EBD16D00639B1E /* FSMControlStatus.h */,
 				F1E2FEF3195115D90039FFD9 /* FSM_Control.h */,
