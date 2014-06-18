@@ -394,6 +394,7 @@
 		F1E2FEF0195105A60039FFD9 /* wb_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_point.h; sourceTree = "<group>"; };
 		F1E2FEF11951071F0039FFD9 /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		F1E2FEF3195115D90039FFD9 /* FSM_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
+		F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fsm_control_status.h; sourceTree = "<group>"; };
 		F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObjects.h; sourceTree = "<group>"; };
 		F1E5542818EBD16D00639B1E /* FSMControlStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMControlStatus.h; sourceTree = "<group>"; };
 		F1E5542918EBD16D00639B1E /* GCGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
@@ -950,6 +951,7 @@
 				F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */,
 				F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */,
 				F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */,
+				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
 				F1E2FEF11951071F0039FFD9 /* Point2D.h */,
 				F5119EB619511511009C87F6 /* FilteredOneDimSonar.h */,
 				F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */,

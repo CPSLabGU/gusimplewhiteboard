@@ -58,6 +58,7 @@
 #import <XCTest/XCTest.h>
 #include "gusimplewhiteboard.h"
 #include "guwhiteboardtypelist_c_generated.h"
+
 #include "wb_point.h"
 #include "wb_filteredsonarobject.h"
 #include "wb_filteredvisionobject.h"

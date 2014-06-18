@@ -59,6 +59,8 @@
 #import "SimpleWhiteboardTest.h"
 #import "FilteredOneDimSonar.h"
 
+#import "FSMControlStatus.h"
+
 using namespace guWhiteboard;
 using namespace std;
 
@@ -182,21 +184,21 @@ public:
         FSM_Status_t fsmStatus;
         FSMControlStatus oldStatus = fsmStatus();       // get old from wb
         FSMControlStatus newStatus = oldStatus;         // copy
-        newStatus.fsms().reset(0);
-        newStatus.fsms().set(1);
-        newStatus.fsms().reset(2);
-        newStatus.fsms().set(3);
-        newStatus.fsms().set(4);
+        newStatus.clr(0);
+        newStatus.set(1);
+        newStatus.clr(2);
+        newStatus.set(3);
+        newStatus.set(4);
         fsmStatus.set(newStatus);                       // write to wb
         FSMControlStatus result = fsmStatus();          // get back out
-        XCTAssertFalse(result.fsms()[0], @"Expecting 0 to be unset");
-        XCTAssertTrue(result.fsms()[1], @"Expecting 1 to be set");
-        XCTAssertFalse(result.fsms()[2], @"Expecting 2 to be unset");
-        XCTAssertTrue(result.fsms()[3], @"Expecting 3 to be set");
-        XCTAssertTrue(result.fsms()[4], @"Expecting 4 to be set");
+        XCTAssertFalse(result.get(0), @"Expecting 0 to be unset");
+        XCTAssertTrue(result.get(1), @"Expecting 1 to be set");
+        XCTAssertFalse(result.get(2), @"Expecting 2 to be unset");
+        XCTAssertTrue(result.get(3), @"Expecting 3 to be set");
+        XCTAssertTrue(result.get(4), @"Expecting 4 to be set");
         fsmStatus.set(oldStatus);
         result = fsmStatus.get();
-        XCTAssertTrue(result.fsms() == oldStatus.fsms(), @"Expecting old status to be restored");
+        XCTAssertTrue(result == oldStatus, @"Expecting old status to be restored");
 }
 
 - (void) testSerializaitonFilteredSonarObject
