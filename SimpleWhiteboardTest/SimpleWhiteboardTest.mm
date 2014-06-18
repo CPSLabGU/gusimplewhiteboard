@@ -206,6 +206,8 @@ public:
 {
         FilteredOneDimSonar testA("");
         
+        XCTAssertEqual(sizeof(testA), sizeof(wb_filteredsonarobject), @"Size %ld of testA does not match size %ld of wb_filteredsonarobject", sizeof(testA), sizeof(wb_filteredsonarobject));
+        
        XCTAssertFalse(testA.isVisible(), @"Expected not visible");
         
         FilteredOneDimSonar testB("IsVisible,10,FREAME:100,");
@@ -219,7 +221,9 @@ public:
 - (void) testSerializaitonFilteredOneDimObject
 {
         FilteredOneDimObject testA("");
-        
+
+        XCTAssertEqual(sizeof(testA), sizeof(wb_filteredvisionobject), @"Size %ld of testA does not match size %ld of wb_filteredvisionobject", sizeof(testA), sizeof(wb_filteredvisionobject));
+
         XCTAssertFalse(testA.isVisible(), @"Expected not visible");
         
         FilteredOneDimObject testB("IsVisible,10,20,30,40,FREAME:100,");
