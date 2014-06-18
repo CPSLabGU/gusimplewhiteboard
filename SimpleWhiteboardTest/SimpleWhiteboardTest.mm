@@ -236,7 +236,9 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
-static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kFSM_Names_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v };
+static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kFSM_Names_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v,
+        // FIXME: vision below
+        kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v }; // FIXME: vision
 
 - (void) testStringPostings
 {

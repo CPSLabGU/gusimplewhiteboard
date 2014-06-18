@@ -65,6 +65,7 @@
 #include "wb_arrayoffilteredvisionobjects.h"
 #include "wb_arrayoffilteredsonarobjects.h"
 #include "wb_arrayoffilteredballobjects.h"
+#include "wb_fsm_control_status.h"
 
 static const int16_t test_x = 1, test_y = 2, test_z = 42;
 
