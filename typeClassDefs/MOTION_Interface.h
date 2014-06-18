@@ -199,7 +199,7 @@ namespace guWhiteboard
 
 	class MOTION_Status
 	{
-                BITPROPERTY(running)
+                BIT_PROPERTY(running)
                 PROPERTY(int8_t, expected_stance)
                 PROPERTY(int8_t, verified_stance) //NYI
 		public:
@@ -254,16 +254,16 @@ namespace guWhiteboard
                 ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) //private - of type stance_actions casted to an 8 bit int (saves 30 bytes of wb space)
                 PROPERTY(int8_t, num_of_stance_actions)
 
-                BITPROPERTY(stance_action_mask)
-                BITPROPERTY(ignore_chain)
-                BITPROPERTY(ignore_chain_mask) //go to the joint targets directly
+                BIT_PROPERTY(stance_action_mask)
+                BIT_PROPERTY(ignore_chain)
+                BIT_PROPERTY(ignore_chain_mask) //go to the joint targets directly
                 
                 //Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general
-                BITPROPERTY(head_stiffness)
-                BITPROPERTY(body_stiffness)
+                BIT_PROPERTY(head_stiffness)
+                BIT_PROPERTY(body_stiffness)
                 /* Control bits */
-                BITPROPERTY(head_stiffness_mask)
-                BITPROPERTY(body_stiffness_mask)
+                BIT_PROPERTY(head_stiffness_mask)
+                BIT_PROPERTY(body_stiffness_mask)
 
         public:                
                 MOTION_Commands(bool head_stiffness = false, bool body_stiffness = false, bool masks = false/*, Motions::stance stance = Motions::Kneeling_stance*/)

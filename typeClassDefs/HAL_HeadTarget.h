@@ -10,37 +10,16 @@
 #ifndef HAL_HeadTarget_DEFINED                                       
 #define HAL_HeadTarget_DEFINED
 
-#include <gu_util.h>
+#include "wb_hal_headtarget.h"
 
-#define YAW_LIMIT_POS 90
-#define YAW_LIMIT_NEG -YAW_LIMIT_POS
-#define PITCH_LIMIT_POS 28
-#define PITCH_LIMIT_NEG -20
 
 namespace guWhiteboard                                                  
 {
-        class HAL_HeadTarget
+        class HAL_HeadTarget : public wb_hal_headtarget
         {
-                //Angles are in degrees
-                PROPERTY(float, target_pitchAngle) ///< not sure, look it up in the AL_Docs
-                PROPERTY(float, target_yawAngle) ///< 
-            
-                //One of these values will be ignored base on the movement_type selected
-                PROPERTY(int, target_movement_time) ///< usec
-                BITPROPERTY(head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
-                
-                BITPROPERTY(head_cmd_mask)
-                unsigned pad: 30;
         public:
             
-                HAL_HeadTarget(float target_pitchAngle = 0, float target_yawAngle = 0, int target_movement_time = 1000000, bool head_stopped = true)
-                {
-                        set_target_pitchAngle(target_pitchAngle);
-                        set_target_yawAngle(target_yawAngle);
-                        set_target_movement_time(target_movement_time);
-                        set_head_stopped(head_stopped);
-                        set_head_cmd_mask(false);
-                }
+                HAL_HeadTarget(): wb_hal_headtarget() {}
                 
                 void Stop()
                 {
