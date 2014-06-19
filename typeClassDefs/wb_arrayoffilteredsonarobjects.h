@@ -73,7 +73,7 @@ enum FilteredSonarObjectType
 
 struct wb_arrayoffilteredsonarobjects
 {
-        struct wb_filteredsonarobject    _objects[FVO_NUM_OBJECTS];
+        struct wb_filteredsonarobject    _objects[FSO_NUM_OBJECTS];
         
 #ifdef __cplusplus
         wb_arrayoffilteredsonarobjects() {}

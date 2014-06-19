@@ -99,6 +99,14 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
         FilteredOneDimSonar(const FilteredOneDimSonar &other):wb_filteredsonarobject(other.isVisible(), other.distance() ,other.frameCounter())
         {
         }
+    
+        /** BASECONSTRUCTOR: INTERESTING !!!! */
+        FilteredOneDimSonar (const wb_filteredsonarobject &other)
+    {    set_isVisible ( other.isVisible() );
+        set_distance ( other.distance() );
+        set_frameCounter ( other.frameCounter() );
+        
+    }
         
         /** copy assignment operator **/
         FilteredOneDimSonar &operator=(const FilteredOneDimSonar &other)
@@ -109,7 +117,17 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 
                 return *this;
         }
+    
+          /** copy assignment operator:INTERESTING!!! **/
+           FilteredOneDimSonar &operator=(const wb_filteredsonarobject &other)
+         {
+                set_isVisible ( other.isVisible() );
+                 set_distance ( other.distance() );
+                   set_frameCounter ( other.frameCounter() );
         
+               return *this;
+             }
+    
         /** convert to a string; string serialization */
         std::string description() const
         {

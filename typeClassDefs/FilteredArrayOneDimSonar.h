@@ -78,6 +78,8 @@ class FilteredArrayOneDimSonar:  public wb_arrayoffilteredsonarobjects
 {
         static const char SEPARATOR_IS_COMMA = ',';
         static const char SEPARATOR_IS_COLON = ':';
+        static const char LEFT_ID = 'L';
+        static const char RIGHT_ID = 'R';
         
         static const char IS_VISIBLE_ID = 'I';
         
@@ -99,7 +101,7 @@ public:
         FilteredArrayOneDimSonar(const char *names) { from_string(names); }
         
         /** copy constructor */
-        FilteredSonarObjects(const FilteredSonarObjects &other)
+        FilteredArrayOneDimSonar(const FilteredArrayOneDimSonar &other)
         {
 #ifdef DEBUG
                 assert(sizeof(*this) == sizeof(wb_arrayoffilteredsonarobjects));
@@ -108,7 +110,7 @@ public:
         }
         
         /** copy assignment operator **/
-        FilteredSonarObjects &operator=(const FilteredSonarObjects &other)
+        FilteredArrayOneDimSonar &operator=(const FilteredArrayOneDimSonar &other)
         {
                 memcpy(this, &other, sizeof(other));
                 
@@ -116,24 +118,26 @@ public:
         }
         
         /** property getter */
-        class FilteredSonarObject *objects() { return _objects; }
+        //class FilteredArrayOneDimSonar *objects() { return _objects; }
         
-        /** property setter */
-        void set_objects(const class FilteredSonarObject *objects)
+    
+      /** property setter */
+        void set_objects(const class FilteredArrayOneDimSonar *objects)
         {
                 memcpy(_objects, objects, sizeof(_objects));
         }
         
         /** single vision object setter */
-        void set_object(const class FilteredSonarObject &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
+        void set_object(const class FilteredOneDimSonar &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
         {
                 _objects[landmarkType]=obj;
         }
         
         /** single vision object setter */
-        FilteredSonarObject  get_object( enum FilteredSonarObjectType landmarkType  = FSLeft)
-        {
-                return _objects[landmarkType];
+        FilteredOneDimSonar  get_object( enum FilteredSonarObjectType landmarkType  = FSLeft)
+        {    //FIXME:
+            FilteredOneDimSonar test(_objects[landmarkType]);
+                return test;
         }
         
         
@@ -147,14 +151,14 @@ public:
                         FilteredSonarObjectType landmarkType = FilteredSonarObjectType(i);
                         switch (landmarkType )
                         {
-                                case FSLeft : ss << "aLeftSonar:";
+                            case FSLeft : ss << LEFT_ID<<SEPARATOR_IS_COLON;
                                         break;
-                                case FSRight : ss << "aRightSonar:";
+                                case FSRight : ss << RIGHT_ID<<SEPARATOR_IS_COLON ;
                                         break;
                                 case FSO_NUM_OBJECTS : mipal_warn( "ERROR:");
                                         break;
                         }// switch
-                        ss <<_objects[landmarkType].description();
+                        ss << get_object(landmarkType).description();
                 } //for
                 return ss.str();
         }
@@ -164,52 +168,27 @@ public:
         {
                 std::istringstream iss(str);
                 std::string token;
-                if (getline(iss, token, SEPARATOR_IS_COMMA))
-                { if (IS_VISIBLE_ID==token[0])
-                { set_isVisible ( true );
-                        set_distance ( 0 );
-                        set_frameCounter ( 0 );
-                        std::string comaDel (1,SEPARATOR_IS_COMMA);
-                        std::size_t found = str.find(comaDel);
-                        if (std::string::npos!=found )
-                        { std::string strSecond=str.substr (found+comaDel.size());
-                                std::istringstream second_iss(strSecond);
-                                if (getline(second_iss, token, SEPARATOR_IS_COMMA))
-                                {
-                                        int16_t distance_value = int16_t ( atoi(token.c_str()));
-                                        set_distance ( distance_value);
-                                        std::string colonDel (1,SEPARATOR_IS_COLON);
-                                        found = strSecond.find(colonDel);
-                                        if (std::string::npos!=found )
-                                        { std::string strThird=strSecond.substr (found+colonDel.size());
-                                                std::istringstream third_iss(strThird);
-                                                if (getline(third_iss, token, SEPARATOR_IS_COMMA))
-                                                {
-                                                        int32_t frameValue=int32_t ( atoi(token.c_str()));
-                                                        set_frameCounter (frameValue);
-                                                        
-                                                }
-                                                
-                                                
-                                        }
-                                        
-                                }
-                                
-                        }
-                        
-                        
+            
+                 std::string left (1,LEFT_ID); left+=SEPARATOR_IS_COLON;
+                 std::string right (1,RIGHT_ID); right+=SEPARATOR_IS_COLON;
+            
+                std::size_t found = str.find(left);
+                if (std::string::npos!=found )
+                {  std::string strForLeft=str.substr (found+left.size());
+                    FilteredOneDimSonar theLeft(strForLeft);
+                    set_object(theLeft,FSLeft);
                 }
-                else
-                { *this=FilteredOneDimSonar();     }
-                        
-                        
-                        
-                }
-                else
-                {
-                        *this=FilteredOneDimSonar();
-                }
+            
+            found = str.find(right);
+            if (std::string::npos!=found )
+            {  std::string strForRight=str.substr (found+right.size());
+                FilteredOneDimSonar theRight(strForRight);
+                set_object(theRight,FSRight );
+            }
+            
+            
         }
+
         
 };
 
