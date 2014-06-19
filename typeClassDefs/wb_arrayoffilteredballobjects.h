@@ -62,7 +62,7 @@
 #ifndef gusimplewhiteboard_wb_arrayoffilteredballobjects_h
 #define gusimplewhiteboard_wb_arrayoffilteredballobjects_h
 
-#include "wb_filteredsonarobject.h"
+#include "wb_filteredvisionobject.h"
 
 enum FilteredBallObjectType
 {
@@ -73,7 +73,8 @@ enum FilteredBallObjectType
 
 struct wb_arrayoffilteredballobjects
 {
-        struct wb_filteredvisionobject    _objects[FVO_NUM_CAMERAS];
+         ARRAY_PROPERTY(struct wb_filteredvisionobject, objects, FVO_NUM_CAMERAS)
+
 };
 
 
