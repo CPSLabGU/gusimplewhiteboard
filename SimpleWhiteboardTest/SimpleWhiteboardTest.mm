@@ -60,6 +60,7 @@
 #import "FilteredOneDimSonar.h"
 #import "FilteredOneDimObject.h"
 #import "FilteredArrayOneDimSonar.h"
+#import "FilteredArrayOneDimObjects.h"
 
 #import "FSMControlStatus.h"
 
@@ -300,7 +301,80 @@ public:
     XCTAssertEqual(testArrayC.get_object(FSLeft).frameCounter(), testB.frameCounter(), @"frameCounter match");
     XCTAssertEqual(testArrayC.get_object(FSRight).distance(), testC.distance(), @"distance match");
     XCTAssertEqual(testArrayC.get_object(FSRight).frameCounter(), testC.frameCounter(), @"frameCounter match");
+    
+}
+
+- (void) testSerializaitonFilteredArrayOneDimObjects
+{
+    FilteredOneDimObject testP("IsVisible,10,20,30,40,FRAME:100,");
+    
+    FilteredArrayOneDimObjects testArray(testP);
+    
+    FilteredOneDimObject testB=testArray.get_object(FVOGoalPost);
+    
+    XCTAssertTrue(testP.isVisible(), @"Expected  visible");
+    XCTAssertTrue(testB.isVisible(), @"Expected  visible");
+    XCTAssertEqual(testP.distance(), testB.distance(), @"distance match");
+    XCTAssertEqual(testP.x(), testB.x(), @"'x' match");
+    XCTAssertEqual(testP.y(), testB.y(), @"'y' match");
+    XCTAssertEqual(testP.yaw(), testB.yaw(), @"yaw match");
+    XCTAssertEqual(testP.frameCounter(), testB.frameCounter(), @"frameCounter match");
+    
+    FilteredOneDimObject testL("IsVisible,15,25,35,45,FRAME:105,");
+    
+    testArray.set_object(testL,FVOGoalPostLeft);
+    
+    FilteredOneDimObject testL1=testArray.get_object(FVOGoalPostLeft);
+    
+    XCTAssertTrue(testL.isVisible(), @"Expected  visible");
+    XCTAssertTrue(testL1.isVisible(), @"Expected  visible");
+    XCTAssertEqual(testL1.distance(), testL.distance(), @"distance match");
+    XCTAssertEqual(testL1.x(), testL.x(), @"'x' match");
+    XCTAssertEqual(testL1.y(), testL.y(), @"'y' match");
+    XCTAssertEqual(testL1.yaw(), testL.yaw(), @"yaw match");
+    XCTAssertEqual(testL1.frameCounter(), testL.frameCounter(), @"frameCounter match");
+    
+    FilteredOneDimObject testR("IsVisible,13,23,33,43,FRAME:108,");
+    FilteredOneDimObject testC("IsVisible,12,22,32,42,FRAME:102,");
+    
+    testArray.set_object(testR,FVOGoalPostRight);
+    testArray.set_object(testC,FVOGoalCrossBar);
+    
+    FilteredArrayOneDimObjects testArrayB(testArray);
+   
+    
+    FilteredOneDimObject testPostLeft=testArrayB.get_object(FVOGoalPostLeft);
+    FilteredOneDimObject testPostRight=testArrayB.get_object(FVOGoalPostRight);
+    FilteredOneDimObject testCrossbar=testArrayB.get_object(FVOGoalCrossBar);
+    XCTAssertTrue(testPostLeft.isVisible(), @"Expected  visible");
+    XCTAssertEqual(testPostLeft.distance(), testL.distance(), @"distance match");
+    XCTAssertEqual(testPostLeft.x(), testL.x(), @"'x' match");
+    XCTAssertEqual(testPostLeft.y(), testL.y(), @"'y' match");
+    XCTAssertEqual(testPostLeft.yaw(), testL.yaw(), @"yaw match");
+    XCTAssertEqual(testPostLeft.frameCounter(), testL.frameCounter(), @"frameCounter match");
+    XCTAssertTrue(testPostRight.isVisible(), @"Expected  visible");
+    XCTAssertEqual(testPostRight.distance(), testR.distance(), @"distance match");
+    XCTAssertEqual(testPostRight.x(), testR.x(), @"'x' match");
+    XCTAssertEqual(testPostRight.y(), testR.y(), @"'y' match");
+    XCTAssertEqual(testPostRight.yaw(), testR.yaw(), @"yaw match");
+    XCTAssertEqual(testPostRight.frameCounter(), testR.frameCounter(), @"frameCounter match");
+    
+    XCTAssertTrue(testCrossbar.isVisible(), @"Expected  visible");
+    XCTAssertEqual(testCrossbar.distance(), testC.distance(), @"distance match");
+    XCTAssertEqual(testCrossbar.x(), testC.x(), @"'x' match");
+    XCTAssertEqual(testCrossbar.y(), testC.y(), @"'y' match");
+    XCTAssertEqual(testCrossbar.yaw(), testC.yaw(), @"yaw match");
+    XCTAssertEqual(testCrossbar.frameCounter(), testC.frameCounter(), @"frameCounter match");
  
+    string s =testArrayB.description();
+    
+    FilteredArrayOneDimObjects testArrayC(s);
+    XCTAssertTrue(testArrayC.get_object(FVOGoalPostLeft).isVisible(), @"Expected  visible");
+    XCTAssertTrue(testArrayC.get_object(FVOGoalPostRight).isVisible(), @"Expected  visible");
+    XCTAssertEqual(testArrayC.get_object(FVOGoalPostLeft).distance(), testL.distance(), @"distance match");
+    XCTAssertEqual(testArrayC.get_object(FVOGoalPostLeft).frameCounter(), testL.frameCounter(), @"frameCounter match");
+    XCTAssertEqual(testArrayC.get_object(FVOGoalPostRight).distance(), testR.distance(), @"distance match");
+    XCTAssertEqual(testArrayC.get_object(FVOGoalPostRight).frameCounter(), testR.frameCounter(), @"frameCounter match");
     
 }
 

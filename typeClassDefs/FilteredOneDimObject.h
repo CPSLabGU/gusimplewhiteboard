@@ -99,7 +99,21 @@ public:
         FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible())
         {
         }
+    
+         /** BASECONSTRUCTOR: INTERESTING !!!! */
+         FilteredOneDimObject (const wb_filteredvisionobject &other)
+       {    set_isVisible ( other.isVisible() );
         
+        set_frameCounter ( other.frameCounter() );
+           set_distance ( other.distance() );
+            set_x ( other.x() );
+            set_y ( other.y() );
+             set_yaw ( other.yaw() );
+           set_isVisible ( other.isVisible() );
+
+        
+    }
+    
         /** copy assignment operator **/
         FilteredOneDimObject &operator=(const FilteredOneDimObject &other)
         {
@@ -112,7 +126,21 @@ public:
 
                 return *this;
         }
+    
+    /** copy assignment operator **/
+    /**  INTERESTING !!!! */
+    FilteredOneDimObject &operator=(const wb_filteredvisionobject &other)
+    {
+        set_frameCounter ( other.frameCounter() );
+        set_distance ( other.distance() );
+        set_x ( other.x() );
+        set_y ( other.y() );
+        set_yaw ( other.yaw() );
+        set_isVisible ( other.isVisible() );
         
+        return *this;
+    }
+    
         /********************* Useful utilities *****************************/
         float horizontal_angle(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
         {
