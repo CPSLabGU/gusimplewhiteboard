@@ -130,14 +130,13 @@ public:
     /** single vision object setter */
     void set_object(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
     {
-        _objects[landmarkType]=obj;
+        wb_arrayoffilteredvisionobjects::set_objects(obj, landmarkType);
     }
     
     /** single vision object setter */
     FilteredOneDimObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
-    {    //FIXME:
-        FilteredOneDimObject test(_objects[landmarkType]);
-        return test;
+    {  
+        return objects(landmarkType);
     }
     
     

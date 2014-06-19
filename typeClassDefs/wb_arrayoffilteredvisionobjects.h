@@ -26,7 +26,9 @@ enum FilteredVisionObjectType
 
 struct wb_arrayoffilteredvisionobjects
 {
-     struct wb_filteredvisionobject    _objects[FVO_NUM_OBJECTS];
+    
+    ARRAY_PROPERTY(struct wb_filteredvisionobject, objects, FVO_NUM_OBJECTS)
+     
 };
 
 
