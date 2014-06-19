@@ -62,6 +62,7 @@
 #ifndef gusimplewhiteboard_wb_arrayoffilteredsonarobjects_h
 #define gusimplewhiteboard_wb_arrayoffilteredsonarobjects_h
 
+#include <gu_util.h>
 #include "wb_filteredsonarobject.h"
 
 enum FilteredSonarObjectType
@@ -73,7 +74,7 @@ enum FilteredSonarObjectType
 
 struct wb_arrayoffilteredsonarobjects
 {
-        struct wb_filteredsonarobject    _objects[FSO_NUM_OBJECTS];
+        ARRAY_PROPERTY(struct wb_filteredsonarobject, objects, FSO_NUM_OBJECTS)
         
 #ifdef __cplusplus
         wb_arrayoffilteredsonarobjects() {}

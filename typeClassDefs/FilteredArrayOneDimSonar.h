@@ -130,14 +130,13 @@ public:
         /** single vision object setter */
         void set_object(const class FilteredOneDimSonar &obj, enum FilteredSonarObjectType landmarkType  = FSLeft)
         {
-                _objects[landmarkType]=obj;
+                wb_arrayoffilteredsonarobjects::set_objects(obj, landmarkType);
         }
         
         /** single vision object setter */
         FilteredOneDimSonar  get_object( enum FilteredSonarObjectType landmarkType  = FSLeft)
-        {    //FIXME:
-            FilteredOneDimSonar test(_objects[landmarkType]);
-                return test;
+        {   
+            return objects(landmarkType);
         }
         
         
