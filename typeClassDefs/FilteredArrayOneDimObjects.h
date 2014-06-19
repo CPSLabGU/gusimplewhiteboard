@@ -66,10 +66,15 @@
 #define FilteredArrayOneDimObjects_h
 
 #include <cstdlib>
+#include <cassert>
 #include <sstream>
 #include <gu_util.h>
+
+#include "typeClassDefs/FilteredOneDimObject.h"
+
 #include "wb_arrayoffilteredvisionobjects.h"
 
+namespace guWhiteboard {
 
 /**
  * Class for for the array vision larndmarks (GOAL POSTS)
@@ -91,7 +96,7 @@ public:
     { /*  */ }
     
     /** constructor with one setter */
-    FilteredArrayOneDimObjects(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
+    FilteredArrayOneDimObjects(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPostTop)
     {
         _objects[landmarkType]=obj;
     }
@@ -128,13 +133,13 @@ public:
     }
     
     /** single vision object setter */
-    void set_object(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
+    void set_object(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOGoalPostTop)
     {
         wb_arrayoffilteredvisionobjects::set_objects(obj, landmarkType);
     }
     
     /** single vision object setter */
-    FilteredOneDimObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOGoalPost)
+    FilteredOneDimObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOGoalPostTop)
     {  
         return objects(landmarkType);
     }
@@ -145,18 +150,26 @@ public:
     std::string description()
     {
         std::ostringstream ss;
-        for ( int i =FVOGoalPost; i< FVO_NUM_OBJECTS; i++ )
+        for ( int i =FVOGoalPostTop; i< FVO_NUM_OBJECTS; i++ )
         {
             FilteredVisionObjectType landmarkType = FilteredVisionObjectType(i);
             switch (landmarkType )
             {
-                case FVOGoalPost : ss << POST_ID<<SEPARATOR_IS_COLON;
+                case FVOGoalPostTop : ss << POST_ID<<SEPARATOR_IS_COLON;
                     break;
-                case FVOGoalPostLeft : ss << LEFT_POST_ID<<SEPARATOR_IS_COLON ;
+                case FVOGoalPostLeftTop : ss << LEFT_POST_ID<<SEPARATOR_IS_COLON ;
                     break;
-                case FVOGoalPostRight : ss << RIGHT_POST_ID<<SEPARATOR_IS_COLON;
+                case FVOGoalPostRightTop : ss << RIGHT_POST_ID<<SEPARATOR_IS_COLON;
                     break;
-                case FVOGoalCrossBar : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
+                case FVOGoalCrossBarTop : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
+                    break;
+                case FVOGoalPostBottom : ss << POST_ID<<SEPARATOR_IS_COLON;
+                    break;
+                case FVOGoalPostLeftBottom : ss << LEFT_POST_ID<<SEPARATOR_IS_COLON ;
+                    break;
+                case FVOGoalPostRightBottom : ss << RIGHT_POST_ID<<SEPARATOR_IS_COLON;
+                    break;
+                case FVOGoalCrossBarBottom : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
                     break;
                 case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
                     break;
@@ -169,6 +182,7 @@ public:
     /* build froms tring */
     void from_string(const std::string &str)
     {
+        using namespace guWhiteboard;
         std::string plain_post (1,POST_ID); plain_post+=SEPARATOR_IS_COLON;
         std::string left (1,LEFT_POST_ID); left+=SEPARATOR_IS_COLON;
         std::string right (1,RIGHT_POST_ID); right+=SEPARATOR_IS_COLON;
@@ -178,28 +192,28 @@ public:
         if (std::string::npos!=found )
         {  std::string strForPlainPost=str.substr (found+plain_post.size());
             FilteredOneDimObject thePlainPost(strForPlainPost);
-            set_object(thePlainPost,FVOGoalPost);
+            set_object(thePlainPost,FVOGoalPostTop);
         }
         
        found = str.find(left);
         if (std::string::npos!=found )
         {  std::string strForLeft=str.substr (found+left.size());
             FilteredOneDimObject theLeft(strForLeft);
-            set_object(theLeft,FVOGoalPostLeft);
+            set_object(theLeft,FVOGoalPostLeftTop);
         }
         
         found = str.find(right);
         if (std::string::npos!=found )
         {  std::string strForRight=str.substr (found+right.size());
             FilteredOneDimObject theRight(strForRight);
-            set_object(theRight,FVOGoalPostRight );
+            set_object(theRight,FVOGoalPostRightTop );
         }
         
         found = str.find(cross_bar);
         if (std::string::npos!=found )
         {  std::string strForBar=str.substr (found+cross_bar.size());
             FilteredOneDimObject theBar(strForBar);
-            set_object(theBar,FVOGoalCrossBar );
+            set_object(theBar,FVOGoalCrossBarTop );
         }
         
         
@@ -208,6 +222,6 @@ public:
     
 };
 
-
+}
 
 #endif // FilteredArrayOneDimObjects

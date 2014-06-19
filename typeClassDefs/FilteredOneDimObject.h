@@ -71,6 +71,7 @@
 #include <gu_util.h>
 #include "wb_filteredvisionobject.h"
 
+namespace guWhiteboard {
 class FilteredOneDimObject:  public wb_filteredvisionobject
 {
         static const char SEPARATOR_IS_COMMA = ',';
@@ -262,6 +263,7 @@ public:
         }
         
 };
+} //namespace
 
 
 #endif //FilteredOneDimObject

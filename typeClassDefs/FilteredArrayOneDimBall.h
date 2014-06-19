@@ -65,6 +65,9 @@
 #include <gu_util.h>
 #include "wb_arrayoffilteredballobjects.h"
 
+namespace guWhiteboard {
+    
+
 /**
  * Class for for the array of ball sighthings TOP or Bottom
  */
@@ -184,6 +187,7 @@ public:
     
     
 };
+} // namespace
 
 
 #endif //FilteredArrayOneDimBall

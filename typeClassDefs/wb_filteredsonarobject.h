@@ -80,9 +80,11 @@ struct wb_filteredsonarobject
                                int16_t distance =0,
                                int32_t frameCounter =0):
         
-        _isVisible(isVisible),
-        _distance(distance),
-        _frameCounter(frameCounter)
+    
+    
+        _frameCounter(frameCounter),
+            _distance(distance),
+       _isVisible(isVisible)
          {}
 #endif
 };

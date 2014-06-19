@@ -23,7 +23,7 @@ class:FSMControlStatus, atomic, FSM_Control,                    "fsm_control", S
 class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
 ,               nonatomic, SoloTypeExample,                     "example_type", This is an example of a type definition that does not generate anything other than a wb type
-class:FilteredOneDimObjects, nonatomic, FilteredGoalSighting,   "FilteredGoalSighting", Class that contains the Kalman filtered goal objects after sighting from vision
+class:FilteredArrayOneDimObjects, nonatomic, FilteredGoalSighting,   "FilteredGoalSighting", Class that contains the Kalman filtered goal objects after sighting from vision
 class:NAO_State, nonatomic, NAO_State,                          "NAO_State", Stores the orientation of the robot as well as the chest button status (more to come).
 class:GCGameState, nonatomic, UDPRN,                            "UDPReceiverNotification", game state notfication from the UDP receiver.
 int,          nonatomic, PlayerNumber,                          "PlayerNumber", what player number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
@@ -31,9 +31,9 @@ int,          nonatomic, ManuallyPenalized,                     "PlayerNumber", 
 class:VisionControlStatus, not_atomic, Vision_Control,          "guvision_control", control various attributes of the vision pipeline.
 class:VisionControlStatus, not_atomic, Vision_Status,           "guvision_status", message sent by vision that contains the current status of
 int,            atomic,         dummy,                          "dummy", dummy msg Not used
-class:FilteredSonarObjects, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  iSONAR objects after a sighting
+class:FilteredArrayOneDimSonar, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  iSONAR objects after a sighting
 class:TopParticles, nonatomic, TopParticles,                    "TopParticles", Class that contains the top particles for possible robot positions
-class:FilteredOneDimObjects, nonatomic, FilteredBallSighting,    "FilteredBallSighting", Class that contains the Kalman filtered top and bottom ball objects after sighting from vision
+class:FilteredArrayOneDimBall, nonatomic, FilteredBallSighting,    "FilteredBallSighting", Class that contains the Kalman filtered top and bottom ball objects after sighting from vision
 int,          nonatomic, PF_ControlStatus_Modes,                "PF_ControlStatus_Modes", what to post in the whiteboard to cause the Particle Filetr to reset, but running has no effect, it is the PF response
 class:WEBOTS_NXT_bridge, nonatomic, WEBOTS_NXT_bridge,                           "WEBOTS_NXT_bridge", WIP Class that contains a command for WEBOTS or NXt trough a bridge
 class:WEBOTS_NXT_encoders, nonatomic, WEBOTS_NXT_encoders,                           "WEBOTS_NXT_encoders", Class that contains data from encoders all for WEBOTS or NXt trough a bridge

@@ -296,15 +296,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 
 		case kFilteredGoalSighting_v:
-#ifdef FilteredOneDimObjects_DEFINED
+#ifdef FilteredArrayOneDimObjects_DEFINED
 		{
 			class FilteredGoalSighting_t FilteredGoalSighting_msg;
-			FilteredGoalSighting_msg.post(FilteredOneDimObjects(message_content));
+			FilteredGoalSighting_msg.post(FilteredArrayOneDimObjects(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredOneDimObjects_DEFINED
+#endif // !FilteredArrayOneDimObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
@@ -372,15 +372,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		}
 
 		case kFSOsighting_v:
-#ifdef FilteredSonarObjects_DEFINED
+#ifdef FilteredArrayOneDimSonar_DEFINED
 		{
 			class FSOsighting_t FSOsighting_msg;
-			FSOsighting_msg.post(FilteredSonarObjects(message_content));
+			FSOsighting_msg.post(FilteredArrayOneDimSonar(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredSonarObjects_DEFINED
+#endif // !FilteredArrayOneDimSonar_DEFINED
 
 		case kTopParticles_v:
 #ifdef TopParticles_DEFINED
@@ -394,15 +394,15 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredOneDimObjects_DEFINED
+#ifdef FilteredArrayOneDimBall_DEFINED
 		{
 			class FilteredBallSighting_t FilteredBallSighting_msg;
-			FilteredBallSighting_msg.post(FilteredOneDimObjects(message_content));
+			FilteredBallSighting_msg.post(FilteredArrayOneDimBall(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredOneDimObjects_DEFINED
+#endif // !FilteredArrayOneDimBall_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 		{

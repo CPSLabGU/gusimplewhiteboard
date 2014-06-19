@@ -71,6 +71,8 @@
 #include <gu_util.h>
 #include "wb_filteredsonarobject.h"
 
+
+namespace guWhiteboard{
         /**
          * Class for for one filtered sonar message.
          */
@@ -191,6 +193,6 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
         }
         
 };
-
+} //namespace
 
 #endif // FilteredOneDimSonar

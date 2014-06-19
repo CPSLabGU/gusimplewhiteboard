@@ -69,8 +69,12 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
+
+#include "typeClassDefs/FilteredOneDimSonar.h"
+
 #include "wb_arrayoffilteredsonarobjects.h"
 
+namespace guWhiteboard {
 /**
  * Class for for the array of sonar messages, LEFT and RIGHT.
  */
@@ -190,6 +194,7 @@ public:
 
         
 };
+} // namespace
 
 
 #endif // FilteredArrayOneDimSonar_h
