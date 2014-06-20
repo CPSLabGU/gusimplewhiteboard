@@ -482,7 +482,7 @@ public:
 {
         VisionBall_t aBallHandler;
         
-        VisionBall testBall("TopBall:(-42,457)@231");
+        VisionBall testBall("TopBall:(-42,45)@103");
 
         SimpleCircle *const *testCircle = testBall.ball();
         bool ballInTopIsVisible=(testCircle[Top]!=NULL);
@@ -491,7 +491,7 @@ public:
         int y = testCircle[Top]->GetCenter().y;
         int radious = testCircle[Top]->GetRadius();
 
-        XCTAssertEqual(radious, 231, @"radious incorrect");
+        XCTAssertEqual(radious, 103, @"radious incorrect");
 
         aBallHandler.set(testBall);                       // write to wb
        
