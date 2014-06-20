@@ -62,8 +62,8 @@
 /* is <class_name>_DEFINED              */
 /***************************************/
 
-#ifndef FilteredArrayOneDimObjects_h
-#define FilteredArrayOneDimObjects_h
+#ifndef FilteredArrayOneDimObjects_DEFINED
+#define FilteredArrayOneDimObjects_DEFINED
 
 #include <cstdlib>
 #include <cassert>
@@ -101,11 +101,7 @@ public:
         _objects[landmarkType]=obj;
     }
     
-    /** string constructor */
-    FilteredArrayOneDimObjects(const std::string &names) { from_string(names); }
-    
-    /** const char * constructor */
-    FilteredArrayOneDimObjects(const char *names) { from_string(names); }
+
     
     /** copy constructor */
     FilteredArrayOneDimObjects(const FilteredArrayOneDimObjects &other)
@@ -144,7 +140,13 @@ public:
         return objects(landmarkType);
     }
     
-    
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+   
+        /** string constructor */
+        FilteredArrayOneDimObjects(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredArrayOneDimObjects(const char *names) { from_string(names); }
     /** convert to a string; string serialization */
     
     std::string description()
@@ -218,6 +220,7 @@ public:
         
         
     }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
     
     
 };

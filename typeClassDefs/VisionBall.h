@@ -8,10 +8,12 @@
 #ifndef VisionBall_DEFINED
 #define	VisionBall_DEFINED
 
+#include <string>
+#include <cstdlib>
+
 #include <SimpleShapes.h>
 #include "Vision_Control.h"
 
-#include <string>
 
 struct wbBall {
 	short x, y, radius;
@@ -57,34 +59,8 @@ public:
 	std::bitset<2> getMask() const {
 		return objectMask;
 	}
-	
-	VisionBall(std::string s) : _frameNumber(0) {
-		objectMask.reset();
-		size_t n = -4;
-		std::string command = "BALL";
-		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
-		while(n!=std::string::npos) {
-			n = s.find(command, n+4);
-			if (n!=std::string::npos) {
-				std::string t = s.substr(n+command.length()+1);
-				SimpleCircle ballInfo;
-				VisionCamera cam;
-				if(s.substr(n-3, 3).find("TOP") != std::string::npos)
-					cam = Top;
-				else
-					cam = Bottom;
-				
-				ballInfo.setCenter(t.c_str());
-				ballInfo.setRadius(u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str())));
-				setBall(ballInfo, cam);
-				objectMask[cam] = 1;
-			}
-		}
-		_ball[Top] = SimpleCircle();
-		_ball[Bottom] = SimpleCircle();
-		setRet();
-	}
-	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
+
+        void setBall(SimpleCircle ballInfo, VisionCamera camera) {
 		objectMask[camera]  = 1;
 		if(camera == Top) {
 			topBall.x = ballInfo.GetCenter().x;
@@ -98,21 +74,8 @@ public:
 		}
 		setRet();
 	}
-	/*	
-	const SimpleCircle *balls() const
-	{
-		return _balls;
-	}
 
-	const SimpleCircle *ball(VisionCamera camera) const
-	{
-		if(objectMask[camera])
-			return &_balls[camera];
-
-		return NULL;
-	}
-*/
-	SimpleCircle*const* ball() const
+        SimpleCircle*const* ball() const
 	{
 		return ret;
 	}
@@ -141,22 +104,82 @@ public:
 	unsigned long frameNumber() const {
 		return _frameNumber;
 	}
-    
+        
 	void Reset() {
 		objectMask.reset();
 	}
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        
+        static const char SEPARATOR_IS_AT = '@';
+
+        VisionBall(std::string s): VisionBall() {
+                from_string(s);
+        }
+
+        VisionBall(const char *s): VisionBall() {
+                from_string(std::string(s));
+        }
+        
+	void from_string(std::string s) {
+                 std::string radiousDel (1,SEPARATOR_IS_AT);
+                setFrameNumber(0);
+		objectMask.reset();
+		size_t n = -4;
+		std::string command = "BALL";
+		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+		while(n!=std::string::npos) {
+			n = s.find(command, n+4);
+			if (n!=std::string::npos && n>=3) {
+				std::string t = s.substr(n+command.length()+1);
+				SimpleCircle ballInfo;
+				VisionCamera cam;
+				if(s.substr(n-3, 3).find("TOP") != std::string::npos)
+					cam = Top;
+				else
+					cam = Bottom;
+				
+				ballInfo.setCenter(t.c_str());
+                                 std::size_t found = t.find(SEPARATOR_IS_AT);
+                                if (std::string::npos!=found )
+                                { std::string strRadious=t.substr (found+1);
+                                        ballInfo.setRadius(static_cast<u_int16_t>(::atoi(strRadious.c_str())));
+                                }
+				setBall(ballInfo, cam);
+				objectMask[cam] = 1;
+			}
+		}
+		_ball[Top] = SimpleCircle();
+		_ball[Bottom] = SimpleCircle();
+		setRet();
+	}
+	/*
+	const SimpleCircle *balls() const
+	{
+		return _balls;
+	}
+
+	const SimpleCircle *ball(VisionCamera camera) const
+	{
+		if(objectMask[camera])
+			return &_balls[camera];
+
+		return NULL;
+	}
+*/
 	
 	std::string description() {
 		std::stringstream result;
 		if(objectMask[Top]) {
-			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << ")@" << ball()[Top]->GetRadius();
+			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << ")"<< SEPARATOR_IS_AT << ball()[Top]->GetRadius();
 		}
 		if(objectMask[Bottom]) {
-			result << "BottomBall:(" << ball()[Bottom]->GetCenter().x << "," << ball()[Bottom]->GetCenter().y << ")@" << ball()[Bottom]->GetRadius();
+			result << "BottomBall:(" << ball()[Bottom]->GetCenter().x << "," << ball()[Bottom]->GetCenter().y << ")"<< SEPARATOR_IS_AT << ball()[Bottom]->GetRadius();
 		}
 		return result.str();
 	}
-	
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 };
 }
 

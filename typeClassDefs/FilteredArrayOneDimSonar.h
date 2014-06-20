@@ -63,8 +63,8 @@
 /* is <class_name>_DEFINED              */
 /***************************************/
 
-#ifndef FilteredArrayOneDimSonar_h
-#define FilteredArrayOneDimSonar_h
+#ifndef FilteredArrayOneDimSonar_DEFINED
+#define FilteredArrayOneDimSonar_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -98,11 +98,7 @@ public:
                 _objects[landmarkType]=obj;
         }
         
-        /** string constructor */
-        FilteredArrayOneDimSonar(const std::string &names) { from_string(names); }
-        
-        /** const char * constructor */
-        FilteredArrayOneDimSonar(const char *names) { from_string(names); }
+
         
         /** copy constructor */
         FilteredArrayOneDimSonar(const FilteredArrayOneDimSonar &other)
@@ -142,9 +138,20 @@ public:
         {   
             return objects(landmarkType);
         }
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         
+        
+        /** string constructor */
+        FilteredArrayOneDimSonar(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredArrayOneDimSonar(const char *names) { from_string(names); }
         
         /** convert to a string; string serialization */
+        /* The two elements of the array are printed, distinguished by a starting
+         * identification L: (for Left) and R: (for right)
+         * Then the string of a FilteredOneDimSonar
+         */
 
         std::string description()
         {
@@ -191,6 +198,7 @@ public:
             
             
         }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
         
 };

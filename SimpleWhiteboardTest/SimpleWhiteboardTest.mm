@@ -434,6 +434,8 @@ public:
  
     
     string s =testArrayB.description();
+        
+        cerr << s << endl;
     
     FilteredArrayOneDimBall testArrayC(s);
     XCTAssertTrue(testArrayC.get_object(FVOBallTop).isVisible(), @"Expected  visible");
@@ -474,6 +476,58 @@ public:
         result = fsmStatus.get();
         XCTAssertTrue(result == oldStatus, @"Expecting old status to be restored");
       */
+}
+
+- (void) testVisionBallPutGet
+{
+        VisionBall_t aBallHandler;
+        
+        VisionBall testBall("TopBall:(-42,457)@231");
+
+        SimpleCircle *const *testCircle = testBall.ball();
+        bool ballInTopIsVisible=(testCircle[Top]!=NULL);
+        bool ballInBottomIsVisible=testCircle[Bottom]!=NULL;
+        int x = testCircle[Top]->GetCenter().x;
+        int y = testCircle[Top]->GetCenter().y;
+        int radious = testCircle[Top]->GetRadius();
+
+        XCTAssertEqual(radious, 231, @"radious incorrect");
+
+        aBallHandler.set(testBall);                       // write to wb
+       
+        VisionBall topBallSighting = aBallHandler.get();
+        
+        SimpleCircle *const *theBalls = topBallSighting.ball();
+        ballInTopIsVisible=(theBalls[Top]!=NULL);
+        ballInBottomIsVisible=theBalls[Bottom]!=NULL;
+        int myTopRadius=0; int centerTopX=0; int centerTopY=0;
+        int myBottomRadius=0; int centerBottomX=0; int centerBottomY=0;
+
+        XCTAssertTrue(ballInTopIsVisible, @"Expected top ball");
+        if ( ballInTopIsVisible )
+        {
+                DBG( std::cout  << " Top ball radious  ("<< theBalls[Top]->GetRadius()   << ")" << std::endl; )
+                myTopRadius = theBalls[Top]->GetRadius();
+                centerTopX = theBalls[Top]->GetCenter().x;
+                centerTopY = theBalls[Top]->GetCenter().y;
+        }
+
+        XCTAssertFalse(ballInBottomIsVisible, @"Expected no bottom ball");
+
+        if ( ballInBottomIsVisible )
+        {
+                DBG( std::cout  << " Bottom ball radious  ("<< theBalls[Bottom]->GetRadius()   << ")" << std::endl; )
+                myBottomRadius = theBalls[Bottom]->GetRadius();
+                centerBottomX = theBalls[Bottom]->GetCenter().x;
+                centerBottomY = theBalls[Bottom]->GetCenter().y;
+        }
+
+        XCTAssertEqual(x, centerTopX, @"'x' match");
+        XCTAssertEqual(y, centerTopY, @"'y' match");
+        XCTAssertEqual(radious, myTopRadius, @"radiousr match");
+        XCTAssertEqual(topBallSighting.frameNumber(), testBall.frameNumber(), @"frameCounter match");
+        
+  
 }
 
 - (void) testSubscribe

@@ -90,12 +90,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                             int32_t frameCounter =0
                             ): wb_filteredsonarobject(isVisible,distance,frameCounter)
         { /*  */ }
-        
-        /** string constructor */
-        FilteredOneDimSonar(const std::string &names) { from_string(names); }
-        
-        /** const char * constructor */
-        FilteredOneDimSonar(const char *names) { from_string(names); }
+
         
         /** copy constructor */
         FilteredOneDimSonar(const FilteredOneDimSonar &other):wb_filteredsonarobject(other.isVisible(), other.distance() ,other.frameCounter())
@@ -126,7 +121,15 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
         
                return *this;
              }
-    
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        
+        
+        /** string constructor */
+        FilteredOneDimSonar(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredOneDimSonar(const char *names) { from_string(names); }
+
         /** convert to a string; string serialization */
         std::string description() const
         {
@@ -134,7 +137,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 
                 if ( isVisible())
                 { ss<<"ISvisible"<< SEPARATOR_IS_COMMA << distance() <<  SEPARATOR_IS_COMMA; }
-                  else ss << " NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;;
+                  else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;;
                 
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
                 return ss.str();
@@ -191,6 +194,8 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                         *this=FilteredOneDimSonar();
                 }
         }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
         
 };
 } //namespace

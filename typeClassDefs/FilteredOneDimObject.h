@@ -74,10 +74,7 @@
 namespace guWhiteboard {
 class FilteredOneDimObject:  public wb_filteredvisionobject
 {
-        static const char SEPARATOR_IS_COMMA = ',';
-        static const char SEPARATOR_IS_COLON = ':';
-        
-        static const char IS_VISIBLE_ID = 'I';
+
         
 public:
         /** designated constructor */
@@ -90,11 +87,7 @@ public:
                             ): wb_filteredvisionobject(frameCounter,distance,x,y,yaw,isVisible)
         { /*  */ }
         
-        /** string constructor */
-        FilteredOneDimObject(const std::string &names) { from_string(names); }
-        
-        /** const char * constructor */
-        FilteredOneDimObject(const char *names) { from_string(names); }
+
         
         /** copy constructor */
         FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible())
@@ -151,7 +144,18 @@ public:
                 
                 return yaw_in_radians - alpha;
         }
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         
+        static const char SEPARATOR_IS_COMMA = ',';
+        static const char SEPARATOR_IS_COLON = ':';
+        
+        static const char IS_VISIBLE_ID = 'I';
+        /** string constructor */
+        FilteredOneDimObject(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredOneDimObject(const char *names) { from_string(names); }
+
         /** convert to a string */
         std::string description() const
         {
@@ -159,7 +163,7 @@ public:
                 
                 if ( isVisible())
                 { ss<<"ISvisible"<< SEPARATOR_IS_COMMA << distance() <<  SEPARATOR_IS_COMMA; }
-                else ss << " NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;
+                else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;
                 
                 ss << x() << SEPARATOR_IS_COMMA << y() << SEPARATOR_IS_COMMA << yaw() <<  SEPARATOR_IS_COMMA;
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
@@ -261,6 +265,9 @@ public:
                         *this=FilteredOneDimObject();
                 }
         }
+        
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
         
 };
 } //namespace

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef FilteredArrayOneDimBall_h
-#define FilteredArrayOneDimBall_h
+#ifndef FilteredArrayOneDimBall_DEFINED
+#define FilteredArrayOneDimBall_DEFINED
 
 #include <cstdlib>
 #include <sstream>
@@ -91,11 +91,7 @@ public:
         _objects[landmarkType]=obj;
     }
     
-    /** string constructor */
-    FilteredArrayOneDimBall(const std::string &names) { from_string(names); }
-    
-    /** const char * constructor */
-    FilteredArrayOneDimBall(const char *names) { from_string(names); }
+
     
     /** copy constructor */
     FilteredArrayOneDimBall(const FilteredArrayOneDimBall &other)
@@ -135,7 +131,15 @@ public:
     {
         return objects(landmarkType);
     }
-    
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        
+        /** string constructor */
+        FilteredArrayOneDimBall(const std::string &names) { from_string(names); }
+        
+        /** const char * constructor */
+        FilteredArrayOneDimBall(const char *names) { from_string(names); }
+
     
     /** convert to a string; string serialization */
     
@@ -181,9 +185,10 @@ public:
             FilteredOneDimObject thebottom(strForbottom);
             set_object(thebottom,FVOBallBottom );
         }
-        
-        
+
     }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
     
     
 };
