@@ -13,89 +13,108 @@
 
 #include <SimpleShapes.h>
 #include "Vision_Control.h"
+#include <wb_ball.h>
 
 
-struct wbBall {
-	short x, y, radius;
-};
 
 namespace guWhiteboard {
 class VisionBall {
 private:
-    std::bitset<2> objectMask;
-    SimpleCircle _ball[2];
-	SimpleCircle* ret[2];	
 	unsigned long _frameNumber;
 	wbBall topBall;
 	wbBall bottomBall;
+	bool _topVisible, _bottomVisible;
 public:
-    VisionBall() : _frameNumber(0) {
-        objectMask.reset();
-		_ball[Top] = SimpleCircle();
-		_ball[Bottom] = SimpleCircle();
+    VisionBall() : _frameNumber(0), topBall(), bottomBall() {
     }
 	
 	VisionBall &operator=(const VisionBall& a) {
-		objectMask = a.getMask();
 		_frameNumber = a.frameNumber();
 		topBall = a.topBall;
 		bottomBall = a.bottomBall;
-		_ball[Top] = SimpleCircle();
-		_ball[Bottom] = SimpleCircle();
-		setRet();
 		return *this;
 	}
 	
 	VisionBall(const VisionBall &ball) {
-		objectMask = ball.getMask();
 		_frameNumber = ball.frameNumber();
 		topBall = ball.topBall;
 		bottomBall = ball.bottomBall;
-		_ball[Top] = SimpleCircle();
-		_ball[Bottom] = SimpleCircle();
-		setRet();
 	}
 	
+	/*DEPRICATED*/
 	std::bitset<2> getMask() const {
+		std::bitset<2> objectMask;
+		objectMask[Top] = _topVisible;
+		objectMask[Bottom] = _bottomVisible;
 		return objectMask;
 	}
 
-        void setBall(SimpleCircle ballInfo, VisionCamera camera) {
-		objectMask[camera]  = 1;
+	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
 		if(camera == Top) {
 			topBall.x = ballInfo.GetCenter().x;
 			topBall.y = ballInfo.GetCenter().y;
 			topBall.radius  = ballInfo.GetRadius();
+			_topVisible = true;
 		}
 		if(camera == Bottom) {
 			bottomBall.x = ballInfo.GetCenter().x;
 			bottomBall.y = ballInfo.GetCenter().y;
 			bottomBall.radius  = ballInfo.GetRadius();
+			_bottomVisible = true;
 		}
-		setRet();
-	}
-
-        SimpleCircle*const* ball() const
-	{
-		return ret;
 	}
 	
-	void setRet() {
-		if(objectMask[Top]) {
-			_ball[Top].setCenter(GUPoint<short>(topBall.x, topBall.y));
-			_ball[Top].setRadius(topBall.radius);
-			ret[Top] = &_ball[Top];
+	void setBall(wbBall ballInfo, VisionCamera camera) {
+		if(camera == Top) {
+			topBall.x = ballInfo.x;
+			topBall.y = ballInfo.y;
+			topBall.radius  = ballInfo.radius;
+			_topVisible = true;
 		}
-		else
-			ret[Top] = NULL;
-		if(objectMask[Bottom]) {
-			_ball[Bottom].setCenter(GUPoint<short>(bottomBall.x, bottomBall.y));
-			_ball[Bottom].setRadius(bottomBall.radius);
-			ret[Bottom] = &_ball[Bottom];
+		if(camera == Bottom) {
+			bottomBall.x = ballInfo.x;
+			bottomBall.y = ballInfo.y;
+			bottomBall.radius  = ballInfo.radius;
+			_bottomVisible = true;
 		}
-		else
-			ret[Bottom] = NULL;
 	}
+
+	
+	int16_t topRadius() const { return topBall.radius; }
+	int16_t topX() const { return topBall.x; }
+	int16_t topY() const { return topBall.y; }
+	bool topVisible() {return _topVisible;}
+	int16_t bottomRadius() const { return bottomBall.radius; }
+	int16_t bottomX() const { return bottomBall.x; }
+	int16_t bottomY() const { return bottomBall.y; }
+	bool bottomVisible() {return _bottomVisible;}
+	bool visable() {return _topVisible || _bottomVisible; }
+	int16_t radius() const { 
+		if (_topVisible) 
+			return topBall.radius;
+		else if (_bottomVisible)
+			return bottomBall.radius;
+		else
+			return 0;
+	}
+	int16_t x() const { 
+		if (_topVisible) 
+			return topBall.x;
+		else if (_bottomVisible)
+			return bottomBall.x;
+		else
+			return 0;
+	}
+	int16_t y() const { 
+		if (_topVisible) 
+			return topBall.y;
+		else if (_bottomVisible)
+			return bottomBall.y;
+		else
+			return 0;
+	}
+	
+	
 	
 	void setFrameNumber(unsigned long fn) {
 		_frameNumber = fn;
@@ -106,7 +125,8 @@ public:
 	}
         
 	void Reset() {
-		objectMask.reset();
+		_topVisible = false;
+		_bottomVisible = false;
 	}
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -122,9 +142,9 @@ public:
         }
         
 	void from_string(std::string s) {
-                 std::string radiousDel (1,SEPARATOR_IS_AT);
-                setFrameNumber(0);
-		objectMask.reset();
+		std::string radiousDel (1,SEPARATOR_IS_AT);
+		setFrameNumber(0);
+		Reset();
 		size_t n = -4;
 		std::string command = "BALL";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
@@ -146,35 +166,17 @@ public:
                                         ballInfo.setRadius(static_cast<u_int16_t>(::atoi(strRadious.c_str())));
                                 }
 				setBall(ballInfo, cam);
-				objectMask[cam] = 1;
 			}
 		}
-		_ball[Top] = SimpleCircle();
-		_ball[Bottom] = SimpleCircle();
-		setRet();
 	}
-	/*
-	const SimpleCircle *balls() const
-	{
-		return _balls;
-	}
-
-	const SimpleCircle *ball(VisionCamera camera) const
-	{
-		if(objectMask[camera])
-			return &_balls[camera];
-
-		return NULL;
-	}
-*/
 	
 	std::string description() {
 		std::stringstream result;
-		if(objectMask[Top]) {
-			result << "TopBall:(" << ball()[Top]->GetCenter().x << "," << ball()[Top]->GetCenter().y << ")"<< SEPARATOR_IS_AT << ball()[Top]->GetRadius();
+		if(_topVisible) {
+			result << "TopBall:(" << topBall.x << "," << topBall.y << ")"<< SEPARATOR_IS_AT << topBall.radius;
 		}
-		if(objectMask[Bottom]) {
-			result << "BottomBall:(" << ball()[Bottom]->GetCenter().x << "," << ball()[Bottom]->GetCenter().y << ")"<< SEPARATOR_IS_AT << ball()[Bottom]->GetRadius();
+		if(_bottomVisible) {
+			result << "BottomBall:(" << bottomBall.x << "," << bottomBall.y << ")"<< SEPARATOR_IS_AT << bottomBall.radius;
 		}
 		return result.str();
 	}
