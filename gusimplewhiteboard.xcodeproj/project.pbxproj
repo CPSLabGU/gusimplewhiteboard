@@ -362,6 +362,7 @@
 		F17380BC16CA032F00485FD8 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = guudpSerialize.c; path = guudpbridge/guudpSerialize.c; sourceTree = "<group>"; };
 		F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guudpWhiteboardLayer.cpp; path = guudpbridge/guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F19586A0195A8FCA00DF7E5D /* wb_ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_ball.h; sourceTree = "<group>"; };
 		F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleWhiteboardTest copy-Info.plist"; path = "/Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/SimpleWhiteboardTest copy-Info.plist"; sourceTree = "<absolute>"; };
 		F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libguobjcwhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -951,6 +952,7 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				F19586A0195A8FCA00DF7E5D /* wb_ball.h */,
 				F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */,
 				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */,

@@ -13,32 +13,32 @@
 
 #include <SimpleShapes.h>
 #include "Vision_Control.h"
-#include <wb_ball.h>
+#include "wb_ball.h"
 
 
 
 namespace guWhiteboard {
 class VisionBall {
-private:
-	unsigned long _frameNumber;
-	wbBall topBall;
-	wbBall bottomBall;
-	bool _topVisible, _bottomVisible;
+	PROPERTY(unsigned long, frameNumber)
+	PROPERTY(wb_ball, topBall)
+	PROPERTY(wb_ball, bottomBall)
+        PROPERTY(bool, topVisible)
+        PROPERTY(bool, bottomVisible)
 public:
-    VisionBall() : _frameNumber(0), topBall(), bottomBall() {
+    VisionBall() : _frameNumber(0), _topBall(), _bottomBall() {
     }
 	
 	VisionBall &operator=(const VisionBall& a) {
 		_frameNumber = a.frameNumber();
-		topBall = a.topBall;
-		bottomBall = a.bottomBall;
+		_topBall = a.topBall();
+		_bottomBall = a.bottomBall();
 		return *this;
 	}
 	
 	VisionBall(const VisionBall &ball) {
 		_frameNumber = ball.frameNumber();
-		topBall = ball.topBall;
-		bottomBall = ball.bottomBall;
+		_topBall = ball.topBall();
+		_bottomBall = ball.bottomBall();
 	}
 	
 	/*DEPRICATED*/
@@ -51,82 +51,73 @@ public:
 
 	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
 		if(camera == Top) {
-			topBall.x = ballInfo.GetCenter().x;
-			topBall.y = ballInfo.GetCenter().y;
-			topBall.radius  = ballInfo.GetRadius();
-			_topVisible = true;
+			topBall().set_x(ballInfo.GetCenter().x);
+			topBall().set_y(ballInfo.GetCenter().y);
+			topBall().set_radius(ballInfo.GetRadius());
+			set_topVisible(true);
 		}
 		if(camera == Bottom) {
-			bottomBall.x = ballInfo.GetCenter().x;
-			bottomBall.y = ballInfo.GetCenter().y;
-			bottomBall.radius  = ballInfo.GetRadius();
-			_bottomVisible = true;
+			bottomBall().set_x(ballInfo.GetCenter().x);
+			bottomBall().set_y(ballInfo.GetCenter().y);
+			bottomBall().set_radius(ballInfo.GetRadius());
+                    
+			set_bottomVisible(true);
 		}
 	}
 	
-	void setBall(wbBall ballInfo, VisionCamera camera) {
+	void setBall(wb_ball ballInfo, VisionCamera camera) {
 		if(camera == Top) {
-			topBall.x = ballInfo.x;
-			topBall.y = ballInfo.y;
-			topBall.radius  = ballInfo.radius;
-			_topVisible = true;
+			topBall().set_x(ballInfo.x());
+			topBall().set_y(ballInfo.y());
+                        topBall().set_radius(ballInfo.radius());
+                        set_topVisible(true);
 		}
 		if(camera == Bottom) {
-			bottomBall.x = ballInfo.x;
-			bottomBall.y = ballInfo.y;
-			bottomBall.radius  = ballInfo.radius;
-			_bottomVisible = true;
-		}
+			bottomBall().set_x(ballInfo.x());
+			bottomBall().set_y(ballInfo.y());
+			bottomBall().set_radius(ballInfo.radius());
+                        set_bottomVisible(true);
+
+                }
 	}
 
 	
-	int16_t topRadius() const { return topBall.radius; }
-	int16_t topX() const { return topBall.x; }
-	int16_t topY() const { return topBall.y; }
-	bool topVisible() {return _topVisible;}
-	int16_t bottomRadius() const { return bottomBall.radius; }
-	int16_t bottomX() const { return bottomBall.x; }
-	int16_t bottomY() const { return bottomBall.y; }
-	bool bottomVisible() {return _bottomVisible;}
-	bool visable() {return _topVisible || _bottomVisible; }
+	int16_t topRadius() const { return topBall().radius(); }
+	int16_t topX() const { return topBall().x(); }
+	int16_t topY() const { return topBall().y(); }
+	int16_t bottomRadius() const { return bottomBall().radius(); }
+	int16_t bottomX() const { return bottomBall().x(); }
+	int16_t bottomY() const { return bottomBall().y(); }
+	bool visible() {return topVisible() || bottomVisible(); }
 	int16_t radius() const { 
-		if (_topVisible) 
-			return topBall.radius;
-		else if (_bottomVisible)
-			return bottomBall.radius;
+		if (topVisible())
+			return topBall().radius();
+		else if (bottomVisible())
+			return bottomBall().radius();
 		else
 			return 0;
 	}
 	int16_t x() const { 
-		if (_topVisible) 
-			return topBall.x;
-		else if (_bottomVisible)
-			return bottomBall.x;
+                if (topVisible())
+			return topBall().x();
+                else if (bottomVisible())
+			return bottomBall().x();
 		else
 			return 0;
 	}
 	int16_t y() const { 
-		if (_topVisible) 
-			return topBall.y;
-		else if (_bottomVisible)
-			return bottomBall.y;
+                if (topVisible())
+                    return topBall().y();
+                else if (bottomVisible())
+                    return bottomBall().y();
 		else
 			return 0;
 	}
 	
 	
-	
-	void setFrameNumber(unsigned long fn) {
-		_frameNumber = fn;
-	}
-	
-	unsigned long frameNumber() const {
-		return _frameNumber;
-	}
-        
 	void Reset() {
-		_topVisible = false;
-		_bottomVisible = false;
+		set_topVisible(false);
+		set_bottomVisible(false);
 	}
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -143,7 +134,7 @@ public:
         
 	void from_string(std::string s) {
 		std::string radiousDel (1,SEPARATOR_IS_AT);
-		setFrameNumber(0);
+		set_frameNumber(0);
 		Reset();
 		size_t n = -4;
 		std::string command = "BALL";
@@ -173,10 +164,10 @@ public:
 	std::string description() {
 		std::stringstream result;
 		if(_topVisible) {
-			result << "TopBall:(" << topBall.x << "," << topBall.y << ")"<< SEPARATOR_IS_AT << topBall.radius;
+			result << "TopBall:(" << topBall().x() << "," << topBall().y() << ")"<< SEPARATOR_IS_AT << topBall().radius();
 		}
 		if(_bottomVisible) {
-			result << "BottomBall:(" << bottomBall.x << "," << bottomBall.y << ")"<< SEPARATOR_IS_AT << bottomBall.radius;
+			result << "BottomBall:(" << bottomBall().x() << "," << bottomBall().y() << ")"<< SEPARATOR_IS_AT << bottomBall().radius();
 		}
 		return result.str();
 	}

@@ -1,10 +1,16 @@
 #ifndef _WBBALL_
 #define _WBBALL_
 
-struct wbBall {
-	int16_t x, y, radius;
+#include <sys/types.h>
+#include <gu_util.h>
+
+struct wb_ball
+{
+	PROPERTY(int16_t, x)
+        PROPERTY(int16_t, y)
+        PROPERTY(int16_t, radius)
 #ifdef __cplusplus
-	wbBall() : x(0), y(0), radius(0) {}
+	wb_ball() : _x(0), _y(0), _radius(0) {}
 #endif
 };
 

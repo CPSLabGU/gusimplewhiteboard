@@ -75,10 +75,10 @@ namespace guWhiteboard
         FFTStatus(int16_t lrms, int16_t rrms, va_list freqs): fft_dominant_frequency(lrms, rrms, freqs) {}
 
         /** copy constructor */
-        FFTStatus(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(this), GU_SIMPLE_WHITEBOARD_BUFSIZE); }
+        FFTStatus(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(&other), GU_SIMPLE_WHITEBOARD_BUFSIZE); }
 
         /** copy assignment operator */
-        FFTStatus &operator=(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(this), GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
+        FFTStatus &operator=(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(&other), GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
@@ -94,7 +94,7 @@ namespace guWhiteboard
         }
 
         /** convert from a string */
-        void from_string(const std::string &str)
+        void from_string(const std::string &/*str*/)
         {
             // FIXME: from_string needs implementation
         }

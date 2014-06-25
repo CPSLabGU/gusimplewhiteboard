@@ -484,22 +484,20 @@ public:
         
         VisionBall testBall("TopBall:(-42,45)@103");
 
-        SimpleCircle *const *testCircle = testBall.ball();
-        bool ballInTopIsVisible=(testCircle[Top]!=NULL);
-        bool ballInBottomIsVisible=testCircle[Bottom]!=NULL;
-        int x = testCircle[Top]->GetCenter().x;
-        int y = testCircle[Top]->GetCenter().y;
-        int radious = testCircle[Top]->GetRadius();
+        bool ballInTopIsVisible=testBall.topVisible();
+        bool ballInBottomIsVisible=testBall.bottomVisible();
+        int x = testBall.topX();
+        int y = testBall.topY();
+        int radious = testBall.topRadius();
 
         XCTAssertEqual(radious, 103, @"radious incorrect");
 
         aBallHandler.set(testBall);                       // write to wb
        
-        VisionBall topBallSighting = aBallHandler.get();
+        VisionBall ballSighting = aBallHandler.get();
         
-        SimpleCircle *const *theBalls = topBallSighting.ball();
-        ballInTopIsVisible=(theBalls[Top]!=NULL);
-        ballInBottomIsVisible=theBalls[Bottom]!=NULL;
+        ballInTopIsVisible=ballSighting.topVisible();
+        ballInBottomIsVisible=ballSighting.bottomVisible();
         int myTopRadius=0; int centerTopX=0; int centerTopY=0;
         int myBottomRadius=0; int centerBottomX=0; int centerBottomY=0;
 
@@ -507,9 +505,9 @@ public:
         if ( ballInTopIsVisible )
         {
                 DBG( std::cout  << " Top ball radious  ("<< theBalls[Top]->GetRadius()   << ")" << std::endl; )
-                myTopRadius = theBalls[Top]->GetRadius();
-                centerTopX = theBalls[Top]->GetCenter().x;
-                centerTopY = theBalls[Top]->GetCenter().y;
+            myTopRadius = ballSighting.topRadius();
+            centerTopX = ballSighting.topX();
+            centerTopY = ballSighting.topY();
         }
 
         XCTAssertFalse(ballInBottomIsVisible, @"Expected no bottom ball");
@@ -517,15 +515,15 @@ public:
         if ( ballInBottomIsVisible )
         {
                 DBG( std::cout  << " Bottom ball radious  ("<< theBalls[Bottom]->GetRadius()   << ")" << std::endl; )
-                myBottomRadius = theBalls[Bottom]->GetRadius();
-                centerBottomX = theBalls[Bottom]->GetCenter().x;
-                centerBottomY = theBalls[Bottom]->GetCenter().y;
+            myBottomRadius = ballSighting.bottomRadius();
+            centerBottomX = ballSighting.bottomX();
+            centerBottomY = ballSighting.bottomY();
         }
 
         XCTAssertEqual(x, centerTopX, @"'x' match");
         XCTAssertEqual(y, centerTopY, @"'y' match");
         XCTAssertEqual(radious, myTopRadius, @"radiousr match");
-        XCTAssertEqual(topBallSighting.frameNumber(), testBall.frameNumber(), @"frameCounter match");
+        XCTAssertEqual(ballSighting.frameNumber(), testBall.frameNumber(), @"frameCounter match");
         
   
 }
@@ -561,7 +559,7 @@ static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeTo
     {
         bool result = guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
         bool needStringConversion = true;
-        for (int i = 0; i < sizeof(nasty_wb_without_string_conversion)/sizeof(nasty_wb_without_string_conversion[0]); i++)
+        for (size_t i = 0; i < sizeof(nasty_wb_without_string_conversion)/sizeof(nasty_wb_without_string_conversion[0]); i++)
         {
             if (wbtype == nasty_wb_without_string_conversion[i])
             {
