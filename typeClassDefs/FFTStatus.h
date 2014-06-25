@@ -1,9 +1,9 @@
 /*
- *  Point2D.h
+ *  FFTStatus.h
  *  gusimplewhiteboard
  *
- *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013, 2014 Rene Hexel. All rights reserved.
+ *  reated by Rene Hexel on 24/06/2014.
+ *  Copyright (c) 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,73 +55,50 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#ifndef FFTStatus_DEFINED
+#define FFTStatus_DEFINED
 
-
-/****************** I M P O R T A N T   */
-/* is <class_name>_DEFINED              */
-/***************************************/
-
-#ifndef Point2D_DEFINED
-#define Point2D_DEFINED
-
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#include <cstdlib>
-#include <sstream>
-#endif
-#include <gu_util.h>
-#include "wb_point.h"
+#include <cstdarg>
+#include <cstring>
+#include "gusimplewhiteboard.h"
+#include "wb_fft_frequencies.h"
 
 namespace guWhiteboard
 {
+    /**
+     * Container for RMS levels and dominant frequencies
+     */
+    class FFTStatus: public fft_dominant_frequency
+    {
+    public:
+        /** designated constructor */
+        FFTStatus(int16_t lrms, int16_t rrms, va_list freqs): fft_dominant_frequency(lrms, rrms, freqs) {}
 
-        /**
-         * Class for for demonstrating OO-messages.
-         */
-        class Point2D: public wb_point2d
-        {
-        public:
-            /** designated constructor */
-            Point2D(int16_t x = 0, int16_t y = 0): wb_point2d(x,y)  { /* better than set_x(x); set_y(y) */ }
+        /** copy constructor */
+        FFTStatus(const FFTStatus &other) { memcpy(&other, this, GU_SIMPLE_WHITEBOARD_BUFSIZE); }
 
-            /** copy constructor */
-            Point2D(const Point2D &other): wb_point2d(other.x(), other.y()) {}
-
-            /** copy assignment operator */
-            Point2D &operator=(const Point2D &other) { set_x(other.x()); set_y(other.y()); return *this; }
-
+        /** copy assignment operator */
+        FFTStatus &operator=(const FFTStatus &other) { memcpy(&other, this, GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-            /** string constructor */
-            Point2D(const std::string &names) { from_string(names); }
+        /** string constructor */
+        FFTStatus(const std::string &names) { from_string(names); }
 
-            /** const char *constructor */
-            Point2D(const char *names): Point2D(std::string(names)) { }
+        /** const char *constructor */
+        FFTStatus(const char *names): FFTStatus(std::string(names)) { }
 
-            /** convert to a string */
-            std::string description()
-            {
-                std::ostringstream ss;
-                ss << x() << "," << y();
-                return ss.str();
-            }
+        /** convert to a string */
+        std::string description()
+        {
+            return "NYI";   // FIXME: description needs implementation
+        }
 
-            /** convert from a string */
-            void from_string(const std::string &str)
-            {
-                std::istringstream iss(str);
-                std::string token;
-                if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
-                    if (getline(iss, token, ','))
-                    {
-		        set_y(int16_t(atoi(token.c_str())));
-                    }
-                }
-            }
+        /** convert from a string */
+        void from_string(const std::string &str)
+        {
+            // FIXME: from_string needs implementation
+        }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
-        };
+    };
 }
 
-
-#endif // Point2D_DEFINED
+#endif // FFTStatus_DEFINED

@@ -347,6 +347,8 @@
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
 		F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_subscribe_test.cc; sourceTree = "<group>"; };
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
+		F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fft_frequencies.h; sourceTree = "<group>"; };
+		F1376EA31958E64900983D84 /* FFTStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFTStatus.h; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */,
 				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */,
 				F5119EB5195111A3009C87F6 /* wb_arrayoffilteredballobjects.h */,
@@ -960,6 +963,7 @@
 				F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */,
 				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
 				F1E2FEF11951071F0039FFD9 /* Point2D.h */,
+				F1376EA31958E64900983D84 /* FFTStatus.h */,
 				F5119EB619511511009C87F6 /* FilteredOneDimSonar.h */,
 				F5532F7B19516B5E00FE04F1 /* FilteredOneDimObject.h */,
 				F1E5542718EBD16D00639B1E /* FilteredOneDimObjects.h */,
@@ -1371,7 +1375,7 @@
 			name = guobjcwhiteboardTests;
 			productName = guobjcwhiteboardTests;
 			productReference = F1C94D711555CA8E00B717DF /* guobjcwhiteboardTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		F1C94DA21555D3C300B717DF /* gusimplewhiteboardios */ = {
 			isa = PBXNativeTarget;
@@ -1443,7 +1447,7 @@
 			name = wbPerfTests;
 			productName = wbPerfTests;
 			productReference = F1ED58A418E7EF1400864A87 /* wbPerfTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 

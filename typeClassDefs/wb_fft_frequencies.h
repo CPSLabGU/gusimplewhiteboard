@@ -1,9 +1,9 @@
 /*
- *  Point2D.h
+ *  fft_frequencies.h
  *  gusimplewhiteboard
  *
- *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013, 2014 Rene Hexel. All rights reserved.
+ *  reated by Rene Hexel on 24/06/2014.
+ *  Copyright (c) 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,73 +55,59 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#ifndef _wb_fft_frequencies_h_
+#define _wb_fft_frequencies_h_
 
-
-/****************** I M P O R T A N T   */
-/* is <class_name>_DEFINED              */
-/***************************************/
-
-#ifndef Point2D_DEFINED
-#define Point2D_DEFINED
-
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#include <cstdlib>
-#include <sstream>
+#ifdef __cplusplus
+#include <cstdarg>
 #endif
+
 #include <gu_util.h>
-#include "wb_point.h"
 
-namespace guWhiteboard
+struct fft_frequency_pair       ///< one frequency pair for a stereo channels
 {
+    PROPERTY(int16_t, left)     ///< left frequency in Hz
+    PROPERTY(int16_t, right)    ///< right frequency in Hz
 
-        /**
-         * Class for for demonstrating OO-messages.
-         */
-        class Point2D: public wb_point2d
-        {
-        public:
-            /** designated constructor */
-            Point2D(int16_t x = 0, int16_t y = 0): wb_point2d(x,y)  { /* better than set_x(x); set_y(y) */ }
+#ifdef __cplusplus
+    fft_frequency_pair(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
+#endif
+};
 
-            /** copy constructor */
-            Point2D(const Point2D &other): wb_point2d(other.x(), other.y()) {}
+struct rms_strength             ///< RMS levels for a stereo channel pair
+{
+    PROPERTY(int16_t, left)     ///< RMS level for the left channel
+    PROPERTY(int16_t, right)    ///< RMS level for the right channel
 
-            /** copy assignment operator */
-            Point2D &operator=(const Point2D &other) { set_x(other.x()); set_y(other.y()); return *this; }
+#ifdef __cplusplus
+    rms_strength(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
+#endif
+};
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-            /** string constructor */
-            Point2D(const std::string &names) { from_string(names); }
+struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bottom)
+{
+    PROPERTY(struct rms_strength, rms)                          ///< RMS levels
+    ARRAY_PROPERTY(struct fft_frequency_pair, frequencies, 0)   ///< frequency levels
 
-            /** const char *constructor */
-            Point2D(const char *names): Point2D(std::string(names)) { }
+#ifdef __cplusplus
+    fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms_strength(lrms, rrms)
+    {
+        int16_t *freqp = _frequencies;
+        int16_t freq = va_arg(freqs, freq);
+        while (freq) { *freqp++ = freq; freq = va_arg(freqs, freq); }
+    }
+    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, ...): _rms_strength(lrms, rrms)
+    {
+        if (!rrms) return;
 
-            /** convert to a string */
-            std::string description()
-            {
-                std::ostringstream ss;
-                ss << x() << "," << y();
-                return ss.str();
-            }
-
-            /** convert from a string */
-            void from_string(const std::string &str)
-            {
-                std::istringstream iss(str);
-                std::string token;
-                if (getline(iss, token, ','))
-                {
-		    set_x(  int16_t(atoi(token.c_str())));
-		    set_y(0);
-                    if (getline(iss, token, ','))
-                    {
-		        set_y(int16_t(atoi(token.c_str())));
-                    }
-                }
-            }
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-        };
+        va_list freqs;
+        va_start(freqs, rrms)
+        int16_t freq = va_arg(freqs, freq);
+        int16_t *freqp = _frequencies;
+        while (freq) { *freqp++ = freq; freq = va_arg(freqs, freq); }
+        va_end(freqs)
+    }
+#endif
 }
 
-
-#endif // Point2D_DEFINED
+#endif //#_wb_fft_frequencies_h_
