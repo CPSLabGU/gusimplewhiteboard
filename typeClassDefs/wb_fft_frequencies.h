@@ -90,24 +90,24 @@ struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bott
     ARRAY_PROPERTY(struct fft_frequency_pair, frequencies, 0)   ///< frequency levels
 
 #ifdef __cplusplus
-    fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms_strength(lrms, rrms)
+    fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms(lrms, rrms)
     {
-        int16_t *freqp = _frequencies;
-        int16_t freq = va_arg(freqs, freq);
-        while (freq) { *freqp++ = freq; freq = va_arg(freqs, freq); }
+        int16_t *freqp = &_frequencies->left();
+        int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
+        while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
     }
-    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, ...): _rms_strength(lrms, rrms)
+    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, ...): _rms(lrms, rrms)
     {
         if (!rrms) return;
 
         va_list freqs;
-        va_start(freqs, rrms)
-        int16_t freq = va_arg(freqs, freq);
-        int16_t *freqp = _frequencies;
-        while (freq) { *freqp++ = freq; freq = va_arg(freqs, freq); }
-        va_end(freqs)
+        va_start(freqs, rrms);
+        int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
+        int16_t *freqp = &_frequencies->left();
+        while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
+        va_end(freqs);
     }
 #endif
-}
+};
 
 #endif //#_wb_fft_frequencies_h_
