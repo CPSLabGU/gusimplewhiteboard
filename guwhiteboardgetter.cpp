@@ -340,11 +340,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionControlStatus_DEFINED
 
-		case kdummy_v:
+		case kFFTStatus_v:
+#ifdef FFTStatus_DEFINED
 		{
-			class dummy_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			class FFTStatus_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !FFTStatus_DEFINED
+
 		case kFSOsighting_v:
 #ifdef FilteredArrayOneDimSonar_DEFINED
 		{

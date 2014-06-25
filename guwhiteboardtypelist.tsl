@@ -30,8 +30,8 @@ int,          nonatomic, PlayerNumber,                          "PlayerNumber", 
 int,          nonatomic, ManuallyPenalized,                     "PlayerNumber", what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
 class:VisionControlStatus, not_atomic, Vision_Control,          "guvision_control", control various attributes of the vision pipeline.
 class:VisionControlStatus, not_atomic, Vision_Status,           "guvision_status", message sent by vision that contains the current status of
-int,            atomic,         dummy,                          "dummy", dummy msg Not used
-class:FilteredArrayOneDimSonar, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  iSONAR objects after a sighting
+class:FFTStatus, nonatomic,         FFTStatus,                  "FFTStatus", stereo channel RMS and list of dominant frequencies from FFT
+class:FilteredArrayOneDimSonar, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  SONAR objects after a sighting
 class:TopParticles, nonatomic, TopParticles,                    "TopParticles", Class that contains the top particles for possible robot positions
 class:FilteredArrayOneDimBall, nonatomic, FilteredBallSighting,    "FilteredBallSighting", Class that contains the Kalman filtered top and bottom ball objects after sighting from vision
 int,          nonatomic, PF_ControlStatus_Modes,                "PF_ControlStatus_Modes", what to post in the whiteboard to cause the Particle Filetr to reset, but running has no effect, it is the PF response
