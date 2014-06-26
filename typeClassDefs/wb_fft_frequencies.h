@@ -64,6 +64,12 @@
 
 #include <gu_util.h>
 
+#ifdef GU_SIMPLE_WHITEBOARD_BUFSIZE
+#define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength)) / sizeof(fft_frequency_level_pair))
+#else
+#define FFT_DOMINANT_NUMFREQ    0   // no wb -> don't register size
+#endif
+
 struct fft_frequency_level_pair ///< one frequency pair for a stereo channels
 {
     PROPERTY(float, leftLevel)  ///< left frequency level
@@ -89,14 +95,17 @@ struct rms_strength             ///< RMS levels for a stereo channel pair
 struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bottom)
 {
     PROPERTY(struct rms_strength, rms)  ///< overall RMS levels
-    ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, 0)   ///< frequency levels
+    ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)   ///< frequency levels
 
 #ifdef __cplusplus
     fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms(lrms, rrms)
     {
-        int16_t *freqp = &_frequencies->left();
-        int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
-        while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
+        if (freqs)
+        {
+            int16_t *freqp = &_frequencies->left();
+            int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
+            while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
+        }
     }
     fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, ...): _rms(lrms, rrms)
     {

@@ -58,6 +58,7 @@
 #ifndef FFTStatus_DEFINED
 #define FFTStatus_DEFINED
 
+#include <cassert>
 #include <cstdarg>
 #include <cstdlib>
 #include <cstring>
@@ -77,7 +78,10 @@ namespace guWhiteboard
     {
     public:
         /** designated constructor */
-        FFTStatus(int16_t lrms, int16_t rrms, va_list freqs): fft_dominant_frequency(lrms, rrms, freqs) {}
+        FFTStatus(int16_t lrms, int16_t rrms, va_list freqs): fft_dominant_frequency(lrms, rrms, freqs)
+        {
+            if (!freqs) memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
+        }
 
         /** alternate constructor */
         FFTStatus(int16_t lrms = 0, int16_t rrms = 0, ...): fft_dominant_frequency(lrms, rrms, 0)
@@ -101,7 +105,7 @@ namespace guWhiteboard
         FFTStatus &operator=(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(&other), GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
 
         /** number of frequencies that can be put on the wb */
-        static int num_frequencies() { return (GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies)) / sizeof(fft_frequency_level_pair); }
+        static int num_frequencies() { const int n = (GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies)) / sizeof(fft_frequency_level_pair); assert(n == FFT_DOMINANT_NUMFREQ); return n; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
