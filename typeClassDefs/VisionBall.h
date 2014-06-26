@@ -32,6 +32,8 @@ public:
 		_frameNumber = a.frameNumber();
 		_topBall = a.topBall();
 		_bottomBall = a.bottomBall();
+		set_topVisible(a.topVisible());
+		set_bottomVisible(a.bottomVisible());
 		return *this;
 	}
 	
@@ -39,6 +41,8 @@ public:
 		_frameNumber = ball.frameNumber();
 		_topBall = ball.topBall();
 		_bottomBall = ball.bottomBall();
+		set_topVisible(ball.topVisible());
+		set_bottomVisible(ball.bottomVisible());
 	}
 	
 	/*DEPRICATED*/
