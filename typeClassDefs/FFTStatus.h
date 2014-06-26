@@ -112,7 +112,7 @@ namespace guWhiteboard
         FFTStatus(const std::string &names) { from_string(names); }
 
         /** const char *constructor */
-        FFTStatus(const char *names): FFTStatus(std::string(names)) { }
+        FFTStatus(const char *names) { from_string(std::string(names)); }
 
         /** convert to a string */
         std::string description()
