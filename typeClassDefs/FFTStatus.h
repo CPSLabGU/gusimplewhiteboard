@@ -59,7 +59,12 @@
 #define FFTStatus_DEFINED
 
 #include <cstdarg>
+#include <cstdlib>
 #include <cstring>
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <sstream>
+#include <gu_util.h>
+#endif
 #include "gusimplewhiteboard.h"
 #include "wb_fft_frequencies.h"
 
@@ -108,13 +113,61 @@ namespace guWhiteboard
         /** convert to a string */
         std::string description()
         {
-            return "NYI";   // FIXME: description needs implementation
+            using namespace std;
+            using namespace guWhiteboard;
+
+            ostringstream ss;
+            ss << rms().left() << "+" << rms().right();
+            unsigned n = FFTStatus::num_frequencies();
+            for (unsigned i = 0; i < n; i++)
+            {
+                const fft_frequency_level_pair &f = frequencies(i);
+                if (f.leftLevel() == 0.0f && f.rightLevel() == 0.0f)
+                    break;
+                ss << ", " << f.left()  << "@" << f.leftLevel() <<
+                     " + " << f.right() << "@" << f.rightLevel();
+            }
+            return ss.str();
         }
 
         /** convert from a string */
-        void from_string(const std::string &/*str*/)
+        void from_string(const std::string &str)
         {
-            // FIXME: from_string needs implementation
+            using namespace std;
+            using namespace guWhiteboard;
+            vector<string> components = components_of_string_separated(str, ',',  /*trim*/ true);
+            size_t n = components.size();
+            if (!n) return;
+
+            /*
+             * get RMS left + right values
+             */
+            vector<string> rmsvals = components_of_string_separated(components[0], '+',  /*trim*/ true);
+            size_t k = rmsvals.size();
+            if (!k) return;
+            rms().set_left(static_cast<int16_t>(atoi(rmsvals[0].c_str())));
+            if (k < 2) return;
+            rms().set_right(static_cast<int16_t>(atoi(rmsvals[0].c_str())));
+
+            /*
+             * get dominant frequencies and their levels
+             */
+            for (unsigned i = 1; i < n; i++)
+            {
+                vector<string> freqvals = components_of_string_separated(components[i], '+',  /*trim*/ true);
+                k = freqvals.size();
+                if (!k) continue;
+                vector<string> freqcomps = components_of_string_separated(freqvals[0], '@',  /*trim*/ true);
+                size_t l = freqcomps.size();
+                fft_frequency_level_pair &frequency = frequencies(i-1);
+                if (l) frequency.set_left(static_cast<int16_t>(atoi(freqcomps[0].c_str())));
+                if (l > 1) frequency.set_right(static_cast<int16_t>(atoi(freqcomps[1].c_str())));
+                if (k < 2) continue;
+                freqcomps = components_of_string_separated(freqvals[1], '@',  /*trim*/ true);
+                l = freqcomps.size();
+                if (l) frequency.set_leftLevel(static_cast<const float>(atof(freqcomps[0].c_str())));
+                if (l > 1) frequency.set_rightLevel(static_cast<const float>(atof(freqcomps[1].c_str())));
+            }
         }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
     };
