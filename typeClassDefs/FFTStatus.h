@@ -95,6 +95,9 @@ namespace guWhiteboard
         /** copy assignment operator */
         FFTStatus &operator=(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(&other), GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
 
+        /** number of frequencies that can be put on the wb */
+        static int num_frequencies() { return (GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies)) / sizeof(fft_frequency_level_pair); }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
         FFTStatus(const std::string &names) { from_string(names); }

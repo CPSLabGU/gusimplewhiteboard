@@ -64,13 +64,15 @@
 
 #include <gu_util.h>
 
-struct fft_frequency_pair       ///< one frequency pair for a stereo channels
+struct fft_frequency_level_pair ///< one frequency pair for a stereo channels
 {
+    PROPERTY(float, leftLevel)  ///< left frequency level
+    PROPERTY(float, rightLevel) ///< right frequency level
     PROPERTY(int16_t, left)     ///< left frequency in Hz
     PROPERTY(int16_t, right)    ///< right frequency in Hz
 
 #ifdef __cplusplus
-    fft_frequency_pair(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
+    fft_frequency_level_pair(int16_t l = 0, int16_t r = 0, float ll = 0.0f, float rl = 0.0f): _leftLevel(ll), _rightLevel(rl), _left(l), _right(r) {}
 #endif
 };
 
@@ -86,8 +88,8 @@ struct rms_strength             ///< RMS levels for a stereo channel pair
 
 struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bottom)
 {
-    PROPERTY(struct rms_strength, rms)                          ///< RMS levels
-    ARRAY_PROPERTY(struct fft_frequency_pair, frequencies, 0)   ///< frequency levels
+    PROPERTY(struct rms_strength, rms)  ///< overall RMS levels
+    ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, 0)   ///< frequency levels
 
 #ifdef __cplusplus
     fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms(lrms, rrms)
