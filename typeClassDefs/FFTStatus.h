@@ -121,15 +121,14 @@ namespace guWhiteboard
             using namespace guWhiteboard;
 
             ostringstream ss;
-            ss << rms().left() << "+" << rms().right();
+            ss << rms().left() << "/" << rms().right();
             unsigned n = FFTStatus::num_frequencies();
             for (unsigned i = 0; i < n; i++)
             {
                 const fft_frequency_level_pair &f = frequencies(i);
-                if (f.leftLevel() == 0.0f && f.rightLevel() == 0.0f)
+                if (!f.left() && !f.right())
                     break;
-                ss << ", " << f.left()  << "@" << f.leftLevel() <<
-                     " + " << f.right() << "@" << f.rightLevel();
+                ss << ", " << f.left() << "+" << f.right();
             }
             return ss.str();
         }
@@ -146,7 +145,7 @@ namespace guWhiteboard
             /*
              * get RMS left + right values
              */
-            vector<string> rmsvals = components_of_string_separated(components[0], '+',  /*trim*/ true);
+            vector<string> rmsvals = components_of_string_separated(components[0], '/',  /*trim*/ true);
             size_t k = rmsvals.size();
             if (!k) return;
             rms().set_left(static_cast<int16_t>(atoi(rmsvals[0].c_str())));
@@ -160,17 +159,12 @@ namespace guWhiteboard
             {
                 vector<string> freqvals = components_of_string_separated(components[i], '+',  /*trim*/ true);
                 k = freqvals.size();
-                if (!k) continue;
-                vector<string> freqcomps = components_of_string_separated(freqvals[0], '@',  /*trim*/ true);
-                size_t l = freqcomps.size();
+                if (!k) break;
                 fft_frequency_level_pair &frequency = frequencies(i-1);
-                if (l) frequency.set_left(static_cast<int16_t>(atoi(freqcomps[0].c_str())));
-                if (l > 1) frequency.set_right(static_cast<int16_t>(atoi(freqcomps[1].c_str())));
-                if (k < 2) continue;
-                freqcomps = components_of_string_separated(freqvals[1], '@',  /*trim*/ true);
-                l = freqcomps.size();
-                if (l) frequency.set_leftLevel(static_cast<const float>(atof(freqcomps[0].c_str())));
-                if (l > 1) frequency.set_rightLevel(static_cast<const float>(atof(freqcomps[1].c_str())));
+                frequency.set_left(static_cast<int16_t>(atoi(freqvals[0].c_str())));
+                if (k > 1) frequency.set_right(static_cast<int16_t>(atoi(freqvals[1].c_str())));
+                if (!frequency.left() && !frequency.right())
+                    break;              // if both are zero, we are done
             }
         }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

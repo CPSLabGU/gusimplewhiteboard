@@ -72,13 +72,11 @@
 
 struct fft_frequency_level_pair ///< one frequency pair for a stereo channels
 {
-    PROPERTY(float, leftLevel)  ///< left frequency level
-    PROPERTY(float, rightLevel) ///< right frequency level
     PROPERTY(int16_t, left)     ///< left frequency in Hz
     PROPERTY(int16_t, right)    ///< right frequency in Hz
 
 #ifdef __cplusplus
-    fft_frequency_level_pair(int16_t l = 0, int16_t r = 0, float ll = 0.0f, float rl = 0.0f): _leftLevel(ll), _rightLevel(rl), _left(l), _right(r) {}
+    fft_frequency_level_pair(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
 #endif
 };
 
