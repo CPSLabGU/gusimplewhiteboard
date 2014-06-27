@@ -163,7 +163,7 @@ public:
                 
                 if ( isVisible())
                 { ss<<"ISvisible"<< SEPARATOR_IS_COMMA << distance() <<  SEPARATOR_IS_COMMA; }
-                else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;
+                else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  distance() <<  SEPARATOR_IS_COMMA;
                 
                 ss << x() << SEPARATOR_IS_COMMA << y() << SEPARATOR_IS_COMMA << yaw() <<  SEPARATOR_IS_COMMA;
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
