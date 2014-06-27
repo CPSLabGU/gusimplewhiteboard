@@ -63,6 +63,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
+#include "FilteredOneDimObject.h"
 #include "wb_arrayoffilteredballobjects.h"
 
 namespace guWhiteboard {
