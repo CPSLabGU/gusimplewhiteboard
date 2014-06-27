@@ -69,6 +69,7 @@ namespace guWhiteboard
                 enum action
                 {
                         Kneeling_wave = 0,
+			Kneeling_quickwave,
                         Standing_leftkick,
                         Standing_rightkick,
                         Standing_leftpass,
@@ -91,6 +92,7 @@ namespace guWhiteboard
                 static const char *action_strings[NUM_OF_ACTIONS] =
                 {
                         "Kneeling_wave",
+                        "Kneeling_quickwave",
                         "Standing_leftkick",
                         "Standing_rightkick",
                         "Standing_leftpass",
@@ -143,6 +145,7 @@ namespace guWhiteboard
                         {
                                 std::map<action, Action_Transition> v;
                                 MAP_ACTION_ENTRY(Kneeling_wave,         Kneeling_stance, 1); //cost should be time to perform the action
+                                MAP_ACTION_ENTRY(Kneeling_quickwave,         Kneeling_stance, 1); //cost should be time to perform the action
                                 MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1);
@@ -402,6 +405,7 @@ namespace guWhiteboard
 
                         action a2;
                         MY_CHECK_ENUM(s, a2, Kneeling_wave);
+			else MY_CHECK_ENUM(s, a2, Kneeling_quickwave);
 			else MY_CHECK_ENUM(s, a2, Standing_leftkick);
 			else MY_CHECK_ENUM(s, a2, Standing_rightkick);
 			else MY_CHECK_ENUM(s, a2, Standing_leftpass);
