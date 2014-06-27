@@ -111,18 +111,18 @@ namespace guWhiteboard
                         static std::vector<Stance_Transition> create_transitions() //many paths to a stance will work (picks shortest by using the cost)
                         {
                                 std::vector<Stance_Transition> v;
-                                v.push_back(Stance_Transition(Standby_stance,           Kneeling_stance,        1)); //cost should be time in microseconds
-                                v.push_back(Stance_Transition(Kneeling_stance,          Standby_stance,         1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          Standing_stance,        1));
-                                v.push_back(Stance_Transition(Standing_stance,          Kneeling_stance,        1));                                
+                                v.push_back(Stance_Transition(Standby_stance,           Kneeling_stance,        230));
+                                v.push_back(Stance_Transition(Kneeling_stance,          Standby_stance,         300));
+                                v.push_back(Stance_Transition(Kneeling_stance,          Standing_stance,        150));
+                                v.push_back(Stance_Transition(Standing_stance,          Kneeling_stance,        100)); 
                                 v.push_back(Stance_Transition(Standing_stance,  	GoalieSaveLeft_stance,  1));
                                 v.push_back(Stance_Transition(Standing_stance,  	GoalieSaveRight_stance, 1));
-                                v.push_back(Stance_Transition(FallenForward_stance,     Standby_stance,         1));
-                                v.push_back(Stance_Transition(FallenBack_stance, 	Kneeling_stance,        1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveLeft_stance,  1));
-                                v.push_back(Stance_Transition(GoalieSaveLeft_stance,    Kneeling_stance,        1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveRight_stance, 1));
-                                v.push_back(Stance_Transition(GoalieSaveRight_stance,   Kneeling_stance,        1));
+                                v.push_back(Stance_Transition(FallenForward_stance,     Standby_stance,         400));
+                                v.push_back(Stance_Transition(FallenBack_stance, 	Kneeling_stance,        500));
+                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveLeft_stance,  150));
+                                v.push_back(Stance_Transition(GoalieSaveLeft_stance,    Kneeling_stance,        225));
+                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveRight_stance, 480));
+                                v.push_back(Stance_Transition(GoalieSaveRight_stance,   Kneeling_stance,        225));
 
                                 return v;
                         }
@@ -143,8 +143,8 @@ namespace guWhiteboard
                         {
                                 std::map<action, Action_Transition> v;
                                 MAP_ACTION_ENTRY(Kneeling_wave,         Kneeling_stance, 1); //cost should be time to perform the action
-                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 1);
-                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 1);
+                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443);
+                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1);
                                 MAP_ACTION_ENTRY(Standing_rightpass,    Standing_stance, 1);
                                 MAP_ACTION_ENTRY(Standing_wave,         Standing_stance, 1);
