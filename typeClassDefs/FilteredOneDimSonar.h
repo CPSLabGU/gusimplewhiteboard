@@ -78,10 +78,6 @@ namespace guWhiteboard{
          */
 class FilteredOneDimSonar:  public wb_filteredsonarobject
 {
-        static const char SEPARATOR_IS_COMMA = ',';
-        static const char SEPARATOR_IS_COLON = ':';
-
-        static const char IS_VISIBLE_ID = 'I';
        
         public:
         /** designated constructor */
@@ -122,6 +118,9 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                return *this;
              }
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        static const char SEPARATOR_IS_COMMA = ',';
+        static const char SEPARATOR_IS_COLON = ':';
+        static const char IS_VISIBLE_ID = 'I';
         
         
         /** string constructor */

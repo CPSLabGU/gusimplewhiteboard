@@ -16,8 +16,8 @@
  */
 struct wb_sensors_torso
 {
-                PROPERTY(float, HeadYaw)
-                PROPERTY(float, HeadPitch)
+                PROPERTY(float, HeadYaw)  //RADIANS
+                PROPERTY(float, HeadPitch) // RADIANS
                 PROPERTY(float, LShoulderPitch)
                 PROPERTY(float, LShoulderRoll)
                 PROPERTY(float, LElbowYaw)

@@ -205,6 +205,15 @@ public:
         XCTAssertTrue(result == oldStatus, @"Expecting old status to be restored");
 }
 
+
+- (void) testSerializaitonSENSORS_TorsoJointSensors
+{
+    SENSORS_TorsoJointSensors testA("10Y,20P");
+    XCTAssertEqualWithAccuracy(DEG2RAD(10), testA.HeadYaw  (), 0.01, @"Head Yaw match");
+    XCTAssertEqualWithAccuracy(DEG2RAD(20), testA.HeadPitch(), 0.01, @"Head Pitch match");
+   // XCTAssertFalse(true, @"Head Pitch match");
+    
+}
 - (void) testSerializaitonFilteredSonarObject
 {
         FilteredOneDimSonar testA("");
