@@ -12,12 +12,12 @@
 		<key>Lwbperf.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>12</integer>
 		</dict>
 		<key>SimpleWhiteboardTest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>78</integer>
+			<integer>77</integer>
 		</dict>
 		<key>catkin.xcscheme_^#shared#^_</key>
 		<dict>
@@ -27,12 +27,12 @@
 		<key>copy tests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>13</integer>
 		</dict>
 		<key>guobjcwhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>79</integer>
+			<integer>78</integer>
 		</dict>
 		<key>gusimplewhiteboard.xcscheme</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>gusimplewhiteboardios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>81</integer>
+			<integer>80</integer>
 		</dict>
 		<key>guswiftwhiteboard.xcscheme</key>
 		<dict>
@@ -57,7 +57,7 @@
 		<key>guudpwhiteboard.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>82</integer>
+			<integer>81</integer>
 		</dict>
 		<key>simplewhiteboard_mk.xcscheme_^#shared#^_</key>
 		<dict>
