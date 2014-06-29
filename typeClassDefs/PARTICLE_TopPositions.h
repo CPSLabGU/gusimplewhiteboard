@@ -109,6 +109,7 @@ namespace guWhiteboard
                 /** radians setter */
                 void set_heading(float hdg) { set_headingInDegrees(int16_t(RAD2DEG(hdg))); }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
                 ParticlePosition(const std::string &names) { from_string(names); }
 
@@ -143,6 +144,7 @@ namespace guWhiteboard
                                 }
                         }
                 }
+#endif
         };
 
         /**
@@ -162,6 +164,7 @@ namespace guWhiteboard
                 /** copy assignment operator */
                 TopParticles &operator=(const TopParticles &other) { memcpy(_particles, other._particles, sizeof(_particles)); return *this; }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
                 TopParticles(const std::string &names) { from_string(names); }
 
@@ -184,6 +187,7 @@ namespace guWhiteboard
                                 particles(i).from_string(token);
                         else break;
                 }
+#endif
         };
 }
 
