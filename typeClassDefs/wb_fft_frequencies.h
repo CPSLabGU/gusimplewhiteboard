@@ -65,10 +65,13 @@
 #include <gu_util.h>
 
 #ifdef GU_SIMPLE_WHITEBOARD_BUFSIZE
-#define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength)) / sizeof(fft_frequency_level_pair))
+#define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength) - sizeof(struct fsk_frequencies)) / sizeof(fft_frequency_level_pair))
 #else
 #define FFT_DOMINANT_NUMFREQ    0   // no wb -> don't register size
 #endif
+
+#define FSK_DEFAULT_HI  320     ///< default hi frequency for fsk
+#define FSK_DEFAULT_LO  200     ///< default lo frequency for fsk
 
 struct fft_frequency_level_pair ///< one frequency pair for a stereo channels
 {
@@ -90,13 +93,34 @@ struct rms_strength             ///< RMS levels for a stereo channel pair
 #endif
 };
 
+
+struct fsk_frequencies          ///< FSK frequency pair and keying values
+{
+    unsigned _hi_freq: 12;      ///< high frequency (0..8191 Hz) divided by 2
+    unsigned _lo_freq: 12;      ///< low frequency (0..8191 Hz) divided by 2
+    unsigned _hi_percentage: 7; ///< FSK hi percentage (0..100 %)
+    unsigned _unused_pad: 1;    ///< reserved for future use
+
+#ifdef __cplusplus
+    fsk_frequencies(int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0): _hi_freq(hi/2), _lo_freq(lo/2), _hi_percentage(fsk), _unused_pad(0) {}
+    int16_t hi_freq() const { return _hi_freq * 2; }
+    int16_t lo_freq() const { return _lo_freq * 2; }
+    int16_t hi_percentage() const { return _hi_percentage; }
+    void set_hi_freq(int16_t hi = FSK_DEFAULT_HI) { _hi_freq = hi/2; }
+    void set_lo_freq(int16_t lo = FSK_DEFAULT_LO) { _lo_freq = lo/2; }
+    void set_hi_percentage(int16_t percent = 0) { _hi_percentage = percent; }
+#endif
+};
+
+
 struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bottom)
 {
-    PROPERTY(struct rms_strength, rms)  ///< overall RMS levels
+    PROPERTY(struct rms_strength, rms)      ///< overall RMS levels
+    PROPERTY(struct fsk_frequencies, fsk)   ///< FSK frequency comparison percentage
     ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)   ///< frequency levels
 
 #ifdef __cplusplus
-    fft_dominant_frequency(int16_t lrms, int16_t rrms, va_list freqs): _rms(lrms, rrms)
+    fft_dominant_frequency(int16_t lrms, int16_t rrms, int16_t hi, int16_t lo, int16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (freqs)
         {
@@ -105,12 +129,12 @@ struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bott
             while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
         }
     }
-    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, ...): _rms(lrms, rrms)
+    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0, ...): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (!rrms) return;
 
         va_list freqs;
-        va_start(freqs, rrms);
+        va_start(freqs, fsk);
         int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
         int16_t *freqp = &_frequencies->left();
         while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }

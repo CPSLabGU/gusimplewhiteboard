@@ -78,20 +78,20 @@ namespace guWhiteboard
     {
     public:
         /** designated constructor */
-        FFTStatus(int16_t lrms, int16_t rrms, va_list freqs): fft_dominant_frequency(lrms, rrms, freqs)
+        FFTStatus(int16_t lrms, int16_t rrms, int16_t hi, int16_t lo, int16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs)
         {
             if (!freqs) memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
         }
 
         /** alternate constructor */
-        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, ...): fft_dominant_frequency(lrms, rrms, 0)
+        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
         {
             memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
 
-            if (!rrms) return;
+            if (!fsk) return;
 
             va_list freqs;
-            va_start(freqs, rrms);
+            va_start(freqs, fsk);
             int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
             int16_t *freqp = &_frequencies->left();
             while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
@@ -121,7 +121,8 @@ namespace guWhiteboard
             using namespace guWhiteboard;
 
             ostringstream ss;
-            ss << rms().left() << "/" << rms().right();
+            ss << rms().left() << "/" << rms().right() << ", ";
+            ss << fsk().hi_freq() << ":" << fsk().lo_freq() << "@" << fsk().hi_percentage();
             unsigned n = FFTStatus::num_frequencies();
             for (unsigned i = 0; i < n; i++)
             {
@@ -150,17 +151,31 @@ namespace guWhiteboard
             if (!k) return;
             rms().set_left(static_cast<int16_t>(atoi(rmsvals[0].c_str())));
             if (k < 2) return;
-            rms().set_right(static_cast<int16_t>(atoi(rmsvals[0].c_str())));
+            rms().set_right(static_cast<int16_t>(atoi(rmsvals[1].c_str())));
+
+            /*
+             * get FSK high and low frequencies and percentage values
+             */
+            if (n < 2) return;
+            vector<string> fskvals = components_of_string_separated(components[1], ':',  /*trim*/ true);
+            k = rmsvals.size();
+            if (!k) return;
+            fsk().set_hi_freq(static_cast<int16_t>(atoi(fskvals[0].c_str())));
+            if (k < 2) return;
+            fsk().set_lo_freq(static_cast<int16_t>(atoi(fskvals[1].c_str())));
+            vector<string> percentvals = components_of_string_separated(fskvals[1], '@', /*trim*/ true);
+            k = percentvals.size();
+            if (k > 1) fsk().set_hi_percentage(static_cast<int16_t>(atoi(percentvals[1].c_str())));
 
             /*
              * get dominant frequencies and their levels
              */
-            for (unsigned i = 1; i < n; i++)
+            for (unsigned i = 2; i < n; i++)
             {
                 vector<string> freqvals = components_of_string_separated(components[i], '+',  /*trim*/ true);
                 k = freqvals.size();
                 if (!k) break;
-                fft_frequency_level_pair &frequency = frequencies(i-1);
+                fft_frequency_level_pair &frequency = frequencies(i-2);
                 frequency.set_left(static_cast<int16_t>(atoi(freqvals[0].c_str())));
                 if (k > 1) frequency.set_right(static_cast<int16_t>(atoi(freqvals[1].c_str())));
                 if (!frequency.left() && !frequency.right())
