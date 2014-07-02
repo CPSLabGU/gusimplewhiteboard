@@ -99,20 +99,20 @@ enum VisionMessages {
 		StreamingSource,
 		ConservativeMode,
 		ImageInput,
-		JPEGStreamQuality,
-		JPEGStreamStride,
 		LoadCalibration,
 		PipelineRunOnce,
-                HorizionFactor,
+		JPEGStreamQuality,
+		JPEGStreamStride,
+		HorizionFactor,
 		NUMBER_VISION_MESSAGES
 };
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "LOADCALIBRATION", "RUNPIPELINEONCE", "HORIZIONFACTOR", "Undefined"};
+		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "Undefined"};
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "CalibrationLoaded", "PipelineRunningOnce", "HorizionFactor", "FrameRate"};
+		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -152,9 +152,11 @@ public:
 		size_t n;
 		std::string command;
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+		printf("1\n");
 		for (unsigned i = 0; i<NUMBER_VISION_MESSAGES; ++i) {
 			command = std::string(Commands[i]);
 			n = s.find(command);
+			printf("2\n");
 			if (n!=std::string::npos) {
                                 std::string t = s.substr(n+command.length()+1);
                                 if(i == HorizionFactor) {
@@ -172,8 +174,11 @@ public:
                                     set_jpegStreamStride(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
                                     continue;
                                 }
+								printf("3\n");
 				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
+					printf("4\n");
 					if(t.compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j]) == 0) {
+						printf("6\n");
 						switch(i) {
 						case Resolution:
 							set_resolution(ResolutionValues[j]);
@@ -206,6 +211,7 @@ public:
 							set_loadCalibration(CalibrationValues[j]);
 							break;
 						case PipelineRunOnce:
+							printf("5\n");
 							set_pipelineRunOnce(BoolValues[j]);
 						}
 					}
