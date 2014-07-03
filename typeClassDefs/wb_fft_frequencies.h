@@ -102,15 +102,15 @@ struct fsk_frequencies          ///< FSK frequency pair and keying values
     unsigned _unused_pad: 1;    ///< reserved for future use
 
 #ifdef __cplusplus
-    fsk_frequencies(int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0): _hi_freq(hi/2), _lo_freq(lo/2), _hi_percentage(fsk), _unused_pad(0) {}
-    int16_t hi_freq() const { return _hi_freq * 2; }
-    int16_t lo_freq() const { return _lo_freq * 2; }
-    int16_t hi_percentage() const { return _hi_percentage; }
+    fsk_frequencies(uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0): _hi_freq(hi/2), _lo_freq(lo/2), _hi_percentage(fsk), _unused_pad(0) {}
+    uint16_t hi_freq() const { return _hi_freq * 2; }
+    uint16_t lo_freq() const { return _lo_freq * 2; }
+    uint16_t hi_percentage() const { return _hi_percentage; }
     float hi_ratio() const { return static_cast<float>(_hi_percentage) / 100.f; }
-    void set_hi_freq(int16_t hi = FSK_DEFAULT_HI) { _hi_freq = hi/2; }
-    void set_lo_freq(int16_t lo = FSK_DEFAULT_LO) { _lo_freq = lo/2; }
-    void set_hi_percentage(int16_t percent = 0) { _hi_percentage = percent; }
-    void set_hi_ratio(float r) { _hi_percentage = static_cast<int16_t>(100.f * r); }
+    void set_hi_freq(uint16_t hi = FSK_DEFAULT_HI) { _hi_freq = hi/2; }
+    void set_lo_freq(uint16_t lo = FSK_DEFAULT_LO) { _lo_freq = lo/2; }
+    void set_hi_percentage(uint16_t percent = 0) { _hi_percentage = percent; }
+    void set_hi_ratio(float r) { _hi_percentage = static_cast<unsigned>(100.f * r); }
 #endif
 };
 
@@ -122,7 +122,7 @@ struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bott
     ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)   ///< frequency levels
 
 #ifdef __cplusplus
-    fft_dominant_frequency(int16_t lrms, int16_t rrms, int16_t hi, int16_t lo, int16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
+    fft_dominant_frequency(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (freqs)
         {
@@ -131,7 +131,7 @@ struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bott
             while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
         }
     }
-    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0, ...): _rms(lrms, rrms), _fsk(hi, lo, fsk)
+    fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (!rrms) return;
 

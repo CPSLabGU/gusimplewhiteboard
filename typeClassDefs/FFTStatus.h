@@ -78,13 +78,13 @@ namespace guWhiteboard
     {
     public:
         /** designated constructor */
-        FFTStatus(int16_t lrms, int16_t rrms, int16_t hi, int16_t lo, int16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs)
+        FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs)
         {
             if (!freqs) memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
         }
 
         /** alternate constructor */
-        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, int16_t hi = FSK_DEFAULT_HI, int16_t lo = FSK_DEFAULT_LO, int16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
+        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
         {
             memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
 
