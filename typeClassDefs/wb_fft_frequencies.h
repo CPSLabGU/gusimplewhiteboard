@@ -106,9 +106,11 @@ struct fsk_frequencies          ///< FSK frequency pair and keying values
     int16_t hi_freq() const { return _hi_freq * 2; }
     int16_t lo_freq() const { return _lo_freq * 2; }
     int16_t hi_percentage() const { return _hi_percentage; }
+    float hi_ratio() const { return static_cast<float>(_hi_percentage) / 100.f; }
     void set_hi_freq(int16_t hi = FSK_DEFAULT_HI) { _hi_freq = hi/2; }
     void set_lo_freq(int16_t lo = FSK_DEFAULT_LO) { _lo_freq = lo/2; }
     void set_hi_percentage(int16_t percent = 0) { _hi_percentage = percent; }
+    void set_hi_ratio(float r) { _hi_percentage = static_cast<int16_t>(100.f * r); }
 #endif
 };
 
