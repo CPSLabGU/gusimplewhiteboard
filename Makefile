@@ -18,7 +18,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 .include "../../mk/libcxx.mk"
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
-INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS}
+INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS}
 
 all: all-real
 
@@ -33,7 +33,11 @@ install: host-local
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 .for hdr in ${INST_HDRS}
 	cd ${SRCDIR} && \
-	install -m 0644 ${hdr} ${WB_INST_DIR:Q}/include/gusimplewhiteboard
+	if [ -d ${hdr:Q} ]; then \
+	  cp -pR ${hdr:Q} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
+	else \
+	  install -m 0644 ${hdr} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
+	fi
 .endfor
 .endif
 
