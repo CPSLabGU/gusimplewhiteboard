@@ -11,7 +11,7 @@
 #include <SimpleShapes.h>
 #include <string>
 #include <gu_util.h>
-#include <wb_goal.h>
+#include "wb_goal.h"
 
 #include "Vision_Control.h"
 
