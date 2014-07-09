@@ -63,7 +63,15 @@
 #include "Whiteboard.h"
 #undef _FROM_WHITEBOARD_CC_
 
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#include "guwhiteboardposter.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
+
 #import <XCTest/XCTest.h>
+
+#pragma clang diagnostic pop
 
 @interface SimpleWhiteboardTest: XCTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;

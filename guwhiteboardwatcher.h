@@ -14,6 +14,7 @@
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wunused-value"
 
 #include "gusimplewhiteboard.h"
 #include "WBFunctor.h"
@@ -58,10 +59,10 @@ struct callback_helper //struct passed to do_callback
 
 static void do_callback(void *m) //makes the callback call, via GCD queue
 {
-        callback_helper *h = (callback_helper *) m;
+        callback_helper *h = static_cast<callback_helper *>(m);
         
         if(h->use_type_overwrite)
-                h->f->call((guWhiteboard::WBTypes)h->t_overwrite, &h->wb->messages[h->offs][h->gen_to_use]);
+                h->f->call(static_cast<guWhiteboard::WBTypes>(h->t_overwrite), &h->wb->messages[h->offs][h->gen_to_use]);
         else
                 h->f->call(&h->wb->messages[h->offs][h->gen_to_use]);
         delete h;
@@ -171,7 +172,7 @@ public:
                 for (std::list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
-                        int offs = (int)f->type();
+                        int offs = static_cast<int>(f->type());
                         uint16_t event_count = f->get_event_count();
                         
                         /*
@@ -218,7 +219,7 @@ public:
 
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd) //called by simplewhiteboard whenever the global event count increases
 {
-        whiteboard_watcher *self = (whiteboard_watcher *) wbd->context;
+        whiteboard_watcher *self = static_cast<whiteboard_watcher *>(wbd->context);
         if (self) self->receive_callback();
 }
 

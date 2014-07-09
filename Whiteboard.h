@@ -2,7 +2,7 @@
  *  Whiteboard.h
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011-2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -205,7 +205,7 @@ namespace guWhiteboard
                     switch (m->wbmsg.type)
                     {
                         case WBMsg::TypeBool:
-                            return WBMsg((bool)m->sint);
+                            return WBMsg(static_cast<bool>(m->sint));
                             
                         case WBMsg::TypeInt:
                             return WBMsg(m->sint);

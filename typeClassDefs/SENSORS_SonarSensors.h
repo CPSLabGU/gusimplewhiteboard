@@ -10,7 +10,7 @@
 #ifndef SENSORS_SonarSensors_DEFINED
 #define SENSORS_SonarSensors_DEFINED
 
-#include <gu_util.h>
+#include "wb_sensors_sonar.h" 
 
 namespace guWhiteboard                                                  
 {
@@ -52,9 +52,8 @@ namespace guWhiteboard
         }
         
         
-        class SENSORS_SonarSensors
+        class SENSORS_SonarSensors : public wb_sensors_sonar
         {
-                ARRAY_PROPERTY(u_int8_t, sonar, Sonar::NUMBER_OF_READINGS)
                 
         public:
                 SENSORS_SonarSensors()

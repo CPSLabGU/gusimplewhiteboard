@@ -276,7 +276,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			return "##unsupported##";
 
 		case kFilteredGoalSighting_v:
-#ifdef FilteredOneDimObjects_DEFINED
+#ifdef FilteredArrayOneDimObjects_DEFINED
 		{
 			class FilteredGoalSighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -284,7 +284,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !FilteredOneDimObjects_DEFINED
+#endif // !FilteredArrayOneDimObjects_DEFINED
 
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
@@ -340,19 +340,19 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionControlStatus_DEFINED
 
-		case kVision_Objects_v:
-#ifdef VisionObjects_DEFINED
+		case kFFTStatus_v:
+#ifdef FFTStatus_DEFINED
 		{
-			class Vision_Objects_t m;
+			class FFTStatus_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !VisionObjects_DEFINED
+#endif // !FFTStatus_DEFINED
 
 		case kFSOsighting_v:
-#ifdef FilteredSonarObjects_DEFINED
+#ifdef FilteredArrayOneDimSonar_DEFINED
 		{
 			class FSOsighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -360,7 +360,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !FilteredSonarObjects_DEFINED
+#endif // !FilteredArrayOneDimSonar_DEFINED
 
 		case kTopParticles_v:
 #ifdef TopParticles_DEFINED
@@ -374,7 +374,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredVisionObject_DEFINED
+#ifdef FilteredArrayOneDimBall_DEFINED
 		{
 			class FilteredBallSighting_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
@@ -382,7 +382,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !FilteredVisionObject_DEFINED
+#endif // !FilteredArrayOneDimBall_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 		{

@@ -10,19 +10,13 @@
 #ifndef SENSORS_LegJointTemps_DEFINED
 #define SENSORS_LegJointTemps_DEFINED
 
-#include <gu_util.h>
+#include "wb_sensors_legtemps.h" 
 
 namespace guWhiteboard                                                  
 {
-        class SENSORS_LegJointTemps
+        class SENSORS_LegJointTemps : public wb_sensors_legtemps
         {
-                PROPERTY(float, LKneePitch)
-                PROPERTY(float, LAnklePitch)
-                PROPERTY(float, LAnkleRoll)
-                PROPERTY(float, RKneePitch)
-                PROPERTY(float, RAnklePitch)
-                PROPERTY(float, RAnkleRoll)
-                
+               
         public:
                 SENSORS_LegJointTemps()
                 {

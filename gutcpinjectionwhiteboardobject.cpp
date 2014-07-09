@@ -22,7 +22,7 @@ const char *robot_network_names[] =
 
 void transmit(void *info)
 {
-        transmit_info *i = (transmit_info *)info;
+        transmit_info *i = static_cast<transmit_info *>(info);
         if (write(i->sfd, &i->p, BUF_SIZE) != BUF_SIZE)
                 fprintf(stderr, "partial/failed write\n");
 

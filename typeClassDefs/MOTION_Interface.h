@@ -69,6 +69,7 @@ namespace guWhiteboard
                 enum action
                 {
                         Kneeling_wave = 0,
+			Kneeling_quickwave,
                         Standing_leftkick,
                         Standing_rightkick,
                         Standing_leftpass,
@@ -91,6 +92,7 @@ namespace guWhiteboard
                 static const char *action_strings[NUM_OF_ACTIONS] =
                 {
                         "Kneeling_wave",
+                        "Kneeling_quickwave",
                         "Standing_leftkick",
                         "Standing_rightkick",
                         "Standing_leftpass",
@@ -111,18 +113,18 @@ namespace guWhiteboard
                         static std::vector<Stance_Transition> create_transitions() //many paths to a stance will work (picks shortest by using the cost)
                         {
                                 std::vector<Stance_Transition> v;
-                                v.push_back(Stance_Transition(Standby_stance,           Kneeling_stance,        1)); //cost should be time in microseconds
-                                v.push_back(Stance_Transition(Kneeling_stance,          Standby_stance,         1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          Standing_stance,        1));
-                                v.push_back(Stance_Transition(Standing_stance,          Kneeling_stance,        1));                                
+                                v.push_back(Stance_Transition(Standby_stance,           Kneeling_stance,        230));
+                                v.push_back(Stance_Transition(Kneeling_stance,          Standby_stance,         300));
+                                v.push_back(Stance_Transition(Kneeling_stance,          Standing_stance,        150));
+                                v.push_back(Stance_Transition(Standing_stance,          Kneeling_stance,        100)); 
                                 v.push_back(Stance_Transition(Standing_stance,  	GoalieSaveLeft_stance,  1));
                                 v.push_back(Stance_Transition(Standing_stance,  	GoalieSaveRight_stance, 1));
-                                v.push_back(Stance_Transition(FallenForward_stance,     Standby_stance,         1));
-                                v.push_back(Stance_Transition(FallenBack_stance, 	Kneeling_stance,        1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveLeft_stance,  1));
-                                v.push_back(Stance_Transition(GoalieSaveLeft_stance,    Kneeling_stance,        1));
-                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveRight_stance, 1));
-                                v.push_back(Stance_Transition(GoalieSaveRight_stance,   Kneeling_stance,        1));
+                                v.push_back(Stance_Transition(FallenForward_stance,     Standby_stance,         400));
+                                v.push_back(Stance_Transition(FallenBack_stance, 	Kneeling_stance,        500));
+                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveLeft_stance,  150));
+                                v.push_back(Stance_Transition(GoalieSaveLeft_stance,    Kneeling_stance,        225));
+                                v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveRight_stance, 480));
+                                v.push_back(Stance_Transition(GoalieSaveRight_stance,   Kneeling_stance,        225));
 
                                 return v;
                         }
@@ -143,8 +145,9 @@ namespace guWhiteboard
                         {
                                 std::map<action, Action_Transition> v;
                                 MAP_ACTION_ENTRY(Kneeling_wave,         Kneeling_stance, 1); //cost should be time to perform the action
-                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 1);
-                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 1);
+                                MAP_ACTION_ENTRY(Kneeling_quickwave,         Kneeling_stance, 1); //cost should be time to perform the action
+                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443);
+                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1);
                                 MAP_ACTION_ENTRY(Standing_rightpass,    Standing_stance, 1);
                                 MAP_ACTION_ENTRY(Standing_wave,         Standing_stance, 1);
@@ -199,7 +202,7 @@ namespace guWhiteboard
 
 	class MOTION_Status
 	{
-                BITPROPERTY(running)
+                BIT_PROPERTY(running)
                 PROPERTY(int8_t, expected_stance)
                 PROPERTY(int8_t, verified_stance) //NYI
 		public:
@@ -254,16 +257,16 @@ namespace guWhiteboard
                 ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) //private - of type stance_actions casted to an 8 bit int (saves 30 bytes of wb space)
                 PROPERTY(int8_t, num_of_stance_actions)
 
-                BITPROPERTY(stance_action_mask)
-                BITPROPERTY(ignore_chain)
-                BITPROPERTY(ignore_chain_mask) //go to the joint targets directly
+                BIT_PROPERTY(stance_action_mask)
+                BIT_PROPERTY(ignore_chain)
+                BIT_PROPERTY(ignore_chain_mask) //go to the joint targets directly
                 
                 //Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general
-                BITPROPERTY(head_stiffness)
-                BITPROPERTY(body_stiffness)
+                BIT_PROPERTY(head_stiffness)
+                BIT_PROPERTY(body_stiffness)
                 /* Control bits */
-                BITPROPERTY(head_stiffness_mask)
-                BITPROPERTY(body_stiffness_mask)
+                BIT_PROPERTY(head_stiffness_mask)
+                BIT_PROPERTY(body_stiffness_mask)
 
         public:                
                 MOTION_Commands(bool head_stiffness = false, bool body_stiffness = false, bool masks = false/*, Motions::stance stance = Motions::Kneeling_stance*/)
@@ -402,6 +405,7 @@ namespace guWhiteboard
 
                         action a2;
                         MY_CHECK_ENUM(s, a2, Kneeling_wave);
+			else MY_CHECK_ENUM(s, a2, Kneeling_quickwave);
 			else MY_CHECK_ENUM(s, a2, Standing_leftkick);
 			else MY_CHECK_ENUM(s, a2, Standing_rightkick);
 			else MY_CHECK_ENUM(s, a2, Standing_leftpass);

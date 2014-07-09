@@ -19,7 +19,7 @@
 
 using namespace std;
 
-static char *include_str = (char *)"\
+static const char *include_str = "\
 /**                                                                     \n\
  *  /file guwhiteboardtypelist_generated.h                              \n\
  *                                                                      \n\
@@ -40,7 +40,7 @@ static char *include_str = (char *)"\
                                                                         \n\
 ";
 
-static char *include_tcp_str = (char *)"\
+static const char *include_tcp_str = "\
 /**                                                                    \n\
 *  /file guwhiteboardtypelist_tcp_generated.h                          \n\
 *                                                                      \n\
@@ -58,11 +58,12 @@ static char *include_tcp_str = (char *)"\
 \n\
 #pragma clang diagnostic push                                           \n\
 #pragma clang diagnostic ignored \"-Wpadded\"                           \n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
 \n\
 \n\
 ";
 
-static char *include_str_c = (char *)"\
+static const char *include_str_c = "\
 /**                                                                     \n\
  *  /file guwhiteboardtypelist_c_generated.h                            \n\
  *                                                                      \n\
@@ -79,7 +80,7 @@ static char *include_str_c = (char *)"\
 #define WANT_WB_STRINGS\n\
 ";
 
-static char *include_str_c_typestrings = (char *)"\
+static const char *include_str_c_typestrings = "\
 /**                                                                     \n\
  *  /file guwhiteboardtypelist_c_typestrings_generated.c                \n\
  *                                                                      \n\
@@ -93,7 +94,7 @@ static char *include_str_c_typestrings = (char *)"\
 \n\
 ";
 
-static char *include_wbfunctor_extension = (char *)"\
+static const char *include_wbfunctor_extension = "\
 /**                                                                     \n\
  *  /file WBFunctor_types_generated.h                                   \n\
  *                                                                      \n\
@@ -102,10 +103,13 @@ static char *include_wbfunctor_extension = (char *)"\
  *  All rights reserved.                                                \n\
  */                                                                     \n\
 \n\
+#pragma clang diagnostic push                                           \n\
+#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
 \n\
 ";
 
-static char *opening_namespace = (char *)"                              \n\
+static const char *opening_namespace = "\n\
 namespace guWhiteboard                                                  \n\
 {                                                                       \n\
                                                                         \n\
@@ -116,21 +120,21 @@ extern \"C\"                                                            \n\
                                                                         \n\
 ";
 
-static char *opening_enum = (char *)"        typedef enum wb_types      \n\
+static const char *opening_enum = "        typedef enum wb_types      \n\
         {                                                               \n\
 ";
 
-static char *closing_enum = (char *)"        } WBTypes;\n\n";
+static const char *closing_enum = "        } WBTypes;\n\n";
 
-static char *extern_for_string_array = (char *)"        extern const char *WBTypes_stringValues[];\n";
+static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n";
 
-static char *opening_string_array_definition = (char *)"const char *WBTypes_stringValues[] = \n{\n";
+static const char *opening_string_array_definition = "const char *WBTypes_stringValues[] = \n{\n";
 
-static char *closing_string_array_definition = (char *)"};      \n\n";
+static const char *closing_string_array_definition = "};      \n\n";
 
-static char *closing_namespace = (char *)"}\n\n";
+static const char *closing_namespace = "}\n\n";
 
-static char *end_include_str = (char *)"#endif                          \n\
+static const char *end_include_str = "#endif                          \n\
 ";
 
 enum ClassType {
@@ -300,14 +304,14 @@ int main()
         do
         {
                 int start_p = 0;
-                if(pos > 0)
-                        start_p = pos+(int)header_token.length();
+                if (pos > 0)
+                        start_p = pos+static_cast<int>(header_token.length());
                 
-                int end_p = (int)tsl_file_str.find("\n", start_p);
+                int end_p = static_cast<int>(tsl_file_str.find("\n", start_p));
                 pos = end_p;
 
 		std::string type_line = tsl_file_str.substr(start_p, end_p-start_p);
-                if((int)type_line.size() == 0)
+                if (!type_line.size())
                         break;
 
 		std::string line_token = std::string(",");
@@ -317,9 +321,9 @@ int main()
                 for (int i = 0; i <= ParseTarget::comment; i++)
                 {
                         int start = line_pos;
-			int end = (int)type_line.find(line_token, start);
+			int end = static_cast<int>(type_line.find(line_token, start));
                         
-                        line_pos = end+(int)line_token.length();
+                        line_pos = end+static_cast<int>(line_token.length());
 
                         std::string type_info_element;
                         
@@ -328,32 +332,33 @@ int main()
                         else
                                 type_info_element = type_line.substr(start, end-start);
                         
-                        int start_non_whitespace = (int)type_info_element.find_first_not_of(' ');
-                        if(start_non_whitespace != (int)std::string::npos)
+                        int start_non_whitespace = static_cast<int>(type_info_element.find_first_not_of(' '));
+                        if (start_non_whitespace != static_cast<int>(std::string::npos))
                                 type_info_element.erase(0, start_non_whitespace);
                         
                         elements.push_back(type_info_element);
                 }
 		
-		if((int)elements.size() != ParseTarget::NUM_OF_TARGETS)
+		if (static_cast<int>(elements.size()) != ParseTarget::NUM_OF_TARGETS)
 		{
-			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %d\nexiting...", (int)types.size());
+			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %ld\nexiting...", types.size());
 			exit(1);
 		}
 
 		struct gu_type_info info;
 		//Splitting logic from parsing
-		for (int i = 0; i < (int)elements.size(); i++)
+		for (int i = 0; i < static_cast<int>(elements.size()); i++)
 		{
-			switch (i) {
+			switch (i)
+			{
 				case ParseTarget::atomic:
 				{
-                                        if((int)elements.at(i).compare("atomic") == 0) //atomic type?
+                                        if (!elements.at(i).compare("atomic")) //atomic type?
                                                 info.atomic = std::string("true");
                                         else
                                                 info.atomic = std::string("false");
 #ifdef DDEBUG
-					fprintf(stderr, "is_atomic:\t'%s'\n", (char *)elements.at(i).c_str());
+					fprintf(stderr, "is_atomic:\t'%s'\n", elements.at(i).c_str());
 #endif
 					break;
 				}
@@ -361,7 +366,7 @@ int main()
 				{
 					info.type_const_name = elements.at(i);
 #ifdef DDEBUG
-					fprintf(stderr, "const:\t'%s'\n", (char *)info.type_const_name.c_str());
+					fprintf(stderr, "const:\t'%s'\n", info.type_const_name.c_str());
 #endif
 					break;
 				}
@@ -369,19 +374,19 @@ int main()
 				{
 					info.type_name = elements.at(i).substr(1, elements.at(i).length()-2); //substr to remove the quotes
 #ifdef DDEBUG
-					fprintf(stderr, "value:\t'%s'\n", (char *)info.type_name.c_str());
+					fprintf(stderr, "value:\t'%s'\n", info.type_name.c_str());
 #endif
 					break;
 				}
 				case ParseTarget::dataType:
-					if((int)elements.at(i).size() == 0)
+					if (!elements.at(i).size())
 					{
                                                 //warning if no type is given, however allow it for now.
 						info.class_info = None;
 					}
 					else
 					{
-						if((int)elements.at(i).find("class:") != (int)string::npos) //custom class?
+						if (elements.at(i).find("class:") != string::npos) //custom class?
 						{
 							info.class_info = Custom_Class;
 							info.class_name = elements.at(i).substr(std::string("class:").length());
@@ -398,10 +403,10 @@ int main()
 							fprintf(stderr, "class info:\tNone, just a WB Type, no class\n");
 							break;
 						case POD_Class:
-							fprintf(stderr, "class info:\tPOD_Class, type: %s\n", (char *)info.class_name.c_str());
+							fprintf(stderr, "class info:\tPOD_Class, type: %s\n", info.class_name.c_str());
 							break;
 						case Custom_Class:
-							fprintf(stderr, "class info:\tCustom_Class, class name: %s\n", (char *)info.class_name.c_str());
+							fprintf(stderr, "class info:\tCustom_Class, class name: %s\n", info.class_name.c_str());
 							break;
 					}
 #endif
@@ -410,7 +415,7 @@ int main()
 				{
 					info.comment = elements.at(i);
 #ifdef DDEBUG
-					fprintf(stderr, "comments:\t'%s'\n", (char *)info.comment.c_str());
+					fprintf(stderr, "comments:\t'%s'\n", info.comment.c_str());
 #endif
 					break;
 				}
@@ -419,7 +424,7 @@ int main()
 			}
 		}
 		types.push_back(info);
-	} while((pos = (int)tsl_file_str.find(header_token, pos)) != (int)string::npos);
+	} while((pos = static_cast<int>(tsl_file_str.find(header_token, pos))) != static_cast<int>(string::npos));
 		
 	
 	//output to file
@@ -475,13 +480,13 @@ int main()
         output_c_file << opening_enum;
 
         //enum
-	for (int i = 0; i < (int)types.size(); i++)
+	for (int i = 0; i < static_cast<int>(types.size()); i++)
 	{
                 const gu_type_info &type = types[i];
 		int hash_offset = i;//gsw_offset_for_message_type(_wbd, (char *)types.at(i).type_name.c_str());
 		output_c_file << "                k" << type.type_const_name << "_v = " << hash_offset;
 
-                if(i+1 != (int)types.size())
+                if(i+1 != static_cast<int>(types.size()))
                        output_c_file << ",";
 
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
@@ -575,14 +580,14 @@ int main()
                 const gu_type_info &type = types[i];
                 output_generic_poster << "\tself[\"" << types[i].type_name << "\"] = k" << type.type_const_name << "_v;\n";
 		output_string_array_c_file << "        \"" << types[i].type_name;
-                i+1 != (int)types.size() ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
+                i+1 != static_cast<int>(types.size()) ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
 	}
         output_generic_poster << "}\n\n";
 
         output_string_array_c_file << closing_string_array_definition;
 	
 	//type classes
-	for (int i = 0; i < (int)types.size(); i++)
+	for (int i = 0; i < static_cast<int>(types.size()); i++)
 	{
                 const gu_type_info &type = types[i];
 		switch (type.class_info)
@@ -653,13 +658,13 @@ int main()
          }
          */
 
-	for (int i = 0; i < (int)types.size(); i++)
+	for (int i = 0; i < static_cast<int>(types.size()); i++)
 	{
                 stringstream ss;
-                ss << (char *)types.at(i).type_const_name.c_str() << "_WBFunctor";
+                ss << types.at(i).type_const_name << "_WBFunctor";
                 std::string class_name = ss.str();
                 stringstream ss2;
-                ss2 << (char *)types.at(i).type_const_name.c_str() << "_WBFunctor_T";
+                ss2 << types.at(i).type_const_name << "_WBFunctor_T";
                 std::string type_name = ss2.str();
                 
                 std::string datatype;

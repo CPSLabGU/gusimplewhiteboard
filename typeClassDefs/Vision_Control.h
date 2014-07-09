@@ -99,20 +99,20 @@ enum VisionMessages {
 		StreamingSource,
 		ConservativeMode,
 		ImageInput,
-		JPEGStreamQuality,
-		JPEGStreamStride,
 		LoadCalibration,
 		PipelineRunOnce,
-                HorizionFactor,
+		JPEGStreamQuality,
+		JPEGStreamStride,
+		HorizionFactor,
 		NUMBER_VISION_MESSAGES
 };
 
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "LOADCALIBRATION", "RUNPIPELINEONCE", "HORIZIONFACTOR", "Undefined"};
+		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "Undefined"};
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "CalibrationLoaded", "PipelineRunningOnce", "HorizionFactor", "FrameRate"};
+		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};

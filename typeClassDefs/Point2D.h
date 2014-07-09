@@ -1,9 +1,9 @@
 /*
  *  Point2D.h
- *  gusimplewhiteboard / clfsm
+ *  gusimplewhiteboard
  *
  *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2013, 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -64,9 +64,12 @@
 #ifndef Point2D_DEFINED
 #define Point2D_DEFINED
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
 #include <sstream>
+#endif
 #include <gu_util.h>
+#include "wb_point.h"
 
 namespace guWhiteboard
 {
@@ -74,23 +77,24 @@ namespace guWhiteboard
         /**
          * Class for for demonstrating OO-messages.
          */
-        class Point2D
+        class Point2D: public wb_point2d
         {
-            PROPERTY(int16_t, x) ///<  x-coordinate
-            PROPERTY(int16_t, y) ///<  y-coordinate
-
         public:
             /** designated constructor */
-            Point2D(int16_t x = 0, int16_t y = 0): _x(x), _y(y)  { /* better than set_x(x); set_y(y) */ }
+            Point2D(int16_t x = 0, int16_t y = 0): wb_point2d(x,y)  { /* better than set_x(x); set_y(y) */ }
 
+            /** copy constructor */
+            Point2D(const Point2D &other): wb_point2d(other.x(), other.y()) {}
+
+            /** copy assignment operator */
+            Point2D &operator=(const Point2D &other) { set_x(other.x()); set_y(other.y()); return *this; }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             /** string constructor */
             Point2D(const std::string &names) { from_string(names); }
 
-            /** copy constructor */
-            Point2D(const Point2D &other): _x(other._x), _y(other._y) {}
-
-            /** copy assignment operator */
-            Point2D &operator=(const Point2D &other) { _x = other._x; _y = other._y; return *this; }
+            /** const char *constructor */
+            Point2D(const char *names): Point2D(std::string(names)) { }
 
             /** convert to a string */
             std::string description()
@@ -115,6 +119,7 @@ namespace guWhiteboard
                     }
                 }
             }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
 

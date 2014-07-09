@@ -13,10 +13,9 @@
 template <>
 void generic_whiteboard_object<std::string>::set(const std::string &msg)
 {
-//        fprintf(stderr, "string specialisation\n");
         int t = type_offset;
         
-#ifdef DEBUG
+#ifndef NO_SAFETY
         assert(GU_SIMPLE_WHITEBOARD_BUFSIZE > msg.length());
 #endif
         if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);
@@ -35,10 +34,9 @@ void generic_whiteboard_object<std::string>::set(const std::string &msg)
 template <>
 void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg)
 {
-//        fprintf(stderr, "vector<int> specialisation\n");
         int t = type_offset;
         
-#ifdef DEBUG
+#ifndef NO_SAFETY
         assert(GU_SIMPLE_WHITEBOARD_BUFSIZE >= (msg.size()*sizeof(int)));
 #endif
         if (atomic) gsw_procure(_wbd->sem, GSW_SEM_PUTMSG);

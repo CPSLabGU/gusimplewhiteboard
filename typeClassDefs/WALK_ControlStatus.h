@@ -1,66 +1,14 @@
-/*
- *  WALK_ControlStatus.h
- *  gusimplewhiteboard / nao walk
- *
- *  Created by Carl Lusty on 25/03/13.
- *  Copyright (c) 2013 Carl Lusty and Rene Hexel. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above
- *    copyright notice, this list of conditions and the following
- *    disclaimer in the documentation and/or other materials
- *    provided with the distribution.
- *
- * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgement:
- *
- *        This product includes software developed by Rene Hexel.
- *
- * 4. Neither the name of the author nor the names of contributors
- *    may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * -----------------------------------------------------------------------
- * This program is free software; you can redistribute it and/or
- * modify it under the above terms or under the terms of the GNU
- * General Public License as published by the Free Software Foundation;
- * either version 2 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see http://www.gnu.org/licenses/
- * or write to the Free Software Foundation, Inc., 51 Franklin Street,
- * Fifth Floor, Boston, MA  02110-1301, USA.
- *
- */
-
-                                                                        
+/**                                                                     
+ *  /file WALK_ControlStatus.h 
+ *                                                                      
+ *  Created by Carl Lusty in 2014.                                      
+ *  Copyright (c) 2014 Carl Lusty                                       
+ *  All rights reserved.                                                
+ */                                                                     
+                                                                         
 #ifndef WALK_ControlStatus_DEFINED
 #define WALK_ControlStatus_DEFINED
 
-#include <gu_util.h>
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <string>
@@ -68,29 +16,11 @@
 #include <ctype.h>
 #endif
 
-#ifndef USE_UNSW_ODOMETRY
-struct Odometry                         ///< needs to mimic UNSW odometry!
-{
-        float forward;
-        float left;
-        float turn;
-};
-#endif
+#include <float.h>
+#include "wb_walk_controlstatus.h"
 
 namespace guWhiteboard
 {
-        /**
-         * command for ControlStatus
-         */
-        enum WALK_ControlStatus_Mode
-        {
-                WALK_Disconnected,      ///< walk is disconnected
-                WALK_Stop,              ///< walk stopped / stop walk
-                WALK_Ready,             ///< walk ready
-                WALK_Run,               ///< walking
-                WALK_Ignore             ///< only interested in odomentry
-        };
-
 #define WALK_Disconnect WALK_Disconnected ///< alias for WALK_Disconnected
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -106,27 +36,34 @@ namespace guWhiteboard
         /**
          * Nao Walk control and status class
          */
-        class WALK_ControlStatus
+        class WALK_ControlStatus : public wb_walk_controlstatus
         {
-                PROPERTY(float, forward)
-                PROPERTY(float, left)
-                PROPERTY(float, turn)
-                PROPERTY(float, power)
 
-                PROPERTY(WALK_ControlStatus_Mode, controlStatus)
-                PROPERTY(Odometry, odometry)
-                PROPERTY(bool, odometry_mask)
-                PROPERTY(bool, pad1)
-                PROPERTY(int16_t, pad2)
         public:
                 /** designated constructor */
-                WALK_ControlStatus(guWhiteboard::WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
+                WALK_ControlStatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): wb_walk_controlstatus(c, forward, left, turn, power) {}
 
                 /** copy constructor */
-                WALK_ControlStatus(const guWhiteboard::WALK_ControlStatus &other): _forward(other._forward), _left(other._left), _turn(other._turn), _power(other._power), _controlStatus(other._controlStatus), _odometry(other._odometry), _odometry_mask(other._odometry_mask) {}
+                WALK_ControlStatus(const WALK_ControlStatus &other) : wb_walk_controlstatus(other.controlStatus(), other.forward(), other.left(), other.turn(), other.power()) { }
 
                 /** copy assignment operator */
-                WALK_ControlStatus &operator=(const guWhiteboard::WALK_ControlStatus &other) { _forward = other._forward; _left = other._left; _turn = other._turn; _power = other._power; _controlStatus = other._controlStatus; _odometry = other._odometry; _odometry_mask = other._odometry_mask; return *this; }
+                WALK_ControlStatus &operator=(const WALK_ControlStatus &other) { set_controlStatus(other.controlStatus()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); return *this; }
+
+		inline bool operator == (const WALK_ControlStatus &s) 
+		{
+    			return (fabs(forward() - s.forward()) < FLT_EPSILON &&
+				fabs(left() - s.left()) < FLT_EPSILON &&
+				fabs(turn() - s.turn()) < FLT_EPSILON &&
+				fabs(power() - s.power()) < FLT_EPSILON &&
+				controlStatus()	== s.controlStatus() &&
+				odometry() 	== s.odometry());
+		}
+
+		inline bool operator != (const WALK_ControlStatus &s) 
+		{
+			return !((*this) == s);
+		}
+		
             
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */

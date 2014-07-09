@@ -10,28 +10,13 @@
 #ifndef SENSORS_TorsoJointTemps_DEFINED
 #define SENSORS_TorsoJointTemps_DEFINED
 
-#include <gu_util.h>
+#include "wb_sensors_torsotemps.h" 
 
 namespace guWhiteboard                                                  
 {
-        class SENSORS_TorsoJointTemps
+        class SENSORS_TorsoJointTemps : public wb_sensors_torsotemps
         {
-                PROPERTY(float, HeadYaw)
-                PROPERTY(float, HeadPitch)
-                PROPERTY(float, LShoulderPitch)
-                PROPERTY(float, LShoulderRoll)
-                PROPERTY(float, LElbowYaw)
-                PROPERTY(float, LElbowRoll)
-                PROPERTY(float, LHipYawPitch)
-                PROPERTY(float, LHipRoll)
-                PROPERTY(float, LHipPitch)
-                PROPERTY(float, RHipRoll)
-                PROPERTY(float, RHipPitch)
-                PROPERTY(float, RShoulderPitch)
-                PROPERTY(float, RShoulderRoll)
-                PROPERTY(float, RElbowYaw)
-                PROPERTY(float, RElbowRoll)
-                
+               
         public:
                 SENSORS_TorsoJointTemps()
                 {
