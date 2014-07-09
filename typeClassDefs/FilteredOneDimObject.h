@@ -155,11 +155,12 @@ public:
                 uint64_t theHistory=visibilityHistory();
                 
                 int count=0;
-                uint64_t position=historyLength;
+                int position=historyLength;
                 
                 while (position>0)
-                { count +=position &0X1;
-                        position >>=1;
+                { count +=theHistory & 0X1;
+                        theHistory >>=1;
+                        position--;
                 }
                 
                 return count;
