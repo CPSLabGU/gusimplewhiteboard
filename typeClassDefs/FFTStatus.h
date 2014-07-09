@@ -69,6 +69,9 @@
 #include "gusimplewhiteboard.h"
 #include "wb_fft_frequencies.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+
 namespace guWhiteboard
 {
     /**
@@ -185,5 +188,7 @@ namespace guWhiteboard
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
     };
 }
+
+#pragma clang diagnostic pop
 
 #endif // FFTStatus_DEFINED
