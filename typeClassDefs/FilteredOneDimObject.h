@@ -83,14 +83,15 @@ public:
                              int16_t x=0,
                              int16_t y=0,
                              int16_t yaw=0,
-                                                       bool isVisible= false
-                            ): wb_filteredvisionobject(frameCounter,distance,x,y,yaw,isVisible)
+                                                       bool isVisible= false,
+                             uint64_t visibilityHistory=0
+                            ): wb_filteredvisionobject(frameCounter,distance,x,y,yaw,isVisible,visibilityHistory)
         { /*  */ }
         
 
         
         /** copy constructor */
-        FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible())
+        FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible(), other.visibilityHistory())
         {
         }
     
@@ -104,6 +105,7 @@ public:
             set_y ( other.y() );
              set_yaw ( other.yaw() );
            set_isVisible ( other.isVisible() );
+               set_visibilityHistory ( other.visibilityHistory() );
 
         
     }
@@ -117,6 +119,7 @@ public:
                 set_y ( other.y() );
                 set_yaw ( other.yaw() );
                 set_isVisible ( other.isVisible() );
+                set_visibilityHistory ( other.visibilityHistory() );
 
                 return *this;
         }
@@ -131,6 +134,7 @@ public:
         set_y ( other.y() );
         set_yaw ( other.yaw() );
         set_isVisible ( other.isVisible() );
+        set_visibilityHistory ( other.visibilityHistory() );
         
         return *this;
     }
@@ -144,6 +148,23 @@ public:
                 
                 return yaw_in_radians - alpha;
         }
+        
+        int ratioOfSigthings(const int length=64) const{  // # of object sigthings over length
+                int historyLength = (length>64) ? 64 : length;
+                historyLength = (historyLength>0)?historyLength:64;
+                uint64_t theHistory=visibilityHistory();
+                
+                int count=0;
+                uint64_t position=historyLength;
+                
+                while (position>0)
+                { count +=position &0X1;
+                        position >>=1;
+                }
+                
+                return count;
+        }
+        
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         
         static const char SEPARATOR_IS_COMMA = ',';
@@ -157,6 +178,7 @@ public:
         FilteredOneDimObject(const char *names) { from_string(names); }
 
         /** convert to a string */
+        // WARNING we do not convert the visionHisory toa nd from the String
         std::string description() const
         {
                 std::ostringstream ss;
