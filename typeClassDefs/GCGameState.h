@@ -207,6 +207,8 @@ namespace guWhiteboard
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
 
+            const GCGameState &operator=(const GCGameState &other) { memcpy(this, &other, sizeof(*this)); return *this; }
+
             /** Set the Penalty vectors */
 	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInGSgameController[SPL_NUM_PLAYERS],
 		                    const PenaltyFormat thePenaltyFromThemInGSgameController[SPL_NUM_PLAYERS])
