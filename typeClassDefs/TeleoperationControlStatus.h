@@ -10,19 +10,15 @@
 
 #include "MOTION_Interface.h"
 #include "Vision_Control.h"
+#include "wb_teleoperation.h"
 #include <gu_util.h>
 namespace guWhiteboard
 {
-class TeleoperationControlStatus {
+class TeleoperationControlStatus : public wb_teleoperation {
 public:
 	TeleoperationControlStatus() {
-		//set_action((Motions::action)-1);
-		//set_stance((Motions::stance)-1);
-		set_fowardWalkSpeed(0);
-		set_headPitch(0.0f);
-		set_headYaw(0.0f);
-		set_turnWalkSpeed(0.0f);
-		initBit = 0;
+		VERSION_PROPERTY_INITIALIZATION(action)
+		VERSION_PROPERTY_INITIALIZATION(stance)
 	}
 	bool connected() {
 		return initBit == 1;
@@ -42,11 +38,6 @@ public:
 	}
 	
 private:
-	unsigned initBit : 1;
-	PROPERTY(int, fowardWalkSpeed)
-	PROPERTY(float, turnWalkSpeed)
-	PROPERTY(float, headPitch)
-	PROPERTY(float, headYaw)
 	VERSIONED_PROPERTY(guWhiteboard::Motions::action, action)
 	VERSIONED_PROPERTY(guWhiteboard::Motions::stance, stance)
 	PROPERTY(StreamingType, streamType)
