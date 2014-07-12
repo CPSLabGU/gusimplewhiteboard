@@ -190,6 +190,7 @@ public:
                 
                 ss << x() << SEPARATOR_IS_COMMA << y() << SEPARATOR_IS_COMMA << yaw() <<  SEPARATOR_IS_COMMA;
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
+                ss << "Sightings" << SEPARATOR_IS_COLON << ratioOfSigthings(64)*100.0f/64.0f <<  SEPARATOR_IS_COMMA; //Not in the from_string parser yet
                 return ss.str();
         }
         
