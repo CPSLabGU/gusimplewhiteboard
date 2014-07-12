@@ -149,7 +149,7 @@ public:
                 return yaw_in_radians - alpha;
         }
         
-        int ratioOfSigthings(const int length=64) const{  // # of object sigthings over length
+        int ratioOfSightings(const int length=64) const{  // # of object sigthings over length
                 int historyLength = (length>64) ? 64 : length;
                 historyLength = (historyLength>0)?historyLength:64;
                 uint64_t theHistory=visibilityHistory();
@@ -190,7 +190,7 @@ public:
                 
                 ss << x() << SEPARATOR_IS_COMMA << y() << SEPARATOR_IS_COMMA << yaw() <<  SEPARATOR_IS_COMMA;
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
-                ss << "Sightings" << SEPARATOR_IS_COLON << ratioOfSigthings(64)*100.0f/64.0f <<  SEPARATOR_IS_COMMA; //Not in the from_string parser yet
+                ss << "Sightings" << SEPARATOR_IS_COLON << ratioOfSightings(64)*100.0f/64.0f <<  SEPARATOR_IS_COMMA; //Not in the from_string parser yet
                 return ss.str();
         }
         
