@@ -65,7 +65,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
-#include <Point2D.h>
+#include "Point2D.h"
 
 #define NUM_TOP_PARTICLES       4
 
