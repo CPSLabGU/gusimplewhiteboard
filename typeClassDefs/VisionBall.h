@@ -163,6 +163,12 @@ public:
 				setBall(ballInfo, cam);
 			}
 		}
+		std::string fnum = "FRAMENUMBER";
+		n = s.find(fnum);
+		if(n != std::string::npos) {
+			
+			set_frameNumber(atol(s.substr(n+fnum.length()+1).c_str()));
+		}
 	}
 	
 	std::string description() {
@@ -173,6 +179,7 @@ public:
 		if(_bottomVisible) {
 			result << "BottomBall:(" << bottomBall().x() << "," << bottomBall().y() << ")"<< SEPARATOR_IS_AT << bottomBall().radius();
 		}
+		result << "FrameNumber=" << frameNumber();
 		return result.str();
 	}
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
