@@ -143,7 +143,7 @@ public:
         float horizontal_angle(const float guvision_width = 640.0f, const float horiz_fov = 61.0f) const
         {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
-                float D = guvision_width / 2 / sinf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
+                float D = guvision_width / 2 / tanf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
                 float alpha = atanf(float(x())/D);                                  // negative angle of x on screen
                 
                 return yaw_in_radians - alpha;
