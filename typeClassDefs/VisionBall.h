@@ -128,6 +128,8 @@ public:
         
         static const char SEPARATOR_IS_AT = '@';
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat"
         VisionBall(std::string s): VisionBall() {
                 from_string(s);
         }
@@ -135,6 +137,7 @@ public:
         VisionBall(const char *s): VisionBall() {
                 from_string(std::string(s));
         }
+#pragma clang diagnostic pop
         
 	void from_string(std::string s) {
 		std::string radiousDel (1,SEPARATOR_IS_AT);
@@ -163,6 +166,12 @@ public:
 				setBall(ballInfo, cam);
 			}
 		}
+		std::string fnum = "FRAMENUMBER";
+		n = s.find(fnum);
+		if(n != std::string::npos) {
+			
+			set_frameNumber(atol(s.substr(n+fnum.length()+1).c_str()));
+		}
 	}
 	
 	std::string description() {
@@ -173,6 +182,7 @@ public:
 		if(_bottomVisible) {
 			result << "BottomBall:(" << bottomBall().x() << "," << bottomBall().y() << ")"<< SEPARATOR_IS_AT << bottomBall().radius();
 		}
+		result << "FrameNumber=" << frameNumber();
 		return result.str();
 	}
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
