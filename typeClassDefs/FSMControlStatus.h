@@ -79,7 +79,7 @@ namespace guWhiteboard
         {
         public:
             /** designated constructor */
-            FSMControlStatus(FSMControlType t = FSMStatus) { memset(this, 0, sizeof(wb_fsm_control_status)); set_command(t); }
+            FSMControlStatus(FSMControlType t = FSMStatus): wb_fsm_control_status() { set_command(t); }
 
             /** string constructor */
             FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }

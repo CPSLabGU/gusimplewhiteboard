@@ -100,7 +100,7 @@ struct wb_fsm_control_status
     ARRAY_PROPERTY(uint8_t, fsms, CONTROLSTATUS_BYTE_SIZE)
 
 #ifdef __cplusplus
-    wb_fsm_control_status(guWhiteboard::FSMControlType t = guWhiteboard::FSMStatus) { CONTROLSTATUS_SET_CMD(this, t); }
+    wb_fsm_control_status(guWhiteboard::FSMControlType t = guWhiteboard::FSMStatus) { memset(this, 0, sizeof(*this)); CONTROLSTATUS_SET_CMD(this, t); }
 #endif
 };
 
