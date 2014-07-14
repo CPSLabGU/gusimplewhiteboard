@@ -94,8 +94,10 @@ namespace guWhiteboard
             Point2D(const std::string &names) { from_string(names); }
 
             /** const char *constructor */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat"
             Point2D(const char *names): Point2D(std::string(names)) { }
-
+#pragma clang diagnostic pop
             /** convert to a string */
             std::string description()
             {

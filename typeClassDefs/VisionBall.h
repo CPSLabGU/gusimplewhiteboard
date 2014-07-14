@@ -128,6 +128,8 @@ public:
         
         static const char SEPARATOR_IS_AT = '@';
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat"
         VisionBall(std::string s): VisionBall() {
                 from_string(s);
         }
@@ -135,6 +137,7 @@ public:
         VisionBall(const char *s): VisionBall() {
                 from_string(std::string(s));
         }
+#pragma clang diagnostic pop
         
 	void from_string(std::string s) {
 		std::string radiousDel (1,SEPARATOR_IS_AT);
