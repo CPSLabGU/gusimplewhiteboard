@@ -96,7 +96,7 @@ public:
 		}
 	}
 	
-	const wb_goal leftPost(VisionCamera camera) const
+	const wb_goal &leftPost(VisionCamera camera) const
 	{
 		if(camera == Top)
 			return topLeft;
@@ -104,7 +104,23 @@ public:
 			return bottomLeft;
 	}
 	
-	const wb_goal rightPost(VisionCamera camera) const
+	const wb_goal &rightPost(VisionCamera camera) const
+	{
+		if(camera == Top)
+			return topRight;
+		else
+			return bottomRight;
+	}
+	
+	wb_goal &leftPost(VisionCamera camera)
+	{
+		if(camera == Top)
+			return topLeft;
+		else
+			return bottomLeft;
+	}
+	
+	wb_goal &rightPost(VisionCamera camera)
 	{
 		if(camera == Top)
 			return topRight;
