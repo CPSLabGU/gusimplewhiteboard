@@ -72,7 +72,7 @@
  */
 struct wb_filteredvisionobject
 {
-        PROPERTY(uint32_t, visibilityHistory) //  a 64-bit history of whether vision said visible 1 or not visible 0, visibilityHistory&0X1 is the most recent frame
+        PROPERTY(uint64_t, visibilityHistory) //  a 64-bit history of whether vision said visible 1 or not visible 0, visibilityHistory&0X1 is the most recent frame
         PROPERTY(int32_t, frameCounter) //  frame counter
         PROPERTY(int16_t, distance) //  distance to landmark in cm
         PROPERTY(int16_t, x) //  centre x-coordinate in image
@@ -90,15 +90,15 @@ struct wb_filteredvisionobject
                                 int16_t y=0,
                                 int16_t yaw=0,
                                bool isVisible= false,
-			       uint32_t visibilityHistory=0
+			       uint64_t visibilityHistory=0
                                 ):
+        _visibilityHistory(visibilityHistory),
         _frameCounter(frameCounter),
         _distance(distance),
         _x(x),
         _y(y),
         _yaw(yaw),
-        _isVisible(isVisible),
-        _visibilityHistory(visibilityHistory)
+        _isVisible(isVisible)
         {}
 #endif
 };

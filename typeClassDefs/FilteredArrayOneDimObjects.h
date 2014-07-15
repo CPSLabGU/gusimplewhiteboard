@@ -165,14 +165,14 @@ public:
                     break;
                 case FVOGoalCrossBarTop : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
                     break;
-                case FVOGoalPostBottom : ss << POST_ID<<SEPARATOR_IS_COLON;
-                    break;
-                case FVOGoalPostLeftBottom : ss << LEFT_POST_ID<<SEPARATOR_IS_COLON ;
-                    break;
-                case FVOGoalPostRightBottom : ss << RIGHT_POST_ID<<SEPARATOR_IS_COLON;
-                    break;
-                case FVOGoalCrossBarBottom : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
-                    break;
+//                case FVOGoalPostBottom : ss << POST_ID<<SEPARATOR_IS_COLON;
+//                    break;
+//                case FVOGoalPostLeftBottom : ss << LEFT_POST_ID<<SEPARATOR_IS_COLON ;
+//                    break;
+//                case FVOGoalPostRightBottom : ss << RIGHT_POST_ID<<SEPARATOR_IS_COLON;
+//                    break;
+//                case FVOGoalCrossBarBottom : ss << CROSS_BAR_ID <<SEPARATOR_IS_COLON ;
+//                    break;
                 case FVO_NUM_OBJECTS : mipal_warn( "ERROR:");
                     break;
             }// switch
