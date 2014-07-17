@@ -1336,7 +1336,7 @@
 			name = guobjcwhiteboardTests;
 			productName = guobjcwhiteboardTests;
 			productReference = F1C94D711555CA8E00B717DF /* guobjcwhiteboardTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productType = "com.apple.product-type.bundle";
 		};
 		F1C94DA21555D3C300B717DF /* gusimplewhiteboardios */ = {
 			isa = PBXNativeTarget;
@@ -1408,7 +1408,7 @@
 			name = wbPerfTests;
 			productName = wbPerfTests;
 			productReference = F1ED58A418E7EF1400864A87 /* wbPerfTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
