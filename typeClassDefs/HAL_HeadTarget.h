@@ -34,7 +34,7 @@ namespace guWhiteboard
             
                 void GoToWithTime_rad(float yaw, float pitch, int time = 1000000)
                 {
-                        if(yaw > float(DEG2RAD(YAW_LIMIT_POS)))
+/*                        if(yaw > float(DEG2RAD(YAW_LIMIT_POS)))
                                 yaw = float(DEG2RAD(YAW_LIMIT_POS));
                         else if (yaw < float(DEG2RAD(YAW_LIMIT_NEG)))
                                 yaw = float(DEG2RAD(YAW_LIMIT_NEG));
@@ -43,7 +43,7 @@ namespace guWhiteboard
                                 pitch = float(DEG2RAD(PITCH_LIMIT_POS));
                         else if (pitch < float(DEG2RAD(PITCH_LIMIT_NEG)))
                                 pitch = float(DEG2RAD(PITCH_LIMIT_NEG));
-                        
+  */                      
                         set_target_pitchAngle(pitch);
                         set_target_yawAngle(yaw);
                         set_target_movement_time(time);
