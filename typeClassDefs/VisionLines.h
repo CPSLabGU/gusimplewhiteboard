@@ -8,72 +8,70 @@
 #ifndef VisionLines_DEFINED
 #define	VisionLines_DEFINED
 
-#include <SimpleShapes.h>
 #include <string>
+#include <SimpleShapes.h>
+
+#include "wb_lines.h"
+#include "Vision_Control.h"
 
 namespace guWhiteboard {
-class VisionLines {
-private:
-    std::bitset<10> objectMask;
-    SimpleLine _lines[10];
+class VisionLines : public wb_lines {
 public:
-    VisionBall() {
-		objectMask.reset();
-    }
+    VisionLines() : wb_lines() {}
 	
-	VisionBall(std::string s) {
-		objectMask.reset();
-		size_t n = -4;
-		std::string command = "BALL";
-		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
-		while(n!=std::string::npos) {
-			n = s.find(command, n+4);
-			if (n!=std::string::npos) {
-				std::string t = s.substr(n+command.length()+1);
-				WbBallInfo ballInfo;
-				VisionCamera cam;
-				if(s.substr(n-3, 3).find("TOP") != std::string::npos)
-					cam = VisionCamera::Top;
-				else
-					cam = VisionCamera::Bottom;
-				
-				ballInfo.position = getPoint(t.c_str());
-				ballInfo.radius = u_int16_t(atoi(t.substr(1, t.substr(1, t.size()-2).find_first_not_of("-0123456789")).c_str()));
-				setBall(ballInfo, cam);
+	
+	VisionLines(std::string s) : wb_lines() {
+		//NYI
+	}
+	
+	bool addLine(const wb_line &line, VisionCamera camera) {
+		for(int i = 0; i<8; ++i) {
+			if(camera == Top) {
+				if(topMask() & (1 << i)) {
+					set_topLines(line, i);
+					set_topMask(topMask() | (1 << i));
+					return true;
+				}	
+			}
+			else {
+				if(bottomMask() & (1 << i)) {
+					set_bottomLines(line, i);
+					set_bottomMask(bottomMask() | (1 << i));
+					return true;
+				}
 			}
 		}
-	}
-	void setBall(WbBallInfo ballInfo, VisionCamera camera) {
-		_ball[camera] = ballInfo;
-		objectMask[camera]  = 1;
+		return false;
 	}
 	
-	const WbBallInfo **ball() const
-	{
-		static const WbBallInfo* ret[2];
-		if(objectMask[VisionCamera::Top])
-			ret[VisionCamera::Top] = &(_ball[VisionCamera::Top]);
-		else
-			ret[VisionCamera::Top] = NULL;
-		if(objectMask[VisionCamera::Bottom])
-			ret[VisionCamera::Bottom] = &(_ball[VisionCamera::Bottom]);
-		else
-			ret[VisionCamera::Bottom] = NULL;
-		return ret;
+	std::vector<wb_line> topLines() const {
+		std::vector<wb_line> result;
+		for(int i = 0; i<8; ++i) {
+			if(topMask() & (1 << i)) {
+				result.push_back(wb_lines::topLines(i));
+			}
+		}
+		return result;
+	}
+	
+	std::vector<wb_line> bottomLines() const {
+		std::vector<wb_line> result;
+		for(int i = 0; i<8; ++i) {
+			if(bottomMask() & (1 << i)) {
+				result.push_back(wb_lines::bottomLines(i));
+			}
+		}
+		return result;
 	}
     
-	void Reset() {
-		objectMask.reset();
+	void reset() {
+		set_topMask(0);
+		set_bottomMask(0);
 	}
 	
-	std::string description() {
+	std::string description() const {
 		std::stringstream result;
-		if(objectMask[VisionCamera::Top]) {
-			result << "TopBall:(" << ball()[VisionCamera::Top]->position.x << "," << ball()[VisionCamera::Top]->position.y << "," << ball()[VisionCamera::Top]->radius << ") ";
-		}
-		if(objectMask[VisionCamera::Bottom]) {
-			result << "BottomBall:(" << ball()[VisionCamera::Bottom]->position.x << "," << ball()[VisionCamera::Bottom]->position.y << ")@" << ball()[VisionCamera::Bottom]->radius;
-		}
+		result << "NYI";
 		return result.str();
 	}
 	
