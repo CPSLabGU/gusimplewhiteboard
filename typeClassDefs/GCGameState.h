@@ -64,7 +64,7 @@
 #include <sstream>
 #include <gu_util.h>
 
-#define SPL_NUM_PLAYERS 5
+#define SPL_NUM_PLAYERS 6
 #define SPL_NUM_TEAMS 2
 
 #define DEFAULT_PLAYER_NUMBER 2
@@ -76,6 +76,7 @@
 #define kGSSecondHalf "SecondHalf"
 
 #define kGSNormalGame "NormalGame"
+#define kGSDropIn "Drop In"
 #define kGSPenaltyShots "PenaltyShots"
 #define kGSOverTime "OverTime"
 
@@ -100,6 +101,8 @@
 #define kGSLeavingTheField "LeavingTheField"
 #define kGSPlayingWithHands "PlayingWithHands"
 #define kGSRequestForPickup "RequestForPickup"
+#define kGSManualButtonPenalty "ManualButtonPenalty"
+#define kGSCoachMotion "CoachMotion"
 
 
 #define kNoGSsignal "NoGSsignal"
@@ -117,7 +120,7 @@ namespace guWhiteboard
 	{  SecondHalf, FirstHalf };
 
 	enum GameFormat
-	{  NormalGame, PenaltyShots, OverTime };
+	{  NormalGame, DropIn, PenaltyShots, OverTime };
 
 	enum BallOut
 	{  OutByBlue, OutByRed };
@@ -128,7 +131,7 @@ namespace guWhiteboard
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
 	enum PenaltyFormat
-	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup, ManualButtonPenalty };
+	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup, ManualButtonPenalty, CoachMotion };
 
 	enum GameContollerSignal
 	{  NoGSsignal, GSOurGoalSignalPushed, GSTheirGoalSignalPushed, GSBlueKickOffSignalPushed, GSRedKickOffSignalPushed };
@@ -148,6 +151,7 @@ namespace guWhiteboard
 
                 PROPERTY(GameHalf, theGSHalf )  //  GS half
                 PROPERTY(GameFormat, theGSGameformat )  //  GS game format
+		 // our internal state
                 PROPERTY(GameState, theGSGameState )  
 		//  GS GameControllerCommand
                 PROPERTY(GameControllerCommand, theGSGameControllerCommand )  
