@@ -20,8 +20,8 @@ struct wb_line {
 	
 struct wb_lines {
 	PROPERTY(long, frameNumber)
-	ARRAY_PROPERTY(wb_line, topLines, 8)
-	ARRAY_PROPERTY(wb_line, bottomLines, 8)
+	ARRAY_PROPERTY(wb_line, topLines, 6)
+	ARRAY_PROPERTY(wb_line, bottomLines, 6)
 	PROPERTY(int8_t, topMask)
 	PROPERTY(int8_t, bottomMask)
 #ifdef __cplusplus
