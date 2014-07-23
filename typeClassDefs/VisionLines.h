@@ -8,6 +8,7 @@
 #ifndef VisionLines_DEFINED
 #define	VisionLines_DEFINED
 
+#include <vector>
 #include <string>
 #include <SimpleShapes.h>
 
