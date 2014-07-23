@@ -572,6 +572,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WEBOTS_NXT_vector_bridge_DEFINED
 
+		case kVisionLines_v:
+#ifdef VisionLines_DEFINED
+		{
+			class VisionLines_t VisionLines_msg;
+			VisionLines_msg.post(VisionLines(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !VisionLines_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -583,7 +594,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(52);
+	// self.reserve(53);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -637,5 +648,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["UDPWBNumber"] = kUDPWBNumber_v;
 	self["WEBOTS_NXT_bumper"] = kWEBOTS_NXT_bumper_v;
 	self["WEBOTS_NXT_vector_bridge"] = kWEBOTS_NXT_vector_bridge_v;
+	self["VisionLines"] = kVisionLines_v;
 }
 

@@ -542,6 +542,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WEBOTS_NXT_vector_bridge_DEFINED
 
+		case kVisionLines_v:
+#ifdef VisionLines_DEFINED
+		{
+			class VisionLines_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !VisionLines_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
