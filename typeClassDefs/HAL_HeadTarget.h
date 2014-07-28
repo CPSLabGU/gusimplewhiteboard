@@ -29,7 +29,7 @@ namespace guWhiteboard
 
                 void GoToWithTime(float yaw, float pitch, int time = 1000000)
                 {
-                    GoToWithTime_rad((float)DEG2RAD(yaw), (float)DEG2RAD(pitch), time);
+                    GoToWithTime_rad(static_cast<float>(DEG2RAD(yaw)), static_cast<float>(DEG2RAD(pitch), time));
                 }
             
                 void GoToWithTime_rad(float yaw, float pitch, int time = 1000000)

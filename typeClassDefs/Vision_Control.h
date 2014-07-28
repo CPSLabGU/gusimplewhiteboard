@@ -159,7 +159,7 @@ public:
                                 std::string t = s.substr(n+command.length()+1);
                                 if(i == HorizionFactor) {
                                     //get value
-                                    set_horizionValue((float)atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                                    set_horizionValue(static_cast<float>(atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str())));
                                     continue;
                                 }
 								if(i == JPEGStreamQuality) {
