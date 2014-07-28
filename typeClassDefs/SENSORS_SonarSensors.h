@@ -86,8 +86,8 @@ namespace guWhiteboard
                         std::stringstream ss;
 
                         for (int i = 0; i < (Sonar::NUMBER_OF_READINGS-1); i++)
-                                ss << (int)sonar(i) << ",";
-                        ss << (int)sonar(Sonar::NUMBER_OF_READINGS-1); //Don't want a ', ' for the last element.
+                                ss << static_cast<int>(sonar(i)) << ",";
+                        ss << static_cast<int>(sonar(Sonar::NUMBER_OF_READINGS-1)); //Don't want a ', ' for the last element.
                         
                         return ss.str();
                 }
