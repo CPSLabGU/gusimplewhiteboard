@@ -19,7 +19,7 @@
 
 namespace guWhiteboard {
 class VisionBall {
-	PROPERTY(unsigned long, frameNumber)
+	PROPERTY(uint64_t, frameNumber)
 	PROPERTY(wb_ball, topBall)
 	PROPERTY(wb_ball, bottomBall)
         PROPERTY(bool, topVisible)
