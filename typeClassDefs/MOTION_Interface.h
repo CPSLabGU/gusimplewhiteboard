@@ -173,18 +173,18 @@ namespace guWhiteboard
                         void invalidate() { _cost = -1; }
                         void reached() { _reached = true; }
                         int cost() { return _cost; }
-                        void add_stance(stance s, int cost) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = (u_int8_t)s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
-                        void add_stance(stance s, int cost, int transition) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = (u_int8_t)transition+NUM_OF_STANCES+NUM_OF_ACTIONS; _off++; _stances[_off] = (u_int8_t)s; _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+                        void add_stance(stance s, int cost) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = static_cast<u_int8_t>(s); _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+                        void add_stance(stance s, int cost, int transition) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = static_cast<u_int8_t>(transition+NUM_OF_STANCES+NUM_OF_ACTIONS); _off++; _stances[_off] = static_cast<u_int8_t>(s); _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
                         void pretty_print()
                         {
                                 std::stringstream ss;
-                                ss << "Stance_Path: " << (int)_off << " ";
+                                ss << "Stance_Path: " << static_cast<int>(_off) << " ";
                                 for(int i = 0; i < _off; i++)
                                 {
                                         if(_stances[i] < NUM_OF_STANCES)
-                                                ss << "-> " << (int)_stances[i] << " " << stance_strings[_stances[i]];
+                                                ss << "-> " << static_cast<int>(_stances[i]) << " " << stance_strings[_stances[i]];
                                         else
-                                                ss << " transition: " << (int)_stances[i] << " ";
+                                                ss << " transition: " << static_cast<int>(_stances[i]) << " ";
                                 }
                                 fprintf(stderr, "%s\n", ss.str().c_str());
                         }
@@ -214,8 +214,8 @@ namespace guWhiteboard
 		}
 
 		bool isRunning() { return _running; }
-		Motions::stance expectedStance() { return (Motions::stance)_expected_stance; }
-		Motions::stance verifiedStance() { return (Motions::stance)_verified_stance; }
+		Motions::stance expectedStance() { return static_cast<Motions::stance>(_expected_stance); }
+		Motions::stance verifiedStance() { return static_cast<Motions::stance>(_verified_stance); }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /// string constructor (see from_string() below)
@@ -321,7 +321,7 @@ namespace guWhiteboard
                         p.pretty_print();
 
                         memcpy(_stance_action, p._stances, sizeof(p._stances));
-                        _num_of_stance_actions = (int8_t)p.offset();
+                        _num_of_stance_actions = static_cast<int8_t>(p.offset());
                         _stance_action_mask = true;
 
                         return p.cost();
@@ -340,7 +340,7 @@ namespace guWhiteboard
 
                         _stance_action[p.offset()] = Motions::NUM_OF_STANCES + a;
 
-                        _num_of_stance_actions = (int8_t)p.offset()+1;
+                        _num_of_stance_actions = static_cast<int8_t>(p.offset()+1);
                         _stance_action_mask = true;
 
                         return p.cost() + at._cost;
