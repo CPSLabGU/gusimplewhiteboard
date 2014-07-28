@@ -227,25 +227,25 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 				if ( (std::string::npos!=token.find(MotorStrings[LEFT_MOTOR_DIFFERENTIAL]) )
                				&& (std::string::npos!=postionEQUALS) )
 				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
-		                    set_speedLeftMotor( (int16_t)atoi (theValue.c_str()) );
+		                    set_speedLeftMotor( static_cast<int16_t>(atoi (theValue.c_str()) ));
 				}
 
 				if ( (std::string::npos!=token.find(MotorStrings[RIGHT_MOTOR_DIFFERENTIAL]) )
                				&& (std::string::npos!=postionEQUALS) )
 				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
-		                    set_speedRightMotor((int16_t)atoi (theValue.c_str()) );
+		                    set_speedRightMotor(static_cast<int16_t>(atoi (theValue.c_str()) ));
 				}
 
 				if ( (std::string::npos!=token.find(SoundStrings[SOUND_FREQUENCY]) )
                				&& (std::string::npos!=postionEQUALS) )
 				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
-		                    set_soundFrequency((int16_t) atoi (theValue.c_str()) );
+		                    set_soundFrequency(static_cast<int16_t>( atoi (theValue.c_str()) ));
 				}
 
 				if ( (std::string::npos!=token.find(SoundStrings[SOUND_DURATION]) )
                				&& (std::string::npos!=postionEQUALS) )
 				{   std::string theValue = token.substr (postionEQUALS+1,token.size() );
-		                    set_soundDuration((int16_t) atoi (theValue.c_str()) );
+		                    set_soundDuration(static_cast<int16_t>( atoi (theValue.c_str()) ));
 				}
 
 				// find next comma in the string
@@ -264,7 +264,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 
             void set_actuator(DifferentialInstructions theActuator,int16_t firstParameter,int16_t secondParameter)
 	    {
-		SoundDiscriminators theInstructionModality =(SoundDiscriminators) firstParameter;
+		SoundDiscriminators theInstructionModality =static_cast<SoundDiscriminators>( firstParameter);
 
                switch (theActuator)
 		{ case  MOVE_MOTORS :
