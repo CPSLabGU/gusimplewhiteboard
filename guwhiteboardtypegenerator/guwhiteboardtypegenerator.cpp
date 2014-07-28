@@ -230,7 +230,7 @@ int main()
         "\tconst char *sep = \"|,\";\n"
         "\tchar *context = NULL;\n"
         "\tvector<int> array;\n"
-        "\tfor (char *element = strtok_r((char *)str.c_str(), sep, &context); element; element = strtok_r(NULL, sep, &context))\n"
+        "\tfor (char *element = strtok_r(static_cast<char *>(str.c_str()), sep, &context); element; element = strtok_r(NULL, sep, &context))\n"
         "\t\tarray.push_back(atoi(element));\n"
         "\treturn array;\n"
         "}\n\n"
