@@ -29,7 +29,7 @@ public:
 	
 	VisionGoals(std::string s) : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
 		
-		size_t n = (size_t)-8;
+		size_t n = static_cast<size_t>(-8);
 		std::string command = "LEFTPOST";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
 		while(n!=std::string::npos) {
@@ -51,7 +51,7 @@ public:
 			}
 		}
 		
-		n = (size_t)-8;
+		n = static_cast<size_t>(-8);
 		command = "RIGHTPOST";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
 		while(n!=std::string::npos) {
