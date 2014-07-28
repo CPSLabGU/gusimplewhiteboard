@@ -340,9 +340,9 @@ namespace guWhiteboard
                                         changeLed(led[2], true);
                                         break;
                                 case Yellow:
-                                        changeLed(led[0], (u_int8_t)100);
-                                        changeLed(led[1], (u_int8_t)25);
-                                        changeLed(led[2], (u_int8_t)0);
+                                        changeLed(led[0], static_cast<u_int8_t>(100));
+                                        changeLed(led[1], static_cast<u_int8_t>(25));
+                                        changeLed(led[2], static_cast<u_int8_t>(0));
                                         break;
                                 case NUMBER_OF_LEDS_COLOURS:
                                         break;
