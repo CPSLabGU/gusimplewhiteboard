@@ -227,27 +227,27 @@ namespace guWhiteboard
                                 case AllLEDs: //Only supporting off command
                                 {
                                         for(int i = LEDs::LeftEar1; i < LEDs::NUMBER_OF_LEDS; i++)
-                                                changeLed((LEDs::LEDCode)(i), false);
+                                                changeLed(static_cast<LEDs::LEDCode>(i), false);
                                         break;
                                 }
                                 case Ears:
                                 {
                                         for(int i = LEDs::LeftEar1; i <= LEDs::LeftEar10; i++)
-                                                i-LEDs::LeftEar1 < target_colour_or_numOfEars ? changeLed((LEDs::LEDCode)(i), true) : changeLed((LEDs::LEDCode)(i), false);
+                                                i-LEDs::LeftEar1 < target_colour_or_numOfEars ? changeLed(static_cast<LEDs::LEDCode>(i), true) : changeLed(static_cast<LEDs::LEDCode>(i), false);
                                         for(int i = LEDs::RightEar1; i <= LEDs::RightEar10; i++)
-                                                i-LEDs::RightEar1 < target_colour_or_numOfEars ? changeLed((LEDs::LEDCode)(i), true) : changeLed((LEDs::LEDCode)(i), false);
+                                                i-LEDs::RightEar1 < target_colour_or_numOfEars ? changeLed(static_cast<LEDs::LEDCode>(i), true) : changeLed(static_cast<LEDs::LEDCode>(i), false);
                                         break;
                                 }
                                 case LEar:
                                 {
                                         for(int i = LEDs::LeftEar1; i <= LEDs::LeftEar10; i++)
-                                                i-LEDs::LeftEar1 < target_colour_or_numOfEars ? changeLed((LEDs::LEDCode)(i), true) : changeLed((LEDs::LEDCode)(i), false);
+                                                i-LEDs::LeftEar1 < target_colour_or_numOfEars ? changeLed(static_cast<LEDs::LEDCode>(i), true) : changeLed(static_cast<LEDs::LEDCode>(i), false);
                                         break;
                                 }
                                 case REar:
                                 {
                                         for(int i = LEDs::RightEar1; i <= LEDs::RightEar10; i++)
-                                                i-LEDs::RightEar1 < target_colour_or_numOfEars ? changeLed((LEDs::LEDCode)(i), true) : changeLed((LEDs::LEDCode)(i), false);
+                                                i-LEDs::RightEar1 < target_colour_or_numOfEars ? changeLed(static_cast<LEDs::LEDCode>(i), true) : changeLed(static_cast<LEDs::LEDCode>(i), false);
                                         break;
                                 }
                                 case Eyes:
