@@ -116,7 +116,7 @@ extern "C"
 #define GSW_TOTAL_PROCESSES                     256     ///< maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
-#define GSW_DEFAULT_NAME "simple_whiteboard"
+#define GSW_DEFAULT_NAME "guWhiteboard"
 #define GSWR_BASE_NAME "guudpwhiteboard"
 #define WHITEBOARD_SIGNAL       SIGUSR2
 #define WHITEBOARD_POLL_PERIOD  10000
