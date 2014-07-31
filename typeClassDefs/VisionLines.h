@@ -28,14 +28,14 @@ public:
 	bool addLine(const wb_line &line, VisionCamera camera) {
 		for(int i = 0; i<6; ++i) {
 			if(camera == Top) {
-				if(topMask() & (1 << i)) {
+				if(!(topMask() & (1 << i))) {
 					set_topLines(line, i);
 					set_topMask(topMask() | (1 << i));
 					return true;
 				}	
 			}
 			else {
-				if(bottomMask() & (1 << i)) {
+				if(!(bottomMask() & (1 << i))) {
 					set_bottomLines(line, i);
 					set_bottomMask(bottomMask() | (1 << i));
 					return true;
@@ -72,7 +72,7 @@ public:
 	
 	std::string description() const {
 		std::stringstream result;
-		result << "NYI";
+		result << topLines().size() << "," << bottomLines().size();
 		return result.str();
 	}
 	
