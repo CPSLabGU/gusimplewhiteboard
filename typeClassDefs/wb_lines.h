@@ -19,7 +19,7 @@ struct wb_line {
 };
 	
 struct wb_lines {
-	PROPERTY(long, frameNumber)
+	PROPERTY(uint64_t, frameNumber)
 	ARRAY_PROPERTY(wb_line, topLines, 6)
 	ARRAY_PROPERTY(wb_line, bottomLines, 6)
 	PROPERTY(int8_t, topMask)
