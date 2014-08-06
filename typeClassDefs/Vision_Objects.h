@@ -52,9 +52,9 @@ namespace VisionObjectTypes {enum object {
 
 inline GUPoint<int16_t> getPoint(std::string *str) {
 	GUPoint<int16_t> point;
-	point.x = (short)atoi(str->substr(1, str->find(",")-1).c_str());
+	point.x = static_cast<int16_t>(atoi(str->substr(1, str->find(",")-1).c_str()));
 	size_t pointEnd = size_t(str->find(")")-1);
-	point.y = (short)atoi(str->substr(str->find(",")+1, pointEnd).c_str());
+	point.y = static_cast<int16_t>(atoi(str->substr(str->find(",")+1, pointEnd).c_str()));
 	pointEnd += 2;
 	*str = str->substr(pointEnd, str->length()-pointEnd);
 	return point;
