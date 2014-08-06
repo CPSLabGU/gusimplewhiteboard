@@ -17,6 +17,7 @@ ADDITIONAL_CPPFLAGS  = -Wall -Wno-import
 ADDITIONAL_CPPFLAGS += -IWBDIR
 ADDITIONAL_CPPFLAGS += -IWBDIR/typeClassDefs
 ADDITIONAL_CPPFLAGS += -D_BSD_SOURCE -D__USE_BSD -D_POSIX_SOURCE=2
+ADDITIONAL_CPPFLAGS += -I`pwd`/../../../../Common
 ADDITIONAL_CPPFLAGS += -I`echo /usr/include/c++/* | tr ' ' '\n' | head -n1` -I`echo /usr/include/*-linux-gnu/c++/* | tr ' ' '\n' | head -n1`
 ADDITIONAL_CPPFLAGS+=-D__STRICT_ANSI__ 
 ADDITIONAL_OBJCFLAGS+= OBJCINC -Wno-idiomatic-parentheses -std=c99
