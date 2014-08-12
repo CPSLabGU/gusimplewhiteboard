@@ -50,16 +50,16 @@ enum WALK_ControlStatus_Mode
  */
 struct wb_walk_controlstatus
 {
-	PROPERTY(float, forward)
-        PROPERTY(float, left)
-        PROPERTY(float, turn)
-        PROPERTY(float, power)
+	PROPERTY(float, forward)      	///< Forward movement, -100 to 100 percent
+        PROPERTY(float, left)           ///< Side step movement, -100 to 100 percent
+        PROPERTY(float, turn)           ///< Rotation in RAD
+        PROPERTY(float, power)          ///< Power value, best set to 100 and forgotten - Carl.
 
-        PROPERTY(WALK_ControlStatus_Mode, controlStatus)
-        PROPERTY(Odometry, odometry)
-        PROPERTY(bool, odometry_mask)
-        PROPERTY(bool, pad1)
-        PROPERTY(int16_t, pad2)
+        PROPERTY(WALK_ControlStatus_Mode, controlStatus) 	///< Walk State, getting / setting the state of the walk engine. Such as setting WALK_Stop to stop walking.
+        PROPERTY(Odometry, odometry) 				///< Odometry object, tracking walk distances over time
+        PROPERTY(bool, odometry_mask) 				///< Odometry mask, for overwriting the odomety in the walk
+        PROPERTY(bool, pad1) 					///< Just padding, ignore 
+        PROPERTY(int16_t, pad2) 				///< Just padding, ignore
 
 #ifdef __cplusplus
     wb_walk_controlstatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
