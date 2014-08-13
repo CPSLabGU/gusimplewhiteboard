@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011 Rene Hexel.
+ *  Copyright (c) 2011-2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,11 +60,17 @@
 #define _BSD_SOURCE
 #endif
 #ifndef _POSIX_SOURCE
-#define _POSIX_SOURCE
+#define _POSIX_SOURCE 200112L
 #endif
 #endif
 #ifndef _XOPEN_SOURCE
 #define _XOPEN_SOURCE
+#endif
+#ifdef __APPLE__
+#ifndef _DARWIN_C_SOURCE
+#define _DARWIN_C_SOURCE 200112L
+#define __DARWIN_C_LEVEL 200112L
+#endif
 #endif
 #include <fcntl.h>
 #include <errno.h>
