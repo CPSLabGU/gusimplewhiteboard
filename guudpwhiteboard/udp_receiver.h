@@ -39,7 +39,9 @@
 //#pragma clang diagnostic ignored "-Wpadded"
 
 
-
+ /**
+ * Class that gets messages for the distributed whiteboard
+ */       
 class Receiver
 {
 public:

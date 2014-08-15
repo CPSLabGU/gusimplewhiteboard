@@ -17,22 +17,27 @@
 #define PITCH_LIMIT_NEG -20
 
 /**
- * head c struct
+ * HAL_HeadTarget c struct
  */
 struct wb_hal_headtarget
 {
-        //Angles are in degrees
-        PROPERTY(float, target_pitchAngle) ///< not sure, look it up in the AL_Docs
-        PROPERTY(float, target_yawAngle) ///< 
+        PROPERTY(float, target_pitchAngle) ///< target pitch angle in radians
+        PROPERTY(float, target_yawAngle) ///< target yaw angle in radians
             
-        //One of these values will be ignored base on the movement_type selected
-        PROPERTY(int, target_movement_time) ///< usec
-        BIT_PROPERTY(head_stopped) ///< Will be true if the head is not moving, will also stop the head if set on the WB
+        PROPERTY(int, target_movement_time) ///< How long until the head should be at the target angles, stored in micro seconds
+        BIT_PROPERTY(head_stopped) ///< Should the head be stopped (if setting) or is the head stopped (if a status message)
                 
-        BIT_PROPERTY(head_cmd_mask)
-        unsigned pad: 30;
+        BIT_PROPERTY(head_cmd_mask) ///< Should the command be processed again by the motion module. When changes are made this bit is set to true. Motion sets this back to false when the command has been processed.
+        unsigned pad: 30; ///< padding
 
 #ifdef __cplusplus
+    /**
+    * constructor for the stuct of HAL_HeadTarget. this is the data that is placed on the Whiteboard 
+    * @param target_pitchAngle desired pitch
+    * @param target_yawAngle desired yaw
+    * @param target_movement_time time to take
+    * @param head_stopped should the head stop
+    */       
     wb_hal_headtarget(float target_pitchAngle = 0, float target_yawAngle = 0, int target_movement_time = 1000000, bool head_stopped = true)
  {
         set_target_pitchAngle(target_pitchAngle);

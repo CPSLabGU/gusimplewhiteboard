@@ -677,18 +677,37 @@ int main()
                 {
                         if(types.at(i).class_info == Custom_Class)
                                 output_functor_templates << "#ifdef " << types.at(i).class_name << "_DEFINED\n";
-                        output_functor_templates        << "template <typename " << type_name << " >\n"
+			output_functor_templates        
+                        << "        \n"
+                        << "        /**\n"
+                        << "        * WBFunctor definition for " << type_name << "\n"
+                        << "        */\n"
+                        << "template <typename " << type_name << " >\n"
                         << "class " << class_name << ": public WBFunctor<" << type_name << " > \n{\n"
                         << "public:\n"
-                        << "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << " >(obj, (void (" << type_name << "::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }\n\n"
-                        << "        void call(gu_simple_message *m)\n"
+                        << "        \n"
+                        << "        /**\n"
+                        << "        * WBFunctor constructor for " << type_name << "\n"
+                        << "        */\n"<< "        " << class_name << "(" << type_name << "* obj, void (" << type_name << "::*pFunc) (guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t): WBFunctor<" << type_name << " >(obj, (void (" << type_name << "::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }\n\n"
+                        << "        \n"
+                        << "        /**\n"
+                        << "        * call method for callbacks, for class " << type_name << "\n"
+                        << "        */\n"
+			<< "        void call(gu_simple_message *m)\n"
                         << "        {\n"
                         << "                " << datatype << " result = guWhiteboard::" << types.at(i).type_const_name << "_t().get_from(m);\n"
                         << "                " << types.at(i).type_const_name << "_function_t funct((void (" << type_name << "::*)(guWhiteboard::WBTypes, " << datatype << " &))WBFunctor<" << type_name << " >::get_s_func_ptr());\n"
                         << "                (WBFunctor<" << type_name << " >::fObject->*funct)(WBFunctor<" << type_name << " >::type_enum, result);\n"
                         << "        }\n"
                         << "        \n"
+                        << "        /**\n"
+                        << "        * define callback signature\n"
+                        << "        */\n"
                         << "        typedef void (" << type_name << "::*" << types.at(i).type_const_name << "_function_t) (guWhiteboard::WBTypes, " << datatype << " &);\n\n"
+			<< "        \n"
+                        << "        /**\n"
+                        << "        * internal method of linking classes \n"
+                        << "        */\n"
                         << "        static WBFunctorBase *bind(" << type_name << " *obj, void (" << type_name << "::*f)(guWhiteboard::WBTypes, " << datatype << " &), guWhiteboard::WBTypes t) { return new " << class_name << "<" << type_name << " >(obj, f, t); }\n};\n\n";
 
                         if(types.at(i).class_info == Custom_Class)
