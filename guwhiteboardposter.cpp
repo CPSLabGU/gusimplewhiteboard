@@ -70,36 +70,42 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kPrint_v:
 		{
+/** WB Ptr Class: Print @brief Nil */ 
 			class Print_t Print_msg;
 			Print_msg.post(std::string(message_content));
 			return true;
 		}
 		case kSay_v:
 		{
+/** WB Ptr Class: Say @brief Nil */ 
 			class Say_t Say_msg;
 			Say_msg.post(std::string(message_content));
 			return true;
 		}
 		case kSpeech_v:
 		{
+/** WB Ptr Class: Speech @brief Nil */ 
 			class Speech_t Speech_msg;
 			Speech_msg.post(std::string(message_content));
 			return true;
 		}
 		case kQSay_v:
 		{
+/** WB Ptr Class: QSay @brief Nil */ 
 			class QSay_t QSay_msg;
 			QSay_msg.post(std::string(message_content));
 			return true;
 		}
 		case kQSpeech_v:
 		{
+/** WB Ptr Class: QSpeech @brief Nil */ 
 			class QSpeech_t QSpeech_msg;
 			QSpeech_msg.post(std::string(message_content));
 			return true;
 		}
 		case kSpeechOutput_v:
 		{
+/** WB Ptr Class: SpeechOutput @brief Nil */ 
 			class SpeechOutput_t SpeechOutput_msg;
 			SpeechOutput_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -108,6 +114,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kGCGameState_v:
 #ifdef GCGameState_DEFINED
 		{
+/** WB Ptr Class: GCGameState @brief Nil */ 
 			class GCGameState_t GCGameState_msg;
 			GCGameState_msg.post(GCGameState(message_content));
 			return true;
@@ -119,6 +126,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWALK_Command_v:
 #ifdef WALK_ControlStatus_DEFINED
 		{
+/** WB Ptr Class: WALK_Command @brief Nil */ 
 			class WALK_Command_t WALK_Command_msg;
 			WALK_Command_msg.post(WALK_ControlStatus(message_content));
 			return true;
@@ -130,6 +138,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWALK_Status_v:
 #ifdef WALK_ControlStatus_DEFINED
 		{
+/** WB Ptr Class: WALK_Status @brief Nil */ 
 			class WALK_Status_t WALK_Status_msg;
 			WALK_Status_msg.post(WALK_ControlStatus(message_content));
 			return true;
@@ -141,6 +150,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kMOTION_Commands_v:
 #ifdef MOTION_Commands_DEFINED
 		{
+/** WB Ptr Class: MOTION_Commands @brief Nil */ 
 			class MOTION_Commands_t MOTION_Commands_msg;
 			MOTION_Commands_msg.post(MOTION_Commands(message_content));
 			return true;
@@ -152,6 +162,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kMOTION_Status_v:
 #ifdef MOTION_Status_DEFINED
 		{
+/** WB Ptr Class: MOTION_Status @brief Nil */ 
 			class MOTION_Status_t MOTION_Status_msg;
 			MOTION_Status_msg.post(MOTION_Status(message_content));
 			return true;
@@ -163,6 +174,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kHAL_HeadTarget_v:
 #ifdef HAL_HeadTarget_DEFINED
 		{
+/** WB Ptr Class: HAL_HeadTarget @brief Nil */ 
 			class HAL_HeadTarget_t HAL_HeadTarget_msg;
 			HAL_HeadTarget_msg.post(HAL_HeadTarget(message_content));
 			return true;
@@ -174,6 +186,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_FootSensors_v:
 #ifdef SENSORS_FootSensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_FootSensors @brief Nil */ 
 			class SENSORS_FootSensors_t SENSORS_FootSensors_msg;
 			SENSORS_FootSensors_msg.post(SENSORS_FootSensors(message_content));
 			return true;
@@ -185,6 +198,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_BodySensors_v:
 #ifdef SENSORS_BodySensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_BodySensors @brief Nil */ 
 			class SENSORS_BodySensors_t SENSORS_BodySensors_msg;
 			SENSORS_BodySensors_msg.post(SENSORS_BodySensors(message_content));
 			return true;
@@ -196,6 +210,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_LedsSensors_v:
 #ifdef SENSORS_LedsSensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_LedsSensors @brief Nil */ 
 			class SENSORS_LedsSensors_t SENSORS_LedsSensors_msg;
 			SENSORS_LedsSensors_msg.post(SENSORS_LedsSensors(message_content));
 			return true;
@@ -207,6 +222,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_LegJointTemps_v:
 #ifdef SENSORS_LegJointTemps_DEFINED
 		{
+/** WB Ptr Class: SENSORS_LegJointTemps @brief Nil */ 
 			class SENSORS_LegJointTemps_t SENSORS_LegJointTemps_msg;
 			SENSORS_LegJointTemps_msg.post(SENSORS_LegJointTemps(message_content));
 			return true;
@@ -218,6 +234,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_TorsoJointTemps_v:
 #ifdef SENSORS_TorsoJointTemps_DEFINED
 		{
+/** WB Ptr Class: SENSORS_TorsoJointTemps @brief Nil */ 
 			class SENSORS_TorsoJointTemps_t SENSORS_TorsoJointTemps_msg;
 			SENSORS_TorsoJointTemps_msg.post(SENSORS_TorsoJointTemps(message_content));
 			return true;
@@ -229,6 +246,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_LegJointSensors_v:
 #ifdef SENSORS_LegJointSensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_LegJointSensors @brief Nil */ 
 			class SENSORS_LegJointSensors_t SENSORS_LegJointSensors_msg;
 			SENSORS_LegJointSensors_msg.post(SENSORS_LegJointSensors(message_content));
 			return true;
@@ -240,6 +258,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_TorsoJointSensors_v:
 #ifdef SENSORS_TorsoJointSensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_TorsoJointSensors @brief Nil */ 
 			class SENSORS_TorsoJointSensors_t SENSORS_TorsoJointSensors_msg;
 			SENSORS_TorsoJointSensors_msg.post(SENSORS_TorsoJointSensors(message_content));
 			return true;
@@ -251,6 +270,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kSENSORS_SonarSensors_v:
 #ifdef SENSORS_SonarSensors_DEFINED
 		{
+/** WB Ptr Class: SENSORS_SonarSensors @brief Nil */ 
 			class SENSORS_SonarSensors_t SENSORS_SonarSensors_msg;
 			SENSORS_SonarSensors_msg.post(SENSORS_SonarSensors(message_content));
 			return true;
@@ -262,6 +282,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFSM_Control_v:
 #ifdef FSMControlStatus_DEFINED
 		{
+/** WB Ptr Class: FSM_Control @brief Nil */ 
 			class FSM_Control_t FSM_Control_msg;
 			FSM_Control_msg.post(FSMControlStatus(message_content));
 			return true;
@@ -273,6 +294,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFSM_Status_v:
 #ifdef FSMControlStatus_DEFINED
 		{
+/** WB Ptr Class: FSM_Status @brief Nil */ 
 			class FSM_Status_t FSM_Status_msg;
 			FSM_Status_msg.post(FSMControlStatus(message_content));
 			return true;
@@ -284,6 +306,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFSM_Names_v:
 #ifdef FSMNames_DEFINED
 		{
+/** WB Ptr Class: FSM_Names @brief Nil */ 
 			class FSM_Names_t FSM_Names_msg;
 			FSM_Names_msg.post(FSMNames(message_content));
 			return true;
@@ -298,6 +321,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFilteredGoalSighting_v:
 #ifdef FilteredArrayOneDimObjects_DEFINED
 		{
+/** WB Ptr Class: FilteredGoalSighting @brief Nil */ 
 			class FilteredGoalSighting_t FilteredGoalSighting_msg;
 			FilteredGoalSighting_msg.post(FilteredArrayOneDimObjects(message_content));
 			return true;
@@ -309,6 +333,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kNAO_State_v:
 #ifdef NAO_State_DEFINED
 		{
+/** WB Ptr Class: NAO_State @brief Nil */ 
 			class NAO_State_t NAO_State_msg;
 			NAO_State_msg.post(NAO_State(message_content));
 			return true;
@@ -320,6 +345,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kUDPRN_v:
 #ifdef GCGameState_DEFINED
 		{
+/** WB Ptr Class: UDPRN @brief Nil */ 
 			class UDPRN_t UDPRN_msg;
 			UDPRN_msg.post(GCGameState(message_content));
 			return true;
@@ -330,6 +356,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kPlayerNumber_v:
 		{
+/** WB Ptr Class: PlayerNumber @brief Nil */ 
 			class PlayerNumber_t PlayerNumber_msg;
 			PlayerNumber_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -337,6 +364,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kManuallyPenalized_v:
 		{
+/** WB Ptr Class: ManuallyPenalized @brief Nil */ 
 			class ManuallyPenalized_t ManuallyPenalized_msg;
 			ManuallyPenalized_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -345,6 +373,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
 		{
+/** WB Ptr Class: Vision_Control @brief Nil */ 
 			class Vision_Control_t Vision_Control_msg;
 			Vision_Control_msg.post(VisionControlStatus(message_content));
 			return true;
@@ -356,6 +385,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kVision_Status_v:
 #ifdef VisionControlStatus_DEFINED
 		{
+/** WB Ptr Class: Vision_Status @brief Nil */ 
 			class Vision_Status_t Vision_Status_msg;
 			Vision_Status_msg.post(VisionControlStatus(message_content));
 			return true;
@@ -367,6 +397,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFFTStatus_v:
 #ifdef FFTStatus_DEFINED
 		{
+/** WB Ptr Class: FFTStatus @brief Nil */ 
 			class FFTStatus_t FFTStatus_msg;
 			FFTStatus_msg.post(FFTStatus(message_content));
 			return true;
@@ -378,6 +409,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFSOsighting_v:
 #ifdef FilteredArrayOneDimSonar_DEFINED
 		{
+/** WB Ptr Class: FSOsighting @brief Nil */ 
 			class FSOsighting_t FSOsighting_msg;
 			FSOsighting_msg.post(FilteredArrayOneDimSonar(message_content));
 			return true;
@@ -389,6 +421,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kTopParticles_v:
 #ifdef TopParticles_DEFINED
 		{
+/** WB Ptr Class: TopParticles @brief Nil */ 
 			class TopParticles_t TopParticles_msg;
 			TopParticles_msg.post(TopParticles(message_content));
 			return true;
@@ -400,6 +433,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kFilteredBallSighting_v:
 #ifdef FilteredArrayOneDimBall_DEFINED
 		{
+/** WB Ptr Class: FilteredBallSighting @brief Nil */ 
 			class FilteredBallSighting_t FilteredBallSighting_msg;
 			FilteredBallSighting_msg.post(FilteredArrayOneDimBall(message_content));
 			return true;
@@ -410,6 +444,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kPF_ControlStatus_Modes_v:
 		{
+/** WB Ptr Class: PF_ControlStatus_Modes @brief Nil */ 
 			class PF_ControlStatus_Modes_t PF_ControlStatus_Modes_msg;
 			PF_ControlStatus_Modes_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -418,6 +453,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_bridge_v:
 #ifdef WEBOTS_NXT_bridge_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_bridge @brief Nil */ 
 			class WEBOTS_NXT_bridge_t WEBOTS_NXT_bridge_msg;
 			WEBOTS_NXT_bridge_msg.post(WEBOTS_NXT_bridge(message_content));
 			return true;
@@ -429,6 +465,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_encoders_v:
 #ifdef WEBOTS_NXT_encoders_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_encoders @brief Nil */ 
 			class WEBOTS_NXT_encoders_t WEBOTS_NXT_encoders_msg;
 			WEBOTS_NXT_encoders_msg.post(WEBOTS_NXT_encoders(message_content));
 			return true;
@@ -440,6 +477,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_camera_v:
 #ifdef WEBOTS_NXT_camera_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_camera @brief Nil */ 
 			class WEBOTS_NXT_camera_t WEBOTS_NXT_camera_msg;
 			WEBOTS_NXT_camera_msg.post(WEBOTS_NXT_camera(message_content));
 			return true;
@@ -451,6 +489,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_walk_isRunning_v:
 #ifdef WEBOTS_NXT_walk_isRunning_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_walk_isRunning @brief Nil */ 
 			class WEBOTS_NXT_walk_isRunning_t WEBOTS_NXT_walk_isRunning_msg;
 			WEBOTS_NXT_walk_isRunning_msg.post(WEBOTS_NXT_walk_isRunning(message_content));
 			return true;
@@ -462,6 +501,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_deadReakoning_walk_v:
 #ifdef WEBOTS_NXT_deadReakoning_walk_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_deadReakoning_walk @brief Nil */ 
 			class WEBOTS_NXT_deadReakoning_walk_t WEBOTS_NXT_deadReakoning_walk_msg;
 			WEBOTS_NXT_deadReakoning_walk_msg.post(WEBOTS_NXT_deadReakoning_walk(message_content));
 			return true;
@@ -473,6 +513,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_colorLine_walk_v:
 #ifdef WEBOTS_NXT_colorLine_walk_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_colorLine_walk @brief Nil */ 
 			class WEBOTS_NXT_colorLine_walk_t WEBOTS_NXT_colorLine_walk_msg;
 			WEBOTS_NXT_colorLine_walk_msg.post(WEBOTS_NXT_colorLine_walk(message_content));
 			return true;
@@ -484,6 +525,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_gridMotions_v:
 #ifdef WEBOTS_NXT_gridMotions_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_gridMotions @brief Nil */ 
 			class WEBOTS_NXT_gridMotions_t WEBOTS_NXT_gridMotions_msg;
 			WEBOTS_NXT_gridMotions_msg.post(WEBOTS_NXT_gridMotions(message_content));
 			return true;
@@ -495,6 +537,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kVisionBall_v:
 #ifdef VisionBall_DEFINED
 		{
+/** WB Ptr Class: VisionBall @brief Nil */ 
 			class VisionBall_t VisionBall_msg;
 			VisionBall_msg.post(VisionBall(message_content));
 			return true;
@@ -506,6 +549,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kVisionGoals_v:
 #ifdef VisionGoals_DEFINED
 		{
+/** WB Ptr Class: VisionGoals @brief Nil */ 
 			class VisionGoals_t VisionGoals_msg;
 			VisionGoals_msg.post(VisionGoals(message_content));
 			return true;
@@ -517,6 +561,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWalkData_v:
 #ifdef WalkData_DEFINED
 		{
+/** WB Ptr Class: WalkData @brief Nil */ 
 			class WalkData_t WalkData_msg;
 			WalkData_msg.post(WalkData(message_content));
 			return true;
@@ -528,6 +573,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kTeleoperationControlStatus_v:
 #ifdef TeleoperationControlStatus_DEFINED
 		{
+/** WB Ptr Class: TeleoperationControlStatus @brief Nil */ 
 			class TeleoperationControlStatus_t TeleoperationControlStatus_msg;
 			TeleoperationControlStatus_msg.post(TeleoperationControlStatus(message_content));
 			return true;
@@ -538,6 +584,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kTeleoperationConnection_v:
 		{
+/** WB Ptr Class: TeleoperationConnection @brief Nil */ 
 			class TeleoperationConnection_t TeleoperationConnection_msg;
 			TeleoperationConnection_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -545,6 +592,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 
 		case kUDPWBNumber_v:
 		{
+/** WB Ptr Class: UDPWBNumber @brief Nil */ 
 			class UDPWBNumber_t UDPWBNumber_msg;
 			UDPWBNumber_msg.post(atoi(message_content.c_str()));
 			return true;
@@ -553,6 +601,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_bumper_v:
 #ifdef WEBOTS_NXT_bumper_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_bumper @brief Nil */ 
 			class WEBOTS_NXT_bumper_t WEBOTS_NXT_bumper_msg;
 			WEBOTS_NXT_bumper_msg.post(WEBOTS_NXT_bumper(message_content));
 			return true;
@@ -564,6 +613,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kWEBOTS_NXT_vector_bridge_v:
 #ifdef WEBOTS_NXT_vector_bridge_DEFINED
 		{
+/** WB Ptr Class: WEBOTS_NXT_vector_bridge @brief Nil */ 
 			class WEBOTS_NXT_vector_bridge_t WEBOTS_NXT_vector_bridge_msg;
 			WEBOTS_NXT_vector_bridge_msg.post(WEBOTS_NXT_vector_bridge(message_content));
 			return true;
@@ -575,6 +625,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 		case kVisionLines_v:
 #ifdef VisionLines_DEFINED
 		{
+/** WB Ptr Class: VisionLines @brief Nil */ 
 			class VisionLines_t VisionLines_msg;
 			VisionLines_msg.post(VisionLines(message_content));
 			return true;

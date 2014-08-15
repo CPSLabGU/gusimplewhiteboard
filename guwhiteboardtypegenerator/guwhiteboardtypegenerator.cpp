@@ -19,6 +19,9 @@
 
 using namespace std;
 
+#define CLASS_DOXY(c, comment) "/** WB Ptr Class: " << c << " @brief " << comment << " */ \n"
+#define CLASS_CON_DOXY(c) "/** Constructor: " << c << " */ \n"
+
 static const char *include_str = "\
 /**                                                                     \n\
  *  /file guwhiteboardtypelist_generated.h                              \n\
@@ -511,37 +514,37 @@ int main()
                                     type.class_name == "unsigned int")
                                 {
                                         output_c_file << endl;
-                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "long" ||
                                     type.class_name == "unsigned long")
                                 {
                                         output_c_file << endl;
-                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "float" ||
                                     type.class_name == "double")
                                 {
                                         output_c_file << endl;
-                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_c_file << endl;
-                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::string")
                                 {
-                                        output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                        output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
                                         break;
                                 }
                         case Custom_Class:
@@ -549,8 +552,8 @@ int main()
                                 output_c_file << endl;
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
-                                output_generic_poster << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                output_generic_getter << "\t\t{\n\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
+                                output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
                                 output_generic_poster << "#else\n";
                                 output_generic_poster << "\t\t\treturn false;\n";
                                 output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
@@ -597,14 +600,14 @@ int main()
 			case POD_Class:
 			{
                                 //local wb wrapper
-                                output_file << "\t/// " <<  type.comment << "\n        class " << type.type_const_name
+                                output_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << type.type_const_name
                                         << "_t: public generic_whiteboard_object<" << type.class_name
                                         << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {}\n\t\t"
                                         << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
                                         << types[i].type_const_name << "_v, wbd, " << types[i].atomic << ") {} \n\t};\n\n";
 
                                 //TCP injection wrapper
-				output_tcp_file << "\t/// " <<  type.comment << "\n        class " << type.type_const_name
+				output_tcp_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << type.type_const_name
                                         << "_iTCP: public injection_whiteboard_object<" << type.class_name
                                         << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {}\n\t\t"
                                         << types[i].type_const_name << "_iTCP("<< types[i].class_name << " value, const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(value, hostname, k"
@@ -613,12 +616,12 @@ int main()
 			}
 			case Custom_Class:
 			{
-				output_file << "\t///" <<  types[i].comment << "\n        class " << types[i].type_const_name
+				output_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << types[i].type_const_name
                                         << "_t: public generic_whiteboard_object<class " << types[i].class_name
-                                        << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {} \n\t};\n\n";
-                                output_tcp_file << "\t///" <<  types[i].comment << "\n        class " << types[i].type_const_name
+                                        << " > { \n\tpublic: \n" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {} \n\t};\n\n";
+                                output_tcp_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << types[i].type_const_name
                                         << "_iTCP: public injection_whiteboard_object<class " << types[i].class_name
-                                        << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true) : injection_whiteboard_object<class " << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {} \n\t};\n\n";
+                                        << " > { \n\tpublic: \n" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true) : injection_whiteboard_object<class " << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {} \n\t};\n\n";
 				break;
 			}
 		}
