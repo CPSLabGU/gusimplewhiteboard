@@ -133,6 +133,9 @@ namespace guWhiteboard
                         static const std::vector<Stance_Transition> _transitions;
                 };
 
+		/**
+ 		* @brief Internal struct for representing a motion 'Action' such as Kicking
+ 		*/       
                 struct Action_Transition
                 {
                         action _a; //not really needed here
@@ -204,12 +207,35 @@ namespace guWhiteboard
                 };
         }
 
+	/**
+ 	* @brief Motion Status class, this class reports the status of the Motion engine via the Whiteboard
+	*
+	* This class tells you what 'Stance' the robot is in. This comes from two main variables, the expected_stance is the last 'Stance' that the robot was in and the verified_stance uses the Joint values to verify that the expected_stance is actually correct (within some error). The last option is that the motion engine is currently changing 'Stance' or performing an 'Action', in this case both 'Stance' estimates should be ignored.
+	*
+	* Examples
+	* --------
+	*
+	* Put examples of what to do with the class 
+	*
+	*     MOTION_Status_t.get().isRunning() //Is there a motion currently running?
+	*     MOTION_Status_t.get().expectedStance() //What was the last 'Stance' that motion got to.
+	*     MOTION_Status_t.get().verifiedStance() //What is the actual 'Stance', based on the Joint values (NYI)
+	*
+ 	*/     
 	class MOTION_Status
 	{
-                BIT_PROPERTY(running)
-                PROPERTY(int8_t, expected_stance)
-                PROPERTY(int8_t, verified_stance) //NYI
+                BIT_PROPERTY(running) ///< Is there a motion currently running?
+                PROPERTY(int8_t, expected_stance) ///< What was the last 'Stance' that motion got to.
+                PROPERTY(int8_t, verified_stance) ///< What is the actual 'Stance', based on the Joint values (NYI)
 		public:
+
+		/**
+ 		* Constructor
+		* @param running sets running
+		* @param expected sets the expected_stance
+		* @param verified sets the verified_stance
+		* @return this 
+ 		*/
 		MOTION_Status(bool running, int8_t expected, int8_t verified)
 		{
 			_running = running;
@@ -217,20 +243,46 @@ namespace guWhiteboard
 			_verified_stance = verified;
 		}
 
+		/**
+ 		* Bool wrapper around the bit that stores the 'running' state 
+		* @return running property
+ 		*/
 		bool isRunning() { return _running; }
+
+		/**
+ 		* Motions::stance wrapper for expected_stance 
+		* @return expected_stance
+ 		*/
 		Motions::stance expectedStance() { return static_cast<Motions::stance>(_expected_stance); }
+
+		/**
+ 		* Motions::stance wrapper for verified_stance 
+		* @return verified_stance
+ 		*/
 		Motions::stance verifiedStance() { return static_cast<Motions::stance>(_verified_stance); }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+       		/**
+ 		* String constructor (NYI)
+		* @param str the string to parse and use to recreate the this object
+		*/
                 MOTION_Status(const std::string &str) { from_string(str); }
 
+                /**
+ 		* Parser for recreating this class (NYI) 
+		* @param str the string to parse and use to recreate the this object
+		*/
 		void from_string(const std::string &str)
                 {
 			if(str.size() == 0)
 				return;
 			//NYI
                 }
+
+                /**
+ 		* Description method for pretty printing the values in this class
+		* @return pretty printed string
+		*/             
                 std::string description() 
                 {
                         std::stringstream ss;
@@ -256,6 +308,18 @@ namespace guWhiteboard
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 	};
         
+	/**
+ 	* @brief Motion Command class, this class is used to send commands to a motion module via the Whiteboard
+	*
+	* 
+	*
+	* Examples
+	* --------
+	*
+	* Put examples of what to do with the class 
+	*
+	*
+ 	*/     
         class MOTION_Commands
         {
                 ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) //private - of type stance_actions casted to an 8 bit int (saves 30 bytes of wb space)
