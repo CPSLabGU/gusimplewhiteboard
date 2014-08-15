@@ -234,7 +234,6 @@ namespace guWhiteboard
 		* @param running sets running
 		* @param expected sets the expected_stance
 		* @param verified sets the verified_stance
-		* @return this 
  		*/
 		MOTION_Status(bool running, int8_t expected, int8_t verified)
 		{
@@ -311,32 +310,55 @@ namespace guWhiteboard
 	/**
  	* @brief Motion Command class, this class is used to send commands to a motion module via the Whiteboard
 	*
-	* 
+	* Allows commands to be sent to the motion module to change from one 'Stance' to another or to perform an 'Action'. Once complete an 'Action' returns the robot back to its previous 'Stance'. ie. stance::Standing -> action::Kick returns to stance::Standing once complete. Stance changes and Actions can be chained together in the same message to a limit of NUM_OF_STANCES per message sent to the motion module. Stance changes are graph mapped, you can ask to go from stance::Fallen -> stance::Kneeling -> stance::Standing directly or simply ask for stance::Fallen -> stance::Standing. A cost function is used to determine which stance path to use if multiple paths exist. Stiffness is generally managed by the motion files, there are overwriting properties for changing it manually, this is not advised unless you know what you're doing. 
 	*
 	* Examples
 	* --------
 	*
-	* Put examples of what to do with the class 
+	* ### Transition from stance::Kneeling to stance::Standing
 	*
+	*     MOTION_Commands m; 
+	*     m.GoToStance(stance::Kneeling, stance::Standing); //Kneeling to Standing
+	*     MOTION_Commands_t.set(m) //Set in Whiteboard
+	*
+	* ### From stance::Standing perform an action::left_kick
+	*
+	*     MOTION_Commands m; 
+	*     m.DoAction(stance::Standing, action::left_kick); //from standing, do a left kick
+	*     MOTION_Commands_t.set(m) //Set in Whiteboard
+	*
+	* ### Transition from stance::Kneeling to stance::Standing then do an action::left_kick
+	*
+	*     MOTION_Commands m; 
+	*     m.GoToStance(stance::Kneeling, stance::Standing); //transition from Kneeling to Standing
+	*     m.DoAction(stance::Standing, action::left_kick); //from standing, do a left kick
+	*     MOTION_Commands_t.set(m) //Set in Whiteboard
 	*
  	*/     
         class MOTION_Commands
         {
-                ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) //private - of type stance_actions casted to an 8 bit int (saves 30 bytes of wb space)
-                PROPERTY(int8_t, num_of_stance_actions)
+                ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) ///< Storage for stance/action queue. Use GoToStance and DoAction, do not modify directly.
+                PROPERTY(int8_t, num_of_stance_actions) ///< used to keep track of how many commands have been issued in the queue, do not modify directly
 
-                BIT_PROPERTY(stance_action_mask)
-                BIT_PROPERTY(ignore_chain)
-                BIT_PROPERTY(ignore_chain_mask) //go to the joint targets directly
+                BIT_PROPERTY(stance_action_mask) ///< used to determine if the queue needs to be read, if new commands have been added
+                BIT_PROPERTY(ignore_chain) ///< Do not perform the transitions between motions, just go directly to the final joint positions, normally this is a VERY BAD idea. Joints can get stuck and damaged when this is used wrongly.
+                BIT_PROPERTY(ignore_chain_mask) // Has the ignore_chain flag changed.
                 
                 //Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general
-                BIT_PROPERTY(head_stiffness)
-                BIT_PROPERTY(body_stiffness)
+                BIT_PROPERTY(head_stiffness) ///< Overwrite the head stiffness with the value given.
+                BIT_PROPERTY(body_stiffness) ///< Overwrite the body stiffness with the value given.
                 /* Control bits */
-                BIT_PROPERTY(head_stiffness_mask)
-                BIT_PROPERTY(body_stiffness_mask)
+                BIT_PROPERTY(head_stiffness_mask) ///< head_stiffness mask
+                BIT_PROPERTY(body_stiffness_mask) ///< body_stiffness mask
 
         public:                
+
+		/**
+ 		* Constructor
+		* @param head_stiffness sets head stiffness (does not set the mask)
+		* @param body_stiffness sets body stiffness (does not set the mask)
+		* @param masks sets both head and body stiffness masks (head_stiffness_mask and body_stiffness_mask)
+ 		*/
                 MOTION_Commands(bool head_stiffness = false, bool body_stiffness = false, bool masks = false/*, Motions::stance stance = Motions::Kneeling_stance*/)
                 {
                         _head_stiffness = head_stiffness;
@@ -350,6 +372,14 @@ namespace guWhiteboard
                 }
 
         private:
+
+		/**
+ 		* Recursive cost function for finding motion paths from one stance to another, used privately. (loosly based on Dijkstra's)
+		* @param current current path it's evaluating 
+		* @param desired the stance it's trying to get to 
+		* @param p the path it used to get here
+		* @return the path it took to get here
+ 		*/
                 Motions::Stance_Path decide_stance(Motions::stance current, Motions::stance desired, Motions::Stance_Path p)
                 {
                         const std::vector<Motions::Stance_Transition> _transitions = Motions::T::create_transitions(); // move this out of here!
@@ -381,6 +411,7 @@ namespace guWhiteboard
 
 
         public:
+
                 long GoToStance(Motions::stance current, Motions::stance desired)
                 {
                         Motions::Stance_Path p;

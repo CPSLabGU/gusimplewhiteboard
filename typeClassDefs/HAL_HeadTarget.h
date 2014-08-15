@@ -97,8 +97,8 @@ namespace guWhiteboard
 
                 /**
  		* Parser for recreating this class (NYI) 
-		* @param str the string to parse and use to recreate the this object
 		*/
+		//* @param str the string to parse and use to recreate the this object
                 void from_string(const std::string &/*str*/)
                 {
                        //NYI, Good luck
