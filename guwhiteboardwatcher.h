@@ -68,6 +68,27 @@ static void do_callback(void *m) //makes the callback call, via GCD queue
         delete h;
 }
 
+/**
+* @brief This class provides a subscription implementation for the 'simple' whiteboard, aka the 'typed' whiteboard.
+*
+* This class allows you to 'subscribe' to changes on the Whiteboard. Specifically call you can call the subscribe method, with the desired 'type' and a callback pointer. This class will monitor any subscribed 'types' and call the callback functions when the data related to those 'types' is updated. To be clear, callbacks will be issued if the data is updated on the Whiteboard, even if it is the same data. The act of the data being posted to the Whiteboard is what triggers callbacks. This is designed for event-triggered systems and different data fetching methods should be used for time-triggered systems.
+*
+* Examples
+* --------
+*
+* ###A SUBSCRIBE macro is defined in gu_util.h for convenience
+*
+*     wb = new whiteboard_watcher(); //create the watcher object
+*     //wb = whiteboard_watcher
+*     //Say = the WB type to subscribe to
+*     //GUNaoSpeech = the class the callback belongs to
+*     //GUNaoSpeech::whiteboard_callback = the callback function
+*     SUBSCRIBE(wb, Say, GUNaoSpeech, GUNaoSpeech::whiteboard_callback);
+*
+* ###The long form of the subscribe looks like this:
+*
+*     //insert here!
+ */
 class whiteboard_watcher
 {
         gu_simple_whiteboard_descriptor         *_wbd;
