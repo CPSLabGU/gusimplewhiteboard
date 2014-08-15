@@ -412,6 +412,12 @@ namespace guWhiteboard
 
         public:
 
+		/**
+ 		* Transition from one 'Stance' to another
+		* @param current the current stance  
+		* @param desired the stance it's trying to get to 
+		* @return the time in micro seconds that the motion should take (subject to people keeping the motion times correct in this header)
+ 		*/
                 long GoToStance(Motions::stance current, Motions::stance desired)
                 {
                         Motions::Stance_Path p;
@@ -426,6 +432,12 @@ namespace guWhiteboard
                         return p.cost();
                 }
 
+		/**
+ 		* Perform an 'Action'
+		* @param current the current stance  
+		* @param a the 'Action' to perform 
+		* @return the time in micro seconds that the motion should take (subject to people keeping the motion times correct in this header)
+ 		*/
                 long DoAction(Motions::stance current, Motions::action a)
                 {
                         std::map<Motions::action, Motions::Action_Transition> _actions = Motions::A::create_actions(); // move this out of here!
@@ -446,15 +458,16 @@ namespace guWhiteboard
                 }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+                /**
+ 		* String constructor
+		* @param str the string to parse and use to recreate the this object
+		*/
                 MOTION_Commands(const std::string &str) { from_string(str); }
 
                 /**
-                 * set head and/or body stiffness, and/or start a motion
-                 * through a string of the form
-                 *
-                 * [0|1][,0|1][[,]motion_command]
-                 */
+ 		* Parser for recreating this class. Sets head and/or body stiffness, and/or starts a motion. [0|1][,0|1][[,]motion_command] 
+		* @param str the string to parse and use to recreate the this object
+		*/
                 void from_string(const std::string &str)
                 {
                         set_ignore_chain_mask(false);
@@ -536,58 +549,14 @@ namespace guWhiteboard
 #pragma clang diagnostic ignored "-Wunreachable-code"
 
                 /**
-                 * return the head and body stiffness as a boolean
-                 */
+ 		* Description method for pretty printing the values in this class
+		* @return pretty printed string
+		*/               
                 std::string description() const
                 {
-                        /*
-                        using namespace Motions;
                         std::stringstream ss;
-                        bool need_comma = false;
-                        if (head_stiffness_mask())
-                        {
-                                ss << head_stiffness();
-                                need_comma = true;
-                        }
-                        if (body_stiffness_mask())
-                        {
-                                ss << "," << body_stiffness();
-                                need_comma = true;
-                        }
-                        if (motion_player_mask())
-                        {
-                                if (need_comma) ss << ",";
-                                switch (motion_player())
-                                {
-                                        STREAM_ENUM_CASE(ss, right_goalie_block);
-                                        STREAM_ENUM_CASE(ss, finish_right_goalie_block);
-                                        STREAM_ENUM_CASE(ss, left_goalie_block);
-                                        STREAM_ENUM_CASE(ss, finish_left_goalie_block);
-                                        STREAM_ENUM_CASE(ss, get_up_from_back_lie_down);
-                                        STREAM_ENUM_CASE(ss, get_up_from_front_lie_down);
-                                        STREAM_ENUM_CASE(ss, get_up_from_kneel);
-                                        STREAM_ENUM_CASE(ss, get_up_from_sit);
-                                        STREAM_ENUM_CASE(ss, goalie_stand_pose);
-                                        STREAM_ENUM_CASE(ss, hip_turn_left_kick);
-                                        STREAM_ENUM_CASE(ss, hip_turn_right_kick);
-                                        STREAM_ENUM_CASE(ss, kneel);
-                                        STREAM_ENUM_CASE(ss, left_kick);
-                                        STREAM_ENUM_CASE(ss, left_ninja_kick);
-                                        STREAM_ENUM_CASE(ss, pass_ball_left);
-                                        STREAM_ENUM_CASE(ss, pass_ball_right);
-                                        STREAM_ENUM_CASE(ss, right_kick);
-                                        STREAM_ENUM_CASE(ss, right_ninja_kick);
-                                        STREAM_ENUM_CASE(ss, side_to_lie_down);
-                                        STREAM_ENUM_CASE(ss, sit_from_front_lie_down);
-                                        STREAM_ENUM_CASE(ss, sit_from_back_lie_down);
-                                        STREAM_ENUM_CASE(ss, sit_from_kneel_or_stand);
-                                        STREAM_ENUM_CASE(ss, dcm_from_getup);
-                                        STREAM_ENUM_CASE(ss, OFF);
-                                        default: break;
-                                }
-                        }
-                        return ss.str();*/
-                        return std::string("");
+                        ss << head_stiffness() << "," << body_stiffness();
+                        return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
        };

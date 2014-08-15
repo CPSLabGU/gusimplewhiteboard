@@ -50,7 +50,7 @@ namespace guWhiteboard
                         NUMBER_OF_READINGS
                 } ReadingCode;
         }
-        
+//Only every 10 cycles, 100ms        
         
         class SENSORS_SonarSensors : public wb_sensors_sonar
         {
