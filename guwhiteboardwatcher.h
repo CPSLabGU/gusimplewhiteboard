@@ -130,7 +130,9 @@ public:
 
       		if (_wbd) gsw_free_whiteboard(_wbd);
 #if !defined(__clang__)
+#ifndef __has_feature
 #define __has_feature(x)	0
+#endif
 #endif
 #if !__has_feature(objc_arc)
         	dispatch_release(callback_queue);
