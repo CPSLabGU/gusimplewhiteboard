@@ -81,6 +81,7 @@
 #pragma clang diagnostic ignored "-Wconversion"
 #pragma clang diagnostic ignored "-Wdeprecated"
 
+/** Old WB class for storing shared data */
 class WBMsg
 {
 public:
@@ -178,6 +179,8 @@ public:
 	 * WBMsg - Vector<int> pointer constructor.
 	 * Initialises a WBMsg with a standard C++ string value.
 	 * @param val String to store in the Whiteboard message.
+	 * @param needsFree If this is non-zero, will free the contents of the data 
+	 *                  buffer when this WBMsg is deleted.
 	 */
 	WBMsg(const std::vector<int> *val, bool needsFree = false): arrayVal(val), type(TypeArray), doFree(needsFree) {}
 
