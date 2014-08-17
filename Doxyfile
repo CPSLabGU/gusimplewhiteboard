@@ -791,6 +791,7 @@ RECURSIVE              = YES
 
 EXCLUDE                = guudpwhiteboard \
                          guobjcwhiteboard \
+                         guwhiteboardtypegenerator \
                          OLD_WB \
                          gusimplewhiteboardios
 
