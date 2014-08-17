@@ -123,11 +123,11 @@ extern \"C\"                                                            \n\
                                                                         \n\
 ";
 
-static const char *opening_enum = "        typedef enum wb_types      \n\
+static const char *opening_enum = "       /** All the message 'types' for the class based whiteboard */\n       typedef enum wb_types      \n\
         {                                                               \n\
 ";
 
-static const char *closing_enum = "        } WBTypes;\n\n";
+static const char *closing_enum = "        } WBTypes; ///< All the message 'types' for the class based whiteboard \n\n";
 
 static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n";
 
@@ -495,7 +495,7 @@ int main()
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
                 output_generic_getter << "\t\tcase k" << type.type_const_name << "_v:\n";
 
-                output_c_file << "\t///<" << type.comment << endl;
+                output_c_file << "\t///< " << type.comment << endl;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
 #pragma clang diagnostic ignored "-Wimplicit-fallthrough"
