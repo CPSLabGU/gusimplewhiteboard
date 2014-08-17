@@ -791,6 +791,7 @@ RECURSIVE              = YES
 
 EXCLUDE                = guudpwhiteboard \
                          guobjcwhiteboard \
+                         OLD_WB \
                          gusimplewhiteboardios
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
