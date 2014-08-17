@@ -101,9 +101,11 @@ namespace guWhiteboard
          */            
         typedef struct gsw_hash_info
         {
+	    /** @brief create object with default value for index */
             gsw_hash_info() { msg_offset = NEW_MSG_ID; }    
+	    /** @brief create with real index value */
             gsw_hash_info(int offset) { msg_offset = offset; }                
-            int msg_offset;
+            int msg_offset; ///< the index value to store
         } gsw_hash_info;
     
         /**
@@ -114,20 +116,23 @@ namespace guWhiteboard
         public:
                 struct callback_descr
                 {
-                        int type;                       /// message type
-                        int current;                    /// last message index
-                        WBFunctorBase *func;            /// functor to call
+                        int type;                       ///< message type
+                        int current;                    ///< last message index
+                        WBFunctorBase *func;            ///< functor to call
 
+	    		/** create callback descr */
                         callback_descr(WBFunctorBase *f, int t = -1, int o = -1): type(t), current(o), func(f) {}
                 };
         private:
-                dispatch_group_t callback_group;        /// wait for all callbacks to have finished
-                dispatch_queue_t callback_queue;        /// subscription callback queue
-                std::vector<callback_descr> _sub;       /// subscription indexes
-                u_int8_t cball_indexes[GSW_TOTAL_MESSAGE_TYPES];        /// all-subscription indexes
+                dispatch_group_t callback_group;        ///< wait for all callbacks to have finished
+                dispatch_queue_t callback_queue;        ///< subscription callback queue
+                std::vector<callback_descr> _sub;       ///< subscription indexes
+                u_int8_t cball_indexes[GSW_TOTAL_MESSAGE_TYPES];        ///< all-subscription indexes
+
+	    	/** @brief Not sure, assume it runs the string through the hashing function */
                 int getTypeOffset_private(std::string type);
         public:
-                gu_simple_whiteboard_descriptor *_wbd;  /// underlying whiteboard            
+                gu_simple_whiteboard_descriptor *_wbd;  ///< underlying whiteboard            
                 /**
 		 * API Constructor
 		 * This sets up the API and the callback soap server
@@ -197,9 +202,13 @@ namespace guWhiteboard
                 /**
                  * create a hash offset from message type, needed for adding, getting from WB
                  * @param[in] type The string type get the offset for
+                 * @return return a wrapped version of the message index
                  */
                 gsw_hash_info *getTypeOffset(std::string type);            
                 
+		/**
+		 * @brief convert the new 'simple' whiteboard data structure into the old WBMsg format
+		 */
                 static WBMsg getWBMsg(gu_simple_message *m)
                 {
                     switch (m->wbmsg.type)
