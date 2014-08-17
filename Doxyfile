@@ -790,6 +790,7 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = guudpwhiteboard \
+                         typeClassDefs \
                          wbperf \
                          guobjcwhiteboard \
                          guwhiteboardtypegenerator \
