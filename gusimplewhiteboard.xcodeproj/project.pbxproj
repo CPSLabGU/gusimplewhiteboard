@@ -54,14 +54,12 @@
 		8B19F9C317A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F9C217A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp */; };
 		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */; };
-		C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C378DFF516C4A48800CF6983 /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1F4536314A1226D005C40A6 /* Whiteboard.cc */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
-		C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C3FCE01114FF248B003AC195 /* RemoteWhiteboard.h */; };
 		F11BC0C5176124510069F6FB /* udp_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870611757080C00A13AAE /* udp_util.cpp */; };
 		F11BC0C6176124510069F6FB /* udp_sender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870761758562A00A13AAE /* udp_sender.cpp */; };
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
@@ -73,7 +71,6 @@
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
 		F166897E155CBBF400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
-		F1668981155CBC3200AFA55E /* RemoteWhiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = C3FCE01014FF248B003AC195 /* RemoteWhiteboard.cc */; };
 		F17380BD16CA032F00485FD8 /* guudpSerialize.c in Sources */ = {isa = PBXBuildFile; fileRef = F17380BC16CA032F00485FD8 /* guudpSerialize.c */; };
 		F17380BF16CA035100485FD8 /* guudpWhiteboardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */; };
 		F186C381194B9B4D00F9273B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F186C380194B9B4D00F9273B /* SenTestingKit.framework */; };
@@ -1148,7 +1145,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
-				C3FCE01314FF248B003AC195 /* RemoteWhiteboard.h in Headers */,
 				C39197A31693DDA200E5D0C6 /* (null) in Headers */,
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
@@ -1572,7 +1568,6 @@
 			files = (
 				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
-				C378DFF416C4A48700CF6983 /* Whiteboard.cc in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 				F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */,
@@ -1588,7 +1583,6 @@
 				C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */,
 				F17380BD16CA032F00485FD8 /* guudpSerialize.c in Sources */,
 				F17380BF16CA035100485FD8 /* guudpWhiteboardLayer.cpp in Sources */,
-				F1668981155CBC3200AFA55E /* RemoteWhiteboard.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
