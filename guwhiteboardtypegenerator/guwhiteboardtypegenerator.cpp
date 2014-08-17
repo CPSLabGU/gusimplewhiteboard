@@ -495,6 +495,7 @@ int main()
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
                 output_generic_getter << "\t\tcase k" << type.type_const_name << "_v:\n";
 
+                output_c_file << "\t///<" << type.comment << endl;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
 #pragma clang diagnostic ignored "-Wimplicit-fallthrough"
@@ -502,7 +503,6 @@ int main()
                 switch (type.class_info)
                 {
                         case None:
-                                output_c_file << "\t///<" << type.comment << endl;
                                 output_generic_poster << "\t\t\treturn false;\n\n";
                                 output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
                                 break;
@@ -513,7 +513,6 @@ int main()
                                     type.class_name == "unsigned" ||
                                     type.class_name == "unsigned int")
                                 {
-                                        output_c_file << endl;
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
                                         output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
@@ -521,7 +520,6 @@ int main()
                                 if (type.class_name == "long" ||
                                     type.class_name == "unsigned long")
                                 {
-                                        output_c_file << endl;
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
                                         output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
@@ -529,14 +527,12 @@ int main()
                                 if (type.class_name == "float" ||
                                     type.class_name == "double")
                                 {
-                                        output_c_file << endl;
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
                                         output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
-                                        output_c_file << endl;
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
                                         output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
                                         break;
@@ -549,7 +545,6 @@ int main()
                                 }
                         case Custom_Class:
                         default:
-                                output_c_file << endl;
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
