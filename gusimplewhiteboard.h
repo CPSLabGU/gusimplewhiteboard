@@ -254,18 +254,18 @@ typedef int gsw_sema_t;
 
 typedef struct gsw_whiteboard_s
 {
-        gu_simple_whiteboard    *wb;            /// the actual whiteboard in shared mem
-        gsw_sema_t               sem;           /// semaphore to use
-        int                      fd;            /// the associated memory-mapped file
+        gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
+        gsw_sema_t               sem;           ///< semaphore to use
+        int                      fd;            ///< the associated memory-mapped file
 #if __has_feature(objc_arc)
-        void                    *callback_queue;/// subscription callback queue
+        void                    *callback_queue;///< subscription callback queue
 #else
-        dispatch_queue_t         callback_queue;/// subscription callback queue
+        dispatch_queue_t         callback_queue;///< subscription callback queue
 #endif
-        gsw_subscription_f       callback;      /// subscription callback function
-        void                    *context;       /// callback context
-        bool                     got_monitor;   /// have a running monitor
-        bool                     exit_monitor;  /// exit the monitor
+        gsw_subscription_f       callback;      ///< subscription callback function
+        void                    *context;       ///< callback context
+        bool                     got_monitor;   ///< have a running monitor
+        bool                     exit_monitor;  ///< exit the monitor
 } gu_simple_whiteboard_descriptor;
 
 /**
