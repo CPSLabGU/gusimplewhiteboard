@@ -68,7 +68,7 @@ extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 *
 *     //why not print it too
 *     std::string new_s = new_w.description();	//get a pretty printed string of the content
-*     fprintf(stdout, "%s\n", const_cast<char *>(new_s.c_str())); //print the content
+*     fprintf(stdout, "%s", const_cast<char *>(new_s.c_str())); //print the content
 *  
 */
 template <class object_type> class generic_whiteboard_object
