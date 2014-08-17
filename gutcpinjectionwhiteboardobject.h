@@ -44,12 +44,12 @@
 #endif
 
 
-extern const char *robot_network_names[];
+extern const char *robot_network_names[]; ///< name lookup for robot ids
 void transmit(void *);
 struct transmit_info
 {
-        int sfd;
-        gsw_message_packet p;
+        int sfd;		///< sending socket 
+        gsw_message_packet p;	///< sending data
 };
 
 template <class object_type> class injection_whiteboard_object
@@ -166,9 +166,25 @@ private:
         }
 };
 
+/** 
+ * @brief Generic object method for sending a whiteboard object via TCP. String specialisation 
+ * @param msg The data to transmit
+ * @return did the transmission work (only valid for sync sending and NOT async, async will always return true)
+ */
 template<> bool injection_whiteboard_object<std::string>::send_message(const std::string &msg);
+
+/** 
+ * @brief Generic object method for sending a whiteboard object via TCP. vector<int> specialisation 
+ * @param msg The data to transmit
+ * @return did the transmission work (only valid for sync sending and NOT async, async will always return true)
+ */
 template<> bool injection_whiteboard_object<std::vector<int> >::send_message(const std::vector<int> &msg);
 
+/** 
+ * @brief Generic object method for sending a whiteboard object via TCP. 
+ * @param msg The data to transmit
+ * @return did the transmission work (only valid for sync sending and NOT async, async will always return true)
+ */
 template <class object_type>
 bool injection_whiteboard_object<object_type>::send_message(const object_type &msg)
 {

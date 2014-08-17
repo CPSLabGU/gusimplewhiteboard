@@ -73,6 +73,9 @@ class WBSubscriber
         SimpleWhiteboardTest *self;
         whiteboard_watcher *watcher;
 public:
+	/**
+	 * Test Constructor
+	 */
         WBSubscriber(SimpleWhiteboardTest *t): self(t)
         {
                 watcher = new whiteboard_watcher(self.whiteboard->_wbd);
@@ -80,12 +83,18 @@ public:
                 usleep(50000); //gives the monitor thread in the whiteboard a chance to get started.
         }
 
+	/**
+	 * Test Destructor
+	 */
         ~WBSubscriber()
         {
                 watcher->unsubscribe(kPrint_v);
                 // delete watcher;
         }
 
+	/**
+	 * Trigger subscription test
+	 */
         void sub(WBTypes, gu_simple_message *m)
         {
                 Print_t value;
@@ -103,6 +112,9 @@ public:
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #pragma clang diagnostic ignored "-Wdirect-ivar-access"
 
+/**
+ * Setup objects for testing
+ */
 - (void) setUp
 {
         [super setUp];
@@ -131,6 +143,9 @@ public:
 //        exit(0);
 }
 
+/**
+ * Destroy testing objects
+ */
 - (void) tearDown
 {
         if (self.whiteboard)  delete static_cast<Whiteboard *>(self.whiteboard);
@@ -142,7 +157,9 @@ public:
         [super tearDown];
 }
 
-
+/**
+ * Test function for OLD whiteboard setter and getter
+ */
 - (void) testOldPutGet
 {
         self.whiteboard->addMessage("test", WBMsg("testval"));
@@ -157,6 +174,9 @@ public:
 }
 
 
+/**
+ * String Test function for 'simple' whiteboard setter and getter
+ */
 - (void) testStringPutGet
 {
         string testString("Testing the Whiteboard");
@@ -166,7 +186,9 @@ public:
         XCTAssertTrue(result == testString, @"Expected result to be '%s', but got '%s'", testString.c_str(), result.c_str());
 }
 
-
+/**
+ * Int Test function for 'simple' whiteboard setter and getter
+ */
 - (void) testIntGetPutGetPut
 {
         PlayerNumber_t playerNumber;

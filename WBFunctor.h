@@ -40,16 +40,21 @@ class WBFunctorBase
 public:
 	/**
  	* Call method for the OLD whiteboard callbacks that used WBMsg - Deprecated
+	* @param s type string value
+	* @param m WBMsg data value
 	*/
 	virtual void call(std::string s, WBMsg* m) = 0;                         //old wbmsg format for callbacks
 
 	/**
  	* Call method for the 'simple' whiteboard aka 'typed whiteboard' callbacks that passes data around in a union
+	* @param m data value
 	*/
 	virtual void call(gu_simple_message* m) = 0;                            //new simple_message callbacks
 
 	/**
  	* Call method for the 'simple' whiteboard aka 'typed whiteboard' callbacks that passes data around in a union. This version allows a 'type' overwrite. This is mostly used by the 'whiteboard poster' to impersonate other message types.
+	* @param t whiteboard 'type' 
+	* @param m data value
 	*/
 	virtual void call(guWhiteboard::WBTypes t, gu_simple_message* m) = 0;   //new simple_message callbacks (with type overwrite for subscribe to all special type)
 
@@ -59,7 +64,10 @@ public:
 	/** getter for the WB event counter */
         virtual uint16_t get_event_count() = 0;
 
-	/** setter for the WB event counter */
+	/** 
+	* setter for the WB event counter 
+	* @param e new event counter value
+	*/
         virtual void set_event_count(uint16_t e) = 0;
 
 	/** is this being used by the 'simple whiteboard' or the OLD whiteboard (which is now Deprecated) */
@@ -92,6 +100,8 @@ public:
 
 	/**
  	* Call method for the OLD whiteboard callbacks that used WBMsg - Deprecated
+	* @param s type string value
+	* @param m WBMsg data value
 	*/
 	void call(std::string s, WBMsg* m)
 	{
@@ -100,6 +110,7 @@ public:
 
 	/**
  	* Call method for the 'simple' whiteboard aka 'typed whiteboard' callbacks that passes data around in a union
+	* @param m data value
 	*/
 	void call(gu_simple_message* m)
 	{
@@ -108,6 +119,8 @@ public:
 
 	/**
  	* Call method for the 'simple' whiteboard aka 'typed whiteboard' callbacks that passes data around in a union. This version allows a 'type' overwrite. This is mostly used by the 'whiteboard poster' to impersonate other message types.
+	* @param t whiteboard 'type' 
+	* @param m data value
 	*/
 	void call(guWhiteboard::WBTypes t, gu_simple_message* m)
 	{
@@ -120,7 +133,10 @@ public:
 	/** getter for the WB event counter */
 	uint16_t get_event_count() { return event_count; }
 
-	/** setter for the WB event counter */
+	/** 
+	* setter for the WB event counter 
+	* @param e new event counter value
+	*/
 	void set_event_count(uint16_t e) { event_count = e; }
 
 	/** is this being used by the 'simple whiteboard' or the OLD whiteboard (which is now Deprecated) */

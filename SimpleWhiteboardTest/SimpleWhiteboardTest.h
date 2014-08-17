@@ -74,8 +74,8 @@
 #pragma clang diagnostic pop
 
 @interface SimpleWhiteboardTest: XCTestCase
-@property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard;
-@property (nonatomic, assign) int callbackCount;
-@property (nonatomic, assign) dispatch_semaphore_t semaphore;
-@property (nonatomic, assign) NSString *stringValue;
+@property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard; ///< OLD wb class pointer
+@property (nonatomic, assign) int callbackCount;	///< counter used for testing callbacks
+@property (nonatomic, assign) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
+@property (nonatomic, assign) NSString *stringValue;	///< not sure, some string for test
 @end
