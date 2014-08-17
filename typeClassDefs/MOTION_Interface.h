@@ -45,40 +45,52 @@ namespace guWhiteboard
 {
         namespace Motions
         {
+		/**
+ 		* @brief This is the file format of the .mot files. It is used when parsing them in the Nao motion module.
+ 		*/  
                 enum motion_file_layout
                 {
-                        NAO_Version = 0,        //V3 = 0, V4 = 1
-                        Units,                  //RAD = 0 or DEG = 1
-                        Stiffness,              //0 - 100
-                        Joints,                 //Joint numbers, see SensorInfo.h 'jointNames' array
-                        Motions                 //The rest of the file is comma seperated joints and 10ms seperated lines
+                        NAO_Version = 0,        ///< V3 = 0, V4 = 1
+                        Units,                  ///< RAD = 0 or DEG = 1
+                        Stiffness,              ///< 0 - 100
+                        Joints,                 ///< Joint numbers, see SensorInfo.h 'jointNames' array
+                        Motions                 ///< The rest of the file is comma seperated joints and 10ms seperated lines
                 };
 
+		/**
+ 		* @brief enum values for all stances
+ 		*/  
                 enum stance
                 {
-                        Standby_stance = 0, // releases stiffness when done
-                        Kneeling_stance, // default stance - no stiffness by default
-                        Standing_stance,
-                        GoalieSaveLeft_stance,
-                        GoalieSaveRight_stance,
-                        FallenForward_stance, // no path to the fallen stances, these can only be gotten to by the fall manager FSM overwriting the current stance
-                        FallenBack_stance,
-                        NUM_OF_STANCES
+                        Standby_stance = 0, 	///< Gorilla position, releases stiffness when done (implemented in the Nao motion module)
+                        Kneeling_stance, 	///< default kneeling stance - no stiffness by default (implemented in the Nao motion module)
+                        Standing_stance,	///< standing up, this is mirrored by the Nao walk engines 'Initialise' pose and means that a motion transition is not required to turn on the Nao walk engine.
+                        GoalieSaveLeft_stance,	///< Half kneeling and leaning to the left
+                        GoalieSaveRight_stance,	///< Half kneeling and leaning to the right
+                        FallenForward_stance, 	///< The robot has fallen face down. There is no path to the fallen stances, these can only be gotten to by the fall manager FSM overwriting the current stance
+                        FallenBack_stance,	///< The robot has fallen backwards. There is no path to the fallen stances, these can only be gotten to by the fall manager FSM overwriting the current stance
+                        NUM_OF_STANCES		///< Handy counter for the number of enums
                 };
 
+		/**
+ 		* @brief enum values for all actions that can be done 
+ 		*/  
                 enum action
                 {
-                        Kneeling_wave = 0,
-            		Kneeling_quickwave,
-                        Kneeling_flagwave, // Jeremy's Flag Wave
-                        Standing_leftkick,
-                        Standing_rightkick,
-                        Standing_leftpass,
-                        Standing_rightpass,
-                        Standing_wave,
-                        NUM_OF_ACTIONS
+                        Kneeling_wave = 0,	///< When kneeling, wave with one arm
+            		Kneeling_quickwave,	///< When kneeling, wave quickly with one arm (originally for the RoboCup sound demo)
+                        Kneeling_flagwave, 	///< When kneeling, wave as if holding a flag - Jeremy's Flag Wave
+                        Standing_leftkick,	///< When standing, kick with the left foot
+                        Standing_rightkick,	///< When standing, kick with the right foot
+                        Standing_leftpass,	///< When standing, kick sideways, moving the object in front of the robot left
+                        Standing_rightpass,	///< When standing, kick sideways, moving the object in front of the robot right
+                        Standing_wave,		///< When standing, wave with one arm
+                        NUM_OF_ACTIONS		///< Handy counter for the number of enums
                 };
                 
+		/**
+ 		* @brief Pretty print and parsing string values, these need to line up with the enum values in 'stance'
+ 		*/  
                 static const char *stance_strings[NUM_OF_STANCES] =
                 {
                         "Standby_stance",
@@ -90,6 +102,9 @@ namespace guWhiteboard
                         "FallenBack_stance"
                 };
 
+		/**
+ 		* @brief Pretty print and parsing string values, these need to line up with the enum values in 'action'
+ 		*/  
                 static const char *action_strings[NUM_OF_ACTIONS] =
                 {
                         "Kneeling_wave",
@@ -102,16 +117,27 @@ namespace guWhiteboard
                         "Standing_wave"
                 };
 
+		/**
+ 		* @brief Internal struct for representing a transition from one from one 'Stance' to another
+ 		*/  
                 struct Stance_Transition
                 {
-                        stance _s;
-                        stance _e;
-                        int _cost;
-                        std::string _name;
+                        stance _s;		///< the starting stance of this transition
+                        stance _e;		///< the ending stance of this transition
+                        int _cost;		///< how long this will take
+                        std::string _name;	///< the string name of this transition
+			/** @brief Constructor */
                         Stance_Transition(stance s, stance e, int cost) : _s(s), _e(e), _cost(cost), _name(TRANSITION_NAME(s, e)) { }
                 };
 
+		/**
+ 		* @brief Simple struct to store the hardcoded motion transitions from one 'Stance' to another
+ 		*/  
                 struct T{
+			/**
+ 			* @brief These are the hardcoded transitions from one Stance to another 
+			* @return The hardcoded vector of Stance transitions
+			*/
                         static std::vector<Stance_Transition> create_transitions() //many paths to a stance will work (picks shortest by using the cost)
                         {
                                 std::vector<Stance_Transition> v;
@@ -130,7 +156,7 @@ namespace guWhiteboard
 
                                 return v;
                         }
-                        static const std::vector<Stance_Transition> _transitions;
+                        static const std::vector<Stance_Transition> _transitions; ///< the storage used for the hardcoded Stance transitions
                 };
 
 		/**
@@ -138,14 +164,22 @@ namespace guWhiteboard
  		*/       
                 struct Action_Transition
                 {
-                        action _a; //not really needed here
-                        stance _s;
-                        int _cost;                        
-                        std::string _name;
+                        action _a; 		///< the action to be performed, somehow this is 'not really needed here', I can't remember why.
+                        stance _s;		///< the stance required to perform the action
+                        int _cost;   		///< how long this will take
+                        std::string _name;	///< the string name of the action
+			/** @brief Constructor */
                         Action_Transition(action a = Kneeling_wave, stance s = Kneeling_stance, int cost = 1): _a(a), _s(s), _cost(cost), _name(ACTION_NAME(a, s)) { }
                 };
 
+		/**
+ 		* @brief Simple struct to store the hardcoded motion 'Actions'
+ 		*/  
                 struct A{//CHANGE FROM MAP TO VECTOR AND USE THE ENUM INDEX TO GET THE ACTION_TRANSITION O(1)
+			/**
+ 			* @brief These are the hardcoded Actions that can be used and the Stances required to use them 
+			* @return The hardcoded map of actions
+			*/
                         static std::map<action, Action_Transition> create_actions() //each action may only have one stance
                         {
                                 std::map<action, Action_Transition> v;
@@ -161,27 +195,51 @@ namespace guWhiteboard
 
                                 return v;
                         }
-                        static const std::map<action, Action_Transition> _actions;
+                        static const std::map<action, Action_Transition> _actions; ///< This stores all the actions that this API can use and what stance is required to use them
                 };
                 
 
+		/**
+ 		* @brief Internal class for cost based graph search paths, in this case motion paths
+		*
+		* This is used to find a valid motion path from one stance to another based on the 'cost' aka the duration of time the motions will take.
+		*
+ 		*/     
                 class Stance_Path
                 {
                 private:
-                        int _cost;
-                        int _off;
-                        bool _reached;
+                        int _cost;	///< current path cost
+                        int _off;	///< current offset in the _stances array
+                        bool _reached;	///< has the desired stance been reached
                 public:
-                        u_int8_t _stances[JOINT_CHAIN_MAXSIZE];
+                        u_int8_t _stances[JOINT_CHAIN_MAXSIZE];	///< the path taken
 
+			/**
+ 			* @brief Constructor
+			*/
                         Stance_Path(): _cost(0), _off(0), _reached(false) { }
-                        int offset() { return _off; }
-                        bool valid() { return _cost != -1 ? true : false; }
-                        void invalidate() { _cost = -1; }
-                        void reached() { _reached = true; }
-                        int cost() { return _cost; }
+                        int offset() { return _off; }	///< @brief offset getter
+                        bool valid() { return _cost != -1 ? true : false; }	///< @brief is this a valid motion transition
+                        void invalidate() { _cost = -1; }	///< @brief set this path in invalid
+                        void reached() { _reached = true; } 	///< @brief did this path get to the desired stance
+                        int cost() { return _cost; }		///< @brief getter for the path cost (aka time)
+
+			/**
+ 			* @brief Add the first stance to this path
+			* @param s the stance
+			* @param cost the transition cost from the current stance to the new stance 's'
+			*/
                         void add_stance(stance s, int cost) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = static_cast<u_int8_t>(s); _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+			/**
+ 			* @brief Add the first stance to this path
+			* @param s the stance
+			* @param cost the transition cost from the current stance to the new stance 's'
+			* @param transition the index of the transition in the _transitions vector
+			*/
                         void add_stance(stance s, int cost, int transition) { if(_off == (JOINT_CHAIN_MAXSIZE-1)) { invalidate(); } _stances[_off] = static_cast<u_int8_t>(transition+NUM_OF_STANCES+NUM_OF_ACTIONS); _off++; _stances[_off] = static_cast<u_int8_t>(s); _off++; _cost += cost; } //JOINT_CHAIN_MAXSIZE-1 leaves room for an action
+			/**
+ 			* @brief pretty print of the stance path (mainly for debugging)
+			*/
                         void pretty_print()
                         {
                                 std::stringstream ss;
@@ -195,6 +253,11 @@ namespace guWhiteboard
                                 }
                                 fprintf(stderr, "%s\n", ss.str().c_str());
                         }
+			/**
+ 			* @brief Check if the current stance path includes the passed in stance
+			* @param s the stance to check for
+			* @return true, if the path contained the stance
+			*/
                         bool contains(stance s)
                         {
                                 for(int i = 0; i < _off; i++)
