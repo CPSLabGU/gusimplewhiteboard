@@ -45,15 +45,19 @@ extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd);
 
+/**
+ * @brief An internal stuct for passing callback information to dispatch queues
+ */
 struct callback_helper //struct passed to do_callback
 {
-        gu_simple_whiteboard *wb;
-        WBFunctorBase *f;
-        int offs;
-        uint16_t t_overwrite;
-        bool use_type_overwrite; //for global subscriptions
-        uint8_t gen_to_use; //generation to pass as value, mod 4 of current event count
+        gu_simple_whiteboard *wb;	///< wb pointer
+        WBFunctorBase *f;		///< callback functor pointer
+        int offs;			///< type offset in shared memory, aka type enum value
+        uint16_t t_overwrite;		///< the type offset / enum value to 'fake' see comment for 'use_type_overwrite'
+        bool use_type_overwrite; 	///< use the type overwrite of WBFunctor (used by the simpleposter to 'fake' messages without a huge amount of generated code)
+        uint8_t gen_to_use; 		///< the message generation slot that contains the data for this callback 
 
+	/** Constructor */
         callback_helper(gu_simple_whiteboard *w, int o, WBFunctorBase *d, uint16_t t, bool use_t, uint8_t gen): wb(w), f(d), offs(o), t_overwrite(t), use_type_overwrite(use_t), gen_to_use(gen) {}
 };
 
@@ -76,7 +80,7 @@ static void do_callback(void *m) //makes the callback call, via GCD queue
 * Examples
 * --------
 *
-* ###A SUBSCRIBE macro is defined in gu_util.h for convenience
+* ###A SUBSCRIBE macro is defined for convenience
 *
 *     wb = new whiteboard_watcher(); //create the watcher object
 *     //wb = whiteboard_watcher
@@ -87,7 +91,9 @@ static void do_callback(void *m) //makes the callback call, via GCD queue
 *
 * ###The long form of the subscribe looks like this:
 *
-*     //insert here!
+*     wb = new whiteboard_watcher(); //create the watcher object
+*     ((wb)->subscribe(Say_WBFunctor<GUNaoSpeech>::bind(this, &GUNaoSpeech::whiteboard_callback, kSay_v)));
+*
  */
 class whiteboard_watcher
 {
@@ -98,6 +104,10 @@ class whiteboard_watcher
         u_int16_t                               local_event_counters[GSW_TOTAL_MESSAGE_TYPES];  // local event counter for all types, used by the global subscription
         
 public:
+	/**
+	 * @brief Constructor, sets up the dispatch queues for handling callbacks
+	 * @param wbd You can pass a specific pointer to a whiteboard object if you wish. By default a pointer to the default whiteboard is used.
+	 */
         whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd = NULL) //Constructor
         {
                 _wbd = wbd;
@@ -122,6 +132,9 @@ public:
                 _wbd->callback = subscription_callback;
         }
 
+	/**
+	 * @brief Destructor, release whiteboard objects and dispatch queues.
+	 */
 	~whiteboard_watcher()
 	{
 		_wbd->exit_monitor = true;
@@ -140,6 +153,10 @@ public:
 #endif
 	}
         
+	/**
+	 * @brief Allows you to subscribe to a specific whiteboard type and get callbacks when that type is updated. You will still get a callback if the type is updated and the data didn't change.
+	 * @param func the callback container object. I suggest using the macro SUBSCRIBE (see example at the top of this file)
+	 */
         void subscribe(WBFunctorBase *func)
         {
                 if(!func->is_simple_wb_version())
@@ -168,6 +185,10 @@ public:
                 gsw_add_process(_wbd, getpid());
         }
 
+	/**
+	 * @brief Stop getting callbacks for a particular whiteboard type
+	 * @param t the type to unsubscribe from
+	 */
         void unsubscribe(guWhiteboard::WBTypes t)
         {
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
@@ -187,6 +208,9 @@ public:
                 gsw_vacate(_wbd->sem, GSW_SEM_CALLBACK);
         }
 
+	/**
+	 * @brief Internal function, this is what gets triggered by the underlying whiteboard, it then checks its list of subscribed types and issues callback functions to subscribed modules.
+	 */
         void receive_callback()
         {
                 static int lastmsg;
@@ -239,7 +263,10 @@ public:
         }
 };
 
-
+/**
+ * @brief Internal function, the callback 'trigger' from the underlying whiteboard. Simply gets the current watcher, casts it correctly and calls a similar internal function which gets us back into the whiteboard_watcher class scope.
+ * @param wbd The underlying whiteboard pointer
+ */
 static void subscription_callback(gu_simple_whiteboard_descriptor *wbd) //called by simplewhiteboard whenever the global event count increases
 {
         whiteboard_watcher *self = static_cast<whiteboard_watcher *>(wbd->context);

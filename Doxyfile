@@ -790,6 +790,7 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = guudpwhiteboard \
+                         typeClassDefs \
                          guobjcwhiteboard \
                          OLD_WB \
                          gusimplewhiteboardios
