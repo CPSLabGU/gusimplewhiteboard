@@ -13,6 +13,7 @@
 #include <guwhiteboardposter.h>
 #include "perftest.h"
 
+/** test whiteboard posting */
 class post_test: public perftest
 {
     PROPERTY(guWhiteboard::SpeechOutput_t, bool_value)

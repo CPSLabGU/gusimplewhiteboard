@@ -87,12 +87,18 @@ namespace guWhiteboard
         /**
          * A generic C++ function that gets a string from the whiteboard.
          * Both the message type and the message content are strings.
+         * @param message_type the string version of the type
+         * @param msg the data container, if NULL then the message is gotten from the whiteboard
+         * @return the pretty printed data string
          */
         std::string getmsg(std::string message_type, gu_simple_message *msg = NULL);
 
         /**
          * Generic C++ function that gets a message with a given message number
          * to the whiteboard.
+         * @param message_index the offset or enum value of the type to get
+         * @param msg the data container, if NULL then the message is gotten from the whiteboard
+         * @return the pretty printed data string
          */
         std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULL);
 }

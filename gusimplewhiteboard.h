@@ -134,6 +134,7 @@ struct gsw_whiteboard_s;
 
 typedef void (*gsw_subscription_f)(struct gsw_whiteboard_s *wbd);
 
+/** union type that is used to store data in shared memory */
 typedef union gsw_simple_message
 {
         /*
@@ -171,27 +172,27 @@ typedef union gsw_simple_message
         /**
          * vector types
          */
-        unsigned long long      ullvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned long long)];
-        unsigned long           ulvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned long)];
-        unsigned                uivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned)];
-        unsigned short          usvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned short)];
-        unsigned char           ucvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned char)];
-
-        long long               llvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(long long)];
-        long                    lvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(long)];
-        int                     ivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int)];
-        short                   svec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(short)];
-        signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];
-
-        u_int64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];
-        u_int32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];
-        u_int16_t               u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int16_t)];
-        u_int8_t                u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];
-
-        int64_t                 s64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];
-        int32_t                 s32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];
-        int16_t                 s16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int16_t)];
-        int8_t                  s8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];
+        unsigned long long      ullvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned long long)];///< unsigned long long array
+        unsigned long           ulvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned long)];	///< unsigned long array
+        unsigned                uivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned)];		///< unsigned array
+        unsigned short          usvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned short)];	///< unsigned short array
+        unsigned char           ucvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(unsigned char)];	///< unsigned char array
+ 
+        long long               llvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(long long)];	///< long long array
+        long                    lvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(long)];	///< long array
+        int                     ivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int)];		///< int array
+        short                   svec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(short)];	///< short array
+        signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];	///< signed char array
+ 
+        u_int64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];	///< u_int64_t array
+        u_int32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];	///< u_int32_t array
+        u_int16_t               u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int16_t)];	///< u_int16_t array
+        u_int8_t                u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< u_int8_t array
+ 
+        int64_t                 s64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int64_t)];	///< int64_t array
+        int32_t                 s32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int32_t)];	///< int32_t array
+        int16_t                 s16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int16_t)];	///< int16_t array
+        int8_t                  s8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< int8_t array
 
         /*
          * simple compound types
@@ -210,6 +211,7 @@ typedef union gsw_simple_message
         struct { char data[GU_SIMPLE_WHITEBOARD_BUFSIZE-2]; unsigned char len; unsigned char type; } wbmsg;
 } gu_simple_message;
 
+/** the actual whiteboard in shared mem */
 typedef struct gsw_simple_whiteboard_s
 {
         u_int16_t               version;        ///< whiteboard version
@@ -217,8 +219,8 @@ typedef struct gsw_simple_whiteboard_s
         u_int16_t               subscribed;     ///< subscribed processes
         u_int16_t               num_types;      ///< total number of current, registered types
 
-        u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       /// ring buffer indexes
-        u_int16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       /// event counter loops
+        u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       ///< ring buffer indexes
+        u_int16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       ///< event counter loops
 
         /**
          * the actual messages stored in the whiteboard
@@ -252,6 +254,7 @@ typedef dispatch_semaphore_t *gsw_sema_t;
 typedef int gsw_sema_t;
 #endif
 
+/** the underlying whiteboard object */
 typedef struct gsw_whiteboard_s
 {
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem

@@ -46,12 +46,35 @@
 
 extern const char *robot_network_names[]; ///< name lookup for robot ids
 void transmit(void *);
+
+/** struct used to transfer sending data to a dispatch thread */
 struct transmit_info
 {
         int sfd;		///< sending socket 
         gsw_message_packet p;	///< sending data
 };
 
+/**
+* @brief This class allows a specific whiteboard type object to be sent to another machine and 'injected' into the local whiteboard as if a module had locally posted it.
+*
+* These injection messages currently use TCP and connect to the guudpwhiteboard (so this needs to be running on the receiving machine).
+*
+* Examples
+* --------
+*
+* ###Sending a message
+*
+*     //create objects
+*     Vision_Control_iTCP pVisionCmd("sonic.local");
+*     VisionControlStatus pVisionControl;
+*     
+*     //set data
+*     pVisionControl.set_selectedCamera(Top);
+*      
+*     //send message
+*     pVisionCmd.send_message(pVisionControl);
+*
+*/
 template <class object_type> class injection_whiteboard_object
 {
         dispatch_queue_t                        send_queue;

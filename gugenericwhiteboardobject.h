@@ -33,6 +33,44 @@
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
+/**
+* @brief This class allows you to set and get data directly into or out of the local whiteboard in shared memory
+*
+* Examples
+* --------
+*
+* ###Setting the Speech type
+*
+*     Say_t say_ptr; 			//get a pointer to the Say type within the whiteboard 
+*     std::string str("Howdy World");	//make a string
+*     say_ptr.set(str);			//set the string value into the Say type (and onto the whiteboard)
+*     
+* ###Nice overloads
+*     
+*     Say_t say("Howdy World");		//create the Say variable and set it to a string value in one statement. This has posted the string to the whiteboard.
+*
+* ###Getting data back out
+*
+*     std::string str;			//make a string
+*     Say_t say_ptr; 			//get a pointer to the Say type within the whiteboard 
+*     str = say_ptr.get();		//get the string value out of the whiteboard.
+*
+* ###Other types and custom classes work the same way
+*
+*     Walk_ControlStatus w(100, 0, 0, 100);	//create the object
+*     Walk_Command_t w_ptr; 			//get a pointer to the Walk type within the whiteboard 
+*     w_ptr.set(w);				//set into the whiteboard
+*
+*     //lets get it out again using new variables
+*     Walk_ControlStatus new_w;			//create an empty object
+*     Walk_Command_t new_w_ptr;			//get a pointer to the Walk type within the whiteboard 
+*     new_w = new_w_ptr.get()			//get from whiteboard
+*
+*     //why not print it too
+*     std::string new_s = new_w.description();	//get a pretty printed string of the content
+*     fprintf(stdout, "%s\n", const_cast<char *>(new_s.c_str())); //print the content
+*  
+*/
 template <class object_type> class generic_whiteboard_object
 {
         gu_simple_whiteboard_descriptor *_wbd;
@@ -170,18 +208,45 @@ public:
         }
 };
 
-template<> void generic_whiteboard_object<std::string>::set(const std::string &msg);
-template<> void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg);
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. string specialisation 
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
 template<> std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg);
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. vector<int> specialisation 
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
 template<> std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simple_message *msg);
 
-
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. 
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
 template <typename object_type>
 object_type generic_whiteboard_object<object_type>::get_from(gu_simple_message *msg)
 {
         return *reinterpret_cast<object_type *>(msg);
 }
 
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. string specialisation 
+ * @param msg The data to set into the whiteboard
+ */
+template<> void generic_whiteboard_object<std::string>::set(const std::string &msg);
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. vector<int> specialisation 
+ * @param msg The data to set into the whiteboard
+ */
+template<> void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg);
+
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. 
+ * @param msg The data to set into the whiteboard
+ */
 template <class object_type>
 void generic_whiteboard_object<object_type>::set(const object_type &msg)
 {

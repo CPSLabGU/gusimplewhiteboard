@@ -9,7 +9,10 @@
 #include "gugenericwhiteboardobject.h"
 #include <gu_util.h>
 
-
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. string specialisation 
+ * @param msg The data to set into the whiteboard
+ */
 template <>
 void generic_whiteboard_object<std::string>::set(const std::string &msg)
 {
@@ -31,6 +34,10 @@ void generic_whiteboard_object<std::string>::set(const std::string &msg)
         if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
 
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. vector<int> specialisation 
+ * @param msg The data to set into the whiteboard
+ */
 template <>
 void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg)
 {
@@ -52,13 +59,22 @@ void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &m
         if (notify_subscribers && wb->subscribed) gsw_signal_subscribers(wb);
 }
 
-
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. string specialisation 
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
 template<>
 std::string generic_whiteboard_object<std::string>::get_from(gu_simple_message *msg)
 {
         return msg->string;
 }
 
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. vector<int> specialisation 
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
 template<>
 std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simple_message *msg)
 {

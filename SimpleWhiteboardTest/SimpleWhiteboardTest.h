@@ -73,6 +73,7 @@
 
 #pragma clang diagnostic pop
 
+/** Test class */
 @interface SimpleWhiteboardTest: XCTestCase
 @property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard; ///< OLD wb class pointer
 @property (nonatomic, assign) int callbackCount;	///< counter used for testing callbacks

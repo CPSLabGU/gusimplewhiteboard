@@ -68,6 +68,7 @@
 using namespace guWhiteboard;
 using namespace std;
 
+/** subscription test class */
 class WBSubscriber
 {
         SimpleWhiteboardTest *self;

@@ -69,6 +69,7 @@
 
 static const int16_t test_x = 1, test_y = 2, test_z = 42;
 
+/** plain c code testing of the simple whiteboard implementation */
 @interface SimpleWhiteboardTestPlainC: XCTestCase
 @property (nonatomic, assign) gu_simple_whiteboard_descriptor *wbd; ///< wb pointer
 @property (nonatomic, assign) gu_simple_whiteboard *wb;	///< wb class pointer

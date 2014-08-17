@@ -12,6 +12,7 @@
 #include <ros/ros.h>
 #include "perftest.h"
 
+/** test ROS publishing */
 class ros_publish_test: public perftest
 {
     PROPERTY(ros::NodeHandle, node_handle)

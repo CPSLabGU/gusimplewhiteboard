@@ -15,6 +15,7 @@
 //#define PERFTEST_DEFAULT_ITERATIONS 1000000000L
 #define PERFTEST_DEFAULT_ITERATIONS 10000000L
 
+/** whiteboard performance testing class */
 class perftest
 {
     PROPERTY(long long, start_time) ///< start time value

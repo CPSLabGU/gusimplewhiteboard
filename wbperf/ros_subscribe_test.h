@@ -11,6 +11,7 @@
 
 #include "ros_publish_test.h"
 
+/** test class for ROS subscriptions */
 class ros_subscribe_test: public ros_publish_test
 {
     PROPERTY(ros::Subscriber, subscriber)

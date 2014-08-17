@@ -15,9 +15,10 @@
 
 extern long get_test_value;
 
+/** getter test for the whiteboard using the SpeechOutput bool type */
 class get_test: public perftest
 {
-    PROPERTY(guWhiteboard::SpeechOutput_t, bool_value)
+    PROPERTY(guWhiteboard::SpeechOutput_t, bool_value) ///< value to test with
 
 public:
     get_test(): perftest(), _bool_value() {}
