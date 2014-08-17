@@ -600,17 +600,17 @@ int main()
 			case POD_Class:
 			{
                                 //local wb wrapper
-                                output_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << type.type_const_name
+                                output_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "        class " << type.type_const_name
                                         << "_t: public generic_whiteboard_object<" << type.class_name
-                                        << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {}\n\t\t"
-                                        << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
+                                        << " > { \n\tpublic: \n\t\t" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {}\n\t\t"
+                                        << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_t("<< types[i].class_name << " value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<" << types[i].class_name << " >(value, k"
                                         << types[i].type_const_name << "_v, wbd, " << types[i].atomic << ") {} \n\t};\n\n";
 
                                 //TCP injection wrapper
-				output_tcp_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << type.type_const_name
+				output_tcp_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "        class " << type.type_const_name
                                         << "_iTCP: public injection_whiteboard_object<" << type.class_name
-                                        << " > { \n\tpublic: \n\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {}\n\t\t"
-                                        << types[i].type_const_name << "_iTCP("<< types[i].class_name << " value, const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(value, hostname, k"
+                                        << " > { \n\tpublic: \n\t\t" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {}\n\t\t"
+                                        << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_iTCP("<< types[i].class_name << " value, const char *hostname = (const char *)\"localhost\", bool is_async = true): injection_whiteboard_object<" << types[i].class_name << " >(value, hostname, k"
                                         << types[i].type_const_name << "_v, is_async) {} \n\t};\n\n";
 				break;
 			}
@@ -618,10 +618,10 @@ int main()
 			{
 				output_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << types[i].type_const_name
                                         << "_t: public generic_whiteboard_object<class " << types[i].class_name
-                                        << " > { \n\tpublic: \n" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {} \n\t};\n\n";
+                                        << " > { \n\tpublic: \n\t\t" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_t(gu_simple_whiteboard_descriptor *wbd = NULL) : generic_whiteboard_object<class " << types[i].class_name << " >(wbd, k" << types[i].type_const_name << "_v, " << types[i].atomic << ") {} \n\t};\n\n";
                                 output_tcp_file << "\t" << CLASS_DOXY(type.type_const_name, type.comment) << "\n        class " << types[i].type_const_name
                                         << "_iTCP: public injection_whiteboard_object<class " << types[i].class_name
-                                        << " > { \n\tpublic: \n" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true) : injection_whiteboard_object<class " << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {} \n\t};\n\n";
+                                        << " > { \n\tpublic: \n\t\t" << CLASS_CON_DOXY(types[i].type_const_name) << "\t\t" << types[i].type_const_name << "_iTCP(const char *hostname = (const char *)\"localhost\", bool is_async = true) : injection_whiteboard_object<class " << types[i].class_name << " >(hostname, k" << types[i].type_const_name << "_v, is_async) {} \n\t};\n\n";
 				break;
 			}
 		}
