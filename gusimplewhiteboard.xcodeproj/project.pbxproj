@@ -74,6 +74,9 @@
 		F17380BD16CA032F00485FD8 /* guudpSerialize.c in Sources */ = {isa = PBXBuildFile; fileRef = F17380BC16CA032F00485FD8 /* guudpSerialize.c */; };
 		F17380BF16CA035100485FD8 /* guudpWhiteboardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */; };
 		F186C381194B9B4D00F9273B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F186C380194B9B4D00F9273B /* SenTestingKit.framework */; };
+		F1A7797119A1DCD600A9A17A /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
+		F1A7797F19A1DD0100A9A17A /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797919A1DD0100A9A17A /* Whiteboard.cc */; };
+		F1A7798019A1DD0100A9A17A /* WhiteboardConstants.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */; };
 		F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */; };
 		F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */; };
@@ -90,7 +93,6 @@
 		F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1D925FD14A13BAA00BDAEED /* InfoPlist.strings */; };
 		F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */; };
-		F1D9260A14A13BCD00BDAEED /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D9265914A151C500BDAEED /* WBFunctor.h */; };
 		F1E2FEED195105630039FFD9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68705E1757080C00A13AAE /* main.cpp */; };
 		F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */; };
@@ -342,6 +344,16 @@
 		F19586A0195A8FCA00DF7E5D /* wb_ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_ball.h; sourceTree = "<group>"; };
 		F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleWhiteboardTest copy-Info.plist"; path = "/Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/SimpleWhiteboardTest copy-Info.plist"; sourceTree = "<absolute>"; };
+		F1A7797319A1DD0100A9A17A /* iOSWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
+		F1A7797419A1DD0100A9A17A /* iOSWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSWhiteboard.h; sourceTree = "<group>"; };
+		F1A7797519A1DD0100A9A17A /* RemoteWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteWhiteboard.cc; sourceTree = "<group>"; };
+		F1A7797619A1DD0100A9A17A /* RemoteWhiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteWhiteboard.h; sourceTree = "<group>"; };
+		F1A7797719A1DD0100A9A17A /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBFunctor.h; sourceTree = "<group>"; };
+		F1A7797819A1DD0100A9A17A /* WBMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBMsg.h; sourceTree = "<group>"; };
+		F1A7797919A1DD0100A9A17A /* Whiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whiteboard.cc; sourceTree = "<group>"; };
+		F1A7797A19A1DD0100A9A17A /* Whiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Whiteboard.h; sourceTree = "<group>"; };
+		F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WhiteboardConstants.cc; sourceTree = "<group>"; };
+		F1A7797C19A1DD0100A9A17A /* WhiteboardConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteboardConstants.h; sourceTree = "<group>"; };
 		F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libguobjcwhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C94D681555CA8E00B717DF /* guobjcwhiteboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "guobjcwhiteboard-Prefix.pch"; sourceTree = "<group>"; };
 		F1C94D691555CA8E00B717DF /* ObjCWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboard.h; sourceTree = "<group>"; };
@@ -541,8 +553,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A7797119A1DCD600A9A17A /* libgusimplewhiteboard.a in Frameworks */,
 				F1D925F514A13BAA00BDAEED /* Cocoa.framework in Frameworks */,
-				F1D9260A14A13BCD00BDAEED /* libgusimplewhiteboard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +786,7 @@
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
 				C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */,
+				F1A7797219A1DD0100A9A17A /* OLD_WB */,
 				F1E5542618EBD16D00639B1E /* typeClassDefs */,
 				F1D925FA14A13BAA00BDAEED /* SimpleWhiteboardTest */,
 				8BC60E6E174079FD00800829 /* guudpwhiteboard */,
@@ -799,6 +812,23 @@
 				F1ED58A418E7EF1400864A87 /* wbPerfTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F1A7797219A1DD0100A9A17A /* OLD_WB */ = {
+			isa = PBXGroup;
+			children = (
+				F1A7797319A1DD0100A9A17A /* iOSWhiteboard.cc */,
+				F1A7797419A1DD0100A9A17A /* iOSWhiteboard.h */,
+				F1A7797519A1DD0100A9A17A /* RemoteWhiteboard.cc */,
+				F1A7797619A1DD0100A9A17A /* RemoteWhiteboard.h */,
+				F1A7797719A1DD0100A9A17A /* WBFunctor.h */,
+				F1A7797819A1DD0100A9A17A /* WBMsg.h */,
+				F1A7797919A1DD0100A9A17A /* Whiteboard.cc */,
+				F1A7797A19A1DD0100A9A17A /* Whiteboard.h */,
+				F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */,
+				F1A7797C19A1DD0100A9A17A /* WhiteboardConstants.h */,
+			);
+			path = OLD_WB;
 			sourceTree = "<group>";
 		};
 		F1C94D661555CA8E00B717DF /* guobjcwhiteboard */ = {
@@ -1613,7 +1643,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A7798019A1DD0100A9A17A /* WhiteboardConstants.cc in Sources */,
 				F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */,
+				F1A7797F19A1DD0100A9A17A /* Whiteboard.cc in Sources */,
 				F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */,
 				F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */,
 				F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
@@ -1806,6 +1838,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../gusimplewhiteboard",
 					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
 					"$(SRCROOT)/../../Common",
 					/usr/local/include,
 				);
@@ -1841,6 +1874,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../gusimplewhiteboard",
 					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
 					"$(SRCROOT)/../../Common",
 					/usr/local/include,
 				);
