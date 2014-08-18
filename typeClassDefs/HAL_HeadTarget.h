@@ -6,6 +6,7 @@
  *  All rights reserved.                                                
  */                                                                     
 
+
                                                                         
 #ifndef HAL_HeadTarget_DEFINED                                       
 #define HAL_HeadTarget_DEFINED
