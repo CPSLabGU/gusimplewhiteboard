@@ -287,9 +287,16 @@ namespace guWhiteboard
  	*/     
 	class MOTION_Status
 	{
-                BIT_PROPERTY(running) ///< Is there a motion currently running?
-                PROPERTY(int8_t, expected_stance) ///< What was the last 'Stance' that motion got to.
-                PROPERTY(int8_t, verified_stance) ///< What is the actual 'Stance', based on the Joint values (NYI)
+
+    		/** Is there a motion currently running? */
+                BIT_PROPERTY(running) 
+
+    		/** What was the last 'Stance' that motion got to. */
+                PROPERTY(int8_t, expected_stance) 
+
+    		/** What is the actual 'Stance', based on the Joint values (NYI) */
+                PROPERTY(int8_t, verified_stance) 
+
 		public:
 
 		/**
@@ -400,19 +407,28 @@ namespace guWhiteboard
  	*/     
         class MOTION_Commands
         {
-                ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) ///< Storage for stance/action queue. Use GoToStance and DoAction, do not modify directly.
-                PROPERTY(int8_t, num_of_stance_actions) ///< used to keep track of how many commands have been issued in the queue, do not modify directly
+		/** Storage for stance/action queue. Use GoToStance and DoAction, do not modify directly. */
+                ARRAY_PROPERTY(u_int8_t, stance_action, JOINT_CHAIN_MAXSIZE) 
+		/** used to keep track of how many commands have been issued in the queue, do not modify directly */
+                PROPERTY(int8_t, num_of_stance_actions) 
 
-                BIT_PROPERTY(stance_action_mask) ///< used to determine if the queue needs to be read, if new commands have been added
-                BIT_PROPERTY(ignore_chain) ///< Do not perform the transitions between motions, just go directly to the final joint positions, normally this is a VERY BAD idea. Joints can get stuck and damaged when this is used wrongly.
-                BIT_PROPERTY(ignore_chain_mask) // Has the ignore_chain flag changed.
+		/** used to determine if the queue needs to be read, if new commands have been added */
+                BIT_PROPERTY(stance_action_mask) 
+		/** Do not perform the transitions between motions, just go directly to the final joint positions, normally this is a VERY BAD idea. Joints can get stuck and damaged when this is used wrongly. */
+                BIT_PROPERTY(ignore_chain) 
+		/** Has the ignore_chain flag changed. */
+                BIT_PROPERTY(ignore_chain_mask) 
                 
-                //Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general
-                BIT_PROPERTY(head_stiffness) ///< Overwrite the head stiffness with the value given.
-                BIT_PROPERTY(body_stiffness) ///< Overwrite the body stiffness with the value given.
+		/** Overwrite the head stiffness with the value given. (Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general) */
+                BIT_PROPERTY(head_stiffness) 
+		/** Overwrite the body stiffness with the value given. (Stance actions will set the stiffness to the value required in the motion file, these do not need to be called in general)*/
+                BIT_PROPERTY(body_stiffness) 
+
                 /* Control bits */
-                BIT_PROPERTY(head_stiffness_mask) ///< head_stiffness mask
-                BIT_PROPERTY(body_stiffness_mask) ///< body_stiffness mask
+		/** head_stiffness mask */
+                BIT_PROPERTY(head_stiffness_mask) 
+		/** body_stiffness mask */
+                BIT_PROPERTY(body_stiffness_mask) 
 
         public:                
 
