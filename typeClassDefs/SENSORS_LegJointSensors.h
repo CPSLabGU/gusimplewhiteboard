@@ -18,7 +18,19 @@
 
 namespace guWhiteboard
 {
-        class SENSORS_LegJointSensors : public wb_sensors_legs
+        /**
+ 	* @brief Contains the current joint angles for the robots lower half (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the pitch angle of the left knee in radians
+	*
+	*     SENSORS_LegJointSensors s = SENSORS_LegJointSensors_t.get(); //get from the whiteboard
+	*     float knee = s.LKneePitch(); //pull the variable out of the class
+	*
+ 	*/
+         class SENSORS_LegJointSensors : public wb_sensors_legs
         {
 
         public:

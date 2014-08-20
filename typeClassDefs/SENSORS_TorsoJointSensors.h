@@ -21,6 +21,18 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current joint angles for the robots upper half (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the pitch angle of the left shoulder in radians
+	*
+	*     SENSORS_TorsoJointSensors s = SENSORS_TorsoJointSensors_t.get(); //get from the whiteboard
+	*     float angle = s.LShoulderPitch(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_TorsoJointSensors : public wb_sensors_torso
         {
 

@@ -50,8 +50,21 @@ namespace guWhiteboard
                         NUMBER_OF_READINGS
                 } ReadingCode;
         }
-//Only every 10 cycles, 100ms        
-        
+ 
+        /**
+ 	* @brief Contains the latest Sonar readings.
+	*
+	* Measured in CM, Range is 0-255, Updated at 10Hz (currently, max of 100Hz). Object nearer than 20cm to a Nao will report a distance of 20cm.
+	*
+	* Examples
+	* --------
+	*
+	* Get the distance in cm to the nearest object on the left
+	*
+	*     SENSORS_SonarSensors s = SENSORS_SonarSensors_t.get(); //get from the whiteboard
+	*     int dist = s.sonar(Sonar::Left0); //pull the variable out of the class
+	*
+ 	*/       
         class SENSORS_SonarSensors : public wb_sensors_sonar
         {
                 

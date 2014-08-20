@@ -14,6 +14,18 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current values of sensors located in the robots chest (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the state of the Chest Button
+	*
+	*     SENSORS_BodySensors s = SENSORS_BodySensors_t.get(); //get from the whiteboard
+	*     bool button_state = s.ChestBoard_Button(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_BodySensors : public wb_sensors_body
         {
         public:
