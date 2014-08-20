@@ -351,17 +351,12 @@ namespace guWhiteboard
                 
                 void changeLed(LEDs::LEDCode led, bool state)
                 {
-                        if(led <= LEDs::RightEar10)
-                                _ears[led] = state ? true : false;
-                        else
-                                _leds[led-LEDs::RightEar10] = state ? 100 : 0;
+                 	changeLed(led, state ? static_cast<u_int8_t>(100) : static_cast<u_int8_t>(0));
                 }
                 
                 void changeLed(LEDs::LEDCode led, u_int8_t level) //level == percentage, 100 == MAX
                 {
-                        assert(led > LEDs::RightEar10);
-
-                        _leds[led-LEDs::RightEar10] = level;
+                        _leds[led] = level;
                 }
         };
 }
