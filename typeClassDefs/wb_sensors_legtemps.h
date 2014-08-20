@@ -16,12 +16,23 @@
  */
 struct wb_sensors_legtemps
 {
-                PROPERTY(float, LKneePitch) 	///< left knee pitch temp
-                PROPERTY(float, LAnklePitch)	///< left ankle pitch temp
-                PROPERTY(float, LAnkleRoll)	///< left ankle roll temp
-                PROPERTY(float, RKneePitch)	///< right knee pitch temp
-                PROPERTY(float, RAnklePitch)	///< right ankle pitch temp
-                PROPERTY(float, RAnkleRoll)	///< right ankle roll temp
+    /** left knee pitch temp */
+    PROPERTY(float, LKneePitch) 	
+
+    /** left ankle pitch temp */
+    PROPERTY(float, LAnklePitch)	
+
+    /** left ankle roll temp */
+    PROPERTY(float, LAnkleRoll)	
+
+    /** right knee pitch temp */
+    PROPERTY(float, RKneePitch)	
+
+    /** right ankle pitch temp */
+    PROPERTY(float, RAnklePitch)	
+
+    /** right ankle roll temp */
+    PROPERTY(float, RAnkleRoll)	
  
 };
 

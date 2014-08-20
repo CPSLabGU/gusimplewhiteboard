@@ -17,21 +17,50 @@
  */
 struct wb_sensors_torsotemps
 {
-                PROPERTY(float, HeadYaw)	///< Deg Celsius. 
-                PROPERTY(float, HeadPitch)	///< Deg Celsius.
-                PROPERTY(float, LShoulderPitch)	///< Deg Celsius.
-                PROPERTY(float, LShoulderRoll)	///< Deg Celsius.
-                PROPERTY(float, LElbowYaw)	///< Deg Celsius.
-                PROPERTY(float, LElbowRoll)	///< Deg Celsius.
-                PROPERTY(float, LHipYawPitch)	///< Deg Celsius.
-                PROPERTY(float, LHipRoll)	///< Deg Celsius.
-                PROPERTY(float, LHipPitch)	///< Deg Celsius.
-                PROPERTY(float, RHipRoll)	///< Deg Celsius.
-                PROPERTY(float, RHipPitch)	///< Deg Celsius.
-                PROPERTY(float, RShoulderPitch)	///< Deg Celsius.
-                PROPERTY(float, RShoulderRoll)	///< Deg Celsius.
-                PROPERTY(float, RElbowYaw)	///< Deg Celsius.
-                PROPERTY(float, RElbowRoll)	///< Deg Celsius.
+    /** Deg Celsius.  */
+    PROPERTY(float, HeadYaw)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, HeadPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LShoulderPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LShoulderRoll)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LElbowYaw)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LElbowRoll)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LHipYawPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LHipRoll)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, LHipPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RHipRoll)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RHipPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RShoulderPitch)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RShoulderRoll)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RElbowYaw)	
+
+    /** Deg Celsius. */
+    PROPERTY(float, RElbowRoll)	
 };
 
 #endif //_wb_sensors_torsotemps_h
