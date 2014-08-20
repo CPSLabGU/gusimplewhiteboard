@@ -18,7 +18,8 @@
  */
 struct wb_sensors_leds
 {
-                ARRAY_PROPERTY(u_int8_t, leds, _wb_sensors_leds_h_NUMBER_OF_LEDS) ///< an array of values for the LED intensity, percentage based (0 == Off, 100 == Max)
+		/** an array of values for the LED intensity, percentage based (0 == Off, 100 == Max) */
+                ARRAY_PROPERTY(u_int8_t, leds, _wb_sensors_leds_h_NUMBER_OF_LEDS) 
 };
 
 #endif //_wb_sensors_leds_h
