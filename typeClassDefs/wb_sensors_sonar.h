@@ -14,11 +14,11 @@
 #define _wb_sensors_leds_h_NUMBER_OF_READINGS 30 	//taken from the c++ namespace enum value: Sonar::NUMBER_OF_READINGS
 
 /**
- * Body sensors c struct
+ * Sonar sensors c struct
  */
 struct wb_sensors_sonar
 {
-                ARRAY_PROPERTY(u_int8_t, sonar, _wb_sensors_leds_h_NUMBER_OF_READINGS)
+	ARRAY_PROPERTY(u_int8_t, sonar, _wb_sensors_leds_h_NUMBER_OF_READINGS)	///<storage for the sonar values. Range: 0-255. Unit: cm. Objects less than 20cm from a Nao robot will show as 20cm.
 };
 
 #endif //_wb_sensors_sonar_h

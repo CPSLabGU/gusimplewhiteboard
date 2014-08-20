@@ -12,16 +12,16 @@
 #include <gu_util.h>
 
 /**
- * Body sensors c struct
+ * joint temp c struct
  */
 struct wb_sensors_legtemps
 {
-                PROPERTY(float, LKneePitch)
-                PROPERTY(float, LAnklePitch)
-                PROPERTY(float, LAnkleRoll)
-                PROPERTY(float, RKneePitch)
-                PROPERTY(float, RAnklePitch)
-                PROPERTY(float, RAnkleRoll)
+                PROPERTY(float, LKneePitch) 	///< left knee pitch temp
+                PROPERTY(float, LAnklePitch)	///< left ankle pitch temp
+                PROPERTY(float, LAnkleRoll)	///< left ankle roll temp
+                PROPERTY(float, RKneePitch)	///< right knee pitch temp
+                PROPERTY(float, RAnklePitch)	///< right ankle pitch temp
+                PROPERTY(float, RAnkleRoll)	///< right ankle roll temp
  
 };
 

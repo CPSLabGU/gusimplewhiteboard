@@ -12,20 +12,20 @@
 #include <gu_util.h>
 
 /**
- * Body sensors c struct
+ * Body joint positions c struct
  */
 struct wb_sensors_torso
 {
-                PROPERTY(float, HeadYaw)  //RADIANS
-                PROPERTY(float, HeadPitch) // RADIANS
-                PROPERTY(float, LShoulderPitch)
-                PROPERTY(float, LShoulderRoll)
-                PROPERTY(float, LElbowYaw)
-                PROPERTY(float, LElbowRoll)
-                PROPERTY(float, RShoulderPitch)
-                PROPERTY(float, RShoulderRoll)
-                PROPERTY(float, RElbowYaw)
-                PROPERTY(float, RElbowRoll)
+                PROPERTY(float, HeadYaw)  	///< Head pos in RAD
+                PROPERTY(float, HeadPitch)  	///< Head pos in RAD
+                PROPERTY(float, LShoulderPitch)	///< RAD
+                PROPERTY(float, LShoulderRoll)	///< RAD
+                PROPERTY(float, LElbowYaw)	///< RAD
+                PROPERTY(float, LElbowRoll)	///< RAD
+                PROPERTY(float, RShoulderPitch)	///< RAD
+                PROPERTY(float, RShoulderRoll)	///< RAD
+                PROPERTY(float, RElbowYaw)	///< RAD
+                PROPERTY(float, RElbowRoll)	///< RAD
 };
 
 #endif //_wb_sensors_torso_h
