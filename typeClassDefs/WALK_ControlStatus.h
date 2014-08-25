@@ -49,6 +49,7 @@ namespace guWhiteboard
                 /** copy assignment operator */
                 WALK_ControlStatus &operator=(const WALK_ControlStatus &other) { set_controlStatus(other.controlStatus()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); return *this; }
 
+                /** comparison operator */
 		inline bool operator == (const WALK_ControlStatus &s) 
 		{
     			return (fabs(forward() - s.forward()) < FLT_EPSILON &&
@@ -59,6 +60,7 @@ namespace guWhiteboard
 				odometry() 	== s.odometry());
 		}
 
+                /** inverse comparison operator */
 		inline bool operator != (const WALK_ControlStatus &s) 
 		{
 			return !((*this) == s);
