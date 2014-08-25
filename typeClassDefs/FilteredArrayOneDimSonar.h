@@ -122,7 +122,7 @@ public:
         
     
       	/** property setter 
-	* @param setter object
+	* @param objects setter object
 	*/
         void set_objects(const class FilteredArrayOneDimSonar *objects)
         {

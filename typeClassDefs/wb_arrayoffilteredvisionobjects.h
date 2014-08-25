@@ -28,6 +28,9 @@ enum FilteredVisionObjectType
         FVO_NUM_OBJECTS          ///< number of different kind of objects
 };
 
+/**
+ * c array for filtered vision objects
+ */
 struct wb_arrayoffilteredvisionobjects
 {
     /** the array containing various filtered parts of the goals reported by vision */

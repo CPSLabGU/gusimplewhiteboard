@@ -120,9 +120,9 @@ public:
         return *this;
     }
     
-    
-    
-    /** property setter */
+    /** property setter 
+     * @param objects setter object
+     */
     void set_objects(const class FilteredArrayOneDimObjects *objects)
     {
         memcpy(_objects, objects, sizeof(_objects));
