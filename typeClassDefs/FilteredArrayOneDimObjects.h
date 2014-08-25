@@ -181,7 +181,7 @@ public:
         return ss.str();
     }
     
-    /* build froms tring */
+    /** build from string */
     void from_string(const std::string &str)
     {
         using namespace guWhiteboard;

@@ -121,7 +121,9 @@ public:
         //class FilteredArrayOneDimSonar *objects() { return _objects; }
         
     
-      /** property setter */
+      	/** property setter 
+	* @param setter object
+	*/
         void set_objects(const class FilteredArrayOneDimSonar *objects)
         {
                 memcpy(_objects, objects, sizeof(_objects));
@@ -173,7 +175,7 @@ public:
                 return ss.str();
         }
         
-        /* build froms tring */
+        /** build from string */
         void from_string(const std::string &str)
         {
                 std::istringstream iss(str);
