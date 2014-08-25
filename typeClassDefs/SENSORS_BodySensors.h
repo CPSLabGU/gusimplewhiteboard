@@ -38,7 +38,7 @@ namespace guWhiteboard
                 /** parse class properties from a string - NYI
 		 *  @param str a serialised string containing properties to set in this class
 		 */
-                void from_string(const std::string &/*str*/) { /*NYI, Good luck*/ }
+                void from_string(const std::string &str) { /*NYI, Good luck*/ }
 
                 /** pretty print method for showing the current property values 
 		 *  @return pretty printed string
