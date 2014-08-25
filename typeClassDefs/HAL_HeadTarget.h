@@ -98,11 +98,11 @@ namespace guWhiteboard
 
                 /**
  		* Parser for recreating this class (NYI) 
+		* @param str the string to parse and use to recreate the this object
 		*/
-		//* @param str the string to parse and use to recreate the this object
-                void from_string(const std::string &/*str*/)
+                void from_string(const std::string &str)
                 {
-                       //NYI, Good luck
+			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
                 }
  
                 /**
