@@ -73,8 +73,8 @@ enum FilteredBallObjectType
 
 struct wb_arrayoffilteredballobjects
 {
+	 /** the array containing the two filtered ball objects */
          ARRAY_PROPERTY(struct wb_filteredvisionobject, objects, FVO_NUM_CAMERAS)
-
 };
 
 

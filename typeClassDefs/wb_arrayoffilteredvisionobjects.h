@@ -30,9 +30,8 @@ enum FilteredVisionObjectType
 
 struct wb_arrayoffilteredvisionobjects
 {
-    
+    /** the array containing various filtered parts of the goals reported by vision */
     ARRAY_PROPERTY(struct wb_filteredvisionobject, objects, FVO_NUM_OBJECTS)
-     
 };
 
 

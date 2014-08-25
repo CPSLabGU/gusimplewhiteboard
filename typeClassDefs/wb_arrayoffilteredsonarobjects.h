@@ -74,11 +74,8 @@ enum FilteredSonarObjectType
 
 struct wb_arrayoffilteredsonarobjects
 {
+	/** the array containing the two filtered sonar transmitter value objects */
         ARRAY_PROPERTY(struct wb_filteredsonarobject, objects, FSO_NUM_OBJECTS)
-        
-#ifdef __cplusplus
-        wb_arrayoffilteredsonarobjects() {}
-#endif
 };
 
 
