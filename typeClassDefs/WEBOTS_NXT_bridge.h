@@ -72,10 +72,10 @@
 #include <sstream>
 #include <gu_util.h>
 
-const char OBJECT_SEPARATOR = '|';
-const char SEPARATOR_COMMA = ',';
-const char SEPARATOR_IS_COMMA = ',';
-const char EQUALS = '=';
+#define OBJECT_SEPARATOR '|'
+#define SEPARATOR_COMMA ','
+#define SEPARATOR_IS_COMMA ','
+#define EQUALS '='
 
 namespace guWhiteboard
 {

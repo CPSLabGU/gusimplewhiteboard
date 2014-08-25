@@ -167,11 +167,11 @@ public:
         }
         
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
+#define SEPARATOR_IS_COMMA ','
+#define SEPARATOR_IS_COLON ':'
+#define IS_VISIBLE_ID 'I'
         
-        static const char SEPARATOR_IS_COMMA = ',';
-        static const char SEPARATOR_IS_COLON = ':';
-        
-        static const char IS_VISIBLE_ID = 'I';
         /** string constructor */
         FilteredOneDimObject(const std::string &names) { from_string(names); }
         
