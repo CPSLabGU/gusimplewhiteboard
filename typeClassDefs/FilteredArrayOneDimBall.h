@@ -74,12 +74,11 @@ namespace guWhiteboard {
  */
 class FilteredArrayOneDimBall:  public wb_arrayoffilteredballobjects
 {
-    static const char SEPARATOR_IS_COMMA = ',';
-    static const char SEPARATOR_IS_COLON = ':';
-    static const char TOP_ID = 'T';
-    static const char BOTTM_ID = 'B';
-    
-    static const char IS_VISIBLE_ID = 'I';
+#define SEPARATOR_IS_COMMA ','
+#define SEPARATOR_IS_COLON ':'
+#define IS_VISIBLE_ID 'I'
+#define TOP_ID 'T'
+#define BOTTM_ID 'B'
     
 public:
     /** designated constructor */
