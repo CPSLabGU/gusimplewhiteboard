@@ -65,10 +65,13 @@
  */
 struct wb_point2d
 {
+    /** x coordinate */
     PROPERTY(int16_t, x)
+    /** y coordinate */
     PROPERTY(int16_t, y)
 
 #ifdef __cplusplus
+    /** constructor */
     wb_point2d(int16_t x = 0, int16_t y = 0): _x(x), _y(y) {}
 #endif
 };
@@ -78,11 +81,17 @@ struct wb_point2d
  */
 struct wb_point3d
 {
+    /** x coordinate */
     PROPERTY(int16_t, x)
+
+    /** y coordinate */
     PROPERTY(int16_t, y)
+
+    /** z coordinate */
     PROPERTY(int16_t, z)
 
 #ifdef __cplusplus
+    /** constructor */
     wb_point3d(int16_t x = 0, int16_t y = 0, int16_t z = 0): _x(x), _y(y), _z(z) {}
 #endif
 };
