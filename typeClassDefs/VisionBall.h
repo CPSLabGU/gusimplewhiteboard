@@ -24,7 +24,8 @@ class VisionBall {
 	PROPERTY(wb_ball, bottomBall)
         PROPERTY(bool, topVisible)
         PROPERTY(bool, bottomVisible)
-        PROPERTY(int16_t, pad)                  ///< align to 32 bits
+	/** align to 32 bits */
+        PROPERTY(int16_t, pad)                  
 public:
     VisionBall() : _frameNumber(0), _topBall(), _bottomBall() {
     }
