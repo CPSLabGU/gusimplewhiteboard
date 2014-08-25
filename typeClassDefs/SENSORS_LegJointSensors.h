@@ -46,7 +46,7 @@ namespace guWhiteboard
 		 */
                 void from_string(const std::string &str)
                 {
-                        //NYI, Good luck
+			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
                 }
 
                 /** pretty print method for showing the current property values 
