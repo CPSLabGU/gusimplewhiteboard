@@ -18,11 +18,12 @@
 #ifndef USE_UNSW_ODOMETRY
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
-        float forward;
-        float left;
-        float turn;
+        float forward;		///< forward, unsure of unit type
+        float left;		///< sideways, unsure of unit type
+        float turn;		///< rotation, unsure of unit type, might be RAD
 
 #ifdef __cplusplus
+   /** Comparison operator for Odometry objects */
    inline bool operator== (const Odometry& a) {
       return (	fabs(forward - a.forward) < FLT_EPSILON &&
 		fabs(left - a.left) < FLT_EPSILON &&
@@ -71,6 +72,7 @@ struct wb_walk_controlstatus
         PROPERTY(int16_t, pad2) 				
 
 #ifdef __cplusplus
+   /** Constructor with some default values */
     wb_walk_controlstatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
 #endif
 
