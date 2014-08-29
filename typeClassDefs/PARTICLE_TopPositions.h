@@ -91,8 +91,10 @@ namespace guWhiteboard
          */
         class ParticlePosition: public Point2D
         {
-                PROPERTY(int16_t, headingInDegrees)     ///< heading in degrees
-                PROPERTY(float, confidence)             ///< total confidence
+		/** heading in degrees */
+                PROPERTY(int16_t, headingInDegrees)     
+		/** total confidence */
+                PROPERTY(float, confidence)             
         public:
                 /** designated constructor */
                 ParticlePosition(int16_t x = 0, int16_t y = 0, int16_t degrees = 0, float weight = 0.0): Point2D(x, y), _headingInDegrees(degrees), _confidence(weight) {}
@@ -152,7 +154,8 @@ namespace guWhiteboard
          */
         class TopParticles
         {
-                ARRAY_PROPERTY(ParticlePosition, particles, NUM_TOP_PARTICLES)  ///< top whiteboard particles
+		/** top whiteboard particles */
+                ARRAY_PROPERTY(ParticlePosition, particles, NUM_TOP_PARTICLES)  
         public:
                 /** designated constructor */
                 TopParticles() { memset(_particles, 0, sizeof(_particles));

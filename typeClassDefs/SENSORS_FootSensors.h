@@ -15,13 +15,22 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current values of sensors located in the robots feet (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the value of the top left force sensor on the robots left foot
+	*
+	*     SENSORS_FootSensors s = SENSORS_FootSensors_t.get(); //get from the whiteboard
+	*     float fsr_value = s.LFoot_FSR_FrontLeft(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_FootSensors : public wb_sensors_foot
         {
         public:
-//                SENSORS_FootSensors()
-//                {
-//
-//                }
+
         };
 }
 

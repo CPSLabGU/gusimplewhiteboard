@@ -16,24 +16,55 @@
  */
 struct wb_sensors_foot
 {
-                PROPERTY(float, LFoot_FSR_FrontLeft)
-                PROPERTY(float, LFoot_FSR_FrontRight)
-                PROPERTY(float, LFoot_FSR_RearLeft)
-                PROPERTY(float, LFoot_FSR_RearRight)
-                PROPERTY(float, LFoot_FSR_CenterOfPressure_X)
-                PROPERTY(float, LFoot_FSR_CenterOfPressure_Y)
+    /** front left force sensor on the left foot */
+    PROPERTY(float, LFoot_FSR_FrontLeft)		
+
+    /** front right force sensor on the left foot */
+    PROPERTY(float, LFoot_FSR_FrontRight)		
+
+    /** rear left force sensor on the left foot */
+    PROPERTY(float, LFoot_FSR_RearLeft)		
+
+    /** rear right force sensor on the left foot */
+    PROPERTY(float, LFoot_FSR_RearRight)		
+
+    /** left foot center of pressure X */
+    PROPERTY(float, LFoot_FSR_CenterOfPressure_X)	
+
+    /** left foot center of pressure Y */
+    PROPERTY(float, LFoot_FSR_CenterOfPressure_Y)	
+                		
+
+    /** front left force sensor on the right foot */
+    PROPERTY(float, RFoot_FSR_FrontLeft)		
+
+    /** front right force sensor on the right foot */
+    PROPERTY(float, RFoot_FSR_FrontRight)		
+
+    /** rear left force sensor on the right foot */
+    PROPERTY(float, RFoot_FSR_RearLeft)		
+
+    /** rear right force sensor on the right foot */
+    PROPERTY(float, RFoot_FSR_RearRight)		
+
+    /** right foot center of pressure X  */
+    PROPERTY(float, RFoot_FSR_CenterOfPressure_X)	
+
+    /** right foot center of pressure Y */
+    PROPERTY(float, RFoot_FSR_CenterOfPressure_Y)	
                 
-                PROPERTY(float, RFoot_FSR_FrontLeft)
-                PROPERTY(float, RFoot_FSR_FrontRight)
-                PROPERTY(float, RFoot_FSR_RearLeft)
-                PROPERTY(float, RFoot_FSR_RearRight)
-                PROPERTY(float, RFoot_FSR_CenterOfPressure_X)
-                PROPERTY(float, RFoot_FSR_CenterOfPressure_Y)
-                
-                PROPERTY(bool, LFoot_Bumper_Left)
-                PROPERTY(bool, LFoot_Bumper_Right)
-                PROPERTY(bool, RFoot_Bumper_Left)
-                PROPERTY(bool, RFoot_Bumper_Right)
+
+    /** left bumper on the left foot (on / off) */
+    PROPERTY(bool, LFoot_Bumper_Left)		
+
+    /** right bumper on the left foot (on / off) */
+    PROPERTY(bool, LFoot_Bumper_Right)		
+
+    /** left bumper on the right foot (on / off) */
+    PROPERTY(bool, RFoot_Bumper_Left)		
+
+    /** right bumper on the right foot (on / off) */
+    PROPERTY(bool, RFoot_Bumper_Right)		
 };
 
 #endif //_wb_sensors_foot_h

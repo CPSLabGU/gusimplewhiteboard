@@ -65,6 +65,9 @@
 #include <gu_util.h>
 #include "wb_filteredsonarobject.h"
 
+/**
+ * enum for filtered sonar transmitters
+ */
 enum FilteredSonarObjectType
 {
         FSLeft,
@@ -72,13 +75,13 @@ enum FilteredSonarObjectType
         FSO_NUM_OBJECTS          ///< number of different kind SONAR of objects
 };
 
+/**
+ * c array for filtered sonar transmitter objects
+ */
 struct wb_arrayoffilteredsonarobjects
 {
+	/** the array containing the two filtered sonar transmitter value objects */
         ARRAY_PROPERTY(struct wb_filteredsonarobject, objects, FSO_NUM_OBJECTS)
-        
-#ifdef __cplusplus
-        wb_arrayoffilteredsonarobjects() {}
-#endif
 };
 
 

@@ -14,6 +14,18 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current temperature estimates in the robots legs (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the temperature of the pitch motor in the left knee
+	*
+	*     SENSORS_LegJointTemps s = SENSORS_LegJointTemps_t.get(); //get from the whiteboard
+	*     float knee_temp = s.LKneePitch(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_LegJointTemps : public wb_sensors_legtemps
         {
                

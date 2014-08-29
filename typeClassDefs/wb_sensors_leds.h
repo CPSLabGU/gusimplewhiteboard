@@ -12,15 +12,14 @@
 #include <gu_util.h>
 
 #define _wb_sensors_leds_h_NUMBER_OF_LEDS 77 	//taken from the c++ namespace enum value: LEDs::NUMBER_OF_LEDS
-#define _wb_sensors_leds_h_RightEar10 19 	//taken from the c++ namespace enum value: LEDs::RightEar10
 
 /**
- * Body sensors c struct
+ * LED sensors c struct
  */
 struct wb_sensors_leds
 {
-                ARRAY_PROPERTY(u_int8_t, ears, _wb_sensors_leds_h_RightEar10)
-                ARRAY_PROPERTY(u_int8_t, leds, _wb_sensors_leds_h_NUMBER_OF_LEDS - _wb_sensors_leds_h_RightEar10)
+    /** an array of values for the LED intensity, percentage based (0 == Off, 100 == Max) */
+    ARRAY_PROPERTY(u_int8_t, leds, _wb_sensors_leds_h_NUMBER_OF_LEDS) 
 };
 
 #endif //_wb_sensors_leds_h

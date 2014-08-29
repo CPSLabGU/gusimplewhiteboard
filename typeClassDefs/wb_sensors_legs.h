@@ -12,22 +12,45 @@
 #include <gu_util.h>
 
 /**
- * Body sensors c struct
+ * joint sensors c struct
  */
 struct wb_sensors_legs
 {
-                PROPERTY(float, LKneePitch)
-                PROPERTY(float, LAnklePitch)
-                PROPERTY(float, LAnkleRoll)
-                PROPERTY(float, RKneePitch)
-                PROPERTY(float, RAnklePitch)
-                PROPERTY(float, RAnkleRoll)
-                PROPERTY(float, LHipYawPitch)
-                PROPERTY(float, LHipRoll)
-                PROPERTY(float, LHipPitch)
-                PROPERTY(float, RHipYawPitch)
-                PROPERTY(float, RHipRoll)
-                PROPERTY(float, RHipPitch)
+    /** pitch of the knee joint (left) */
+    PROPERTY(float, LKneePitch) 	
+
+    /** pitch of the ankle joint (left) */
+    PROPERTY(float, LAnklePitch) 	
+
+    /** roll of the ankle joint (left) */
+    PROPERTY(float, LAnkleRoll) 	
+
+    /** pitch of the knee joint (right) */
+    PROPERTY(float, RKneePitch) 	
+
+    /** pitch of the ankle joint (right) */
+    PROPERTY(float, RAnklePitch) 	
+
+    /** roll of the ankle joint (right) */
+    PROPERTY(float, RAnkleRoll) 	
+
+    /** 'yaw/pitch' of the hip. LHipYawPitch and RHipYawPitch are the same on the Nao robots, it is a fused joint with a single motor for control. */
+    PROPERTY(float, LHipYawPitch) 	
+
+    /** roll of the hip (left) */
+    PROPERTY(float, LHipRoll) 	
+
+    /** pitch of the hip (left) */
+    PROPERTY(float, LHipPitch) 	
+
+    /** 'yaw/pitch' of the hip. LHipYawPitch and RHipYawPitch are the same on the Nao robots, it is a fused joint with a single motor for control. */
+    PROPERTY(float, RHipYawPitch) 	
+
+    /** roll of the hip (right) */
+    PROPERTY(float, RHipRoll) 	
+
+    /** pitch of the hip (right) */
+    PROPERTY(float, RHipPitch) 	
 };
 
 #endif //_wb_sensors_legs_h

@@ -17,6 +17,7 @@
 
 namespace guWhiteboard                                                  
 {
+	/** Predefined colour values, feel free to add more, just implement them in changeLedColour */
         enum LEDColour
         {
                 Off = -1,
@@ -27,13 +28,14 @@ namespace guWhiteboard
                 NUMBER_OF_LEDS_COLOURS
         };
         
+	/** Predefined groups of leds that can be changed together, when adding more make sure to implement them in LEDsGroupChange */
         enum LEDGroups
         {
-                AllLEDs = 0,        //Only off is supported regardless of what is passed in
-                Ears,               //Number of leds to turn on is the value
-                LEar,               //All others have the desired colour as the passed value
-                REar,
-                Eyes,
+                AllLEDs = 0,  	///< Only off is supported regardless of what is passed in
+                Ears,         	///< Number of leds to turn on is the value
+                LEar,      	///< Number of leds to turn on is the value 
+                REar,		///< Number of leds to turn on is the value	
+                Eyes,		///< All others have the desired colour as the passed value to LEDsGroupChange
                 LEye,
                 REye,
                 Chest,
@@ -45,6 +47,7 @@ namespace guWhiteboard
         
         namespace LEDs
         {
+		/** LED selection enum */
                 enum LEDCode
                 {
                         LeftEar1 = 0,
@@ -128,6 +131,7 @@ namespace guWhiteboard
                 };
                 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+		/** pretty print and parse string values for each LED in the LED enum */
                 static const char *ledNames[NUMBER_OF_LEDS] =
                 {
                         "LeftEar1",
@@ -210,16 +214,44 @@ namespace guWhiteboard
                 };
 #endif
         }
-        
+
+        /**
+ 	* @brief Class for changing the LEDs on a robot, designed for Nao but is fairly generic
+	*
+	* Examples
+	* --------
+	*
+	* Change a group of LEDs
+	*
+	*     LEDsGroupChange(AllLEDs, Off);    //turn all LEDs off
+	*     LEDsGroupChange(Eyes, Red);       //make the eyes completely red
+	*     LEDsGroupChange(Ears, 5);         //turn half of the ear LEDs on
+	*     
+	* Change a single LED, stateful: on / off
+	*     
+	*     changeLed(LEDs::ChestRed, false);
+	*     
+	* Change a single LED, intensity: 0 == Off, 100 == Max
+	*     
+	*     changeLed(LEDs::ChestRed, 0);
+	*     changeLed(LEDs::ChestGreen, 0);
+	*     changeLed(LEDs::ChestBlue, 100); 	//0 red, 0 green, 100 percent blue == Chest button turns blue
+	*
+ 	*/ 
         class SENSORS_LedsSensors : public wb_sensors_leds
         {
                 
         public:
+		/** Constructor, sets all LED values to off */
                 SENSORS_LedsSensors()
                 {
                         LEDsGroupChange(AllLEDs, Off);
                 }
                 
+		/** @brief Allows changes to be made to a group of LEDs
+		 *  @param target_group The LED group to be changed
+		 *  @param target_colour_or_numOfEars The colour to change to, this is also a counter in the case of the Ears which can only be blue anyway. ie Ears 5 == turn on five ear LEDs, Eyes Red == change the eye colours to red
+		 */
                 void LEDsGroupChange(LEDGroups target_group, LEDColour target_colour_or_numOfEars)
                 {
                         switch (target_group)
@@ -312,8 +344,11 @@ namespace guWhiteboard
                                         break;
                         }
                 }
-                
-        private:
+ 
+		/** @brief Colour mixer for RGB LEDs
+		 *  @param led 0 == Red, 1 == Green, 2 == Blue LEDs
+		 *  @param colour the target colour
+		 */
                 void changeLedColour(LEDs::LEDCode led[3], LEDColour colour)
                 {
                         //led[0] R, led[1] G, led[2] B
@@ -348,20 +383,23 @@ namespace guWhiteboard
                                         break;
                         }
                 }
-                
+  
+		/** @brief Turn on or off an individual LED
+		 *  @param led The LED to change
+		 *  @param state on or off
+		 */               
                 void changeLed(LEDs::LEDCode led, bool state)
                 {
-                        if(led <= LEDs::RightEar10)
-                                _ears[led] = state ? true : false;
-                        else
-                                _leds[led-LEDs::RightEar10] = state ? 100 : 0;
+                 	changeLed(led, state ? static_cast<u_int8_t>(100) : static_cast<u_int8_t>(0));
                 }
-                
+   
+		/** @brief Set the intensity value for an individual LED
+		 *  @param led The LED to change
+		 *  @param level the new intensity value. Range: 0 - 100
+		 */               
                 void changeLed(LEDs::LEDCode led, u_int8_t level) //level == percentage, 100 == MAX
                 {
-                        assert(led > LEDs::RightEar10);
-
-                        _leds[led-LEDs::RightEar10] = level;
+                        _leds[led] = level;
                 }
         };
 }

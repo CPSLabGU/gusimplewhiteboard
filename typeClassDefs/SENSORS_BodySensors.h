@@ -14,14 +14,38 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current values of sensors located in the robots chest (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the state of the Chest Button
+	*
+	*     SENSORS_BodySensors s = SENSORS_BodySensors_t.get(); //get from the whiteboard
+	*     bool button_state = s.ChestBoard_Button(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_BodySensors : public wb_sensors_body
         {
         public:
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+                /** string constructor (see from_string() below) - NYI
+		 *  @param &str a serialised string containing properties to set in this class
+		 */
 		SENSORS_BodySensors(const std::string &str) { from_string(str); }
-                void from_string(const std::string &/*str*/) { /*NYI, Good luck*/ }
 
+                /** parse class properties from a string - NYI
+		 *  @param &str a serialised string containing properties to set in this class
+		 */
+                void from_string(const std::string &str) 
+		{
+			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
+		}
+
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description() const
                 {
                         std::stringstream ss;

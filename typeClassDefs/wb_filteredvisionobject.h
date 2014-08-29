@@ -72,17 +72,28 @@
  */
 struct wb_filteredvisionobject
 {
-        PROPERTY(uint64_t, visibilityHistory)   ///< a 64-bit history of whether vision said visible 1 or not visible 0, visibilityHistory&0X1 is the most recent frame
-        PROPERTY(int32_t, frameCounter)         ///< frame counter
-        PROPERTY(int16_t, distance)             ///< distance to landmark in cm
-        PROPERTY(int16_t, x)                    ///< centre x-coordinate in image
-        PROPERTY(int16_t, y)                    ///< centre y-coordinate in image
-        PROPERTY(int16_t, yaw)                  ///< the Yaw in Degress when the object was last used to generated filtered values
-        PROPERTY(bool, isVisible)               ///< is this a credible sighting
-        PROPERTY(bool, pad1)                    ///< 16 bit padding
-        PROPERTY(int16_t, pad2)                 ///< 32 bit padding
+	/** a 64-bit history of whether vision said visible 1 or not visible 0, visibilityHistory&0X1 is the most recent frame */
+        PROPERTY(uint64_t, visibilityHistory)   
+	/** frame counter */
+        PROPERTY(int32_t, frameCounter)         
+	/** distance to landmark in cm */
+        PROPERTY(int16_t, distance)             
+	/** centre x-coordinate in image */
+        PROPERTY(int16_t, x)                    
+	/** centre y-coordinate in image */
+        PROPERTY(int16_t, y)                    
+	/** the Yaw in Degress when the object was last used to generated filtered values */
+        PROPERTY(int16_t, yaw)                  
+	/** is this a credible sighting */
+        PROPERTY(bool, isVisible)               
+	/** 16 bit padding */
+        PROPERTY(bool, pad1)                    
+	/** 32 bit padding */
+        PROPERTY(int16_t, pad2)                 
 
 #ifdef __cplusplus
+	
+	/** constructor with default values */
         wb_filteredvisionobject(int32_t frameCounter=0,
                                 int16_t distance =0,
                                 int16_t x=0,

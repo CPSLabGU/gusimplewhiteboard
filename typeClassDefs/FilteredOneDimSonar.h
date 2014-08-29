@@ -118,10 +118,9 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                return *this;
              }
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-        static const char SEPARATOR_IS_COMMA = ',';
-        static const char SEPARATOR_IS_COLON = ':';
-        static const char IS_VISIBLE_ID = 'I';
-        
+#define SEPARATOR_IS_COMMA ','
+#define SEPARATOR_IS_COLON ':'
+#define IS_VISIBLE_ID 'I'
         
         /** string constructor */
         FilteredOneDimSonar(const std::string &names) { from_string(names); }
@@ -142,7 +141,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 return ss.str();
         }
         
-        /* build froms tring */
+        /** build from string */
         void from_string(const std::string &str)
         {
                 std::istringstream iss(str);

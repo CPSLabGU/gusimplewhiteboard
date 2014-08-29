@@ -21,6 +21,18 @@
 
 namespace guWhiteboard                                                  
 {
+        /**
+ 	* @brief Contains the current joint angles for the robots upper half (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the pitch angle of the left shoulder in radians
+	*
+	*     SENSORS_TorsoJointSensors s = SENSORS_TorsoJointSensors_t.get(); //get from the whiteboard
+	*     float angle = s.LShoulderPitch(); //pull the variable out of the class
+	*
+ 	*/
         class SENSORS_TorsoJointSensors : public wb_sensors_torso
         {
 
@@ -28,16 +40,20 @@ namespace guWhiteboard
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             
-            static const char SEPARATOR_IS_COMMA = ',';
-            static const char HEAD_YAW_ID = 'Y';
-            static const char HEAD_PITCH_ID = 'P';
+#define SEPARATOR_IS_COMMA ','
+#define HEAD_YAW_ID 'Y'
+#define HEAD_PITCH_ID 'P'
             
-                /// string constructor (see from_string() below)
+                /** string constructor (see from_string() below) 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 SENSORS_TorsoJointSensors(const std::string &str) { from_string(str); }
                 
+                /** parse class properties from a string - Only HEAD YAW and PICH implemented, Good luck 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 void from_string(const std::string &str)
                 {
-                        //Only HEAD YAW and PICH implemented, Good luck
                     std::istringstream iss(str);
                     std::string token;
                     if (getline(iss, token, HEAD_YAW_ID))
@@ -59,6 +75,9 @@ namespace guWhiteboard
                     
                 }
                 
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description() const
                 {
                         std::stringstream ss;

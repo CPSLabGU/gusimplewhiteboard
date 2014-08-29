@@ -70,22 +70,26 @@
  */
 struct wb_filteredsonarobject
 {
-        PROPERTY(int32_t, frameCounter) ///< frame counter in cm
-        PROPERTY(int16_t, distance)     ///< distance to landmark in cm
-        PROPERTY(bool, isVisible)       ///< is this a credible sighting
-        PROPERTY(bool, pad)             ///< align to 16 bits
+	/** frame counter in cm */
+        PROPERTY(int32_t, frameCounter) 
+	/** distance to landmark in cm */
+        PROPERTY(int16_t, distance)     
+	/** is this a credible sighting */
+        PROPERTY(bool, isVisible)       
+	/** align to 16 bits */
+        PROPERTY(bool, pad)             
 
 #ifdef __cplusplus
+	/** constructor with default values */
         wb_filteredsonarobject( bool isVisible = false,
                                int16_t distance =0,
                                int32_t frameCounter =0):
-        
-    
-    
-        _frameCounter(frameCounter),
-            _distance(distance),
-       _isVisible(isVisible)
-         {}
+       		_frameCounter(frameCounter),
+            	_distance(distance),
+       		_isVisible(isVisible)
+         	{
+
+		}
 #endif
 };
 

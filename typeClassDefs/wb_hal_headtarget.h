@@ -21,14 +21,26 @@
  */
 struct wb_hal_headtarget
 {
-        PROPERTY(float, target_pitchAngle) ///< target pitch angle in radians
-        PROPERTY(float, target_yawAngle) ///< target yaw angle in radians
+
+    /** target pitch angle in radians */
+    PROPERTY(float, target_pitchAngle) 
+
+    /** target yaw angle in radians */
+    PROPERTY(float, target_yawAngle) 
             
-        PROPERTY(int, target_movement_time) ///< How long until the head should be at the target angles, stored in micro seconds
-        BIT_PROPERTY(head_stopped) ///< Should the head be stopped (if setting) or is the head stopped (if a status message)
+
+    /** How long until the head should be at the target angles, stored in micro seconds */
+    PROPERTY(int, target_movement_time) 
+
+    /** Should the head be stopped (if setting) or is the head stopped (if a status message) */
+    BIT_PROPERTY(head_stopped) 
                 
-        BIT_PROPERTY(head_cmd_mask) ///< Should the command be processed again by the motion module. When changes are made this bit is set to true. Motion sets this back to false when the command has been processed.
-        unsigned pad: 30; ///< padding
+
+    /** Should the command be processed again by the motion module. When changes are made this bit is set to true. Motion sets this back to false when the command has been processed. */
+    BIT_PROPERTY(head_cmd_mask) 
+
+    /** padding */
+    unsigned pad: 30; 
 
 #ifdef __cplusplus
     /**

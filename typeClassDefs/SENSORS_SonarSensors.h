@@ -50,8 +50,21 @@ namespace guWhiteboard
                         NUMBER_OF_READINGS
                 } ReadingCode;
         }
-//Only every 10 cycles, 100ms        
-        
+ 
+        /**
+ 	* @brief Contains the latest Sonar readings.
+	*
+	* Measured in CM, Range is 0-255, Updated at 10Hz (currently, max of 100Hz). Object nearer than 20cm to a Nao will report a distance of 20cm.
+	*
+	* Examples
+	* --------
+	*
+	* Get the distance in cm to the nearest object on the left
+	*
+	*     SENSORS_SonarSensors s = SENSORS_SonarSensors_t.get(); //get from the whiteboard
+	*     int dist = s.sonar(Sonar::Left0); //pull the variable out of the class
+	*
+ 	*/       
         class SENSORS_SonarSensors : public wb_sensors_sonar
         {
                 
@@ -62,9 +75,14 @@ namespace guWhiteboard
                 }
                 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+                /** string constructor (see from_string() below) 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 SENSORS_SonarSensors(const std::string &str) { from_string(str); }
                 
+                /** parse class properties from a string 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 void from_string(const std::string &str)
                 {
 	                std::istringstream iss(str);
@@ -78,9 +96,9 @@ namespace guWhiteboard
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
 #pragma clang diagnostic ignored "-Wunreachable-code"
                 
-                /**
-                 * return the head and body stiffness as a boolean
-                 */
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description() const
                 {
                         std::stringstream ss;

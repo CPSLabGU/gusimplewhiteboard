@@ -23,7 +23,7 @@ namespace guWhiteboard
 	* Examples
 	* --------
 	*
-	* Put examples of what to do with the class 
+	* Examples of what to do with the class 
 	*
 	*     HAL_HeadTarget().GoToWithTime(0, 0, 1000000); 	//Move to 0 yaw and 0 pitch over 1 second
 	*     HAL_HeadTarget().GoToWithTime(30, 10, 3000000); 	//Move to 30 degrees yaw and 10 degrees pitch over 3 second
@@ -98,11 +98,11 @@ namespace guWhiteboard
 
                 /**
  		* Parser for recreating this class (NYI) 
+		* @param str the string to parse and use to recreate the this object
 		*/
-		//* @param str the string to parse and use to recreate the this object
-                void from_string(const std::string &/*str*/)
+                void from_string(const std::string &str)
                 {
-                       //NYI, Good luck
+			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
                 }
  
                 /**

@@ -81,14 +81,13 @@ namespace guWhiteboard {
  */
 class FilteredArrayOneDimObjects:  public wb_arrayoffilteredvisionobjects
 {
-    static const char SEPARATOR_IS_COMMA = ',';
-    static const char SEPARATOR_IS_COLON = ':';
-    static const char POST_ID = 'P';
-    static const char LEFT_POST_ID = 'L';
-    static const char RIGHT_POST_ID = 'R';
-    static const char CROSS_BAR_ID = 'C';
-    
-    static const char IS_VISIBLE_ID = 'I';
+#define SEPARATOR_IS_COMMA ','
+#define SEPARATOR_IS_COLON ':'
+#define IS_VISIBLE_ID 'I'
+#define POST_ID 'P'
+#define LEFT_POST_ID 'L'
+#define RIGHT_POST_ID 'R'
+#define CROSS_BAR_ID 'C'
     
 public:
     /** designated constructor */
@@ -120,9 +119,9 @@ public:
         return *this;
     }
     
-    
-    
-    /** property setter */
+    /** property setter 
+     * @param objects setter object
+     */
     void set_objects(const class FilteredArrayOneDimObjects *objects)
     {
         memcpy(_objects, objects, sizeof(_objects));
@@ -181,7 +180,7 @@ public:
         return ss.str();
     }
     
-    /* build froms tring */
+    /** build from string */
     void from_string(const std::string &str)
     {
         using namespace guWhiteboard;

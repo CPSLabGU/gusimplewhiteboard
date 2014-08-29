@@ -18,20 +18,40 @@
 
 namespace guWhiteboard
 {
-        class SENSORS_LegJointSensors : public wb_sensors_legs
+        /**
+ 	* @brief Contains the current joint angles for the robots lower half (designed for Nao)
+	*
+	* Examples
+	* --------
+	*
+	* Get the pitch angle of the left knee in radians
+	*
+	*     SENSORS_LegJointSensors s = SENSORS_LegJointSensors_t.get(); //get from the whiteboard
+	*     float knee = s.LKneePitch(); //pull the variable out of the class
+	*
+ 	*/
+         class SENSORS_LegJointSensors : public wb_sensors_legs
         {
 
         public:
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+                /** string constructor (see from_string() below) - NYI
+		 *  @param &str a serialised string containing properties to set in this class
+		 */
                 SENSORS_LegJointSensors(const std::string &str) { from_string(str); }
 
-                void from_string(const std::string &/*str*/)
+                /** parse class properties from a string - NYI 
+		 *  @param &str a serialised string containing properties to set in this class
+		 */
+                void from_string(const std::string &str)
                 {
-                        //NYI, Good luck
+			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
                 }
 
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description() const
                 {
                         std::stringstream ss;
