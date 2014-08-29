@@ -350,11 +350,16 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          * Other classes in this library refer to this class when constructing/interpreting messages.
          */
         class WEBOTS_NXT_bridge {
-                PROPERTY(int16_t, theRobotID)   ///< Which robot are we talking to
-                PROPERTY(DifferentialInstructions, theInstruction) ///  The command (when it is not data)
-                PROPERTY(int16_t, firstParameter) ///  the first parameter
-                PROPERTY(int16_t, secondParameter) ///  the first parameter
-                PROPERTY(bool, isSensorData) ///  IT is data about a sensor
+		/** Which robot are we talking to */
+                PROPERTY(int16_t, theRobotID)   
+		/**  The command (when it is not data) */
+                PROPERTY(DifferentialInstructions, theInstruction) 
+		/**  the first parameter */
+                PROPERTY(int16_t, firstParameter) 
+		/**  the first parameter */
+                PROPERTY(int16_t, secondParameter) 
+		/**  IT is data about a sensor */
+                PROPERTY(bool, isSensorData) 
 
                 public:
 
