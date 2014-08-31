@@ -351,15 +351,15 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          */
         class WEBOTS_NXT_bridge {
 		/** Which robot are we talking to */
-                PROPERTY(int16_t, theRobotID)   
+                PROPERTY(int16_t, theRobotID)
 		/**  The command (when it is not data) */
-                PROPERTY(DifferentialInstructions, theInstruction) 
+                PROPERTY(DifferentialInstructions, theInstruction)
 		/**  the first parameter */
-                PROPERTY(int16_t, firstParameter) 
+                PROPERTY(int16_t, firstParameter)
 		/**  the first parameter */
-                PROPERTY(int16_t, secondParameter) 
+                PROPERTY(int16_t, secondParameter)
 		/**  IT is data about a sensor */
-                PROPERTY(bool, isSensorData) 
+                PROPERTY(bool, isSensorData)
 
                 public:
 
@@ -823,9 +823,18 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          * This class reports the status of the Walk is running behaviour.
          */
         class WEBOTS_NXT_walk_isRunning {
-                PROPERTY(int16_t, robotID) //  ID of the robot
-                PROPERTY(bool, runningFlag) //  The motion module is still executing a move
-                PROPERTY(bool, successLastMove) //  In the last move cmmand there were activ emotors for some time
+                /**
+                *  ID of the robot
+                */
+                PROPERTY(int16_t, robotID)
+                /**
+                *  The motion module is still executing a move
+                */
+                PROPERTY(bool, runningFlag)
+                /**
+                *   In the last move cmmand there were activ emotors for some time
+                */
+                PROPERTY(bool, successLastMove)
 
                 /** designated constructor */
                 WEBOTS_NXT_walk_isRunning(int16_t robotID =0 , bool runningFlag = false, bool successLastMove=false ): _robotID(robotID),  _runningFlag(runningFlag), _successLastMove(successLastMove) { /* better than set_x(x); set_y(y) */ }
@@ -848,6 +857,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                         return ss.str();
 	        }
 
+                /** convert from a string */
                 void from_string(const std::string &str) {
                         std::istringstream iss(str);
                         std::string token;
@@ -870,14 +880,22 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
          * This class reports the status of the Dead Reakoning Walk behaviour.
          */
         class WEBOTS_NXT_deadReakoning_walk {
-                PROPERTY(int16_t, robotID) ///<  ID of the robot
-                PROPERTY(int16_t, power) ///<  power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
-                /// the robot does a spin and then a straight walk with ony odometry input
-                ///  spin of the robot, motors in oposite directions in degrees
-                ///  THETA positive is clockwise, negative is counter clockwise
+                /**
+                *  ID of the robot
+                */
+                PROPERTY(int16_t, robotID)
+                /**
+                *   Power of the motore as a %, 100 is full power, in reverse is negative, regulates speed
+                */
+                PROPERTY(int16_t, power)
+                /** the robot does a spin and then a straight walk with ony odometry input
+                *   spin of the robot, motors in oposite directions in degrees
+                *   THETA positive is clockwise, negative is counter clockwise
+                */
                 PROPERTY(int16_t, spin)
-                ///  forward move of the robot, motors in same direction, in cm in Webots worlds
-                ///   X positive is forwards, X negative is backwards
+                /** forward move of the robot, motors in same direction, in cm in Webots worlds
+                *   X positive is forwards, X negative is backwards
+                */
                 PROPERTY(int16_t, forward)
 
                 /** designated constructor */
@@ -902,6 +920,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                         return ss.str();
 	        }
 
+                 /** convert from a string */
                 void from_string(const std::string &str) {
                         std::istringstream iss(str);
                         std::string token;
@@ -990,7 +1009,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	        }
 
                 /** convert from a string */
-               void from_string(const std::string &str) {
+                void from_string(const std::string &str) {
                         std::istringstream iss(str);
                         std::string token;
                         for (int object = LEFT_TOUCH_SENSOR; object < NXT_NUM_SENSORS_IN_BUMBER; object++) {
@@ -1009,7 +1028,14 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
         class WEBOTS_NXT_encoders {
 		private:
 
-                PROPERTY(int16_t, maxSpeed) ///  PI*maxSpped radinas per second
+                /**
+                *  PI*maxSpped radinas per second
+                */
+                PROPERTY(int16_t, maxSpeed)
+
+                /**
+                *  WEBOTS_NXT_bridge based array that passes encoder data
+                */
                 class WEBOTS_NXT_bridge _encoders[NXT_MOTOR3];
 
 		public :
@@ -1089,8 +1115,15 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
         class WEBOTS_NXT_camera {
 		private:
 
-                PROPERTY(int16_t, width) ///  PI*maxSpped radinas per second
-                class WEBOTS_NXT_bridge _channels[GREY_CHANNEL+1];
+                /**
+                *   PI*maxSpped radinas per second
+                */
+                PROPERTY(int16_t, width)
+
+                 /**
+                *  WEBOTS_NXT_bridge based array that passes camera data per channed
+                */
+               class WEBOTS_NXT_bridge _channels[GREY_CHANNEL+1];
 
 		public :
 
@@ -1186,9 +1219,18 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 	 *  This class of messages are for the motion module for the miPal demo grid world
 	 */
         class WEBOTS_NXT_gridMotions {
-                PROPERTY(int16_t, theRobotID) /// Which robot are we talking to
-                PROPERTY(GridStep, theInstruction) ///  The command on the grid
-                PROPERTY(int16_t, howMany) ///  how many of these in sequence before we do another
+                /**
+                *   Which robot are we talking to
+                */
+                PROPERTY(int16_t, theRobotID)
+                /**
+                *   The command on the grid
+                */
+                PROPERTY(GridStep, theInstruction)
+                /**
+                *   How many of these in sequence before we do another
+                */
+                PROPERTY(int16_t, howMany)
 
                 public:
 
