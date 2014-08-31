@@ -37,12 +37,12 @@ namespace guWhiteboard
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor (see from_string() below) - NYI
-		 *  @param &str a serialised string containing properties to set in this class
+		 *  @param[in] str a serialised string containing properties to set in this class
 		 */
                 SENSORS_LegJointSensors(const std::string &str) { from_string(str); }
 
                 /** parse class properties from a string - NYI 
-		 *  @param &str a serialised string containing properties to set in this class
+		 *  @param[in] str a serialised string containing properties to set in this class
 		 */
                 void from_string(const std::string &str)
                 {
