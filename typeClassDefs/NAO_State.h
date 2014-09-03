@@ -20,6 +20,7 @@
 namespace guWhiteboard                                                  
 {
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+	/* strings for pretty printing and parsing the various known positions of the robot. This is updated by the position machines and should be removed once the varified stance part of the motion module is working. */
         static const char *Robot_Stance_stringValues[NUM_OF_STANCES] =
         {
                 "Standing",
@@ -32,6 +33,7 @@ namespace guWhiteboard
                 "Knitting"      //NYI to be implemented by Rene
         };
 
+	/* String values for printing which type of walk engine is currently running */
         static const char *Robot_Walk_stringValues[NUM_OF_WALKS] =
         {
                 "Modded_UNSW_Walk",
@@ -39,18 +41,25 @@ namespace guWhiteboard
         };
 #endif
 
-        class NAO_State : public wb_nao_state //NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously
+	/* This class is for the robot to report its current state. It is updated by various machines NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously */
+        class NAO_State : public wb_nao_state
         {
         public:
+		/* Constructor, calls the data structs default constructor, which sets some default values. */
                 NAO_State(): wb_nao_state() {}
 
+		/* Convenience method for checking the Fallen values */
                 bool fallen() const { return stance() == FallenForward || stance() == FallenBack || stance() == FallenLeft || stance() == FallenRight; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /** string constructor */
+                /** string constructor (see from_string() below)
+		 *  @param[in] str a serialised string containing properties to set in this class
+		 */
                 NAO_State(const std::string &command): wb_nao_state() { from_string(command); }
 
-                /** convert to a string */
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description()
                 {
                         std::stringstream ss;
@@ -60,7 +69,9 @@ namespace guWhiteboard
                         return ss.str();
                 }
 
-                /** convert from a string */
+                /** parse class properties from a string
+		 *  @param[in] str a serialised string containing properties to set in this class
+		 */
                 void from_string(const std::string &str)
                 {
                         std::istringstream iss(str);
