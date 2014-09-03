@@ -41,7 +41,20 @@ namespace guWhiteboard
         };
 #endif
 
-	/** This class is for the robot to report its current state. It is updated by various machines NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously */
+        /**
+ 	* @brief This class is for the robot to report its current state. It is updated by various machines 
+	*
+	* NOTE: Read, Change, Write operations in state machines will not result in a race condition here. clfsm evaluates and runs states synchronously 
+	*
+	* Examples
+	* --------
+	*
+	* Get the 'sticky' state of the Chest Button (worked out and updated by the SMButtonChest fsm)
+	*
+	*     NAO_State s = NAO_State_t.get(); //get from the whiteboard
+	*     bool button_state = s.chest_pressed_long(); //pull the variable out of the class
+	*
+ 	*/
         class NAO_State : public wb_nao_state
         {
         public:
