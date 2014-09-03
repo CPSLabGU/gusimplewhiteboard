@@ -11,7 +11,7 @@
 
 #include <gu_util.h>
 
-/* various known positions of the robot. This is updated by the position machines and should be removed once the varified stance part of the motion module is working. */
+/** various known positions of the robot. This is updated by the position machines and should be removed once the varified stance part of the motion module is working. */
 enum Robot_Stance {
         Standing = 0,
         FallenForward,
@@ -24,7 +24,7 @@ enum Robot_Stance {
         NUM_OF_STANCES
 };
 
-/* which type of walk engine is currently running */
+/** which type of walk engine is currently running */
 enum Robot_Walk{
         Modded_UNSW_Walk = 0,
         ALMotion_Walk,
