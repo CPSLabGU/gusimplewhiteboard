@@ -75,9 +75,14 @@ namespace guWhiteboard
                 }
                 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-                /// string constructor (see from_string() below)
+                /** string constructor (see from_string() below) 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 SENSORS_SonarSensors(const std::string &str) { from_string(str); }
                 
+                /** parse class properties from a string 
+		 *  @param str a serialised string containing properties to set in this class
+		 */
                 void from_string(const std::string &str)
                 {
 	                std::istringstream iss(str);
@@ -91,9 +96,9 @@ namespace guWhiteboard
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
 #pragma clang diagnostic ignored "-Wunreachable-code"
                 
-                /**
-                 * return the head and body stiffness as a boolean
-                 */
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
                 std::string description() const
                 {
                         std::stringstream ss;

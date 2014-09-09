@@ -150,7 +150,9 @@ namespace guWhiteboard
          */
         class FSMNames
         {
-            PROPERTY(uint16_t, startoffs)       ///< start offset
+	    /** start offset */
+            PROPERTY(uint16_t, startoffs)       
+	    /** names array */
             char _names[sizeof(gsw_simple_message)-sizeof(uint16_t)];
         public:
             /** designated constructor */

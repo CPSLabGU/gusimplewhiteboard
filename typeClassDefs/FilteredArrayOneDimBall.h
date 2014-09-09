@@ -74,12 +74,11 @@ namespace guWhiteboard {
  */
 class FilteredArrayOneDimBall:  public wb_arrayoffilteredballobjects
 {
-    static const char SEPARATOR_IS_COMMA = ',';
-    static const char SEPARATOR_IS_COLON = ':';
-    static const char TOP_ID = 'T';
-    static const char BOTTM_ID = 'B';
-    
-    static const char IS_VISIBLE_ID = 'I';
+#define SEPARATOR_IS_COMMA ','
+#define SEPARATOR_IS_COLON ':'
+#define IS_VISIBLE_ID 'I'
+#define TOP_ID 'T'
+#define BOTTM_ID 'B'
     
 public:
     /** designated constructor */
@@ -115,7 +114,9 @@ public:
     //class FilteredArrayOneDimSonar *objects() { return _objects; }
     
     
-    /** property setter */
+    /** property setter 
+     * @param objects setter object
+     */
     void set_objects(const class FilteredArrayOneDimBall *objects)
     {
         memcpy(_objects, objects, sizeof(_objects));
@@ -164,7 +165,7 @@ public:
         return ss.str();
     }
     
-    /* build froms tring */
+    /** build from string */
     void from_string(const std::string &str)
     {
         std::istringstream iss(str);
