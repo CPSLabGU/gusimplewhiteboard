@@ -604,6 +604,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !VisionLines_DEFINED
 
+		case kDifferentialRobotStatus_v:
+#ifdef DifferentialRobotStatus_DEFINED
+		{
+/** WB Ptr Class: DifferentialRobotStatus @brief Nil */ 
+			class DifferentialRobotStatus_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !DifferentialRobotStatus_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

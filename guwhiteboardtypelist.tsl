@@ -51,3 +51,5 @@ int, nonatomic, UDPWBNumber, "UDPWBNumber", "ID number being used to broadcast u
 class:WEBOTS_NXT_bumper, nonatomic, WEBOTS_NXT_bumper,                           "WEBOTS_NXT_bumper", Class that contains data from 2 rouch sensors in an NXT bumper by the bridge
 class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge,                           "WEBOTS_NXT_vector_bridge", Class that will define actuators for the Diferential motor bridge
 class:VisionLines, nonatomic, VisionLines,                        "VisionLines", Class that reports the lines that vision sees.
+class:DifferentialRobotStatus, nonatomic, DifferentialRobotStatus,                     "DifferentialRobotStatus", Class that reads differential robot status
+
