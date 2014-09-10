@@ -1,3 +1,6 @@
+#ifndef DifferentialRobotControlStatus_DEFINED
+#define	DifferentialRobotControlStatus_DEFINED
+
 #include <cstdlib>
 #include <stdlib.h>
 #include <cstring>
@@ -11,7 +14,7 @@ namespace guWhiteboard {
 			DifferentialRobotControlStatus(): wb_differential_robot() {}
 			
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-			DifferentialRobotControl(const std::string &name) { 
+			DifferentialRobotControlStatus(const std::string &name) { 
 			    from_string(name);
             }
 			
@@ -20,7 +23,7 @@ namespace guWhiteboard {
                 ostringstream ss;
                 const wb_motor &l = left_motor();
                 const wb_motor &r = right_motor();
-                ss << l.speed() << "," << r.speed() << ", " << l.odo() << "," << r.odo() << ", " << l.accel() << "," << r.accel();
+                ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) << "," << static_cast<unsigned>(r.accel());
                 return ss.str();
 			}
 
@@ -30,18 +33,19 @@ namespace guWhiteboard {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
                 if (elements.size() == 0) return;
-                l.set_speed(atoi(elements[0].c_str()));
+                l.set_speed(static_cast<int8_t>(atoi(elements[0].c_str())));
                 if (elements.size() < 2) return;
-                r.set_speed(atoi(elements[1].c_str()));
+                r.set_speed(static_cast<int8_t>(atoi(elements[1].c_str())));
                 if (elements.size() < 3) return;
-                l.set_odo(atoi(elements[2].c_str()));
+                l.set_dist(static_cast<uint16_t>(atoi(elements[2].c_str())));
                 if (elements.size() < 4) return;
-                r.set_odo(atoi(elements[3].c_str()));
+                r.set_dist(static_cast<uint16_t>(atoi(elements[3].c_str())));
                 if (elements.size() < 5) return;
-                l.set_accel(atoi(elements[4].c_str()));
+                l.set_accel(static_cast<uint8_t>(atoi(elements[4].c_str())));
                 if (elements.size() < 6) return;
-                r.set_accel(atoi(elements[5].c_str()));
+                r.set_accel(static_cast<uint8_t>(atoi(elements[5].c_str())));
 			}
 #endif            
 	};
 }
+#endif //DifferentialRobotControlStatus_DEFINED
