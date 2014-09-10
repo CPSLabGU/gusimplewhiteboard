@@ -605,7 +605,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #endif // !VisionLines_DEFINED
 
 		case kDifferentialRobotStatus_v:
-#ifdef DifferentialRobotStatus_DEFINED
+#ifdef DifferentialRobotControlStatus_DEFINED
 		{
 /** WB Ptr Class: DifferentialRobotStatus @brief Nil */ 
 			class DifferentialRobotStatus_t m;
@@ -614,7 +614,19 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #else
 			return "##unsupported##";
 
-#endif // !DifferentialRobotStatus_DEFINED
+#endif // !DifferentialRobotControlStatus_DEFINED
+
+		case kDifferentialRobotControl_v:
+#ifdef DifferentialRobotControlStatus_DEFINED
+		{
+/** WB Ptr Class: DifferentialRobotControl @brief Nil */ 
+			class DifferentialRobotControl_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !DifferentialRobotControlStatus_DEFINED
 
 	}
 #pragma clang diagnostic push
