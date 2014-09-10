@@ -628,6 +628,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !DifferentialRobotControlStatus_DEFINED
 
+		case kXEyesPos_v:
+		{
+/** WB Ptr Class: XEyesPos @brief Nil */ 
+			class XEyesPos_t m;
+			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

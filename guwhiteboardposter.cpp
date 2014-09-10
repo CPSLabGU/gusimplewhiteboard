@@ -658,6 +658,14 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !DifferentialRobotControlStatus_DEFINED
 
+		case kXEyesPos_v:
+		{
+/** WB Ptr Class: XEyesPos @brief Nil */ 
+			class XEyesPos_t XEyesPos_msg(strtointvec(message_content));
+			(void)XEyesPos_msg;
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -669,7 +677,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(55);
+	// self.reserve(56);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -726,5 +734,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["VisionLines"] = kVisionLines_v;
 	self["DifferentialRobotStatus"] = kDifferentialRobotStatus_v;
 	self["DifferentialRobotControl"] = kDifferentialRobotControl_v;
+	self["XEyesPos"] = kXEyesPos_v;
 }
 
