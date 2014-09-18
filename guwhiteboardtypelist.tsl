@@ -54,3 +54,4 @@ class:VisionLines, nonatomic, VisionLines,                        "VisionLines",
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus,                     "DifferentialRobotStatus", Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl,                    "DifferentialRobotControl", Class that sends commands to the robot from the whiteboard
 std::vector<int>,    atomic, XEyesPos,                                    "XEyesPos",          Just a hook for an xeyes interface
+std::vector<int>,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
