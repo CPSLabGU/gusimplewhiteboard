@@ -9,7 +9,7 @@ struct wb_motor {
 	PROPERTY(uint8_t, accel) //Acceleration setting 0 to 255 in cm/s
 	PROPERTY(uint16_t, dist) //Odometer used for storing distance travelled
 #ifdef __cplusplus
-	wb_motor() : _speed(0), _accel(127), _dist(0) {}
+	wb_motor() : _speed(100), _accel(127), _dist(0) {}
 #endif
 };
 
