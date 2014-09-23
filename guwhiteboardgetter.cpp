@@ -640,6 +640,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class VisionFace_t m;
 			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
 		}
+		case kDraw_v:
+		{
+/** WB Ptr Class: Draw @brief Nil */ 
+			class Draw_t m;
+			return msg ? m.get_from(msg) : m.get();
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
