@@ -59,10 +59,6 @@
 #include "gugenericwhiteboardobject.h"
 #include "guwhiteboardwatcher.h"
 
-#define _FROM_WHITEBOARD_CC_ // shut up warning
-#include "Whiteboard.h"
-#undef _FROM_WHITEBOARD_CC_
-
 #define WHITEBOARD_POSTER_STRING_CONVERSION
 #include "guwhiteboardposter.h"
 
@@ -75,7 +71,6 @@
 
 /** Test class */
 @interface SimpleWhiteboardTest: XCTestCase
-@property (nonatomic, assign) guWhiteboard::Whiteboard *whiteboard; ///< OLD wb class pointer
 @property (nonatomic, assign) int callbackCount;	///< counter used for testing callbacks
 @property (nonatomic, assign) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
 @property (nonatomic, assign) NSString *stringValue;	///< not sure, some string for test

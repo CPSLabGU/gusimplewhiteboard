@@ -79,7 +79,7 @@ public:
 	 */
         WBSubscriber(SimpleWhiteboardTest *t): self(t)
         {
-                watcher = new whiteboard_watcher(self.whiteboard->_wbd);
+                watcher = new whiteboard_watcher();
                 watcher->subscribe(WB_TYPE_BIND(kPrint_v, WBSubscriber::sub));
                 usleep(50000); //gives the monitor thread in the whiteboard a chance to get started.
         }
@@ -107,7 +107,7 @@ public:
 };
 
 @implementation SimpleWhiteboardTest
-@synthesize whiteboard, callbackCount, semaphore, stringValue=_stringValue;
+@synthesize callbackCount, semaphore, stringValue=_stringValue;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -122,7 +122,6 @@ public:
 
         self.callbackCount = 0;
         self.semaphore = dispatch_semaphore_create(0);
-        self.whiteboard = new Whiteboard();
         
         
         //generic wb object testing
@@ -149,31 +148,12 @@ public:
  */
 - (void) tearDown
 {
-        if (self.whiteboard)  delete static_cast<Whiteboard *>(self.whiteboard);
         if (self.semaphore) dispatch_release(self.semaphore);
 
-        self.whiteboard = NULL;
         self.semaphore = NULL;
 
         [super tearDown];
 }
-
-/**
- * Test function for OLD whiteboard setter and getter
- */
-- (void) testOldPutGet
-{
-        self.whiteboard->addMessage("test", WBMsg("testval"));
-        WBMsg msg = self.whiteboard->getMessage("test");
-        XCTAssertEqual(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        XCTAssertTrue(msg.getStringValue() == "testval", @"Message contains '%s', but expected 'testval'", msg.getStringValue().c_str());
-
-        self.whiteboard->addMessage("test", WBMsg("testval2"));
-        msg = self.whiteboard->getMessage("test");
-        XCTAssertEqual(msg.getType(), WBMsg::TypeString, @"Message of type %d, but expected String", msg.getType());
-        XCTAssertTrue(msg.getStringValue() == "testval2", @"Message contains '%s', but expected 'testval2'", msg.getStringValue().c_str());
-}
-
 
 /**
  * String Test function for 'simple' whiteboard setter and getter
