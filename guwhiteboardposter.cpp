@@ -674,6 +674,13 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kDraw_v:
+		{
+/** WB Ptr Class: Draw @brief Nil */ 
+			class Draw_t Draw_msg;
+			Draw_msg.post(std::string(message_content));
+			return true;
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -685,7 +692,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(57);
+	// self.reserve(58);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -744,5 +751,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["DifferentialRobotControl"] = kDifferentialRobotControl_v;
 	self["XEyesPos"] = kXEyesPos_v;
 	self["VisionFace"] = kVisionFace_v;
+	self["Draw"] = kDraw_v;
 }
 
