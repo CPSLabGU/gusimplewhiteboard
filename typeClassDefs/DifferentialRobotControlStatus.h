@@ -81,6 +81,52 @@ namespace guWhiteboard {
                 l.set_dist (static_cast<uint16_t> (10000));
                 r.set_dist (static_cast<uint16_t> (10000));
             }           
+            
+            void turn_left (int8_t speed) {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+
+                if (speed > 100) speed = 100;
+                if (speed < 0) speed = 0;
+
+                int a = (speed * 127) / 100;
+                
+                l.set_speed (static_cast<int8_t> (-a));
+                r.set_speed (static_cast<int8_t> (a));
+                l.set_accel (static_cast<uint8_t> (a));
+                r.set_accel (static_cast<uint8_t> (a));
+                l.set_dist (static_cast<uint16_t> (1000000));
+                r.set_dist (static_cast<uint16_t> (1000000));
+            }           
+            
+            void turn_right (int8_t speed) {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+
+                if (speed > 100) speed = 100;
+                if (speed < 0) speed = 0;
+
+                int a = (speed * 127) / 100;
+                
+                l.set_speed (static_cast<int8_t> (a));
+                r.set_speed (static_cast<int8_t> (-a));
+                l.set_accel (static_cast<uint8_t> (a));
+                r.set_accel (static_cast<uint8_t> (a));
+                l.set_dist (static_cast<uint16_t> (1000000));
+                r.set_dist (static_cast<uint16_t> (1000000));
+            }           
+    
+            void stop () {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+
+                l.set_speed (static_cast<int8_t> (0));
+                r.set_speed (static_cast<int8_t> (0));
+                l.set_accel (static_cast<uint8_t> (0));
+                r.set_accel (static_cast<uint8_t> (0));
+                l.set_dist (static_cast<uint16_t> (0));
+                r.set_dist (static_cast<uint16_t> (0));
+            }           
 	};
 }
 #endif //DifferentialRobotControlStatus_DEFINED
