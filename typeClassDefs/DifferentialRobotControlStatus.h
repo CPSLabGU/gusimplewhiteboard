@@ -51,7 +51,7 @@ namespace guWhiteboard {
             void move_forward (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
-
+                
                 if (speed > 100) speed = 100;
                 if (speed < 0) speed = 0;
 
