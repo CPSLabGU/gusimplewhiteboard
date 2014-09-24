@@ -23,7 +23,9 @@ namespace guWhiteboard {
                 ostringstream ss;
                 const wb_motor &l = left_motor();
                 const wb_motor &r = right_motor();
-                ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) << "," << static_cast<unsigned>(r.accel());
+                ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) \
+                << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) \
+                << "," << static_cast<unsigned>(r.accel());
                 return ss.str();
 			}
 
@@ -45,7 +47,40 @@ namespace guWhiteboard {
                 if (elements.size() < 6) return;
                 r.set_accel(static_cast<uint8_t>(atoi(elements[5].c_str())));
 			}
-#endif            
+#endif
+            void move_forward (int8_t speed) {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+
+                if (speed > 100) speed = 100;
+                if (speed < 0) speed = 0;
+
+                int a = (speed * 127) / 100;
+                
+                l.set_speed (static_cast<int8_t> (a));
+                r.set_speed (static_cast<int8_t> (a));
+                l.set_accel (static_cast<uint8_t> (a));
+                r.set_accel (static_cast<uint8_t> (a));
+                l.set_dist (static_cast<uint16_t> (10000));
+                r.set_dist (static_cast<uint16_t> (10000));
+            }
+
+            void move_backward (int8_t speed) {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+
+                if (speed > 100) speed = 100;
+                if (speed < 0) speed = 0;
+
+                int a = (speed * 127) / 100;
+                
+                l.set_speed (static_cast<int8_t> (-a));
+                r.set_speed (static_cast<int8_t> (-a));
+                l.set_accel (static_cast<uint8_t> (a));
+                r.set_accel (static_cast<uint8_t> (a));
+                l.set_dist (static_cast<uint16_t> (10000));
+                r.set_dist (static_cast<uint16_t> (10000));
+            }           
 	};
 }
 #endif //DifferentialRobotControlStatus_DEFINED
