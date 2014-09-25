@@ -89,7 +89,7 @@
 #include "VisionBall.h"
 #include "VisionGoals.h"
 #include "WalkData.h"
-#include "DifferentialRobotControlStatus.h"
+//#include "DifferentialRobotControlStatus.h"   // needs to be committed first!
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
