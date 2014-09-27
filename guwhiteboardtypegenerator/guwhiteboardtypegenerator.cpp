@@ -14,6 +14,8 @@
 #include <fstream>
 #include <sstream>
 #include <time.h>
+// // for getopt
+#include <unistd.h>
 
 //#define DDEBUG
 
@@ -164,44 +166,92 @@ namespace ParseTarget { enum kind {
         NUM_OF_TARGETS
 }; }
 
-int main()
+/************* let the files be gobals so easy to set up */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+	static ifstream tsl_file;
+        static ofstream output_file;
+        static ofstream output_tcp_file;
+        static ofstream output_c_file;
+        static ofstream output_string_array_c_file;
+        static ofstream output_functor_templates;
+        static ofstream output_generic_poster;
+        static ofstream output_generic_getter;
+#pragma clang diagnostic pop
+
+bool opening_files(string aPath);
+
+bool opening_files(string aPath)
 {
-	ifstream tsl_file;
-        ofstream output_file;
-        ofstream output_tcp_file;
-        ofstream output_c_file;
-        ofstream output_string_array_c_file;
-        ofstream output_functor_templates;
-        ofstream output_generic_poster;
-        ofstream output_generic_getter;
-	
-        tsl_file.open ("../guwhiteboardtypelist.tsl");
-        output_file.open ("../guwhiteboardtypelist_generated.h");
-        output_tcp_file.open ("../guwhiteboardtypelist_tcp_generated.h");
-        output_c_file.open ("../guwhiteboardtypelist_c_generated.h");
-        output_string_array_c_file.open ("../guwhiteboardtypelist_c_typestrings_generated.c");
-        output_functor_templates.open ("../WBFunctor_types_generated.h");
-        output_generic_poster.open ("../guwhiteboardposter.cpp");
-        output_generic_getter.open ("../guwhiteboardgetter.cpp");
+	string tsl_file_name=aPath+string("guwhiteboardtypelist.tsl");
+	string output_file_name=aPath+string("guwhiteboardtypelist_generated.h");
+	string output_tcp_file_name=aPath+string("guwhiteboardtypelist_tcp_generated.h");
+
+	string output_c_file_name=aPath+string("guwhiteboardtypelist_c_generated.h");
+	string output_string_array_c_file_name=aPath+string("guwhiteboardtypelist_c_typestrings_generated.c");
+	string output_functor_templates_name=aPath+string("WBFunctor_types_generated.h");
+	string  output_generic_poster_name=aPath+string("guwhiteboardposter.cpp");
+	string output_generic_getter_name=aPath+string("guwhiteboardgetter.cpp");
+
+	tsl_file.open(tsl_file_name.c_str());
+	output_file.open(output_file_name.c_str());
+	output_tcp_file.open(output_tcp_file_name.c_str());
+
+	output_c_file.open(output_c_file_name.c_str());
+	output_string_array_c_file.open(output_string_array_c_file_name.c_str());
+	output_functor_templates.open(output_functor_templates_name.c_str());
+	output_generic_poster.open(output_generic_poster_name.c_str());
+	output_generic_getter.open(output_generic_getter_name.c_str());
 
         if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
-        {
-                //just incase someone runs it from inside the build directory
-                tsl_file.open ("../../guwhiteboardtypelist.tsl");
-                output_file.open ("../../guwhiteboardtypelist_generated.h");
-                output_tcp_file.open ("../../guwhiteboardtypelist_tcp_generated.h");
-		output_c_file.open ("../../guwhiteboardtypelist_c_generated.h");
-                output_string_array_c_file.open ("../../guwhiteboardtypelist_c_typestrings_generated.c");
-                output_functor_templates.open ("../../WBFunctor_types_generated.h");
-                output_generic_poster.open ("../../guwhiteboardposter.cpp");
-                output_generic_getter.open ("../../guwhiteboardgetter.cpp");
-
-                if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
                 {
                         perror("could not open one of the files");
-                        return EXIT_FAILURE;
+                        return false;
                 }
-        }
+	return true;
+}
+
+static __attribute__((__noreturn__)) void usage(const char *cmd)
+{
+	                cerr << "Usage: " << cmd << " [-P  path ]" << endl;
+			                        exit(EXIT_FAILURE);
+}
+
+int main(int argc, char *argv[]) {
+
+	string thePath=string("../");
+	string userPath=string("");
+
+	       int ch;
+	              while ((ch = getopt(argc, argv, "P:")) != -1) 
+		      { switch (ch) { case 'P':       // Path 
+					    cerr << optarg << endl; 
+					    userPath=optarg;
+					    break; 
+					 case '?': 
+					 default: usage(argv[0]); }
+		      }
+
+
+
+	
+	if ( userPath.length()>0 ) // a path has been supplied
+	{
+
+            if (! opening_files(userPath)) return EXIT_FAILURE;
+
+	}
+	else{ 
+            if (! opening_files(thePath))
+	    {
+                //just incase someone runs it from inside the build directory
+	      thePath=string("../../");
+            if (! opening_files(thePath))
+                        return EXIT_FAILURE;
+	    } 
+	}
+
 
         output_generic_poster << "/** Auto-generated, don't modify! */\n\n"
         "#include <string>\n"
