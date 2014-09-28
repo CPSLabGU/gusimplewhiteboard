@@ -206,7 +206,9 @@ bool opening_files(string aPath)
 
         if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
                 {
-                        perror("could not open one of the files");
+                        perror("could not open one of the files! ");
+                        perror("Path:");
+                        perror(aPath.c_str());
                         return false;
                 }
 	return true;
