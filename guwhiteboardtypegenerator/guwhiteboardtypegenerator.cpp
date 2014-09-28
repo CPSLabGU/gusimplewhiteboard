@@ -445,6 +445,7 @@ int main(int argc, char *argv[]) {
 						{
 							info.class_info = Custom_Class;
 							info.class_name = elements.at(i).substr(std::string("class:").length());
+							std::cerr << "Processing " << info.class_name << std::endl;
 						}
 						else
 						{
