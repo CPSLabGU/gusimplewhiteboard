@@ -49,6 +49,39 @@ namespace guWhiteboard
                         Right9,
                         NUMBER_OF_READINGS
                 } ReadingCode;
+
+            /**
+             * Indexes for the Giraff sonar sensors
+             */
+            enum Giraff
+            {
+                LeftFrontCM          = ReadingCode::Left0,
+                LeftBackCM           = ReadingCode::Left1,
+                LeftFrontMM          = ReadingCode::Left2,
+                LeftBackMM           = ReadingCode::Left3,
+                LeftFrontAverageCM   = ReadingCode::Left4,
+                LeftBackAverageCM    = ReadingCode::Left5,
+                LeftFrontAverageMM   = ReadingCode::Left6,
+                LeftBackAverageMM    = ReadingCode::Left7,
+                LeftFrontHighByte    = ReadingCode::Left8,
+                LeftBackHighByte     = ReadingCode::Left9,
+
+                CentreFrontCM        = ReadingCode::Center0,
+                CentreFrontMM        = ReadingCode::Center1,
+                CentreFrontAverageCM = ReadingCode::Center2,
+                CentreFrontAverageMM = ReadingCode::Center3,
+                
+                RightFrontCM          = ReadingCode::Right0,
+                RightBackCM           = ReadingCode::Right1,
+                RightFrontMM          = ReadingCode::Right2,
+                RightBackMM           = ReadingCode::Right3,
+                RightFrontAverageCM   = ReadingCode::Right4,
+                RightBackAverageCM    = ReadingCode::Right5,
+                RightFrontAverageMM   = ReadingCode::Right6,
+                RightBackAverageMM    = ReadingCode::Right7,
+                RightFrontHighByte    = ReadingCode::Right8,
+                RightBackHighByte     = ReadingCode::Right9
+            };
         }
  
         /**
