@@ -53,6 +53,6 @@ class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge,            
 class:VisionLines, nonatomic, VisionLines,                        "VisionLines", Class that reports the lines that vision sees.
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus,                     "DifferentialRobotStatus", Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl,                    "DifferentialRobotControl", Class that sends commands to the robot from the whiteboard
-std::vector<int>,    atomic, XEyesPos,                                    "XEyesPos",          Just a hook for an xeyes interface
-std::vector<int>,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
+class:Point2D,    atomic, XEyesPos,                                    "XEyesPos",          Just a hook for an xeyes interface
+class:Point2D,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
 std::string,    atomic, Draw,                                  "Draw",        Used by the half made GUDraw module in posix
