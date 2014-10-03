@@ -671,16 +671,12 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 #endif // !Point2D_DEFINED
 
 		case kVisionFace_v:
-#ifdef Point2D_DEFINED
 		{
 /** WB Ptr Class: VisionFace @brief Nil */ 
-			class VisionFace_t VisionFace_msg;
-			VisionFace_msg.post(Point2D(message_content));
+			class VisionFace_t VisionFace_msg(strtointvec(message_content));
+			(void)VisionFace_msg;
 			return true;
 		}
-#else
-			return false;
-#endif // !Point2D_DEFINED
 
 		case kDraw_v:
 		{

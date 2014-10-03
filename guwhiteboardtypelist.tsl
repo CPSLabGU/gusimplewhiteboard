@@ -54,5 +54,5 @@ class:VisionLines, nonatomic, VisionLines,                        "VisionLines",
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus,                     "DifferentialRobotStatus", Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl,                    "DifferentialRobotControl", Class that sends commands to the robot from the whiteboard
 class:Point2D,    atomic, XEyesPos,                                    "XEyesPos",          Just a hook for an xeyes interface
-class:Point2D,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
+std::vector<int>,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
 std::string,    atomic, Draw,                                  "Draw",        Used by the half made GUDraw module in posix

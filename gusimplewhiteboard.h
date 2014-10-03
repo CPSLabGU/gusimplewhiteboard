@@ -197,7 +197,7 @@ typedef union gsw_simple_message
         /*
          * simple compound types
          */
-        struct { int x,y,z,a,b,c,d,e; } coord;  ///< simple integer coordinates
+        struct {int16_t x,y,z,a,b,c,d,e; } coord;  ///< simple 16 bit integer coordinates
         struct {double x,y,z,a,b,c,d,e;} dcoord;///< simple double coordinates
         struct {float x,y,z,a,b,c,d,e;} fcoord; ///< simple float coordinates
 
