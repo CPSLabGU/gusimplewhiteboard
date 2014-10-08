@@ -57,6 +57,7 @@
  */
 #ifndef FSMControlStatus_DEFINED
 #define FSMControlStatus_DEFINED
+#define FSMNames_DEFINED
 
 #include <cstdlib>
 #include <cstring>
