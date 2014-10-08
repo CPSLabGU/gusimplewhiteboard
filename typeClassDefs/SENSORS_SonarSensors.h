@@ -55,32 +55,32 @@ namespace guWhiteboard
              */
             enum Giraff
             {
-                LeftFrontCM          = ReadingCode::Left0,
-                LeftBackCM           = ReadingCode::Left1,
-                LeftFrontMM          = ReadingCode::Left2,
-                LeftBackMM           = ReadingCode::Left3,
-                LeftFrontAverageCM   = ReadingCode::Left4,
-                LeftBackAverageCM    = ReadingCode::Left5,
-                LeftFrontAverageMM   = ReadingCode::Left6,
-                LeftBackAverageMM    = ReadingCode::Left7,
-                LeftFrontHighByte    = ReadingCode::Left8,
-                LeftBackHighByte     = ReadingCode::Left9,
+                LeftFrontCM          = Left0,
+                LeftBackCM           = Left1,
+                LeftFrontMM          = Left2,
+                LeftBackMM           = Left3,
+                LeftFrontAverageCM   = Left4,
+                LeftBackAverageCM    = Left5,
+                LeftFrontAverageMM   = Left6,
+                LeftBackAverageMM    = Left7,
+                LeftFrontHighByte    = Left8,
+                LeftBackHighByte     = Left9,
 
-                CentreFrontCM        = ReadingCode::Center0,
-                CentreFrontMM        = ReadingCode::Center1,
-                CentreFrontAverageCM = ReadingCode::Center2,
-                CentreFrontAverageMM = ReadingCode::Center3,
+                CentreFrontCM        = Center0,
+                CentreFrontMM        = Center1,
+                CentreFrontAverageCM = Center2,
+                CentreFrontAverageMM = Center3,
                 
-                RightFrontCM          = ReadingCode::Right0,
-                RightBackCM           = ReadingCode::Right1,
-                RightFrontMM          = ReadingCode::Right2,
-                RightBackMM           = ReadingCode::Right3,
-                RightFrontAverageCM   = ReadingCode::Right4,
-                RightBackAverageCM    = ReadingCode::Right5,
-                RightFrontAverageMM   = ReadingCode::Right6,
-                RightBackAverageMM    = ReadingCode::Right7,
-                RightFrontHighByte    = ReadingCode::Right8,
-                RightBackHighByte     = ReadingCode::Right9
+                RightFrontCM          = Right0,
+                RightBackCM           = Right1,
+                RightFrontMM          = Right2,
+                RightBackMM           = Right3,
+                RightFrontAverageCM   = Right4,
+                RightBackAverageCM    = Right5,
+                RightFrontAverageMM   = Right6,
+                RightBackAverageMM    = Right7,
+                RightFrontHighByte    = Right8,
+                RightBackHighByte     = Right9
             };
         }
  
