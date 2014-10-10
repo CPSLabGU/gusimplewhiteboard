@@ -5,6 +5,8 @@
 #
 LIB=gusimplewhiteboard
 
+CI_DISPLAYNAME?=wb			# short jenkins display name
+
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 USE_READLINE=yes			# command line history and completion
 
