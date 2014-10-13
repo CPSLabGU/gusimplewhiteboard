@@ -14,6 +14,9 @@ OCUNIT_MMFILES  = SimpleWhiteboardTest.mm
 
 ANALYSE_OCUNIT_SRCFILES= # empty
 
+XCODEBUILD_TEST_SCHEME=gusimplewhiteboard
+XCODEBUILD_ARGS=-project ${SRCDIR}/../gusimplewhiteboard.xcodeproj
+
 .ifdef GNUSTEP_MAKEFILES
 OCUNIT_CPPFILES+= ${UTIL_SRCS}
 OCUNIT_CPPFILES+= ${NEW_WHITEBOARD_SRCS}
