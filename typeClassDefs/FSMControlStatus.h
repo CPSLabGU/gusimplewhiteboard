@@ -143,7 +143,7 @@ namespace guWhiteboard
                     }
                 }
             }
-            
+
         };
 
         /**
@@ -152,7 +152,7 @@ namespace guWhiteboard
         class FSMNames
         {
 	    /** start offset */
-            PROPERTY(uint16_t, startoffs)       
+            PROPERTY(uint16_t, startoffs)
 	    /** names array */
             char _names[sizeof(gsw_simple_message)-sizeof(uint16_t)];
         public:
@@ -175,7 +175,7 @@ namespace guWhiteboard
             }
 
             /** assignment operator */
-            const FSMNames &operator=(const FSMNames &other) { _startoffs = other._startoffs; return *this; }
+            const FSMNames &operator=(const FSMNames &other) { memcpy(this, &other, sizeof(other)); return *this; }
 
             /** names getter */
             char *names() { return _names; }
@@ -207,7 +207,7 @@ namespace guWhiteboard
             {
                 std::stringstream ss;
                 ss << startoffs();
-                for (const char *s = names(); s < end() && *s; s = next_slot(s))
+                for (const char *s = names(); s < end() && *s; s = next_name(s))
                     ss << "," << s;
 
                 return ss.str();
