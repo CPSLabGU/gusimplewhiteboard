@@ -121,7 +121,7 @@ namespace guWhiteboard
                 std::ostringstream ss;
                 ss << command();
                 for (size_t i = 0; i < CONTROLSTATUS_NUM_FSMS; i++)
-                    if (_fsms[i/8] & (1<<(i%8)))
+                    if (CONTROLSTATUS_GET_FSM(this, i))
                         ss << "," << i;
 
                 return ss.str();
