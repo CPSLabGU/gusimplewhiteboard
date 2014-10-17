@@ -3,7 +3,7 @@
  *  guobjcwhiteboard
  *  
  *  Created by René Hexel on 6/05/12.
- *  Copyright (c) 2012 Rene Hexel.
+ *  Copyright (c) 2012, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,22 +67,34 @@ extern const NSString *kWBTypeString;
 extern const NSString *kWBTypeBinary;
 extern const NSString *kWBTypeEmpty;
 
+#ifdef USE_OLD_WB
 #ifdef __cplusplus
 typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
 #else
 struct Whiteboard;
 typedef struct Whiteboard oc_whiteboard_t;
 #endif
+#else   // use new wb
+struct gsw_whiteboard_s;
+typedef struct gsw_whiteboard_s oc_whiteboard_t;
+#endif
+
+#ifdef __cplusplus
+typedef class whiteboard_watcher oc_watcher_t;
+#else
+typedef struct whiteboard_watcher oc_watcher_t;
+#endif
 
 @interface ObjCWhiteboard: NSObject
-@property (nonatomic, assign) id<ObjCWhiteboardDelegate> delegate;
+@property (nonatomic, weak) id<ObjCWhiteboardDelegate> delegate;
 @property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
-@property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
+@property (nonatomic, assign) oc_watcher_t *watcher;
+@property (nonatomic, strong) NSMutableDictionary *knownWhiteboardMessages;
 
-- (id) init;
-- (id) initWithRobotNumbered: (NSInteger) n;
-- (id) initWithWhiteboardNamed: (NSString *) wbname;
-- (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
+- (instancetype) init;
+- (instancetype) initWithRobotNumbered: (NSInteger) n;
+- (instancetype) initWithWhiteboardNamed: (NSString *) wbname;
+- (instancetype) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
 
 + (NSArray *) whiteboardTypes;  /// supported whiteboard data types
 + (NSArray *) whiteboardNames;  /// names of local and remote robot whiteboards
