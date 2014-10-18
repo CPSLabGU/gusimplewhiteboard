@@ -68,6 +68,7 @@
 #else
 #include "gugenericwhiteboardobject.h"
 #include "guwhiteboardtypelist_generated.h"
+#include "guwhiteboardtypelist_c_generated.h"
 #include "guwhiteboardposter.h"
 #include "guwhiteboardgetter.h"
 #include "guwhiteboardwatcher.h"
@@ -268,23 +269,25 @@ public:
         
         self.knownWhiteboardMessages = [NSMutableDictionary dictionaryWithCapacity: GSW_TOTAL_MESSAGE_TYPES];
 
-        if (!gu_whiteboard) return knownWhiteboardMessages;
-
         /*
          * populate array of known whiteboard message types
          */
 #ifdef USE_OLD_WB
+        if (!gu_whiteboard) return knownWhiteboardMessages;
+
         gu_simple_whiteboard *wb = gu_whiteboard->_wbd->wb;
-#else
-        gu_simple_whiteboard *wb = gu_whiteboard->wb;
-#endif
+
         for (int i = 0; i < wb->num_types; i++)
         {
                 NSString *type = [NSString stringWithUTF8String: wb->typenames[i].hash.string];
                 [knownWhiteboardMessages setObject: [self dataTypeForMessageType: type]
                                             forKey: type];
         }
-        
+#else
+        for (enum wb_types i = kwb_reserved_SubscribeToAllTypes_v; i < GSW_NUM_TYPES_DEFINED; i = static_cast<enum wb_types>(i + 1))
+                knownWhiteboardMessages[@(WBTypes_stringValues[i])] = @(i);
+#endif
+
         return knownWhiteboardMessages;
 }
 
@@ -433,13 +436,15 @@ static NSArray *wbtypes;
         
         return @"- unknown -";
 }
+#endif
 
 
 - (NSString *) dataTypeForMessageType: (NSString *) msgType
 {
-        if (!msgType) return @"- empty -";
+        if (!msgType.length) return @"- empty -";
         if (!gu_whiteboard) return @"- nowb -";
-        
+
+#ifdef USE_OLD_WB
         Whiteboard::WBResult result;
         const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
         
@@ -447,9 +452,17 @@ static NSArray *wbtypes;
                 return @"- none -";
         
         return [self dataTypeForWBMsg: &msg];
+#else
+        NSUInteger i = msgType.integerValue;
+        if (i > 0 && i < GSW_NUM_TYPES_DEFINED)
+                return @(WBTypes_stringValues[i]);
+
+        return self.knownWhiteboardMessages[msgType];
+#endif
 }
 
 
+#ifdef USE_OLD_WB
 - (NSString *) cachedDataTypeForMessageType: (NSString *) msgType
 {
         NSString *result = [knownWhiteboardMessages objectForKey: msgType];
