@@ -3,7 +3,7 @@
  *  guobjcwhiteboard
  *  
  *  Created by René Hexel on 6/05/12.
- *  Copyright (c) 2012 Rene Hexel.
+ *  Copyright (c) 2012, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,13 +57,20 @@
  *
  */
 #import <Foundation/Foundation.h>
+#import <gusimplewhiteboard.h>
+#import <guwhiteboardtypelist_c_generated.h>
+
+#ifdef __cplusplus
+typedef guWhiteboard::WBTypes wbtypes_t;
+#else
+typedef enum wbtypes wbtypes_t;
+#endif
 
 @class ObjCWhiteboard;
 
 @protocol ObjCWhiteboardDelegate <NSObject>
 @optional
 - (void) objcWhiteboard: (ObjCWhiteboard *) wb
-                message: (NSString *) msg 
-                 ofType: (NSString *) type
-    receivedWithContent: (NSString *) content;
+        receivedMessage: (gu_simple_message *) msg
+                 ofType: (wbtypes_t) type;
 @end

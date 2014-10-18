@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0610"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -67,6 +67,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F19FA35718DFDC0A0095B87D"
+            BuildableName = "simplewhiteboard_mk"
+            BlueprintName = "simplewhiteboard_mk"
+            ReferencedContainer = "container:gusimplewhiteboard.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
