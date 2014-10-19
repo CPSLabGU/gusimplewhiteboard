@@ -94,22 +94,22 @@ typedef struct whiteboard_watcher oc_watcher_t;
 - (NSArray *) knownWhiteboardMessagesSortedByName;
 
 /// get a message of a given type index off the whiteboard
-- (NSString *) getMessageOfType: (guWhiteboard::wb_types) msgType;
+- (NSString *) getMessageOfType: (wbtypes_t) msgType;
 
 /// get a message of a given name off the whiteboard
 - (NSString *) getMessageOfTypeNamed: (const NSString *) typeName;
 
 /// return the content of the given whiteboard message as a string
-- (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (guWhiteboard::wb_types) type;
+- (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (wbtypes_t) type;
 
 /// return the name of the given message type
-- (NSString *) typeNameForMessageType: (guWhiteboard::wb_types) msgType;
+- (NSString *) typeNameForMessageType: (wbtypes_t) msgType;
 
 /// get the whiteboard type index for a given type name
-- (guWhiteboard::wb_types) wbTypeForTypeNamed: (const NSString *) dataType;
+- (wbtypes_t) wbTypeForTypeNamed: (const NSString *) dataType;
 
 /// post msg of given type with given string content to the whiteboard
-- (BOOL) postWBMessageOfType: (guWhiteboard::wb_types) msgType withContent: (const NSString *) content;
+- (BOOL) postWBMessageOfType: (wbtypes_t) msgType withContent: (const NSString *) content;
 
 /// post a wb message of the given type name with the given string content
 - (BOOL) postWBMessageOfTypeNamed: (const NSString *) msg withContent: (const NSString *) content;
