@@ -18,7 +18,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
 
-#.include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
+.include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
 INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS}
