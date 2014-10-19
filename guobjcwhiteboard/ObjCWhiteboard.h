@@ -67,17 +67,8 @@ extern const NSString *kWBTypeString;
 extern const NSString *kWBTypeBinary;
 extern const NSString *kWBTypeEmpty;
 
-#ifdef USE_OLD_WB
-#ifdef __cplusplus
-typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
-#else
-struct Whiteboard;
-typedef struct Whiteboard oc_whiteboard_t;
-#endif
-#else   // use new wb
 struct gsw_whiteboard_s;
 typedef struct gsw_whiteboard_s oc_whiteboard_t;
-#endif
 
 #ifdef __cplusplus
 typedef class whiteboard_watcher oc_watcher_t;
@@ -96,20 +87,33 @@ typedef struct whiteboard_watcher oc_watcher_t;
 - (instancetype) initWithWhiteboardNamed: (NSString *) wbname;
 - (instancetype) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
 
-+ (NSArray *) whiteboardTypes;  /// supported whiteboard data types
-+ (NSArray *) whiteboardNames;  /// names of local and remote robot whiteboards
++ (NSArray *) whiteboardTypes;  ///< supported whiteboard type names
++ (NSArray *) whiteboardNames;  ///< names of local and remote robot whiteboards
 
+/// return an array of the known whiteboard names sorted alphabetically
 - (NSArray *) knownWhiteboardMessagesSortedByName;
-- (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
-- (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message
-- (NSString *) contentForMessageType: (NSString *) msgType;             /// return WB content of given message
 
-- (void) postWBMessage: (const NSString *) msg
-               content: (const NSString *) content
-              withType: (const NSString *) dataType;
+/// get a message of a given type index off the whiteboard
+- (NSString *) getMessageOfType: (guWhiteboard::wb_types) msgType;
 
-- (id) getWBMessage: (const NSString *) msg;
+/// get a message of a given name off the whiteboard
+- (NSString *) getMessageOfTypeNamed: (const NSString *) typeName;
 
-- (void) subscribeTo: (const NSString *) msg;
+/// return the content of the given whiteboard message as a string
+- (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (guWhiteboard::wb_types) type;
+
+/// return the name of the given message type
+- (NSString *) typeNameForMessageType: (guWhiteboard::wb_types) msgType;
+
+/// get the whiteboard type index for a given type name
+- (guWhiteboard::wb_types) wbTypeForTypeNamed: (const NSString *) dataType;
+
+/// post msg of given type with given string content to the whiteboard
+- (BOOL) postWBMessageOfType: (guWhiteboard::wb_types) msgType withContent: (const NSString *) content;
+
+/// post a wb message of the given type name with the given string content
+- (BOOL) postWBMessageOfTypeNamed: (const NSString *) msg withContent: (const NSString *) content;
+
+- getWBMessage: (const NSString *) msg; ///< get wb msg and return as objc object
 
 @end

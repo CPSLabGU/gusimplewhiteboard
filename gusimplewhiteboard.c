@@ -220,7 +220,7 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
 
 void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 {
-        if (wbd)
+        if (wbd && wbd != local_whiteboard_descriptor)
         {
                 gsw_remove_wbd_signal_handler(wbd);
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);

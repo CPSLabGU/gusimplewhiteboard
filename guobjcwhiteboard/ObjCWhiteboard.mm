@@ -62,17 +62,15 @@
 #include <string>
 #include <vector>
 #include <gusimplewhiteboard.h>
-#ifdef USE_OLD_WB
-#include <Whiteboard.h>
-#include <RemoteWhiteboard.h>
-#else
-#include "gugenericwhiteboardobject.h"
-#include "guwhiteboardtypelist_generated.h"
-#include "guwhiteboardtypelist_c_generated.h"
-#include "guwhiteboardposter.h"
-#include "guwhiteboardgetter.h"
-#include "guwhiteboardwatcher.h"
-#endif
+#include <gugenericwhiteboardobject.h>
+#include <guwhiteboardtypelist_generated.h>
+#include <guwhiteboardtypelist_c_generated.h>
+#include <guwhiteboardposter.h>
+#include <guwhiteboardgetter.h>
+#include <guwhiteboardwatcher.h>
+
+#include "Point2D.h"
+
 #import "ObjCWhiteboard.h"
 
 const NSString *kWBTypeBool = @"bool";
@@ -123,29 +121,19 @@ class ObjCWBCallback;
 @interface ObjCWhiteboard ()
 @property (nonatomic, assign) ObjCWBCallback *wbcallback;
 
-#ifdef USE_OLD_WB
-- (void) whiteboardMessageReceived: (const char *) msgType withContent: (WBMsg *) msgContent;
-#else
 - (void) whiteboardMessageReceived: (guWhiteboard::wb_types) msgType withContent: (gu_simple_message *) wbmsg;
-#endif
+
 @end
 
 class ObjCWBCallback
 {
         ObjCWhiteboard *self;
 public:
-#ifdef USE_OLD_WB
-        ObjCWBCallback(ObjCWhiteboard *s, Whiteboard *wb, const char *msg = "*"): self(s) { if (wb) subscribe(wb, msg); }
-        void subscribe(Whiteboard *wb, const char *msg = "*") { Whiteboard::WBResult r; wb->subscribeToMessage(msg, WB_BIND(ObjCWBCallback::callback), r); }
-        void unsubscribe(Whiteboard *wb, const char *msg = "*") { Whiteboard::WBResult r; wb->unsubscribeToMessage(msg, r); }
-        void callback(string type, WBMsg *msg) { [self whiteboardMessageReceived: type.c_str() withContent: msg]; }
-#else
         ObjCWBCallback(ObjCWhiteboard *s, oc_watcher_t *watcher, const char *msg = "*"): self(s)
         {
                 watcher->subscribe(createWBFunctor<ObjCWBCallback>(this, &ObjCWBCallback::callback, kwb_reserved_SubscribeToAllTypes_v));
         }
         void callback(guWhiteboard::WBTypes t, gu_simple_message *msg) { [self whiteboardMessageReceived: t withContent: msg]; }
-#endif
 };
 
 #pragma mark - class implementation
@@ -156,44 +144,42 @@ public:
 @synthesize wbcallback;
 @synthesize knownWhiteboardMessages;
 
+/**
+ *  Designated local whiteboard initialiser.
+ *
+ *  @param wbname       file name of the whiteboard to use or nil for default
+ *  @return an objective C wrapper around the local whiteboard
+ */
 - (id) initWithWhiteboardNamed: (NSString *) wbname
 {
         if (!(self = [super init]))
                 return nil;
-#ifdef USE_OLD_WB
-        if ([wbname length])
-                gu_whiteboard = new Whiteboard([wbname UTF8String]);
-        else
-                gu_whiteboard = new Whiteboard();
-#else
+
         if (wbname.length)
                 gu_whiteboard = gsw_new_whiteboard(wbname.UTF8String);
         else
                 gu_whiteboard = get_local_singleton_whiteboard();
 
         _watcher = new whiteboard_watcher(gu_whiteboard);
-#endif
+
         wbcallback = new ObjCWBCallback(self, _watcher);
 
         return self;
 }
 
 
+/**
+ * Robot whiteboard initialiser.
+ *
+ * @param n             robot whiteboard number
+ * @param wbname        whiteboard file name to use
+ * @return an initialised instance of the given remote whiteboard or nil
+ */
 - (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname
 {
         if (!(self = [super init]))
                 return nil;
-#ifdef USE_OLD_WB
-        if (!wbname || n < 0 || n >= RWBMachine::NUM_OF_MACHINES)
-        {
-                [self release];
-                return nil;
-        }
-        
-        gu_whiteboard = new RemoteWhiteboard([wbname UTF8String], RWBMachine(n));
 
-        wbcallback = new ObjCWBCallback(self, gu_whiteboard);
-#else
         if (wbname.length)
                 gu_whiteboard = gsw_new_numbered_whiteboard(wbname.UTF8String, static_cast<int>(n));
         else if (n)
@@ -202,12 +188,14 @@ public:
                 gu_whiteboard = get_local_singleton_whiteboard();
 
         _watcher = new whiteboard_watcher(gu_whiteboard);
-#endif
+
         wbcallback = new ObjCWBCallback(self, _watcher);
 
         return self;
 }
 
+
+/// convenience initialiser returning the default whiteboard
 - (id) init
 {
 #ifdef GSW_IOS_DEVICE
@@ -218,6 +206,8 @@ public:
 #endif
 }
 
+
+/// robot whiteboard constructor (not yet implemented)
 - (id) initWithRobotNumbered: (NSInteger) n
 {
 #ifdef USE_OLD_WB
@@ -235,34 +225,17 @@ public:
 }
 
 
+/// delete the whiteboard on release
 - (void) dealloc
 {
-        if (gu_whiteboard) delete gu_whiteboard;
+        gsw_free_whiteboard(gu_whiteboard);
         gu_whiteboard = nullptr;
 }
 
 
 #pragma mark - access methods
 
-#ifdef USE_OLD_WB
-- (void) setGu_whiteboard: (Whiteboard *) wb
-{
-        if (wb == gu_whiteboard) return;
-        
-        Whiteboard *oldwb = gu_whiteboard;
-        gu_whiteboard = wb;
-        if (oldwb)
-        {
-                if (wbcallback) wbcallback->unsubscribe(oldwb);
-                delete oldwb;
-        }
-        if (wb && wbcallback) wbcallback->subscribe(wb);
-        
-        self.knownWhiteboardMessages = nil;
-}
-#endif
-
-
+/// return a mapping between message type names and type indexes
 - (NSMutableDictionary *) knownWhiteboardMessages
 {
         if (knownWhiteboardMessages) return knownWhiteboardMessages;
@@ -270,65 +243,22 @@ public:
         self.knownWhiteboardMessages = [NSMutableDictionary dictionaryWithCapacity: GSW_TOTAL_MESSAGE_TYPES];
 
         /*
-         * populate array of known whiteboard message types
+         * populate dictionary of known whiteboard message types
          */
-#ifdef USE_OLD_WB
-        if (!gu_whiteboard) return knownWhiteboardMessages;
-
-        gu_simple_whiteboard *wb = gu_whiteboard->_wbd->wb;
-
-        for (int i = 0; i < wb->num_types; i++)
-        {
-                NSString *type = [NSString stringWithUTF8String: wb->typenames[i].hash.string];
-                [knownWhiteboardMessages setObject: [self dataTypeForMessageType: type]
-                                            forKey: type];
-        }
-#else
         for (enum wb_types i = kwb_reserved_SubscribeToAllTypes_v; i < GSW_NUM_TYPES_DEFINED; i = static_cast<enum wb_types>(i + 1))
                 knownWhiteboardMessages[@(WBTypes_stringValues[i])] = @(i);
-#endif
 
         return knownWhiteboardMessages;
 }
 
+/// return an array of the known whiteboard names sorted alphabetically
 - (NSArray *) knownWhiteboardMessagesSortedByName
 {
         return [self.knownWhiteboardMessages.allKeys sortedArrayUsingSelector: @selector(compare:)];
 }
 
 
-#ifdef USE_OLD_WB
-- (void) messageReceived: (NSDictionary *) dic
-{
-        NSString *msg = [dic objectForKey: @"msg"];
-        NSString *dataType = [dic objectForKey: @"dataType"];
-        NSString *content = [dic objectForKey: @"content"];
-
-        [knownWhiteboardMessages setObject: dataType forKey: msg];
-
-        if ([delegate respondsToSelector: @selector(objcWhiteboard:message:ofType:receivedWithContent:)])
-                [delegate objcWhiteboard: self
-                                 message: msg
-                                  ofType: dataType
-                     receivedWithContent: content];
-}
-
-
-- (void) whiteboardMessageReceived: (const char *) msgType withContent: (WBMsg *) wbmsg
-{
-        @autoreleasepool
-        {
-                NSString *msg = [NSString stringWithUTF8String: msgType];
-                NSString *content = [self contentForWBMsg: wbmsg];
-                NSString *dataType = [self dataTypeForWBMsg: wbmsg];
-                
-                [self performSelectorOnMainThread: @selector(messageReceived:)
-                                       withObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                    msg, @"msg", content, @"content", dataType, @"dataType", nil]
-                                    waitUntilDone: NO];
-        }
-}
-#else
+/// subscription queue callback when a whiteboard message is received
 - (void) whiteboardMessageReceived: (guWhiteboard::wb_types) msgType withContent: (gu_simple_message *) wbmsg
 {
         @autoreleasepool
@@ -340,6 +270,7 @@ public:
         }
 }
 
+/// main thread callback for received message
 - (void) receivedMessage: (gu_simple_message *) wbmsg ofType: (guWhiteboard::wb_types) msgType
 {
         if ([delegate respondsToSelector: @selector(objcWhiteboard:receivedMessage:ofType:)])
@@ -349,68 +280,73 @@ public:
 }
 
 
-#endif
-
 #pragma mark - Whiteboard interaction
 
-#ifdef USE_OLD_WB
-- (NSString *) contentForWBMsg: (const WBMsg *) msg
+/**
+ * Get a message with the given type index off the whiteboard.
+ * This is deprecated as it uses string conversion, which
+ * may only be useful for a generic whiteboard monitor.
+ * Better to use the low level C or C++ types directly off the
+ * ObjcWhiteboard's gu_whiteboard pointer.
+ *
+ * @param typeName      whiteboard type name to use
+ * @return message content as a string or nil if unsupported
+ */
+- (NSString *) getMessageOfType: (guWhiteboard::wb_types) msgType
 {
-        switch (msg->getType())
-        {
-                case WBMsg::TypeBool:
-                        return [NSString stringWithUTF8String: msg->getBoolValue() ? "true" : "false"];
-                        
-                case WBMsg::TypeInt:
-                        return [NSString stringWithFormat: @"%d", msg->getIntValue()];
-                        
-                case WBMsg::TypeFloat:
-                        return [NSString stringWithFormat: @"%g", msg->getFloatValue()];
-                        
-                case WBMsg::TypeString:
-                        return [NSString stringWithFormat: @"%s", msg->getStringValue().c_str()];
-                        
-                case WBMsg::TypeArray:
-                {
-                        const vector<int> *v = &msg->getArrayValue();
-                        NSMutableArray *a = [NSMutableArray arrayWithCapacity: v->size()];
-                        for (int i: *v) [a addObject: [NSNumber numberWithInt: i]];
-                        return [a componentsJoinedByString: @", "];
-                }
-                        
-                case WBMsg::TypeBinary:
-                        return [NSString stringWithFormat: @"%d bytes", msg->getSizeInBytes()];
-                        
-                case WBMsg::TypeEmpty:
-                        return @"- empty -";
-                        
-                default:
-                        break;
-        }
-        return @"- unknown -";
+        return [self contentForWBMsg: nullptr ofType: msgType];
 }
 
 
-- (NSString *) contentForMessageType: (NSString *) msgType
+/**
+ * Get a message with the given type name off the whiteboard.
+ * This is deprecated as it uses string conversion as well as
+ * a type string instead of the more efficient type index.
+ * This may only be useful for a generic whiteboard monitor.
+ * Better to use the low level C or C++ types directly off the
+ * ObjcWhiteboard's gu_whiteboard pointer.
+ *
+ * @param typeName      whiteboard type name to use
+ * @return message content as a string or nil if unsupported
+ */
+- (NSString *) getMessageOfTypeNamed: (const NSString *) typeName
 {
-        if (!gu_whiteboard) return @"- nowb -";
-        if (!msgType.length) return @"- nomsg -";
+        NSNumber *typeNumber = self.knownWhiteboardMessages[typeName];
+        guWhiteboard::wb_types msgType = static_cast<guWhiteboard::wb_types>(typeNumber.intValue);
 
-        Whiteboard::WBResult result;
-        const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
-        
-        if (result == Whiteboard::METHOD_FAIL)
-                return @"- nonexistent -";
-        
-        return [self contentForWBMsg: &msg];
+        return [self contentForWBMsg: nullptr ofType: msgType];
 }
-#endif
+
+
+/**
+ * Use string conversion to return the content of the given whiteboard message
+ * as an Objective-C string.
+ *
+ * @param msg   whiteboard message to convert (nil to perform a getmsg())
+ * @param type  whiteboard message index (needed for string conversion semantics)
+ * @return message content as a string or nil if unsupported
+ */
+- (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (guWhiteboard::wb_types) type
+{
+        std::string content = guWhiteboard::getmsg(type, const_cast<gu_simple_message *>(msg));
+        NSString *contentString = nil;
+        if (content != "##unsupported##")
+                contentString = @(content.c_str());
+
+        return contentString;
+}
+
+
 
 static NSArray *wbnames;
 
+/**
+ * Return an array of names for whiteboards
+ * @return array containing a readable name for all whiteboards
+ */
 + (NSArray *) whiteboardNames
 {
-        if (!wbnames) wbnames = @[@"local", @"Robot 1", @"Robot 2", @"Robot 3", @"Robot 4"];
+        if (!wbnames) wbnames = @[@"local", @"Robot 1", @"Robot 2", @"Robot 3", @"Robot 4", @"Robot 5"];
 
         return wbnames;
 }
@@ -418,179 +354,123 @@ static NSArray *wbnames;
 
 static NSArray *wbtypes;
 
+/**
+ * Return an array of known whiteboard type names
+ * @return array containing all known whiteboard type names
+ */
 + (NSArray *) whiteboardTypes
 {
-        if (!wbtypes) wbtypes = @[kWBTypeBool, kWBTypeInt, kWBTypeFloat, kWBTypeString, kWBTypeArray, kWBTypeBinary, kWBTypeEmpty];
+        if (wbtypes) return wbtypes;
+
+        NSMutableArray *types = [NSMutableArray arrayWithCapacity: GSW_NUM_TYPES_DEFINED];
+        for (NSInteger i = kwb_reserved_SubscribeToAllTypes_v; i < GSW_NUM_TYPES_DEFINED; i++)
+                types[i] = @(WBTypes_stringValues[i]);
+
+        wbtypes = types.copy;
 
         return wbtypes;
 }
 
-#ifdef USE_OLD_WB
-- (NSString *) dataTypeForWBMsg: (const WBMsg *) msg
+
+/**
+ * get the type name for the given whiteboard message type
+ * @param msgType       whiteboard type index
+ * @return name of the whiteboard message at the index
+ */
+- (NSString *) typeNameForMessageType: (guWhiteboard::wb_types) msgType
 {
-        NSArray *types = [ObjCWhiteboard whiteboardTypes];
-
-        enum WBMsg::wb_type type = msg->getType();
-        if (type < [types count])
-                return [types objectAtIndex: type];
-        
-        return @"- unknown -";
-}
-#endif
-
-
-- (NSString *) dataTypeForMessageType: (NSString *) msgType
-{
-        if (!msgType.length) return @"- empty -";
         if (!gu_whiteboard) return @"- nowb -";
 
-#ifdef USE_OLD_WB
-        Whiteboard::WBResult result;
-        const WBMsg msg = gu_whiteboard->getMessage([msgType UTF8String], &result);
-        
-        if (result == Whiteboard::METHOD_FAIL)
-                return @"- none -";
-        
-        return [self dataTypeForWBMsg: &msg];
-#else
-        NSUInteger i = msgType.integerValue;
+        NSUInteger i = static_cast<NSUInteger>(msgType);
         if (i > 0 && i < GSW_NUM_TYPES_DEFINED)
                 return @(WBTypes_stringValues[i]);
 
-        return self.knownWhiteboardMessages[msgType];
-#endif
+        return self.knownWhiteboardMessages[@(msgType)] ?: @"- none -";
 }
 
 
-#ifdef USE_OLD_WB
-- (NSString *) cachedDataTypeForMessageType: (NSString *) msgType
+/**
+ * Return the whiteboard type index for the given type name string
+ * @param dataType      whiteboard type name
+ * @return whiteboard type index (or 0 if not found)
+ */
+- (guWhiteboard::wb_types) wbTypeForTypeNamed: (const NSString *) dataType
 {
-        NSString *result = [knownWhiteboardMessages objectForKey: msgType];
-        
-        if (!result) result = [self dataTypeForMessageType: msgType];
-        
-        return result;
+        NSNumber *typeNumber = self.knownWhiteboardMessages[dataType];
+        guWhiteboard::wb_types type = static_cast<guWhiteboard::wb_types>(typeNumber.intValue);
+
+        return type;
 }
 
 
-- (WBMsg::WBType) wbTypeForType: (const NSString *) dataType
+ /**
+ * Post a message with a given type and a given string content to the whiteboard.
+ * Using this method is deprecated as it uses string conversion for the message
+ * content.  (This may be useful only if you are implementing a generic
+ * whiteboard poster.)
+ * Better to use the low level C++ message on the ObjcWhiteboard instance's
+ * gu_whiteboard pointer.
+ */
+- (BOOL) postWBMessageOfType: (guWhiteboard::wb_types) msgType withContent: (const NSString *) content
 {
-        NSUInteger i = [wbtypes indexOfObject: dataType];
-        if (i == NSNotFound)
-                return WBMsg::TypeEmpty;
-        
-        return (WBMsg::WBType) i;
-}
-#endif
+        std::string message_content = std::string(content.UTF8String);
 
-static vector<int> convToArrayType(const char *s)
+        return guWhiteboard::postmsg(msgType, message_content) != false;
+}
+
+
+/**
+ * Post a message with a given type name and a given string content to the
+ * whiteboard.
+ * Using this method is deprecated as it uses string conversion for both
+ * the whiteboard type name and the message content.  (This may be useful
+ * only if you are implementing a generic whiteboard poster.)
+ * Better to use the low level C++ message on the ObjcWhiteboard instance's
+ * gu_whiteboard pointer.
+ */
+- (BOOL) postWBMessageOfTypeNamed: (const NSString *) msg withContent: (const NSString *) content
 {
-        const char *sep = "|,";
-        std::vector<int> array;
-        char * cord2 = strtok ((char *)s, sep);	
-        while (cord2 != NULL)
-        {
-                array.push_back(atoi(cord2));
-                cord2 = strtok (NULL, sep);
-        }
-        return array;
+        guWhiteboard::wb_types index = [self wbTypeForTypeNamed: msg];
+        std::string message_content = std::string(content.UTF8String);
+
+        return guWhiteboard::postmsg(index, message_content) != false;
 }
 
 
-
-#ifdef USE_OLD_WB
-- (WBMsg) wbMsg: (const NSString *) msg
-         ofType: (const NSString *) dataType
-    withContent: (const NSString *) content
-{
-        switch ([self wbTypeForType: dataType])
-        {
-                case WBMsg::TypeBool:
-                        if ([content caseInsensitiveCompare: @"true"] == NSOrderedSame ||
-                            [content caseInsensitiveCompare: @"yes"] == NSOrderedSame ||
-                            [content caseInsensitiveCompare: @"on"] == NSOrderedSame ||
-                            [content integerValue])
-                                return WBMsg(true);
-                        else
-                                return WBMsg(false);
-                        break;
-                case WBMsg::TypeInt:
-                        return WBMsg([content intValue]);
-                        
-                case WBMsg::TypeFloat:
-                        return WBMsg([content floatValue]);
-                        
-                case WBMsg::TypeString:
-                        return WBMsg([content UTF8String]);
-                        
-                case WBMsg::TypeArray:
-                        return WBMsg(convToArrayType([content UTF8String]));
-                        
-                case WBMsg::TypeBinary:
-                        return WBMsg([content intValue]);
-                        
-                case WBMsg::TypeEmpty:
-                default:
-                        return WBMsg();
-        }
-}
-
-- (void) postWBMessage: (const NSString *) msg
-               content: (const NSString *) content
-              withType: (const NSString *) dataType
-{
-        if (!gu_whiteboard || !msg.length) return;
-
-        WBMsg wbmsg = [self wbMsg: msg ofType: dataType withContent: content];
-        gu_whiteboard->addMessage([msg UTF8String], wbmsg);
-}
-
-
+/**
+ * Get a message from the whiteboard and convert to an Objective-C type.
+ * Mostly, this will just return the string representation of that message.
+ * Using this method is deprecated and only useful for generic whiteboard
+ * monitoring tools.  Better to use the C++ message on the ObjcWhiteboard
+ * instance's gu_whiteboard pointer.
+ * @param msg   name of the whiteboard message to get
+ * @return Objective C representation of the message or @"##unsupported##"
+ */
 - (id) getWBMessage: (const NSString *) msg
 {
-        Whiteboard::WBResult result = Whiteboard::METHOD_FAIL;
-        WBMsg wbmsg = gu_whiteboard->getMessage([msg UTF8String], &result);
+        NSNumber *typeNumber = self.knownWhiteboardMessages[msg];
+        guWhiteboard::wb_types msgType = static_cast<guWhiteboard::wb_types>(typeNumber.intValue);
 
-        if (result == Whiteboard::METHOD_FAIL)
-                return nil;
-
-        switch (wbmsg.getType())
+        switch (msgType)
         {
-                case WBMsg::TypeBool:
-                        return [NSNumber numberWithBool: wbmsg.getBoolValue()];
-
-                case WBMsg::TypeInt:
-                        return [NSNumber numberWithInt: wbmsg.getIntValue()];
-
-                case WBMsg::TypeFloat:
-                        return [NSNumber numberWithFloat: wbmsg.getFloatValue()];
-
-                case WBMsg::TypeString:
-                        return [NSString stringWithUTF8String: wbmsg.getStringValue().c_str()];
-
-                case WBMsg::TypeArray:
+                case kPlayerNumber_v:
                 {
-                        const vector<int> vec = wbmsg.getArrayValue();
-                        NSMutableArray *array = [NSMutableArray arrayWithCapacity: vec.size()];
-                        for (int i: vec)
-                                [array addObject: [NSNumber numberWithInt: i]];
-                        return array;
+                        PlayerNumber_t player(gu_whiteboard);
+                        return @(player.get());
                 }
 
-                case WBMsg::TypeBinary:
-                        return [NSData dataWithBytes: wbmsg.getBinaryValue()
-                                              length: wbmsg.getSizeInBytes()];
+                case kXEyesPos_v:
+                {
+                        XEyesPos_t eyes(gu_whiteboard);
+                        Point2D eyePos = eyes.get();
+                        NSPoint eyePoint = { static_cast<CGFloat>(eyePos.x()), static_cast<CGFloat>(eyePos.y()) };
+                        return [NSValue valueWithPoint: eyePoint];
+                }
                 default:
-                        return [NSNull null];
+                        return [self getMessageOfTypeNamed: msg];
         }
         /* NOTREACHED */
 }
 
-
-- (void) subscribeTo: (const NSString *) msg
-{
-        wbcallback->subscribe(gu_whiteboard, [msg UTF8String]);
-}
-#endif
 
 @end
