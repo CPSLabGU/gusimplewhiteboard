@@ -100,7 +100,7 @@ typedef struct whiteboard_watcher oc_watcher_t;
 - (NSString *) getMessageOfTypeNamed: (const NSString *) typeName;
 
 /// return the content of the given whiteboard message as a string
-- (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (wbtypes_t) type;
+- (NSString *) contentForWBMsg: (const gu_simple_message_t *) msg ofType: (wbtypes_t) type;
 
 /// return the name of the given message type
 - (NSString *) typeNameForMessageType: (wbtypes_t) msgType;

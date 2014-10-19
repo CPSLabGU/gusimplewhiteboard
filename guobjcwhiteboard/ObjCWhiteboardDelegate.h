@@ -57,20 +57,24 @@
  *
  */
 #import <Foundation/Foundation.h>
-#import <gusimplewhiteboard.h>
-#import <guwhiteboardtypelist_c_generated.h>
 
+#ifdef _GUWHITEBOARD_TYPELIST_C_H_
 #ifdef __cplusplus
 typedef guWhiteboard::WBTypes wbtypes_t;
 #else
 typedef enum wbtypes wbtypes_t;
 #endif
+#else
+typedef int wbtypes_t;
+#endif
+
+typedef union gsw_simple_message gu_simple_message_t;
 
 @class ObjCWhiteboard;
 
 @protocol ObjCWhiteboardDelegate <NSObject>
 @optional
 - (void) objcWhiteboard: (ObjCWhiteboard *) wb
-        receivedMessage: (gu_simple_message *) msg
-                 ofType: (wbtypes_t) type;
+        receivedMessage: (gu_simple_message_t *) msg
+                 ofType: (int) type;
 @end

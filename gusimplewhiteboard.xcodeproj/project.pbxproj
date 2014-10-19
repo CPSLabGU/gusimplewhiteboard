@@ -75,6 +75,8 @@
 		F1A7797119A1DCD600A9A17A /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F1A7797F19A1DD0100A9A17A /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797919A1DD0100A9A17A /* Whiteboard.cc */; };
 		F1A7798019A1DD0100A9A17A /* WhiteboardConstants.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */; };
+		F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */; };
+		F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */; };
 		F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */; };
@@ -1583,10 +1585,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
+				F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 				F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */,
+				F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */,
 				8B19F9C317A772C400CF2365 /* gutcpinjectionwhiteboardobject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
