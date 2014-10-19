@@ -59,6 +59,9 @@
 #import <Foundation/Foundation.h>
 #import "ObjCWhiteboardDelegate.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-property-synthesis"
+
 extern const NSString *kWBTypeBool;
 extern const NSString *kWBTypeInt;
 extern const NSString *kWBTypeArray;
@@ -114,6 +117,8 @@ typedef struct whiteboard_watcher oc_watcher_t;
 /// post a wb message of the given type name with the given string content
 - (BOOL) postWBMessageOfTypeNamed: (const NSString *) msg withContent: (const NSString *) content;
 
-- getWBMessage: (const NSString *) msg; ///< get wb msg and return as objc object
+- (id) getWBMessage: (const NSString *) msg; ///< get wb msg and return as objc object
 
 @end
+
+#pragma clang diagnostic pop

@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>67</integer>
 		</dict>
+		<key>guobjcwhiteboard_mk.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>114</integer>
+		</dict>
 		<key>gusimplewhiteboard 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -103,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>F14C46AE14A064D8006B6953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F18517AE19F46B550099C12B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -73,6 +73,13 @@
 
 #import "ObjCWhiteboard.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdirect-ivar-access"
+#pragma clang diagnostic ignored "-Warc-repeated-use-of-weak"
+#pragma clang diagnostic ignored "-Wreceiver-is-weak"
+#pragma clang diagnostic ignored "-Wswitch-enum"
+#pragma clang diagnostic ignored "-Wselector"
+
 const NSString *kWBTypeBool = @"bool";
 const NSString *kWBTypeInt = @"int";
 const NSString *kWBTypeArray = @"array";
@@ -129,7 +136,7 @@ class ObjCWBCallback
 {
         ObjCWhiteboard *self;
 public:
-        ObjCWBCallback(ObjCWhiteboard *s, oc_watcher_t *watcher, const char *msg = "*"): self(s)
+        ObjCWBCallback(ObjCWhiteboard *s, oc_watcher_t *watcher): self(s)
         {
                 watcher->subscribe(createWBFunctor<ObjCWBCallback>(this, &ObjCWBCallback::callback, kwb_reserved_SubscribeToAllTypes_v));
         }
@@ -221,6 +228,7 @@ public:
 #endif
         return [self initWithRobotWhiteboard: n named: wbname];
 #endif
+        (void) n;
         return nil;
 }
 
@@ -472,5 +480,6 @@ static NSArray *wbtypes;
         /* NOTREACHED */
 }
 
-
 @end
+
+#pragma clang diagnostic pop

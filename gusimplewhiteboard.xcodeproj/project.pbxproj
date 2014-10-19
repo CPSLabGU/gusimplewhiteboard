@@ -1190,6 +1190,20 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		F18517AE19F46B550099C12B /* guobjcwhiteboard_mk */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "";
+			buildConfigurationList = F18517B119F46B550099C12B /* Build configuration list for PBXLegacyTarget "guobjcwhiteboard_mk" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/bmake;
+			buildWorkingDirectory = guobjcwhiteboard;
+			dependencies = (
+			);
+			name = guobjcwhiteboard_mk;
+			passBuildSettingsInEnvironment = 1;
+			productName = guobjcwhiteboard_mk;
+		};
 		F19FA35718DFDC0A0095B87D /* simplewhiteboard_mk */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "clean host-local analyse";
@@ -1434,6 +1448,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = ICT;
 				TargetAttributes = {
+					F18517AE19F46B550099C12B = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					F1ED58A318E7EF1400864A87 = {
 						TestTargetID = F1ED584018E7C93F00864A87;
 					};
@@ -1468,6 +1485,7 @@
 				F1A9E8CE1905D0A600F0150A /* wbperf_ros */,
 				F1FABC96190268E7001AD476 /* Lgusimplewhiteboard */,
 				F1FABC9A1902692A001AD476 /* Lwbperf */,
+				F18517AE19F46B550099C12B /* guobjcwhiteboard_mk */,
 			);
 		};
 /* End PBXProject section */
@@ -1901,6 +1919,57 @@
 					"./**",
 					"$(SRCROOT)/../../Common",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F18517AF19F46B550099C12B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUGGING_SYMBOLS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F18517B019F46B550099C12B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2429,6 +2498,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F18517B119F46B550099C12B /* Build configuration list for PBXLegacyTarget "guobjcwhiteboard_mk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F18517AF19F46B550099C12B /* Debug */,
+				F18517B019F46B550099C12B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		F19FA35A18DFDC0B0095B87D /* Build configuration list for PBXLegacyTarget "simplewhiteboard_mk" */ = {
 			isa = XCConfigurationList;
