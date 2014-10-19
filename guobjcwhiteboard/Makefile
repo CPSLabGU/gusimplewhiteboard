@@ -48,12 +48,12 @@ install: host-local
 
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
-	cd ../SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} test
+	cd ../guobjcwhiteboardTests && ${MAKE} ${MAKEFLAGS} test
 .else
 	$Eecho
 .endif
 
 post-clean:
-	cd ../SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
+	cd ../guobjcwhiteboardTests && ${MAKE} ${MAKEFLAGS} clean
 
 .include "../../../mk/mipal.mk"		# comes last!
