@@ -29,7 +29,7 @@ enum Resolutions {
 	QVGA,   // 320 x 240
 	VGA,    // 640 x 480
 	HD_4VGA,    // 1280x960
-	SVGA,   // 800 x 600
+	SVGA   // 800 x 600
 };
 
 class ResolutionType {
