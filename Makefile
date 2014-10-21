@@ -8,6 +8,7 @@ LIB=gusimplewhiteboard
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
+COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 USE_READLINE=yes			# command line history and completion
 
 ALL_TARGETS=host-local robot-local test
@@ -17,7 +18,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
 
-#.include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
+.include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
 INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS}
