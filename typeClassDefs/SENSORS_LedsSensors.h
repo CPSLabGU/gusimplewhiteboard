@@ -17,15 +17,15 @@
 
 namespace guWhiteboard                                                  
 {
-	/*! Predefined colour values, feel free to add more, just implement them in changeLedColour */
+	/// Predefined colour values, feel free to add more, just implement them in changeLedColour 
         enum LEDColour
         {
-                Off = -1,
-                Red = 0,
-                Green,
-                Blue,
-                Yellow,
-                NUMBER_OF_LEDS_COLOURS
+                Off = -1, 	///< turn off leds
+                Red = 0,	///< turn leds red
+                Green,		///< turn leds green
+                Blue,		///< turn leds blue
+                Yellow,		///< turn leds yellow
+                NUMBER_OF_LEDS_COLOURS	///< number of LEDColours
         };
         
 	/*! Predefined groups of leds that can be changed together, when adding more make sure to implement them in LEDsGroupChange */
