@@ -17,7 +17,7 @@
 
 namespace guWhiteboard                                                  
 {
-	/** Predefined colour values, feel free to add more, just implement them in changeLedColour */
+	/*! Predefined colour values, feel free to add more, just implement them in changeLedColour */
         enum LEDColour
         {
                 Off = -1,
@@ -28,7 +28,7 @@ namespace guWhiteboard
                 NUMBER_OF_LEDS_COLOURS
         };
         
-	/** Predefined groups of leds that can be changed together, when adding more make sure to implement them in LEDsGroupChange */
+	/*! Predefined groups of leds that can be changed together, when adding more make sure to implement them in LEDsGroupChange */
         enum LEDGroups
         {
                 AllLEDs = 0,  	///< Only off is supported regardless of what is passed in
@@ -47,7 +47,7 @@ namespace guWhiteboard
         
         namespace LEDs
         {
-		/** LED selection enum */
+		/*! LED selection enum */
                 enum LEDCode
                 {
                         LeftEar1 = 0,
@@ -131,7 +131,7 @@ namespace guWhiteboard
                 };
                 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-		/** pretty print and parse string values for each LED in the LED enum */
+		/*! pretty print and parse string values for each LED in the LED enum */
                 static const char *ledNames[NUMBER_OF_LEDS] =
                 {
                         "LeftEar1",
