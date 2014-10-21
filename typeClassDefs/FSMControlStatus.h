@@ -58,6 +58,8 @@
 #ifndef FSMControlStatus_DEFINED
 #define FSMControlStatus_DEFINED
 #define FSMNames_DEFINED
+#define FSMState_DEFINED
+
 
 #include <cstdlib>
 #include <cstring>
@@ -65,6 +67,7 @@
 #include <sstream>
 #include <gu_util.h>
 #include "wb_fsm_control_status.h"
+#include "wb_fsm_state_status.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <ctype.h>
 #endif
@@ -236,6 +239,76 @@ namespace guWhiteboard
 
                 if (available_space(dst)) *dst++ = '\0';
                 if (available_space(dst)) *dst = '\0';
+            }
+
+        };
+
+        /**
+         * Class for transmitting machine names over the whiteboard
+         */
+        class FSMState: public wb_fsm_state_status
+        {
+
+        public:
+            /** designated constructor */
+            FSMState(): wb_fsm_state_status() {}
+
+            /** string constructor */
+            FSMState(std::string states) { from_string(states); }
+
+            /** copy constructor */
+            FSMState(const FSMState &other) { memcpy(this, &other, sizeof(wb_fsm_state_status)); }
+
+            /** assignment operator */
+            const FSMState &operator=(const FSMState &other) { memcpy(this, &other, sizeof(other)); return *this; }
+
+            /** names getter */
+            uint8_t getStateForMachineID(uint8_t machineID) {
+
+                if (machineID >= STATE_BYTE_SIZE) {
+                    return INVALIDMACHINE;
+                }
+
+                return STATESTATUS_GET_STATE(this, machineID);
+            }
+
+            void setStateForMachineID (uint8_t machineID, uint8_t state) {
+
+                if (machineID < STATE_BYTE_SIZE) {
+                    STATESTATUS_SET_STATE(this, machineID, state);
+                }
+            }
+
+            void reset() { memset(this, INVALIDMACHINE, sizeof(wb_fsm_state_status)); }
+
+            /** convert to a string */
+            std::string description()
+            {
+
+                std::string message("");
+                size_t sizeAtLastValidState = 0;
+                for (uint8_t machineID =0; machineID < STATE_BYTE_SIZE; machineID++) {
+                    uint8_t state = STATESTATUS_GET_STATE(this, machineID);
+                    message += std::to_string(state) + ((machineID < (STATE_BYTE_SIZE-1))? "," : "");
+                    if (state != INVALIDMACHINE) {
+                        sizeAtLastValidState = message.size() - static_cast<size_t>(((machineID < (STATE_BYTE_SIZE-1))? 1 : 0));
+                    }
+                }
+                message.erase(sizeAtLastValidState, message.size()-sizeAtLastValidState);
+
+                return message;
+            }
+
+            /** convert from a string */
+            void from_string(const std::string &states)
+            {
+                std::istringstream iss(states);
+                std::string token;
+                uint8_t machineID = 0;
+                while (!iss.eof() && machineID < STATE_BYTE_SIZE) {
+                  getline(iss, token, ',');
+                  STATESTATUS_SET_STATE(this, machineID++, static_cast<uint8_t>(atoi(token.c_str())));
+                }
             }
 
         };

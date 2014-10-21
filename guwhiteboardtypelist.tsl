@@ -56,3 +56,4 @@ class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl,      
 class:Point2D,    atomic, XEyesPos,                                    "XEyesPos",          Just a hook for an xeyes interface
 std::vector<int>,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
 std::string,    atomic, Draw,                                  "Draw",        Used by the half made GUDraw module in posix
+class:FSMState, atomic, FSM_States,                              "fsm_states", Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.

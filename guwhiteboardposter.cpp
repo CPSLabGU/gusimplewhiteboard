@@ -685,6 +685,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			Draw_msg.post(std::string(message_content));
 			return true;
 		}
+		case kFSM_States_v:
+#ifdef FSMState_DEFINED
+		{
+/** WB Ptr Class: FSM_States @brief Nil */ 
+			class FSM_States_t FSM_States_msg;
+			FSM_States_msg.post(FSMState(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !FSMState_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -696,7 +708,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(58);
+	// self.reserve(59);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -756,5 +768,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["XEyesPos"] = kXEyesPos_v;
 	self["VisionFace"] = kVisionFace_v;
 	self["Draw"] = kDraw_v;
+	self["fsm_states"] = kFSM_States_v;
 }
 
