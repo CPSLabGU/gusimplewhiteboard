@@ -57,3 +57,5 @@ class:Point2D,    atomic, XEyesPos,                                    "XEyesPos
 std::vector<int>,    atomic, VisionFace,                                    "VisionFace",          Face seen by Vision
 std::string,    atomic, Draw,                                  "Draw",        Used by the half made GUDraw module in posix
 class:FSMState, atomic, FSM_States,                              "fsm_states", Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.
+class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Status, "Giraff_Interface_Status", Serial interface for the main motor and sensor board of the giraff
+class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Command, "Giraff_Interface_Command", Serial interface for the main motor and sensor board of the giraff
