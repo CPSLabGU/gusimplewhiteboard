@@ -90,6 +90,7 @@
 #include "VisionGoals.h"
 #include "WalkData.h"
 #include "DifferentialRobotControlStatus.h"
+#include "Giraff_MainSerialInterface.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

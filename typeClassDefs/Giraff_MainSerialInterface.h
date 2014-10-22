@@ -47,8 +47,12 @@ namespace guWhiteboard
 		 */
 #define DELIMITER ','
 #define SEP ':'
-#define PARSER(s, c, p, v) if (k.compare(s) == 0) { set_##c##(p); }
+#define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); }
 #define SV std::vector<std::string>
+#define PARSE_FLOAT static_cast<float>(atof(v.c_str()))
+#define PARSE_INT16 static_cast<int16_t>(atoi(v.c_str()))
+#define PARSE_INT32 static_cast<int32_t>(atoi(v.c_str()))
+#define PARSE_BITSET false //NYI
                 void from_string(const std::string &str) 
 		{
 			SV sn = components_of_string_separated(str, DELIMITER, true);
@@ -60,13 +64,32 @@ namespace guWhiteboard
 					fprintf(stderr, "parse error\n");
 					return;
 				}
-				std::string k = kv.at(1);
-				std::string v = kv.at(2);
+				std::string k = kv.at(0);
+				std::string v = kv.at(1);
 
-				PARSER("v", v, atof(v))
-				PARSER("a", a, atof(v))
+				PARSER("v", v, PARSE_FLOAT)
+				PARSER("r", r, PARSE_FLOAT)
+				PARSER("a", a, PARSE_FLOAT)
+				PARSER("p", p, PARSE_FLOAT)
+				//PARSER("mode", mode, PARSE_BITSET)
+				//PARSER("undock", undock, PARSE_FLOAT)
+				//PARSER("home", home, PARSE_FLOAT)
+				//PARSER("tilt_homing_state", tilt_homing_state, PARSE_BITSET)
+				PARSER("tilt_angle_from_home", tilt_angle_from_home, PARSE_FLOAT)
+				PARSER("vg", vg, PARSE_FLOAT)
+				PARSER("vgr", vgr, PARSE_FLOAT)
+				PARSER("cdp", cdp, PARSE_FLOAT)
+				PARSER("cvg", cvg, PARSE_FLOAT)
+				//PARSER("but0", but0, PARSE_INT16)
+				//PARSER("but1", but1, PARSE_INT16)
+				PARSER("dial", dial, PARSE_INT16)
+				PARSER("enc0", enc0, PARSE_INT32)
+				PARSER("enc1", enc1, PARSE_INT32)
+				PARSER("enc2", enc2, PARSE_INT32)
+				//PARSER("button_data", button_data, PARSE_FLOAT)
+				//PARSER("bulk_data", bulk_data, PARSE_FLOAT)
+				//PARSER("charger_data", charger_data, PARSE_FLOAT)
 			}
-			fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
 		}
 
                 /** pretty print method for showing the current property values 
