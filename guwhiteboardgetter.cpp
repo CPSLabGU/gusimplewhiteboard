@@ -664,6 +664,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !FSMState_DEFINED
 
+		case kGiraff_MainSerialInterface_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_MainSerialInterface @brief Nil */ 
+			class Giraff_MainSerialInterface_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !Giraff_MainSerialInterface_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
