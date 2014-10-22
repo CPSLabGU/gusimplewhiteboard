@@ -652,6 +652,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class Draw_t m;
 			return msg ? m.get_from(msg) : m.get();
 		}
+		case kFSM_States_v:
+#ifdef FSMState_DEFINED
+		{
+/** WB Ptr Class: FSM_States @brief Nil */ 
+			class FSM_States_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !FSMState_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
