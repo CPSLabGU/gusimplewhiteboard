@@ -112,28 +112,51 @@ struct wb_giraff_main_serial
     */       
     wb_giraff_main_serial()
     {
-        set_v(0);
-        set_r(0);
-        set_a(0);
-        set_p(0);
-        //set_mode();
-        set_undock(0);
-        //set_home();
-        //set_tilt_homing_state();
-        set_tilt_angle_from_home(0);
-        set_vg(0);
-        set_vgr(0);
-        set_cdp(0);
-        set_cvg(0);
-        set_but0(0);
-        set_but1(0);
-        set_dial(0);
-        set_enc0(0);
-        set_enc1(0);
-        set_enc2(0);
-        //set_button_data();
-        //set_bulk_data();
-        //set_charger_data();
+        _v = 0;
+        _r = 0;
+        _a = 0;
+        _p = 0;
+        _mode = 0;
+        _undock = 0;
+        //_home = 0;
+        _tilt_homing_state = 0;
+        _tilt_angle_from_home = 0;
+        _vg = 0;
+        _vgr = 0;
+        _cdp = 0;
+        _cvg = 0;
+        _but0 = 0;
+        _but1 = 0;
+        _dial = 0;
+        _enc0 = 0;
+        _enc1 = 0;
+        _enc2 = 0;
+        //_button_data = 0;
+        //_bulk_data = 0;
+        //_charger_data = 0;
+
+        _v_mask = 0;
+        _r_mask = 0;
+        _a_mask = 0;
+        _p_mask = 0;
+        _mode_mask = 0;
+        _undock_mask = 0;
+        //_home_mask = 0;
+        _tilt_homing_state_mask = 0;
+        _tilt_angle_from_home_mask = 0;
+        _vg_mask = 0;
+        _vgr_mask = 0;
+        _cdp_mask = 0;
+        _cvg_mask = 0;
+        _but0_mask = 0;
+        _but1_mask = 0;
+        _dial_mask = 0;
+        _enc0_mask = 0;
+        _enc1_mask = 0;
+        _enc2_mask = 0;
+        //_button_data_mask = 0;
+        //_bulk_data_mask = 0;
+        //_charger_data_mask = 0;
     }
 #endif
 };

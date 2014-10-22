@@ -52,7 +52,7 @@ namespace guWhiteboard
 #define PARSE_FLOAT static_cast<float>(atof(v.c_str()))
 #define PARSE_INT16 static_cast<int16_t>(atoi(v.c_str()))
 #define PARSE_INT32 static_cast<int32_t>(atoi(v.c_str()))
-#define PARSE_BITSET false //NYI
+#define PARSE_BITSET static_cast<uint8_t>(0) //NYI
                 void from_string(const std::string &str) 
 		{
 			SV sn = components_of_string_separated(str, DELIMITER, true);
@@ -71,10 +71,10 @@ namespace guWhiteboard
 				PARSER("r", r, PARSE_FLOAT)
 				PARSER("a", a, PARSE_FLOAT)
 				PARSER("p", p, PARSE_FLOAT)
-				//PARSER("mode", mode, PARSE_BITSET)
+				PARSER("mode", mode, PARSE_BITSET)
 				//PARSER("undock", undock, PARSE_FLOAT)
 				//PARSER("home", home, PARSE_FLOAT)
-				//PARSER("tilt_homing_state", tilt_homing_state, PARSE_BITSET)
+				PARSER("tilt_homing_state", tilt_homing_state, PARSE_BITSET)
 				PARSER("tilt_angle_from_home", tilt_angle_from_home, PARSE_FLOAT)
 				PARSER("head_angle", tilt_angle_from_home, PARSE_FLOAT)
 				PARSER("vg", vg, PARSE_FLOAT)
@@ -99,7 +99,7 @@ namespace guWhiteboard
                 std::string description() const
                 {
                         std::stringstream ss;
-			ss << v() << " : v, " << r() << " : r, " << a() << " : a, " << p() << " : p, " << mode() << " : mode, " << tilt_homing_state() << " : tilt_homing_state, " << tilt_angle_from_home() << " : tilt_angle_from_home, " << vg() << " : vg, " << vgr() << " : vgr, " << cdp() << " : cdp, " << cvg() << " : cvg, " << but0() << " : but0, " << but1() << " : but1, " << dial() << " : dial, " << enc0() << " : enc0, " << enc1() << " : enc1, " << enc2() << " : enc2";
+			ss << v() << " : v, " << r() << " : r, " << a() << " : a, " << p() << " : p, " << /*mode() <<*/ " : mode, " << /*tilt_homing_state() <<*/ " : tilt_homing_state, " << tilt_angle_from_home() << " : tilt_angle_from_home, " << vg() << " : vg, " << vgr() << " : vgr, " << cdp() << " : cdp, " << cvg() << " : cvg, " << but0() << " : but0, " << but1() << " : but1, " << dial() << " : dial, " << enc0() << " : enc0, " << enc1() << " : enc1, " << enc2() << " : enc2";
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
