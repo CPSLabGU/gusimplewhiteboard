@@ -697,12 +697,24 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !FSMState_DEFINED
 
-		case kGiraff_MainSerialInterface_v:
+		case kGiraff_Interface_Status_v:
 #ifdef Giraff_MainSerialInterface_DEFINED
 		{
-/** WB Ptr Class: Giraff_MainSerialInterface @brief Nil */ 
-			class Giraff_MainSerialInterface_t Giraff_MainSerialInterface_msg;
-			Giraff_MainSerialInterface_msg.post(Giraff_MainSerialInterface(message_content));
+/** WB Ptr Class: Giraff_Interface_Status @brief Nil */ 
+			class Giraff_Interface_Status_t Giraff_Interface_Status_msg;
+			Giraff_Interface_Status_msg.post(Giraff_MainSerialInterface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !Giraff_MainSerialInterface_DEFINED
+
+		case kGiraff_Interface_Command_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_Interface_Command @brief Nil */ 
+			class Giraff_Interface_Command_t Giraff_Interface_Command_msg;
+			Giraff_Interface_Command_msg.post(Giraff_MainSerialInterface(message_content));
 			return true;
 		}
 #else
@@ -720,7 +732,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(60);
+	// self.reserve(61);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -781,6 +793,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["VisionFace"] = kVisionFace_v;
 	self["Draw"] = kDraw_v;
 	self["fsm_states"] = kFSM_States_v;
-	self["Giraff_MainSerialInterface"] = kGiraff_MainSerialInterface_v;
+	self["Giraff_Interface_Status"] = kGiraff_Interface_Status_v;
+	self["Giraff_Interface_Command"] = kGiraff_Interface_Command_v;
 }
 

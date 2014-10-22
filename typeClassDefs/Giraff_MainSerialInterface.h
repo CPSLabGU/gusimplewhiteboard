@@ -76,6 +76,7 @@ namespace guWhiteboard
 				//PARSER("home", home, PARSE_FLOAT)
 				//PARSER("tilt_homing_state", tilt_homing_state, PARSE_BITSET)
 				PARSER("tilt_angle_from_home", tilt_angle_from_home, PARSE_FLOAT)
+				PARSER("head_angle", tilt_angle_from_home, PARSE_FLOAT)
 				PARSER("vg", vg, PARSE_FLOAT)
 				PARSER("vgr", vgr, PARSE_FLOAT)
 				PARSER("cdp", cdp, PARSE_FLOAT)
