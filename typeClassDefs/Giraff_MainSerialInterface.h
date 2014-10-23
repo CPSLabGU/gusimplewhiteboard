@@ -63,13 +63,13 @@ namespace guWhiteboard
 #define IS_HEX(v) COMP(v, "F*") || COMP(v, "I*")
 #define READ_HEX(v) ^(void){ \
         uint32_t num;                           \
-        char *ch = (char *)v.substr(2).c_str(); \
+        char *ch = const_cast<char *>(v.substr(2).c_str()); \
         sscanf(ch, "%x", &num);                 \
-        int temp =  htonl(*(unsigned int*)&num);\
+        int temp =  htonl(*static_cast<unsigned int*>(&num));\
         return temp; }()
 
 #define PARSE_HEX_FLOAT(v) ^(void) { int tmp = READ_HEX(v); \
-                                     return *((float*)&tmp); }()
+                                     return *(reinterpret_cast<float*>(&tmp)); }()
 #define PARSE_HEX_INT16(v) ^(void) { return static_cast<int16_t>(READ_HEX(v)); }()
 #define PARSE_HEX_INT32(v) ^(void) { return static_cast<int32_t>(READ_HEX(v)); }()
 #define PARSE_HEX_BITSET(v) ^(void) { return static_cast<int8_t>(0); }()
