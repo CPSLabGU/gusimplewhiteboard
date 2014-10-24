@@ -57,22 +57,16 @@ namespace guWhiteboard
 		 */
 #define DELIMITER ','
 #define SEP ':'
-#define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); }
+#define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); continue; }
 #define SV std::vector<std::string>
 #define COMP(v, s) v.compare(0, 2, s) == 0
 #define IS_HEX(v) COMP(v, "F*") || COMP(v, "I*")
-#define READ_HEX(v) ^(void){ \
-        uint32_t num;                           \
-        char *ch = const_cast<char *>(v.substr(2).c_str()); \
-        sscanf(ch, "%x", &num);                 \
-        int temp =  htonl(*static_cast<unsigned int*>(&num));\
-        return temp; }()
 
-#define PARSE_HEX_FLOAT(v) ^(void) { int tmp = READ_HEX(v); \
-                                     return *(reinterpret_cast<float*>(&tmp)); }()
-#define PARSE_HEX_INT16(v) ^(void) { return static_cast<int16_t>(READ_HEX(v)); }()
-#define PARSE_HEX_INT32(v) ^(void) { return static_cast<int32_t>(READ_HEX(v)); }()
-#define PARSE_HEX_INT8(v) ^(void) { return static_cast<int8_t>(READ_HEX(v)); }()
+#define READ_HEX(v) htonl(strtol(v.c_str()+2, NULL, 16))
+#define PARSE_HEX_FLOAT(v) static_cast<float>(READ_HEX(v))
+#define PARSE_HEX_INT32(v) static_cast<int32_t>(READ_HEX(v))
+#define PARSE_HEX_INT16(v) static_cast<int16_t>(READ_HEX(v))
+#define PARSE_HEX_INT8(v) static_cast<int8_t>(READ_HEX(v))
 
 #define PARSE_FLOAT IS_HEX(v) ? PARSE_HEX_FLOAT(v) : static_cast<float>(atof(v.c_str()))
 #define PARSE_INT16 IS_HEX(v) ? PARSE_HEX_INT16(v) : static_cast<int16_t>(atoi(v.c_str()))
@@ -92,29 +86,41 @@ namespace guWhiteboard
 				std::string k = kv.at(0);
 				std::string v = kv.at(1);
 
-				PARSER("v", v, PARSE_FLOAT)
-				PARSER("r", r, PARSE_FLOAT)
-				PARSER("a", a, PARSE_FLOAT)
-				PARSER("p", p, PARSE_FLOAT)
-				PARSER("mode", mode, PARSE_INT8)
-				//PARSER("undock", undock, PARSE_FLOAT)
-				//PARSER("home", home, PARSE_FLOAT)
-				PARSER("tilt_homing_state", tilt_homing_state, PARSE_INT8)
-				PARSER("tilt_angle_from_home", tilt_angle_from_home, PARSE_FLOAT)
-				PARSER("head_angle", tilt_angle_from_home, PARSE_FLOAT)
-				PARSER("vg", vg, PARSE_FLOAT)
-				PARSER("vgr", vgr, PARSE_FLOAT)
-				PARSER("cdp", cdp, PARSE_FLOAT)
-				PARSER("cvg", cvg, PARSE_FLOAT)
-				PARSER("but0", but0, PARSE_INT16)
-				PARSER("but1", but1, PARSE_INT16)
-				PARSER("dial", dial, PARSE_INT16)
-				PARSER("enc0", enc0, PARSE_INT32)
-				PARSER("enc1", enc1, PARSE_INT32)
-				PARSER("enc2", enc2, PARSE_INT32)
-				//PARSER("button_data", button_data, PARSE_FLOAT)
-				//PARSER("bulk_data", bulk_data, PARSE_FLOAT)
-				//PARSER("charger_data", charger_data, PARSE_FLOAT)
+                //serial parser - removed indenting so I can read it, Carl.
+PARSER("v",     velocity,                   PARSE_FLOAT)
+PARSER("r",     movement_type,              static_cast<Giraff_MovementType>(PARSE_FLOAT))
+PARSER("a",     acceleration,               PARSE_FLOAT)
+PARSER("p",     position,                   PARSE_FLOAT)
+PARSER("mode",  coord_type,                 static_cast<Giraff_CoordType>(PARSE_INT8))
+PARSER("tilt_angle_from_home", head_angle,  PARSE_FLOAT)
+PARSER("vg",    max_gear_ratio,             PARSE_FLOAT)
+PARSER("vgr",   gear_ratio_increments,      PARSE_FLOAT)
+PARSER("cdp",   gear_ratio_slowdown_dist,   PARSE_FLOAT)
+PARSER("cvg",   current_gear_ratio,         PARSE_FLOAT)
+PARSER("but0",  red_button_presses,         PARSE_INT16)
+PARSER("but1",  blue_button_presses,        PARSE_INT16)
+PARSER("dial",  dial_increments,            PARSE_INT16)
+PARSER("enc0",  left_motor_encoder_ticks,   PARSE_INT32)
+PARSER("enc1",  right_motor_encoder_ticks,  PARSE_INT32)
+PARSER("enc2",  head_motor_encoder_ticks,   PARSE_INT32)
+
+                //pretty parser - removed indenting so I can read it, Carl.
+PARSER("velocity",                  velocity,               PARSE_FLOAT)
+PARSER("movement_type",             movement_type,          static_cast<Giraff_MovementType>(PARSE_FLOAT))
+PARSER("acceleration",              acceleration,           PARSE_FLOAT)
+PARSER("position",                  position,               PARSE_FLOAT)
+PARSER("coord_type",                coord_type,             static_cast<Giraff_CoordType>(PARSE_INT8))
+PARSER("head_angle",                head_angle,             PARSE_FLOAT)
+PARSER("max_gear_ratio",            max_gear_ratio,         PARSE_FLOAT)
+PARSER("gear_ratio_increments",     gear_ratio_increments,  PARSE_FLOAT)
+PARSER("gear_ratio_slowdown_dist",  gear_ratio_slowdown_dist, PARSE_FLOAT)
+PARSER("current_gear_ratio",        current_gear_ratio,     PARSE_FLOAT)
+PARSER("red_button_presses",        red_button_presses,     PARSE_INT16)
+PARSER("blue_button_presses",       blue_button_presses,    PARSE_INT16)
+PARSER("dial_increments",           dial_increments,        PARSE_INT16)
+PARSER("left_motor_encoder_ticks",  left_motor_encoder_ticks, PARSE_INT32)
+PARSER("right_motor_encoder_ticks", right_motor_encoder_ticks, PARSE_INT32)
+PARSER("head_motor_encoder_ticks",  head_motor_encoder_ticks, PARSE_INT32)
 			}
 		}
 
@@ -123,8 +129,24 @@ namespace guWhiteboard
 		 */
                 std::string description() const
                 {
-                        std::stringstream ss;
-                        ss << v() << " : v, " << r() << " : r, " << a() << " : a, " << p() << " : p, " << mode() << " : mode, " << tilt_homing_state() << " : tilt_homing_state, " << tilt_angle_from_home() << " : tilt_angle_from_home, " << vg() << " : vg, " << vgr() << " : vgr, " << cdp() << " : cdp, " << cvg() << " : cvg, " << but0() << " : but0, " << but1() << " : but1, " << dial() << " : dial, " << enc0() << " : enc0, " << enc1() << " : enc1, " << enc2() << " : enc2";
+                        std::stringstream ss;/*
+                        ss  
+                        << velocity() << "velocity : , " 
+                        << movement_type() << "movement_type : , " 
+                        << acceleration() << "acceleration : , " 
+                        << position() << "position : , " 
+                        << coord_type() << "coord_type : , " 
+                        << head_angle() << "head_angle : , " 
+                        << max_gear_ratio() << "max_gear_ratio : , " 
+                        << gear_ratio_increments() << "gear_ratio_increments : , " 
+                        << gear_ratio_slowdown_dist() << "gear_ratio_slowdown_dist : , " 
+                        << current_gear_ratio() << "current_gear_ratio : , " 
+                        << red_button_presses() << "red_button_presses : , " 
+                        << blue_button_presses() << "blue_button_presses : , " 
+                        << dial_increments() << "dial_increments : , " 
+                        << left_motor_encoder_ticks() << "left_motor_encoder_ticks : , " 
+                        << right_motor_encoder_ticks() << "right_motor_encoder_ticks : , " 
+                        << head_motor_encoder_ticks() << "head_motor_encoder_ticks : ";*/
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

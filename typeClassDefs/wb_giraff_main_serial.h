@@ -12,99 +12,98 @@
 #include <gu_util.h>
 
 /**
+ * Controls the type of movement the giraff uses
+ */
+enum Giraff_MovementType
+{
+    Rotation    = 0,    ///< Giraff rotates when position is set (deg/sec)
+    Straight    = 1,    ///< Giraff moves forward and backwards via position (m/sec)
+    Arc         = 50    ///< Giraff arcs based on vg and position (position forward and backwards (m/s) and vg controls the wheel gear ratio)
+};
+
+/**
+ * Controls when position uses relative and absolute distances (absolute is based on odometry and is reset when coord_type is changed).
+ */
+enum Giraff_CoordType
+{
+    Relative_Coords = 0,        ///< Distances passed to position are relative to the current position
+    Absolute_Coords = 1,        ///< Distances to be are relative to the odometry zero position (odometry is reset when this is toggled to absolute mode).
+    BufferedAbsolute_Coords = 4 ///< Distances are absolute however commands are blocking and wait for previous commands to finish (buffer of 4).
+};
+
+/**
  * Serial interface for the main giraff board.
  * This includes the buttons, battery data and motor control.
  */
 struct wb_giraff_main_serial
 {
     /** Giraff maximum velocity , Unit: m/s, Range: 0.0 / 150.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, v)
+    CONTROLLED_PROPERTY(float, velocity)
 
-    /** Move straight( > 0 ) or rotate, Unit: -, Range: -1.0E8 / 1.0E8, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, r)
+    /** The type of movement ot be done. See Giraff_MovementType, Setter: Yes, Getter: Yes*/
+    CONTROLLED_PROPERTY(Giraff_MovementType, movement_type)
 
     /** Giraff acceleration, Unit: m/s2, Range: 0.0 / 150.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, a)
+    CONTROLLED_PROPERTY(float, acceleration)
 
     /** Distance or angle to move, Unit: m or deg, Range: -1000.0 / 1000.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, p)
+    CONTROLLED_PROPERTY(float, position)
 
-    /** Current movement mode, Unit: -, Range: 0 / 255, Setter: Lower 4 bits, Getter: Yes*/
-    CONTROLLED_PROPERTY(uint8_t, mode)
-
-    /** Undock with specified backup distance, Unit: m, Range: -1.0 / 1.0, Setter: Yes, Getter: No*/
-    CONTROLLED_PROPERTY(float, undock)
-
-    /** Head homing sequence NOTE: Seems broken, commented out for now - Carl. , Unit: -, Range: -, Setter: -, Getter: -*/
-    //CONTROLLED_PROPERTY(-, home)
-
-    /** Tilt homing state, Unit: -, Range: 0 / 255, Setter: No, Getter: Yes*/
-    CONTROLLED_PROPERTY(uint8_t, tilt_homing_state)
+    /** Changes the distances of position to relative or absolute. Also controls command preemption when in absolute mode by allowing 4 buffered commands to be sent. See Giraff_CoordType, Setter: Yes, Getter: Yes*/
+    CONTROLLED_PROPERTY(Giraff_CoordType, coord_type)
 
     /** Current head tilt angle, Unit: rad, Range: 0.0872664 / 2.0943935, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, tilt_angle_from_home)
+    CONTROLLED_PROPERTY(float, head_angle)
 
     /** Maximum virtual gear ratio, Unit: gr, Range: -1000.0 / 1000.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, vg)
+    CONTROLLED_PROPERTY(float, max_gear_ratio)
 
     /** Viritual gear rate of change, Unit: gr/m, Range: 1000.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, vgr)
+    CONTROLLED_PROPERTY(float, gear_ratio_increments)
 
     /** Clothoid decelaration point, Unit: m, Range: -1000.0 / 1000.0, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, cdp)
+    CONTROLLED_PROPERTY(float, gear_ratio_slowdown_dist)
 
     /** Current virtual gear ratio, Unit: gr, Range: -1000.0 / 1000.0, Setter: No, Getter: Yes*/
-    CONTROLLED_PROPERTY(float, cvg)
+    CONTROLLED_PROPERTY(float, current_gear_ratio)
 
     /** Number of red button presses, Unit: presses, Range: 0 / 2147483647, Setter: No, Getter: Yes*/
-    CONTROLLED_PROPERTY(int16_t, but0)
+    CONTROLLED_PROPERTY(int16_t, red_button_presses)
 
     /** Number of green button presses, Unit: presses, Range: 0 / 2147483647, Setter: No, Getter: Yes*/
-    CONTROLLED_PROPERTY(int16_t, but1)
+    CONTROLLED_PROPERTY(int16_t, blue_button_presses)
 
     /** Incremental value of dial, Unit: value, Range: -2147483648 / 2147483647, Setter: No, Getter: Yes*/
-    CONTROLLED_PROPERTY(int16_t, dial)
+    CONTROLLED_PROPERTY(int16_t, dial_increments)
 
     /** Left drive motor encoder pulses, Unit: pulses, Range: -100000000 / 100000000, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(int32_t, enc0)
+    CONTROLLED_PROPERTY(int32_t, left_motor_encoder_ticks)
 
     /** Right drive motor encoder pulses, Unit: pulses, Range: -100000000 / 100000000, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(int32_t, enc1)
+    CONTROLLED_PROPERTY(int32_t, right_motor_encoder_ticks)
 
     /** Head tilt motor encoder pulses, Unit: pulses, Range: -100000000 / 100000000, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(int32_t, enc2)
-
-    /** but0, but1, dial values, Unit: multiple, Range: See individuals, Setter: No, Getter: Yes*/
-    //CONTROLLED_PROPERTY(multiple, button_data)
-
-    /** varius parameter values, Unit: multiple, Range: See individuals, Setter: No, Getter: Yes*/
-    //CONTROLLED_PROPERTY(multiple, bulk_data)
+    CONTROLLED_PROPERTY(int32_t, head_motor_encoder_ticks)
 
     /** Charger/battery data, Unit: multiple, Range: See individuals, Setter: No, Getter: Yes*/
     //CONTROLLED_PROPERTY(multiple, charger_data)
 
-    CONTROL_BIT(v)
-    CONTROL_BIT(r)
-    CONTROL_BIT(a)
-    CONTROL_BIT(p)
-    CONTROL_BIT(mode)
-    CONTROL_BIT(undock)
-    //CONTROL_BIT(home)
-    CONTROL_BIT(tilt_homing_state)
-    CONTROL_BIT(tilt_angle_from_home)
-    CONTROL_BIT(vg)
-    CONTROL_BIT(vgr)
-    CONTROL_BIT(cdp)
-    CONTROL_BIT(cvg)
-    CONTROL_BIT(but0)
-    CONTROL_BIT(but1)
-    CONTROL_BIT(dial)
-    CONTROL_BIT(enc0)
-    CONTROL_BIT(enc1)
-    CONTROL_BIT(enc2)
-    //CONTROL_BIT(button_data)
-    //CONTROL_BIT(bulk_data)
-    //CONTROL_BIT(charger_data)
+    CONTROL_BIT(velocity)
+    CONTROL_BIT(movement_type)
+    CONTROL_BIT(acceleration)
+    CONTROL_BIT(position)
+    CONTROL_BIT(coord_type)
+    CONTROL_BIT(head_angle)
+    CONTROL_BIT(max_gear_ratio)
+    CONTROL_BIT(gear_ratio_increments)
+    CONTROL_BIT(gear_ratio_slowdown_dist)
+    CONTROL_BIT(current_gear_ratio)
+    CONTROL_BIT(red_button_presses)
+    CONTROL_BIT(blue_button_presses)
+    CONTROL_BIT(dial_increments)
+    CONTROL_BIT(left_motor_encoder_ticks)
+    CONTROL_BIT(right_motor_encoder_ticks)
+    CONTROL_BIT(head_motor_encoder_ticks)
 
 #ifdef __cplusplus
     /**
@@ -112,51 +111,7 @@ struct wb_giraff_main_serial
     */       
     wb_giraff_main_serial()
     {
-        _v = 0;
-        _r = 0;
-        _a = 0;
-        _p = 0;
-        _mode = 0;
-        _undock = 0;
-        //_home = 0;
-        _tilt_homing_state = 0;
-        _tilt_angle_from_home = 0;
-        _vg = 0;
-        _vgr = 0;
-        _cdp = 0;
-        _cvg = 0;
-        _but0 = 0;
-        _but1 = 0;
-        _dial = 0;
-        _enc0 = 0;
-        _enc1 = 0;
-        _enc2 = 0;
-        //_button_data = 0;
-        //_bulk_data = 0;
-        //_charger_data = 0;
-
-        _v_mask = 0;
-        _r_mask = 0;
-        _a_mask = 0;
-        _p_mask = 0;
-        _mode_mask = 0;
-        _undock_mask = 0;
-        //_home_mask = 0;
-        _tilt_homing_state_mask = 0;
-        _tilt_angle_from_home_mask = 0;
-        _vg_mask = 0;
-        _vgr_mask = 0;
-        _cdp_mask = 0;
-        _cvg_mask = 0;
-        _but0_mask = 0;
-        _but1_mask = 0;
-        _dial_mask = 0;
-        _enc0_mask = 0;
-        _enc1_mask = 0;
-        _enc2_mask = 0;
-        //_button_data_mask = 0;
-        //_bulk_data_mask = 0;
-        //_charger_data_mask = 0;
+        memset(this, 0, sizeof(*this));
     }
 #endif
 };
