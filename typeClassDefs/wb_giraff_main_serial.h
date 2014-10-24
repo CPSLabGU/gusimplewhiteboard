@@ -18,7 +18,7 @@ enum Giraff_MovementType
 {
     Rotation    = 0,    ///< Giraff rotates when position is set (deg/sec)
     Straight    = 1,    ///< Giraff moves forward and backwards via position (m/sec)
-    Arc         = 50    ///< Giraff arcs based on vg and position (position forward and backwards (m/s) and vg controls the wheel gear ratio)
+    Arc         = 51    ///< Giraff arcs based on vg and position (position forward and backwards (m/s) and vg controls the wheel gear ratio)
 };
 
 /**
