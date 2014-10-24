@@ -129,7 +129,7 @@ PARSER("head_motor_encoder_ticks",  head_motor_encoder_ticks, PARSE_INT32)
 		 */
                 std::string description() const
                 {
-                        std::stringstream ss;/*
+                        std::stringstream ss;
                         ss  
                         << velocity() << "velocity : , " 
                         << movement_type() << "movement_type : , " 
@@ -146,7 +146,7 @@ PARSER("head_motor_encoder_ticks",  head_motor_encoder_ticks, PARSE_INT32)
                         << dial_increments() << "dial_increments : , " 
                         << left_motor_encoder_ticks() << "left_motor_encoder_ticks : , " 
                         << right_motor_encoder_ticks() << "right_motor_encoder_ticks : , " 
-                        << head_motor_encoder_ticks() << "head_motor_encoder_ticks : ";*/
+                        << head_motor_encoder_ticks() << "head_motor_encoder_ticks : ";
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
