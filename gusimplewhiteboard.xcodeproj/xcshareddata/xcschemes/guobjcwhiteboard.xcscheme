@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F1C94D701555CA8E00B717DF"
-               BuildableName = "guobjcwhiteboardTests.octest"
+               BuildableName = "guobjcwhiteboardTests.xctest"
                BlueprintName = "guobjcwhiteboardTests"
                ReferencedContainer = "container:gusimplewhiteboard.xcodeproj">
             </BuildableReference>
