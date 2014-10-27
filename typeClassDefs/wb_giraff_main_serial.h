@@ -88,21 +88,52 @@ struct wb_giraff_main_serial
     /** Charger/battery data, Unit: multiple, Range: See individuals, Setter: No, Getter: Yes*/
     //CONTROLLED_PROPERTY(multiple, charger_data)
 
+    /** Control bit (mask) */
     CONTROL_BIT(velocity)
+
+    /** Control bit (mask) */
     CONTROL_BIT(movement_type)
+
+    /** Control bit (mask) */
     CONTROL_BIT(acceleration)
+
+    /** Control bit (mask) */
     CONTROL_BIT(position)
+
+    /** Control bit (mask) */
     CONTROL_BIT(coord_type)
+
+    /** Control bit (mask) */
     CONTROL_BIT(head_angle)
+
+    /** Control bit (mask) */
     CONTROL_BIT(max_gear_ratio)
+
+    /** Control bit (mask) */
     CONTROL_BIT(gear_ratio_increments)
+
+    /** Control bit (mask) */
     CONTROL_BIT(gear_ratio_slowdown_dist)
+
+    /** Control bit (mask) */
     CONTROL_BIT(current_gear_ratio)
+
+    /** Control bit (mask) */
     CONTROL_BIT(red_button_presses)
+
+    /** Control bit (mask) */
     CONTROL_BIT(blue_button_presses)
+
+    /** Control bit (mask) */
     CONTROL_BIT(dial_increments)
+
+    /** Control bit (mask) */
     CONTROL_BIT(left_motor_encoder_ticks)
+
+    /** Control bit (mask) */
     CONTROL_BIT(right_motor_encoder_ticks)
+
+    /** Control bit (mask) */
     CONTROL_BIT(head_motor_encoder_ticks)
 
 #ifdef __cplusplus
