@@ -52,9 +52,6 @@ namespace guWhiteboard
 		 */
 		Giraff_MainSerialInterface(const std::string &str) { from_string(str); }
 
-                /** parse class properties from a string
-		 *  @param[in] str a serialised string containing properties to set in this class
-		 */
 #define DELIMITER ','
 #define SEP ':'
 #define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); continue; }
@@ -72,6 +69,9 @@ namespace guWhiteboard
 #define PARSE_INT16 IS_HEX(v) ? PARSE_HEX_INT16(v) : static_cast<int16_t>(atoi(v.c_str()))
 #define PARSE_INT32 IS_HEX(v) ? PARSE_HEX_INT32(v) : static_cast<int32_t>(atoi(v.c_str()))
 #define PARSE_INT8 IS_HEX(v) ? PARSE_HEX_INT8(v) : static_cast<uint8_t>(atoi(v.c_str())) 
+                /** parse class properties from a string
+		 *  @param[in] str a serialised string containing properties to set in this class
+		 */
                 void from_string(const std::string &str) 
 		{
 			SV sn = components_of_string_separated(str, DELIMITER, true);
