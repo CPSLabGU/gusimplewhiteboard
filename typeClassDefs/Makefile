@@ -25,7 +25,7 @@ CI_EXTRA_COMMANDS=
 .else
 CI_EXTRA_COMMANDS=								\
 	rm -rf ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;			\
-	cp -r documentation ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;
+	cp -r ${DOCUMENTATION} ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;
 .endif
 
 .include "../../../mk/mipal.mk"		# comes last!
