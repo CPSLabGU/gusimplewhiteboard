@@ -16,6 +16,7 @@ CI_NO_LOCK=yes
 TMP_HDRS!=ls *.h
 HDRS?=${TMP_HDRS}
 CI_DOC_JOBS=${HDRS}
+CI_MAKE_ARGS+= HDRS="${HDRS}"
 
 WEB_SERVER_DIR=/Users/Shared/www/mipal.net
 
