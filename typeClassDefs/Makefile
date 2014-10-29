@@ -22,9 +22,9 @@ WEB_SERVER_DIR=/Users/Shared/www/mipal.net
 .if defined(IGNORE_RECURSIVE_JENKINS)
 CI_EXTRA_COMMANDS=	
 .else
-CI_EXTRA_COMMANDS=								\
-	rm -rf ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;			\
-	cp -r ${DOCUMENTATION} ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;
+CI_EXTRA_COMMANDS=							\
+	rm -rf ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;		\
+	cp -R ${DOCUMENTATION} ${WEB_SERVER_DIR}/Docs/Whiteboard.Class.Docs;
 .endif
 
 .include "../../../mk/mipal.mk"		# comes last!
