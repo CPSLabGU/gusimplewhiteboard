@@ -324,6 +324,7 @@
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
 		F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fft_frequencies.h; sourceTree = "<group>"; };
 		F1376EA31958E64900983D84 /* FFTStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFTStatus.h; sourceTree = "<group>"; };
+		F13A74231A008A0D00A880BF /* mainpage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = mainpage.md; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
@@ -755,6 +756,7 @@
 				F1C94DE71555D78400B717DF /* libc++.dylib */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
+				F13A74231A008A0D00A880BF /* mainpage.md */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
 				C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */,
 				8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */,
