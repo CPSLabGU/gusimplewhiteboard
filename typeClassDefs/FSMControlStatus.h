@@ -272,13 +272,18 @@ namespace guWhiteboard
                 return STATESTATUS_GET_STATE(this, machineID);
             }
 
-            void setStateForMachineID (uint8_t machineID, uint8_t state) {
-
-                if (machineID < STATE_BYTE_SIZE) {
+            /**
+             * Record the given state for the given Machine ID.
+             * @param machineID Machine to record the state number for
+             * @param state     State number for the machine
+             */
+            void setStateForMachineID (uint8_t machineID, uint8_t state)
+            {
+                if (machineID < STATE_BYTE_SIZE)
                     STATESTATUS_SET_STATE(this, machineID, state);
-                }
             }
 
+            /** Reset all machines to INVALIDMACHINE */
             void reset() { memset(this, INVALIDMACHINE, sizeof(wb_fsm_state_status)); }
 
             /** convert to a string */
