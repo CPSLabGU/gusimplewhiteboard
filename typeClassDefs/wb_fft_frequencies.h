@@ -206,7 +206,6 @@ struct fft_dominant_frequency
      * @param hi    High frequency (in Hz) to measure FSK percentage on (FSK_DEFAULT_HI)
      * @param lo    Low frequency (in Hz) to measure FSK percentage on (FSK_DEFAULT_LO)
      * @param fsk   FSK percentage of high frequency presence (0%)
-     * @param freqs List of frequency pairs (in Hz) measured (terminated by 0)
      */
     fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
