@@ -48,6 +48,24 @@ namespace guWhiteboard {
                 r.set_accel(static_cast<uint8_t>(atoi(elements[5].c_str())));
             }
 #endif
+            bool operator == (const DifferentialRobotControlStatus &s) {
+                wb_motor &l = left_motor();
+                wb_motor &r = right_motor();
+                const wb_motor &sl = s.left_motor();
+                const wb_motor &sr = s.right_motor();
+
+                if (l.speed() == sl.speed() 
+                    && l.accel() == sl.accel() 
+                    && l.dist() == sl.dist() 
+                    && r.speed() == sr.speed() 
+                    && r.accel() == sr.accel() 
+                    && r.dist() == sr.dist()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
             void move_forward (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
