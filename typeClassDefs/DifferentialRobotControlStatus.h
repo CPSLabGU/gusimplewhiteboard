@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <cstring>
+#include <sstream>
 #include <gu_util.h>
 #include "gusimplewhiteboard.h" 
 #include "wb_differential_robot.h"
@@ -64,6 +65,17 @@ namespace guWhiteboard {
                 } else {
                     return false;
                 }
+            }
+            
+            std::string description2() {
+                using namespace std;
+                stringstream ss;
+                const wb_motor &l = left_motor();
+                const wb_motor &r = right_motor();
+                ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) \
+                << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) \
+                << "," << static_cast<unsigned>(r.accel());
+                return ss.str();
             }
 
             void move_forward (int8_t speed) {
