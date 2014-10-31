@@ -593,7 +593,8 @@
 				F11BC0CB176124CB0069F6FB /* Common */,
 				C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */,
 			);
-			path = guudpwhiteboard;
+			name = guudpwhiteboard;
+			path = ../guudpwhiteboard;
 			sourceTree = "<group>";
 		};
 		C378DF4416C33C7D00CF6983 /* guwhiteboardtypegenerator */ = {
