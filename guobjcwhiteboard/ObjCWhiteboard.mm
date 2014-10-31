@@ -91,9 +91,8 @@ const NSString *kWBTypeEmpty =  @"empty";
 #ifdef GSW_IOS
 extern "C"
 {
-#ifdef GSW_IOS_DEVICE
         const char *gsw_global_whiteboard_name;
-#endif
+
         void init_ios_whiteboard_name(void)
         {
                 if (gsw_global_whiteboard_name) return;
@@ -466,7 +465,7 @@ static NSArray *wbtypes;
                         PlayerNumber_t player(gu_whiteboard);
                         return @(player.get());
                 }
-
+#if 0
                 case kXEyesPos_v:
                 {
                         XEyesPos_t eyes(gu_whiteboard);
@@ -474,6 +473,7 @@ static NSArray *wbtypes;
                         NSPoint eyePoint = { static_cast<CGFloat>(eyePos.x()), static_cast<CGFloat>(eyePos.y()) };
                         return [NSValue valueWithPoint: eyePoint];
                 }
+#endif
                 default:
                         return [self getMessageOfTypeNamed: msg];
         }

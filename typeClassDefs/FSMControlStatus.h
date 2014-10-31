@@ -64,11 +64,11 @@
 #include <cstdlib>
 #include <cstring>
 #include <bitset>
-#include <sstream>
 #include <gu_util.h>
 #include "wb_fsm_control_status.h"
 #include "wb_fsm_state_status.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <sstream>
 #include <ctype.h>
 #endif
 
@@ -289,16 +289,16 @@ namespace guWhiteboard
             /** convert to a string */
             std::string description()
             {
-
-                std::string message("");
+                std::stringstream ss;
                 size_t sizeAtLastValidState = 0;
                 for (uint8_t machineID =0; machineID < STATE_BYTE_SIZE; machineID++) {
                     uint8_t state = STATESTATUS_GET_STATE(this, machineID);
-                    message += std::to_string(state) + ((machineID < (STATE_BYTE_SIZE-1))? "," : "");
+                    ss << static_cast<unsigned>(state) << ((machineID < (STATE_BYTE_SIZE-1))? "," : "");
                     if (state != INVALIDMACHINE) {
-                        sizeAtLastValidState = message.size() - static_cast<size_t>(((machineID < (STATE_BYTE_SIZE-1))? 1 : 0));
+                        sizeAtLastValidState = ss.str().size() - static_cast<size_t>(((machineID < (STATE_BYTE_SIZE-1))? 1 : 0));
                     }
                 }
+                std::string message = ss.str();
                 message.erase(sizeAtLastValidState, message.size()-sizeAtLastValidState);
 
                 return message;
