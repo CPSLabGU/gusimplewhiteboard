@@ -10,15 +10,22 @@
 #include "wb_differential_robot.h"
 
 namespace guWhiteboard {
+    /**
+    *   Class for controlling differential robots
+    *   Defines whiteboard message
+    */
     class DifferentialRobotControlStatus: public wb_differential_robot {
         public:
+            /** Designated constructor */
             DifferentialRobotControlStatus(): wb_differential_robot() {}
             
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** String constructor */
             DifferentialRobotControlStatus(const std::string &name) { 
                 from_string(name);
             }
             
+            /** get message description */
             std::string description() {
                 using namespace std;
                 ostringstream ss;
@@ -30,6 +37,7 @@ namespace guWhiteboard {
                 return ss.str();
             }
 
+            /** string conversion */
             void from_string (std::string str) {
                 using namespace std;
                 vector<string> elements = components_of_string_separated(str, ',', true);
@@ -49,6 +57,7 @@ namespace guWhiteboard {
                 r.set_accel(static_cast<uint8_t>(atoi(elements[5].c_str())));
             }
 #endif
+            /** override equality operator so we can compare instances */
             bool operator == (const DifferentialRobotControlStatus &s) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
@@ -67,6 +76,7 @@ namespace guWhiteboard {
                 }
             }
             
+            /** same as descrption above, available in all environments. Used for debugging purposes */
             std::string description2() {
                 using namespace std;
                 stringstream ss;
@@ -78,6 +88,7 @@ namespace guWhiteboard {
                 return ss.str();
             }
 
+            /** Abstraction for forward movement */
             void move_forward (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
@@ -94,7 +105,8 @@ namespace guWhiteboard {
                 l.set_dist (static_cast<uint16_t> (10000));
                 r.set_dist (static_cast<uint16_t> (10000));
             }
-
+            
+            /** Abstraction for rearward movement */
             void move_backward (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
@@ -112,6 +124,7 @@ namespace guWhiteboard {
                 r.set_dist (static_cast<uint16_t> (10000));
             }           
             
+            /** Abstraction for a left rotation */
             void turn_left (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
@@ -129,6 +142,7 @@ namespace guWhiteboard {
                 r.set_dist (static_cast<uint16_t> (1000000));
             }           
             
+            /** Abstraction for a right rotation */
             void turn_right (int8_t speed) {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
@@ -144,8 +158,9 @@ namespace guWhiteboard {
                 r.set_accel (static_cast<uint8_t> (a));
                 l.set_dist (static_cast<uint16_t> (1000000));
                 r.set_dist (static_cast<uint16_t> (1000000));
-            }           
-    
+            }
+
+            /** Abstraction for a stop */
             void stop () {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
