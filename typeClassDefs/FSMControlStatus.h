@@ -118,6 +118,7 @@ namespace guWhiteboard
             /** comparison operator **/
             bool operator==(const FSMControlStatus &other) const { return memcmp(this, &other, sizeof(*this)) == 0; }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             /** convert to a string */
             std::string description() const
             {
@@ -146,7 +147,7 @@ namespace guWhiteboard
                     }
                 }
             }
-
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
         };
 
         /**
