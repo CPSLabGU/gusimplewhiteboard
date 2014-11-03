@@ -148,7 +148,8 @@ public:
  */
 - (void) tearDown
 {
-        if (self.semaphore) dispatch_release(self.semaphore);
+	//fix compiler complaint about releasing when using ARC - Carl.
+       //if (self.semaphore) dispatch_release(self.semaphore);
 
         self.semaphore = NULL;
 
