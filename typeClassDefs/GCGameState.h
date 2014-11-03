@@ -211,6 +211,7 @@ namespace guWhiteboard
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
 
+            /** equals operator */
             const GCGameState &operator=(const GCGameState &other) { memcpy(this, &other, sizeof(*this)); return *this; }
 
             /** Set the Penalty vectors */
@@ -230,14 +231,19 @@ namespace guWhiteboard
 		   _score[TeamRed] = goalsByRed;
 		}
 
+            /** getter for the blue teams score  */
 		int16_t getScoreBlue() { return _score[TeamBlue];}
+            /** getter for the red teams score  */
 		int16_t getScoreRed() { return _score[TeamRed];}
 
+            /** getter our teams score  */
 		int16_t getOurScore() { return _score[_theGScolourWePlayWith];}
+            /** getter the other teams score  */
 		int16_t getTheirScore() { 
 				if (TeamBlue== _theGScolourWePlayWith ) return getScoreRed();
 				else return getScoreBlue(); }
 
+            /** getter for the number of penalties I've had   */
 		PenaltyFormat myPenaltyIs (int PlayerNumber)
 		{	// the idnex in the structure starts at 0, numebrs on robot's backs start at 1
 			  if ((0<PlayerNumber) && (PlayerNumber<=SPL_NUM_PLAYERS ))
@@ -245,6 +251,7 @@ namespace guWhiteboard
 			  else return NoPenalty;
 		}
 
+            /** If I am currently penalised */
 		bool amIPenalized(int PlayerNumber)
 		{
 
@@ -253,6 +260,7 @@ namespace guWhiteboard
 			else return true;
 		}
 
+            /** Setter for penalty */
 		void setMyPenalty(int PlayerNumber, PenaltyFormat thePenalty)
 				{
 					//if (ManualButtonPenalty==thePenalty )
