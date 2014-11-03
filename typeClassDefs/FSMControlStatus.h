@@ -85,9 +85,6 @@ namespace guWhiteboard
             /** designated constructor */
             FSMControlStatus(FSMControlType t = FSMStatus): wb_fsm_control_status() { set_command(t); }
 
-            /** string constructor */
-            FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }
-
             /** copy constructor */
             FSMControlStatus(const FSMControlStatus &other) { memcpy(this, &other, sizeof(wb_fsm_control_status)); }
 
@@ -119,6 +116,9 @@ namespace guWhiteboard
             bool operator==(const FSMControlStatus &other) const { return memcmp(this, &other, sizeof(*this)) == 0; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }
+
             /** convert to a string */
             std::string description() const
             {
@@ -169,9 +169,6 @@ namespace guWhiteboard
                 _names[i] = '\0';
             }
 
-            /** string constructor */
-            FSMNames(std::string names) { from_string(names); }
-
             /** copy constructor */
             FSMNames(const FSMNames &other): _startoffs(other._startoffs)
             {
@@ -205,6 +202,10 @@ namespace guWhiteboard
                 gu_strlcpy(pos, name, size_t(n));
                 return pos;
             }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMNames(std::string names) { from_string(names); }
 
             /** convert to a string */
             std::string description()
@@ -241,7 +242,7 @@ namespace guWhiteboard
                 if (available_space(dst)) *dst++ = '\0';
                 if (available_space(dst)) *dst = '\0';
             }
-
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
         };
 
         /**
@@ -253,9 +254,6 @@ namespace guWhiteboard
         public:
             /** designated constructor */
             FSMState(): wb_fsm_state_status() {}
-
-            /** string constructor */
-            FSMState(std::string states) { from_string(states); }
 
             /** copy constructor */
             FSMState(const FSMState &other) { memcpy(this, &other, sizeof(wb_fsm_state_status)); }
@@ -287,6 +285,10 @@ namespace guWhiteboard
             /** Reset all machines to INVALIDMACHINE */
             void reset() { memset(this, INVALIDMACHINE, sizeof(wb_fsm_state_status)); }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMState(std::string states) { from_string(states); }
+
             /** convert to a string */
             std::string description()
             {
@@ -316,7 +318,7 @@ namespace guWhiteboard
                   STATESTATUS_SET_STATE(this, machineID++, static_cast<uint8_t>(atoi(token.c_str())));
                 }
             }
-
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
 
