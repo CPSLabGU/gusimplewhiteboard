@@ -381,12 +381,14 @@ namespace guWhiteboard
 		    memcpy(this, &other, sizeof(other));
 	    }
 
+            /** equals operator */
             FilteredOneDimObjects &operator=(const FilteredOneDimObjects &other)
             {
                 memcpy(this, &other, sizeof(other));
                 return *this;
             }
 
+            /** Calls isVisible on all objects */
 	    bool isVisible() 
 	    { 
 		for(int i = 0; i < FVO_NUM_OBJECTS; i++) 
@@ -450,7 +452,7 @@ namespace guWhiteboard
                 return ss.str();
 	  }
 
-	    /*
+	    /**
 	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
 	     * NOT WORKING
 	     */
@@ -545,7 +547,7 @@ namespace guWhiteboard
                 return ss.str();
 	  }
 
-	    /*
+	    /**
 	     * TODO, this is only for the BALL, the axiom from_string() is inverse of description() 
 	     * NOT WORKING
 	     */
