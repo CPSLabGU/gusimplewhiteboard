@@ -120,6 +120,11 @@ namespace guWhiteboard
     		    	return true;
         		}
 
+		        inline bool operator != (const SENSORS_SonarSensors &s) 
+                {
+                    return !(*this == s);
+                }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor (see from_string() below) 
 		 *  @param str a serialised string containing properties to set in this class
