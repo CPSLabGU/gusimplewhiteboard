@@ -52,9 +52,10 @@ namespace guWhiteboard
                 /** parse class properties from a string
 		 *  @param[in] str a serialised string containing properties to set in this class
 		 */
-                void from_string(const std::string &/*str*/) 
+                void from_string(const std::string &str) 
 		{
 			//NYI
+			fprintf(stderr, "NXT_Interface doesn't implement from_string yet, have it back %s\n", str.c_str());
 		}
 
                 /** pretty print method for showing the current property values 
@@ -63,7 +64,35 @@ namespace guWhiteboard
                 std::string description() const
                 {
                         std::stringstream ss;
-			ss << "NYI";
+			for(int p = Port1; p < NUMBER_OF_NXT_PORTS; p++)
+			{
+				nxt_port_object o = objects(p);
+#define PORT "(" << p << ")"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch-enum"
+				switch (o.type())
+				{
+				case Touch_Sensor:
+					ss << PORT << "Touch: " << o.data().touch_sensor.pressed() << ", ";
+					break;
+				case Sonar_Sensor:
+					ss << PORT << "Sonar: " << static_cast<int>(o.data().sonar_sensor.distance()) << ", ";
+					break;
+				case Active_Light_Sensor:
+					ss << PORT << "Active Light: " << o.data().active_light_sensor.value() << ", ";
+					break;
+				case Passive_Light_Sensor:
+					ss << PORT << "Passive Light: " << o.data().passive_light_sensor.value() << ", ";
+					break;
+				case Motor:
+					ss << PORT << "Motor: (s: " << o.data().motor.speed() << ", enc: " << o.data().motor.enc_ticks() << "), ";
+					break;
+				default:
+					break;
+				}
+#pragma clang diagnostic pop
+			}
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

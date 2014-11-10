@@ -27,7 +27,8 @@ enum nxt_ports
 /** Used to determine what type of object is plugged into each port on the nxt currently */
 enum nxt_port_object_type
 {
-	Sonar_Sensor = 0,
+	Empty_Port = 0,
+	Sonar_Sensor,
 	Touch_Sensor,
 	Passive_Light_Sensor,
 	Active_Light_Sensor,
@@ -42,33 +43,33 @@ union nxt_port_object_data
 {
     struct {
 	/** sonar distance reported in cm */
-	PROPERTY(uint8_t, distance);
+	PROPERTY(uint8_t, distance)
 	} sonar_sensor; 
 
     struct {
 	/** buttonm pressed state: true == pressed */
-	PROPERTY(bool, pressed);
+	PROPERTY(bool, pressed)
 	}  touch_sensor; 
 
     struct {
 	/** Needs investigating */
-	PROPERTY(int32_t, value);
+	PROPERTY(int32_t, value)
 	}    passive_light_sensor;
 
     struct {
 	/** Needs investigating */
-	PROPERTY(int32_t, value);
+	PROPERTY(int32_t, value)
 	}    active_light_sensor;
 
     struct {
 	/** encoder ticks */
-	CONTROLLED_PROPERTY(uint32_t, enc_ticks); 
+	CONTROLLED_PROPERTY(uint32_t, enc_ticks) 
 	/** percentage of speed: 0 == stopped, 100 == forward max, -100 backwards max*/
-	CONTROLLED_PROPERTY(int16_t, speed); 
+	CONTROLLED_PROPERTY(int16_t, speed) 
 	/** reset encoders? */
-	CONTROL_BIT(enc_ticks);
+	CONTROL_BIT(enc_ticks)
 	/** set speed? */
-	CONTROL_BIT(speed);
+	CONTROL_BIT(speed)
 	}    motor; 
 };
 
@@ -76,9 +77,9 @@ union nxt_port_object_data
 struct nxt_port_object
 {
 	/** what type of sensor / motor */
-	PROPERTY(nxt_port_object_type, type); 
+	PROPERTY(nxt_port_object_type, type) 
 	/** the sensor / motor data */
-	PROPERTY(nxt_port_object_data, data); 
+	PROPERTY(nxt_port_object_data, data) 
 };
 
 /**
@@ -87,7 +88,7 @@ struct nxt_port_object
 struct wb_nxt_interface
 {
     /** An array of sensors and motors plugged into the nxt ports. Objects 0,1,2,3 are the sensors 1-4, objects 4,5,6 are the motors A,B,C. */
-    ARRAY_PROPERTY_DECLARATION(nxt_port_object, objects, NUMBER_OF_NXT_PORTS)
+    ARRAY_PROPERTY(nxt_port_object, objects, NUMBER_OF_NXT_PORTS)
 
 #ifdef __cplusplus
     /**

@@ -91,6 +91,7 @@
 #include "WalkData.h"
 #include "DifferentialRobotControlStatus.h"
 #include "Giraff_MainSerialInterface.h"
+#include "NXT_Interface.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
