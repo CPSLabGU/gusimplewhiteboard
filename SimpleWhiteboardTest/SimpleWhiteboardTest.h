@@ -72,6 +72,6 @@
 /** Test class */
 @interface SimpleWhiteboardTest: XCTestCase
 @property (nonatomic, assign) int callbackCount;	///< counter used for testing callbacks
-@property (nonatomic, assign) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
-@property (nonatomic, assign) NSString *stringValue;	///< not sure, some string for test
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
+@property (nonatomic, strong) NSString *stringValue;	///< not sure, some string for test
 @end
