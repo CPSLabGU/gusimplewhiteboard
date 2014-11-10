@@ -339,6 +339,7 @@
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
 		F154FAA0196621C80081158B /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F15E631F1A11646F0082D467 /* NXT_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NXT_Interface.h; sourceTree = "<group>"; };
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		F17380BC16CA032F00485FD8 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = guudpSerialize.c; path = guudpbridge/guudpSerialize.c; sourceTree = "<group>"; };
 		F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guudpWhiteboardLayer.cpp; path = guudpbridge/guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
@@ -1167,6 +1168,7 @@
 				F1E5542A18EBD16D00639B1E /* HAL_HeadTarget.h */,
 				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
 				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
+				F15E631F1A11646F0082D467 /* NXT_Interface.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
 				F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */,
 				F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */,

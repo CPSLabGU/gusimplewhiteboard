@@ -106,8 +106,8 @@ static const int16_t test_x = 1, test_y = 2, test_z = 42;
     gsw_increment(_wb, 0);
     gsw_increment_event_counter(_wb, 0);
 
-    XCTAssertEqual(point._x, wbpoint->_x, @"Got differing x on wb");
-    XCTAssertEqual(point._y, wbpoint->_y, @"Got differing y on wb");
+    XCTAssertEqual(point.x, wbpoint->x, @"Got differing x on wb");
+    XCTAssertEqual(point.y, wbpoint->y, @"Got differing y on wb");
 }
 
 
@@ -118,8 +118,8 @@ static const int16_t test_x = 1, test_y = 2, test_z = 42;
     gu_simple_message *m = gsw_current_message(_wb, 0);
     struct wb_point2d *wbpoint = (struct wb_point2d *) m;
 
-    XCTAssertEqual(test_x, wbpoint->_x, @"Got differing x from wb");
-    XCTAssertEqual(test_y, wbpoint->_y, @"Got differing y from wb");
+    XCTAssertEqual(test_x, wbpoint->x, @"Got differing x from wb");
+    XCTAssertEqual(test_y, wbpoint->y, @"Got differing y from wb");
 }
 
 
@@ -132,9 +132,9 @@ static const int16_t test_x = 1, test_y = 2, test_z = 42;
     gsw_increment(_wb, 0);
     gsw_increment_event_counter(_wb, 0);
 
-    XCTAssertEqual(point._x, wbpoint->_x, @"Got differing x on wb");
-    XCTAssertEqual(point._y, wbpoint->_y, @"Got differing y on wb");
-    XCTAssertEqual(point._z, wbpoint->_z, @"Got differing z on wb");
+    XCTAssertEqual(point.x, wbpoint->x, @"Got differing x on wb");
+    XCTAssertEqual(point.y, wbpoint->y, @"Got differing y on wb");
+    XCTAssertEqual(point.z, wbpoint->z, @"Got differing z on wb");
 }
 
 
@@ -145,9 +145,9 @@ static const int16_t test_x = 1, test_y = 2, test_z = 42;
     gu_simple_message *m = gsw_current_message(_wb, 0);
     struct wb_point3d *wbpoint = (struct wb_point3d *) m;
 
-    XCTAssertEqual(test_x, wbpoint->_x, @"Got differing x from wb");
-    XCTAssertEqual(test_y, wbpoint->_y, @"Got differing y from wb");
-    XCTAssertEqual(test_z, wbpoint->_z, @"Got differing z from wb");
+    XCTAssertEqual(test_x, wbpoint->x, @"Got differing x from wb");
+    XCTAssertEqual(test_y, wbpoint->y, @"Got differing y from wb");
+    XCTAssertEqual(test_z, wbpoint->z, @"Got differing z from wb");
 }
 
 @end
