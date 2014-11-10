@@ -59,3 +59,5 @@ std::string,    atomic, Draw,                                  "Draw",        Us
 class:FSMState, atomic, FSM_States,                              "fsm_states", Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.
 class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Status, "Giraff_Interface_Status", Serial interface for the main motor and sensor board of the giraff
 class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Command, "Giraff_Interface_Command", Serial interface for the main motor and sensor board of the giraff
+class:NXT_Interface, nonatomic, NXT_Status, "NXT_Status", Contains sensor data as well as motor encoder data from the objects attached to an NXT
+class:NXT_Interface, nonatomic, NXT_Command, "NXT_Command", Can issue commands to set the motors of an NXT and reset the encoders

@@ -688,6 +688,30 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Giraff_MainSerialInterface_DEFINED
 
+		case kNXT_Status_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Status @brief Nil */ 
+			class NXT_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Interface_DEFINED
+
+		case kNXT_Command_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Command @brief Nil */ 
+			class NXT_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Interface_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

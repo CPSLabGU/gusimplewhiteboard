@@ -1,0 +1,73 @@
+/**                                                                     
+ *  /file NXT_Interface.h
+ *                                                                      
+ *  Created by Carl Lusty in 2014.                                      
+ *  Copyright (c) 2014 Carl Lusty                                       
+ *  All rights reserved.                                                
+ */                                                                     
+                                                                        
+#ifndef NXT_Interface_DEFINED
+#define NXT_Interface_DEFINED
+
+#include "wb_nxt_interface.h" 
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <sstream>
+#endif
+
+namespace guWhiteboard                                                  
+{
+        /**
+ 	* @brief Class for interacting with and reading the values of NXT sensors and motors
+	*
+	* Examples
+	* --------
+	*
+	* Get the state of a touch sensor plugged into port 2 of the NXT
+	*
+	*     NXT_Interface i = NXT_Status_t.get();
+	*     fprintf(stderr, "Button state: %d", i.objects(Port2).data().pressed());
+	*
+	* Tell motor B to go 75 percent of its maximum speed forwards
+	*
+	*     NXT_Interface i;
+	*     i.set_objects(MotorB);  !!TODO: Fix this example
+	*     fprintf(stderr, "Number of button presses: %d", i.but0());
+	*
+ 	*/
+        class NXT_Interface: public wb_nxt_interface
+        {
+        public:
+
+        /** default constructor 
+		 */
+		NXT_Interface() { }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+                /** string constructor (see from_string() below)
+		 *  @param[in] str a serialised string containing properties to set in this class
+		 */
+		NXT_Interface(const std::string &str) { from_string(str); }
+
+                /** parse class properties from a string
+		 *  @param[in] str a serialised string containing properties to set in this class
+		 */
+                void from_string(const std::string &/*str*/) 
+		{
+			//NYI
+		}
+
+                /** pretty print method for showing the current property values 
+		 *  @return pretty printed string
+		 */
+                std::string description() const
+                {
+                        std::stringstream ss;
+			ss << "NYI";
+                        return ss.str();
+                }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+        };
+}
+
+#endif //NXT_Interface_DEFINED
