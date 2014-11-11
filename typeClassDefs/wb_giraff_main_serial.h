@@ -76,6 +76,9 @@ struct wb_giraff_main_serial
     /** Incremental value of dial, Unit: value, Range: -2147483648 / 2147483647, Setter: No, Getter: Yes*/
     CONTROLLED_PROPERTY(int16_t, dial_increments)
 
+    /** Fix alignment */
+    PROPERTY(int16_t, padding)
+
     /** Left drive motor encoder pulses, Unit: pulses, Range: -100000000 / 100000000, Setter: Yes, Getter: Yes*/
     CONTROLLED_PROPERTY(int32_t, left_motor_encoder_ticks)
 
@@ -135,6 +138,9 @@ struct wb_giraff_main_serial
 
     /** Control bit (mask) */
     CONTROL_BIT(head_motor_encoder_ticks)
+
+    /** Fix alignment */
+    PROPERTY(int16_t, padding2)
 
 #ifdef __cplusplus
     /**

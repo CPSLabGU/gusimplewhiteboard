@@ -70,6 +70,9 @@ union nxt_port_object_data
 	CONTROL_BIT(enc_ticks)
 	/** set speed? */
 	CONTROL_BIT(speed)
+    
+    /** padding */
+    unsigned int _padding : 14;
 	}    motor; 
 };
 
