@@ -43,6 +43,53 @@ namespace guWhiteboard
 		 */
 		NXT_Interface() { }
 
+
+        /** comparison operator */
+		inline bool operator == (const NXT_Interface &s) 
+	    {
+            for(int p = Port1; p < NUMBER_OF_NXT_PORTS; p++)
+			{
+				nxt_port_object o = this->objects(p);
+				nxt_port_object n = s.objects(p);
+#define PORT "(" << p << ")"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch-enum"
+				switch (o.type())
+				{
+				case Touch_Sensor:
+					if(o.data().touch_sensor.pressed() != n.data().touch_sensor.pressed())
+                        return false;
+					break;
+				case Sonar_Sensor:
+					if(o.data().sonar_sensor.distance() != n.data().sonar_sensor.distance())
+                        return false;
+					break;
+				case Active_Light_Sensor:
+					if(o.data().active_light_sensor.value() != n.data().active_light_sensor.value())
+                        return false;
+					break;
+				case Passive_Light_Sensor:
+					if(o.data().passive_light_sensor.value() != n.data().passive_light_sensor.value())
+                        return false;
+					break;
+				case Motor:
+					if(o.data().motor.speed() != n.data().motor.speed() || o.data().motor.enc_ticks() != n.data().motor.enc_ticks() || o.data().motor.speed_mask() != n.data().motor.speed_mask() || o.data().motor.enc_ticks_mask() != n.data().motor.enc_ticks_mask())
+                        return false;
+					break;
+				default:
+					break;
+				}
+#pragma clang diagnostic pop
+			}
+    	    return true;
+        }
+
+		inline bool operator != (const NXT_Interface &s) 
+        {
+            return !(*this == s);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor (see from_string() below)
 		 *  @param[in] str a serialised string containing properties to set in this class
