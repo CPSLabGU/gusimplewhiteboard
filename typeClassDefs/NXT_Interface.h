@@ -51,6 +51,8 @@ namespace guWhiteboard
 			{
 				nxt_port_object o = this->objects(p);
 				nxt_port_object n = s.objects(p);
+                if(o.type() != n.type())
+                    return false;
 #define PORT "(" << p << ")"
 
 #pragma clang diagnostic push
