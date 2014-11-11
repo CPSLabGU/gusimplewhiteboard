@@ -44,22 +44,22 @@ union nxt_port_object_data
     struct {
 	/** sonar distance reported in cm */
 	PROPERTY(uint8_t, distance)
-	} sonar_sensor; 
+	} sonar_sensor; ///< sonar object 
 
     struct {
 	/** buttonm pressed state: true == pressed */
 	PROPERTY(bool, pressed)
-	}  touch_sensor; 
+	}  touch_sensor;  ///< touch object
 
     struct {
 	/** Needs investigating */
 	PROPERTY(int32_t, value)
-	}    passive_light_sensor;
+	}    passive_light_sensor; ///< passive light object
 
     struct {
 	/** Needs investigating */
 	PROPERTY(int32_t, value)
-	}    active_light_sensor;
+	}    active_light_sensor; ///< active light object
 
     struct {
 	/** encoder ticks */
@@ -70,7 +70,10 @@ union nxt_port_object_data
 	CONTROL_BIT(enc_ticks)
 	/** set speed? */
 	CONTROL_BIT(speed)
-	}    motor; 
+    
+    /** padding */
+    unsigned int _padding : 14;
+	}    motor;  ///< motor object
 };
 
 /** An object that contains the type and data of an nxt sensor */
