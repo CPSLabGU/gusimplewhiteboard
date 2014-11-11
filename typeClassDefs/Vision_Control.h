@@ -44,14 +44,14 @@ public:
         /** get the width of the current resolution */
         int width() const
         {
-                static const int Widths[] = {160, 320, 640, 1280};
+                static const int Widths[] = {160, 320, 640, 1280, 800};
                 return Widths[_resolution];
         }
     
         /** get the height of the current resolution */
         int height() const
         {
-                static const int Heights[] = {120, 240, 480, 960};
+                static const int Heights[] = {120, 240, 480, 960, 600};
                 return Heights[_resolution];
         }
 
