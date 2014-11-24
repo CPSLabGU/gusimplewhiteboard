@@ -100,10 +100,10 @@ namespace guWhiteboard
  * This is implemented as a bit vector with an enum for control and
  * one bit per FSM and controlled by the following macros:
  *
- * CONTROLSTATUS_SET_CMD(s, cmd)    issue <cmd> for the given fsms
- * CONTROLSTATUS_CLR_FSM(s, fsm)    ignore <fsm> for the above command
- * CONTROLSTATUS_SET_FSM(s, fsm)    include <fsm> in the above command
- * CONTROLSTATUS_GET_FSM(s, fsm)    check if <fsm> is included in cmd/status
+ * CONTROLSTATUS_SET_CMD(s, cmd)    issue `cmd` for the given fsms
+ * CONTROLSTATUS_CLR_FSM(s, fsm)    ignore `fsm` for the above command
+ * CONTROLSTATUS_SET_FSM(s, fsm)    include `fsm` in the above command
+ * CONTROLSTATUS_GET_FSM(s, fsm)    check if `fsm` is included in cmd/status
  */
 struct wb_fsm_control_status
 {
