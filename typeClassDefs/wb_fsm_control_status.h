@@ -95,11 +95,23 @@ namespace guWhiteboard
 }
 #endif
 
+/**
+ * Finite State Machine Control and Status information.
+ * This is implemented as a bit vector with an enum for control and
+ * one bit per FSM and controlled by the following macros:
+ *
+ * CONTROLSTATUS_SET_CMD(s, cmd)    issue `cmd` for the given fsms
+ * CONTROLSTATUS_CLR_FSM(s, fsm)    ignore `fsm` for the above command
+ * CONTROLSTATUS_SET_FSM(s, fsm)    include `fsm` in the above command
+ * CONTROLSTATUS_GET_FSM(s, fsm)    check if `fsm` is included in cmd/status
+ */
 struct wb_fsm_control_status
 {
+    /// bit vector of FSMs and command
     ARRAY_PROPERTY(uint8_t, fsms, CONTROLSTATUS_BYTE_SIZE)
 
 #ifdef __cplusplus
+    /// convenience constructor: clears all commands and FSMs
     wb_fsm_control_status(guWhiteboard::FSMControlType t = guWhiteboard::FSMStatus) { memset(this, 0, sizeof(*this)); CONTROLSTATUS_SET_CMD(this, t); }
 #endif
 };
