@@ -16,6 +16,21 @@
 #include "Vision_Control.h"
 
 namespace guWhiteboard {
+/**
+ * @brief Class to post information about goal posts detected from vision
+ * This class contains information the dimension of goal posts. The message 
+ * contains information for left and right goal post on top and bottom camera's
+ * 
+ * Examples
+ * --------
+ * 
+ * Retrieve the current information about the a left goal post in the top camera
+ * 
+ *		VisionGaols v = VisionGaols_t.get(); //get the goal message off the whiteboard
+ *		wb_goal g = v.leftPost(Top); //get the left post from the top camera
+ *		bool visible = g.visible(); //get the visibile flag for the post
+ *		int x1 = g.outerBottom().x; //get the outer bottom x coordinate for the post
+ */
 class VisionGoals {
 private:
 	wb_goal topLeft;//top camera
@@ -24,9 +39,15 @@ private:
 	wb_goal bottomRight;
 	unsigned long _frameNumber;
 public:
+	/**Default Constructor*/
     VisionGoals() : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
     }
 	
+	/**
+	 * @brief String Constructor
+	 * Converts a serialized string to a VisionGoal object
+     * @param s The String to convert
+     */
 	VisionGoals(std::string s) : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
 		
 		size_t n = static_cast<size_t>(-8);
@@ -74,6 +95,11 @@ public:
 			}
 		}
 	}
+	/**
+	 * @brief Set the left goal post for this VisionGoal message
+     * @param postInfo The post information to be set
+     * @param camera The camera this post was seen on
+     */
 	void setLeftGoalPost(wb_goal postInfo, VisionCamera camera) {
 		if(camera == Top) {
 			topLeft = postInfo;
@@ -85,6 +111,11 @@ public:
 		}
 	}
 	
+	/**
+	 * @brief Set the right goal post for this VisionGoal message
+     * @param postInfo The post information to be set
+     * @param camera The camera this post was seen on
+     */
 	void setRightGoalPost(wb_goal postInfo, VisionCamera camera) {
 		if(camera == Top) {
 			topRight = postInfo;
@@ -96,6 +127,11 @@ public:
 		}
 	}
 	
+	/**
+	 * @brief Get the current left goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
 	const wb_goal &leftPost(VisionCamera camera) const
 	{
 		if(camera == Top)
@@ -104,6 +140,11 @@ public:
 			return bottomLeft;
 	}
 	
+	/**
+	 * @brief Get the current right goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
 	const wb_goal &rightPost(VisionCamera camera) const
 	{
 		if(camera == Top)
@@ -112,6 +153,11 @@ public:
 			return bottomRight;
 	}
 	
+	/**
+	 * @brief Get the current left goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
 	wb_goal &leftPost(VisionCamera camera)
 	{
 		if(camera == Top)
@@ -120,6 +166,11 @@ public:
 			return bottomLeft;
 	}
 	
+	/**
+	 * @brief Get the current right goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
 	wb_goal &rightPost(VisionCamera camera)
 	{
 		if(camera == Top)
@@ -128,6 +179,9 @@ public:
 			return bottomRight;
 	}
 	
+	/**
+	 * @brief Reset the visible flag for all four different posts to false
+     */
 	void Reset() {
 		topLeft.set_visible(false);
 		topRight.set_visible(false);
@@ -135,14 +189,26 @@ public:
 		bottomRight.set_visible(false);
 	}
 	
+	/**
+	 * @brief Sets the frame number this information in this message was observed.
+     * @param fn The frame number
+     */
 	void setFrameNumber(unsigned long fn) {
 		_frameNumber = fn;
 	}
 	
+	/**
+	 * @brief Get the frame number the information in this message was observed.
+     * @return The frame number
+     */
 	unsigned long frameNumber() const {
 		return _frameNumber;
 	}
 	
+	/**
+	 * @brief Converts this message into a serialized string.
+     * @return The serialized string
+     */
 	std::string description() {
 		std::stringstream result;
 		
