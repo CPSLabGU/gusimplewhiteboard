@@ -62,7 +62,7 @@
 #ifdef __cplusplus
 typedef guWhiteboard::WBTypes wbtypes_t;
 #else
-typedef enum wbtypes wbtypes_t;
+typedef enum wb_types wbtypes_t;
 #endif
 #else
 typedef int wbtypes_t;

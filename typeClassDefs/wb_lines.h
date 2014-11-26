@@ -10,21 +10,42 @@
 
 #include "wb_point.h"
 	
+/**
+ * @brief Simple struct to store information for a line
+ */
 struct wb_line {
+	/**Start coordinates of the line*/
 	PROPERTY(wb_point2d, start)
+	/**End Coordinates of the line*/
 	PROPERTY(wb_point2d, end)
 #ifdef __cplusplus
+	/**Default Constructor*/
 	wb_line() : _start(), _end() {}
 #endif
 };
 	
+/**
+ * @brief struct to store information about lines found in a frame processed by vision
+ */
 struct wb_lines {
+	/**The frame number these lines were found in*/
 	PROPERTY(uint64_t, frameNumber)
+	/**Array of lines found in the top camera in this frame*/
 	ARRAY_PROPERTY(wb_line, topLines, 6)
+	/**Array of lines found in the top camera in this frame*/
 	ARRAY_PROPERTY(wb_line, bottomLines, 6)
+	/**
+	 * @brief Mask for lines seen in top camera
+	 * first bit represent visibility of first line in the array. Last two bits unused
+	 */
 	PROPERTY(int8_t, topMask)
+	/**
+	 * @brief Mask for lines seen in bottom camera
+	 * first bit represent visibility of first line in the array. Last two bits unused
+	 */
 	PROPERTY(int8_t, bottomMask)
 #ifdef __cplusplus
+	/**Default Constructor*/
 	wb_lines() : _frameNumber(0), _topMask(0), _bottomMask(0) {}
 #endif
 };

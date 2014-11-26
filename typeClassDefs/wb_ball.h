@@ -4,6 +4,9 @@
 #include <sys/types.h>
 #include <gu_util.h>
 
+/**
+ * Whiteboard data structure for a ball sighting
+ */
 struct wb_ball
 {
 	/** the balls x coordinate in pixels (relative to the center of the image) */

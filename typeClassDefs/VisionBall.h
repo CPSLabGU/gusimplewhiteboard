@@ -18,18 +18,37 @@
 
 
 namespace guWhiteboard {
+	
+/**
+ * @brief Whiteboard Class used by vision to report detect ball
+ * Reports balls detected in top or bottom camera, including position and size
+ * 
+ * Examples
+ * --------
+ * 
+ * Get 
+ */
 class VisionBall {
+	/**The frame number that this message is from*/
 	PROPERTY(uint64_t, frameNumber)
+	/** ball detected in the image from the top camera*/
 	PROPERTY(wb_ball, topBall)
+	/** ball detected in the image from the bottom camera*/
 	PROPERTY(wb_ball, bottomBall)
-        PROPERTY(bool, topVisible)
-        PROPERTY(bool, bottomVisible)
+    /** True if a ball was detected in the top camera in this frame*/
+	PROPERTY(bool, topVisible)
+	/** True if a ball was detected in the bottom camera in this frame*/
+	PROPERTY(bool, bottomVisible)
 	/** align to 32 bits */
-        PROPERTY(int16_t, pad)                  
+	PROPERTY(int16_t, pad)
 public:
-    VisionBall() : _frameNumber(0), _topBall(), _bottomBall() {
+    /** Default Constructor*/
+	VisionBall() : _frameNumber(0), _topBall(), _bottomBall() {
     }
 	
+	/** Equals Operator sets the frame number as well as 
+	 * contents of top and bottom ball and there visibility
+	 */
 	VisionBall &operator=(const VisionBall& a) {
 		_frameNumber = a.frameNumber();
 		_topBall = a.topBall();
@@ -39,6 +58,9 @@ public:
 		return *this;
 	}
 	
+	/** Const reference constructor, copys contents of passed object
+	 * @param ball The ball whose contents is copied
+	 */
 	VisionBall(const VisionBall &ball) {
 		_frameNumber = ball.frameNumber();
 		_topBall = ball.topBall();
@@ -47,7 +69,7 @@ public:
 		set_bottomVisible(ball.bottomVisible());
 	}
 	
-	/*DEPRICATED*/
+	/**DEPRICATED*/
 	std::bitset<2> getMask() const {
 		std::bitset<2> objectMask;
 		objectMask[Top] = _topVisible;
@@ -55,6 +77,10 @@ public:
 		return objectMask;
 	}
 
+	/** Set the ball for this message for a specified camera
+	 * @param ballInfo the ball to set
+	 * @param camera the camera this ball was seen on
+	 */
 	void setBall(SimpleCircle ballInfo, VisionCamera camera) {
 		if(camera == Top) {
 			topBall().set_x(ballInfo.GetCenter().x);
@@ -71,6 +97,11 @@ public:
 		}
 	}
 	
+	/**
+	 * @brief Set the ball for this message for a specified camera
+     * @param ballInfo the ball to set
+     * @param camera the camera this ball was seen on 
+     */
 	void setBall(wb_ball ballInfo, VisionCamera camera) {
 		if(camera == Top) {
 			topBall().set_x(ballInfo.x());
@@ -87,14 +118,52 @@ public:
                 }
 	}
 
-	
+	/** 
+	 * @brief Radius of the top ball. Undefined if !topVisible
+	 * @return the radius
+	 */
 	int16_t topRadius() const { return topBall().radius(); }
+	
+	/**
+	 * @brief Center X Position of the top ball. Undefined if !topVisible
+     * @return Center X Position
+     */
 	int16_t topX() const { return topBall().x(); }
+	
+	/**
+	 * @brief Center Y Position of the top ball. Undefined if !topVisible
+     * @return Center Y Position
+     */
 	int16_t topY() const { return topBall().y(); }
+	
+	/** 
+	 * @brief Radius of the bottom ball. Undefined if !bottomVisible
+	 * @return the radius
+	 */
 	int16_t bottomRadius() const { return bottomBall().radius(); }
+	
+	/**
+	 * @brief Center X Position of the bottom ball. Undefined if !bottomVisible
+     * @return Center X Position
+     */
 	int16_t bottomX() const { return bottomBall().x(); }
+	
+	/**
+	 * @brief Center Y Position of the bottom ball. Undefined if !bottomVisible
+     * @return Center Y Position
+     */
 	int16_t bottomY() const { return bottomBall().y(); }
+	
+	/**
+	 * @brief Return true if either the top or bottom ball is visible in this message
+     * @return True if top or bottom is visible
+     */
 	bool visible() {return topVisible() || bottomVisible(); }
+	
+	/**
+	 * Return the radius one of the balls
+     * @return The top ball radius if it is visible else the bottom ball radius if it is visible else 0
+     */
 	int16_t radius() const { 
 		if (topVisible())
 			return topBall().radius();
@@ -103,6 +172,11 @@ public:
 		else
 			return 0;
 	}
+	
+	/**
+	 * Return the center x coordinate of one of the balls
+     * @return The top ball x coordinate if it is visible else the bottom ball x coordinate if it is visible else 0
+     */
 	int16_t x() const { 
                 if (topVisible())
 			return topBall().x();
@@ -111,6 +185,11 @@ public:
 		else
 			return 0;
 	}
+	
+	/**
+	 * Return the center y coordinate of one of the balls
+     * @return The top ball y coordinate if it is visible else the bottom ball y coordinate if it is visible else 0
+     */
 	int16_t y() const { 
                 if (topVisible())
                     return topBall().y();
@@ -120,7 +199,9 @@ public:
 			return 0;
 	}
 	
-	
+	/**
+	 * @brief Set the top and bottom visible flags to false
+     */
 	void Reset() {
 		set_topVisible(false);
 		set_bottomVisible(false);
@@ -128,19 +209,32 @@ public:
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         
+		/**USED INTERNALLY FOR STRING PARSER*/
         static const char SEPARATOR_IS_AT = '@';
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wc++98-compat"
+		/**
+		 * String constructor
+         * @param s The tokenized string to parse 
+         */
         VisionBall(std::string s): VisionBall() {
                 from_string(s);
         }
 
+		/**
+		 * Const char array constructor
+         * @param s The tokenized const char array to parse 
+         */
         VisionBall(const char *s): VisionBall() {
                 from_string(std::string(s));
         }
 #pragma clang diagnostic pop
         
+	/**
+	 * Parse as string and set this object to the tokenized contents
+     * @param s The string to parse
+     */
 	void from_string(std::string s) {
 		std::string radiousDel (1,SEPARATOR_IS_AT);
 		set_frameNumber(0);
@@ -176,6 +270,10 @@ public:
 		}
 	}
 	
+	/**
+	 * Description of the VisionBall object
+     * @return The string description
+     */
 	std::string description() {
 		std::stringstream result;
 		if(_topVisible) {

@@ -1,5 +1,5 @@
-/*
- * Vision_Control.h
+/**
+ * /file Vision_Control.h
  *
  *  Created on: 10 Apr 2013
  *      Author: Eugene Gilmore
@@ -23,74 +23,107 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
-
+/**
+ * @brief Resolutions Supported by Vision
+ */
 enum Resolutions {
-	QQVGA,  // 160 x 120
-	QVGA,   // 320 x 240
-	VGA,    // 640 x 480
-	HD_4VGA,    // 1280x960
-	SVGA   // 800 x 600
+	QQVGA,  ///< 160 x 120
+	QVGA,   ///< 320 x 240
+	VGA,    ///< 640 x 480
+	HD_4VGA,    ///< 1280x960
+	SVGA   ///< 800 x 600
 };
-
+/**
+ * @brief Resolution wrapper class for Resolutions enum
+ * Contains a Resolution and provides a number of convenience 
+ * methods for each resolution. Width Height etc.
+ */
 class ResolutionType {
 private:
-        PROPERTY(Resolutions, resolution)
-public:
-        ResolutionType(Resolutions res = VGA): _resolution(res) {}
+	/** The resolution that this object should work with*/
+	PROPERTY(Resolutions, resolution)
+public:	
+	/**
+	 * @brief Constructor using value from Resolutions enum
+     * @param res The resolution to use
+     */
+	ResolutionType(Resolutions res = VGA): _resolution(res) {}
 
-        /** Deprecated: use standard getter resolution() instead! */
-        int getResolution() const { return _resolution; } // XXX: deprecated, will be phased out!!!
+	/** Deprecated: use standard getter resolution() instead! */
+	int getResolution() const { return _resolution; } // XXX: deprecated, will be phased out!!!
 
-        /** get the width of the current resolution */
-        int width() const
-        {
-                static const int Widths[] = {160, 320, 640, 1280};
-                return Widths[_resolution];
-        }
+	/** get the width of the current resolution */
+	int width() const
+	{
+		static const int Widths[] = {160, 320, 640, 1280, 800};
+		return Widths[_resolution];
+	}
     
-        /** get the height of the current resolution */
-        int height() const
-        {
-                static const int Heights[] = {120, 240, 480, 960};
-                return Heights[_resolution];
-        }
-
-        int Width() const { return width(); }           // XXX: deprecated, use width() instead!
-        int Height() const { return height(); }         // XXX: deprecated, use height() instead!
+	/** get the height of the current resolution */
+	int height() const
+	{
+		static const int Heights[] = {120, 240, 480, 960, 600};
+		return Heights[_resolution];
+	}
+	
+	/** deprecated, use width() instead!
+	 */
+	int Width() const { return width(); }
+	/** deprecated, use height() instead!
+	 */
+	int Height() const { return height(); }
 };
 
 #pragma clang diagnostic pop
 
+/**
+ * @brief Enum of available camera's that can be used by vision
+ */
 enum VisionCamera {
-	Top,
-	Bottom
+	Top, ///< Top Camera on the nao
+	Bottom ///< Bottom Camera on the nao
 };
 
+/**
+ * @brief Enum listing available vision pipelines
+ */
 enum NamedPipeline {
-	Soccer,
-        OpenChallenge,
-		Streaming,
-		OpenCVFaces
+	Soccer, ///< Soccer Pipeline
+	OpenChallenge, ///< 2013 Open Challange Pipeline
+	Streaming, ///< Pipeline that just streams images
+	OpenCVFaces ///< Pipeline to recognise faces
 };
 
+/**
+ * @brief Streaming modes available in vision
+ */
 enum StreamingType {
-	Normal,
-	Classified,
-	Recognized //NYI
+	Normal, ///< Images straight from camera
+	Classified, ///<Images that has been segmented into recognised colours
+	Recognized ///< Image showing only objects that have been recognised NYI
 };
 
+/**
+ * @brief List of calibrations files that vision can use
+ */
 enum CalibrationFile {
-	Calibration0,
-	Calibration1,
-	Calibration2,
-	Calibration3
+	Calibration0, ///< ~/data/class.dlc
+	Calibration1, ///< ~/data/class1.dlc
+	Calibration2, ///< ~/data/class2.dlc
+	Calibration3  ///< ~/data/class3.dlc
 };
 
+/**
+ * @brief List of file types that vision can save images as
+ */
 enum SaveFileType {
-    AI2,
-    JPG
+    AI2, ///< Raw YUV422 Image
+    JPG ///< Compressed JPEG
 };
 
+/**
+ * @brief Supported Message in Vision Control/Status messages. Used internally
+ */
 enum VisionMessages {
 		Resolution,
 		PipelineRunning,
@@ -109,9 +142,11 @@ enum VisionMessages {
 		NUMBER_VISION_MESSAGES
 };
 
+/**Commands Strings. Used internally*/
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
 		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "Undefined"};
+/**Status Strings. Used internally*/
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
 		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "FrameRate"};
@@ -142,13 +177,41 @@ static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(ch
 
 namespace guWhiteboard
 {
-
+/**
+ * @brief Class to post control messages to the vision module as well as retrieving current Status
+ * This includes allows setting of various properties of the vision module. 
+ * Pipeline running resolution saving image streaming settings etc. Also used as
+ * a status message by the vision module to post current frame rate etc.
+ * 
+ * Examples
+ * --------
+ * 
+ * Set the streaming type to normal and the resolution to VGA
+ * 
+ *		VisionControlStatus v;
+ *		v.set_streamingSource(Normal);
+ *		v.set_resolution(ResolutionType(VGA));
+ *		Vision_Control_t.set(v);
+ * 
+ * Retrieve the current Frame Rate and Resolution
+ * 
+ *		VisionControlStatus v = Vision_Status_t.get(); //get the status message off the whiteboard
+ *		int fr = v.frameRate(); //get the frame rate out of the message
+ *		ResolutionType res = v.get_resolution();
+ */
 class VisionControlStatus {
 public:
+	/**
+	 * @brief Default Constructor
+     */
 	VisionControlStatus() {
-			memset(this, 0, sizeof(*this));
-		}
+		memset(this, 0, sizeof(*this));
+	}
 
+	/**
+	 * @brief String Constructor
+     * @param s The string containing a valid serialized VisionControlStatus Message
+     */
 	VisionControlStatus(std::string s) {
 		memset(this, 0, sizeof(*this));
 		size_t n;
@@ -216,6 +279,10 @@ public:
 		}
 	}
 
+	/**
+	 * @brief String representation of the VisionControlStatus message
+     * @return The String Representation
+     */
 	std::string description() const
         {
 		std::stringstream result;
@@ -253,6 +320,11 @@ public:
 		return result.str();
 	}
 
+	/**
+	 * @brief += operator to add components of passed message with mask set to this message
+     * @param a The VisionControlStatus that is added to this one where masks are set
+     * @return The newly updated VisionControlStatus object
+     */
 	VisionControlStatus operator+=(VisionControlStatus a) {
 		if(a.resolution_mask())
 			this->set_resolution(a.resolution());
@@ -284,20 +356,43 @@ public:
 		return *this;
 	}
 
+	/** The resolution that vision should capture images at*/
 	CONTROLLED_PROPERTY(ResolutionType, resolution)
+	/** Specify whether the pipeline should be runnning or not*/
 	CONTROLLED_PROPERTY(bool, pipelineRunning)
+	/** The camera that vision should capture images from*/
 	CONTROLLED_PROPERTY(VisionCamera, selectedCamera)
+	/** Tell vision to save an image in the specified format.
+	 *  Images are saved as /tmp/visionXX.{ai2.jpeg"}
+	 */
 	CONTROLLED_PROPERTY(SaveFileType, saveImage)
+	/** Tell vision to save a classifed image as a jpeg.
+	 *  Images are saved as /tmp/vision-classifiedXX.jpg
+	 */
 	CONTROLLED_PROPERTY(bool, saveClassifiedImage)
+	/** Specify Which pipeline vision should run*/
 	CONTROLLED_PROPERTY(NamedPipeline, activatePipeline)
+	/** Specify how vision should stream images to any client that connects*/
 	CONTROLLED_PROPERTY(StreamingType, streamingSource)
+	/** Vision mode to make vision more conservative? I don't think this does anything */
 	CONTROLLED_PROPERTY(bool, conservativeMode)
+	/** Tell vision to use the image in /tmp/test.ai2 instead of data from camera*/
 	CONTROLLED_PROPERTY(bool, imageInput)
+	/** Quality used in JPEG Compression to stream images.
+	 * Default is 30. Range is 0-100
+	 */
 	CONTROLLED_PROPERTY(int, jpegStreamQuality)
+	/** Stride used in JPEG Compression to stream images. Default is 4*/
 	CONTROLLED_PROPERTY(int, jpegStreamStride)
+	/** Tell vision to use this calibration file for image segmentation*/
 	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
-        CONTROLLED_PROPERTY(float, horizionValue)
-        CONTROLLED_PROPERTY(int, frameRate)
+	/** The horizon of the image after which point no image processing 
+	 *  should be performed. 
+	 */
+	CONTROLLED_PROPERTY(float, horizionValue)
+	/** Frame rate posted by VisionStatus that vision is currently processing images at*/
+	CONTROLLED_PROPERTY(int, frameRate)
+	/** Tell vision to run the pipeline once when set to true*/
 	CONTROLLED_PROPERTY(bool, pipelineRunOnce)
 
 	CONTROL_BIT(resolution)
@@ -316,6 +411,7 @@ public:
         CONTROL_BIT(frameRate)
 	CONTROL_BIT(pipelineRunOnce)
 		
+	/** The state of the open challenge pipeline when it is running*/	
 	PROPERTY(uint8_t, openChallengeStep)
 
 };

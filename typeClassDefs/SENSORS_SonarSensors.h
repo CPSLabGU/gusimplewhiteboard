@@ -106,7 +106,25 @@ namespace guWhiteboard
                 {
 
                 }
-                
+
+                 /** comparison operator */
+		        inline bool operator == (const SENSORS_SonarSensors &s) 
+	        	{
+                   for(int i = Sonar::Left0; i < Sonar::NUMBER_OF_READINGS; i++)
+                   {
+                        if(this->sonar(i) != s.sonar(i))
+                            return false;
+                        else
+                            continue;
+                   }
+    		    	return true;
+        		}
+
+		        inline bool operator != (const SENSORS_SonarSensors &s) 
+                {
+                    return !(*this == s);
+                }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor (see from_string() below) 
 		 *  @param str a serialised string containing properties to set in this class
