@@ -66,10 +66,16 @@
 
 #define STATESTATUS_SET_STATE(s, machineID, state)   ((s)->_fsms[machineID] = state)
 #define STATESTATUS_GET_STATE(s, machineID)    ((s)->_fsms[machineID])
-
+/**
+*   Idempotent Message publicising the state -about to be executed- (0-254)
+*   of up-to the first 128 machines (0-127).
+*
+*   State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.
+*
+*/
 struct wb_fsm_state_status
 {
-    ARRAY_PROPERTY(uint8_t, fsms, STATE_BYTE_SIZE)
+    ARRAY_PROPERTY(uint8_t, fsms, STATE_BYTE_SIZE)  ///< Data structure for Machine status
 
 #ifdef __cplusplus
     wb_fsm_state_status()
