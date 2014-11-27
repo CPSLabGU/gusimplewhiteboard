@@ -75,7 +75,7 @@
 namespace guWhiteboard
 {
         /**
-         * Discriminate sigthings 
+         * Discriminate goal sigthings
          */
         enum FilteredVisionObjectType
         {
@@ -87,6 +87,9 @@ namespace guWhiteboard
         };
 
 
+    /**
+     * Discriminate sonar distances
+     */
         enum FilteredSonarObjectType
         {
 	    FSLeft,
@@ -301,8 +304,8 @@ namespace guWhiteboard
                 return ss.str();
             }
 
-            /** Only grab the distance x,y positions convert from a string */
-	    //*** TODO: still incomplete */
+            /** Only grab the distance x,y positions convert from a string
+             ** TODO: still incomplete */
             void from_string(const std::string &str)
             {
                 std::istringstream iss(str);

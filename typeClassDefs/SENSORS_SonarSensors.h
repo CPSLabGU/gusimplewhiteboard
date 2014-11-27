@@ -120,6 +120,7 @@ namespace guWhiteboard
     		    	return true;
         		}
 
+            /// compare two sonar sensor value records and return false if they are the same
 		        inline bool operator != (const SENSORS_SonarSensors &s) 
                 {
                     return !(*this == s);

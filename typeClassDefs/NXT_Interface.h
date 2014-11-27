@@ -87,6 +87,7 @@ namespace guWhiteboard
     	    return true;
         }
 
+        /// return false if the two interfaces are the same
 		inline bool operator != (const NXT_Interface &s) 
         {
             return !(*this == s);

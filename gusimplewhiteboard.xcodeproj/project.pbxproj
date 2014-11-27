@@ -470,7 +470,6 @@
 		F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
 		F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeleoperationControlStatus.h; sourceTree = "<group>"; };
 		F1E5543818EBD16D00639B1E /* Vision_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Control.h; sourceTree = "<group>"; };
-		F1E5543918EBD16D00639B1E /* Vision_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Objects.h; sourceTree = "<group>"; };
 		F1E5543A18EBD16D00639B1E /* VisionBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionBall.h; sourceTree = "<group>"; };
 		F1E5543B18EBD16D00639B1E /* VisionGoals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionGoals.h; sourceTree = "<group>"; };
 		F1E5543C18EBD16D00639B1E /* VisionLines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionLines.h; sourceTree = "<group>"; };
@@ -556,6 +555,8 @@
 		F1ED58AE18E7EF1400864A87 /* wbPerfTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wbPerfTests-Prefix.pch"; sourceTree = "<group>"; };
 		F1F0A2871729F81900194F59 /* guwhiteboardposter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardposter.h; sourceTree = "<group>"; };
 		F1F4536514A123C7005C40A6 /* WBMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBMsg.h; sourceTree = "<group>"; };
+		F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_goal.h; sourceTree = "<group>"; };
+		F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fsm_state_status.h; sourceTree = "<group>"; };
 		F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_filteredsonarobject.h; sourceTree = "<group>"; };
 		F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_filteredvisionobject.h; sourceTree = "<group>"; };
 		F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredvisionobjects.h; sourceTree = "<group>"; };
@@ -1151,6 +1152,8 @@
 				F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */,
 				F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */,
 				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
+				F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */,
+				F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
 				F51974AA1952715000010021 /* FilteredArrayOneDimObjects.h */,
 				F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */,
@@ -1177,7 +1180,6 @@
 				F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */,
 				F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */,
 				F1E5543818EBD16D00639B1E /* Vision_Control.h */,
-				F1E5543918EBD16D00639B1E /* Vision_Objects.h */,
 				F1E5543A18EBD16D00639B1E /* VisionBall.h */,
 				F1E5543B18EBD16D00639B1E /* VisionGoals.h */,
 				F1E5543C18EBD16D00639B1E /* VisionLines.h */,

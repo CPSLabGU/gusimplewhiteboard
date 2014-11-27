@@ -5,6 +5,9 @@
 #include <gu_util.h>
 #include <SimpleShapes.h>
 
+/**
+ * Whiteboard structure for goal coordinates
+ */
 struct wb_goal
 {
 	/**The x,y coordinates of the outer bottom corner of the post*/

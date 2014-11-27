@@ -75,9 +75,11 @@
 */
 struct wb_fsm_state_status
 {
-    ARRAY_PROPERTY(uint8_t, fsms, STATE_BYTE_SIZE)  ///< Data structure for Machine status
+    /// Data structure for Machine status
+    ARRAY_PROPERTY(uint8_t, fsms, STATE_BYTE_SIZE)
 
 #ifdef __cplusplus
+    /// Convenience constructor, filling everything with INVALIDMACHINE
     wb_fsm_state_status()
     {
         memset(this, INVALIDMACHINE, sizeof(*this));
