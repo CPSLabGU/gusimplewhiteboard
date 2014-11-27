@@ -68,7 +68,6 @@
 		F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
-		F149FAB319E5170C0000B615 /* DifferentialRobotControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = F149FAB219E5170C0000B615 /* DifferentialRobotControlStatus.h */; };
 		F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */ = {isa = PBXBuildFile; fileRef = F14C46C314A07024006B6953 /* gusimplewhiteboard.c */; };
 		F166897E155CBBF400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
@@ -332,7 +331,6 @@
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
 		F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guwhiteboardtypelist_c_typestrings_generated.c; sourceTree = "<group>"; };
-		F149FAB219E5170C0000B615 /* DifferentialRobotControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentialRobotControlStatus.h; sourceTree = "<group>"; };
 		F14B792118E0E10400BD4128 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F14B792218E0E10400BD4128 /* libc++abi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++abi.dylib"; path = "usr/lib/libc++abi.dylib"; sourceTree = SDKROOT; };
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1153,7 +1151,6 @@
 				F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */,
 				F5119EB219510DDB009C87F6 /* wb_arrayoffilteredvisionobjects.h */,
 				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
-				F149FAB219E5170C0000B615 /* DifferentialRobotControlStatus.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
 				F51974AA1952715000010021 /* FilteredArrayOneDimObjects.h */,
 				F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */,
@@ -1388,7 +1385,6 @@
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
-				F149FAB319E5170C0000B615 /* DifferentialRobotControlStatus.h in Headers */,
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,

@@ -100,9 +100,12 @@ namespace guWhiteboard
          */
         class FilteredSonarObject
         {
-            PROPERTY(bool, isVisible) //  is this a credible sighting
-            PROPERTY(int16_t, distance) //  distance to landmark in cm
-            PROPERTY(int32_t, frameCounter) //  frame counter in cm
+            /// is this a credible sighting
+            PROPERTY(bool, isVisible)
+            ///  distance to landmark in cm
+            PROPERTY(int16_t, distance)
+            /// frame counter in cm
+            PROPERTY(int32_t, frameCounter)
 
         public:
             /** designated constructor */
@@ -162,15 +165,24 @@ namespace guWhiteboard
          */
         class FilteredVisionObject
         {
-            PROPERTY(bool, isVisibleTop) //  is this a credible sighting
-            PROPERTY(bool, isVisibleBottom) //  is this a credible sighting
-            PROPERTY(int16_t, distance) //  distance to landmark in cm
-            PROPERTY(int32_t, frameCounter) //  frame counter 
-            PROPERTY(int16_t, xTop) //  centre x-coordinate in image
-            PROPERTY(int16_t, yTop) //  centre y-coordinate in image
-            PROPERTY(int16_t, xBottom) //  centre x-coordinate in image
-            PROPERTY(int16_t, yBottom) //  centre y-coordinate in image
-            PROPERTY(int16_t, yaw) //  the Yaw in Degress when the object was last used to generated filtered values
+            /// is this a credible sighting via the top camera
+            PROPERTY(bool, isVisibleTop)
+            /// is this a credible sighting via the bottom camera
+            PROPERTY(bool, isVisibleBottom)
+            ///  distance to landmark in cm
+            PROPERTY(int16_t, distance)
+            ///  frame counter
+            PROPERTY(int32_t, frameCounter)
+            ///  centre x-coordinate in image
+            PROPERTY(int16_t, xTop)
+            ///  centre y-coordinate in image
+            PROPERTY(int16_t, yTop)
+            ///  centre x-coordinate in image
+            PROPERTY(int16_t, xBottom)
+            ///  centre y-coordinate in image
+            PROPERTY(int16_t, yBottom)
+            ///  the Yaw in Degress when the object was last used to generated filtered values
+            PROPERTY(int16_t, yaw)
         public:
             /** designated constructor */
             FilteredVisionObject( bool isVisibleTop = false, bool isVisibleBottom = false,
@@ -213,7 +225,8 @@ namespace guWhiteboard
 
                 return *this;
             }
-            
+
+        /// return whether the object is visible through either camera
 	    bool isVisible() const { return isVisibleTop() || isVisibleBottom(); }
 
             /** return the angle of the object as seen from the robot (in radians) */
@@ -222,35 +235,41 @@ namespace guWhiteboard
 		return (horizontal_angleTop(guvision_width, horiz_fov) + horizontal_angleBottom(guvision_width, horiz_fov)) / 2;
 	    }
 
+            /// return the horicontal angle from the top camera sighting
             float horizontal_angleTop(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
             {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
                 float D = guvision_width / 2 / sinf(float(DEG2RAD(horiz_fov/2)));   // projection distance in pixel units
-                float alpha = atanf(float(xTop())/D);                                  // negative angle of x on screen
+                float alpha = atanf(float(xTop())/D);                               // negative angle of x on screen
 
                 return yaw_in_radians - alpha;
             }
 
+            /// return the x coordinate (camera independent)
 	    int16_t get_x(VisionCamera whichCamera )
 	    { if (Top==whichCamera) return xTop();
 		    else return xBottom();
 	    }
 
+            /// return the y coordinate (camera independent)
 	    int16_t get_y(VisionCamera whichCamera )
 	    { if (Top==whichCamera) return yTop();
 		    else return yBottom();
 	    }
 
+            /// set x (camera independent, but needs either isVisibleTop or isVisibleBottom)
 	    void set_x(VisionCamera whichCamera, int16_t value)
 	    { if (Top==whichCamera) set_xTop(value);
 		    else set_xBottom(value);
 	    }
 
+            /// set y (camera independent, but needs either isVisibleTop or isVisibleBottom)
 	    void set_y(VisionCamera whichCamera, int16_t value)
 	    { if (Top==whichCamera) set_yTop(value);
 		    else set_yBottom(value);
 	    }
 
+            /// return the horicontal angle from the bottom camera sighting
             float horizontal_angleBottom(const float guvision_width = 1280.0f, const float horiz_fov = 61.0f) const
             {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
