@@ -2,7 +2,7 @@
  *  guwhiteboardposter.h
  *
  *  Created by Rene Hexel on 26/04/13.
- *  Copyright (c) 2013 Rene Hexel.
+ *  Copyright (c) 2013, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,7 +89,6 @@
 #include "VisionBall.h"
 #include "VisionGoals.h"
 #include "WalkData.h"
-#include "DifferentialRobotControlStatus.h"
 #include "Giraff_MainSerialInterface.h"
 #include "NXT_Interface.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
