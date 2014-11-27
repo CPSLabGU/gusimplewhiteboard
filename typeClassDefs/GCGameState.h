@@ -3,7 +3,7 @@
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 25/03/13.
- *  Copyright (c) 2013 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2013, 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -113,26 +113,34 @@
 
 namespace guWhiteboard
 {
+    /// team colours
 	enum TeamColours
 	{  TeamBlue=0, TeamRed=1, SentinelTeamColours=SPL_NUM_TEAMS };
 
+    /// game halves
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
 
+    /// kind of game (e.g., normal, drop-in, penalty, or overtime)
 	enum GameFormat
 	{  NormalGame, DropIn, PenaltyShots, OverTime };
 
+    /// who kicked the ball out
 	enum BallOut
 	{  OutByBlue, OutByRed };
 
+    /// high level state of the Game Controller
 	enum GameState {  Initial, Ready, Set, Playing, Finished };
 
+    /// received command from the Game Controller
 	enum GameControllerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
+    /// penalty reason
 	enum PenaltyFormat
 	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup, ManualButtonPenalty, CoachMotion };
 
+    /// major game event signals (goals, kick-offs)
 	enum GameContollerSignal
 	{  NoGSsignal, GSOurGoalSignalPushed, GSTheirGoalSignalPushed, GSBlueKickOffSignalPushed, GSRedKickOffSignalPushed };
 
@@ -143,24 +151,32 @@ namespace guWhiteboard
         class GCGameState
         {
 	   private:
+            /// penalty states for all our players
 		 uint8_t  _whatPenaltyFromUsInGSgameController[SPL_NUM_PLAYERS];
+            /// penalty states for all opponent players
 		 uint8_t _whatPenaltyFromThemInGSgameController[SPL_NUM_PLAYERS];
 
+            /// current score
 		 int16_t _score [SentinelTeamColours];
-		 bool _dropInTeam;
 
-                PROPERTY(GameHalf, theGSHalf )  //  GS half
-                PROPERTY(GameFormat, theGSGameformat )  //  GS game format
-		 // our internal state
+            /// is this a drop-in team?
+        bool _dropInTeam;
+
+            /// GS half
+                PROPERTY(GameHalf, theGSHalf )
+            ///  GS game format
+                PROPERTY(GameFormat, theGSGameformat )
+            /// our internal state
                 PROPERTY(GameState, theGSGameState )  
-		//  GS GameControllerCommand
+            ///  GS GameControllerCommand
                 PROPERTY(GameControllerCommand, theGSGameControllerCommand )  
-		//  GS team that has kickoff
+            ///  GS team that has kickoff
                 PROPERTY(TeamColours, theGSteamThatHasKickOf )  
-		//  GS team that has ball after it went out
-                PROPERTY(TeamColours, theGSteamCausedlastDropIn )  
+            ///  GS team that has ball after it went out
+                PROPERTY(TeamColours, theGSteamCausedlastDropIn )
+            /// number of seconds remaining in the current half of the game
                 PROPERTY(int16_t, theSecondReminingInHalf )  
-		//  GS team that has ball after it went out
+            ///  GS team that has ball after it went out
                 PROPERTY(TeamColours, theGScolourWePlayWith )  
 
         public:
