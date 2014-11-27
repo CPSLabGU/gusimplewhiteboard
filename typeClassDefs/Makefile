@@ -12,9 +12,11 @@ CI_DESCRIPTION=This is the Doxygen documentation for the whiteboard classes used
 
 DOCUMENTATION=${CI_NAME}
 
+.ifndef HDRS
 TMP_HDRS!=ls *.h
 HDRS?=${TMP_HDRS}
-CI_DOC_JOBS=${HDRS}
+.endif
+CI_DOC_JOBS?=${HDRS}
 CI_MAKE_ARGS+= HDRS="${HDRS}"
 
 WEB_SERVER_DIR=/Users/Shared/www/mipal.net
