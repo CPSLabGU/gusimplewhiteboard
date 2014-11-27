@@ -200,7 +200,7 @@ public:
                 return ss.str();
         }
         
-        //*** TODO: still incomplete */
+        /** TODO: still incomplete */
         void from_string(const std::string &str)
         {       std::string colonDel (1,SEPARATOR_IS_COLON);
                  std::string comaDel (1,SEPARATOR_IS_COMMA);
