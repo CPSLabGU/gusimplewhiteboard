@@ -36,6 +36,9 @@ enum nxt_port_object_type
 	NUMBER_OF_NXT_OBJECT_TYPES
 };
 
+//! @cond Doxygen_Suppress
+    //Doxy is warning about undocumented functions as a result of our macros and the fact that they're used in this union. This will disable doxy from parsing this section, which means no warnings but also no generated documentation for this section. The other option is to redefine the macros locally to fix the naming problem. - Carl.
+
 /**
  * object to contain the values for a generic nxt port connection
  */
@@ -75,6 +78,7 @@ union nxt_port_object_data
     unsigned int _padding : 14;
 	}    motor;  ///< motor object
 };
+//! @endcond
 
 /** An object that contains the type and data of an nxt sensor */
 struct nxt_port_object
