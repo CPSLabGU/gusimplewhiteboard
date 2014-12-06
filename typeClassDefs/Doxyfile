@@ -409,7 +409,7 @@ LOOKUP_CACHE_SIZE      = 0
 # normally produced when WARNINGS is set to YES.
 # The default value is: NO.
 
-EXTRACT_ALL            = NO
+EXTRACT_ALL            = YES
 
 # If the EXTRACT_PRIVATE tag is set to YES all private members of a class will
 # be included in the documentation.
@@ -754,7 +754,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = FFTStatus.h FSMControlStatus.h FSM_Control.h FilteredArrayOneDimBall.h FilteredArrayOneDimObjects.h FilteredArrayOneDimSonar.h FilteredOneDimObject.h FilteredOneDimObjects.h FilteredOneDimSonar.h GCGameState.h Giraff_MainSerialInterface.h HAL_HeadTarget.h MOTION_Interface.h NAO_State.h NXT_Interface.h PARTICLE_TopPositions.h Point2D.h SENSORS_BodySensors.h SENSORS_FootSensors.h SENSORS_LedsSensors.h SENSORS_LegJointSensors.h SENSORS_LegJointTemps.h SENSORS_SonarSensors.h SENSORS_TorsoJointSensors.h SENSORS_TorsoJointTemps.h TeleoperationControlStatus.h VisionBall.h VisionGoals.h VisionLines.h Vision_Control.h Vision_Objects.h WALK_ControlStatus.h WEBOTS_NXT_bridge.h WalkData.h wb_arrayoffilteredballobjects.h wb_arrayoffilteredsonarobjects.h wb_arrayoffilteredvisionobjects.h wb_ball.h wb_differential_robot.h wb_fft_frequencies.h wb_filteredsonarobject.h wb_filteredvisionobject.h wb_fsm_control_status.h wb_fsm_state_status.h wb_giraff_main_serial.h wb_goal.h wb_hal_headtarget.h wb_lines.h wb_motor.h wb_nao_state.h wb_nxt_interface.h wb_point.h wb_sensors_body.h wb_sensors_foot.h wb_sensors_leds.h wb_sensors_legs.h wb_sensors_legtemps.h wb_sensors_sonar.h wb_sensors_torso.h wb_sensors_torsotemps.h wb_teleoperation.h wb_walk_controlstatus.h 
+INPUT                  = FFTStatus.h FSMControlStatus.h FSM_Control.h FilteredArrayOneDimBall.h FilteredArrayOneDimObjects.h FilteredArrayOneDimSonar.h FilteredOneDimObject.h FilteredOneDimObjects.h FilteredOneDimSonar.h GCGameState.h Giraff_MainSerialInterface.h HAL_HeadTarget.h MOTION_Interface.h NAO_State.h NXT_Interface.h PARTICLE_TopPositions.h Point2D.h SENSORS_BodySensors.h SENSORS_FootSensors.h SENSORS_LedsSensors.h SENSORS_LegJointSensors.h SENSORS_LegJointTemps.h SENSORS_SonarSensors.h SENSORS_TorsoJointSensors.h SENSORS_TorsoJointTemps.h TeleoperationControlStatus.h VisionBall.h VisionGoals.h VisionLines.h Vision_Control.h WALK_ControlStatus.h WEBOTS_NXT_bridge.h WalkData.h wb_arrayoffilteredballobjects.h wb_arrayoffilteredsonarobjects.h wb_arrayoffilteredvisionobjects.h wb_ball.h wb_fft_frequencies.h wb_filteredsonarobject.h wb_filteredvisionobject.h wb_fsm_control_status.h wb_fsm_state_status.h wb_giraff_main_serial.h wb_goal.h wb_hal_headtarget.h wb_lines.h wb_nao_state.h wb_nxt_interface.h wb_point.h wb_sensors_body.h wb_sensors_foot.h wb_sensors_leds.h wb_sensors_legs.h wb_sensors_legtemps.h wb_sensors_sonar.h wb_sensors_torso.h wb_sensors_torsotemps.h wb_teleoperation.h wb_walk_controlstatus.h 
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1924,7 +1924,7 @@ SEARCH_INCLUDES        = YES
 # preprocessor.
 # This tag requires that the tag SEARCH_INCLUDES is set to YES.
 
-INCLUDE_PATH           = /Users/carl/Desktop/MiPal/GUNao/Common
+INCLUDE_PATH           = /Users/vlad/src/MiPal/GUNao/Common
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard
 # patterns (like *.h and *.hpp) to filter out the header-files in the

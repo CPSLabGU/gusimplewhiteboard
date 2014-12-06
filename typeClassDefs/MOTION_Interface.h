@@ -80,7 +80,7 @@ namespace guWhiteboard
                         Kneeling_wave = 0,	///< When kneeling, wave with one arm
             		Kneeling_quickwave,	///< When kneeling, wave quickly with one arm (originally for the RoboCup sound demo)
                         Kneeling_flagwave, 	///< When kneeling, wave as if holding a flag - Jeremy's Flag Wave
-                        Kneeling_raiseright, 	///< When kneeling, raise right arm - Vlad's treat to hit
+                        //Kneeling_raiseright, 	///< When kneeling, raise right arm - Vlad's treat to hit
                         Standing_leftkick,	///< When standing, kick with the left foot
                         Standing_rightkick,	///< When standing, kick with the right foot
                         Standing_leftpass,	///< When standing, kick sideways, moving the object in front of the robot left
@@ -111,7 +111,7 @@ namespace guWhiteboard
                         "Kneeling_wave",
                         "Kneeling_quickwave",
                         "Kneeling_flagwave", // Jeremy's Flag Wave
-                        "Kneeling_raiseright", // Vlad's's Threat to Hit
+                        //"Kneeling_raiseright", // Vlad's's Threat to Hit
                         "Standing_leftkick",
                         "Standing_rightkick",
                         "Standing_leftpass",
@@ -189,7 +189,7 @@ namespace guWhiteboard
                                 MAP_ACTION_ENTRY(Kneeling_quickwave,    Kneeling_stance, 1); //cost should be time to perform the action
                                 // Jeremy's Flag Wave Action. 
                                 MAP_ACTION_ENTRY(Kneeling_flagwave,     Kneeling_stance, 1);
-                                MAP_ACTION_ENTRY(Kneeling_raiseright,     Kneeling_stance, 1);
+                                //MAP_ACTION_ENTRY(Kneeling_raiseright,     Kneeling_stance, 1);
                                 MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443);
                                 MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1);
