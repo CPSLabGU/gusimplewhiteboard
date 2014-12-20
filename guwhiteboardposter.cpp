@@ -745,6 +745,30 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !NXT_Interface_DEFINED
 
+		case kAPM_Status_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Status @brief Nil */ 
+			class APM_Status_t APM_Status_msg;
+			APM_Status_msg.post(APM_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !APM_Interface_DEFINED
+
+		case kAPM_Command_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Command @brief Nil */ 
+			class APM_Command_t APM_Command_msg;
+			APM_Command_msg.post(APM_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !APM_Interface_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -756,7 +780,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(63);
+	// self.reserve(65);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -821,5 +845,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["Giraff_Interface_Command"] = kGiraff_Interface_Command_v;
 	self["NXT_Status"] = kNXT_Status_v;
 	self["NXT_Command"] = kNXT_Command_v;
+	self["APM_Status"] = kAPM_Status_v;
+	self["APM_Command"] = kAPM_Command_v;
 }
 
