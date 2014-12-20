@@ -125,7 +125,7 @@ namespace guWhiteboard
 			switch (this->mode())
 			{
 			case Quad:
-			    ss << "Thrust: "    << this->data().quad.thrust()    << ", ";
+			    ss << "Thrust: "    << static_cast<int>(this->data().quad.thrust())    << ", ";
 			    ss << "Pitch: "     << this->data().quad.pitch()     << ", ";
 			    ss << "Roll: "      << this->data().quad.roll()      << ", ";
 			    ss << "Yaw: "       << this->data().quad.yaw()       << "";
