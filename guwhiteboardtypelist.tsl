@@ -61,3 +61,5 @@ class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Status, "Giraff_In
 class:Giraff_MainSerialInterface, nonatomic, Giraff_Interface_Command, "Giraff_Interface_Command", Serial interface for the main motor and sensor board of the giraff
 class:NXT_Interface, nonatomic, NXT_Status, "NXT_Status", Contains sensor data as well as motor encoder data from the objects attached to an NXT
 class:NXT_Interface, nonatomic, NXT_Command, "NXT_Command", Can issue commands to set the motors of an NXT and reset the encoders
+class:APM_Interface, nonatomic, APM_Status, "APM_Status", Contains sensor data from an APM
+class:APM_Interface, nonatomic, APM_Command, "APM_Command", Can issue commands to an APM
