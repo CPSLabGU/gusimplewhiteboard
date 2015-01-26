@@ -63,3 +63,5 @@ class:NXT_Interface, nonatomic, NXT_Status, "NXT_Status", Contains sensor data a
 class:NXT_Interface, nonatomic, NXT_Command, "NXT_Command", Can issue commands to set the motors of an NXT and reset the encoders
 class:APM_Interface, nonatomic, APM_Status, "APM_Status", Contains sensor data from an APM
 class:APM_Interface, nonatomic, APM_Command, "APM_Command", Can issue commands to an APM
+class:WALK2014_ControlStatus, nonatomic, WALK2014_Command,              "WALK2014_Command", Class used to control the 2014 walk engine (UNSW)
+class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK2014_Status",  Class used to check the status of the 2014 walk engine (UNSW)
