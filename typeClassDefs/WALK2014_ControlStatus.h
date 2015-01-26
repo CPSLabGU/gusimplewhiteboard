@@ -41,13 +41,13 @@ namespace guWhiteboard
         {
         public:
                 /** designated constructor */
-                WALK2014_ControlStatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot): wb_walk2014_controlstatus(option, forward, left, turn, power, foot) {}
+                WALK2014_ControlStatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT): wb_walk2014_controlstatus(option, forward, left, turn, power, foot) {}
 
                 /** copy constructor */
-                WALK2014_ControlStatus(const WALK_ControlStatus &other) : wb_walk2014_controlstatus(other.walk_state(), other.forward(), other.left(), other.turn(), other.power(), other.foot) { }
+                WALK2014_ControlStatus(const WALK2014_ControlStatus &other) : wb_walk2014_controlstatus(other.walk_state(), other.forward(), other.left(), other.turn(), other.power(), other.foot()) { }
 
                 /** copy assignment operator */
-                WALK2014_ControlStatus &operator=(const WALK_ControlStatus &other) { set_walk_state(other.walk_state()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); set_foot(other.foot());return *this; }
+                WALK2014_ControlStatus &operator=(const WALK2014_ControlStatus &other) { set_walk_state(other.walk_state()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); set_foot(other.foot());return *this; }
 
                 /** comparison operator */
 		inline bool operator == (const WALK2014_ControlStatus &s) 

@@ -15,6 +15,9 @@
 #include <float.h>
 #endif
 
+#ifndef USE_UNSW_ODOMETRY
+#ifndef _wb_walk_odometry_h
+#define _wb_walk_odometry_h
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
         float forward;		///< forward, mm/s
@@ -31,6 +34,8 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 #endif
 
 };
+#endif //_wb_walk_odometry_h
+#endif //USE_UNSW_ODOMETRY
 
 /**
  * Options for ControlStatus
@@ -105,7 +110,7 @@ struct wb_walk2014_controlstatus
         memset(this, 0, sizeof(*this)); 
     }
 
-    wb_walk2014_controlstatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot) : _forward(forward), _left(left), _turn(turn), _power(power), _foot(foot), _walk_state(option), _walking_status(NUMBER_OF_WALK_STATES)
+    wb_walk2014_controlstatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT) : _forward(forward), _left(left), _turn(turn), _power(power), _foot(foot), _walk_state(option), _walking_status(NUMBER_OF_WALK_STATES)
     {
 
     }
