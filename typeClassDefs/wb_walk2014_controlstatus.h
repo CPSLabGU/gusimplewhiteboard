@@ -38,11 +38,11 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
  */
 enum Walk2014Option 
 {
-    STAND        = 0, ///< with knees straight and stiffness set to zero to conserve energy and heat generation in motors
+    DISCONNECT   = 0,       ///< walk is disconnected from the DCM (auto connects in any other state)
+    STAND        = 7, ///< with knees straight and stiffness set to zero to conserve energy and heat generation in motors
     WALK         = 3, ///< walking state
     READY        = 4, ///< stand still ready to walk (stiffness on)
     KICK         = 5, ///< NYI kicking option
-    DISCONNECT   = 7,       ///< walk is disconnected from the DCM (auto connects in any other state)
     RESET_ODOMETRY = 8,     ///< resets the odometry objects
 
     //Internal options
@@ -51,9 +51,26 @@ enum Walk2014Option
     NONE         = 6 ///< Do nothing (internal)
 };
 
+/** Walk status enum */
+enum WalkState {
+   NOT_WALKING    = 0,	///< Not walking at this point
+   WALKING        = 1,	///< Currently walking
+   STARTING       = 2,	///< Currently starting to walk
+   STOPPING       = 3,	///< Currently stopping
+   NUMBER_OF_WALK_STATES ///< Helper value
+};
 
-enum WALK_ControlStatus_Mode
-{
+/** Part of the NYI kicking option */
+enum KickingFoot {
+   LEFT     = 0,	///< Kick with left foot
+   RIGHT    = 1		///< Kick with right foot
+};
+
+/** Part of the NYI kicking option */
+enum ActionState {
+   WALK_Action  = 0,	///< TBD
+   KICK_Action 	= 1,	///< TBD
+   NUMBER_OF_ACTIONS	///< Helper value
 };
 
 /**
@@ -61,29 +78,31 @@ enum WALK_ControlStatus_Mode
  */
 struct wb_walk2014_controlstatus
 {
-	/** Forward movement, -100 to 100 percent */
+	/** Forward movement, mm/sec */
 	PROPERTY(float, forward)      	
-	/** Side step movement, -100 to 100 percent */
+	/** Side step movement, mm/sec */
         PROPERTY(float, left)           
-	/** Rotation in RAD */
+	/** Rotation in DEG/sec */
         PROPERTY(float, turn)           
-	/** Power value, best set to 100 and forgotten - Carl. */
+	/** Power value, alters the stiffness and 'power' of kicks (kick part NYI), percentage 0 - 100 */
         PROPERTY(float, power)          
 
-	/** Walk State, getting / setting the state of the walk engine. Such as setting WALK_Stop to stop walking. */
-        PROPERTY(WALK_ControlStatus_Mode, controlStatus) 	
+	/** Which foot to use when kicking, NYI */
+        PROPERTY(KickingFoot, foot)          
+	/** Sets the current state of the walk engine */
+        PROPERTY(Walk2014Option, walk_state)          
+	/** Reports the current walking state (can not be set, use setters / helper functions to change what the walk is doing) */
+        PROPERTY(WalkState, walking_status)          
+
 	/** Odometry object, tracking walk distances over time */
         PROPERTY(Odometry, odometry) 				
-	/** Odometry mask, for overwriting the odomety in the walk */
-        PROPERTY(bool, odometry_mask) 				
-	/** Just padding, ignore  */
-        PROPERTY(bool, pad1) 					
-	/** Just padding, ignore */
-        PROPERTY(int16_t, pad2) 				
 
 #ifdef __cplusplus
    /** Constructor with some default values */
-    wb_walk2014_controlstatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
+    wb_walk2014_controlstatus()
+    {
+        memset(this, 0, sizeof(*this)); 
+    }
 #endif
 
 };
