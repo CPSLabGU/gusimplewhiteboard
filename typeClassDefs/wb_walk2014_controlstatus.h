@@ -39,16 +39,17 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 enum Walk2014Option 
 {
     DISCONNECT   = 0,       ///< walk is disconnected from the DCM (auto connects in any other state)
-    STAND        = 7, ///< with knees straight and stiffness set to zero to conserve energy and heat generation in motors
-    WALK         = 3, ///< walking state
-    READY        = 4, ///< stand still ready to walk (stiffness on)
-    KICK         = 5, ///< NYI kicking option
-    RESET_ODOMETRY = 8,     ///< resets the odometry objects
+    STAND        = 1, ///< with knees straight and stiffness set to zero to conserve energy and heat generation in motors
+    WALK         = 2, ///< walking state
+    READY        = 3, ///< stand still ready to walk (stiffness on)
+    KICK         = 4, ///< NYI kicking option
+    RESET_ODOMETRY = 5,     ///< resets the odometry objects
 
     //Internal options
-    STANDUP      = 1, ///< process of moving from WALK crouch to STAND (internal)
-    CROUCH       = 2, ///< process of transitioning from STAND to WALK (internal)
-    NONE         = 6 ///< Do nothing (internal)
+    STANDUP      = 6, ///< process of moving from WALK crouch to STAND (internal)
+    CROUCH       = 7, ///< process of transitioning from STAND to WALK (internal)
+    NONE         = 8, ///< Do nothing (internal)
+    NUMBER_OF_WALK_OPTIONS = 9 ///< Helper value
 };
 
 /** Walk status enum */
@@ -103,6 +104,12 @@ struct wb_walk2014_controlstatus
     {
         memset(this, 0, sizeof(*this)); 
     }
+
+    wb_walk2014_controlstatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot) : _forward(forward), _left(left), _turn(turn), _power(power), _foot(foot), _walk_state(option), _walking_status(NUMBER_OF_WALK_STATES)
+    {
+
+    }
+
 #endif
 
 };

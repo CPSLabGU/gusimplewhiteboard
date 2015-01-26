@@ -9,7 +9,6 @@
 #ifndef WALK2014_ControlStatus_DEFINED
 #define WALK2014_ControlStatus_DEFINED
 
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <string>
 #include <sstream>
@@ -22,13 +21,17 @@
 namespace guWhiteboard
 {
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-        static const char *WALK_statusNames[] =
+        static const char *Walk2014Options_strings[] =
         {
-                "disconnected", "stopped", "ready", "walking", "odometry"
+                "DISCONNECT", "STAND", "WALK", "READY", "KICK", "RESET_ODOMETRY", "STANDUP", "CROUCH", "NONE", "NUMBER_OF_WALK_OPTIONS"
         };
-        static const char *WALK_commandNames[] =
+        static const char *WalkState_strings[] =
         {
-                "disconnect", "stop", "connect", "walk", "set_odometry"
+                "NOT_WALKING", "WALKING", "STARTING", "STOPPING", "NUMBER_OF_WALK_STATES"
+        };
+        static const char *KickingFoot_strings[] =
+        {
+                "LEFT", "RIGHT"
         };
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         /**
@@ -36,16 +39,15 @@ namespace guWhiteboard
          */
         class WALK2014_ControlStatus : public wb_walk2014_controlstatus
         {
-
         public:
                 /** designated constructor */
-                WALK2014_ControlStatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): wb_walk2014_controlstatus(c, forward, left, turn, power) {}
+                WALK2014_ControlStatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot): wb_walk2014_controlstatus(option, forward, left, turn, power, foot) {}
 
                 /** copy constructor */
-                WALK2014_ControlStatus(const WALK_ControlStatus &other) : wb_walk2014_controlstatus(other.controlStatus(), other.forward(), other.left(), other.turn(), other.power()) { }
+                WALK2014_ControlStatus(const WALK_ControlStatus &other) : wb_walk2014_controlstatus(other.walk_state(), other.forward(), other.left(), other.turn(), other.power(), other.foot) { }
 
                 /** copy assignment operator */
-                WALK2014_ControlStatus &operator=(const WALK_ControlStatus &other) { set_controlStatus(other.controlStatus()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); return *this; }
+                WALK2014_ControlStatus &operator=(const WALK_ControlStatus &other) { set_walk_state(other.walk_state()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); set_foot(other.foot());return *this; }
 
                 /** comparison operator */
 		inline bool operator == (const WALK2014_ControlStatus &s) 
@@ -54,7 +56,9 @@ namespace guWhiteboard
 				fabs(left() - s.left()) < FLT_EPSILON &&
 				fabs(turn() - s.turn()) < FLT_EPSILON &&
 				fabs(power() - s.power()) < FLT_EPSILON &&
-				controlStatus()	== s.controlStatus() &&
+				fabs(foot() - s.foot()) < FLT_EPSILON &&
+				walk_state()	== s.walk_state() &&
+				walking_status()	== s.walking_status() &&
 				odometry() 	== s.odometry());
 		}
 
@@ -73,17 +77,11 @@ namespace guWhiteboard
                 std::string description() const
                 {
                         std::ostringstream ss;
-                        int statval = controlStatus();
-                        if (statval < 0 || statval > WALK_Ignore)
-                                ss << "Corrupt WALK control status value " << statval;
-                        else
-                                ss << WALK_statusNames[statval];
-
-                        if (controlStatus() == WALK_Run)
-                                ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ")";
-
-                        if (odometry_mask())
-                                ss << " @(" << odometry().forward << "," << odometry().left << "," << odometry().turn << ")";
+                        ss << Walk2014Options_strings[walk_state()] << ", \t";
+                        ss << WalkState_strings[walk_status()] << ", \t";
+                        ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ") ";
+			ss << "F: " << KickingFoot_strings[foot()] << ", ";
+                        ss << " @(" << odometry().forward << "," << odometry().left << "," << odometry().turn << ")";
 
                         return ss.str();
                 }
@@ -91,107 +89,7 @@ namespace guWhiteboard
                 /** convert from a string */
                 void from_string(const std::string &command)
                 {
-                        const char *ccmd = command.c_str();
-                        set_odometry_mask(false);
-                        for (int cmd = WALK_Disconnected; cmd <= WALK_Ignore; cmd++)
-                        {
-                                if (strstr(ccmd, WALK_statusNames[cmd]) ||
-                                    strstr(ccmd, WALK_commandNames[cmd]))
-                                {
-                                        set_controlStatus(WALK2014_ControlStatus_Mode(cmd));
-                                        if (cmd != WALK_Run && cmd != WALK_Ignore)
-                                                return;
-                                        std::istringstream iss(command);
-                                        std::string token;
-                                        if (getline(iss, token, ','))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                set_forward(float(atof(str)));
-                                        }
-                                        else set_forward(0);
-
-                                        if (getline(iss, token, ','))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                set_left(float(atof(str)));
-                                        }
-                                        else set_left(0);
-
-                                        if (getline(iss, token, ','))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                set_turn(float(atof(str)));
-                                        }
-                                        else set_turn(0);
-
-                                        if (getline(iss, token, '@'))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                set_power(float(atof(str)));
-                                        }
-                                        else set_power(0);
-
-                                        /*
-                                         * odometry after the '@'
-                                         */
-                                        if (getline(iss, token, ','))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                set_odometry_mask(true);
-                                                _odometry.forward = float(atof(str));
-                                        }
-                                        else _odometry.forward = 0.0f;
-
-                                        if (getline(iss, token, ','))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                _odometry.left = float(atof(str));
-                                        }
-                                        else _odometry.left = 0.0f;
-
-                                        if (getline(iss, token, ')'))
-                                        {
-                                                const char *str = token.c_str();
-                                                while (*str != '-' && !isdigit(*str))
-                                                {
-                                                        if (!*str) break;
-                                                        str++;
-                                                }
-                                                _odometry.turn = float(atof(str));
-                                        }
-                                        else _odometry.turn = 0.0f;
-                                }
-                        }
+			fprintf(stderr, "Looks like this is NYI, have it back %s\n", const_cast<char *>(command.c_str()));
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
