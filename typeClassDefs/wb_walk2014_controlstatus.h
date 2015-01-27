@@ -110,7 +110,7 @@ struct wb_walk2014_controlstatus
         memset(this, 0, sizeof(*this)); 
     }
 
-    wb_walk2014_controlstatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT) : _forward(forward), _left(left), _turn(turn), _power(power), _foot(foot), _walk_state(option), _walking_status(NUMBER_OF_WALK_STATES)
+    wb_walk2014_controlstatus(Walk2014Option option, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT) : _forward(forward), _left(left), _turn(turn), _power(power), _foot(foot), _walk_state(option), _walking_status(NUMBER_OF_WALK_STATES)
     {
 
     }

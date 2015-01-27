@@ -56,7 +56,7 @@ namespace guWhiteboard
 				fabs(left() - s.left()) < FLT_EPSILON &&
 				fabs(turn() - s.turn()) < FLT_EPSILON &&
 				fabs(power() - s.power()) < FLT_EPSILON &&
-				fabs(foot() - s.foot()) < FLT_EPSILON &&
+				foot() == s.foot() &&
 				walk_state()	== s.walk_state() &&
 				walking_status()	== s.walking_status() &&
 				odometry() 	== s.odometry());
@@ -71,14 +71,14 @@ namespace guWhiteboard
             
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /** string constructor */
-                WALK2014_ControlStatus(const std::string &command) { from_string(command); }
+                WALK2014_ControlStatus(const std::string &command) : wb_walk2014_controlstatus() { from_string(command); }
 
                 /** convert to a string */
                 std::string description() const
                 {
                         std::ostringstream ss;
                         ss << Walk2014Options_strings[walk_state()] << ", \t";
-                        ss << WalkState_strings[walk_status()] << ", \t";
+                        ss << WalkState_strings[walking_status()] << ", \t";
                         ss << "(" << forward() << "," << left() << "," << turn() << "," << power() << ") ";
 			ss << "F: " << KickingFoot_strings[foot()] << ", ";
                         ss << " @(" << odometry().forward << "," << odometry().left << "," << odometry().turn << ")";
