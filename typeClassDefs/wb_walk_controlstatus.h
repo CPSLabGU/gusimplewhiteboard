@@ -16,6 +16,8 @@
 #endif
 
 #ifndef USE_UNSW_ODOMETRY
+#ifndef _wb_walk_odometry_h
+#define _wb_walk_odometry_h
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
         float forward;		///< forward, unsure of unit type
@@ -32,6 +34,7 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 #endif
 
 };
+#endif //_wb_walk_odometry_h
 #endif
 
 /**

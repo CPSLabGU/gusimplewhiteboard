@@ -69,6 +69,7 @@
  */
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include "WALK_ControlStatus.h"
+#include "WALK2014_ControlStatus.h"
 #include "MOTION_Interface.h"
 #include "FSMControlStatus.h"
 #include "FFTStatus.h"

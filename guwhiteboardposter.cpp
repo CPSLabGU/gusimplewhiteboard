@@ -769,6 +769,30 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !APM_Interface_DEFINED
 
+		case kWALK2014_Command_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Command @brief Nil */ 
+			class WALK2014_Command_t WALK2014_Command_msg;
+			WALK2014_Command_msg.post(WALK2014_ControlStatus(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kWALK2014_Status_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Status @brief Nil */ 
+			class WALK2014_Status_t WALK2014_Status_msg;
+			WALK2014_Status_msg.post(WALK2014_ControlStatus(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WALK2014_ControlStatus_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -780,7 +804,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(65);
+	// self.reserve(67);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -847,5 +871,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Command"] = kNXT_Command_v;
 	self["APM_Status"] = kAPM_Status_v;
 	self["APM_Command"] = kAPM_Command_v;
+	self["WALK2014_Command"] = kWALK2014_Command_v;
+	self["WALK2014_Status"] = kWALK2014_Status_v;
 }
 

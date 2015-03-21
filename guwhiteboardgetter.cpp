@@ -736,6 +736,30 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !APM_Interface_DEFINED
 
+		case kWALK2014_Command_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Command @brief Nil */ 
+			class WALK2014_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kWALK2014_Status_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Status @brief Nil */ 
+			class WALK2014_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WALK2014_ControlStatus_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
