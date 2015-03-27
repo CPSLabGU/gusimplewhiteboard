@@ -12,9 +12,11 @@ struct wb_motor {
 	PROPERTY(uint16_t, accel)
 	/** Odometer used for storing distance travelled in mm */
 	PROPERTY(uint16_t, dist)
+        /** padding to shut up the compiler on 64 bit systems */
+        PROPERTY(uint16_t, padding)
 #ifdef __cplusplus
 	/** Default constructor */
-	wb_motor() : _speed(16), _accel(127), _dist(0) {}
+	wb_motor() : _speed(16), _accel(127), _dist(0), _padding(0) {}
 #endif
 };
 
