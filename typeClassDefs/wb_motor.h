@@ -4,14 +4,14 @@
 #include <sys/types.h>
 #include <gu_util.h>
 
-/** Basic motor struct */
+/** Basic kinematic motor (i.e. motor to ground) struct */
 struct wb_motor {
-	/** Speed setting -127 to 127 in cm/s */
-	PROPERTY(int8_t, speed)  
-	/** Acceleration setting 0 to 255 in cm/s */
-	PROPERTY(uint8_t, accel) 
-	/** Odometer used for storing distance travelled */
-	PROPERTY(uint16_t, dist) 
+	/** Speed setting -32767 to 32767 in mm/s */
+	PROPERTY(int16_t, speed)
+	/** Acceleration setting -32767 to 32767 in mm/s/s */
+	PROPERTY(uint16_t, accel)
+	/** Odometer used for storing distance travelled in mm */
+	PROPERTY(uint16_t, dist)
 #ifdef __cplusplus
 	/** Default constructor */
 	wb_motor() : _speed(100), _accel(127), _dist(0) {}
