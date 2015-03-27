@@ -32,7 +32,7 @@ namespace guWhiteboard {
                 const wb_motor &l = left_motor();
                 const wb_motor &r = right_motor();
                 ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) \
-                << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) \
+                << ", " << l.odo() << "," << r.odo() << ", " << static_cast<unsigned>(l.accel()) \
                 << "," << static_cast<unsigned>(r.accel());
                 return ss.str();
             }
@@ -48,9 +48,9 @@ namespace guWhiteboard {
                 if (elements.size() < 2) return;
                 r.set_speed(static_cast<int8_t>(atoi(elements[1].c_str())));
                 if (elements.size() < 3) return;
-                l.set_dist(static_cast<uint16_t>(atoi(elements[2].c_str())));
+                l.set_odo(static_cast<uint16_t>(atoi(elements[2].c_str())));
                 if (elements.size() < 4) return;
-                r.set_dist(static_cast<uint16_t>(atoi(elements[3].c_str())));
+                r.set_odo(static_cast<uint16_t>(atoi(elements[3].c_str())));
                 if (elements.size() < 5) return;
                 l.set_accel(static_cast<uint8_t>(atoi(elements[4].c_str())));
                 if (elements.size() < 6) return;
@@ -66,102 +66,18 @@ namespace guWhiteboard {
 
                 if (l.speed() == sl.speed() 
                     && l.accel() == sl.accel() 
-                    && l.dist() == sl.dist() 
+                    && l.odo() == sl.odo()
                     && r.speed() == sr.speed() 
                     && r.accel() == sr.accel() 
-                    && r.dist() == sr.dist()) {
+                    && r.odo() == sr.odo()) {
                     return true;
                 } else {
                     return false;
                 }
             }
-            
-            /** same as descrption above, available in all environments. Used for debugging purposes */
-            std::string description2() {
-                using namespace std;
-                stringstream ss;
-                const wb_motor &l = left_motor();
-                const wb_motor &r = right_motor();
-                ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) \
-                << ", " << l.dist() << "," << r.dist() << ", " << static_cast<unsigned>(l.accel()) \
-                << "," << static_cast<unsigned>(r.accel());
-                return ss.str();
-            }
-
-            /** Abstraction for forward movement */
-            void move_forward (int8_t speed) {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
-                
-                if (speed > 100) speed = 100;
-                if (speed < 0) speed = 0;
-
-                int a = (speed * 127) / 100;
-                
-                l.set_speed (static_cast<int8_t> (a));
-                r.set_speed (static_cast<int8_t> (a));
-                l.set_accel (static_cast<uint8_t> (a));
-                r.set_accel (static_cast<uint8_t> (a));
-                l.set_dist (static_cast<uint16_t> (10000));
-                r.set_dist (static_cast<uint16_t> (10000));
-            }
-            
-            /** Abstraction for rearward movement */
-            void move_backward (int8_t speed) {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
-
-                if (speed > 100) speed = 100;
-                if (speed < 0) speed = 0;
-
-                int a = (speed * 127) / 100;
-                
-                l.set_speed (static_cast<int8_t> (-a));
-                r.set_speed (static_cast<int8_t> (-a));
-                l.set_accel (static_cast<uint8_t> (a));
-                r.set_accel (static_cast<uint8_t> (a));
-                l.set_dist (static_cast<uint16_t> (10000));
-                r.set_dist (static_cast<uint16_t> (10000));
-            }           
-            
-            /** Abstraction for a left rotation */
-            void turn_left (int8_t speed) {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
-
-                if (speed > 100) speed = 100;
-                if (speed < 0) speed = 0;
-
-                int a = (speed * 127) / 100;
-                
-                l.set_speed (static_cast<int8_t> (-a));
-                r.set_speed (static_cast<int8_t> (a));
-                l.set_accel (static_cast<uint8_t> (a));
-                r.set_accel (static_cast<uint8_t> (a));
-                l.set_dist (static_cast<uint16_t> (1000000));
-                r.set_dist (static_cast<uint16_t> (1000000));
-            }           
-            
-            /** Abstraction for a right rotation */
-            void turn_right (int8_t speed) {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
-
-                if (speed > 100) speed = 100;
-                if (speed < 0) speed = 0;
-
-                int a = (speed * 127) / 100;
-                
-                l.set_speed (static_cast<int8_t> (a));
-                r.set_speed (static_cast<int8_t> (-a));
-                l.set_accel (static_cast<uint8_t> (a));
-                r.set_accel (static_cast<uint8_t> (a));
-                l.set_dist (static_cast<uint16_t> (1000000));
-                r.set_dist (static_cast<uint16_t> (1000000));
-            }
 
             /** Abstraction for a stop */
-            void stop () {
+            void stop() {
                 wb_motor &l = left_motor();
                 wb_motor &r = right_motor();
 
@@ -169,9 +85,7 @@ namespace guWhiteboard {
                 r.set_speed (static_cast<int8_t> (0));
                 l.set_accel (static_cast<uint8_t> (0));
                 r.set_accel (static_cast<uint8_t> (0));
-                l.set_dist (static_cast<uint16_t> (0));
-                r.set_dist (static_cast<uint16_t> (0));
-            }           
+            }
     };
 }
 #endif //DifferentialRobotControlStatus_DEFINED
