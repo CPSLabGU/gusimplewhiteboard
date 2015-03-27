@@ -14,7 +14,7 @@ struct wb_motor {
 	PROPERTY(uint16_t, dist)
 #ifdef __cplusplus
 	/** Default constructor */
-	wb_motor() : _speed(100), _accel(127), _dist(0) {}
+	wb_motor() : _speed(16), _accel(127), _dist(0) {}
 #endif
 };
 
