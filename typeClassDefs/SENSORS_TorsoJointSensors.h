@@ -10,6 +10,9 @@
 #ifndef SENSORS_TorsoJointSensors_DEFINED
 #define SENSORS_TorsoJointSensors_DEFINED
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #define _USE_MATH_DEFINES
 #include <cmath>
 
@@ -87,5 +90,7 @@ namespace guWhiteboard
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
+
+#pragma clang diagnostic pop
 
 #endif //SENSORS_TorsoJointSensors_DEFINED
