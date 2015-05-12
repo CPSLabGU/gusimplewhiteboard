@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_legs_h
-#define _wb_sensors_legs_h
+#ifndef wb_sensors_legs_h
+#define wb_sensors_legs_h
 
 #include <gu_util.h>
 
@@ -53,4 +53,4 @@ struct wb_sensors_legs
     PROPERTY(float, RHipPitch) 	
 };
 
-#endif //_wb_sensors_legs_h
+#endif // wb_sensors_legs_h

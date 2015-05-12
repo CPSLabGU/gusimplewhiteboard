@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_apm_interface_h
-#define _wb_apm_interface_h
+#ifndef wb_apm_interface_h
+#define wb_apm_interface_h
 
 #include <gu_util.h>
 
@@ -70,4 +70,4 @@ struct wb_apm_interface
 #endif
 };
 
-#endif //_wb_apm_interface_h
+#endif //wb_apm_interface_h
