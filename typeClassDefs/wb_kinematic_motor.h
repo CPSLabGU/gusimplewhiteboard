@@ -1,5 +1,5 @@
-#ifndef _WBMOTOR_
-#define _WBMOTOR_
+#ifndef WBMOTOR_
+#define WBMOTOR_
 
 #include <sys/types.h>
 #include <gu_util.h>

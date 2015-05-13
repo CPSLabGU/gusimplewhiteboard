@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_giraff_main_serial_h
-#define _wb_giraff_main_serial_h
+#ifndef wb_giraff_main_serial_h
+#define wb_giraff_main_serial_h
 
 #include <gu_util.h>
 

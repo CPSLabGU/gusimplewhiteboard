@@ -57,8 +57,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef _wb_fft_frequencies_h_
-#define _wb_fft_frequencies_h_
+#ifndef wb_fft_frequencies_h_
+#define wb_fft_frequencies_h_
 
 #ifdef __cplusplus
 #include <cstdarg>

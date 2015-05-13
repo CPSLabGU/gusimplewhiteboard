@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_walk2014_controlstatus_h
-#define _wb_walk2014_controlstatus_h
+#ifndef wb_walk2014_controlstatus_h
+#define wb_walk2014_controlstatus_h
 
 #include <gu_util.h>
 
@@ -16,8 +16,8 @@
 #endif
 
 #ifndef USE_UNSW_ODOMETRY
-#ifndef _wb_walk_odometry_h
-#define _wb_walk_odometry_h
+#ifndef wb_walk_odometry_h
+#define wb_walk_odometry_h
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
         float forward;		///< forward, mm/s
@@ -34,7 +34,7 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 #endif
 
 };
-#endif //_wb_walk_odometry_h
+#endif // wb_walk_odometry_h
 #endif //USE_UNSW_ODOMETRY
 
 /**
@@ -123,4 +123,4 @@ struct wb_walk2014_controlstatus
 
 };
 
-#endif //_wb_walk2014_controlstatus_h
+#endif // wb_walk2014_controlstatus_h

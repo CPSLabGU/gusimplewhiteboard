@@ -1,5 +1,5 @@
-#ifndef _WBGOAL_
-#define _WBGOAL_
+#ifndef WBGOAL_
+#define WBGOAL_
 
 #include <sys/types.h>
 #include <gu_util.h>

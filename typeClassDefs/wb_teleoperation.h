@@ -1,5 +1,5 @@
-#ifndef _WBTELEOPERATION_
-#define _WBTELEOPERATION_
+#ifndef WBTELEOPERATION_
+#define WBTELEOPERATION_
 
 #include <sys/types.h>
 #include <gu_util.h>

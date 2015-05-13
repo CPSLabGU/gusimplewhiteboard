@@ -3,7 +3,7 @@
  *  guboostwhiteboard
  *
  *  Created by Rene Hexel on 1/05/11.
- *  Copyright 2011 Rene Hexel. All rights reserved.
+ *  Copyright 2011-2015 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef _WHITEBOARD_CONSTANTS_H_
-#define _WHITEBOARD_CONSTANTS_H_
+#ifndef WHITEBOARD_CONSTANTS_H_
+#define WHITEBOARD_CONSTANTS_H_
 
 namespace guWhiteboard
 {
@@ -207,4 +207,4 @@ namespace guWhiteboard
 
 }
 
-#endif // _WHITEBOARD_CONSTANTS_H_
+#endif // WHITEBOARD_CONSTANTS_H_

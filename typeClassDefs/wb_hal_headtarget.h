@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_hal_headtarget_h
-#define _wb_hal_headtarget_h
+#ifndef wb_hal_headtarget_h
+#define wb_hal_headtarget_h
 
 #include <gu_util.h>
 
@@ -61,4 +61,4 @@ struct wb_hal_headtarget
 #endif
 };
 
-#endif //_wb_hal_headtarget_h
+#endif //wb_hal_headtarget_h
