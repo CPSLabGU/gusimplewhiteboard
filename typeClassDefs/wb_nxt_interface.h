@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_nxt_interface_h
-#define _wb_nxt_interface_h
+#ifndef wb_nxt_interface_h
+#define wb_nxt_interface_h
 
 #include <gu_util.h>
 
@@ -108,4 +108,4 @@ struct wb_nxt_interface
 #endif
 };
 
-#endif //_wb_nxt_interface_h
+#endif //wb_nxt_interface_h

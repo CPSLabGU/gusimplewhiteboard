@@ -386,7 +386,7 @@
 		F1D2BE271A03592400700948 /* alternative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = alternative.h; sourceTree = "<group>"; };
 		F1D2BE281A03592400700948 /* cdecl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cdecl.h; sourceTree = "<group>"; };
 		F1D2BE291A03592400700948 /* defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
-		F1D2BE2A1A03592400700948 /* domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain.h; sourceTree = "<group>"; };
+		F1D2BE2A1A03592400700948 /* domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F1D2BE2B1A03592400700948 /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		F1D2BE2C1A03592400700948 /* gccmacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gccmacro.h; sourceTree = "<group>"; };
 		F1D2BE2D1A03592400700948 /* llist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llist.h; sourceTree = "<group>"; };
@@ -481,9 +481,9 @@
 		F1E5543E18EBD16D00639B1E /* WalkData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalkData.h; sourceTree = "<group>"; };
 		F1E5543F18EBD16D00639B1E /* WEBOTS_NXT_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WEBOTS_NXT_bridge.h; sourceTree = "<group>"; };
 		F1ED584118E7C93F00864A87 /* wbperf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wbperf; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1ED584318E7C93F00864A87 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		F1ED584318E7C93F00864A87 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cc; path = ../wbperf/main.cc; sourceTree = "<group>"; };
 		F1ED584518E7C93F00864A87 /* wbperf.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = wbperf.1; sourceTree = "<group>"; };
-		F1ED584D18E7CA6500864A87 /* perftest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = perftest.cc; sourceTree = "<group>"; };
+		F1ED584D18E7CA6500864A87 /* perftest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = perftest.cc; path = ../wbperf/perftest.cc; sourceTree = "<group>"; };
 		F1ED584E18E7CA6500864A87 /* perftest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perftest.h; sourceTree = "<group>"; };
 		F1ED585118E7CB4300864A87 /* AlgUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AlgUtil.cpp; sourceTree = "<group>"; };
 		F1ED585218E7CB4300864A87 /* AlgUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgUtil.h; sourceTree = "<group>"; };
@@ -1215,7 +1215,8 @@
 				F1ED58A618E7EF1400864A87 /* wbPerfTests */,
 				F1ED585018E7CB4300864A87 /* Common */,
 			);
-			path = wbperf;
+			name = wbperf;
+			path = ../wbperf;
 			sourceTree = "<group>";
 		};
 		F1ED585018E7CB4300864A87 /* Common */ = {

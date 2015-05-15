@@ -1,5 +1,5 @@
-#ifndef _WBBALL_
-#define _WBBALL_
+#ifndef WBBALL_
+#define WBBALL_
 
 #include <sys/types.h>
 #include <gu_util.h>

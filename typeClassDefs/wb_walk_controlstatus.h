@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_walk_controlstatus_h
-#define _wb_walk_controlstatus_h
+#ifndef wb_walk_controlstatus_h
+#define wb_walk_controlstatus_h
 
 #include <gu_util.h>
 
@@ -16,8 +16,8 @@
 #endif
 
 #ifndef USE_UNSW_ODOMETRY
-#ifndef _wb_walk_odometry_h
-#define _wb_walk_odometry_h
+#ifndef wb_walk_odometry_h
+#define wb_walk_odometry_h
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
         float forward;		///< forward, unsure of unit type
@@ -81,4 +81,4 @@ struct wb_walk_controlstatus
 
 };
 
-#endif //_wb_walk_controlstatus_h
+#endif // wb_walk_controlstatus_h

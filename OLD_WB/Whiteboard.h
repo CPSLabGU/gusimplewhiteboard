@@ -2,7 +2,7 @@
  *  Whiteboard.h
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011-2014 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,7 +67,7 @@
 #include "WBFunctor.h"
 #include "WBMsg.h"
 
-#ifndef _FROM_WHITEBOARD_CC_
+#ifndef FROM_WHITEBOARD_CC_
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpedantic"
@@ -81,7 +81,7 @@
 #pragma message "*** using deprecated whiteboard version " __FILE__ "***"
 #pragma message "************************************************************"
 #endif
-#endif // _FROM_WHITEBOARD_CC_
+#endif // FROM_WHITEBOARD_CC_
 
 #ifdef WHITEBOARD_OLD_H
 #error *** Error: attempt to mix old and simple Whiteboard!

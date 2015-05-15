@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_nao_state_h
-#define _wb_nao_state_h
+#ifndef wb_nao_state_h
+#define wb_nao_state_h
 
 #include <gu_util.h>
 

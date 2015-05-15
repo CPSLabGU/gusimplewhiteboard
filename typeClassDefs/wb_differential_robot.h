@@ -1,5 +1,5 @@
-#ifndef _WBDIFFERENTIALROBOT_
-#define _WBDIFFERENTIALROBOT_
+#ifndef WBDIFFERENTIALROBOT_
+#define WBDIFFERENTIALROBOT_
 
 #include <sys/types.h>
 #include <gu_util.h>

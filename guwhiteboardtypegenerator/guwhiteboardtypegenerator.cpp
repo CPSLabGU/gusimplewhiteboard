@@ -29,13 +29,13 @@ static const char *include_str = "\
  *  /file guwhiteboardtypelist_generated.h                              \n\
  *                                                                      \n\
  *  Created by Carl Lusty in 2013.                                      \n\
- *  Copyright (c) 2013 Carl Lusty                                       \n\
+ *  Copyright (c) 2013-2015 Carl Lusty and Rene Hexel                   \n\
  *  All rights reserved.                                                \n\
  */                                                                     \n\
                                                                         \n\
                                                                         \n\
-#ifndef _GUWHITEBOARD_TYPELIST_H_                                       \n\
-#define _GUWHITEBOARD_TYPELIST_H_                                       \n\
+#ifndef GUWHITEBOARD_TYPELIST_H_                                        \n\
+#define GUWHITEBOARD_TYPELIST_H_                                        \n\
                                                                         \n\
 #include \"gugenericwhiteboardobject.h\"                                \n\
                                                                         \n\
@@ -55,11 +55,11 @@ static const char *include_tcp_str = "\
 */                                                                     \n\
 \n\
 \n\
-#ifndef _GUWHITEBOARD_TCP_TYPELIST_H_                                  \n\
-#define _GUWHITEBOARD_TCP_TYPELIST_H_                                  \n\
+#ifndef GUWHITEBOARD_TCP_TYPELIST_H_\n\
+#define GUWHITEBOARD_TCP_TYPELIST_H_\n\
 \n\
-#include \"gugenericwhiteboardobject.h\"                                \n\
-#include \"gutcpinjectionwhiteboardobject.h\"                           \n\
+#include \"gugenericwhiteboardobject.h\"\n\
+#include \"gutcpinjectionwhiteboardobject.h\"\n\
 \n\
 #pragma clang diagnostic push                                           \n\
 #pragma clang diagnostic ignored \"-Wpadded\"                           \n\
@@ -78,8 +78,8 @@ static const char *include_str_c = "\
  */                                                                     \n\
 \n\
 \n\
-#ifndef _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
-#define _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
+#ifndef GUWHITEBOARD_TYPELIST_C_H_\n\
+#define GUWHITEBOARD_TYPELIST_C_H_\n\
 \n\
 \n\
 #define WANT_WB_STRINGS\n\
@@ -139,8 +139,7 @@ static const char *closing_string_array_definition = "};      \n\n";
 
 static const char *closing_namespace = "}\n\n";
 
-static const char *end_include_str = "#endif                          \n\
-";
+static const char *end_include_str = "#endif\n";
 
 enum ClassType {
 	None = 0,
