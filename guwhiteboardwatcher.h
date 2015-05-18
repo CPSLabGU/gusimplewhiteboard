@@ -15,7 +15,6 @@
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wunused-value"
-#pragma clang diagnostic ignored "-Wreserved-id-macro"
 
 #include "gusimplewhiteboard.h"
 #include "WBFunctor.h"
