@@ -64,15 +64,16 @@
 #pragma clang diagnostic ignored "-Wunused-macros"
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif // __cplusplus
 #ifdef __APPLE__
 #include <AvailabilityMacros.h>
 #endif
 #include <dispatch/dispatch.h>
 #include <sys/types.h>
+#ifdef __cplusplus
+
+extern "C"
+{
+#endif // __cplusplus
 #undef __block
 #define __block _xblock
 #include <unistd.h>
