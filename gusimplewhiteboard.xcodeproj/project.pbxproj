@@ -343,10 +343,7 @@
 		F154FAA0196621C80081158B /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F15E631F1A11646F0082D467 /* NXT_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NXT_Interface.h; sourceTree = "<group>"; };
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
-		F17380BC16CA032F00485FD8 /* guudpSerialize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = guudpSerialize.c; path = guudpbridge/guudpSerialize.c; sourceTree = "<group>"; };
-		F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = guudpWhiteboardLayer.cpp; path = guudpbridge/guudpWhiteboardLayer.cpp; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F187C0421A03631400971F30 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
 		F19586A0195A8FCA00DF7E5D /* wb_ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_ball.h; sourceTree = "<group>"; };
 		F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleWhiteboardTest copy-Info.plist"; path = "/Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/SimpleWhiteboardTest copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -375,7 +372,6 @@
 		F1C94DA91555D3C300B717DF /* gusimplewhiteboardios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboardios.h; sourceTree = "<group>"; };
 		F1C94DAA1555D3C300B717DF /* gusimplewhiteboardios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gusimplewhiteboardios.m; sourceTree = "<group>"; };
 		F1C94DE61555D6C200B717DF /* ObjCWhiteboardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboardDelegate.h; sourceTree = "<group>"; };
-		F1C94DE71555D78400B717DF /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
 		F1D2BE1B1A0358C400700948 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
 		F1D2BE1E1A03592400700948 /* AlgUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AlgUtil.cpp; sourceTree = "<group>"; };
 		F1D2BE1F1A03592400700948 /* AlgUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgUtil.h; sourceTree = "<group>"; };
@@ -451,7 +447,7 @@
 		F1D9260014A13BAA00BDAEED /* SimpleWhiteboardTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWhiteboardTest.h; sourceTree = "<group>"; };
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
-		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; };
 		F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleWhiteboardTestPlainC.m; sourceTree = "<group>"; };
 		F1E2FEF0195105A60039FFD9 /* wb_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_point.h; sourceTree = "<group>"; };
 		F1E2FEF11951071F0039FFD9 /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
@@ -825,10 +821,6 @@
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
-				F187C0421A03631400971F30 /* libc++.dylib */,
-				F17380BE16CA035100485FD8 /* guudpWhiteboardLayer.cpp */,
-				F17380BC16CA032F00485FD8 /* guudpSerialize.c */,
-				F1C94DE71555D78400B717DF /* libc++.dylib */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
 				F13A74231A008A0D00A880BF /* mainpage.md */,

@@ -58,6 +58,9 @@
  */
 #import <Foundation/Foundation.h>
 #import "ObjCWhiteboardDelegate.h"
+#include "gusimplewhiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-missing-property-synthesis"

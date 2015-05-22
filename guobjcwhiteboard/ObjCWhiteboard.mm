@@ -69,8 +69,6 @@
 #include <guwhiteboardgetter.h>
 #include <guwhiteboardwatcher.h>
 
-#include "Point2D.h"
-
 #import "ObjCWhiteboard.h"
 
 #pragma clang diagnostic push
@@ -335,7 +333,7 @@ public:
  */
 - (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (wbtypes_t) type
 {
-        std::string content = guWhiteboard::getmsg(type, const_cast<gu_simple_message *>(msg));
+        std::string content = guWhiteboard::getmsg(static_cast<guWhiteboard::WBTypes>(type), const_cast<gu_simple_message *>(msg));
         NSString *contentString = nil;
         if (content != "##unsupported##")
                 contentString = @(content.c_str());
@@ -422,7 +420,7 @@ static NSArray *wbtypes;
 {
         std::string message_content = std::string(content.UTF8String);
 
-        return guWhiteboard::postmsg(msgType, message_content) != false;
+    return guWhiteboard::postmsg(static_cast<guWhiteboard::WBTypes>(msgType), message_content) != false;
 }
 
 
@@ -440,7 +438,7 @@ static NSArray *wbtypes;
         wbtypes_t index = [self wbTypeForTypeNamed: msg];
         std::string message_content = std::string(content.UTF8String);
 
-        return guWhiteboard::postmsg(index, message_content) != false;
+        return guWhiteboard::postmsg(static_cast<guWhiteboard::WBTypes>(index), message_content) != false;
 }
 
 
