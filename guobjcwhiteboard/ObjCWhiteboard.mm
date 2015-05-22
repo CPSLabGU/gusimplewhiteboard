@@ -179,6 +179,8 @@ public:
  * @param wbname        whiteboard file name to use
  * @return an initialised instance of the given remote whiteboard or nil
  */
+extern void setup_udp_whiteboard_with_id(int id);
+
 - (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname
 {
         if (!(self = [super init]))
@@ -187,7 +189,14 @@ public:
         if (wbname.length)
                 gu_whiteboard = gsw_new_numbered_whiteboard(wbname.UTF8String, static_cast<int>(n));
         else if (n)
+        {
                 gu_whiteboard = gswr_new_whiteboard(static_cast<int>(n));
+                dispatch_queue_t q = dispatch_queue_create("wb.udp", DISPATCH_QUEUE_CONCURRENT);
+                dispatch_async(q, ^{
+                        setup_udp_whiteboard_with_id(n);
+                });
+
+        }
         else
                 gu_whiteboard = get_local_singleton_whiteboard();
 
@@ -214,19 +223,7 @@ public:
 /// robot whiteboard constructor (not yet implemented)
 - (id) initWithRobotNumbered: (NSInteger) n
 {
-#ifdef USE_OLD_WB
-        if (n <= 0 || n > RWBMachine::NUM_OF_MACHINES)
-                return [self init];
-        string name = nameForMachine(RWBMachine(--n));
-        NSString *wbname = [NSString stringWithFormat: @"%s", name.c_str()];
-#ifdef GSW_IOS_DEVICE
-        NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        wbname = [docsDir stringByAppendingPathComponent: wbname];
-#endif
-        return [self initWithRobotWhiteboard: n named: wbname];
-#endif
-        (void) n;
-        return nil;
+        return [self initWithRobotWhiteboard: n named: nil];
 }
 
 
