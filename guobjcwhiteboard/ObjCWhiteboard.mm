@@ -179,27 +179,35 @@ public:
  * @param wbname        whiteboard file name to use
  * @return an initialised instance of the given remote whiteboard or nil
  */
-extern void setup_udp_whiteboard_with_id(int id);
 
+        extern void setup_udp_whiteboard_with_id(int id);
 - (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname
 {
         if (!(self = [super init]))
                 return nil;
 
         if (wbname.length)
+        {
                 gu_whiteboard = gsw_new_numbered_whiteboard(wbname.UTF8String, static_cast<int>(n));
+        }
         else if (n)
         {
                 gu_whiteboard = gswr_new_whiteboard(static_cast<int>(n));
-                dispatch_queue_t q = dispatch_queue_create("wb.udp", DISPATCH_QUEUE_CONCURRENT);
-                dispatch_async(q, ^{
-                        setup_udp_whiteboard_with_id(n);
-                });
-
         }
         else
+        {
                 gu_whiteboard = get_local_singleton_whiteboard();
+            
+        }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
 
+        dispatch_queue_t q = dispatch_queue_create("wb.udp", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(q, ^{
+            setup_udp_whiteboard_with_id(0);
+        });
+    });
+    
         _watcher = new whiteboard_watcher(gu_whiteboard);
 
         wbcallback = new ObjCWBCallback(self, _watcher);
@@ -348,7 +356,7 @@ static NSArray *wbnames;
  */
 + (NSArray *) whiteboardNames
 {
-        if (!wbnames) wbnames = @[@"local", @"Robot 1", @"Robot 2", @"Robot 3", @"Robot 4", @"Robot 5"];
+        if (!wbnames) wbnames = @[@"local", @"t1000", @"meg", @"lena", @"mac", @"sonic"];
 
         return wbnames;
 }
