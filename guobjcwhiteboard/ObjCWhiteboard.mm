@@ -171,6 +171,10 @@ public:
         return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+extern void setup_udp_whiteboard_with_id(int id);
+#pragma clang diagnostic pop
 
 /**
  * Robot whiteboard initialiser.
@@ -179,8 +183,6 @@ public:
  * @param wbname        whiteboard file name to use
  * @return an initialised instance of the given remote whiteboard or nil
  */
-
-        extern void setup_udp_whiteboard_with_id(int id);
 - (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname
 {
         if (!(self = [super init]))
