@@ -173,7 +173,7 @@ public:
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
-extern void setup_udp_whiteboard_with_id(int id);
+//extern void setup_udp_whiteboard_with_id(int id);
 #pragma clang diagnostic pop
 
 /**
@@ -201,6 +201,9 @@ extern void setup_udp_whiteboard_with_id(int id);
                 gu_whiteboard = get_local_singleton_whiteboard();
             
         }
+
+//TODO: Remove this and place it into the App instead, the objc wb doesn't need to do this
+/*
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
 
@@ -209,7 +212,7 @@ extern void setup_udp_whiteboard_with_id(int id);
             setup_udp_whiteboard_with_id(0);
         });
     });
-    
+ */   
         _watcher = new whiteboard_watcher(gu_whiteboard);
 
         wbcallback = new ObjCWBCallback(self, _watcher);
