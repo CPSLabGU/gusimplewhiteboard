@@ -194,7 +194,12 @@ public:
         }
         else if (n)
         {
+#ifdef GSW_IOS_DEVICE
+                NSString *n1 = [NSString stringWithFormat:@"guudpwhiteboard%d", n];
+                gu_whiteboard = gsw_new_whiteboard(wbname_prefixed_with_path([n1 UTF8String]));
+#else
                 gu_whiteboard = gswr_new_whiteboard(static_cast<int>(n));
+#endif
         }
         else
         {
@@ -361,7 +366,7 @@ static NSArray *wbnames;
  */
 + (NSArray *) whiteboardNames
 {
-        if (!wbnames) wbnames = @[@"local", @"t1000", @"meg", @"lena", @"mac", @"sonic"];
+        wbnames = @[@"local", @"t1000", @"meg", @"lena", @"mac", @"sonic"];
 
         return wbnames;
 }
