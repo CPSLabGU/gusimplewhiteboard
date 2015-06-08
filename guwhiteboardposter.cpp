@@ -793,6 +793,14 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !WALK2014_ControlStatus_DEFINED
 
+		case kCBall_v:
+		{
+/** WB Ptr Class: CBall @brief Nil */ 
+			class CBall_t CBall_msg;
+			CBall_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -804,7 +812,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(67);
+	// self.reserve(68);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -873,5 +881,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["APM_Command"] = kAPM_Command_v;
 	self["WALK2014_Command"] = kWALK2014_Command_v;
 	self["WALK2014_Status"] = kWALK2014_Status_v;
+	self["CBall"] = kCBall_v;
 }
 

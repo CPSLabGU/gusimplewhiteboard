@@ -760,6 +760,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WALK2014_ControlStatus_DEFINED
 
+		case kCBall_v:
+		{
+/** WB Ptr Class: CBall @brief Nil */ 
+			class CBall_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
