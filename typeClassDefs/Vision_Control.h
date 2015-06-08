@@ -104,16 +104,6 @@ enum StreamingType {
 };
 
 /**
- * @brief List of calibrations files that vision can use
- */
-enum CalibrationFile {
-	Calibration0, ///< ~/data/class.dlc
-	Calibration1, ///< ~/data/class1.dlc
-	Calibration2, ///< ~/data/class2.dlc
-	Calibration3  ///< ~/data/class3.dlc
-};
-
-/**
  * @brief List of file types that vision can save images as
  */
 enum SaveFileType {
@@ -134,22 +124,22 @@ enum VisionMessages {
 		StreamingSource,
 		ConservativeMode,
 		ImageInput,
-		LoadCalibration,
 		PipelineRunOnce,
 		JPEGStreamQuality,
 		JPEGStreamStride,
 		HorizionFactor,
+		LoadCalibration,
 		NUMBER_VISION_MESSAGES
 };
 
 /**Commands Strings. Used internally*/
 static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
 		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "LOADCALIBRATION", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "Undefined"};
+		"IMAGEINPUT", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "LOADCALIBRATION", "Undefined"};
 /**Status Strings. Used internally*/
 static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
 		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "CalibrationLoaded", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "FrameRate"};
+		"ImageInput", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "CalibrationLoaded", "FrameRate"};
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -159,21 +149,18 @@ static const char* PipelineStrings[] = {"SOCCER", "OPENCHALLENGE", "STREAMING", 
 static const NamedPipeline PipelineValues[] = {Soccer, OpenChallenge, Streaming, OpenCVFaces};
 static const char* StreamingSourceStrings[] = {"NORMAL", "CLASSIFIED", "RECOGNIZED"};
 static const StreamingType StreamingSourceValues[] = {Normal, Classified, Recognized};
-static const char* CalibrationStrings[] = {"CALIBRATION0", "CALIBRATION1", "CALIBRATION2", "CALIBRATION3"};
-static const CalibrationFile CalibrationValues[] = {Calibration0, Calibration1, Calibration2, Calibration3};
 static const char* BoolStrings[] = {"YES", "NO"};
 static const bool BoolValues[] = {true, false};
 static const char* SaveImageStrings[] = {"AI2", "JPG"};
 static const SaveFileType SaveImageValues[] = {AI2, JPG};
 
 static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, SaveImageStrings,
-		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, CalibrationStrings, BoolStrings};
+		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, BoolStrings};
 static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
                                                 sizeof(CameraStrings)/sizeof(char*), sizeof(SaveImageStrings)/sizeof(char*),
                                                 sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
                                                 sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
-                                                sizeof(BoolStrings)/sizeof(char*), sizeof(CalibrationStrings)/sizeof(char*),
-						sizeof(BoolStrings)/sizeof(char*)};
+                                                sizeof(BoolStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*)};
 
 namespace guWhiteboard
 {
@@ -216,6 +203,7 @@ public:
 		memset(this, 0, sizeof(*this));
 		size_t n;
 		std::string command;
+		std::string original = s;
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
 		for (unsigned i = 0; i<NUMBER_VISION_MESSAGES; ++i) {
 			command = std::string(Commands[i]);
@@ -237,6 +225,12 @@ public:
                                     set_jpegStreamStride(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
                                     continue;
                                 }
+				if(i == LoadCalibration) {
+				    std::string file;
+				    file = original.substr(n+command.length()+1).substr(0, t.find_first_of(" ,"));
+				    set_loadCalibration(file.c_str(), static_cast<int>(file.size()+1));
+				    continue;
+				}
 				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
 					if(t.compare(0, strlen(MessageParamaters[i][j]), MessageParamaters[i][j]) == 0) {
 						switch(i) {
@@ -266,9 +260,6 @@ public:
 							break;
 						case ImageInput:
 							set_imageInput(BoolValues[j]);
-							break;
-						case LoadCalibration:
-							set_loadCalibration(CalibrationValues[j]);
 							break;
 						case PipelineRunOnce:
 							set_pipelineRunOnce(BoolValues[j]);
@@ -310,7 +301,7 @@ public:
 		if(jpegStreamStride_mask())
 			result << Statuses[10] << "=" << jpegStreamStride();
 		if(loadCalibration_mask())
-			result << Statuses[11] << "=" << CalibrationStrings[loadCalibration()] << " ";
+			result << Statuses[11] << "=" << loadCalibration() << " ";
 		if(pipelineRunOnce_mask())
 			result << Statuses[12] << "=" << BoolStrings[pipelineRunOnce()?0:1] << " ";
                 if(frameRate_mask())
@@ -345,7 +336,7 @@ public:
 		if(a.imageInput_mask())
 			this->set_imageInput(a.imageInput());
 		if(a.loadCalibration_mask())
-			this->set_loadCalibration(a.loadCalibration());
+			this->set_loadCalibration(a.loadCalibration(), a.loadCalibration_size());
 		if(a.pipelineRunOnce_mask())
 			this->set_pipelineRunOnce(a.pipelineRunOnce());
 		if(a.jpegStreamQuality_mask())
@@ -385,7 +376,7 @@ public:
 	/** Stride used in JPEG Compression to stream images. Default is 4*/
 	CONTROLLED_PROPERTY(int, jpegStreamStride)
 	/** Tell vision to use this calibration file for image segmentation*/
-	CONTROLLED_PROPERTY(CalibrationFile, loadCalibration)
+	CONTROLLED_ARRAY_PROPERTY(char, loadCalibration, 30)
 	/** The horizon of the image after which point no image processing 
 	 *  should be performed. 
 	 */
