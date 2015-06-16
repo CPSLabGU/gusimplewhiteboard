@@ -308,6 +308,7 @@ public:
                         result << Statuses[14] << "=" << frameRate() << " ";
                 if(horizionValue_mask())
                     result << Statuses[13] << "=" << horizionValue();
+		result << " Frame Number = " << frameNumber();
 		return result.str();
 	}
 
