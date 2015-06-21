@@ -58,6 +58,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-macros"
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
+#pragma clang diagnostic ignored "-Wclass-varargs"
 
 #ifdef __linux
 #ifndef _BSD_SOURCE
