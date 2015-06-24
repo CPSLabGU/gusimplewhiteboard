@@ -2135,6 +2135,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"./**",
 					"$(SRCROOT)/../../Common",
 				);
@@ -2148,6 +2149,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"./**",
 					"$(SRCROOT)/../../Common",
 				);
