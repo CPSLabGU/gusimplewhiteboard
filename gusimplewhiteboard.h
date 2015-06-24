@@ -62,6 +62,7 @@
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 
 #ifdef __APPLE__
 #include <AvailabilityMacros.h>

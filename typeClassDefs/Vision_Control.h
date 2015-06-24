@@ -308,6 +308,7 @@ public:
                         result << Statuses[14] << "=" << frameRate() << " ";
                 if(horizionValue_mask())
                     result << Statuses[13] << "=" << horizionValue();
+		result << " Frame Number = " << frameNumber();
 		return result.str();
 	}
 
@@ -385,6 +386,8 @@ public:
 	CONTROLLED_PROPERTY(int, frameRate)
 	/** Tell vision to run the pipeline once when set to true*/
 	CONTROLLED_PROPERTY(bool, pipelineRunOnce)
+	/**Frame number*/
+	CONTROLLED_PROPERTY(uint64_t, frameNumber)
 
 	CONTROL_BIT(resolution)
 	CONTROL_BIT(pipelineRunning)
@@ -401,6 +404,8 @@ public:
         CONTROL_BIT(horizionValue)
         CONTROL_BIT(frameRate)
 	CONTROL_BIT(pipelineRunOnce)
+	CONTROL_BIT(frameNumber)
+		
 		
 	/** The state of the open challenge pipeline when it is running*/	
 	PROPERTY(uint8_t, openChallengeStep)
