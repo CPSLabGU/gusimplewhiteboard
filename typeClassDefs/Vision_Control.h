@@ -228,7 +228,7 @@ public:
 				if(i == LoadCalibration) {
 				    std::string file;
 				    file = original.substr(n+command.length()+1).substr(0, t.find_first_of(" ,"));
-				    set_loadCalibration(file.c_str(), static_cast<int>(file.size()+1));
+				    set_loadCalibration(file.c_str(), file.size()+1);
 				    continue;
 				}
 				for(uint j = 0; j<MessageParamaterSizes[i]; ++j) {
