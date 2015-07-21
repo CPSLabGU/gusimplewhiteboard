@@ -58,14 +58,17 @@
 #ifndef FSMControlStatus_DEFINED
 #define FSMControlStatus_DEFINED
 #define FSMNames_DEFINED
+#define FSMState_DEFINED
+
 
 #include <cstdlib>
 #include <cstring>
 #include <bitset>
-#include <sstream>
 #include <gu_util.h>
 #include "wb_fsm_control_status.h"
+#include "wb_fsm_state_status.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <sstream>
 #include <ctype.h>
 #endif
 
@@ -81,9 +84,6 @@ namespace guWhiteboard
         public:
             /** designated constructor */
             FSMControlStatus(FSMControlType t = FSMStatus): wb_fsm_control_status() { set_command(t); }
-
-            /** string constructor */
-            FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }
 
             /** copy constructor */
             FSMControlStatus(const FSMControlStatus &other) { memcpy(this, &other, sizeof(wb_fsm_control_status)); }
@@ -115,13 +115,17 @@ namespace guWhiteboard
             /** comparison operator **/
             bool operator==(const FSMControlStatus &other) const { return memcmp(this, &other, sizeof(*this)) == 0; }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMControlStatus(const std::string &names): wb_fsm_control_status() { from_string(names); }
+
             /** convert to a string */
             std::string description() const
             {
                 std::ostringstream ss;
                 ss << command();
                 for (size_t i = 0; i < CONTROLSTATUS_NUM_FSMS; i++)
-                    if (_fsms[i/8] & (1<<(i%8)))
+                    if (CONTROLSTATUS_GET_FSM(this, i))
                         ss << "," << i;
 
                 return ss.str();
@@ -143,7 +147,7 @@ namespace guWhiteboard
                     }
                 }
             }
-            
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
         };
 
         /**
@@ -152,7 +156,7 @@ namespace guWhiteboard
         class FSMNames
         {
 	    /** start offset */
-            PROPERTY(uint16_t, startoffs)       
+            PROPERTY(uint16_t, startoffs)
 	    /** names array */
             char _names[sizeof(gsw_simple_message)-sizeof(uint16_t)];
         public:
@@ -165,9 +169,6 @@ namespace guWhiteboard
                 _names[i] = '\0';
             }
 
-            /** string constructor */
-            FSMNames(std::string names) { from_string(names); }
-
             /** copy constructor */
             FSMNames(const FSMNames &other): _startoffs(other._startoffs)
             {
@@ -175,7 +176,7 @@ namespace guWhiteboard
             }
 
             /** assignment operator */
-            const FSMNames &operator=(const FSMNames &other) { _startoffs = other._startoffs; return *this; }
+            const FSMNames &operator=(const FSMNames &other) { memcpy(this, &other, sizeof(other)); return *this; }
 
             /** names getter */
             char *names() { return _names; }
@@ -202,12 +203,16 @@ namespace guWhiteboard
                 return pos;
             }
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMNames(std::string names) { from_string(names); }
+
             /** convert to a string */
             std::string description()
             {
                 std::stringstream ss;
                 ss << startoffs();
-                for (const char *s = names(); s < end() && *s; s = next_slot(s))
+                for (const char *s = names(); s < end() && *s; s = next_name(s))
                     ss << "," << s;
 
                 return ss.str();
@@ -237,7 +242,83 @@ namespace guWhiteboard
                 if (available_space(dst)) *dst++ = '\0';
                 if (available_space(dst)) *dst = '\0';
             }
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
+        };
 
+        /**
+         * Class for transmitting machine names over the whiteboard
+         */
+        class FSMState: public wb_fsm_state_status
+        {
+
+        public:
+            /** designated constructor */
+            FSMState(): wb_fsm_state_status() {}
+
+            /** copy constructor */
+            FSMState(const FSMState &other) { memcpy(this, &other, sizeof(wb_fsm_state_status)); }
+
+            /** assignment operator */
+            const FSMState &operator=(const FSMState &other) { memcpy(this, &other, sizeof(other)); return *this; }
+
+            /** names getter */
+            uint8_t getStateForMachineID(uint8_t machineID) {
+
+                if (machineID >= STATE_BYTE_SIZE) {
+                    return INVALIDMACHINE;
+                }
+
+                return STATESTATUS_GET_STATE(this, machineID);
+            }
+
+            /**
+             * Record the given state for the given Machine ID.
+             * @param machineID Machine to record the state number for
+             * @param state     State number for the machine
+             */
+            void setStateForMachineID (uint8_t machineID, uint8_t state)
+            {
+                if (machineID < STATE_BYTE_SIZE)
+                    STATESTATUS_SET_STATE(this, machineID, state);
+            }
+
+            /** Reset all machines to INVALIDMACHINE */
+            void reset() { memset(this, INVALIDMACHINE, sizeof(wb_fsm_state_status)); }
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+            /** string constructor */
+            FSMState(std::string states) { from_string(states); }
+
+            /** convert to a string */
+            std::string description()
+            {
+                std::stringstream ss;
+                size_t sizeAtLastValidState = 0;
+                for (uint8_t machineID =0; machineID < STATE_BYTE_SIZE; machineID++) {
+                    uint8_t state = STATESTATUS_GET_STATE(this, machineID);
+                    ss << static_cast<unsigned>(state) << ((machineID < (STATE_BYTE_SIZE-1))? "," : "");
+                    if (state != INVALIDMACHINE) {
+                        sizeAtLastValidState = ss.str().size() - static_cast<size_t>(((machineID < (STATE_BYTE_SIZE-1))? 1 : 0));
+                    }
+                }
+                std::string message = ss.str();
+                message.erase(sizeAtLastValidState, message.size()-sizeAtLastValidState);
+
+                return message;
+            }
+
+            /** convert from a string */
+            void from_string(const std::string &states)
+            {
+                std::istringstream iss(states);
+                std::string token;
+                uint8_t machineID = 0;
+                while (!iss.eof() && machineID < STATE_BYTE_SIZE) {
+                  getline(iss, token, ',');
+                  STATESTATUS_SET_STATE(this, machineID++, static_cast<uint8_t>(atoi(token.c_str())));
+                }
+            }
+#endif //WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }
 

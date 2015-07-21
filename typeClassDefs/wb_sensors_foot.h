@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_foot_h
-#define _wb_sensors_foot_h
+#ifndef wb_sensors_foot_h
+#define wb_sensors_foot_h
 
 #include <gu_util.h>
 
@@ -67,4 +67,4 @@ struct wb_sensors_foot
     PROPERTY(bool, RFoot_Bumper_Right)		
 };
 
-#endif //_wb_sensors_foot_h
+#endif //wb_sensors_foot_h

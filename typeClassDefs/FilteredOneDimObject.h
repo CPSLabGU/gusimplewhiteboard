@@ -72,10 +72,12 @@
 #include "wb_filteredvisionobject.h"
 
 namespace guWhiteboard {
+/** A class to contain objects that have been filtered through localisation
+*
+*
+*/
 class FilteredOneDimObject:  public wb_filteredvisionobject
 {
-
-        
 public:
         /** designated constructor */
         FilteredOneDimObject(int32_t frameCounter=0,
@@ -87,8 +89,6 @@ public:
                              uint64_t visibilityHistory=0
                             ): wb_filteredvisionobject(frameCounter,distance,x,y,yaw,isVisible,visibilityHistory)
         { /*  */ }
-        
-
         
         /** copy constructor */
         FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible(), other.visibilityHistory())
@@ -140,6 +140,9 @@ public:
     }
     
         /********************* Useful utilities *****************************/
+	/** Provides an estimated horizon camera angle by looking at the head yaw value
+	*
+	*/
         float horizontal_angle(const float guvision_width = 640.0f, const float horiz_fov = 61.0f) const
         {
                 float yaw_in_radians = float(DEG2RAD(yaw()));                       // head yaw in radians
@@ -149,7 +152,10 @@ public:
                 return yaw_in_radians - alpha;
         }
         
-        int ratioOfSightings(const int length=64) const{  // # of object sigthings over length
+	/** number of object sigthings over length
+	*
+	*/
+        int ratioOfSightings(const int length=64) const{  
                 int historyLength = (length>64) ? 64 : length;
                 historyLength = (historyLength>0)?historyLength:64;
                 uint64_t theHistory=visibilityHistory();
@@ -194,7 +200,7 @@ public:
                 return ss.str();
         }
         
-        //*** TODO: still incomplete */
+        /** TODO: still incomplete */
         void from_string(const std::string &str)
         {       std::string colonDel (1,SEPARATOR_IS_COLON);
                  std::string comaDel (1,SEPARATOR_IS_COMMA);

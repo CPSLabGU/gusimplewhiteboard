@@ -652,6 +652,120 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class Draw_t m;
 			return msg ? m.get_from(msg) : m.get();
 		}
+		case kFSM_States_v:
+#ifdef FSMState_DEFINED
+		{
+/** WB Ptr Class: FSM_States @brief Nil */ 
+			class FSM_States_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !FSMState_DEFINED
+
+		case kGiraff_Interface_Status_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_Interface_Status @brief Nil */ 
+			class Giraff_Interface_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !Giraff_MainSerialInterface_DEFINED
+
+		case kGiraff_Interface_Command_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_Interface_Command @brief Nil */ 
+			class Giraff_Interface_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !Giraff_MainSerialInterface_DEFINED
+
+		case kNXT_Status_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Status @brief Nil */ 
+			class NXT_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Interface_DEFINED
+
+		case kNXT_Command_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Command @brief Nil */ 
+			class NXT_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Interface_DEFINED
+
+		case kAPM_Status_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Status @brief Nil */ 
+			class APM_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !APM_Interface_DEFINED
+
+		case kAPM_Command_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Command @brief Nil */ 
+			class APM_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !APM_Interface_DEFINED
+
+		case kWALK2014_Command_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Command @brief Nil */ 
+			class WALK2014_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kWALK2014_Status_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Status @brief Nil */ 
+			class WALK2014_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kCBall_v:
+		{
+/** WB Ptr Class: CBall @brief Nil */ 
+			class CBall_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_torsotemps_h
-#define _wb_sensors_torsotemps_h
+#ifndef wb_sensors_torsotemps_h
+#define wb_sensors_torsotemps_h
 
 #include <gu_util.h>
 
@@ -63,4 +63,4 @@ struct wb_sensors_torsotemps
     PROPERTY(float, RElbowRoll)	
 };
 
-#endif //_wb_sensors_torsotemps_h
+#endif // wb_sensors_torsotemps_h

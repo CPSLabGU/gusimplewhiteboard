@@ -3,7 +3,7 @@
  *  guobjcwhiteboard
  *  
  *  Created by René Hexel on 6/05/12.
- *  Copyright (c) 2012 Rene Hexel.
+ *  Copyright (c) 2012, 2014 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,6 +58,12 @@
  */
 #import <Foundation/Foundation.h>
 #import "ObjCWhiteboardDelegate.h"
+#include "gusimplewhiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-property-synthesis"
 
 extern const NSString *kWBTypeBool;
 extern const NSString *kWBTypeInt;
@@ -67,37 +73,55 @@ extern const NSString *kWBTypeString;
 extern const NSString *kWBTypeBinary;
 extern const NSString *kWBTypeEmpty;
 
+struct gsw_whiteboard_s;
+typedef struct gsw_whiteboard_s oc_whiteboard_t;
+
 #ifdef __cplusplus
-typedef class guWhiteboard::Whiteboard oc_whiteboard_t;
+typedef class whiteboard_watcher oc_watcher_t;
 #else
-struct Whiteboard;
-typedef struct Whiteboard oc_whiteboard_t;
+typedef struct whiteboard_watcher oc_watcher_t;
 #endif
 
 @interface ObjCWhiteboard: NSObject
-@property (nonatomic, assign) id<ObjCWhiteboardDelegate> delegate;
+@property (nonatomic) id<ObjCWhiteboardDelegate> delegate;
 @property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
-@property (nonatomic, retain) NSMutableDictionary *knownWhiteboardMessages;
+@property (nonatomic, assign) oc_watcher_t *watcher;
+@property (nonatomic, strong) NSMutableDictionary *knownWhiteboardMessages;
 
-- (id) init;
-- (id) initWithRobotNumbered: (NSInteger) n;
-- (id) initWithWhiteboardNamed: (NSString *) wbname;
-- (id) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
+- (instancetype) init;
+- (instancetype) initWithRobotNumbered: (NSInteger) n;
+- (instancetype) initWithWhiteboardNamed: (NSString *) wbname;
+- (instancetype) initWithRobotWhiteboard: (NSInteger) n named: (NSString *) wbname;
 
-+ (NSArray *) whiteboardTypes;  /// supported whiteboard data types
-+ (NSArray *) whiteboardNames;  /// names of local and remote robot whiteboards
++ (NSArray *) whiteboardTypes;  ///< supported whiteboard type names
++ (NSArray *) whiteboardNames;  ///< names of local and remote robot whiteboards
 
+/// return an array of the known whiteboard names sorted alphabetically
 - (NSArray *) knownWhiteboardMessagesSortedByName;
-- (NSString *) dataTypeForMessageType: (NSString *) msgType;            /// return whiteboard data type (as a string)
-- (NSString *) cachedDataTypeForMessageType: (NSString *) msgType;      /// return last known data type for message
-- (NSString *) contentForMessageType: (NSString *) msgType;             /// return WB content of given message
 
-- (void) postWBMessage: (const NSString *) msg
-               content: (const NSString *) content
-              withType: (const NSString *) dataType;
+/// get a message of a given type index off the whiteboard
+- (NSString *) getMessageOfType: (wbtypes_t) msgType;
 
-- (id) getWBMessage: (const NSString *) msg;
+/// get a message of a given name off the whiteboard
+- (NSString *) getMessageOfTypeNamed: (const NSString *) typeName;
 
-- (void) subscribeTo: (const NSString *) msg;
+/// return the content of the given whiteboard message as a string
+- (NSString *) contentForWBMsg: (const gu_simple_message_t *) msg ofType: (wbtypes_t) type;
+
+/// return the name of the given message type
+- (NSString *) typeNameForMessageType: (wbtypes_t) msgType;
+
+/// get the whiteboard type index for a given type name
+- (wbtypes_t) wbTypeForTypeNamed: (const NSString *) dataType;
+
+/// post msg of given type with given string content to the whiteboard
+- (BOOL) postWBMessageOfType: (wbtypes_t) msgType withContent: (const NSString *) content;
+
+/// post a wb message of the given type name with the given string content
+- (BOOL) postWBMessageOfTypeNamed: (const NSString *) msg withContent: (const NSString *) content;
+
+- (id) getWBMessage: (const NSString *) msg; ///< get wb msg and return as objc object
 
 @end
+
+#pragma clang diagnostic pop

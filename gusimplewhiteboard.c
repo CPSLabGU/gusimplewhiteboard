@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011-2014 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,6 +55,11 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+#pragma clang diagnostic ignored "-Wclass-varargs"
+
 #ifdef __linux
 #ifndef _BSD_SOURCE
 #define _BSD_SOURCE
@@ -80,8 +85,6 @@
 #include <string.h>
 #include <signal.h>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-macros"
 #undef __block
 #define __block _xblock
 #include <unistd.h>
@@ -220,7 +223,7 @@ gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name)
 
 void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 {
-        if (wbd)
+        if (wbd && wbd != local_whiteboard_descriptor)
         {
                 gsw_remove_wbd_signal_handler(wbd);
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);

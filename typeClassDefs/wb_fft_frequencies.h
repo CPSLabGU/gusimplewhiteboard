@@ -1,8 +1,10 @@
-/*
- *  fft_frequencies.h
+/**
+ *  \file wb_fft_frequencies.h
  *  gusimplewhiteboard
  *
- *  reated by Rene Hexel on 24/06/2014.
+ *  Created by
+ *  \author Rene Hexel on
+ *  \date 24/06/2014.
  *  Copyright (c) 2014 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +57,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef _wb_fft_frequencies_h_
-#define _wb_fft_frequencies_h_
+#ifndef wb_fft_frequencies_h_
+#define wb_fft_frequencies_h_
 
 #ifdef __cplusplus
 #include <cstdarg>
@@ -65,36 +67,59 @@
 #include <gu_util.h>
 
 #ifdef GU_SIMPLE_WHITEBOARD_BUFSIZE
+/** Calculated macro on the total number of frequency pairs that fit on the whiteboard */
 #define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength) - sizeof(struct fsk_frequencies)) / sizeof(fft_frequency_level_pair))
 #else
-#define FFT_DOMINANT_NUMFREQ    0   // no wb -> don't register size
+#define FFT_DOMINANT_NUMFREQ    0   ///< no wb -> don't register size
 #endif
 
 #define FSK_DEFAULT_HI  320     ///< default hi frequency for fsk
 #define FSK_DEFAULT_LO  200     ///< default lo frequency for fsk
 
-struct fft_frequency_level_pair ///< one frequency pair for a stereo channels
+/**
+ * \brief Frequency pair for a stereo channel
+ * This struct contains a single frequency pair (in Hz)
+ * for a stereo channel pair (left and right channels).
+ */
+struct fft_frequency_level_pair
 {
-    PROPERTY(int16_t, left)     ///< left frequency in Hz
-    PROPERTY(int16_t, right)    ///< right frequency in Hz
+    /** left frequency in Hz (0 means not measured) */
+    PROPERTY(int16_t, left)
+    /** right frequency in Hz (0 means not measured) */
+    PROPERTY(int16_t, right)
 
 #ifdef __cplusplus
+    /** constructor with 0 Hz default values (C++ only) */
     fft_frequency_level_pair(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
 #endif
 };
 
-struct rms_strength             ///< RMS levels for a stereo channel pair
+/**
+ * \brief RMS levels for a stereo channel pair
+ * This struct contains the RMS (root mean square) level
+ * measured for the left and the right channel
+ */
+struct rms_strength
 {
-    PROPERTY(int16_t, left)     ///< RMS level for the left channel
-    PROPERTY(int16_t, right)    ///< RMS level for the right channel
+    /** RMS level for the left channel */
+    PROPERTY(int16_t, left)
+    /** RMS level for the right channel */
+    PROPERTY(int16_t, right)
 
 #ifdef __cplusplus
+    /** constructor with zero strength default values (C++ only) */
     rms_strength(int16_t l = 0, int16_t r = 0): _left(l), _right(r) {}
 #endif
 };
 
-
-struct fsk_frequencies          ///< FSK frequency pair and keying values
+/**
+ * \brief FSK frequency pair and keying values
+ * This struct contains the main components of the FSK analysis.
+ * The results of the analysis contain the two strongest frequencies
+ * measured and their relative percentage (the percentage the high
+ * requency was present versus the low frequency).
+ */
+struct fsk_frequencies
 {
     unsigned _hi_freq: 12;      ///< high frequency (0..8191 Hz) divided by 2
     unsigned _lo_freq: 12;      ///< low frequency (0..8191 Hz) divided by 2
@@ -102,26 +127,64 @@ struct fsk_frequencies          ///< FSK frequency pair and keying values
     unsigned _unused_pad: 1;    ///< reserved for future use
 
 #ifdef __cplusplus
+    /** constructor with default hi and low frequencies (C++ only) */
     fsk_frequencies(uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0): _hi_freq(hi/2), _lo_freq(lo/2), _hi_percentage(fsk), _unused_pad(0) {}
+
+    /** getter for the high frequency (C++ only) */
     uint16_t hi_freq() const { return _hi_freq * 2; }
+
+    /** getter for the low frequency (C++ only) */
     uint16_t lo_freq() const { return _lo_freq * 2; }
+
+    /** getter for the high frequency FSK percentage (C++ only) */
     uint16_t hi_percentage() const { return _hi_percentage; }
+
+    /** convenience getter for the high to low FSK ratio (C++ only) */
     float hi_ratio() const { return static_cast<float>(_hi_percentage) / 100.f; }
+
+    /** setter for the high frequency FSK percentage (C++ only) */
     void set_hi_freq(uint16_t hi = FSK_DEFAULT_HI) { _hi_freq = hi/2; }
+
+    /** setter for the low frequency FSK percentage (C++ only) */
     void set_lo_freq(uint16_t lo = FSK_DEFAULT_LO) { _lo_freq = lo/2; }
+
+    /** setter for the high frequency FSK percentage (C++ only) */
     void set_hi_percentage(uint16_t percent = 0) { _hi_percentage = percent; }
+    
+    /** convenience setter for the high to low FSK ratio (C++ only) */
     void set_hi_ratio(float r) { _hi_percentage = static_cast<unsigned>(100.f * r); }
 #endif
 };
 
 
-struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bottom)
+/**
+ * \brief Main FFT Analysis Structure
+ * This structure contains all the components of the FFT analysis, 
+ * including the overall RMS levels on the left and right channels,
+ * the FSK frequency analysis, and a list of frequency pairs in order
+ * of their measured signal strength (strongest to weakest)
+ */
+struct fft_dominant_frequency
 {
-    PROPERTY(struct rms_strength, rms)      ///< overall RMS levels
-    PROPERTY(struct fsk_frequencies, fsk)   ///< FSK frequency comparison percentage
-    ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)   ///< frequency levels
+    /** overall RMS levels **/
+    PROPERTY(struct rms_strength, rms)
+
+    /** FSK frequency comparison between low and high requencies */
+    PROPERTY(struct fsk_frequencies, fsk)
+
+    /** Array of frequency pairs ordered by level (strongest first */
+    ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)
 
 #ifdef __cplusplus
+    /**
+     * default constructor (C++ only)
+     * @param lrms  RMS level on the left channel
+     * @param rrms  RMS level on the right channel
+     * @param hi    High frequency (in Hz) to measure FSK percentage on
+     * @param lo    Low frequency (in Hz) to measure FSK percentage on
+     * @param fsk   FSK percentage of high frequency presence (0..100)%
+     * @param freqs List of frequency pairs (in Hz) measured (terminated by 0)
+     */
     fft_dominant_frequency(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (freqs)
@@ -131,6 +194,19 @@ struct fft_dominant_frequency   ///< A list of dominant frequencies (top to bott
             while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
         }
     }
+
+    /**
+     * Convenience constructor (C++ only)
+     * This constructor is a varargs version of the default constructor
+     * allowing the inline specification of the frequency list (instead of
+     * using va_list).  This constructor substitutes default values for all
+     * parameters if necessary.
+     * @param lrms  RMS level on the left channel (0)
+     * @param rrms  RMS level on the right channel (0)
+     * @param hi    High frequency (in Hz) to measure FSK percentage on (FSK_DEFAULT_HI)
+     * @param lo    Low frequency (in Hz) to measure FSK percentage on (FSK_DEFAULT_LO)
+     * @param fsk   FSK percentage of high frequency presence (0%)
+     */
     fft_dominant_frequency(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         if (!rrms) return;

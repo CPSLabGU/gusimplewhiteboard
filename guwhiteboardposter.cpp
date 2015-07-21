@@ -685,6 +685,122 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			Draw_msg.post(std::string(message_content));
 			return true;
 		}
+		case kFSM_States_v:
+#ifdef FSMState_DEFINED
+		{
+/** WB Ptr Class: FSM_States @brief Nil */ 
+			class FSM_States_t FSM_States_msg;
+			FSM_States_msg.post(FSMState(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !FSMState_DEFINED
+
+		case kGiraff_Interface_Status_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_Interface_Status @brief Nil */ 
+			class Giraff_Interface_Status_t Giraff_Interface_Status_msg;
+			Giraff_Interface_Status_msg.post(Giraff_MainSerialInterface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !Giraff_MainSerialInterface_DEFINED
+
+		case kGiraff_Interface_Command_v:
+#ifdef Giraff_MainSerialInterface_DEFINED
+		{
+/** WB Ptr Class: Giraff_Interface_Command @brief Nil */ 
+			class Giraff_Interface_Command_t Giraff_Interface_Command_msg;
+			Giraff_Interface_Command_msg.post(Giraff_MainSerialInterface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !Giraff_MainSerialInterface_DEFINED
+
+		case kNXT_Status_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Status @brief Nil */ 
+			class NXT_Status_t NXT_Status_msg;
+			NXT_Status_msg.post(NXT_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !NXT_Interface_DEFINED
+
+		case kNXT_Command_v:
+#ifdef NXT_Interface_DEFINED
+		{
+/** WB Ptr Class: NXT_Command @brief Nil */ 
+			class NXT_Command_t NXT_Command_msg;
+			NXT_Command_msg.post(NXT_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !NXT_Interface_DEFINED
+
+		case kAPM_Status_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Status @brief Nil */ 
+			class APM_Status_t APM_Status_msg;
+			APM_Status_msg.post(APM_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !APM_Interface_DEFINED
+
+		case kAPM_Command_v:
+#ifdef APM_Interface_DEFINED
+		{
+/** WB Ptr Class: APM_Command @brief Nil */ 
+			class APM_Command_t APM_Command_msg;
+			APM_Command_msg.post(APM_Interface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !APM_Interface_DEFINED
+
+		case kWALK2014_Command_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Command @brief Nil */ 
+			class WALK2014_Command_t WALK2014_Command_msg;
+			WALK2014_Command_msg.post(WALK2014_ControlStatus(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kWALK2014_Status_v:
+#ifdef WALK2014_ControlStatus_DEFINED
+		{
+/** WB Ptr Class: WALK2014_Status @brief Nil */ 
+			class WALK2014_Status_t WALK2014_Status_msg;
+			WALK2014_Status_msg.post(WALK2014_ControlStatus(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !WALK2014_ControlStatus_DEFINED
+
+		case kCBall_v:
+		{
+/** WB Ptr Class: CBall @brief Nil */ 
+			class CBall_t CBall_msg;
+			CBall_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -696,7 +812,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(58);
+	// self.reserve(68);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -756,5 +872,15 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["XEyesPos"] = kXEyesPos_v;
 	self["VisionFace"] = kVisionFace_v;
 	self["Draw"] = kDraw_v;
+	self["fsm_states"] = kFSM_States_v;
+	self["Giraff_Interface_Status"] = kGiraff_Interface_Status_v;
+	self["Giraff_Interface_Command"] = kGiraff_Interface_Command_v;
+	self["NXT_Status"] = kNXT_Status_v;
+	self["NXT_Command"] = kNXT_Command_v;
+	self["APM_Status"] = kAPM_Status_v;
+	self["APM_Command"] = kAPM_Command_v;
+	self["WALK2014_Command"] = kWALK2014_Command_v;
+	self["WALK2014_Status"] = kWALK2014_Status_v;
+	self["CBall"] = kCBall_v;
 }
 

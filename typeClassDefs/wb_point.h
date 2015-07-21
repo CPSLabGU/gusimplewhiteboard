@@ -3,7 +3,7 @@
  *  gusimplewhiteboard
  *
  *  Created by Rene Hexel on 18/06/2014.
- *  Copyright (c) 2014 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef _WBPoint_h
-#define _WBPoint_h
+#ifndef WBPoint_h
+#define WBPoint_h
 
 #include <gu_util.h>
 

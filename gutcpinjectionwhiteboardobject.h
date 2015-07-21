@@ -14,7 +14,7 @@
 #pragma clang diagnostic ignored "-Wpadded"
 
 #include "gusimplewhiteboard.h"
-#include "guudpwhiteboard/tcp_config.h"
+#include "../guudpwhiteboard/tcp_config.h"
 
 #include <iostream> //cerr
 #include <cstdio> //stderr etc..
