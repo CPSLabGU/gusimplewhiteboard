@@ -9,8 +9,15 @@
 #ifndef GENERIC_WB_OBJ_H
 #define GENERIC_WB_OBJ_H
 
-
 #include "gusimplewhiteboard.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #include <iostream>
 #include <assert.h>
 #include <string>
@@ -24,12 +31,6 @@
 #undef true
 #undef false
 #endif
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wweak-vtables"
-#pragma clang diagnostic ignored "-Wpadded"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wdeprecated"
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
