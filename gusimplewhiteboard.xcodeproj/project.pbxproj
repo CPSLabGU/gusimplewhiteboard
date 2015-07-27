@@ -2216,7 +2216,7 @@
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"./**",
+					.,
 					"$(SRCROOT)/../../Common",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2230,7 +2230,7 @@
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"./**",
+					.,
 					"$(SRCROOT)/../../Common",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2903,6 +2903,7 @@
 				F19F05241B3A7EBD00F34B4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F19FA35A18DFDC0B0095B87D /* Build configuration list for PBXLegacyTarget "simplewhiteboard_mk" */ = {
 			isa = XCConfigurationList;
