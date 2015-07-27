@@ -30,6 +30,8 @@ union apm_data
     struct {
 	    /** thrust value, percentage */
 	    PROPERTY(uint8_t, thrust)
+            /** padding */
+            PROPERTY(uint8_t, pad_)
 	    /** quad pitch target angle, DEG */
 	    PROPERTY(int16_t, pitch)
 	    /** quad roll target angle, DEG */

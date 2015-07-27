@@ -137,12 +137,15 @@ void gsw_init_semaphores(gsw_sema_t s)
                 if (s[i]) dispatch_release(s[i]);
                 s[i] = dispatch_semaphore_create(init.val);
 #else
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wclass-varargs"
                 if (semctl(s, i, SETVAL, init) == -1)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
 #ifdef DEBUG
                 if (semctl(s, i, GETVAL, NULL) != init.val)
                         fprintf(stderr, "Warning; failed to initialise whiteboard semaphore %d: %s\n", i, strerror(errno));
 #endif
+#pragma clang diagnostic pop
 #endif
         }
 }
