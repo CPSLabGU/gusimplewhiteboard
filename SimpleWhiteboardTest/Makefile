@@ -3,7 +3,6 @@
 #
 # GU Unit Test Makefile
 #
-BIN=SimpleWhiteboardTest
 ALL_TARGETS=test
 OCUNIT_SUBDIR=
 
@@ -15,8 +14,8 @@ OCUNIT_MMFILES  = SimpleWhiteboardTest.mm
 ANALYSE_OCUNIT_SRCFILES= # empty
 
 XCPROJPATH=${SRCDIR}/../gusimplewhiteboard.xcodeproj
-XCODEBUILD_TEST_SCHEME=gusimplewhiteboard
-XCODEBUILD_ARGS=-project ${XCPROPATH}
+XCODEBUILD_ARGS=-project ${XCPROJPATH}
+XCODEBUILD_TEST_SCHEME=${BIN}
 
 #XCODE_USE_WORKSPACE=yes
 
@@ -32,11 +31,12 @@ GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CCS
 GNUSTEP_SUBST += NEW_WHITEBOARD_CS
 GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CS
 
+all: all-real
+test: xc
+
 .include "../../../mk/libcxx.mk"	# required for C++11
 .include "../../../mk/util.mk"		# required for gu_util
 .include "../../../mk/whiteboard.mk"	# required for Whiteboard
 .include "../../../mk/ocunit.mk"	# required for Unit Tests
-
-xc-clean:
 
 .include "../../../mk/mipal.mk"
