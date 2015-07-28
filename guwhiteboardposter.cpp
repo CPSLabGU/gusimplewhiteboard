@@ -801,6 +801,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kOculusPrime_Command_v:
+#ifdef OculusPrimeInterface_DEFINED
+		{
+/** WB Ptr Class: OculusPrime_Command @brief Nil */ 
+			class OculusPrime_Command_t OculusPrime_Command_msg;
+			OculusPrime_Command_msg.post(OculusPrimeInterface(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !OculusPrimeInterface_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -812,7 +824,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(68);
+	// self.reserve(69);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -882,5 +894,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WALK2014_Command"] = kWALK2014_Command_v;
 	self["WALK2014_Status"] = kWALK2014_Status_v;
 	self["CBall"] = kCBall_v;
+	self["OculusPrime_Command"] = kOculusPrime_Command_v;
 }
 

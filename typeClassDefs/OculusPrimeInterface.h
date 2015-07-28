@@ -12,19 +12,22 @@
 
 #include <wb_oculus_prime_interface.h>
 
-class OculusPrimeInterface : public wb_oculus_prime_interface {
-	OculusPrimeInterface() : wb_oculus_prime_interface() {
-	}
-	
-	OculusPrimeInterface(const std::string &str) {
-		from_string(str);
-	}
-	
-	void from_string(const std::string &/*str*/) {
-		//TODO
-	}
-};
+namespace guWhiteboard {
 
+	class OculusPrimeInterface : public wb_oculus_prime_interface {
+		OculusPrimeInterface() : wb_oculus_prime_interface() {
+		}
+		
+		OculusPrimeInterface(const std::string &str) {
+			from_string(str);
+		}
+		
+		void from_string(const std::string &/*str*/) {
+			//TODO
+		}
+	};
+
+}
 
 #endif	/* OCULUSPRIMEINTERFACE_H */
 
