@@ -15,6 +15,7 @@
 namespace guWhiteboard {
 
 	class OculusPrimeInterface : public wb_oculus_prime_interface {
+	public:
 		OculusPrimeInterface() : wb_oculus_prime_interface() {
 		}
 		
