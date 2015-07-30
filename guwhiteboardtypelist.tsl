@@ -65,3 +65,5 @@ class:APM_Interface, nonatomic, APM_Status, "APM_Status", Contains sensor data f
 class:APM_Interface, nonatomic, APM_Command, "APM_Command", Can issue commands to an APM
 class:WALK2014_ControlStatus, nonatomic, WALK2014_Command,              "WALK2014_Command", Class used to control the 2014 walk engine (UNSW)
 class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK2014_Status",  Class used to check the status of the 2014 walk engine (UNSW)
+int,    atomic, CBall,                                  "CBall",        Status Message for the color of the ball
+class:OculusPrimeInterface, nonatomic, OculusPrime_Command, "OculusPrime_Command", Class used to control the Oculus Prime movements, controls etc.

@@ -760,6 +760,24 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !WALK2014_ControlStatus_DEFINED
 
+		case kCBall_v:
+		{
+/** WB Ptr Class: CBall @brief Nil */ 
+			class CBall_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kOculusPrime_Command_v:
+#ifdef OculusPrimeInterface_DEFINED
+		{
+/** WB Ptr Class: OculusPrime_Command @brief Nil */ 
+			class OculusPrime_Command_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !OculusPrimeInterface_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

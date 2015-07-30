@@ -74,6 +74,9 @@
 		F166897E155CBBF400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F186C381194B9B4D00F9273B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F186C380194B9B4D00F9273B /* SenTestingKit.framework */; };
+		F19F05221B3A7EBD00F34B4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F05211B3A7EBD00F34B4D /* main.swift */; };
+		F19F052C1B3A7F6500F34B4D /* swift_wb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F052B1B3A7F6500F34B4D /* swift_wb.swift */; };
+		F19F052F1B3A80F000F34B4D /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F1A7797119A1DCD600A9A17A /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F1A7797F19A1DD0100A9A17A /* Whiteboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797919A1DD0100A9A17A /* Whiteboard.cc */; };
 		F1A7798019A1DD0100A9A17A /* WhiteboardConstants.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */; };
@@ -119,6 +122,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		F11BC0C8176124760069F6FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F14C46A614A064D8006B6953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F14C46AE14A064D8006B6953;
+			remoteInfo = gusimplewhiteboard;
+		};
+		F19F052D1B3A80D800F34B4D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F14C46A614A064D8006B6953 /* Project object */;
 			proxyType = 1;
@@ -213,6 +223,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F11BC0BA176123DB0069F6FB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		F19F051D1B3A7EBD00F34B4D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -345,6 +364,10 @@
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F19586A0195A8FCA00DF7E5D /* wb_ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_ball.h; sourceTree = "<group>"; };
+		F19F051F1B3A7EBD00F34B4D /* swift_wb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swift_wb; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19F05211B3A7EBD00F34B4D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F19F05271B3A7F2100F34B4D /* swift_wb-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "swift_wb-Bridging-Header.h"; sourceTree = "<group>"; };
+		F19F052B1B3A7F6500F34B4D /* swift_wb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swift_wb.swift; sourceTree = "<group>"; };
 		F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWhiteboardTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleWhiteboardTest copy-Info.plist"; path = "/Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/SimpleWhiteboardTest copy-Info.plist"; sourceTree = "<absolute>"; };
 		F1A7797319A1DD0100A9A17A /* iOSWhiteboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iOSWhiteboard.cc; sourceTree = "<group>"; };
@@ -584,6 +607,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F19F051C1B3A7EBD00F34B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F19F052F1B3A80F000F34B4D /* libgusimplewhiteboard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +882,7 @@
 				F1C94DA61555D3C300B717DF /* gusimplewhiteboardios */,
 				F1ED584218E7C93F00864A87 /* wbperf */,
 				F1D2BE1D1A03592400700948 /* Common */,
+				F19F05201B3A7EBD00F34B4D /* swift_wb */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
 				F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */,
@@ -869,8 +901,19 @@
 				F19FA36B18DFE6280095B87D /* SimpleWhiteboardTest.bundle */,
 				F1ED584118E7C93F00864A87 /* wbperf */,
 				F1ED58A418E7EF1400864A87 /* wbPerfTests.octest */,
+				F19F051F1B3A7EBD00F34B4D /* swift_wb */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F19F05201B3A7EBD00F34B4D /* swift_wb */ = {
+			isa = PBXGroup;
+			children = (
+				F19F05211B3A7EBD00F34B4D /* main.swift */,
+				F19F052B1B3A7F6500F34B4D /* swift_wb.swift */,
+				F19F05271B3A7F2100F34B4D /* swift_wb-Bridging-Header.h */,
+			);
+			path = swift_wb;
 			sourceTree = "<group>";
 		};
 		F1A7797219A1DD0100A9A17A /* OLD_WB */ = {
@@ -1535,6 +1578,24 @@
 			productReference = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F19F051E1B3A7EBD00F34B4D /* swift_wb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F19F05251B3A7EBD00F34B4D /* Build configuration list for PBXNativeTarget "swift_wb" */;
+			buildPhases = (
+				F19F051B1B3A7EBD00F34B4D /* Sources */,
+				F19F051C1B3A7EBD00F34B4D /* Frameworks */,
+				F19F051D1B3A7EBD00F34B4D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F19F052E1B3A80D800F34B4D /* PBXTargetDependency */,
+			);
+			name = swift_wb;
+			productName = swift_wb;
+			productReference = F19F051F1B3A7EBD00F34B4D /* swift_wb */;
+			productType = "com.apple.product-type.tool";
+		};
 		F19FA35B18DFE6280095B87D /* simplewhiteboardtest_mk */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F19FA36818DFE6280095B87D /* Build configuration list for PBXNativeTarget "simplewhiteboardtest_mk" */;
@@ -1666,12 +1727,16 @@
 		F14C46A614A064D8006B6953 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = ICT;
 				TargetAttributes = {
 					F18517AE19F46B550099C12B = {
 						CreatedOnToolsVersion = 6.1;
+					};
+					F19F051E1B3A7EBD00F34B4D = {
+						CreatedOnToolsVersion = 7.0;
 					};
 					F1ED58A318E7EF1400864A87 = {
 						TestTargetID = F1ED584018E7C93F00864A87;
@@ -1708,6 +1773,7 @@
 				F1FABC96190268E7001AD476 /* Lgusimplewhiteboard */,
 				F1FABC9A1902692A001AD476 /* Lwbperf */,
 				F18517AE19F46B550099C12B /* guobjcwhiteboard_mk */,
+				F19F051E1B3A7EBD00F34B4D /* swift_wb */,
 			);
 		};
 /* End PBXProject section */
@@ -1835,6 +1901,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F19F051B1B3A7EBD00F34B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F19F052C1B3A7F6500F34B4D /* swift_wb.swift in Sources */,
+				F19F05221B3A7EBD00F34B4D /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1C94D601555CA8E00B717DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1912,6 +1987,11 @@
 			isa = PBXTargetDependency;
 			target = F14C46AE14A064D8006B6953 /* gusimplewhiteboard */;
 			targetProxy = F11BC0C8176124760069F6FB /* PBXContainerItemProxy */;
+		};
+		F19F052E1B3A80D800F34B4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F14C46AE14A064D8006B6953 /* gusimplewhiteboard */;
+			targetProxy = F19F052D1B3A80D800F34B4D /* PBXContainerItemProxy */;
 		};
 		F1A9E8D31905D0BC00F0150A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2042,7 +2122,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2052,11 +2131,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2087,7 +2170,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2097,11 +2179,14 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -2127,9 +2212,11 @@
 		F14C46B414A064D8006B6953 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
-					"./**",
+					"$(inherited)",
+					.,
 					"$(SRCROOT)/../../Common",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2139,9 +2226,11 @@
 		F14C46B514A064D8006B6953 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
-					"./**",
+					"$(inherited)",
+					.,
 					"$(SRCROOT)/../../Common",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2196,6 +2285,67 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F19F05231B3A7EBD00F34B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/..",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					/usr/local/include,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift_wb/swift_wb-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F19F05241B3A7EBD00F34B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/..",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					/usr/local/include,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift_wb/swift_wb-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -2335,6 +2485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -2350,6 +2501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -2368,6 +2520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "guobjcwhiteboard/guobjcwhiteboard-Prefix.pch";
 				INFOPLIST_FILE = "guobjcwhiteboardTests/guobjcwhiteboardTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mipal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2381,6 +2534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "guobjcwhiteboard/guobjcwhiteboard-Prefix.pch";
 				INFOPLIST_FILE = "guobjcwhiteboardTests/guobjcwhiteboardTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mipal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2388,7 +2542,6 @@
 		F1C94DAD1555D3C300B717DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/gusimplewhiteboardios.dst;
@@ -2406,7 +2559,6 @@
 		F1C94DAE1555D3C300B717DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/gusimplewhiteboardios.dst;
@@ -2430,6 +2582,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2442,6 +2595,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2555,6 +2709,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -2569,6 +2724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "wbPerfTests/wbPerfTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mipal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2582,6 +2738,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2594,6 +2751,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "wbPerfTests/wbPerfTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.mipal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2734,6 +2892,15 @@
 			buildConfigurations = (
 				F18517AF19F46B550099C12B /* Debug */,
 				F18517B019F46B550099C12B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F19F05251B3A7EBD00F34B4D /* Build configuration list for PBXNativeTarget "swift_wb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F19F05231B3A7EBD00F34B4D /* Debug */,
+				F19F05241B3A7EBD00F34B4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

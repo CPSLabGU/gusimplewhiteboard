@@ -83,7 +83,7 @@ typedef struct whiteboard_watcher oc_watcher_t;
 #endif
 
 @interface ObjCWhiteboard: NSObject
-@property (nonatomic, weak) id<ObjCWhiteboardDelegate> delegate;
+@property (nonatomic) id<ObjCWhiteboardDelegate> delegate;
 @property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
 @property (nonatomic, assign) oc_watcher_t *watcher;
 @property (nonatomic, strong) NSMutableDictionary *knownWhiteboardMessages;
