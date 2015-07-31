@@ -21,13 +21,13 @@ namespace guWhiteboard
         {
         public:
             /** designated constructor */
-            3DInput(int16_t x = 0, int16_t y = 0, int16_t z = 0, int16_t power = 0): wb_3dinput(x, y, z, power) { }
+            3DInput(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0): wb_3dinput(yaw, pitch, roll, power) { }
 
             /** copy constructor */
-            3DInput(const 3DInput &other): wb_3dinput(other.vector.x(), other.vector.y(), other.vector.z(), other.power()) {}
+            3DInput(const 3DInput &other): wb_3dinput(other.yaw(), other.pitch(), other.roll(), other.power()) {}
 
             /** copy assignment operator */
-            3DInput &operator=(const 3DInput &other) { set_vector(wb_point3d(other.vector.x(), other.vector.y(), other.vector.z())); set_power(other.power()); return *this; }
+            3DInput &operator=(const 3DInput &other) { set_yaw(other.yaw()); set_pitch(other.pitch()); set_roll(other.roll()); set_power(other.power()); return *this; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             /** string constructor */
@@ -42,7 +42,7 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-                ss << vector.x() << "," << vector.y() << "," << vector.z() << "," << power();
+                ss << yaw() << "," << pitch() << "," << roll() << "," << power();
                 return ss.str();
             }
 
