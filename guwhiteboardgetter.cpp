@@ -778,6 +778,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !OculusPrimeInterface_DEFINED
 
+		case k3DInput_v:
+#ifdef 3DInput_DEFINED
+		{
+/** WB Ptr Class: 3DInput @brief Nil */ 
+			class 3DInput_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !3DInput_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
