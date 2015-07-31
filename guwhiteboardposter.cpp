@@ -813,17 +813,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !OculusPrimeInterface_DEFINED
 
-		case k3DInput_v:
-#ifdef 3DInput_DEFINED
+		case kInput3D_v:
+#ifdef Input3D_DEFINED
 		{
-/** WB Ptr Class: 3DInput @brief Nil */ 
-			class 3DInput_t 3DInput_msg;
-			3DInput_msg.post(3DInput(message_content));
+/** WB Ptr Class: Input3D @brief Nil */ 
+			class Input3D_t Input3D_msg;
+			Input3D_msg.post(Input3D(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !3DInput_DEFINED
+#endif // !Input3D_DEFINED
 
 	}
 #pragma clang diagnostic push
@@ -907,6 +907,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["WALK2014_Status"] = kWALK2014_Status_v;
 	self["CBall"] = kCBall_v;
 	self["OculusPrime_Command"] = kOculusPrime_Command_v;
-	self["3DInput"] = k3DInput_v;
+	self["Input3D"] = kInput3D_v;
 }
 

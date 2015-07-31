@@ -778,17 +778,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !OculusPrimeInterface_DEFINED
 
-		case k3DInput_v:
-#ifdef 3DInput_DEFINED
+		case kInput3D_v:
+#ifdef Input3D_DEFINED
 		{
-/** WB Ptr Class: 3DInput @brief Nil */ 
-			class 3DInput_t m;
+/** WB Ptr Class: Input3D @brief Nil */ 
+			class Input3D_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !3DInput_DEFINED
+#endif // !Input3D_DEFINED
 
 	}
 #pragma clang diagnostic push

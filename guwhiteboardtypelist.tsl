@@ -67,4 +67,4 @@ class:WALK2014_ControlStatus, nonatomic, WALK2014_Command,              "WALK201
 class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK2014_Status",  Class used to check the status of the 2014 walk engine (UNSW)
 int,    atomic, CBall,                                  "CBall",        Status Message for the color of the ball
 class:OculusPrimeInterface, nonatomic, OculusPrime_Command, "OculusPrime_Command", Class used to control the Oculus Prime movements, controls etc.
-class:3DInput, nonatomic, 3DInput, "3DInput", for 3d input devices such as the leap or a joystick
+class:Input3D, nonatomic, Input3D, "Input3D", for 3d input devices such as the leap or a joystick
