@@ -42,7 +42,7 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-                ss << yaw() << "," << pitch() << "," << roll() << "," << power();
+                ss << yaw() << ",\t" << pitch() << ",\t" << roll() << ",\t" << power();
                 return ss.str();
             }
 
