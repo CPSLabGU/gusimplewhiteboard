@@ -47,7 +47,7 @@ namespace guWhiteboard
             }
 
             /** convert from a string */
-            void from_string(const std::string &str)
+            void from_string(const std::string &)
             {
                //NYI 
             }
