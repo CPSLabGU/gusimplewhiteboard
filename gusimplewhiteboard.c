@@ -237,7 +237,14 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 
 static void create_singleton_whiteboard(void *context)
 {
-	local_whiteboard_descriptor = gsw_new_whiteboard(GSW_DEFAULT_NAME);
+    const char *name = GSW_DEFAULT_NAME;
+
+#ifndef GSW_IOS_DEVICE
+    const char *env = getenv(GSW_DEFAULT_ENV);
+    if (env && *env) name = env;
+#endif
+
+    local_whiteboard_descriptor = gsw_new_whiteboard(name);
 }
 
 gu_simple_whiteboard_descriptor *get_local_singleton_whiteboard(void)
