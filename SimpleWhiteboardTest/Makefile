@@ -33,6 +33,10 @@ GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CS
 
 all: all-real
 test: xc
+post-test:
+	$E${RM} /tmp/guWhiteboard_SimpleWhiteboardTest
+
+post-clean: post-test
 
 .include "../../../mk/libcxx.mk"	# required for C++11
 .include "../../../mk/util.mk"		# required for gu_util

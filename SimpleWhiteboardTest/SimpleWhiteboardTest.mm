@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.mm
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2014 Rene Hexel.
+ *  Copyright (c) 2011, 2014, 2015 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#import <errno.h>
+#import <sys/stat.h>
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 #import "FilteredOneDimSonar.h"
@@ -64,6 +66,8 @@
 #import "FilteredArrayOneDimBall.h"
 
 #import "FSMControlStatus.h"
+
+#define WB_FNAME "guWhiteboard_SimpleWhiteboardTest"
 
 using namespace guWhiteboard;
 using namespace std;
@@ -118,6 +122,8 @@ public:
  */
 - (void) setUp
 {
+        setenv(GSW_DEFAULT_ENV, WB_FNAME, 1);
+
         [super setUp];
 
         self.callbackCount = 0;
@@ -154,6 +160,8 @@ public:
         self.semaphore = NULL;
 
         [super tearDown];
+    
+        unsetenv(GSW_DEFAULT_ENV);
 }
 
 /**
@@ -582,6 +590,20 @@ static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeTo
         }
         XCTAssertTrue(!needStringConversion || result, @"Could not post wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
     }
+}
+
+
+- (void) testEnvWhiteboardName
+{
+#ifndef GSW_IOS_DEVICE
+    const char *wbenv = getenv(GSW_DEFAULT_ENV);
+    XCTAssert(wbenv, @"Whiteboard environment variable '%s' not set", GSW_DEFAULT_ENV);
+    XCTAssertTrue(strcmp(wbenv, WB_FNAME) == 0, @"Whiteboard environment '%s' instead of '%s'", wbenv, WB_FNAME);
+    const char *fname = "/tmp/" WB_FNAME;
+    struct stat buf;
+    XCTAssertTrue(stat(fname, &buf) != -1, @"Could not open whiteboard '%s': %s", fname, strerror(errno));
+    unlink(fname);
+#endif
 }
 
 #pragma clang diagnostic pop
