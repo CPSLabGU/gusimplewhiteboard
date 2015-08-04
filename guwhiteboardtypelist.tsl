@@ -68,3 +68,4 @@ class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK201
 int,    atomic, CBall,                                  "CBall",        Status Message for the color of the ball
 class:OculusPrimeInterface, nonatomic, OculusPrime_Command, "OculusPrime_Command", Class used to control the Oculus Prime movements, controls etc.
 class:Input3D, nonatomic, Input3D, "Input3D", for 3d input devices such as the leap or a joystick
+class:Oculus_PrimeSerialInterface, nonatomic, Oculus_Prime_Command, "Oculus_Prime_Command", Serial interface for the main motor and sensor board of the oculus prime
