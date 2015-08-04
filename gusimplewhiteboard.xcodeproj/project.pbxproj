@@ -1843,7 +1843,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export WHITEBOARD_NAME=guWhiteboard_SimpleWhiteboardTest\n## Obsolete: Run the unit tests in this test bundle.\n#\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "export WHITEBOARD_NAME=guWhiteboard_SimpleWhiteboardTest\n# Obsolete: Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		F1D9C39C18EE37B700593DD3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
