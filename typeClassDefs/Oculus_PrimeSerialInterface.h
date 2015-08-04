@@ -5,7 +5,7 @@
  *  Copyright (c) 2015 Carl Lusty                                       
  *  All rights reserved.                                                
  */                                                                     
-                                                                        
+
 #ifndef Oculus_PrimeSerialInterface_DEFINED
 #define Oculus_PrimeSerialInterface_DEFINED
 
@@ -48,6 +48,12 @@ namespace guWhiteboard
 		 *  @param[in] str a serialised string containing properties to set in this class
 		 */
 		Oculus_PrimeSerialInterface(const std::string &str) { from_string(str); }
+#undef DELIMITER
+#undef SEP
+#undef SV
+#undef PARSER
+#undef COMP
+#undef PARSE
 
 #define DELIMITER ','
 #define SEP ':'
@@ -58,15 +64,11 @@ namespace guWhiteboard
             {                                                               \
                 SV kk = components_of_string_separated(v, ARRAY_DEL, true); \
 			    for(size_t n = 0; n < kk.size(); n++)                       \
-                    { v = kk.at(n); _##c[n] = p; }                                        \
+                    { v = kk.at(n); _##c[n] = p; _##c##_mask = 1; }                                        \
                 continue;                                                   \
             }
 #define COMP(v, s) v.compare(0, 2, s) == 0
-#define IS_HEX(v) COMP(v, "F*") || COMP(v, "I*")
 
-#define PARSE_FLOAT static_cast<float>(atof(v.c_str()))
-#define PARSE_INT16 static_cast<int16_t>(atoi(v.c_str()))
-#define PARSE_INT32 static_cast<int32_t>(atoi(v.c_str()))
 #define PARSE_UINT8 static_cast<uint8_t>(atoi(v.c_str())) 
 
                 /** parse class properties from a string
@@ -102,8 +104,8 @@ PARSER("stop",          stop,                       1)
                 std::string description() const
                 {
                         std::stringstream ss;
-                        //ss  
-       //                 << forward().first() << " " << forward().second() << " forward : , ";
+                        ss  
+                        << static_cast<int>(forward()[0]) << " " << static_cast<int>(forward()[1]) << " forward : , ";
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
