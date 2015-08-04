@@ -15,7 +15,7 @@ ANALYSE_OCUNIT_SRCFILES= # empty
 
 XCPROJPATH=${SRCDIR}/../gusimplewhiteboard.xcodeproj
 XCODEBUILD_ARGS=-project ${XCPROJPATH}
-XCODEBUILD_TEST_SCHEME=${BIN}
+XCODEBUILD_TEST_SCHEME=gusimplewhiteboard # ${BIN}
 
 #XCODE_USE_WORKSPACE=yes
 
