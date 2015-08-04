@@ -13,7 +13,11 @@
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <arpa/inet.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 #include <sstream>
+#pragma clang diagnostic pop
 #endif
 
 namespace guWhiteboard                                                  
