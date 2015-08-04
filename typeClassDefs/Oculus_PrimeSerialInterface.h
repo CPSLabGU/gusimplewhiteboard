@@ -51,21 +51,24 @@ namespace guWhiteboard
 
 #define DELIMITER ','
 #define SEP ':'
-#define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); continue; }
+#define ARRAY_DEL '-'
 #define SV std::vector<std::string>
+#define PARSER(s, c, p) if (k.compare(s) == 0) { set_##c ( p ); continue; }
+#define ARRAY_PARSER(s, c, p) if (k.compare(s) == 0)                        \
+            {                                                               \
+                SV kk = components_of_string_separated(v, ARRAY_DEL, true); \
+			    for(size_t n = 0; n < kk.size(); n++)                       \
+                    { v = kk.at(n); _##c[n] = p; }                                        \
+                continue;                                                   \
+            }
 #define COMP(v, s) v.compare(0, 2, s) == 0
 #define IS_HEX(v) COMP(v, "F*") || COMP(v, "I*")
 
-#define READ_HEX(v) htonl(strtol(v.c_str()+2, NULL, 16))
-#define PARSE_HEX_FLOAT(v) static_cast<float>(READ_HEX(v))
-#define PARSE_HEX_INT32(v) static_cast<int32_t>(READ_HEX(v))
-#define PARSE_HEX_INT16(v) static_cast<int16_t>(READ_HEX(v))
-#define PARSE_HEX_INT8(v) static_cast<int8_t>(READ_HEX(v))
+#define PARSE_FLOAT static_cast<float>(atof(v.c_str()))
+#define PARSE_INT16 static_cast<int16_t>(atoi(v.c_str()))
+#define PARSE_INT32 static_cast<int32_t>(atoi(v.c_str()))
+#define PARSE_UINT8 static_cast<uint8_t>(atoi(v.c_str())) 
 
-#define PARSE_FLOAT IS_HEX(v) ? PARSE_HEX_FLOAT(v) : static_cast<float>(atof(v.c_str()))
-#define PARSE_INT16 IS_HEX(v) ? PARSE_HEX_INT16(v) : static_cast<int16_t>(atoi(v.c_str()))
-#define PARSE_INT32 IS_HEX(v) ? PARSE_HEX_INT32(v) : static_cast<int32_t>(atoi(v.c_str()))
-#define PARSE_INT8 IS_HEX(v) ? PARSE_HEX_INT8(v) : static_cast<uint8_t>(atoi(v.c_str())) 
                 /** parse class properties from a string
 		 *  @param[in] str a serialised string containing properties to set in this class
 		 */
@@ -84,10 +87,12 @@ namespace guWhiteboard
 				std::string v = kv.at(1);
 
                 //serial parser - removed indenting so I can read it, Carl.
-//PARSER("f",     forward,                   PARSE_BYTE_PAIR)
+ARRAY_PARSER("f",     forward,                    PARSE_UINT8 )
+PARSER("s",     stop,                       1)
 
                 //pretty parser - removed indenting so I can read it, Carl.
-//PARSER("forward",                  forward,               PARSE_BTYE_PAIR)
+ARRAY_PARSER("forward",       forward,               PARSE_UINT8)
+PARSER("stop",          stop,                       1)
 			}
 		}
 
@@ -97,8 +102,8 @@ namespace guWhiteboard
                 std::string description() const
                 {
                         std::stringstream ss;
-                        ss  
-                        << forward().first() << " " << forward().second() << " forward : , ";
+                        //ss  
+       //                 << forward().first() << " " << forward().second() << " forward : , ";
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
