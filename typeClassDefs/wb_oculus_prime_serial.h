@@ -31,10 +31,12 @@ struct wb_oculus_prime_serial
 
 
     /** stop */
-    BIT_PROPERTY(stop)
+    CONTROLLED_PROPERTY(uint8_t, stop) ///< value ignored, mask setting is what's used
 
     /** Control bit (mask) */
     CONTROL_BIT(forward)
+    /** Control bit (mask) */
+    CONTROL_BIT(stop)
 
 #ifdef __cplusplus
     /**

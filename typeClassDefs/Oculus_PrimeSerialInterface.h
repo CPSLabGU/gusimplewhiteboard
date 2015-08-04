@@ -94,7 +94,7 @@ namespace guWhiteboard
                 {
                         std::stringstream ss;
                         ss  
-                        << forward().first() << " " << forward().second() << " forward : , " 
+                        << forward().first() << " " << forward().second() << " forward : , ";
                         return ss.str();
                 }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
