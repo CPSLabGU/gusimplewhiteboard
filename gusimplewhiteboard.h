@@ -112,8 +112,8 @@ extern "C"
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            4       ///< version
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
-#define GU_SIMPLE_WHITEBOARD_BUFSIZE            128     ///< message len (max)
-#define GSW_TOTAL_MESSAGE_TYPES                 512     ///< message types (max)
+#define GU_SIMPLE_WHITEBOARD_BUFSIZE            64     ///< message len (max)
+#define GSW_TOTAL_MESSAGE_TYPES                 1024     ///< message types (max)
 #define GSW_NUM_RESERVED                        (GSW_TOTAL_MESSAGE_TYPES/2)    // message types (max)
 #define GSW_TOTAL_PROCESSES                     256     ///< maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
