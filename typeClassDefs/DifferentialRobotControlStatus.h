@@ -59,10 +59,10 @@ namespace guWhiteboard {
 #endif
             /** override equality operator so we can compare instances */
             bool operator == (const DifferentialRobotControlStatus &s) {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
-                const wb_motor &sl = s.left_motor();
-                const wb_motor &sr = s.right_motor();
+                wb_kinematic_motor &l = left_motor();
+                wb_kinematic_motor &r = right_motor();
+                const wb_kinematic_motor &sl = s.left_motor();
+                const wb_kinematic_motor &sr = s.right_motor();
 
                 if (l.speed() == sl.speed() 
                     && l.accel() == sl.accel() 
@@ -78,8 +78,8 @@ namespace guWhiteboard {
 
             /** Abstraction for a stop */
             void stop() {
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
+                wb_kinematic_motor &l = left_motor();
+                wb_kinematic_motor &r = right_motor();
 
                 l.set_speed (static_cast<int8_t> (0));
                 r.set_speed (static_cast<int8_t> (0));

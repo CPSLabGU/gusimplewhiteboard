@@ -126,6 +126,7 @@ struct wb_kinematic_motor {
     _odo = other._odo;
     _motorOn = other._motorOn;
     _encoderOn = other._encoderOn;
+    return *this;
 	}
 #endif
 };
