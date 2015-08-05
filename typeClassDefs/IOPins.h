@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef IOPins_h
-#define IOPins_h
+#ifndef IOPins_DEFINED
+#define IOPins_DEFINED
 
 #include "wb_io_pins.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -94,7 +94,7 @@ namespace guWhiteboard
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
-        IOPins(const std::string &pinvalues): wb_pin_io_pins() { from_string(pinvalues); }
+        IOPins(const std::string &pinvalues): wb_io_pins() { from_string(pinvalues); }
 
         /** convert to a string */
         std::string description() const
@@ -113,7 +113,7 @@ namespace guWhiteboard
         {
             std::istringstream iss(str);
             std::string token;
-            for (int i = 0; i < IO_PIN_BIT_SIZE && getline(iss, token, ','); i++)
+            for (int i = 0; i < static_cast<int>(IO_PIN_BIT_SIZE) && getline(iss, token, ','); i++)
             {
                 const int v = atoi(token.c_str());
                 set(i, v != 0);
@@ -123,4 +123,4 @@ namespace guWhiteboard
     };
 }
 
-#endif /* IOPins_h */
+#endif /* IOPins_DEFINED */

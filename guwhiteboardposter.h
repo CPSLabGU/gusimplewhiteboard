@@ -94,6 +94,7 @@
 #include "NXT_Interface.h"
 #include "APM_Interface.h"
 #include "Oculus_PrimeSerialInterface.h"
+#include "IOPins.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
