@@ -122,6 +122,7 @@
 		F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */; };
 		F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */; };
 		F1FF77861A0364D7009E269F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D2BE1B1A0358C400700948 /* libc++.dylib */; };
+		F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -598,6 +599,7 @@
 		F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimBall.h; sourceTree = "<group>"; };
 		F5532F7B19516B5E00FE04F1 /* FilteredOneDimObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObject.h; sourceTree = "<group>"; };
 		F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimSonar.h; sourceTree = "<group>"; };
+		F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentialRobotControlStatus.h; sourceTree = "<group>"; };
 		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
 		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1202,6 +1204,8 @@
 				F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */,
 				F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */,
 				F191CBD21B71A1A40005C314 /* wb_io_pins.h */,
+				C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */,
+				F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
 				F51974AA1952715000010021 /* FilteredArrayOneDimObjects.h */,
 				F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */,
@@ -1235,7 +1239,6 @@
 				F1E5543B18EBD16D00639B1E /* VisionGoals.h */,
 				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
 				F1E5543D18EBD16D00639B1E /* WALK_ControlStatus.h */,
-				C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */,
 				C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */,
 				F1E5543E18EBD16D00639B1E /* WalkData.h */,
 				C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */,
@@ -1448,6 +1451,7 @@
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
 				C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */,
 				C3C966EF1AA7F6B40013E8E3 /* APM_Interface.h in Headers */,
+				F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
 			);

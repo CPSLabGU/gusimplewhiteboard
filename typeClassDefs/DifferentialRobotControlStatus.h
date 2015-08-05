@@ -29,8 +29,8 @@ namespace guWhiteboard {
             std::string description() {
                 using namespace std;
                 ostringstream ss;
-                const wb_motor &l = left_motor();
-                const wb_motor &r = right_motor();
+                const wb_kinematic_motor &l = left_motor();
+                const wb_kinematic_motor &r = right_motor();
                 ss << static_cast<int>(l.speed()) << "," << static_cast<int>(r.speed()) \
                 << ", " << l.odo() << "," << r.odo() << ", " << static_cast<unsigned>(l.accel()) \
                 << "," << static_cast<unsigned>(r.accel());
@@ -41,8 +41,8 @@ namespace guWhiteboard {
             void from_string (std::string str) {
                 using namespace std;
                 vector<string> elements = components_of_string_separated(str, ',', true);
-                wb_motor &l = left_motor();
-                wb_motor &r = right_motor();
+                wb_kinematic_motor &l = left_motor();
+                wb_kinematic_motor &r = right_motor();
                 if (elements.size() == 0) return;
                 l.set_speed(static_cast<int8_t>(atoi(elements[0].c_str())));
                 if (elements.size() < 2) return;

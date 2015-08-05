@@ -95,6 +95,7 @@
 #include "APM_Interface.h"
 #include "Oculus_PrimeSerialInterface.h"
 #include "IOPins.h"
+#include "DifferentialRobotControlStatus.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
