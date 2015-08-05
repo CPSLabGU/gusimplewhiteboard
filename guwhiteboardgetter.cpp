@@ -802,6 +802,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Oculus_PrimeSerialInterface_DEFINED
 
+		case kIOPins_v:
+#ifdef IOPins_DEFINED
+		{
+/** WB Ptr Class: IOPins @brief Nil */ 
+			class IOPins_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !IOPins_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

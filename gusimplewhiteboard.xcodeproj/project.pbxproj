@@ -74,6 +74,8 @@
 		F166897E155CBBF400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F1668980155CBC2400AFA55E /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F166897C155CBBF400AFA55E /* gu_util.cpp */; };
 		F186C381194B9B4D00F9273B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F186C380194B9B4D00F9273B /* SenTestingKit.framework */; };
+		F191CBD31B71A1A40005C314 /* wb_io_pins.h in Headers */ = {isa = PBXBuildFile; fileRef = F191CBD21B71A1A40005C314 /* wb_io_pins.h */; };
+		F191CBD51B71A4DF0005C314 /* IOPins.h in Headers */ = {isa = PBXBuildFile; fileRef = F191CBD41B71A4DF0005C314 /* IOPins.h */; };
 		F19F05221B3A7EBD00F34B4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F05211B3A7EBD00F34B4D /* main.swift */; };
 		F19F052C1B3A7F6500F34B4D /* swift_wb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F052B1B3A7F6500F34B4D /* swift_wb.swift */; };
 		F19F052F1B3A80F000F34B4D /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
@@ -365,6 +367,8 @@
 		F15E631F1A11646F0082D467 /* NXT_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NXT_Interface.h; sourceTree = "<group>"; };
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F191CBD21B71A1A40005C314 /* wb_io_pins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_io_pins.h; sourceTree = "<group>"; };
+		F191CBD41B71A4DF0005C314 /* IOPins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPins.h; sourceTree = "<group>"; };
 		F19586A0195A8FCA00DF7E5D /* wb_ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_ball.h; sourceTree = "<group>"; };
 		F19F051F1B3A7EBD00F34B4D /* swift_wb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swift_wb; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19F05211B3A7EBD00F34B4D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -1197,6 +1201,7 @@
 				F1E2FEF4195116660039FFD9 /* wb_fsm_control_status.h */,
 				F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */,
 				F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */,
+				F191CBD21B71A1A40005C314 /* wb_io_pins.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
 				F51974AA1952715000010021 /* FilteredArrayOneDimObjects.h */,
 				F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */,
@@ -1209,6 +1214,7 @@
 				F1E2FEF3195115D90039FFD9 /* FSM_Control.h */,
 				F1E5542918EBD16D00639B1E /* GCGameState.h */,
 				F1E5542A18EBD16D00639B1E /* HAL_HeadTarget.h */,
+				F191CBD41B71A4DF0005C314 /* IOPins.h */,
 				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
 				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
 				F15E631F1A11646F0082D467 /* NXT_Interface.h */,
@@ -1431,8 +1437,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
+				F191CBD31B71A1A40005C314 /* wb_io_pins.h in Headers */,
 				F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */,
 				F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */,
+				F191CBD51B71A4DF0005C314 /* IOPins.h in Headers */,
 				C39197A31693DDA200E5D0C6 /* (null) in Headers */,
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
