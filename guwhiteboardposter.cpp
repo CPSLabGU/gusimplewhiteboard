@@ -861,6 +861,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !NXT_Two_Touch_Status_DEFINED
 
+		case kNXT_Sound_Control_v:
+#ifdef NXT_Sound_Control_DEFINED
+		{
+/** WB Ptr Class: NXT_Sound_Control @brief Nil */ 
+			class NXT_Sound_Control_t NXT_Sound_Control_msg;
+			NXT_Sound_Control_msg.post(NXT_Sound_Control(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !NXT_Sound_Control_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -872,7 +884,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(73);
+	// self.reserve(74);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -947,5 +959,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["Oculus_Prime_Command"] = kOculus_Prime_Command_v;
 	self["IOPins"] = kIOPins_v;
 	self["NXT_Two_Touch_Status"] = kNXT_Two_Touch_Status_v;
+	self["NXT_Sound_Control"] = kNXT_Sound_Control_v;
 }
 

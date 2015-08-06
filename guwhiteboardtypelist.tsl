@@ -71,3 +71,4 @@ class:Input3D, nonatomic, Input3D, "Input3D", for 3d input devices such as the l
 class:Oculus_PrimeSerialInterface, nonatomic, Oculus_Prime_Command, "Oculus_Prime_Command", Serial interface for the main motor and sensor board of the oculus prime
 class:IOPins, nonatomic, IOPins,                    "IOPins", Arduino-style I/O pins
 class:NXT_Two_Touch_Status, nonatomic, NXT_Two_Touch_Status,                     "NXT_Two_Touch_Status", Class that reads NXT's two buttons
+class:NXT_Sound_Control, nonatomic, NXT_Sound_Control,                     "NXT_Sound_Control", Class that reads NXT's two buttons

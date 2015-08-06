@@ -97,6 +97,7 @@
 #include "IOPins.h"
 #include "DifferentialRobotControlStatus.h"
 #include "NXT_Two_Touch_Status.h"
+#include "NXT_Sound_Control.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
