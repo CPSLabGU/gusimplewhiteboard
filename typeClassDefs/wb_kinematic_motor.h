@@ -79,8 +79,8 @@
  *
  */
 
-#ifndef _WBMOTOR_
-#define _WBMOTOR_
+#ifndef WB_MOTOR
+#define WB_MOTOR
 
 #include <sys/types.h>
 #include <gu_util.h>

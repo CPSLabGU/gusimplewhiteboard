@@ -84,6 +84,10 @@
 		F1A7798019A1DD0100A9A17A /* WhiteboardConstants.cc in Sources */ = {isa = PBXBuildFile; fileRef = F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */; };
 		F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */; };
 		F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
+		F1C6F1BC1B73FABC00E2DF81 /* wb_kinematic_motor.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */; };
+		F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */; };
+		F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BF1B73FB1700E2DF81 /* NXT_Sound_Control.h */; };
+		F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1C01B73FB1700E2DF81 /* NXT_Two_Touch_Status.h */; };
 		F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */; };
 		F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */; };
@@ -387,6 +391,10 @@
 		F1A7797A19A1DD0100A9A17A /* Whiteboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Whiteboard.h; sourceTree = "<group>"; };
 		F1A7797B19A1DD0100A9A17A /* WhiteboardConstants.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WhiteboardConstants.cc; sourceTree = "<group>"; };
 		F1A7797C19A1DD0100A9A17A /* WhiteboardConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteboardConstants.h; sourceTree = "<group>"; };
+		F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_kinematic_motor.h; sourceTree = "<group>"; };
+		F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_differential_robot.h; sourceTree = "<group>"; };
+		F1C6F1BF1B73FB1700E2DF81 /* NXT_Sound_Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXT_Sound_Control.h; sourceTree = "<group>"; };
+		F1C6F1C01B73FB1700E2DF81 /* NXT_Two_Touch_Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXT_Two_Touch_Status.h; sourceTree = "<group>"; };
 		F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libguobjcwhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C94D681555CA8E00B717DF /* guobjcwhiteboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "guobjcwhiteboard-Prefix.pch"; sourceTree = "<group>"; };
 		F1C94D691555CA8E00B717DF /* ObjCWhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCWhiteboard.h; sourceTree = "<group>"; };
@@ -1193,8 +1201,8 @@
 			isa = PBXGroup;
 			children = (
 				F19586A0195A8FCA00DF7E5D /* wb_ball.h */,
+				F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */,
 				F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */,
-				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */,
 				F5119EB5195111A3009C87F6 /* wb_arrayoffilteredballobjects.h */,
 				F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */,
@@ -1204,6 +1212,8 @@
 				F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */,
 				F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */,
 				F191CBD21B71A1A40005C314 /* wb_io_pins.h */,
+				F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */,
+				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */,
 				F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
@@ -1222,6 +1232,8 @@
 				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
 				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
 				F15E631F1A11646F0082D467 /* NXT_Interface.h */,
+				F1C6F1BF1B73FB1700E2DF81 /* NXT_Sound_Control.h */,
+				F1C6F1C01B73FB1700E2DF81 /* NXT_Two_Touch_Status.h */,
 				F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */,
 				F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
@@ -1446,7 +1458,10 @@
 				F191CBD51B71A4DF0005C314 /* IOPins.h in Headers */,
 				C39197A31693DDA200E5D0C6 /* (null) in Headers */,
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
+				F1C6F1BC1B73FABC00E2DF81 /* wb_kinematic_motor.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
+				F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */,
+				F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
 				C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */,
@@ -1454,6 +1469,7 @@
 				F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
+				F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
