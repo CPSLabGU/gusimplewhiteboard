@@ -96,6 +96,7 @@
 #include "Oculus_PrimeSerialInterface.h"
 #include "IOPins.h"
 #include "DifferentialRobotControlStatus.h"
+#include "NXT_Two_Touch_Status.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

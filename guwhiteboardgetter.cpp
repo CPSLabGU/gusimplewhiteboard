@@ -814,6 +814,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !IOPins_DEFINED
 
+		case kNXT_Two_Touch_Status_v:
+#ifdef NXT_Two_Touch_Status_DEFINED
+		{
+/** WB Ptr Class: NXT_Two_Touch_Status @brief Nil */ 
+			class NXT_Two_Touch_Status_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Two_Touch_Status_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
