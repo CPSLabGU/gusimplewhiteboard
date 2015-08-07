@@ -34,7 +34,7 @@ GNUSTEP_SUBST += WHITEBOARD_PRIVATE_CS
 all: all-real
 test: xc
 post-test:
-	-{RM} /tmp/guWhiteboard_SimpleWhiteboardTest
+	-${RM} /tmp/guWhiteboard_SimpleWhiteboardTest
 
 post-clean: post-test
 
