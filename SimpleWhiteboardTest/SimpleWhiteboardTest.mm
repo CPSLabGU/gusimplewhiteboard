@@ -576,7 +576,7 @@ static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeTo
 {
     string testString("000");
 
-    for (int wbtype = 1; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
+    for (int wbtype = 1; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++) try
     {
         bool result = guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
         bool needStringConversion = true;
@@ -589,6 +589,10 @@ static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeTo
             }
         }
         XCTAssertTrue(!needStringConversion || result, @"Could not post wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
+    }
+    catch (...)
+    {
+        XCTAssertNoThrow(guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString), @"Exception posting wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
     }
 }
 
