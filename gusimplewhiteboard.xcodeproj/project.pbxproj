@@ -262,6 +262,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03C1B0381B81F362006427BC /* MicrowaveStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicrowaveStatus.h; sourceTree = "<group>"; };
+		03C1B0391B81F3BC006427BC /* wb_microwave_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_microwave_status.h; sourceTree = "<group>"; };
 		8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gutcpinjectionwhiteboardobject.h; sourceTree = "<group>"; };
 		8B19F9BC17A0F63E00CF2365 /* tcp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_config.h; sourceTree = "<group>"; };
 		8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_receiver.cpp; sourceTree = "<group>"; };
@@ -1213,6 +1215,7 @@
 				F1F8AB541A27EF9A0008DAC2 /* wb_goal.h */,
 				F191CBD21B71A1A40005C314 /* wb_io_pins.h */,
 				F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */,
+				03C1B0391B81F3BC006427BC /* wb_microwave_status.h */,
 				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
 				C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */,
 				F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */,
@@ -1229,6 +1232,7 @@
 				F1E5542918EBD16D00639B1E /* GCGameState.h */,
 				F1E5542A18EBD16D00639B1E /* HAL_HeadTarget.h */,
 				F191CBD41B71A4DF0005C314 /* IOPins.h */,
+				03C1B0381B81F362006427BC /* MicrowaveStatus.h */,
 				F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */,
 				F1E5542C18EBD16D00639B1E /* NAO_State.h */,
 				F15E631F1A11646F0082D467 /* NXT_Interface.h */,
