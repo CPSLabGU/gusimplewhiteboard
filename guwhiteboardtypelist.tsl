@@ -72,3 +72,4 @@ class:Oculus_PrimeSerialInterface, nonatomic, Oculus_Prime_Command, "Oculus_Prim
 class:IOPins, nonatomic, IOPins,                    "IOPins", Arduino-style I/O pins
 class:NXT_Two_Touch_Status, nonatomic, NXT_Two_Touch_Status,                     "NXT_Two_Touch_Status", Class that reads NXT's two buttons
 class:NXT_Sound_Control, nonatomic, NXT_Sound_Control,                     "NXT_Sound_Control", Class that reads NXT's two buttons
+class:MicrowaveStatus, nonatomic, MicrowaveStatus,                     "MicrowaveStatus", Class for reading a simple microwave state 
