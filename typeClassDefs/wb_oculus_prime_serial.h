@@ -11,6 +11,10 @@
 
 #include <gu_util.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded" //TODO Remove once the class is done
+
+
 /**
  * Serial interface for the main giraff board.
  * This includes the buttons, battery data and motor control.
@@ -40,5 +44,6 @@ struct wb_oculus_prime_serial
     }
 #endif
 };
+#pragma clang diagnostic pop
 
 #endif //_wb_oculus_prime_serial_h
