@@ -838,6 +838,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !NXT_Sound_Control_DEFINED
 
+		case kNXT_Lights_Control_v:
+#ifdef NXT_Lights_Control_DEFINED
+		{
+/** WB Ptr Class: NXT_Lights_Control @brief Nil */ 
+			class NXT_Lights_Control_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NXT_Lights_Control_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

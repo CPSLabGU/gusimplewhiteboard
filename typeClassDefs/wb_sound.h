@@ -17,6 +17,9 @@
 struct wb_sound
 {
     PROPERTY(uint16_t, frequency)       	
+/**
+ * duraiton is milli-seconds
+ */
     PROPERTY(uint16_t, duration)       	
 
 #ifdef __cplusplus
