@@ -100,11 +100,15 @@ namespace guWhiteboard
         std::string description() const
         {
             std::ostringstream ss;
-            ss << IO_PIN_GET(this, 0);
-            for (size_t i = 1; i < IO_PIN_BIT_SIZE; i++)
+            bool first = true;
+            for (size_t i = 0; i < IO_PIN_BIT_SIZE; i++)
+            {
                 if (IO_PIN_GET(this, i))
-                    ss << "," << i;
-
+                {
+                    ss << (first ? "" : ",") << i;
+                    first = false;
+                }
+            }
             return ss.str();
         }
 
@@ -115,8 +119,9 @@ namespace guWhiteboard
             std::string token;
             for (int i = 0; i < static_cast<int>(IO_PIN_BIT_SIZE) && getline(iss, token, ','); i++)
             {
-                const int v = atoi(token.c_str());
-                set(i, v != 0);
+                const int n = atoi(token.c_str());
+                if (n >= 0 && n < static_cast<int>(IO_PIN_BIT_SIZE))
+                    set(n);
             }
         }
 #endif
