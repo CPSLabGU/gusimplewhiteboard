@@ -122,6 +122,8 @@ namespace guWhiteboard
                 const int n = atoi(token.c_str());
                 if (n >= 0 && n < static_cast<int>(IO_PIN_BIT_SIZE))
                     set(n);
+                else if (-n >= 0 && -n < static_cast<int>(IO_PIN_BIT_SIZE))
+                    clr(n);
             }
         }
 #endif
