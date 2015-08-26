@@ -292,6 +292,7 @@
 		C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gugenericwhiteboardobject.h; sourceTree = "<group>"; };
 		C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_generated.h; sourceTree = "<group>"; };
 		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = guwhiteboardwatcher.h; sourceTree = "<group>"; };
+		C3ECA6211B8C1B9E00F49B44 /* NXT_Lights_Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXT_Lights_Control.h; sourceTree = "<group>"; };
 		F11BC0BC176123DB0069F6FB /* guudpwhiteboard */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = guudpwhiteboard; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11BC0CC176124CB0069F6FB /* AlgUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AlgUtil.cpp; sourceTree = "<group>"; };
 		F11BC0CD176124CB0069F6FB /* AlgUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgUtil.h; sourceTree = "<group>"; };
@@ -1244,6 +1245,7 @@
 				F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */,
 				F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */,
 				F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */,
+				C3ECA6211B8C1B9E00F49B44 /* NXT_Lights_Control.h */,
 				F1E5543218EBD16D00639B1E /* SENSORS_LegJointSensors.h */,
 				F1E5543318EBD16D00639B1E /* SENSORS_LegJointTemps.h */,
 				F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */,
