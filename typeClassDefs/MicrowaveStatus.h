@@ -82,9 +82,9 @@ namespace guWhiteboard
         std::string description() const
         {
             std::ostringstream ss;
-            ss << door_open() << ",";
-            ss << button_pushed() << ",";
-            ss << time_count();
+            ss << doorOpen() << ",";
+            ss << buttonPushed() << ",";
+            ss << timeLeft();
             return ss.str();
         }
         
@@ -94,9 +94,9 @@ namespace guWhiteboard
             std::vector<std::string> msg = components_of_string_separated(str, ',', true);
             //if (msg.size()!=3) return;
             
-            set_door_open(static_cast<uint16_t>(msg.size())); // TODO
-            set_button_pushed(false); //TODO
-            set_time_count(atou16(msg[2].c_str()));
+            set_doorOpen(static_cast<uint16_t>(msg.size())); // TODO
+            set_buttonPushed(false); //TODO
+            set_timeLeft(atou16(msg[2].c_str()));
         }
 #endif
     };

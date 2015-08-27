@@ -67,19 +67,19 @@
 struct wb_microwave_status
 {
     // time remaining counter
-    PROPERTY(uint16_t, time_count)
+    PROPERTY(uint16_t, timeLeft)
     
     // door open boolean
-    BIT_PROPERTY(door_open)
+    BIT_PROPERTY(doorOpen)
     
     // button pushed boolean
-    BIT_PROPERTY(button_pushed)
+    BIT_PROPERTY(buttonPushed)
     
 #ifdef __cplusplus
-    wb_microwave_status(int16_t time = 0) :
-        _time_count(time),
-        _door_open(false),
-        _button_pushed(false)
+    wb_microwave_status(uint16_t time = 0) :
+        _timeLeft(time),
+        _doorOpen(false),
+        _buttonPushed(false)
     {}
 #endif
     
