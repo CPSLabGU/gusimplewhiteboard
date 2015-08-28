@@ -74,6 +74,9 @@ struct wb_microwave_status
     
     // button pushed boolean
     BIT_PROPERTY(buttonPushed)
+
+    // padding
+    unsigned int _padding : 14;
     
 #ifdef __cplusplus
     wb_microwave_status(uint16_t time = 0) :
