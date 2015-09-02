@@ -897,6 +897,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !MicrowaveStatus_DEFINED
 
+		case kClocks_v:
+#ifdef Clocks_DEFINED
+		{
+/** WB Ptr Class: Clocks @brief Nil */ 
+			class Clocks_t Clocks_msg;
+			Clocks_msg.post(Clocks(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !Clocks_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -908,7 +920,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(76);
+	// self.reserve(77);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -986,5 +998,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Sound_Control"] = kNXT_Sound_Control_v;
 	self["NXT_Lights_Control"] = kNXT_Lights_Control_v;
 	self["MicrowaveStatus"] = kMicrowaveStatus_v;
+	self["Clocks"] = kClocks_v;
 }
 
