@@ -67,7 +67,7 @@
 
 #define VALID_KEYVALUE(v) (v.size()==2 && v[0].size()>0 && v[1].size()>0)
 
-typedef uint64_t wb_clocks_t;
+typedef int64_t wb_clocks_t;
 
 /**
  * clocks and timers class

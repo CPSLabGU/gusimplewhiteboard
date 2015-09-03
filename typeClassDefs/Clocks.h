@@ -87,18 +87,18 @@ namespace guWhiteboard
     {
     public:
         /** clock counter getter */
-        long long get(uint8_t clock_id) const {
+        int64_t get(uint8_t clock_id) const {
             return ( clock_id<static_cast<uint8_t>(CLOCKS_SIZE) ? clocks(clock_id) : -1 );
         }
 
         /** clock counter setter */
-        void set(int clock_id, long long value) { set_clocks(value, clock_id); }
+        void set(int clock_id, int64_t value) { set_clocks(value, clock_id); }
 
         /** reset a clock counter to the current time */
         void reset(int clock_id) { set_clocks(get_utime(), clock_id); }
 
         /** get the current time of a given clock */
-        long long timeSince(int clock_id) { return get_utime() - clocks(clock_id); }
+        int64_t timeSince(int clock_id) { return get_utime() - clocks(clock_id); }
 
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
