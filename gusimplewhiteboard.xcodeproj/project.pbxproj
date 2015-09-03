@@ -47,6 +47,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */; };
+		09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1E11B97DF33005C1FB0 /* Clocks.h */; };
 		8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */; };
 		8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BC17A0F63E00CF2365 /* tcp_config.h */; };
 		8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */; };
@@ -264,6 +266,8 @@
 /* Begin PBXFileReference section */
 		03C1B0381B81F362006427BC /* MicrowaveStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicrowaveStatus.h; sourceTree = "<group>"; };
 		03C1B0391B81F3BC006427BC /* wb_microwave_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_microwave_status.h; sourceTree = "<group>"; };
+		09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_clocks.h; sourceTree = "<group>"; };
+		09E2D1E11B97DF33005C1FB0 /* Clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clocks.h; sourceTree = "<group>"; };
 		8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gutcpinjectionwhiteboardobject.h; sourceTree = "<group>"; };
 		8B19F9BC17A0F63E00CF2365 /* tcp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_config.h; sourceTree = "<group>"; };
 		8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_receiver.cpp; sourceTree = "<group>"; };
@@ -1203,6 +1207,8 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				09E2D1E11B97DF33005C1FB0 /* Clocks.h */,
+				09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */,
 				F19586A0195A8FCA00DF7E5D /* wb_ball.h */,
 				F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */,
 				F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */,
@@ -1465,8 +1471,10 @@
 				C39197A31693DDA200E5D0C6 /* (null) in Headers */,
 				C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */,
 				F1C6F1BC1B73FABC00E2DF81 /* wb_kinematic_motor.h in Headers */,
+				09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */,
+				09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */,
 				F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
