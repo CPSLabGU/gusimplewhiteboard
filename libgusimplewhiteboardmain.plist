@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
  <key>clang_version</key>
-<string>Ubuntu clang version 3.5.0-svn213496-1~exp1 (trunk) (based on LLVM 3.5.0)</string>
+<string>Apple LLVM version 7.0.0 (clang-700.0.72)</string>
  <key>files</key>
  <array>
  </array>

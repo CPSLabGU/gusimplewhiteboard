@@ -1,8 +1,8 @@
 /*
- *  wb_microwave_status.h
+ *  wb_clocks.h
  *  gusimplewhiteboard
  *
- *  Created by Josh Stover on 17/08/2015.
+ *  Created by Josh Stover on 02/09/2015.
  *  Copyright © 2015 Josh Stover. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,37 +56,32 @@
  *
  */
 
-#ifndef wb_microwave_status_h
-#define wb_microwave_status_h
+#ifndef wb_clocks_h
+#define wb_clocks_h
+
 
 #include <gu_util.h>
+#include "gusimplewhiteboard.h"
+
+#define CLOCKS_SIZE sizeof(gu_simple_message)/sizeof(wb_clocks_t) ///< clocks available
+
+#define VALID_KEYVALUE(v) (v.size()==2 && v[0].size()>0 && v[1].size()>0)
+
+typedef int64_t wb_clocks_t;
 
 /**
- * Microwave status properties.
+ * clocks and timers class
  */
-struct wb_microwave_status
+struct wb_clocks
 {
-    // time remaining counter
-    PROPERTY(uint16_t, timeLeft)
-    
-    // door open boolean
-    BIT_PROPERTY(doorOpen)
-    
-    // button pushed boolean
-    BIT_PROPERTY(buttonPushed)
+    /// array of clock counters
+    ARRAY_PROPERTY(wb_clocks_t, clocks, CLOCKS_SIZE)
 
-    // padding
-    unsigned int _padding : 14;
-    
 #ifdef __cplusplus
-    wb_microwave_status(uint16_t time = 0) :
-        _timeLeft(time),
-        _doorOpen(false),
-        _buttonPushed(false)
-    {}
+    wb_clocks() { memset(this, 0, sizeof(*this)); }
 #endif
-    
+
 };
 
 
-#endif /* wb_microwave_status_h */
+#endif /* wb_clocks_h */

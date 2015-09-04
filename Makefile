@@ -13,7 +13,7 @@ CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 USE_READLINE=yes			# command line history and completion
 
-ALL_TARGETS=host-local robot-local test xc
+ALL_TARGETS=host-local robot-local analyse test xc
 
 CC_SRCS=libgusimplewhiteboardmain.cc
 

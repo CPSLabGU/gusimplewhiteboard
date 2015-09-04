@@ -99,6 +99,8 @@
 #include "NXT_Two_Touch_Status.h"
 #include "NXT_Sound_Control.h"
 #include "NXT_Lights_Control.h"
+#include "MicrowaveStatus.h"
+#include "Clocks.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"

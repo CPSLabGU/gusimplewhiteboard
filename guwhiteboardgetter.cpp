@@ -862,6 +862,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !MicrowaveStatus_DEFINED
 
+		case kClocks_v:
+#ifdef Clocks_DEFINED
+		{
+/** WB Ptr Class: Clocks @brief Nil */ 
+			class Clocks_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !Clocks_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
