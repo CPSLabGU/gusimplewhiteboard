@@ -47,6 +47,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		09CBB3531B9D4143007AA9D2 /* wb_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 09CBB3521B9D4143007AA9D2 /* wb_channels.h */; };
+		09CBB3551B9D4153007AA9D2 /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 09CBB3541B9D4153007AA9D2 /* Channels.h */; };
 		09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */; };
 		09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1E11B97DF33005C1FB0 /* Clocks.h */; };
 		8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */; };
@@ -266,6 +268,8 @@
 /* Begin PBXFileReference section */
 		03C1B0381B81F362006427BC /* MicrowaveStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicrowaveStatus.h; sourceTree = "<group>"; };
 		03C1B0391B81F3BC006427BC /* wb_microwave_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_microwave_status.h; sourceTree = "<group>"; };
+		09CBB3521B9D4143007AA9D2 /* wb_channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_channels.h; sourceTree = "<group>"; };
+		09CBB3541B9D4153007AA9D2 /* Channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channels.h; sourceTree = "<group>"; };
 		09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_clocks.h; sourceTree = "<group>"; };
 		09E2D1E11B97DF33005C1FB0 /* Clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clocks.h; sourceTree = "<group>"; };
 		8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gutcpinjectionwhiteboardobject.h; sourceTree = "<group>"; };
@@ -1207,7 +1211,6 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
-				09E2D1E11B97DF33005C1FB0 /* Clocks.h */,
 				09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */,
 				F19586A0195A8FCA00DF7E5D /* wb_ball.h */,
 				F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */,
@@ -1224,7 +1227,10 @@
 				F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */,
 				03C1B0391B81F3BC006427BC /* wb_microwave_status.h */,
 				F1E2FEF0195105A60039FFD9 /* wb_point.h */,
+				09CBB3521B9D4143007AA9D2 /* wb_channels.h */,
 				C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */,
+				09CBB3541B9D4153007AA9D2 /* Channels.h */,
+				09E2D1E11B97DF33005C1FB0 /* Clocks.h */,
 				F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */,
 				F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */,
 				F51974AA1952715000010021 /* FilteredArrayOneDimObjects.h */,
@@ -1477,10 +1483,12 @@
 				09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */,
 				F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
+				09CBB3531B9D4143007AA9D2 /* wb_channels.h in Headers */,
 				8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */,
 				C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */,
 				C3C966EF1AA7F6B40013E8E3 /* APM_Interface.h in Headers */,
 				F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */,
+				09CBB3551B9D4153007AA9D2 /* Channels.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
 				F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */,

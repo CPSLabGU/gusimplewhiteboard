@@ -874,6 +874,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Clocks_DEFINED
 
+		case kChannels_v:
+#ifdef Channels_DEFINED
+		{
+/** WB Ptr Class: Channels @brief Nil */ 
+			class Channels_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !Channels_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -101,6 +101,7 @@
 #include "NXT_Lights_Control.h"
 #include "MicrowaveStatus.h"
 #include "Clocks.h"
+#include "Channels.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
