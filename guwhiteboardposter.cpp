@@ -921,6 +921,22 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Channels_DEFINED
 
+		case kToGear_v:
+		{
+/** WB Ptr Class: ToGear @brief Nil */ 
+			class ToGear_t ToGear_msg;
+			ToGear_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kFromGear_v:
+		{
+/** WB Ptr Class: FromGear @brief Nil */ 
+			class FromGear_t FromGear_msg;
+			FromGear_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -932,7 +948,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(78);
+	// self.reserve(80);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1012,5 +1028,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["MicrowaveStatus"] = kMicrowaveStatus_v;
 	self["Clocks"] = kClocks_v;
 	self["Channels"] = kChannels_v;
+	self["ToGear"] = kToGear_v;
+	self["FromGear"] = kFromGear_v;
 }
 
