@@ -74,10 +74,6 @@
 /// Return the state of the channel
 #define CHANNEL_WAITING(s, n)	( ((s)->_channels[(n)/8]  &  (1<<((n)%8))) != 0 )
 
-/// Recieve and reset the state from the channel
-#define CHANNEL_RECV(s, n)      if (!CHANNEL_WAITING(s,n)){ return false; }\
-                                else { CHANNEL_CLEAR(s,n); return true; }
-
 /**
  * UPPAAL style synchronisation channels.
  * Implemented as a bit vector, 1-bit per channel.

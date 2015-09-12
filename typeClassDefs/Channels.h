@@ -86,8 +86,8 @@ namespace guWhiteboard
     class Channels: public wb_channels
     {
     public:
-	/** synchronise two machines: reciever */
-	bool recieve(int channel) { CHANNEL_RECV(this, channel) }
+	/** check if a signal has been sent on a channel */
+	bool waiting(int channel) { return CHANNEL_WAITING(this, channel); }
 
 	/** synchronise two machines: sender */
 	void send(int channel) { CHANNEL_SEND(this, channel); }

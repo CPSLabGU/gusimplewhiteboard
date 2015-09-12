@@ -97,9 +97,11 @@ namespace guWhiteboard
         /** reset a clock counter to the current time */
         void reset(int clock_id) { set_clocks(get_utime(), clock_id); }
 
-        /** get the current time of a given clock */
-        int64_t timeSince(int clock_id) { return get_utime() - clocks(clock_id); }
+        /** get the current time since last reset of a given clock */
+        int64_t time(int clock_id) { return get_utime() - clocks(clock_id); }
 
+	/** time since last reset in ms */
+	int64_t time_ms(int clock_id) { return (get_utime() - clocks(clock_id))/1000; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
