@@ -78,3 +78,4 @@ class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping
 class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
 int,            nonatomic,      ToGear,         "ToGear",       Target gear number for Model Checking Case Study
 int,            nonatomic,      FromGear,       "FromGear",     Current gear number for Model Checking Case Study
+int,            nonatomic,      ErrorStat,       "ErrorStat",     Error status in Clutch for Model Checking Case Study

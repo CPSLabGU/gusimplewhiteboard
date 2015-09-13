@@ -898,6 +898,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class FromGear_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kErrorStat_v:
+		{
+/** WB Ptr Class: ErrorStat @brief Nil */ 
+			class ErrorStat_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

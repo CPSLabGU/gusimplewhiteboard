@@ -937,6 +937,14 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kErrorStat_v:
+		{
+/** WB Ptr Class: ErrorStat @brief Nil */ 
+			class ErrorStat_t ErrorStat_msg;
+			ErrorStat_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -948,7 +956,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(80);
+	// self.reserve(81);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1030,5 +1038,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["Channels"] = kChannels_v;
 	self["ToGear"] = kToGear_v;
 	self["FromGear"] = kFromGear_v;
+	self["ErrorStat"] = kErrorStat_v;
 }
 
