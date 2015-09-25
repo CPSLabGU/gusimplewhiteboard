@@ -15,7 +15,7 @@
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 
 #include "gusimplewhiteboard.h"
-#include "../guudpwhiteboard/tcp_config.h"
+#include "tcp_config.h"
 
 #include <iostream> //cerr
 #include <cstdio> //stderr etc..
