@@ -850,18 +850,6 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !NXT_Lights_Control_DEFINED
 
-		case kMicrowaveStatus_v:
-#ifdef MicrowaveStatus_DEFINED
-		{
-/** WB Ptr Class: MicrowaveStatus @brief Nil */ 
-			class MicrowaveStatus_t m;
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !MicrowaveStatus_DEFINED
-
 		case kClocks_v:
 #ifdef Clocks_DEFINED
 		{

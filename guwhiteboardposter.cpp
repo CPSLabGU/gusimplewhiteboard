@@ -885,18 +885,6 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !NXT_Lights_Control_DEFINED
 
-		case kMicrowaveStatus_v:
-#ifdef MicrowaveStatus_DEFINED
-		{
-/** WB Ptr Class: MicrowaveStatus @brief Nil */ 
-			class MicrowaveStatus_t MicrowaveStatus_msg;
-			MicrowaveStatus_msg.post(MicrowaveStatus(message_content));
-			return true;
-		}
-#else
-			return false;
-#endif // !MicrowaveStatus_DEFINED
-
 		case kClocks_v:
 #ifdef Clocks_DEFINED
 		{
@@ -956,7 +944,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(81);
+	// self.reserve(80);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1033,7 +1021,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Two_Touch_Status"] = kNXT_Two_Touch_Status_v;
 	self["NXT_Sound_Control"] = kNXT_Sound_Control_v;
 	self["NXT_Lights_Control"] = kNXT_Lights_Control_v;
-	self["MicrowaveStatus"] = kMicrowaveStatus_v;
 	self["Clocks"] = kClocks_v;
 	self["Channels"] = kChannels_v;
 	self["ToGear"] = kToGear_v;
