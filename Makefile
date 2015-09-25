@@ -23,7 +23,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 .include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
-INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} guwhiteboardtypelist_tcp_generated.h
+INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS}
 
 all: all-real
 
