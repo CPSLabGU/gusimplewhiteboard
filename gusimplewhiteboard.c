@@ -207,7 +207,11 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
                                 gsw_register_message_type(wbd, type_str);
                         }
         }
+#ifdef WITHOUT_LIBDISPATCH
+        wbd->callback_queue = NULL;
+#else
         wbd->callback_queue = dispatch_queue_create(NULL, NULL);
+#endif
         return wbd;
 }
 
@@ -230,7 +234,9 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
         {
                 gsw_remove_wbd_signal_handler(wbd);
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);
+#ifndef WITHOUT_LIBDISPATCH
                 if (wbd->callback_queue) dispatch_release(wbd->callback_queue);
+#endif
                 free(wbd);
         }
 }
@@ -249,9 +255,16 @@ static void create_singleton_whiteboard(void *context)
 
 gu_simple_whiteboard_descriptor *get_local_singleton_whiteboard(void)
 {
+#ifdef WITHOUT_LIBDISPATCH	// not thread-safe without libdispatch!
+	if (!local_whiteboard_descriptor)
+	{
+		local_whiteboard_descriptor = (gu_simple_whiteboard_descriptor *)~0;
+		create_singleton_whiteboard(NULL);
+	}
+#else
 	static dispatch_once_t onceToken;
 	dispatch_once_f(&onceToken, NULL, create_singleton_whiteboard);
-
+#endif
 	return local_whiteboard_descriptor;
 }
 
@@ -536,14 +549,12 @@ void gsw_signal_subscribers(gu_simple_whiteboard *wb)
 #endif
 }
 
+#ifndef WITHOUT_LIBDISPATCH
 static void subscription_callback(void *param)
 {
         gu_simple_whiteboard_descriptor *wbd = param;
         if (wbd->callback) wbd->callback(wbd);
 }
-
-typedef void (*gsw_sig_t)(int sig);
-static gsw_sig_t old_handler = SIG_DFL;
 
 static void monitor_subscriptions(void *param)
 {
@@ -562,6 +573,10 @@ static void monitor_subscriptions(void *param)
         }
         wbd->got_monitor = false;
 }
+#endif
+
+typedef void (*gsw_sig_t)(int sig);
+static gsw_sig_t old_handler = SIG_DFL;
 
 /* signal handler */
 static void sig_handler(int signum)
@@ -574,11 +589,14 @@ void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
         gsw_procure(wbd->sem, GSW_SEM_PROC);
         if (old_handler == SIG_DFL)
                 old_handler = signal(WHITEBOARD_SIGNAL, sig_handler);
+
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch!
         if (!wbd->got_monitor)
         {
                 wbd->got_monitor = true;
                 dispatch_async_f(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), wbd, monitor_subscriptions);
         }
+#endif
         gsw_vacate(wbd->sem, GSW_SEM_PROC);
 }
 

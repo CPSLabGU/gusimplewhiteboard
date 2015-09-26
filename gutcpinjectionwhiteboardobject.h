@@ -9,6 +9,8 @@
 #ifndef TCP_INJECTION_WB_OBJ_H
 #define TCP_INJECTION_WB_OBJ_H
 
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
@@ -223,6 +225,7 @@ bool injection_whiteboard_object<object_type>::send_message(const object_type &m
         return send_tcp(p);
 }
 
+#endif // WITHOUT_LIBDISPATCH
 #endif //TCP_INJECTION_WB_OBJ_H
 
 

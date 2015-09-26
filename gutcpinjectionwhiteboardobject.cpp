@@ -7,6 +7,9 @@
  */
 
 #include "gutcpinjectionwhiteboardobject.h"
+
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #include <gu_util.h> //gu_strlcpy
 
 const char *robot_network_names[] =
@@ -67,3 +70,5 @@ bool injection_whiteboard_object<std::vector<int> >::send_message(const std::vec
 
         return send_tcp(p);
 }
+
+#endif // WITHOUT_LIBDISPATCH

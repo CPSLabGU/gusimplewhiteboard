@@ -9,6 +9,8 @@
 #ifndef GENERIC_WB_WATCHER_H
 #define GENERIC_WB_WATCHER_H
 
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
@@ -274,4 +276,5 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd) //called
 }
 
 
+#endif	// WITHOUT_LIBDISPATCH
 #endif //GENERIC_WB_WATCHER_H

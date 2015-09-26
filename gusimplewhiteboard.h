@@ -67,9 +67,15 @@
 #ifdef __APPLE__
 #include <AvailabilityMacros.h>
 #endif
+#ifndef WITHOUT_LIBDISPATCH
 #include <dispatch/dispatch.h>
+#endif
 #include <sys/types.h>
-#ifdef __cplusplus
+
+#ifndef __cplusplus
+#include <stdbool.h>
+#else
+#include <cstdbool>
 
 extern "C"
 {
@@ -264,7 +270,7 @@ typedef struct gsw_whiteboard_s
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
         gsw_sema_t               sem;           ///< semaphore to use
         int                      fd;            ///< the associated memory-mapped file
-#if __has_feature(objc_arc)
+#if __has_feature(objc_arc) || defined(WITHOUT_LIBDISPATCH)
         void                    *callback_queue;///< subscription callback queue
 #else
         dispatch_queue_t         callback_queue;///< subscription callback queue
