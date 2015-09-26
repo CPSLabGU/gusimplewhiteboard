@@ -10,6 +10,7 @@
 #define WALK2014_ControlStatus_DEFINED
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#include <cstdio>
 #include <string>
 #include <sstream>
 #include <ctype.h>
