@@ -30,7 +30,11 @@ all: all-real
 host: host-local
 	echo "Use 'make host-local' instead of 'make host'"
 
+.ifndef TARGET
 install: host-local
+.else
+install: cross-local
+.endif
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 	cd ${BUILDDIR}-local && \
@@ -44,6 +48,19 @@ install: host-local
 	fi
 .endfor
 .endif
+
+.ifdef TARGET
+cross-install: install
+.else
+cross-install: cross-local
+.  for rarch in ${ARCHS.${DEFAULT_TARGET}}
+	$Eenv PATH=${TARGET_PATH.${DEFAULT_TARGET}:Q}                   \
+                ${MAKE} ${MAKEFLAGS} TARGET=${DEFAULT_TARGET}           \
+                BUILD_FLAGS=${TARGET_BUILD_FLAGS.${DEFAULT_TARGET}:Q}   \
+                TARGET_PLATFORM=${rarch} ALL_TARGETS=cross-install
+.  endfor
+.endif
+
 
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
