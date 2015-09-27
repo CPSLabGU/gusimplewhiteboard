@@ -1,5 +1,5 @@
 /*
- *  gusimplewhiteboard.h
+ *  gusimplewhiteboard.c
  *  
  *  Created by René Hexel on 20/12/11.
  *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
@@ -59,6 +59,7 @@
 #pragma clang diagnostic ignored "-Wunused-macros"
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 #pragma clang diagnostic ignored "-Wclass-varargs"
+#pragma clang diagnostic ignored "-Wbuiltin-requires-header"
 
 #ifdef __linux
 #ifndef _BSD_SOURCE
