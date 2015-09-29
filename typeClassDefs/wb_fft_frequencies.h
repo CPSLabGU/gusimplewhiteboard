@@ -187,11 +187,17 @@ struct fft_dominant_frequency
      */
     fft_dominant_frequency(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
+        int16_t *freqp = &_frequencies->left();
+
         if (freqs)
         {
-            int16_t *freqp = &_frequencies->left();
             int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
             while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
+        }
+        else
+        {
+            freqp[0] = 0;
+            freqp[1] = 0;
         }
     }
 
