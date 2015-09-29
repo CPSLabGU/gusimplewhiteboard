@@ -58,6 +58,7 @@
 #ifndef FFTStatus_DEFINED
 #define FFTStatus_DEFINED
 
+#include <cstddef>
 #include <cassert>
 #include <cstdarg>
 #include <cstdlib>
