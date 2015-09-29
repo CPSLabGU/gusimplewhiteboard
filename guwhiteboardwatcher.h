@@ -9,8 +9,6 @@
 #ifndef GENERIC_WB_WATCHER_H
 #define GENERIC_WB_WATCHER_H
 
-#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
@@ -19,6 +17,9 @@
 #pragma clang diagnostic ignored "-Wunused-value"
 
 #include "gusimplewhiteboard.h"
+
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #include "WBFunctor.h"
 #include <iostream> //cerr
 #include <cstdio> //stderr etc..
