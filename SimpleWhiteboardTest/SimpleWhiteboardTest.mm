@@ -570,7 +570,7 @@ public:
 
 static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v,
         // FIXME: vision below
-    kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v }; // FIXME: vision
+    kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v, kInput3D_v, kOculusPrime_Command_v, kAPM_Status_v, kAPM_Command_v }; // FIXME: vision
 
 - (void) testStringPostings
 {
