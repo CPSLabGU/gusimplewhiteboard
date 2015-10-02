@@ -124,12 +124,14 @@ public:
 {
         setenv(GSW_DEFAULT_ENV, WB_FNAME, 1);
 
+        Print_t wb;
+        (void) wb.get();  // create whiteboard (if it doesn't exist)
+
         [super setUp];
 
         self.callbackCount = 0;
         self.semaphore = dispatch_semaphore_create(0);
-        
-        
+
         //generic wb object testing
 
 //        generic_whiteboard_object<gu_simple_message> *testInt = new generic_whiteboard_object<gu_simple_message>(self.whiteboard->_wbd, 20);
@@ -218,7 +220,7 @@ public:
 }
 
 
-- (void) testSerializaitonSENSORS_TorsoJointSensors
+- (void) testSerializationSENSORS_TorsoJointSensors
 {
     SENSORS_TorsoJointSensors testA("10Y,20P");
     XCTAssertEqualWithAccuracy(DEG2RAD(10), testA.HeadYaw  (), 0.01, @"Head Yaw match");
@@ -226,7 +228,7 @@ public:
    // XCTAssertFalse(true, @"Head Pitch match");
     
 }
-- (void) testSerializaitonFilteredSonarObject
+- (void) testSerializationFilteredSonarObject
 {
         FilteredOneDimSonar testA("");
         
@@ -250,7 +252,7 @@ public:
 
 }
 
-- (void) testSerializaitonFilteredOneDimObject
+- (void) testSerializationFilteredOneDimObject
 {
         FilteredOneDimObject testA("");
 
@@ -279,7 +281,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimSonar
+- (void) testSerializationFilteredArrayOneDimSonar
 {
     FilteredOneDimSonar testA("IsVisible,10,FRAME:100,");
     
@@ -326,7 +328,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimObjects
+- (void) testSerializationFilteredArrayOneDimObjects
 {
     FilteredOneDimObject testP("IsVisible,10,20,30,40,FRAME:100,");
     
@@ -399,7 +401,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimBall
+- (void) testSerializationFilteredArrayOneDimBall
 {
     FilteredOneDimObject testT("IsVisible,10,20,30,40,FRAME:100,");
     
