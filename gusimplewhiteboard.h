@@ -77,7 +77,11 @@
 #ifndef __cplusplus
 #include <stdbool.h>
 #else
+#if __cplusplus < 201103L
+#include <stdbool.h>
+#else
 #include <cstdbool>
+#endif
 
 extern "C"
 {
