@@ -23,6 +23,8 @@ struct wb_oculus_prime_serial
 {
     /** speed for each wheel */
     CONTROLLED_ARRAY_PROPERTY(uint8_t, forward, 2)
+	CONTROLLED_ARRAY_PROPERTY(uint8_t, left, 2)
+	CONTROLLED_ARRAY_PROPERTY(uint8_t, right, 2)
 
 
 
@@ -31,6 +33,8 @@ struct wb_oculus_prime_serial
 
     /** Control bit (mask) */
     CONTROL_BIT(forward)
+	CONTROL_BIT(left)
+	CONTROL_BIT(right)
     /** Control bit (mask) */
     CONTROL_BIT(stop)
 

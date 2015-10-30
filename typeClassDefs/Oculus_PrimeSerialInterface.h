@@ -90,10 +90,14 @@ namespace guWhiteboard
 
                 //serial parser - removed indenting so I can read it, Carl.
 ARRAY_PARSER("f",     forward,                    PARSE_UINT8 )
+ARRAY_PARSER("l",     left,                       PARSE_UINT8 )
+ARRAY_PARSER("r",     right,                      PARSE_UINT8 )
 PARSER("s",     stop,                       1)
 
                 //pretty parser - removed indenting so I can read it, Carl.
 ARRAY_PARSER("forward",       forward,               PARSE_UINT8)
+ARRAY_PARSER("left",       left,                     PARSE_UINT8)
+ARRAY_PARSER("right",       right,                   PARSE_UINT8)
 PARSER("stop",          stop,                       1)
 			}
 		}
