@@ -5,7 +5,7 @@
  *  Created by
  *  \author Rene Hexel on
  *  \date 24/06/2014.
- *  Copyright (c) 2014 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -188,13 +188,11 @@ struct fft_dominant_frequency
     fft_dominant_frequency(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): _rms(lrms, rrms), _fsk(hi, lo, fsk)
     {
         int16_t *freqp = &_frequencies->left();
-
-        if (freqs)
-        {
-            int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
-            while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
-        }
-        else
+        const int16_t * const start = freqp;
+        int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
+        while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
+        const size_t n = freqp - start;
+        if (n < FFT_DOMINANT_NUMFREQ/2)
         {
             freqp[0] = 0;
             freqp[1] = 0;
