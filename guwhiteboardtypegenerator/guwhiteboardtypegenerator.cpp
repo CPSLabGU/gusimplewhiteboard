@@ -24,6 +24,8 @@ using namespace std;
 #define CLASS_DOXY(c, comment) "/** WB Ptr Class: " << c << " @brief " << comment << " */ \n"
 #define CLASS_CON_DOXY(c) "/** Constructor: " << c << " */ \n"
 
+static bool read_from_stdin = false;
+
 static const char *include_str = "\
 /**                                                                     \n\
  *  /file guwhiteboardtypelist_generated.h                              \n\
@@ -183,7 +185,7 @@ bool opening_files(string aPath);
 
 bool opening_files(string aPath)
 {
-	string tsl_file_name=aPath+string("guwhiteboardtypelist.tsl");
+        string tsl_file_name= read_from_stdin ? string("/dev/stdin") : aPath+string("guwhiteboardtypelist.tsl");
 	string output_file_name=aPath+string("guwhiteboardtypelist_generated.h");
 	string output_tcp_file_name=aPath+string("guwhiteboardtypelist_tcp_generated.h");
 
@@ -224,7 +226,10 @@ int main(int argc, char *argv[]) {
 	string thePath=string("../");
 	string userPath=string("");
 
-	       int ch;
+        if ((read_from_stdin = !isatty(STDIN_FILENO)))
+            thePath = "";
+
+        int ch;
 	              while ((ch = getopt(argc, argv, "P:")) != -1) 
 		      { switch (ch) { case 'P':       // Path 
 					    cerr << optarg << endl; 
