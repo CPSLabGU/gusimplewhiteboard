@@ -123,19 +123,37 @@ extern "C"
 #endif
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            4       ///< version
+#ifndef GU_SIMPLE_WHITEBOARD_GENERATIONS
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
+#endif
+#ifndef GU_SIMPLE_WHITEBOARD_BUFSIZE
 #define GU_SIMPLE_WHITEBOARD_BUFSIZE            128     ///< message len (max)
+#endif
+#ifndef GSW_TOTAL_MESSAGE_TYPES
 #define GSW_TOTAL_MESSAGE_TYPES                 512     ///< message types (max)
+#endif
+#ifndef GSW_NUM_RESERVED
 #define GSW_NUM_RESERVED                        (GSW_TOTAL_MESSAGE_TYPES/2)    // message types (max)
+#endif
 #define GSW_TOTAL_PROCESSES                     256     ///< maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
 /// environment variable containing the default whiteboard file name
+#ifndef GSW_DEFAULT_ENV
 #define GSW_DEFAULT_ENV     "WHITEBOARD_NAME"
+#endif
+#ifndef GSW_DEFAULT_NAME
 #define GSW_DEFAULT_NAME    "guWhiteboard"              ///< fallback default wb
+#endif
+#ifndef GSWR_BASE_NAME
 #define GSWR_BASE_NAME      "guudpwhiteboard"           ///< UDP whiteboard name
+#endif
+#ifndef WHITEBOARD_SIGNAL
 #define WHITEBOARD_SIGNAL       SIGUSR2
+#endif
+#ifndef WHITEBOARD_POLL_PERIOD
 #define WHITEBOARD_POLL_PERIOD  10000
+#endif
 
 enum gsw_semaphores
 {
