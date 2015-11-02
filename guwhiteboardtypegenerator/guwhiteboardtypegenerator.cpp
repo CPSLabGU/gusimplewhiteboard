@@ -400,7 +400,7 @@ int main(int argc, char *argv[]) {
 		
 		if (static_cast<int>(elements.size()) != ParseTarget::NUM_OF_TARGETS)
 		{
-			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %ld\nexiting...", types.size());
+			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %zu\nexiting...", types.size());
 			exit(1);
 		}
 
