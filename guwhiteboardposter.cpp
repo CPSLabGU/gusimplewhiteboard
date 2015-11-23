@@ -909,29 +909,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Channels_DEFINED
 
-		case kToGear_v:
+		case kSwitch_Subsumption_v:
+#ifdef Switch_Subsumption_DEFINED
 		{
-/** WB Ptr Class: ToGear @brief Nil */ 
-			class ToGear_t ToGear_msg;
-			ToGear_msg.post(atoi(message_content.c_str()));
+/** WB Ptr Class: Switch_Subsumption @brief Nil */ 
+			class Switch_Subsumption_t Switch_Subsumption_msg;
+			Switch_Subsumption_msg.post(Switch_Subsumption(message_content));
 			return true;
 		}
-
-		case kFromGear_v:
-		{
-/** WB Ptr Class: FromGear @brief Nil */ 
-			class FromGear_t FromGear_msg;
-			FromGear_msg.post(atoi(message_content.c_str()));
-			return true;
-		}
-
-		case kErrorStat_v:
-		{
-/** WB Ptr Class: ErrorStat @brief Nil */ 
-			class ErrorStat_t ErrorStat_msg;
-			ErrorStat_msg.post(atoi(message_content.c_str()));
-			return true;
-		}
+#else
+			return false;
+#endif // !Switch_Subsumption_DEFINED
 
 	}
 #pragma clang diagnostic push
@@ -944,7 +932,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(80);
+	// self.reserve(78);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1023,8 +1011,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Lights_Control"] = kNXT_Lights_Control_v;
 	self["Clocks"] = kClocks_v;
 	self["Channels"] = kChannels_v;
-	self["ToGear"] = kToGear_v;
-	self["FromGear"] = kFromGear_v;
-	self["ErrorStat"] = kErrorStat_v;
+	self["Switch_Subsumption"] = kSwitch_Subsumption_v;
 }
 

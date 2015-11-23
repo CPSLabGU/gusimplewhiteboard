@@ -75,3 +75,4 @@ class:NXT_Sound_Control, nonatomic, NXT_Sound_Control,                     "NXT_
 class:NXT_Lights_Control, nonatomic, NXT_Lights_Control,                     "NXT_Lights_Control", Class that places power in NXT's for lights
 class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping track of time
 class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
+class:Switch_Subsumption, nonatomic, Switch_Subsumption, "Switch_Subsumption"

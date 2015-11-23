@@ -874,24 +874,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Channels_DEFINED
 
-		case kToGear_v:
+		case kSwitch_Subsumption_v:
+#ifdef Switch_Subsumption_DEFINED
 		{
-/** WB Ptr Class: ToGear @brief Nil */ 
-			class ToGear_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+/** WB Ptr Class: Switch_Subsumption @brief Nil */ 
+			class Switch_Subsumption_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
-		case kFromGear_v:
-		{
-/** WB Ptr Class: FromGear @brief Nil */ 
-			class FromGear_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-		}
-		case kErrorStat_v:
-		{
-/** WB Ptr Class: ErrorStat @brief Nil */ 
-			class ErrorStat_t m;
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-		}
+#else
+			return "##unsupported##";
+
+#endif // !Switch_Subsumption_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
