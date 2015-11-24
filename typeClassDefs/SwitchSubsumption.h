@@ -1,5 +1,5 @@
 /*
- *  Switch_Subsumption.h
+ *  SwitchSubsumption.h
  *  gusimplewhiteboard
  *
  *  Created by Vlad Estivill-Castro on 20/11/2015.
@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef Switch_Subsumption_DEFINED
-#define Switch_Subsumption_DEFINED
+#ifndef SwitchSubsumption_DEFINED
+#define SwitchSubsumption_DEFINED
 
 
 #include "wb_switch_subsumption.h"
@@ -75,14 +75,14 @@ namespace guWhiteboard
     * --------
     *
     */
-    class Switch_Subsumption: public wb_switch_subsumption
+    class SwitchSubsumption: public wb_switch_subsumption
     {
     public:
-       Switch_Subsumption() : wb_switch_subsumption() { }
+       SwitchSubsumption() : wb_switch_subsumption() { }
    
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */
-        Switch_Subsumption(const std::string &motion_command): wb_switch_subsumption() 
+        SwitchSubsumption(const std::string &motion_command): wb_switch_subsumption() 
 	    { from_string(motion_command); }
 
         /** convert to a string */
@@ -109,4 +109,4 @@ namespace guWhiteboard
     };
 }
 
-#endif /* Switch_Subsumption_DEFINED */
+#endif /* SwitchSubsumption_DEFINED */
