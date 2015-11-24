@@ -909,17 +909,17 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !Channels_DEFINED
 
-		case kSwitch_Subsumption_v:
-#ifdef Switch_Subsumption_DEFINED
+		case kSwitchSubsumption_v:
+#ifdef SwitchSubsumption_DEFINED
 		{
-/** WB Ptr Class: Switch_Subsumption @brief Nil */ 
-			class Switch_Subsumption_t Switch_Subsumption_msg;
-			Switch_Subsumption_msg.post(Switch_Subsumption(message_content));
+/** WB Ptr Class: SwitchSubsumption @brief Nil */ 
+			class SwitchSubsumption_t SwitchSubsumption_msg;
+			SwitchSubsumption_msg.post(SwitchSubsumption(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !Switch_Subsumption_DEFINED
+#endif // !SwitchSubsumption_DEFINED
 
 	}
 #pragma clang diagnostic push
@@ -1011,6 +1011,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Lights_Control"] = kNXT_Lights_Control_v;
 	self["Clocks"] = kClocks_v;
 	self["Channels"] = kChannels_v;
-	self["Switch_Subsumption"] = kSwitch_Subsumption_v;
+	self["SwitchSubsumption"] = kSwitchSubsumption_v;
 }
 

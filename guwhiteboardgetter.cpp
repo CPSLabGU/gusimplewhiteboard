@@ -874,17 +874,17 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !Channels_DEFINED
 
-		case kSwitch_Subsumption_v:
-#ifdef Switch_Subsumption_DEFINED
+		case kSwitchSubsumption_v:
+#ifdef SwitchSubsumption_DEFINED
 		{
-/** WB Ptr Class: Switch_Subsumption @brief Nil */ 
-			class Switch_Subsumption_t m;
+/** WB Ptr Class: SwitchSubsumption @brief Nil */ 
+			class SwitchSubsumption_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !Switch_Subsumption_DEFINED
+#endif // !SwitchSubsumption_DEFINED
 
 	}
 #pragma clang diagnostic push

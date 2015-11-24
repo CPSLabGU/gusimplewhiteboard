@@ -101,7 +101,7 @@
 #include "NXT_Lights_Control.h"
 #include "Clocks.h"
 #include "Channels.h"
-#include "Switch_Subsumption.h"
+#include "SwitchSubsumption.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
