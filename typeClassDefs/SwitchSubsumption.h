@@ -115,7 +115,7 @@ namespace guWhiteboard
 	  for (int i = 0; i < SUMPSUMSION_LEVELS && getline(iss, token, ',') ; i++)
 		{ const int n = atoi(token.c_str());
 		  enum TotoMotionCommand &comamnd = theMotions(i);
-		  if (n<=0) comamnd=STOP;
+		  if (n<=0) comamnd=NO_COMMAND;
 		  switch (n)
 		  { case 1 : comamnd=STOP;
 			  break;
