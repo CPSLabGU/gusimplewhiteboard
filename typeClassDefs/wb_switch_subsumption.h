@@ -20,7 +20,7 @@ enum TotoMotionCommand
 	STOP,
 	BACKWARDS,
 	MOVE_FORWARD,
-	TUYRN_LEFT,
+	TURN_LEFT,
 	TURN_RIGHT
 };
 

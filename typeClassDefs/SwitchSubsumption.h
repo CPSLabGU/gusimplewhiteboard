@@ -89,6 +89,22 @@ namespace guWhiteboard
         std::string description() const
         {
 	    std::ostringstream ss;
+	    for (int i=0 ; i< SUMPSUMSION_LEVELS; i++)
+	     switch (theMotions(i))
+		{ case NO_COMMAND : ss << "null, ";
+		break;
+		case STOP :  ss << "stop, ";
+		break;
+		case BACKWARDS :  ss << "back, ";
+		break;
+		case MOVE_FORWARD  :  ss << "forwards, ";
+		break;
+		case TURN_LEFT  :  ss << "left, ";
+		break;
+		case TURN_RIGHT  :  ss << "right, ";
+		break;
+		}
+
             return ss.str();
         }
 
@@ -102,6 +118,15 @@ namespace guWhiteboard
 		  if (n<=0) comamnd=STOP;
 		  switch (n)
 		  { case 1 : comamnd=STOP;
+			  break;
+		    case 2 : comamnd=BACKWARDS;
+			  break;
+		    case 3 : comamnd=MOVE_FORWARD;
+			  break;
+		    case 4 : comamnd=TURN_LEFT;
+			  break;
+		    case 5 : comamnd=TURN_RIGHT;
+			  break;
 		  }
 		}
         }
