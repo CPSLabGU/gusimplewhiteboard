@@ -91,17 +91,17 @@ namespace guWhiteboard
 	    std::ostringstream ss;
 	    for (int i=0 ; i< SUMPSUMSION_LEVELS; i++)
 	     switch (theMotions(i))
-		{ case NO_COMMAND : ss << "null, ";
+		{ case TOTO_NO_COMMAND : ss << "null, ";
 		break;
-		case STOP :  ss << "stop, ";
+		case TOTO_STOP :  ss << "stop, ";
 		break;
-		case BACKWARDS :  ss << "back, ";
+		case TOTO_BACKWARDS :  ss << "back, ";
 		break;
-		case MOVE_FORWARD  :  ss << "forwards, ";
+		case TOTO_MOVE_FORWARD  :  ss << "forwards, ";
 		break;
-		case TURN_LEFT  :  ss << "left, ";
+		case TOTO_TURN_LEFT  :  ss << "left, ";
 		break;
-		case TURN_RIGHT  :  ss << "right, ";
+		case TOTO_TURN_RIGHT  :  ss << "right, ";
 		break;
 		}
 
@@ -115,17 +115,17 @@ namespace guWhiteboard
 	  for (int i = 0; i < SUMPSUMSION_LEVELS && getline(iss, token, ',') ; i++)
 		{ const int n = atoi(token.c_str());
 		  enum TotoMotionCommand &comamnd = theMotions(i);
-		  if (n<=0) comamnd=NO_COMMAND;
+		  if (n<=0) comamnd=TOTO_NO_COMMAND;
 		  switch (n)
-		  { case 1 : comamnd=STOP;
+		  { case 1 : comamnd=TOTO_STOP;
 			  break;
-		    case 2 : comamnd=BACKWARDS;
+		    case 2 : comamnd=TOTO_BACKWARDS;
 			  break;
-		    case 3 : comamnd=MOVE_FORWARD;
+		    case 3 : comamnd=TOTO_MOVE_FORWARD;
 			  break;
-		    case 4 : comamnd=TURN_LEFT;
+		    case 4 : comamnd=TOTO_TURN_LEFT;
 			  break;
-		    case 5 : comamnd=TURN_RIGHT;
+		    case 5 : comamnd=TOTO_TURN_RIGHT;
 			  break;
 		  }
 		}

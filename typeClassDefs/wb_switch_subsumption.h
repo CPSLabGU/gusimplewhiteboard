@@ -16,12 +16,12 @@
 #define SUMPSUMSION_LEVELS	6 // number of subsumption levels
 
 enum TotoMotionCommand
-{	NO_COMMAND, // no command do not subsumme
-	STOP,
-	BACKWARDS,
-	MOVE_FORWARD,
-	TURN_LEFT,
-	TURN_RIGHT
+{	TOTO_NO_COMMAND, // no command do not subsumme
+	TOTO_STOP,
+	TOTO_BACKWARDS,
+	TOTO_MOVE_FORWARD,
+	TOTO_TURN_LEFT,
+	TOTO_TURN_RIGHT
 };
 
 struct toto_motion_command
