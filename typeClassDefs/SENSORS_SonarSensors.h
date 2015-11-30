@@ -82,6 +82,24 @@ namespace guWhiteboard
                 RightFrontHighByte    = Right8,
                 RightBackHighByte     = Right9
             };
+
+	    enum Toto
+	    {
+		    sZero = Left0,
+		    sEleven = Left1,
+		    sTen = Left2,
+		    sNine = Left3,
+
+		    sOne = Center0,
+		    sTwo = Center1,
+		    sThree = Center2,
+		    sFour = Center3,
+
+		    sFive = Right0,
+		    sSix = Right1,
+		    sSeven = Right2,
+		    sEight = Right3,
+	    };
         }
  
         /**
