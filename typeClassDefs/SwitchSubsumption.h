@@ -69,10 +69,7 @@
 namespace guWhiteboard
 {
     /**
-    * @brief Class for working with timing and clock messages
-    *
-    * Examples
-    * --------
+    *  Subsumption SWITCH that select highest priority command
     *
     */
     class SwitchSubsumption: public wb_switch_subsumption
@@ -91,20 +88,13 @@ namespace guWhiteboard
 	    std::ostringstream ss;
 	    for (int i=0 ; i< SUMPSUMSION_LEVELS; i++)
 	     switch (theMotions(i))
-		{ case TOTO_NO_COMMAND : ss << "null, ";
-		break;
-		case TOTO_STOP :  ss << "stop, ";
-		break;
-		case TOTO_BACKWARDS :  ss << "back, ";
-		break;
-		case TOTO_MOVE_FORWARD  :  ss << "forwards, ";
-		break;
-		case TOTO_TURN_LEFT  :  ss << "left, ";
-		break;
-		case TOTO_TURN_RIGHT  :  ss << "right, ";
-		break;
+		{ case TOTO_NO_COMMAND : ss << "null, "; break;
+		  case TOTO_STOP :  ss << "stop, "; break;
+		  case TOTO_BACKWARDS :  ss << "back, "; break;
+		  case TOTO_MOVE_FORWARD  :  ss << "forwards, "; break;
+		  case TOTO_TURN_LEFT  :  ss << "left, "; break;
+		  case TOTO_TURN_RIGHT  :  ss << "right, "; break;
 		}
-
             return ss.str();
         }
 
@@ -117,21 +107,63 @@ namespace guWhiteboard
 		  enum TotoMotionCommand &comamnd = theMotions(i);
 		  if (n<=0) comamnd=TOTO_NO_COMMAND;
 		  switch (n)
-		  { case 1 : comamnd=TOTO_STOP;
-			  break;
-		    case 2 : comamnd=TOTO_BACKWARDS;
-			  break;
-		    case 3 : comamnd=TOTO_MOVE_FORWARD;
-			  break;
-		    case 4 : comamnd=TOTO_TURN_LEFT;
-			  break;
-		    case 5 : comamnd=TOTO_TURN_RIGHT;
-			  break;
+		  { case 1 : comamnd=TOTO_STOP; break;
+		    case 2 : comamnd=TOTO_BACKWARDS; break;
+		    case 3 : comamnd=TOTO_MOVE_FORWARD; break;
+		    case 4 : comamnd=TOTO_TURN_LEFT; break;
+		    case 5 : comamnd=TOTO_TURN_RIGHT; break;
 		  }
 		}
         }
 #endif
     };
-}
 
+    /**
+    *  TOTO motion of what is doing 
+    *
+    */
+    class TotoDoingMotion: public wb_toto_doing_motion
+    {
+       TotoDoingMotion() : wb_toto_doing_motion() { }
+   
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        /** string constructor */
+        TotoDoingMotion(const std::string &motion_command): wb_toto_doing_motion() 
+	    { from_string(motion_command); }
+
+        /** convert to a string */
+        std::string description() const
+        {
+	    std::ostringstream ss;
+	    switch (_motionCommand)
+		{ case TOTO_NO_COMMAND : ss << "null, "; break;
+		  case TOTO_STOP :  ss << "stop, "; break;
+		  case TOTO_BACKWARDS :  ss << "back, "; break;
+		  case TOTO_MOVE_FORWARD  :  ss << "forwards, "; break;
+		  case TOTO_TURN_LEFT  :  ss << "left, "; break;
+		  case TOTO_TURN_RIGHT  :  ss << "right, "; break;
+		}
+            return ss.str();
+        }
+
+        /** convert from a string */
+        void from_string(const std::string &str)
+        { std::istringstream iss(str);
+	  std::string token;
+	  for (int i = 0; i < 1 && getline(iss, token, ',') ; i++)
+		{ const int n = atoi(token.c_str());
+		  if (n<=0) _motionCommand=TOTO_NO_COMMAND;
+		  switch (n)
+		  { case 1 : _motionCommand=TOTO_STOP; break;
+		    case 2 : _motionCommand=TOTO_BACKWARDS; break;
+		    case 3 : _motionCommand=TOTO_MOVE_FORWARD; break;
+		    case 4 : _motionCommand=TOTO_TURN_LEFT; break;
+		    case 5 : _motionCommand=TOTO_TURN_RIGHT; break;
+		  }
+		}
+        }
+#endif
+    };
+
+}
 #endif /* SwitchSubsumption_DEFINED */

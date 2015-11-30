@@ -24,7 +24,7 @@ enum TotoMotionCommand
 	TOTO_TURN_RIGHT
 };
 
-struct toto_motion_command
+struct wb_toto_doing_motion
 {
         PROPERTY(TotoMotionCommand, motionCommand)
 };

@@ -76,3 +76,4 @@ class:NXT_Lights_Control, nonatomic, NXT_Lights_Control,                     "NX
 class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping track of time
 class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
 class:SwitchSubsumption, nonatomic, SwitchSubsumption, "SwitchSubsumption"
+class:TotoDoingMotion, nonatomic, TotoDoingMotion, "TotoDoingMotion"

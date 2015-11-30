@@ -886,6 +886,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !SwitchSubsumption_DEFINED
 
+		case kTotoDoingMotion_v:
+#ifdef TotoDoingMotion_DEFINED
+		{
+/** WB Ptr Class: TotoDoingMotion @brief Nil */ 
+			class TotoDoingMotion_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !TotoDoingMotion_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
