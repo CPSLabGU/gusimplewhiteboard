@@ -191,7 +191,7 @@ struct fft_dominant_frequency
         const int16_t * const start = freqp;
         int16_t freq = static_cast<int16_t>(va_arg(freqs, int));
         while (freq) { *freqp++ = freq; freq = static_cast<int16_t>(va_arg(freqs, int)); }
-        const size_t n = freqp - start;
+        const size_t n = static_cast<const size_t>(freqp - start);
         if (n < FFT_DOMINANT_NUMFREQ/2)
         {
             freqp[0] = 0;
