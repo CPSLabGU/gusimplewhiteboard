@@ -14,7 +14,9 @@ COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 
 ALL_TARGETS=host-local robot-local analyse test xc
 
-CC_SRCS=libgusimplewhiteboardmain.cc
+CATKIN_COMPILE_UTIL=YES
+
+CC_SRCS=libgusimplewhiteboardmain.cc 
 
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 

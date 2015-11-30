@@ -114,6 +114,7 @@ add_library(gusimplewhiteboard
    src/gusimplewhiteboard.c
    src/gugenericwhiteboardobject.cpp
    src/guwhiteboardtypelist_c_typestrings_generated.c
+   src/gu_util.cpp
 )
 
 ## Declare a cpp executable
