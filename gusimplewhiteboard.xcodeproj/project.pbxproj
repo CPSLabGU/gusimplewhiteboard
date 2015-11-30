@@ -59,6 +59,7 @@
 		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */; };
 		C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */; };
+		C33DF5271C0825270086181F /* SwitchSubsumption.h in Headers */ = {isa = PBXBuildFile; fileRef = C33DF5261C0825270086181F /* SwitchSubsumption.h */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */; };
@@ -289,6 +290,7 @@
 		C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_c_generated.h; sourceTree = "<group>"; };
 		C32D01E816CA0A50002561B7 /* guwhiteboardtypegenerator.cpp */ = {isa = PBXFileReference; indentWidth = 8; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardtypegenerator.cpp; sourceTree = "<group>"; };
 		C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Giraff_MainSerialInterface.h; sourceTree = "<group>"; };
+		C33DF5261C0825270086181F /* SwitchSubsumption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSubsumption.h; sourceTree = "<group>"; };
 		C3BEDEE41693EADD00119F2E /* guudpSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
 		C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK2014_ControlStatus.h; sourceTree = "<group>"; };
 		C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APM_Interface.h; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 				F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */,
 				F1E5543518EBD16D00639B1E /* SENSORS_TorsoJointSensors.h */,
 				F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */,
+				C33DF5261C0825270086181F /* SwitchSubsumption.h */,
 				F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */,
 				F1E5543818EBD16D00639B1E /* Vision_Control.h */,
 				F1E5543A18EBD16D00639B1E /* VisionBall.h */,
@@ -1477,6 +1480,7 @@
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */,
 				09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */,
+				C33DF5271C0825270086181F /* SwitchSubsumption.h in Headers */,
 				F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
 				09CBB3531B9D4143007AA9D2 /* wb_channels.h in Headers */,
