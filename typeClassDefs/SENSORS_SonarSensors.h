@@ -98,7 +98,7 @@ namespace guWhiteboard
 		    sFive = Right0,
 		    sSix = Right1,
 		    sSeven = Right2,
-		    sEight = Right3,
+		    sEight = Right3
 	    };
         }
  
