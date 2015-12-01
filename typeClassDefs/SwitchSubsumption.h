@@ -124,6 +124,7 @@ namespace guWhiteboard
     */
     class TotoDoingMotion: public wb_toto_doing_motion
     {
+    public:
        TotoDoingMotion() : wb_toto_doing_motion() { }
    
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
