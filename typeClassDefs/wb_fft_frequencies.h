@@ -176,6 +176,7 @@ struct fft_dominant_frequency
     ARRAY_PROPERTY(struct fft_frequency_level_pair, frequencies, FFT_DOMINANT_NUMFREQ)
 
 #ifdef __cplusplus
+#if 0
     /**
      * default constructor (C++ only)
      * @param lrms  RMS level on the left channel
@@ -198,7 +199,7 @@ struct fft_dominant_frequency
             freqp[1] = 0;
         }
     }
-
+#endif
     /**
      * Convenience constructor (C++ only)
      * This constructor is a varargs version of the default constructor
