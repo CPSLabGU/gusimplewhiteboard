@@ -2,8 +2,8 @@
  *  FFTStatus.h
  *  gusimplewhiteboard
  *
- *  reated by Rene Hexel on 24/06/2014.
- *  Copyright (c) 2014 Rene Hexel. All rights reserved.
+ *  Created by Rene Hexel on 24/06/2014.
+ *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -81,11 +81,14 @@ namespace guWhiteboard
     class FFTStatus: public fft_dominant_frequency
     {
     public:
+        /** default constructor */
+        FFTStatus(): fft_dominant_frequency(0, 0, FSK_DEFAULT_HI, FSK_DEFAULT_LO, 0, 0) {}
+
         /** designated constructor */
         FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs) {}
 
         /** alternate constructor */
-        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
+        FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
         {
             if (!fsk) return;
 
