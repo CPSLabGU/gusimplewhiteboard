@@ -102,9 +102,9 @@ namespace guWhiteboard
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION 
         /** String Constructor -- is this needed? */ 
-        Point2D(const std::string &str) { wb_point2d_from_string(this, str.c_str()); }  
-
-        std::string description() 
+        Point2D(const std::string &str) { from_string(str.c_str()); }
+        
+        std::string description()
         { 
 #ifdef USE_WB_POINT2D_C_CONVERSION 
             char buffer[POINT2D_DESC_BUFFER_SIZE]; 
