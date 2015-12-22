@@ -102,7 +102,7 @@ catkin_package(
 ###########
 
 set(CMAKE_C_FLAGS "-std=c99")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 -DWITHOUT_LIBDISPATCH")
 #set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
 
 ## Specify additional locations of header files
