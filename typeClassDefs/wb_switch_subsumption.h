@@ -13,7 +13,8 @@
 /**
  *  * Motion of Toto are converted to motions on Gazebo for Tiago
 */
-#define SUMPSUMSION_LEVELS	6 // number of subsumption levels
+#define SUBSUMPTION_LEVELS	6 // number of subsumption levels
+#define SUMPSUMSION_LEVELS	SUBSUMPTION_LEVELS // XXX: typo in machines 
 
 enum TotoMotionCommand
 {	TOTO_NO_COMMAND, // no command do not subsumme
@@ -32,8 +33,7 @@ struct wb_toto_doing_motion
 
 struct wb_switch_subsumption
 {
-      //ARRAY_PROPERY(int, theMotions, SUMPSUMSION_LEVELS)        
-     ARRAY_PROPERTY(enum TotoMotionCommand, theMotions, SUMPSUMSION_LEVELS)
+     ARRAY_PROPERTY(enum TotoMotionCommand, theMotions, SUBSUMPTION_LEVELS)
 
 #ifdef __cplusplus
         /** struct constructor */

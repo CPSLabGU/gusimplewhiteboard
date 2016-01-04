@@ -86,7 +86,7 @@ namespace guWhiteboard
         std::string description() const
         {
 	    std::ostringstream ss;
-	    for (int i=0 ; i< SUMPSUMSION_LEVELS; i++)
+	    for (int i=0 ; i< SUBSUMPTION_LEVELS; i++)
 	     switch (theMotions(i))
 		{ case TOTO_NO_COMMAND : ss << "null, "; break;
 		  case TOTO_STOP :  ss << "stop, "; break;
@@ -102,7 +102,7 @@ namespace guWhiteboard
         void from_string(const std::string &str)
         { std::istringstream iss(str);
 	  std::string token;
-	  for (int i = 0; i < SUMPSUMSION_LEVELS && getline(iss, token, ',') ; i++)
+	  for (int i = 0; i < SUBSUMPTION_LEVELS && getline(iss, token, ',') ; i++)
 		{ const int n = atoi(token.c_str());
 		  enum TotoMotionCommand &comamnd = theMotions(i);
 		  if (n<=0) comamnd=TOTO_NO_COMMAND;
