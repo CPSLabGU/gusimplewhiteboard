@@ -898,6 +898,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !TotoDoingMotion_DEFINED
 
+		case kCount_v:
+#ifdef wb_count_DEFINED
+		{
+/** WB Ptr Class: Count @brief Nil */ 
+			class Count_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !wb_count_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

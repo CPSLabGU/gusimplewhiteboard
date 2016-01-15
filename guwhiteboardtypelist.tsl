@@ -77,3 +77,4 @@ class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping
 class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
 class:SwitchSubsumption, nonatomic, SwitchSubsumption, "SwitchSubsumption"
 class:TotoDoingMotion, nonatomic, TotoDoingMotion, "TotoDoingMotion"
+class:wb_count, nonatomic, Count, "A Simple Integer"
