@@ -969,6 +969,46 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kAmberEWon_v:
+		{
+/** WB Ptr Class: AmberEWon @brief Nil */ 
+			class AmberEWon_t AmberEWon_msg;
+			AmberEWon_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kTurnRedEW_v:
+		{
+/** WB Ptr Class: TurnRedEW @brief Nil */ 
+			class TurnRedEW_t TurnRedEW_msg;
+			TurnRedEW_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kTimeGTfive_v:
+		{
+/** WB Ptr Class: TimeGTfive @brief Nil */ 
+			class TimeGTfive_t TimeGTfive_msg;
+			TimeGTfive_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kRedEWon_v:
+		{
+/** WB Ptr Class: RedEWon @brief Nil */ 
+			class RedEWon_t RedEWon_msg;
+			RedEWon_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kTurnGreenEW_v:
+		{
+/** WB Ptr Class: TurnGreenEW @brief Nil */ 
+			class TurnGreenEW_t TurnGreenEW_msg;
+			TurnGreenEW_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -980,7 +1020,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(83);
+	// self.reserve(88);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1064,6 +1104,11 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["A Simple Integer"] = kCount_v;
 	self["GreenEWon"] = kGreenEWon_v;
 	self["WarnEW"] = kWarnEW_v;
-	self["TimeGtthirty"] = kTimeGTthirty_v;
+	self["TimeGTthirty"] = kTimeGTthirty_v;
+	self["AmberEWon"] = kAmberEWon_v;
+	self["TurnRedEW"] = kTurnRedEW_v;
+	self["TimeGTfive"] = kTimeGTfive_v;
+	self["RedEWon"] = kRedEWon_v;
+	self["TurnGreenEW"] = kTurnGreenEW_v;
 }
 

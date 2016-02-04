@@ -928,6 +928,36 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class TimeGTthirty_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kAmberEWon_v:
+		{
+/** WB Ptr Class: AmberEWon @brief Nil */ 
+			class AmberEWon_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kTurnRedEW_v:
+		{
+/** WB Ptr Class: TurnRedEW @brief Nil */ 
+			class TurnRedEW_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kTimeGTfive_v:
+		{
+/** WB Ptr Class: TimeGTfive @brief Nil */ 
+			class TimeGTfive_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kRedEWon_v:
+		{
+/** WB Ptr Class: RedEWon @brief Nil */ 
+			class RedEWon_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kTurnGreenEW_v:
+		{
+/** WB Ptr Class: TurnGreenEW @brief Nil */ 
+			class TurnGreenEW_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
