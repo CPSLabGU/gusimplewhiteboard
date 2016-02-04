@@ -1,9 +1,9 @@
 /**                                                                     
 *  /file wb_switch_subsumption.h 
-*   *                                                                      
+*                                                                         
 *  Created by Vlad Estivill-Castro in 2015.
-*  * Copyright (c) 2015 Vlad Estivill-Castro
-*  *   All rights reserved*       
+*  Copyright (c) 2015 Vlad Estivill-Castro
+*  All rights reserved
 */   
 #ifndef wb_switch_subsumption_h
 #define wb_switch_subsumption_h
@@ -11,7 +11,7 @@
 #include <gu_util.h>
 
 /**
- *  * Motion of Toto are converted to motions on Gazebo for Tiago
+ *  Motion of Toto are converted to motions on Gazebo for Tiago
 */
 #define SUBSUMPTION_LEVELS	6 // number of subsumption levels
 #define SUMPSUMSION_LEVELS	SUBSUMPTION_LEVELS // XXX: typo in machines 
