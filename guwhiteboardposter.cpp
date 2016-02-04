@@ -945,6 +945,22 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !wb_count_DEFINED
 
+		case kGreenEWon_v:
+		{
+/** WB Ptr Class: GreenEWon @brief Nil */ 
+			class GreenEWon_t GreenEWon_msg;
+			GreenEWon_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kWarnEW_v:
+		{
+/** WB Ptr Class: WarnEW @brief Nil */ 
+			class WarnEW_t WarnEW_msg;
+			WarnEW_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -956,7 +972,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(80);
+	// self.reserve(82);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1038,5 +1054,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["SwitchSubsumption"] = kSwitchSubsumption_v;
 	self["TotoDoingMotion"] = kTotoDoingMotion_v;
 	self["A Simple Integer"] = kCount_v;
+	self["GreenEWon"] = kGreenEWon_v;
+	self["WarnEW"] = kWarnEW_v;
 }
 

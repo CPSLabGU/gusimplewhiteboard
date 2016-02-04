@@ -910,6 +910,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !wb_count_DEFINED
 
+		case kGreenEWon_v:
+		{
+/** WB Ptr Class: GreenEWon @brief Nil */ 
+			class GreenEWon_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kWarnEW_v:
+		{
+/** WB Ptr Class: WarnEW @brief Nil */ 
+			class WarnEW_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
