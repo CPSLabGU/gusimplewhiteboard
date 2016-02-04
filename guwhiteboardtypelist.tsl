@@ -80,3 +80,4 @@ class:TotoDoingMotion, nonatomic, TotoDoingMotion, "TotoDoingMotion"
 class:wb_count, nonatomic, Count, "A Simple Integer"
 bool,           nonatomic, GreenEWon,                        "GreenEWon", status of the EWgreen light
 bool,           nonatomic, WarnEW,                        "WarnEW", status of the recommendaiton of the EW light
+bool,           nonatomic, TimeGTthirty,                        "TimeGtthirty", status of the timer with respect to 30

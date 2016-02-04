@@ -961,6 +961,14 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kTimeGTthirty_v:
+		{
+/** WB Ptr Class: TimeGTthirty @brief Nil */ 
+			class TimeGTthirty_t TimeGTthirty_msg;
+			TimeGTthirty_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -972,7 +980,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(82);
+	// self.reserve(83);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1056,5 +1064,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["A Simple Integer"] = kCount_v;
 	self["GreenEWon"] = kGreenEWon_v;
 	self["WarnEW"] = kWarnEW_v;
+	self["TimeGtthirty"] = kTimeGTthirty_v;
 }
 
