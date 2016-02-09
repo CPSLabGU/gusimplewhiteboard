@@ -1001,11 +1001,43 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
-		case kTurnGreenEW_v:
+		case kGreenNSon_v:
 		{
-/** WB Ptr Class: TurnGreenEW @brief Nil */ 
-			class TurnGreenEW_t TurnGreenEW_msg;
-			TurnGreenEW_msg.post(atoi(message_content.c_str()));
+/** WB Ptr Class: GreenNSon @brief Nil */ 
+			class GreenNSon_t GreenNSon_msg;
+			GreenNSon_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kWarnNS_v:
+		{
+/** WB Ptr Class: WarnNS @brief Nil */ 
+			class WarnNS_t WarnNS_msg;
+			WarnNS_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kAmberNSon_v:
+		{
+/** WB Ptr Class: AmberNSon @brief Nil */ 
+			class AmberNSon_t AmberNSon_msg;
+			AmberNSon_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kTurnRedNS_v:
+		{
+/** WB Ptr Class: TurnRedNS @brief Nil */ 
+			class TurnRedNS_t TurnRedNS_msg;
+			TurnRedNS_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kRedNSon_v:
+		{
+/** WB Ptr Class: RedNSon @brief Nil */ 
+			class RedNSon_t RedNSon_msg;
+			RedNSon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1020,7 +1052,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(88);
+	// self.reserve(92);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1109,6 +1141,10 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["TurnRedEW"] = kTurnRedEW_v;
 	self["TimeGTfive"] = kTimeGTfive_v;
 	self["RedEWon"] = kRedEWon_v;
-	self["TurnGreenEW"] = kTurnGreenEW_v;
+	self["GreenNSon"] = kGreenNSon_v;
+	self["WarnNS"] = kWarnNS_v;
+	self["AmberNSon"] = kAmberNSon_v;
+	self["TurnRedNS"] = kTurnRedNS_v;
+	self["RedNSon"] = kRedNSon_v;
 }
 

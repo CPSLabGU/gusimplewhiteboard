@@ -952,10 +952,34 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class RedEWon_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case kTurnGreenEW_v:
+		case kGreenNSon_v:
 		{
-/** WB Ptr Class: TurnGreenEW @brief Nil */ 
-			class TurnGreenEW_t m;
+/** WB Ptr Class: GreenNSon @brief Nil */ 
+			class GreenNSon_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kWarnNS_v:
+		{
+/** WB Ptr Class: WarnNS @brief Nil */ 
+			class WarnNS_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kAmberNSon_v:
+		{
+/** WB Ptr Class: AmberNSon @brief Nil */ 
+			class AmberNSon_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kTurnRedNS_v:
+		{
+/** WB Ptr Class: TurnRedNS @brief Nil */ 
+			class TurnRedNS_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kRedNSon_v:
+		{
+/** WB Ptr Class: RedNSon @brief Nil */ 
+			class RedNSon_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 	}
