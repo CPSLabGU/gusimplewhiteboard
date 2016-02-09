@@ -85,4 +85,8 @@ bool,           nonatomic, AmberEWon,                        "AmberEWon", status
 bool,           nonatomic, TurnRedEW,                        "TurnRedEW", second status of the recommendaiton of the EW light
 bool,           nonatomic, TimeGTfive,                        "TimeGTfive", status of the timer with respect to 5
 bool,           nonatomic, RedEWon,                        "RedEWon", status of the EWred light
-bool,           nonatomic, TurnGreenEW,                        "TurnGreenEW", third status of the recommendaiton of the EW light
+bool,           nonatomic, GreenNSon,                        "GreenNSon", status of the NSgreen light
+bool,           nonatomic, WarnNS,                        "WarnNS", status of the recommendaiton of the NS light
+bool,           nonatomic, AmberNSon,                        "AmberNSon", status of the NSamber light
+bool,           nonatomic, TurnRedNS,                        "TurnRedNS", second status of the recommendaiton of the NS light
+bool,           nonatomic, RedNSon,                        "RedNSon", status of the NSred light
