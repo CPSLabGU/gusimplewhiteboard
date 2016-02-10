@@ -982,6 +982,12 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class RedNSon_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kTimerReset_v:
+		{
+/** WB Ptr Class: TimerReset @brief Nil */ 
+			class TimerReset_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -90,3 +90,4 @@ bool,           nonatomic, WarnNS,                        "WarnNS", status of th
 bool,           nonatomic, AmberNSon,                        "AmberNSon", status of the NSamber light
 bool,           nonatomic, TurnRedNS,                        "TurnRedNS", second status of the recommendaiton of the NS light
 bool,           nonatomic, RedNSon,                        "RedNSon", status of the NSred light
+bool,           nonatomic, TimerReset,                        "TimerReset", flag to reset timer

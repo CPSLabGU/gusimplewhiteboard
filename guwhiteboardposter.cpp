@@ -1041,6 +1041,14 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
+		case kTimerReset_v:
+		{
+/** WB Ptr Class: TimerReset @brief Nil */ 
+			class TimerReset_t TimerReset_msg;
+			TimerReset_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1052,7 +1060,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(92);
+	// self.reserve(93);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1146,5 +1154,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["AmberNSon"] = kAmberNSon_v;
 	self["TurnRedNS"] = kTurnRedNS_v;
 	self["RedNSon"] = kRedNSon_v;
+	self["TimerReset"] = kTimerReset_v;
 }
 
