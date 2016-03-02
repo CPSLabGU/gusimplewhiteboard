@@ -496,7 +496,7 @@
 		F1D9260014A13BAA00BDAEED /* SimpleWhiteboardTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWhiteboardTest.h; sourceTree = "<group>"; };
 		F1D9260114A13BAA00BDAEED /* SimpleWhiteboardTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleWhiteboardTest.mm; sourceTree = "<group>"; };
 		F1D9260314A13BAA00BDAEED /* SimpleWhiteboardTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleWhiteboardTest-Prefix.pch"; sourceTree = "<group>"; };
-		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; };
+		F1D9265914A151C500BDAEED /* WBFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WBFunctor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F1E2FEEE1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleWhiteboardTestPlainC.m; sourceTree = "<group>"; };
 		F1E2FEF0195105A60039FFD9 /* wb_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_point.h; sourceTree = "<group>"; };
 		F1E2FEF11951071F0039FFD9 /* Point2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
