@@ -32,7 +32,13 @@ IoT_NodeList findNodeFromID(int id)
 {
     for(int i = 0; i < NUMBER_OF_NODES; i++)
         if (id == IoT_ids[i])
+        {
+#ifdef __cplusplus
+            return static_cast<IoT_NodeList>(i);
+#else
             return (IoT_NodeList)i;
+#endif
+        }
     return NUMBER_OF_NODES;
 }
 
