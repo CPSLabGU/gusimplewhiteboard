@@ -22,9 +22,9 @@ typedef enum node_list
 
 const int IoT_ids[] = 
 {
-        1134,
-        1234,
-        4453
+        761675, //Real
+        1234,   //Bogus
+        1134    //Bogus 
 };
 
 IoT_NodeList findNodeFromID(int id);
@@ -66,7 +66,7 @@ union NodeMCUMessages
     /**
     * NodeMCUGenericToggle
     */
-    struct {
+    struct NodeMCUGenericToggle {
         /** D0 */
         BIT_PROPERTY(D0) 
         /** D1 */
@@ -88,7 +88,7 @@ union NodeMCUMessages
     /**
     * OutdoorPoolLightAndGardenWater
     */
-    struct {
+    struct OutdoorPoolLightAndGardenWater {
         //XXX This is just a convenience for me to store what's plugged into where. I'll populate it with different names at some point
         /** D0 */
         BIT_PROPERTY(D0) 
@@ -111,7 +111,7 @@ union NodeMCUMessages
     /**
     * OutdoorAreaLighting
     */
-    struct {
+    struct OutdoorAreaLighting {
         //XXX This is just a convenience for me to store what's plugged into where. I'll populate it with different names at some point
         /** D0 */
         BIT_PROPERTY(D0) 
@@ -134,7 +134,7 @@ union NodeMCUMessages
     /**
     * AirCon
     */
-    struct {
+    struct AirCon {
         /** Desired state */
         PROPERTY(AirConStates, airConState)
     } AirCon; ///< desired pin toggle states
