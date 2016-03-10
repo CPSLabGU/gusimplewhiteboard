@@ -11,6 +11,10 @@
 
 #include <gu_util.h>
 
+#ifndef GU_SIMPLE_WHITEBOARD_BUFSIZE 
+#define GU_SIMPLE_WHITEBOARD_BUFSIZE 128
+#endif
+
 /** IoT node list */
 typedef enum node_list
 {
