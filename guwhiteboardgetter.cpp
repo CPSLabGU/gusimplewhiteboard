@@ -988,6 +988,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class TimerReset_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kIoT_Control_v:
+#ifdef IoT_Control_DEFINED
+		{
+/** WB Ptr Class: IoT_Control @brief Nil */ 
+			class IoT_Control_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !IoT_Control_DEFINED
+
 		case kCarSensorPressed_v:
 		{
 /** WB Ptr Class: CarSensorPressed @brief Nil */ 

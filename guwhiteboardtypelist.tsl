@@ -91,4 +91,5 @@ bool,           nonatomic, AmberNSon,                        "AmberNSon", status
 bool,           nonatomic, TurnRedNS,                        "TurnRedNS", second status of the recommendaiton of the NS light
 bool,           nonatomic, RedNSon,                        "RedNSon", status of the NSred light
 bool,           nonatomic, TimerReset,                        "TimerReset", flag to reset timer
+class:IoT_Control, 	nonatomic,      IoT_Control,         "IoT_Control",       Used to manage a group of IoT nodes (personal, Carl)
 bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
