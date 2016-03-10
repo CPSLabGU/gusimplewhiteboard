@@ -91,3 +91,4 @@ bool,           nonatomic, AmberNSon,                        "AmberNSon", status
 bool,           nonatomic, TurnRedNS,                        "TurnRedNS", second status of the recommendaiton of the NS light
 bool,           nonatomic, RedNSon,                        "RedNSon", status of the NSred light
 bool,           nonatomic, TimerReset,                        "TimerReset", flag to reset timer
+bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
