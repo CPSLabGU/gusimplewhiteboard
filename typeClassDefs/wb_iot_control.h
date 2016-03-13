@@ -116,11 +116,11 @@ union NodeMCUMessages
     * OutdoorAreaLighting
     */
     struct OutdoorAreaLighting {
-        //XXX This is just a convenience for me to store what's plugged into where. I'll populate it with different names at some point
+        //This is just a convenience for me to store what's plugged into where.
         /** D0 */
         BIT_PROPERTY(D0) 
         /** D1 */
-        BIT_PROPERTY(D1) 
+        BIT_PROPERTY(Side_Lights) 
         /** D2 */
         BIT_PROPERTY(D2) 
         /** D3 */
@@ -128,7 +128,7 @@ union NodeMCUMessages
         /** D4 */
         BIT_PROPERTY(D4) 
         /** D5 */
-        BIT_PROPERTY(D5) 
+        BIT_PROPERTY(Main_Lights) 
         /** D6 */
         BIT_PROPERTY(D6) 
         /** D7 */
