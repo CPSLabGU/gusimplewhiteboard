@@ -21,14 +21,22 @@ typedef enum node_list
     OutdoorPoolLightAndGardenWater  = 0,	///< Outdoor node for the pool light and garden watering system 
     OutdoorAreaLighting             = 1,    ///< 12V lights for the outside area
     AirCon                          = 2,    ///< Air conditioner control message for the master bedroom (IR controlled)
+    SonarInput                      = 3,    ///< Test input message for a sonar sensor
 	NUMBER_OF_NODES	                        ///< NUMBER_OF_NODES
 } IoT_NodeList;
 
 const int IoT_ids[] = 
 {
-        761675, //Real
+        762, //bogus
         16631463,   //Real
-        1134    //Bogus 
+        1134,    //Bogus 
+        761675 //Real
+};
+
+/** List of nodes that actually need to SET data into the wb instead of just sending queries */
+const int IoT_inputNodes[] = 
+{
+        SonarInput
 };
 
 IoT_NodeList findNodeFromID(int id);
@@ -142,6 +150,8 @@ union NodeMCUMessages
         /** Desired state */
         PROPERTY(AirConStates, airConState)
     } AirCon; ///< desired pin toggle states
+
+    int SingleSonarInput;
 
     int padding[IOT_MSG_SIZE/sizeof(int)];		///< int padding array
 };
