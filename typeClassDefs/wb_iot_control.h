@@ -34,9 +34,10 @@ const int IoT_ids[] =
 };
 
 /** List of nodes that actually need to SET data into the wb instead of just sending queries */
-const int IoT_inputNodes[] = 
+#define NUMBER_OF_INPUT_NODES 1
+const int IoT_inputNodes[NUMBER_OF_INPUT_NODES] = 
 {
-        SonarInput
+    SonarInput
 };
 
 IoT_NodeList findNodeFromID(int id);
@@ -52,6 +53,15 @@ IoT_NodeList findNodeFromID(int id)
 #endif
         }
     return NUMBER_OF_NODES;
+}
+
+bool isInputNode(IoT_NodeList n);
+bool isInputNode(IoT_NodeList n)
+{
+    for(int i = 0; i < NUMBER_OF_INPUT_NODES; i++)
+        if (n == IoT_inputNodes[i])
+            return true;
+    return false;
 }
 
 /** Different potential states for an air conditioner */
