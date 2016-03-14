@@ -40,8 +40,8 @@ const int IoT_inputNodes[NUMBER_OF_INPUT_NODES] =
     SonarInput
 };
 
-IoT_NodeList findNodeFromID(int id);
-IoT_NodeList findNodeFromID(int id)
+static inline IoT_NodeList findNodeFromID(int id);
+static inline IoT_NodeList findNodeFromID(int id)
 {
     for(int i = 0; i < NUMBER_OF_NODES; i++)
         if (id == IoT_ids[i])
@@ -55,8 +55,8 @@ IoT_NodeList findNodeFromID(int id)
     return NUMBER_OF_NODES;
 }
 
-bool isInputNode(IoT_NodeList n);
-bool isInputNode(IoT_NodeList n)
+static inline bool isInputNode(IoT_NodeList n);
+static inline bool isInputNode(IoT_NodeList n)
 {
     for(int i = 0; i < NUMBER_OF_INPUT_NODES; i++)
         if (n == IoT_inputNodes[i])
