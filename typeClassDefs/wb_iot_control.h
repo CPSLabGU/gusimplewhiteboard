@@ -32,7 +32,7 @@ const int IoT_ids[] =
         16631463,   //Real
         1134,       //Bogus 
         761675,     //Real
-        23          //bogus
+        10702516    //Real
 };
 
 /** List of nodes that actually need to SET data into the wb instead of just sending queries */
