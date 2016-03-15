@@ -22,22 +22,25 @@ typedef enum node_list
     OutdoorAreaLighting             = 1,    ///< 12V lights for the outside area
     AirCon                          = 2,    ///< Air conditioner control message for the master bedroom (IR controlled)
     SonarInput                      = 3,    ///< Test input message for a sonar sensor
+    OutdoorAreaLightingRemote       = 4,    ///< Remote controller for the outdoor 12v lights (OutdoorAreaLighting)
 	NUMBER_OF_NODES	                        ///< NUMBER_OF_NODES
 } IoT_NodeList;
 
 const int IoT_ids[] = 
 {
-        762, //bogus
+        762,        //bogus
         16631463,   //Real
-        1134,    //Bogus 
-        761675 //Real
+        1134,       //Bogus 
+        761675,     //Real
+        23          //bogus
 };
 
 /** List of nodes that actually need to SET data into the wb instead of just sending queries */
-#define NUMBER_OF_INPUT_NODES 1
+#define NUMBER_OF_INPUT_NODES 2
 const int IoT_inputNodes[NUMBER_OF_INPUT_NODES] = 
 {
-    SonarInput
+    SonarInput,
+    OutdoorAreaLightingRemote       
 };
 
 static inline IoT_NodeList findNodeFromID(int id);
@@ -74,6 +77,15 @@ typedef enum air_con_states
     Cold_Quiet,	                ///< Cold_Quiet
 	NUMBER_OF_AIR_CON_STATES	///< NUMBER_OF_PACKET_TYPES	
 } AirConStates;
+
+/** OutdoorAreaLightingState enum */
+typedef enum OutdoorAreaLightingState
+{
+    Lights_Off = 0,	        ///< Lights_Off 
+    Main_On,	            ///< Main lights on
+    Side_On,	            ///< Side lights on
+    Both_On	                ///< Both lights on
+} OutdoorAreaLightingState;
  
 //! @cond Doxygen_Suppress
     //Doxy is warning about undocumented functions as a result of our macros and the fact that they're used in this union. This will disable doxy from parsing this section, which means no warnings but also no generated documentation for this section. The other option is to redefine the macros locally to fix the naming problem. - Carl.
@@ -152,6 +164,14 @@ union NodeMCUMessages
         /** D7 */
         BIT_PROPERTY(D7) 
     } OutdoorAreaLighting; ///< desired pin toggle states
+
+    /**
+    * OutdoorAreaLightingRemote
+    */
+    struct OutdoorAreaLightingRemote {
+        /** OutdoorAreaLightingState states */
+        PROPERTY(OutdoorAreaLightingState, outdoorAreaLightingState)
+    } OutdoorAreaLightingRemote; ///< desired pin toggle states
 
     /**
     * AirCon
