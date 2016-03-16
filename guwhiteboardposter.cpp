@@ -1049,17 +1049,25 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return true;
 		}
 
-		case kSwitchSubsumptionTrafficLights_v:
-#ifdef SwitchSubsumptionTrafficLights_DEFINED
+		case kIoT_Control_v:
+#ifdef IoT_Control_DEFINED
 		{
-/** WB Ptr Class: SwitchSubsumptionTrafficLights @brief Nil */ 
-			class SwitchSubsumptionTrafficLights_t SwitchSubsumptionTrafficLights_msg;
-			SwitchSubsumptionTrafficLights_msg.post(SwitchSubsumptionTrafficLights(message_content));
+/** WB Ptr Class: IoT_Control @brief Nil */ 
+			class IoT_Control_t IoT_Control_msg;
+			IoT_Control_msg.post(IoT_Control(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SwitchSubsumptionTrafficLights_DEFINED
+#endif // !IoT_Control_DEFINED
+
+		case kCarSensorPressed_v:
+		{
+/** WB Ptr Class: CarSensorPressed @brief Nil */ 
+			class CarSensorPressed_t CarSensorPressed_msg;
+			CarSensorPressed_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
 
 	}
 #pragma clang diagnostic push
@@ -1072,7 +1080,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(94);
+	// self.reserve(95);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1167,6 +1175,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["TurnRedNS"] = kTurnRedNS_v;
 	self["RedNSon"] = kRedNSon_v;
 	self["TimerReset"] = kTimerReset_v;
-	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
+	self["IoT_Control"] = kIoT_Control_v;
+	self["CarSensorPressed"] = kCarSensorPressed_v;
 }
 

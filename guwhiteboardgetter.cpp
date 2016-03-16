@@ -988,18 +988,24 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class TimerReset_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case kSwitchSubsumptionTrafficLights_v:
-#ifdef SwitchSubsumptionTrafficLights_DEFINED
+		case kIoT_Control_v:
+#ifdef IoT_Control_DEFINED
 		{
-/** WB Ptr Class: SwitchSubsumptionTrafficLights @brief Nil */ 
-			class SwitchSubsumptionTrafficLights_t m;
+/** WB Ptr Class: IoT_Control @brief Nil */ 
+			class IoT_Control_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SwitchSubsumptionTrafficLights_DEFINED
+#endif // !IoT_Control_DEFINED
 
+		case kCarSensorPressed_v:
+		{
+/** WB Ptr Class: CarSensorPressed @brief Nil */ 
+			class CarSensorPressed_t m;
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
