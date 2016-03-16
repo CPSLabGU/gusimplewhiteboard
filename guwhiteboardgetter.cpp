@@ -988,6 +988,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 			class TimerReset_t m;
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kSwitchSubsumptionTrafficLights_v:
+#ifdef SwitchSubsumptionTrafficLights_DEFINED
+		{
+/** WB Ptr Class: SwitchSubsumptionTrafficLights @brief Nil */ 
+			class SwitchSubsumptionTrafficLights_t m;
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !SwitchSubsumptionTrafficLights_DEFINED
+
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
