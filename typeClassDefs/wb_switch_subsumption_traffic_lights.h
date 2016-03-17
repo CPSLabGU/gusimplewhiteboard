@@ -15,7 +15,7 @@
 */
 #define TL_SUBSUMPTION_LEVELS	9 // number of subsumption levels
 
-enum TrafficLightConfiguration
+enum TrafficLightConfigurationValues
 {	LIGHT_NO_COMMAND, // no command do not subsumme
 	LIGHT_NS_GREEN,  // switch the ligh NS light to GREEN other NS OFF; EW others same
 	LIGHT_EW_GREEN,  // switch the ligh EW light to GREEN other EW OFF; all NS others same
@@ -29,13 +29,13 @@ enum TrafficLightConfiguration
 
 struct wb_traffic_light_configuration
 {
-        PROPERTY(TrafficLightConfiguration, lightConfiguration)
+        PROPERTY(TrafficLightConfigurationValues, lightConfiguration)
 };
 
 
 struct wb_switch_subsumption_traffic_lights
 {
-     ARRAY_PROPERTY(enum TrafficLightConfiguration, theConfigurations, TL_SUBSUMPTION_LEVELS)
+     ARRAY_PROPERTY(enum TrafficLightConfigurationValues, theConfigurations, TL_SUBSUMPTION_LEVELS)
 
 #ifdef __cplusplus
         /** struct constructor */

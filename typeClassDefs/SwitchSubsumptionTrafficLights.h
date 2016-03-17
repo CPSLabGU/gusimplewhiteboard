@@ -107,7 +107,7 @@ namespace guWhiteboard
 	  std::string token;
 	  for (int i = 0; i < TL_SUBSUMPTION_LEVELS && getline(iss, token, ',') ; i++)
 		{ const int n = atoi(token.c_str());
-		  enum TrafficLightConfiguration &configuration = theConfigurations(i);
+		  enum TrafficLightConfigurationValues &configuration = theConfigurations(i);
 		  if (n<=0) configuration=LIGHT_NO_COMMAND;
 		  switch (n)
 		  { case 1 : configuration=LIGHT_NS_GREEN; break;
