@@ -14,6 +14,7 @@
  *  Configurations of traffic lights 
 */
 #define TL_SUBSUMPTION_LEVELS	9 // number of subsumption levels
+				 // this is the number of layers in the subsumbtion array
 
 enum TrafficLightConfigurationValues
 {	LIGHT_NO_COMMAND, // no command do not subsumme
