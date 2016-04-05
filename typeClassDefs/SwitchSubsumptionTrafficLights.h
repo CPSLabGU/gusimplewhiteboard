@@ -95,6 +95,8 @@ namespace guWhiteboard
 		  case LIGHT_EW_AMBER  :  ss << "ew_amber, "; break;
 		  case LIGHT_NS_RED  :  ss << "ns_red, "; break;
 		  case LIGHT_EW_RED  :  ss << "ew_red, "; break;
+		  case LIGHT_EW_OFF  :  ss << "ew_off, "; break;
+		  case LIGHT_NS_OFF  :  ss << "ns_off, "; break;
 		  case LIGHT_ALL_OFF  :  ss << "all_off, "; break;
 		  case LIGHT_BOTH_AMBER  :  ss << "b_amber, "; break;
 		}
@@ -170,7 +172,9 @@ namespace guWhiteboard
 		    case 5 : _lightConfiguration=LIGHT_NS_RED; break;
 		    case 6 : _lightConfiguration=LIGHT_EW_RED; break;
 		    case 7 : _lightConfiguration=LIGHT_ALL_OFF; break;
-		    case 8 : _lightConfiguration=LIGHT_BOTH_AMBER; break;
+		    case 8 : _lightConfiguration=LIGHT_NS_OFF; break;
+		    case 9 : _lightConfiguration=LIGHT_EW_OFF; break;
+		    case 10 : _lightConfiguration=LIGHT_BOTH_AMBER; break;
 		  }
 		}
         }
