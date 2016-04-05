@@ -102,6 +102,7 @@
 #include "Clocks.h"
 #include "Channels.h"
 #include "SwitchSubsumption.h"
+#include "SwitchSubsumptionTrafficLights.h"
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
