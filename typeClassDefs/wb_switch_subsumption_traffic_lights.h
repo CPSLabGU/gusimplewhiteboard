@@ -25,6 +25,8 @@ enum TrafficLightConfigurationValues
 	LIGHT_NS_RED,  // switch the ligh NS light to RED other NS OFF; all EW others same
 	LIGHT_EW_RED,  // switch the ligh EW light to RED other EW OFF; all NS others same
 	LIGHT_ALL_OFF,  // switch all lights off
+	LIGHT_NS_OFF,  // switch all the lights of  NS OFF; all EW others same
+	LIGHT_EW_OFF,  // switch the lights of EW OFF; all NS others same
 	LIGHT_BOTH_AMBER  // switch NS and EW to AMBER, leave the others same
 };
 
