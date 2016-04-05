@@ -119,9 +119,9 @@ namespace guWhiteboard
 		    case 5 : configuration=LIGHT_NS_RED; break;
 		    case 6 : configuration=LIGHT_EW_RED; break;
 		    case 7 : configuration=LIGHT_ALL_OFF; break;
-		    case 8 : _lightConfiguration=LIGHT_NS_OFF; break;
-		    case 9 : _lightConfiguration=LIGHT_EW_OFF; break;
-		    case 10 : _lightConfiguration=LIGHT_BOTH_AMBER; break;
+		    case 8 : configuration=LIGHT_NS_OFF; break;
+		    case 9 : configuration=LIGHT_EW_OFF; break;
+		    case 10 : configuration=LIGHT_BOTH_AMBER; break;
 		  }
 		}
         }
