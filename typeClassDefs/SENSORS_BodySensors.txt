@@ -11,8 +11,8 @@ float	Battery_Charge        	//  unsure, check naoqi docs! check if this is a fl
 float	Battery_Current       	//  unsure, check naoqi docs! check if this is a float or not
 float	US                    	//  unsure, check naoqi docs! Not sure about this type, might only be 1 byte
 bool	ChestBoard_Button      	//  state of the chest button, on / off. could use a 1 bit var here
-bool	pad1;	//  padding
-int16_t	pad2;	//  padding
+bool	pad1	//  padding
+int16_t	pad2	//  padding
 
 @brief Contains the current values of sensors located in the robots chest (designed for Nao)
 
@@ -21,6 +21,6 @@ Examples
 
 Get the state of the Chest Button
 
-    SENSORS_BodySensors s = SENSORS_BodySensors_t.get(); //get from the whiteboard
+    SENSORSBodySensors s = SENSORSBodySensors_t.get(); //get from the whiteboard
     bool button_state = s.ChestBoard_Button(); //pull the variable out of the class
 
