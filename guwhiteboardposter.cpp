@@ -183,101 +183,101 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)
 			return false;
 #endif // !HAL_HeadTarget_DEFINED
 
-		case kSENSORS_FootSensors_v:
-#ifdef SENSORS_FootSensors_DEFINED
+		case kSENSORSFootSensors_v:
+#ifdef SENSORSFootSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_FootSensors @brief Nil */ 
-			class SENSORS_FootSensors_t SENSORS_FootSensors_msg;
-			SENSORS_FootSensors_msg.post(SENSORS_FootSensors(message_content));
+/** WB Ptr Class: SENSORSFootSensors @brief Nil */ 
+			class SENSORSFootSensors_t SENSORSFootSensors_msg;
+			SENSORSFootSensors_msg.post(SENSORSFootSensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_FootSensors_DEFINED
+#endif // !SENSORSFootSensors_DEFINED
 
-		case kSENSORS_BodySensors_v:
-#ifdef SENSORS_BodySensors_DEFINED
+		case kSENSORSBodySensors_v:
+#ifdef SENSORSBodySensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_BodySensors @brief Nil */ 
-			class SENSORS_BodySensors_t SENSORS_BodySensors_msg;
-			SENSORS_BodySensors_msg.post(SENSORS_BodySensors(message_content));
+/** WB Ptr Class: SENSORSBodySensors @brief Nil */ 
+			class SENSORSBodySensors_t SENSORSBodySensors_msg;
+			SENSORSBodySensors_msg.post(SENSORSBodySensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_BodySensors_DEFINED
+#endif // !SENSORSBodySensors_DEFINED
 
-		case kSENSORS_LedsSensors_v:
-#ifdef SENSORS_LedsSensors_DEFINED
+		case kSENSORSLedsSensors_v:
+#ifdef SENSORSLedsSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LedsSensors @brief Nil */ 
-			class SENSORS_LedsSensors_t SENSORS_LedsSensors_msg;
-			SENSORS_LedsSensors_msg.post(SENSORS_LedsSensors(message_content));
+/** WB Ptr Class: SENSORSLedsSensors @brief Nil */ 
+			class SENSORSLedsSensors_t SENSORSLedsSensors_msg;
+			SENSORSLedsSensors_msg.post(SENSORSLedsSensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_LedsSensors_DEFINED
+#endif // !SENSORSLedsSensors_DEFINED
 
-		case kSENSORS_LegJointTemps_v:
-#ifdef SENSORS_LegJointTemps_DEFINED
+		case kSENSORSLegJointTemps_v:
+#ifdef SENSORSLegJointTemps_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LegJointTemps @brief Nil */ 
-			class SENSORS_LegJointTemps_t SENSORS_LegJointTemps_msg;
-			SENSORS_LegJointTemps_msg.post(SENSORS_LegJointTemps(message_content));
+/** WB Ptr Class: SENSORSLegJointTemps @brief Nil */ 
+			class SENSORSLegJointTemps_t SENSORSLegJointTemps_msg;
+			SENSORSLegJointTemps_msg.post(SENSORSLegJointTemps(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_LegJointTemps_DEFINED
+#endif // !SENSORSLegJointTemps_DEFINED
 
-		case kSENSORS_TorsoJointTemps_v:
-#ifdef SENSORS_TorsoJointTemps_DEFINED
+		case kSENSORSTorsoJointTemps_v:
+#ifdef SENSORSTorsoJointTemps_DEFINED
 		{
-/** WB Ptr Class: SENSORS_TorsoJointTemps @brief Nil */ 
-			class SENSORS_TorsoJointTemps_t SENSORS_TorsoJointTemps_msg;
-			SENSORS_TorsoJointTemps_msg.post(SENSORS_TorsoJointTemps(message_content));
+/** WB Ptr Class: SENSORSTorsoJointTemps @brief Nil */ 
+			class SENSORSTorsoJointTemps_t SENSORSTorsoJointTemps_msg;
+			SENSORSTorsoJointTemps_msg.post(SENSORSTorsoJointTemps(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_TorsoJointTemps_DEFINED
+#endif // !SENSORSTorsoJointTemps_DEFINED
 
-		case kSENSORS_LegJointSensors_v:
-#ifdef SENSORS_LegJointSensors_DEFINED
+		case kSENSORSLegJointSensors_v:
+#ifdef SENSORSLegJointSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LegJointSensors @brief Nil */ 
-			class SENSORS_LegJointSensors_t SENSORS_LegJointSensors_msg;
-			SENSORS_LegJointSensors_msg.post(SENSORS_LegJointSensors(message_content));
+/** WB Ptr Class: SENSORSLegJointSensors @brief Nil */ 
+			class SENSORSLegJointSensors_t SENSORSLegJointSensors_msg;
+			SENSORSLegJointSensors_msg.post(SENSORSLegJointSensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_LegJointSensors_DEFINED
+#endif // !SENSORSLegJointSensors_DEFINED
 
-		case kSENSORS_TorsoJointSensors_v:
-#ifdef SENSORS_TorsoJointSensors_DEFINED
+		case kSENSORSTorsoJointSensors_v:
+#ifdef SENSORSTorsoJointSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_TorsoJointSensors @brief Nil */ 
-			class SENSORS_TorsoJointSensors_t SENSORS_TorsoJointSensors_msg;
-			SENSORS_TorsoJointSensors_msg.post(SENSORS_TorsoJointSensors(message_content));
+/** WB Ptr Class: SENSORSTorsoJointSensors @brief Nil */ 
+			class SENSORSTorsoJointSensors_t SENSORSTorsoJointSensors_msg;
+			SENSORSTorsoJointSensors_msg.post(SENSORSTorsoJointSensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_TorsoJointSensors_DEFINED
+#endif // !SENSORSTorsoJointSensors_DEFINED
 
-		case kSENSORS_SonarSensors_v:
-#ifdef SENSORS_SonarSensors_DEFINED
+		case kSENSORSSonarSensors_v:
+#ifdef SENSORSSonarSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_SonarSensors @brief Nil */ 
-			class SENSORS_SonarSensors_t SENSORS_SonarSensors_msg;
-			SENSORS_SonarSensors_msg.post(SENSORS_SonarSensors(message_content));
+/** WB Ptr Class: SENSORSSonarSensors @brief Nil */ 
+			class SENSORSSonarSensors_t SENSORSSonarSensors_msg;
+			SENSORSSonarSensors_msg.post(SENSORSSonarSensors(message_content));
 			return true;
 		}
 #else
 			return false;
-#endif // !SENSORS_SonarSensors_DEFINED
+#endif // !SENSORSSonarSensors_DEFINED
 
 		case kFSM_Control_v:
 #ifdef FSMControlStatus_DEFINED
@@ -1107,14 +1107,14 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["MOTION_Commands"] = kMOTION_Commands_v;
 	self["MOTION_Status"] = kMOTION_Status_v;
 	self["HAL_HeadTarget"] = kHAL_HeadTarget_v;
-	self["SENSORS_FootSensors"] = kSENSORS_FootSensors_v;
-	self["SENSORS_BodySensors"] = kSENSORS_BodySensors_v;
-	self["SENSORS_LedsSensors"] = kSENSORS_LedsSensors_v;
-	self["SENSORS_LegJointTemps"] = kSENSORS_LegJointTemps_v;
-	self["SENSORS_TorsoJointTemps"] = kSENSORS_TorsoJointTemps_v;
-	self["SENSORS_LegJointSensors"] = kSENSORS_LegJointSensors_v;
-	self["SENSORS_TorsoJointSensors"] = kSENSORS_TorsoJointSensors_v;
-	self["SENSORS_SonarSensors"] = kSENSORS_SonarSensors_v;
+	self["SENSORSFootSensors"] = kSENSORSFootSensors_v;
+	self["SENSORSBodySensors"] = kSENSORSBodySensors_v;
+	self["SENSORSLedsSensors"] = kSENSORSLedsSensors_v;
+	self["SENSORSLegJointTemps"] = kSENSORSLegJointTemps_v;
+	self["SENSORSTorsoJointTemps"] = kSENSORSTorsoJointTemps_v;
+	self["SENSORSLegJointSensors"] = kSENSORSLegJointSensors_v;
+	self["SENSORSTorsoJointSensors"] = kSENSORSTorsoJointSensors_v;
+	self["SENSORSSonarSensors"] = kSENSORSSonarSensors_v;
 	self["fsm_control"] = kFSM_Control_v;
 	self["fsm_status"] = kFSM_Status_v;
 	self["fsm_names"] = kFSM_Names_v;

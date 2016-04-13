@@ -11,14 +11,14 @@ class:WALK_ControlStatus, nonatomic, WALK_Status,               "WALK_Status",  
 class:MOTION_Commands, nonatomic, MOTION_Commands,              "MOTION_Commands", WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status,                  "MOTION_Status", WB interface for checking the status of commands sent
 class:HAL_HeadTarget, not_atomic, HAL_HeadTarget,               "HAL_HeadTarget", Used to alter the head position via the DCM
-class:SENSORS_FootSensors, not_atomic, SENSORS_FootSensors,     "SENSORS_FootSensors", Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORS_BodySensors, not_atomic, SENSORS_BodySensors,     "SENSORS_BodySensors", Posts the sensor information for the body via the DCM loop (read only)
-class:SENSORS_LedsSensors, not_atomic, SENSORS_LedsSensors,     "SENSORS_LedsSensors", Posts the current LEDs info, can be modified. (read/write)
-class:SENSORS_LegJointTemps, not_atomic, SENSORS_LegJointTemps, "SENSORS_LegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
-class:SENSORS_TorsoJointTemps, not_atomic, SENSORS_TorsoJointTemps, "SENSORS_TorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
-class:SENSORS_LegJointSensors, not_atomic, SENSORS_LegJointSensors, "SENSORS_LegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
-class:SENSORS_TorsoJointSensors, not_atomic, SENSORS_TorsoJointSensors, "SENSORS_TorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
-class:SENSORS_SonarSensors, not_atomic, SENSORS_SonarSensors,   "SENSORS_SonarSensors", Posts the sonar readings via the DCM loop (read only)
+class:SENSORSFootSensors, not_atomic, SENSORSFootSensors,     "SENSORSFootSensors", Posts the sensor information for the feet via the DCM loop (read only)
+class:SENSORSBodySensors, not_atomic, SENSORSBodySensors,     "SENSORSBodySensors", Posts the sensor information for the body via the DCM loop (read only)
+class:SENSORSLedsSensors, not_atomic, SENSORSLedsSensors,     "SENSORSLedsSensors", Posts the current LEDs info, can be modified. (read/write)
+class:SENSORSLegJointTemps, not_atomic, SENSORSLegJointTemps, "SENSORSLegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
+class:SENSORSTorsoJointTemps, not_atomic, SENSORSTorsoJointTemps, "SENSORSTorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
+class:SENSORSLegJointSensors, not_atomic, SENSORSLegJointSensors, "SENSORSLegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
+class:SENSORSTorsoJointSensors, not_atomic, SENSORSTorsoJointSensors, "SENSORSTorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
+class:SENSORSSonarSensors, not_atomic, SENSORSSonarSensors,   "SENSORSSonarSensors", Posts the sonar readings via the DCM loop (read only)
 class:FSMControlStatus, atomic, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;

@@ -163,101 +163,101 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !HAL_HeadTarget_DEFINED
 
-		case kSENSORS_FootSensors_v:
-#ifdef SENSORS_FootSensors_DEFINED
+		case kSENSORSFootSensors_v:
+#ifdef SENSORSFootSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_FootSensors @brief Nil */ 
-			class SENSORS_FootSensors_t m;
+/** WB Ptr Class: SENSORSFootSensors @brief Nil */ 
+			class SENSORSFootSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_FootSensors_DEFINED
+#endif // !SENSORSFootSensors_DEFINED
 
-		case kSENSORS_BodySensors_v:
-#ifdef SENSORS_BodySensors_DEFINED
+		case kSENSORSBodySensors_v:
+#ifdef SENSORSBodySensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_BodySensors @brief Nil */ 
-			class SENSORS_BodySensors_t m;
+/** WB Ptr Class: SENSORSBodySensors @brief Nil */ 
+			class SENSORSBodySensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_BodySensors_DEFINED
+#endif // !SENSORSBodySensors_DEFINED
 
-		case kSENSORS_LedsSensors_v:
-#ifdef SENSORS_LedsSensors_DEFINED
+		case kSENSORSLedsSensors_v:
+#ifdef SENSORSLedsSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LedsSensors @brief Nil */ 
-			class SENSORS_LedsSensors_t m;
+/** WB Ptr Class: SENSORSLedsSensors @brief Nil */ 
+			class SENSORSLedsSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_LedsSensors_DEFINED
+#endif // !SENSORSLedsSensors_DEFINED
 
-		case kSENSORS_LegJointTemps_v:
-#ifdef SENSORS_LegJointTemps_DEFINED
+		case kSENSORSLegJointTemps_v:
+#ifdef SENSORSLegJointTemps_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LegJointTemps @brief Nil */ 
-			class SENSORS_LegJointTemps_t m;
+/** WB Ptr Class: SENSORSLegJointTemps @brief Nil */ 
+			class SENSORSLegJointTemps_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_LegJointTemps_DEFINED
+#endif // !SENSORSLegJointTemps_DEFINED
 
-		case kSENSORS_TorsoJointTemps_v:
-#ifdef SENSORS_TorsoJointTemps_DEFINED
+		case kSENSORSTorsoJointTemps_v:
+#ifdef SENSORSTorsoJointTemps_DEFINED
 		{
-/** WB Ptr Class: SENSORS_TorsoJointTemps @brief Nil */ 
-			class SENSORS_TorsoJointTemps_t m;
+/** WB Ptr Class: SENSORSTorsoJointTemps @brief Nil */ 
+			class SENSORSTorsoJointTemps_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_TorsoJointTemps_DEFINED
+#endif // !SENSORSTorsoJointTemps_DEFINED
 
-		case kSENSORS_LegJointSensors_v:
-#ifdef SENSORS_LegJointSensors_DEFINED
+		case kSENSORSLegJointSensors_v:
+#ifdef SENSORSLegJointSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_LegJointSensors @brief Nil */ 
-			class SENSORS_LegJointSensors_t m;
+/** WB Ptr Class: SENSORSLegJointSensors @brief Nil */ 
+			class SENSORSLegJointSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_LegJointSensors_DEFINED
+#endif // !SENSORSLegJointSensors_DEFINED
 
-		case kSENSORS_TorsoJointSensors_v:
-#ifdef SENSORS_TorsoJointSensors_DEFINED
+		case kSENSORSTorsoJointSensors_v:
+#ifdef SENSORSTorsoJointSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_TorsoJointSensors @brief Nil */ 
-			class SENSORS_TorsoJointSensors_t m;
+/** WB Ptr Class: SENSORSTorsoJointSensors @brief Nil */ 
+			class SENSORSTorsoJointSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_TorsoJointSensors_DEFINED
+#endif // !SENSORSTorsoJointSensors_DEFINED
 
-		case kSENSORS_SonarSensors_v:
-#ifdef SENSORS_SonarSensors_DEFINED
+		case kSENSORSSonarSensors_v:
+#ifdef SENSORSSonarSensors_DEFINED
 		{
-/** WB Ptr Class: SENSORS_SonarSensors @brief Nil */ 
-			class SENSORS_SonarSensors_t m;
+/** WB Ptr Class: SENSORSSonarSensors @brief Nil */ 
+			class SENSORSSonarSensors_t m;
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
 			return "##unsupported##";
 
-#endif // !SENSORS_SonarSensors_DEFINED
+#endif // !SENSORSSonarSensors_DEFINED
 
 		case kFSM_Control_v:
 #ifdef FSMControlStatus_DEFINED

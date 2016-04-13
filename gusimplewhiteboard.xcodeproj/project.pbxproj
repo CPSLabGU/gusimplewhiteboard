@@ -97,15 +97,15 @@
 		C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */; };
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
 		C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBDE1CBCD2740061A970 /* Point2D.txt */; };
-		C3B4EC471CBCD2740061A970 /* SENSORS_BodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORS_BodySensors.h */; };
-		C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */; };
-		C3B4EC491CBCD2740061A970 /* SENSORS_FootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORS_FootSensors.h */; };
-		C3B4EC4A1CBCD2740061A970 /* SENSORS_LedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE21CBCD2740061A970 /* SENSORS_LedsSensors.h */; };
-		C3B4EC4B1CBCD2740061A970 /* SENSORS_LegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE31CBCD2740061A970 /* SENSORS_LegJointSensors.h */; };
-		C3B4EC4C1CBCD2740061A970 /* SENSORS_LegJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE41CBCD2740061A970 /* SENSORS_LegJointTemps.h */; };
-		C3B4EC4D1CBCD2740061A970 /* SENSORS_SonarSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE51CBCD2740061A970 /* SENSORS_SonarSensors.h */; };
-		C3B4EC4E1CBCD2740061A970 /* SENSORS_TorsoJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE61CBCD2740061A970 /* SENSORS_TorsoJointSensors.h */; };
-		C3B4EC4F1CBCD2740061A970 /* SENSORS_TorsoJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE71CBCD2740061A970 /* SENSORS_TorsoJointTemps.h */; };
+		C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */; };
+		C3B4EC481CBCD2740061A970 /* SENSORSBodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */; };
+		C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */; };
+		C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */; };
+		C3B4EC4B1CBCD2740061A970 /* SENSORSLegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */; };
+		C3B4EC4C1CBCD2740061A970 /* SENSORSLegJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */; };
+		C3B4EC4D1CBCD2740061A970 /* SENSORSSonarSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */; };
+		C3B4EC4E1CBCD2740061A970 /* SENSORSTorsoJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */; };
+		C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */; };
 		C3B4EC501CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */; };
 		C3B4EC511CBCD2740061A970 /* SwitchSubsumption.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */; };
 		C3B4EC521CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */; };
@@ -431,15 +431,15 @@
 		C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
 		C3B4EBDD1CBCD2740061A970 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		C3B4EBDE1CBCD2740061A970 /* Point2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Point2D.txt; sourceTree = "<group>"; };
-		C3B4EBDF1CBCD2740061A970 /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
-		C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORS_BodySensors.txt; sourceTree = "<group>"; };
-		C3B4EBE11CBCD2740061A970 /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
-		C3B4EBE21CBCD2740061A970 /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
-		C3B4EBE31CBCD2740061A970 /* SENSORS_LegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointSensors.h; sourceTree = "<group>"; };
-		C3B4EBE41CBCD2740061A970 /* SENSORS_LegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointTemps.h; sourceTree = "<group>"; };
-		C3B4EBE51CBCD2740061A970 /* SENSORS_SonarSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_SonarSensors.h; sourceTree = "<group>"; };
-		C3B4EBE61CBCD2740061A970 /* SENSORS_TorsoJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointSensors.h; sourceTree = "<group>"; };
-		C3B4EBE71CBCD2740061A970 /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
+		C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
+		C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORSBodySensors.txt; sourceTree = "<group>"; };
+		C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
+		C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
+		C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
+		C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointTemps.h; sourceTree = "<group>"; };
+		C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSSonarSensors.h; sourceTree = "<group>"; };
+		C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointSensors.h; sourceTree = "<group>"; };
+		C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointTemps.h; sourceTree = "<group>"; };
 		C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
 		C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSubsumption.h; sourceTree = "<group>"; };
 		C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSubsumptionTrafficLights.h; sourceTree = "<group>"; };
@@ -717,14 +717,14 @@
 		F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
 		F1E5542C18EBD16D00639B1E /* NAO_State.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAO_State.h; sourceTree = "<group>"; };
 		F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
-		F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_BodySensors.h; sourceTree = "<group>"; };
-		F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_FootSensors.h; sourceTree = "<group>"; };
-		F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LedsSensors.h; sourceTree = "<group>"; };
-		F1E5543218EBD16D00639B1E /* SENSORS_LegJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointSensors.h; sourceTree = "<group>"; };
-		F1E5543318EBD16D00639B1E /* SENSORS_LegJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_LegJointTemps.h; sourceTree = "<group>"; };
-		F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_SonarSensors.h; sourceTree = "<group>"; };
-		F1E5543518EBD16D00639B1E /* SENSORS_TorsoJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointSensors.h; sourceTree = "<group>"; };
-		F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORS_TorsoJointTemps.h; sourceTree = "<group>"; };
+		F1E5542F18EBD16D00639B1E /* SENSORSBodySensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
+		F1E5543018EBD16D00639B1E /* SENSORSFootSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
+		F1E5543118EBD16D00639B1E /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
+		F1E5543218EBD16D00639B1E /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
+		F1E5543318EBD16D00639B1E /* SENSORSLegJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointTemps.h; sourceTree = "<group>"; };
+		F1E5543418EBD16D00639B1E /* SENSORSSonarSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSSonarSensors.h; sourceTree = "<group>"; };
+		F1E5543518EBD16D00639B1E /* SENSORSTorsoJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointSensors.h; sourceTree = "<group>"; };
+		F1E5543618EBD16D00639B1E /* SENSORSTorsoJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointTemps.h; sourceTree = "<group>"; };
 		F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeleoperationControlStatus.h; sourceTree = "<group>"; };
 		F1E5543818EBD16D00639B1E /* Vision_Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vision_Control.h; sourceTree = "<group>"; };
 		F1E5543A18EBD16D00639B1E /* VisionBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionBall.h; sourceTree = "<group>"; };
@@ -1460,15 +1460,15 @@
 				F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */,
 				F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
-				F1E5542F18EBD16D00639B1E /* SENSORS_BodySensors.h */,
-				F1E5543018EBD16D00639B1E /* SENSORS_FootSensors.h */,
-				F1E5543118EBD16D00639B1E /* SENSORS_LedsSensors.h */,
+				F1E5542F18EBD16D00639B1E /* SENSORSBodySensors.h */,
+				F1E5543018EBD16D00639B1E /* SENSORSFootSensors.h */,
+				F1E5543118EBD16D00639B1E /* SENSORSLedsSensors.h */,
 				C3ECA6211B8C1B9E00F49B44 /* NXT_Lights_Control.h */,
-				F1E5543218EBD16D00639B1E /* SENSORS_LegJointSensors.h */,
-				F1E5543318EBD16D00639B1E /* SENSORS_LegJointTemps.h */,
-				F1E5543418EBD16D00639B1E /* SENSORS_SonarSensors.h */,
-				F1E5543518EBD16D00639B1E /* SENSORS_TorsoJointSensors.h */,
-				F1E5543618EBD16D00639B1E /* SENSORS_TorsoJointTemps.h */,
+				F1E5543218EBD16D00639B1E /* SENSORSLegJointSensors.h */,
+				F1E5543318EBD16D00639B1E /* SENSORSLegJointTemps.h */,
+				F1E5543418EBD16D00639B1E /* SENSORSSonarSensors.h */,
+				F1E5543518EBD16D00639B1E /* SENSORSTorsoJointSensors.h */,
+				F1E5543618EBD16D00639B1E /* SENSORSTorsoJointTemps.h */,
 				C33DF5261C0825270086181F /* SwitchSubsumption.h */,
 				F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */,
 				F1E5543818EBD16D00639B1E /* Vision_Control.h */,
@@ -1508,15 +1508,15 @@
 				C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */,
 				C3B4EBDD1CBCD2740061A970 /* Point2D.h */,
 				C3B4EBDE1CBCD2740061A970 /* Point2D.txt */,
-				C3B4EBDF1CBCD2740061A970 /* SENSORS_BodySensors.h */,
-				C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */,
-				C3B4EBE11CBCD2740061A970 /* SENSORS_FootSensors.h */,
-				C3B4EBE21CBCD2740061A970 /* SENSORS_LedsSensors.h */,
-				C3B4EBE31CBCD2740061A970 /* SENSORS_LegJointSensors.h */,
-				C3B4EBE41CBCD2740061A970 /* SENSORS_LegJointTemps.h */,
-				C3B4EBE51CBCD2740061A970 /* SENSORS_SonarSensors.h */,
-				C3B4EBE61CBCD2740061A970 /* SENSORS_TorsoJointSensors.h */,
-				C3B4EBE71CBCD2740061A970 /* SENSORS_TorsoJointTemps.h */,
+				C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */,
+				C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */,
+				C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */,
+				C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */,
+				C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */,
+				C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */,
+				C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */,
+				C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */,
+				C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */,
 				C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */,
 				C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */,
 				C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */,
@@ -1786,12 +1786,12 @@
 				F191CBD31B71A1A40005C314 /* wb_io_pins.h in Headers */,
 				C3B4EC231CBCD2740061A970 /* APM_Interface.h in Headers */,
 				C3B4EC5C1CBCD2740061A970 /* wb_arrayoffilteredballobjects.h in Headers */,
-				C3B4EC4B1CBCD2740061A970 /* SENSORS_LegJointSensors.h in Headers */,
+				C3B4EC4B1CBCD2740061A970 /* SENSORSLegJointSensors.h in Headers */,
 				C3B4EC651CBCD2740061A970 /* wb_differential_robot.h in Headers */,
 				C3B4EC5B1CBCD2740061A970 /* wb_apm_interface.h in Headers */,
 				C3B4EC631CBCD2740061A970 /* wb_clocks.h in Headers */,
 				C3B4EC7F1CBCD2740061A970 /* wb_sensors_foot.h in Headers */,
-				C3B4EC491CBCD2740061A970 /* SENSORS_FootSensors.h in Headers */,
+				C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */,
 				F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */,
 				F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */,
 				F191CBD51B71A4DF0005C314 /* IOPins.h in Headers */,
@@ -1810,7 +1810,7 @@
 				C3B4EC2D1CBCD2740061A970 /* FilteredOneDimObjects.h in Headers */,
 				09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */,
 				C3B4EC661CBCD2740061A970 /* wb_fft_frequencies.h in Headers */,
-				C3B4EC4A1CBCD2740061A970 /* SENSORS_LedsSensors.h in Headers */,
+				C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */,
 				C3B4EC511CBCD2740061A970 /* SwitchSubsumption.h in Headers */,
@@ -1818,7 +1818,7 @@
 				C33DF5271C0825270086181F /* SwitchSubsumption.h in Headers */,
 				C3B4EC561CBCD2740061A970 /* VisionGoals.h in Headers */,
 				C3B4EC251CBCD2740061A970 /* Clocks.h in Headers */,
-				C3B4EC471CBCD2740061A970 /* SENSORS_BodySensors.h in Headers */,
+				C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */,
 				C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */,
 				C3B4EC431CBCD2740061A970 /* OculusPrimeInterface.h in Headers */,
 				C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */,
@@ -1837,7 +1837,7 @@
 				C3B4EC6F1CBCD2740061A970 /* wb_iot_control.h in Headers */,
 				C3B4EC591CBCD2740061A970 /* WALK2014_ControlStatus.h in Headers */,
 				C3B4EC8A1CBCD2740061A970 /* wb_walk_controlstatus.h in Headers */,
-				C3B4EC4D1CBCD2740061A970 /* SENSORS_SonarSensors.h in Headers */,
+				C3B4EC4D1CBCD2740061A970 /* SENSORSSonarSensors.h in Headers */,
 				C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */,
 				C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */,
 				C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */,
@@ -1845,7 +1845,7 @@
 				C3B4EC6E1CBCD2740061A970 /* wb_io_pins.h in Headers */,
 				C3B4EC741CBCD2740061A970 /* wb_nxt_interface.h in Headers */,
 				C3B4EC361CBCD2740061A970 /* IOPins.h in Headers */,
-				C3B4EC4F1CBCD2740061A970 /* SENSORS_TorsoJointTemps.h in Headers */,
+				C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */,
 				C3B4EC821CBCD2740061A970 /* wb_sensors_legtemps.h in Headers */,
 				C3B4EC5D1CBCD2740061A970 /* wb_arrayoffilteredsonarobjects.h in Headers */,
 				C3B4EC2C1CBCD2740061A970 /* FilteredOneDimObject.h in Headers */,
@@ -1873,7 +1873,7 @@
 				C3B4EC721CBCD2740061A970 /* wb_lines.h in Headers */,
 				C3B4EC801CBCD2740061A970 /* wb_sensors_leds.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
-				C3B4EC4C1CBCD2740061A970 /* SENSORS_LegJointTemps.h in Headers */,
+				C3B4EC4C1CBCD2740061A970 /* SENSORSLegJointTemps.h in Headers */,
 				C3B4EC831CBCD2740061A970 /* wb_sensors_sonar.h in Headers */,
 				C3B4EC541CBCD2740061A970 /* Vision_Control.h in Headers */,
 				C3B4EC701CBCD2740061A970 /* wb_kinematic_motor.h in Headers */,
@@ -1891,7 +1891,7 @@
 				C3B4EC811CBCD2740061A970 /* wb_sensors_legs.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
 				F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */,
-				C3B4EC4E1CBCD2740061A970 /* SENSORS_TorsoJointSensors.h in Headers */,
+				C3B4EC4E1CBCD2740061A970 /* SENSORSTorsoJointSensors.h in Headers */,
 				C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */,
 				C3B4EC841CBCD2740061A970 /* wb_sensors_torso.h in Headers */,
 				C3B4EC621CBCD2740061A970 /* wb_channels.h in Headers */,
@@ -2254,7 +2254,7 @@
 			files = (
 				C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */,
 				C3B4EC271CBCD2740061A970 /* Doxyfile in Resources */,
-				C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */,
+				C3B4EC481CBCD2740061A970 /* SENSORSBodySensors.txt in Resources */,
 				C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */,
 				F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */,
 				C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */,

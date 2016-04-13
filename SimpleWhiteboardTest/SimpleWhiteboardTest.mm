@@ -220,9 +220,9 @@ public:
 }
 
 
-- (void) testSerializationSENSORS_TorsoJointSensors
+- (void) testSerializationSENSORSTorsoJointSensors
 {
-    SENSORS_TorsoJointSensors testA("10Y,20P");
+    SENSORSTorsoJointSensors testA("10Y,20P");
     XCTAssertEqualWithAccuracy(DEG2RAD(10), testA.HeadYaw  (), 0.01, @"Head Yaw match");
     XCTAssertEqualWithAccuracy(DEG2RAD(20), testA.HeadPitch(), 0.01, @"Head Pitch match");
    // XCTAssertFalse(true, @"Head Pitch match");
@@ -570,7 +570,7 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
-static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v,
+static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORSFootSensors_v, kSENSORSLedsSensors_v, kSENSORSLegJointTemps_v, kSENSORSTorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v,
         // FIXME: vision below
     kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v, kInput3D_v, kOculusPrime_Command_v, kAPM_Status_v, kAPM_Command_v }; // FIXME: vision
 
