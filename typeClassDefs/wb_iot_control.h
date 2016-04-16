@@ -115,7 +115,7 @@ typedef enum ToggleTimerState
 //! @cond Doxygen_Suppress
     //Doxy is warning about undocumented functions as a result of our macros and the fact that they're used in this union. This will disable doxy from parsing this section, which means no warnings but also no generated documentation for this section. The other option is to redefine the macros locally to fix the naming problem. - Carl.
 
-#define IOT_MSG_SIZE 4
+#define IOT_MSG_SIZE (sizeof(int)*4)
 
 /**
  * Param for each mode
