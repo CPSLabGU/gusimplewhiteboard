@@ -23,6 +23,7 @@ typedef enum node_list
     AirCon                          = 2,    ///< Air conditioner control message for the master bedroom (IR controlled)
     SonarInput                      = 3,    ///< Test input message for a sonar sensor
     OutdoorAreaLightingRemote       = 4,    ///< Remote controller for the outdoor 12v lights (OutdoorAreaLighting)
+    ControlPanel                    = 5,    ///< IoT control panel node
 	NUMBER_OF_NODES	                        ///< NUMBER_OF_NODES
 } IoT_NodeList;
 
@@ -31,16 +32,18 @@ const int IoT_ids[] =
         73002,      //Real
         16631463,   //Real
         1134,       //Bogus 
-        761675,     //Real
-        10702516    //Real
+        1,          //Bogus 
+        10702516,   //Real
+        761675      //Real
 };
 
 /** List of nodes that actually need to SET data into the wb instead of just sending queries */
-#define NUMBER_OF_INPUT_NODES 2
+#define NUMBER_OF_INPUT_NODES 3
 const int IoT_inputNodes[NUMBER_OF_INPUT_NODES] = 
 {
     SonarInput,
-    OutdoorAreaLightingRemote       
+    OutdoorAreaLightingRemote,
+    ControlPanel
 };
 
 static inline IoT_NodeList findNodeFromID(int id);
@@ -84,8 +87,30 @@ typedef enum OutdoorAreaLightingState
     Lights_Off = 0,	        ///< Lights_Off 
     Main_On,	            ///< Main lights on
     Side_On,	            ///< Side lights on
-    Both_On	                ///< Both lights on
+    Both_On,                ///< Both lights on
+    Lights_Timer,           ///< Timer control
+	NUMBER_OF_OUTDOOR_LIGHTING_STATES	///< NUMBER_OF_OUTDOOR_LIGHTING_STATES	
 } OutdoorAreaLightingState;
+ 
+/** PoolAreaLightingState enum */
+typedef enum PoolAreaLightingState
+{
+    PoolLights_Off = 0,	    ///< PoolLights_Off 
+    DimLights_On,           ///< Pool light on
+    BrightLights_On,	    ///< NYI
+    AllPoolLights_On,	    ///< NYI
+    PoolLights_Timer,       ///< Timer control
+	NUMBER_OF_POOL_LIGHTING_STATES	///< NUMBER_OF_POOL_LIGHTING_STATES	
+} PoolAreaLightingState;
+ 
+/** Toggle with timer enum */
+typedef enum ToggleTimerState
+{
+    Toggle_Off = 0,	        ///< Toggle_Off 
+    Toggle_On,	            ///< Toggle_On
+    Toggle_Timer,           ///< Timer control
+	NUMBER_OF_TOGGLE_STATES	///< NUMBER_OF_TOGGLE_STATES	
+} ToggleTimerState;
  
 //! @cond Doxygen_Suppress
     //Doxy is warning about undocumented functions as a result of our macros and the fact that they're used in this union. This will disable doxy from parsing this section, which means no warnings but also no generated documentation for this section. The other option is to redefine the macros locally to fix the naming problem. - Carl.
@@ -172,6 +197,20 @@ union NodeMCUMessages
         /** OutdoorAreaLightingState states */
         PROPERTY(OutdoorAreaLightingState, outdoorAreaLightingState)
     } OutdoorAreaLightingRemote; ///< desired pin toggle states
+
+    /**
+    * Control Panel
+    */
+    struct ControlPanel {
+        /** OutdoorAreaLightingState states */
+        PROPERTY(OutdoorAreaLightingState, outdoorAreaLightingState)
+        /** PoolAreaLightingState states */
+        PROPERTY(PoolAreaLightingState, poolAreaLightingState)
+        /** Garden watering states */
+        PROPERTY(ToggleTimerState, gardenWateringState)
+        /** Pool filter states */
+        PROPERTY(ToggleTimerState, poolFilterState)
+    } ControlPanel; 
 
     /**
     * AirCon
