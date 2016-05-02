@@ -150,13 +150,13 @@ union NodeMCUMessages
     struct OutdoorPoolLightAndGardenWater {
         //This is just a convenience for me to store what's plugged into where.
         /** D0 */
-        BIT_PROPERTY(D0) 
+        BIT_PROPERTY(Pool_Filter) 
         /** D1 */
         BIT_PROPERTY(Pool_Light) 
         /** D2 */
         BIT_PROPERTY(Garden_Water) 
         /** D3 */
-        BIT_PROPERTY(D3) 
+        BIT_PROPERTY(Garden_Lights) 
         /** D4 */
         BIT_PROPERTY(D4) 
         /** D5 */

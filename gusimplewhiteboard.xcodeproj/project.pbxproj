@@ -65,7 +65,6 @@
 		C3B4EC241CBCD2740061A970 /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBBE1CBCD2740061A970 /* Channels.h */; };
 		C3B4EC251CBCD2740061A970 /* Clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBBF1CBCD2740061A970 /* Clocks.h */; };
 		C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC01CBCD2740061A970 /* DifferentialRobotControlStatus.h */; };
-		C3B4EC271CBCD2740061A970 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBC11CBCD2740061A970 /* Doxyfile */; };
 		C3B4EC281CBCD2740061A970 /* FFTStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC21CBCD2740061A970 /* FFTStatus.h */; };
 		C3B4EC291CBCD2740061A970 /* FilteredArrayOneDimBall.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC31CBCD2740061A970 /* FilteredArrayOneDimBall.h */; };
 		C3B4EC2A1CBCD2740061A970 /* FilteredArrayOneDimObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC41CBCD2740061A970 /* FilteredArrayOneDimObjects.h */; };
@@ -98,7 +97,7 @@
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
 		C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBDE1CBCD2740061A970 /* Point2D.txt */; };
 		C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */; };
-		C3B4EC481CBCD2740061A970 /* SENSORSBodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */; };
+		C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */; };
 		C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */; };
 		C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */; };
 		C3B4EC4B1CBCD2740061A970 /* SENSORSLegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */; };
@@ -432,7 +431,7 @@
 		C3B4EBDD1CBCD2740061A970 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		C3B4EBDE1CBCD2740061A970 /* Point2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Point2D.txt; sourceTree = "<group>"; };
 		C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
-		C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORSBodySensors.txt; sourceTree = "<group>"; };
+		C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORS_BodySensors.txt; sourceTree = "<group>"; };
 		C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
 		C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
 		C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
@@ -1509,7 +1508,7 @@
 				C3B4EBDD1CBCD2740061A970 /* Point2D.h */,
 				C3B4EBDE1CBCD2740061A970 /* Point2D.txt */,
 				C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */,
-				C3B4EBE01CBCD2740061A970 /* SENSORSBodySensors.txt */,
+				C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */,
 				C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */,
 				C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */,
 				C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */,
@@ -2253,8 +2252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */,
-				C3B4EC271CBCD2740061A970 /* Doxyfile in Resources */,
-				C3B4EC481CBCD2740061A970 /* SENSORSBodySensors.txt in Resources */,
+				C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */,
 				C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */,
 				F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */,
 				C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */,
