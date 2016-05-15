@@ -2776,6 +2776,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../..",
 					"$(SRCROOT)/..",
 					"$(SRCROOT)",
 					"$(SRCROOT)/../gusimplewhiteboard",
@@ -2805,6 +2806,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../..",
 					"$(SRCROOT)/..",
 					"$(SRCROOT)",
 					"$(SRCROOT)/../gusimplewhiteboard",
