@@ -327,9 +327,9 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
 void gsw_free(gu_simple_whiteboard *wb, int fd)
 {
         if (munmap(wb, sizeof(*wb)) == -1)
-                fprintf(stderr, "Cannot unmap whiteboard at %p with fd %d: %s\n", wb, fd, strerror(errno));
+                fprintf(stderr, "Cannot unmap whiteboard at %p with fd %d: %s\n", (void *)wb, fd, strerror(errno));
         if (fd >= 0) if (close(fd) == -1)
-                fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", wb, fd, strerror(errno));
+                fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", (void *)wb, fd, strerror(errno));
 }
 
 
