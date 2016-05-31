@@ -309,7 +309,7 @@ public:
  * Better to use the low level C or C++ types directly off the
  * ObjcWhiteboard's gu_whiteboard pointer.
  *
- * @param typeName      whiteboard type name to use
+ * @param msgType      whiteboard type name to use
  * @return message content as a string or nil if unsupported
  */
 - (NSString *) getMessageOfType: (wbtypes_t) msgType
@@ -464,7 +464,7 @@ static NSArray *wbtypes;
  * monitoring tools.  Better to use the C++ message on the ObjcWhiteboard
  * instance's gu_whiteboard pointer.
  * @param msg   name of the whiteboard message to get
- * @return Objective C representation of the message or @"##unsupported##"
+ * @return Objective C representation of the message or "##unsupported##"
  */
 - (id) getWBMessage: (const NSString *) msg
 {

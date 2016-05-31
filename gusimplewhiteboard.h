@@ -338,6 +338,7 @@ extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
 
 /**
  * register a new whiteboard message type
+ * @param wbd  descriptor for the whiteboard
  * @param name  string to use for identification
  * @return numerical identifier to use
  */
@@ -345,6 +346,7 @@ extern int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const
 
 /**
  * get the numerical index of a whiteboard message type
+ * @param wbd  descriptor for the whiteboard
  * @param name  string to use for identification
  * @return numerical identifier to use
  */
