@@ -222,7 +222,7 @@ public:
 
 - (void) testSerializationSENSORSTorsoJointSensors
 {
-    SENSORSTorsoJointSensors testA("10Y,20P");
+    SENSORSTorsoJointSensors testA("0.174533,0.349066");
     XCTAssertEqualWithAccuracy(DEG2RAD(10), testA.HeadYaw  (), 0.01, @"Head Yaw match");
     XCTAssertEqualWithAccuracy(DEG2RAD(20), testA.HeadPitch(), 0.01, @"Head Pitch match");
    // XCTAssertFalse(true, @"Head Pitch match");
