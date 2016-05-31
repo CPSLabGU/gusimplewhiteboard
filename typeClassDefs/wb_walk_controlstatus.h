@@ -27,9 +27,9 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 #ifdef __cplusplus
    /** Comparison operator for Odometry objects */
    inline bool operator== (const Odometry& a) {
-      return (	fabs(static_cast<float>(forward - a.forward)) < DBL_EPSILON &&
-		fabs(static_cast<float>(left - a.left)) < DBL_EPSILON &&
-		fabs(static_cast<float>(turn - a.turn)) < DBL_EPSILON);
+      return (	fabs(static_cast<double>(forward - a.forward)) < DBL_EPSILON &&
+		fabs(static_cast<double>(left - a.left)) < DBL_EPSILON &&
+		fabs(static_cast<double>(turn - a.turn)) < DBL_EPSILON);
    }
 #endif
 
