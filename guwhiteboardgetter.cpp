@@ -12,6 +12,8 @@
 using namespace std;
 using namespace guWhiteboard;
 
+#pragma clang diagnostic push;
+#pragma clang diagnostic ignored "-Wunused-parameter";
 extern "C"
 {
 	char *whiteboard_get(const char *message_type, gu_simple_message *msg)
@@ -42,6 +44,8 @@ static string intvectostring(const vector<int> &vec)
 }
 #pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter";
 string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)
 {
 	return getmsg(types_map[message_type], msg);
@@ -1018,6 +1022,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 
 #endif // !SwitchSubsumptionTrafficLights_DEFINED
 
+		(void) msg;
 	}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1025,4 +1030,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 	return "##unsupported##";
 #pragma clang diagnostic pop
 }
+
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
 

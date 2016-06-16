@@ -122,10 +122,22 @@ extern "C"
 bool whiteboard_post(const char *message_type, const char *message_content);
 
 /**
+ * A generic C function that posts to a given whiteboard.
+ * Both the message type and the message content are strings.
+ */
+bool whiteboard_post_to(gu_simple_whiteboard_descriptor *wbd, const char *message_type, const char *message_content);
+
+/**
  * Generic C function that posts a message with a given message number
  * to the whiteboard.
  */
 bool whiteboard_postmsg(int message_index, const char *message_content);
+
+/**
+ * Generic C function that posts a message with a given message number
+ * to a given whiteboard.
+ */
+bool whiteboard_postmsg_to(gu_simple_whiteboard_descriptor *wbd, int message_index, const char *message_content);
 
 /**
  * Generic C function that returns the type for a given message name
@@ -144,18 +156,20 @@ namespace guWhiteboard
          * Both the message type and the message content are strings.
          * @param message_type the string version of the type
          * @param message_content the string data to pass to the types string constructor
-         * @return true if there is a string constructor for the passed in type 
+         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
+         * @return true if there is a string constructor for the passed in type
          */
-        bool post(std::string message_type, std::string message_content);
+        bool post(std::string message_type, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
 
         /**
          * Generic C++ function that posts a message with a given message number
          * to the whiteboard.
          * @param message_index the offset or enum value of the type to post
          * @param message_content the string data to pass to the types string constructor
+         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
          * @return true if there is a string constructor for the passed in type 
          */
-        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content);
+        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
 
         /**
          * Map structure from strings to message types
