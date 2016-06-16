@@ -641,7 +641,7 @@ int main(int argc, char *argv[]) {
 		output_string_array_c_file << "        \"" << types[i].type_name;
                 i+1 != static_cast<int>(types.size()) ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
 	}
-        output_generic_poster << "}\n\n";
+        output_generic_poster << "\n\t(void) self;\n}\n\n";
 
         output_string_array_c_file << closing_string_array_definition;
 	
