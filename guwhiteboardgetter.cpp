@@ -22,9 +22,21 @@ extern "C"
 	}
 
 
+	char *whiteboard_get_from(gu_simple_whiteboard_descriptor *wbd, const char *message_type)
+	{
+		return whiteboard_getmsg_from(wbd, types_map[message_type]);
+	}
+
+
 	char *whiteboard_getmsg(int message_index, gu_simple_message *msg)
 	{
 		return gu_strdup(getmsg(WBTypes(message_index), msg).c_str());
+	}
+
+
+	char *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index)
+	{
+		return gu_strdup(getmsg(WBTypes(message_index), NULL, wbd).c_str());
 	}
 } // extern C
 
@@ -46,13 +58,13 @@ static string intvectostring(const vector<int> &vec)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter";
-string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)
+string guWhiteboard::getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
 {
-	return getmsg(types_map[message_type], msg);
+	return getmsg(types_map[message_type], msg, wbd);
 }
 
 
-string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
+string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
 {
 	switch (message_index)
 	{
@@ -62,44 +74,44 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kPrint_v:
 		{
 /** WB Ptr Class: Print @brief Nil */ 
-			class Print_t m;
+			class Print_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSay_v:
 		{
 /** WB Ptr Class: Say @brief Nil */ 
-			class Say_t m;
+			class Say_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSpeech_v:
 		{
 /** WB Ptr Class: Speech @brief Nil */ 
-			class Speech_t m;
+			class Speech_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kQSay_v:
 		{
 /** WB Ptr Class: QSay @brief Nil */ 
-			class QSay_t m;
+			class QSay_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kQSpeech_v:
 		{
 /** WB Ptr Class: QSpeech @brief Nil */ 
-			class QSpeech_t m;
+			class QSpeech_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kSpeechOutput_v:
 		{
 /** WB Ptr Class: SpeechOutput @brief Nil */ 
-			class SpeechOutput_t m;
+			class SpeechOutput_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kGCGameState_v:
 #ifdef GCGameState_DEFINED
 		{
 /** WB Ptr Class: GCGameState @brief Nil */ 
-			class GCGameState_t m;
+			class GCGameState_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -111,7 +123,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WALK_ControlStatus_DEFINED
 		{
 /** WB Ptr Class: WALK_Command @brief Nil */ 
-			class WALK_Command_t m;
+			class WALK_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -123,7 +135,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WALK_ControlStatus_DEFINED
 		{
 /** WB Ptr Class: WALK_Status @brief Nil */ 
-			class WALK_Status_t m;
+			class WALK_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -135,7 +147,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef MOTION_Commands_DEFINED
 		{
 /** WB Ptr Class: MOTION_Commands @brief Nil */ 
-			class MOTION_Commands_t m;
+			class MOTION_Commands_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -147,7 +159,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef MOTION_Status_DEFINED
 		{
 /** WB Ptr Class: MOTION_Status @brief Nil */ 
-			class MOTION_Status_t m;
+			class MOTION_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -159,7 +171,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef HAL_HeadTarget_DEFINED
 		{
 /** WB Ptr Class: HAL_HeadTarget @brief Nil */ 
-			class HAL_HeadTarget_t m;
+			class HAL_HeadTarget_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -171,7 +183,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSFootSensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSFootSensors @brief Nil */ 
-			class SENSORSFootSensors_t m;
+			class SENSORSFootSensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -183,7 +195,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSBodySensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSBodySensors @brief Nil */ 
-			class SENSORSBodySensors_t m;
+			class SENSORSBodySensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -195,7 +207,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSLedsSensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSLedsSensors @brief Nil */ 
-			class SENSORSLedsSensors_t m;
+			class SENSORSLedsSensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -207,7 +219,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSLegJointTemps_DEFINED
 		{
 /** WB Ptr Class: SENSORSLegJointTemps @brief Nil */ 
-			class SENSORSLegJointTemps_t m;
+			class SENSORSLegJointTemps_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -219,7 +231,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSTorsoJointTemps_DEFINED
 		{
 /** WB Ptr Class: SENSORSTorsoJointTemps @brief Nil */ 
-			class SENSORSTorsoJointTemps_t m;
+			class SENSORSTorsoJointTemps_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -231,7 +243,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSLegJointSensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSLegJointSensors @brief Nil */ 
-			class SENSORSLegJointSensors_t m;
+			class SENSORSLegJointSensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -243,7 +255,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSTorsoJointSensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSTorsoJointSensors @brief Nil */ 
-			class SENSORSTorsoJointSensors_t m;
+			class SENSORSTorsoJointSensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -255,7 +267,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SENSORSSonarSensors_DEFINED
 		{
 /** WB Ptr Class: SENSORSSonarSensors @brief Nil */ 
-			class SENSORSSonarSensors_t m;
+			class SENSORSSonarSensors_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -267,7 +279,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FSMControlStatus_DEFINED
 		{
 /** WB Ptr Class: FSM_Control @brief Nil */ 
-			class FSM_Control_t m;
+			class FSM_Control_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -279,7 +291,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FSMControlStatus_DEFINED
 		{
 /** WB Ptr Class: FSM_Status @brief Nil */ 
-			class FSM_Status_t m;
+			class FSM_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -291,7 +303,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FSMNames_DEFINED
 		{
 /** WB Ptr Class: FSM_Names @brief Nil */ 
-			class FSM_Names_t m;
+			class FSM_Names_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -306,7 +318,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FilteredArrayOneDimObjects_DEFINED
 		{
 /** WB Ptr Class: FilteredGoalSighting @brief Nil */ 
-			class FilteredGoalSighting_t m;
+			class FilteredGoalSighting_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -318,7 +330,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NAO_State_DEFINED
 		{
 /** WB Ptr Class: NAO_State @brief Nil */ 
-			class NAO_State_t m;
+			class NAO_State_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -330,7 +342,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef GCGameState_DEFINED
 		{
 /** WB Ptr Class: UDPRN @brief Nil */ 
-			class UDPRN_t m;
+			class UDPRN_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -341,20 +353,20 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kPlayerNumber_v:
 		{
 /** WB Ptr Class: PlayerNumber @brief Nil */ 
-			class PlayerNumber_t m;
+			class PlayerNumber_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kManuallyPenalized_v:
 		{
 /** WB Ptr Class: ManuallyPenalized @brief Nil */ 
-			class ManuallyPenalized_t m;
+			class ManuallyPenalized_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
 		{
 /** WB Ptr Class: Vision_Control @brief Nil */ 
-			class Vision_Control_t m;
+			class Vision_Control_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -366,7 +378,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef VisionControlStatus_DEFINED
 		{
 /** WB Ptr Class: Vision_Status @brief Nil */ 
-			class Vision_Status_t m;
+			class Vision_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -378,7 +390,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FFTStatus_DEFINED
 		{
 /** WB Ptr Class: FFTStatus @brief Nil */ 
-			class FFTStatus_t m;
+			class FFTStatus_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -390,7 +402,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FilteredArrayOneDimSonar_DEFINED
 		{
 /** WB Ptr Class: FSOsighting @brief Nil */ 
-			class FSOsighting_t m;
+			class FSOsighting_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -402,7 +414,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef TopParticles_DEFINED
 		{
 /** WB Ptr Class: TopParticles @brief Nil */ 
-			class TopParticles_t m;
+			class TopParticles_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -414,7 +426,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef FilteredArrayOneDimBall_DEFINED
 		{
 /** WB Ptr Class: FilteredBallSighting @brief Nil */ 
-			class FilteredBallSighting_t m;
+			class FilteredBallSighting_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -425,14 +437,14 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kPF_ControlStatus_Modes_v:
 		{
 /** WB Ptr Class: PF_ControlStatus_Modes @brief Nil */ 
-			class PF_ControlStatus_Modes_t m;
+			class PF_ControlStatus_Modes_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kWEBOTS_NXT_bridge_v:
 #ifdef WEBOTS_NXT_bridge_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_bridge @brief Nil */ 
-			class WEBOTS_NXT_bridge_t m;
+			class WEBOTS_NXT_bridge_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -444,7 +456,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_encoders_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_encoders @brief Nil */ 
-			class WEBOTS_NXT_encoders_t m;
+			class WEBOTS_NXT_encoders_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -456,7 +468,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_camera_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_camera @brief Nil */ 
-			class WEBOTS_NXT_camera_t m;
+			class WEBOTS_NXT_camera_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -468,7 +480,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_walk_isRunning_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_walk_isRunning @brief Nil */ 
-			class WEBOTS_NXT_walk_isRunning_t m;
+			class WEBOTS_NXT_walk_isRunning_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -480,7 +492,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_deadReakoning_walk_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_deadReakoning_walk @brief Nil */ 
-			class WEBOTS_NXT_deadReakoning_walk_t m;
+			class WEBOTS_NXT_deadReakoning_walk_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -492,7 +504,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_colorLine_walk_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_colorLine_walk @brief Nil */ 
-			class WEBOTS_NXT_colorLine_walk_t m;
+			class WEBOTS_NXT_colorLine_walk_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -504,7 +516,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_gridMotions_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_gridMotions @brief Nil */ 
-			class WEBOTS_NXT_gridMotions_t m;
+			class WEBOTS_NXT_gridMotions_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -516,7 +528,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef VisionBall_DEFINED
 		{
 /** WB Ptr Class: VisionBall @brief Nil */ 
-			class VisionBall_t m;
+			class VisionBall_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -528,7 +540,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef VisionGoals_DEFINED
 		{
 /** WB Ptr Class: VisionGoals @brief Nil */ 
-			class VisionGoals_t m;
+			class VisionGoals_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -540,7 +552,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WalkData_DEFINED
 		{
 /** WB Ptr Class: WalkData @brief Nil */ 
-			class WalkData_t m;
+			class WalkData_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -552,7 +564,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef TeleoperationControlStatus_DEFINED
 		{
 /** WB Ptr Class: TeleoperationControlStatus @brief Nil */ 
-			class TeleoperationControlStatus_t m;
+			class TeleoperationControlStatus_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -563,20 +575,20 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kTeleoperationConnection_v:
 		{
 /** WB Ptr Class: TeleoperationConnection @brief Nil */ 
-			class TeleoperationConnection_t m;
+			class TeleoperationConnection_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kUDPWBNumber_v:
 		{
 /** WB Ptr Class: UDPWBNumber @brief Nil */ 
-			class UDPWBNumber_t m;
+			class UDPWBNumber_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kWEBOTS_NXT_bumper_v:
 #ifdef WEBOTS_NXT_bumper_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_bumper @brief Nil */ 
-			class WEBOTS_NXT_bumper_t m;
+			class WEBOTS_NXT_bumper_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -588,7 +600,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WEBOTS_NXT_vector_bridge_DEFINED
 		{
 /** WB Ptr Class: WEBOTS_NXT_vector_bridge @brief Nil */ 
-			class WEBOTS_NXT_vector_bridge_t m;
+			class WEBOTS_NXT_vector_bridge_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -600,7 +612,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef VisionLines_DEFINED
 		{
 /** WB Ptr Class: VisionLines @brief Nil */ 
-			class VisionLines_t m;
+			class VisionLines_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -612,7 +624,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef DifferentialRobotControlStatus_DEFINED
 		{
 /** WB Ptr Class: DifferentialRobotStatus @brief Nil */ 
-			class DifferentialRobotStatus_t m;
+			class DifferentialRobotStatus_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -624,7 +636,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef DifferentialRobotControlStatus_DEFINED
 		{
 /** WB Ptr Class: DifferentialRobotControl @brief Nil */ 
-			class DifferentialRobotControl_t m;
+			class DifferentialRobotControl_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -636,7 +648,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Point2D_DEFINED
 		{
 /** WB Ptr Class: XEyesPos @brief Nil */ 
-			class XEyesPos_t m;
+			class XEyesPos_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -647,20 +659,20 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kVisionFace_v:
 		{
 /** WB Ptr Class: VisionFace @brief Nil */ 
-			class VisionFace_t m;
+			class VisionFace_t m(wbd);
 			return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
 		}
 		case kDraw_v:
 		{
 /** WB Ptr Class: Draw @brief Nil */ 
-			class Draw_t m;
+			class Draw_t m(wbd);
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kFSM_States_v:
 #ifdef FSMState_DEFINED
 		{
 /** WB Ptr Class: FSM_States @brief Nil */ 
-			class FSM_States_t m;
+			class FSM_States_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -672,7 +684,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Giraff_MainSerialInterface_DEFINED
 		{
 /** WB Ptr Class: Giraff_Interface_Status @brief Nil */ 
-			class Giraff_Interface_Status_t m;
+			class Giraff_Interface_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -684,7 +696,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Giraff_MainSerialInterface_DEFINED
 		{
 /** WB Ptr Class: Giraff_Interface_Command @brief Nil */ 
-			class Giraff_Interface_Command_t m;
+			class Giraff_Interface_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -696,7 +708,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NXT_Interface_DEFINED
 		{
 /** WB Ptr Class: NXT_Status @brief Nil */ 
-			class NXT_Status_t m;
+			class NXT_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -708,7 +720,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NXT_Interface_DEFINED
 		{
 /** WB Ptr Class: NXT_Command @brief Nil */ 
-			class NXT_Command_t m;
+			class NXT_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -720,7 +732,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef APM_Interface_DEFINED
 		{
 /** WB Ptr Class: APM_Status @brief Nil */ 
-			class APM_Status_t m;
+			class APM_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -732,7 +744,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef APM_Interface_DEFINED
 		{
 /** WB Ptr Class: APM_Command @brief Nil */ 
-			class APM_Command_t m;
+			class APM_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -744,7 +756,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WALK2014_ControlStatus_DEFINED
 		{
 /** WB Ptr Class: WALK2014_Command @brief Nil */ 
-			class WALK2014_Command_t m;
+			class WALK2014_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -756,7 +768,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef WALK2014_ControlStatus_DEFINED
 		{
 /** WB Ptr Class: WALK2014_Status @brief Nil */ 
-			class WALK2014_Status_t m;
+			class WALK2014_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -767,14 +779,14 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kCBall_v:
 		{
 /** WB Ptr Class: CBall @brief Nil */ 
-			class CBall_t m;
+			class CBall_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kOculusPrime_Command_v:
 #ifdef OculusPrimeInterface_DEFINED
 		{
 /** WB Ptr Class: OculusPrime_Command @brief Nil */ 
-			class OculusPrime_Command_t m;
+			class OculusPrime_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -786,7 +798,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Input3D_DEFINED
 		{
 /** WB Ptr Class: Input3D @brief Nil */ 
-			class Input3D_t m;
+			class Input3D_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -798,7 +810,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Oculus_PrimeSerialInterface_DEFINED
 		{
 /** WB Ptr Class: Oculus_Prime_Command @brief Nil */ 
-			class Oculus_Prime_Command_t m;
+			class Oculus_Prime_Command_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -810,7 +822,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef IOPins_DEFINED
 		{
 /** WB Ptr Class: IOPins @brief Nil */ 
-			class IOPins_t m;
+			class IOPins_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -822,7 +834,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NXT_Two_Touch_Status_DEFINED
 		{
 /** WB Ptr Class: NXT_Two_Touch_Status @brief Nil */ 
-			class NXT_Two_Touch_Status_t m;
+			class NXT_Two_Touch_Status_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -834,7 +846,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NXT_Sound_Control_DEFINED
 		{
 /** WB Ptr Class: NXT_Sound_Control @brief Nil */ 
-			class NXT_Sound_Control_t m;
+			class NXT_Sound_Control_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -846,7 +858,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef NXT_Lights_Control_DEFINED
 		{
 /** WB Ptr Class: NXT_Lights_Control @brief Nil */ 
-			class NXT_Lights_Control_t m;
+			class NXT_Lights_Control_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -858,7 +870,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Clocks_DEFINED
 		{
 /** WB Ptr Class: Clocks @brief Nil */ 
-			class Clocks_t m;
+			class Clocks_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -870,7 +882,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef Channels_DEFINED
 		{
 /** WB Ptr Class: Channels @brief Nil */ 
-			class Channels_t m;
+			class Channels_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -882,7 +894,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef SwitchSubsumption_DEFINED
 		{
 /** WB Ptr Class: SwitchSubsumption @brief Nil */ 
-			class SwitchSubsumption_t m;
+			class SwitchSubsumption_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -894,7 +906,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef TotoDoingMotion_DEFINED
 		{
 /** WB Ptr Class: TotoDoingMotion @brief Nil */ 
-			class TotoDoingMotion_t m;
+			class TotoDoingMotion_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -906,7 +918,7 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 #ifdef wb_count_DEFINED
 		{
 /** WB Ptr Class: Count @brief Nil */ 
-			class Count_t m;
+			class Count_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -917,86 +929,86 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kGreenEWon_v:
 		{
 /** WB Ptr Class: GreenEWon @brief Nil */ 
-			class GreenEWon_t m;
+			class GreenEWon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kWarnEW_v:
 		{
 /** WB Ptr Class: WarnEW @brief Nil */ 
-			class WarnEW_t m;
+			class WarnEW_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kTimeGTthirty_v:
 		{
 /** WB Ptr Class: TimeGTthirty @brief Nil */ 
-			class TimeGTthirty_t m;
+			class TimeGTthirty_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kAmberEWon_v:
 		{
 /** WB Ptr Class: AmberEWon @brief Nil */ 
-			class AmberEWon_t m;
+			class AmberEWon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kTurnRedEW_v:
 		{
 /** WB Ptr Class: TurnRedEW @brief Nil */ 
-			class TurnRedEW_t m;
+			class TurnRedEW_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kTimeGTfive_v:
 		{
 /** WB Ptr Class: TimeGTfive @brief Nil */ 
-			class TimeGTfive_t m;
+			class TimeGTfive_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kRedEWon_v:
 		{
 /** WB Ptr Class: RedEWon @brief Nil */ 
-			class RedEWon_t m;
+			class RedEWon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kGreenNSon_v:
 		{
 /** WB Ptr Class: GreenNSon @brief Nil */ 
-			class GreenNSon_t m;
+			class GreenNSon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kWarnNS_v:
 		{
 /** WB Ptr Class: WarnNS @brief Nil */ 
-			class WarnNS_t m;
+			class WarnNS_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kAmberNSon_v:
 		{
 /** WB Ptr Class: AmberNSon @brief Nil */ 
-			class AmberNSon_t m;
+			class AmberNSon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kTurnRedNS_v:
 		{
 /** WB Ptr Class: TurnRedNS @brief Nil */ 
-			class TurnRedNS_t m;
+			class TurnRedNS_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kRedNSon_v:
 		{
 /** WB Ptr Class: RedNSon @brief Nil */ 
-			class RedNSon_t m;
+			class RedNSon_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kTimerReset_v:
 		{
 /** WB Ptr Class: TimerReset @brief Nil */ 
-			class TimerReset_t m;
+			class TimerReset_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kIoT_Control_v:
 #ifdef IoT_Control_DEFINED
 		{
 /** WB Ptr Class: IoT_Control @brief Nil */ 
-			class IoT_Control_t m;
+			class IoT_Control_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else
@@ -1007,14 +1019,14 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)
 		case kCarSensorPressed_v:
 		{
 /** WB Ptr Class: CarSensorPressed @brief Nil */ 
-			class CarSensorPressed_t m;
+			class CarSensorPressed_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
 		case kSwitchSubsumptionTrafficLights_v:
 #ifdef SwitchSubsumptionTrafficLights_DEFINED
 		{
 /** WB Ptr Class: SwitchSubsumptionTrafficLights @brief Nil */ 
-			class SwitchSubsumptionTrafficLights_t m;
+			class SwitchSubsumptionTrafficLights_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else

@@ -333,9 +333,17 @@ int main(int argc, char *argv[]) {
         "\t{\n"
         "\t\treturn whiteboard_getmsg(types_map[message_type], msg);\n"
         "\t}\n\n\n"
+        "\tchar *whiteboard_get_from(gu_simple_whiteboard_descriptor *wbd, const char *message_type)\n"
+        "\t{\n"
+        "\t\treturn whiteboard_getmsg_from(wbd, types_map[message_type]);\n"
+        "\t}\n\n\n"
         "\tchar *whiteboard_getmsg(int message_index, gu_simple_message *msg)\n"
         "\t{\n"
         "\t\treturn gu_strdup(getmsg(WBTypes(message_index), msg).c_str());\n"
+        "\t}\n\n\n"
+        "\tchar *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index)\n"
+        "\t{\n"
+        "\t\treturn gu_strdup(getmsg(WBTypes(message_index), NULL, wbd).c_str());\n"
         "\t}\n"
         "} // extern C\n\n"
         "#pragma clang diagnostic push\n"
@@ -355,11 +363,11 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic pop\n\n"
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
-        "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)\n"
+        "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
         "{\n"
-        "\treturn getmsg(types_map[message_type], msg);\n"
+        "\treturn getmsg(types_map[message_type], msg, wbd);\n"
         "}\n\n\n"
-        "string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)\n"
+        "string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
         "{\n"
         "\tswitch (message_index)\n"
         "\t{\n";
@@ -584,33 +592,33 @@ int main(int argc, char *argv[]) {
                                     type.class_name == "unsigned int")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "long" ||
                                     type.class_name == "unsigned long")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "float" ||
                                     type.class_name == "double")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::string")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
                                         break;
                                 }
                         case Custom_Class:
@@ -618,7 +626,7 @@ int main(int argc, char *argv[]) {
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
+                                output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
                                 output_generic_poster << "#else\n";
                                 output_generic_poster << "\t\t\treturn false;\n";
                                 output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
