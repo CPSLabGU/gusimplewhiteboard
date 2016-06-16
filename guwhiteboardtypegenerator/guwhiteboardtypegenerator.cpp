@@ -317,6 +317,8 @@ int main(int argc, char *argv[]) {
         "#include \"guwhiteboardgetter.h\"\n\n"
         "using namespace std;\n"
         "using namespace guWhiteboard;\n\n"
+        "#pragma clang diagnostic push;\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
         "extern \"C\"\n{\n"
         "\tchar *whiteboard_get(const char *message_type, gu_simple_message *msg)\n"
         "\t{\n"
@@ -342,6 +344,8 @@ int main(int argc, char *argv[]) {
         "\treturn ss.str();\n"
         "}\n"
         "#pragma clang diagnostic pop\n\n"
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
         "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)\n"
         "{\n"
         "\treturn getmsg(types_map[message_type], msg);\n"
@@ -621,13 +625,13 @@ int main(int argc, char *argv[]) {
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
 
-        output_generic_poster << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_poster << "\t\t(void) message_content;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
         "\t// self.reserve(" << types.size() << ");\n\n";
 
-        output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_getter << "\t\t(void) msg;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n}\n\n#pragma clang diagnostic pop\n#pragma clang diagnostic pop\n\n";
 
 	//string array
 	for (int i = 0; i < int(types.size()); i++)
