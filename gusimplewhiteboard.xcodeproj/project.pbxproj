@@ -49,7 +49,6 @@
 /* Begin PBXBuildFile section */
 		09CBB3531B9D4143007AA9D2 /* wb_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 09CBB3521B9D4143007AA9D2 /* wb_channels.h */; };
 		09CBB3551B9D4153007AA9D2 /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 09CBB3541B9D4153007AA9D2 /* Channels.h */; };
-		09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */; };
 		09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E2D1E11B97DF33005C1FB0 /* Clocks.h */; };
 		8B19F9BB17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */; };
 		8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B19F9BC17A0F63E00CF2365 /* tcp_config.h */; };
@@ -59,11 +58,8 @@
 		C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
 		C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = C32D01E516CA0880002561B7 /* guwhiteboardtypelist_c_generated.h */; };
 		C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */; };
-		C33DF5271C0825270086181F /* SwitchSubsumption.h in Headers */ = {isa = PBXBuildFile; fileRef = C33DF5261C0825270086181F /* SwitchSubsumption.h */; };
 		C39197A31693DDA200E5D0C6 /* (null) in Headers */ = {isa = PBXBuildFile; };
 		C3B4EC231CBCD2740061A970 /* APM_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBBD1CBCD2740061A970 /* APM_Interface.h */; };
-		C3B4EC241CBCD2740061A970 /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBBE1CBCD2740061A970 /* Channels.h */; };
-		C3B4EC251CBCD2740061A970 /* Clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBBF1CBCD2740061A970 /* Clocks.h */; };
 		C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC01CBCD2740061A970 /* DifferentialRobotControlStatus.h */; };
 		C3B4EC281CBCD2740061A970 /* FFTStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC21CBCD2740061A970 /* FFTStatus.h */; };
 		C3B4EC291CBCD2740061A970 /* FilteredArrayOneDimBall.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC31CBCD2740061A970 /* FilteredArrayOneDimBall.h */; };
@@ -75,24 +71,15 @@
 		C3B4EC2F1CBCD2740061A970 /* FSM_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBC91CBCD2740061A970 /* FSM_Control.h */; };
 		C3B4EC301CBCD2740061A970 /* FSMControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBCA1CBCD2740061A970 /* FSMControlStatus.h */; };
 		C3B4EC311CBCD2740061A970 /* GCGameState.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBCB1CBCD2740061A970 /* GCGameState.h */; };
-		C3B4EC321CBCD2740061A970 /* Giraff_MainSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBCC1CBCD2740061A970 /* Giraff_MainSerialInterface.h */; };
 		C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBCD1CBCD2740061A970 /* GNUmakefile */; };
 		C3B4EC341CBCD2740061A970 /* HAL_HeadTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */; };
 		C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBCF1CBCD2740061A970 /* Input3D.txt */; };
-		C3B4EC361CBCD2740061A970 /* IOPins.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD01CBCD2740061A970 /* IOPins.h */; };
 		C3B4EC371CBCD2740061A970 /* IoT_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD11CBCD2740061A970 /* IoT_Control.h */; };
-		C3B4EC381CBCD2740061A970 /* mainpage.md in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EBD21CBCD2740061A970 /* mainpage.md */; };
-		C3B4EC391CBCD2740061A970 /* mainpage.md in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EBD21CBCD2740061A970 /* mainpage.md */; };
-		C3B4EC3A1CBCD2740061A970 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EBD31CBCD2740061A970 /* Makefile */; };
-		C3B4EC3B1CBCD2740061A970 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EBD31CBCD2740061A970 /* Makefile */; };
 		C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD41CBCD2740061A970 /* MOTION_Interface.h */; };
 		C3B4EC3D1CBCD2740061A970 /* NAO_State.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD51CBCD2740061A970 /* NAO_State.h */; };
 		C3B4EC3E1CBCD2740061A970 /* NXT_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD61CBCD2740061A970 /* NXT_Interface.h */; };
 		C3B4EC3F1CBCD2740061A970 /* NXT_Lights_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD71CBCD2740061A970 /* NXT_Lights_Control.h */; };
-		C3B4EC401CBCD2740061A970 /* NXT_Sound_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD81CBCD2740061A970 /* NXT_Sound_Control.h */; };
 		C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD91CBCD2740061A970 /* NXT_Two_Touch_Status.h */; };
-		C3B4EC421CBCD2740061A970 /* Oculus_PrimeSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDA1CBCD2740061A970 /* Oculus_PrimeSerialInterface.h */; };
-		C3B4EC431CBCD2740061A970 /* OculusPrimeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDB1CBCD2740061A970 /* OculusPrimeInterface.h */; };
 		C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */; };
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
 		C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBDE1CBCD2740061A970 /* Point2D.txt */; };
@@ -105,7 +92,6 @@
 		C3B4EC4D1CBCD2740061A970 /* SENSORSSonarSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */; };
 		C3B4EC4E1CBCD2740061A970 /* SENSORSTorsoJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */; };
 		C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */; };
-		C3B4EC501CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */; };
 		C3B4EC511CBCD2740061A970 /* SwitchSubsumption.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */; };
 		C3B4EC521CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */; };
 		C3B4EC531CBCD2740061A970 /* TeleoperationControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBEB1CBCD2740061A970 /* TeleoperationControlStatus.h */; };
@@ -114,7 +100,6 @@
 		C3B4EC561CBCD2740061A970 /* VisionGoals.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBEE1CBCD2740061A970 /* VisionGoals.h */; };
 		C3B4EC571CBCD2740061A970 /* VisionLines.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBEF1CBCD2740061A970 /* VisionLines.h */; };
 		C3B4EC581CBCD2740061A970 /* WALK_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF01CBCD2740061A970 /* WALK_ControlStatus.h */; };
-		C3B4EC591CBCD2740061A970 /* WALK2014_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF11CBCD2740061A970 /* WALK2014_ControlStatus.h */; };
 		C3B4EC5A1CBCD2740061A970 /* WalkData.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF21CBCD2740061A970 /* WalkData.h */; };
 		C3B4EC5B1CBCD2740061A970 /* wb_apm_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF31CBCD2740061A970 /* wb_apm_interface.h */; };
 		C3B4EC5C1CBCD2740061A970 /* wb_arrayoffilteredballobjects.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF41CBCD2740061A970 /* wb_arrayoffilteredballobjects.h */; };
@@ -123,7 +108,6 @@
 		C3B4EC5F1CBCD2740061A970 /* wb_ball.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF71CBCD2740061A970 /* wb_ball.h */; };
 		C3B4EC601CBCD2740061A970 /* wb_button.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF81CBCD2740061A970 /* wb_button.h */; };
 		C3B4EC611CBCD2740061A970 /* wb_buttons_status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBF91CBCD2740061A970 /* wb_buttons_status.h */; };
-		C3B4EC621CBCD2740061A970 /* wb_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBFA1CBCD2740061A970 /* wb_channels.h */; };
 		C3B4EC631CBCD2740061A970 /* wb_clocks.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBFB1CBCD2740061A970 /* wb_clocks.h */; };
 		C3B4EC641CBCD2740061A970 /* wb_count.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBFC1CBCD2740061A970 /* wb_count.h */; };
 		C3B4EC651CBCD2740061A970 /* wb_differential_robot.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBFD1CBCD2740061A970 /* wb_differential_robot.h */; };
@@ -135,9 +119,7 @@
 		C3B4EC6B1CBCD2740061A970 /* wb_giraff_main_serial.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC031CBCD2740061A970 /* wb_giraff_main_serial.h */; };
 		C3B4EC6C1CBCD2740061A970 /* wb_goal.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC041CBCD2740061A970 /* wb_goal.h */; };
 		C3B4EC6D1CBCD2740061A970 /* wb_hal_headtarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC051CBCD2740061A970 /* wb_hal_headtarget.h */; };
-		C3B4EC6E1CBCD2740061A970 /* wb_io_pins.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC061CBCD2740061A970 /* wb_io_pins.h */; };
 		C3B4EC6F1CBCD2740061A970 /* wb_iot_control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC071CBCD2740061A970 /* wb_iot_control.h */; };
-		C3B4EC701CBCD2740061A970 /* wb_kinematic_motor.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC081CBCD2740061A970 /* wb_kinematic_motor.h */; };
 		C3B4EC711CBCD2740061A970 /* wb_lights.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC091CBCD2740061A970 /* wb_lights.h */; };
 		C3B4EC721CBCD2740061A970 /* wb_lines.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC0A1CBCD2740061A970 /* wb_lines.h */; };
 		C3B4EC731CBCD2740061A970 /* wb_nao_state.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC0B1CBCD2740061A970 /* wb_nao_state.h */; };
@@ -168,7 +150,6 @@
 		C3B4EC8C1CBCD2740061A970 /* WEBOTS_NXT_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */; };
-		C3C966EF1AA7F6B40013E8E3 /* APM_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */; };
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
@@ -195,9 +176,7 @@
 		F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */; };
 		F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F1C6F1BC1B73FABC00E2DF81 /* wb_kinematic_motor.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BB1B73FABC00E2DF81 /* wb_kinematic_motor.h */; };
-		F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */; };
 		F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1BF1B73FB1700E2DF81 /* NXT_Sound_Control.h */; };
-		F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C6F1C01B73FB1700E2DF81 /* NXT_Two_Touch_Status.h */; };
 		F1C94D6B1555CA8E00B717DF /* ObjCWhiteboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1C94D6A1555CA8E00B717DF /* ObjCWhiteboard.mm */; };
 		F1C94D731555CA8E00B717DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D925F414A13BAA00BDAEED /* Cocoa.framework */; };
 		F1C94D761555CA8E00B717DF /* libguobjcwhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C94D641555CA8E00B717DF /* libguobjcwhiteboard.a */; };
@@ -236,7 +215,6 @@
 		F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */; };
 		F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */; };
 		F1FF77861A0364D7009E269F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D2BE1B1A0358C400700948 /* libc++.dylib */; };
-		F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -400,7 +378,6 @@
 		C3B4EBBE1CBCD2740061A970 /* Channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channels.h; sourceTree = "<group>"; };
 		C3B4EBBF1CBCD2740061A970 /* Clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clocks.h; sourceTree = "<group>"; };
 		C3B4EBC01CBCD2740061A970 /* DifferentialRobotControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentialRobotControlStatus.h; sourceTree = "<group>"; };
-		C3B4EBC11CBCD2740061A970 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
 		C3B4EBC21CBCD2740061A970 /* FFTStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTStatus.h; sourceTree = "<group>"; };
 		C3B4EBC31CBCD2740061A970 /* FilteredArrayOneDimBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimBall.h; sourceTree = "<group>"; };
 		C3B4EBC41CBCD2740061A970 /* FilteredArrayOneDimObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimObjects.h; sourceTree = "<group>"; };
@@ -576,7 +553,6 @@
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
 		F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fft_frequencies.h; sourceTree = "<group>"; };
 		F1376EA31958E64900983D84 /* FFTStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFTStatus.h; sourceTree = "<group>"; };
-		F13A74231A008A0D00A880BF /* mainpage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = mainpage.md; sourceTree = "<group>"; };
 		F14043E6172E3E3E00EB63ED /* guwhiteboardgetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboardgetter.h; sourceTree = "<group>"; };
 		F14043EC172E5E8800EB63ED /* guwhiteboardgetter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardgetter.cpp; sourceTree = "<group>"; };
 		F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardposter.cpp; sourceTree = "<group>"; };
@@ -1090,7 +1066,6 @@
 			children = (
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
-				F13A74231A008A0D00A880BF /* mainpage.md */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
 				C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */,
 				8B19F9BA17A0F52A00CF2365 /* gutcpinjectionwhiteboardobject.h */,
@@ -1477,7 +1452,6 @@
 				C3B4EBBE1CBCD2740061A970 /* Channels.h */,
 				C3B4EBBF1CBCD2740061A970 /* Clocks.h */,
 				C3B4EBC01CBCD2740061A970 /* DifferentialRobotControlStatus.h */,
-				C3B4EBC11CBCD2740061A970 /* Doxyfile */,
 				C3B4EBC21CBCD2740061A970 /* FFTStatus.h */,
 				C3B4EBC31CBCD2740061A970 /* FilteredArrayOneDimBall.h */,
 				C3B4EBC41CBCD2740061A970 /* FilteredArrayOneDimObjects.h */,
@@ -1807,23 +1781,16 @@
 				C3B4EC5A1CBCD2740061A970 /* WalkData.h in Headers */,
 				C3B4EC341CBCD2740061A970 /* HAL_HeadTarget.h in Headers */,
 				C3B4EC2D1CBCD2740061A970 /* FilteredOneDimObjects.h in Headers */,
-				09E2D1E01B97DF27005C1FB0 /* wb_clocks.h in Headers */,
 				C3B4EC661CBCD2740061A970 /* wb_fft_frequencies.h in Headers */,
 				C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */,
 				C32D01E616CA0880002561B7 /* guwhiteboardtypelist_c_generated.h in Headers */,
 				F1C6F1C11B73FB1700E2DF81 /* NXT_Sound_Control.h in Headers */,
 				C3B4EC511CBCD2740061A970 /* SwitchSubsumption.h in Headers */,
 				09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */,
-				C33DF5271C0825270086181F /* SwitchSubsumption.h in Headers */,
 				C3B4EC561CBCD2740061A970 /* VisionGoals.h in Headers */,
-				C3B4EC251CBCD2740061A970 /* Clocks.h in Headers */,
 				C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */,
 				C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */,
-				C3B4EC431CBCD2740061A970 /* OculusPrimeInterface.h in Headers */,
 				C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */,
-				C3B4EC421CBCD2740061A970 /* Oculus_PrimeSerialInterface.h in Headers */,
-				C3B4EC401CBCD2740061A970 /* NXT_Sound_Control.h in Headers */,
-				F1C6F1BE1B73FACA00E2DF81 /* wb_differential_robot.h in Headers */,
 				C3B4EC301CBCD2740061A970 /* FSMControlStatus.h in Headers */,
 				C3B4EC751CBCD2740061A970 /* wb_oculus_prime_interface.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
@@ -1834,35 +1801,27 @@
 				C3B4EC281CBCD2740061A970 /* FFTStatus.h in Headers */,
 				C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */,
 				C3B4EC6F1CBCD2740061A970 /* wb_iot_control.h in Headers */,
-				C3B4EC591CBCD2740061A970 /* WALK2014_ControlStatus.h in Headers */,
 				C3B4EC8A1CBCD2740061A970 /* wb_walk_controlstatus.h in Headers */,
 				C3B4EC4D1CBCD2740061A970 /* SENSORSSonarSensors.h in Headers */,
 				C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */,
 				C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */,
 				C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */,
 				C3B4EC7E1CBCD2740061A970 /* wb_sensors_bodysensors.h in Headers */,
-				C3B4EC6E1CBCD2740061A970 /* wb_io_pins.h in Headers */,
 				C3B4EC741CBCD2740061A970 /* wb_nxt_interface.h in Headers */,
-				C3B4EC361CBCD2740061A970 /* IOPins.h in Headers */,
 				C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */,
 				C3B4EC821CBCD2740061A970 /* wb_sensors_legtemps.h in Headers */,
 				C3B4EC5D1CBCD2740061A970 /* wb_arrayoffilteredsonarobjects.h in Headers */,
 				C3B4EC2C1CBCD2740061A970 /* FilteredOneDimObject.h in Headers */,
 				C3B4EC2F1CBCD2740061A970 /* FSM_Control.h in Headers */,
-				C3B4EC501CBCD2740061A970 /* SENSORSBodySensors.h in Headers */,
-				C3B4EC321CBCD2740061A970 /* Giraff_MainSerialInterface.h in Headers */,
 				C3B4EC761CBCD2740061A970 /* wb_oculus_prime_serial.h in Headers */,
 				C3B4EC611CBCD2740061A970 /* wb_buttons_status.h in Headers */,
 				C3B4EC601CBCD2740061A970 /* wb_button.h in Headers */,
-				C3C966EF1AA7F6B40013E8E3 /* APM_Interface.h in Headers */,
 				C3B4EC671CBCD2740061A970 /* wb_filteredsonarobject.h in Headers */,
 				C3B4EC551CBCD2740061A970 /* VisionBall.h in Headers */,
-				F58EB5761B71B6A70066F1DE /* DifferentialRobotControlStatus.h in Headers */,
 				C3B4EC571CBCD2740061A970 /* VisionLines.h in Headers */,
 				09CBB3551B9D4153007AA9D2 /* Channels.h in Headers */,
 				C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */,
 				C3B4EC531CBCD2740061A970 /* TeleoperationControlStatus.h in Headers */,
-				C3B4EC241CBCD2740061A970 /* Channels.h in Headers */,
 				C3B4EC5E1CBCD2740061A970 /* wb_arrayoffilteredvisionobjects.h in Headers */,
 				C3B4EC771CBCD2740061A970 /* wb_point.h in Headers */,
 				C3B4EC6B1CBCD2740061A970 /* wb_giraff_main_serial.h in Headers */,
@@ -1875,7 +1834,6 @@
 				C3B4EC4C1CBCD2740061A970 /* SENSORSLegJointTemps.h in Headers */,
 				C3B4EC831CBCD2740061A970 /* wb_sensors_sonar.h in Headers */,
 				C3B4EC541CBCD2740061A970 /* Vision_Control.h in Headers */,
-				C3B4EC701CBCD2740061A970 /* wb_kinematic_motor.h in Headers */,
 				C3B4EC8B1CBCD2740061A970 /* wb_walk2014_controlstatus.h in Headers */,
 				C3B4EC6D1CBCD2740061A970 /* wb_hal_headtarget.h in Headers */,
 				C3B4EC8C1CBCD2740061A970 /* WEBOTS_NXT_bridge.h in Headers */,
@@ -1889,11 +1847,9 @@
 				C3B4EC731CBCD2740061A970 /* wb_nao_state.h in Headers */,
 				C3B4EC811CBCD2740061A970 /* wb_sensors_legs.h in Headers */,
 				8B19F9C117A2349600CF2365 /* tcp_receiver.h in Headers */,
-				F1C6F1C21B73FB1700E2DF81 /* NXT_Two_Touch_Status.h in Headers */,
 				C3B4EC4E1CBCD2740061A970 /* SENSORSTorsoJointSensors.h in Headers */,
 				C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */,
 				C3B4EC841CBCD2740061A970 /* wb_sensors_torso.h in Headers */,
-				C3B4EC621CBCD2740061A970 /* wb_channels.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,7 +2145,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ICT;
 				TargetAttributes = {
 					F18517AE19F46B550099C12B = {
@@ -2354,10 +2310,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3B4EC3A1CBCD2740061A970 /* Makefile in Sources */,
 				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
 				C3B4EC781CBCD2740061A970 /* wb_point2d.c in Sources */,
-				C3B4EC381CBCD2740061A970 /* mainpage.md in Sources */,
 				F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
@@ -2420,8 +2374,6 @@
 				F1A7797F19A1DD0100A9A17A /* Whiteboard.cc in Sources */,
 				F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */,
 				F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */,
-				C3B4EC391CBCD2740061A970 /* mainpage.md in Sources */,
-				C3B4EC3B1CBCD2740061A970 /* Makefile in Sources */,
 				F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
 				C3B4EC7D1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */,
 				C3B4EC791CBCD2740061A970 /* wb_point2d.c in Sources */,
@@ -2820,6 +2772,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "swift_wb/swift_wb-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -3021,7 +2974,7 @@
 				DSTROOT = /tmp/gusimplewhiteboardios.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gusimplewhiteboardios/gusimplewhiteboardios-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3038,7 +2991,7 @@
 				DSTROOT = /tmp/gusimplewhiteboardios.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gusimplewhiteboardios/gusimplewhiteboardios-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
