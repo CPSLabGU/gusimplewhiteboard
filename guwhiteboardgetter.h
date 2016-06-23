@@ -2,7 +2,7 @@
  *  guwhiteboardgetter.h
  *
  *  Created by Rene Hexel on 29/04/13.
- *  Copyright (c) 2013 Rene Hexel.
+ *  Copyright (c) 2013, 2016 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,18 +66,32 @@ extern "C"
 #endif
 
 /**
- * A generic C function that posts to the whiteboard.
+ * A generic C function that gets a message from the whiteboard.
  * Both the message type and the message content are strings.
  * The returned message string has to be freed!
  */
 char *whiteboard_get(const char *message_type, gu_simple_message *msg);
 
 /**
- * Generic C function that posts a message with a given message number
- * to the whiteboard.
+ * A generic C function that gets a message from the given whiteboard.
+ * Both the message type and the message content are strings.
+ * The returned message string has to be freed!
+ */
+char *whiteboard_get_from(gu_simple_whiteboard_descriptor *wbd, const char *message_type);
+
+/**
+ * Generic C function that gets a message with a given message number
+ * from the whiteboard.
  * The returned message string has to be freed!
  */
 char *whiteboard_getmsg(int message_index, gu_simple_message *msg);
+
+/**
+ * Generic C function that gets a message with a given message number
+ * from the given whiteboard.
+ * The returned message string has to be freed!
+ */
+char *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index);
 
 #ifdef __cplusplus
 } // extern "C"
@@ -89,18 +103,20 @@ namespace guWhiteboard
          * Both the message type and the message content are strings.
          * @param message_type the string version of the type
          * @param msg the data container, if NULL then the message is gotten from the whiteboard
+         * @param wbd the whiteboard to get the message from (NULL for the default whiteboard) - this parameter has no effect if `msg` is non-NULL
          * @return the pretty printed data string
          */
-        std::string getmsg(std::string message_type, gu_simple_message *msg = NULL);
+        std::string getmsg(std::string message_type, gu_simple_message *msg = NULL, gu_simple_whiteboard_descriptor *wbd = NULL);
 
         /**
          * Generic C++ function that gets a message with a given message number
          * to the whiteboard.
          * @param message_index the offset or enum value of the type to get
          * @param msg the data container, if NULL then the message is gotten from the whiteboard
+         * @param wbd the whiteboard to get the message from (NULL for the default whiteboard) - this parameter has no effect if `msg` is non-NULL
          * @return the pretty printed data string
          */
-        std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULL);
+        std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULL, gu_simple_whiteboard_descriptor *wbd = NULL);
 }
 #endif // __cplusplus
 
