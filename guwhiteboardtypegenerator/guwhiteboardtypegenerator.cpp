@@ -308,14 +308,15 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic ignored \"-Wexit-time-destructors\"\n\n"
         "whiteboard_types_map guWhiteboard::types_map; ///< global types map\n\n"
         "#pragma clang diagnostic pop\n\n"
-        "bool guWhiteboard::post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
-        "{\n"
-        "\treturn postmsg(types_map[message_type], message_content, wbd);\n"
-        "}\n\n\n"
-        "bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
-        "{\n"
-        "\tswitch (message_index)\n"
-        "\t{\n";
+        "namespace guWhiteboard\n{\n"
+        "    bool post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \treturn postmsg(types_map[message_type], message_content, wbd);\n"
+        "    }\n\n\n"
+        "    bool postmsg(WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \tswitch (message_index)\n"
+        "    \t{\n";
 
         output_generic_getter << "/** Auto-generated, don't modify! */\n\n"
         "#include <string>\n"
@@ -363,14 +364,15 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic pop\n\n"
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
-        "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
-        "{\n"
-        "\treturn getmsg(types_map[message_type], msg, wbd);\n"
-        "}\n\n\n"
-        "string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
-        "{\n"
-        "\tswitch (message_index)\n"
-        "\t{\n";
+        "namespace guWhiteboard\n{\n"
+        "    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \treturn getmsg(types_map[message_type], msg, wbd);\n"
+        "    }\n\n\n"
+        "    string getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \tswitch (message_index)\n"
+        "    \t{\n";
 
         stringstream tsl_file_stream;
         tsl_file_stream << tsl_file.rdbuf();
@@ -642,13 +644,13 @@ int main(int argc, char *argv[]) {
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
 
-        output_generic_poster << "\t\t(void) message_content;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_poster << "\t\t(void) message_content;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n    }\n}\n\n";
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
         "\t// self.reserve(" << types.size() << ");\n\n";
 
-        output_generic_getter << "\t\t(void) msg;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n}\n\n#pragma clang diagnostic pop\n#pragma clang diagnostic pop\n\n";
+        output_generic_getter << "\t\t(void) msg;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n    }\n\n#pragma clang diagnostic pop\n#pragma clang diagnostic pop\n}\n\n";
 
 	//string array
 	for (int i = 0; i < int(types.size()); i++)

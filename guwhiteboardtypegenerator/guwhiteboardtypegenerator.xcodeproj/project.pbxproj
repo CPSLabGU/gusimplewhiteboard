@@ -6,46 +6,110 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F1511FD51D3DF26B00224444 /* guwhiteboardtypegenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1B300CF16FD80EF000FC2AC /* guwhiteboardtypegenerator.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F1511FCB1D3DF25B00224444 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F1511FCD1D3DF25B00224444 /* guwhiteboardtypegenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = guwhiteboardtypegenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B300CE16FD80EF000FC2AC /* create_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = create_map.h; sourceTree = "<group>"; };
 		F1B300CF16FD80EF000FC2AC /* guwhiteboardtypegenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = guwhiteboardtypegenerator.cpp; sourceTree = "<group>"; };
 		F1B300D016FD80EF000FC2AC /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		F1511FCA1D3DF25B00224444 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
+		F1511FCE1D3DF25B00224444 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1511FCD1D3DF25B00224444 /* guwhiteboardtypegenerator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F1B300C816FD80EF000FC2AC = {
 			isa = PBXGroup;
 			children = (
 				F1B300CE16FD80EF000FC2AC /* create_map.h */,
 				F1B300CF16FD80EF000FC2AC /* guwhiteboardtypegenerator.cpp */,
 				F1B300D016FD80EF000FC2AC /* Makefile */,
+				F1511FCE1D3DF25B00224444 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator */ = {
+		F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator_mk */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator" */;
+			buildConfigurationList = F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator_mk" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = /Users/rh/Devel/src/MiPal/GUNao/posix/gusimplewhiteboard/guwhiteboardtypegenerator;
 			dependencies = (
 			);
-			name = guwhiteboardtypegenerator;
+			name = guwhiteboardtypegenerator_mk;
 			passBuildSettingsInEnvironment = 1;
 			productName = guwhiteboardtypegenerator;
 		};
 /* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		F1511FCC1D3DF25B00224444 /* guwhiteboardtypegenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1511FD21D3DF25B00224444 /* Build configuration list for PBXNativeTarget "guwhiteboardtypegenerator" */;
+			buildPhases = (
+				F1511FC91D3DF25B00224444 /* Sources */,
+				F1511FCA1D3DF25B00224444 /* Frameworks */,
+				F1511FCB1D3DF25B00224444 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = guwhiteboardtypegenerator;
+			productName = guwhiteboardtypegenerator;
+			productReference = F1511FCD1D3DF25B00224444 /* guwhiteboardtypegenerator */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F1B300C916FD80EF000FC2AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0800;
+				TargetAttributes = {
+					F1511FCC1D3DF25B00224444 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XY9B29E5K8;
+						DevelopmentTeamName = "Griffith University";
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = F1B300CC16FD80EF000FC2AC /* Build configuration list for PBXProject "guwhiteboardtypegenerator" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -55,15 +119,84 @@
 				en,
 			);
 			mainGroup = F1B300C816FD80EF000FC2AC;
+			productRefGroup = F1511FCE1D3DF25B00224444 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator */,
+				F1B300CD16FD80EF000FC2AC /* guwhiteboardtypegenerator_mk */,
+				F1511FCC1D3DF25B00224444 /* guwhiteboardtypegenerator */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXSourcesBuildPhase section */
+		F1511FC91D3DF25B00224444 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1511FD51D3DF26B00224444 /* guwhiteboardtypegenerator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
+		F1511FD31D3DF25B00224444 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F1511FD41D3DF25B00224444 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		F1B300CA16FD80EF000FC2AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -140,6 +273,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F1511FD21D3DF25B00224444 /* Build configuration list for PBXNativeTarget "guwhiteboardtypegenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1511FD31D3DF25B00224444 /* Debug */,
+				F1511FD41D3DF25B00224444 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F1B300CC16FD80EF000FC2AC /* Build configuration list for PBXProject "guwhiteboardtypegenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -149,7 +290,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator" */ = {
+		F1B300D116FD80EF000FC2AC /* Build configuration list for PBXLegacyTarget "guwhiteboardtypegenerator_mk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1B300D216FD80EF000FC2AC /* Debug */,
