@@ -108,13 +108,16 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -DWITHOUT_LIBDISPATCH")
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)
+include_directories(include/typeClassDefs)
 
 ## Declare a cpp library
 add_library(gusimplewhiteboard
-   src/gusimplewhiteboard.c
-   src/gugenericwhiteboardobject.cpp
-   src/guwhiteboardtypelist_c_typestrings_generated.c
    src/gu_util.cpp
+   src/gugenericwhiteboardobject.cpp
+   src/gusimplewhiteboard.c
+   src/guwhiteboardtypelist_c_typestrings_generated.c
+#   src/guwhiteboardgetter.cpp
+#   src/guwhiteboardposter.cpp
 )
 
 ## Declare a cpp executable
