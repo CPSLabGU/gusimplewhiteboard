@@ -29,7 +29,7 @@ typedef enum node_list
 
 const int IoT_ids[] = 
 {
-        73002,      //Real
+        761675,     //Real
         16631463,   //Real
         1134,       //Bogus 
         1,          //Bogus 
@@ -156,11 +156,11 @@ union NodeMCUMessages
         /** D2 */
         BIT_PROPERTY(Garden_Water) 
         /** D3 */
-        BIT_PROPERTY(Garden_Lights) 
+        BIT_PROPERTY(Garden_Light) 
         /** D4 */
-        BIT_PROPERTY(D4) 
+        BIT_PROPERTY(Garden_Lights_Left) // when looking at the pool from the house 
         /** D5 */
-        BIT_PROPERTY(D5) 
+        BIT_PROPERTY(Garden_Lights_Right) // when looking at the pool from the house 
         /** D6 */
         BIT_PROPERTY(D6) 
         /** D7 */
