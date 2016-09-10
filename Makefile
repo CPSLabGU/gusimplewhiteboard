@@ -42,7 +42,7 @@ install: cross-local
 	cd ${BUILDDIR}-local && \
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 .for hdr in ${INST_HDRS}
-	cd ${SRCDIR} && \
+	-cd ${SRCDIR} && \
 	if [ -d ${hdr:Q} ]; then \
 	  cp -pR ${hdr:Q} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
 	else \
