@@ -22,7 +22,7 @@ enum MovementType {
 
 struct wb_oculus_prime_interface {
 	/**Continues movement - performs this movement until another movement command is specified*/
-	CONTROLLED_PROPERTY(MovementType, move)
+	CONTROLLED_PROPERTY(enum MovementType, move)
 	/**sets the drive motor speed. Value is PWM between 0-255*/
 	CONTROLLED_PROPERTY(uint8_t, speed)
 	/**move forward the specified distance in meters, then stop*/

@@ -41,7 +41,7 @@ struct wb_giraff_main_serial
     CONTROLLED_PROPERTY(float, velocity)
 
     /** The type of movement ot be done. See Giraff_MovementType, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(Giraff_MovementType, movement_type)
+    CONTROLLED_PROPERTY(enum Giraff_MovementType, movement_type)
 
     /** Giraff acceleration, Unit: m/s2, Range: 0.0 / 150.0, Setter: Yes, Getter: Yes*/
     CONTROLLED_PROPERTY(float, acceleration)
@@ -50,7 +50,7 @@ struct wb_giraff_main_serial
     CONTROLLED_PROPERTY(float, position)
 
     /** Changes the distances of position to relative or absolute. Also controls command preemption when in absolute mode by allowing 4 buffered commands to be sent. See Giraff_CoordType, Setter: Yes, Getter: Yes*/
-    CONTROLLED_PROPERTY(Giraff_CoordType, coord_type)
+    CONTROLLED_PROPERTY(enum Giraff_CoordType, coord_type)
 
     /** Current head tilt angle, Unit: rad, Range: 0.0872664 / 2.0943935, Setter: Yes, Getter: Yes*/
     CONTROLLED_PROPERTY(float, head_angle)

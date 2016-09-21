@@ -37,9 +37,9 @@ enum Robot_Walk{
 struct wb_nao_state
 {
 	/** Currently SMRobotPosition detects if the robot has fallen over. If not fallen over SMRobotPosition posts Standing. */
-	PROPERTY(Robot_Stance, stance)          
+	PROPERTY(enum Robot_Stance, stance)
 	/** Tells the walk engine which walk to use */
-	PROPERTY(Robot_Walk, walk)          
+	PROPERTY(enum Robot_Walk, walk)
 	/** chest pressed for more than half a second */
 	PROPERTY(bool, chest_pressed_long)      
 	/** left foot pressed for more than half a second */

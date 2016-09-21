@@ -27,7 +27,7 @@ enum TotoMotionCommand
 
 struct wb_toto_doing_motion
 {
-        PROPERTY(TotoMotionCommand, motionCommand)
+        PROPERTY(enum TotoMotionCommand, motionCommand)
 };
 
 

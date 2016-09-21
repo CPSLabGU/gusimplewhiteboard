@@ -32,7 +32,7 @@ enum TrafficLightConfigurationValues
 
 struct wb_traffic_light_configuration
 {
-        PROPERTY(TrafficLightConfigurationValues, lightConfiguration)
+        PROPERTY(enum TrafficLightConfigurationValues, lightConfiguration)
 };
 
 

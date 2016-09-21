@@ -3,7 +3,7 @@
  *  gusimplewhiteboard / clfsm
  *
  *  Created by Rene Hexel on 18/06/2014.
- *  Copyright (c) 2013, 2014, 2015 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2013, 2014, 2015, 2016 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,7 +59,7 @@
 #define gusimplewhiteboard_wb_fsm_control_status_h
 
 #include <gu_util.h>
-#include "gusimplewhiteboard.h"
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #define CONTROLSTATUS_BYTE_SIZE     (sizeof(gu_simple_message))
 #define CONTROLSTATUS_BIT_SIZE      (CONTROLSTATUS_BYTE_SIZE*8)

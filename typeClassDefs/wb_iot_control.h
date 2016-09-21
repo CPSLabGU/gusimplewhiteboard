@@ -231,7 +231,7 @@ union NodeMCUMessages
  */
 struct wb_iot_control
 {
-    NodeMCUMessages msgs[GU_SIMPLE_WHITEBOARD_BUFSIZE/IOT_MSG_SIZE];		///< int padding array
+    union NodeMCUMessages msgs[GU_SIMPLE_WHITEBOARD_BUFSIZE/IOT_MSG_SIZE];		///< int padding array
 
 #ifdef __cplusplus
     /**
@@ -250,7 +250,7 @@ struct wb_iot_control
 struct iot_control_packet
 {
     uint32_t node_id;            ///< Determines what is done with the packet. Packets from some nodes are treated as queries, packets from some are treated as setters for their msg data.
-    NodeMCUMessages msg;    ///< Data
+    union NodeMCUMessages msg;    ///< Data
 };
 
 #endif //wb_iot_control_h

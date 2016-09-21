@@ -68,7 +68,7 @@
 
 #ifdef GU_SIMPLE_WHITEBOARD_BUFSIZE
 /** Calculated macro on the total number of frequency pairs that fit on the whiteboard */
-#define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength) - sizeof(struct fsk_frequencies)) / sizeof(fft_frequency_level_pair))
+#define FFT_DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct rms_strength) - sizeof(struct fsk_frequencies)) / sizeof(struct fft_frequency_level_pair))
 #else
 #define FFT_DOMINANT_NUMFREQ    0   ///< no wb -> don't register size
 #endif

@@ -64,9 +64,9 @@ struct wb_walk_controlstatus
         PROPERTY(float, power)          
 
 	/** Walk State, getting / setting the state of the walk engine. Such as setting WALK_Stop to stop walking. */
-        PROPERTY(WALK_ControlStatus_Mode, controlStatus) 	
+        PROPERTY(enum WALK_ControlStatus_Mode, controlStatus)
 	/** Odometry object, tracking walk distances over time */
-        PROPERTY(Odometry, odometry) 				
+        PROPERTY(struct Odometry, odometry)
 	/** Odometry mask, for overwriting the odomety in the walk */
         PROPERTY(bool, odometry_mask) 				
 	/** Just padding, ignore  */

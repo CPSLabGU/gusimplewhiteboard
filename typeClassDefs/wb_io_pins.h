@@ -3,7 +3,7 @@
  *  gusimplewhiteboard / arduino simulator
  *
  *  Created by Rene Hexel on 5/08/2015.
- *  Copyright © 2015 Rene Hexel. All rights reserved.
+ *  Copyright © 2015, 2016 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,7 +59,7 @@
 #define wb_io_pins_h
 
 #include <gu_util.h>
-#include "gusimplewhiteboard.h"
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #define IO_PIN_BYTE_SIZE     (sizeof(gu_simple_message))    ///< bytes to occupy
 #define IO_PIN_BIT_SIZE      (CONTROLSTATUS_BYTE_SIZE*8)    ///< bits available

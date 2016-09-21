@@ -93,14 +93,14 @@ struct wb_walk2014_controlstatus
         PROPERTY(float, power)          
 
 	/** Which foot to use when kicking, NYI */
-        PROPERTY(KickingFoot, foot)          
+        PROPERTY(enum KickingFoot, foot)
 	/** Sets the current state of the walk engine */
-        PROPERTY(Walk2014Option, walk_state)          
+        PROPERTY(enum Walk2014Option, walk_state)
 	/** Reports the current walking state (can not be set, use setters / helper functions to change what the walk is doing) */
-        PROPERTY(WalkState, walking_status)          
+        PROPERTY(enum WalkState, walking_status)
 
 	/** Odometry object, tracking walk distances over time */
-        PROPERTY(Odometry, odometry) 				
+        PROPERTY(struct Odometry, odometry)
 
 #ifdef __cplusplus
    /** Constructor with some default values */

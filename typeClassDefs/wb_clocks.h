@@ -61,7 +61,6 @@
 
 
 #include <gu_util.h>
-#include "gusimplewhiteboard.h"
 
 #define CLOCKS_SIZE sizeof(gu_simple_message)/sizeof(wb_clocks_t) ///< clocks available
 

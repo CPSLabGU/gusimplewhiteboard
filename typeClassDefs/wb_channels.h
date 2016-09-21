@@ -60,7 +60,6 @@
 #define wb_channels_h
 
 #include <gu_util.h>
-#include "gusimplewhiteboard.h"
 
 #define CHANNELS_BYTES  (sizeof(gu_simple_message)) ///< message size
 #define CHANNELS_COUNT  (CHANNELS_BYTES*8)          ///< channels available
