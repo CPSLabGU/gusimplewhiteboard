@@ -26,7 +26,7 @@ enum nxt_buttons_id
 struct wb_buttons_status
 {
     /** An array of sensors and motors plugged into the nxt ports. Objects 0,1,2,3 are the sensors 1-4, objects 4,5,6 are the motors A,B,C. */
-    ARRAY_PROPERTY(wb_button, touch_sensors, NUMBER_OF_NXT_BUTTONS)
+    ARRAY_PROPERTY(struct wb_button, touch_sensors, NUMBER_OF_NXT_BUTTONS)
 
 #ifdef __cplusplus
     /**

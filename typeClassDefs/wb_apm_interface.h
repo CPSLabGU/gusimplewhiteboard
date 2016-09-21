@@ -57,9 +57,9 @@ union apm_data
 struct wb_apm_interface
 {
 	/** what type of machine */
-	PROPERTY(apm_mode, mode) 
+	PROPERTY(enum apm_mode, mode)
 	/** serial data */
-	PROPERTY(apm_data, data) 
+	PROPERTY(union apm_data, data)
 
 #ifdef __cplusplus
     /**
