@@ -10,7 +10,7 @@ CI_DISPLAYNAME?=wb			# short jenkins display name
 DOC_RECURSIVE=YES			# build doxygen recursively
 
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
-COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
+#COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 
 ALL_TARGETS=host-local robot-local analyse test xc
 
