@@ -27,6 +27,17 @@ typedef enum node_list
 	NUMBER_OF_NODES	                        ///< NUMBER_OF_NODES
 } IoT_NodeList;
 
+extern const char *IoT_NodeList_Strings[];
+const char *IoT_NodeList_Strings[] = 
+{
+    "OutdoorPoolLightAndGardenWater",
+    "OutdoorAreaLighting",
+    "AirCon",
+    "SonarInput",
+    "OutdoorAreaLightingRemote",
+    "ControlPanel"
+};
+
 const int IoT_ids[] = 
 {
         761675,     //Real
