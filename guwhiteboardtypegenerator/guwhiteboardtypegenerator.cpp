@@ -182,11 +182,11 @@ namespace ParseTarget { enum kind {
         static ofstream output_generic_getter;
 #pragma clang diagnostic pop
 
-bool opening_files(string aPath);
+bool opening_files(string aPath, string tsl);
 
-bool opening_files(string aPath)
+bool opening_files(string aPath, string tsl)
 {
-        string tsl_file_name= read_from_stdin ? string("/dev/stdin") : aPath+string("guwhiteboardtypelist.tsl");
+        string tsl_file_name= read_from_stdin ? string("/dev/stdin") : aPath+tsl;
 	string output_file_name=aPath+string("guwhiteboardtypelist_generated.h");
 	string output_tcp_file_name=aPath+string("guwhiteboardtypelist_tcp_generated.h");
 
@@ -216,48 +216,45 @@ bool opening_files(string aPath)
 	return true;
 }
 
-static __attribute__((__noreturn__)) void usage(const char *cmd)
-{
-	                cerr << "Usage: " << cmd << " [-P  path ]" << endl;
-			                        exit(EXIT_FAILURE);
-}
-
 int main(int argc, char *argv[]) {
 
-	string thePath=string("../");
-	string userPath=string("");
-
-        if ((read_from_stdin = !isatty(STDIN_FILENO)))
-            thePath = "";
-
-        int ch;
-	              while ((ch = getopt(argc, argv, "P:")) != -1) 
-		      { switch (ch) { case 'P':       // Path 
-					    cerr << optarg << endl; 
-					    userPath=optarg;
-					    break; 
-					 case '?': 
-					 default: usage(argv[0]); }
-		      }
-
-
-
+#define DEFAULT_INPUT_FILE "guwhiteboardtypelist.tsl"
+#define DEFAULT_PATH "../"
 	
-	if ( userPath.length()>0 ) // a path has been supplied
+	//Get passed in values
+	//-----------------------------------
+	int op;
+	std::string input_file_name = std::string(DEFAULT_INPUT_FILE);
+	std::string generation_directory_path = std::string(DEFAULT_PATH);
+
+    if ((read_from_stdin = !isatty(STDIN_FILENO)))
+		generation_directory_path = "";
+
+	while((op = getopt(argc, argv, "P:f:")) != -1)
 	{
+		switch(op)
+		{
+			case 'P':
+				generation_directory_path = std::string(optarg);
+				break;
+			case 'f':
+				input_file_name = std::string(optarg);
+				break;
+			case '?':			
+				fprintf(stderr, "\n\nUsage: guwhiteboardtypegenerator [OPTION] . . . \n");
+				fprintf(stderr, "-f\tMessage description file (name only) (.tsl), default: %s\n", DEFAULT_INPUT_FILE);
+				fprintf(stderr, "-P\tPath to working directory (including tsl), default: %s\n", DEFAULT_PATH);
+				return EXIT_FAILURE;
+			default:
+				break;
+		}
+	}	
+	//-----------------------------------
+    
+    argv += optind;
+    argc -= optind;
 
-            if (! opening_files(userPath)) return EXIT_FAILURE;
-
-	}
-	else{ 
-            if (! opening_files(thePath))
-	    {
-                //just incase someone runs it from inside the build directory
-	      thePath=string("../../");
-            if (! opening_files(thePath))
-                        return EXIT_FAILURE;
-	    } 
-	}
+    if (! opening_files(generation_directory_path, input_file_name)) return EXIT_FAILURE;
 
 
         output_generic_poster << "/** Auto-generated, don't modify! */\n\n"
