@@ -58,16 +58,18 @@ static string intvectostring(const vector<int> &vec)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter";
-string guWhiteboard::getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
+namespace guWhiteboard
 {
-	return getmsg(types_map[message_type], msg, wbd);
-}
+    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
+    {
+    	return getmsg(types_map[message_type], msg, wbd);
+    }
 
 
-string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
-{
-	switch (message_index)
-	{
+    string getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
+    {
+    	switch (message_index)
+    	{
 		case kwb_reserved_SubscribeToAllTypes_v:
 			return "##unsupported##";
 
@@ -1041,8 +1043,9 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_si
 
 	return "##unsupported##";
 #pragma clang diagnostic pop
-}
+    }
 
 #pragma clang diagnostic pop
 #pragma clang diagnostic pop
+}
 
