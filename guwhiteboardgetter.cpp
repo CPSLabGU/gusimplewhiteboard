@@ -1034,6 +1034,54 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_si
 
 #endif // !SwitchSubsumptionTrafficLights_DEFINED
 
+		case kHAL_LArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Ctrl @brief Nil */ 
+			class HAL_LArmTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_LArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Stat @brief Nil */ 
+			class HAL_LArmTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Ctrl @brief Nil */ 
+			class HAL_RArmTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Stat @brief Nil */ 
+			class HAL_RArmTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push
