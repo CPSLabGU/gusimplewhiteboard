@@ -360,7 +360,7 @@ int main(int argc, char *argv[]) {
         "}\n"
         "#pragma clang diagnostic pop\n\n"
         "#pragma clang diagnostic push\n"
-        "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
         "namespace guWhiteboard\n{\n"
         "    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
         "    {\n"
