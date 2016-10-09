@@ -62,7 +62,7 @@
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #define IO_PIN_BYTE_SIZE     (sizeof(gu_simple_message))    ///< bytes to occupy
-#define IO_PIN_BIT_SIZE      (CONTROLSTATUS_BYTE_SIZE*8)    ///< bits available
+#define IO_PIN_BIT_SIZE      (IO_PIN_BYTE_SIZE*8)    ///< bits available
 
 #define IO_PIN_CLR(s, n)    ((s)->_pins[(n)/8] &=~(1<<((n)%8)))
 #define IO_PIN_SET(s, n)    ((s)->_pins[(n)/8] |= (1<<((n)%8)))
