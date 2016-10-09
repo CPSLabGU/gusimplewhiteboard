@@ -66,16 +66,18 @@ whiteboard_types_map guWhiteboard::types_map; ///< global types map
 
 #pragma clang diagnostic pop
 
-bool guWhiteboard::post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)
+namespace guWhiteboard
 {
-	return postmsg(types_map[message_type], message_content, wbd);
-}
+    bool post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)
+    {
+    	return postmsg(types_map[message_type], message_content, wbd);
+    }
 
 
-bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd)
-{
-	switch (message_index)
-	{
+    bool postmsg(WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd)
+    {
+    	switch (message_index)
+    	{
 		case kwb_reserved_SubscribeToAllTypes_v:
 			return false;
 
@@ -1147,6 +1149,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, g
 
 	return false;
 #pragma clang diagnostic pop
+    }
 }
 
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
