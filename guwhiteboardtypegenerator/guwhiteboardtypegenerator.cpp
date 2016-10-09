@@ -254,6 +254,11 @@ int main(int argc, char *argv[]) {
     argv += optind;
     argc -= optind;
 
+    if(generation_directory_path.at(generation_directory_path.length() - 1) != '/')
+    {
+        generation_directory_path.append("/");
+    }
+
     if (! opening_files(generation_directory_path, input_file_name)) return EXIT_FAILURE;
 
 
