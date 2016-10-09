@@ -254,11 +254,6 @@ int main(int argc, char *argv[]) {
     argv += optind;
     argc -= optind;
 
-    if(generation_directory_path.at(generation_directory_path.length() - 1) != '/')
-    {
-        generation_directory_path.append("/");
-    }
-
     if (! opening_files(generation_directory_path, input_file_name)) return EXIT_FAILURE;
 
 
@@ -329,8 +324,8 @@ int main(int argc, char *argv[]) {
         "#include \"guwhiteboardgetter.h\"\n\n"
         "using namespace std;\n"
         "using namespace guWhiteboard;\n\n"
-        "#pragma clang diagnostic push\n"
-        "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
+        "#pragma clang diagnostic push;\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
         "extern \"C\"\n{\n"
         "\tchar *whiteboard_get(const char *message_type, gu_simple_message *msg)\n"
         "\t{\n"
@@ -365,7 +360,7 @@ int main(int argc, char *argv[]) {
         "}\n"
         "#pragma clang diagnostic pop\n\n"
         "#pragma clang diagnostic push\n"
-        "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\";\n"
         "namespace guWhiteboard\n{\n"
         "    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
         "    {\n"

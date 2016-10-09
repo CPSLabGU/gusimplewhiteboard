@@ -1,0 +1,13 @@
+author	Dimitri Joukoff
+float	LShoulderPitch 	// pitch of the shoulder joint (left) 
+float	LShoulderRoll 	// roll of the shoulder joint (left) 
+float	LElbowRoll 	// roll of the elbow joint (left) 
+float	LElbowYaw 	// yaw of the elbow joint (left) 
+float	LWristYaw 	// yaw of the wrist joint (left) 
+float	RShoulderPitch 	// pitch of the shoulder joint (right) 
+float	RShoulderRoll 	// roll of the shoulder joint (right) 
+float	RElbowRoll 	// roll of the elbow joint (right) 
+float	RElbowYaw 	// yaw of the elbow joint (right) 
+float	RWristYaw 	// yaw of the wrist joint (right) 
+
+@brief Arm joints
