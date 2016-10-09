@@ -94,7 +94,3 @@ bool,           nonatomic, TimerReset,                        "TimerReset", flag
 class:IoT_Control, 	nonatomic,      IoT_Control,         "IoT_Control",       Used to manage a group of IoT nodes (personal, Carl)
 bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
 class:SwitchSubsumptionTrafficLights, nonatomic, SwitchSubsumptionTrafficLights, "SwitchSubsumptionTrafficLights"
-class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Ctrl,               "HAL_LArmTarget_Ctrl", Used to control the left arm via DCM
-class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Stat,               "HAL_LArmTarget_Stat", Used to report DCM status of the left arm
-class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Ctrl,               "HAL_RArmTarget_Ctrl", Used to control the right arm via DCM
-class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Stat,               "HAL_RArmTarget_Stat", Used to report DCM status of the right arm
