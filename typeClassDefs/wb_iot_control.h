@@ -27,6 +27,7 @@ typedef enum node_list
 	NUMBER_OF_NODES	                        ///< NUMBER_OF_NODES
 } IoT_NodeList;
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 extern const char *IoT_NodeList_Strings[];
 const char *IoT_NodeList_Strings[] = 
 {
@@ -37,6 +38,7 @@ const char *IoT_NodeList_Strings[] =
     "OutdoorAreaLightingRemote",
     "ControlPanel"
 };
+#endif
 
 const int IoT_ids[] = 
 {
