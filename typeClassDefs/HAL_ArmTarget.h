@@ -19,6 +19,7 @@ namespace guWhiteboard
  	* @brief Class for moving a SINGLE robotic arm with up to 5 degrees of freedom using local coords of each joint.
     *        NAO Arm has 5 degrees of freedom with the axes being:
     *           'shoulder pitch, shoulder roll, elbow roll, elbow yaw, wrist yaw'.
+    *           (NOTE: The V3 does not have wrist yaw capability.)
     *        The left and right arm are mirrored about the XZ plane as are the movement limits and ranges.
     *        (doc-release-1.14.5-public/doc-release-1.14-public/family/robots/links_robot.html)
 	*
