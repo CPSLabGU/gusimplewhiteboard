@@ -366,6 +366,7 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic pop\n\n"
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
+        "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
         "namespace guWhiteboard\n{\n"
         "    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
         "    {\n"
@@ -646,7 +647,7 @@ int main(int argc, char *argv[]) {
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
 
-        output_generic_poster << "\t\t(void) message_content;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n    }\n}\n\n";
+        output_generic_poster << "#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\t\t(void) message_content;\n\t}\n\n\treturn false;\n#pragma clang diagnostic pop\n    }\n}\n\n";
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
