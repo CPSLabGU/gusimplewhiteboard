@@ -1006,18 +1006,12 @@ namespace guWhiteboard
 			class TimerReset_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case kIoT_Control_v:
-#ifdef IoT_Control_DEFINED
+		case kSLOT_UNUSED_v:
 		{
-/** WB Ptr Class: IoT_Control @brief Nil */ 
-			class IoT_Control_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
+/** WB Ptr Class: SLOT_UNUSED @brief Nil */ 
+			class SLOT_UNUSED_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-#else
-			return "##unsupported##";
-
-#endif // !IoT_Control_DEFINED
-
 		case kCarSensorPressed_v:
 		{
 /** WB Ptr Class: CarSensorPressed @brief Nil */ 
@@ -1035,54 +1029,6 @@ namespace guWhiteboard
 			return "##unsupported##";
 
 #endif // !SwitchSubsumptionTrafficLights_DEFINED
-
-		case kHAL_LArmTarget_Ctrl_v:
-#ifdef HAL_ArmTarget_DEFINED
-		{
-/** WB Ptr Class: HAL_LArmTarget_Ctrl @brief Nil */ 
-			class HAL_LArmTarget_Ctrl_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !HAL_ArmTarget_DEFINED
-
-		case kHAL_LArmTarget_Stat_v:
-#ifdef HAL_ArmTarget_DEFINED
-		{
-/** WB Ptr Class: HAL_LArmTarget_Stat @brief Nil */ 
-			class HAL_LArmTarget_Stat_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !HAL_ArmTarget_DEFINED
-
-		case kHAL_RArmTarget_Ctrl_v:
-#ifdef HAL_ArmTarget_DEFINED
-		{
-/** WB Ptr Class: HAL_RArmTarget_Ctrl @brief Nil */ 
-			class HAL_RArmTarget_Ctrl_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !HAL_ArmTarget_DEFINED
-
-		case kHAL_RArmTarget_Stat_v:
-#ifdef HAL_ArmTarget_DEFINED
-		{
-/** WB Ptr Class: HAL_RArmTarget_Stat @brief Nil */ 
-			class HAL_RArmTarget_Stat_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !HAL_ArmTarget_DEFINED
 
 		(void) msg;
 	}
