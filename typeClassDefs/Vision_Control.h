@@ -200,6 +200,14 @@ public:
      * @param s The string containing a valid serialized VisionControlStatus Message
      */
 	VisionControlStatus(std::string s) {
+        from_string(s);
+    }
+
+	/**
+	 * @brief String Parser
+     * @param s The string containing a valid serialized VisionControlStatus Message
+     */
+    void from_string(std::string s) {
 		memset(this, 0, sizeof(*this));
 		size_t n;
 		std::string command;
