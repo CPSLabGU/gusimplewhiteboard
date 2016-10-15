@@ -630,7 +630,7 @@ int main(int argc, char *argv[]) {
                         default:
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
-                                output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.class_name << " v = " << type.type_const_name << "_msg.get(); \n\t\t\tv.from_string(message_content);\n\t\t\t" << type.type_const_name << "_msg.post(v);\n\t\t\treturn true;\n\t\t}\n" ;
                                 output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
                                 output_generic_poster << "#else\n";
                                 output_generic_poster << "\t\t\treturn false;\n";
