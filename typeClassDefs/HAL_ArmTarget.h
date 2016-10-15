@@ -133,6 +133,7 @@ namespace guWhiteboard
              */
             void GoToWithTime_Rad(float shoulderpitch, float shoulderroll, float elbowroll, float elbowyaw, float wristyaw, int time = 1000000)
             {
+ 
                 if (shoulderpitch < SHOULDER_PITCH_LIMIT_DOWN_RAD && shoulderpitch > SHOULDER_PITCH_LIMIT_UP_RAD) {
                     set_target_shoulderpitch(shoulderpitch);
                 }
@@ -158,6 +159,13 @@ namespace guWhiteboard
                         set_target_elbowroll(elbowroll);
                     }
                 }
+/*
+                set_target_shoulderpitch(shoulderpitch);
+                set_target_shoulderroll(shoulderroll);
+                set_target_elbowroll(elbowroll);
+                set_target_elbowyaw(elbowyaw);
+                set_target_wristyaw(wristyaw);
+*/
                 set_target_movement_time(time);
                 set_arm_stopped(false);
                 set_arm_cmd_mask(true);

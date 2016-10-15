@@ -10,4 +10,4 @@ float	RElbowRoll 	// roll of the elbow joint (right)
 float	RElbowYaw 	// yaw of the elbow joint (right) 
 float	RWristYaw 	// yaw of the wrist joint (right) 
 
-@brief Arm joints
+@brief Arm joints  (Gripper and stiffness not included yet.)
