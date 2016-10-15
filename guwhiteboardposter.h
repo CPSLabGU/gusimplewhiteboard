@@ -103,6 +103,7 @@
 #include "Channels.h"
 #include "SwitchSubsumption.h"
 #include "SwitchSubsumptionTrafficLights.h"
+#include "Input3D.h"
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
