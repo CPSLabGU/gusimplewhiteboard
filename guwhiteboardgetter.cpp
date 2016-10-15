@@ -58,6 +58,7 @@ static string intvectostring(const vector<int> &vec)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wunreachable-code"
 namespace guWhiteboard
 {
     string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
