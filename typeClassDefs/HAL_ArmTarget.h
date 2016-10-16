@@ -12,6 +12,7 @@
 #define HAL_ArmTarget_DEFINED
 
 #include "wb_hal_armtarget.h"
+#include <sstream>
 
 namespace guWhiteboard                                                  
 {
@@ -53,7 +54,7 @@ namespace guWhiteboard
             * Constructor
             */       
             HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
-            HAL_ArmTarget(): wb_hal_armtarget() {}
+            //HAL_ArmTarget(): wb_hal_armtarget() {}
         
             /**
              * Specify which arm this instance manages.
@@ -188,7 +189,29 @@ namespace guWhiteboard
                 set_arm_stopped(other.arm_stopped());
                 set_arm_cmd_mask(other.arm_cmd_mask());
             }
+
+        std::string description() const
+        {
+            std::stringstream ss;
+            ss << target_shoulderpitch() << "-|-"
+            << target_shoulderroll() << "-|-"
+            << target_elbowroll() << "-|-"
+            << target_elbowyaw() << "-|-"
+            << target_wristyaw() << "-|-"
+            << target_shoulderpitchstiffness() << "-|-"
+            << target_shoulderrollstiffness() << "-|-"
+            << target_elbowrollstiffness() << "-|-"
+            << target_elbowyawstiffness() << "-|-"
+            << target_wristyawstiffness() << "-|-"
+            << target_movement_time() << "-|-"
+            << arm_stopped() << "-|-"
+            << arm_cmd_mask();
             
+            //                target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
+            return ss.str();
+        }
+
+        
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             /**
              * String constructor (NYI)
@@ -209,12 +232,6 @@ namespace guWhiteboard
              * Description method for pretty printing the values in this class
              * @return pretty printed string
              */
-            std::string description() const
-            {
-                std::stringstream ss;
-//                ss << target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
-                return ss.str();
-            }
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         };
 }

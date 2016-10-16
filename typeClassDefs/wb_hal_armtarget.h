@@ -173,6 +173,31 @@ struct wb_hal_armtarget
         set_arm_stopped(arm_stopped);
         set_arm_cmd_mask(false);
     }
+    
+    bool operator == (const wb_hal_armtarget &rhs) {
+        if (
+            target_arm() == rhs.target_arm() &&
+            target_shoulderpitch() == rhs.target_shoulderpitch() &&
+            target_shoulderroll() == rhs.target_shoulderroll() &&
+            target_elbowroll() == rhs.target_elbowroll() &&
+            target_elbowyaw() == rhs.target_elbowyaw() &&
+            target_wristyaw() == rhs.target_wristyaw() &&
+            target_shoulderpitchstiffness() == rhs.target_shoulderpitchstiffness() &&
+            target_shoulderrollstiffness() == rhs.target_shoulderrollstiffness() &&
+            target_elbowrollstiffness() == rhs.target_elbowrollstiffness() &&
+            target_elbowyawstiffness() == rhs.target_elbowyawstiffness() &&
+            target_wristyawstiffness() == rhs.target_wristyawstiffness() &&
+            target_movement_time() == rhs.target_movement_time() &&
+            arm_stopped() == rhs.arm_stopped() &&
+            arm_cmd_mask() == rhs.arm_cmd_mask()
+            )
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 #endif
 };
 
