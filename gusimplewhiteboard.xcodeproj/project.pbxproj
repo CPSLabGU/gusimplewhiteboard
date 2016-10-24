@@ -148,6 +148,7 @@
 		C3B4EC8A1CBCD2740061A970 /* wb_walk_controlstatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC201CBCD2740061A970 /* wb_walk_controlstatus.h */; };
 		C3B4EC8B1CBCD2740061A970 /* wb_walk2014_controlstatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC211CBCD2740061A970 /* wb_walk2014_controlstatus.h */; };
 		C3B4EC8C1CBCD2740061A970 /* WEBOTS_NXT_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */; };
+		C3BEA54B1DBDD00D00B3362C /* Input3D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEA54A1DBDD00D00B3362C /* Input3D.h */; };
 		C3BEDEE61693EADD00119F2E /* guudpSerialize.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BEDEE41693EADD00119F2E /* guudpSerialize.h */; };
 		C3C966ED1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */; };
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
@@ -475,6 +476,7 @@
 		C3B4EC201CBCD2740061A970 /* wb_walk_controlstatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_walk_controlstatus.h; sourceTree = "<group>"; };
 		C3B4EC211CBCD2740061A970 /* wb_walk2014_controlstatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_walk2014_controlstatus.h; sourceTree = "<group>"; };
 		C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEBOTS_NXT_bridge.h; sourceTree = "<group>"; };
+		C3BEA54A1DBDD00D00B3362C /* Input3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input3D.h; sourceTree = "<group>"; };
 		C3BEDEE41693EADD00119F2E /* guudpSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guudpSerialize.h; sourceTree = "<group>"; };
 		C3C966EC1AA7F5C40013E8E3 /* WALK2014_ControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALK2014_ControlStatus.h; sourceTree = "<group>"; };
 		C3C966EE1AA7F6B40013E8E3 /* APM_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APM_Interface.h; sourceTree = "<group>"; };
@@ -1446,6 +1448,7 @@
 				C33DF5261C0825270086181F /* SwitchSubsumption.h */,
 				F1E5543718EBD16D00639B1E /* TeleoperationControlStatus.h */,
 				F1E5543818EBD16D00639B1E /* Vision_Control.h */,
+				C3BEA54A1DBDD00D00B3362C /* Input3D.h */,
 				F1E5543A18EBD16D00639B1E /* VisionBall.h */,
 				F1E5543B18EBD16D00639B1E /* VisionGoals.h */,
 				C3B4EBBD1CBCD2740061A970 /* APM_Interface.h */,
@@ -1793,6 +1796,7 @@
 				C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */,
 				C3B4EC301CBCD2740061A970 /* FSMControlStatus.h in Headers */,
 				C3B4EC751CBCD2740061A970 /* wb_oculus_prime_interface.h in Headers */,
+				C3BEA54B1DBDD00D00B3362C /* Input3D.h in Headers */,
 				C33CA73D19FDDD8E0063636F /* Giraff_MainSerialInterface.h in Headers */,
 				C3B4EC851CBCD2740061A970 /* wb_sensors_torsotemps.h in Headers */,
 				C3B4EC891CBCD2740061A970 /* wb_teleoperation.h in Headers */,
