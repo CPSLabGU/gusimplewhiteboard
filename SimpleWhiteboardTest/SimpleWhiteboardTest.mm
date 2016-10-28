@@ -570,7 +570,7 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
-static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORSFootSensors_v, kSENSORSLedsSensors_v, kSENSORSLegJointTemps_v, kSENSORSTorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v, kTotoDoingMotion_v, kCount_v, kIoT_Control_v,
+static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORSFootSensors_v, kSENSORSLedsSensors_v, kSENSORSLegJointTemps_v, kSENSORSTorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v, kTotoDoingMotion_v, kCount_v, 
         // FIXME: vision below
     kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v, kInput3D_v, kOculusPrime_Command_v, kAPM_Status_v, kAPM_Command_v }; // FIXME: vision
 
