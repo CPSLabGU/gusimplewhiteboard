@@ -1058,6 +1058,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_si
 
 #endif // !HAL_ArmTarget_DEFINED
 
+		case kHAL_LArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Tolr @brief Nil */ 
+			class HAL_LArmTarget_Tolr_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
 		case kHAL_RArmTarget_Ctrl_v:
 #ifdef HAL_ArmTarget_DEFINED
 		{
@@ -1075,6 +1087,18 @@ string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg, gu_si
 		{
 /** WB Ptr Class: HAL_RArmTarget_Stat @brief Nil */ 
 			class HAL_RArmTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Tolr @brief Nil */ 
+			class HAL_RArmTarget_Tolr_t m(wbd);
 			return msg ? m.get_from(msg).description() : m.get().description();
 		}
 #else

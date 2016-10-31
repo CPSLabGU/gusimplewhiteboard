@@ -1116,6 +1116,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, g
 			return false;
 #endif // !HAL_ArmTarget_DEFINED
 
+		case kHAL_LArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Tolr @brief Nil */ 
+			class HAL_LArmTarget_Tolr_t HAL_LArmTarget_Tolr_msg(wbd);
+			HAL_LArmTarget_Tolr_msg.post(HAL_ArmTarget(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
 		case kHAL_RArmTarget_Ctrl_v:
 #ifdef HAL_ArmTarget_DEFINED
 		{
@@ -1140,6 +1152,18 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, g
 			return false;
 #endif // !HAL_ArmTarget_DEFINED
 
+		case kHAL_RArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Tolr @brief Nil */ 
+			class HAL_RArmTarget_Tolr_t HAL_RArmTarget_Tolr_msg(wbd);
+			HAL_RArmTarget_Tolr_msg.post(HAL_ArmTarget(message_content));
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
 		(void) message_content;
 	}
 #pragma clang diagnostic push
@@ -1152,7 +1176,7 @@ bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content, g
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(100);
+	// self.reserve(102);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1252,8 +1276,10 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
 	self["HAL_LArmTarget_Ctrl"] = kHAL_LArmTarget_Ctrl_v;
 	self["HAL_LArmTarget_Stat"] = kHAL_LArmTarget_Stat_v;
+	self["HAL_LArmTarget_Tolr"] = kHAL_LArmTarget_Tolr_v;
 	self["HAL_RArmTarget_Ctrl"] = kHAL_RArmTarget_Ctrl_v;
 	self["HAL_RArmTarget_Stat"] = kHAL_RArmTarget_Stat_v;
+	self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
 
 	(void) self;
 }
