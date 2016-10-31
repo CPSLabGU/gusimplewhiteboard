@@ -1031,6 +1031,24 @@ namespace guWhiteboard
 
 #endif // !SwitchSubsumptionTrafficLights_DEFINED
 
+		case kDetect_Ball_wb_v:
+		{
+/** WB Ptr Class: Detect_Ball_wb @brief Nil */ 
+			class Detect_Ball_wb_t m(wbd);
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kBall_Calibration_File_v:
+		{
+/** WB Ptr Class: Ball_Calibration_File @brief Nil */ 
+			class Ball_Calibration_File_t m(wbd);
+			return msg ? m.get_from(msg) : m.get();
+		}
+		case kBall_Found_v:
+		{
+/** WB Ptr Class: Ball_Found @brief Nil */ 
+			class Ball_Found_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 		(void) msg;
 	}
 #pragma clang diagnostic push

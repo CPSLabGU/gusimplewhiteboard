@@ -94,3 +94,6 @@ bool,           nonatomic, TimerReset,                        "TimerReset", flag
 bool,           nonatomic, SLOT_UNUSED,         "SLOT_UNUSED", IoT message removed, feel free to use this slot
 bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
 class:SwitchSubsumptionTrafficLights, nonatomic, SwitchSubsumptionTrafficLights, "SwitchSubsumptionTrafficLights"
+std::string,    nonatomic, Detect_Ball_wb,              "Detect_Ball_wb", name of private wb for DetectBallColor machine
+std::string,    nonatomic, Ball_Calibration_File,       "Ball_Calibration_File", Name of DLC file to load
+bool,           nonatomic, Ball_Found,                  "Ball_Found", Return value for DetectBallColor machine
