@@ -1220,13 +1220,6 @@ namespace guWhiteboard
 			return false;
 #endif // !SwitchSubsumptionTrafficLights_DEFINED
 
-		case kDetect_Ball_wb_v:
-		{
-/** WB Ptr Class: Detect_Ball_wb @brief Nil */ 
-			class Detect_Ball_wb_t Detect_Ball_wb_msg(wbd);
-			Detect_Ball_wb_msg.post(std::string(message_content));
-			return true;
-		}
 		case kBall_Calibration_File_v:
 		{
 /** WB Ptr Class: Ball_Calibration_File @brief Nil */ 
@@ -1234,6 +1227,22 @@ namespace guWhiteboard
 			Ball_Calibration_File_msg.post(std::string(message_content));
 			return true;
 		}
+		case kBall_Calibration_Num_v:
+		{
+/** WB Ptr Class: Ball_Calibration_Num @brief Nil */ 
+			class Ball_Calibration_Num_t Ball_Calibration_Num_msg(wbd);
+			Ball_Calibration_Num_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
+		case kBall_Color_Num_v:
+		{
+/** WB Ptr Class: Ball_Color_Num @brief Nil */ 
+			class Ball_Color_Num_t Ball_Color_Num_msg(wbd);
+			Ball_Color_Num_msg.post(atoi(message_content.c_str()));
+			return true;
+		}
+
 		case kBall_Found_v:
 		{
 /** WB Ptr Class: Ball_Found @brief Nil */ 
@@ -1255,7 +1264,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(99);
+	// self.reserve(100);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1353,8 +1362,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["SLOT_UNUSED"] = kSLOT_UNUSED_v;
 	self["CarSensorPressed"] = kCarSensorPressed_v;
 	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
-	self["Detect_Ball_wb"] = kDetect_Ball_wb_v;
 	self["Ball_Calibration_File"] = kBall_Calibration_File_v;
+	self[""Ball_Calibration_Num"] = kBall_Calibration_Num_v;
+	self["	"Ball_Color_Num"] = kBall_Color_Num_v;
 	self["Ball_Found"] = kBall_Found_v;
 
 	(void) self;
