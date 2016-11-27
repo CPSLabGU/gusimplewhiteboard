@@ -217,6 +217,7 @@ typedef union gsw_simple_message
         int                     ivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int)];		///< int array
         short                   svec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(short)];	///< short array
         signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];	///< signed char array
+        bool                    bvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(bool)];	///< bool array
  
         u_int64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];	///< u_int64_t array
         u_int32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];	///< u_int32_t array
