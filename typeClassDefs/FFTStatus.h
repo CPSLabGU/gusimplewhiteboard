@@ -72,6 +72,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wclass-varargs"
 
 namespace guWhiteboard
 {
