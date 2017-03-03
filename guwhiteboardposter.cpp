@@ -1362,10 +1362,10 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["SLOT_UNUSED"] = kSLOT_UNUSED_v;
 	self["CarSensorPressed"] = kCarSensorPressed_v;
 	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
-	self["		"Ball_Found"] = kBall_Found_v;
-	self[""Ball_Calibration_File"] = kBall_Calibration_File_v;
-	self[""Ball_Calibration_Num"] = kBall_Calibration_Num_v;
-	self["	"Ball_Color_Num"] = kBall_Color_Num_v;
+	self["Ball_Found"] = kBall_Found_v;
+	self["Ball_Calibration_File"] = kBall_Calibration_File_v;
+	self["Ball_Calibration_Num"] = kBall_Calibration_Num_v;
+	self["Ball_Color_Num"] = kBall_Color_Num_v;
 
 	(void) self;
 }
