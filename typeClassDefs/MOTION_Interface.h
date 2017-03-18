@@ -506,6 +506,15 @@ namespace guWhiteboard
  		*/
                 long GoToStance(Motions::stance current, Motions::stance desired)
                 {
+                        if(current == Motions::NUM_OF_STANCES || desired == Motions::NUM_OF_STANCES)
+                        {
+                            fprintf(stderr, "MOTION_Interface.h:    \n"\
+                                    "\tGoToStance:                  \n"\
+                                    "\t\tGoToStance change aborted! \n"\
+                                    "\t\tThe passed variables 'current' and 'desired' must not be equal to Motions::NUM_OF_STANCES. \n"\
+                                    "\t\tYou may be trying to set them with expected_stance(). This only provides you with a reference to the last Stance that Motion got to. If this is the first Stance change then expected_stance() is set to Motions::NUM_OF_STANCES and you are getting this error.\n");
+                            return -1;
+                        }
                         Motions::Stance_Path p;
                         p.add_stance(current, 1);                        
                         p = decide_stance(current, desired, p);
