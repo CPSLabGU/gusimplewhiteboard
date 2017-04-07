@@ -1019,6 +1019,18 @@ namespace guWhiteboard
 			class CarSensorPressed_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case k<<<<<<< HEAD_v:
+#ifdef <<<<<<< HEAD_DEFINED
+		{
+/** WB Ptr Class: <<<<<<< HEAD @brief Nil */ 
+			class <<<<<<< HEAD_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !<<<<<<< HEAD_DEFINED
+
 		case kSwitchSubsumptionTrafficLights_v:
 #ifdef SwitchSubsumptionTrafficLights_DEFINED
 		{
@@ -1055,6 +1067,78 @@ namespace guWhiteboard
 			class Ball_Color_Num_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kHAL_LArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Ctrl @brief Nil */ 
+			class HAL_LArmTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_LArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Stat @brief Nil */ 
+			class HAL_LArmTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_LArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Tolr @brief Nil */ 
+			class HAL_LArmTarget_Tolr_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Ctrl @brief Nil */ 
+			class HAL_RArmTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Stat @brief Nil */ 
+			class HAL_RArmTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Tolr @brief Nil */ 
+			class HAL_RArmTarget_Tolr_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_ArmTarget_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push

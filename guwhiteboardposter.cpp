@@ -1206,6 +1206,20 @@ namespace guWhiteboard
 			return true;
 		}
 
+		case k<<<<<<< HEAD_v:
+#ifdef <<<<<<< HEAD_DEFINED
+		{
+/** WB Ptr Class: <<<<<<< HEAD @brief Nil */ 
+			class <<<<<<< HEAD_t <<<<<<< HEAD_msg(wbd);
+			<<<<<<< HEAD v = <<<<<<< HEAD_msg.get(); 
+			v.from_string(message_content);
+			<<<<<<< HEAD_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !<<<<<<< HEAD_DEFINED
+
 		case kSwitchSubsumptionTrafficLights_v:
 #ifdef SwitchSubsumptionTrafficLights_DEFINED
 		{
@@ -1251,6 +1265,90 @@ namespace guWhiteboard
 			return true;
 		}
 
+		case kHAL_LArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Ctrl @brief Nil */ 
+			class HAL_LArmTarget_Ctrl_t HAL_LArmTarget_Ctrl_msg(wbd);
+			HAL_ArmTarget v = HAL_LArmTarget_Ctrl_msg.get(); 
+			v.from_string(message_content);
+			HAL_LArmTarget_Ctrl_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_LArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Stat @brief Nil */ 
+			class HAL_LArmTarget_Stat_t HAL_LArmTarget_Stat_msg(wbd);
+			HAL_ArmTarget v = HAL_LArmTarget_Stat_msg.get(); 
+			v.from_string(message_content);
+			HAL_LArmTarget_Stat_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_LArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LArmTarget_Tolr @brief Nil */ 
+			class HAL_LArmTarget_Tolr_t HAL_LArmTarget_Tolr_msg(wbd);
+			HAL_ArmTarget v = HAL_LArmTarget_Tolr_msg.get(); 
+			v.from_string(message_content);
+			HAL_LArmTarget_Tolr_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Ctrl_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Ctrl @brief Nil */ 
+			class HAL_RArmTarget_Ctrl_t HAL_RArmTarget_Ctrl_msg(wbd);
+			HAL_ArmTarget v = HAL_RArmTarget_Ctrl_msg.get(); 
+			v.from_string(message_content);
+			HAL_RArmTarget_Ctrl_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Stat_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Stat @brief Nil */ 
+			class HAL_RArmTarget_Stat_t HAL_RArmTarget_Stat_msg(wbd);
+			HAL_ArmTarget v = HAL_RArmTarget_Stat_msg.get(); 
+			v.from_string(message_content);
+			HAL_RArmTarget_Stat_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
+		case kHAL_RArmTarget_Tolr_v:
+#ifdef HAL_ArmTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RArmTarget_Tolr @brief Nil */ 
+			class HAL_RArmTarget_Tolr_t HAL_RArmTarget_Tolr_msg(wbd);
+			HAL_ArmTarget v = HAL_RArmTarget_Tolr_msg.get(); 
+			v.from_string(message_content);
+			HAL_RArmTarget_Tolr_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_ArmTarget_DEFINED
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1264,7 +1362,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(100);
+	// self.reserve(107);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1361,11 +1459,18 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["TimerReset"] = kTimerReset_v;
 	self["SLOT_UNUSED"] = kSLOT_UNUSED_v;
 	self["CarSensorPressed"] = kCarSensorPressed_v;
+	self["<<<<<< HEA"] = k<<<<<<< HEAD_v;
 	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
 	self["Ball_Found"] = kBall_Found_v;
 	self["Ball_Calibration_File"] = kBall_Calibration_File_v;
 	self["Ball_Calibration_Num"] = kBall_Calibration_Num_v;
 	self["Ball_Color_Num"] = kBall_Color_Num_v;
+	self["HAL_LArmTarget_Ctrl"] = kHAL_LArmTarget_Ctrl_v;
+	self["HAL_LArmTarget_Stat"] = kHAL_LArmTarget_Stat_v;
+	self["HAL_LArmTarget_Tolr"] = kHAL_LArmTarget_Tolr_v;
+	self["HAL_RArmTarget_Ctrl"] = kHAL_RArmTarget_Ctrl_v;
+	self["HAL_RArmTarget_Stat"] = kHAL_RArmTarget_Stat_v;
+	self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
 
 	(void) self;
 }
