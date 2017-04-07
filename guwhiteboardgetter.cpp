@@ -1019,18 +1019,6 @@ namespace guWhiteboard
 			class CarSensorPressed_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-		case k<<<<<<< HEAD_v:
-#ifdef <<<<<<< HEAD_DEFINED
-		{
-/** WB Ptr Class: <<<<<<< HEAD @brief Nil */ 
-			class <<<<<<< HEAD_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
-		}
-#else
-			return "##unsupported##";
-
-#endif // !<<<<<<< HEAD_DEFINED
-
 		case kSwitchSubsumptionTrafficLights_v:
 #ifdef SwitchSubsumptionTrafficLights_DEFINED
 		{

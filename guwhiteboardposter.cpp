@@ -1206,20 +1206,6 @@ namespace guWhiteboard
 			return true;
 		}
 
-		case k<<<<<<< HEAD_v:
-#ifdef <<<<<<< HEAD_DEFINED
-		{
-/** WB Ptr Class: <<<<<<< HEAD @brief Nil */ 
-			class <<<<<<< HEAD_t <<<<<<< HEAD_msg(wbd);
-			<<<<<<< HEAD v = <<<<<<< HEAD_msg.get(); 
-			v.from_string(message_content);
-			<<<<<<< HEAD_msg.post(v);
-			return true;
-		}
-#else
-			return false;
-#endif // !<<<<<<< HEAD_DEFINED
-
 		case kSwitchSubsumptionTrafficLights_v:
 #ifdef SwitchSubsumptionTrafficLights_DEFINED
 		{
@@ -1362,7 +1348,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(107);
+	// self.reserve(106);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1459,7 +1445,6 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["TimerReset"] = kTimerReset_v;
 	self["SLOT_UNUSED"] = kSLOT_UNUSED_v;
 	self["CarSensorPressed"] = kCarSensorPressed_v;
-	self["<<<<<< HEA"] = k<<<<<<< HEAD_v;
 	self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
 	self["Ball_Found"] = kBall_Found_v;
 	self["Ball_Calibration_File"] = kBall_Calibration_File_v;
