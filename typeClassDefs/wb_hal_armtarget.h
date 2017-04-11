@@ -1,10 +1,10 @@
-/**                                                                     
+/**
  *  /file wb_hal_armtarget.h
- *                                                                      
+ *
  *  Created by Dimitri Joukoff 2016.
  *  Copyright (c) 2016 Dimitri Joukoff
- *  All rights reserved.                                                
- */                                                                     
+ *  All rights reserved.
+ */
 
 #ifndef wb_hal_armtarget_h
 #define wb_hal_armtarget_h
@@ -103,23 +103,23 @@ struct wb_hal_armtarget
 
     /** target shoulder pitch stiffness */
     PROPERTY(float, target_shoulderpitchstiffness)
-    
+
     /** target shoulder roll stiffness */
     PROPERTY(float, target_shoulderrollstiffness)
-    
+
     /** target elbow roll stiffness */
     PROPERTY(float, target_elbowrollstiffness)
-    
+
     /** target elbow yaw stiffness */
     PROPERTY(float, target_elbowyawstiffness)
-    
+
     /** target wrist yaw stiffness */
     PROPERTY(float, target_wristyawstiffness)
-    
+
     /** The elapsed time in which the movement should be completed.
      *  Stored in micro seconds.
      */
-    PROPERTY(int, target_movement_time) 
+    PROPERTY(int, target_movement_time)
 
     /** Should the current motion be stopped (if setting)
      *    or
@@ -143,7 +143,7 @@ struct wb_hal_armtarget
     * @param target_wristyaw      desired wrist yaw
     * @param target_movement_time time to take
     * @param arm_stopped          should the arm stop
-    */       
+    */
     wb_hal_armtarget(uint8_t target_arm = LEFT_ARM,
                      float target_shoulderpitch = 0,
                      float target_shoulderroll = 0,
@@ -173,7 +173,10 @@ struct wb_hal_armtarget
         set_arm_stopped(arm_stopped);
         set_arm_cmd_mask(false);
     }
-    
+
+/*
+ * The equivalence opertator is not required in the current implementation.
+ *
     bool operator == (const wb_hal_armtarget &rhs) {
         if (
             target_arm() == rhs.target_arm() &&
@@ -194,9 +197,11 @@ struct wb_hal_armtarget
         {
             return true;
         } else {
+            set_arm_cmd_mask(rhs.arm_cmd_mask());
             return false;
         }
     }
+*/
 
 #endif
 };

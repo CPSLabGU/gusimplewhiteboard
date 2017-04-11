@@ -1,20 +1,20 @@
-/**                                                                     
+/**
  *  /file HAL_ArmTarget.h
- *                                                                      
+ *
  *  Created by Dimitri Joukoff 2016.
  *  Copyright (c) 2016 Dimitri Joukoff
- *  All rights reserved.                                                
- */                                                                     
+ *  All rights reserved.
+ */
 
 
-                                                                        
+
 #ifndef HAL_ArmTarget_DEFINED
 #define HAL_ArmTarget_DEFINED
 
 #include "wb_hal_armtarget.h"
 #include <sstream>
 
-namespace guWhiteboard                                                  
+namespace guWhiteboard
 {
 	/**
  	* @brief Class for moving a SINGLE robotic arm with up to 5 degrees of freedom using local coords of each joint.
@@ -29,7 +29,7 @@ namespace guWhiteboard
 	* Examples
 	* --------
 	*
-	* Examples of what to do with the class 
+	* Examples of what to do with the class (note that HAL_ArmTarget needs to be assigned to desired arm)
 	*
     *     //Move (left) arm down such that it is parallel to the body at an angle of 5 deg with elbow straight, inner-forearm and palm facing body over 1 second
 	*     HAL_ArmTarget().GoToWithTime_Rad(1.5708, 0.0873, -0.0349, -1.5708, -1.5708, 1000000);  // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
@@ -40,22 +40,22 @@ namespace guWhiteboard
     *     HAL_ArmTarget().GoToWithTime_Deg(90, -5, 2, 90, 90, 1000000);                          // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
     *
     *     HAL_ArmTarget().Stop(); 	//Stop moving the arm, can be issued mid-movement
-	*     
-	* Class values typically need to be passed to the Whiteboard for them to take effect 
-	*     
+	*
+	* Class values typically need to be passed to the Whiteboard for them to take effect
+	*
 	*     HAL_ArmTarget_t.set(HAL_ArmTarget().Stop());
 	*
- 	*/       
+ 	*/
     class HAL_ArmTarget : public wb_hal_armtarget
     {
-            
+
         public:
             /**
-            * Constructor
-            */       
+            * Constructor, defaults to LEFT_ARM
+            */
             HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
             //HAL_ArmTarget(): wb_hal_armtarget() {}
-        
+
             /**
              * Specify which arm this instance manages.
              * Up to 256 arms are possible.
@@ -65,7 +65,7 @@ namespace guWhiteboard
             {
                 set_target_arm(arm);
             }
-        
+
             /**
              * Set stopping vars
              */
@@ -122,7 +122,7 @@ namespace guWhiteboard
                                  static_cast<float>(DEG2RAD(wristyaw)),
                                  time);
             }
-        
+
             /**
              * move to position in radians over a given time
              * @param shoulderpitch (down to up)
@@ -144,7 +144,7 @@ namespace guWhiteboard
                 if (wristyaw < LEFT_WRIST_YAW_RIGHT_RAD && wristyaw > LEFT_WRIST_YAW_LEFT_RAD) { // LEFT and RIGHT are same for this axis.
                     set_target_wristyaw(wristyaw);
                 }
-                
+
                 if (_target_arm == LEFT_ARM) {
                     if (shoulderroll < LEFT_SHOULDER_ROLL_OUT_RAD && shoulderroll > LEFT_SHOULDER_ROLL_IN_RAD) {
                         set_target_shoulderroll(shoulderroll);
@@ -172,7 +172,7 @@ namespace guWhiteboard
                 set_arm_stopped(false);
                 set_arm_cmd_mask(true);
             }
-        
+
             void MirrorArm(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
@@ -190,28 +190,28 @@ namespace guWhiteboard
                 set_arm_cmd_mask(other.arm_cmd_mask());
             }
 
-        std::string description() const
-        {
-            std::stringstream ss;
-            ss << target_shoulderpitch() << "-|-"
-            << target_shoulderroll() << "-|-"
-            << target_elbowroll() << "-|-"
-            << target_elbowyaw() << "-|-"
-            << target_wristyaw() << "-|-"
-            << target_shoulderpitchstiffness() << "-|-"
-            << target_shoulderrollstiffness() << "-|-"
-            << target_elbowrollstiffness() << "-|-"
-            << target_elbowyawstiffness() << "-|-"
-            << target_wristyawstiffness() << "-|-"
-            << target_movement_time() << "-|-"
-            << arm_stopped() << "-|-"
-            << arm_cmd_mask();
-            
-            //                target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
-            return ss.str();
-        }
+            std::string description() const
+            {
+                std::stringstream ss;
+                ss << target_shoulderpitch() << "-|-"
+                << target_shoulderroll() << "-|-"
+                << target_elbowroll() << "-|-"
+                << target_elbowyaw() << "-|-"
+                << target_wristyaw() << "-|-"
+                << target_shoulderpitchstiffness() << "-|-"
+                << target_shoulderrollstiffness() << "-|-"
+                << target_elbowrollstiffness() << "-|-"
+                << target_elbowyawstiffness() << "-|-"
+                << target_wristyawstiffness() << "-|-"
+                << target_movement_time() << "-|-"
+                << arm_stopped() << "-|-"
+                << arm_cmd_mask();
 
-        
+                //                target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
+                return ss.str();
+            }
+
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
             /**
              * String constructor (NYI)
@@ -227,7 +227,7 @@ namespace guWhiteboard
             {
                 fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
             }
- 
+
             /**
              * Description method for pretty printing the values in this class
              * @return pretty printed string
