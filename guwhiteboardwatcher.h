@@ -17,6 +17,9 @@
 #pragma clang diagnostic ignored "-Wunused-value"
 
 #include "gusimplewhiteboard.h"
+
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #include "WBFunctor.h"
 #include <iostream> //cerr
 #include <cstdio> //stderr etc..
@@ -274,4 +277,5 @@ static void subscription_callback(gu_simple_whiteboard_descriptor *wbd) //called
 }
 
 
+#endif	// WITHOUT_LIBDISPATCH
 #endif //GENERIC_WB_WATCHER_H

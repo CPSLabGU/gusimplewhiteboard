@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_walk_controlstatus_h
-#define _wb_walk_controlstatus_h
+#ifndef wb_walk_controlstatus_h
+#define wb_walk_controlstatus_h
 
 #include <gu_util.h>
 
@@ -16,6 +16,8 @@
 #endif
 
 #ifndef USE_UNSW_ODOMETRY
+#ifndef wb_walk_odometry_h
+#define wb_walk_odometry_h
 struct Odometry                         ///< needs to mimic UNSW odometry!
 {
         float forward;		///< forward, unsure of unit type
@@ -25,13 +27,14 @@ struct Odometry                         ///< needs to mimic UNSW odometry!
 #ifdef __cplusplus
    /** Comparison operator for Odometry objects */
    inline bool operator== (const Odometry& a) {
-      return (	fabs(forward - a.forward) < FLT_EPSILON &&
-		fabs(left - a.left) < FLT_EPSILON &&
-		fabs(turn - a.turn) < FLT_EPSILON);
+      return (	fabs(static_cast<double>(forward - a.forward)) < DBL_EPSILON &&
+		fabs(static_cast<double>(left - a.left)) < DBL_EPSILON &&
+		fabs(static_cast<double>(turn - a.turn)) < DBL_EPSILON);
    }
 #endif
 
 };
+#endif //_wb_walk_odometry_h
 #endif
 
 /**
@@ -61,9 +64,9 @@ struct wb_walk_controlstatus
         PROPERTY(float, power)          
 
 	/** Walk State, getting / setting the state of the walk engine. Such as setting WALK_Stop to stop walking. */
-        PROPERTY(WALK_ControlStatus_Mode, controlStatus) 	
+        PROPERTY(enum WALK_ControlStatus_Mode, controlStatus)
 	/** Odometry object, tracking walk distances over time */
-        PROPERTY(Odometry, odometry) 				
+        PROPERTY(struct Odometry, odometry)
 	/** Odometry mask, for overwriting the odomety in the walk */
         PROPERTY(bool, odometry_mask) 				
 	/** Just padding, ignore  */
@@ -78,4 +81,4 @@ struct wb_walk_controlstatus
 
 };
 
-#endif //_wb_walk_controlstatus_h
+#endif // wb_walk_controlstatus_h

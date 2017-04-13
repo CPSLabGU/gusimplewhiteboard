@@ -9,8 +9,15 @@
 #ifndef GENERIC_WB_OBJ_H
 #define GENERIC_WB_OBJ_H
 
-
 #include "gusimplewhiteboard.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wweak-vtables"
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #include <iostream>
 #include <assert.h>
 #include <string>
@@ -24,12 +31,6 @@
 #undef true
 #undef false
 #endif
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wweak-vtables"
-#pragma clang diagnostic ignored "-Wpadded"
-#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#pragma clang diagnostic ignored "-Wdeprecated"
 
 extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
@@ -220,6 +221,12 @@ template<> std::string generic_whiteboard_object<std::string>::get_from(gu_simpl
  * @return The unwrapped data in the template type
  */
 template<> std::vector<int> generic_whiteboard_object<std::vector<int> >::get_from(gu_simple_message *msg);
+/** 
+ * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. vector<bool> specialisation
+ * @param msg The union pointer
+ * @return The unwrapped data in the template type
+ */
+template<> std::vector<bool> generic_whiteboard_object<std::vector<bool> >::get_from(gu_simple_message *msg);
 
 /** 
  * @brief Generic object method for unwrapping data from the underlying whiteboard storage union. 
@@ -242,6 +249,11 @@ template<> void generic_whiteboard_object<std::string>::set(const std::string &m
  * @param msg The data to set into the whiteboard
  */
 template<> void generic_whiteboard_object<std::vector<int> >::set(const std::vector<int> &msg);
+/** 
+ * @brief Generic object method for setting data into a specific whiteboard type. vector<bool> specialisation 
+ * @param msg The data to set into the whiteboard
+ */
+template<> void generic_whiteboard_object<std::vector<bool> >::set(const std::vector<bool> &msg);
 
 /** 
  * @brief Generic object method for setting data into a specific whiteboard type. 

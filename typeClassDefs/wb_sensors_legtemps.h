@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_legtemps_h
-#define _wb_sensors_legtemps_h
+#ifndef wb_sensors_legtemps_h
+#define wb_sensors_legtemps_h
 
 #include <gu_util.h>
 
@@ -36,4 +36,4 @@ struct wb_sensors_legtemps
  
 };
 
-#endif //_wb_sensors_legtemps_h
+#endif // wb_sensors_legtemps_h

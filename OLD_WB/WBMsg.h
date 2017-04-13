@@ -2,7 +2,7 @@
  *  WBMsg.h
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011, 2012, 2013 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2016 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -239,7 +239,7 @@ public:
                         case TypeInt:
                                 return intVal != 0;
                         case TypeFloat:
-                                return floatVal != 0.0;
+                                return floatVal != 0.0f;
                         case TypeString:
                                 return toupper(stringVal[0]) == 'Y' ||
                                        toupper(stringVal[0]) == 'T' ||

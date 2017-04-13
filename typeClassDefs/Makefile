@@ -11,7 +11,7 @@ CI_NAME=Docs.WB.Classes
 CI_DESCRIPTION=This is the Doxygen documentation for the whiteboard classes used within GUNao.
 
 DOCUMENTATION=${CI_NAME}
-CI_SERVER_DOC_SUBDIR=Whiteboard.Class.Docs
+CI_SERVER_DOC_SUBDIR=Reference/Classes/Whiteboard
 
 .ifndef HDRS
 TMP_HDRS!=ls *.h

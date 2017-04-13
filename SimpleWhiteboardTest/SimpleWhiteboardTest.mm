@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.mm
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2014 Rene Hexel.
+ *  Copyright (c) 2011, 2014, 2015 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,6 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
+#import <errno.h>
+#import <sys/stat.h>
 #import "FSM_Control.h"
 #import "SimpleWhiteboardTest.h"
 #import "FilteredOneDimSonar.h"
@@ -64,6 +66,8 @@
 #import "FilteredArrayOneDimBall.h"
 
 #import "FSMControlStatus.h"
+
+#define WB_FNAME "guWhiteboard_SimpleWhiteboardTest"
 
 using namespace guWhiteboard;
 using namespace std;
@@ -118,12 +122,16 @@ public:
  */
 - (void) setUp
 {
+        setenv(GSW_DEFAULT_ENV, WB_FNAME, 1);
+
+        Print_t wb;
+        (void) wb.get();  // create whiteboard (if it doesn't exist)
+
         [super setUp];
 
         self.callbackCount = 0;
         self.semaphore = dispatch_semaphore_create(0);
-        
-        
+
         //generic wb object testing
 
 //        generic_whiteboard_object<gu_simple_message> *testInt = new generic_whiteboard_object<gu_simple_message>(self.whiteboard->_wbd, 20);
@@ -154,6 +162,8 @@ public:
         self.semaphore = NULL;
 
         [super tearDown];
+    
+        unsetenv(GSW_DEFAULT_ENV);
 }
 
 /**
@@ -210,15 +220,15 @@ public:
 }
 
 
-- (void) testSerializaitonSENSORS_TorsoJointSensors
+- (void) testSerializationSENSORSTorsoJointSensors
 {
-    SENSORS_TorsoJointSensors testA("10Y,20P");
+    SENSORSTorsoJointSensors testA("0.174533,0.349066");
     XCTAssertEqualWithAccuracy(DEG2RAD(10), testA.HeadYaw  (), 0.01, @"Head Yaw match");
     XCTAssertEqualWithAccuracy(DEG2RAD(20), testA.HeadPitch(), 0.01, @"Head Pitch match");
    // XCTAssertFalse(true, @"Head Pitch match");
     
 }
-- (void) testSerializaitonFilteredSonarObject
+- (void) testSerializationFilteredSonarObject
 {
         FilteredOneDimSonar testA("");
         
@@ -242,7 +252,7 @@ public:
 
 }
 
-- (void) testSerializaitonFilteredOneDimObject
+- (void) testSerializationFilteredOneDimObject
 {
         FilteredOneDimObject testA("");
 
@@ -271,7 +281,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimSonar
+- (void) testSerializationFilteredArrayOneDimSonar
 {
     FilteredOneDimSonar testA("IsVisible,10,FRAME:100,");
     
@@ -318,7 +328,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimObjects
+- (void) testSerializationFilteredArrayOneDimObjects
 {
     FilteredOneDimObject testP("IsVisible,10,20,30,40,FRAME:100,");
     
@@ -391,7 +401,7 @@ public:
     
 }
 
-- (void) testSerializaitonFilteredArrayOneDimBall
+- (void) testSerializationFilteredArrayOneDimBall
 {
     FilteredOneDimObject testT("IsVisible,10,20,30,40,FRAME:100,");
     
@@ -560,15 +570,15 @@ public:
         XCTAssertTrue(testString == self.stringValue.UTF8String, @"Expected '%s' from callback, but got '%@'", testString.c_str(), self.stringValue);
 }
 
-static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORS_FootSensors_v, kSENSORS_LedsSensors_v, kSENSORS_LegJointTemps_v, kSENSORS_TorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v,
+static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeToAllTypes_v, kGCGameState_v, kSENSORSFootSensors_v, kSENSORSLedsSensors_v, kSENSORSLegJointTemps_v, kSENSORSTorsoJointTemps_v, kSoloTypeExample_v, kUDPRN_v, kTeleoperationControlStatus_v, kTotoDoingMotion_v, kCount_v, 
         // FIXME: vision below
-    kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v }; // FIXME: vision
+    kVisionLines_v, kFSOsighting_v, kFilteredBallSighting_v, kFilteredGoalSighting_v, kInput3D_v, kOculusPrime_Command_v, kAPM_Status_v, kAPM_Command_v }; // FIXME: vision
 
 - (void) testStringPostings
 {
     string testString("000");
 
-    for (int wbtype = 1; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++)
+    for (int wbtype = 1; wbtype < GSW_NUM_TYPES_DEFINED; wbtype++) try
     {
         bool result = guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString);
         bool needStringConversion = true;
@@ -582,6 +592,24 @@ static WBTypes nasty_wb_without_string_conversion[] = { kwb_reserved_SubscribeTo
         }
         XCTAssertTrue(!needStringConversion || result, @"Could not post wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
     }
+    catch (...)
+    {
+        XCTAssertNoThrow(guWhiteboard::postmsg(static_cast<WBTypes>(wbtype), testString), @"Exception posting wb message %d (%s):", wbtype, WBTypes_stringValues[wbtype]);
+    }
+}
+
+
+- (void) testEnvWhiteboardName
+{
+#ifndef GSW_IOS_DEVICE
+    const char *wbenv = getenv(GSW_DEFAULT_ENV);
+    XCTAssert(wbenv, @"Whiteboard environment variable '%s' not set", GSW_DEFAULT_ENV);
+    XCTAssertTrue(strcmp(wbenv, WB_FNAME) == 0, @"Whiteboard environment '%s' instead of '%s'", wbenv, WB_FNAME);
+    const char *fname = "/tmp/" WB_FNAME;
+    struct stat buf;
+    XCTAssertTrue(stat(fname, &buf) != -1, @"Could not open whiteboard '%s': %s", fname, strerror(errno));
+    unlink(fname);
+#endif
 }
 
 #pragma clang diagnostic pop

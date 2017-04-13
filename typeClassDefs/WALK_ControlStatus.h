@@ -52,10 +52,10 @@ namespace guWhiteboard
                 /** comparison operator */
 		inline bool operator == (const WALK_ControlStatus &s) 
 		{
-    			return (fabs(forward() - s.forward()) < FLT_EPSILON &&
-				fabs(left() - s.left()) < FLT_EPSILON &&
-				fabs(turn() - s.turn()) < FLT_EPSILON &&
-				fabs(power() - s.power()) < FLT_EPSILON &&
+    			return (fabs(static_cast<double>(forward() - s.forward())) < DBL_EPSILON &&
+				fabs(static_cast<double>(left() - s.left())) < DBL_EPSILON &&
+				fabs(static_cast<double>(turn() - s.turn())) < DBL_EPSILON &&
+				fabs(static_cast<double>(power() - s.power())) < DBL_EPSILON &&
 				controlStatus()	== s.controlStatus() &&
 				odometry() 	== s.odometry());
 		}

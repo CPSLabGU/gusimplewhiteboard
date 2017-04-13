@@ -58,6 +58,9 @@
  */
 #import <Foundation/Foundation.h>
 #import "ObjCWhiteboardDelegate.h"
+#include "gusimplewhiteboard.h"
+#include "guwhiteboardtypelist_c_generated.h"
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-missing-property-synthesis"
@@ -80,7 +83,7 @@ typedef struct whiteboard_watcher oc_watcher_t;
 #endif
 
 @interface ObjCWhiteboard: NSObject
-@property (nonatomic, weak) id<ObjCWhiteboardDelegate> delegate;
+@property (nonatomic) id<ObjCWhiteboardDelegate> delegate;
 @property (nonatomic, assign) oc_whiteboard_t *gu_whiteboard;
 @property (nonatomic, assign) oc_watcher_t *watcher;
 @property (nonatomic, strong) NSMutableDictionary *knownWhiteboardMessages;

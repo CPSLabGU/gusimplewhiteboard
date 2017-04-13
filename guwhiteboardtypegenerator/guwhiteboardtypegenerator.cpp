@@ -24,75 +24,75 @@ using namespace std;
 #define CLASS_DOXY(c, comment) "/** WB Ptr Class: " << c << " @brief " << comment << " */ \n"
 #define CLASS_CON_DOXY(c) "/** Constructor: " << c << " */ \n"
 
+static bool read_from_stdin = false;
+
 static const char *include_str = "\
-/**                                                                     \n\
- *  /file guwhiteboardtypelist_generated.h                              \n\
- *                                                                      \n\
- *  Created by Carl Lusty in 2013.                                      \n\
- *  Copyright (c) 2013 Carl Lusty                                       \n\
- *  All rights reserved.                                                \n\
- */                                                                     \n\
-                                                                        \n\
-                                                                        \n\
-#ifndef _GUWHITEBOARD_TYPELIST_H_                                       \n\
-#define _GUWHITEBOARD_TYPELIST_H_                                       \n\
-                                                                        \n\
-#include \"gugenericwhiteboardobject.h\"                                \n\
-                                                                        \n\
-#pragma clang diagnostic push                                           \n\
-#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
-                                                                        \n\
-                                                                        \n\
-";
+/**\n\
+ *  /file guwhiteboardtypelist_generated.h\n\
+ *\n\
+ *  Created by Carl Lusty in 2013.\n\
+ *  Copyright (c) 2013-2016 Carl Lusty and Rene Hexel\n\
+ *  All rights reserved.\n\
+ */\n\
+\n\
+\n\
+#ifndef GUWHITEBOARD_TYPELIST_H_\n\
+#define GUWHITEBOARD_TYPELIST_H_\n\
+\n\
+#include \"gugenericwhiteboardobject.h\"\n\
+\n\
+#pragma clang diagnostic push\n\
+#pragma clang diagnostic ignored \"-Wpadded\"\n\
+\n\
+\n";
 
 static const char *include_tcp_str = "\
-/**                                                                    \n\
-*  /file guwhiteboardtypelist_tcp_generated.h                          \n\
-*                                                                      \n\
-*  Created by Carl Lusty in 2013.                                      \n\
-*  Copyright (c) 2013 Carl Lusty                                       \n\
-*  All rights reserved.                                                \n\
-*/                                                                     \n\
+/**\n\
+*  /file guwhiteboardtypelist_tcp_generated.h\n\
+*\n\
+*  Created by Carl Lusty in 2013.\n\
+*  Copyright (c) 2013-2016 Carl Lusty and Rene Hexel\n\
+*  All rights reserved.\n\
+*/\n\
 \n\
 \n\
-#ifndef _GUWHITEBOARD_TCP_TYPELIST_H_                                  \n\
-#define _GUWHITEBOARD_TCP_TYPELIST_H_                                  \n\
+#ifndef GUWHITEBOARD_TCP_TYPELIST_H_\n\
+#define GUWHITEBOARD_TCP_TYPELIST_H_\n\
 \n\
-#include \"gugenericwhiteboardobject.h\"                                \n\
-#include \"gutcpinjectionwhiteboardobject.h\"                           \n\
+#include \"gugenericwhiteboardobject.h\"\n\
+#include \"gutcpinjectionwhiteboardobject.h\"\n\
 \n\
-#pragma clang diagnostic push                                           \n\
-#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
-#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
+#pragma clang diagnostic push\n\
+#pragma clang diagnostic ignored \"-Wpadded\"\n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"\n\
 \n\
-\n\
-";
+\n";
 
 static const char *include_str_c = "\
-/**                                                                     \n\
- *  /file guwhiteboardtypelist_c_generated.h                            \n\
- *                                                                      \n\
- *  Created by Carl Lusty in 2013.                                      \n\
- *  Copyright (c) 2013 Carl Lusty                                       \n\
- *  All rights reserved.                                                \n\
- */                                                                     \n\
+/**\n\
+ *  /file guwhiteboardtypelist_c_generated.h\n\
+ *\n\
+ *  Created by Carl Lusty in 2013.\n\
+ *  Copyright (c) 2013-2016 Carl Lusty and Rene Hexel\n\
+ *  All rights reserved.\n\
+ */\n\
 \n\
 \n\
-#ifndef _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
-#define _GUWHITEBOARD_TYPELIST_C_H_                                     \n\
+#ifndef GUWHITEBOARD_TYPELIST_C_H_\n\
+#define GUWHITEBOARD_TYPELIST_C_H_\n\
 \n\
 \n\
 #define WANT_WB_STRINGS\n\
 ";
 
 static const char *include_str_c_typestrings = "\
-/**                                                                     \n\
- *  /file guwhiteboardtypelist_c_typestrings_generated.c                \n\
- *                                                                      \n\
- *  Created by Carl Lusty in 2013.                                      \n\
- *  Copyright (c) 2013 Carl Lusty                                       \n\
- *  All rights reserved.                                                \n\
- */                                                                     \n\
+/**\n\
+ *  /file guwhiteboardtypelist_c_typestrings_generated.c\n\
+ *\n\
+ *  Created by Carl Lusty in 2013.\n\
+ *  Copyright (c) 2013-2016 Carl Lusty and Rene Hexel\n\
+ *  All rights reserved.\n\
+ */\n\
 \n\
 #include \"gusimplewhiteboard.h\"\n\
 #include \"guwhiteboardtypelist_c_generated.h\"\n\
@@ -100,47 +100,49 @@ static const char *include_str_c_typestrings = "\
 ";
 
 static const char *include_wbfunctor_extension = "\
-/**                                                                     \n\
- *  /file WBFunctor_types_generated.h                                   \n\
- *                                                                      \n\
- *  Created by Carl Lusty in 2013.                                      \n\
- *  Copyright (c) 2013 Carl Lusty                                       \n\
- *  All rights reserved.                                                \n\
- */                                                                     \n\
+/**\n\
+ *  /file WBFunctor_types_generated.h\n\
+ *\n\
+ *  Created by Carl Lusty in 2013.\n\
+ *  Copyright (c) 2013-2016 Carl Lusty and Rene Hexel\n\
+ *  All rights reserved.\n\
+ */\n\
 \n\
-#pragma clang diagnostic push                                           \n\
-#pragma clang diagnostic ignored \"-Wpadded\"                           \n\
-#pragma clang diagnostic ignored \"-Wold-style-cast\"                   \n\
+#pragma clang diagnostic push\n\
+#pragma clang diagnostic ignored \"-Wpadded\"\n\
+#pragma clang diagnostic ignored \"-Wold-style-cast\"\n\
 \n\
 ";
 
 static const char *opening_namespace = "\n\
-namespace guWhiteboard                                                  \n\
-{                                                                       \n\
-                                                                        \n\
-extern \"C\"                                                            \n\
-{                                                                       \n\
-#include \"guwhiteboardtypelist_c_generated.h\"                         \n\
-}                                                                       \n\
-                                                                        \n\
+namespace guWhiteboard\n\
+{\n\
+\n\
+extern \"C\"\n\
+{\n\
+#include \"guwhiteboardtypelist_c_generated.h\"\n\
+}\n\
+\n\
 ";
 
-static const char *opening_enum = "       /** All the message 'types' for the class based whiteboard */\n       typedef enum wb_types      \n\
-        {                                                               \n\
+static const char *opening_enum =
+"       /** All the message 'types' for the class based whiteboard */\n\
+	typedef enum wb_types\n\
+        {\n\
 ";
 
-static const char *closing_enum = "        } WBTypes; ///< All the message 'types' for the class based whiteboard \n\n";
+static const char *closing_enum =
+"        } WBTypes; ///< All the message 'types' for the class based whiteboard \n\n";
 
 static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n";
 
 static const char *opening_string_array_definition = "const char *WBTypes_stringValues[] = \n{\n";
 
-static const char *closing_string_array_definition = "};      \n\n";
+static const char *closing_string_array_definition = "};\n\n";
 
 static const char *closing_namespace = "}\n\n";
 
-static const char *end_include_str = "#endif                          \n\
-";
+static const char *end_include_str = "#endif\n";
 
 enum ClassType {
 	None = 0,
@@ -180,11 +182,11 @@ namespace ParseTarget { enum kind {
         static ofstream output_generic_getter;
 #pragma clang diagnostic pop
 
-bool opening_files(string aPath);
+bool opening_files(string aPath, string tsl);
 
-bool opening_files(string aPath)
+bool opening_files(string aPath, string tsl)
 {
-	string tsl_file_name=aPath+string("guwhiteboardtypelist.tsl");
+        string tsl_file_name= read_from_stdin ? string("/dev/stdin") : aPath+tsl;
 	string output_file_name=aPath+string("guwhiteboardtypelist_generated.h");
 	string output_tcp_file_name=aPath+string("guwhiteboardtypelist_tcp_generated.h");
 
@@ -214,45 +216,50 @@ bool opening_files(string aPath)
 	return true;
 }
 
-static __attribute__((__noreturn__)) void usage(const char *cmd)
-{
-	                cerr << "Usage: " << cmd << " [-P  path ]" << endl;
-			                        exit(EXIT_FAILURE);
-}
-
 int main(int argc, char *argv[]) {
 
-	string thePath=string("../");
-	string userPath=string("");
-
-	       int ch;
-	              while ((ch = getopt(argc, argv, "P:")) != -1) 
-		      { switch (ch) { case 'P':       // Path 
-					    cerr << optarg << endl; 
-					    userPath=optarg;
-					    break; 
-					 case '?': 
-					 default: usage(argv[0]); }
-		      }
-
-
-
+#define DEFAULT_INPUT_FILE "guwhiteboardtypelist.tsl"
+#define DEFAULT_PATH "../"
 	
-	if ( userPath.length()>0 ) // a path has been supplied
+	//Get passed in values
+	//-----------------------------------
+	int op;
+	std::string input_file_name = std::string(DEFAULT_INPUT_FILE);
+	std::string generation_directory_path = std::string(DEFAULT_PATH);
+
+    if ((read_from_stdin = !isatty(STDIN_FILENO)))
+		generation_directory_path = "";
+
+	while((op = getopt(argc, argv, "P:f:")) != -1)
 	{
+		switch(op)
+		{
+			case 'P':
+				generation_directory_path = std::string(optarg);
+				break;
+			case 'f':
+				input_file_name = std::string(optarg);
+				break;
+			case '?':			
+				fprintf(stderr, "\n\nUsage: guwhiteboardtypegenerator [OPTION] . . . \n");
+				fprintf(stderr, "-f\tMessage description file (name only) (.tsl), default: %s\n", DEFAULT_INPUT_FILE);
+				fprintf(stderr, "-P\tPath to working directory (including tsl), default: %s\n", DEFAULT_PATH);
+				return EXIT_FAILURE;
+			default:
+				break;
+		}
+	}	
+	//-----------------------------------
+    
+    argv += optind;
+    argc -= optind;
 
-            if (! opening_files(userPath)) return EXIT_FAILURE;
+    if(generation_directory_path.at(generation_directory_path.length() - 1) != '/')
+    {
+        generation_directory_path.append("/");
+    }
 
-	}
-	else{ 
-            if (! opening_files(thePath))
-	    {
-                //just incase someone runs it from inside the build directory
-	      thePath=string("../../");
-            if (! opening_files(thePath))
-                        return EXIT_FAILURE;
-	    } 
-	}
+    if (! opening_files(generation_directory_path, input_file_name)) return EXIT_FAILURE;
 
 
         output_generic_poster << "/** Auto-generated, don't modify! */\n\n"
@@ -273,9 +280,17 @@ int main(int argc, char *argv[]) {
         "\t{\n"
         "\t\treturn whiteboard_postmsg(types_map[message_type], message_content);\n"
         "\t}\n\n\n"
+        "\tbool whiteboard_post_to(gu_simple_whiteboard_descriptor *wbd, const char *message_type, const char *message_content)\n"
+        "\t{\n"
+        "\t\treturn whiteboard_postmsg_to(wbd, types_map[message_type], message_content);\n"
+        "\t}\n\n\n"
         "\tbool whiteboard_postmsg(int message_index, const char *message_content)\n"
         "\t{\n"
         "\t\treturn postmsg(WBTypes(message_index), message_content);\n"
+        "\t}\n\n"
+        "\tbool whiteboard_postmsg_to(gu_simple_whiteboard_descriptor *wbd, int message_index, const char *message_content)\n"
+        "\t{\n"
+        "\t\treturn postmsg(WBTypes(message_index), message_content, wbd);\n"
         "\t}\n"
         "} // extern C\n\n"
         "#pragma clang diagnostic push\n"
@@ -295,14 +310,15 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic ignored \"-Wexit-time-destructors\"\n\n"
         "whiteboard_types_map guWhiteboard::types_map; ///< global types map\n\n"
         "#pragma clang diagnostic pop\n\n"
-        "bool guWhiteboard::post(string message_type, string message_content)\n"
-        "{\n"
-        "\treturn postmsg(types_map[message_type], message_content);\n"
-        "}\n\n\n"
-        "bool guWhiteboard::postmsg(WBTypes message_index, std::string message_content)\n"
-        "{\n"
-        "\tswitch (message_index)\n"
-        "\t{\n";
+        "namespace guWhiteboard\n{\n"
+        "    bool post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \treturn postmsg(types_map[message_type], message_content, wbd);\n"
+        "    }\n\n\n"
+        "    bool postmsg(WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \tswitch (message_index)\n"
+        "    \t{\n";
 
         output_generic_getter << "/** Auto-generated, don't modify! */\n\n"
         "#include <string>\n"
@@ -313,14 +329,24 @@ int main(int argc, char *argv[]) {
         "#include \"guwhiteboardgetter.h\"\n\n"
         "using namespace std;\n"
         "using namespace guWhiteboard;\n\n"
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
         "extern \"C\"\n{\n"
         "\tchar *whiteboard_get(const char *message_type, gu_simple_message *msg)\n"
         "\t{\n"
         "\t\treturn whiteboard_getmsg(types_map[message_type], msg);\n"
         "\t}\n\n\n"
+        "\tchar *whiteboard_get_from(gu_simple_whiteboard_descriptor *wbd, const char *message_type)\n"
+        "\t{\n"
+        "\t\treturn whiteboard_getmsg_from(wbd, types_map[message_type]);\n"
+        "\t}\n\n\n"
         "\tchar *whiteboard_getmsg(int message_index, gu_simple_message *msg)\n"
         "\t{\n"
         "\t\treturn gu_strdup(getmsg(WBTypes(message_index), msg).c_str());\n"
+        "\t}\n\n\n"
+        "\tchar *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index)\n"
+        "\t{\n"
+        "\t\treturn gu_strdup(getmsg(WBTypes(message_index), NULL, wbd).c_str());\n"
         "\t}\n"
         "} // extern C\n\n"
         "#pragma clang diagnostic push\n"
@@ -338,14 +364,18 @@ int main(int argc, char *argv[]) {
         "\treturn ss.str();\n"
         "}\n"
         "#pragma clang diagnostic pop\n\n"
-        "string guWhiteboard::getmsg(string message_type, gu_simple_message *msg)\n"
-        "{\n"
-        "\treturn getmsg(types_map[message_type], msg);\n"
-        "}\n\n\n"
-        "string guWhiteboard::getmsg(WBTypes message_index, gu_simple_message *msg)\n"
-        "{\n"
-        "\tswitch (message_index)\n"
-        "\t{\n";
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wunused-parameter\"\n"
+        "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
+        "namespace guWhiteboard\n{\n"
+        "    string getmsg(string message_type, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \treturn getmsg(types_map[message_type], msg, wbd);\n"
+        "    }\n\n\n"
+        "    string getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)\n"
+        "    {\n"
+        "    \tswitch (message_index)\n"
+        "    \t{\n";
 
         stringstream tsl_file_stream;
         tsl_file_stream << tsl_file.rdbuf();
@@ -396,7 +426,7 @@ int main(int argc, char *argv[]) {
 		
 		if (static_cast<int>(elements.size()) != ParseTarget::NUM_OF_TARGETS)
 		{
-			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %ld\nexiting...", types.size());
+			fprintf(stderr, "guwhiteboardtypegenerator: Parsing issue found, take a look at line: %zu\nexiting...", types.size());
 			exit(1);
 		}
 
@@ -566,42 +596,42 @@ int main(int argc, char *argv[]) {
                                     type.class_name == "unsigned" ||
                                     type.class_name == "unsigned int")
                                 {
-                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "long" ||
                                     type.class_name == "unsigned long")
                                 {
-                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(atol(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "float" ||
                                     type.class_name == "double")
                                 {
-                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(atof(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_dtos(m.get_from(msg)) : gu_dtos(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::vector<int>")
                                 {
                                         output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(strtointvec(message_content));\n\t\t\t(void)" << type.type_const_name << "_msg;\n\t\t\treturn true;\n\t\t}\n\n";
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());\n\t\t}\n" ;
                                         break;
                                 }
                                 if (type.class_name == "std::string")
                                 {
-                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
+                                        output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? m.get_from(msg) : m.get();\n\t\t}\n";
                                         break;
                                 }
                         case Custom_Class:
                         default:
                                 output_generic_poster << "#ifdef " << type.class_name << "_DEFINED\n";
                                 output_generic_getter << "#ifdef " << type.class_name << "_DEFINED\n";
-                                output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg;\n\t\t\t" << type.type_const_name << "_msg.post(" << type.class_name << "(message_content));\n\t\t\treturn true;\n\t\t}\n" ;
-                                output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m;\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
+                                output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.class_name << " v = " << type.type_const_name << "_msg.get(); \n\t\t\tv.from_string(message_content);\n\t\t\t" << type.type_const_name << "_msg.post(v);\n\t\t\treturn true;\n\t\t}\n" ;
+                                output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? m.get_from(msg).description() : m.get().description();\n\t\t}\n" ;
                                 output_generic_poster << "#else\n";
                                 output_generic_poster << "\t\t\treturn false;\n";
                                 output_generic_poster << "#endif // !" << type.class_name << "_DEFINED\n\n";
@@ -617,13 +647,13 @@ int main(int argc, char *argv[]) {
         output_c_file << extern_for_string_array;
         output_string_array_c_file << opening_string_array_definition;
 
-        output_generic_poster << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn false;\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_poster << "#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\t\t(void) message_content;\n\t}\n\n\treturn false;\n#pragma clang diagnostic pop\n    }\n}\n\n";
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
         "\t// self.reserve(" << types.size() << ");\n\n";
 
-        output_generic_getter << "\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n}\n\n";
+        output_generic_getter << "\t\t(void) msg;\n\t}\n#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\n\treturn \"##unsupported##\";\n#pragma clang diagnostic pop\n    }\n\n#pragma clang diagnostic pop\n#pragma clang diagnostic pop\n}\n\n";
 
 	//string array
 	for (int i = 0; i < int(types.size()); i++)
@@ -633,7 +663,7 @@ int main(int argc, char *argv[]) {
 		output_string_array_c_file << "        \"" << types[i].type_name;
                 i+1 != static_cast<int>(types.size()) ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
 	}
-        output_generic_poster << "}\n\n";
+        output_generic_poster << "\n\t(void) self;\n}\n\n";
 
         output_string_array_c_file << closing_string_array_definition;
 	

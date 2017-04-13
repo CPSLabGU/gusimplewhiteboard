@@ -69,8 +69,6 @@
 #include <guwhiteboardgetter.h>
 #include <guwhiteboardwatcher.h>
 
-#include "Point2D.h"
-
 #import "ObjCWhiteboard.h"
 
 #pragma clang diagnostic push
@@ -173,6 +171,10 @@ public:
         return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+//extern void setup_udp_whiteboard_with_id(int id);
+#pragma clang diagnostic pop
 
 /**
  * Robot whiteboard initialiser.
@@ -187,12 +189,35 @@ public:
                 return nil;
 
         if (wbname.length)
+        {
                 gu_whiteboard = gsw_new_numbered_whiteboard(wbname.UTF8String, static_cast<int>(n));
+        }
         else if (n)
+        {
+#ifdef GSW_IOS_DEVICE
+                NSString *n1 = [NSString stringWithFormat:@"guudpwhiteboard%d", n];
+                gu_whiteboard = gsw_new_whiteboard(wbname_prefixed_with_path([n1 UTF8String]));
+#else
                 gu_whiteboard = gswr_new_whiteboard(static_cast<int>(n));
+#endif
+        }
         else
+        {
                 gu_whiteboard = get_local_singleton_whiteboard();
+            
+        }
 
+//TODO: Remove this and place it into the App instead, the objc wb doesn't need to do this
+/*
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+
+        dispatch_queue_t q = dispatch_queue_create("wb.udp", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(q, ^{
+            setup_udp_whiteboard_with_id(0);
+        });
+    });
+ */   
         _watcher = new whiteboard_watcher(gu_whiteboard);
 
         wbcallback = new ObjCWBCallback(self, _watcher);
@@ -216,19 +241,7 @@ public:
 /// robot whiteboard constructor (not yet implemented)
 - (id) initWithRobotNumbered: (NSInteger) n
 {
-#ifdef USE_OLD_WB
-        if (n <= 0 || n > RWBMachine::NUM_OF_MACHINES)
-                return [self init];
-        string name = nameForMachine(RWBMachine(--n));
-        NSString *wbname = [NSString stringWithFormat: @"%s", name.c_str()];
-#ifdef GSW_IOS_DEVICE
-        NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        wbname = [docsDir stringByAppendingPathComponent: wbname];
-#endif
-        return [self initWithRobotWhiteboard: n named: wbname];
-#endif
-        (void) n;
-        return nil;
+        return [self initWithRobotWhiteboard: n named: nil];
 }
 
 
@@ -296,7 +309,7 @@ public:
  * Better to use the low level C or C++ types directly off the
  * ObjcWhiteboard's gu_whiteboard pointer.
  *
- * @param typeName      whiteboard type name to use
+ * @param msgType      whiteboard type name to use
  * @return message content as a string or nil if unsupported
  */
 - (NSString *) getMessageOfType: (wbtypes_t) msgType
@@ -335,7 +348,7 @@ public:
  */
 - (NSString *) contentForWBMsg: (const gu_simple_message *) msg ofType: (wbtypes_t) type
 {
-        std::string content = guWhiteboard::getmsg(type, const_cast<gu_simple_message *>(msg));
+        std::string content = guWhiteboard::getmsg(static_cast<guWhiteboard::WBTypes>(type), const_cast<gu_simple_message *>(msg));
         NSString *contentString = nil;
         if (content != "##unsupported##")
                 contentString = @(content.c_str());
@@ -353,7 +366,7 @@ static NSArray *wbnames;
  */
 + (NSArray *) whiteboardNames
 {
-        if (!wbnames) wbnames = @[@"local", @"Robot 1", @"Robot 2", @"Robot 3", @"Robot 4", @"Robot 5"];
+        wbnames = @[@"local", @"t1000", @"meg", @"lena", @"mac", @"sonic"];
 
         return wbnames;
 }
@@ -422,7 +435,7 @@ static NSArray *wbtypes;
 {
         std::string message_content = std::string(content.UTF8String);
 
-        return guWhiteboard::postmsg(msgType, message_content) != false;
+    return guWhiteboard::postmsg(static_cast<guWhiteboard::WBTypes>(msgType), message_content) != false;
 }
 
 
@@ -440,7 +453,7 @@ static NSArray *wbtypes;
         wbtypes_t index = [self wbTypeForTypeNamed: msg];
         std::string message_content = std::string(content.UTF8String);
 
-        return guWhiteboard::postmsg(index, message_content) != false;
+        return guWhiteboard::postmsg(static_cast<guWhiteboard::WBTypes>(index), message_content) != false;
 }
 
 
@@ -451,7 +464,7 @@ static NSArray *wbtypes;
  * monitoring tools.  Better to use the C++ message on the ObjcWhiteboard
  * instance's gu_whiteboard pointer.
  * @param msg   name of the whiteboard message to get
- * @return Objective C representation of the message or @"##unsupported##"
+ * @return Objective C representation of the message or "##unsupported##"
  */
 - (id) getWBMessage: (const NSString *) msg
 {

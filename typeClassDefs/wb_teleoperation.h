@@ -1,10 +1,8 @@
-#ifndef _WBTELEOPERATION_
-#define _WBTELEOPERATION_
+#ifndef WBTELEOPERATION_
+#define WBTELEOPERATION_
 
 #include <sys/types.h>
 #include <gu_util.h>
-#include "MOTION_Interface.h"
-#include "Vision_Control.h"
 
 /** struct for the teleoperation class */
 struct wb_teleoperation

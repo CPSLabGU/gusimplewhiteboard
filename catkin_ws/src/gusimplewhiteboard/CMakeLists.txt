@@ -102,18 +102,22 @@ catkin_package(
 ###########
 
 set(CMAKE_C_FLAGS "-std=c99")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 -DWITHOUT_LIBDISPATCH")
 #set(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)
+include_directories(include/typeClassDefs)
 
 ## Declare a cpp library
 add_library(gusimplewhiteboard
-   src/gusimplewhiteboard.c
+   src/gu_util.cpp
    src/gugenericwhiteboardobject.cpp
+   src/gusimplewhiteboard.c
    src/guwhiteboardtypelist_c_typestrings_generated.c
+#   src/guwhiteboardgetter.cpp
+#   src/guwhiteboardposter.cpp
 )
 
 ## Declare a cpp executable

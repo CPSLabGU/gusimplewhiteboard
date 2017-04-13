@@ -9,12 +9,15 @@
 #ifndef TCP_INJECTION_WB_OBJ_H
 #define TCP_INJECTION_WB_OBJ_H
 
+#ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wweak-vtables"
 #pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 
 #include "gusimplewhiteboard.h"
-#include "../guudpwhiteboard/tcp_config.h"
+#include "tcp_config.h"
 
 #include <iostream> //cerr
 #include <cstdio> //stderr etc..
@@ -222,6 +225,7 @@ bool injection_whiteboard_object<object_type>::send_message(const object_type &m
         return send_tcp(p);
 }
 
+#endif // WITHOUT_LIBDISPATCH
 #endif //TCP_INJECTION_WB_OBJ_H
 
 

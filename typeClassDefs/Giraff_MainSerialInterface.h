@@ -12,8 +12,13 @@
 #include "wb_giraff_main_serial.h" 
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+
 #include <arpa/inet.h>
 #include <sstream>
+
+#pragma clang diagnostic pop
 #endif
 
 namespace guWhiteboard                                                  

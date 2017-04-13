@@ -69,6 +69,7 @@
  */
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include "WALK_ControlStatus.h"
+#include "WALK2014_ControlStatus.h"
 #include "MOTION_Interface.h"
 #include "FSMControlStatus.h"
 #include "FFTStatus.h"
@@ -78,13 +79,13 @@
 #include "FilteredArrayOneDimSonar.h"
 #include "FilteredArrayOneDimObjects.h"
 #include "FilteredArrayOneDimBall.h"
-#include "SENSORS_SonarSensors.h"
+#include "SENSORSSonarSensors.h"
 #include "NAO_State.h"
 #include "HAL_HeadTarget.h"
-#include "SENSORS_TorsoJointSensors.h"
-#include "SENSORS_LegJointSensors.h"
+#include "SENSORSTorsoJointSensors.h"
+#include "SENSORSLegJointSensors.h"
 #include "PARTICLE_TopPositions.h"
-#include "SENSORS_BodySensors.h"
+#include "SENSORSBodySensors.h"
 #include "WEBOTS_NXT_bridge.h"
 #include "VisionBall.h"
 #include "VisionGoals.h"
@@ -92,6 +93,18 @@
 #include "Giraff_MainSerialInterface.h"
 #include "NXT_Interface.h"
 #include "APM_Interface.h"
+#include "Oculus_PrimeSerialInterface.h"
+#include "IOPins.h"
+#include "DifferentialRobotControlStatus.h"
+#include "NXT_Two_Touch_Status.h"
+#include "NXT_Sound_Control.h"
+#include "NXT_Lights_Control.h"
+#include "Clocks.h"
+#include "Channels.h"
+#include "SwitchSubsumption.h"
+#include "SwitchSubsumptionTrafficLights.h"
+#include "Input3D.h"
+//#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 extern "C"
@@ -110,10 +123,22 @@ extern "C"
 bool whiteboard_post(const char *message_type, const char *message_content);
 
 /**
+ * A generic C function that posts to a given whiteboard.
+ * Both the message type and the message content are strings.
+ */
+bool whiteboard_post_to(gu_simple_whiteboard_descriptor *wbd, const char *message_type, const char *message_content);
+
+/**
  * Generic C function that posts a message with a given message number
  * to the whiteboard.
  */
 bool whiteboard_postmsg(int message_index, const char *message_content);
+
+/**
+ * Generic C function that posts a message with a given message number
+ * to a given whiteboard.
+ */
+bool whiteboard_postmsg_to(gu_simple_whiteboard_descriptor *wbd, int message_index, const char *message_content);
 
 /**
  * Generic C function that returns the type for a given message name
@@ -132,18 +157,20 @@ namespace guWhiteboard
          * Both the message type and the message content are strings.
          * @param message_type the string version of the type
          * @param message_content the string data to pass to the types string constructor
-         * @return true if there is a string constructor for the passed in type 
+         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
+         * @return true if there is a string constructor for the passed in type
          */
-        bool post(std::string message_type, std::string message_content);
+        bool post(std::string message_type, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
 
         /**
          * Generic C++ function that posts a message with a given message number
          * to the whiteboard.
          * @param message_index the offset or enum value of the type to post
          * @param message_content the string data to pass to the types string constructor
+         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
          * @return true if there is a string constructor for the passed in type 
          */
-        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content);
+        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
 
         /**
          * Map structure from strings to message types

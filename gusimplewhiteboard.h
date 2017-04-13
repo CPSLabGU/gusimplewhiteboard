@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,16 +62,30 @@
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wold-style-cast"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif // __cplusplus
 #ifdef __APPLE__
 #include <AvailabilityMacros.h>
 #endif
+#ifndef WITHOUT_LIBDISPATCH
 #include <dispatch/dispatch.h>
+#endif
 #include <sys/types.h>
+
+#ifndef __cplusplus
+#include <stdbool.h>
+#else
+#if __cplusplus < 201103L
+#include <stdbool.h>
+#else
+#include <cstdbool>
+#endif
+
+extern "C"
+{
+#endif // __cplusplus
 #undef __block
 #define __block _xblock
 #include <unistd.h>
@@ -109,17 +123,37 @@ extern "C"
 #endif
 
 #define GU_SIMPLE_WHITEBOARD_VERSION            4       ///< version
+#ifndef GU_SIMPLE_WHITEBOARD_GENERATIONS
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
+#endif
+#ifndef GU_SIMPLE_WHITEBOARD_BUFSIZE
 #define GU_SIMPLE_WHITEBOARD_BUFSIZE            128     ///< message len (max)
+#endif
+#ifndef GSW_TOTAL_MESSAGE_TYPES
 #define GSW_TOTAL_MESSAGE_TYPES                 512     ///< message types (max)
+#endif
+#ifndef GSW_NUM_RESERVED
 #define GSW_NUM_RESERVED                        (GSW_TOTAL_MESSAGE_TYPES/2)    // message types (max)
+#endif
 #define GSW_TOTAL_PROCESSES                     256     ///< maximum subscriber procs
 #define GSW_NON_RESERVED_MESSAGE_TYPES  (GSW_TOTAL_MESSAGE_TYPES-GSW_NUM_RESERVED)
 
-#define GSW_DEFAULT_NAME "guWhiteboard"
-#define GSWR_BASE_NAME "guudpwhiteboard"
+/// environment variable containing the default whiteboard file name
+#ifndef GSW_DEFAULT_ENV
+#define GSW_DEFAULT_ENV     "WHITEBOARD_NAME"
+#endif
+#ifndef GSW_DEFAULT_NAME
+#define GSW_DEFAULT_NAME    "guWhiteboard"              ///< fallback default wb
+#endif
+#ifndef GSWR_BASE_NAME
+#define GSWR_BASE_NAME      "guudpwhiteboard"           ///< UDP whiteboard name
+#endif
+#ifndef WHITEBOARD_SIGNAL
 #define WHITEBOARD_SIGNAL       SIGUSR2
+#endif
+#ifndef WHITEBOARD_POLL_PERIOD
 #define WHITEBOARD_POLL_PERIOD  10000
+#endif
 
 enum gsw_semaphores
 {
@@ -183,6 +217,7 @@ typedef union gsw_simple_message
         int                     ivec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int)];		///< int array
         short                   svec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(short)];	///< short array
         signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];	///< signed char array
+        bool                    bvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(bool)];	///< bool array
  
         u_int64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];	///< u_int64_t array
         u_int32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];	///< u_int32_t array
@@ -260,7 +295,7 @@ typedef struct gsw_whiteboard_s
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
         gsw_sema_t               sem;           ///< semaphore to use
         int                      fd;            ///< the associated memory-mapped file
-#if __has_feature(objc_arc)
+#if __has_feature(objc_arc) || defined(WITHOUT_LIBDISPATCH)
         void                    *callback_queue;///< subscription callback queue
 #else
         dispatch_queue_t         callback_queue;///< subscription callback queue
@@ -304,6 +339,7 @@ extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
 
 /**
  * register a new whiteboard message type
+ * @param wbd  descriptor for the whiteboard
  * @param name  string to use for identification
  * @return numerical identifier to use
  */
@@ -311,6 +347,7 @@ extern int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const
 
 /**
  * get the numerical index of a whiteboard message type
+ * @param wbd  descriptor for the whiteboard
  * @param name  string to use for identification
  * @return numerical identifier to use
  */

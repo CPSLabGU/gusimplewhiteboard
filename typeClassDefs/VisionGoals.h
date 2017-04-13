@@ -48,7 +48,16 @@ public:
 	 * Converts a serialized string to a VisionGoal object
      * @param s The String to convert
      */
-	VisionGoals(std::string s) : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
+	VisionGoals(std::string s) {
+        from_string(s);
+    }
+
+    void from_string(std::string &s)  {
+        topLeft = wb_goal();
+        topRight = wb_goal();
+        bottomLeft = wb_goal();
+        bottomRight = wb_goal();
+        _frameNumber = 0; 
 		
 		size_t n = static_cast<size_t>(-8);
 		std::string command = "LEFTPOST";

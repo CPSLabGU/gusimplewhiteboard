@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_sensors_body_h
-#define _wb_sensors_body_h
+#ifndef wb_sensors_body_h
+#define wb_sensors_body_h
 
 #include <gu_util.h>
 
@@ -61,4 +61,4 @@ struct wb_sensors_body
     int16_t pad2;				
 };
 
-#endif //_wb_sensors_body_h
+#endif //wb_sensors_body_h

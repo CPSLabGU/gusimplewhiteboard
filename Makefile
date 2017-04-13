@@ -11,11 +11,12 @@ DOC_RECURSIVE=YES			# build doxygen recursively
 
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
-USE_READLINE=yes			# command line history and completion
 
-ALL_TARGETS=host-local robot-local test
+ALL_TARGETS=host-local robot-local analyse test xc
 
-CC_SRCS=libgusimplewhiteboardmain.cc
+CATKIN_COMPILE_UTIL=YES
+
+CC_SRCS=libgusimplewhiteboardmain.cc 
 
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
@@ -31,13 +32,17 @@ all: all-real
 host: host-local
 	echo "Use 'make host-local' instead of 'make host'"
 
+.ifndef TARGET
 install: host-local
+.else
+install: cross-local
+.endif
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 	cd ${BUILDDIR}-local && \
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 .for hdr in ${INST_HDRS}
-	cd ${SRCDIR} && \
+	-cd ${SRCDIR} && \
 	if [ -d ${hdr:Q} ]; then \
 	  cp -pR ${hdr:Q} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
 	else \
@@ -45,6 +50,19 @@ install: host-local
 	fi
 .endfor
 .endif
+
+.ifdef TARGET
+cross-install: install
+.else
+cross-install: cross-local
+.  for rarch in ${ARCHS.${DEFAULT_TARGET}}
+	$Eenv PATH=${TARGET_PATH.${DEFAULT_TARGET}:Q}                   \
+                ${MAKE} ${MAKEFLAGS} TARGET=${DEFAULT_TARGET}           \
+                BUILD_FLAGS=${TARGET_BUILD_FLAGS.${DEFAULT_TARGET}:Q}   \
+                TARGET_PLATFORM=${rarch} ALL_TARGETS=cross-install
+.  endfor
+.endif
+
 
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL

@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_nxt_interface_h
-#define _wb_nxt_interface_h
+#ifndef wb_nxt_interface_h
+#define wb_nxt_interface_h
 
 #include <gu_util.h>
 
@@ -84,9 +84,9 @@ union nxt_port_object_data
 struct nxt_port_object
 {
 	/** what type of sensor / motor */
-	PROPERTY(nxt_port_object_type, type) 
+	PROPERTY(enum nxt_port_object_type, type)
 	/** the sensor / motor data */
-	PROPERTY(nxt_port_object_data, data) 
+	PROPERTY(union nxt_port_object_data, data)
 };
 
 /**
@@ -95,7 +95,7 @@ struct nxt_port_object
 struct wb_nxt_interface
 {
     /** An array of sensors and motors plugged into the nxt ports. Objects 0,1,2,3 are the sensors 1-4, objects 4,5,6 are the motors A,B,C. */
-    ARRAY_PROPERTY(nxt_port_object, objects, NUMBER_OF_NXT_PORTS)
+    ARRAY_PROPERTY(struct nxt_port_object, objects, NUMBER_OF_NXT_PORTS)
 
 #ifdef __cplusplus
     /**
@@ -108,4 +108,4 @@ struct wb_nxt_interface
 #endif
 };
 
-#endif //_wb_nxt_interface_h
+#endif //wb_nxt_interface_h

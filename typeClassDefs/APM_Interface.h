@@ -86,7 +86,7 @@ namespace guWhiteboard
 		{
 #define DELIMITER ','
             std::vector<std::string> v = components_of_string_separated(str, DELIMITER, true);
-            if(!(v.size() > 0))
+            if (v.size() < 2)
             {
 			    fprintf(stderr, "APM_Interface couldn't parse this string, have it back %s\n", str.c_str());
                 return;
@@ -95,7 +95,7 @@ namespace guWhiteboard
             this->set_mode(m);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wswitch-enum"
-			switch (m)
+            try { switch (m)
             {
 			case Quad:
                 this->data().quad.set_thrust(static_cast<uint8_t>(atoi(v.at(1).c_str())));
@@ -109,6 +109,9 @@ namespace guWhiteboard
 				break;
 			default:
 				break;
+            } } catch (...) {
+                fprintf(stderr, "APM_Interface couldn't parse this string, have it back %s\n", str.c_str());
+                return;
             }
 #pragma clang diagnostic pop
 		}

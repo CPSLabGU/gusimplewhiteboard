@@ -6,8 +6,8 @@
  *  All rights reserved.                                                
  */                                                                     
  
-#ifndef _wb_apm_interface_h
-#define _wb_apm_interface_h
+#ifndef wb_apm_interface_h
+#define wb_apm_interface_h
 
 #include <gu_util.h>
 
@@ -30,6 +30,8 @@ union apm_data
     struct {
 	    /** thrust value, percentage */
 	    PROPERTY(uint8_t, thrust)
+            /** padding */
+            PROPERTY(uint8_t, pad_)
 	    /** quad pitch target angle, DEG */
 	    PROPERTY(int16_t, pitch)
 	    /** quad roll target angle, DEG */
@@ -55,9 +57,9 @@ union apm_data
 struct wb_apm_interface
 {
 	/** what type of machine */
-	PROPERTY(apm_mode, mode) 
+	PROPERTY(enum apm_mode, mode)
 	/** serial data */
-	PROPERTY(apm_data, data) 
+	PROPERTY(union apm_data, data)
 
 #ifdef __cplusplus
     /**
@@ -70,4 +72,4 @@ struct wb_apm_interface
 #endif
 };
 
-#endif //_wb_apm_interface_h
+#endif //wb_apm_interface_h

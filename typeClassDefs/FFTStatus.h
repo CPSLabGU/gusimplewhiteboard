@@ -2,8 +2,8 @@
  *  FFTStatus.h
  *  gusimplewhiteboard
  *
- *  reated by Rene Hexel on 24/06/2014.
- *  Copyright (c) 2014 Rene Hexel. All rights reserved.
+ *  Created by Rene Hexel on 24/06/2014.
+ *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,6 +58,7 @@
 #ifndef FFTStatus_DEFINED
 #define FFTStatus_DEFINED
 
+#include <cstddef>
 #include <cassert>
 #include <cstdarg>
 #include <cstdlib>
@@ -71,6 +72,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wclass-varargs"
 
 namespace guWhiteboard
 {
@@ -80,17 +82,15 @@ namespace guWhiteboard
     class FFTStatus: public fft_dominant_frequency
     {
     public:
+        /** default constructor */
+        FFTStatus(): fft_dominant_frequency(0, 0, FSK_DEFAULT_HI, FSK_DEFAULT_LO, 0, 0) {}
+
         /** designated constructor */
-        FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs)
-        {
-            if (!freqs) memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
-        }
+        FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi, uint16_t lo, uint16_t fsk, va_list freqs): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, freqs) {}
 
         /** alternate constructor */
-        FFTStatus(int16_t lrms = 0, int16_t rrms = 0, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
+        FFTStatus(int16_t lrms, int16_t rrms, uint16_t hi = FSK_DEFAULT_HI, uint16_t lo = FSK_DEFAULT_LO, uint16_t fsk = 0, ...): fft_dominant_frequency(lrms, rrms, hi, lo, fsk, 0)
         {
-            memset(static_cast<void *>(_frequencies), 0, GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies));
-
             if (!fsk) return;
 
             va_list freqs;
@@ -108,7 +108,7 @@ namespace guWhiteboard
         FFTStatus &operator=(const FFTStatus &other) { memcpy(static_cast<void *>(this), static_cast<const void *>(&other), GU_SIMPLE_WHITEBOARD_BUFSIZE); return *this; }
 
         /** number of frequencies that can be put on the wb */
-        static int num_frequencies() { const int n = (GU_SIMPLE_WHITEBOARD_BUFSIZE - offsetof(FFTStatus, _frequencies)) / sizeof(fft_frequency_level_pair); assert(n == FFT_DOMINANT_NUMFREQ); return n; }
+        static int num_frequencies() { return FFT_DOMINANT_NUMFREQ; }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /** string constructor */

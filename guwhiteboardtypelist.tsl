@@ -11,14 +11,14 @@ class:WALK_ControlStatus, nonatomic, WALK_Status,               "WALK_Status",  
 class:MOTION_Commands, nonatomic, MOTION_Commands,              "MOTION_Commands", WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status,                  "MOTION_Status", WB interface for checking the status of commands sent
 class:HAL_HeadTarget, not_atomic, HAL_HeadTarget,               "HAL_HeadTarget", Used to alter the head position via the DCM
-class:SENSORS_FootSensors, not_atomic, SENSORS_FootSensors,     "SENSORS_FootSensors", Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORS_BodySensors, not_atomic, SENSORS_BodySensors,     "SENSORS_BodySensors", Posts the sensor information for the body via the DCM loop (read only)
-class:SENSORS_LedsSensors, not_atomic, SENSORS_LedsSensors,     "SENSORS_LedsSensors", Posts the current LEDs info, can be modified. (read/write)
-class:SENSORS_LegJointTemps, not_atomic, SENSORS_LegJointTemps, "SENSORS_LegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
-class:SENSORS_TorsoJointTemps, not_atomic, SENSORS_TorsoJointTemps, "SENSORS_TorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
-class:SENSORS_LegJointSensors, not_atomic, SENSORS_LegJointSensors, "SENSORS_LegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
-class:SENSORS_TorsoJointSensors, not_atomic, SENSORS_TorsoJointSensors, "SENSORS_TorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
-class:SENSORS_SonarSensors, not_atomic, SENSORS_SonarSensors,   "SENSORS_SonarSensors", Posts the sonar readings via the DCM loop (read only)
+class:SENSORSFootSensors, not_atomic, SENSORSFootSensors,     "SENSORSFootSensors", Posts the sensor information for the feet via the DCM loop (read only)
+class:SENSORSBodySensors, not_atomic, SENSORSBodySensors,     "SENSORSBodySensors", Posts the sensor information for the body via the DCM loop (read only)
+class:SENSORSLedsSensors, not_atomic, SENSORSLedsSensors,     "SENSORSLedsSensors", Posts the current LEDs info, can be modified. (read/write)
+class:SENSORSLegJointTemps, not_atomic, SENSORSLegJointTemps, "SENSORSLegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
+class:SENSORSTorsoJointTemps, not_atomic, SENSORSTorsoJointTemps, "SENSORSTorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
+class:SENSORSLegJointSensors, not_atomic, SENSORSLegJointSensors, "SENSORSLegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
+class:SENSORSTorsoJointSensors, not_atomic, SENSORSTorsoJointSensors, "SENSORSTorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
+class:SENSORSSonarSensors, not_atomic, SENSORSSonarSensors,   "SENSORSSonarSensors", Posts the sonar readings via the DCM loop (read only)
 class:FSMControlStatus, atomic, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
@@ -63,3 +63,34 @@ class:NXT_Interface, nonatomic, NXT_Status, "NXT_Status", Contains sensor data a
 class:NXT_Interface, nonatomic, NXT_Command, "NXT_Command", Can issue commands to set the motors of an NXT and reset the encoders
 class:APM_Interface, nonatomic, APM_Status, "APM_Status", Contains sensor data from an APM
 class:APM_Interface, nonatomic, APM_Command, "APM_Command", Can issue commands to an APM
+class:WALK2014_ControlStatus, nonatomic, WALK2014_Command,              "WALK2014_Command", Class used to control the 2014 walk engine (UNSW)
+class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK2014_Status",  Class used to check the status of the 2014 walk engine (UNSW)
+int,    atomic, CBall,                                  "CBall",        Status Message for the color of the ball
+class:OculusPrimeInterface, nonatomic, OculusPrime_Command, "OculusPrime_Command", Class used to control the Oculus Prime movements, controls etc.
+class:Input3D, nonatomic, Input3D, "Input3D", for 3d input devices such as the leap or a joystick
+class:Oculus_PrimeSerialInterface, nonatomic, Oculus_Prime_Command, "Oculus_Prime_Command", Serial interface for the main motor and sensor board of the oculus prime
+class:IOPins, nonatomic, IOPins,                    "IOPins", Arduino-style I/O pins
+class:NXT_Two_Touch_Status, nonatomic, NXT_Two_Touch_Status,                     "NXT_Two_Touch_Status", Class that reads NXT's two buttons
+class:NXT_Sound_Control, nonatomic, NXT_Sound_Control,                     "NXT_Sound_Control", Class that produces NXT's sounds
+class:NXT_Lights_Control, nonatomic, NXT_Lights_Control,                     "NXT_Lights_Control", Class that places power in NXT's for lights
+class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping track of time
+class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
+class:SwitchSubsumption, nonatomic, SwitchSubsumption, "SwitchSubsumption"
+class:TotoDoingMotion, nonatomic, TotoDoingMotion, "TotoDoingMotion"
+class:wb_count, nonatomic, Count, "A Simple Integer"
+bool,           nonatomic, GreenEWon,                        "GreenEWon", status of the EWgreen light
+bool,           nonatomic, WarnEW,                        "WarnEW", status of the recommendaiton of the EW light
+bool,           nonatomic, TimeGTthirty,                        "TimeGTthirty", status of the timer with respect to 30
+bool,           nonatomic, AmberEWon,                        "AmberEWon", status of the EWamber light
+bool,           nonatomic, TurnRedEW,                        "TurnRedEW", second status of the recommendaiton of the EW light
+bool,           nonatomic, TimeGTfive,                        "TimeGTfive", status of the timer with respect to 5
+bool,           nonatomic, RedEWon,                        "RedEWon", status of the EWred light
+bool,           nonatomic, GreenNSon,                        "GreenNSon", status of the NSgreen light
+bool,           nonatomic, WarnNS,                        "WarnNS", status of the recommendaiton of the NS light
+bool,           nonatomic, AmberNSon,                        "AmberNSon", status of the NSamber light
+bool,           nonatomic, TurnRedNS,                        "TurnRedNS", second status of the recommendaiton of the NS light
+bool,           nonatomic, RedNSon,                        "RedNSon", status of the NSred light
+bool,           nonatomic, TimerReset,                        "TimerReset", flag to reset timer
+bool,           nonatomic, SLOT_UNUSED,         "SLOT_UNUSED", IoT message removed, feel free to use this slot
+bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
+class:SwitchSubsumptionTrafficLights, nonatomic, SwitchSubsumptionTrafficLights, "SwitchSubsumptionTrafficLights"

@@ -3,7 +3,7 @@
  *  gusimplewhiteboard
  *
  *  Created by Rene Hexel on 18/06/2014.
- *  Copyright (c) 2014 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2014, 2015, 2016 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,26 +55,11 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef _WBPoint_h
-#define _WBPoint_h
+#ifndef WBPoint_h
+#define WBPoint_h
 
 #include <gu_util.h>
-
-/**
- * Simple 2 dimensional point class for the whiteboard
- */
-struct wb_point2d
-{
-    /** x coordinate */
-    PROPERTY(int16_t, x)
-    /** y coordinate */
-    PROPERTY(int16_t, y)
-
-#ifdef __cplusplus
-    /** constructor */
-    wb_point2d(int16_t x = 0, int16_t y = 0): _x(x), _y(y) {}
-#endif
-};
+#include "wb_point2d.h"
 
 /**
  * Simple 3 dimensional point class for the whiteboard
