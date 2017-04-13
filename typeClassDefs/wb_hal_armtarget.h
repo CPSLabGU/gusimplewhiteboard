@@ -67,6 +67,18 @@
 #define RIGHT_WRIST_YAW_RIGHT_RAD LEFT_WRIST_YAW_RIGHT_RAD
 #define RIGHT_WRIST_YAW_LEFT_RAD -LEFT_WRIST_YAW_RIGHT_RAD
 
+/**
+ *  flex_t is used to circumvent direct comparisons of floats.
+ *  Its is specifically used to decide if two message are the same,
+ *  or a message hasn't changed from a previous check.
+ *
+ *  It is not used to compare two separately computed float values.
+ *
+ */
+ union flex_t {
+    float   decimal;
+    uint32_t integer;
+};
 
 /**
  * HAL_ArmTarget c struct
@@ -81,6 +93,7 @@
  * chest, thigh, or the other forearm.
  *
  */
+
 struct wb_hal_armtarget
 {
     /** target arm number */
@@ -174,22 +187,51 @@ struct wb_hal_armtarget
         set_arm_cmd_mask(false);
     }
 
-/*
- * The equivalence opertator is not required in the current implementation.
- *
     bool operator == (const wb_hal_armtarget &rhs) {
+
+        union flex_t lhsShouldPitch, lhsShoulderRoll, lhsElbowRoll,lhsElbowYaw;
+        union flex_t lhsWristYaw, lhsShoulderPitchStiffness, lhsShoulderRollStiffness;
+        union flex_t lhsElbowRollStiffness, lhsElbowYawStiffness, lhsWristYawStiffness;
+
+        union flex_t rhsShouldPitch, rhsShoulderRoll, rhsElbowRoll, rhsElbowYaw;
+        union flex_t rhsWristYaw, rhsShoulderPitchStiffness, rhsShoulderRollStiffness;
+        union flex_t rhsElbowRollStiffness, rhsElbowYawStiffness, rhsWristYawStiffness;
+
+
+        lhsShouldPitch.decimal = target_shoulderpitch();
+        lhsShoulderRoll.decimal = target_shoulderroll();
+        lhsElbowRoll.decimal = target_elbowroll();
+        lhsElbowYaw.decimal = target_elbowyaw();
+        lhsWristYaw.decimal = target_wristyaw();
+        lhsShoulderPitchStiffness.decimal = target_shoulderpitchstiffness();
+        lhsShoulderRollStiffness.decimal = target_shoulderrollstiffness();
+        lhsElbowRollStiffness.decimal = target_elbowrollstiffness();
+        lhsElbowYawStiffness.decimal = target_elbowyawstiffness();
+        lhsWristYawStiffness.decimal = target_wristyawstiffness();
+
+        rhsShouldPitch.decimal = rhs.target_shoulderpitch();
+        rhsShoulderRoll.decimal = rhs.target_shoulderroll();
+        rhsElbowRoll.decimal = rhs.target_elbowroll();
+        rhsElbowYaw.decimal = rhs.target_elbowyaw();
+        rhsWristYaw.decimal = rhs.target_wristyaw();
+        rhsShoulderPitchStiffness.decimal = rhs.target_shoulderpitchstiffness();
+        rhsShoulderRollStiffness.decimal = rhs.target_shoulderrollstiffness();
+        rhsElbowRollStiffness.decimal = rhs.target_elbowrollstiffness();
+        rhsElbowYawStiffness.decimal = rhs.target_elbowyawstiffness();
+        rhsWristYawStiffness.decimal = rhs.target_wristyawstiffness();
+
         if (
             target_arm() == rhs.target_arm() &&
-            target_shoulderpitch() == rhs.target_shoulderpitch() &&
-            target_shoulderroll() == rhs.target_shoulderroll() &&
-            target_elbowroll() == rhs.target_elbowroll() &&
-            target_elbowyaw() == rhs.target_elbowyaw() &&
-            target_wristyaw() == rhs.target_wristyaw() &&
-            target_shoulderpitchstiffness() == rhs.target_shoulderpitchstiffness() &&
-            target_shoulderrollstiffness() == rhs.target_shoulderrollstiffness() &&
-            target_elbowrollstiffness() == rhs.target_elbowrollstiffness() &&
-            target_elbowyawstiffness() == rhs.target_elbowyawstiffness() &&
-            target_wristyawstiffness() == rhs.target_wristyawstiffness() &&
+            lhsShouldPitch.integer == rhsShouldPitch.integer &&
+            lhsShoulderRoll.integer == rhsShoulderRoll.integer &&
+            lhsElbowRoll.integer == rhsElbowRoll.integer &&
+            lhsElbowYaw.integer == rhsElbowYaw.integer &&
+            lhsWristYaw.integer == rhsWristYaw.integer &&
+            lhsShoulderPitchStiffness.integer == rhsShoulderPitchStiffness.integer &&
+            lhsShoulderRollStiffness.integer == rhsShoulderRollStiffness.integer &&
+            lhsElbowRollStiffness.integer == rhsElbowRollStiffness.integer &&
+            lhsElbowYawStiffness.integer == rhsElbowYawStiffness.integer &&
+            lhsWristYawStiffness.integer == rhsWristYawStiffness.integer &&
             target_movement_time() == rhs.target_movement_time() &&
             arm_stopped() == rhs.arm_stopped() &&
             arm_cmd_mask() == rhs.arm_cmd_mask()
@@ -201,7 +243,6 @@ struct wb_hal_armtarget
             return false;
         }
     }
-*/
 
 #endif
 };
