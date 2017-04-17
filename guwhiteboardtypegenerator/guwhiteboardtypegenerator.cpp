@@ -134,7 +134,8 @@ static const char *opening_enum =
 static const char *closing_enum =
 "        } WBTypes; ///< All the message 'types' for the class based whiteboard \n\n";
 
-static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n";
+static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n" \
+                                             "        extern const char *WBTypes_typeValues[];\n  ";
 
 static const char *opening_string_array_definition = "const char *WBTypes_stringValues[] = \n{\n";
 
@@ -520,6 +521,9 @@ int main(int argc, char *argv[]) {
         output_string_array_c_file << include_str_c_typestrings;
         output_functor_templates << include_wbfunctor_extension;
 
+        std::stringstream message_tsl_types;
+        message_tsl_types << "const char *WBTypes_typeValues[] = \n{\n";
+
         
         output_c_file << "\n#define GSW_NUM_TYPES_DEFINED " << types.size() << "\n\n";
         output_c_file << "#if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED\n";
@@ -661,11 +665,17 @@ int main(int argc, char *argv[]) {
                 const gu_type_info &type = types[i];
                 output_generic_poster << "\tself[\"" << types[i].type_name << "\"] = k" << type.type_const_name << "_v;\n";
 		output_string_array_c_file << "        \"" << types[i].type_name;
-                i+1 != static_cast<int>(types.size()) ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
+        i+1 != static_cast<int>(types.size()) ? output_string_array_c_file << "\",\n" : output_string_array_c_file << "\"\n";
+
+        message_tsl_types << "        \"" << types[i].class_name;
+        i+1 != static_cast<int>(types.size()) ? message_tsl_types << "\",\n" : message_tsl_types << "\"\n";
+
 	}
         output_generic_poster << "\n\t(void) self;\n}\n\n";
 
         output_string_array_c_file << closing_string_array_definition;
+        message_tsl_types << "};\n\n";
+        output_string_array_c_file << message_tsl_types.str();
 	
 	//type classes
 	for (int i = 0; i < static_cast<int>(types.size()); i++)
