@@ -88,9 +88,6 @@ struct wb_sensors_armjointsensors
     /** yaw of the elbow joint (left)  */ 
     PROPERTY(float, LElbowYaw ) 
 
-    /** yaw of the wrist joint (left)  */ 
-    PROPERTY(float, LWristYaw ) 
-
     /** pitch of the shoulder joint (right)  */ 
     PROPERTY(float, RShoulderPitch ) 
 
@@ -103,7 +100,10 @@ struct wb_sensors_armjointsensors
     /** yaw of the elbow joint (right)  */ 
     PROPERTY(float, RElbowYaw ) 
 
-    /** yaw of the wrist joint (right)  */ 
+    /** yaw of the wrist joint (left)  */
+    PROPERTY(float, LWristYaw )
+
+    /** yaw of the wrist joint (right)  */
     PROPERTY(float, RWristYaw ) 
 
 }; 

@@ -109,13 +109,6 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
 
     if (len < bufferSize) 
     { 
-        snprintf(descString+len, bufferSize-len, "LWristYaw =%f", self->LWristYaw ); 
-    } 
-
-    len = gu_strlcat(descString, ", ", bufferSize); 
-
-    if (len < bufferSize) 
-    { 
         snprintf(descString+len, bufferSize-len, "RShoulderPitch=%f", self->RShoulderPitch); 
     } 
 
@@ -140,7 +133,14 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
         snprintf(descString+len, bufferSize-len, "RElbowRoll=%f", self->RElbowRoll); 
     } 
 
-    len = gu_strlcat(descString, ", ", bufferSize); 
+    len = gu_strlcat(descString, ", ", bufferSize);
+    
+    if (len < bufferSize)
+    {
+        snprintf(descString+len, bufferSize-len, "LWristYaw =%f", self->LWristYaw );
+    }
+
+    len = gu_strlcat(descString, ", ", bufferSize);
 
     if (len < bufferSize) 
     { 
@@ -195,13 +195,6 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
 
     if (len < bufferSize) 
     { 
-        snprintf(toString+len, bufferSize-len, "%f", self->LWristYaw ); 
-    } 
-
-     len = gu_strlcat(toString, ", ", bufferSize); 
-
-    if (len < bufferSize) 
-    { 
         snprintf(toString+len, bufferSize-len, "%f", self->RShoulderPitch); 
     } 
 
@@ -226,7 +219,14 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
         snprintf(toString+len, bufferSize-len, "%f", self->RElbowRoll); 
     } 
 
-     len = gu_strlcat(toString, ", ", bufferSize); 
+     len = gu_strlcat(toString, ", ", bufferSize);
+    
+    if (len < bufferSize)
+    {
+        snprintf(toString+len, bufferSize-len, "%f", self->LWristYaw );
+    }
+
+     len = gu_strlcat(toString, ", ", bufferSize);
 
     if (len < bufferSize) 
     { 
@@ -289,22 +289,22 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
     if (strings[5] != NULL) 
        self->LElbowRoll = (float)atof(strings[5]); 
 
-    if (strings[6] != NULL) 
-       self->LWristYaw  = (float)atof(strings[6]); 
+    if (strings[6] != NULL)
+       self->RShoulderPitch = (float)atof(strings[6]);
 
-    if (strings[7] != NULL) 
-       self->RShoulderPitch = (float)atof(strings[7]); 
+    if (strings[7] != NULL)
+       self->RShoulderRoll = (float)atof(strings[7]);
 
-    if (strings[8] != NULL) 
-       self->RShoulderRoll = (float)atof(strings[8]); 
+    if (strings[8] != NULL)
+       self->RElbowYaw = (float)atof(strings[8]);
 
-    if (strings[9] != NULL) 
-       self->RElbowYaw = (float)atof(strings[9]); 
+    if (strings[9] != NULL)
+       self->RElbowRoll = (float)atof(strings[9]);
 
-    if (strings[10] != NULL) 
-       self->RElbowRoll = (float)atof(strings[10]); 
-
-    if (strings[11] != NULL) 
+    if (strings[10] != NULL)
+        self->LWristYaw  = (float)atof(strings[10]);
+    
+    if (strings[11] != NULL)
        self->RWristYaw  = (float)atof(strings[11]); 
 
     free(str_copy); 

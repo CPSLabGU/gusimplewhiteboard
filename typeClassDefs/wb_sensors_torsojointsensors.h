@@ -95,9 +95,6 @@ struct wb_sensors_torsojointsensors
     /** roll of the elbow joint (left) RAD */ 
     PROPERTY(float, LElbowRoll) 
 
-    /** yaw of the wrist joint (left)  */ 
-    PROPERTY(float, LWristYaw ) 
-
     /** pitch of the shoulder joint (right) RAD  */ 
     PROPERTY(float, RShoulderPitch) 
 
@@ -110,7 +107,10 @@ struct wb_sensors_torsojointsensors
     /** roll of the elbow joint (right) RAD  */ 
     PROPERTY(float, RElbowRoll) 
 
-    /** yaw of the wrist joint (right)  */ 
+    /** yaw of the wrist joint (left)  */
+    PROPERTY(float, LWristYaw )
+
+    /** yaw of the wrist joint (right)  */
     PROPERTY(float, RWristYaw ) 
 
 }; 

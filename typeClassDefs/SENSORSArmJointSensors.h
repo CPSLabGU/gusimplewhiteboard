@@ -79,18 +79,18 @@ namespace guWhiteboard
     { 
     public:
         /** Constructor */ 
-        SENSORSArmJointSensors(float LShoulderPitch  = 0.0f, float LShoulderRoll  = 0.0f, float LElbowRoll  = 0.0f, float LElbowYaw  = 0.0f, float LWristYaw  = 0.0f, float RShoulderPitch  = 0.0f, float RShoulderRoll  = 0.0f, float RElbowRoll  = 0.0f, float RElbowYaw  = 0.0f, float RWristYaw  = 0.0f)
+        SENSORSArmJointSensors(float LShoulderPitch  = 0.0f, float LShoulderRoll  = 0.0f, float LElbowRoll  = 0.0f, float LElbowYaw  = 0.0f, float RShoulderPitch  = 0.0f, float RShoulderRoll  = 0.0f, float RElbowRoll  = 0.0f, float RElbowYaw  = 0.0f, float LWristYaw  = 0.0f, float RWristYaw  = 0.0f)
         { 
             set_LShoulderPitch (LShoulderPitch ); 
             set_LShoulderRoll (LShoulderRoll ); 
             set_LElbowRoll (LElbowRoll ); 
             set_LElbowYaw (LElbowYaw ); 
-            set_LWristYaw (LWristYaw ); 
-            set_RShoulderPitch (RShoulderPitch ); 
+            set_RShoulderPitch (RShoulderPitch );
             set_RShoulderRoll (RShoulderRoll ); 
             set_RElbowRoll (RElbowRoll ); 
             set_RElbowYaw (RElbowYaw ); 
-            set_RWristYaw (RWristYaw ); 
+            set_LWristYaw (LWristYaw );
+            set_RWristYaw (RWristYaw );
         } 
 
         /** Copy Constructor */ 
@@ -100,12 +100,12 @@ namespace guWhiteboard
             set_LShoulderRoll (other.LShoulderRoll ()); 
             set_LElbowRoll (other.LElbowRoll ()); 
             set_LElbowYaw (other.LElbowYaw ()); 
-            set_LWristYaw (other.LWristYaw ()); 
-            set_RShoulderPitch (other.RShoulderPitch ()); 
+            set_RShoulderPitch (other.RShoulderPitch ());
             set_RShoulderRoll (other.RShoulderRoll ()); 
             set_RElbowRoll (other.RElbowRoll ()); 
             set_RElbowYaw (other.RElbowYaw ()); 
-            set_RWristYaw (other.RWristYaw ()); 
+            set_LWristYaw (other.LWristYaw ());
+            set_RWristYaw (other.RWristYaw ());
         } 
 
         /** Copy Assignment Operator */ 
@@ -115,12 +115,12 @@ namespace guWhiteboard
             set_LShoulderRoll (other.LShoulderRoll ()); 
             set_LElbowRoll (other.LElbowRoll ()); 
             set_LElbowYaw (other.LElbowYaw ()); 
-            set_LWristYaw (other.LWristYaw ()); 
-            set_RShoulderPitch (other.RShoulderPitch ()); 
+            set_RShoulderPitch (other.RShoulderPitch ());
             set_RShoulderRoll (other.RShoulderRoll ()); 
             set_RElbowRoll (other.RElbowRoll ()); 
             set_RElbowYaw (other.RElbowYaw ()); 
-            set_RWristYaw (other.RWristYaw ()); 
+            set_LWristYaw (other.LWristYaw ());
+            set_RWristYaw (other.RWristYaw ());
             return *this; 
         } 
 
@@ -145,9 +145,7 @@ namespace guWhiteboard
             ss << ", "; 
             ss << "LElbowYaw =" << LElbowYaw (); 
             ss << ", "; 
-            ss << "LWristYaw =" << LWristYaw (); 
-            ss << ", "; 
-            ss << "RShoulderPitch =" << RShoulderPitch (); 
+            ss << "RShoulderPitch =" << RShoulderPitch ();
             ss << ", "; 
             ss << "RShoulderRoll =" << RShoulderRoll (); 
             ss << ", "; 
@@ -155,7 +153,9 @@ namespace guWhiteboard
             ss << ", "; 
             ss << "RElbowYaw =" << RElbowYaw (); 
             ss << ", "; 
-            ss << "RWristYaw =" << RWristYaw (); 
+            ss << "LWristYaw =" << LWristYaw ();
+            ss << ", ";
+            ss << "RWristYaw =" << RWristYaw ();
 
             return ss.str(); 
 
@@ -179,9 +179,7 @@ namespace guWhiteboard
             ss << ", "; 
             ss << LElbowYaw (); 
             ss << ", "; 
-            ss << LWristYaw (); 
-            ss << ", "; 
-            ss << RShoulderPitch (); 
+            ss << RShoulderPitch ();
             ss << ", "; 
             ss << RShoulderRoll (); 
             ss << ", "; 
@@ -189,7 +187,9 @@ namespace guWhiteboard
             ss << ", "; 
             ss << RElbowYaw (); 
             ss << ", "; 
-            ss << RWristYaw (); 
+            ss << LWristYaw ();
+            ss << ", ";
+            ss << RWristYaw ();
 
             return ss.str(); 
 
@@ -236,22 +236,22 @@ namespace guWhiteboard
             if (!strings[3].empty()) 
                 set_LElbowYaw (float(atof(strings[3].c_str()))); 
 
-            if (!strings[4].empty()) 
-                set_LWristYaw (float(atof(strings[4].c_str()))); 
+            if (!strings[4].empty())
+                set_RShoulderPitch (float(atof(strings[4].c_str())));
 
-            if (!strings[5].empty()) 
-                set_RShoulderPitch (float(atof(strings[5].c_str()))); 
+            if (!strings[5].empty())
+                set_RShoulderRoll (float(atof(strings[5].c_str())));
 
-            if (!strings[6].empty()) 
-                set_RShoulderRoll (float(atof(strings[6].c_str()))); 
+            if (!strings[6].empty())
+                set_RElbowRoll (float(atof(strings[6].c_str())));
 
-            if (!strings[7].empty()) 
-                set_RElbowRoll (float(atof(strings[7].c_str()))); 
+            if (!strings[7].empty())
+                set_RElbowYaw (float(atof(strings[7].c_str())));
 
-            if (!strings[8].empty()) 
-                set_RElbowYaw (float(atof(strings[8].c_str()))); 
+            if (!strings[8].empty())
+                set_LWristYaw (float(atof(strings[8].c_str())));
 
-            if (!strings[9].empty()) 
+            if (!strings[9].empty())
                 set_RWristYaw (float(atof(strings[9].c_str()))); 
 
 #endif /// USE_WB_SENSORS_ARMJOINTSENSORS_C_CONVERSION
