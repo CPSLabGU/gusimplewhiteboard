@@ -73,7 +73,7 @@ class:IOPins, nonatomic, IOPins,                    "IOPins", Arduino-style I/O 
 class:NXT_Two_Touch_Status, nonatomic, NXT_Two_Touch_Status,                     "NXT_Two_Touch_Status", Class that reads NXT's two buttons
 class:NXT_Sound_Control, nonatomic, NXT_Sound_Control,                     "NXT_Sound_Control", Class that produces NXT's sounds
 class:NXT_Lights_Control, nonatomic, NXT_Lights_Control,                     "NXT_Lights_Control", Class that places power in NXT's for lights
-class:Clocks, 	nonatomic,      Clocks,         "Clocks",       Class for keeping track of time
+class:Clocks, nonatomic,      Clocks,         "Clocks",       Class for keeping track of time
 class:Channels, nonatomic,      Channels,       "Channels",     UPPAAL-Style synchronisation channels
 class:SwitchSubsumption, nonatomic, SwitchSubsumption, "SwitchSubsumption"
 class:TotoDoingMotion, nonatomic, TotoDoingMotion, "TotoDoingMotion"
@@ -93,4 +93,8 @@ bool,           nonatomic, RedNSon,                        "RedNSon", status of 
 bool,           nonatomic, TimerReset,                        "TimerReset", flag to reset timer
 bool,           nonatomic, SLOT_UNUSED,         "SLOT_UNUSED", IoT message removed, feel free to use this slot
 bool,           nonatomic, CarSensorPressed,                        "CarSensorPressed", flag to indicate status of sensor for cars
-class:SwitchSubsumptionTrafficLights, nonatomic, SwitchSubsumptionTrafficLights, "SwitchSubsumptionTrafficLights"
+class:SwitchSubsumptionTrafficLights, nonatomic, SwitchSubsumptionTrafficLights, "SwitchSubsumptionTrafficLights", no comment entered
+bool, nonatomic, Ball_Found, "Ball_Found", whether ball is detected in STEM6 DetectBallColor
+std::string, nonatomic, Ball_Calibration_File, "Ball_Calibration_File", name of DLC file to load for STEM6 DetectBallColor
+int, nonatomic, Ball_Calibration_Num, "Ball_Calibration_Num", number (size_t) to load with DLC file for STEM6 DetectBallColor
+int, nonatomic, Ball_Color_Num, "Ball_Color_Num", number for each ball color as defined in STEM6Master

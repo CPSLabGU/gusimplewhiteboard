@@ -91,8 +91,7 @@ enum NamedPipeline {
 	Soccer, ///< Soccer Pipeline
 	OpenChallenge, ///< 2013 Open Challange Pipeline
 	Streaming, ///< Pipeline that just streams images
-	OpenCVFaces, ///< Pipeline to recognise faces
-	HTWK  ///<Pipeline that runs htwk's image algorithms and post soccer object info to mipal whiteboard
+	OpenCVFaces ///< Pipeline to recognise faces
 };
 
 /**
@@ -146,8 +145,8 @@ static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
 static const char* CameraStrings[] = {"TOP", "BOTTOM"};
 static const VisionCamera CameraValues[] = {Top, Bottom};
-static const char* PipelineStrings[] = {"SOCCER", "OPENCHALLENGE", "STREAMING", "OPENCVFACES", "HTWK"};
-static const NamedPipeline PipelineValues[] = {Soccer, OpenChallenge, Streaming, OpenCVFaces, HTWK};
+static const char* PipelineStrings[] = {"SOCCER", "OPENCHALLENGE", "STREAMING", "OPENCVFACES"};
+static const NamedPipeline PipelineValues[] = {Soccer, OpenChallenge, Streaming, OpenCVFaces};
 static const char* StreamingSourceStrings[] = {"NORMAL", "CLASSIFIED", "RECOGNIZED"};
 static const StreamingType StreamingSourceValues[] = {Normal, Classified, Recognized};
 static const char* BoolStrings[] = {"YES", "NO"};

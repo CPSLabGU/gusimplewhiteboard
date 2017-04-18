@@ -177,7 +177,6 @@ public:
                 {
                         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++) //get current event counts for all types
                         {
-                                if(_wbd->wb->event_counters[i] > 0)
                                         local_event_counters[i] = _wbd->wb->event_counters[i]; //Already set to zeros in wb constructor memset
                         }
                 }
