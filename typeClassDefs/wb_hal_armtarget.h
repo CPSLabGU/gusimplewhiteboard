@@ -194,7 +194,8 @@ struct wb_hal_armtarget
         union flex_t lhsElbowRollStiffness, lhsElbowYawStiffness, lhsWristYawStiffness;
 
         union flex_t rhsShouldPitch, rhsShoulderRoll, rhsElbowRoll, rhsElbowYaw;
-        union flex_t rhsWristYaw, rhsShoulderPitchStiffness, rhsShoulderRollStiffness;
+        union flex_t rhsWristYaw,
+        rhsShoulderPitchStiffness, rhsShoulderRollStiffness;
         union flex_t rhsElbowRollStiffness, rhsElbowYawStiffness, rhsWristYawStiffness;
 
 

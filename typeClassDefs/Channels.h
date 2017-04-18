@@ -60,6 +60,7 @@
 #define Channels_DEFINED
 
 #include "wb_channels.h"
+#include "wb_io_pins.h"
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <sstream>
 #include <ctype.h>
