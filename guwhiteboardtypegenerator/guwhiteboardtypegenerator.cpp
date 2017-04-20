@@ -134,10 +134,10 @@ static const char *opening_enum =
 static const char *closing_enum =
 "        } WBTypes; ///< All the message 'types' for the class based whiteboard \n\n";
 
-static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[];\n" \
-                                             "        extern const char *WBTypes_typeValues[];\n  ";
+static const char *extern_for_string_array = "        extern const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED];\n" \
+                                             "        extern const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED];\n  ";
 
-static const char *opening_string_array_definition = "const char *WBTypes_stringValues[] = \n{\n";
+static const char *opening_string_array_definition = "const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] = \n{\n";
 
 static const char *closing_string_array_definition = "};\n\n";
 
@@ -522,7 +522,7 @@ int main(int argc, char *argv[]) {
         output_functor_templates << include_wbfunctor_extension;
 
         std::stringstream message_tsl_types;
-        message_tsl_types << "const char *WBTypes_typeValues[] = \n{\n";
+        message_tsl_types << "const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = \n{\n";
 
         
         output_c_file << "\n#define GSW_NUM_TYPES_DEFINED " << types.size() << "\n\n";
