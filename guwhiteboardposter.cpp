@@ -408,20 +408,32 @@ namespace guWhiteboard
 #endif // !GCGameState_DEFINED
 
 		case kPlayerNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: PlayerNumber @brief Nil */ 
 			class PlayerNumber_t PlayerNumber_msg(wbd);
-			PlayerNumber_msg.post(atoi(message_content.c_str()));
+			int8_t v = PlayerNumber_msg.get(); 
+			v.from_string(message_content);
+			PlayerNumber_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kManuallyPenalized_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: ManuallyPenalized @brief Nil */ 
 			class ManuallyPenalized_t ManuallyPenalized_msg(wbd);
-			ManuallyPenalized_msg.post(atoi(message_content.c_str()));
+			int8_t v = ManuallyPenalized_msg.get(); 
+			v.from_string(message_content);
+			ManuallyPenalized_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
@@ -508,12 +520,18 @@ namespace guWhiteboard
 #endif // !FilteredArrayOneDimBall_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: PF_ControlStatus_Modes @brief Nil */ 
 			class PF_ControlStatus_Modes_t PF_ControlStatus_Modes_msg(wbd);
-			PF_ControlStatus_Modes_msg.post(atoi(message_content.c_str()));
+			int32_t v = PF_ControlStatus_Modes_msg.get(); 
+			v.from_string(message_content);
+			PF_ControlStatus_Modes_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kWEBOTS_NXT_bridge_v:
 #ifdef WEBOTS_NXT_bridge_DEFINED
@@ -670,20 +688,32 @@ namespace guWhiteboard
 #endif // !TeleoperationControlStatus_DEFINED
 
 		case kTeleoperationConnection_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: TeleoperationConnection @brief Nil */ 
 			class TeleoperationConnection_t TeleoperationConnection_msg(wbd);
-			TeleoperationConnection_msg.post(atoi(message_content.c_str()));
+			int8_t v = TeleoperationConnection_msg.get(); 
+			v.from_string(message_content);
+			TeleoperationConnection_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kUDPWBNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: UDPWBNumber @brief Nil */ 
 			class UDPWBNumber_t UDPWBNumber_msg(wbd);
-			UDPWBNumber_msg.post(atoi(message_content.c_str()));
+			int8_t v = UDPWBNumber_msg.get(); 
+			v.from_string(message_content);
+			UDPWBNumber_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kWEBOTS_NXT_bumper_v:
 #ifdef WEBOTS_NXT_bumper_DEFINED
@@ -911,12 +941,18 @@ namespace guWhiteboard
 #endif // !WALK2014_ControlStatus_DEFINED
 
 		case kCBall_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: CBall @brief Nil */ 
 			class CBall_t CBall_msg(wbd);
-			CBall_msg.post(atoi(message_content.c_str()));
+			int8_t v = CBall_msg.get(); 
+			v.from_string(message_content);
+			CBall_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kOculusPrime_Command_v:
 #ifdef OculusPrimeInterface_DEFINED
@@ -1236,20 +1272,32 @@ namespace guWhiteboard
 			return true;
 		}
 		case kBall_Calibration_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Calibration_Num @brief Nil */ 
 			class Ball_Calibration_Num_t Ball_Calibration_Num_msg(wbd);
-			Ball_Calibration_Num_msg.post(atoi(message_content.c_str()));
+			int32_t v = Ball_Calibration_Num_msg.get(); 
+			v.from_string(message_content);
+			Ball_Calibration_Num_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kBall_Color_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Color_Num @brief Nil */ 
 			class Ball_Color_Num_t Ball_Color_Num_msg(wbd);
-			Ball_Color_Num_msg.post(atoi(message_content.c_str()));
+			int32_t v = Ball_Color_Num_msg.get(); 
+			v.from_string(message_content);
+			Ball_Color_Num_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kHAL_LArmTarget_Ctrl_v:
 #ifdef HAL_ArmTarget_DEFINED
