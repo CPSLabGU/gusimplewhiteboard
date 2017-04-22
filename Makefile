@@ -26,6 +26,8 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 
 INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS}
 
+WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhiteboard.h | sed 's/GU_SIMPLE_WHITEBOARD_VERSION[ ]*//'
+
 all: all-real
 
 .if ${LOCAL} != _LOCAL
@@ -33,9 +35,9 @@ host: host-local
 	echo "Use 'make host-local' instead of 'make host'"
 
 .ifndef TARGET
-install: host-local
+install: host-local pkg-config
 .else
-install: cross-local
+install: cross-local pkg-config
 .endif
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
@@ -52,6 +54,14 @@ install: cross-local
 .endfor
 .endif
 
+pkg-config:
+	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
+	rm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
+	rm -f libgusimplewhiteboard.pc
+	sed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
+	cp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
+	rm -f libgusimplewhiteboard.pc
+
 .ifdef TARGET
 cross-install: install
 .else
@@ -63,7 +73,6 @@ cross-install: cross-local
                 TARGET_PLATFORM=${rarch} ALL_TARGETS=cross-install
 .  endfor
 .endif
-
 
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
