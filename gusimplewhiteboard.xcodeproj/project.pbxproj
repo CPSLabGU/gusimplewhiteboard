@@ -74,7 +74,6 @@
 		C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBCD1CBCD2740061A970 /* GNUmakefile */; };
 		C3B4EC341CBCD2740061A970 /* HAL_HeadTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */; };
 		C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBCF1CBCD2740061A970 /* Input3D.txt */; };
-		C3B4EC371CBCD2740061A970 /* IoT_Control.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD11CBCD2740061A970 /* IoT_Control.h */; };
 		C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD41CBCD2740061A970 /* MOTION_Interface.h */; };
 		C3B4EC3D1CBCD2740061A970 /* NAO_State.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD51CBCD2740061A970 /* NAO_State.h */; };
 		C3B4EC3E1CBCD2740061A970 /* NXT_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD61CBCD2740061A970 /* NXT_Interface.h */; };
@@ -159,6 +158,8 @@
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
 		F11BC0CA1761247F0069F6FB /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F11BC114176124D50069F6FB /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F11BC0FF176124CB0069F6FB /* gu_util.cpp */; };
+		F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167311EADF4B70007E421 /* HAL_ArmTarget.h */; };
+		F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167321EADF4B70007E421 /* wb_hal_armtarget.h */; };
 		F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
 		F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
@@ -394,7 +395,6 @@
 		C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAL_HeadTarget.h; sourceTree = "<group>"; };
 		C3B4EBCF1CBCD2740061A970 /* Input3D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input3D.txt; sourceTree = "<group>"; };
 		C3B4EBD01CBCD2740061A970 /* IOPins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPins.h; sourceTree = "<group>"; };
-		C3B4EBD11CBCD2740061A970 /* IoT_Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoT_Control.h; sourceTree = "<group>"; };
 		C3B4EBD21CBCD2740061A970 /* mainpage.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mainpage.md; sourceTree = "<group>"; };
 		C3B4EBD31CBCD2740061A970 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		C3B4EBD41CBCD2740061A970 /* MOTION_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
@@ -551,6 +551,8 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
+		F12167311EADF4B70007E421 /* HAL_ArmTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HAL_ArmTarget.h; path = typeClassDefs/HAL_ArmTarget.h; sourceTree = "<group>"; };
+		F12167321EADF4B70007E421 /* wb_hal_armtarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = wb_hal_armtarget.h; path = typeClassDefs/wb_hal_armtarget.h; sourceTree = "<group>"; };
 		F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_subscribe_test.cc; sourceTree = "<group>"; };
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
 		F1376EA21958DF8200983D84 /* wb_fft_frequencies.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fft_frequencies.h; sourceTree = "<group>"; };
@@ -1066,6 +1068,8 @@
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
+				F12167311EADF4B70007E421 /* HAL_ArmTarget.h */,
+				F12167321EADF4B70007E421 /* wb_hal_armtarget.h */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
@@ -1470,7 +1474,6 @@
 				C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */,
 				C3B4EBCF1CBCD2740061A970 /* Input3D.txt */,
 				C3B4EBD01CBCD2740061A970 /* IOPins.h */,
-				C3B4EBD11CBCD2740061A970 /* IoT_Control.h */,
 				C3B4EBD21CBCD2740061A970 /* mainpage.md */,
 				C3B4EBD31CBCD2740061A970 /* Makefile */,
 				C3B4EBD41CBCD2740061A970 /* MOTION_Interface.h */,
@@ -1832,6 +1835,8 @@
 				C3B4EC881CBCD2740061A970 /* wb_switch_subsumption.h in Headers */,
 				C3B4EC291CBCD2740061A970 /* FilteredArrayOneDimBall.h in Headers */,
 				C3B4EC2E1CBCD2740061A970 /* FilteredOneDimSonar.h in Headers */,
+				F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */,
+				F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */,
 				C3B4EC721CBCD2740061A970 /* wb_lines.h in Headers */,
 				C3B4EC801CBCD2740061A970 /* wb_sensors_leds.h in Headers */,
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
@@ -1842,7 +1847,6 @@
 				C3B4EC6D1CBCD2740061A970 /* wb_hal_headtarget.h in Headers */,
 				C3B4EC8C1CBCD2740061A970 /* WEBOTS_NXT_bridge.h in Headers */,
 				C3B4EC2B1CBCD2740061A970 /* FilteredArrayOneDimSonar.h in Headers */,
-				C3B4EC371CBCD2740061A970 /* IoT_Control.h in Headers */,
 				C3B4EC3F1CBCD2740061A970 /* NXT_Lights_Control.h in Headers */,
 				C3B4EC5F1CBCD2740061A970 /* wb_ball.h in Headers */,
 				C3B4EC641CBCD2740061A970 /* wb_count.h in Headers */,
