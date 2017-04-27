@@ -9,6 +9,9 @@
 #ifndef gusimplewhiteboard_compression_h
 #define gusimplewhiteboard_compression_h
 
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
+
+#include <string.h>
 #include <sys/types.h>
 
 #ifndef __cplusplus
@@ -41,7 +44,7 @@ enum gswc_supported_types
         Type_Double,            ///< Double conversion type
 
         GSWC_NUM_TYPES,         ///< number of types
-        GSWC_NOT_SUPPORTED = -1          ///< value to return when a type doesn't support compression
+        GSWC_TYPE_NOT_SUPPORTED = -1          ///< value to return when a type doesn't support compression
 };
 
 //Index values MUST match their enum value in gswc_supported_types
@@ -60,15 +63,16 @@ const char *gswc_supported_types_stringmap[GSWC_NUM_TYPES] =
     "uint64_t",
 
     "float",
-    "double",
+    "double"/*,
 
     "GSWC_NUM_TYPES"          ///< number of types
+        */
 };
 
 //Index values MUST match their enum value in gswc_supported_types
 const size_t gswc_supported_types_sizemap[GSWC_NUM_TYPES] = 
 {
-    1,     //"bool"
+    8,     //"bool"
 
     8,     //"int8_t"
     16,    //"int16_t"
@@ -81,31 +85,33 @@ const size_t gswc_supported_types_sizemap[GSWC_NUM_TYPES] =
     64,    //"uint64_t"
 
     32,    //"float"
-    64,    //"double"
+    64/*,    //"double"
 
     -1    //"GSWC_NUM_TYPES"          ///< number of types
+    */
 };
 
 enum gswc_supported_types gswc_get_compressed_type_index(const char *t)
 {
-    for (size_t i; i < GSWC_NUM_TYPES; i++)
+    for (size_t i = 0; i < GSWC_NUM_TYPES; i++)
     {
         if (strncmp(t, gswc_supported_types_stringmap[i], strlen(gswc_supported_types_stringmap[i])) == 0)
         {
             return (enum gswc_supported_types)i;
         }
     }
-    return GSWC_NOT_SUPPORTED;
+    return GSWC_TYPE_NOT_SUPPORTED;
 }
 
-//gswc_compress
-    //static compression for C standard types
-    //C++ class files should include a compress function that calls this for their standard types
-    //
-    //
-//gswc_decompress
+void gswc_compress(void *dst, gu_simple_message *msg, size_t size)
+{
+    memcpy(dst, msg, size);    
+}
 
-
+void gswc_decompress(void *dst, gu_simple_message *msg, size_t size)
+{
+    memcpy(msg, dst, size);    
+}
 
 #ifdef __cplusplus
 }
