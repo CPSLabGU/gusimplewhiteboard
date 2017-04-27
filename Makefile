@@ -63,10 +63,10 @@ pkg-config:
 	$Erm -f libgusimplewhiteboard.pc
 
 type-hdrs:
-	$Eecho "//Generated file, DO NOT MODIFY\n" > ${SRCDIR}/guwhiteboard_types.h
-	$Ecd ${SRCDIR}/typeClassDefs && ls *.h | \
+	$Eecho "//Generated file, DO NOT MODIFY\n" > ${SRCDIR}/guwhiteboard_c_types.h
+	$Ecd ${SRCDIR}/typeClassDefs && ls wb_*.h | \
 		sed -e 's|^|#include <gusimplewhiteboard/typeClassDefs/|' \
-		-e 's|$$|>|' >> ${SRCDIR}/guwhiteboard_types.h
+		-e 's|$$|>|' >> ${SRCDIR}/guwhiteboard_c_types.h
 
 .ifdef TARGET
 cross-install: install
