@@ -24,7 +24,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 .include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
-INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} ${WB_COMPRESSION_DIR} guwhiteboard_types.h
+INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} ${WB_COMPRESSION_DIR} guwhiteboard_c_types.h
 
 WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhiteboard.h | sed 's/GU_SIMPLE_WHITEBOARD_VERSION[ ]*//'
 
