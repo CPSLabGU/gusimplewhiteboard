@@ -9,6 +9,7 @@
 #ifndef gusimplewhiteboard_compression_h
 #define gusimplewhiteboard_compression_h
 
+#include <termios.h>
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #include <string.h>

@@ -24,7 +24,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 .include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
-INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} ${WB_COMPRESSION_DIR}
+INST_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} ${WB_COMPRESSION_DIR} guwhiteboard_c_types.h
 
 WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhiteboard.h | sed 's/GU_SIMPLE_WHITEBOARD_VERSION[ ]*//'
 
@@ -35,7 +35,7 @@ host: host-local
 	echo "Use 'make host-local' instead of 'make host'"
 
 .ifndef TARGET
-install: host-local pkg-config
+install: host-local pkg-config type-hdrs
 .else
 install: cross-local pkg-config
 .endif
@@ -55,12 +55,18 @@ install: cross-local pkg-config
 .endif
 
 pkg-config:
-	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
-	rm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
-	rm -f libgusimplewhiteboard.pc
-	sed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
-	cp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
-	rm -f libgusimplewhiteboard.pc
+	$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
+	$Erm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
+	$Erm -f libgusimplewhiteboard.pc
+	$Esed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
+	$Ecp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
+	$Erm -f libgusimplewhiteboard.pc
+
+type-hdrs:
+	$Eecho "//Generated file, DO NOT MODIFY\n" > ${SRCDIR}/guwhiteboard_c_types.h
+	$Ecd ${SRCDIR}/typeClassDefs && ls wb_*.h | \
+		sed -e 's|^|#include <gusimplewhiteboard/typeClassDefs/|' \
+		-e 's|$$|>|' >> ${SRCDIR}/guwhiteboard_c_types.h
 
 .ifdef TARGET
 cross-install: install
