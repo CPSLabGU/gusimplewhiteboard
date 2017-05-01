@@ -67,8 +67,8 @@ enum WalkState {
 
 /** Part of the NYI kicking option */
 enum KickingFoot {
-   LEFT     = 0,	///< Kick with left foot
-   RIGHT    = 1		///< Kick with right foot
+   LEFT_KICK     = 0,	///< Kick with left foot
+   RIGHT_KICK    = 1		///< Kick with right foot
 };
 
 /** Part of the NYI kicking option */
@@ -109,7 +109,7 @@ struct wb_walk2014_controlstatus
         memset(this, 0, sizeof(*this)); 
     }
 
-    wb_walk2014_controlstatus(Walk2014Option option, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT)
+    wb_walk2014_controlstatus(Walk2014Option option, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT_KICK)
     {
         memset(this, 0, sizeof(*this)); 
         _forward = forward;
