@@ -42,6 +42,7 @@ public:
      * @param s The serialized string to convert
      */
 	VisionLines(std::string s) : wb_lines() {
+            (void)s;
 		//NYI
 	}
 	
@@ -52,18 +53,18 @@ public:
      * @return true if the line was successfully added, false if all 6 elements in the array are already used
      */
 	bool addLine(const wb_line &line, VisionCamera camera) {
-		for(int i = 0; i<6; ++i) {
+		for (int i = 0; i<6; ++i) {
 			if(camera == Top) {
 				if(!(topMask() & (1 << i))) {
 					set_topLines(line, i);
-					set_topMask(topMask() | (1 << i));
+					set_topMask(static_cast<int8_t>(topMask() | (1 << i)));
 					return true;
 				}	
 			}
 			else {
 				if(!(bottomMask() & (1 << i))) {
 					set_bottomLines(line, i);
-					set_bottomMask(bottomMask() | (1 << i));
+					set_bottomMask(static_cast<int8_t>(bottomMask() | (1 << i)));
 					return true;
 				}
 			}
