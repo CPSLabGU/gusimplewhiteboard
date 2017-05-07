@@ -32,7 +32,7 @@ namespace guWhiteboard
         };
         static const char *KickingFoot_strings[] =
         {
-                "LEFT", "RIGHT"
+                "LEFT_KICK", "RIGHT_KICK"
         };
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
         /**
@@ -42,7 +42,7 @@ namespace guWhiteboard
         {
         public:
                 /** designated constructor */
-                WALK2014_ControlStatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT): wb_walk2014_controlstatus(option, forward, left, turn, power, foot) {}
+                WALK2014_ControlStatus(Walk2014Option option = DISCONNECT, float forward = 0, float left = 0, float turn = 0, float power = 0, KickingFoot foot = LEFT_KICK): wb_walk2014_controlstatus(option, forward, left, turn, power, foot) {}
 
                 /** copy constructor */
                 WALK2014_ControlStatus(const WALK2014_ControlStatus &other) : wb_walk2014_controlstatus(other.walk_state(), other.forward(), other.left(), other.turn(), other.power(), other.foot(), other.walking_status(), other.odometry()) {  }
