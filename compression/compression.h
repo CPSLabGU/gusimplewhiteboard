@@ -9,7 +9,6 @@
 #ifndef gusimplewhiteboard_compression_h
 #define gusimplewhiteboard_compression_h
 
-#include <termios.h>
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #include <string.h>
@@ -73,7 +72,7 @@ const char *gswc_supported_types_stringmap[GSWC_NUM_TYPES] =
 //Index values MUST match their enum value in gswc_supported_types
 const size_t gswc_supported_types_sizemap[GSWC_NUM_TYPES] = 
 {
-    8,     //"bool"
+    1,     //"bool"
 
     8,     //"int8_t"
     16,    //"int16_t"
