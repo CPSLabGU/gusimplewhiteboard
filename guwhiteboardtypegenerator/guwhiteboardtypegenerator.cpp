@@ -597,10 +597,18 @@ int main(int argc, char *argv[]) {
                         case POD_Class:
                                 if (type.class_name == "bool" ||
                                     type.class_name == "int" ||
+                                    type.class_name == "int8_t" ||
+                                    type.class_name == "int16_t" ||
+                                    type.class_name == "int32_t" ||
+                                    type.class_name == "int64_t" ||
+                                    type.class_name == "uint8_t" ||
+                                    type.class_name == "uint16_t" ||
+                                    type.class_name == "uint32_t" ||
+                                    type.class_name == "uint64_t" ||
                                     type.class_name == "unsigned" ||
                                     type.class_name == "unsigned int")
                                 {
-                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(atoi(message_content.c_str()));\n\t\t\treturn true;\n\t\t}\n\n";
+                                        output_generic_poster << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t " << type.type_const_name << "_msg(wbd);\n\t\t\t" << type.type_const_name << "_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));\n\t\t\treturn true;\n\t\t}\n\n";
                                         output_generic_getter << "\t\t{\n" << CLASS_DOXY(type.type_const_name, "Nil") << "\t\t\tclass " << type.type_const_name << "_t m(wbd);\n\t\t\treturn msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));\n\t\t}\n" ;
                                         break;
                                 }
