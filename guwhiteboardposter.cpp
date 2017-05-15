@@ -120,7 +120,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: SpeechOutput @brief Nil */ 
 			class SpeechOutput_t SpeechOutput_msg(wbd);
-			SpeechOutput_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			SpeechOutput_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -408,20 +408,32 @@ namespace guWhiteboard
 #endif // !GCGameState_DEFINED
 
 		case kPlayerNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: PlayerNumber @brief Nil */ 
 			class PlayerNumber_t PlayerNumber_msg(wbd);
-			PlayerNumber_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int8_t v = PlayerNumber_msg.get(); 
+			v.from_string(message_content);
+			PlayerNumber_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kManuallyPenalized_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: ManuallyPenalized @brief Nil */ 
 			class ManuallyPenalized_t ManuallyPenalized_msg(wbd);
-			ManuallyPenalized_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int8_t v = ManuallyPenalized_msg.get(); 
+			v.from_string(message_content);
+			ManuallyPenalized_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
@@ -508,12 +520,18 @@ namespace guWhiteboard
 #endif // !FilteredArrayOneDimBall_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: PF_ControlStatus_Modes @brief Nil */ 
 			class PF_ControlStatus_Modes_t PF_ControlStatus_Modes_msg(wbd);
-			PF_ControlStatus_Modes_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int32_t v = PF_ControlStatus_Modes_msg.get(); 
+			v.from_string(message_content);
+			PF_ControlStatus_Modes_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kWEBOTS_NXT_bridge_v:
 #ifdef WEBOTS_NXT_bridge_DEFINED
@@ -670,20 +688,32 @@ namespace guWhiteboard
 #endif // !TeleoperationControlStatus_DEFINED
 
 		case kTeleoperationConnection_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: TeleoperationConnection @brief Nil */ 
 			class TeleoperationConnection_t TeleoperationConnection_msg(wbd);
-			TeleoperationConnection_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int8_t v = TeleoperationConnection_msg.get(); 
+			v.from_string(message_content);
+			TeleoperationConnection_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kUDPWBNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: UDPWBNumber @brief Nil */ 
 			class UDPWBNumber_t UDPWBNumber_msg(wbd);
-			UDPWBNumber_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int8_t v = UDPWBNumber_msg.get(); 
+			v.from_string(message_content);
+			UDPWBNumber_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kWEBOTS_NXT_bumper_v:
 #ifdef WEBOTS_NXT_bumper_DEFINED
@@ -911,12 +941,18 @@ namespace guWhiteboard
 #endif // !WALK2014_ControlStatus_DEFINED
 
 		case kCBall_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: CBall @brief Nil */ 
 			class CBall_t CBall_msg(wbd);
-			CBall_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int8_t v = CBall_msg.get(); 
+			v.from_string(message_content);
+			CBall_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int8_t_DEFINED
 
 		case kOculusPrime_Command_v:
 #ifdef OculusPrimeInterface_DEFINED
@@ -1090,7 +1126,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: GreenEWon @brief Nil */ 
 			class GreenEWon_t GreenEWon_msg(wbd);
-			GreenEWon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			GreenEWon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1098,7 +1134,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: WarnEW @brief Nil */ 
 			class WarnEW_t WarnEW_msg(wbd);
-			WarnEW_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			WarnEW_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1106,7 +1142,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: TimeGTthirty @brief Nil */ 
 			class TimeGTthirty_t TimeGTthirty_msg(wbd);
-			TimeGTthirty_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			TimeGTthirty_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1114,7 +1150,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: AmberEWon @brief Nil */ 
 			class AmberEWon_t AmberEWon_msg(wbd);
-			AmberEWon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			AmberEWon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1122,7 +1158,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: TurnRedEW @brief Nil */ 
 			class TurnRedEW_t TurnRedEW_msg(wbd);
-			TurnRedEW_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			TurnRedEW_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1130,7 +1166,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: TimeGTfive @brief Nil */ 
 			class TimeGTfive_t TimeGTfive_msg(wbd);
-			TimeGTfive_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			TimeGTfive_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1138,7 +1174,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: RedEWon @brief Nil */ 
 			class RedEWon_t RedEWon_msg(wbd);
-			RedEWon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			RedEWon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1146,7 +1182,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: GreenNSon @brief Nil */ 
 			class GreenNSon_t GreenNSon_msg(wbd);
-			GreenNSon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			GreenNSon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1154,7 +1190,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: WarnNS @brief Nil */ 
 			class WarnNS_t WarnNS_msg(wbd);
-			WarnNS_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			WarnNS_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1162,7 +1198,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: AmberNSon @brief Nil */ 
 			class AmberNSon_t AmberNSon_msg(wbd);
-			AmberNSon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			AmberNSon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1170,7 +1206,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: TurnRedNS @brief Nil */ 
 			class TurnRedNS_t TurnRedNS_msg(wbd);
-			TurnRedNS_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			TurnRedNS_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1178,7 +1214,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: RedNSon @brief Nil */ 
 			class RedNSon_t RedNSon_msg(wbd);
-			RedNSon_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			RedNSon_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1186,7 +1222,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: TimerReset @brief Nil */ 
 			class TimerReset_t TimerReset_msg(wbd);
-			TimerReset_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			TimerReset_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1194,7 +1230,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: SLOT_UNUSED @brief Nil */ 
 			class SLOT_UNUSED_t SLOT_UNUSED_msg(wbd);
-			SLOT_UNUSED_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			SLOT_UNUSED_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1202,7 +1238,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: CarSensorPressed @brief Nil */ 
 			class CarSensorPressed_t CarSensorPressed_msg(wbd);
-			CarSensorPressed_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			CarSensorPressed_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1224,7 +1260,7 @@ namespace guWhiteboard
 		{
 /** WB Ptr Class: Ball_Found @brief Nil */ 
 			class Ball_Found_t Ball_Found_msg(wbd);
-			Ball_Found_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			Ball_Found_msg.post(atoi(message_content.c_str()));
 			return true;
 		}
 
@@ -1236,20 +1272,32 @@ namespace guWhiteboard
 			return true;
 		}
 		case kBall_Calibration_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Calibration_Num @brief Nil */ 
 			class Ball_Calibration_Num_t Ball_Calibration_Num_msg(wbd);
-			Ball_Calibration_Num_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int32_t v = Ball_Calibration_Num_msg.get(); 
+			v.from_string(message_content);
+			Ball_Calibration_Num_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kBall_Color_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Color_Num @brief Nil */ 
 			class Ball_Color_Num_t Ball_Color_Num_msg(wbd);
-			Ball_Color_Num_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			int32_t v = Ball_Color_Num_msg.get(); 
+			v.from_string(message_content);
+			Ball_Color_Num_msg.post(v);
 			return true;
 		}
+#else
+			return false;
+#endif // !int32_t_DEFINED
 
 		case kHAL_LArmTarget_Ctrl_v:
 #ifdef HAL_ArmTarget_DEFINED

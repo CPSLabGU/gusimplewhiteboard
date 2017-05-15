@@ -138,7 +138,7 @@ struct wb_hal_armtarget
      *    or
      *  has the arm stopped (if a status message)
      */
-    BIT_PROPERTY(arm_stopped)
+    BIT_PROPERTY(arm_active)
 
     /** Should the command be processed again by the motion module?
      *  When changes are made, this bit is set to true.
@@ -155,7 +155,7 @@ struct wb_hal_armtarget
     * @param target_elbowyaw      desired elbow yaw
     * @param target_wristyaw      desired wrist yaw
     * @param target_movement_time time to take
-    * @param arm_stopped          should the arm stop
+    * @param arm_active           is the arm active
     */
     wb_hal_armtarget(uint8_t target_arm = LEFT_ARM,
                      float target_shoulderpitch = 0,
@@ -169,7 +169,7 @@ struct wb_hal_armtarget
                      float target_elbowyawstiffness = 0,
                      float target_wristyawstiffness = 0,
                      int target_movement_time = 1000000,
-                     bool arm_stopped = true)
+                     bool arm_active = false)
     {
         set_target_arm(target_arm);
         set_target_shoulderpitch(target_shoulderpitch);
@@ -183,7 +183,7 @@ struct wb_hal_armtarget
         set_target_elbowyawstiffness(target_elbowyawstiffness);
         set_target_wristyawstiffness(target_wristyawstiffness);
         set_target_movement_time(target_movement_time);
-        set_arm_stopped(arm_stopped);
+        set_arm_active(arm_active);
         set_arm_cmd_mask(false);
     }
 
@@ -234,7 +234,7 @@ struct wb_hal_armtarget
             lhsElbowYawStiffness.integer == rhsElbowYawStiffness.integer &&
             lhsWristYawStiffness.integer == rhsWristYawStiffness.integer &&
             target_movement_time() == rhs.target_movement_time() &&
-            arm_stopped() == rhs.arm_stopped() &&
+            arm_active() == rhs.arm_active() &&
             arm_cmd_mask() == rhs.arm_cmd_mask()
             )
         {
