@@ -53,7 +53,10 @@ namespace guWhiteboard
             /**
             * Constructor, defaults to LEFT_ARM
             */
-            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
+            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm,
+                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
+                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
+                                                                                  1000000,false) {}
             //HAL_ArmTarget(): wb_hal_armtarget() {}
 
             /**
@@ -193,7 +196,8 @@ namespace guWhiteboard
             std::string description() const
             {
                 std::stringstream ss;
-                ss << target_shoulderpitch() << "-|-"
+                ss << static_cast<uint32_t>(target_arm()) << "-|-"
+                << target_shoulderpitch() << "-|-"
                 << target_shoulderroll() << "-|-"
                 << target_elbowroll() << "-|-"
                 << target_elbowyaw() << "-|-"
