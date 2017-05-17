@@ -53,7 +53,10 @@ namespace guWhiteboard
             /**
             * Constructor, defaults to LEFT_ARM
             */
-            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
+            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm,
+                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
+                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
+                                                                                  1000000,false) {}
             //HAL_ArmTarget(): wb_hal_armtarget() {}
 
             /**
@@ -71,7 +74,7 @@ namespace guWhiteboard
              */
             void Stop()
             {
-                set_arm_stopped(true);
+                set_arm_active(false);
                 set_arm_cmd_mask(true);
             }
 
@@ -169,7 +172,7 @@ namespace guWhiteboard
                 set_target_wristyaw(wristyaw);
 
                 set_target_movement_time(time);
-                set_arm_stopped(false);
+                set_arm_active(true);
                 set_arm_cmd_mask(true);
             }
 
@@ -186,14 +189,15 @@ namespace guWhiteboard
                 set_target_elbowyawstiffness(other.target_elbowyawstiffness());
                 set_target_wristyawstiffness(other.target_wristyawstiffness());
                 set_target_movement_time(other.target_movement_time());
-                set_arm_stopped(other.arm_stopped());
+                set_arm_active(other.arm_active());
                 set_arm_cmd_mask(other.arm_cmd_mask());
             }
 
             std::string description() const
             {
                 std::stringstream ss;
-                ss << target_shoulderpitch() << "-|-"
+                ss << static_cast<uint32_t>(target_arm()) << "-|-"
+                << target_shoulderpitch() << "-|-"
                 << target_shoulderroll() << "-|-"
                 << target_elbowroll() << "-|-"
                 << target_elbowyaw() << "-|-"
@@ -204,7 +208,7 @@ namespace guWhiteboard
                 << target_elbowyawstiffness() << "-|-"
                 << target_wristyawstiffness() << "-|-"
                 << target_movement_time() << "-|-"
-                << arm_stopped() << "-|-"
+                << arm_active() << "-|-"
                 << arm_cmd_mask();
 
                 //                target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
