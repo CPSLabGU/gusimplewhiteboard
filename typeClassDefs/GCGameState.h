@@ -69,8 +69,10 @@
 
 #define DEFAULT_PLAYER_NUMBER 2
 
-#define kGSTeamBlue "TeamBlue"
-#define kGSTeamRed "TeamRed"
+#define MIPAL_TEAM_NO 11  // SPL Team number 11 in 2017 (as has been from 2013)
+
+#define kGSTeamHome "HomeTeam"
+#define kGSTeamAway "AwayTeam"
 
 #define kGSFirstHalf "FirstHalf"
 #define kGSSecondHalf "SecondHalf"
@@ -79,6 +81,7 @@
 #define kGSDropIn "Drop In"
 #define kGSPenaltyShots "PenaltyShots"
 #define kGSOverTime "OverTime"
+#define kGSTimeOut "TimeOut"
 
 #define kGSInitialReceived "InitialReceived"
 #define kGSReadyReceived "ReadyReceived"
@@ -95,14 +98,17 @@
 #define kGSNoPenalty "NoPenalty"
 #define kGSBallHolding "BallHolding"
 #define kGSPlayerPushing "PlayerPushing"
-#define kGSObstruction "Obstruction"
+//#define kGSObstruction "Obstruction"
+#define kGSIllegalMotionInSet "IllegalMotionInSet"
 #define kGSInactivePlayer "InactivePlayer"
 #define kGSIllegalDefender "IllegalDefender"
 #define kGSLeavingTheField "LeavingTheField"
-#define kGSPlayingWithHands "PlayingWithHands"
+//#define kGSPlayingWithHands "PlayingWithHands"
+#define kGSKickOffGoal "KickOffGoal"
 #define kGSRequestForPickup "RequestForPickup"
-#define kGSManualButtonPenalty "ManualButtonPenalty"
 #define kGSCoachMotion "CoachMotion"
+#define kGSPenaltySubstitute "PenaltySubstitute"
+#define kGSManualButtonPenalty "ManualButtonPenalty"
 
 
 #define kNoGSsignal "NoGSsignal"
@@ -114,31 +120,53 @@
 namespace guWhiteboard
 {
     /// team colours
-	enum TeamColours
-	{  TeamBlue=0, TeamRed=1, SentinelTeamColours=SPL_NUM_TEAMS };
+	enum TeamColors
+	{  BLUE=0, RED, YELLOW, BLACK, WHITE, GREEN, ORANGE, PURPLE, BROWN, GRAY, NUM_JERSEY_COLORS};
+	
+        static const char *teamColorsStr[NUM_JERSEY_COLORS] =
+        {
+                "Blue",
+                "Red",
+                "Yellow",
+                "Black",
+                "White",
+                "Green",
+                "Orange",
+                "Purple",
+		"Brown",
+		"Gray"
+        };
+
+	enum HomeAway
+	{  Home=0, Away=1 };
 
     /// game halves
 	enum GameHalf
 	{  SecondHalf, FirstHalf };
-
+/**
     /// kind of game (e.g., normal, drop-in, penalty, or overtime)
 	enum GameFormat
 	{  NormalGame, DropIn, PenaltyShots, OverTime };
-
+*/
     /// who kicked the ball out
 	enum BallOut
-	{  OutByBlue, OutByRed };
+	{  OutByHome, OutByAway };
 
     /// high level state of the Game Controller
-	enum GameState {  Initial, Ready, Set, Playing, Finished };
+	enum GameState {  Initial, Ready, Set, Playing, Finished, NUM_GAME_STATES };
 
+	/// Game sub-state
+	enum GameSubState {Normal, PenaltyShoot, Overtime, Timeout, NUM_SUB_STATES};
+	
+	
     /// received command from the Game Controller
 	enum GameControllerCommand
 	{  InitialReceived, ReadyReceived, SetReceived, PlayingReceived, FinishedReceived };
 
     /// penalty reason
 	enum PenaltyFormat
-	{ NoPenalty, BallHolding, PlayerPushing, Obstruction, InactivePlayer, IllegalDefender, LeavingTheField, PlayingWithHands, RequestForPickup, ManualButtonPenalty, CoachMotion };
+	{ NoPenalty = 0, BallHolding, PlayerPushing, IllegalMotionInSet, InactivePlayer, IllegalDefender, LeavingTheField,
+	  KickOffGoal, RequestForPickup, CoachMotion, PenaltySubstitute = 14, ManualButtonPenalty = 15};
 
     /// major game event signals (goals, kick-offs)
 	enum GameContollerSignal
@@ -151,60 +179,67 @@ namespace guWhiteboard
         class GCGameState
         {
 	   private:
+/*
             /// penalty states for all our players
 		 uint8_t  _whatPenaltyFromUsInGSgameController[SPL_NUM_PLAYERS];
             /// penalty states for all opponent players
 		 uint8_t _whatPenaltyFromThemInGSgameController[SPL_NUM_PLAYERS];
+*/
+            /// penalty states for all our players SPL_NUM_TEAMS
+		 uint8_t  _whatPenaltyFromGSgameController[SPL_NUM_TEAMS][SPL_NUM_PLAYERS];
 
             /// current score
-		 int16_t _score [SentinelTeamColours];
+		 int16_t _score [SPL_NUM_TEAMS];
 
             /// is this a drop-in team?
-        bool _dropInTeam;
+		bool _dropInTeam;
 
             /// GS half
                 PROPERTY(GameHalf, theGSHalf )
             ///  GS game format
-                PROPERTY(GameFormat, theGSGameformat )
+                PROPERTY(GameSubState, theGSGameformat )
             /// our internal state
                 PROPERTY(GameState, theGSGameState )  
             ///  GS GameControllerCommand
                 PROPERTY(GameControllerCommand, theGSGameControllerCommand )  
             ///  GS team that has kickoff
-                PROPERTY(TeamColours, theGSteamThatHasKickOf )  
+                PROPERTY(HomeAway, theGSteamThatHasKickOf )  
             ///  GS team that has ball after it went out
-                PROPERTY(TeamColours, theGSteamCausedlastDropIn )
+                PROPERTY(HomeAway, theGSteamCausedlastDropIn )
             /// number of seconds remaining in the current half of the game
                 PROPERTY(int16_t, theSecondReminingInHalf )  
             ///  GS team that has ball after it went out
-                PROPERTY(TeamColours, theGScolourWePlayWith )  
+                PROPERTY(HomeAway, homeaway )  
 
         public:
             /** designated constructor */
             GCGameState(GameHalf theGSHalf = FirstHalf, 
-                                       GameFormat theGSGameformat = NormalGame,
-				       GameState theGSGameState = Initial,
-				       TeamColours theGSteamThatHasKickOf = TeamBlue,
-				       TeamColours theGSteamCausedlastDropIn = TeamBlue,
-				       int16_t theSecondReminingInHalf = TeamBlue ,
-				       TeamColours theGScolourWePlayWith = TeamBlue
-				       ):
-                                      _theGSHalf(theGSHalf), 
-                                      _theGSGameformat(theGSGameformat),
-                                      _theGSGameState(theGSGameState),
-                                      _theGSteamThatHasKickOf(theGSteamThatHasKickOf),
-                                      _theGSteamCausedlastDropIn(theGSteamCausedlastDropIn),
-                                      _theSecondReminingInHalf(theSecondReminingInHalf),
-                                      _theGScolourWePlayWith(theGScolourWePlayWith)
-                                        {
-			for (int i=0; i< SPL_NUM_PLAYERS; i++)
+			GameSubState theGSGameformat = Normal,
+			GameState theGSGameState = Initial,
+			HomeAway theGSteamThatHasKickOf = Home,
+			HomeAway theGSteamCausedlastDropIn = Home,
+			int16_t theSecondReminingInHalf = Home ,
+			HomeAway homeaway = Home
+			):
+		       _theGSHalf(theGSHalf), 
+		       _theGSGameformat(theGSGameformat),
+		       _theGSGameState(theGSGameState),
+		       _theGSteamThatHasKickOf(theGSteamThatHasKickOf),
+		       _theGSteamCausedlastDropIn(theGSteamCausedlastDropIn),
+		       _theSecondReminingInHalf(theSecondReminingInHalf),
+		       _homeaway(homeaway)
+	    {
+		for (int i=0; i< SPL_NUM_TEAMS; i++) {
+			for (int j=0; j< SPL_NUM_PLAYERS; j++)
 			{
-				_whatPenaltyFromUsInGSgameController[i]=NoPenalty;
-				_whatPenaltyFromThemInGSgameController[i]=NoPenalty;
+				//_whatPenaltyFromUsInGSgameController[i]=NoPenalty;
+				//_whatPenaltyFromThemInGSgameController[i]=NoPenalty;
+				_whatPenaltyFromGSgameController[i][j]=NoPenalty;
 			}
-			_dropInTeam=false;
-			for (int i=TeamBlue; i< SentinelTeamColours; i++) _score[i]=0;
-                }
+		}
+		_dropInTeam=false;
+		for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=0;
+	    }
 
             /** string constructor */
             GCGameState(const std::string &names) { from_string(names); }
@@ -217,12 +252,21 @@ namespace guWhiteboard
                        _theGSteamThatHasKickOf(other._theGSteamThatHasKickOf),
                        _theGSteamCausedlastDropIn(other._theGSteamCausedlastDropIn),
                        _theSecondReminingInHalf(other._theSecondReminingInHalf),
-                       _theGScolourWePlayWith(other._theGScolourWePlayWith)
-                       { for (int i=0; i< SPL_NUM_PLAYERS; i++)
-			{
-				_whatPenaltyFromUsInGSgameController[i]=other._whatPenaltyFromUsInGSgameController[i];
-				_whatPenaltyFromThemInGSgameController[i]=other._whatPenaltyFromThemInGSgameController[i];
-			}
+                       _homeaway(other._homeaway)
+		       {
+			    for (int i=0; i< SPL_NUM_TEAMS; i++) {
+				for (int j=0; j< SPL_NUM_PLAYERS; j++)
+				{
+					//_whatPenaltyFromUsInGSgameController[i]=NoPenalty;
+					//_whatPenaltyFromThemInGSgameController[i]=NoPenalty;
+					_whatPenaltyFromGSgameController[i][j]=other._whatPenaltyFromGSgameController[i][j];
+				}
+			    }
+//                       { for (int i=0; i< SPL_NUM_PLAYERS; i++)
+//			{
+//				_whatPenaltyFromUsInGSgameController[i]=other._whatPenaltyFromUsInGSgameController[i];
+//				_whatPenaltyFromThemInGSgameController[i]=other._whatPenaltyFromThemInGSgameController[i];
+//			}
 			_dropInTeam=other._dropInTeam;
 			for (int i=0; i< SPL_NUM_TEAMS; i++) _score[i]=other._score[i];
                       }
@@ -230,40 +274,49 @@ namespace guWhiteboard
             /** equals operator */
             const GCGameState &operator=(const GCGameState &other) { memcpy(this, &other, sizeof(*this)); return *this; }
 
-            /** Set the Penalty vectors */
-	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInGSgameController[SPL_NUM_PLAYERS],
-		                    const PenaltyFormat thePenaltyFromThemInGSgameController[SPL_NUM_PLAYERS])
-			    {
-				    for (int i=0; i<SPL_NUM_PLAYERS; i++)
-				    {
-						_whatPenaltyFromUsInGSgameController[i]=thePenaltyFromUsInGSgameController[i];
-						_whatPenaltyFromThemInGSgameController[i]=thePenaltyFromThemInGSgameController[i];
-				    }
-			    }
+            /** Set the Penalty vectors */ 
+	//    void setPenaltyVectors(const PenaltyFormat thePenaltyFromUsInGSgameController[SPL_NUM_PLAYERS],
+	//	                    const PenaltyFormat thePenaltyFromThemInGSgameController[SPL_NUM_PLAYERS])
+	//		    {
+	//			    for (int i=0; i<SPL_NUM_PLAYERS; i++)
+	//			    {
+	//					_whatPenaltyFromUsInGSgameController[i]=thePenaltyFromUsInGSgameController[i];
+	//					_whatPenaltyFromThemInGSgameController[i]=thePenaltyFromThemInGSgameController[i];
+	//			    }
+	//		    }
+	    void setPenaltyVectors(const PenaltyFormat thePenaltyFromGSgameController[SPL_NUM_TEAMS][SPL_NUM_PLAYERS])
+	    {
+		for (int i=0; i< SPL_NUM_TEAMS; i++) {
+			for (int j=0; j< SPL_NUM_PLAYERS; j++)
+			{
+				_whatPenaltyFromGSgameController[i][j]=thePenaltyFromGSgameController[i][j];
+			}
+		}
+	    }
 
             /** Set the score */
-	    void setScore(int16_t goalsByBlue, int16_t goalsByRed)
-		{  _score[TeamBlue] = goalsByBlue;
-		   _score[TeamRed] = goalsByRed;
+	    void setScore(int16_t goalsByHome, int16_t goalsByAway)
+		{  _score[Home] = goalsByHome;
+		   _score[Away] = goalsByAway;
 		}
 
             /** getter for the blue teams score  */
-		int16_t getScoreBlue() { return _score[TeamBlue];}
+		int16_t getScoreHome() { return _score[Home];}
             /** getter for the red teams score  */
-		int16_t getScoreRed() { return _score[TeamRed];}
+		int16_t getScoreAway() { return _score[Away];}
 
             /** getter our teams score  */
-		int16_t getOurScore() { return _score[_theGScolourWePlayWith];}
+		int16_t getOurScore() { return _score[_homeaway];}
             /** getter the other teams score  */
 		int16_t getTheirScore() { 
-				if (TeamBlue== _theGScolourWePlayWith ) return getScoreRed();
-				else return getScoreBlue(); }
+				if (Home == _homeaway ) return getScoreAway();
+				else return getScoreHome(); }
 
             /** getter for the number of penalties I've had   */
 		PenaltyFormat myPenaltyIs (int PlayerNumber)
 		{	// the idnex in the structure starts at 0, numebrs on robot's backs start at 1
 			  if ((0<PlayerNumber) && (PlayerNumber<=SPL_NUM_PLAYERS ))
-					return static_cast<PenaltyFormat>(_whatPenaltyFromUsInGSgameController[PlayerNumber-1]);
+					return static_cast<PenaltyFormat>(_whatPenaltyFromGSgameController[_homeaway][PlayerNumber-1]);
 			  else return NoPenalty;
 		}
 
@@ -280,7 +333,7 @@ namespace guWhiteboard
 		void setMyPenalty(int PlayerNumber, PenaltyFormat thePenalty)
 				{
 					//if (ManualButtonPenalty==thePenalty )
-					   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=thePenalty;
+					   _whatPenaltyFromGSgameController[_homeaway][PlayerNumber-1]=thePenalty;
 					//else 
 					 //   _whatPenaltyFromUsInGSgameController[PlayerNumber-1]=NoPenalty;
 				}
@@ -292,11 +345,12 @@ namespace guWhiteboard
             std::string description()
             {
                 std::ostringstream ss;
-	        if  ( TeamBlue == theGSteamThatHasKickOf() ) ss << kGSTeamBlue<<","; else ss << kGSTeamRed<<",";
+		if  ( Home == homeaway() ) ss << kGSTeamHome<<","; else ss << kGSTeamAway<<",";
+	        if  ( Home == theGSteamThatHasKickOf() ) ss << kGSTeamHome<<","; else ss << kGSTeamAway<<",";
 
 	        if  ( FirstHalf == theGSHalf() ) ss << kGSFirstHalf<<","; else ss << kGSSecondHalf<<",";
 
-	        if  ( NormalGame == theGSGameformat() ) ss << kGSNormalGame<<","; else ss << kGSPenaltyShots<<",";
+	        if  ( Normal == theGSGameformat() ) ss << kGSNormalGame<<","; else ss << kGSPenaltyShots<<",";
 
 		switch(int (_theGSGameState))
 		{ case Initial: ss << kGSInitial<<",";
@@ -309,19 +363,19 @@ namespace guWhiteboard
 			break;
 		  case Finished: ss << kGSFinished<<",";
 			break;
-	          default: ss << _theGSGameState <<",";
+          default: ss << _theGSGameState <<",";
 		}
 
 
                 for (int i=0; i< SPL_NUM_PLAYERS; i++)
-		switch (_whatPenaltyFromUsInGSgameController[i] )
+		switch (_whatPenaltyFromGSgameController[_homeaway][i] )
 		{ case NoPenalty : ss << kGSNoPenalty<<",";
 			break;
 		  case BallHolding : ss << kGSBallHolding<<",";
 			break;
 		  case PlayerPushing : ss << kGSPlayerPushing<<",";
 			break;
-		  case Obstruction : ss << kGSObstruction<<",";
+		  case IllegalMotionInSet : ss << kGSIllegalMotionInSet<<",";
 			break;
 		  case InactivePlayer : ss << kGSInactivePlayer<<",";
 			break;
@@ -329,13 +383,19 @@ namespace guWhiteboard
 			break;
 		  case LeavingTheField : ss << kGSLeavingTheField<<",";
 			break;
-		  case PlayingWithHands : ss << kGSPlayingWithHands<<",";
+		  case KickOffGoal : ss << kGSKickOffGoal<<",";
 			break;
 		  case RequestForPickup : ss << kGSRequestForPickup<<",";
 			break;
+          case CoachMotion : ss << kGSCoachMotion<<",";
+            break;
+          case PenaltySubstitute : ss << kGSPenaltySubstitute<<",";
+            break;
+          case ManualButtonPenalty : ss << kGSManualButtonPenalty<<",";
+            break;
 		}
 
-		ss << getScoreBlue() << "," <<  getScoreRed() << ",";
+		ss << getScoreHome() << "," <<  getScoreAway() << ",";
 
 
 
