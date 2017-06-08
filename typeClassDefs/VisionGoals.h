@@ -72,11 +72,25 @@ public:
 					cam = Top;
 				else
 					cam = Bottom;
-				
-				postInfo.set_outerBottom(t.c_str());
-				postInfo.set_outerTop(t.c_str());
-				postInfo.set_innerBottom(t.c_str());
-				postInfo.set_innerTop(t.c_str());
+	
+				std::vector<std::string> com = components_of_string_separated(t, '(');
+				GUPoint<int16_t> outerBottom(com.at(1).c_str());
+				GUPoint<int16_t> outerTop(com.at(2).c_str());
+				GUPoint<int16_t> innerBottom(com.at(3).c_str());
+				GUPoint<int16_t> innerTop(com.at(4).c_str());
+
+				postInfo.set_outerBottom_X(outerBottom.x);
+				postInfo.set_outerBottom_Y(outerBottom.y);
+
+				postInfo.set_outerTop_X(outerTop.x);
+				postInfo.set_outerTop_Y(outerTop.y);
+
+				postInfo.set_innerBottom_X(innerBottom.x);
+				postInfo.set_innerBottom_Y(innerBottom.y);
+
+				postInfo.set_innerTop_X(innerTop.x);
+				postInfo.set_innerTop_Y(innerTop.y);
+
 				setLeftGoalPost(postInfo, cam);
 			}
 		}
@@ -94,12 +108,25 @@ public:
 					cam = Top;
 				else
 					cam = Bottom;
-				
+
 				std::vector<std::string> com = components_of_string_separated(t, '(');
-				postInfo.set_outerBottom(com.at(1).c_str());
-				postInfo.set_outerTop(com.at(2).c_str());
-				postInfo.set_innerBottom(com.at(3).c_str());
-				postInfo.set_innerTop(com.at(4).c_str());
+				GUPoint<int16_t> outerBottom(com.at(1).c_str());
+				GUPoint<int16_t> outerTop(com.at(2).c_str());
+				GUPoint<int16_t> innerBottom(com.at(3).c_str());
+				GUPoint<int16_t> innerTop(com.at(4).c_str());
+
+				postInfo.set_outerBottom_X(outerBottom.x);
+				postInfo.set_outerBottom_Y(outerBottom.y);
+
+				postInfo.set_outerTop_X(outerTop.x);
+				postInfo.set_outerTop_Y(outerTop.y);
+
+				postInfo.set_innerBottom_X(innerBottom.x);
+				postInfo.set_innerBottom_Y(innerBottom.y);
+
+				postInfo.set_innerTop_X(innerTop.x);
+				postInfo.set_innerTop_Y(innerTop.y);
+
 				setRightGoalPost(postInfo, cam);
 			}
 		}
