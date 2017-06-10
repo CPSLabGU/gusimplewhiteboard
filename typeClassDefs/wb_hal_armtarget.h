@@ -10,6 +10,7 @@
 #define wb_hal_armtarget_h
 
 #include <gu_util.h>
+#include <stdint.h>
 
 #define LEFT_ARM 0
 #define RIGHT_ARM 1
