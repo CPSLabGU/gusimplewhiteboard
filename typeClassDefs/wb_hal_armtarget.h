@@ -69,19 +69,6 @@
 #define RIGHT_WRIST_YAW_LEFT_RAD -LEFT_WRIST_YAW_RIGHT_RAD
 
 /**
- *  flex_t is used to circumvent direct comparisons of floats.
- *  Its is specifically used to decide if two message are the same,
- *  or a message hasn't changed from a previous check.
- *
- *  It is not used to compare two separately computed float values.
- *
- */
- union flex_t {
-    float   decimal;
-    uint32_t integer;
-};
-
-/**
  * HAL_ArmTarget c struct
  *
  * The struct is designed around a single arm,
@@ -100,78 +87,83 @@ struct wb_hal_armtarget
     /** target arm number */
     PROPERTY(uint8_t, target_arm)
 
-    /** target shoulder pitch angle in radians */
-    PROPERTY(float, target_shoulderpitch)
+    /** target shoulder pitch angle in 10ths of degrees */
+    PROPERTY(int16_t, target_shoulderpitch)
 
     /** target shoulder roll angle in radians */
-    PROPERTY(float, target_shoulderroll)
+    PROPERTY(int16_t, target_shoulderroll)
 
     /** target elbow roll angle in radians */
-    PROPERTY(float, target_elbowroll)
+    PROPERTY(int16_t, target_elbowroll)
 
     /** target elbow yaw angle in radians */
-    PROPERTY(float, target_elbowyaw)
+    PROPERTY(int16_t, target_elbowyaw)
 
     /** target wrist yaw in radians */
-    PROPERTY(float, target_wristyaw)
+    PROPERTY(int16_t, target_wristyaw)
 
     /** target shoulder pitch stiffness */
-    PROPERTY(float, target_shoulderpitchstiffness)
+    PROPERTY(uint8_t, target_shoulderpitchstiffness)
 
     /** target shoulder roll stiffness */
-    PROPERTY(float, target_shoulderrollstiffness)
+    PROPERTY(uint8_t, target_shoulderrollstiffness)
 
     /** target elbow roll stiffness */
-    PROPERTY(float, target_elbowrollstiffness)
+    PROPERTY(uint8_t, target_elbowrollstiffness)
 
     /** target elbow yaw stiffness */
-    PROPERTY(float, target_elbowyawstiffness)
+    PROPERTY(uint8_t, target_elbowyawstiffness)
 
     /** target wrist yaw stiffness */
-    PROPERTY(float, target_wristyawstiffness)
+    PROPERTY(uint8_t, target_wristyawstiffness)
 
-    /** The elapsed time in which the movement should be completed.
-     *  Stored in micro seconds.
-     */
-    PROPERTY(int, target_movement_time)
+    /** The elapsed time, in mSec, in which the movement should be completed. */
+    PROPERTY(uint16_t, target_movement_time)
 
-    /** Should the current motion be stopped (if setting)
-     *    or
-     *  has the arm stopped (if a status message)
+    /**
+     *  Is the arm active (true) or off (false)
      */
     BIT_PROPERTY(arm_active)
 
-    /** Should the command be processed again by the motion module?
-     *  When changes are made, this bit is set to true.
-     *  Motion sets this back to false when the command has been processed. */
-    BIT_PROPERTY(arm_cmd_mask)
-
+//    /** Should the command be processed again by the motion module?
+//     *  Each new control message should have this bit is set to true.
+//     *  gunaoqiinterface sets this back to false when the command has been processed.
+//     */
+//    BIT_PROPERTY(arm_cmd_mask)
+    
 
 #ifdef __cplusplus
     /**
     * constructor for the stuct of HAL_ArmTarget. this is the data that is placed on the Whiteboard
-    * @param target_shoulderpitch desired shoulder pitch
-    * @param target_shoulderroll  desired shoulder roll
-    * @param target_elbowroll     desired elbow roll
-    * @param target_elbowyaw      desired elbow yaw
-    * @param target_wristyaw      desired wrist yaw
-    * @param target_movement_time time to take
-    * @param arm_active           is the arm active
+    * @param target_shoulderpitch           desired shoulder pitch
+    * @param target_shoulderroll            desired shoulder roll
+    * @param target_elbowroll               desired elbow roll
+    * @param target_elbowyaw                desired elbow yaw
+    * @param target_wristyaw                desired wrist yaw
+    * @param target_shoulderpitchstiffness  desired stiffness in the shoulder pitch axis
+    * @param target_shoulderrollstiffness   desired stiffness in the shoulder roll axis
+    * @param target_elbowrollstiffness      desired stiffness in the elbow roll axis
+    * @param target_elbowyawstiffness       desired stiffness in the elbow yaw axis
+    * @param target_wristyawstiffness       desired stiffness in the wrist yaw axis
+    * @param target_movement_time           time, expressed mSec to complete the movement
+    *                                          (Naoqi's way of setting the speed)
+    * @param arm_active                     is the arm active (true) or switched off (false)
     */
     wb_hal_armtarget(uint8_t target_arm = LEFT_ARM,
-                     float target_shoulderpitch = 0,
-                     float target_shoulderroll = 0,
-                     float target_elbowroll = 0,
-                     float target_elbowyaw = 0,
-                     float target_wristyaw = 0,
-                     float target_shoulderpitchstiffness = 0,
-                     float target_shoulderrollstiffness = 0,
-                     float target_elbowrollstiffness = 0,
-                     float target_elbowyawstiffness = 0,
-                     float target_wristyawstiffness = 0,
-                     int target_movement_time = 1000000,
+                      int16_t target_shoulderpitch = 0,
+                      int16_t target_shoulderroll = 0,
+                      int16_t target_elbowroll = 0,
+                      int16_t target_elbowyaw = 0,
+                      int16_t target_wristyaw = 0,
+                     uint8_t target_shoulderpitchstiffness = 0,
+                     uint8_t target_shoulderrollstiffness = 0,
+                     uint8_t target_elbowrollstiffness = 0,
+                     uint8_t target_elbowyawstiffness = 0,
+                     uint8_t target_wristyawstiffness = 0,
+                     uint16_t target_movement_time = 65535,
                      bool arm_active = false)
     {
+
         set_target_arm(target_arm);
         set_target_shoulderpitch(target_shoulderpitch);
         set_target_shoulderroll(target_shoulderroll);
@@ -185,68 +177,88 @@ struct wb_hal_armtarget
         set_target_wristyawstiffness(target_wristyawstiffness);
         set_target_movement_time(target_movement_time);
         set_arm_active(arm_active);
-        set_arm_cmd_mask(false);
+//        set_arm_cmd_mask(false);
     }
 
-    bool operator == (const wb_hal_armtarget &rhs) {
+    /** Copy Constructor */
+    wb_hal_armtarget(const wb_hal_armtarget &other)
+    {
+        set_target_arm(other.target_arm());
+        set_target_shoulderpitch(other.target_shoulderpitch());
+        set_target_shoulderroll(other.target_shoulderroll());
+        set_target_elbowroll(other.target_elbowroll());
+        set_target_elbowyaw(other.target_elbowyaw());
+        set_target_wristyaw(other.target_wristyaw());
+        set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+        set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+        set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+        set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+        set_target_wristyawstiffness(other.target_wristyawstiffness());
+        set_target_movement_time(other.target_movement_time());
+        set_arm_active(other.arm_active());
+        //        set_arm_cmd_mask(other.arm_cmd_mask());
+    }
+    
+    /** Copy Assignment Operator */
+    wb_hal_armtarget &operator = (const wb_hal_armtarget &other)
+    {
+        set_target_arm(other.target_arm());
+        set_target_shoulderpitch(other.target_shoulderpitch());
+        set_target_shoulderroll(other.target_shoulderroll());
+        set_target_elbowroll(other.target_elbowroll());
+        set_target_elbowyaw(other.target_elbowyaw());
+        set_target_wristyaw(other.target_wristyaw());
+        set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+        set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+        set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+        set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+        set_target_wristyawstiffness(other.target_wristyawstiffness());
+        set_target_movement_time(other.target_movement_time());
+        set_arm_active(other.arm_active());
+        //        set_arm_cmd_mask(other.arm_cmd_mask());
+        return *this;
+    }
 
-        union flex_t lhsShouldPitch, lhsShoulderRoll, lhsElbowRoll,lhsElbowYaw;
-        union flex_t lhsWristYaw, lhsShoulderPitchStiffness, lhsShoulderRollStiffness;
-        union flex_t lhsElbowRollStiffness, lhsElbowYawStiffness, lhsWristYawStiffness;
+    /**
+      * Perform a BINARY comparision between two wb_hal_armtarget messages.
+      *
+     */
+    inline bool operator == (const wb_hal_armtarget &rhs) {
 
-        union flex_t rhsShouldPitch, rhsShoulderRoll, rhsElbowRoll, rhsElbowYaw;
-        union flex_t rhsWristYaw,
-        rhsShoulderPitchStiffness, rhsShoulderRollStiffness;
-        union flex_t rhsElbowRollStiffness, rhsElbowYawStiffness, rhsWristYawStiffness;
-
-
-        lhsShouldPitch.decimal = target_shoulderpitch();
-        lhsShoulderRoll.decimal = target_shoulderroll();
-        lhsElbowRoll.decimal = target_elbowroll();
-        lhsElbowYaw.decimal = target_elbowyaw();
-        lhsWristYaw.decimal = target_wristyaw();
-        lhsShoulderPitchStiffness.decimal = target_shoulderpitchstiffness();
-        lhsShoulderRollStiffness.decimal = target_shoulderrollstiffness();
-        lhsElbowRollStiffness.decimal = target_elbowrollstiffness();
-        lhsElbowYawStiffness.decimal = target_elbowyawstiffness();
-        lhsWristYawStiffness.decimal = target_wristyawstiffness();
-
-        rhsShouldPitch.decimal = rhs.target_shoulderpitch();
-        rhsShoulderRoll.decimal = rhs.target_shoulderroll();
-        rhsElbowRoll.decimal = rhs.target_elbowroll();
-        rhsElbowYaw.decimal = rhs.target_elbowyaw();
-        rhsWristYaw.decimal = rhs.target_wristyaw();
-        rhsShoulderPitchStiffness.decimal = rhs.target_shoulderpitchstiffness();
-        rhsShoulderRollStiffness.decimal = rhs.target_shoulderrollstiffness();
-        rhsElbowRollStiffness.decimal = rhs.target_elbowrollstiffness();
-        rhsElbowYawStiffness.decimal = rhs.target_elbowyawstiffness();
-        rhsWristYawStiffness.decimal = rhs.target_wristyawstiffness();
 
         if (
-            target_arm() == rhs.target_arm() &&
-            lhsShouldPitch.integer == rhsShouldPitch.integer &&
-            lhsShoulderRoll.integer == rhsShoulderRoll.integer &&
-            lhsElbowRoll.integer == rhsElbowRoll.integer &&
-            lhsElbowYaw.integer == rhsElbowYaw.integer &&
-            lhsWristYaw.integer == rhsWristYaw.integer &&
-            lhsShoulderPitchStiffness.integer == rhsShoulderPitchStiffness.integer &&
-            lhsShoulderRollStiffness.integer == rhsShoulderRollStiffness.integer &&
-            lhsElbowRollStiffness.integer == rhsElbowRollStiffness.integer &&
-            lhsElbowYawStiffness.integer == rhsElbowYawStiffness.integer &&
-            lhsWristYawStiffness.integer == rhsWristYawStiffness.integer &&
-            target_movement_time() == rhs.target_movement_time() &&
-            arm_active() == rhs.arm_active() &&
-            arm_cmd_mask() == rhs.arm_cmd_mask()
-            )
+            target_arm() == rhs.target_arm()
+            && target_shoulderpitch() == rhs.target_shoulderpitch()
+            && target_shoulderroll() == rhs.target_shoulderroll()
+            && target_elbowroll() == rhs.target_elbowroll()
+            && target_elbowyaw() == rhs.target_elbowyaw()
+            && target_wristyaw() == rhs.target_wristyaw()
+            && target_shoulderpitchstiffness() == rhs.target_shoulderpitchstiffness()
+            && target_shoulderrollstiffness() == rhs.target_shoulderrollstiffness()
+            && target_elbowrollstiffness() == rhs.target_elbowrollstiffness()
+            && target_elbowyawstiffness() == rhs.target_elbowyawstiffness()
+            && target_wristyawstiffness() == rhs.target_wristyawstiffness()
+            && target_movement_time() == rhs.target_movement_time()
+            && arm_active() == rhs.arm_active()
+//            && arm_cmd_mask() == rhs.arm_cmd_mask()
+           )
         {
             return true;
         } else {
-            set_arm_cmd_mask(rhs.arm_cmd_mask());
             return false;
         }
     }
+    
+    /** inverse comparison operator */
+    inline bool operator != (const wb_hal_armtarget &rhs)
+    {
+        return !((*this) == rhs);
+    }
 
-#endif
+
+#endif // __cplusplus
 };
+
+
 
 #endif //wb_hal_armtarget_h

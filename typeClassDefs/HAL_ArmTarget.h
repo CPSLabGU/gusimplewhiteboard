@@ -12,7 +12,12 @@
 #define HAL_ArmTarget_DEFINED
 
 #include "wb_hal_armtarget.h"
+#include <cmath>
 #include <sstream>
+
+#ifndef M_PIF
+#define M_PIF static_cast<float>(M_PI)
+#endif  // M_PIF
 
 namespace guWhiteboard
 {
@@ -32,12 +37,12 @@ namespace guWhiteboard
 	* Examples of what to do with the class (note that HAL_ArmTarget needs to be assigned to desired arm)
 	*
     *     //Move (left) arm down such that it is parallel to the body at an angle of 5 deg with elbow straight, inner-forearm and palm facing body over 1 second
-	*     HAL_ArmTarget().GoToWithTime_Rad(1.5708, 0.0873, -0.0349, -1.5708, -1.5708, 1000000);  // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
-    *     HAL_ArmTarget().GoToWithTime_Deg(90, 5, -2, -90, -90, 1000000);                        // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
+	*     HAL_ArmTarget().GoToWithTime_Rad(1.5708, 0.0873, -0.0349, -1.5708, -1.5708, 10000);  // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
+    *     HAL_ArmTarget().GoToWithTime_Deg(90, 5, -2, -90, -90, 10000);                        // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
     *
     *     //Move (right) arm down such that it is parallel to the body at an angle of 5 deg with elbow straight, inner-forearm and palm facing body over 1 second
-    *     HAL_ArmTarget().GoToWithTime_Rad(1.5708, -0.0873, 0.0349, 1.5708, 1.5708, 1000000);    // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
-    *     HAL_ArmTarget().GoToWithTime_Deg(90, -5, 2, 90, 90, 1000000);                          // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
+    *     HAL_ArmTarget().GoToWithTime_Rad(1.5708, -0.0873, 0.0349, 1.5708, 1.5708, 10000);    // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
+    *     HAL_ArmTarget().GoToWithTime_Deg(90, -5, 2, 90, 90, 10000);                          // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
     *
     *     HAL_ArmTarget().Stop(); 	//Stop moving the arm, can be issued mid-movement
 	*
@@ -53,11 +58,7 @@ namespace guWhiteboard
             /**
             * Constructor, defaults to LEFT_ARM
             */
-            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm,
-                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
-                                                                                  0.0, 0.0, 0.0, 0.0, 0.0,
-                                                                                  1000000,false) {}
-            //HAL_ArmTarget(): wb_hal_armtarget() {}
+            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
 
             /**
              * Specify which arm this instance manages.
@@ -70,117 +71,139 @@ namespace guWhiteboard
             }
 
             /**
-             * Set stopping vars
+             * Stop the arm
              */
             void Stop()
             {
                 set_arm_active(false);
-                set_arm_cmd_mask(true);
             }
-
-
-            void SetArmStiffnessMax()
+        
+            /**
+             * Activate the arm
+             */
+            void Activate()
             {
-                set_target_shoulderpitchstiffness(1.0f);
-                set_target_shoulderrollstiffness(1.0f);
-                set_target_elbowrollstiffness(1.0f);
-                set_target_elbowyawstiffness(1.0f);
-                set_target_wristyawstiffness(1.0f);
-            }
-
-            void SetArmStiffnessNormal()
-            {
-                set_target_shoulderpitchstiffness(0.6f);
-                set_target_shoulderrollstiffness(0.6f);
-                set_target_elbowrollstiffness(0.6f);
-                set_target_elbowyawstiffness(0.6f);
-                set_target_wristyawstiffness(0.6f);
-            }
-
-            void SetArmStiffnessOff()
-            {
-                set_target_shoulderpitchstiffness(0.0f);
-                set_target_shoulderrollstiffness(0.0f);
-                set_target_elbowrollstiffness(0.0f);
-                set_target_elbowyawstiffness(0.0f);
-                set_target_wristyawstiffness(0.0f);
+                set_arm_active(true);
             }
 
             /**
-             * move to position expressed in degrees over a given time
-             * @param shoulderpitch (down to up)
-             * @param shoulderroll  (out to in)
-             * @param elbowroll     (straight to bent)
-             * @param elbowyaw      (rolled right to rolled left)
-             * @param wristyaw      (rolled right to rolled left)
-
-             * @param time time in micro seconds for the motion to take
+             *  Convenience function to set the stiffness
+             *  of all the arm's joints to the maximum (1.0f).
              */
-            void GoToWithTime_Deg(float shoulderpitch, float shoulderroll, float elbowroll, float elbowyaw, float wristyaw, int time = 1000000)
+            void SetArmStiffnessMax()
             {
-                GoToWithTime_Rad(static_cast<float>(DEG2RAD(shoulderpitch)),
-                                 static_cast<float>(DEG2RAD(shoulderroll)),
-                                 static_cast<float>(DEG2RAD(elbowroll)),
-                                 static_cast<float>(DEG2RAD(elbowyaw)),
-                                 static_cast<float>(DEG2RAD(wristyaw)),
-                                 time);
+                set_shoulderpitchstiffness(1.0f);
+                set_shoulderrollstiffness(1.0f);
+                set_elbowrollstiffness(1.0f);
+                set_elbowyawstiffness(1.0f);
+                set_wristyawstiffness(1.0f);
+            }
+
+            /**
+             *  Convenience function to set the stiffness
+             *  of all the arm's joints to what Aldebaran
+             *  considers 'normal' (0.6f).
+             */
+            void SetArmStiffnessNormal()
+            {
+                set_shoulderpitchstiffness(0.6f);
+                set_shoulderrollstiffness(0.6f);
+                set_elbowrollstiffness(0.6f);
+                set_elbowyawstiffness(0.6f);
+                set_wristyawstiffness(0.6f);
+            }
+
+            /**
+             *  Convenience function to set uniform stiffness
+             *  on all arm joints.
+             *
+             *  @param stiffness float Stiffness setting between 0.0 and 1.0 (float).
+             */
+            void SetArmStiffness(float stiffness)
+            {
+                if ((stiffness <= 1.0f) && (stiffness >=0.0f)) {
+                    set_shoulderpitchstiffness(stiffness);
+                    set_shoulderrollstiffness(stiffness);
+                    set_elbowrollstiffness(stiffness);
+                    set_elbowyawstiffness(stiffness);
+                    set_wristyawstiffness(stiffness);
+                }
+            }
+
+            /**
+             *  Convenience function to turn off stiffness
+             *  in all the arm's joints (0.0f).
+             */
+            void SetArmStiffnessOff()
+            {
+                set_shoulderpitchstiffness(0.0f);
+                set_shoulderrollstiffness(0.0f);
+                set_elbowrollstiffness(0.0f);
+                set_elbowyawstiffness(0.0f);
+                set_wristyawstiffness(0.0f);
             }
 
             /**
              * move to position in radians over a given time
-             * @param shoulderpitch (down to up)
-             * @param shoulderroll  (out to in)
-             * @param elbowroll     (straight to bent)
-             * @param elbowyaw      (rolled right to rolled left)
-             * @param wristyaw      (rolled right to rolled left)
-             * @param time time in micro seconds for the motion to take
+             * @param shoulderpitch  down to up
+             * @param shoulderroll   out to in
+             * @param elbowroll      straight to bent
+             * @param elbowyaw       rolled right to rolled left
+             * @param wristyaw       rolled right to rolled left
+             * @param time           time in mSec for the motion to take
              */
-            void GoToWithTime_Rad(float shoulderpitch, float shoulderroll, float elbowroll, float elbowyaw, float wristyaw, int time = 1000000)
+            void GoToWithTime_Rad(float shoulderpitch,
+                                  float shoulderroll,
+                                  float elbowroll,
+                                  float elbowyaw,
+                                  float wristyaw,
+                                  uint16_t time = 65535)
             {
-/*
-                if (shoulderpitch < SHOULDER_PITCH_LIMIT_DOWN_RAD && shoulderpitch > SHOULDER_PITCH_LIMIT_UP_RAD) {
-                    set_target_shoulderpitch(shoulderpitch);
-                }
-                if (elbowyaw < LEFT_ELBOW_YAW_RIGHT_RAD && elbowyaw > LEFT_ELBOW_YAW_LEFT_RAD) { // LEFT and RIGHT are same for this axis.
-                    set_target_elbowyaw(elbowyaw);
-                }
-                if (wristyaw < LEFT_WRIST_YAW_RIGHT_RAD && wristyaw > LEFT_WRIST_YAW_LEFT_RAD) { // LEFT and RIGHT are same for this axis.
-                    set_target_wristyaw(wristyaw);
-                }
+                set_shoulderpitch_RAD(shoulderpitch);
+                set_shoulderroll_RAD(shoulderroll);
+                set_elbowroll_RAD(elbowroll);
+                set_elbowyaw_RAD(elbowyaw);
+                set_wristyaw_RAD(wristyaw);
 
-                if (_target_arm == LEFT_ARM) {
-                    if (shoulderroll < LEFT_SHOULDER_ROLL_OUT_RAD && shoulderroll > LEFT_SHOULDER_ROLL_IN_RAD) {
-                        set_target_shoulderroll(shoulderroll);
-                    }
-                    if (elbowroll < LEFT_ELBOW_ROLL_STRAIGHT_RAD && elbowroll > LEFT_ELBOW_ROLL_BENT_RAD) {
-                        set_target_elbowroll(elbowroll);
-                    }
-                } else if (_target_arm == RIGHT_ARM) {
-                    if (shoulderroll > RIGHT_SHOULDER_ROLL_OUT_RAD && shoulderroll < RIGHT_SHOULDER_ROLL_IN_RAD) {
-                        set_target_shoulderroll(shoulderroll);
-                    }
-                    if (elbowroll > RIGHT_ELBOW_ROLL_STRAIGHT_RAD && elbowroll < RIGHT_ELBOW_ROLL_BENT_RAD) {
-                        set_target_elbowroll(elbowroll);
-                    }
-                }
-*/
+                set_movement_time(time);
+//                set_arm_active(true);
+            }
 
-                set_target_shoulderpitch(shoulderpitch);
-                set_target_shoulderroll(shoulderroll);
-                set_target_elbowroll(elbowroll);
-                set_target_elbowyaw(elbowyaw);
-                set_target_wristyaw(wristyaw);
 
-                set_target_movement_time(time);
-                set_arm_active(true);
-                set_arm_cmd_mask(true);
+            /**
+             * move to position expressed in degrees over a given time
+             * @param shoulderpitch down to up
+             * @param shoulderroll  out to in
+             * @param elbowroll     straight to bent
+             * @param elbowyaw      rolled right to rolled left
+             * @param wristyaw      rolled right to rolled left
+             * @param time          time in mSec for the motion to take
+             */
+            void GoToWithTime_Deg(
+                                  float shoulderpitch,
+                                  float shoulderroll,
+                                  float elbowroll,
+                                  float elbowyaw,
+                                  float wristyaw,
+                                  uint16_t time = 65535)
+            {
+
+                set_shoulderpitch_DEG(shoulderpitch);
+                set_shoulderroll_DEG(shoulderroll);
+                set_elbowroll_DEG(elbowroll);
+                set_elbowyaw_DEG(elbowyaw);
+                set_wristyaw_DEG(wristyaw);
+
+                set_movement_time(time);
+//                set_arm_active(true);
             }
 
             void MirrorArm(const HAL_ArmTarget &other)
             {
+                // Roll angles need to be mirrored, others just copied.
                 set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(other.target_shoulderroll());
-                set_target_elbowroll(other.target_elbowroll());
+                set_target_shoulderroll(-other.target_shoulderroll());
+                set_target_elbowroll(-other.target_elbowroll());
                 set_target_elbowyaw(other.target_elbowyaw());
                 set_target_wristyaw(other.target_wristyaw());
                 set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
@@ -190,28 +213,166 @@ namespace guWhiteboard
                 set_target_wristyawstiffness(other.target_wristyawstiffness());
                 set_target_movement_time(other.target_movement_time());
                 set_arm_active(other.arm_active());
-                set_arm_cmd_mask(other.arm_cmd_mask());
             }
 
+/// CUSTOM SETTERS
+/// Movement Setters (Degrees)
+            void set_shoulderpitch_DEG(float setting) {
+                set_target_shoulderpitch(static_cast<int16_t>(setting * 10.0f));
+            }
+            
+            void set_shoulderroll_DEG(float setting) {
+                set_target_shoulderroll(static_cast<int16_t>(setting * 10.0f));
+            }
+        
+            void set_elbowroll_DEG(float setting) {
+                set_target_elbowroll(static_cast<int16_t>(setting * 10.0f));
+            }
+        
+            void set_elbowyaw_DEG(float setting) {
+                set_target_elbowyaw(static_cast<int16_t>(setting * 10.0f));
+            }
+            
+            void set_wristyaw_DEG(float setting) {
+                set_target_wristyaw(static_cast<int16_t>(setting * 10.0f));
+            }
+
+/// Movement Setters (Radians)
+            void set_shoulderpitch_RAD(float setting) {
+                set_target_shoulderpitch(static_cast<int16_t>(setting* (1800.0f / M_PIF)));
+            }
+            
+            void set_shoulderroll_RAD(float setting) {
+                set_target_shoulderroll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+            }
+        
+            void set_elbowroll_RAD(float setting) {
+                set_target_elbowroll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+            }
+        
+            void set_elbowyaw_RAD(float setting) {
+                set_target_elbowyaw(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+            }
+            
+            void set_wristyaw_RAD(float setting) {
+                set_target_wristyaw(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+            }
+
+/// Stiffness Setters
+            void set_shoulderpitchstiffness(float setting) {
+                set_target_shoulderpitchstiffness(static_cast<uint8_t>(setting * 100.0f));
+            }
+            
+            void set_shoulderrollstiffness(float setting) {
+                set_target_shoulderrollstiffness(static_cast<uint8_t>(setting * 100.0f));
+            }
+        
+            void set_elbowrollstiffness(float setting) {
+                set_target_elbowrollstiffness(static_cast<uint8_t>(setting * 100.0f));
+            }
+        
+            void set_elbowyawstiffness(float setting) {
+                set_target_elbowyawstiffness(static_cast<uint8_t>(setting * 100.0f));
+            }
+            
+            void set_wristyawstiffness(float setting) {
+                set_target_wristyawstiffness(static_cast<uint8_t>(setting * 100.0f));
+            }
+
+/// Duration Setter
+            void set_movement_time(uint16_t time) {
+                set_target_movement_time(time);
+            }
+
+        
+///CUSTOM GETTERS
+/// Movement Getters (Degrees)
+            float get_shoulderpitch_DEG() {
+                return static_cast<float>(target_shoulderpitch() * 0.1f);
+            }
+            
+            float get_shoulderroll_DEG() {
+                return static_cast<float>(target_shoulderroll() * 0.1f);
+            }
+        
+            float get_elbowroll_DEG() {
+                return static_cast<float>(target_elbowroll() * 0.1f);
+            }
+        
+            float get_elbowyaw_DEG() {
+                return static_cast<float>(target_elbowyaw() * 0.1f);
+            }
+            
+            float get_wristyaw_DEG() {
+                return static_cast<float>(target_wristyaw() * 0.1f);
+            }
+
+/// Movement Getters (Radians)
+            float get_shoulderpitch_RAD() {
+                return static_cast<float>(target_shoulderpitch()) * M_PIF/ 1800.0f;
+            }
+            
+            float get_shoulderroll_RAD() {
+                return static_cast<float>(target_shoulderroll()) * M_PIF/ 1800.0f;
+            }
+        
+            float get_elbowroll_RAD() {
+                return static_cast<float>(target_elbowroll()) * M_PIF/ 1800.0f;
+            }
+        
+            float get_elbowyaw_RAD() {
+                return static_cast<float>(target_elbowyaw()) * M_PIF/ 1800.0f;
+            }
+            
+            float get_wristyaw_RAD() {
+                return static_cast<float>(target_wristyaw()) * M_PIF/ 1800.0f;
+            }
+
+/// Stiffness Getters
+            float get_shoulderpitchstiffness() {
+                return static_cast<float>(target_shoulderpitchstiffness()) * 0.01f;
+            }
+            
+            float get_shoulderrollstiffness() {
+                return static_cast<float>(target_shoulderrollstiffness()) * 0.01f;
+            }
+        
+            float get_elbowrollstiffness() {
+                return static_cast<float>(target_elbowrollstiffness()) * 0.01f;
+            }
+        
+            float get_elbowyawstiffness() {
+                return static_cast<float>(target_elbowyawstiffness()) * 0.01f;
+            }
+            
+            float get_wristyawstiffness() {
+                return static_cast<float>(target_wristyawstiffness()) * 0.01f;
+            }
+
+/// Duration Getter
+             uint16_t get_movement_time() {
+                 return target_movement_time();
+            }
+
+            /**
+             *  Description function
+             */
             std::string description() const
             {
                 std::stringstream ss;
-                ss << static_cast<uint32_t>(target_arm()) << "-|-"
-                << target_shoulderpitch() << "-|-"
-                << target_shoulderroll() << "-|-"
-                << target_elbowroll() << "-|-"
-                << target_elbowyaw() << "-|-"
-                << target_wristyaw() << "-|-"
-                << target_shoulderpitchstiffness() << "-|-"
-                << target_shoulderrollstiffness() << "-|-"
-                << target_elbowrollstiffness() << "-|-"
-                << target_elbowyawstiffness() << "-|-"
-                << target_wristyawstiffness() << "-|-"
-                << target_movement_time() << "-|-"
-                << arm_active() << "-|-"
-                << arm_cmd_mask();
-
-                //                target_pitchAngle() << " P, " << target_yawAngle() << " Y, " << target_movement_time() << " T, " << head_stopped() << " S, " << head_cmd_mask() << " M";
+                ss << static_cast<int>(target_shoulderpitch()) << "-|-"
+                << static_cast<int>(target_shoulderroll()) << "-|-"
+                << static_cast<int>(target_elbowroll()) << "-|-"
+                << static_cast<int>(target_elbowyaw()) << "-|-"
+                << static_cast<int>(target_wristyaw()) << "-|-"
+                << static_cast<int>(target_shoulderpitchstiffness()) << "-|-"
+                << static_cast<int>(target_shoulderrollstiffness()) << "-|-"
+                << static_cast<int>(target_elbowrollstiffness()) << "-|-"
+                << static_cast<int>(target_elbowyawstiffness()) << "-|-"
+                << static_cast<int>(target_wristyawstiffness()) << "-|-"
+                << static_cast<int>(target_movement_time()) << "-|-"
+                << static_cast<int>(arm_active()); // << "-|-"
+//                << arm_cmd_mask();
                 return ss.str();
             }
 
