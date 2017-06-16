@@ -117,19 +117,26 @@ struct wb_hal_armtarget
     /** target wrist yaw stiffness */
     PROPERTY(uint8_t, target_wristyawstiffness)
 
-    /** The elapsed time, in mSec, in which the movement should be completed. */
-    PROPERTY(uint16_t, target_movement_time)
+    /** 
+     *  Control Message:
+     *      The elapsed time, in mSec, in which the movement should be completed.
+     *  Status Message:
+     *      Time when the current action will complete. (Thus this is an int32_t.)
+     */
+    PROPERTY(int32_t, target_movement_time)
 
     /**
      *  Is the arm active (true) or off (false)
      */
     BIT_PROPERTY(arm_active)
 
-//    /** Should the command be processed again by the motion module?
-//     *  Each new control message should have this bit is set to true.
-//     *  gunaoqiinterface sets this back to false when the command has been processed.
-//     */
-//    BIT_PROPERTY(arm_cmd_mask)
+    /**
+     *  Control Message:
+     *      Not used
+     *  Status Message:
+     *      Goal location of all joints reached (within specified tolerance).
+     */
+    BIT_PROPERTY(arm_at_goal)
     
 
 #ifdef __cplusplus
@@ -160,8 +167,9 @@ struct wb_hal_armtarget
                      uint8_t target_elbowrollstiffness = 0,
                      uint8_t target_elbowyawstiffness = 0,
                      uint8_t target_wristyawstiffness = 0,
-                     uint16_t target_movement_time = 65535,
-                     bool arm_active = false)
+                     int32_t target_movement_time = INT_MAX,
+                     bool arm_active = true,
+                     bool arm_at_goal = false)
     {
 
         set_target_arm(target_arm);
@@ -177,7 +185,7 @@ struct wb_hal_armtarget
         set_target_wristyawstiffness(target_wristyawstiffness);
         set_target_movement_time(target_movement_time);
         set_arm_active(arm_active);
-//        set_arm_cmd_mask(false);
+        set_arm_at_goal(arm_at_goal);
     }
 
     /** Copy Constructor */
@@ -196,7 +204,7 @@ struct wb_hal_armtarget
         set_target_wristyawstiffness(other.target_wristyawstiffness());
         set_target_movement_time(other.target_movement_time());
         set_arm_active(other.arm_active());
-        //        set_arm_cmd_mask(other.arm_cmd_mask());
+        set_arm_at_goal(other.arm_at_goal());
     }
     
     /** Copy Assignment Operator */
@@ -215,7 +223,7 @@ struct wb_hal_armtarget
         set_target_wristyawstiffness(other.target_wristyawstiffness());
         set_target_movement_time(other.target_movement_time());
         set_arm_active(other.arm_active());
-        //        set_arm_cmd_mask(other.arm_cmd_mask());
+        set_arm_at_goal(other.arm_at_goal());
         return *this;
     }
 
@@ -223,9 +231,8 @@ struct wb_hal_armtarget
       * Perform a BINARY comparision between two wb_hal_armtarget messages.
       *
      */
-    inline bool operator == (const wb_hal_armtarget &rhs) {
-
-
+    inline bool operator == (const wb_hal_armtarget &rhs)
+    {
         if (
             target_arm() == rhs.target_arm()
             && target_shoulderpitch() == rhs.target_shoulderpitch()
@@ -240,7 +247,7 @@ struct wb_hal_armtarget
             && target_wristyawstiffness() == rhs.target_wristyawstiffness()
             && target_movement_time() == rhs.target_movement_time()
             && arm_active() == rhs.arm_active()
-//            && arm_cmd_mask() == rhs.arm_cmd_mask()
+            && arm_at_goal() == rhs.arm_at_goal()
            )
         {
             return true;

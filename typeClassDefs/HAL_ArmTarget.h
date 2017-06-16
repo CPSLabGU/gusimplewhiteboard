@@ -59,7 +59,9 @@ namespace guWhiteboard
             * Constructor, defaults to LEFT_ARM
             */
             HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
-
+//            HAL_ArmTarget(const HAL_ArmTarget &other): wb_hal_armtarget(other) {}
+        
+        
             /**
              * Specify which arm this instance manages.
              * Up to 256 arms are possible.
@@ -71,19 +73,48 @@ namespace guWhiteboard
             }
 
             /**
-             * Stop the arm
+             *  Set arm to be passive
+             *  Manually moving the arm causes the arm to remain in the new position.
+             *  Be careful using this with high stiffness settings (which vary per joint).
+             *
+             *  NOTE:  This is achieved by telling the DCM to move the arm to the displaced
+             *         position.  Thus the DCM tracks the applied force.
              */
-            void Stop()
+            void Passive()
             {
                 set_arm_active(false);
             }
         
             /**
-             * Activate the arm
+             *  Activate the arm
+             *  The arm is active and manual movements will be resisted.
+             *  Once the applied force is removed, the arm will return to its previous location.
+             *  Be careful using this with high stiffness settings (which vary per joint).
+             *
+             *  NOTE:  This is the default DCM mode.
              */
-            void Activate()
+            void Active()
             {
                 set_arm_active(true);
+            }
+
+            /**
+             *  Arm arrived at goal pose.
+             *  Only set in the status message.
+             */
+            void IsAtGoal(bool goalReached)
+            {
+                set_arm_at_goal(goalReached);
+            }
+
+            /**
+             *  Is the arm at the goal pose?
+             *  Naoqi Interface sets this true when the arm reaches the goal
+             *  pose asked for in the previous control message.
+             */
+            bool AtGoal()
+            {
+                return arm_at_goal();
             }
 
             /**
@@ -143,6 +174,15 @@ namespace guWhiteboard
                 set_wristyawstiffness(0.0f);
             }
 
+            void CopyStiffness(const HAL_ArmTarget &other)
+            {
+                target_shoulderpitchstiffness() = other.target_shoulderpitchstiffness();
+                target_shoulderrollstiffness() = other.target_shoulderrollstiffness();
+                target_elbowrollstiffness() = other.target_elbowrollstiffness();
+                target_elbowyawstiffness() = other.target_elbowyawstiffness();
+                target_wristyawstiffness() = other.target_wristyawstiffness();
+            }
+        
             /**
              * move to position in radians over a given time
              * @param shoulderpitch  down to up
@@ -157,18 +197,13 @@ namespace guWhiteboard
                                   float elbowroll,
                                   float elbowyaw,
                                   float wristyaw,
-                                  uint16_t time = 65535)
+                                  int32_t time = INT_MAX)
             {
-                set_shoulderpitch_RAD(shoulderpitch);
-                set_shoulderroll_RAD(shoulderroll);
-                set_elbowroll_RAD(elbowroll);
-                set_elbowyaw_RAD(elbowyaw);
-                set_wristyaw_RAD(wristyaw);
-
+                SetPose_Rad(shoulderpitch, shoulderroll,
+                            elbowroll, elbowyaw,
+                            wristyaw);
                 set_movement_time(time);
-//                set_arm_active(true);
             }
-
 
             /**
              * move to position expressed in degrees over a given time
@@ -179,23 +214,59 @@ namespace guWhiteboard
              * @param wristyaw      rolled right to rolled left
              * @param time          time in mSec for the motion to take
              */
-            void GoToWithTime_Deg(
-                                  float shoulderpitch,
+            void GoToWithTime_Deg(float shoulderpitch,
                                   float shoulderroll,
                                   float elbowroll,
                                   float elbowyaw,
                                   float wristyaw,
-                                  uint16_t time = 65535)
+                                  int32_t time = INT_MAX)
             {
-
+                SetPose_Deg(shoulderpitch, shoulderroll,
+                            elbowroll, elbowyaw,
+                            wristyaw);
+                set_movement_time(time);
+            }
+        
+            /**
+             * Set Pose in radians
+             * @param shoulderpitch  down to up
+             * @param shoulderroll   out to in
+             * @param elbowroll      straight to bent
+             * @param elbowyaw       rolled right to rolled left
+             * @param wristyaw       rolled right to rolled left
+             */
+            void SetPose_Rad(float shoulderpitch,
+                             float shoulderroll,
+                             float elbowroll,
+                             float elbowyaw,
+                             float wristyaw)
+            {
+                set_shoulderpitch_RAD(shoulderpitch);
+                set_shoulderroll_RAD(shoulderroll);
+                set_elbowroll_RAD(elbowroll);
+                set_elbowyaw_RAD(elbowyaw);
+                set_wristyaw_RAD(wristyaw);
+            }
+        
+            /**
+             * Set Pose in degrees
+             * @param shoulderpitch down to up
+             * @param shoulderroll  out to in
+             * @param elbowroll     straight to bent
+             * @param elbowyaw      rolled right to rolled left
+             * @param wristyaw      rolled right to rolled left
+             */
+            void SetPose_Deg(float shoulderpitch,
+                             float shoulderroll,
+                             float elbowroll,
+                             float elbowyaw,
+                             float wristyaw)
+            {
                 set_shoulderpitch_DEG(shoulderpitch);
                 set_shoulderroll_DEG(shoulderroll);
                 set_elbowroll_DEG(elbowroll);
                 set_elbowyaw_DEG(elbowyaw);
                 set_wristyaw_DEG(wristyaw);
-
-                set_movement_time(time);
-//                set_arm_active(true);
             }
 
             void MirrorArm(const HAL_ArmTarget &other)
@@ -213,6 +284,45 @@ namespace guWhiteboard
                 set_target_wristyawstiffness(other.target_wristyawstiffness());
                 set_target_movement_time(other.target_movement_time());
                 set_arm_active(other.arm_active());
+            }
+
+            void CopyPose(const HAL_ArmTarget &other)
+            {
+                set_target_shoulderpitch(other.target_shoulderpitch());
+                set_target_shoulderroll(-other.target_shoulderroll());
+                set_target_elbowroll(-other.target_elbowroll());
+                set_target_elbowyaw(other.target_elbowyaw());
+                set_target_wristyaw(other.target_wristyaw());
+            }
+
+            bool HasSamePose(const HAL_ArmTarget &other)
+            {
+                if (
+                    target_shoulderpitch() == other.target_shoulderpitch()
+                    && target_shoulderroll() == other.target_shoulderroll()
+                    && target_elbowroll() == other.target_elbowroll()
+                    && target_elbowyaw() == other.target_elbowyaw()
+                    && target_wristyaw() == other.target_wristyaw()
+                    )
+                {
+                    return  true;
+                }
+                return false;
+            }
+
+            bool HasSameStiffness(const HAL_ArmTarget &other)
+            {
+                if (
+                    target_shoulderpitchstiffness() == other.target_shoulderpitchstiffness()
+                    && target_shoulderrollstiffness() == other.target_shoulderrollstiffness()
+                    && target_elbowrollstiffness() == other.target_elbowrollstiffness()
+                    && target_elbowyawstiffness() == other.target_elbowyawstiffness()
+                    && target_wristyawstiffness() == other.target_wristyawstiffness()
+                   )
+                {
+                    return  true;
+                }
+                return false;
             }
 
 /// CUSTOM SETTERS
@@ -280,7 +390,7 @@ namespace guWhiteboard
             }
 
 /// Duration Setter
-            void set_movement_time(uint16_t time) {
+            void set_movement_time(int32_t time) {
                 set_target_movement_time(time);
             }
 
@@ -350,7 +460,7 @@ namespace guWhiteboard
             }
 
 /// Duration Getter
-             uint16_t get_movement_time() {
+             int32_t get_movement_time() {
                  return target_movement_time();
             }
 
