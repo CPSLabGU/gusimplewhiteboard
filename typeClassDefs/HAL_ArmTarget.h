@@ -271,12 +271,12 @@ namespace guWhiteboard
 
             void MirrorArm(const HAL_ArmTarget &other)
             {
-                // Roll angles need to be mirrored, others just copied.
+                // Roll and Yaw angles need to be mirrored, others just copied.
                 set_target_shoulderpitch(other.target_shoulderpitch());
                 set_target_shoulderroll(-other.target_shoulderroll());
                 set_target_elbowroll(-other.target_elbowroll());
-                set_target_elbowyaw(other.target_elbowyaw());
-                set_target_wristyaw(other.target_wristyaw());
+                set_target_elbowyaw(-other.target_elbowyaw());
+                set_target_wristyaw(-other.target_wristyaw());
                 set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
                 set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
                 set_target_elbowrollstiffness(other.target_elbowrollstiffness());
@@ -289,8 +289,8 @@ namespace guWhiteboard
             void CopyPose(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(-other.target_shoulderroll());
-                set_target_elbowroll(-other.target_elbowroll());
+                set_target_shoulderroll(other.target_shoulderroll());
+                set_target_elbowroll(other.target_elbowroll());
                 set_target_elbowyaw(other.target_elbowyaw());
                 set_target_wristyaw(other.target_wristyaw());
             }
@@ -323,6 +323,30 @@ namespace guWhiteboard
                     return  true;
                 }
                 return false;
+            }
+        
+            bool AtTargetLocation(HAL_ArmTarget targetLocation, HAL_ArmTarget tolerance)
+            {
+                int16_t shoulderpitchMargin = abs(target_shoulderpitch() - targetLocation.target_shoulderpitch());
+                int16_t shoulderrollMargin = abs(target_shoulderroll() - targetLocation.target_shoulderroll());
+                int16_t elbowrollMargin = abs(target_elbowroll() - targetLocation.target_elbowroll());
+                int16_t elbowyawMargin = abs(target_elbowyaw() - targetLocation.target_elbowyaw());
+                //#ifdef NAO_V3
+                //    int16_t wristyawMargin = abs(wbcLeftArmCtrl.get_target_wristyaw - wbcLeftArmCtrl.get_target_wristyaw());
+                if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
+                    && (shoulderrollMargin <= tolerance.target_shoulderroll())
+                    && (elbowrollMargin <= tolerance.target_elbowroll())
+                    && (elbowyawMargin <= tolerance.target_elbowyaw())
+                    //#ifdef NAO_V3
+                    //        && (wristyawMargin <= tolerance())
+                    )
+                {
+                    return true;
+                }
+                return false;
+
+                
+                
             }
 
 /// CUSTOM SETTERS
@@ -481,8 +505,8 @@ namespace guWhiteboard
                 << static_cast<int>(target_elbowyawstiffness()) << "-|-"
                 << static_cast<int>(target_wristyawstiffness()) << "-|-"
                 << static_cast<int>(target_movement_time()) << "-|-"
-                << static_cast<int>(arm_active()); // << "-|-"
-//                << arm_cmd_mask();
+                << static_cast<int>(arm_active()) << "-|-"
+                << static_cast<int>(arm_at_goal());
                 return ss.str();
             }
 
