@@ -488,6 +488,11 @@ namespace guWhiteboard
                  return target_movement_time();
             }
 
+/// Active/Passive Getter
+            bool get_arm_active() {
+                return arm_active();
+            }
+        
             /**
              *  Description function
              */
