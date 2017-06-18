@@ -327,12 +327,12 @@ namespace guWhiteboard
         
             bool AtTargetLocation(HAL_ArmTarget targetLocation, HAL_ArmTarget tolerance)
             {
-                int16_t shoulderpitchMargin = abs(target_shoulderpitch() - targetLocation.target_shoulderpitch());
-                int16_t shoulderrollMargin = abs(target_shoulderroll() - targetLocation.target_shoulderroll());
-                int16_t elbowrollMargin = abs(target_elbowroll() - targetLocation.target_elbowroll());
-                int16_t elbowyawMargin = abs(target_elbowyaw() - targetLocation.target_elbowyaw());
+                int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - targetLocation.target_shoulderpitch()));
+                int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - targetLocation.target_shoulderroll()));
+                int16_t elbowrollMargin = static_cast<int16_t>(abs(target_elbowroll() - targetLocation.target_elbowroll()));
+                int16_t elbowyawMargin = static_cast<int16_t>(abs(target_elbowyaw() - targetLocation.target_elbowyaw()));
                 //#ifdef NAO_V3
-                //    int16_t wristyawMargin = abs(wbcLeftArmCtrl.get_target_wristyaw - wbcLeftArmCtrl.get_target_wristyaw());
+                //    int16_t wristyawMargin = static_cast<int16_t>(abs(wbcLeftArmCtrl.get_target_wristyaw - wbcLeftArmCtrl.get_target_wristyaw()));
                 if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
                     && (shoulderrollMargin <= tolerance.target_shoulderroll())
                     && (elbowrollMargin <= tolerance.target_elbowroll())
