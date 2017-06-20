@@ -77,98 +77,130 @@
  * **** IMPORTANT NOTE: ****
  * This class only provides for movement limit detection.
  * There is no built in collision detection.
- * Care must be taken to ensure the forearm does not collide with the
+ * Care must be taken to ensure the fingers and forearm do not collide with the
  * chest, thigh, or the other forearm.
  *
  */
 
 struct wb_hal_armtarget
 {
-    /** target arm number */
+    /** target arm number
+     *  This property is used strictly for accounting purposes when
+     *  the struct is stored within an array and the robot has numerous
+     *  arms.
+     */
     PROPERTY(uint8_t, target_arm)
 
     /** target shoulder pitch angle in 10ths of degrees */
     PROPERTY(int16_t, target_shoulderpitch)
 
-    /** target shoulder roll angle in radians */
+    /** target shoulder roll angle angle in 10ths of degrees */
     PROPERTY(int16_t, target_shoulderroll)
 
-    /** target elbow roll angle in radians */
+    /** target elbow roll angle in 10ths of degrees */
     PROPERTY(int16_t, target_elbowroll)
 
-    /** target elbow yaw angle in radians */
+    /** target elbow yaw angle in 10ths of degrees */
     PROPERTY(int16_t, target_elbowyaw)
 
-    /** target wrist yaw in radians */
+    /** target wrist yaw angle in 10ths of degrees */
     PROPERTY(int16_t, target_wristyaw)
 
-    /** target shoulder pitch stiffness */
+    /** target hand grasper opening as a percentage
+     *  0   gripper will be clasped shut
+     *  100 gripper will be fully openned
+     */
+    PROPERTY(uint8_t, target_hand)
+
+    /** target shoulder pitch stiffness as a percentage */
     PROPERTY(uint8_t, target_shoulderpitchstiffness)
 
-    /** target shoulder roll stiffness */
+    /** target shoulder roll stiffness as a percentage */
     PROPERTY(uint8_t, target_shoulderrollstiffness)
 
-    /** target elbow roll stiffness */
+    /** target elbow roll stiffness as a percentage */
     PROPERTY(uint8_t, target_elbowrollstiffness)
 
-    /** target elbow yaw stiffness */
+    /** target elbow yaw stiffness as a percentage */
     PROPERTY(uint8_t, target_elbowyawstiffness)
 
-    /** target wrist yaw stiffness */
+    /** target wrist yaw stiffness as a percentage */
     PROPERTY(uint8_t, target_wristyawstiffness)
+
+    /** target hand grasper stiffness as a percentage */
+    PROPERTY(uint8_t, target_handstiffness)
 
     /** 
      *  Control Message:
      *      The elapsed time, in mSec, in which the movement should be completed.
      *  Status Message:
-     *      Time when the current action will complete. (Thus this is an int32_t.)
+     *      Absolute time when the current action will complete. (Thus this is an int32_t.)
      */
     PROPERTY(int32_t, target_movement_time)
 
     /**
-     *  Is the arm active (true) or off (false)
+     *  Is the arm is Active (true[DEFAULT]) or Passive (false)
+     *  (Passive mode could be extended to be handled on a joint-by-joint basis)
      */
     BIT_PROPERTY(arm_active)
 
+    /** target arm's pliability when in Passive Mode
+     *  When the arm is passive, this value reduces the update frequency, 
+     *  thus making the arm more resistant to external forces.
+     *  Use of values from 0 to 10 is recommended.
+     *  When set to zero (0), the Arm, when fully extended out, will fall under its own weight.
+     *  Higher values stiffen the arm and reduce responsiveness, the movement will become stepped.
+     */
+    PROPERTY(uint8_t, target_pliability)
+    
     /**
      *  Control Message:
      *      Not used
      *  Status Message:
-     *      Goal location of all joints reached (within specified tolerance).
+     *      Naoqiinterface reports that the goal location of all joints
+     *      has been reached (within specified tolerance).
      */
     BIT_PROPERTY(arm_at_goal)
     
 
 #ifdef __cplusplus
     /**
-    * constructor for the stuct of HAL_ArmTarget. this is the data that is placed on the Whiteboard
+    * constructor for the HAL_ArmTarget stuct. This is the data that is placed on the Whiteboard
     * @param target_shoulderpitch           desired shoulder pitch
     * @param target_shoulderroll            desired shoulder roll
     * @param target_elbowroll               desired elbow roll
     * @param target_elbowyaw                desired elbow yaw
     * @param target_wristyaw                desired wrist yaw
+    * @param target_hand                    desired percentage of grasper being openned
     * @param target_shoulderpitchstiffness  desired stiffness in the shoulder pitch axis
     * @param target_shoulderrollstiffness   desired stiffness in the shoulder roll axis
     * @param target_elbowrollstiffness      desired stiffness in the elbow roll axis
     * @param target_elbowyawstiffness       desired stiffness in the elbow yaw axis
     * @param target_wristyawstiffness       desired stiffness in the wrist yaw axis
+    * @param target_handstiffness           desired stiffness of the grasper
     * @param target_movement_time           time, expressed mSec to complete the movement
     *                                          (Naoqi's way of setting the speed)
     * @param arm_active                     is the arm active (true) or switched off (false)
+    * @param target_pliability              when the arm is passive, this value reduces the update frequency
+    * @param arm_at_goal                    are the arm's joints at the goal location (within tolerance)
+    *                                       ***THIS DOES NOT CONSIDER THE Grasper***
     */
     wb_hal_armtarget(uint8_t target_arm = LEFT_ARM,
-                      int16_t target_shoulderpitch = 0,
-                      int16_t target_shoulderroll = 0,
-                      int16_t target_elbowroll = 0,
-                      int16_t target_elbowyaw = 0,
-                      int16_t target_wristyaw = 0,
+                     int16_t target_shoulderpitch = 0,
+                     int16_t target_shoulderroll = 0,
+                     int16_t target_elbowroll = 0,
+                     int16_t target_elbowyaw = 0,
+                     int16_t target_wristyaw = 0,
+                     uint8_t target_hand = 0,
                      uint8_t target_shoulderpitchstiffness = 0,
                      uint8_t target_shoulderrollstiffness = 0,
                      uint8_t target_elbowrollstiffness = 0,
                      uint8_t target_elbowyawstiffness = 0,
                      uint8_t target_wristyawstiffness = 0,
-                     int32_t target_movement_time = INT_MAX,
+                     uint8_t target_handstiffness = 0,
+                     int32_t target_movement_time = INT_MAX, // Ensures sudden movements do not take place
                      bool arm_active = true,
+                     uint8_t target_pliability = 0,
                      bool arm_at_goal = false)
     {
 
@@ -178,13 +210,16 @@ struct wb_hal_armtarget
         set_target_elbowroll(target_elbowroll);
         set_target_elbowyaw(target_elbowyaw);
         set_target_wristyaw(target_wristyaw);
+        set_target_hand(target_hand);
         set_target_shoulderpitchstiffness(target_shoulderpitchstiffness);
         set_target_shoulderrollstiffness(target_shoulderrollstiffness);
         set_target_elbowrollstiffness(target_elbowrollstiffness);
         set_target_elbowyawstiffness(target_elbowyawstiffness);
         set_target_wristyawstiffness(target_wristyawstiffness);
+        set_target_handstiffness(target_handstiffness);
         set_target_movement_time(target_movement_time);
         set_arm_active(arm_active);
+        set_target_pliability(target_pliability);
         set_arm_at_goal(arm_at_goal);
     }
 
@@ -197,13 +232,16 @@ struct wb_hal_armtarget
         set_target_elbowroll(other.target_elbowroll());
         set_target_elbowyaw(other.target_elbowyaw());
         set_target_wristyaw(other.target_wristyaw());
+        set_target_hand(other.target_hand());
         set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
         set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
         set_target_elbowrollstiffness(other.target_elbowrollstiffness());
         set_target_elbowyawstiffness(other.target_elbowyawstiffness());
         set_target_wristyawstiffness(other.target_wristyawstiffness());
+        set_target_handstiffness(other.target_handstiffness());
         set_target_movement_time(other.target_movement_time());
         set_arm_active(other.arm_active());
+        set_target_pliability(other.target_pliability());
         set_arm_at_goal(other.arm_at_goal());
     }
     
@@ -216,13 +254,16 @@ struct wb_hal_armtarget
         set_target_elbowroll(other.target_elbowroll());
         set_target_elbowyaw(other.target_elbowyaw());
         set_target_wristyaw(other.target_wristyaw());
+        set_target_hand(other.target_hand());
         set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
         set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
         set_target_elbowrollstiffness(other.target_elbowrollstiffness());
         set_target_elbowyawstiffness(other.target_elbowyawstiffness());
         set_target_wristyawstiffness(other.target_wristyawstiffness());
+        set_target_handstiffness(other.target_handstiffness());
         set_target_movement_time(other.target_movement_time());
         set_arm_active(other.arm_active());
+        set_target_pliability(other.target_pliability());
         set_arm_at_goal(other.arm_at_goal());
         return *this;
     }
@@ -240,13 +281,16 @@ struct wb_hal_armtarget
             && target_elbowroll() == rhs.target_elbowroll()
             && target_elbowyaw() == rhs.target_elbowyaw()
             && target_wristyaw() == rhs.target_wristyaw()
+            && target_hand() == rhs.target_hand()
             && target_shoulderpitchstiffness() == rhs.target_shoulderpitchstiffness()
             && target_shoulderrollstiffness() == rhs.target_shoulderrollstiffness()
             && target_elbowrollstiffness() == rhs.target_elbowrollstiffness()
             && target_elbowyawstiffness() == rhs.target_elbowyawstiffness()
             && target_wristyawstiffness() == rhs.target_wristyawstiffness()
+            && target_handstiffness() == rhs.target_handstiffness()
             && target_movement_time() == rhs.target_movement_time()
             && arm_active() == rhs.arm_active()
+            && target_pliability() == rhs.target_pliability()
             && arm_at_goal() == rhs.arm_at_goal()
            )
         {
