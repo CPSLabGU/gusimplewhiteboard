@@ -130,19 +130,49 @@ struct wb_hal_armtarget
     /** target hand grasper stiffness as a percentage */
     PROPERTY(uint8_t, target_handstiffness)
 
-    /** 
+    /**
+     *  Is the shoulderpitch Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(shoulderpitch_active)
+
+    /**
+     *  Is the shoulderroll Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(shoulderroll_active)
+
+    /**
+     *  Is the elbowroll Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(elbowroll_active)
+
+    /**
+     *  Is the elbowyaw Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(elbowyaw_active)
+
+    /**
+     *  Is the wrist Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(wrist_active)
+    
+    /**
+     *  Is the hand Active (true[DEFAULT]) or Passive (false)
+     *
+     */
+    BIT_PROPERTY(hand_active)
+
+    /**
      *  Control Message:
      *      The elapsed time, in mSec, in which the movement should be completed.
      *  Status Message:
      *      Absolute time when the current action will complete. (Thus this is an int32_t.)
      */
     PROPERTY(int32_t, target_movement_time)
-
-    /**
-     *  Is the arm is Active (true[DEFAULT]) or Passive (false)
-     *  (Passive mode could be extended to be handled on a joint-by-joint basis)
-     */
-    BIT_PROPERTY(arm_active)
 
     /** target arm's pliability when in Passive Mode
      *  When the arm is passive, this value reduces the update frequency, 
@@ -178,9 +208,14 @@ struct wb_hal_armtarget
     * @param target_elbowyawstiffness       desired stiffness in the elbow yaw axis
     * @param target_wristyawstiffness       desired stiffness in the wrist yaw axis
     * @param target_handstiffness           desired stiffness of the grasper
+    * @param shoulderpitch_active           is shoulder pitch active
+    * @param shoulderroll_active            is shoulder roll active
+    * @param elbowroll_active               is elbow roll active
+    * @param elbowyaw_active                is elbow yaw active
+    * @param wrist_active                   is wrist yaw active
+    * @param hand_active                    is the hand active
     * @param target_movement_time           time, expressed mSec to complete the movement
     *                                          (Naoqi's way of setting the speed)
-    * @param arm_active                     is the arm active (true) or switched off (false)
     * @param target_pliability              when the arm is passive, this value reduces the update frequency
     * @param arm_at_goal                    are the arm's joints at the goal location (within tolerance)
     *                                       ***THIS DOES NOT CONSIDER THE Grasper***
@@ -198,8 +233,13 @@ struct wb_hal_armtarget
                      uint8_t target_elbowyawstiffness = 0,
                      uint8_t target_wristyawstiffness = 0,
                      uint8_t target_handstiffness = 0,
+                     bool shoulderpitch_active = true,
+                     bool shoulderroll_active = true,
+                     bool elbowroll_active = true,
+                     bool elbowyaw_active = true,
+                     bool wrist_active = true,
+                     bool hand_active = true,
                      int32_t target_movement_time = INT_MAX, // Ensures sudden movements do not take place
-                     bool arm_active = true,
                      uint8_t target_pliability = 0,
                      bool arm_at_goal = false)
     {
@@ -217,8 +257,13 @@ struct wb_hal_armtarget
         set_target_elbowyawstiffness(target_elbowyawstiffness);
         set_target_wristyawstiffness(target_wristyawstiffness);
         set_target_handstiffness(target_handstiffness);
+        set_shoulderpitch_active(shoulderpitch_active);
+        set_shoulderroll_active(shoulderroll_active);
+        set_elbowroll_active(elbowroll_active);
+        set_elbowyaw_active(elbowyaw_active);
+        set_wrist_active(wrist_active);
+        set_hand_active(hand_active);
         set_target_movement_time(target_movement_time);
-        set_arm_active(arm_active);
         set_target_pliability(target_pliability);
         set_arm_at_goal(arm_at_goal);
     }
@@ -239,8 +284,13 @@ struct wb_hal_armtarget
         set_target_elbowyawstiffness(other.target_elbowyawstiffness());
         set_target_wristyawstiffness(other.target_wristyawstiffness());
         set_target_handstiffness(other.target_handstiffness());
+        set_shoulderpitch_active(other.shoulderpitch_active());
+        set_shoulderroll_active(other.shoulderroll_active());
+        set_elbowroll_active(other.elbowroll_active());
+        set_elbowyaw_active(other.elbowyaw_active());
+        set_wrist_active(other.wrist_active());
+        set_hand_active(other.hand_active());
         set_target_movement_time(other.target_movement_time());
-        set_arm_active(other.arm_active());
         set_target_pliability(other.target_pliability());
         set_arm_at_goal(other.arm_at_goal());
     }
@@ -261,8 +311,13 @@ struct wb_hal_armtarget
         set_target_elbowyawstiffness(other.target_elbowyawstiffness());
         set_target_wristyawstiffness(other.target_wristyawstiffness());
         set_target_handstiffness(other.target_handstiffness());
+        set_shoulderpitch_active(other.shoulderpitch_active());
+        set_shoulderroll_active(other.shoulderroll_active());
+        set_elbowroll_active(other.elbowroll_active());
+        set_elbowyaw_active(other.elbowyaw_active());
+        set_wrist_active(other.wrist_active());
+        set_hand_active(other.hand_active());
         set_target_movement_time(other.target_movement_time());
-        set_arm_active(other.arm_active());
         set_target_pliability(other.target_pliability());
         set_arm_at_goal(other.arm_at_goal());
         return *this;
@@ -288,8 +343,13 @@ struct wb_hal_armtarget
             && target_elbowyawstiffness() == rhs.target_elbowyawstiffness()
             && target_wristyawstiffness() == rhs.target_wristyawstiffness()
             && target_handstiffness() == rhs.target_handstiffness()
+            && shoulderpitch_active() == rhs.shoulderpitch_active()
+            && shoulderroll_active() == rhs.shoulderroll_active()
+            && elbowroll_active() == rhs.elbowroll_active()
+            && elbowyaw_active() == rhs.elbowyaw_active()
+            && wrist_active() == rhs.wrist_active()
+            && hand_active() == rhs.hand_active()
             && target_movement_time() == rhs.target_movement_time()
-            && arm_active() == rhs.arm_active()
             && target_pliability() == rhs.target_pliability()
             && arm_at_goal() == rhs.arm_at_goal()
            )

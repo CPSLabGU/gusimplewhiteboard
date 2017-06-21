@@ -80,35 +80,219 @@ namespace guWhiteboard
             {
                 set_target_arm(arm);
             }
+//MARK: Arm - General
+            /**
+             *  Convenience function to mirror arm settings about the XZ plane from one HAL_ArmTarget object to another.
+             *
+             *  @param  other    HAL_ArmTarget object to be mirrored.
+             *
+             */
+            void MirrorArm(const HAL_ArmTarget &other)
+            {
+                // Roll and Yaw angles need to be mirrored, others just copied.
+                set_target_shoulderpitch(other.target_shoulderpitch());
+                set_target_shoulderroll(-other.target_shoulderroll());
+                set_target_elbowroll(-other.target_elbowroll());
+                set_target_elbowyaw(-other.target_elbowyaw());
+                set_target_wristyaw(-other.target_wristyaw());
+                set_target_hand(other.target_hand());
+                set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+                set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+                set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+                set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+                set_target_wristyawstiffness(other.target_wristyawstiffness());
+                set_target_handstiffness(other.target_handstiffness());
+                set_shoulderpitch_active(other.shoulderpitch_active());
+                set_shoulderroll_active(other.shoulderroll_active());
+                set_elbowroll_active(other.elbowroll_active());
+                set_elbowyaw_active(other.elbowyaw_active());
+                set_wrist_active(other.wrist_active());
+                set_hand_active(other.hand_active());
+                set_target_movement_time(other.target_movement_time());
+                set_target_pliability(other.target_pliability());
+            }
+
+//MARK: Arm - Pose
 
             /**
-             *  Set arm to be passive
-             *  Manually moving the arm causes the arm to remain in the new position.
-             *  Be careful using this with high stiffness and pliability settings (which vary per joint).
-             *
-             *  NOTE:  This is achieved by telling the DCM to move the arm to the displaced
-             *         position each DCM cyle.  Thus the DCM tracks the applied force.
-             *         The 'pliability' setting reduce the update rated, thus making the arm stiffer. At
-             *         higher pliability settings, the movement will become stepped.
+             * move to position in radians over a given time
+             * @param   shoulderpitch  down to up
+             * @param   shoulderroll   out to in
+             * @param   elbowroll      straight to bent
+             * @param   elbowyaw       rolled right to rolled left
+             * @param   wristyaw       rolled right to rolled left
+             * @param   hand           closed to open
+             * @param   time           elapsed time in mSec for the motion to complete.
              *
              */
-            void Passive()
+            void GoToWithTime_Rad(float shoulderpitch,
+                                  float shoulderroll,
+                                  float elbowroll,
+                                  float elbowyaw,
+                                  float wristyaw,
+                                  float hand,
+                                  int32_t time = INT_MAX)
             {
-                set_arm_active(false);
+                SetPose_Rad(shoulderpitch, shoulderroll,
+                            elbowroll, elbowyaw,
+                            wristyaw, hand);
+                set_target_movement_time(time);
             }
-        
+            
             /**
-             *  Set arm to be Active (DEDAULT DCM state)
-             *  The arm is active and manual movements will be resisted, be careful when the stiffness is set high.
-             *  Once the applied force is removed, the arm will return to its previous location.
-             *  Be careful using this with high stiffness settings (which vary per joint), as the gears will be stripped.
-             *
-             *  NOTE:  This is the default DCM mode.
+             * move to position expressed in degrees over a given time
+             * @param   shoulderpitch down to up
+             * @param   shoulderroll  out to in
+             * @param   elbowroll     straight to bent
+             * @param   elbowyaw      rolled right to rolled left
+             * @param   wristyaw      rolled right to rolled left
+             * @param   hand          closed to open
+             * @param   time          elapsed time in mSec for the motion to complete.
              *
              */
-            void Active()
+            void GoToWithTime_Deg(float shoulderpitch,
+                                  float shoulderroll,
+                                  float elbowroll,
+                                  float elbowyaw,
+                                  float wristyaw,
+                                  float hand,
+                                  int32_t time = INT_MAX)
             {
-                set_arm_active(true);
+                SetPose_Deg(shoulderpitch, shoulderroll,
+                            elbowroll, elbowyaw,
+                            wristyaw, hand);
+                set_target_movement_time(time);
+            }
+            
+            /**
+             * Set Pose in radians
+             * @param   shoulderpitch  down to up
+             * @param   shoulderroll   out to in
+             * @param   elbowroll      straight to bent
+             * @param   elbowyaw       rolled right to rolled left
+             * @param   wristyaw       rolled right to rolled left
+             * @param   hand           closed to open.
+             *
+             */
+            void SetPose_Rad(float shoulderpitch,
+                             float shoulderroll,
+                             float elbowroll,
+                             float elbowyaw,
+                             float wristyaw,
+                             float hand)
+            {
+                set_shoulderpitch_RAD(shoulderpitch);
+                set_shoulderroll_RAD(shoulderroll);
+                set_elbowroll_RAD(elbowroll);
+                set_elbowyaw_RAD(elbowyaw);
+                set_wristyaw_RAD(wristyaw);
+                set_hand(hand);
+            }
+            
+            /**
+             * Set Pose in degrees
+             * @param   shoulderpitch down to up
+             * @param   shoulderroll  out to in
+             * @param   elbowroll     straight to bent
+             * @param   elbowyaw      rolled right to rolled left
+             * @param   wristyaw      rolled right to rolled left
+             * @param   hand          closed to open.
+             *
+             */
+            void SetPose_Deg(float shoulderpitch,
+                             float shoulderroll,
+                             float elbowroll,
+                             float elbowyaw,
+                             float wristyaw,
+                             float hand)
+            {
+                set_shoulderpitch_DEG(shoulderpitch);
+                set_shoulderroll_DEG(shoulderroll);
+                set_elbowroll_DEG(elbowroll);
+                set_elbowyaw_DEG(elbowyaw);
+                set_wristyaw_DEG(wristyaw);
+                set_hand(hand);
+            }
+            
+            
+            /**
+             *  Convenience function to copy pose settings from one HAL_ArmTarget object to another.
+             *
+             *  @param  other    HAL_ArmTarget object from which to copy pose settings from.
+             *
+             */
+            void CopyPose(const HAL_ArmTarget &other)
+            {
+                set_target_shoulderpitch(other.target_shoulderpitch());
+                set_target_shoulderroll(other.target_shoulderroll());
+                set_target_elbowroll(other.target_elbowroll());
+                set_target_elbowyaw(other.target_elbowyaw());
+                set_target_wristyaw(other.target_wristyaw());
+                set_target_hand(other.target_hand());
+            }
+            
+            /**
+             *  Convenience function to mirror pose settings about the XZ plane from one HAL_ArmTarget object to another.
+             *
+             *  @param  other    HAL_ArmTarget object whose pose settings are to be mirrored.
+             *
+             */
+            void MirrorPose(const HAL_ArmTarget &other)
+            {
+                set_target_shoulderpitch(other.target_shoulderpitch());
+                set_target_shoulderroll(-other.target_shoulderroll());
+                set_target_elbowroll(-other.target_elbowroll());
+                set_target_elbowyaw(-other.target_elbowyaw());
+                set_target_wristyaw(-other.target_wristyaw());
+                set_target_hand(other.target_hand());
+            }
+            
+            /**
+             *  Tests if this HAL_ArmTarget object has the same pose settings as the other HAL_ArmTarget object.
+             *      NOTE this does not take into account mirroring about the XZ plane.
+             *
+             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
+             *  @return bool    whether the two objects have the same pose or not.
+             *
+             */
+            bool HasSamePose(const HAL_ArmTarget &other)
+            {
+                if (
+                    target_shoulderpitch() == other.target_shoulderpitch()
+                    && target_shoulderroll() == other.target_shoulderroll()
+                    && target_elbowroll() == other.target_elbowroll()
+                    && target_elbowyaw() == other.target_elbowyaw()
+                    && target_wristyaw() == other.target_wristyaw()
+                    && target_hand() == other.target_hand()
+                    )
+                {
+                    return  true;
+                }
+                return false;
+            }
+            
+            /**
+             *  Tests if this HAL_ArmTarget object has the same mirrored pose settings as the other HAL_ArmTarget object.
+             *      NOTE this method takes into account mirroring about the XZ plane.
+             *
+             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
+             *  @return bool    whether the two objects have the same pose or not.
+             *
+             */
+            bool HasSameMirroredPose(const HAL_ArmTarget &other)
+            {
+                if (
+                    target_shoulderpitch() == other.target_shoulderpitch()
+                    && target_shoulderroll() == -other.target_shoulderroll()
+                    && target_elbowroll() == -other.target_elbowroll()
+                    && target_elbowyaw() == -other.target_elbowyaw()
+                    && target_wristyaw() == -other.target_wristyaw()
+                    && target_hand() == other.target_hand()
+                    )
+                {
+                    return  true;
+                }
+                return false;
             }
 
             /**
@@ -125,7 +309,7 @@ namespace guWhiteboard
             {
                 set_arm_at_goal(goalReached);
             }
-
+            
             /**
              *  Arm at Goal Getter
              *      Clients/Machines should use this getter to test if the DCM
@@ -142,6 +326,43 @@ namespace guWhiteboard
             {
                 return arm_at_goal();
             }
+
+            /**
+             *  Client side test to determine if arm is at the target location, allowing for specified tolerances.
+             *  The method tests if the pose 'status' is within 'tolerance' of 'this' target
+             *  location, allowing for a specified tolerance.
+             *
+             *  'this' object contains the target pose settings.
+             *
+             *  @param  status      HAL_ArmTarget object which contains actual pose settings reported by the robot's sensors.
+             *  @param  tolerance   HAL_ArmTarget object whose pose settings specify the tolerance for each joint/gripper
+             *  @return bool        whether or not the status is within range of the target location.
+             *
+             */
+            bool AtTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
+            {
+                int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
+                int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
+                int16_t elbowrollMargin = static_cast<int16_t>(abs(target_elbowroll() - status.target_elbowroll()));
+                int16_t elbowyawMargin = static_cast<int16_t>(abs(target_elbowyaw() - status.target_elbowyaw()));
+                //#ifdef NAO_V3
+                //    int16_t wristyawMargin = static_cast<int16_t>(abs(target_wristyaw - status.target_wristyaw()));
+                //    uint8_t handMargin = static_cast<uint8_t>(abs(target_hand() - status.target_hand()));
+                if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
+                    && (shoulderrollMargin <= tolerance.target_shoulderroll())
+                    && (elbowrollMargin <= tolerance.target_elbowroll())
+                    && (elbowyawMargin <= tolerance.target_elbowyaw())
+                    //#ifdef NAO_V3
+                    //        && (wristyawMargin <= tolerance.target_wristyaw())
+                    //        && (handMargin <= tolerance.target_hand())
+                    )
+                {
+                    return true;
+                }
+                return false;
+            }
+        
+//MARK: Arm - Stiffness
 
             /**
              *  Convenience function to set the stiffness
@@ -225,210 +446,7 @@ namespace guWhiteboard
                 target_handstiffness() = other.target_handstiffness();
             }
         
-            /**
-             * move to position in radians over a given time
-             * @param   shoulderpitch  down to up
-             * @param   shoulderroll   out to in
-             * @param   elbowroll      straight to bent
-             * @param   elbowyaw       rolled right to rolled left
-             * @param   wristyaw       rolled right to rolled left
-             * @param   hand           closed to open
-             * @param   time           elapsed time in mSec for the motion to complete.
-             *
-             */
-            void GoToWithTime_Rad(float shoulderpitch,
-                                  float shoulderroll,
-                                  float elbowroll,
-                                  float elbowyaw,
-                                  float wristyaw,
-                                  float hand,
-                                  int32_t time = INT_MAX)
-            {
-                SetPose_Rad(shoulderpitch, shoulderroll,
-                            elbowroll, elbowyaw,
-                            wristyaw, hand);
-                set_movement_time(time);
-            }
 
-            /**
-             * move to position expressed in degrees over a given time
-             * @param   shoulderpitch down to up
-             * @param   shoulderroll  out to in
-             * @param   elbowroll     straight to bent
-             * @param   elbowyaw      rolled right to rolled left
-             * @param   wristyaw      rolled right to rolled left
-             * @param   hand          closed to open
-             * @param   time          elapsed time in mSec for the motion to complete.
-             *
-             */
-            void GoToWithTime_Deg(float shoulderpitch,
-                                  float shoulderroll,
-                                  float elbowroll,
-                                  float elbowyaw,
-                                  float wristyaw,
-                                  float hand,
-                                  int32_t time = INT_MAX)
-            {
-                SetPose_Deg(shoulderpitch, shoulderroll,
-                            elbowroll, elbowyaw,
-                            wristyaw, hand);
-                set_movement_time(time);
-            }
-        
-            /**
-             * Set Pose in radians
-             * @param   shoulderpitch  down to up
-             * @param   shoulderroll   out to in
-             * @param   elbowroll      straight to bent
-             * @param   elbowyaw       rolled right to rolled left
-             * @param   wristyaw       rolled right to rolled left
-             * @param   hand           closed to open.
-             *
-             */
-            void SetPose_Rad(float shoulderpitch,
-                             float shoulderroll,
-                             float elbowroll,
-                             float elbowyaw,
-                             float wristyaw,
-                             float hand)
-            {
-                set_shoulderpitch_RAD(shoulderpitch);
-                set_shoulderroll_RAD(shoulderroll);
-                set_elbowroll_RAD(elbowroll);
-                set_elbowyaw_RAD(elbowyaw);
-                set_wristyaw_RAD(wristyaw);
-                set_hand(hand);
-            }
-        
-            /**
-             * Set Pose in degrees
-             * @param   shoulderpitch down to up
-             * @param   shoulderroll  out to in
-             * @param   elbowroll     straight to bent
-             * @param   elbowyaw      rolled right to rolled left
-             * @param   wristyaw      rolled right to rolled left
-             * @param   hand          closed to open.
-             *
-             */
-            void SetPose_Deg(float shoulderpitch,
-                             float shoulderroll,
-                             float elbowroll,
-                             float elbowyaw,
-                             float wristyaw,
-                             float hand)
-            {
-                set_shoulderpitch_DEG(shoulderpitch);
-                set_shoulderroll_DEG(shoulderroll);
-                set_elbowroll_DEG(elbowroll);
-                set_elbowyaw_DEG(elbowyaw);
-                set_wristyaw_DEG(wristyaw);
-                set_hand(hand);
-            }
-
-            /**
-             *  Convenience function to mirror arm settings about the XZ plane from one HAL_ArmTarget object to another.
-             *
-             *  @param  other    HAL_ArmTarget object to be mirrored.
-             *
-             */
-            void MirrorArm(const HAL_ArmTarget &other)
-            {
-                // Roll and Yaw angles need to be mirrored, others just copied.
-                set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(-other.target_shoulderroll());
-                set_target_elbowroll(-other.target_elbowroll());
-                set_target_elbowyaw(-other.target_elbowyaw());
-                set_target_wristyaw(-other.target_wristyaw());
-                set_target_hand(other.target_hand());
-                set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-                set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-                set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-                set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-                set_target_wristyawstiffness(other.target_wristyawstiffness());
-                set_target_handstiffness(other.target_handstiffness());
-                set_target_movement_time(other.target_movement_time());
-                set_arm_active(other.arm_active());
-            }
-
-            /**
-             *  Convenience function to copy pose settings from one HAL_ArmTarget object to another.
-             *
-             *  @param  other    HAL_ArmTarget object from which to copy pose settings from.
-             *
-             */
-            void CopyPose(const HAL_ArmTarget &other)
-            {
-                set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(other.target_shoulderroll());
-                set_target_elbowroll(other.target_elbowroll());
-                set_target_elbowyaw(other.target_elbowyaw());
-                set_target_wristyaw(other.target_wristyaw());
-                set_target_hand(other.target_hand());
-            }
-
-            /**
-             *  Convenience function to mirror pose settings about the XZ plane from one HAL_ArmTarget object to another.
-             *
-             *  @param  other    HAL_ArmTarget object whose pose settings are to be mirrored.
-             *
-             */
-            void MirrorPose(const HAL_ArmTarget &other)
-            {
-                set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(-other.target_shoulderroll());
-                set_target_elbowroll(-other.target_elbowroll());
-                set_target_elbowyaw(-other.target_elbowyaw());
-                set_target_wristyaw(-other.target_wristyaw());
-                set_target_hand(other.target_hand());
-            }
-        
-            /**
-             *  Tests if this HAL_ArmTarget object has the same pose settings as the other HAL_ArmTarget object.
-             *      NOTE this does not take into account mirroring about the XZ plane.
-             *
-             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
-             *  @return bool    whether the two objects have the same pose or not.
-             *
-             */
-            bool HasSamePose(const HAL_ArmTarget &other)
-            {
-                if (
-                    target_shoulderpitch() == other.target_shoulderpitch()
-                    && target_shoulderroll() == other.target_shoulderroll()
-                    && target_elbowroll() == other.target_elbowroll()
-                    && target_elbowyaw() == other.target_elbowyaw()
-                    && target_wristyaw() == other.target_wristyaw()
-                    && target_hand() == other.target_hand()
-                   )
-                {
-                    return  true;
-                }
-                return false;
-            }
-
-            /**
-             *  Tests if this HAL_ArmTarget object has the same mirrored pose settings as the other HAL_ArmTarget object.
-             *      NOTE this method takes into account mirroring about the XZ plane.
-             *
-             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
-             *  @return bool    whether the two objects have the same pose or not.
-             *
-             */
-            bool HasSameMirroredPose(const HAL_ArmTarget &other)
-            {
-                if (
-                    target_shoulderpitch() == other.target_shoulderpitch()
-                    && target_shoulderroll() == -other.target_shoulderroll()
-                    && target_elbowroll() == -other.target_elbowroll()
-                    && target_elbowyaw() == -other.target_elbowyaw()
-                    && target_wristyaw() == -other.target_wristyaw()
-                    && target_hand() == other.target_hand()
-                    )
-                {
-                    return  true;
-                }
-                return false;
-            }
 
             /**
              *  Tests if this HAL_ArmTarget object has the same stiffness settings as the other HAL_ArmTarget object.
@@ -453,45 +471,92 @@ namespace guWhiteboard
                 return false;
             }
 
+//MARK: Arm - Pliability
+                
             /**
-             *  Client side test to determine if arm is at the target location, allowing for specified tolerances.
-             *  The method tests if the pose 'status' is within 'tolerance' of 'this' target
-             *  location, allowing for a specified tolerance.
+             *  Set arm to be Active (DEDAULT DCM state)
+             *  The arm is active and manual movements will be resisted, be careful when the stiffness is set high.
+             *  Once the applied force is removed, the arm will return to its previous location.
+             *  Be careful using this with high stiffness settings (which vary per joint), as the gears will be stripped.
              *
-             *  'this' object contains the target pose settings.
-             *
-             *  @param  status      HAL_ArmTarget object which contains actual pose settings reported by the robot's sensors.
-             *  @param  tolerance   HAL_ArmTarget object whose pose settings specify the tolerance for each joint/gripper
-             *  @return bool        whether or not the status is within range of the target location.
+             *  NOTE:  This is the default DCM mode.
              *
              */
-            bool AtTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
+            void SetArmActive()
             {
-                int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
-                int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
-                int16_t elbowrollMargin = static_cast<int16_t>(abs(target_elbowroll() - status.target_elbowroll()));
-                int16_t elbowyawMargin = static_cast<int16_t>(abs(target_elbowyaw() - status.target_elbowyaw()));
-                //#ifdef NAO_V3
-                //    int16_t wristyawMargin = static_cast<int16_t>(abs(target_wristyaw - status.target_wristyaw()));
-                //    uint8_t handMargin = static_cast<uint8_t>(abs(target_hand() - status.target_hand()));
-                if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
-                    && (shoulderrollMargin <= tolerance.target_shoulderroll())
-                    && (elbowrollMargin <= tolerance.target_elbowroll())
-                    && (elbowyawMargin <= tolerance.target_elbowyaw())
-                    //#ifdef NAO_V3
-                    //        && (wristyawMargin <= tolerance.target_wristyaw())
-                    //        && (handMargin <= tolerance.target_hand())
-                    )
-                {
-                    return true;
-                }
-                return false;
-
-                
-                
+                set_shoulderpitch_active(true);
+                set_shoulderroll_active(true);
+                set_elbowroll_active(true);
+                set_elbowyaw_active(true);
+                set_wrist_active(true);
+                set_hand_active(true);
             }
 
-/// CUSTOM SETTERS
+            /**
+             *  Set arm to be Passive
+             *  Manually moving the arm causes the arm to remain in the new position.
+             *  Be careful using this with high stiffness and pliability settings (which vary per joint).
+             *
+             *  NOTE:  This is achieved by telling the DCM to move the arm to the displaced
+             *         position each DCM cyle.  Thus the arm tracks the applied force.
+             *         The 'pliability' setting reduces the update rate, thus making the arm stiffer. At
+             *         higher pliability settings, the movement will become noticably stepped.
+             *
+             */
+            void SetArmPassive()
+            {
+                set_shoulderpitch_active(false);
+                set_shoulderroll_active(false);
+                set_elbowroll_active(false);
+                set_elbowyaw_active(false);
+                set_wrist_active(false);
+                set_hand_active(false);
+            }
+            
+            
+            /**
+             *  Individually set the active/passive state of each joint.
+             *  See Arm_Active() and Arm_Passive() methods for an explanation of the Active/Passive effect.
+             *
+             */
+            void SetArmPliability(bool shoulderpitch, bool shoulderroll, bool elbowroll,
+                                bool elbowyaw, bool wristyaw, bool hand)
+            {
+                set_shoulderpitch_active(shoulderpitch);
+                set_shoulderroll_active(shoulderroll);
+                set_elbowroll_active(elbowroll);
+                set_elbowyaw_active(elbowyaw);
+                set_wrist_active(wristyaw);
+                set_hand_active(hand);
+            }
+
+            /**
+             *  Are any of the arm's joints set to passive
+             *
+             */
+            bool IsArmPassive() {
+                return !shoulderpitch_active() || !shoulderroll_active() || !elbowroll_active() || !elbowyaw_active() || !wrist_active() || !hand_active();
+            }
+
+            /**
+             *  Are all of the arm's joints set to passive
+             *
+             */
+            bool IsArmAllPassive() {
+                return !shoulderpitch_active() && !shoulderroll_active() && !elbowroll_active() && !elbowyaw_active() && !wrist_active() && !hand_active();
+            }
+        
+            /**
+             *  Are all of the arm's joints set to active
+             *
+             */
+            bool IsArmAllActive() {
+                return shoulderpitch_active() && shoulderroll_active() && elbowroll_active() && elbowyaw_active() && wrist_active() && hand_active();
+            }
+
+        
+        
+//MARK: CUSTOM SETTERS
 /// Movement Setters (Degrees)
             void set_shoulderpitch_DEG(float setting) {
                 set_target_shoulderpitch(static_cast<int16_t>(setting * 10.0f));
@@ -564,18 +629,13 @@ namespace guWhiteboard
                 set_target_handstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
 
-/// Duration Setter
-            void set_movement_time(int32_t time) {
-                set_target_movement_time(time);
-            }
 
-/// Arm Pliability Setter
-        void pliability(uint8_t pliability) {
-            set_target_pliability(pliability);
-        }
-
+///// Duration Setter
+//            void set_movement_time(int32_t time) {
+//                set_target_movement_time(time);
+//            }
         
-///CUSTOM GETTERS
+//MARK: CUSTOM GETTERS
 /// Movement Getters (Degrees)
             float get_shoulderpitch_DEG() {
                 return static_cast<float>(target_shoulderpitch() * 0.1f);
@@ -648,20 +708,7 @@ namespace guWhiteboard
                 return static_cast<float>(target_handstiffness()) * 0.01f;
             }
 
-/// Duration Getter
-             int32_t get_movement_time() {
-                 return target_movement_time();
-            }
-
-/// Active/Passive Getter
-            bool get_arm_active() {
-                return arm_active();
-            }
-        
-/// Arm Pliability Getter
-            uint8_t pliability() {
-                return target_pliability();
-            }
+//MARK: WHITEBOAR POSTER STRING CONVERSION & Description
         
             /**
              *  Description function
@@ -681,8 +728,13 @@ namespace guWhiteboard
                 << static_cast<int>(target_elbowyawstiffness()) << "-|-"
                 << static_cast<int>(target_wristyawstiffness()) << "-|-"
                 << static_cast<int>(target_handstiffness()) << "-|-"
+                << static_cast<int>(shoulderpitch_active()) << "-|-"
+                << static_cast<int>(shoulderroll_active()) << "-|-"
+                << static_cast<int>(elbowroll_active()) << "-|-"
+                << static_cast<int>(elbowyaw_active()) << "-|-"
+                << static_cast<int>(wrist_active()) << "-|-"
+                << static_cast<int>(hand_active()) << "-|-"
                 << static_cast<int>(target_movement_time()) << "-|-"
-                << static_cast<int>(arm_active()) << "-|-"
                 << static_cast<int>(target_pliability()) << "-|-"
                 << static_cast<int>(arm_at_goal());
                 return ss.str();
