@@ -87,7 +87,7 @@ namespace guWhiteboard
              *  @param  other    HAL_ArmTarget object to be mirrored.
              *
              */
-            void MirrorArm(const HAL_ArmTarget &other)
+            void mirrorArm(const HAL_ArmTarget &other)
             {
                 // Roll and Yaw angles need to be mirrored, others just copied.
                 set_target_shoulderpitch(other.target_shoulderpitch());
@@ -125,7 +125,7 @@ namespace guWhiteboard
              * @param   time           elapsed time in mSec for the motion to complete.
              *
              */
-            void GoToWithTime_Rad(float shoulderpitch,
+            void goToWithTime_Rad(float shoulderpitch,
                                   float shoulderroll,
                                   float elbowroll,
                                   float elbowyaw,
@@ -133,7 +133,7 @@ namespace guWhiteboard
                                   float hand,
                                   int32_t time = INT_MAX)
             {
-                SetPose_Rad(shoulderpitch, shoulderroll,
+                setPose_Rad(shoulderpitch, shoulderroll,
                             elbowroll, elbowyaw,
                             wristyaw, hand);
                 set_target_movement_time(time);
@@ -150,7 +150,7 @@ namespace guWhiteboard
              * @param   time          elapsed time in mSec for the motion to complete.
              *
              */
-            void GoToWithTime_Deg(float shoulderpitch,
+            void goToWithTime_Deg(float shoulderpitch,
                                   float shoulderroll,
                                   float elbowroll,
                                   float elbowyaw,
@@ -158,7 +158,7 @@ namespace guWhiteboard
                                   float hand,
                                   int32_t time = INT_MAX)
             {
-                SetPose_Deg(shoulderpitch, shoulderroll,
+                setPose_Deg(shoulderpitch, shoulderroll,
                             elbowroll, elbowyaw,
                             wristyaw, hand);
                 set_target_movement_time(time);
@@ -174,7 +174,7 @@ namespace guWhiteboard
              * @param   hand           closed to open.
              *
              */
-            void SetPose_Rad(float shoulderpitch,
+            void setPose_Rad(float shoulderpitch,
                              float shoulderroll,
                              float elbowroll,
                              float elbowyaw,
@@ -199,7 +199,7 @@ namespace guWhiteboard
              * @param   hand          closed to open.
              *
              */
-            void SetPose_Deg(float shoulderpitch,
+            void setPose_Deg(float shoulderpitch,
                              float shoulderroll,
                              float elbowroll,
                              float elbowyaw,
@@ -221,7 +221,7 @@ namespace guWhiteboard
              *  @param  other    HAL_ArmTarget object from which to copy pose settings from.
              *
              */
-            void CopyPose(const HAL_ArmTarget &other)
+            void copyPose(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
                 set_target_shoulderroll(other.target_shoulderroll());
@@ -237,7 +237,7 @@ namespace guWhiteboard
              *  @param  other    HAL_ArmTarget object whose pose settings are to be mirrored.
              *
              */
-            void MirrorPose(const HAL_ArmTarget &other)
+            void mirrorPose(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
                 set_target_shoulderroll(-other.target_shoulderroll());
@@ -255,7 +255,7 @@ namespace guWhiteboard
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool HasSamePose(const HAL_ArmTarget &other)
+            bool hasSamePose(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitch() == other.target_shoulderpitch()
@@ -279,7 +279,7 @@ namespace guWhiteboard
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool HasSameMirroredPose(const HAL_ArmTarget &other)
+            bool hasSameMirroredPose(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitch() == other.target_shoulderpitch()
@@ -305,7 +305,7 @@ namespace guWhiteboard
              *  @param  goalReached  the arm has reached the goal (true/false)
              *
              */
-            void IsAtGoal(bool goalReached)
+            void isAtGoal(bool goalReached)
             {
                 set_arm_at_goal(goalReached);
             }
@@ -322,7 +322,7 @@ namespace guWhiteboard
              *  @return     bool    whether the arm is at the goal location or not.
              *
              */
-            bool AtGoal()
+            bool atGoal()
             {
                 return arm_at_goal();
             }
@@ -339,7 +339,7 @@ namespace guWhiteboard
              *  @return bool        whether or not the status is within range of the target location.
              *
              */
-            bool AtTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
+            bool atTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
             {
                 int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
                 int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
@@ -369,7 +369,7 @@ namespace guWhiteboard
              *  of all the arm's joints to the maximum (1.0f).
              *
              */
-            void SetArmStiffnessMax()
+            void setArmStiffnessMax()
             {
                 set_shoulderpitchstiffness(1.0f);
                 set_shoulderrollstiffness(1.0f);
@@ -385,7 +385,7 @@ namespace guWhiteboard
              *  considers 'normal' (0.6f).
              *
              */
-            void SetArmStiffnessNormal()
+            void setArmStiffnessNormal()
             {
                 set_shoulderpitchstiffness(0.6f);
                 set_shoulderrollstiffness(0.6f);
@@ -402,7 +402,7 @@ namespace guWhiteboard
              *  @param stiffness float Stiffness setting between 0.0 and 1.0 (float).
              *
              */
-            void SetArmStiffness(float stiffness)
+            void setArmStiffness(float stiffness)
             {
                 if ((stiffness <= 1.0f) && (stiffness >=0.0f)) {
                     set_shoulderpitchstiffness(stiffness);
@@ -419,7 +419,7 @@ namespace guWhiteboard
              *  in all the arm's joints (0.0f).
              *
              */
-            void SetArmStiffnessOff()
+            void setArmStiffnessOff()
             {
                 set_shoulderpitchstiffness(0.0f);
                 set_shoulderrollstiffness(0.0f);
@@ -436,7 +436,7 @@ namespace guWhiteboard
              *  @param  other    HAL_ArmTarget object from which to copy stiffness settings.
              *
              */
-            void CopyStiffness(const HAL_ArmTarget &other)
+            void copyStiffness(const HAL_ArmTarget &other)
             {
                 target_shoulderpitchstiffness() = other.target_shoulderpitchstiffness();
                 target_shoulderrollstiffness() = other.target_shoulderrollstiffness();
@@ -455,7 +455,7 @@ namespace guWhiteboard
              *  @return bool    whether the two objects have the same stiffness or not.
              *
              */
-            bool HasSameStiffness(const HAL_ArmTarget &other)
+            bool hasSameStiffness(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitchstiffness() == other.target_shoulderpitchstiffness()
@@ -482,7 +482,7 @@ namespace guWhiteboard
              *  NOTE:  This is the default DCM mode.
              *
              */
-            void SetArmActive()
+            void setArmActive()
             {
                 set_shoulderpitch_active(true);
                 set_shoulderroll_active(true);
@@ -503,7 +503,7 @@ namespace guWhiteboard
              *         higher pliability settings, the movement will become noticably stepped.
              *
              */
-            void SetArmPassive()
+            void setArmPassive()
             {
                 set_shoulderpitch_active(false);
                 set_shoulderroll_active(false);
@@ -519,7 +519,7 @@ namespace guWhiteboard
              *  See Arm_Active() and Arm_Passive() methods for an explanation of the Active/Passive effect.
              *
              */
-            void SetArmPliability(bool shoulderpitch, bool shoulderroll, bool elbowroll,
+            void setArmPliability(bool shoulderpitch, bool shoulderroll, bool elbowroll,
                                 bool elbowyaw, bool wristyaw, bool hand)
             {
                 set_shoulderpitch_active(shoulderpitch);
@@ -534,7 +534,7 @@ namespace guWhiteboard
              *  Are any of the arm's joints set to passive
              *
              */
-            bool IsArmPassive() {
+            bool isArmPassive() {
                 return !shoulderpitch_active() || !shoulderroll_active() || !elbowroll_active() || !elbowyaw_active() || !wrist_active() || !hand_active();
             }
 
@@ -542,7 +542,7 @@ namespace guWhiteboard
              *  Are all of the arm's joints set to passive
              *
              */
-            bool IsArmAllPassive() {
+            bool isArmAllPassive() {
                 return !shoulderpitch_active() && !shoulderroll_active() && !elbowroll_active() && !elbowyaw_active() && !wrist_active() && !hand_active();
             }
         
@@ -550,7 +550,7 @@ namespace guWhiteboard
              *  Are all of the arm's joints set to active
              *
              */
-            bool IsArmAllActive() {
+            bool isArmAllActive() {
                 return shoulderpitch_active() && shoulderroll_active() && elbowroll_active() && elbowyaw_active() && wrist_active() && hand_active();
             }
 
