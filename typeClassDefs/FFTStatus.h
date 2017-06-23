@@ -3,7 +3,7 @@
  *  gusimplewhiteboard
  *
  *  Created by Rene Hexel on 24/06/2014.
- *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2014, 2015, 2017 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -73,6 +73,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wclass-varargs"
+#pragma clang diagnostic ignored "-Wvarargs"
 
 namespace guWhiteboard
 {
