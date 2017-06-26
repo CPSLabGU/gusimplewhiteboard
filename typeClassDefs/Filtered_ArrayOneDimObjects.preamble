@@ -1,2 +1,6 @@
-#include "wb_filtered_visionobject.h"
+#include "wb_filtered_vision_object.h"
 #include "wb_filtered_vision_object_type.h"
+#ifdef __cplusplus
+#include "FilteredVisionObject.h"
+#endif
+

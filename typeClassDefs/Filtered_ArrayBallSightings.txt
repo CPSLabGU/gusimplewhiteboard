@@ -1,4 +1,4 @@
 author	Vlad Estivill-Castro
-struct wb_filtered_visionobject	objects[2]	// the array containing filtered balls on separate cameras reported by vision FVO_NUM_CAMERAS =2
+struct wb_filtered_vision_object	objects[2]	// the array containing filtered balls on separate cameras reported by vision FVO_NUM_CAMERAS =2
 
 The class of landmarks filtered regarding goal sigthings
