@@ -1,0 +1,14 @@
+author	Vlad Estivill-Castro
+uint64_t	visibilityHistory	//a 64-bit history of whether vision said visible 1 or not visible 0. visibilityHistory&0X1 is the most recent fram  
+int32_t	frameCounter	//should be provided by vision. 
+int16_t	distance	// distance to landmark in cm
+int16_t	x	// centre x-coordinate in image  (0,0) is the center of the image
+int16_t	y	//ntre y-coordinate in image	
+int16_t	yaw	//the Yaw in Degress when the object was last used to generated filtered values. 
+bool	isVisible	//is this a credible sighting. 
+bool	pad1	//16 bit padding . 
+int16_t	pad2	//32 bit padding. 
+
+@brief Posting by kalman filter on obejct sigthing 
+
+ 
