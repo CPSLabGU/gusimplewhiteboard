@@ -78,7 +78,7 @@
 #include "FilteredOneDimObject.h"
 #include "FilteredArrayOneDimSonar.h"
 #include "FilteredArrayOneDimObjects.h"
-#include "FilteredArrayOneDimBall.h"
+#include "FilteredArrayBallSightings.h"
 #include "SENSORSSonarSensors.h"
 #include "NAO_State.h"
 #include "HAL_HeadTarget.h"

@@ -438,7 +438,7 @@ namespace guWhiteboard
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredArrayOneDimBall_DEFINED
+#ifdef FilteredArrayBallSightings_DEFINED
 		{
 /** WB Ptr Class: FilteredBallSighting @brief Nil */ 
 			class FilteredBallSighting_t m(wbd);
@@ -447,7 +447,7 @@ namespace guWhiteboard
 #else
 			return "##unsupported##";
 
-#endif // !FilteredArrayOneDimBall_DEFINED
+#endif // !FilteredArrayBallSightings_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 #ifdef int32_t_DEFINED
