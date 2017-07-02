@@ -64,7 +64,7 @@
 #include <sstream>
 #include <gu_util.h>
 #include "FilteredOneDimObject.h"
-#include "wb_arrayoffilteredballobjects.h"
+#include "FilteredArrayBallSightings.h"
 
 namespace guWhiteboard {
     
@@ -72,7 +72,7 @@ namespace guWhiteboard {
 /**
  * Class for for the array of ball sighthings TOP or Bottom
  */
-class FilteredArrayOneDimBall:  public wb_arrayoffilteredballobjects
+class FilteredArrayOneDimBall:  public FilteredArrayBallSightings
 {
 #define SEPARATOR_IS_COMMA ','
 #define SEPARATOR_IS_COLON ':'
@@ -82,13 +82,14 @@ class FilteredArrayOneDimBall:  public wb_arrayoffilteredballobjects
     
 public:
     /** designated constructor */
-    FilteredArrayOneDimBall(): wb_arrayoffilteredballobjects()
+    FilteredArrayOneDimBall(): FilteredArrayBallSightings()
     { /*  */ }
     
     /** constructor with one setter */
-    FilteredArrayOneDimBall(const class FilteredOneDimObject &obj, enum FilteredBallObjectType landmarkType  = FVOBallTop)
+    FilteredArrayOneDimBall(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBallTop)
     {
-        _objects[landmarkType]=obj;
+	const FilteredVisionObject *fvo = dynamic_cast<const FilteredVisionObject *>(&obj);
+        _objects[landmarkType]=*fvo;
     }
     
 
@@ -123,13 +124,13 @@ public:
     }
     
     /** single vision object setter */
-    void set_object(const class FilteredOneDimObject &obj, enum FilteredBallObjectType landmarkType  = FVOBallTop)
+    void set_object(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBallTop)
     {
-        wb_arrayoffilteredballobjects::set_objects(obj, landmarkType);
+        FilteredArrayBallSightings::set_objects(obj, landmarkType);
     }
     
     /** single vision object setter */
-    FilteredOneDimObject  get_object( enum FilteredBallObjectType landmarkType  = FVOBallTop)
+    FilteredOneDimObject  get_object( enum FilteredVisionObjectType landmarkType  = FVOBallTop)
     {
         return objects(landmarkType);
     }

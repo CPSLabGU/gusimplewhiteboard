@@ -75,6 +75,7 @@
 #include "FFTStatus.h"
 #include "Vision_Control.h"
 #include "FilteredOneDimSonar.h"
+#include "FilteredVisionObject.h"
 #include "FilteredOneDimObject.h"
 #include "FilteredArrayOneDimSonar.h"
 #include "FilteredArrayOneDimObjects.h"
