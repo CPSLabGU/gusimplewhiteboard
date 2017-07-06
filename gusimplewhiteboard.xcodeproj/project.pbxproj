@@ -1103,6 +1103,7 @@
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
 				F19FA36C18DFE6280095B87D /* SimpleWhiteboardTest copy-Info.plist */,
+				F1F2C1B21F0DE993005ADFDD /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1748,6 +1749,14 @@
 				F1ED58AE18E7EF1400864A87 /* wbPerfTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1F2C1B21F0DE993005ADFDD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C3BEDEE41693EADD00119F2E /* guudpSerialize.h */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2588,6 +2597,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
 					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
 					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
 					"$(SRCROOT)/../../Common",
@@ -2632,6 +2642,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
 					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
 					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
 					"$(SRCROOT)/../../Common",

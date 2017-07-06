@@ -98,7 +98,7 @@ public:
     FilteredArrayOneDimBall(const FilteredArrayOneDimBall &other)
     {
 #ifdef DEBUG
-        assert(sizeof(*this) == sizeof(wb_arrayoffilteredballobjects));
+        assert(sizeof(*this) == sizeof(wb_filtered_arrayballsightings));
 #endif
         memcpy(this, &other, sizeof(other));
     }
