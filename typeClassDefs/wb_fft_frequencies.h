@@ -5,7 +5,7 @@
  *  Created by
  *  \author Rene Hexel on
  *  \date 24/06/2014.
- *  Copyright (c) 2014, 2015 Rene Hexel. All rights reserved.
+ *  Copyright (c) 2014, 2015, 2017 Rene Hexel. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -65,6 +65,9 @@
 #endif
 
 #include <gu_util.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wvarargs"
 
 #ifdef GU_SIMPLE_WHITEBOARD_BUFSIZE
 /** Calculated macro on the total number of frequency pairs that fit on the whiteboard */
@@ -225,5 +228,7 @@ struct fft_dominant_frequency
     }
 #endif
 };
+
+#pragma clang diagnostic pop
 
 #endif //#_wb_fft_frequencies_h_

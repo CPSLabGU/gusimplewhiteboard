@@ -506,18 +506,18 @@ namespace guWhiteboard
 #endif // !TopParticles_DEFINED
 
 		case kFilteredBallSighting_v:
-#ifdef FilteredArrayOneDimBall_DEFINED
+#ifdef FilteredArrayBallSightings_DEFINED
 		{
 /** WB Ptr Class: FilteredBallSighting @brief Nil */ 
 			class FilteredBallSighting_t FilteredBallSighting_msg(wbd);
-			FilteredArrayOneDimBall v = FilteredBallSighting_msg.get(); 
+			FilteredArrayBallSightings v = FilteredBallSighting_msg.get(); 
 			v.from_string(message_content);
 			FilteredBallSighting_msg.post(v);
 			return true;
 		}
 #else
 			return false;
-#endif // !FilteredArrayOneDimBall_DEFINED
+#endif // !FilteredArrayBallSightings_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
 #ifdef int32_t_DEFINED

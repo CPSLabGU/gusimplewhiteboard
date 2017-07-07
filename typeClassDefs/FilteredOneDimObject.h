@@ -1,4 +1,3 @@
-
 /*
  *  FilteredOneDimObject.h
  *  gusimplewhiteboard
@@ -69,14 +68,14 @@
 #include <cstdlib>
 #include <sstream>
 #include <gu_util.h>
-#include "wb_filteredvisionobject.h"
+#include "FilteredVisionObject.h"
 
 namespace guWhiteboard {
 /** A class to contain objects that have been filtered through localisation
 *
 *
 */
-class FilteredOneDimObject:  public wb_filteredvisionobject
+class FilteredOneDimObject:  public FilteredVisionObject
 {
 public:
         /** designated constructor */
@@ -87,16 +86,16 @@ public:
                              int16_t yaw=0,
                                                        bool isVisible= false,
                              uint64_t visibilityHistory=0
-                            ): wb_filteredvisionobject(frameCounter,distance,x,y,yaw,isVisible,visibilityHistory)
+                            ): FilteredVisionObject(visibilityHistory, frameCounter,distance,x,y,yaw,isVisible,0,0)
         { /*  */ }
         
         /** copy constructor */
-        FilteredOneDimObject(const FilteredOneDimObject &other):wb_filteredvisionobject(other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible(), other.visibilityHistory())
+        FilteredOneDimObject(const FilteredOneDimObject &other):FilteredVisionObject(other.visibilityHistory(),other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible(),0,0) 
         {
         }
     
          /** BASECONSTRUCTOR: INTERESTING !!!! */
-         FilteredOneDimObject (const wb_filteredvisionobject &other)
+         FilteredOneDimObject (const wb_filtered_vision_object &other)
        {    set_isVisible ( other.isVisible() );
         
         set_frameCounter ( other.frameCounter() );
@@ -126,7 +125,7 @@ public:
     
     /** copy assignment operator **/
     /**  INTERESTING !!!! */
-    FilteredOneDimObject &operator=(const wb_filteredvisionobject &other)
+    FilteredOneDimObject &operator=(const wb_filtered_vision_object &other)
     {
         set_frameCounter ( other.frameCounter() );
         set_distance ( other.distance() );
