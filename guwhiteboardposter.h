@@ -86,6 +86,7 @@
 #include "SENSORSTorsoJointSensors.h"
 #include "SENSORSLegJointSensors.h"
 //#include "PARTICLE_TopPositions.h"
+#include "Point2D.h"
 #include "ParticlePosition.h"
 #include "TopParticles.h"
 #include "SENSORSBodySensors.h"
