@@ -1,0 +1,8 @@
+author	Vlad Estivill-Castro
+struct wb_point2d	position=uninitializedPoint2d	//position in the soccer field, this documentation should say where is the origin and what direction axeses grow  
+int16_t	headingInDegrees	//This documentation shoul say if measures clockwise or counter clock wise . 
+float	confidence	// degre of certaintity that this a reliable locaiton where the robot is
+
+@brief Posting by Particle Filter and Localization simulator to create localization based amchines behavior 
+
+ 

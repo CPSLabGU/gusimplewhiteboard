@@ -85,7 +85,6 @@ namespace guWhiteboard
            
         };
         
-        
         /**
          * Class for a top particle position
          */

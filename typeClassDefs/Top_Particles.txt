@@ -1,0 +1,4 @@
+author	Vlad Estivill-Castro
+struct wb_particle_position	particles[4]	// these 4 should be the constant NUM_TOP_PARTICLES
+
+The class of the top particles in a Localization Filter

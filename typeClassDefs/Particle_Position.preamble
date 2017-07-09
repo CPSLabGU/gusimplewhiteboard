@@ -1,0 +1,2 @@
+#include "wb_point2d.h"
+static const struct wb_point2d uninitializedPoint2d  {};
