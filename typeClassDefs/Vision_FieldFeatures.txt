@@ -1,0 +1,7 @@
+author	Eugene Gilmore
+struct wb_point2d	fieldCorner[4]	//location of corners on the field
+struct wb_point2d	fieldIntersection[4]	//location of T-Intersections on the field
+uint8_t	numCorners	//number of corners in this message
+uint8_t	numIntersections	//number of T-Intersections in this message
+
+@brief Posting by Vision of the field corners and T-Intersections that have been seen 
