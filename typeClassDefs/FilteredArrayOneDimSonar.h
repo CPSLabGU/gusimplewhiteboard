@@ -103,7 +103,7 @@ public:
         FilteredArrayOneDimSonar(const FilteredArrayOneDimSonar &other)
         {
 #ifdef DEBUG
-                assert(sizeof(*this) == sizeof(wb_arrayoffilteredsonarobjects));
+                //assert(sizeof(*this) == sizeof(wb_arrayoffilteredsonarobjects));
 #endif
                 memcpy(this, &other, sizeof(other));
         }

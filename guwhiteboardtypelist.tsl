@@ -104,3 +104,4 @@ class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Tolr,               "HAL_LArmTar
 class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Ctrl,               "HAL_RArmTarget_Ctrl", Used to control the right arm via DCM
 class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Stat,               "HAL_RArmTarget_Stat", Used to report DCM status of the right arm
 class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Tolr,               "HAL_RArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
+class:VisionFieldFeatures, not_atomic, VisionFieldFeatures,     "VisionFieldFeatures", Posts information from vision about field corners and intersections

@@ -53,7 +53,7 @@ public:
      * @return true if the line was successfully added, false if all 6 elements in the array are already used
      */
 	bool addLine(const wb_line &line, VisionCamera camera) {
-		for (int i = 0; i<6; ++i) {
+		for (int i = 0; i<5; ++i) {
 			if(camera == Top) {
 				if(!(topMask() & (1 << i))) {
 					set_topLines(line, i);
@@ -79,7 +79,7 @@ public:
      */
 	std::vector<wb_line> topLines() const {
 		std::vector<wb_line> result;
-		for(int i = 0; i<6; ++i) {
+		for(int i = 0; i<5; ++i) {
 			if(topMask() & (1 << i)) {
 				result.push_back(wb_lines::topLines(i));
 			}
@@ -94,7 +94,7 @@ public:
      */
 	std::vector<wb_line> bottomLines() const {
 		std::vector<wb_line> result;
-		for(int i = 0; i<6; ++i) {
+		for(int i = 0; i<5; ++i) {
 			if(bottomMask() & (1 << i)) {
 				result.push_back(wb_lines::bottomLines(i));
 			}
