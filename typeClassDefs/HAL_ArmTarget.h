@@ -80,47 +80,66 @@ namespace guWhiteboard
                          const float elbowyawstiffness = 0,
                          const float wristyawstiffness = 0,
                          const float handstiffness = 0,
-                         const int   movement_time = 1000000,
-                         const  bool arm_active = false)
+                         const bool  shoulderpitch_active = true,
+                         const bool  shoulderroll_active = true,
+                         const bool  elbowroll_active = true,
+                         const bool  elbowyaw_active = true,
+                         const bool  wrist_active = true,
+                         const bool  hand_active = true,
+                         const int32_t movement_time = 1000000,
+                         const uint8_t pliability)
             : wb_hal_armtarget(target_arm)
             {
                setPose_Rad(shoulderpitch_RAD, shoulderroll_RAD,
                            elbowroll_RAD, elbowyaw_RAD,
-                           wristyaw_RAD,  handPCT);
+                           wristyaw_RAD, hand_PCT);
+               set_target_movement_time(movement_time);
                set_shoulderpitchstiffness(shoulderpitchstiffness);
                set_shoulderrollstiffness(shoulderrollstiffness);
                set_elbowrollstiffness(elbowrollstiffness);
                set_elbowyawstiffness(elbowyawstiffness);
                set_wristyawstiffness(wristyawstiffness);
                set_handstiffness(handstiffness);
+               setArmPliability(shoulderpitch_active, shoulderroll_active, elbowroll_active,
+                                elbowyaw_active, wrist_active, hand_active);
+               set_target_pliability(pliability);
             }
 
-            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM,
-                          const float shoulderpitch_DEG = 0,
-                          const float shoulderroll_DEG = 0,
-                          const float elbowroll_DEG = 0,
-                          const float elbowyaw_DEG = 0,
-                          const float wristyaw_DEG = 0,
-                          const float hand_PCT = 0,
-                          const float shoulderpitchstiffness = 0,
-                          const float target_shoulderrollstiffness = 0,
-                          const float target_elbowrollstiffness = 0,
-                          const float target_elbowyawstiffness = 0,
-                          const float target_wristyawstiffness = 0,
-                          const int target_movement_time = 1000000,
-                          const  bool arm_active = false)
-            : wb_hal_armtarget(target_arm)
-            {
-               setPose_Deg(shoulderpitch_DEG, shoulderroll_DEG,
-                           elbowroll_DEG, elbowyaw_DEG,
-                           wristyaw_DEG, handPCT);
-               set_shoulderpitchstiffness(shoulderpitchstiffness);
-               set_shoulderrollstiffness(shoulderrollstiffness);
-               set_elbowrollstiffness(elbowrollstiffness);
-               set_elbowyawstiffness(elbowyawstiffness);
-               set_wristyawstiffness(wristyawstiffness);
-               set_handstiffness(handstiffness);
-            }
+//            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM,
+//                          const float shoulderpitch_DEG = 0,
+//                          const float shoulderroll_DEG = 0,
+//                          const float elbowroll_DEG = 0,
+//                          const float elbowyaw_DEG = 0,
+//                          const float wristyaw_DEG = 0,
+//                          const float hand_PCT = 0,
+//                          const float shoulderpitchstiffness = 0,
+//                          const float target_shoulderrollstiffness = 0,
+//                          const float target_elbowrollstiffness = 0,
+//                          const float target_elbowyawstiffness = 0,
+//                          const float target_wristyawstiffness = 0,
+//                          const bool  shoulderpitch_active = true,
+//                          const bool  shoulderroll_active = true,
+//                          const bool  elbowroll_active = true,
+//                          const bool  elbowyaw_active = true,
+//                          const bool  wrist_active = true,
+//                          const bool  hand_active = true,
+//                          const int32_t movement_time = 1000000,
+//                          set_target_pliability(pliability);
+//            : wb_hal_armtarget(target_arm)
+//            {
+//               setPose_Deg(shoulderpitch_DEG, shoulderroll_DEG,
+//                           elbowroll_DEG, elbowyaw_DEG,
+//                           wristyaw_DEG, hand_PCT);
+//               set_target_movement_time(movement_time);
+//               set_shoulderpitchstiffness(shoulderpitchstiffness);
+//               set_shoulderrollstiffness(shoulderrollstiffness);
+//               set_elbowrollstiffness(elbowrollstiffness);
+//               set_elbowyawstiffness(elbowyawstiffness);
+//               set_wristyawstiffness(wristyawstiffness);
+//               set_handstiffness(handstiffness);
+//               setArmPliability(shoulderpitch_active, shoulderroll_active, elbowroll_active,
+//                                elbowyaw_active, wrist_active, hand_active);
+//            }
 
             /**
              *  Specify which arm this instance manages.
