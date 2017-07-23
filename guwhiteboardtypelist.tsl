@@ -98,10 +98,11 @@ bool, nonatomic, Ball_Found, "Ball_Found", whether ball is detected in STEM6 Det
 std::string, nonatomic, Ball_Calibration_File, "Ball_Calibration_File", name of DLC file to load for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Calibration_Num, "Ball_Calibration_Num", number (size_t) to load with DLC file for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Color_Num, "Ball_Color_Num", number for each ball color as defined in STEM6Master
-class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Ctrl,               "HAL_LArmTarget_Ctrl", Used to control the left arm via DCM
-class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Stat,               "HAL_LArmTarget_Stat", Used to report DCM status of the left arm
-class:HAL_ArmTarget, not_atomic, HAL_LArmTarget_Tolr,               "HAL_LArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
-class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Ctrl,               "HAL_RArmTarget_Ctrl", Used to control the right arm via DCM
-class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Stat,               "HAL_RArmTarget_Stat", Used to report DCM status of the right arm
-class:HAL_ArmTarget, not_atomic, HAL_RArmTarget_Tolr,               "HAL_RArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
-class:VisionFieldFeatures, not_atomic, VisionFieldFeatures,     "VisionFieldFeatures", Posts information from vision about field corners and intersections
+class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Ctrl,               "HAL_LArmTarget_Ctrl", Used to control the left arm via DCM
+class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Stat,               "HAL_LArmTarget_Stat", Used to report DCM status of the left arm
+class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Tolr,               "HAL_LArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
+class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Ctrl,               "HAL_RArmTarget_Ctrl", Used to control the right arm via DCM
+class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Stat,               "HAL_RArmTarget_Stat", Used to report DCM status of the right arm
+class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Tolr,               "HAL_RArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
+class:VisionFieldFeatures, nonatomic, VisionFieldFeatures,     "VisionFieldFeatures", Posts information from vision about field corners and intersections
+bool,                nonatomic, WhistleBlown,                       "WhistleBlown", Whistle blown flag
