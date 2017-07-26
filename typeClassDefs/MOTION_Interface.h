@@ -101,7 +101,7 @@ namespace guWhiteboard
                         "GoalieSaveLeft_stance",
                         "GoalieSaveRight_stance",
                         "FallenForward_stance",
-                        "FallenBack_stance"
+                        "FallenBack_stance",
                 };
 
 		/**
@@ -157,6 +157,7 @@ namespace guWhiteboard
                                 v.push_back(Stance_Transition(GoalieSaveLeft_stance,    Kneeling_stance,        225));
                                 v.push_back(Stance_Transition(Kneeling_stance,          GoalieSaveRight_stance, 480));
                                 v.push_back(Stance_Transition(GoalieSaveRight_stance,   Kneeling_stance,        225));
+                                v.push_back(Stance_Transition(FallenForward_stance,     Standing_stance,         1));
 
                                 return v;
                         }
