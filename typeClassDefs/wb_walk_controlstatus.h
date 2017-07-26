@@ -76,7 +76,11 @@ struct wb_walk_controlstatus
 
 #ifdef __cplusplus
    /** Constructor with some default values */
-    wb_walk_controlstatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(false) {}
+    wb_walk_controlstatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0, bool odo_mask = false, float odo_forward = 0, float odo_left = 0, float odo_turn = 0): _forward(forward), _left(left), _turn(turn), _power(power), _controlStatus(c), _odometry_mask(odo_mask) {
+	odometry().forward = odo_forward;
+	odometry().left = odo_left;
+	odometry().turn = odo_turn;
+    }
 #endif
 
 };
