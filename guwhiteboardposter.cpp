@@ -1349,6 +1349,14 @@ namespace guWhiteboard
 			return false;
 #endif // !VisionFieldFeatures_DEFINED
 
+		case kWhistleBlown_v:
+		{
+/** WB Ptr Class: WhistleBlown @brief Nil */ 
+			class WhistleBlown_t WhistleBlown_msg(wbd);
+			WhistleBlown_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			return true;
+		}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1362,7 +1370,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(107);
+	// self.reserve(108);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1471,6 +1479,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["HAL_RArmTarget_Stat"] = kHAL_RArmTarget_Stat_v;
 	self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
 	self["VisionFieldFeatures"] = kVisionFieldFeatures_v;
+	self["WhistleBlown"] = kWhistleBlown_v;
 
 	(void) self;
 }

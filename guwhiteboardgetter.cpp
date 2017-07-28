@@ -1139,6 +1139,12 @@ namespace guWhiteboard
 
 #endif // !VisionFieldFeatures_DEFINED
 
+		case kWhistleBlown_v:
+		{
+/** WB Ptr Class: WhistleBlown @brief Nil */ 
+			class WhistleBlown_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 		(void) msg;
 	}
 #pragma clang diagnostic push

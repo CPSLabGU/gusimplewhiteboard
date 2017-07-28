@@ -77,7 +77,7 @@ namespace guWhiteboard
          */
         enum PF_ControlStatus_Modes
         {
-                PF_Running,             ///< PF is running
+                PF_Running=0,             ///< PF is running
                 PF_New_Game,      ///< A FSM should set this, the PF is reset as per playerNumber
                 PF_After_Penalized,              ///< Sides of our field are the reset positions
                 PF_After_Fall,             ///< headings are reset randomly
