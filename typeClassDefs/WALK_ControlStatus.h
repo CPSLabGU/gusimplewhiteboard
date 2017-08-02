@@ -41,13 +41,25 @@ namespace guWhiteboard
 
         public:
                 /** designated constructor */
-                WALK_ControlStatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0): wb_walk_controlstatus(c, forward, left, turn, power) {}
+                WALK_ControlStatus(WALK_ControlStatus_Mode c = WALK_Disconnected, float forward = 0, float left = 0, float turn = 0, float power = 0, bool odo_mask = false, float odo_forward = 0, float odo_left = 0, float odo_turn = 0): wb_walk_controlstatus(c, forward, left, turn, power, odo_mask, odo_forward, odo_left, odo_turn) {}
 
                 /** copy constructor */
-                WALK_ControlStatus(const WALK_ControlStatus &other) : wb_walk_controlstatus(other.controlStatus(), other.forward(), other.left(), other.turn(), other.power()) { }
+                WALK_ControlStatus(const WALK_ControlStatus &other) : wb_walk_controlstatus(other.controlStatus(), other.forward(), other.left(), other.turn(), other.power(), other.odometry_mask(), other.odometry().forward, other.odometry().left, other.odometry().turn) { }
 
                 /** copy assignment operator */
-                WALK_ControlStatus &operator=(const WALK_ControlStatus &other) { set_controlStatus(other.controlStatus()); set_forward(other.forward()); set_left(other.left()); set_turn(other.turn()); set_power(other.power()); return *this; }
+                WALK_ControlStatus &operator=(const WALK_ControlStatus &other) { 			set_controlStatus(other.controlStatus()); 
+			set_forward(other.forward()); 
+			set_left(other.left()); 
+			set_turn(other.turn()); 
+			set_power(other.power()); 
+			set_odometry_mask(other.odometry_mask()); 
+			struct Odometry o;
+			o.forward = other.odometry().forward;
+			o.left = other.odometry().left;
+			o.turn = other.odometry().turn;
+			set_odometry(o); 
+			return *this; 
+		}
 
                 /** comparison operator */
 		inline bool operator == (const WALK_ControlStatus &s) 

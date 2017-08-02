@@ -810,6 +810,20 @@
 		F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentialRobotControlStatus.h; sourceTree = "<group>"; };
 		F5BC000A1F0DEF7900987168 /* FilteredVisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredVisionObject.h; sourceTree = "<group>"; };
 		F5BC000C1F0DEF9700987168 /* FilteredArrayBallSightings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredArrayBallSightings.h; sourceTree = "<group>"; };
+		F5C315931F11B30D00C517C2 /* Top_Particles.preamble */ = {isa = PBXFileReference; lastKnownFileType = text; path = Top_Particles.preamble; sourceTree = "<group>"; };
+		F5C315941F11B30D00C517C2 /* Top_Particles.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Top_Particles.txt; sourceTree = "<group>"; };
+		F5C315951F11B30D00C517C2 /* TopParticles-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TopParticles-Bridging-Header.h"; sourceTree = "<group>"; };
+		F5C315961F11B30D00C517C2 /* TopParticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopParticles.h; sourceTree = "<group>"; };
+		F5C315971F11B30E00C517C2 /* TopParticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopParticles.swift; sourceTree = "<group>"; };
+		F5C315981F11B32A00C517C2 /* Particle_Position.preamble */ = {isa = PBXFileReference; lastKnownFileType = text; path = Particle_Position.preamble; sourceTree = "<group>"; };
+		F5C315991F11B32A00C517C2 /* Particle_Position.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Particle_Position.txt; sourceTree = "<group>"; };
+		F5C3159A1F11B32A00C517C2 /* ParticlePosition-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParticlePosition-Bridging-Header.h"; sourceTree = "<group>"; };
+		F5C3159B1F11B32A00C517C2 /* ParticlePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticlePosition.h; sourceTree = "<group>"; };
+		F5C3159C1F11B32A00C517C2 /* ParticlePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlePosition.swift; sourceTree = "<group>"; };
+		F5C3159D1F11B34600C517C2 /* wb_particle_position.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wb_particle_position.c; sourceTree = "<group>"; };
+		F5C3159E1F11B34600C517C2 /* wb_particle_position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_particle_position.h; sourceTree = "<group>"; };
+		F5C3159F1F11B35800C517C2 /* wb_top_particles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wb_top_particles.c; sourceTree = "<group>"; };
+		F5C315A01F11B35900C517C2 /* wb_top_particles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_top_particles.h; sourceTree = "<group>"; };
 		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
 		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1447,6 +1461,16 @@
 				F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */,
 				F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
+				F5C315981F11B32A00C517C2 /* Particle_Position.preamble */,
+				F5C315991F11B32A00C517C2 /* Particle_Position.txt */,
+				F5C3159A1F11B32A00C517C2 /* ParticlePosition-Bridging-Header.h */,
+				F5C3159B1F11B32A00C517C2 /* ParticlePosition.h */,
+				F5C3159C1F11B32A00C517C2 /* ParticlePosition.swift */,
+				F5C315931F11B30D00C517C2 /* Top_Particles.preamble */,
+				F5C315941F11B30D00C517C2 /* Top_Particles.txt */,
+				F5C315951F11B30D00C517C2 /* TopParticles-Bridging-Header.h */,
+				F5C315961F11B30D00C517C2 /* TopParticles.h */,
+				F5C315971F11B30E00C517C2 /* TopParticles.swift */,
 				F1E5542F18EBD16D00639B1E /* SENSORSBodySensors.h */,
 				F1E5543018EBD16D00639B1E /* SENSORSFootSensors.h */,
 				F1E5543118EBD16D00639B1E /* SENSORSLedsSensors.h */,
@@ -1545,6 +1569,10 @@
 				C3B4EC0F1CBCD2740061A970 /* wb_point.h */,
 				C3B4EC101CBCD2740061A970 /* wb_point2d.c */,
 				C3B4EC111CBCD2740061A970 /* wb_point2d.h */,
+				F5C3159D1F11B34600C517C2 /* wb_particle_position.c */,
+				F5C3159E1F11B34600C517C2 /* wb_particle_position.h */,
+				F5C3159F1F11B35800C517C2 /* wb_top_particles.c */,
+				F5C315A01F11B35900C517C2 /* wb_top_particles.h */,
 				C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */,
 				C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */,
 				C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */,

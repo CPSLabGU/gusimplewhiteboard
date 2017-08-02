@@ -35,14 +35,14 @@ enum Resolutions {
 };
 /**
  * @brief Resolution wrapper class for Resolutions enum
- * Contains a Resolution and provides a number of convenience 
+ * Contains a Resolution and provides a number of convenience
  * methods for each resolution. Width Height etc.
  */
 class ResolutionType {
 private:
 	/** The resolution that this object should work with*/
 	PROPERTY(Resolutions, resolution)
-public:	
+public:
 	/**
 	 * @brief Constructor using value from Resolutions enum
      * @param res The resolution to use
@@ -58,14 +58,14 @@ public:
 		static const int Widths[] = {160, 320, 640, 1280, 800};
 		return Widths[_resolution];
 	}
-    
+
 	/** get the height of the current resolution */
 	int height() const
 	{
 		static const int Heights[] = {120, 240, 480, 960, 600};
 		return Heights[_resolution];
 	}
-	
+
 	/** deprecated, use width() instead!
 	 */
 	int Width() const { return width(); }
@@ -133,14 +133,7 @@ enum VisionMessages {
 		NUMBER_VISION_MESSAGES
 };
 
-/**Commands Strings. Used internally*/
-static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
-		"SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
-		"IMAGEINPUT", "RUNPIPELINEONCE", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "LOADCALIBRATION", "Undefined"};
-/**Status Strings. Used internally*/
-static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
-		"SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
-		"ImageInput", "PipelineRunningOnce", "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "CalibrationLoaded", "FrameRate"};
+
 
 static const char* ResolutionStrings[] = {"QQVGA", "QVGA", "VGA", "HD"};
 static const Resolutions ResolutionValues[] = {QQVGA, QVGA, VGA, HD_4VGA};
@@ -155,34 +148,47 @@ static const bool BoolValues[] = {true, false};
 static const char* SaveImageStrings[] = {"AI2", "JPG"};
 static const SaveFileType SaveImageValues[] = {AI2, JPG};
 
+/**Commands Strings. Used internally*/
+static const char* Commands[] = {"RESOLUTION", "RUNPIPELINE", "SELECTCAMERA", "SAVEIMAGE",
+                                 "SAVECLASSIFIEDIMAGE", "ACTIVATEPIPELINE", "STREAMINGSOURCE", "CONSERVATIVEMODE",
+                                 "IMAGEINPUT", "RUNPIPELINEONCE",
+                                 "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HORIZIONFACTOR", "LOADCALIBRATION", "Undefined"};
 static const char** MessageParamaters[] = {ResolutionStrings, BoolStrings, CameraStrings, SaveImageStrings,
-		BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings, BoolStrings, BoolStrings};
+                                           BoolStrings, PipelineStrings, StreamingSourceStrings, BoolStrings,
+                                           BoolStrings, BoolStrings};
 static const uint MessageParamaterSizes[] = {sizeof(ResolutionStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
-                                                sizeof(CameraStrings)/sizeof(char*), sizeof(SaveImageStrings)/sizeof(char*),
-                                                sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
-                                                sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
-                                                sizeof(BoolStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*)};
+                                             sizeof(CameraStrings)/sizeof(char*), sizeof(SaveImageStrings)/sizeof(char*),
+                                             sizeof(BoolStrings)/sizeof(char*), sizeof(PipelineStrings)/sizeof(char*),
+                                             sizeof(StreamingSourceStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*),
+                                             sizeof(BoolStrings)/sizeof(char*), sizeof(BoolStrings)/sizeof(char*)};
+
+/**Status Strings. Used internally*/
+static const char* Statuses[] = {"Resolution", "PipelineRunning", "SelectedCamera", "SaveImage",
+                                 "SaveClassifiedImage", "ActivePipeline", "StreamingSource", "ConservativeMode",
+                                 "ImageInput", "PipelineRunningOnce",
+                                 "JPEGSTREAMQUALITY", "JPEGSTREAMSTRIDE", "HorizionFactor", "CalibrationLoaded", "FrameRate"};
+
 
 namespace guWhiteboard
 {
 /**
  * @brief Class to post control messages to the vision module as well as retrieving current Status
- * This includes allows setting of various properties of the vision module. 
+ * This includes allows setting of various properties of the vision module.
  * Pipeline running resolution saving image streaming settings etc. Also used as
  * a status message by the vision module to post current frame rate etc.
- * 
+ *
  * Examples
  * --------
- * 
+ *
  * Set the streaming type to normal and the resolution to VGA
- * 
+ *
  *		VisionControlStatus v;
  *		v.set_streamingSource(Normal);
  *		v.set_resolution(ResolutionType(VGA));
  *		Vision_Control_t.set(v);
- * 
+ *
  * Retrieve the current Frame Rate and Resolution
- * 
+ *
  *		VisionControlStatus v = Vision_Status_t.get(); //get the status message off the whiteboard
  *		int fr = v.frameRate(); //get the frame rate out of the message
  *		ResolutionType res = v.get_resolution();
@@ -218,22 +224,22 @@ public:
 			command = std::string(Commands[i]);
 			n = s.find(command);
 			if (n!=std::string::npos) {
-                                std::string t = s.substr(n+command.length()+1);
-                                if(i == HorizionFactor) {
-                                    //get value
-                                    set_horizionValue(static_cast<float>(atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str())));
-                                    continue;
-                                }
-								if(i == JPEGStreamQuality) {
-                                    //get value
-                                    set_jpegStreamQuality(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
-                                    continue;
-                                }
-								if(i == JPEGStreamStride) {
-                                    //get value
-                                    set_jpegStreamStride(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
-                                    continue;
-                                }
+                std::string t = s.substr(n+command.length()+1);
+                if(i == HorizionFactor) {
+                    //get value
+                    set_horizionValue(static_cast<float>(atof(t.substr(0, t.find_first_not_of("-0123456789.")).c_str())));
+                    continue;
+                }
+                if(i == JPEGStreamQuality) {
+                    //get value
+                    set_jpegStreamQuality(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                    continue;
+                }
+                if(i == JPEGStreamStride) {
+                    //get value
+                    set_jpegStreamStride(atoi(t.substr(0, t.find_first_not_of("-0123456789.")).c_str()));
+                    continue;
+                }
 				if(i == LoadCalibration) {
 				    std::string file;
 				    file = original.substr(n+command.length()+1).substr(0, t.find_first_of(" ,"));
@@ -247,7 +253,7 @@ public:
 							set_resolution(ResolutionValues[j]);
 							break;
 						case PipelineRunning:
-							set_pipelineRunning(BoolValues[j]);
+							set_pipelineRunning(BoolStrings[j]);
 							break;
 						case SelectedCamera:
 							set_selectedCamera(CameraValues[j]);
@@ -256,7 +262,7 @@ public:
 							set_saveImage(SaveImageValues[j]);
 							break;
 						case SaveClassifiedImage:
-							set_saveClassifiedImage(BoolValues[j]);
+							set_saveClassifiedImage(BoolStrings[j]);
 							break;
 						case ActivatePipeline:
 							set_activatePipeline(PipelineValues[j]);
@@ -265,13 +271,13 @@ public:
 							set_streamingSource(StreamingSourceValues[j]);
 							break;
 						case ConservativeMode:
-							set_conservativeMode(BoolValues[j]);
+							set_conservativeMode(BoolStrings[j]);
 							break;
 						case ImageInput:
-							set_imageInput(BoolValues[j]);
+							set_imageInput(BoolStrings[j]);
 							break;
 						case PipelineRunOnce:
-							set_pipelineRunOnce(BoolValues[j]);
+							set_pipelineRunOnce(BoolStrings[j]);
 						}
 					}
 				}
@@ -286,40 +292,42 @@ public:
 	std::string description() const
         {
 		std::stringstream result;
-                
-		if(resolution_mask())
-			result << Statuses[0] << "=" << ResolutionStrings[resolution().getResolution()] << " ";//fixme
-		if(pipelineRunning_mask())
-			result << Statuses[1] << "=" << BoolStrings[pipelineRunning()?0:1] << " ";
-		if(selectedCamera_mask())
-			result << Statuses[2] << "=" << CameraStrings[selectedCamera()] << " ";
-		if(saveImage_mask())
-			result << Statuses[3] << "=" << BoolStrings[saveImage()?0:1] << " ";
-		if(saveClassifiedImage_mask())
-			result << Statuses[4] << "=" << BoolStrings[saveClassifiedImage()?0:1] << " ";
-		if(activatePipeline_mask())
-			result << Statuses[5] << "=" << PipelineStrings[activatePipeline()] << " ";
-		if(streamingSource_mask())
-			result << Statuses[6] << "=" << StreamingSourceStrings[streamingSource()] << " ";
-		if(conservativeMode_mask())
-			result << Statuses[7] << "=" << BoolStrings[conservativeMode()?0:1] << " ";
-		if(imageInput_mask())
-			result << Statuses[8] << "=" << BoolStrings[imageInput()?0:1] << " ";
-		if(jpegStreamQuality_mask())
-			result << Statuses[9] << "=" << jpegStreamQuality();
-		if(jpegStreamStride_mask())
-			result << Statuses[10] << "=" << jpegStreamStride();
-		if(loadCalibration_mask())
-			result << Statuses[11] << "=" << loadCalibration() << " ";
-		if(pipelineRunOnce_mask())
-			result << Statuses[12] << "=" << BoolStrings[pipelineRunOnce()?0:1] << " ";
-                if(frameRate_mask())
-                        result << Statuses[14] << "=" << frameRate() << " ";
-                if(horizionValue_mask())
-                    result << Statuses[13] << "=" << horizionValue();
-		result << " Frame Number = " << frameNumber();
+
+//		if(resolution_mask())
+			result << Statuses[Resolution] << "(" << std::boolalpha << resolution_mask() << ") =" << ResolutionStrings[resolution().getResolution()] << " ";//fixme
+//		if(pipelineRunning_mask())
+			result << Statuses[PipelineRunning] << "(" << std::boolalpha << pipelineRunning_mask() << ") =" << BoolStrings[pipelineRunning()?0:1] << " ";
+//		if(selectedCamera_mask())
+			result << Statuses[SelectedCamera] << "(" << std::boolalpha << selectedCamera_mask() << ") =" << CameraStrings[selectedCamera()] << " ";
+//		if(saveImage_mask())
+			result << Statuses[SaveImage] << "(" << std::boolalpha << saveImage_mask() << ") =" << BoolStrings[saveImage()?0:1] << " ";
+//		if(saveClassifiedImage_mask())
+			result << Statuses[SaveClassifiedImage] << "(" << std::boolalpha << saveClassifiedImage_mask() << ") =" << BoolStrings[saveClassifiedImage()?0:1] << " ";
+//		if(activatePipeline_mask())
+			result << Statuses[ActivatePipeline] << "(" << std::boolalpha << activatePipeline_mask() << ") =" << PipelineStrings[activatePipeline()] << " ";
+//		if(streamingSource_mask())
+			result << Statuses[StreamingSource] << "(" << std::boolalpha << streamingSource_mask() << ") =" << StreamingSourceStrings[streamingSource()] << " ";
+//		if(conservativeMode_mask())
+			result << Statuses[ConservativeMode] << "(" << std::boolalpha << conservativeMode_mask() << ") =" << BoolStrings[conservativeMode()?0:1] << " ";
+//		if(imageInput_mask())
+			result << Statuses[ImageInput] << "(" << std::boolalpha << imageInput_mask() << ") =" << BoolStrings[imageInput()?0:1] << " ";
+//		if(jpegStreamQuality_mask())
+			result << Statuses[JPEGStreamQuality] << "(" << std::boolalpha << jpegStreamQuality_mask() << ") =" << jpegStreamQuality();
+//		if(jpegStreamStride_mask())
+			result << Statuses[JPEGStreamStride] << "(" << std::boolalpha << jpegStreamStride_mask() << ") =" << jpegStreamStride();
+//		if(loadCalibration_mask())
+			result << Statuses[LoadCalibration] << "(" << std::boolalpha << loadCalibration_mask() << ") =" << loadCalibration() << " ";
+//		if(pipelineRunOnce_mask())
+			result << Statuses[PipelineRunOnce] << "(" << std::boolalpha << pipelineRunOnce_mask() << ") =" << BoolStrings[pipelineRunOnce()?0:1] << " ";
+//        if(frameRate_mask())
+          // result << Statuses[14] << ....  THERE IS NO STATUS Message 14  (Should it be added?)
+            result << "FrameRate" << "(" << std::boolalpha << frameRate_mask() << ") =" << frameRate() << " ";
+//        if(horizionValue_mask())
+            result << Statuses[HorizionFactor] << "(" << std::boolalpha << horizionValue_mask() << ") =" << horizionValue();
+            result << " Frame Number = " << frameNumber();
 		return result.str();
 	}
+
 
 	/**
 	 * @brief += operator to add components of passed message with mask set to this message
@@ -387,8 +395,8 @@ public:
 	CONTROLLED_PROPERTY(int, jpegStreamStride)
 	/** Tell vision to use this calibration file for image segmentation*/
 	CONTROLLED_ARRAY_PROPERTY(char, loadCalibration, 30)
-	/** The horizon of the image after which point no image processing 
-	 *  should be performed. 
+	/** The horizon of the image after which point no image processing
+	 *  should be performed.
 	 */
 	CONTROLLED_PROPERTY(float, horizionValue)
 	/** Frame rate posted by VisionStatus that vision is currently processing images at*/
@@ -410,13 +418,13 @@ public:
 	CONTROL_BIT(jpegStreamQuality)
 	CONTROL_BIT(jpegStreamStride)
 	CONTROL_BIT(loadCalibration)
-        CONTROL_BIT(horizionValue)
-        CONTROL_BIT(frameRate)
+	CONTROL_BIT(horizionValue)
+	CONTROL_BIT(frameRate)
 	CONTROL_BIT(pipelineRunOnce)
 	CONTROL_BIT(frameNumber)
-		
-		
-	/** The state of the open challenge pipeline when it is running*/	
+
+
+	/** The state of the open challenge pipeline when it is running*/
 	PROPERTY(uint8_t, openChallengeStep)
 
 };

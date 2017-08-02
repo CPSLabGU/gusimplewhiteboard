@@ -77,14 +77,13 @@ namespace guWhiteboard
          */
         enum PF_ControlStatus_Modes
         {
-                PF_Running,             ///< PF is running
+                PF_Running=0,             ///< PF is running
                 PF_New_Game,      ///< A FSM should set this, the PF is reset as per playerNumber
                 PF_After_Penalized,              ///< Sides of our field are the reset positions
                 PF_After_Fall,             ///< headings are reset randomly
                 PF_Manual_Placement          ///< maybe after 34 seconds and manual placelemnt
            
         };
-        
         
         /**
          * Class for a top particle position
@@ -103,7 +102,10 @@ namespace guWhiteboard
                 ParticlePosition(const ParticlePosition &other): Point2D(other), _headingInDegrees(other._headingInDegrees), _confidence(other._confidence) { }
 
                 /** copy assignment operator */
-                ParticlePosition &operator=(const ParticlePosition &other) { _headingInDegrees=other._headingInDegrees; _confidence=other._confidence; return *this; }
+                ParticlePosition &operator=(const ParticlePosition &other) {
+                    _x = other.x();
+                    _y = other.y();
+                    _headingInDegrees=other._headingInDegrees; _confidence=other._confidence; return *this; }
 
                 /** radians getter */
                 float heading() const { return float(DEG2RAD(headingInDegrees())); }
