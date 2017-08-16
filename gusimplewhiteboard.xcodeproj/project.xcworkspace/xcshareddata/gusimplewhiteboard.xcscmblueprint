@@ -4,16 +4,18 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F96EF47F4D05F33BC50C68C15E2D1B663E322087" : 9223372036854775807,
     "9DF85159BE10EA9325EF5CC480DAFBD61B222E58" : 0,
     "9252A0F81FCE38410949A0A00E30DD38183EF7B8" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "03CBD1DB-10C2-4A07-AB62-3DADBE934D58",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F96EF47F4D05F33BC50C68C15E2D1B663E322087" : "GUNao\/posix\/gusimplewhiteboard\/swift_wb\/",
     "9DF85159BE10EA9325EF5CC480DAFBD61B222E58" : "GUNao\/",
     "9252A0F81FCE38410949A0A00E30DD38183EF7B8" : ""
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "gusimplewhiteboard",
-  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "posix\/gusimplewhiteboard\/gusimplewhiteboard.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/cyberdyne.mipal.net\/git\/GUNao.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9DF85159BE10EA9325EF5CC480DAFBD61B222E58"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/git.mipal.net\/git\/swift_wb.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F96EF47F4D05F33BC50C68C15E2D1B663E322087"
     }
   ]
 }
