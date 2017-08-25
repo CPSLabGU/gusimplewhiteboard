@@ -354,17 +354,29 @@ namespace guWhiteboard
 #endif // !GCGameState_DEFINED
 
 		case kPlayerNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: PlayerNumber @brief Nil */ 
 			class PlayerNumber_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int8_t_DEFINED
+
 		case kManuallyPenalized_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: ManuallyPenalized @brief Nil */ 
 			class ManuallyPenalized_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int8_t_DEFINED
+
 		case kVision_Control_v:
 #ifdef VisionControlStatus_DEFINED
 		{
@@ -438,11 +450,17 @@ namespace guWhiteboard
 #endif // !FilteredArrayBallSightings_DEFINED
 
 		case kPF_ControlStatus_Modes_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: PF_ControlStatus_Modes @brief Nil */ 
 			class PF_ControlStatus_Modes_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int32_t_DEFINED
+
 		case kWEBOTS_NXT_bridge_v:
 #ifdef WEBOTS_NXT_bridge_DEFINED
 		{
@@ -576,17 +594,29 @@ namespace guWhiteboard
 #endif // !TeleoperationControlStatus_DEFINED
 
 		case kTeleoperationConnection_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: TeleoperationConnection @brief Nil */ 
 			class TeleoperationConnection_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int8_t_DEFINED
+
 		case kUDPWBNumber_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: UDPWBNumber @brief Nil */ 
 			class UDPWBNumber_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int8_t_DEFINED
+
 		case kWEBOTS_NXT_bumper_v:
 #ifdef WEBOTS_NXT_bumper_DEFINED
 		{
@@ -780,11 +810,17 @@ namespace guWhiteboard
 #endif // !WALK2014_ControlStatus_DEFINED
 
 		case kCBall_v:
+#ifdef int8_t_DEFINED
 		{
 /** WB Ptr Class: CBall @brief Nil */ 
 			class CBall_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int8_t_DEFINED
+
 		case kOculusPrime_Command_v:
 #ifdef OculusPrimeInterface_DEFINED
 		{
@@ -1044,17 +1080,29 @@ namespace guWhiteboard
 			return msg ? m.get_from(msg) : m.get();
 		}
 		case kBall_Calibration_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Calibration_Num @brief Nil */ 
 			class Ball_Calibration_Num_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int32_t_DEFINED
+
 		case kBall_Color_Num_v:
+#ifdef int32_t_DEFINED
 		{
 /** WB Ptr Class: Ball_Color_Num @brief Nil */ 
 			class Ball_Color_Num_t m(wbd);
-			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+			return msg ? m.get_from(msg).description() : m.get().description();
 		}
+#else
+			return "##unsupported##";
+
+#endif // !int32_t_DEFINED
+
 		case kHAL_LArmTarget_Ctrl_v:
 #ifdef HAL_ArmTarget_DEFINED
 		{
@@ -1145,6 +1193,18 @@ namespace guWhiteboard
 			class WhistleBlown_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kVolumeControl_v:
+#ifdef uint8_t_DEFINED
+		{
+/** WB Ptr Class: VolumeControl @brief Nil */ 
+			class VolumeControl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !uint8_t_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push
