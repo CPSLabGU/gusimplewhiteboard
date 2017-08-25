@@ -7,8 +7,8 @@ float	InertialSensor_GyrY	//  gyro Y value
 float	InertialSensor_GyrRef	//  gyro ref value
 float	InertialSensor_AngleX	//  new acc values: AL_Docs 'Theses are direct acceleration values in m.s-2 (one g is approximately 9.81 m.s-2)'
 float	InertialSensor_AngleY	//  new acc values: AL_Docs 'Theses are direct acceleration values in m.s-2 (one g is approximately 9.81 m.s-2)'
-float	Battery_Charge        	//  unsure, check naoqi docs! check if this is a float or not
-float	Battery_Current       	//  unsure, check naoqi docs! check if this is a float or not
+uint8_t	Battery_Charge        	//  % of charge
+uint8_t	Battery_Current       	//  Amps
 float	US                    	//  unsure, check naoqi docs! Not sure about this type, might only be 1 byte
 bool	ChestBoard_Button      	//  state of the chest button, on / off. could use a 1 bit var here
 bool	pad1	//  padding
