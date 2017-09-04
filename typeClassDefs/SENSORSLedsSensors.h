@@ -25,6 +25,7 @@ namespace guWhiteboard
                 Green,		///< turn leds green
                 Blue,		///< turn leds blue
                 Yellow,		///< turn leds yellow
+                White,		///< turn leds white
                 NUMBER_OF_LEDS_COLOURS	///< number of LEDColours
         };
         
@@ -378,6 +379,11 @@ namespace guWhiteboard
                                         changeLed(led[0], static_cast<u_int8_t>(100));
                                         changeLed(led[1], static_cast<u_int8_t>(25));
                                         changeLed(led[2], static_cast<u_int8_t>(0));
+                                        break;
+                                case White:
+                                        changeLed(led[0], true);
+                                        changeLed(led[1], true);
+                                        changeLed(led[2], true);
                                         break;
                                 case NUMBER_OF_LEDS_COLOURS:
                                         break;
