@@ -45,6 +45,12 @@ public:
             (void)s;
 		//NYI
 	}
+
+	void from_string(std::string s)   {
+            (void)s;
+		//NYI
+	}
+	
 	
 	/**
 	 * @brief Add a line to the message.

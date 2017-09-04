@@ -1145,6 +1145,12 @@ namespace guWhiteboard
 			class WhistleBlown_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kVolumeControl_v:
+		{
+/** WB Ptr Class: VolumeControl @brief Nil */ 
+			class VolumeControl_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
 		(void) msg;
 	}
 #pragma clang diagnostic push

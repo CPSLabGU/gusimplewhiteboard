@@ -34,9 +34,11 @@ namespace guWhiteboard {
 class VisionGoals {
 private:
 	wb_goal topLeft;//top camera
-	wb_goal topRight;
+    wb_goal topRight;
+    wb_goal topGeneric;
 	wb_goal bottomLeft;//bottom camera
-	wb_goal bottomRight;
+    wb_goal bottomRight;
+    wb_goal bottomGeneric;
 	unsigned long _frameNumber;
 public:
 	/**Default Constructor*/
@@ -161,7 +163,23 @@ public:
 			bottomRight = postInfo;
 			bottomRight.set_visible(true);
 		}
-	}
+    }
+    
+    /**
+     * @brief Set the generic goal post for this VisionGoal message
+     * @param postInfo The post information to be set
+     * @param camera The camera this post was seen on
+     */
+    void setGenericGoalPost(wb_goal postInfo, VisionCamera camera) {
+        if(camera == Top) {
+            topGeneric = postInfo;
+            topGeneric.set_visible(true);
+        }
+        else {
+            bottomGeneric = postInfo;
+            bottomGeneric.set_visible(true);
+        }
+    }
 	
 	/**
 	 * @brief Get the current left goal post for this message
@@ -187,7 +205,20 @@ public:
 			return topRight;
 		else
 			return bottomRight;
-	}
+    }
+    
+    /**
+     * @brief Get the current generic goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
+    const wb_goal &genericPost(VisionCamera camera) const
+    {
+        if(camera == Top)
+            return topGeneric;
+        else
+            return bottomGeneric;
+    }
 	
 	/**
 	 * @brief Get the current left goal post for this message
@@ -213,16 +244,31 @@ public:
 			return topRight;
 		else
 			return bottomRight;
-	}
+    }
+    
+    /**
+     * @brief Get the current generic goal post for this message
+     * @param camera The camera to get goal post information from
+     * @return The goal post information.
+     */
+    wb_goal &genericPost(VisionCamera camera)
+    {
+        if(camera == Top)
+            return topGeneric;
+        else
+            return bottomGeneric;
+    }
 	
 	/**
 	 * @brief Reset the visible flag for all four different posts to false
      */
 	void Reset() {
 		topLeft.set_visible(false);
-		topRight.set_visible(false);
+        topRight.set_visible(false);
+        topGeneric.set_visible(false);
 		bottomLeft.set_visible(false);
-		bottomRight.set_visible(false);
+        bottomRight.set_visible(false);
+        bottomGeneric.set_visible(false);
 	}
 	
 	/**
@@ -257,7 +303,12 @@ public:
 			result << "TopLeftPost:(" << topLeft.outerBottom_X() << "," << topLeft.outerBottom_Y() << ")("
 			<< topLeft.outerTop_X() << "," << topLeft.outerTop_Y() << ")("
 			<< topLeft.innerBottom_X() << "," << topLeft.innerBottom_Y() << ")("
-			<< topLeft.innerTop_X() << "," << topLeft.innerTop_Y() << ") ";
+            << topLeft.innerTop_X() << "," << topLeft.innerTop_Y() << ") ";
+        if(topGeneric.visible())
+            result << "TopGenericPost:(" << topGeneric.outerBottom_X() << "," << topGeneric.outerBottom_Y() << ")("
+            << topGeneric.outerTop_X() << "," << topGeneric.outerTop_Y() << ")("
+            << topGeneric.innerBottom_X() << "," << topGeneric.innerBottom_Y() << ")("
+            << topGeneric.innerTop_X() << "," << topGeneric.innerTop_Y() << ") ";
 		if(bottomRight.visible())
 			result << "BottomRightPost:(" << bottomRight.outerBottom_X() << "," << bottomRight.outerBottom_Y() << ")("
 			<< bottomRight.outerTop_X() << "," << bottomRight.outerTop_Y() << ")("
@@ -267,7 +318,12 @@ public:
 			result << "TopRightPost:(" << topRight.outerBottom_X() << "," << topRight.outerBottom_Y() << ")("
 			<< topRight.outerTop_X() << "," << topRight.outerTop_Y() << ")("
 			<< topRight.innerBottom_X() << "," << topRight.innerBottom_Y() << ")("
-			<< topRight.innerTop_X() << "," << topRight.innerTop_Y() << ") ";
+            << topRight.innerTop_X() << "," << topRight.innerTop_Y() << ") ";
+        if(bottomGeneric.visible())
+            result << "BottomGenericPost:(" << bottomGeneric.outerBottom_X() << "," << bottomGeneric.outerBottom_Y() << ")("
+            << bottomGeneric.outerTop_X() << "," << bottomGeneric.outerTop_Y() << ")("
+            << bottomGeneric.innerBottom_X() << "," << bottomGeneric.innerBottom_Y() << ")("
+            << bottomGeneric.innerTop_X() << "," << bottomGeneric.innerTop_Y() << ") ";
 		return result.str();
 	}
 	

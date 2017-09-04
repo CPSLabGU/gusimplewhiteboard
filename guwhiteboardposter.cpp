@@ -1357,6 +1357,14 @@ namespace guWhiteboard
 			return true;
 		}
 
+		case kVolumeControl_v:
+		{
+/** WB Ptr Class: VolumeControl @brief Nil */ 
+			class VolumeControl_t VolumeControl_msg(wbd);
+			VolumeControl_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			return true;
+		}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1370,7 +1378,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(108);
+	// self.reserve(109);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1480,6 +1488,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
 	self["VisionFieldFeatures"] = kVisionFieldFeatures_v;
 	self["WhistleBlown"] = kWhistleBlown_v;
+	self["VolumeControl"] = kVolumeControl_v;
 
 	(void) self;
 }
