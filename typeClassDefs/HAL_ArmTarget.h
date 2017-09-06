@@ -65,14 +65,20 @@ namespace guWhiteboard
             /**
              *  Constructor, defaults to LEFT_ARM
              */
-            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
+//            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
         
+            /**
+             * Constructor using float parameters
+             * This constructor should be used because the whiteboard
+             * holds integer representations of the angles.
+             *
+             */
             HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM,
-                         const float shoulderpitch_RAD = 0,
-                         const float shoulderroll_RAD = 0,
-                         const float elbowroll_RAD = 0,
-                         const float elbowyaw_RAD = 0,
-                         const float wristyaw_RAD = 0,
+                         const float shoulderpitch = 0,
+                         const float shoulderroll = 0,
+                         const float elbowroll = 0,
+                         const float elbowyaw = 0,
+                         const float wristyaw = 0,
                          const float hand_PCT = 0,
                          const float shoulderpitchstiffness = 0,
                          const float shoulderrollstiffness = 0,
@@ -87,13 +93,22 @@ namespace guWhiteboard
                          const bool  wrist_active = true,
                          const bool  hand_active = true,
                          const int32_t movement_time = 1000000,
-                         const uint8_t pliability)
+                         const uint8_t pliability = 10,
+                         const bool  arm_stop = false,
+                         const bool inRadians = false)
             : wb_hal_armtarget(target_arm)
             {
-               setPose_Rad(shoulderpitch_RAD, shoulderroll_RAD,
-                           elbowroll_RAD, elbowyaw_RAD,
-                           wristyaw_RAD, hand_PCT);
+               if (inRadians) {
+                   setPose_Rad(shoulderpitch, shoulderroll,
+                               elbowroll, elbowyaw,
+                               wristyaw, hand_PCT);
+               } else {
+                   setPose_Deg(shoulderpitch, shoulderroll,
+                               elbowroll, elbowyaw,
+                               wristyaw, hand_PCT);
+               }
                set_target_movement_time(movement_time);
+               set_target_arm_stop(arm_stop);
                set_shoulderpitchstiffness(shoulderpitchstiffness);
                set_shoulderrollstiffness(shoulderrollstiffness);
                set_elbowrollstiffness(elbowrollstiffness);
@@ -141,6 +156,7 @@ namespace guWhiteboard
 //                                elbowyaw_active, wrist_active, hand_active);
 //            }
 
+//MARK: Arm - General
             /**
              *  Specify which arm this instance manages.
              *  Up to 256 arms are possible.
@@ -153,39 +169,8 @@ namespace guWhiteboard
             {
                 set_target_arm(arm);
             }
-//MARK: Arm - General
-            /**
-             *  Convenience function to mirror arm settings about the XZ plane from one HAL_ArmTarget object to another.
-             *
-             *  @param  other    HAL_ArmTarget object to be mirrored.
-             *
-             */
-            void mirrorArm(const HAL_ArmTarget &other)
-            {
-                // Roll and Yaw angles need to be mirrored, others just copied.
-                set_target_shoulderpitch(other.target_shoulderpitch());
-                set_target_shoulderroll(-other.target_shoulderroll());
-                set_target_elbowroll(-other.target_elbowroll());
-                set_target_elbowyaw(-other.target_elbowyaw());
-                set_target_wristyaw(-other.target_wristyaw());
-                set_target_hand(other.target_hand());
-                set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-                set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-                set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-                set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-                set_target_wristyawstiffness(other.target_wristyawstiffness());
-                set_target_handstiffness(other.target_handstiffness());
-                set_shoulderpitch_active(other.shoulderpitch_active());
-                set_shoulderroll_active(other.shoulderroll_active());
-                set_elbowroll_active(other.elbowroll_active());
-                set_elbowyaw_active(other.elbowyaw_active());
-                set_wrist_active(other.wrist_active());
-                set_hand_active(other.hand_active());
-                set_target_movement_time(other.target_movement_time());
-                set_target_pliability(other.target_pliability());
-            }
 
-//MARK: Arm - Pose
+//MARK: Arm - Movements
 
             /**
              * move to position in radians over a given time
@@ -236,7 +221,97 @@ namespace guWhiteboard
                             wristyaw, hand);
                 set_target_movement_time(time);
             }
+        
+            /**
+             * Command the arm to stop at its current
+             * location and not act on motion commands
+             * until ready() is called.
+             *
+             */
+            void stop() {
+                set_target_arm_stop(true);
+            }
+
+        
+            /**
+             * Set arm to ready state (Default)
+             * The arm will act on motion commands.
+             *
+             */
+            void ready() {
+                set_target_arm_stop(false);
+            }
+
+        
+            /**
+             *  Arm at Goal Setter
+             *      Clients/Machines should not use this method.
+             *
+             *  Arm arrived at goal pose.
+             *  Only set in the status message by naoqiinterface when the arm has reached the goal pose.
+             *
+             *  @param  goalReached  the arm has reached the goal (true/false)
+             *
+             */
+            void isAtGoal(bool goalReached)
+            {
+                set_target_arm_at_goal(goalReached);
+            }
             
+            /**
+             *  Arm at Goal Getter
+             *      Clients/Machines should use this getter to test if the DCM
+             *      has reported that the arm has reached its goal pose.
+             *
+             *  Is the arm at the goal pose?
+             *  Naoqi Interface sets this true when the arm reaches the goal
+             *  pose asked for in the previous control message.
+             *
+             *  @return     bool    whether the arm is at the goal location or not.
+             *
+             */
+            bool atGoal()
+            {
+                return target_arm_at_goal();
+            }
+
+            /**
+             *  Client side test to determine if arm is at the target location, allowing for specified tolerances.
+             *  The method tests if the pose 'status' is within 'tolerance' of 'this' target
+             *  location, allowing for a specified tolerance.
+             *
+             *  'this' object contains the target pose settings.
+             *
+             *  @param  status      HAL_ArmTarget object which contains actual pose settings reported by the robot's sensors.
+             *  @param  tolerance   HAL_ArmTarget object whose pose settings specify the tolerance for each joint/gripper
+             *  @return bool        whether or not the status is within range of the target location.
+             *
+             */
+            bool atTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
+            {
+                int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
+                int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
+                int16_t elbowrollMargin = static_cast<int16_t>(abs(target_elbowroll() - status.target_elbowroll()));
+                int16_t elbowyawMargin = static_cast<int16_t>(abs(target_elbowyaw() - status.target_elbowyaw()));
+                //#ifdef NAO_V3
+                //    int16_t wristyawMargin = static_cast<int16_t>(abs(target_wristyaw - status.target_wristyaw()));
+                //    uint8_t handMargin = static_cast<uint8_t>(abs(target_hand() - status.target_hand()));
+                if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
+                    && (shoulderrollMargin <= tolerance.target_shoulderroll())
+                    && (elbowrollMargin <= tolerance.target_elbowroll())
+                    && (elbowyawMargin <= tolerance.target_elbowyaw())
+                    //#ifdef NAO_V3
+                    //        && (wristyawMargin <= tolerance.target_wristyaw())
+                    //        && (handMargin <= tolerance.target_hand())
+                    )
+                {
+                    return true;
+                }
+                return false;
+            }
+
+//MARK: Arm - Pose
+
             /**
              * Set Pose in radians
              * @param   shoulderpitch  down to up
@@ -286,7 +361,38 @@ namespace guWhiteboard
                 set_wristyaw_DEG(wristyaw);
                 set_hand(hand);
             }
+
             
+            /**
+             *  Convenience function to mirror arm settings about the XZ plane from one HAL_ArmTarget object to another.
+             *
+             *  @param  other    HAL_ArmTarget object to be mirrored.
+             *
+             */
+            void mirrorArm(const HAL_ArmTarget &other)
+            {
+                // Roll and Yaw angles need to be mirrored, others just copied.
+                set_target_shoulderpitch(other.target_shoulderpitch());
+                set_target_shoulderroll(-other.target_shoulderroll());
+                set_target_elbowroll(-other.target_elbowroll());
+                set_target_elbowyaw(-other.target_elbowyaw());
+                set_target_wristyaw(-other.target_wristyaw());
+                set_target_hand(other.target_hand());
+                set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+                set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+                set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+                set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+                set_target_wristyawstiffness(other.target_wristyawstiffness());
+                set_target_handstiffness(other.target_handstiffness());
+                set_target_shoulderpitch_active(other.target_shoulderpitch_active());
+                set_target_shoulderroll_active(other.target_shoulderroll_active());
+                set_target_elbowroll_active(other.target_elbowroll_active());
+                set_target_elbowyaw_active(other.target_elbowyaw_active());
+                set_target_wrist_active(other.target_wrist_active());
+                set_target_hand_active(other.target_hand_active());
+                set_target_movement_time(other.target_movement_time());
+                set_target_pliability(other.target_pliability());
+            }
             
             /**
              *  Convenience function to copy pose settings from one HAL_ArmTarget object to another.
@@ -368,73 +474,6 @@ namespace guWhiteboard
                 return false;
             }
 
-            /**
-             *  Arm at Goal Setter
-             *      Clients/Machines should not use this method.
-             *
-             *  Arm arrived at goal pose.
-             *  Only set in the status message by naoqiinterface when the arm has reached the goal pose.
-             *
-             *  @param  goalReached  the arm has reached the goal (true/false)
-             *
-             */
-            void isAtGoal(bool goalReached)
-            {
-                set_arm_at_goal(goalReached);
-            }
-            
-            /**
-             *  Arm at Goal Getter
-             *      Clients/Machines should use this getter to test if the DCM
-             *      has reported that the arm has reached its goal pose.
-             *
-             *  Is the arm at the goal pose?
-             *  Naoqi Interface sets this true when the arm reaches the goal
-             *  pose asked for in the previous control message.
-             *
-             *  @return     bool    whether the arm is at the goal location or not.
-             *
-             */
-            bool atGoal()
-            {
-                return arm_at_goal();
-            }
-
-            /**
-             *  Client side test to determine if arm is at the target location, allowing for specified tolerances.
-             *  The method tests if the pose 'status' is within 'tolerance' of 'this' target
-             *  location, allowing for a specified tolerance.
-             *
-             *  'this' object contains the target pose settings.
-             *
-             *  @param  status      HAL_ArmTarget object which contains actual pose settings reported by the robot's sensors.
-             *  @param  tolerance   HAL_ArmTarget object whose pose settings specify the tolerance for each joint/gripper
-             *  @return bool        whether or not the status is within range of the target location.
-             *
-             */
-            bool atTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
-            {
-                int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
-                int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
-                int16_t elbowrollMargin = static_cast<int16_t>(abs(target_elbowroll() - status.target_elbowroll()));
-                int16_t elbowyawMargin = static_cast<int16_t>(abs(target_elbowyaw() - status.target_elbowyaw()));
-                //#ifdef NAO_V3
-                //    int16_t wristyawMargin = static_cast<int16_t>(abs(target_wristyaw - status.target_wristyaw()));
-                //    uint8_t handMargin = static_cast<uint8_t>(abs(target_hand() - status.target_hand()));
-                if (   (shoulderpitchMargin <= tolerance.target_shoulderpitch())
-                    && (shoulderrollMargin <= tolerance.target_shoulderroll())
-                    && (elbowrollMargin <= tolerance.target_elbowroll())
-                    && (elbowyawMargin <= tolerance.target_elbowyaw())
-                    //#ifdef NAO_V3
-                    //        && (wristyawMargin <= tolerance.target_wristyaw())
-                    //        && (handMargin <= tolerance.target_hand())
-                    )
-                {
-                    return true;
-                }
-                return false;
-            }
-        
 //MARK: Arm - Stiffness
 
             /**
@@ -557,12 +596,12 @@ namespace guWhiteboard
              */
             void setArmActive()
             {
-                set_shoulderpitch_active(true);
-                set_shoulderroll_active(true);
-                set_elbowroll_active(true);
-                set_elbowyaw_active(true);
-                set_wrist_active(true);
-                set_hand_active(true);
+                set_target_shoulderpitch_active(true);
+                set_target_shoulderroll_active(true);
+                set_target_elbowroll_active(true);
+                set_target_elbowyaw_active(true);
+                set_target_wrist_active(true);
+                set_target_hand_active(true);
             }
 
             /**
@@ -578,12 +617,12 @@ namespace guWhiteboard
              */
             void setArmPassive()
             {
-                set_shoulderpitch_active(false);
-                set_shoulderroll_active(false);
-                set_elbowroll_active(false);
-                set_elbowyaw_active(false);
-                set_wrist_active(false);
-                set_hand_active(false);
+                set_target_shoulderpitch_active(false);
+                set_target_shoulderroll_active(false);
+                set_target_elbowroll_active(false);
+                set_target_elbowyaw_active(false);
+                set_target_wrist_active(false);
+                set_target_hand_active(false);
             }
             
             
@@ -595,12 +634,12 @@ namespace guWhiteboard
             void setArmPliability(bool shoulderpitch, bool shoulderroll, bool elbowroll,
                                 bool elbowyaw, bool wristyaw, bool hand)
             {
-                set_shoulderpitch_active(shoulderpitch);
-                set_shoulderroll_active(shoulderroll);
-                set_elbowroll_active(elbowroll);
-                set_elbowyaw_active(elbowyaw);
-                set_wrist_active(wristyaw);
-                set_hand_active(hand);
+                set_target_shoulderpitch_active(shoulderpitch);
+                set_target_shoulderroll_active(shoulderroll);
+                set_target_elbowroll_active(elbowroll);
+                set_target_elbowyaw_active(elbowyaw);
+                set_target_wrist_active(wristyaw);
+                set_target_hand_active(hand);
             }
 
             /**
@@ -608,7 +647,7 @@ namespace guWhiteboard
              *
              */
             bool isArmPassive() {
-                return !shoulderpitch_active() || !shoulderroll_active() || !elbowroll_active() || !elbowyaw_active() || !wrist_active() || !hand_active();
+                return !target_shoulderpitch_active() || !target_shoulderroll_active() || !target_elbowroll_active() || !target_elbowyaw_active() || !target_wrist_active() || !target_hand_active();
             }
 
             /**
@@ -616,7 +655,7 @@ namespace guWhiteboard
              *
              */
             bool isArmAllPassive() {
-                return !shoulderpitch_active() && !shoulderroll_active() && !elbowroll_active() && !elbowyaw_active() && !wrist_active() && !hand_active();
+                return !target_shoulderpitch_active() && !target_shoulderroll_active() && !target_elbowroll_active() && !target_elbowyaw_active() && !target_wrist_active() && !target_hand_active();
             }
         
             /**
@@ -624,12 +663,10 @@ namespace guWhiteboard
              *
              */
             bool isArmAllActive() {
-                return shoulderpitch_active() && shoulderroll_active() && elbowroll_active() && elbowyaw_active() && wrist_active() && hand_active();
+                return target_shoulderpitch_active() && target_shoulderroll_active() && target_elbowroll_active() && target_elbowyaw_active() && target_wrist_active() && target_hand_active();
             }
-
         
-        
-//MARK: CUSTOM SETTERS
+//MARK: CUSTOM SETTERS (Converting floats into Integer representations)
 /// Movement Setters (Degrees)
             void set_shoulderpitch_DEG(float setting) {
                 set_target_shoulderpitch(static_cast<int16_t>(setting * 10.0f));
@@ -708,7 +745,7 @@ namespace guWhiteboard
 //                set_target_movement_time(time);
 //            }
         
-//MARK: CUSTOM GETTERS
+//MARK: CUSTOM GETTERS (Converting Integer representations back to floats)
 /// Movement Getters (Degrees)
             float get_shoulderpitch_DEG() {
                 return static_cast<float>(target_shoulderpitch() * 0.1f);
@@ -801,15 +838,16 @@ namespace guWhiteboard
                 << static_cast<int>(target_elbowyawstiffness()) << "-|-"
                 << static_cast<int>(target_wristyawstiffness()) << "-|-"
                 << static_cast<int>(target_handstiffness()) << "-|-"
-                << static_cast<int>(shoulderpitch_active()) << "-|-"
-                << static_cast<int>(shoulderroll_active()) << "-|-"
-                << static_cast<int>(elbowroll_active()) << "-|-"
-                << static_cast<int>(elbowyaw_active()) << "-|-"
-                << static_cast<int>(wrist_active()) << "-|-"
-                << static_cast<int>(hand_active()) << "-|-"
+                << static_cast<int>(target_shoulderpitch_active()) << "-|-"
+                << static_cast<int>(target_shoulderroll_active()) << "-|-"
+                << static_cast<int>(target_elbowroll_active()) << "-|-"
+                << static_cast<int>(target_elbowyaw_active()) << "-|-"
+                << static_cast<int>(target_wrist_active()) << "-|-"
+                << static_cast<int>(target_hand_active()) << "-|-"
                 << static_cast<int>(target_movement_time()) << "-|-"
                 << static_cast<int>(target_pliability()) << "-|-"
-                << static_cast<int>(arm_at_goal());
+                << static_cast<int>(target_arm_at_goal()) << "-|-"
+                << static_cast<int>(target_arm_stop());
                 return ss.str();
             }
 
