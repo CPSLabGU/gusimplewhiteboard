@@ -6,28 +6,31 @@
 
 /**
  * Whiteboard structure for goal coordinates
+ * X and Y coordinates are posted as seen in the image
+ * X ranges between [0,639] (from left to right)
+ * Y ranges between [0,479] (from top to bottom)
  */
 struct wb_goal
 {
-	/**The x,y coordinates of the outer bottom corner of the post*/
-	PROPERTY(int16_t, outerBottom_X)
-	/**The x,y coordinates of the outer bottom corner of the post*/
-	PROPERTY(int16_t, outerBottom_Y)
+	/**The x,y coordinates of the bottom left corner of the post*/
+	PROPERTY(int16_t, bottomLeft_X)
+	/**The x,y coordinates of the bottom left corner of the post*/
+	PROPERTY(int16_t, bottomLeft_Y)
 
-	/**The x,y coordinates of the outer top corner of the post*/
-	PROPERTY(int16_t, outerTop_X)
-	/**The x,y coordinates of the outer top corner of the post*/
-	PROPERTY(int16_t, outerTop_Y)
+	/**The x,y coordinates of the top left corner of the post*/
+	PROPERTY(int16_t, topLeft_X)
+	/**The x,y coordinates of the top left corner of the post*/
+	PROPERTY(int16_t, topLeft_Y)
 
-	/**The x,y coordinates of the inner bottom corner of the post*/
-	PROPERTY(int16_t, innerBottom_X)
-	/**The x,y coordinates of the inner bottom corner of the post*/
-	PROPERTY(int16_t, innerBottom_Y)
+	/**The x,y coordinates of the bottom right corner of the post*/
+	PROPERTY(int16_t, bottomRight_X)
+	/**The x,y coordinates of the bottom right corner of the post*/
+	PROPERTY(int16_t, bottomRight_Y)
 
-	/**The x,y coordinates of the inner Top corner of the post*/
-	PROPERTY(int16_t, innerTop_X)
-	/**The x,y coordinates of the inner Top corner of the post*/
-	PROPERTY(int16_t, innerTop_Y)
+	/**The x,y coordinates of the Top right corner of the post*/
+	PROPERTY(int16_t, topRight_X)
+	/**The x,y coordinates of the Top right corner of the post*/
+	PROPERTY(int16_t, topRight_Y)
 
 	/**Whether this post was sighted in the frame*/
     PROPERTY(bool, visible)
@@ -35,7 +38,7 @@ struct wb_goal
 	PROPERTY(bool, pad)                         ///< align to 16 bits
 #ifdef __cplusplus
 	/**Default Constructor*/
-	wb_goal() : _outerBottom_X(0), _outerBottom_Y(0), _outerTop_X(0), _outerTop_Y(0), _innerBottom_X(0), _innerBottom_Y(0), _innerTop_X(0), _innerTop_Y(0), _visible(false), _pad(false) {}
+	wb_goal() : _bottomLeft_X(0), _bottomLeft_Y(0), _topLeft_X(0), _topLeft_Y(0), _bottomRight_X(0), _bottomRight_Y(0), _topRight_X(0), _topRight_Y(0), _visible(false), _pad(false) {}
 #endif
 };
 
