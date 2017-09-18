@@ -7,8 +7,8 @@
 /**
  * Whiteboard structure for goal coordinates
  * X and Y coordinates are posted as seen in the image
- * X ranges between [0,639] (from left to right)
- * Y ranges between [0,479] (from top to bottom)
+ * X ranges between [-320,319] (from left to right)
+ * Y ranges between [-240,239] (from bottom to top)
  */
 struct wb_goal
 {
