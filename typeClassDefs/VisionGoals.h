@@ -76,22 +76,22 @@ public:
 					cam = Bottom;
 	
 				std::vector<std::string> com = components_of_string_separated(t, '(');
-				GUPoint<int16_t> bottomLeft(com.at(1).c_str());
-				GUPoint<int16_t> topLeft(com.at(2).c_str());
-				GUPoint<int16_t> bottomRight(com.at(3).c_str());
-				GUPoint<int16_t> topRight(com.at(4).c_str());
+				GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
+				GUPoint<int16_t> _topLeft(com.at(2).c_str());
+				GUPoint<int16_t> _bottomRight(com.at(3).c_str());
+				GUPoint<int16_t> _topRight(com.at(4).c_str());
 
-				postInfo.set_bottomLeft_X(bottomLeft.x);
-				postInfo.set_bottomLeft_Y(bottomLeft.y);
+				postInfo.set_bottomLeft_X(_bottomLeft.x);
+				postInfo.set_bottomLeft_Y(_bottomLeft.y);
 
-				postInfo.set_topLeft_X(topLeft.x);
-				postInfo.set_topLeft_Y(topLeft.y);
+				postInfo.set_topLeft_X(_topLeft.x);
+				postInfo.set_topLeft_Y(_topLeft.y);
 
-				postInfo.set_bottomRight_X(bottomRight.x);
-				postInfo.set_bottomRight_Y(bottomRight.y);
+				postInfo.set_bottomRight_X(_bottomRight.x);
+				postInfo.set_bottomRight_Y(_bottomRight.y);
 
-				postInfo.set_topRight_X(topRight.x);
-				postInfo.set_topRight_X(topRight.y);
+				postInfo.set_topRight_X(_topRight.x);
+				postInfo.set_topRight_X(_topRight.y);
 
 				setLeftGoalPost(postInfo, cam);
 			}
@@ -112,22 +112,22 @@ public:
 					cam = Bottom;
 
                 std::vector<std::string> com = components_of_string_separated(t, '(');
-                GUPoint<int16_t> bottomLeft(com.at(1).c_str());
-                GUPoint<int16_t> topLeft(com.at(2).c_str());
-                GUPoint<int16_t> bottomRight(com.at(3).c_str());
-                GUPoint<int16_t> topRight(com.at(4).c_str());
+                GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
+                GUPoint<int16_t> _topLeft(com.at(2).c_str());
+                GUPoint<int16_t> _bottomRight(com.at(3).c_str());
+                GUPoint<int16_t> _topRight(com.at(4).c_str());
                 
-                postInfo.set_bottomLeft_X(bottomLeft.x);
-                postInfo.set_bottomLeft_Y(bottomLeft.y);
+                postInfo.set_bottomLeft_X(_bottomLeft.x);
+                postInfo.set_bottomLeft_Y(_bottomLeft.y);
                 
-                postInfo.set_topLeft_X(topLeft.x);
-                postInfo.set_topLeft_Y(topLeft.y);
+                postInfo.set_topLeft_X(_topLeft.x);
+                postInfo.set_topLeft_Y(_topLeft.y);
                 
-                postInfo.set_bottomRight_X(bottomRight.x);
-                postInfo.set_bottomRight_Y(bottomRight.y);
+                postInfo.set_bottomRight_X(_bottomRight.x);
+                postInfo.set_bottomRight_Y(_bottomRight.y);
                 
-                postInfo.set_topRight_X(topRight.x);
-                postInfo.set_topRight_Y(topRight.y);
+                postInfo.set_topRight_X(_topRight.x);
+                postInfo.set_topRight_Y(_topRight.y);
 
 				setRightGoalPost(postInfo, cam);
 			}

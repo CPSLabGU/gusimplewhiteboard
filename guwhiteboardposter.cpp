@@ -1365,6 +1365,20 @@ namespace guWhiteboard
 			return true;
 		}
 
+		case kVisionRobots_v:
+#ifdef VisionRobots_DEFINED
+		{
+/** WB Ptr Class: VisionRobots @brief Nil */ 
+			class VisionRobots_t VisionRobots_msg(wbd);
+			VisionRobots v = VisionRobots_msg.get(); 
+			v.from_string(message_content);
+			VisionRobots_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !VisionRobots_DEFINED
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1378,7 +1392,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(109);
+	// self.reserve(110);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1489,6 +1503,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["VisionFieldFeatures"] = kVisionFieldFeatures_v;
 	self["WhistleBlown"] = kWhistleBlown_v;
 	self["VolumeControl"] = kVolumeControl_v;
+	self["VisionRobots"] = kVisionRobots_v;
 
 	(void) self;
 }

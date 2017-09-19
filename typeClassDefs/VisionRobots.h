@@ -10,10 +10,14 @@
 
 #include <SimpleShapes.h>
 #include <string>
+#include <iostream>
 #include <gu_util.h>
 #include "wb_robot.h"
 
 #include "Vision_Control.h"
+
+#define TOPLIMIT 3
+#define BOTTOMLIMIT 3
 
 namespace guWhiteboard {
 /**
@@ -35,12 +39,14 @@ namespace guWhiteboard {
  */
 class VisionRobots {
 private:
-    std::vector<wb_robot> topRobots;
-    std::vector<wb_robot> bottomRobots;
+    wb_robot topRobots[TOPLIMIT];
+    wb_robot bottomRobots[BOTTOMLIMIT];
 	unsigned long _frameNumber;
+    int topCntr;
+    int bottomCntr;
 public:
 	/**Default Constructor*/
-    VisionRobots() : _frameNumber(0) {
+    VisionRobots() : _frameNumber(0), topCntr(0), bottomCntr(0) {
     }
 
 	/**
@@ -53,8 +59,7 @@ public:
     }
 
     void from_string(std::string &s)  {
-        _frameNumber = 0; 
-		
+        _frameNumber = 0;
 		size_t n = static_cast<size_t>(-5);
 		std::string command = "ROBOT";
 		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
@@ -70,40 +75,40 @@ public:
 					cam = Bottom;
 	
 				std::vector<std::string> com = components_of_string_separated(t, '(');
-				GUPoint<int16_t> bottomLeft(com.at(1).c_str());
-				GUPoint<int16_t> topLeft(com.at(2).c_str());
-				GUPoint<int16_t> bottomRight(com.at(3).c_str());
-				GUPoint<int16_t> topRight(com.at(4).c_str());
+				GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
+				GUPoint<int16_t> _topLeft(com.at(2).c_str());
+				GUPoint<int16_t> _bottomRight(com.at(3).c_str());
+				GUPoint<int16_t> _topRight(com.at(4).c_str());
 
-				robotInfo.set_bottomLeft_X(bottomLeft.x);
-				robotInfo.set_bottomLeft_Y(bottomLeft.y);
+				robotInfo.set_bottomLeft_X(_bottomLeft.x);
+				robotInfo.set_bottomLeft_Y(_bottomLeft.y);
 
-				robotInfo.set_topLeft_X(topLeft.x);
-				robotInfo.set_topLeft_Y(topLeft.y);
+				robotInfo.set_topLeft_X(_topLeft.x);
+				robotInfo.set_topLeft_Y(_topLeft.y);
 
-				robotInfo.set_bottomRight_X(bottomRight.x);
-				robotInfo.set_bottomRight_Y(bottomRight.y);
+				robotInfo.set_bottomRight_X(_bottomRight.x);
+				robotInfo.set_bottomRight_Y(_bottomRight.y);
 
-				robotInfo.set_topRight_X(topRight.x);
-				robotInfo.set_topRight_X(topRight.y);
+				robotInfo.set_topRight_X(_topRight.x);
+				robotInfo.set_topRight_X(_topRight.y);
 
 				setRobot(robotInfo, cam);
 			}
 		}
 	}
 	/**
-	 * @brief Set the Robot for this VisionRobot message
+	 * @brief Add a the Robot to this VisionRobot message
      * @param robotInfo The post information to be set
      * @param camera The camera this post was seen on
      */
-	void setRobot(wb_robot robotInfo, VisionCamera camera) {
-		if(camera == Top) {
-			topRobots.push_back(robotInfo);
-			topRobots.back().set_visible(true);
+    void setRobot(wb_robot robotInfo, VisionCamera camera) {
+		if(camera == Top && topCntr < TOPLIMIT) {
+			topRobots[topCntr] = robotInfo;
+			topRobots[topCntr++].set_visible(true);
 		}
-        else {
-            bottomRobots.push_back(robotInfo);
-            bottomRobots.back().set_visible(true);
+        else if( bottomCntr < BOTTOMLIMIT ) {
+            bottomRobots[bottomCntr] = robotInfo;
+            bottomRobots[bottomCntr++].set_visible(true);
 		}
 	}
 	
@@ -112,12 +117,18 @@ public:
      * @param camera The camera to get Robot post information from
      * @return The Robot post information.
      */
-    const std::vector<wb_robot> &robots(VisionCamera camera) const
-	{
+    const wb_robot &robots(VisionCamera camera, int idx) const
+    {
 		if(camera == Top)
-			return topRobots;
-		else
-			return bottomRobots;
+        {
+            idx = idx >= TOPLIMIT ? TOPLIMIT-1 : idx;
+			return topRobots[idx];
+        }
+        else
+        {
+            idx = idx >= BOTTOMLIMIT ? BOTTOMLIMIT-1 : idx;
+			return bottomRobots[idx];
+        }
     }
     
     /**
@@ -125,27 +136,40 @@ public:
      * @param camera The camera to get Robot post information from
      * @return The Robot post information.
      */
-    std::vector<wb_robot> &robots(VisionCamera camera)
+    wb_robot &robots(VisionCamera camera, int idx)
     {
         if(camera == Top)
-            return topRobots;
+        {
+            idx = idx >= TOPLIMIT ? TOPLIMIT-1 : idx;
+            return topRobots[idx];
+        }
         else
-            return bottomRobots;
+        {
+            idx = idx >= BOTTOMLIMIT ? BOTTOMLIMIT-1 : idx;
+            return bottomRobots[idx];
+        }
     }
 	
 	/**
 	 * @brief Reset the visible flag for all four different posts to false
      */
-	void Reset() {
-        topRobots.clear();
-        bottomRobots.clear();
+    void Reset() {
+        topCntr = bottomCntr = 0;
+        for( int i = 0; i < TOPLIMIT; i++ )
+        {
+            topRobots[i].set_visible(false);
+        }
+        for( int i = 0; i < BOTTOMLIMIT; i++ )
+        {
+            bottomRobots[i].set_visible(false);
+        }
 	}
 	
 	/**
 	 * @brief Sets the frame number this information in this message was observed.
      * @param fn The frame number
      */
-	void setFrameNumber(unsigned long fn) {
+    void setFrameNumber(unsigned long fn) {
 		_frameNumber = fn;
 	}
 	
@@ -153,7 +177,7 @@ public:
 	 * @brief Get the frame number the information in this message was observed.
      * @return The frame number
      */
-	unsigned long frameNumber() const {
+    unsigned long frameNumber() const {
 		return _frameNumber;
 	}
 	
@@ -161,23 +185,24 @@ public:
 	 * @brief Converts this message into a serialized string.
      * @return The serialized string
      */
-	std::string description() {
+    std::string description() {
 		std::stringstream result;
 		
-        for (unsigned long i = 0; i < topRobots.size(); i++) {
+        for (unsigned long i = 0; i < topCntr; i++) {
             result << "TopRobot:("
             << topRobots[i].bottomLeft_X() << "," << topRobots[i].bottomLeft_Y() << ")("
             << topRobots[i].topLeft_X() << "," << topRobots[i].topLeft_Y() << ")("
             << topRobots[i].bottomRight_X() << "," << topRobots[i].bottomRight_Y() << ")("
             << topRobots[i].topRight_X() << "," << topRobots[i].topRight_Y() << ") ";
         }
-        for (unsigned long i = 0; i < bottomRobots.size(); i++) {
+        for (unsigned long i = 0; i < bottomCntr; i++) {
             result << "BottomRobot:("
             << bottomRobots[i].bottomLeft_X() << "," << bottomRobots[i].bottomLeft_Y() << ")("
             << bottomRobots[i].topLeft_X() << "," << bottomRobots[i].topLeft_Y() << ")("
             << bottomRobots[i].bottomRight_X() << "," << bottomRobots[i].bottomRight_Y() << ")("
             << bottomRobots[i].topRight_X() << "," << bottomRobots[i].topRight_Y() << ") ";
         }
+        return result.str();
     }
 };
 }

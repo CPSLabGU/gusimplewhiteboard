@@ -113,6 +113,7 @@
 #include "Input3D.h"
 #include "HAL_ArmTarget.h"
 #include "VisionLines.h"
+#include "VisionRobots.h"
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

@@ -1151,6 +1151,18 @@ namespace guWhiteboard
 			class VolumeControl_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kVisionRobots_v:
+#ifdef VisionRobots_DEFINED
+		{
+/** WB Ptr Class: VisionRobots @brief Nil */ 
+			class VisionRobots_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !VisionRobots_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push
