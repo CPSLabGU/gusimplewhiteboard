@@ -42,8 +42,8 @@ private:
     wb_robot topRobots[TOPLIMIT];
     wb_robot bottomRobots[BOTTOMLIMIT];
 	unsigned long _frameNumber;
-    int topCntr;
-    int bottomCntr;
+    unsigned long topCntr;
+    unsigned long bottomCntr;
 public:
 	/**Default Constructor*/
     VisionRobots() : _frameNumber(0), topCntr(0), bottomCntr(0) {
