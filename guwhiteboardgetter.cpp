@@ -1163,6 +1163,18 @@ namespace guWhiteboard
 
 #endif // !VisionRobots_DEFINED
 
+		case kFieldHorizon_v:
+#ifdef FieldHorizon_DEFINED
+		{
+/** WB Ptr Class: FieldHorizon @brief Nil */ 
+			class FieldHorizon_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !FieldHorizon_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push
