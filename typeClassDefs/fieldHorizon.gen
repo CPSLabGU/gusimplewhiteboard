@@ -8,7 +8,7 @@ enum HorizonOptions {
 	SingleHorizon,
 	CornerHorizon,
 	HorizonFailed
-}
+};
 
 -properties
 HorizonOptions horizonType = HorizonFailed // Type of Horizon 
