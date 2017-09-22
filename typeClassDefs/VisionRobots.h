@@ -16,8 +16,8 @@
 
 #include "Vision_Control.h"
 
-#define TOPLIMIT 3
-#define BOTTOMLIMIT 3
+#define TOPLIMIT 5
+#define BOTTOMLIMIT 5
 
 namespace guWhiteboard {
 /**
@@ -75,22 +75,14 @@ public:
 					cam = Bottom;
 	
 				std::vector<std::string> com = components_of_string_separated(t, '(');
-				GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
 				GUPoint<int16_t> _topLeft(com.at(2).c_str());
 				GUPoint<int16_t> _bottomRight(com.at(3).c_str());
-				GUPoint<int16_t> _topRight(com.at(4).c_str());
-
-				robotInfo.set_bottomLeft_X(_bottomLeft.x);
-				robotInfo.set_bottomLeft_Y(_bottomLeft.y);
 
 				robotInfo.set_topLeft_X(_topLeft.x);
 				robotInfo.set_topLeft_Y(_topLeft.y);
 
 				robotInfo.set_bottomRight_X(_bottomRight.x);
 				robotInfo.set_bottomRight_Y(_bottomRight.y);
-
-				robotInfo.set_topRight_X(_topRight.x);
-				robotInfo.set_topRight_X(_topRight.y);
 
 				setRobot(robotInfo, cam);
 			}
@@ -190,17 +182,13 @@ public:
 		
         for (unsigned long i = 0; i < topCntr; i++) {
             result << "TopRobot:("
-            << topRobots[i].bottomLeft_X() << "," << topRobots[i].bottomLeft_Y() << ")("
             << topRobots[i].topLeft_X() << "," << topRobots[i].topLeft_Y() << ")("
-            << topRobots[i].bottomRight_X() << "," << topRobots[i].bottomRight_Y() << ")("
-            << topRobots[i].topRight_X() << "," << topRobots[i].topRight_Y() << ") ";
+            << topRobots[i].bottomRight_X() << "," << topRobots[i].bottomRight_Y() << ") ";
         }
         for (unsigned long i = 0; i < bottomCntr; i++) {
             result << "BottomRobot:("
-            << bottomRobots[i].bottomLeft_X() << "," << bottomRobots[i].bottomLeft_Y() << ")("
             << bottomRobots[i].topLeft_X() << "," << bottomRobots[i].topLeft_Y() << ")("
-            << bottomRobots[i].bottomRight_X() << "," << bottomRobots[i].bottomRight_Y() << ")("
-            << bottomRobots[i].topRight_X() << "," << bottomRobots[i].topRight_Y() << ") ";
+            << bottomRobots[i].bottomRight_X() << "," << bottomRobots[i].bottomRight_Y() << ") ";
         }
         return result.str();
     }
