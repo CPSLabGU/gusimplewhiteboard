@@ -107,6 +107,7 @@ public:
 	/**
 	 * @brief Get the current Robots for this message
      * @param camera The camera to get Robot post information from
+     * @param idx The index of the robot (must be between 0 and TOP or BOTTOMLIMIT)
      * @return The Robot post information.
      */
     const wb_robot &robots(VisionCamera camera, int idx) const
@@ -126,6 +127,7 @@ public:
     /**
      * @brief Get the current Robots for this message
      * @param camera The camera to get Robot post information from
+     * @param idx The index of the robot (must be between 0 and TOP or BOTTOMLIMIT)
      * @return The Robot post information.
      */
     wb_robot &robots(VisionCamera camera, int idx)
