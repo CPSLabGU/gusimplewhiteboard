@@ -213,6 +213,7 @@ struct wb_hal_armtarget
 #ifdef __cplusplus
     /**
     * constructor for the HAL_ArmTarget stuct. This is the data that is placed on the Whiteboard
+    * @param arm                     uint8_t enumeration of the arm 
     * @param shoulderpitch           desired shoulder pitch
     * @param shoulderroll            desired shoulder roll
     * @param elbowroll               desired elbow roll
