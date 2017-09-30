@@ -38,7 +38,7 @@ install: cross-local pkg-config
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 	rm -f ${WB_INST_DIR:Q}/include/gusimplewhiteboard/typeClassDefs/mainpage.md
-	cd ${BUILDDIR} && \
+	cd ${BUILDDIR}-local && \
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 .for hdr in ${INST_HDRS}
 	-cd ${SRCDIR} && \
