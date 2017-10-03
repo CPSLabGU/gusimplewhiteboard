@@ -106,3 +106,6 @@ class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Stat,               "HAL_RArmTarg
 class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Tolr,               "HAL_RArmTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
 class:VisionFieldFeatures, nonatomic, VisionFieldFeatures,     "VisionFieldFeatures", Posts information from vision about field corners and intersections
 bool,                nonatomic, WhistleBlown,                       "WhistleBlown", Whistle blown flag
+uint8_t, nonatomic, VolumeControl, "VolumeControl", Variable used by SMVolumeController to control the volume via pulse audio commands
+class:VisionRobots, nonatomic, VisionRobots,                        "VisionRobots", Class that reports the robots that vision sees.
+class:FieldHorizon, nonatomic, FieldHorizon,                        "FieldHorizon", Class that reports the edge of an SPL field (the edge of the green bit)

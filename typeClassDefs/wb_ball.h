@@ -9,9 +9,11 @@
  */
 struct wb_ball
 {
-	/** the balls x coordinate in pixels (relative to the center of the image) */
+	/** the balls x coordinate in pixels, relative to the center of the image,
+         * imageWidth/2 is 0, left is negative, right is positive */
 	PROPERTY(int16_t, x)
-	/** the balls y coordinate in pixels (relative to the center of the image) */
+	/** the balls y coordinate in pixels, relative to the center of the image, 
+         * imageHeight/2 is 0, up is negative, down is positive */
         PROPERTY(int16_t, y)
 	/** the balls radius in pixels */
         PROPERTY(int16_t, radius)

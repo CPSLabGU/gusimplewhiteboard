@@ -60,6 +60,7 @@
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 #pragma clang diagnostic ignored "-Wclass-varargs"
 #pragma clang diagnostic ignored "-Wbuiltin-requires-header"
+#pragma clang diagnostic ignored "-W#warnings"
 
 #ifdef __linux
 #ifndef _BSD_SOURCE

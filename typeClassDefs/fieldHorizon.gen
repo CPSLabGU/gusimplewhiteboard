@@ -1,0 +1,29 @@
+-author Carl Lusty
+
+-c
+#include <stdint.h>
+
+enum HorizonOptions {
+	OnlyField = 0,
+	SingleHorizon,
+	CornerHorizon,
+	HorizonFailed
+};
+
+-properties
+HorizonOptions horizonType = HorizonFailed // Type of Horizon 
+
+uint16_t lhp_x = 0 // Left Horizon Point X
+uint16_t lhp_y = 0 // Left Horizon Point Y
+
+uint16_t rhp_x = 0 // Right Horizon Point X
+uint16_t rhp_y = 0 // Right Horizon Point Y
+
+uint16_t chp_x = 0 // Center Horizon Point X
+uint16_t chp_y = 0 // Center Horizon Point Y
+
+-comment
+This class is for Vision to report the edge of the SPL soccer field.
+It does not report the field Bounds, that needs white line detection.
+This is for the edge of green.
+

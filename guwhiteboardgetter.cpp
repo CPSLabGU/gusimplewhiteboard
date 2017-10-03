@@ -1145,6 +1145,36 @@ namespace guWhiteboard
 			class WhistleBlown_t m(wbd);
 			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
+		case kVolumeControl_v:
+		{
+/** WB Ptr Class: VolumeControl @brief Nil */ 
+			class VolumeControl_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+		}
+		case kVisionRobots_v:
+#ifdef VisionRobots_DEFINED
+		{
+/** WB Ptr Class: VisionRobots @brief Nil */ 
+			class VisionRobots_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !VisionRobots_DEFINED
+
+		case kFieldHorizon_v:
+#ifdef FieldHorizon_DEFINED
+		{
+/** WB Ptr Class: FieldHorizon @brief Nil */ 
+			class FieldHorizon_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !FieldHorizon_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push

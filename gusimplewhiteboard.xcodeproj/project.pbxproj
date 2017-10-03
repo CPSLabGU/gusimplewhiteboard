@@ -153,6 +153,8 @@
 		C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479916D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */; };
 		C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C31EE6B3155BA83B00D55934 /* gu_util.cpp */; };
+		EF203BD51F71E56E001582D8 /* wb_robot.h in Headers */ = {isa = PBXBuildFile; fileRef = EF203BD41F71E56E001582D8 /* wb_robot.h */; };
+		EF203BD71F71E57B001582D8 /* VisionRobots.h in Headers */ = {isa = PBXBuildFile; fileRef = EF203BD61F71E57B001582D8 /* VisionRobots.h */; };
 		F11BC0C5176124510069F6FB /* udp_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870611757080C00A13AAE /* udp_util.cpp */; };
 		F11BC0C6176124510069F6FB /* udp_sender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6870761758562A00A13AAE /* udp_sender.cpp */; };
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
@@ -489,6 +491,8 @@
 		C3EC3D0016A7995A002FF8D4 /* guwhiteboardtypelist_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guwhiteboardtypelist_generated.h; sourceTree = "<group>"; };
 		C3EC3D0D16AD2158002FF8D4 /* guwhiteboardwatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = guwhiteboardwatcher.h; sourceTree = "<group>"; };
 		C3ECA6211B8C1B9E00F49B44 /* NXT_Lights_Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXT_Lights_Control.h; sourceTree = "<group>"; };
+		EF203BD41F71E56E001582D8 /* wb_robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_robot.h; sourceTree = "<group>"; };
+		EF203BD61F71E57B001582D8 /* VisionRobots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisionRobots.h; sourceTree = "<group>"; };
 		F11BC0BC176123DB0069F6FB /* guudpwhiteboard */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = guudpwhiteboard; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11BC0CC176124CB0069F6FB /* AlgUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AlgUtil.cpp; sourceTree = "<group>"; };
 		F11BC0CD176124CB0069F6FB /* AlgUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgUtil.h; sourceTree = "<group>"; };
@@ -1535,6 +1539,7 @@
 				C3B4EBED1CBCD2740061A970 /* VisionBall.h */,
 				C3B4EBEE1CBCD2740061A970 /* VisionGoals.h */,
 				C3B4EBEF1CBCD2740061A970 /* VisionLines.h */,
+				EF203BD61F71E57B001582D8 /* VisionRobots.h */,
 				C3B4EBF01CBCD2740061A970 /* WALK_ControlStatus.h */,
 				C3B4EBF11CBCD2740061A970 /* WALK2014_ControlStatus.h */,
 				C3B4EBF21CBCD2740061A970 /* WalkData.h */,
@@ -1571,6 +1576,7 @@
 				C3B4EC111CBCD2740061A970 /* wb_point2d.h */,
 				F5C3159D1F11B34600C517C2 /* wb_particle_position.c */,
 				F5C3159E1F11B34600C517C2 /* wb_particle_position.h */,
+				EF203BD41F71E56E001582D8 /* wb_robot.h */,
 				F5C3159F1F11B35800C517C2 /* wb_top_particles.c */,
 				F5C315A01F11B35900C517C2 /* wb_top_particles.h */,
 				C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */,
@@ -1804,6 +1810,7 @@
 				C3B4EC311CBCD2740061A970 /* GCGameState.h in Headers */,
 				C3B4EC6C1CBCD2740061A970 /* wb_goal.h in Headers */,
 				C3B4EC521CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h in Headers */,
+				EF203BD71F71E57B001582D8 /* VisionRobots.h in Headers */,
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
 				F191CBD31B71A1A40005C314 /* wb_io_pins.h in Headers */,
 				C3B4EC231CBCD2740061A970 /* APM_Interface.h in Headers */,
@@ -1886,6 +1893,7 @@
 				8B19F9BD17A0F63E00CF2365 /* tcp_config.h in Headers */,
 				C3B4EC4C1CBCD2740061A970 /* SENSORSLegJointTemps.h in Headers */,
 				C3B4EC831CBCD2740061A970 /* wb_sensors_sonar.h in Headers */,
+				EF203BD51F71E56E001582D8 /* wb_robot.h in Headers */,
 				C3B4EC541CBCD2740061A970 /* Vision_Control.h in Headers */,
 				C3B4EC8B1CBCD2740061A970 /* wb_walk2014_controlstatus.h in Headers */,
 				C3B4EC6D1CBCD2740061A970 /* wb_hal_headtarget.h in Headers */,

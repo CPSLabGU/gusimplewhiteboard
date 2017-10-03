@@ -30,10 +30,6 @@ WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhitebo
 
 all: all-real
 
-.if ${LOCAL} != _LOCAL
-host: host-local
-	echo "Use 'make host-local' instead of 'make host'"
-
 .ifndef TARGET
 install: host-local pkg-config type-hdrs
 .else
@@ -52,7 +48,6 @@ install: cross-local pkg-config
 	  install -m 0644 ${hdr} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
 	fi
 .endfor
-.endif
 
 pkg-config:
 	$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig

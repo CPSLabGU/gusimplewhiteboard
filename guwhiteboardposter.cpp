@@ -1357,6 +1357,42 @@ namespace guWhiteboard
 			return true;
 		}
 
+		case kVolumeControl_v:
+		{
+/** WB Ptr Class: VolumeControl @brief Nil */ 
+			class VolumeControl_t VolumeControl_msg(wbd);
+			VolumeControl_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
+			return true;
+		}
+
+		case kVisionRobots_v:
+#ifdef VisionRobots_DEFINED
+		{
+/** WB Ptr Class: VisionRobots @brief Nil */ 
+			class VisionRobots_t VisionRobots_msg(wbd);
+			VisionRobots v = VisionRobots_msg.get(); 
+			v.from_string(message_content);
+			VisionRobots_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !VisionRobots_DEFINED
+
+		case kFieldHorizon_v:
+#ifdef FieldHorizon_DEFINED
+		{
+/** WB Ptr Class: FieldHorizon @brief Nil */ 
+			class FieldHorizon_t FieldHorizon_msg(wbd);
+			FieldHorizon v = FieldHorizon_msg.get(); 
+			v.from_string(message_content);
+			FieldHorizon_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !FieldHorizon_DEFINED
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1370,7 +1406,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(108);
+	// self.reserve(111);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1480,6 +1516,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
 	self["VisionFieldFeatures"] = kVisionFieldFeatures_v;
 	self["WhistleBlown"] = kWhistleBlown_v;
+	self["VolumeControl"] = kVolumeControl_v;
+	self["VisionRobots"] = kVisionRobots_v;
+	self["FieldHorizon"] = kFieldHorizon_v;
 
 	(void) self;
 }

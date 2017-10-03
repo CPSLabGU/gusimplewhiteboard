@@ -39,7 +39,7 @@ private:
 	wb_goal bottomLeft;//bottom camera
     wb_goal bottomRight;
     wb_goal bottomGeneric;
-	unsigned long _frameNumber;
+	uint32_t _frameNumber;
 public:
 	/**Default Constructor*/
     VisionGoals() : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
@@ -76,22 +76,22 @@ public:
 					cam = Bottom;
 	
 				std::vector<std::string> com = components_of_string_separated(t, '(');
-				GUPoint<int16_t> outerBottom(com.at(1).c_str());
-				GUPoint<int16_t> outerTop(com.at(2).c_str());
-				GUPoint<int16_t> innerBottom(com.at(3).c_str());
-				GUPoint<int16_t> innerTop(com.at(4).c_str());
+				GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
+				GUPoint<int16_t> _topLeft(com.at(2).c_str());
+				GUPoint<int16_t> _bottomRight(com.at(3).c_str());
+				GUPoint<int16_t> _topRight(com.at(4).c_str());
 
-				postInfo.set_outerBottom_X(outerBottom.x);
-				postInfo.set_outerBottom_Y(outerBottom.y);
+				postInfo.set_bottomLeft_X(_bottomLeft.x);
+				postInfo.set_bottomLeft_Y(_bottomLeft.y);
 
-				postInfo.set_outerTop_X(outerTop.x);
-				postInfo.set_outerTop_Y(outerTop.y);
+				postInfo.set_topLeft_X(_topLeft.x);
+				postInfo.set_topLeft_Y(_topLeft.y);
 
-				postInfo.set_innerBottom_X(innerBottom.x);
-				postInfo.set_innerBottom_Y(innerBottom.y);
+				postInfo.set_bottomRight_X(_bottomRight.x);
+				postInfo.set_bottomRight_Y(_bottomRight.y);
 
-				postInfo.set_innerTop_X(innerTop.x);
-				postInfo.set_innerTop_Y(innerTop.y);
+				postInfo.set_topRight_X(_topRight.x);
+				postInfo.set_topRight_X(_topRight.y);
 
 				setLeftGoalPost(postInfo, cam);
 			}
@@ -111,23 +111,23 @@ public:
 				else
 					cam = Bottom;
 
-				std::vector<std::string> com = components_of_string_separated(t, '(');
-				GUPoint<int16_t> outerBottom(com.at(1).c_str());
-				GUPoint<int16_t> outerTop(com.at(2).c_str());
-				GUPoint<int16_t> innerBottom(com.at(3).c_str());
-				GUPoint<int16_t> innerTop(com.at(4).c_str());
-
-				postInfo.set_outerBottom_X(outerBottom.x);
-				postInfo.set_outerBottom_Y(outerBottom.y);
-
-				postInfo.set_outerTop_X(outerTop.x);
-				postInfo.set_outerTop_Y(outerTop.y);
-
-				postInfo.set_innerBottom_X(innerBottom.x);
-				postInfo.set_innerBottom_Y(innerBottom.y);
-
-				postInfo.set_innerTop_X(innerTop.x);
-				postInfo.set_innerTop_Y(innerTop.y);
+                std::vector<std::string> com = components_of_string_separated(t, '(');
+                GUPoint<int16_t> _bottomLeft(com.at(1).c_str());
+                GUPoint<int16_t> _topLeft(com.at(2).c_str());
+                GUPoint<int16_t> _bottomRight(com.at(3).c_str());
+                GUPoint<int16_t> _topRight(com.at(4).c_str());
+                
+                postInfo.set_bottomLeft_X(_bottomLeft.x);
+                postInfo.set_bottomLeft_Y(_bottomLeft.y);
+                
+                postInfo.set_topLeft_X(_topLeft.x);
+                postInfo.set_topLeft_Y(_topLeft.y);
+                
+                postInfo.set_bottomRight_X(_bottomRight.x);
+                postInfo.set_bottomRight_Y(_bottomRight.y);
+                
+                postInfo.set_topRight_X(_topRight.x);
+                postInfo.set_topRight_Y(_topRight.y);
 
 				setRightGoalPost(postInfo, cam);
 			}
@@ -275,7 +275,7 @@ public:
 	 * @brief Sets the frame number this information in this message was observed.
      * @param fn The frame number
      */
-	void setFrameNumber(unsigned long fn) {
+	void setFrameNumber(uint32_t fn) {
 		_frameNumber = fn;
 	}
 	
@@ -283,7 +283,7 @@ public:
 	 * @brief Get the frame number the information in this message was observed.
      * @return The frame number
      */
-	unsigned long frameNumber() const {
+	uint32_t frameNumber() const {
 		return _frameNumber;
 	}
 	
@@ -295,35 +295,35 @@ public:
 		std::stringstream result;
 		
 		if(bottomLeft.visible())
-			result << "BottomLeftPost:(" << bottomLeft.outerBottom_X() << "," << bottomLeft.outerBottom_Y() << ")("
-			<< bottomLeft.outerTop_X() << "," << bottomLeft.outerTop_Y() << ")("
-			<< bottomLeft.innerBottom_X() << "," << bottomLeft.innerBottom_Y() << ")("
-			<< bottomLeft.innerTop_X() << "," << bottomLeft.innerTop_Y() << ") ";
+			result << "BottomLeftPost:(" << bottomLeft.bottomLeft_X() << "," << bottomLeft.bottomLeft_Y() << ")("
+			<< bottomLeft.topLeft_X() << "," << bottomLeft.topLeft_Y() << ")("
+			<< bottomLeft.bottomRight_X() << "," << bottomLeft.bottomRight_Y() << ")("
+			<< bottomLeft.topRight_X() << "," << bottomLeft.topRight_Y() << ") ";
 		if(topLeft.visible())
-			result << "TopLeftPost:(" << topLeft.outerBottom_X() << "," << topLeft.outerBottom_Y() << ")("
-			<< topLeft.outerTop_X() << "," << topLeft.outerTop_Y() << ")("
-			<< topLeft.innerBottom_X() << "," << topLeft.innerBottom_Y() << ")("
-            << topLeft.innerTop_X() << "," << topLeft.innerTop_Y() << ") ";
+			result << "TopLeftPost:(" << topLeft.bottomLeft_X() << "," << topLeft.bottomLeft_Y() << ")("
+			<< topLeft.topLeft_X() << "," << topLeft.topLeft_Y() << ")("
+			<< topLeft.bottomRight_X() << "," << topLeft.bottomRight_Y() << ")("
+            << topLeft.topRight_X() << "," << topLeft.topRight_Y() << ") ";
         if(topGeneric.visible())
-            result << "TopGenericPost:(" << topGeneric.outerBottom_X() << "," << topGeneric.outerBottom_Y() << ")("
-            << topGeneric.outerTop_X() << "," << topGeneric.outerTop_Y() << ")("
-            << topGeneric.innerBottom_X() << "," << topGeneric.innerBottom_Y() << ")("
-            << topGeneric.innerTop_X() << "," << topGeneric.innerTop_Y() << ") ";
+            result << "TopGenericPost:(" << topGeneric.bottomLeft_X() << "," << topGeneric.bottomLeft_Y() << ")("
+            << topGeneric.topLeft_X() << "," << topGeneric.topLeft_Y() << ")("
+            << topGeneric.bottomRight_X() << "," << topGeneric.bottomRight_Y() << ")("
+            << topGeneric.topRight_X() << "," << topGeneric.topRight_Y() << ") ";
 		if(bottomRight.visible())
-			result << "BottomRightPost:(" << bottomRight.outerBottom_X() << "," << bottomRight.outerBottom_Y() << ")("
-			<< bottomRight.outerTop_X() << "," << bottomRight.outerTop_Y() << ")("
-			<< bottomRight.innerBottom_X() << "," << bottomRight.innerBottom_Y() << ")("
-			<< bottomRight.innerTop_X() << "," << bottomRight.innerTop_Y() << ") ";
+			result << "BottomRightPost:(" << bottomRight.bottomLeft_X() << "," << bottomRight.bottomLeft_Y() << ")("
+			<< bottomRight.topLeft_X() << "," << bottomRight.topLeft_Y() << ")("
+			<< bottomRight.bottomRight_X() << "," << bottomRight.bottomRight_Y() << ")("
+			<< bottomRight.topRight_X() << "," << bottomRight.topRight_Y() << ") ";
 		if(topRight.visible())
-			result << "TopRightPost:(" << topRight.outerBottom_X() << "," << topRight.outerBottom_Y() << ")("
-			<< topRight.outerTop_X() << "," << topRight.outerTop_Y() << ")("
-			<< topRight.innerBottom_X() << "," << topRight.innerBottom_Y() << ")("
-            << topRight.innerTop_X() << "," << topRight.innerTop_Y() << ") ";
+			result << "TopRightPost:(" << topRight.bottomLeft_X() << "," << topRight.bottomLeft_Y() << ")("
+			<< topRight.topLeft_X() << "," << topRight.topLeft_Y() << ")("
+			<< topRight.bottomRight_X() << "," << topRight.bottomRight_Y() << ")("
+            << topRight.topRight_X() << "," << topRight.topRight_Y() << ") ";
         if(bottomGeneric.visible())
-            result << "BottomGenericPost:(" << bottomGeneric.outerBottom_X() << "," << bottomGeneric.outerBottom_Y() << ")("
-            << bottomGeneric.outerTop_X() << "," << bottomGeneric.outerTop_Y() << ")("
-            << bottomGeneric.innerBottom_X() << "," << bottomGeneric.innerBottom_Y() << ")("
-            << bottomGeneric.innerTop_X() << "," << bottomGeneric.innerTop_Y() << ") ";
+            result << "BottomGenericPost:(" << bottomGeneric.bottomLeft_X() << "," << bottomGeneric.bottomLeft_Y() << ")("
+            << bottomGeneric.topLeft_X() << "," << bottomGeneric.topLeft_Y() << ")("
+            << bottomGeneric.bottomRight_X() << "," << bottomGeneric.bottomRight_Y() << ")("
+            << bottomGeneric.topRight_X() << "," << bottomGeneric.topRight_Y() << ") ";
 		return result.str();
 	}
 	

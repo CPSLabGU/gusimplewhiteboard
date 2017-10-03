@@ -63,7 +63,6 @@
 #import "FilteredOneDimObject.h"
 #import "FilteredArrayOneDimSonar.h"
 #import "FilteredArrayOneDimObjects.h"
-#import "FilteredArrayOneDimBall.h"
 
 #import "FSMControlStatus.h"
 
@@ -399,106 +398,6 @@ public:
     XCTAssertEqual(testArrayC.get_object(FVOGoalPostRightTop).distance(), testR.distance(), @"distance match");
     XCTAssertEqual(testArrayC.get_object(FVOGoalPostRightTop).frameCounter(), testR.frameCounter(), @"frameCounter match");
     
-}
-
-- (void) testSerializationFilteredArrayOneDimBall
-{
-    FilteredOneDimObject testT("IsVisible,10,20,30,40,FRAME:100,");
-    
-    FilteredArrayOneDimBall testArray(testT);
-    
-    FilteredOneDimObject testB=testArray.get_object(FVOBallTop);
-    
-    XCTAssertTrue(testT.isVisible(), @"Expected  visible");
-    XCTAssertTrue(testB.isVisible(), @"Expected  visible");
-    XCTAssertEqual(testT.distance(), testB.distance(), @"distance match");
-    XCTAssertEqual(testT.x(), testB.x(), @"'x' match");
-    XCTAssertEqual(testT.y(), testB.y(), @"'y' match");
-    XCTAssertEqual(testT.yaw(), testB.yaw(), @"yaw match");
-    XCTAssertEqual(testT.frameCounter(), testB.frameCounter(), @"frameCounter match");
-    
-    FilteredOneDimObject testBotom("IsVisible,15,25,35,45,FRAME:105,");
-    
-    testArray.set_object(testBotom,FVOBallBottom);
-    
-    FilteredOneDimObject testB1=testArray.get_object(FVOBallBottom);
-    
-    XCTAssertTrue(testBotom.isVisible(), @"Expected  visible");
-    XCTAssertTrue(testB1.isVisible(), @"Expected  visible");
-    XCTAssertEqual(testB1.distance(), testBotom.distance(), @"distance match");
-    XCTAssertEqual(testB1.x(), testBotom.x(), @"'x' match");
-    XCTAssertEqual(testB1.y(), testBotom.y(), @"'y' match");
-    XCTAssertEqual(testB1.yaw(), testBotom.yaw(), @"yaw match");
-    XCTAssertEqual(testB1.frameCounter(), testBotom.frameCounter(), @"frameCounter match");
-    
-    FilteredOneDimObject testOtherTop("IsVisible,13,23,33,43,FRAME:108,");
-    FilteredOneDimObject testOtherbootm("IsVisible,12,22,32,42,FRAME:102,");
-    
-    testArray.set_object(testOtherTop,FVOBallTop);
-    testArray.set_object(testOtherbootm,FVOBallBottom);
-    
-    FilteredArrayOneDimBall testArrayB(testArray);
-    
-    
-    FilteredOneDimObject testOutTop=testArrayB.get_object(FVOBallTop);
-    FilteredOneDimObject testOutBootm=testArrayB.get_object(FVOBallBottom);
-    XCTAssertTrue(testOutTop.isVisible(), @"Expected  visible");
-    XCTAssertEqual(testOutTop.distance(), testOtherTop.distance(), @"distance match");
-    XCTAssertEqual(testOutTop.x(), testOtherTop.x(), @"'x' match");
-    XCTAssertEqual(testOutTop.y(), testOtherTop.y(), @"'y' match");
-    XCTAssertEqual(testOutTop.yaw(), testOtherTop.yaw(), @"yaw match");
-    XCTAssertEqual(testOutTop.frameCounter(), testOtherTop.frameCounter(), @"frameCounter match");
-    XCTAssertTrue(testOutBootm.isVisible(), @"Expected  visible");
-    XCTAssertEqual(testOutBootm.distance(), testOtherbootm.distance(), @"distance match");
-    XCTAssertEqual(testOutBootm.x(), testOtherbootm.x(), @"'x' match");
-    XCTAssertEqual(testOutBootm.y(), testOtherbootm.y(), @"'y' match");
-    XCTAssertEqual(testOutBootm.yaw(), testOtherbootm.yaw(), @"yaw match");
-    XCTAssertEqual(testOutBootm.frameCounter(), testOtherbootm.frameCounter(), @"frameCounter match");
- 
-    
-    string s =testArrayB.description();
-        
-        cerr << s << endl;
-    
-    FilteredArrayOneDimBall testArrayC(s);
-    XCTAssertTrue(testArrayC.get_object(FVOBallTop).isVisible(), @"Expected  visible");
-    XCTAssertTrue(testArrayC.get_object(FVOBallBottom).isVisible(), @"Expected  visible");
-    XCTAssertEqual(testArrayC.get_object(FVOBallTop).distance(), testOtherTop.distance(), @"distance match");
-    XCTAssertEqual(testArrayC.get_object(FVOBallTop).frameCounter(), testOtherTop.frameCounter(), @"frameCounter match");
-    XCTAssertEqual(testArrayC.get_object(FVOBallBottom).distance(), testOtherbootm.distance(), @"distance match");
-    XCTAssertEqual(testArrayC.get_object(FVOBallBottom).frameCounter(), testOtherbootm.frameCounter(), @"frameCounter match");
-    
-}
-
-- (void) testFilteredArrayOneDimBallPutGet
-{
-        FilteredBallSighting_t sigthingHandler;
-        
-        FilteredOneDimObject testBall("IsVisible,10,20,30,40,FRAME:100,");
-        FilteredArrayOneDimBall testArray(testBall);
-
-        sigthingHandler.set(testArray);                       // write to wb
-        FilteredArrayOneDimBall result = sigthingHandler(); // get back out
-        FilteredOneDimObject topBallSighting = result.get_object(FVOBallTop);
-        XCTAssertTrue(topBallSighting.isVisible() , @"Expecting visible");
-        XCTAssertEqual(topBallSighting.distance(), testBall.distance(), @"distance match");
-        XCTAssertEqual(topBallSighting.x(), testBall.x(), @"'x' match");
-        XCTAssertEqual(topBallSighting.y(), testBall.y(), @"'y' match");
-        XCTAssertEqual(topBallSighting.yaw(), testBall.yaw(), @"yaw match");
-        XCTAssertEqual(topBallSighting.frameCounter(), testBall.frameCounter(), @"frameCounter match");
-        
-        FilteredOneDimObject bottomBallSighting = result.get_object(FVOBallBottom);
-        XCTAssertFalse(bottomBallSighting.isVisible() , @"Expecting visible");
-        XCTAssertEqual(bottomBallSighting.distance(),0, @"distance match");
-        XCTAssertEqual(bottomBallSighting.x(), 0, @"'x' match");
-        XCTAssertEqual(bottomBallSighting.y(), 0, @"'y' match");
-        XCTAssertEqual(bottomBallSighting.yaw(), 0, @"yaw match");
-        XCTAssertEqual(bottomBallSighting.frameCounter(), 0, @"frameCounter match");
-     /*
-        fsmStatus.set(oldStatus);
-        result = fsmStatus.get();
-        XCTAssertTrue(result == oldStatus, @"Expecting old status to be restored");
-      */
 }
 
 - (void) testVisionBallPutGet
