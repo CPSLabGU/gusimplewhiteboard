@@ -41,9 +41,9 @@ class VisionRobots {
 private:
     wb_robot topRobots[TOPLIMIT];
     wb_robot bottomRobots[BOTTOMLIMIT];
-	unsigned long _frameNumber;
-    unsigned long topCntr;
-    unsigned long bottomCntr;
+	uint32_t _frameNumber;
+    uint32_t topCntr;
+    uint32_t bottomCntr;
 public:
 	/**Default Constructor*/
     VisionRobots() : _frameNumber(0), topCntr(0), bottomCntr(0) {
@@ -163,7 +163,7 @@ public:
 	 * @brief Sets the frame number this information in this message was observed.
      * @param fn The frame number
      */
-    void setFrameNumber(unsigned long fn) {
+    void setFrameNumber(uint32_t fn) {
 		_frameNumber = fn;
 	}
 	
@@ -171,7 +171,7 @@ public:
 	 * @brief Get the frame number the information in this message was observed.
      * @return The frame number
      */
-    unsigned long frameNumber() const {
+    uint32_t frameNumber() const {
 		return _frameNumber;
 	}
 	
@@ -182,12 +182,12 @@ public:
     std::string description() {
 		std::stringstream result;
 		
-        for (unsigned long i = 0; i < topCntr; i++) {
+        for (uint32_t i = 0; i < topCntr; i++) {
             result << "TopRobot:("
             << topRobots[i].topLeft_X() << "," << topRobots[i].topLeft_Y() << ")("
             << topRobots[i].bottomRight_X() << "," << topRobots[i].bottomRight_Y() << ") ";
         }
-        for (unsigned long i = 0; i < bottomCntr; i++) {
+        for (uint32_t i = 0; i < bottomCntr; i++) {
             result << "BottomRobot:("
             << bottomRobots[i].topLeft_X() << "," << bottomRobots[i].topLeft_Y() << ")("
             << bottomRobots[i].bottomRight_X() << "," << bottomRobots[i].bottomRight_Y() << ") ";
