@@ -12,7 +12,7 @@ DOC_RECURSIVE=YES			# build doxygen recursively
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 
-ALL_TARGETS=host-local robot-local analyse test xc
+ALL_TARGETS=host-local atom-local atom1-local geode-local analyse test xc
 
 CATKIN_COMPILE_UTIL=YES
 
