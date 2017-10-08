@@ -84,12 +84,13 @@
 
 struct wb_hal_armtarget
 {
-    /** target arm number
-     *  This property is used strictly for accounting purposes when
-     *  the struct is stored within an array and the robot has numerous
-     *  arms.
+    /**
+     *  Control Message:
+     *      The elapsed time, in mSec, in which the movement should be completed.
+     *  Status Message:
+     *      Absolute time when the current action will complete. (Thus this is an int32_t.)
      */
-    PROPERTY(uint8_t, target_arm)
+    PROPERTY(int32_t, target_movement_time)
 
     /** target shoulder pitch angle in 10ths of degrees */
     PROPERTY(int16_t, target_shoulderpitch)
@@ -105,6 +106,13 @@ struct wb_hal_armtarget
 
     /** target wrist yaw angle in 10ths of degrees */
     PROPERTY(int16_t, target_wristyaw)
+
+    /** target arm number
+     *  This property is used strictly for accounting purposes when
+     *  the struct is stored within an array and the robot has numerous
+     *  arms.
+     */
+    PROPERTY(uint8_t, target_arm)
 
     /** target hand grasper opening as a percentage
      *  0   gripper will be clasped shut
@@ -129,6 +137,15 @@ struct wb_hal_armtarget
 
     /** target hand grasper stiffness as a percentage */
     PROPERTY(uint8_t, target_handstiffness)
+
+    /** target arm's pliability when in Passive Mode
+     *  When the arm is passive, this value reduces the update frequency, 
+     *  thus making the arm more resistant to external forces.
+     *  Use of values from 0 to 10 is recommended.
+     *  When set to zero (0), the Arm, when fully extended out, will fall under its own weight.
+     *  Higher values stiffen the arm and reduce responsiveness, the movement will become stepped.
+     */
+    PROPERTY(uint8_t, target_pliability)
 
     /**
      *  Is the shoulderpitch Active (true[DEFAULT]) or Passive (false)
@@ -173,23 +190,6 @@ struct wb_hal_armtarget
      *
      */
     BIT_PROPERTY(target_hand_active)
-
-    /**
-     *  Control Message:
-     *      The elapsed time, in mSec, in which the movement should be completed.
-     *  Status Message:
-     *      Absolute time when the current action will complete. (Thus this is an int32_t.)
-     */
-    PROPERTY(int32_t, target_movement_time)
-
-    /** target arm's pliability when in Passive Mode
-     *  When the arm is passive, this value reduces the update frequency, 
-     *  thus making the arm more resistant to external forces.
-     *  Use of values from 0 to 10 is recommended.
-     *  When set to zero (0), the Arm, when fully extended out, will fall under its own weight.
-     *  Higher values stiffen the arm and reduce responsiveness, the movement will become stepped.
-     */
-    PROPERTY(uint8_t, target_pliability)
     
     /**
      *  Control Message:

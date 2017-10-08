@@ -1,0 +1,8 @@
+-author	Carl Lusty
+
+-properties
+int16_t	x=0	// x
+int16_t	y=0	// y
+
+-comment
+2D point class.

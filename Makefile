@@ -12,7 +12,7 @@ DOC_RECURSIVE=YES			# build doxygen recursively
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 
-ALL_TARGETS=host-local robot-local analyse test xc
+ALL_TARGETS=host-local atom-local atom1-local geode-local analyse test xc
 
 CATKIN_COMPILE_UTIL=YES
 
@@ -38,7 +38,7 @@ install: cross-local pkg-config
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
 	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 	rm -f ${WB_INST_DIR:Q}/include/gusimplewhiteboard/typeClassDefs/mainpage.md
-	cd ${BUILDDIR} && \
+	cd ${BUILDDIR}-local && \
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 .for hdr in ${INST_HDRS}
 	-cd ${SRCDIR} && \
