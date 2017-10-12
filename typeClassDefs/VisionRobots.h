@@ -41,7 +41,7 @@ class VisionRobots {
 private:
     wb_robot topRobots[TOPLIMIT];
     wb_robot bottomRobots[BOTTOMLIMIT];
-	uint32_t _frameNumber;
+	size_t _frameNumber;
     uint32_t topCntr;
     uint32_t bottomCntr;
 public:
@@ -163,7 +163,7 @@ public:
 	 * @brief Sets the frame number this information in this message was observed.
      * @param fn The frame number
      */
-    void setFrameNumber(uint32_t fn) {
+    void setFrameNumber(size_t fn) {
 		_frameNumber = fn;
 	}
 	
@@ -171,7 +171,7 @@ public:
 	 * @brief Get the frame number the information in this message was observed.
      * @return The frame number
      */
-    uint32_t frameNumber() const {
+    size_t frameNumber() const {
 		return _frameNumber;
 	}
 	

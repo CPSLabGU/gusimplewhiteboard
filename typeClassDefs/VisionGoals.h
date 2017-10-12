@@ -39,7 +39,7 @@ private:
 	wb_goal bottomLeft;//bottom camera
     wb_goal bottomRight;
     wb_goal bottomGeneric;
-	uint32_t _frameNumber;
+	size_t _frameNumber;
 public:
 	/**Default Constructor*/
     VisionGoals() : topLeft(), topRight(), bottomLeft(), bottomRight(), _frameNumber(0) {
@@ -275,7 +275,7 @@ public:
 	 * @brief Sets the frame number this information in this message was observed.
      * @param fn The frame number
      */
-	void setFrameNumber(uint32_t fn) {
+	void setFrameNumber(size_t fn) {
 		_frameNumber = fn;
 	}
 	
@@ -283,7 +283,7 @@ public:
 	 * @brief Get the frame number the information in this message was observed.
      * @return The frame number
      */
-	uint32_t frameNumber() const {
+	size_t frameNumber() const {
 		return _frameNumber;
 	}
 	
