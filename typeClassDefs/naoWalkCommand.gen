@@ -1,0 +1,88 @@
+-author Carl Lusty
+
+-c
+
+extern wb_nao_walk_command;
+
+wb_nao_walk_command NaoWalkCommand_walk(int16_t forward, int16_t left, int8_t turn) {
+    wb_nao_walk_command cmd;
+    cmd.walkEngineOn = true;
+    cmd.forward = forward;
+    cmd.left = left;
+    cmd.turn = turn;
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_walkPrecisely(int16_t forward, int16_t left, int8_t turn) {
+    wb_nao_walk_command cmd = NaoWalkCommand_walk(forward, left, turn);
+    cmd.exactStepsRequested = true;
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_stop() {
+    wb_nao_walk_command cmd;
+    cmd.walkEngineOn = true;
+    cmd.forward = 0;
+    cmd.left = 0;
+    cmd.turn = 0;
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_standWithStiffness() {
+    wb_nao_walk_command cmd = NaoWalkCommand_stop();
+    cmd.walkEngineOn = true;
+    cmd.bend = 1
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_standWithMinimalStiffness() {
+    wb_nao_walk_command cmd = NaoWalkCommand_stop()
+    cmd.walkEngineOn = true;
+    cmd.bend = 0
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_disconnectWalk() {
+    wb_nao_walk_command cmd;
+    cmd.walkEngineOn = false;
+    return cmd;
+}
+
+wb_nao_walk_command NaoWalkCommand_resetOdometry() {
+    wb_nao_walk_command cmd;
+    cmd.odometryResetCounter++;
+    return cmd;
+}
+
+-properties
+
+bool walkEngineOn = false //connects the dcm callbacks. Essentially turning the walk on. When enabled, the walk engine controls all joint values except the head pitch and yaw.
+
+int16_t forward = 0 //[-300 - 300] step-size(mm) per second, limited to +/- 300mm/step
+int16_t left = 0    //[-200 - 200] step-size(mm) per second, limited to +/- 200mm/step
+int8_t turn = 0     //[-85 - 85] step-size(mm) per second, limited to +/- 85deg/step
+
+bool exactStepsRequested = false //No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
+uint8_t speed = 100 //[0 - 100] modifier for forward etc.. when using exactStepsRequested = true
+uint8_t odometryResetCounter = 0 //Odometry will reset any time this is changed or incremented.
+
+bool isFast = false //for kicks. True results in a 'Jab'/rapid kick.
+bool kickWithLeftFoot = true //which foot to use for kicking
+
+bool useShuffle = false //limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obsticles that could trip the robot, if it tried to step onto it.
+
+bool leftArmLimp = true //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to obsorb some of the collision instead of rigidly transfering the force to the whole body.
+bool rightArmLimp = true //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to obsorb some of the collision instead of rigidly transfering the force to the whole body.
+
+uint8_t power = 0   //[0 - 100] stiffness, auto set to minimum needed values. Advanced pararm! don't alter this without knowledge of exactly what it does.
+
+
+-comment
+Control message for sending commands to the walk engine created by UNSW.
+LICENSE:
+https://github.com/UNSWComputing/rUNSWift-2017-release/blob/master/LICENSE
+Source:
+https://github.com/UNSWComputing/rUNSWift-2017-release/blob/master/robot/motion/generator/Walk2014Generator.cpp
+Some of their documentation:
+https://github.com/UNSWComputing/rUNSWift-2017-release/wiki/Motion#walk2014-generator
+
