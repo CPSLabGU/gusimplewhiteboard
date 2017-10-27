@@ -138,33 +138,21 @@ namespace guWhiteboard
 			return false;
 #endif // !GCGameState_DEFINED
 
-		case kWALK_Command_v:
-#ifdef WALK_ControlStatus_DEFINED
+		case kREMOVED1_v:
 		{
-/** WB Ptr Class: WALK_Command @brief Nil */ 
-			class WALK_Command_t WALK_Command_msg(wbd);
-			WALK_ControlStatus v = WALK_Command_msg.get(); 
-			v.from_string(message_content);
-			WALK_Command_msg.post(v);
+/** WB Ptr Class: REMOVED1 @brief Nil */ 
+			class REMOVED1_t REMOVED1_msg(wbd);
+			REMOVED1_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
 			return true;
 		}
-#else
-			return false;
-#endif // !WALK_ControlStatus_DEFINED
 
-		case kWALK_Status_v:
-#ifdef WALK_ControlStatus_DEFINED
+		case kREMOVED2_v:
 		{
-/** WB Ptr Class: WALK_Status @brief Nil */ 
-			class WALK_Status_t WALK_Status_msg(wbd);
-			WALK_ControlStatus v = WALK_Status_msg.get(); 
-			v.from_string(message_content);
-			WALK_Status_msg.post(v);
+/** WB Ptr Class: REMOVED2 @brief Nil */ 
+			class REMOVED2_t REMOVED2_msg(wbd);
+			REMOVED2_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
 			return true;
 		}
-#else
-			return false;
-#endif // !WALK_ControlStatus_DEFINED
 
 		case kMOTION_Commands_v:
 #ifdef MOTION_Commands_DEFINED
@@ -882,33 +870,21 @@ namespace guWhiteboard
 			return false;
 #endif // !APM_Interface_DEFINED
 
-		case kWALK2014_Command_v:
-#ifdef WALK2014_ControlStatus_DEFINED
+		case kREMOVED3_v:
 		{
-/** WB Ptr Class: WALK2014_Command @brief Nil */ 
-			class WALK2014_Command_t WALK2014_Command_msg(wbd);
-			WALK2014_ControlStatus v = WALK2014_Command_msg.get(); 
-			v.from_string(message_content);
-			WALK2014_Command_msg.post(v);
+/** WB Ptr Class: REMOVED3 @brief Nil */ 
+			class REMOVED3_t REMOVED3_msg(wbd);
+			REMOVED3_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
 			return true;
 		}
-#else
-			return false;
-#endif // !WALK2014_ControlStatus_DEFINED
 
-		case kWALK2014_Status_v:
-#ifdef WALK2014_ControlStatus_DEFINED
+		case kREMOVED4_v:
 		{
-/** WB Ptr Class: WALK2014_Status @brief Nil */ 
-			class WALK2014_Status_t WALK2014_Status_msg(wbd);
-			WALK2014_ControlStatus v = WALK2014_Status_msg.get(); 
-			v.from_string(message_content);
-			WALK2014_Status_msg.post(v);
+/** WB Ptr Class: REMOVED4 @brief Nil */ 
+			class REMOVED4_t REMOVED4_msg(wbd);
+			REMOVED4_msg.post(static_cast<const signed char>(atoi(message_content.c_str())));
 			return true;
 		}
-#else
-			return false;
-#endif // !WALK2014_ControlStatus_DEFINED
 
 		case kCBall_v:
 		{
@@ -1393,6 +1369,34 @@ namespace guWhiteboard
 			return false;
 #endif // !FieldHorizon_DEFINED
 
+		case kNaoWalkCommand_v:
+#ifdef NaoWalkCommand_DEFINED
+		{
+/** WB Ptr Class: NaoWalkCommand @brief Nil */ 
+			class NaoWalkCommand_t NaoWalkCommand_msg(wbd);
+			NaoWalkCommand v = NaoWalkCommand_msg.get(); 
+			v.from_string(message_content);
+			NaoWalkCommand_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !NaoWalkCommand_DEFINED
+
+		case kNaoWalkStatus_v:
+#ifdef NaoWalkStatus_DEFINED
+		{
+/** WB Ptr Class: NaoWalkStatus @brief Nil */ 
+			class NaoWalkStatus_t NaoWalkStatus_msg(wbd);
+			NaoWalkStatus v = NaoWalkStatus_msg.get(); 
+			v.from_string(message_content);
+			NaoWalkStatus_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !NaoWalkStatus_DEFINED
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1406,7 +1410,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(111);
+	// self.reserve(113);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1416,8 +1420,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["QSpeech"] = kQSpeech_v;
 	self["SpeechOutput"] = kSpeechOutput_v;
 	self["GCGameState"] = kGCGameState_v;
-	self["WALK_Command"] = kWALK_Command_v;
-	self["WALK_Status"] = kWALK_Status_v;
+	self["REMOVED1"] = kREMOVED1_v;
+	self["REMOVED2"] = kREMOVED2_v;
 	self["MOTION_Commands"] = kMOTION_Commands_v;
 	self["MOTION_Status"] = kMOTION_Status_v;
 	self["HAL_HeadTarget"] = kHAL_HeadTarget_v;
@@ -1473,8 +1477,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["NXT_Command"] = kNXT_Command_v;
 	self["APM_Status"] = kAPM_Status_v;
 	self["APM_Command"] = kAPM_Command_v;
-	self["WALK2014_Command"] = kWALK2014_Command_v;
-	self["WALK2014_Status"] = kWALK2014_Status_v;
+	self["REMOVED3"] = kREMOVED3_v;
+	self["REMOVED4"] = kREMOVED4_v;
 	self["CBall"] = kCBall_v;
 	self["OculusPrime_Command"] = kOculusPrime_Command_v;
 	self["Input3D"] = kInput3D_v;
@@ -1519,6 +1523,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["VolumeControl"] = kVolumeControl_v;
 	self["VisionRobots"] = kVisionRobots_v;
 	self["FieldHorizon"] = kFieldHorizon_v;
+	self["NaoWalkCommand"] = kNaoWalkCommand_v;
+	self["NaoWalkStatus"] = kNaoWalkStatus_v;
 
 	(void) self;
 }

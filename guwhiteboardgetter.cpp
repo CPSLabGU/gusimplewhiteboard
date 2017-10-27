@@ -122,30 +122,18 @@ namespace guWhiteboard
 
 #endif // !GCGameState_DEFINED
 
-		case kWALK_Command_v:
-#ifdef WALK_ControlStatus_DEFINED
+		case kREMOVED1_v:
 		{
-/** WB Ptr Class: WALK_Command @brief Nil */ 
-			class WALK_Command_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
+/** WB Ptr Class: REMOVED1 @brief Nil */ 
+			class REMOVED1_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-#else
-			return "##unsupported##";
-
-#endif // !WALK_ControlStatus_DEFINED
-
-		case kWALK_Status_v:
-#ifdef WALK_ControlStatus_DEFINED
+		case kREMOVED2_v:
 		{
-/** WB Ptr Class: WALK_Status @brief Nil */ 
-			class WALK_Status_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
+/** WB Ptr Class: REMOVED2 @brief Nil */ 
+			class REMOVED2_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-#else
-			return "##unsupported##";
-
-#endif // !WALK_ControlStatus_DEFINED
-
 		case kMOTION_Commands_v:
 #ifdef MOTION_Commands_DEFINED
 		{
@@ -755,30 +743,18 @@ namespace guWhiteboard
 
 #endif // !APM_Interface_DEFINED
 
-		case kWALK2014_Command_v:
-#ifdef WALK2014_ControlStatus_DEFINED
+		case kREMOVED3_v:
 		{
-/** WB Ptr Class: WALK2014_Command @brief Nil */ 
-			class WALK2014_Command_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
+/** WB Ptr Class: REMOVED3 @brief Nil */ 
+			class REMOVED3_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-#else
-			return "##unsupported##";
-
-#endif // !WALK2014_ControlStatus_DEFINED
-
-		case kWALK2014_Status_v:
-#ifdef WALK2014_ControlStatus_DEFINED
+		case kREMOVED4_v:
 		{
-/** WB Ptr Class: WALK2014_Status @brief Nil */ 
-			class WALK2014_Status_t m(wbd);
-			return msg ? m.get_from(msg).description() : m.get().description();
+/** WB Ptr Class: REMOVED4 @brief Nil */ 
+			class REMOVED4_t m(wbd);
+			return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 		}
-#else
-			return "##unsupported##";
-
-#endif // !WALK2014_ControlStatus_DEFINED
-
 		case kCBall_v:
 		{
 /** WB Ptr Class: CBall @brief Nil */ 
@@ -1174,6 +1150,30 @@ namespace guWhiteboard
 			return "##unsupported##";
 
 #endif // !FieldHorizon_DEFINED
+
+		case kNaoWalkCommand_v:
+#ifdef NaoWalkCommand_DEFINED
+		{
+/** WB Ptr Class: NaoWalkCommand @brief Nil */ 
+			class NaoWalkCommand_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NaoWalkCommand_DEFINED
+
+		case kNaoWalkStatus_v:
+#ifdef NaoWalkStatus_DEFINED
+		{
+/** WB Ptr Class: NaoWalkStatus @brief Nil */ 
+			class NaoWalkStatus_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !NaoWalkStatus_DEFINED
 
 		(void) msg;
 	}
