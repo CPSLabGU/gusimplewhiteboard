@@ -6,8 +6,8 @@ std::string,    atomic, QSay,                                   "QSay",         
 std::string,    atomic, QSpeech,                                "QSpeech",      debug speech message (queued)
 bool,           nonatomic, SpeechOutput,                        "SpeechOutput", toggle, treat speech messages as silent output unless this is turned on
 class:GCGameState, nonatomic, GCGameState,                      "GCGameState",  game state as posted by the game controller state machine
-class:WALK_ControlStatus, nonatomic, WALK_Command,              "WALK_Command", Class used to control the walk engine (UNSW)
-class:WALK_ControlStatus, nonatomic, WALK_Status,               "WALK_Status",  Class used to check the status of the walk engine (UNSW)
+bool, nonatomic, REMOVED1,              "REMOVED1", Old class, can be removed from tsl file during the next wb version bump
+bool, nonatomic, REMOVED2,               "REMOVED2", Old class, can be removed from tsl file during the next wb version bump
 class:MOTION_Commands, nonatomic, MOTION_Commands,              "MOTION_Commands", WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status,                  "MOTION_Status", WB interface for checking the status of commands sent
 class:HAL_HeadTarget, not_atomic, HAL_HeadTarget,               "HAL_HeadTarget", Used to alter the head position via the DCM
@@ -63,8 +63,8 @@ class:NXT_Interface, nonatomic, NXT_Status, "NXT_Status", Contains sensor data a
 class:NXT_Interface, nonatomic, NXT_Command, "NXT_Command", Can issue commands to set the motors of an NXT and reset the encoders
 class:APM_Interface, nonatomic, APM_Status, "APM_Status", Contains sensor data from an APM
 class:APM_Interface, nonatomic, APM_Command, "APM_Command", Can issue commands to an APM
-class:WALK2014_ControlStatus, nonatomic, WALK2014_Command,              "WALK2014_Command", Class used to control the 2014 walk engine (UNSW)
-class:WALK2014_ControlStatus, nonatomic, WALK2014_Status,               "WALK2014_Status",  Class used to check the status of the 2014 walk engine (UNSW)
+bool, nonatomic, REMOVED3,               "REMOVED3", Old class, can be removed from tsl file during the next wb version bump
+bool, nonatomic, REMOVED4,               "REMOVED4", Old class, can be removed from tsl file during the next wb version bump
 int8_t,    atomic, CBall,                                  "CBall",        Status Message for the color of the ball
 class:OculusPrimeInterface, nonatomic, OculusPrime_Command, "OculusPrime_Command", Class used to control the Oculus Prime movements, controls etc.
 class:Input3D, nonatomic, Input3D, "Input3D", for 3d input devices such as the leap or a joystick
@@ -109,3 +109,5 @@ bool,                nonatomic, WhistleBlown,                       "WhistleBlow
 uint8_t, nonatomic, VolumeControl, "VolumeControl", Variable used by SMVolumeController to control the volume via pulse audio commands
 class:VisionRobots, nonatomic, VisionRobots,                        "VisionRobots", Class that reports the robots that vision sees.
 class:FieldHorizon, nonatomic, FieldHorizon,                        "FieldHorizon", Class that reports the edge of an SPL field (the edge of the green bit)
+class:NaoWalkCommand, nonatomic, NaoWalkCommand, "NaoWalkCommand", Class that controls the latest version of the UNSW 2014 walk engine.
+class:NaoWalkStatus, nonatomic, NaoWalkStatus, "NaoWalkStatus",    Status class for the latest version of the UNSW 2014 walk engine.
