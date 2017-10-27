@@ -1,0 +1,19 @@
+-author Carl Lusty
+
+-c
+
+-properties
+
+int16_t forward = 0 //[-300 - 300] step-size(mm) per second, limited to +/- 300mm/step
+int16_t left = 0    //[-200 - 200] step-size(mm) per second, limited to +/- 200mm/step
+int8_t turn = 0     //[-85 - 85] step-size(mm) per second, limited to +/- 85deg/step
+
+-comment
+Status message for the walk engine created by UNSW.
+LICENSE:
+https://github.com/UNSWComputing/rUNSWift-2017-release/blob/master/LICENSE
+Source:
+https://github.com/UNSWComputing/rUNSWift-2017-release/blob/master/robot/motion/generator/Walk2014Generator.cpp
+Some of their documentation:
+https://github.com/UNSWComputing/rUNSWift-2017-release/wiki/Motion#walk2014-generator
+

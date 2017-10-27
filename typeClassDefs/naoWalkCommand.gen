@@ -1,8 +1,8 @@
 -author Carl Lusty
 
 -c
-
-extern wb_nao_walk_command;
+/*
+extern struct wb_nao_walk_command;
 
 wb_nao_walk_command NaoWalkCommand_walk(int16_t forward, int16_t left, int8_t turn) {
     wb_nao_walk_command cmd;
@@ -53,6 +53,7 @@ wb_nao_walk_command NaoWalkCommand_resetOdometry() {
     cmd.odometryResetCounter++;
     return cmd;
 }
+*/
 
 -properties
 
