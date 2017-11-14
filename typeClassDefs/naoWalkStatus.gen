@@ -43,7 +43,7 @@ enum WalkEngineState {
 
 enum WalkEngineState walkEngineState = wes_Disconnected // The current state of the walk engine, see enum documentation.
 
-Odometry_s odometry = Odometry_s() // Current odometry object
+struct Odometry_s odometry = Odometry_s() // Current odometry object
 
 uint8_t odometryResetCounter // A counter used to reset the odometry object, change this value and send it via NaoWalkCommand to trigger an odometry reset.
 
