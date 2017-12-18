@@ -16,6 +16,7 @@
 #include <time.h>
 // // for getopt
 #include <unistd.h>
+#include <ctype.h> //toupper
 
 //#define DDEBUG
 
@@ -25,6 +26,26 @@ using namespace std;
 #define CLASS_CON_DOXY(c) "/** Constructor: " << c << " */ \n"
 
 static bool read_from_stdin = false;
+
+std::string str_toupper(std::string str);
+std::string str_toupper(std::string str)
+{
+    std::string s;
+    for (size_t i = 0; i < str.length(); i++) {
+        char c = str[i];
+        int ci = static_cast<int>(c);
+        int cir = ci;
+        if (islower(ci)) {
+            cir = toupper(ci);
+            if (ci == cir) {
+                fprintf(stderr, "'%c' does not work well with toupper(), you'll have to change it.\n", c);
+                exit(EXIT_FAILURE);
+            }
+        }
+        s.append(1, static_cast<char>(cir));
+    }
+    return s;
+}
 
 static const char *include_str = "\
 /**\n\
@@ -181,6 +202,8 @@ namespace ParseTarget { enum kind {
         static ofstream output_functor_templates;
         static ofstream output_generic_poster;
         static ofstream output_generic_getter;
+        static ofstream output_generic_serialiser;
+        static ofstream output_generic_deserialiser;
 #pragma clang diagnostic pop
 
 bool opening_files(string aPath, string tsl);
@@ -197,6 +220,9 @@ bool opening_files(string aPath, string tsl)
 	string  output_generic_poster_name=aPath+string("guwhiteboardposter.cpp");
 	string output_generic_getter_name=aPath+string("guwhiteboardgetter.cpp");
 
+	string  output_generic_serialiser_name=aPath+string("guwhiteboardserialiser.c");
+	string output_generic_deserialiser_name=aPath+string("guwhiteboarddeserialiser.c");
+
 	tsl_file.open(tsl_file_name.c_str());
 	output_file.open(output_file_name.c_str());
 	output_tcp_file.open(output_tcp_file_name.c_str());
@@ -206,8 +232,11 @@ bool opening_files(string aPath, string tsl)
 	output_functor_templates.open(output_functor_templates_name.c_str());
 	output_generic_poster.open(output_generic_poster_name.c_str());
 	output_generic_getter.open(output_generic_getter_name.c_str());
+	output_generic_serialiser.open(output_generic_serialiser_name.c_str());
+	output_generic_deserialiser.open(output_generic_deserialiser_name.c_str());
 
-        if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open())
+
+        if(!tsl_file.is_open() || !output_file.is_open() || !output_c_file.is_open() || !output_string_array_c_file.is_open() || !output_functor_templates.is_open() || !output_generic_poster.is_open() || !output_generic_serialiser.is_open() || !output_generic_deserialiser.is_open())
                 {
                         perror("could not open one of the files! ");
                         perror("Path:");
@@ -377,6 +406,26 @@ int main(int argc, char *argv[]) {
         "    {\n"
         "    \tswitch (message_index)\n"
         "    \t{\n";
+        
+        output_generic_serialiser << "/** Auto-generated, don't modify! */\n\n"
+        "#define WHITEBOARD_SERIALISER\n\n"
+        "#include \"guwhiteboard_c_types.h\"\n"
+        "#include \"guwhiteboardserialiser.h\"\n"
+        ""
+        "bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)\n"
+        "{\n"
+        "    switch (message_index)\n"
+        "    {\n";
+
+         output_generic_deserialiser << "/** Auto-generated, don't modify! */\n\n"
+        "#define WHITEBOARD_DESERIALISER\n\n"
+        "#include \"guwhiteboard_c_types.h\"\n"
+        "#include \"guwhiteboarddeserialiser.h\"\n"
+        ""
+        "bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)\n"
+        "{\n"
+        "    switch (message_index)\n"
+        "    {\n";
 
         stringstream tsl_file_stream;
         tsl_file_stream << tsl_file.rdbuf();
@@ -581,6 +630,8 @@ int main(int argc, char *argv[]) {
 
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
                 output_generic_getter << "\t\tcase k" << type.type_const_name << "_v:\n";
+                output_generic_serialiser << "\t\tcase k" << type.type_const_name << "_v:\n";
+                output_generic_deserialiser << "\t\tcase k" << type.type_const_name << "_v:\n";
 
                 output_c_file << "\t///< " << type.comment << endl;
 #pragma clang diagnostic push
@@ -592,9 +643,13 @@ int main(int argc, char *argv[]) {
                         case None:
                                 output_generic_poster << "\t\t\treturn false;\n\n";
                                 output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
+                                output_generic_serialiser << "\t\t\treturn false;\n";
+                                output_generic_deserialiser << "\t\t\treturn false;\n";
                                 break;
 
                         case POD_Class:
+                                output_generic_serialiser << "\t\t\treturn false; /*TODO, add support for POD types.*/\n";
+                                output_generic_deserialiser << "\t\t\treturn false; /*TODO, add support for POD types.*/\n";
                                 if (type.class_name == "bool" ||
                                     type.class_name == "int" ||
                                     type.class_name == "int8_t" ||
@@ -650,6 +705,16 @@ int main(int argc, char *argv[]) {
                                 output_generic_getter << "#else\n";
                                 output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
                                 output_generic_getter << "#endif // !" << type.class_name << "_DEFINED\n\n";
+
+                                output_generic_serialiser << ""
+                                    "#ifdef " << str_toupper(type.class_name) << "_GENERATED\n"
+                                    "\t\t\tSERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, buffer, etc)\n"
+                                    "#else\n"
+                                    "\t\t\treturn false;\n"
+                                    "#endif\n";
+                                
+                                output_generic_deserialiser << "\t\t\treturn false;\n";
+
                 }
 	}
 
@@ -660,6 +725,23 @@ int main(int argc, char *argv[]) {
         output_string_array_c_file << opening_string_array_definition;
 
         output_generic_poster << "#pragma clang diagnostic push\n#pragma clang diagnostic ignored \"-Wunreachable-code\"\n\t\t(void) message_content;\n\t}\n\n\treturn false;\n#pragma clang diagnostic pop\n    }\n}\n\n";
+
+        output_generic_serialiser << "\t}\n"
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
+        "    /*(void) message_content;*/\n"
+        "    return false;\n"
+        "#pragma clang diagnostic pop\n"
+        "}\n";
+
+        output_generic_deserialiser << "\t}\n"
+        "#pragma clang diagnostic push\n"
+        "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
+        "    /*(void) message_content;*/\n"
+        "    return false;\n"
+        "#pragma clang diagnostic pop\n"
+        "}\n";
+
         output_generic_poster << "whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()\n"
         "{\n"
         "\twhiteboard_types_map &self = *this;\n"
@@ -823,4 +905,6 @@ int main(int argc, char *argv[]) {
         output_functor_templates.close();
         output_generic_poster.close();
         output_generic_getter.close();
+        output_generic_serialiser.close();
+        output_generic_deserialiser.close();
 }
