@@ -424,9 +424,9 @@ int main(int argc, char *argv[]) {
 
          output_generic_deserialiser << "/** Auto-generated, don't modify! */\n\n"
         "#define WHITEBOARD_DESERIALISER\n\n"
-        "#include \"guwhiteboard_c_types.h\"\n"
+        "\n"
         "#include \"guwhiteboarddeserialiser.h\"\n"
-        ""
+        "\n"
         "bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)\n"
         "{\n"
         "    switch (message_index)\n"
