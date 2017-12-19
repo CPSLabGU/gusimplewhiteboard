@@ -1,7 +1,16 @@
+/**                                                                     
+ *  /file gusimplewhiteboard/guwhiteboardserialiser.h
+ *                                                                      
+ *  Created by Carl Lusty in 2017.                                      
+ *  Copyright (c) 2017 Carl Lusty                                       
+ *  All rights reserved.                                                
+ */                                                                     
+#ifndef gusimplewhiteboard_guwhiteboardserialiser_h
+#define gusimplewhiteboard_guwhiteboardserialiser_h
+
+#include "guwhiteboard_c_types.h"
+
+bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out);
 
 
-#define COMPRESSION_CALL(...) _to_network_compressed(__VA_ARGS__);
-#define COMPRESSION_FUNC_(s, p) s ## p
-#define COMPRESSION_FUNC(s, p) COMPRESSION_FUNC_(s, p)
-#define SERIALISE(_struct, ...) COMPRESSION_FUNC(_struct, COMPRESSION_CALL(__VA_ARGS__))
-
+#endif //gusimplewhiteboard_guwhiteboardserialiser_h

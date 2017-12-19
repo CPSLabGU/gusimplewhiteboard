@@ -2,8 +2,13 @@
 
 #define WHITEBOARD_SERIALISER
 
-#include "guwhiteboard_c_types.h"
+#define COMPRESSION_CALL(...) _to_network_compressed(__VA_ARGS__);
+#define COMPRESSION_FUNC_(s, p) s ## p
+#define COMPRESSION_FUNC(s, p) COMPRESSION_FUNC_(s, p)
+#define SERIALISE(_struct, ...) COMPRESSION_FUNC(_struct, COMPRESSION_CALL(__VA_ARGS__))
+
 #include "guwhiteboardserialiser.h"
+
 bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)
 {
     switch (message_index)

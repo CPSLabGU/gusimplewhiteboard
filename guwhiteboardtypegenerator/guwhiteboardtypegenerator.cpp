@@ -408,10 +408,15 @@ int main(int argc, char *argv[]) {
         "    \t{\n";
         
         output_generic_serialiser << "/** Auto-generated, don't modify! */\n\n"
-        "#define WHITEBOARD_SERIALISER\n\n"
-        "#include \"guwhiteboard_c_types.h\"\n"
+        "#define WHITEBOARD_SERIALISER\n"
+        "\n"
+        "#define COMPRESSION_CALL(...) _to_network_compressed(__VA_ARGS__);\n"
+        "#define COMPRESSION_FUNC_(s, p) s ## p\n"
+        "#define COMPRESSION_FUNC(s, p) COMPRESSION_FUNC_(s, p)\n"
+        "#define SERIALISE(_struct, ...) COMPRESSION_FUNC(_struct, COMPRESSION_CALL(__VA_ARGS__))\n"
+        "\n"
         "#include \"guwhiteboardserialiser.h\"\n"
-        ""
+        "\n"
         "bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)\n"
         "{\n"
         "    switch (message_index)\n"
