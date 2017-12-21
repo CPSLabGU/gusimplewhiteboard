@@ -31,7 +31,7 @@ WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhitebo
 all: all-real
 
 .ifndef TARGET
-install: host-local pkg-config type-hdrs
+install: host-local pkg-config
 .else
 install: cross-local pkg-config
 .endif
@@ -56,12 +56,6 @@ pkg-config:
 	$Esed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
 	$Ecp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
 	$Erm -f libgusimplewhiteboard.pc
-
-type-hdrs:
-	$Eecho "//Generated file, DO NOT MODIFY\n" > ${SRCDIR}/guwhiteboard_c_types.h
-	$Ecd ${SRCDIR}/typeClassDefs && ls wb_*.h | \
-		sed -e 's|^|#include <gusimplewhiteboard/typeClassDefs/|' \
-		-e 's|$$|>|' >> ${SRCDIR}/guwhiteboard_c_types.h
 
 .ifdef TARGET
 cross-install: install
