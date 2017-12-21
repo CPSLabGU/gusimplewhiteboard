@@ -104,6 +104,8 @@ static const char *include_str_c = "\
 \n\
 \n\
 #define WANT_WB_STRINGS\n\
+\n\
+#include \"gusimplewhiteboard.h\" //GSW_NUM_RESERVED\n\
 ";
 
 static const char *include_str_c_typestrings = "\
