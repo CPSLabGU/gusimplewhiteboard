@@ -8,6 +8,7 @@
 #define SERIALISE(_struct, ...) COMPRESSION_FUNC(_struct, COMPRESSION_CALL(__VA_ARGS__))
 
 #include "guwhiteboardserialiser.h"
+#include "guwhiteboard_c_types.h"
 
 bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)
 {

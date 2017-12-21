@@ -8,7 +8,7 @@
 #ifndef gusimplewhiteboard_guwhiteboardserialiser_h
 #define gusimplewhiteboard_guwhiteboardserialiser_h
 
-#include "guwhiteboard_c_types.h"
+#include "guwhiteboardtypelist_c_generated.h"
 
 bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out);
 

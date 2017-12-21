@@ -8,7 +8,7 @@
 #ifndef gusimplewhiteboard_guwhiteboarddeserialiser_h
 #define gusimplewhiteboard_guwhiteboarddeserialiser_h
 
-#include "guwhiteboard_c_types.h"
+#include "guwhiteboardtypelist_c_generated.h"
 
 bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out);
 

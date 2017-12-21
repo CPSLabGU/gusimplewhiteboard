@@ -4,6 +4,7 @@
 
 
 #include "guwhiteboarddeserialiser.h"
+#include "guwhiteboard_c_types.h"
 
 bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)
 {
