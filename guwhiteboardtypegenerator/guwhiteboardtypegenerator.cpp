@@ -717,7 +717,7 @@ int main(int argc, char *argv[]) {
 
                                 output_generic_serialiser << ""
                                     "#ifdef " << str_toupper(type.class_name) << "_GENERATED\n"
-                                    "\t\t\tSERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, buffer, etc)\n"
+                                    "\t\t\tSERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, (struct " << str_toupper(type.class_name) << "_C_STRUCT *)message_in, serialised_out)\n"
                                     "#else\n"
                                     "\t\t\treturn false;\n"
                                     "#endif\n";
