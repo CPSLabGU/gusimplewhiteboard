@@ -8,8 +8,6 @@
 #ifndef gusimplewhiteboard_guwhiteboardserialiser_h
 #define gusimplewhiteboard_guwhiteboardserialiser_h
 
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-
 #ifndef __cplusplus
 #include <stdbool.h>
 #else
