@@ -3,7 +3,7 @@
 #define WHITEBOARD_DESERIALISER
 
 
-#include "guwhiteboarddeserialiser.h"
+#include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
 bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)

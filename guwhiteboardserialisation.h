@@ -22,5 +22,6 @@
 
 bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out);
 
+bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out);
 
 #endif //gusimplewhiteboard_guwhiteboardserialiser_h
