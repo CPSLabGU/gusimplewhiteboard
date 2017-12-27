@@ -639,8 +639,8 @@ int main(int argc, char *argv[]) {
 
                 output_generic_poster << "\t\tcase k" << type.type_const_name << "_v:\n";
                 output_generic_getter << "\t\tcase k" << type.type_const_name << "_v:\n";
-                output_generic_serialiser << "\t\tcase k" << type.type_const_name << "_v:\n";
-                output_generic_deserialiser << "\t\tcase k" << type.type_const_name << "_v:\n";
+                output_generic_serialiser << "\t\tcase k" << type.type_const_name << "_v: {\n";
+                output_generic_deserialiser << "\t\tcase k" << type.type_const_name << "_v: {\n";
 
                 output_c_file << "\t///< " << type.comment << endl;
 #pragma clang diagnostic push
@@ -722,9 +722,14 @@ int main(int argc, char *argv[]) {
                                     "\t\t\treturn false;\n"
                                     "#endif\n";
                                 
-                                output_generic_deserialiser << "\t\t\treturn false;\n";
+                                output_generic_deserialiser << 
+                                "\t\t\treturn false;\n";
 
                 }
+                output_generic_serialiser << 
+                "\t\t\tbreak;\n\t\t}\n";
+                output_generic_deserialiser << 
+                "\t\t\tbreak;\n\t\t}\n";
 	}
 
 #pragma clang diagnostic pop
