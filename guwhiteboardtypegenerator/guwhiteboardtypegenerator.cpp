@@ -739,7 +739,7 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
         "    /*(void) message_content;*/\n"
-        "    return false;\n"
+        "    return true;\n"
         "#pragma clang diagnostic pop\n"
         "}\n";
 
@@ -747,7 +747,7 @@ int main(int argc, char *argv[]) {
         "#pragma clang diagnostic push\n"
         "#pragma clang diagnostic ignored \"-Wunreachable-code\"\n"
         "    /*(void) message_content;*/\n"
-        "    return false;\n"
+        "    return true;\n"
         "#pragma clang diagnostic pop\n"
         "}\n";
 
