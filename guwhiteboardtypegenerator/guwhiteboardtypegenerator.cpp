@@ -420,7 +420,7 @@ int main(int argc, char *argv[]) {
         "#include \"guwhiteboardserialisation.h\"\n"
         "#include \"guwhiteboard_c_types.h\"\n"
         "\n"
-        "bool serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)\n"
+        "size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)\n"
         "{\n"
         "    switch (message_index)\n"
         "    {\n";
@@ -431,7 +431,7 @@ int main(int argc, char *argv[]) {
         "#include \"guwhiteboardserialisation.h\"\n"
         "#include \"guwhiteboard_c_types.h\"\n"
         "\n"
-        "bool deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)\n"
+        "size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)\n"
         "{\n"
         "    switch (message_index)\n"
         "    {\n";
@@ -652,13 +652,13 @@ int main(int argc, char *argv[]) {
                         case None:
                                 output_generic_poster << "\t\t\treturn false;\n\n";
                                 output_generic_getter << "\t\t\treturn \"##unsupported##\";\n\n";
-                                output_generic_serialiser << "\t\t\treturn false;\n";
-                                output_generic_deserialiser << "\t\t\treturn false;\n";
+                                output_generic_serialiser << "\t\t\treturn -1;\n";
+                                output_generic_deserialiser << "\t\t\treturn -1;\n";
                                 break;
 
                         case POD_Class:
-                                output_generic_serialiser << "\t\t\treturn false; /*TODO, add support for POD types.*/\n";
-                                output_generic_deserialiser << "\t\t\treturn false; /*TODO, add support for POD types.*/\n";
+                                output_generic_serialiser << "\t\t\treturn -1; /*TODO, add support for POD types.*/\n";
+                                output_generic_deserialiser << "\t\t\treturn -1; /*TODO, add support for POD types.*/\n";
                                 if (type.class_name == "bool" ||
                                     type.class_name == "int" ||
                                     type.class_name == "int8_t" ||
@@ -717,13 +717,13 @@ int main(int argc, char *argv[]) {
 
                                 output_generic_serialiser << ""
                                     "#ifdef " << str_toupper(type.class_name) << "_GENERATED\n"
-                                    "\t\t\tSERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, (struct " << str_toupper(type.class_name) << "_C_STRUCT *)message_in, serialised_out)\n"
+                                    "\t\t\treturn SERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, (struct " << str_toupper(type.class_name) << "_C_STRUCT *)message_in, serialised_out)\n"
                                     "#else\n"
-                                    "\t\t\treturn false;\n"
+                                    "\t\t\treturn -1;\n"
                                     "#endif\n";
                                 
                                 output_generic_deserialiser << 
-                                "\t\t\treturn false;\n";
+                                "\t\t\treturn -1;\n";
 
                 }
                 output_generic_serialiser << 
