@@ -27,6 +27,36 @@ using namespace std;
 
 static bool read_from_stdin = false;
 
+std::string str_addunderscores(std::string str);
+std::string str_addunderscores(std::string str)
+{
+    /*
+    bool last_char_was_lower = false;
+    std::string s;
+    for (size_t i = 0; i < str.length(); i++) {
+        char c = str[i];
+        int ci = static_cast<int>(c);
+
+        if (isupper(ci) && last_char_was_lower) {
+            s.append(1, '_');
+        }
+
+        if (isupper(ci)) {
+            last_char_was_lower = false;
+        }
+        if (islower(ci)) {
+            last_char_was_lower = true;
+        }
+        else { //catch underscores etc...
+            last_char_was_lower = false;
+        }
+        s.append(1, c);
+    }
+    return s;
+    */
+    return str;
+}
+
 std::string str_toupper(std::string str);
 std::string str_toupper(std::string str)
 {
@@ -716,8 +746,8 @@ int main(int argc, char *argv[]) {
                                 output_generic_getter << "#endif // !" << type.class_name << "_DEFINED\n\n";
 
                                 output_generic_serialiser << ""
-                                    "#ifdef " << str_toupper(type.class_name) << "_GENERATED\n"
-                                    "\t\t\treturn SERIALISE(" << str_toupper(type.class_name) << "_C_STRUCT, (struct " << str_toupper(type.class_name) << "_C_STRUCT *)message_in, serialised_out)\n"
+                                    "#ifdef " << str_toupper(str_addunderscores(type.class_name)) << "_GENERATED\n"
+                                    "\t\t\treturn SERIALISE(" << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT, (struct " << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT *)message_in, serialised_out)\n"
                                     "#else\n"
                                     "\t\t\treturn -1;\n"
                                     "#endif\n";
