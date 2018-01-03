@@ -759,7 +759,7 @@ int main(int argc, char *argv[]) {
                                 
                                 output_generic_deserialiser << ""
                                     "#ifdef " << str_toupper(str_addunderscores(type.class_name)) << "_GENERATED\n"
-                                    "\t\t\treturn DESERIALISE(" << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT, (serialised_in, struct " << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT *)message_out)\n"
+                                    "\t\t\treturn DESERIALISE(" << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT, serialised_in, (struct " << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT *)message_out)\n"
                                     "#else\n"
                                     "\t\t\treturn -1;\n"
                                     "#endif\n";
