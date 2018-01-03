@@ -442,7 +442,7 @@ int main(int argc, char *argv[]) {
         output_generic_serialiser << "/** Auto-generated, don't modify! */\n\n"
         "#define WHITEBOARD_SERIALISER\n"
         "\n"
-        "#define COMPRESSION_CALL(...) _to_network_compressed(__VA_ARGS__);\n"
+        "#define COMPRESSION_CALL(...) _to_network_serialised(__VA_ARGS__);\n"
         "#define COMPRESSION_FUNC_(s, p) s ## p\n"
         "#define COMPRESSION_FUNC(s, p) COMPRESSION_FUNC_(s, p)\n"
         "#define SERIALISE(_struct, ...) COMPRESSION_FUNC(_struct, COMPRESSION_CALL(__VA_ARGS__))\n"
@@ -456,7 +456,12 @@ int main(int argc, char *argv[]) {
         "    {\n";
 
          output_generic_deserialiser << "/** Auto-generated, don't modify! */\n\n"
-        "#define WHITEBOARD_DESERIALISER\n\n"
+        "#define WHITEBOARD_DESERIALISER\n"
+        "\n"
+        "#define DECOMPRESSION_CALL(...) _from_network_serialised(__VA_ARGS__);\n"
+        "#define DECOMPRESSION_FUNC_(s, p) s ## p\n"
+        "#define DECOMPRESSION_FUNC(s, p) DECOMPRESSION_FUNC_(s, p)\n"
+        "#define DESERIALISE(_struct, ...) DECOMPRESSION_FUNC(_struct, DECOMPRESSION_CALL(__VA_ARGS__))\n"
         "\n"
         "#include \"guwhiteboardserialisation.h\"\n"
         "#include \"guwhiteboard_c_types.h\"\n"
@@ -752,8 +757,13 @@ int main(int argc, char *argv[]) {
                                     "\t\t\treturn -1;\n"
                                     "#endif\n";
                                 
-                                output_generic_deserialiser << 
-                                "\t\t\treturn -1;\n";
+                                output_generic_deserialiser << ""
+                                    "#ifdef " << str_toupper(str_addunderscores(type.class_name)) << "_GENERATED\n"
+                                    "\t\t\treturn DESERIALISE(" << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT, (serialised_in, struct " << str_toupper(str_addunderscores(type.class_name)) << "_C_STRUCT *)message_out)\n"
+                                    "#else\n"
+                                    "\t\t\treturn -1;\n"
+                                    "#endif\n";
+
 
                 }
                 output_generic_serialiser << 
