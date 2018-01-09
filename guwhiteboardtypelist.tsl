@@ -10,15 +10,15 @@ bool, nonatomic, REMOVED1,              "REMOVED1", Old class, can be removed fr
 bool, nonatomic, REMOVED2,               "REMOVED2", Old class, can be removed from tsl file during the next wb version bump
 class:MOTION_Commands, nonatomic, MOTION_Commands,              "MOTION_Commands", WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status,                  "MOTION_Status", WB interface for checking the status of commands sent
-class:HAL_HeadTarget, not_atomic, HAL_HeadTarget,               "HAL_HeadTarget", Used to alter the head position via the DCM
-class:SENSORSFootSensors, not_atomic, SENSORSFootSensors,     "SENSORSFootSensors", Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORSBodySensors, not_atomic, SENSORSBodySensors,     "SENSORSBodySensors", Posts the sensor information for the body via the DCM loop (read only)
-class:SENSORSLedsSensors, not_atomic, SENSORSLedsSensors,     "SENSORSLedsSensors", Posts the current LEDs info, can be modified. (read/write)
-class:SENSORSLegJointTemps, not_atomic, SENSORSLegJointTemps, "SENSORSLegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
-class:SENSORSTorsoJointTemps, not_atomic, SENSORSTorsoJointTemps, "SENSORSTorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
-class:SENSORSLegJointSensors, not_atomic, SENSORSLegJointSensors, "SENSORSLegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
-class:SENSORSTorsoJointSensors, not_atomic, SENSORSTorsoJointSensors, "SENSORSTorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
-class:SENSORSSonarSensors, not_atomic, SENSORSSonarSensors,   "SENSORSSonarSensors", Posts the sonar readings via the DCM loop (read only)
+class:HAL_HeadTarget, nonatomic, HAL_HeadTarget,               "HAL_HeadTarget", Used to alter the head position via the DCM
+class:SENSORSFootSensors, nonatomic, SENSORSFootSensors,     "SENSORSFootSensors", Posts the sensor information for the feet via the DCM loop (read only)
+class:SENSORSBodySensors, nonatomic, SENSORSBodySensors,     "SENSORSBodySensors", Posts the sensor information for the body via the DCM loop (read only)
+class:SENSORSLedsSensors, nonatomic, SENSORSLedsSensors,     "SENSORSLedsSensors", Posts the current LEDs info, can be modified. (read/write)
+class:SENSORSLegJointTemps, nonatomic, SENSORSLegJointTemps, "SENSORSLegJointTemps", Posts the temperature of the leg joints via the DCM loop (read only)
+class:SENSORSTorsoJointTemps, nonatomic, SENSORSTorsoJointTemps, "SENSORSTorsoJointTemps", Posts the temperature of the torso joints via the DCM loop (read only)
+class:SENSORSLegJointSensors, nonatomic, SENSORSLegJointSensors, "SENSORSLegJointSensors", Posts the joint angles of the legs via the DCM loop (read only)
+class:SENSORSTorsoJointSensors, nonatomic, SENSORSTorsoJointSensors, "SENSORSTorsoJointSensors", Posts the joint angles of the torso via the DCM loop (read only)
+class:SENSORSSonarSensors, nonatomic, SENSORSSonarSensors,   "SENSORSSonarSensors", Posts the sonar readings via the DCM loop (read only)
 class:FSMControlStatus, atomic, FSM_Control,                    "fsm_control", Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, atomic, FSM_Status,                     "fsm_status", Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, atomic, FSM_Names,                              "fsm_names", Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
@@ -28,8 +28,8 @@ class:NAO_State, nonatomic, NAO_State,                          "NAO_State", Sto
 class:GCGameState, nonatomic, UDPRN,                            "UDPReceiverNotification", game state notfication from the UDP receiver.
 int8_t,          nonatomic, PlayerNumber,                          "PlayerNumber", what player number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
 int8_t,          nonatomic, ManuallyPenalized,                     "PlayerNumber", what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
-class:VisionControlStatus, not_atomic, Vision_Control,          "guvision_control", control various attributes of the vision pipeline.
-class:VisionControlStatus, not_atomic, Vision_Status,           "guvision_status", message sent by vision that contains the current status of
+class:VisionControlStatus, nonatomic, Vision_Control,          "guvision_control", control various attributes of the vision pipeline.
+class:VisionControlStatus, nonatomic, Vision_Status,           "guvision_status", message sent by vision that contains the current status of
 class:FFTStatus, nonatomic,         FFTStatus,                  "FFTStatus", stereo channel RMS and list of dominant frequencies from FFT
 class:FilteredArrayOneDimSonar, nonatomic, FSOsighting,             "FSOsighting", Class that contains the Karman filtered  SONAR objects after a sighting
 class:TopParticles, nonatomic, TopParticles,                    "TopParticles", Class that contains the top particles for possible robot positions
