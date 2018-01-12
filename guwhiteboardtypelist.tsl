@@ -22,7 +22,7 @@ class:SENSORSSonarSensors, nonatomic, SENSORSSonarSensors, Posts the sonar readi
 class:FSMControlStatus, atomic, FSM_Control, Suspend, Resume, or Restart a finite state machine (clfsm)
 class:FSMControlStatus, atomic, FSM_Status, Current status indicating the suspended state of all FSMs.  The highest bit that is always set is the number of machines plus one.
 class:FSMNames, atomic, FSM_Names, Request or return the names of the currently loaded FSMs.  End of list is denoted by an empty string.  Requests need to put an empty string into the first FSM name;
-void,               nonatomic, SoloTypeExample, This is an example of a type definition that does not generate anything other than a wb type
+bool,               nonatomic, SoloTypeExample, This is an example of a type definition that does not generate anything other than a wb type
 class:FilteredArrayOneDimObjects, nonatomic, FilteredGoalSighting, Class that contains the Kalman filtered goal objects after sighting from vision
 class:NAO_State, nonatomic, NAO_State, Stores the orientation of the robot as well as the chest button status (more to come).
 class:GCGameState, nonatomic, UDPRN, game state notfication from the UDP receiver.
