@@ -53,7 +53,7 @@ class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge, Class that 
 class:VisionLines, nonatomic, VisionLines, Class that reports the lines that vision sees.
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus, Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl, Class that sends commands to the robot from the whiteboard
-class:Point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
+type:Point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
 std::vector<int>,    atomic, VisionFace,          Face seen by Vision
 std::string,    atomic, Draw,        Used by the half made GUDraw module in posix
 class:FSMState, atomic, FSM_States, Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.
@@ -110,4 +110,4 @@ uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to contro
 class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that vision sees.
 class:FieldHorizon, nonatomic, FieldHorizon, Class that reports the edge of an SPL field (the edge of the green bit)
 class:NaoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
-class:NaoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
+type:NaoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
