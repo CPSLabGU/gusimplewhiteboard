@@ -38,18 +38,6 @@ pkg-config:
 	$Ecp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
 	$Erm -f libgusimplewhiteboard.pc
 
-.ifdef TARGET
-cross-install: install
-.else
-cross-install: cross-local
-.  for rarch in ${ARCHS.${DEFAULT_TARGET}}
-	$Eenv PATH=${TARGET_PATH.${DEFAULT_TARGET}:Q}                   \
-                ${MAKE} ${MAKEFLAGS} TARGET=${DEFAULT_TARGET}           \
-                BUILD_FLAGS=${TARGET_BUILD_FLAGS.${DEFAULT_TARGET}:Q}   \
-                TARGET_PLATFORM=${rarch} ALL_TARGETS=cross-install
-.  endfor
-.endif
-
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
 	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} test
