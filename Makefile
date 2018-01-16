@@ -39,7 +39,7 @@ all: all-real
 #	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 #	rm -f ${WB_INST_DIR:Q}/include/gusimplewhiteboard/typeClassDefs/mainpage.md
 #	cd ${BUILDDIR}-local && \
-	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
+#	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
 #.for hdr in ${INST_HDRS}
 #	-cd ${SRCDIR} && \
 #	if [ -d ${hdr:Q} ]; then \
@@ -53,7 +53,7 @@ all: all-real
 #	echo Whiteboard install done.
 
 pkg-config:
-	$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
+	-$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
 	$Erm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
 	$Erm -f libgusimplewhiteboard.pc
 	$Esed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
