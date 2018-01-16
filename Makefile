@@ -35,8 +35,8 @@ install: host-local pkg-config
 .else
 install: cross-local pkg-config
 .endif
-	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
-	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
+	-mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
+	-mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
 	rm -f ${WB_INST_DIR:Q}/include/gusimplewhiteboard/typeClassDefs/mainpage.md
 	cd ${BUILDDIR}-local && \
 	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
@@ -50,7 +50,7 @@ install: cross-local pkg-config
 .endfor
 
 pkg-config:
-	$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
+	-$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
 	$Erm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
 	$Erm -f libgusimplewhiteboard.pc
 	$Esed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
