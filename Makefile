@@ -31,28 +31,6 @@ WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhitebo
 
 all: all-real
 
-#.ifndef TARGET
-#install: host-local pkg-config
-#.else
-#install: cross-local pkg-config
-#.endif
-#	mkdir -p -m 0755 ${WB_INST_DIR:Q}/include/gusimplewhiteboard
-#	mkdir -p -m 0755 ${WB_INST_DIR:Q}/lib
-#	rm -f ${WB_INST_DIR:Q}/include/gusimplewhiteboard/typeClassDefs/mainpage.md
-#	cd ${BUILDDIR}-local && \
-#	install -m 0755 *${SOEXT}* ${WB_INST_DIR:Q}/lib
-#.for hdr in ${INST_HDRS}
-#	-cd ${SRCDIR} && \
-#	if [ -d ${hdr:Q} ]; then \
-#	  cp -pR ${hdr:Q} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
-#	else \
-#	  install -m 0644 ${hdr} ${WB_INST_DIR:Q}/include/gusimplewhiteboard ;\
-#	fi
-#.endfor
-#
-#install-local: install
-#	echo Whiteboard install done.
-
 pkg-config:
 	-$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
 	$Erm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
