@@ -111,3 +111,9 @@ class:VisionRobots, nonatomic, VisionRobots,                        "VisionRobot
 class:FieldHorizon, nonatomic, FieldHorizon,                        "FieldHorizon", Class that reports the edge of an SPL field (the edge of the green bit)
 class:NaoWalkCommand, nonatomic, NaoWalkCommand, "NaoWalkCommand", Class that controls the latest version of the UNSW 2014 walk engine.
 class:NaoWalkStatus, nonatomic, NaoWalkStatus, "NaoWalkStatus",    Status class for the latest version of the UNSW 2014 walk engine.
+class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Ctrl,               "HAL_LLegTarget_Ctrl", Used to control the left leg via DCM
+class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Stat,               "HAL_LLegTarget_Stat", Used to report DCM status of the left leg
+class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr,               "HAL_LLegTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
+class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl,               "HAL_RLegTarget_Ctrl", Used to control the right leg via DCM
+class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat,               "HAL_RLegTarget_Stat", Used to report DCM status of the right leg
+class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr,               "HAL_RLegTarget_Tolr", Used to set the joing angle tolerance for motion completion detection.
