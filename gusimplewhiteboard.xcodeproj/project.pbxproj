@@ -572,7 +572,7 @@
 		F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgusimplewhiteboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
-		F154FAA0196621C80081158B /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F154FAA0196621C80081158B /* Makefile */ = {isa = PBXFileReference; indentWidth = 8; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; tabWidth = 8; usesTabs = 1; };
 		F15E631F1A11646F0082D467 /* NXT_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NXT_Interface.h; sourceTree = "<group>"; };
 		F166897C155CBBF400AFA55E /* gu_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gu_util.cpp; path = ../../../Common/gu_util.cpp; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
