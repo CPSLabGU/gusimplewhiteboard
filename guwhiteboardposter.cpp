@@ -1397,6 +1397,90 @@ namespace guWhiteboard
 			return false;
 #endif // !NaoWalkStatus_DEFINED
 
+		case kHAL_LLegTarget_Ctrl_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Ctrl @brief Nil */ 
+			class HAL_LLegTarget_Ctrl_t HAL_LLegTarget_Ctrl_msg(wbd);
+			HAL_LegTarget v = HAL_LLegTarget_Ctrl_msg.get(); 
+			v.from_string(message_content);
+			HAL_LLegTarget_Ctrl_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_LLegTarget_Stat_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Stat @brief Nil */ 
+			class HAL_LLegTarget_Stat_t HAL_LLegTarget_Stat_msg(wbd);
+			HAL_LegTarget v = HAL_LLegTarget_Stat_msg.get(); 
+			v.from_string(message_content);
+			HAL_LLegTarget_Stat_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_LLegTarget_Tolr_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Tolr @brief Nil */ 
+			class HAL_LLegTarget_Tolr_t HAL_LLegTarget_Tolr_msg(wbd);
+			HAL_LegTarget v = HAL_LLegTarget_Tolr_msg.get(); 
+			v.from_string(message_content);
+			HAL_LLegTarget_Tolr_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Ctrl_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Ctrl @brief Nil */ 
+			class HAL_RLegTarget_Ctrl_t HAL_RLegTarget_Ctrl_msg(wbd);
+			HAL_LegTarget v = HAL_RLegTarget_Ctrl_msg.get(); 
+			v.from_string(message_content);
+			HAL_RLegTarget_Ctrl_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Stat_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Stat @brief Nil */ 
+			class HAL_RLegTarget_Stat_t HAL_RLegTarget_Stat_msg(wbd);
+			HAL_LegTarget v = HAL_RLegTarget_Stat_msg.get(); 
+			v.from_string(message_content);
+			HAL_RLegTarget_Stat_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Tolr_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Tolr @brief Nil */ 
+			class HAL_RLegTarget_Tolr_t HAL_RLegTarget_Tolr_msg(wbd);
+			HAL_LegTarget v = HAL_RLegTarget_Tolr_msg.get(); 
+			v.from_string(message_content);
+			HAL_RLegTarget_Tolr_msg.post(v);
+			return true;
+		}
+#else
+			return false;
+#endif // !HAL_LegTarget_DEFINED
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
 		(void) message_content;
@@ -1410,7 +1494,7 @@ namespace guWhiteboard
 whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 {
 	whiteboard_types_map &self = *this;
-	// self.reserve(113);
+	// self.reserve(119);
 
 	self["*"] = kwb_reserved_SubscribeToAllTypes_v;
 	self["Print"] = kPrint_v;
@@ -1525,6 +1609,12 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
 	self["FieldHorizon"] = kFieldHorizon_v;
 	self["NaoWalkCommand"] = kNaoWalkCommand_v;
 	self["NaoWalkStatus"] = kNaoWalkStatus_v;
+	self["HAL_LLegTarget_Ctrl"] = kHAL_LLegTarget_Ctrl_v;
+	self["HAL_LLegTarget_Stat"] = kHAL_LLegTarget_Stat_v;
+	self["HAL_LLegTarget_Tolr"] = kHAL_LLegTarget_Tolr_v;
+	self["HAL_RLegTarget_Ctrl"] = kHAL_RLegTarget_Ctrl_v;
+	self["HAL_RLegTarget_Stat"] = kHAL_RLegTarget_Stat_v;
+	self["HAL_RLegTarget_Tolr"] = kHAL_RLegTarget_Tolr_v;
 
 	(void) self;
 }

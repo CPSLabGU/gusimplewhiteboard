@@ -1175,6 +1175,78 @@ namespace guWhiteboard
 
 #endif // !NaoWalkStatus_DEFINED
 
+		case kHAL_LLegTarget_Ctrl_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Ctrl @brief Nil */ 
+			class HAL_LLegTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_LLegTarget_Stat_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Stat @brief Nil */ 
+			class HAL_LLegTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_LLegTarget_Tolr_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_LLegTarget_Tolr @brief Nil */ 
+			class HAL_LLegTarget_Tolr_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Ctrl_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Ctrl @brief Nil */ 
+			class HAL_RLegTarget_Ctrl_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Stat_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Stat @brief Nil */ 
+			class HAL_RLegTarget_Stat_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
+		case kHAL_RLegTarget_Tolr_v:
+#ifdef HAL_LegTarget_DEFINED
+		{
+/** WB Ptr Class: HAL_RLegTarget_Tolr @brief Nil */ 
+			class HAL_RLegTarget_Tolr_t m(wbd);
+			return msg ? m.get_from(msg).description() : m.get().description();
+		}
+#else
+			return "##unsupported##";
+
+#endif // !HAL_LegTarget_DEFINED
+
 		(void) msg;
 	}
 #pragma clang diagnostic push
