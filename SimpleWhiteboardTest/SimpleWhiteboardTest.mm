@@ -255,7 +255,7 @@ public:
 {
         FilteredOneDimObject testA("");
 
-        XCTAssertEqual(sizeof(testA), sizeof(wb_filteredvisionobject), @"Size %ld of testA does not match size %ld of wb_filteredvisionobject", sizeof(testA), sizeof(wb_filteredvisionobject));
+    XCTAssertEqual(sizeof(testA), sizeof(wb_filtered_vision_object), @"Size %ld of testA does not match size %ld of wb_filteredvisionobject", sizeof(testA), sizeof(wb_filtered_vision_object));
 
         XCTAssertFalse(testA.isVisible(), @"Expected not visible");
         
@@ -331,9 +331,10 @@ public:
 {
     FilteredOneDimObject testP("IsVisible,10,20,30,40,FRAME:100,");
     
-    FilteredArrayOneDimObjects testArray(testP);
+    FilteredArrayOneDimObjects testArray = FilteredArrayOneDimObjects();
+    testArray.set_objects(testP, 0);
     
-    FilteredOneDimObject testB=testArray.get_object(FVOGoalPostTop);
+    FilteredOneDimObject testB=testArray.objects(FVOGoalPostTop);
     
     XCTAssertTrue(testP.isVisible(), @"Expected  visible");
     XCTAssertTrue(testB.isVisible(), @"Expected  visible");
@@ -345,9 +346,9 @@ public:
     
     FilteredOneDimObject testL("IsVisible,15,25,35,45,FRAME:105,");
     
-    testArray.set_object(testL,FVOGoalPostLeftTop);
+    testArray.set_objects(testL,FVOGoalPostLeftTop);
     
-    FilteredOneDimObject testL1=testArray.get_object(FVOGoalPostLeftTop);
+    FilteredOneDimObject testL1=testArray.objects(FVOGoalPostLeftTop);
     
     XCTAssertTrue(testL.isVisible(), @"Expected  visible");
     XCTAssertTrue(testL1.isVisible(), @"Expected  visible");
@@ -360,14 +361,14 @@ public:
     FilteredOneDimObject testR("IsVisible,13,23,33,43,FRAME:108,");
     FilteredOneDimObject testC("IsVisible,12,22,32,42,FRAME:102,");
     
-    testArray.set_object(testR,FVOGoalPostRightTop);
-    testArray.set_object(testC,FVOGoalCrossBarTop);
+    testArray.set_objects(testR,FVOGoalPostRightTop);
+    testArray.set_objects(testC,FVOGoalCrossBarTop);
     
     FilteredArrayOneDimObjects testArrayB(testArray);
    
-    FilteredOneDimObject testPostLeft=testArrayB.get_object(FVOGoalPostLeftTop);
-    FilteredOneDimObject testPostRight=testArrayB.get_object(FVOGoalPostRightTop);
-    FilteredOneDimObject testCrossbar=testArrayB.get_object(FVOGoalCrossBarTop);
+    FilteredOneDimObject testPostLeft=testArrayB.objects(FVOGoalPostLeftTop);
+    FilteredOneDimObject testPostRight=testArrayB.objects(FVOGoalPostRightTop);
+    FilteredOneDimObject testCrossbar=testArrayB.objects(FVOGoalCrossBarTop);
     XCTAssertTrue(testPostLeft.isVisible(), @"Expected  visible");
     XCTAssertEqual(testPostLeft.distance(), testL.distance(), @"distance match");
     XCTAssertEqual(testPostLeft.x(), testL.x(), @"'x' match");
@@ -391,12 +392,12 @@ public:
     string s =testArrayB.description();
     
     FilteredArrayOneDimObjects testArrayC(s);
-    XCTAssertTrue(testArrayC.get_object(FVOGoalPostLeftTop).isVisible(), @"Expected  visible");
-    XCTAssertTrue(testArrayC.get_object(FVOGoalPostRightTop).isVisible(), @"Expected  visible");
-    XCTAssertEqual(testArrayC.get_object(FVOGoalPostLeftTop).distance(), testL.distance(), @"distance match");
-    XCTAssertEqual(testArrayC.get_object(FVOGoalPostLeftTop).frameCounter(), testL.frameCounter(), @"frameCounter match");
-    XCTAssertEqual(testArrayC.get_object(FVOGoalPostRightTop).distance(), testR.distance(), @"distance match");
-    XCTAssertEqual(testArrayC.get_object(FVOGoalPostRightTop).frameCounter(), testR.frameCounter(), @"frameCounter match");
+    XCTAssertTrue(testArrayC.objects(FVOGoalPostLeftTop).isVisible(), @"Expected  visible");
+    XCTAssertTrue(testArrayC.objects(FVOGoalPostRightTop).isVisible(), @"Expected  visible");
+    XCTAssertEqual(testArrayC.objects(FVOGoalPostLeftTop).distance(), testL.distance(), @"distance match");
+    XCTAssertEqual(testArrayC.objects(FVOGoalPostLeftTop).frameCounter(), testL.frameCounter(), @"frameCounter match");
+    XCTAssertEqual(testArrayC.objects(FVOGoalPostRightTop).distance(), testR.distance(), @"distance match");
+    XCTAssertEqual(testArrayC.objects(FVOGoalPostRightTop).frameCounter(), testR.frameCounter(), @"frameCounter match");
     
 }
 
