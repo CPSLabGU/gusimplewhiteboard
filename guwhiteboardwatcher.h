@@ -39,7 +39,7 @@
 #define DISPATCH_QUEUE_NAME_WB "guWhiteboard"
 
 #ifndef DISPATCH_QUEUE_SERIAL
-#define DISPATCH_QUEUE_SERIAL NULL
+#define DISPATCH_QUEUE_SERIAL NULLPTR
 #endif
 
 #define SUBSCRIBE(wb, t, c, f) ((wb)->subscribe(t ## _WBFunctor<c>::bind(this, &f, k##t ## _v)))
@@ -111,7 +111,7 @@ public:
 	 * @brief Constructor, sets up the dispatch queues for handling callbacks
 	 * @param wbd You can pass a specific pointer to a whiteboard object if you wish. By default a pointer to the default whiteboard is used.
 	 */
-        whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd = NULL) //Constructor
+        whiteboard_watcher(gu_simple_whiteboard_descriptor *wbd = NULLPTR) //Constructor
         {
                 _wbd = wbd;
                 if(!_wbd)
@@ -141,7 +141,7 @@ public:
 	~whiteboard_watcher()
 	{
 		_wbd->exit_monitor = true;
-	        _wbd->callback = NULL;                  // avoid starvation
+	        _wbd->callback = NULLPTR;                  // avoid starvation
        		dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
 
       		if (_wbd) gsw_free_whiteboard(_wbd);

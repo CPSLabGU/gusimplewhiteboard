@@ -2,7 +2,7 @@
  *  Whiteboard.cc
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011-2014 Rene Hexel.
+ *  Copyright (c) 2011-2014, 2018 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,7 +66,7 @@
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 #ifndef DISPATCH_QUEUE_SERIAL
-#define DISPATCH_QUEUE_SERIAL NULL
+#define DISPATCH_QUEUE_SERIAL NULLPTR
 #endif
 
 extern "C" {
@@ -118,7 +118,7 @@ Whiteboard::Whiteboard(const char *name, bool /*checkVersion*/, int number)
 
 Whiteboard::~Whiteboard()
 {
-        _wbd->callback = NULL;                  // avoid starvation
+        _wbd->callback = NULLPTR;                  // avoid starvation
         dispatch_group_wait(callback_group, DISPATCH_TIME_FOREVER);
 
         if (_wbd) gsw_free_whiteboard(_wbd);
