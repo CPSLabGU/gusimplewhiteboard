@@ -2,7 +2,7 @@
  *  SimpleWhiteboardTest.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2014 Rene Hexel.
+ *  Copyright (c) 2011, 2014, 2018 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,6 +72,6 @@
 /** Test class */
 @interface SimpleWhiteboardTest: XCTestCase
 @property (nonatomic, assign) int callbackCount;	///< counter used for testing callbacks
-@property (nonatomic, strong) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
+@property (nonatomic, assign) dispatch_semaphore_t semaphore;	///< not sure, some sem used in testing
 @property (nonatomic, strong) NSString *stringValue;	///< not sure, some string for test
 @end

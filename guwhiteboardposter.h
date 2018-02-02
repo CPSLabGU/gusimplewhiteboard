@@ -169,20 +169,20 @@ namespace guWhiteboard
          * Both the message type and the message content are strings.
          * @param message_type the string version of the type
          * @param message_content the string data to pass to the types string constructor
-         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
+         * @param wbd whiteboard descriptor (NULLPTR for the default whiteboard)
          * @return true if there is a string constructor for the passed in type
          */
-        bool post(std::string message_type, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
+        bool post(std::string message_type, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
 
         /**
          * Generic C++ function that posts a message with a given message number
          * to the whiteboard.
          * @param message_index the offset or enum value of the type to post
          * @param message_content the string data to pass to the types string constructor
-         * @param wbd whiteboard descriptor (NULL for the default whiteboard)
+         * @param wbd whiteboard descriptor (NULLPTR for the default whiteboard)
          * @return true if there is a string constructor for the passed in type 
          */
-        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULL);
+        bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
 
         /**
          * Map structure from strings to message types

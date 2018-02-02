@@ -161,7 +161,7 @@ namespace guWhiteboard
             char _names[sizeof(gsw_simple_message)-sizeof(uint16_t)];
         public:
             /** designated constructor */
-            FSMNames(uint16_t startoffs = 0, const char *names = NULL): _startoffs(startoffs)
+            FSMNames(uint16_t startoffs = 0, const char *names = NULLPTR): _startoffs(startoffs)
             {
                 int i = names ? int(strlen(names) + 1) : 0;
                 if (names) strcpy(_names, names);
@@ -185,10 +185,10 @@ namespace guWhiteboard
             const char *end() { return &_names[sizeof(_names)]; }
 
             /** get the next name */
-            char *next_name(const char *name = NULL) { if (!name) return names(); while (name < end() && *name++) {} return const_cast<char *>(name); }
+            char *next_name(const char *name = NULLPTR) { if (!name) return names(); while (name < end() && *name++) {} return const_cast<char *>(name); }
 
             /** get the next empty slot */
-            char *next_slot(const char *name = NULL) { while (*(name = next_name(name)) && name < end()) {} ; return const_cast<char *>(name); }
+            char *next_slot(const char *name = NULLPTR) { while (*(name = next_name(name)) && name < end()) {} ; return const_cast<char *>(name); }
 
             /** return the available space after a given pointer */
             int available_space(const char *pos) { return int(end() - pos); }
@@ -198,7 +198,7 @@ namespace guWhiteboard
             {
                 char *pos = next_slot();
                 int n = available_space(pos);
-                if (n <= 0) return NULL;
+                if (n <= 0) return NULLPTR;
                 gu_strlcpy(pos, name, size_t(n));
                 return pos;
             }

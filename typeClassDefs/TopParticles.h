@@ -86,8 +86,8 @@ namespace guWhiteboard {
         /**
          * Create a new `TopParticles`.
          */
-        TopParticles(struct wb_particle_position particles[4] = NULL) {
-            if (particles != NULL) {
+        TopParticles(struct wb_particle_position particles[4] = NULLPTR) {
+            if (particles != NULLPTR) {
                 std::memcpy(this->_particles, particles, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             } else {
                 struct wb_particle_position particles_temp[TOPPARTICLES_PARTICLES_ARRAY_SIZE] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()};
@@ -99,7 +99,7 @@ namespace guWhiteboard {
          * Copy Constructor.
          */
         TopParticles(const TopParticles &other): wb_top_particles() {
-            if (other.particles() != NULL) {
+            if (other.particles() != NULLPTR) {
                 std::memcpy(this->_particles, other.particles(), TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             }
         }
@@ -108,7 +108,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TopParticles &operator = (const TopParticles &other) {
-            if (other.particles() != NULL) {
+            if (other.particles() != NULLPTR) {
                 std::memcpy(this->_particles, other.particles(), TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             }
             return *this;

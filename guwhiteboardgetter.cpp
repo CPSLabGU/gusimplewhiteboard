@@ -41,7 +41,7 @@ extern "C"
 
     char *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index)
     {
-        return gu_strdup(getmsg(WBTypes(message_index), NULL, wbd).c_str());
+        return gu_strdup(getmsg(WBTypes(message_index), NULLPTR, wbd).c_str());
     }
 } // extern C
 

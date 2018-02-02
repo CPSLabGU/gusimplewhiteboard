@@ -25,70 +25,70 @@ extern "C"
     class wb_reserved_SubscribeToAllTypes_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: wb_reserved_SubscribeToAllTypes_t */ 
-        wb_reserved_SubscribeToAllTypes_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kwb_reserved_SubscribeToAllTypes_v, true) {}
+        wb_reserved_SubscribeToAllTypes_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kwb_reserved_SubscribeToAllTypes_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: wb_reserved_SubscribeToAllTypes_t */ 
-wb_reserved_SubscribeToAllTypes_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kwb_reserved_SubscribeToAllTypes_v, wbd, true) {} 
+wb_reserved_SubscribeToAllTypes_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kwb_reserved_SubscribeToAllTypes_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: Print_t @brief print to stdout */ 
     class Print_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: Print_t */ 
-        Print_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kPrint_v, true) {}
+        Print_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kPrint_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Print_t */ 
-Print_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kPrint_v, wbd, true) {} 
+Print_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kPrint_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: Say_t @brief speech output message */ 
     class Say_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: Say_t */ 
-        Say_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kSay_v, true) {}
+        Say_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kSay_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Say_t */ 
-Say_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kSay_v, wbd, true) {} 
+Say_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kSay_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: Speech_t @brief debug speech message */ 
     class Speech_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: Speech_t */ 
-        Speech_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kSpeech_v, true) {}
+        Speech_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kSpeech_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Speech_t */ 
-Speech_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kSpeech_v, wbd, true) {} 
+Speech_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kSpeech_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: QSay_t @brief speech output message (queued) */ 
     class QSay_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: QSay_t */ 
-        QSay_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kQSay_v, true) {}
+        QSay_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kQSay_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: QSay_t */ 
-QSay_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kQSay_v, wbd, true) {} 
+QSay_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kQSay_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: QSpeech_t @brief debug speech message (queued) */ 
     class QSpeech_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: QSpeech_t */ 
-        QSpeech_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kQSpeech_v, true) {}
+        QSpeech_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kQSpeech_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: QSpeech_t */ 
-QSpeech_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kQSpeech_v, wbd, true) {} 
+QSpeech_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kQSpeech_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: SpeechOutput_t @brief toggle, treat speech messages as silent output unless this is turned on */ 
     class SpeechOutput_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: SpeechOutput_t */ 
-        SpeechOutput_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kSpeechOutput_v, false) {}
+        SpeechOutput_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSpeechOutput_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: SpeechOutput_t */ 
-SpeechOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kSpeechOutput_v, wbd, false) {} 
+SpeechOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSpeechOutput_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: GCGameState_t @brief game state as posted by the game controller state machine */ 
     class GCGameState_t: public generic_whiteboard_object<class GCGameState > { 
         public: 
         /** Constructor: GCGameState_t */ 
-        GCGameState_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class GCGameState >(wbd, kGCGameState_v, false) {}
+        GCGameState_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class GCGameState >(wbd, kGCGameState_v, false) {}
         
     };
 
@@ -96,25 +96,25 @@ SpeechOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic
     class REMOVED1_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: REMOVED1_t */ 
-        REMOVED1_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kREMOVED1_v, false) {}
+        REMOVED1_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED1_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED1_t */ 
-REMOVED1_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kREMOVED1_v, wbd, false) {} 
+REMOVED1_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED1_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: REMOVED2_t @brief Old class, can be removed from tsl file during the next wb version bump */ 
     class REMOVED2_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: REMOVED2_t */ 
-        REMOVED2_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kREMOVED2_v, false) {}
+        REMOVED2_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED2_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED2_t */ 
-REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kREMOVED2_v, wbd, false) {} 
+REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED2_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: MOTION_Commands_t @brief WB interface for sending motion commands */ 
     class MOTION_Commands_t: public generic_whiteboard_object<class MOTION_Commands > { 
         public: 
         /** Constructor: MOTION_Commands_t */ 
-        MOTION_Commands_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class MOTION_Commands >(wbd, kMOTION_Commands_v, false) {}
+        MOTION_Commands_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MOTION_Commands >(wbd, kMOTION_Commands_v, false) {}
         
     };
 
@@ -122,7 +122,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class MOTION_Status_t: public generic_whiteboard_object<class MOTION_Status > { 
         public: 
         /** Constructor: MOTION_Status_t */ 
-        MOTION_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class MOTION_Status >(wbd, kMOTION_Status_v, false) {}
+        MOTION_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MOTION_Status >(wbd, kMOTION_Status_v, false) {}
         
     };
 
@@ -130,7 +130,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class HAL_HeadTarget_t: public generic_whiteboard_object<class HAL_HeadTarget > { 
         public: 
         /** Constructor: HAL_HeadTarget_t */ 
-        HAL_HeadTarget_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_HeadTarget >(wbd, kHAL_HeadTarget_v, false) {}
+        HAL_HeadTarget_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_HeadTarget >(wbd, kHAL_HeadTarget_v, false) {}
         
     };
 
@@ -138,7 +138,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSFootSensors_t: public generic_whiteboard_object<class SENSORSFootSensors > { 
         public: 
         /** Constructor: SENSORSFootSensors_t */ 
-        SENSORSFootSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSFootSensors >(wbd, kSENSORSFootSensors_v, false) {}
+        SENSORSFootSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSFootSensors >(wbd, kSENSORSFootSensors_v, false) {}
         
     };
 
@@ -146,7 +146,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSBodySensors_t: public generic_whiteboard_object<class SENSORSBodySensors > { 
         public: 
         /** Constructor: SENSORSBodySensors_t */ 
-        SENSORSBodySensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSBodySensors >(wbd, kSENSORSBodySensors_v, false) {}
+        SENSORSBodySensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSBodySensors >(wbd, kSENSORSBodySensors_v, false) {}
         
     };
 
@@ -154,7 +154,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSLedsSensors_t: public generic_whiteboard_object<class SENSORSLedsSensors > { 
         public: 
         /** Constructor: SENSORSLedsSensors_t */ 
-        SENSORSLedsSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSLedsSensors >(wbd, kSENSORSLedsSensors_v, false) {}
+        SENSORSLedsSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSLedsSensors >(wbd, kSENSORSLedsSensors_v, false) {}
         
     };
 
@@ -162,7 +162,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSLegJointTemps_t: public generic_whiteboard_object<class SENSORSLegJointTemps > { 
         public: 
         /** Constructor: SENSORSLegJointTemps_t */ 
-        SENSORSLegJointTemps_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSLegJointTemps >(wbd, kSENSORSLegJointTemps_v, false) {}
+        SENSORSLegJointTemps_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSLegJointTemps >(wbd, kSENSORSLegJointTemps_v, false) {}
         
     };
 
@@ -170,7 +170,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSTorsoJointTemps_t: public generic_whiteboard_object<class SENSORSTorsoJointTemps > { 
         public: 
         /** Constructor: SENSORSTorsoJointTemps_t */ 
-        SENSORSTorsoJointTemps_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSTorsoJointTemps >(wbd, kSENSORSTorsoJointTemps_v, false) {}
+        SENSORSTorsoJointTemps_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSTorsoJointTemps >(wbd, kSENSORSTorsoJointTemps_v, false) {}
         
     };
 
@@ -178,7 +178,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSLegJointSensors_t: public generic_whiteboard_object<class SENSORSLegJointSensors > { 
         public: 
         /** Constructor: SENSORSLegJointSensors_t */ 
-        SENSORSLegJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSLegJointSensors >(wbd, kSENSORSLegJointSensors_v, false) {}
+        SENSORSLegJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSLegJointSensors >(wbd, kSENSORSLegJointSensors_v, false) {}
         
     };
 
@@ -186,7 +186,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSTorsoJointSensors_t: public generic_whiteboard_object<class SENSORSTorsoJointSensors > { 
         public: 
         /** Constructor: SENSORSTorsoJointSensors_t */ 
-        SENSORSTorsoJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSTorsoJointSensors >(wbd, kSENSORSTorsoJointSensors_v, false) {}
+        SENSORSTorsoJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSTorsoJointSensors >(wbd, kSENSORSTorsoJointSensors_v, false) {}
         
     };
 
@@ -194,7 +194,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SENSORSSonarSensors_t: public generic_whiteboard_object<class SENSORSSonarSensors > { 
         public: 
         /** Constructor: SENSORSSonarSensors_t */ 
-        SENSORSSonarSensors_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SENSORSSonarSensors >(wbd, kSENSORSSonarSensors_v, false) {}
+        SENSORSSonarSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSSonarSensors >(wbd, kSENSORSSonarSensors_v, false) {}
         
     };
 
@@ -202,7 +202,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class FSM_Control_t: public generic_whiteboard_object<class FSMControlStatus > { 
         public: 
         /** Constructor: FSM_Control_t */ 
-        FSM_Control_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FSMControlStatus >(wbd, kFSM_Control_v, true) {}
+        FSM_Control_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FSMControlStatus >(wbd, kFSM_Control_v, true) {}
         
     };
 
@@ -210,7 +210,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class FSM_Status_t: public generic_whiteboard_object<class FSMControlStatus > { 
         public: 
         /** Constructor: FSM_Status_t */ 
-        FSM_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FSMControlStatus >(wbd, kFSM_Status_v, true) {}
+        FSM_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FSMControlStatus >(wbd, kFSM_Status_v, true) {}
         
     };
 
@@ -218,7 +218,7 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class FSM_Names_t: public generic_whiteboard_object<class FSMNames > { 
         public: 
         /** Constructor: FSM_Names_t */ 
-        FSM_Names_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FSMNames >(wbd, kFSM_Names_v, true) {}
+        FSM_Names_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FSMNames >(wbd, kFSM_Names_v, true) {}
         
     };
 
@@ -226,16 +226,16 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whi
     class SoloTypeExample_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: SoloTypeExample_t */ 
-        SoloTypeExample_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kSoloTypeExample_v, false) {}
+        SoloTypeExample_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSoloTypeExample_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: SoloTypeExample_t */ 
-SoloTypeExample_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kSoloTypeExample_v, wbd, false) {} 
+SoloTypeExample_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSoloTypeExample_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: FilteredGoalSighting_t @brief Class that contains the Kalman filtered goal objects after sighting from vision */ 
     class FilteredGoalSighting_t: public generic_whiteboard_object<class FilteredArrayOneDimObjects > { 
         public: 
         /** Constructor: FilteredGoalSighting_t */ 
-        FilteredGoalSighting_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FilteredArrayOneDimObjects >(wbd, kFilteredGoalSighting_v, false) {}
+        FilteredGoalSighting_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FilteredArrayOneDimObjects >(wbd, kFilteredGoalSighting_v, false) {}
         
     };
 
@@ -243,7 +243,7 @@ SoloTypeExample_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): gene
     class NAO_State_t: public generic_whiteboard_object<class NAO_State > { 
         public: 
         /** Constructor: NAO_State_t */ 
-        NAO_State_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NAO_State >(wbd, kNAO_State_v, false) {}
+        NAO_State_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NAO_State >(wbd, kNAO_State_v, false) {}
         
     };
 
@@ -251,7 +251,7 @@ SoloTypeExample_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): gene
     class UDPRN_t: public generic_whiteboard_object<class GCGameState > { 
         public: 
         /** Constructor: UDPRN_t */ 
-        UDPRN_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class GCGameState >(wbd, kUDPRN_v, false) {}
+        UDPRN_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class GCGameState >(wbd, kUDPRN_v, false) {}
         
     };
 
@@ -259,25 +259,25 @@ SoloTypeExample_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): gene
     class PlayerNumber_t: public generic_whiteboard_object<int8_t > { 
         public: 
         /** Constructor: PlayerNumber_t */ 
-        PlayerNumber_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(wbd, kPlayerNumber_v, false) {}
+        PlayerNumber_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(wbd, kPlayerNumber_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: PlayerNumber_t */ 
-PlayerNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(value, kPlayerNumber_v, wbd, false) {} 
+PlayerNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kPlayerNumber_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: ManuallyPenalized_t @brief what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee */ 
     class ManuallyPenalized_t: public generic_whiteboard_object<int8_t > { 
         public: 
         /** Constructor: ManuallyPenalized_t */ 
-        ManuallyPenalized_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(wbd, kManuallyPenalized_v, false) {}
+        ManuallyPenalized_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(wbd, kManuallyPenalized_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: ManuallyPenalized_t */ 
-ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(value, kManuallyPenalized_v, wbd, false) {} 
+ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kManuallyPenalized_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: Vision_Control_t @brief control various attributes of the vision pipeline. */ 
     class Vision_Control_t: public generic_whiteboard_object<class VisionControlStatus > { 
         public: 
         /** Constructor: Vision_Control_t */ 
-        Vision_Control_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Control_v, false) {}
+        Vision_Control_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Control_v, false) {}
         
     };
 
@@ -285,7 +285,7 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class Vision_Status_t: public generic_whiteboard_object<class VisionControlStatus > { 
         public: 
         /** Constructor: Vision_Status_t */ 
-        Vision_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Status_v, false) {}
+        Vision_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Status_v, false) {}
         
     };
 
@@ -293,7 +293,7 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class FFTStatus_t: public generic_whiteboard_object<class FFTStatus > { 
         public: 
         /** Constructor: FFTStatus_t */ 
-        FFTStatus_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FFTStatus >(wbd, kFFTStatus_v, false) {}
+        FFTStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FFTStatus >(wbd, kFFTStatus_v, false) {}
         
     };
 
@@ -301,7 +301,7 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class FSOsighting_t: public generic_whiteboard_object<class FilteredArrayOneDimSonar > { 
         public: 
         /** Constructor: FSOsighting_t */ 
-        FSOsighting_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FilteredArrayOneDimSonar >(wbd, kFSOsighting_v, false) {}
+        FSOsighting_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FilteredArrayOneDimSonar >(wbd, kFSOsighting_v, false) {}
         
     };
 
@@ -309,7 +309,7 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class TopParticles_t: public generic_whiteboard_object<class TopParticles > { 
         public: 
         /** Constructor: TopParticles_t */ 
-        TopParticles_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class TopParticles >(wbd, kTopParticles_v, false) {}
+        TopParticles_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TopParticles >(wbd, kTopParticles_v, false) {}
         
     };
 
@@ -317,7 +317,7 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class FilteredBallSighting_t: public generic_whiteboard_object<class FilteredArrayBallSightings > { 
         public: 
         /** Constructor: FilteredBallSighting_t */ 
-        FilteredBallSighting_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FilteredArrayBallSightings >(wbd, kFilteredBallSighting_v, false) {}
+        FilteredBallSighting_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FilteredArrayBallSightings >(wbd, kFilteredBallSighting_v, false) {}
         
     };
 
@@ -325,16 +325,16 @@ ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): 
     class PF_ControlStatus_Modes_t: public generic_whiteboard_object<int32_t > { 
         public: 
         /** Constructor: PF_ControlStatus_Modes_t */ 
-        PF_ControlStatus_Modes_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(wbd, kPF_ControlStatus_Modes_v, false) {}
+        PF_ControlStatus_Modes_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(wbd, kPF_ControlStatus_Modes_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: PF_ControlStatus_Modes_t */ 
-PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(value, kPF_ControlStatus_Modes_v, wbd, false) {} 
+PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(value, kPF_ControlStatus_Modes_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: WEBOTS_NXT_bridge_t @brief WIP Class that contains a command for WEBOTS or NXt trough a bridge */ 
     class WEBOTS_NXT_bridge_t: public generic_whiteboard_object<class WEBOTS_NXT_bridge > { 
         public: 
         /** Constructor: WEBOTS_NXT_bridge_t */ 
-        WEBOTS_NXT_bridge_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_bridge >(wbd, kWEBOTS_NXT_bridge_v, false) {}
+        WEBOTS_NXT_bridge_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_bridge >(wbd, kWEBOTS_NXT_bridge_v, false) {}
         
     };
 
@@ -342,7 +342,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_encoders_t: public generic_whiteboard_object<class WEBOTS_NXT_encoders > { 
         public: 
         /** Constructor: WEBOTS_NXT_encoders_t */ 
-        WEBOTS_NXT_encoders_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_encoders >(wbd, kWEBOTS_NXT_encoders_v, false) {}
+        WEBOTS_NXT_encoders_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_encoders >(wbd, kWEBOTS_NXT_encoders_v, false) {}
         
     };
 
@@ -350,7 +350,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_camera_t: public generic_whiteboard_object<class WEBOTS_NXT_camera > { 
         public: 
         /** Constructor: WEBOTS_NXT_camera_t */ 
-        WEBOTS_NXT_camera_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_camera >(wbd, kWEBOTS_NXT_camera_v, false) {}
+        WEBOTS_NXT_camera_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_camera >(wbd, kWEBOTS_NXT_camera_v, false) {}
         
     };
 
@@ -358,7 +358,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_walk_isRunning_t: public generic_whiteboard_object<class WEBOTS_NXT_walk_isRunning > { 
         public: 
         /** Constructor: WEBOTS_NXT_walk_isRunning_t */ 
-        WEBOTS_NXT_walk_isRunning_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_walk_isRunning >(wbd, kWEBOTS_NXT_walk_isRunning_v, false) {}
+        WEBOTS_NXT_walk_isRunning_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_walk_isRunning >(wbd, kWEBOTS_NXT_walk_isRunning_v, false) {}
         
     };
 
@@ -366,7 +366,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_deadReakoning_walk_t: public generic_whiteboard_object<class WEBOTS_NXT_deadReakoning_walk > { 
         public: 
         /** Constructor: WEBOTS_NXT_deadReakoning_walk_t */ 
-        WEBOTS_NXT_deadReakoning_walk_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_deadReakoning_walk >(wbd, kWEBOTS_NXT_deadReakoning_walk_v, false) {}
+        WEBOTS_NXT_deadReakoning_walk_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_deadReakoning_walk >(wbd, kWEBOTS_NXT_deadReakoning_walk_v, false) {}
         
     };
 
@@ -374,7 +374,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_colorLine_walk_t: public generic_whiteboard_object<class WEBOTS_NXT_colorLine_walk > { 
         public: 
         /** Constructor: WEBOTS_NXT_colorLine_walk_t */ 
-        WEBOTS_NXT_colorLine_walk_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_colorLine_walk >(wbd, kWEBOTS_NXT_colorLine_walk_v, false) {}
+        WEBOTS_NXT_colorLine_walk_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_colorLine_walk >(wbd, kWEBOTS_NXT_colorLine_walk_v, false) {}
         
     };
 
@@ -382,7 +382,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WEBOTS_NXT_gridMotions_t: public generic_whiteboard_object<class WEBOTS_NXT_gridMotions > { 
         public: 
         /** Constructor: WEBOTS_NXT_gridMotions_t */ 
-        WEBOTS_NXT_gridMotions_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_gridMotions >(wbd, kWEBOTS_NXT_gridMotions_v, false) {}
+        WEBOTS_NXT_gridMotions_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_gridMotions >(wbd, kWEBOTS_NXT_gridMotions_v, false) {}
         
     };
 
@@ -390,7 +390,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class VisionBall_t: public generic_whiteboard_object<class VisionBall > { 
         public: 
         /** Constructor: VisionBall_t */ 
-        VisionBall_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionBall >(wbd, kVisionBall_v, false) {}
+        VisionBall_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionBall >(wbd, kVisionBall_v, false) {}
         
     };
 
@@ -398,7 +398,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class VisionGoals_t: public generic_whiteboard_object<class VisionGoals > { 
         public: 
         /** Constructor: VisionGoals_t */ 
-        VisionGoals_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionGoals >(wbd, kVisionGoals_v, false) {}
+        VisionGoals_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionGoals >(wbd, kVisionGoals_v, false) {}
         
     };
 
@@ -406,7 +406,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class WalkData_t: public generic_whiteboard_object<class WalkData > { 
         public: 
         /** Constructor: WalkData_t */ 
-        WalkData_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WalkData >(wbd, kWalkData_v, false) {}
+        WalkData_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WalkData >(wbd, kWalkData_v, false) {}
         
     };
 
@@ -414,7 +414,7 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class TeleoperationControlStatus_t: public generic_whiteboard_object<class TeleoperationControlStatus > { 
         public: 
         /** Constructor: TeleoperationControlStatus_t */ 
-        TeleoperationControlStatus_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class TeleoperationControlStatus >(wbd, kTeleoperationControlStatus_v, false) {}
+        TeleoperationControlStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TeleoperationControlStatus >(wbd, kTeleoperationControlStatus_v, false) {}
         
     };
 
@@ -422,25 +422,25 @@ PF_ControlStatus_Modes_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = N
     class TeleoperationConnection_t: public generic_whiteboard_object<int8_t > { 
         public: 
         /** Constructor: TeleoperationConnection_t */ 
-        TeleoperationConnection_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(wbd, kTeleoperationConnection_v, false) {}
+        TeleoperationConnection_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(wbd, kTeleoperationConnection_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TeleoperationConnection_t */ 
-TeleoperationConnection_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(value, kTeleoperationConnection_v, wbd, false) {} 
+TeleoperationConnection_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kTeleoperationConnection_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: UDPWBNumber_t @brief ID number being used to broadcast udp whiteboard */ 
     class UDPWBNumber_t: public generic_whiteboard_object<int8_t > { 
         public: 
         /** Constructor: UDPWBNumber_t */ 
-        UDPWBNumber_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(wbd, kUDPWBNumber_v, false) {}
+        UDPWBNumber_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(wbd, kUDPWBNumber_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: UDPWBNumber_t */ 
-UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(value, kUDPWBNumber_v, wbd, false) {} 
+UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kUDPWBNumber_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: WEBOTS_NXT_bumper_t @brief Class that contains data from 2 rouch sensors in an NXT bumper by the bridge */ 
     class WEBOTS_NXT_bumper_t: public generic_whiteboard_object<class WEBOTS_NXT_bumper > { 
         public: 
         /** Constructor: WEBOTS_NXT_bumper_t */ 
-        WEBOTS_NXT_bumper_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_bumper >(wbd, kWEBOTS_NXT_bumper_v, false) {}
+        WEBOTS_NXT_bumper_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_bumper >(wbd, kWEBOTS_NXT_bumper_v, false) {}
         
     };
 
@@ -448,7 +448,7 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class WEBOTS_NXT_vector_bridge_t: public generic_whiteboard_object<class WEBOTS_NXT_vector_bridge > { 
         public: 
         /** Constructor: WEBOTS_NXT_vector_bridge_t */ 
-        WEBOTS_NXT_vector_bridge_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class WEBOTS_NXT_vector_bridge >(wbd, kWEBOTS_NXT_vector_bridge_v, false) {}
+        WEBOTS_NXT_vector_bridge_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class WEBOTS_NXT_vector_bridge >(wbd, kWEBOTS_NXT_vector_bridge_v, false) {}
         
     };
 
@@ -456,7 +456,7 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class VisionLines_t: public generic_whiteboard_object<class VisionLines > { 
         public: 
         /** Constructor: VisionLines_t */ 
-        VisionLines_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionLines >(wbd, kVisionLines_v, false) {}
+        VisionLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionLines >(wbd, kVisionLines_v, false) {}
         
     };
 
@@ -464,7 +464,7 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class DifferentialRobotStatus_t: public generic_whiteboard_object<class DifferentialRobotControlStatus > { 
         public: 
         /** Constructor: DifferentialRobotStatus_t */ 
-        DifferentialRobotStatus_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class DifferentialRobotControlStatus >(wbd, kDifferentialRobotStatus_v, false) {}
+        DifferentialRobotStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class DifferentialRobotControlStatus >(wbd, kDifferentialRobotStatus_v, false) {}
         
     };
 
@@ -472,7 +472,7 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class DifferentialRobotControl_t: public generic_whiteboard_object<class DifferentialRobotControlStatus > { 
         public: 
         /** Constructor: DifferentialRobotControl_t */ 
-        DifferentialRobotControl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class DifferentialRobotControlStatus >(wbd, kDifferentialRobotControl_v, false) {}
+        DifferentialRobotControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class DifferentialRobotControlStatus >(wbd, kDifferentialRobotControl_v, false) {}
         
     };
 
@@ -480,7 +480,7 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class XEyesPos_t: public generic_whiteboard_object<class Point2D > { 
         public: 
         /** Constructor: XEyesPos_t */ 
-        XEyesPos_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Point2D >(wbd, kXEyesPos_v, true) {}
+        XEyesPos_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Point2D >(wbd, kXEyesPos_v, true) {}
         
     };
 
@@ -488,25 +488,25 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generi
     class VisionFace_t: public generic_whiteboard_object<std::vector<int> > { 
         public: 
         /** Constructor: VisionFace_t */ 
-        VisionFace_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::vector<int> >(wbd, kVisionFace_v, true) {}
+        VisionFace_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::vector<int> >(wbd, kVisionFace_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: VisionFace_t */ 
-VisionFace_t(std::vector<int> value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::vector<int> >(value, kVisionFace_v, wbd, true) {} 
+VisionFace_t(std::vector<int> value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::vector<int> >(value, kVisionFace_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: Draw_t @brief Used by the half made GUDraw module in posix */ 
     class Draw_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: Draw_t */ 
-        Draw_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kDraw_v, true) {}
+        Draw_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kDraw_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Draw_t */ 
-Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kDraw_v, wbd, true) {} 
+Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kDraw_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: FSM_States_t @brief Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded. */ 
     class FSM_States_t: public generic_whiteboard_object<class FSMState > { 
         public: 
         /** Constructor: FSM_States_t */ 
-        FSM_States_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FSMState >(wbd, kFSM_States_v, true) {}
+        FSM_States_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FSMState >(wbd, kFSM_States_v, true) {}
         
     };
 
@@ -514,7 +514,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class Giraff_Interface_Status_t: public generic_whiteboard_object<class Giraff_MainSerialInterface > { 
         public: 
         /** Constructor: Giraff_Interface_Status_t */ 
-        Giraff_Interface_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Giraff_MainSerialInterface >(wbd, kGiraff_Interface_Status_v, false) {}
+        Giraff_Interface_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Giraff_MainSerialInterface >(wbd, kGiraff_Interface_Status_v, false) {}
         
     };
 
@@ -522,7 +522,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class Giraff_Interface_Command_t: public generic_whiteboard_object<class Giraff_MainSerialInterface > { 
         public: 
         /** Constructor: Giraff_Interface_Command_t */ 
-        Giraff_Interface_Command_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Giraff_MainSerialInterface >(wbd, kGiraff_Interface_Command_v, false) {}
+        Giraff_Interface_Command_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Giraff_MainSerialInterface >(wbd, kGiraff_Interface_Command_v, false) {}
         
     };
 
@@ -530,7 +530,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class NXT_Status_t: public generic_whiteboard_object<class NXT_Interface > { 
         public: 
         /** Constructor: NXT_Status_t */ 
-        NXT_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NXT_Interface >(wbd, kNXT_Status_v, false) {}
+        NXT_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NXT_Interface >(wbd, kNXT_Status_v, false) {}
         
     };
 
@@ -538,7 +538,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class NXT_Command_t: public generic_whiteboard_object<class NXT_Interface > { 
         public: 
         /** Constructor: NXT_Command_t */ 
-        NXT_Command_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NXT_Interface >(wbd, kNXT_Command_v, false) {}
+        NXT_Command_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NXT_Interface >(wbd, kNXT_Command_v, false) {}
         
     };
 
@@ -546,7 +546,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class APM_Status_t: public generic_whiteboard_object<class APM_Interface > { 
         public: 
         /** Constructor: APM_Status_t */ 
-        APM_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class APM_Interface >(wbd, kAPM_Status_v, false) {}
+        APM_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class APM_Interface >(wbd, kAPM_Status_v, false) {}
         
     };
 
@@ -554,7 +554,7 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class APM_Command_t: public generic_whiteboard_object<class APM_Interface > { 
         public: 
         /** Constructor: APM_Command_t */ 
-        APM_Command_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class APM_Interface >(wbd, kAPM_Command_v, false) {}
+        APM_Command_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class APM_Interface >(wbd, kAPM_Command_v, false) {}
         
     };
 
@@ -562,34 +562,34 @@ Draw_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_
     class REMOVED3_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: REMOVED3_t */ 
-        REMOVED3_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kREMOVED3_v, false) {}
+        REMOVED3_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED3_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED3_t */ 
-REMOVED3_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kREMOVED3_v, wbd, false) {} 
+REMOVED3_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED3_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: REMOVED4_t @brief Old class, can be removed from tsl file during the next wb version bump */ 
     class REMOVED4_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: REMOVED4_t */ 
-        REMOVED4_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kREMOVED4_v, false) {}
+        REMOVED4_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED4_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED4_t */ 
-REMOVED4_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kREMOVED4_v, wbd, false) {} 
+REMOVED4_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED4_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: CBall_t @brief Status Message for the color of the ball */ 
     class CBall_t: public generic_whiteboard_object<int8_t > { 
         public: 
         /** Constructor: CBall_t */ 
-        CBall_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(wbd, kCBall_v, true) {}
+        CBall_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(wbd, kCBall_v, true) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: CBall_t */ 
-CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int8_t >(value, kCBall_v, wbd, true) {} 
+CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kCBall_v, wbd, true) {} 
     };
 
     /** WB Ptr Class: OculusPrime_Command_t @brief Class used to control the Oculus Prime movements, controls etc. */ 
     class OculusPrime_Command_t: public generic_whiteboard_object<class OculusPrimeInterface > { 
         public: 
         /** Constructor: OculusPrime_Command_t */ 
-        OculusPrime_Command_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class OculusPrimeInterface >(wbd, kOculusPrime_Command_v, false) {}
+        OculusPrime_Command_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class OculusPrimeInterface >(wbd, kOculusPrime_Command_v, false) {}
         
     };
 
@@ -597,7 +597,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class Input3D_t: public generic_whiteboard_object<class Input3D > { 
         public: 
         /** Constructor: Input3D_t */ 
-        Input3D_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Input3D >(wbd, kInput3D_v, false) {}
+        Input3D_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Input3D >(wbd, kInput3D_v, false) {}
         
     };
 
@@ -605,7 +605,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class Oculus_Prime_Command_t: public generic_whiteboard_object<class Oculus_PrimeSerialInterface > { 
         public: 
         /** Constructor: Oculus_Prime_Command_t */ 
-        Oculus_Prime_Command_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Oculus_PrimeSerialInterface >(wbd, kOculus_Prime_Command_v, false) {}
+        Oculus_Prime_Command_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Oculus_PrimeSerialInterface >(wbd, kOculus_Prime_Command_v, false) {}
         
     };
 
@@ -613,7 +613,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class IOPins_t: public generic_whiteboard_object<class IOPins > { 
         public: 
         /** Constructor: IOPins_t */ 
-        IOPins_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class IOPins >(wbd, kIOPins_v, false) {}
+        IOPins_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class IOPins >(wbd, kIOPins_v, false) {}
         
     };
 
@@ -621,7 +621,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class NXT_Two_Touch_Status_t: public generic_whiteboard_object<class NXT_Two_Touch_Status > { 
         public: 
         /** Constructor: NXT_Two_Touch_Status_t */ 
-        NXT_Two_Touch_Status_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NXT_Two_Touch_Status >(wbd, kNXT_Two_Touch_Status_v, false) {}
+        NXT_Two_Touch_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NXT_Two_Touch_Status >(wbd, kNXT_Two_Touch_Status_v, false) {}
         
     };
 
@@ -629,7 +629,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class NXT_Sound_Control_t: public generic_whiteboard_object<class NXT_Sound_Control > { 
         public: 
         /** Constructor: NXT_Sound_Control_t */ 
-        NXT_Sound_Control_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NXT_Sound_Control >(wbd, kNXT_Sound_Control_v, false) {}
+        NXT_Sound_Control_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NXT_Sound_Control >(wbd, kNXT_Sound_Control_v, false) {}
         
     };
 
@@ -637,7 +637,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class NXT_Lights_Control_t: public generic_whiteboard_object<class NXT_Lights_Control > { 
         public: 
         /** Constructor: NXT_Lights_Control_t */ 
-        NXT_Lights_Control_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NXT_Lights_Control >(wbd, kNXT_Lights_Control_v, false) {}
+        NXT_Lights_Control_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NXT_Lights_Control >(wbd, kNXT_Lights_Control_v, false) {}
         
     };
 
@@ -645,7 +645,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class Clocks_t: public generic_whiteboard_object<class Clocks > { 
         public: 
         /** Constructor: Clocks_t */ 
-        Clocks_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Clocks >(wbd, kClocks_v, false) {}
+        Clocks_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Clocks >(wbd, kClocks_v, false) {}
         
     };
 
@@ -653,7 +653,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class Channels_t: public generic_whiteboard_object<class Channels > { 
         public: 
         /** Constructor: Channels_t */ 
-        Channels_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class Channels >(wbd, kChannels_v, false) {}
+        Channels_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Channels >(wbd, kChannels_v, false) {}
         
     };
 
@@ -661,7 +661,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class SwitchSubsumption_t: public generic_whiteboard_object<class SwitchSubsumption > { 
         public: 
         /** Constructor: SwitchSubsumption_t */ 
-        SwitchSubsumption_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SwitchSubsumption >(wbd, kSwitchSubsumption_v, false) {}
+        SwitchSubsumption_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SwitchSubsumption >(wbd, kSwitchSubsumption_v, false) {}
         
     };
 
@@ -669,7 +669,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class TotoDoingMotion_t: public generic_whiteboard_object<class TotoDoingMotion > { 
         public: 
         /** Constructor: TotoDoingMotion_t */ 
-        TotoDoingMotion_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class TotoDoingMotion >(wbd, kTotoDoingMotion_v, false) {}
+        TotoDoingMotion_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TotoDoingMotion >(wbd, kTotoDoingMotion_v, false) {}
         
     };
 
@@ -677,7 +677,7 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class Count_t: public generic_whiteboard_object<class wb_count > { 
         public: 
         /** Constructor: Count_t */ 
-        Count_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class wb_count >(wbd, kCount_v, false) {}
+        Count_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class wb_count >(wbd, kCount_v, false) {}
         
     };
 
@@ -685,142 +685,142 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whit
     class GreenEWon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: GreenEWon_t */ 
-        GreenEWon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kGreenEWon_v, false) {}
+        GreenEWon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kGreenEWon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: GreenEWon_t */ 
-GreenEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kGreenEWon_v, wbd, false) {} 
+GreenEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kGreenEWon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: WarnEW_t @brief status of the recommendaiton of the EW light */ 
     class WarnEW_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: WarnEW_t */ 
-        WarnEW_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kWarnEW_v, false) {}
+        WarnEW_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWarnEW_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WarnEW_t */ 
-WarnEW_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kWarnEW_v, wbd, false) {} 
+WarnEW_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWarnEW_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: TimeGTthirty_t @brief status of the timer with respect to 30 */ 
     class TimeGTthirty_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: TimeGTthirty_t */ 
-        TimeGTthirty_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kTimeGTthirty_v, false) {}
+        TimeGTthirty_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kTimeGTthirty_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TimeGTthirty_t */ 
-TimeGTthirty_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kTimeGTthirty_v, wbd, false) {} 
+TimeGTthirty_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kTimeGTthirty_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: AmberEWon_t @brief status of the EWamber light */ 
     class AmberEWon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: AmberEWon_t */ 
-        AmberEWon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kAmberEWon_v, false) {}
+        AmberEWon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kAmberEWon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: AmberEWon_t */ 
-AmberEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kAmberEWon_v, wbd, false) {} 
+AmberEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kAmberEWon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: TurnRedEW_t @brief second status of the recommendaiton of the EW light */ 
     class TurnRedEW_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: TurnRedEW_t */ 
-        TurnRedEW_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kTurnRedEW_v, false) {}
+        TurnRedEW_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kTurnRedEW_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TurnRedEW_t */ 
-TurnRedEW_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kTurnRedEW_v, wbd, false) {} 
+TurnRedEW_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kTurnRedEW_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: TimeGTfive_t @brief status of the timer with respect to 5 */ 
     class TimeGTfive_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: TimeGTfive_t */ 
-        TimeGTfive_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kTimeGTfive_v, false) {}
+        TimeGTfive_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kTimeGTfive_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TimeGTfive_t */ 
-TimeGTfive_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kTimeGTfive_v, wbd, false) {} 
+TimeGTfive_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kTimeGTfive_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: RedEWon_t @brief status of the EWred light */ 
     class RedEWon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: RedEWon_t */ 
-        RedEWon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kRedEWon_v, false) {}
+        RedEWon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kRedEWon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: RedEWon_t */ 
-RedEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kRedEWon_v, wbd, false) {} 
+RedEWon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kRedEWon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: GreenNSon_t @brief status of the NSgreen light */ 
     class GreenNSon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: GreenNSon_t */ 
-        GreenNSon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kGreenNSon_v, false) {}
+        GreenNSon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kGreenNSon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: GreenNSon_t */ 
-GreenNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kGreenNSon_v, wbd, false) {} 
+GreenNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kGreenNSon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: WarnNS_t @brief status of the recommendaiton of the NS light */ 
     class WarnNS_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: WarnNS_t */ 
-        WarnNS_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kWarnNS_v, false) {}
+        WarnNS_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWarnNS_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WarnNS_t */ 
-WarnNS_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kWarnNS_v, wbd, false) {} 
+WarnNS_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWarnNS_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: AmberNSon_t @brief status of the NSamber light */ 
     class AmberNSon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: AmberNSon_t */ 
-        AmberNSon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kAmberNSon_v, false) {}
+        AmberNSon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kAmberNSon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: AmberNSon_t */ 
-AmberNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kAmberNSon_v, wbd, false) {} 
+AmberNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kAmberNSon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: TurnRedNS_t @brief second status of the recommendaiton of the NS light */ 
     class TurnRedNS_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: TurnRedNS_t */ 
-        TurnRedNS_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kTurnRedNS_v, false) {}
+        TurnRedNS_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kTurnRedNS_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TurnRedNS_t */ 
-TurnRedNS_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kTurnRedNS_v, wbd, false) {} 
+TurnRedNS_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kTurnRedNS_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: RedNSon_t @brief status of the NSred light */ 
     class RedNSon_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: RedNSon_t */ 
-        RedNSon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kRedNSon_v, false) {}
+        RedNSon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kRedNSon_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: RedNSon_t */ 
-RedNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kRedNSon_v, wbd, false) {} 
+RedNSon_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kRedNSon_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: TimerReset_t @brief flag to reset timer */ 
     class TimerReset_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: TimerReset_t */ 
-        TimerReset_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kTimerReset_v, false) {}
+        TimerReset_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kTimerReset_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: TimerReset_t */ 
-TimerReset_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kTimerReset_v, wbd, false) {} 
+TimerReset_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kTimerReset_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: SLOT_UNUSED_t @brief IoT message removed, feel free to use this slot */ 
     class SLOT_UNUSED_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: SLOT_UNUSED_t */ 
-        SLOT_UNUSED_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kSLOT_UNUSED_v, false) {}
+        SLOT_UNUSED_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSLOT_UNUSED_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: SLOT_UNUSED_t */ 
-SLOT_UNUSED_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kSLOT_UNUSED_v, wbd, false) {} 
+SLOT_UNUSED_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSLOT_UNUSED_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: CarSensorPressed_t @brief flag to indicate status of sensor for cars */ 
     class CarSensorPressed_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: CarSensorPressed_t */ 
-        CarSensorPressed_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kCarSensorPressed_v, false) {}
+        CarSensorPressed_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kCarSensorPressed_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: CarSensorPressed_t */ 
-CarSensorPressed_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kCarSensorPressed_v, wbd, false) {} 
+CarSensorPressed_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kCarSensorPressed_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: SwitchSubsumptionTrafficLights_t @brief no comment entered */ 
     class SwitchSubsumptionTrafficLights_t: public generic_whiteboard_object<class SwitchSubsumptionTrafficLights > { 
         public: 
         /** Constructor: SwitchSubsumptionTrafficLights_t */ 
-        SwitchSubsumptionTrafficLights_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class SwitchSubsumptionTrafficLights >(wbd, kSwitchSubsumptionTrafficLights_v, false) {}
+        SwitchSubsumptionTrafficLights_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SwitchSubsumptionTrafficLights >(wbd, kSwitchSubsumptionTrafficLights_v, false) {}
         
     };
 
@@ -828,43 +828,43 @@ CarSensorPressed_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class Ball_Found_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: Ball_Found_t */ 
-        Ball_Found_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kBall_Found_v, false) {}
+        Ball_Found_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kBall_Found_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Ball_Found_t */ 
-Ball_Found_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kBall_Found_v, wbd, false) {} 
+Ball_Found_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kBall_Found_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: Ball_Calibration_File_t @brief name of DLC file to load for STEM6 DetectBallColor */ 
     class Ball_Calibration_File_t: public generic_whiteboard_object<std::string > { 
         public: 
         /** Constructor: Ball_Calibration_File_t */ 
-        Ball_Calibration_File_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(wbd, kBall_Calibration_File_v, false) {}
+        Ball_Calibration_File_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kBall_Calibration_File_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Ball_Calibration_File_t */ 
-Ball_Calibration_File_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<std::string >(value, kBall_Calibration_File_v, wbd, false) {} 
+Ball_Calibration_File_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kBall_Calibration_File_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: Ball_Calibration_Num_t @brief number (size_t) to load with DLC file for STEM6 DetectBallColor */ 
     class Ball_Calibration_Num_t: public generic_whiteboard_object<int32_t > { 
         public: 
         /** Constructor: Ball_Calibration_Num_t */ 
-        Ball_Calibration_Num_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(wbd, kBall_Calibration_Num_v, false) {}
+        Ball_Calibration_Num_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(wbd, kBall_Calibration_Num_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Ball_Calibration_Num_t */ 
-Ball_Calibration_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(value, kBall_Calibration_Num_v, wbd, false) {} 
+Ball_Calibration_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(value, kBall_Calibration_Num_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: Ball_Color_Num_t @brief number for each ball color as defined in STEM6Master */ 
     class Ball_Color_Num_t: public generic_whiteboard_object<int32_t > { 
         public: 
         /** Constructor: Ball_Color_Num_t */ 
-        Ball_Color_Num_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(wbd, kBall_Color_Num_v, false) {}
+        Ball_Color_Num_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(wbd, kBall_Color_Num_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Ball_Color_Num_t */ 
-Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<int32_t >(value, kBall_Color_Num_v, wbd, false) {} 
+Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int32_t >(value, kBall_Color_Num_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: HAL_LArmTarget_Ctrl_t @brief Used to control the left arm via DCM */ 
     class HAL_LArmTarget_Ctrl_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Ctrl_t */ 
-        HAL_LArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Ctrl_v, false) {}
+        HAL_LArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Ctrl_v, false) {}
         
     };
 
@@ -872,7 +872,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class HAL_LArmTarget_Stat_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Stat_t */ 
-        HAL_LArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Stat_v, false) {}
+        HAL_LArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Stat_v, false) {}
         
     };
 
@@ -880,7 +880,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class HAL_LArmTarget_Tolr_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Tolr_t */ 
-        HAL_LArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Tolr_v, false) {}
+        HAL_LArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Tolr_v, false) {}
         
     };
 
@@ -888,7 +888,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class HAL_RArmTarget_Ctrl_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Ctrl_t */ 
-        HAL_RArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Ctrl_v, false) {}
+        HAL_RArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Ctrl_v, false) {}
         
     };
 
@@ -896,7 +896,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class HAL_RArmTarget_Stat_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Stat_t */ 
-        HAL_RArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Stat_v, false) {}
+        HAL_RArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Stat_v, false) {}
         
     };
 
@@ -904,7 +904,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class HAL_RArmTarget_Tolr_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Tolr_t */ 
-        HAL_RArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Tolr_v, false) {}
+        HAL_RArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Tolr_v, false) {}
         
     };
 
@@ -912,7 +912,7 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class VisionFieldFeatures_t: public generic_whiteboard_object<class VisionFieldFeatures > { 
         public: 
         /** Constructor: VisionFieldFeatures_t */ 
-        VisionFieldFeatures_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionFieldFeatures >(wbd, kVisionFieldFeatures_v, false) {}
+        VisionFieldFeatures_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionFieldFeatures >(wbd, kVisionFieldFeatures_v, false) {}
         
     };
 
@@ -920,25 +920,25 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULL): ge
     class WhistleBlown_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: WhistleBlown_t */ 
-        WhistleBlown_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(wbd, kWhistleBlown_v, false) {}
+        WhistleBlown_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWhistleBlown_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WhistleBlown_t */ 
-WhistleBlown_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<bool >(value, kWhistleBlown_v, wbd, false) {} 
+WhistleBlown_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWhistleBlown_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: VolumeControl_t @brief Variable used by SMVolumeController to control the volume via pulse audio commands */ 
     class VolumeControl_t: public generic_whiteboard_object<uint8_t > { 
         public: 
         /** Constructor: VolumeControl_t */ 
-        VolumeControl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<uint8_t >(wbd, kVolumeControl_v, false) {}
+        VolumeControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<uint8_t >(wbd, kVolumeControl_v, false) {}
         /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: VolumeControl_t */ 
-VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<uint8_t >(value, kVolumeControl_v, wbd, false) {} 
+VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<uint8_t >(value, kVolumeControl_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: VisionRobots_t @brief Class that reports the robots that vision sees. */ 
     class VisionRobots_t: public generic_whiteboard_object<class VisionRobots > { 
         public: 
         /** Constructor: VisionRobots_t */ 
-        VisionRobots_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class VisionRobots >(wbd, kVisionRobots_v, false) {}
+        VisionRobots_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionRobots >(wbd, kVisionRobots_v, false) {}
         
     };
 
@@ -946,7 +946,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class FieldHorizon_t: public generic_whiteboard_object<class FieldHorizon > { 
         public: 
         /** Constructor: FieldHorizon_t */ 
-        FieldHorizon_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class FieldHorizon >(wbd, kFieldHorizon_v, false) {}
+        FieldHorizon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldHorizon >(wbd, kFieldHorizon_v, false) {}
         
     };
 
@@ -954,7 +954,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class NaoWalkCommand_t: public generic_whiteboard_object<class NaoWalkCommand > { 
         public: 
         /** Constructor: NaoWalkCommand_t */ 
-        NaoWalkCommand_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NaoWalkCommand >(wbd, kNaoWalkCommand_v, false) {}
+        NaoWalkCommand_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NaoWalkCommand >(wbd, kNaoWalkCommand_v, false) {}
         
     };
 
@@ -962,7 +962,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class NaoWalkStatus_t: public generic_whiteboard_object<class NaoWalkStatus > { 
         public: 
         /** Constructor: NaoWalkStatus_t */ 
-        NaoWalkStatus_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class NaoWalkStatus >(wbd, kNaoWalkStatus_v, false) {}
+        NaoWalkStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NaoWalkStatus >(wbd, kNaoWalkStatus_v, false) {}
         
     };
 
@@ -970,7 +970,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_LLegTarget_Ctrl_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Ctrl_t */ 
-        HAL_LLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Ctrl_v, false) {}
+        HAL_LLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Ctrl_v, false) {}
         
     };
 
@@ -978,7 +978,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_LLegTarget_Stat_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Stat_t */ 
-        HAL_LLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Stat_v, false) {}
+        HAL_LLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Stat_v, false) {}
         
     };
 
@@ -986,7 +986,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_LLegTarget_Tolr_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Tolr_t */ 
-        HAL_LLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Tolr_v, false) {}
+        HAL_LLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Tolr_v, false) {}
         
     };
 
@@ -994,7 +994,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_RLegTarget_Ctrl_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Ctrl_t */ 
-        HAL_RLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Ctrl_v, false) {}
+        HAL_RLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Ctrl_v, false) {}
         
     };
 
@@ -1002,7 +1002,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_RLegTarget_Stat_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Stat_t */ 
-        HAL_RLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Stat_v, false) {}
+        HAL_RLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Stat_v, false) {}
         
     };
 
@@ -1010,7 +1010,7 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULL): gen
     class HAL_RLegTarget_Tolr_t: public generic_whiteboard_object<class HAL_LegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Tolr_t */ 
-        HAL_RLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULL): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Tolr_v, false) {}
+        HAL_RLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Tolr_v, false) {}
         
     };
 

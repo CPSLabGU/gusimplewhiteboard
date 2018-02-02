@@ -102,21 +102,21 @@ namespace guWhiteboard
          * A generic C++ function that gets a string from the whiteboard.
          * Both the message type and the message content are strings.
          * @param message_type the string version of the type
-         * @param msg the data container, if NULL then the message is gotten from the whiteboard
-         * @param wbd the whiteboard to get the message from (NULL for the default whiteboard) - this parameter has no effect if `msg` is non-NULL
+         * @param msg the data container, if NULLPTR then the message is gotten from the whiteboard
+         * @param wbd the whiteboard to get the message from (NULLPTR for the default whiteboard) - this parameter has no effect if `msg` is non-NULLPTR
          * @return the pretty printed data string
          */
-        std::string getmsg(std::string message_type, gu_simple_message *msg = NULL, gu_simple_whiteboard_descriptor *wbd = NULL);
+        std::string getmsg(std::string message_type, gu_simple_message *msg = NULLPTR, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
 
         /**
          * Generic C++ function that gets a message with a given message number
          * to the whiteboard.
          * @param message_index the offset or enum value of the type to get
-         * @param msg the data container, if NULL then the message is gotten from the whiteboard
-         * @param wbd the whiteboard to get the message from (NULL for the default whiteboard) - this parameter has no effect if `msg` is non-NULL
+         * @param msg the data container, if NULLPTR then the message is gotten from the whiteboard
+         * @param wbd the whiteboard to get the message from (NULLPTR for the default whiteboard) - this parameter has no effect if `msg` is non-NULLPTR
          * @return the pretty printed data string
          */
-        std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULL, gu_simple_whiteboard_descriptor *wbd = NULL);
+        std::string getmsg(guWhiteboard::WBTypes message_index, gu_simple_message *msg = NULLPTR, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
 }
 #endif // __cplusplus
 
