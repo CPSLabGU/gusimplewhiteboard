@@ -18,10 +18,13 @@
 #pragma clang diagnostic ignored "-Wdeprecated"
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 
+#include <cstddef>
+#include <cassert>
 #include <iostream>
-#include <assert.h>
 #include <string>
 #include <vector>
+
+#include <gu_util.h>
 
 #ifdef bool
 #undef bool
@@ -99,7 +102,7 @@ public:
         /**
          * value conversion reference constructor (needs to be overridden by subclasses to set toffs to be useful)
          */
-        generic_whiteboard_object(const object_type &value, uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL, bool want_atomic = true)
+        generic_whiteboard_object(const object_type &value, uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULLPTR, bool want_atomic = true)
         {
                 init(toffs, wbd, want_atomic);
                 set(value);
@@ -108,7 +111,7 @@ public:
         /**
          * intialiser (called from constructors)
          */
-        void init(uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULL, bool want_atomic = true, bool do_notify_subscribers = true)
+        void init(uint16_t toffs, gu_simple_whiteboard_descriptor *wbd = NULLPTR, bool want_atomic = true, bool do_notify_subscribers = true)
         {
                 if(!wbd)
                 {
