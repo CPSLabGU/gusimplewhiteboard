@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <gu_util.h>
 
 #define WHITEBOARD_POSTER_STRING_CONVERSION
 
