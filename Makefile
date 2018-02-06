@@ -13,7 +13,7 @@ DOC_RECURSIVE=YES			# build doxygen recursively
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 
-ALL_TARGETS=host-local atom-local atom1-local geode-local analyse test xc
+ALL_TARGETS=host-local atom-local atom1-local geode-local analyse test xc whiteboard-wrapper
 
 CATKIN_COMPILE_UTIL=YES
 
@@ -48,5 +48,8 @@ test:
 
 post-clean:
 	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
+
+whiteboard-wrapper:
+	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host && ./.build/release/WhiteboardWrapperGenerator
 
 .include "../../mk/mipal.mk"		# comes last!
