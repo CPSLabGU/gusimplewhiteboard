@@ -29,15 +29,11 @@ ${MODULE_BASE}_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECL
 
 WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhiteboard.h | sed 's/GU_SIMPLE_WHITEBOARD_VERSION[ ]*//'
 
-all: all-real
+PKGCONFIG_NAME=lib${LIB}
+PKGCONFIG_VERSION=${WB_VERSION}
+PKGCONFIG_DESCRIPTION=Shared memory IPC mechanism
 
-pkg-config:
-	-$Emkdir -p -m 0755 ${WB_INST_DIR:Q}/lib/pkgconfig
-	$Erm -f ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
-	$Erm -f libgusimplewhiteboard.pc
-	$Esed -e 's|@WB_INST_DIR@|${WB_INST_DIR}|' -e 's/@WB_VERSION@/${WB_VERSION}/' libgusimplewhiteboard.pc.conf > libgusimplewhiteboard.pc
-	$Ecp -pR libgusimplewhiteboard.pc ${WB_INST_DIR:Q}/lib/pkgconfig/libgusimplewhiteboard.pc
-	$Erm -f libgusimplewhiteboard.pc
+all: all-real
 
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
