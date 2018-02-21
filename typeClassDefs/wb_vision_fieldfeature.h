@@ -64,6 +64,7 @@
 #include "gu_util.h" 
 
 #include <stdint.h> 
+#include <wb_point2d.h> 
 
 #define VISION_FIELDFEATURE_NUMBER_OF_VARIABLES 2 
 
