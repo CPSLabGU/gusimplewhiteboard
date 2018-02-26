@@ -286,11 +286,11 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
             }
             case kTopParticles_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef TOPPARTICLES_GENERATED
+                return DESERIALISE(TOPPARTICLES_C_STRUCT, serialised_in, (struct TOPPARTICLES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //TOPPARTICLES_GENERATED
                 break;
             }
             case kFilteredBallSighting_v:
@@ -826,11 +826,11 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
             }
             case kVisionFieldFeatures_v:
             {
-#ifdef VISIONFIELDFEATURES_GENERATED
-                return DESERIALISE(VISIONFIELDFEATURES_C_STRUCT, serialised_in, (struct VISIONFIELDFEATURES_C_STRUCT *)message_out)
+#ifdef VISION_FIELDFEATURES_GENERATED
+                return DESERIALISE(VISION_FIELDFEATURES_C_STRUCT, serialised_in, (struct VISION_FIELDFEATURES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISIONFIELDFEATURES_GENERATED
+#endif //VISION_FIELDFEATURES_GENERATED
                 break;
             }
             case kWhistleBlown_v:
@@ -854,11 +854,11 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
             }
             case kFieldHorizon_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef FIELDHORIZON_GENERATED
+                return DESERIALISE(FIELDHORIZON_C_STRUCT, serialised_in, (struct FIELDHORIZON_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //FIELDHORIZON_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:

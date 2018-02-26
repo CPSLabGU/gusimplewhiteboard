@@ -32,7 +32,7 @@ class:VisionControlStatus, nonatomic, Vision_Control, control various attributes
 class:VisionControlStatus, nonatomic, Vision_Status, message sent by vision that contains the current status of
 class:FFTStatus, nonatomic,         FFTStatus, stereo channel RMS and list of dominant frequencies from FFT
 class:FilteredArrayOneDimSonar, nonatomic, FSOsighting, Class that contains the Karman filtered  SONAR objects after a sighting
-class:TopParticles, nonatomic, TopParticles, Class that contains the top particles for possible robot positions
+type:TopParticles, nonatomic, TopParticles, Class that contains the top particles for possible robot positions
 class:FilteredArrayBallSightings, nonatomic, FilteredBallSighting, Class that contains the Kalman filtered top and bottom ball objects after sighting from vision
 int32_t,          nonatomic, PF_ControlStatus_Modes, what to post in the whiteboard to cause the Particle Filetr to reset, but running has no effect, it is the PF response
 class:WEBOTS_NXT_bridge, nonatomic, WEBOTS_NXT_bridge, WIP Class that contains a command for WEBOTS or NXt trough a bridge
@@ -53,7 +53,7 @@ class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge, Class that 
 class:VisionLines, nonatomic, VisionLines, Class that reports the lines that vision sees.
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus, Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl, Class that sends commands to the robot from the whiteboard
-type:Point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
+type:point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
 std::vector<int>,    atomic, VisionFace,          Face seen by Vision
 std::string,    atomic, Draw,        Used by the half made GUDraw module in posix
 class:FSMState, atomic, FSM_States, Idempotent Message publicising the state -about to be executed- (0-254) of up-to the first 128 machines (0-127).  State -INVALDMACHINE- (255) is posted for MachineIDs that are not currently loaded.
@@ -104,13 +104,13 @@ class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle
 class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
 class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
 class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-type:VisionFieldFeatures, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
+type:Vision_FieldFeatures, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
 bool,                nonatomic, WhistleBlown, Whistle blown flag
 uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to control the volume via pulse audio commands
 class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that vision sees.
-class:FieldHorizon, nonatomic, FieldHorizon, Class that reports the edge of an SPL field (the edge of the green bit)
-type:NaoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
-type:NaoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
+type:fieldHorizon, nonatomic, FieldHorizon, Class that reports the edge of an SPL field (the edge of the green bit)
+type:naoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
+type:naoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
 class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
 class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Stat, Used to report DCM status of the left leg
 class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
