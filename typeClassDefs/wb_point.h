@@ -59,7 +59,6 @@
 #define WBPoint_h
 
 #include <gu_util.h>
-#include "wb_point2d.h"
 
 /**
  * Simple 3 dimensional point class for the whiteboard
