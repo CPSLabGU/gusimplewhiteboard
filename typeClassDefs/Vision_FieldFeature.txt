@@ -1,5 +1,0 @@
-author	Eugene Gilmore
-struct wb_point2D	location	//location of corners on the field
-uint8_t	camera	//camera it was seen on
-
-@brief A corner or T-Intersection that vision has seen
