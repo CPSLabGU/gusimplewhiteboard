@@ -8,16 +8,16 @@
 #ifndef WB_LINES_H
 #define	WB_LINES_H
 
-#include "wb_point.h"
+#include "wb_point2D.h"
 	
 /**
  * @brief Simple struct to store information for a line
  */
 struct wb_line {
 	/**Start coordinates of the line*/
-	PROPERTY(struct wb_point2d, start)
+	PROPERTY(struct wb_point2D, start)
 	/**End Coordinates of the line*/
-	PROPERTY(struct wb_point2d, end)
+	PROPERTY(struct wb_point2D, end)
 	PROPERTY(uint8_t, startThickness)
 	PROPERTY(uint8_t, endThickness)
 #ifdef __cplusplus
