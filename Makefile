@@ -20,6 +20,9 @@ CATKIN_COMPILE_UTIL=YES
 
 CC_SRCS=libgusimplewhiteboardmain.cc 
 
+WB_MSG_C_FILES!= cd typeClassDefs && ls *.c
+WBMSG_C_SRCS?=${WB_MSG_C_FILES}
+
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
 
