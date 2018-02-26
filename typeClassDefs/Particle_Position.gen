@@ -2,7 +2,7 @@
 
 -c
 
-#include "wb_point2d.h"
+#include "wb_point2D.h"
 
 -c++
 #include "Point2D.h"
