@@ -826,11 +826,11 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
             }
             case kVisionFieldFeatures_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
+#ifdef VISIONFIELDFEATURES_GENERATED
+                return SERIALISE(VISIONFIELDFEATURES_C_STRUCT, (struct VISIONFIELDFEATURES_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISIONFIELDFEATURES_GENERATED
                 break;
             }
             case kWhistleBlown_v:
@@ -863,11 +863,11 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
             }
             case kNaoWalkCommand_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
+#ifdef NAOWALKCOMMAND_GENERATED
+                return SERIALISE(NAOWALKCOMMAND_C_STRUCT, (struct NAOWALKCOMMAND_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //NAOWALKCOMMAND_GENERATED
                 break;
             }
             case kNaoWalkStatus_v:

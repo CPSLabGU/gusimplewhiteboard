@@ -11,6 +11,8 @@
 
 
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_command.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_status.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
