@@ -11,6 +11,7 @@
 
 -properties
 struct wb_particle_position particles[4] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()} // these 4 should be the constant NUM_TOP_PARTICLES
+int dummyValuePleaseRemoveOnceArrayParsingIsImplementedOtherwiseTheParserHasAnUnUsedVariable=0 //dummy
 
 -comment
 The class of the top particles in a Localization Filter
