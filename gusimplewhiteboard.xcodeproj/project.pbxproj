@@ -765,6 +765,7 @@
 		F51974AB1952920100010021 /* FilteredArrayOneDimBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimBall.h; sourceTree = "<group>"; };
 		F5532F7B19516B5E00FE04F1 /* FilteredOneDimObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredOneDimObject.h; sourceTree = "<group>"; };
 		F5532F7C19517C8900FE04F1 /* FilteredArrayOneDimSonar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredArrayOneDimSonar.h; sourceTree = "<group>"; };
+		F58B1BFA204525E40045342F /* guwhiteboard_c_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = guwhiteboard_c_types.h; sourceTree = "<group>"; };
 		F58EB5751B71B6A70066F1DE /* DifferentialRobotControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentialRobotControlStatus.h; sourceTree = "<group>"; };
 		F5BC000A1F0DEF7900987168 /* FilteredVisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredVisionObject.h; sourceTree = "<group>"; };
 		F5BC000C1F0DEF9700987168 /* FilteredArrayBallSightings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredArrayBallSightings.h; sourceTree = "<group>"; };
@@ -1051,6 +1052,7 @@
 				C3DE476016D1E0250098F502 /* guwhiteboardtypelist.tsl */,
 				F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */,
 				F14C46C314A07024006B6953 /* gusimplewhiteboard.c */,
+				F58B1BFA204525E40045342F /* guwhiteboard_c_types.h */,
 				F1F4536514A123C7005C40A6 /* WBMsg.h */,
 				F1D9265914A151C500BDAEED /* WBFunctor.h */,
 				C3DE478C16D3447B0098F502 /* WBFunctor_types_generated.h */,
