@@ -29,7 +29,7 @@ WBMSG_C_SRCS?=${WB_MSG_C_FILES}
 .include "../../mk/c++11.mk"       # can't use C++11 due to naoqi
 .include "../../mk/whiteboard.mk"	# required for whiteboard clients
 
-${MODULE_BASE}_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} guwhiteboard_c_types.h guwhiteboardserialisation.h 
+${MODULE_BASE}_HDRS=${NEW_WHITEBOARD_HDRS} ${WHITEBOARD_COMMON_HDRS} ${WB_TYPECLASSDEFS} guwhiteboard_c_types.h guwhiteboardserialisation.h guwhiteboard_c_types_manual_definitions.h
 
 WB_VERSION!=grep -Eo 'GU_SIMPLE_WHITEBOARD_VERSION *[[:digit:]]' gusimplewhiteboard.h | sed 's/GU_SIMPLE_WHITEBOARD_VERSION[ ]*//'
 
