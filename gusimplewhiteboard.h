@@ -77,18 +77,6 @@
 #ifndef __cplusplus
 #include <stdbool.h>
 #include <stdint.h>
-# ifndef u_int64_t
-#  define u_int64_t uint64_t
-# endif
-# ifndef u_int32_t
-#  define u_int32_t uint32_t
-# endif
-# ifndef u_int16_t
-#  define u_int16_t uint16_t
-# endif
-# ifndef u_int8_t
-#  define u_int8_t uint8_t
-# endif
 #else
 #if __cplusplus < 201103L
 #include <stdbool.h>
@@ -122,6 +110,19 @@ extern "C"
 #undef false
 #endif
 #endif // __cplusplus
+
+#ifndef u_int64_t
+# define u_int64_t uint64_t
+#endif
+#ifndef u_int32_t
+# define u_int32_t uint32_t
+#endif
+#ifndef u_int16_t
+# define u_int16_t uint16_t
+#endif
+#ifndef u_int8_t
+# define u_int8_t uint8_t
+#endif
 
 #if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
 #define GSW_IOS_SIMULATOR                               ///< IOS device (but not simulator)
