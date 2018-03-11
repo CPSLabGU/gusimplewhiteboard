@@ -4,6 +4,19 @@
 
 #include "wb_particle_position.h"
 
+        /**
+         * commands to set the Grid Particle Filer Status
+         */
+        enum PF_ControlStatus_Modes
+        {
+                PF_Running=0,             ///< PF is running
+                PF_New_Game,      ///< A FSM should set this, the PF is reset as per playerNumber
+                PF_After_Penalized,              ///< Sides of our field are the reset positions
+                PF_After_Fall,             ///< headings are reset randomly
+                PF_Manual_Placement          ///< maybe after 34 seconds and manual placelemnt
+
+        };
+
 -c++
 #define TOPPARTICLES_PARTICLES_ARRAY_SIZE 4
 
