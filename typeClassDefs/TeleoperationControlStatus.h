@@ -36,27 +36,6 @@ public:
 		VERSION_PROPERTY_INITIALIZATION(action)
 		VERSION_PROPERTY_INITIALIZATION(stance)
 	}
-	/**
-	 * @brief Check whether the client has connected. Need a better way of doing this.
-     * @return true if connected
-     */
-	bool connected() {
-		return initBit == 1;
-	}
-	
-	/**
-	 * @brief set the init bit to connect to a teleoperational robot. Need a better way of doing this.
-     */
-	void connect() {
-		initBit = 1;
-	}
-	
-	/**
-	 * @brief Disconnect a teleoperation client
-     */
-	void disconnect() {
-		initBit = 0;
-	}
 	
 	/**Reset the version numbers of the action and stance properties*/
 	void resetVersions() {

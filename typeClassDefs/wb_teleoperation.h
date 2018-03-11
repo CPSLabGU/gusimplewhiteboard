@@ -7,7 +7,6 @@
 /** struct for the teleoperation class */
 struct wb_teleoperation
 {
-	unsigned initBit : 1; ///< Gross hacky way of detecting a connection
 	/** The forward speed */
 	PROPERTY(int, fowardWalkSpeed)
 	/** Turning speed */
@@ -16,10 +15,12 @@ struct wb_teleoperation
 	PROPERTY(float, headPitch)
 	/** Head yaw controller */
 	PROPERTY(float, headYaw)
+        /**Robot to control*/
+        STRING_PROPERTY(controlRobot, 8)
 
 #ifdef __cplusplus
 	/** default constructor */
-	wb_teleoperation() : initBit(0), _fowardWalkSpeed(0), _turnWalkSpeed(0), _headPitch(0), _headYaw(0){}
+	wb_teleoperation() : _fowardWalkSpeed(0), _turnWalkSpeed(0), _headPitch(0), _headYaw(0), _controlRobot("") {}
 #endif
 };
 
