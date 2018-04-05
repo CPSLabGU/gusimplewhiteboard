@@ -44,10 +44,10 @@ public:
 	}
     
     std::string description(){
-        std::string desc;
-        desc = controlRobot();
-        desc += controlNum();
-        return std::string(controlRobot());
+        std::stringstream desc;
+        desc << controlRobot();
+        desc << controlNum();
+        return desc.str();
     }
     
     void from_string(const std::string &/*str*/) {
