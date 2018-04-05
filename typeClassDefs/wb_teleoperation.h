@@ -17,6 +17,7 @@ struct wb_teleoperation
 	PROPERTY(float, headYaw)
         /**Robot to control*/
         STRING_PROPERTY(controlRobot, 8)
+    PROPERTY(int, controlNum)
 
 #ifdef __cplusplus
 	/** default constructor */

@@ -42,6 +42,17 @@ public:
 		reset_action_version();
 		reset_stance_version();
 	}
+    
+    std::string description(){
+        std::string desc;
+        desc = controlRobot();
+        desc += controlNum();
+        return std::string(controlRobot());
+    }
+    
+    void from_string(const std::string &/*str*/) {
+        printf("NYI!\n");
+    }
 	
 private:
 	/**The action that should be performed*/
