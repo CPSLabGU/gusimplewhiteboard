@@ -254,7 +254,7 @@ public:
 							set_resolution(ResolutionValues[j]);
 							break;
 						case PipelineRunning:
-							set_pipelineRunning(BoolStrings[j]);
+							set_pipelineRunning(BoolValues[j]);
 							break;
 						case SelectedCamera:
 							set_selectedCamera(CameraValues[j]);
@@ -263,7 +263,7 @@ public:
 							set_saveImage(SaveImageValues[j]);
 							break;
 						case SaveClassifiedImage:
-							set_saveClassifiedImage(BoolStrings[j]);
+							set_saveClassifiedImage(BoolValues[j]);
 							break;
 						case ActivatePipeline:
 							set_activatePipeline(PipelineValues[j]);
@@ -272,13 +272,13 @@ public:
 							set_streamingSource(StreamingSourceValues[j]);
 							break;
 						case ConservativeMode:
-							set_conservativeMode(BoolStrings[j]);
+							set_conservativeMode(BoolValues[j]);
 							break;
 						case ImageInput:
-							set_imageInput(BoolStrings[j]);
+							set_imageInput(BoolValues[j]);
 							break;
 						case PipelineRunOnce:
-							set_pipelineRunOnce(BoolStrings[j]);
+							set_pipelineRunOnce(BoolValues[j]);
 						}
 					}
 				}
