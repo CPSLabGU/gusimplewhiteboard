@@ -1016,6 +1016,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: FieldGoals_t @brief Reports robocup spl goals found with guvision and GoalRayTracer. */ 
+    class FieldGoals_t: public generic_whiteboard_object<class FieldGoals > { 
+        public: 
+        /** Constructor: FieldGoals_t */ 
+        FieldGoals_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldGoals >(wbd, kFieldGoals_v, false) {}
+        
+    };
+
 
 }
 

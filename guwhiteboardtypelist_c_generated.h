@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 119
+#define GSW_NUM_TYPES_DEFINED 120
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -140,8 +140,9 @@ typedef enum wb_types
     kHAL_LLegTarget_Tolr_v = 115, 		///< Used to set the joing angle tolerance for motion completion detection.
     kHAL_RLegTarget_Ctrl_v = 116, 		///< Used to control the right leg via DCM
     kHAL_RLegTarget_Stat_v = 117, 		///< Used to report DCM status of the right leg
+    kHAL_RLegTarget_Tolr_v = 118, 		///< Used to set the joing angle tolerance for motion completion detection.
 
-    kHAL_RLegTarget_Tolr_v = 118 		///< Used to set the joing angle tolerance for motion completion detection.
+    kFieldGoals_v = 119 		///< Reports robocup spl goals found with guvision and GoalRayTracer.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

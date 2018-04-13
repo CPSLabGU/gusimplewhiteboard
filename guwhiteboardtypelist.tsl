@@ -117,3 +117,4 @@ class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+type:fieldGoals, nonatomic, FieldGoals, Reports robocup spl goals found with guvision and GoalRayTracer.

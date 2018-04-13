@@ -933,6 +933,15 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
+            case kFieldGoals_v:
+            {
+#ifdef FIELDGOALS_GENERATED
+                return SERIALISE(FIELDGOALS_C_STRUCT, (struct FIELDGOALS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //FIELDGOALS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -18,5 +18,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_field_horizons.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_command.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_status.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_field_goals.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

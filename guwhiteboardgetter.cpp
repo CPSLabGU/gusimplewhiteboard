@@ -1066,6 +1066,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //HAL_LegTarget_DEFINED
             }
+            case kFieldGoals_v:
+            {
+#ifdef FieldGoals_DEFINED
+                class FieldGoals_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FieldGoals_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

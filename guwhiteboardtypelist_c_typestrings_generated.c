@@ -133,7 +133,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "HAL_LLegTarget_Tolr",
         "HAL_RLegTarget_Ctrl",
         "HAL_RLegTarget_Stat",
-        "HAL_RLegTarget_Tolr"
+        "HAL_RLegTarget_Tolr",
+        "FieldGoals"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -257,7 +258,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming"
+        "NotSupportedWithLegacyNaming",
+        "wb_field_goals"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

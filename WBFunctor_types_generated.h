@@ -2751,6 +2751,29 @@ public:
 }; 
 #endif //HAL_LegTarget_DEFINED
 
+#ifdef FieldGoals_DEFINED
+/** WBFunctor definition for FieldGoals_WBFunctor_T */ 
+template <typename FieldGoals_WBFunctor_T >
+class FieldGoals_WBFunctor: public WBFunctor<FieldGoals_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FieldGoals_WBFunctor_T */
+    FieldGoals_WBFunctor(FieldGoals_WBFunctor_T* obj, void (FieldGoals_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldGoals &), guWhiteboard::WBTypes t): WBFunctor<FieldGoals_WBFunctor_T >(obj, (void (FieldGoals_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FieldGoals_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FieldGoals result = guWhiteboard::FieldGoals_t().get_from(m);
+        FieldGoals_function_t funct((void (FieldGoals_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldGoals &))WBFunctor<FieldGoals_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FieldGoals_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldGoals_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FieldGoals_WBFunctor_T::*FieldGoals_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldGoals &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FieldGoals_WBFunctor_T *obj, void (FieldGoals_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldGoals &), guWhiteboard::WBTypes t) { return new FieldGoals_WBFunctor<FieldGoals_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FieldGoals_DEFINED
+
 
 #pragma clang diagnostic pop
 
