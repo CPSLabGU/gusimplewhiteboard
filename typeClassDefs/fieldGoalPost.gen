@@ -10,19 +10,19 @@ enum GoalPostOptions {
 };
 
 -properties
-enum GoalOptions goalType = FoundNothing // Goal post details.
+enum GoalPostOptions goalType = NotDetected // Goal post details.
 
-uint16_t tlx = 0 // Top Left X coord.
-uint16_t tly = 0 // Top Left Y coord.
+uint16_t tl_x = 0 // Top Left X coord.
+uint16_t tl_y = 0 // Top Left Y coord.
 
-uint16_t trx = 0 // Top Right X coord.
-uint16_t try = 0 // Top Right Y coord.
+uint16_t tr_x = 0 // Top Right X coord.
+uint16_t tr_y = 0 // Top Right Y coord.
 
-uint16_t blx = 0 // Bottom Left X coord.
-uint16_t bly = 0 // Bottom Left Y coord.
+uint16_t bl_x = 0 // Bottom Left X coord.
+uint16_t bl_y = 0 // Bottom Left Y coord.
 
-uint16_t brx = 0 // Bottom Right X coord.
-uint16_t bry = 0 // Bottom Right Y coord.
+uint16_t br_x = 0 // Bottom Right X coord.
+uint16_t br_y = 0 // Bottom Right Y coord.
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
