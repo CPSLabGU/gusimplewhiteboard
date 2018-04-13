@@ -1,0 +1,11 @@
+-author Carl Lusty
+
+-c
+#include <wb_field_horizon.h>
+
+-properties
+
+struct wb_field_horizon horizons[2] = { wb_field_horizon(), wb_field_horizon() } //horizon objects
+
+-comment
+Array of fieldHorizons, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao.

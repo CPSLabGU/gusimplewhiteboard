@@ -1281,17 +1281,17 @@ v.from_string(message_content);
     return false;
 #endif //VisionRobots_DEFINED
 }
-case kFieldHorizon_v:
+case kFieldHorizons_v:
 {
-#ifdef FieldHorizon_DEFINED
-    class FieldHorizon_t msg_ptr(wbd);
-    FieldHorizon v = msg_ptr.get();
+#ifdef FieldHorizons_DEFINED
+    class FieldHorizons_t msg_ptr(wbd);
+    FieldHorizons v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldHorizon_DEFINED
+#endif //FieldHorizons_DEFINED
 }
 case kNaoWalkCommand_v:
 {
@@ -1514,7 +1514,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["WhistleBlown"] = kWhistleBlown_v;
     self["VolumeControl"] = kVolumeControl_v;
     self["VisionRobots"] = kVisionRobots_v;
-    self["FieldHorizon"] = kFieldHorizon_v;
+    self["FieldHorizons"] = kFieldHorizons_v;
     self["NaoWalkCommand"] = kNaoWalkCommand_v;
     self["NaoWalkStatus"] = kNaoWalkStatus_v;
     self["HAL_LLegTarget_Ctrl"] = kHAL_LLegTarget_Ctrl_v;

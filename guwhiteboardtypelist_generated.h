@@ -944,11 +944,11 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
-    /** WB Ptr Class: FieldHorizon_t @brief Class that reports the edge of an SPL field (the edge of the green bit) */ 
-    class FieldHorizon_t: public generic_whiteboard_object<class FieldHorizon > { 
+    /** WB Ptr Class: FieldHorizons_t @brief Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera. */ 
+    class FieldHorizons_t: public generic_whiteboard_object<class FieldHorizons > { 
         public: 
-        /** Constructor: FieldHorizon_t */ 
-        FieldHorizon_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldHorizon >(wbd, kFieldHorizon_v, false) {}
+        /** Constructor: FieldHorizons_t */ 
+        FieldHorizons_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldHorizons >(wbd, kFieldHorizons_v, false) {}
         
     };
 

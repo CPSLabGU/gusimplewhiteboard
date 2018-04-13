@@ -15,7 +15,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_field_horizon.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_field_horizons.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_command.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_status.h>
 

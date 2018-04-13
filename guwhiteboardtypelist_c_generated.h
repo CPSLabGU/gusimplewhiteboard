@@ -132,7 +132,7 @@ typedef enum wb_types
     kWhistleBlown_v = 107, 		///< Whistle blown flag
     kVolumeControl_v = 108, 		///< Variable used by SMVolumeController to control the volume via pulse audio commands
     kVisionRobots_v = 109, 		///< Class that reports the robots that vision sees.
-    kFieldHorizon_v = 110, 		///< Class that reports the edge of an SPL field (the edge of the green bit)
+    kFieldHorizons_v = 110, 		///< Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
     kNaoWalkCommand_v = 111, 		///< Class that controls the latest version of the UNSW 2014 walk engine.
     kNaoWalkStatus_v = 112, 		///< Status class for the latest version of the UNSW 2014 walk engine.
     kHAL_LLegTarget_Ctrl_v = 113, 		///< Used to control the left leg via DCM

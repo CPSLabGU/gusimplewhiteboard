@@ -852,13 +852,13 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldHorizon_v:
+            case kFieldHorizons_v:
             {
-#ifdef FIELDHORIZON_GENERATED
-                return SERIALISE(FIELDHORIZON_C_STRUCT, (struct FIELDHORIZON_C_STRUCT *)message_in, serialised_out)
+#ifdef FIELDHORIZONS_GENERATED
+                return SERIALISE(FIELDHORIZONS_C_STRUCT, (struct FIELDHORIZONS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //FIELDHORIZON_GENERATED
+#endif //FIELDHORIZONS_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:

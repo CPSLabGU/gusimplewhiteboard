@@ -2544,28 +2544,28 @@ public:
 }; 
 #endif //VisionRobots_DEFINED
 
-#ifdef FieldHorizon_DEFINED
-/** WBFunctor definition for FieldHorizon_WBFunctor_T */ 
-template <typename FieldHorizon_WBFunctor_T >
-class FieldHorizon_WBFunctor: public WBFunctor<FieldHorizon_WBFunctor_T > {
+#ifdef FieldHorizons_DEFINED
+/** WBFunctor definition for FieldHorizons_WBFunctor_T */ 
+template <typename FieldHorizons_WBFunctor_T >
+class FieldHorizons_WBFunctor: public WBFunctor<FieldHorizons_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for FieldHorizon_WBFunctor_T */
-    FieldHorizon_WBFunctor(FieldHorizon_WBFunctor_T* obj, void (FieldHorizon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizon &), guWhiteboard::WBTypes t): WBFunctor<FieldHorizon_WBFunctor_T >(obj, (void (FieldHorizon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for FieldHorizons_WBFunctor_T */
+    FieldHorizons_WBFunctor(FieldHorizons_WBFunctor_T* obj, void (FieldHorizons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &), guWhiteboard::WBTypes t): WBFunctor<FieldHorizons_WBFunctor_T >(obj, (void (FieldHorizons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class FieldHorizon_WBFunctor */
+    /** call method for callbacks, for class FieldHorizons_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::FieldHorizon result = guWhiteboard::FieldHorizon_t().get_from(m);
-        FieldHorizon_function_t funct((void (FieldHorizon_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizon &))WBFunctor<FieldHorizon_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<FieldHorizon_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldHorizon_WBFunctor_T >::type_enum, result);
+        guWhiteboard::FieldHorizons result = guWhiteboard::FieldHorizons_t().get_from(m);
+        FieldHorizons_function_t funct((void (FieldHorizons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &))WBFunctor<FieldHorizons_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FieldHorizons_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldHorizons_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (FieldHorizon_WBFunctor_T::*FieldHorizon_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizon &);
+    typedef void (FieldHorizons_WBFunctor_T::*FieldHorizons_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(FieldHorizon_WBFunctor_T *obj, void (FieldHorizon_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizon &), guWhiteboard::WBTypes t) { return new FieldHorizon_WBFunctor<FieldHorizon_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(FieldHorizons_WBFunctor_T *obj, void (FieldHorizons_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &), guWhiteboard::WBTypes t) { return new FieldHorizons_WBFunctor<FieldHorizons_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FieldHorizon_DEFINED
+#endif //FieldHorizons_DEFINED
 
 #ifdef NaoWalkCommand_DEFINED
 /** WBFunctor definition for NaoWalkCommand_WBFunctor_T */ 

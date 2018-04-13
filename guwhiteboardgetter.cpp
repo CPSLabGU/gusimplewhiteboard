@@ -985,14 +985,14 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //VisionRobots_DEFINED
             }
-            case kFieldHorizon_v:
+            case kFieldHorizons_v:
             {
-#ifdef FieldHorizon_DEFINED
-                class FieldHorizon_t m(wbd);
+#ifdef FieldHorizons_DEFINED
+                class FieldHorizons_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldHorizon_DEFINED
+#endif //FieldHorizons_DEFINED
             }
             case kNaoWalkCommand_v:
             {
