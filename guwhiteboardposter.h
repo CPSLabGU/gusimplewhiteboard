@@ -116,6 +116,9 @@
 #include "VisionRobots.h"
 #include "FieldHorizon.h"
 #include "FieldHorizons.h"
+#include "FieldGoals.h"
+#include "FieldGoal.h"
+#include "FieldGoalPost.h"
 #include "TeleoperationControlStatus.h"
 
 //#include "GazeboObjectPose.h"
