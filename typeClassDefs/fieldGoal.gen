@@ -1,0 +1,23 @@
+-author Carl Lusty
+
+-c
+#include <stdint.h>
+#include <wb_field_goal_post.h>
+
+enum GoalOptions {
+	FoundNothing = 0,
+	SinglePost,
+	BothPosts
+};
+
+-properties
+enum GoalOptions goalType = FoundNothing // Goal detection details.
+
+wb_field_goal_post post1 = wb_field_goal_post() //First post found
+
+wb_field_goal_post post2 = wb_field_goal_post() //Second post found
+
+-comment
+Results for the Goal Ray Tracer (guvision). 
+If two posts are found, then post1 is the left post and post2 is the right.
+

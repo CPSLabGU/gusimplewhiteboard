@@ -1,0 +1,29 @@
+-author Carl Lusty
+
+-c
+#include <stdint.h>
+
+enum GoalPostOptions {
+	NotDetected = 0, ///< Didn't see a post
+	PartialSighting, ///< Saw part of a post. Part in the image, part out.
+	FullPostSeen     ///< Saw the entire post
+};
+
+-properties
+enum GoalOptions goalType = FoundNothing // Goal post details.
+
+uint16_t tlx = 0 // Top Left X coord.
+uint16_t tly = 0 // Top Left Y coord.
+
+uint16_t trx = 0 // Top Right X coord.
+uint16_t try = 0 // Top Right Y coord.
+
+uint16_t blx = 0 // Bottom Left X coord.
+uint16_t bly = 0 // Bottom Left Y coord.
+
+uint16_t brx = 0 // Bottom Right X coord.
+uint16_t bry = 0 // Bottom Right Y coord.
+
+-comment
+Results for the Goal Ray Tracer (guvision). 
+
