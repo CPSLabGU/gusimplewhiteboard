@@ -13,9 +13,9 @@ enum GoalOptions {
 -properties
 enum GoalOptions goalType = FoundNothing // Goal detection details.
 
-wb_field_goal_post post1 = wb_field_goal_post() //First post found
+struct wb_field_goal_post post1 = wb_field_goal_post() //First post found
 
-wb_field_goal_post post2 = wb_field_goal_post() //Second post found
+struct wb_field_goal_post post2 = wb_field_goal_post() //Second post found
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
