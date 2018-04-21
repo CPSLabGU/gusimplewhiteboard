@@ -5,7 +5,7 @@
 
 enum GoalPostOptions {
 	NotDetected = 0, ///< Didn't see a post
-	PartialSighting, ///< Saw part of a post. Part in the image, part out.
+	PartialPostSeen, ///< Saw part of a post. Part in the image, part out.
 	FullPostSeen     ///< Saw the entire post
 };
 
@@ -16,7 +16,7 @@ enum GoalPostOrientation {
 };
 
 -properties
-enum GoalPostOptions goalType = NotDetected // Goal post details.
+enum GoalPostOptions sightingType = NotDetected // Goal post details.
 
 enum GoalPostOrientation orientation = NotSure // Goal post orientation.
 
