@@ -4,21 +4,21 @@
 #include <stdint.h>
 
 enum GoalPostOptions {
-	NotDetected = 0, ///< Didn't see a post
+	NoPostDetected = 0, ///< Didn't see a post
 	PartialPostSeen, ///< Saw part of a post. Part in the image, part out.
 	FullPostSeen     ///< Saw the entire post
 };
 
 enum GoalPostOrientation {
-	NotSure = 0,    ///< Could not determine post orientation.
+	GenericPost = 0,    ///< Could not determine post orientation.
 	LeftPost,       ///< This is the left post of a goal.
 	RightPost       ///< This is the right post of a goal.
 };
 
 -properties
-enum GoalPostOptions sightingType = NotDetected // Goal post details.
+enum GoalPostOptions sightingType = NoPostDetected // Goal post details.
 
-enum GoalPostOrientation orientation = NotSure // Goal post orientation.
+enum GoalPostOrientation orientation = GenericPost // Goal post orientation.
 
 uint16_t tl_x = 0 // Top Left X coord.
 uint16_t tl_y = 0 // Top Left Y coord.
