@@ -942,6 +942,24 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #endif //FIELDGOALS_GENERATED
                 break;
             }
+            case kTeleoperationControl_v:
+            {
+#ifdef TELEOPERATIONCONTROL_GENERATED
+                return DESERIALISE(TELEOPERATIONCONTROL_C_STRUCT, serialised_in, (struct TELEOPERATIONCONTROL_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //TELEOPERATIONCONTROL_GENERATED
+                break;
+            }
+            case kTeleoperationStatus_v:
+            {
+#ifdef TELEOPERATIONSTATUS_GENERATED
+                return DESERIALISE(TELEOPERATIONSTATUS_C_STRUCT, serialised_in, (struct TELEOPERATIONSTATUS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //TELEOPERATIONSTATUS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

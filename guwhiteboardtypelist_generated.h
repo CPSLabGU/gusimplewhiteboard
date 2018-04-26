@@ -1024,6 +1024,22 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: TeleoperationControl_t @brief Control message for teleop VR app */ 
+    class TeleoperationControl_t: public generic_whiteboard_object<class TeleoperationControl > { 
+        public: 
+        /** Constructor: TeleoperationControl_t */ 
+        TeleoperationControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TeleoperationControl >(wbd, kTeleoperationControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: TeleoperationStatus_t @brief Status message for teleop VR app */ 
+    class TeleoperationStatus_t: public generic_whiteboard_object<class TeleoperationStatus > { 
+        public: 
+        /** Constructor: TeleoperationStatus_t */ 
+        TeleoperationStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TeleoperationStatus >(wbd, kTeleoperationStatus_v, false) {}
+        
+    };
+
 
 }
 

@@ -134,7 +134,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "HAL_RLegTarget_Ctrl",
         "HAL_RLegTarget_Stat",
         "HAL_RLegTarget_Tolr",
-        "FieldGoals"
+        "FieldGoals",
+        "TeleoperationControl",
+        "TeleoperationStatus"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -259,7 +261,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "wb_field_goals"
+        "wb_field_goals",
+        "wb_teleoperation_control",
+        "wb_teleoperation_status"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

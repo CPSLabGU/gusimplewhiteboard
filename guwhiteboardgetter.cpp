@@ -1075,6 +1075,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //FieldGoals_DEFINED
             }
+            case kTeleoperationControl_v:
+            {
+#ifdef TeleoperationControl_DEFINED
+                class TeleoperationControl_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //TeleoperationControl_DEFINED
+            }
+            case kTeleoperationStatus_v:
+            {
+#ifdef TeleoperationStatus_DEFINED
+                class TeleoperationStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //TeleoperationStatus_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

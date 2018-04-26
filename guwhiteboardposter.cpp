@@ -1401,6 +1401,30 @@ v.from_string(message_content);
     return false;
 #endif //FieldGoals_DEFINED
 }
+case kTeleoperationControl_v:
+{
+#ifdef TeleoperationControl_DEFINED
+    class TeleoperationControl_t msg_ptr(wbd);
+    TeleoperationControl v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //TeleoperationControl_DEFINED
+}
+case kTeleoperationStatus_v:
+{
+#ifdef TeleoperationStatus_DEFINED
+    class TeleoperationStatus_t msg_ptr(wbd);
+    TeleoperationStatus v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //TeleoperationStatus_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1536,6 +1560,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["HAL_RLegTarget_Stat"] = kHAL_RLegTarget_Stat_v;
     self["HAL_RLegTarget_Tolr"] = kHAL_RLegTarget_Tolr_v;
     self["FieldGoals"] = kFieldGoals_v;
+    self["TeleoperationControl"] = kTeleoperationControl_v;
+    self["TeleoperationStatus"] = kTeleoperationStatus_v;
 
     (void) self;
 }

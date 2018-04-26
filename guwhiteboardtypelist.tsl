@@ -118,3 +118,5 @@ class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right l
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
 type:fieldGoals, nonatomic, FieldGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
+type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
+type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app

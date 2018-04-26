@@ -2774,6 +2774,52 @@ public:
 }; 
 #endif //FieldGoals_DEFINED
 
+#ifdef TeleoperationControl_DEFINED
+/** WBFunctor definition for TeleoperationControl_WBFunctor_T */ 
+template <typename TeleoperationControl_WBFunctor_T >
+class TeleoperationControl_WBFunctor: public WBFunctor<TeleoperationControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for TeleoperationControl_WBFunctor_T */
+    TeleoperationControl_WBFunctor(TeleoperationControl_WBFunctor_T* obj, void (TeleoperationControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationControl_WBFunctor_T >(obj, (void (TeleoperationControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class TeleoperationControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::TeleoperationControl result = guWhiteboard::TeleoperationControl_t().get_from(m);
+        TeleoperationControl_function_t funct((void (TeleoperationControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &))WBFunctor<TeleoperationControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<TeleoperationControl_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (TeleoperationControl_WBFunctor_T::*TeleoperationControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(TeleoperationControl_WBFunctor_T *obj, void (TeleoperationControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &), guWhiteboard::WBTypes t) { return new TeleoperationControl_WBFunctor<TeleoperationControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //TeleoperationControl_DEFINED
+
+#ifdef TeleoperationStatus_DEFINED
+/** WBFunctor definition for TeleoperationStatus_WBFunctor_T */ 
+template <typename TeleoperationStatus_WBFunctor_T >
+class TeleoperationStatus_WBFunctor: public WBFunctor<TeleoperationStatus_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for TeleoperationStatus_WBFunctor_T */
+    TeleoperationStatus_WBFunctor(TeleoperationStatus_WBFunctor_T* obj, void (TeleoperationStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationStatus_WBFunctor_T >(obj, (void (TeleoperationStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class TeleoperationStatus_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::TeleoperationStatus result = guWhiteboard::TeleoperationStatus_t().get_from(m);
+        TeleoperationStatus_function_t funct((void (TeleoperationStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &))WBFunctor<TeleoperationStatus_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<TeleoperationStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationStatus_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (TeleoperationStatus_WBFunctor_T::*TeleoperationStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(TeleoperationStatus_WBFunctor_T *obj, void (TeleoperationStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &), guWhiteboard::WBTypes t) { return new TeleoperationStatus_WBFunctor<TeleoperationStatus_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //TeleoperationStatus_DEFINED
+
 
 #pragma clang diagnostic pop
 
