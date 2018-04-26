@@ -1,0 +1,12 @@
+-author Carl Lusty
+
+-c
+#include <stdint.h>
+
+-properties
+
+string sayString[30] = "" //String passed to Say_t
+
+-comment
+Status class used by the VR TeleOp App
+
