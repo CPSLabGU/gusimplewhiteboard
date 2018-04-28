@@ -119,6 +119,8 @@
 #include "FieldGoals.h"
 #include "FieldGoal.h"
 #include "FieldGoalPost.h"
+#include "FieldBalls.h"
+#include "FieldBall.h"
 #include "TeleoperationControlStatus.h"
 #include "TeleoperationControl.h"
 #include "TeleoperationStatus.h"
