@@ -120,3 +120,4 @@ class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle
 type:fieldGoals, nonatomic, FieldGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
+type:fieldBalls, nonatomic, FieldBalls, Reports robocup spl ball found with guvision and BallRayTracer.
