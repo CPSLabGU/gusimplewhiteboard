@@ -1040,6 +1040,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: FieldBalls_t @brief Reports robocup spl ball found with guvision and BallRayTracer. */ 
+    class FieldBalls_t: public generic_whiteboard_object<class FieldBalls > { 
+        public: 
+        /** Constructor: FieldBalls_t */ 
+        FieldBalls_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldBalls >(wbd, kFieldBalls_v, false) {}
+        
+    };
+
 
 }
 

@@ -21,5 +21,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_field_goals.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_status.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_field_balls.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

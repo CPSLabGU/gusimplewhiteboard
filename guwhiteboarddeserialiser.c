@@ -960,6 +960,15 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #endif //TELEOPERATIONSTATUS_GENERATED
                 break;
             }
+            case kFieldBalls_v:
+            {
+#ifdef FIELDBALLS_GENERATED
+                return DESERIALISE(FIELDBALLS_C_STRUCT, serialised_in, (struct FIELDBALLS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //FIELDBALLS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

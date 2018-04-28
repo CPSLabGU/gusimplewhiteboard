@@ -1425,6 +1425,18 @@ v.from_string(message_content);
     return false;
 #endif //TeleoperationStatus_DEFINED
 }
+case kFieldBalls_v:
+{
+#ifdef FieldBalls_DEFINED
+    class FieldBalls_t msg_ptr(wbd);
+    FieldBalls v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //FieldBalls_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1562,6 +1574,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["FieldGoals"] = kFieldGoals_v;
     self["TeleoperationControl"] = kTeleoperationControl_v;
     self["TeleoperationStatus"] = kTeleoperationStatus_v;
+    self["FieldBalls"] = kFieldBalls_v;
 
     (void) self;
 }

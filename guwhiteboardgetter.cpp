@@ -1093,6 +1093,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //TeleoperationStatus_DEFINED
             }
+            case kFieldBalls_v:
+            {
+#ifdef FieldBalls_DEFINED
+                class FieldBalls_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FieldBalls_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

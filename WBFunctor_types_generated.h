@@ -2820,6 +2820,29 @@ public:
 }; 
 #endif //TeleoperationStatus_DEFINED
 
+#ifdef FieldBalls_DEFINED
+/** WBFunctor definition for FieldBalls_WBFunctor_T */ 
+template <typename FieldBalls_WBFunctor_T >
+class FieldBalls_WBFunctor: public WBFunctor<FieldBalls_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FieldBalls_WBFunctor_T */
+    FieldBalls_WBFunctor(FieldBalls_WBFunctor_T* obj, void (FieldBalls_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldBalls &), guWhiteboard::WBTypes t): WBFunctor<FieldBalls_WBFunctor_T >(obj, (void (FieldBalls_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FieldBalls_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FieldBalls result = guWhiteboard::FieldBalls_t().get_from(m);
+        FieldBalls_function_t funct((void (FieldBalls_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldBalls &))WBFunctor<FieldBalls_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FieldBalls_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldBalls_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FieldBalls_WBFunctor_T::*FieldBalls_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldBalls &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FieldBalls_WBFunctor_T *obj, void (FieldBalls_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldBalls &), guWhiteboard::WBTypes t) { return new FieldBalls_WBFunctor<FieldBalls_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FieldBalls_DEFINED
+
 
 #pragma clang diagnostic pop
 

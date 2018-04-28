@@ -136,7 +136,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "HAL_RLegTarget_Tolr",
         "FieldGoals",
         "TeleoperationControl",
-        "TeleoperationStatus"
+        "TeleoperationStatus",
+        "FieldBalls"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -263,7 +264,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "wb_field_goals",
         "wb_teleoperation_control",
-        "wb_teleoperation_status"
+        "wb_teleoperation_status",
+        "wb_field_balls"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
