@@ -4,10 +4,8 @@
 #include <stdint.h>
 
 enum BallOptions {
-	NoBallDetected = 0, ///< Not Found
-	UltraBall,          ///< Best
-	GreatBall,          ///< Better
-    RegularBall         ///< Fine
+	NoBallDetected = 0, ///< No Ball Found
+	BallDetected        ///< Ball Found
 };
 
 -properties
@@ -15,7 +13,7 @@ enum BallOptions sightingType = NoBallDetected // Ball detection details.
 
 uint16_t x = 0  //X position
 uint16_t y = 0  //Y position
-uint16_t r = 0  //Radius, in pixels
+float r = 0     //Radius
 
 -comment
 Results for the Ball Ray Tracer (guvision). 
