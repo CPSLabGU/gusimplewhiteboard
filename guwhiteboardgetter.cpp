@@ -1102,6 +1102,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //FieldBalls_DEFINED
             }
+            case kVisionControl_v:
+            {
+#ifdef VisionStatusControl_DEFINED
+                class VisionControl_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //VisionStatusControl_DEFINED
+            }
+            case kVisionStatus_v:
+            {
+#ifdef VisionStatusControl_DEFINED
+                class VisionStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //VisionStatusControl_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

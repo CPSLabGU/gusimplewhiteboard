@@ -1437,6 +1437,30 @@ v.from_string(message_content);
     return false;
 #endif //FieldBalls_DEFINED
 }
+case kVisionControl_v:
+{
+#ifdef VisionStatusControl_DEFINED
+    class VisionControl_t msg_ptr(wbd);
+    VisionStatusControl v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //VisionStatusControl_DEFINED
+}
+case kVisionStatus_v:
+{
+#ifdef VisionStatusControl_DEFINED
+    class VisionStatus_t msg_ptr(wbd);
+    VisionStatusControl v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //VisionStatusControl_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1575,6 +1599,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["TeleoperationControl"] = kTeleoperationControl_v;
     self["TeleoperationStatus"] = kTeleoperationStatus_v;
     self["FieldBalls"] = kFieldBalls_v;
+    self["VisionControl"] = kVisionControl_v;
+    self["VisionStatus"] = kVisionStatus_v;
 
     (void) self;
 }

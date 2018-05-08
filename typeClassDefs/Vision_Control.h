@@ -16,6 +16,8 @@
 #include <stdint.h>
 #include <bitset>
 
+#include "wb_vision_status_control.h"
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
@@ -23,16 +25,6 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
-/**
- * @brief Resolutions Supported by Vision
- */
-enum Resolutions {
-	QQVGA,  ///< 160 x 120
-	QVGA,   ///< 320 x 240
-	VGA,    ///< 640 x 480
-	HD_4VGA,    ///< 1280x960
-	SVGA   ///< 800 x 600
-};
 /**
  * @brief Resolution wrapper class for Resolutions enum
  * Contains a Resolution and provides a number of convenience
@@ -75,43 +67,6 @@ public:
 };
 
 #pragma clang diagnostic pop
-
-/**
- * @brief Enum of available camera's that can be used by vision
- */
-enum VisionCamera {
-	Top, ///< Top Camera on the nao
-	Bottom ///< Bottom Camera on the nao
-};
-
-/**
- * @brief Enum listing available vision pipelines
- */
-enum NamedPipeline {
-	Soccer, ///< Soccer Pipeline
-	OpenChallenge, ///< 2013 Open Challange Pipeline
-	Streaming, ///< Pipeline that just streams images
-	Neural_Network, ///< Pipeline to rec objects with a nn
-	OpenCVFaces, ///< Pipeline to recognise faces
-	HTWK  ///<Pipeline that runs htwk's image algorithms and post soccer object info to mipal whiteboard
-};
-
-/**
- * @brief Streaming modes available in vision
- */
-enum StreamingType {
-	Normal, ///< Images straight from camera
-	Classified, ///<Images that has been segmented into recognised colours
-	Recognized ///< Image showing only objects that have been recognised NYI
-};
-
-/**
- * @brief List of file types that vision can save images as
- */
-enum SaveFileType {
-    AI2, ///< Raw YUV422 Image
-    JPG ///< Compressed JPEG
-};
 
 /**
  * @brief Supported Message in Vision Control/Status messages. Used internally

@@ -1048,6 +1048,22 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: VisionControl_t @brief Used to set various paramaters of guvision */ 
+    class VisionControl_t: public generic_whiteboard_object<class VisionStatusControl > { 
+        public: 
+        /** Constructor: VisionControl_t */ 
+        VisionControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionStatusControl >(wbd, kVisionControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: VisionStatus_t @brief Posted by guvision once per pipeline iteration to report various paramaters */ 
+    class VisionStatus_t: public generic_whiteboard_object<class VisionStatusControl > { 
+        public: 
+        /** Constructor: VisionStatus_t */ 
+        VisionStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionStatusControl >(wbd, kVisionStatus_v, false) {}
+        
+    };
+
 
 }
 

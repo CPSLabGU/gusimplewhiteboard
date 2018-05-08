@@ -969,6 +969,24 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //FIELDBALLS_GENERATED
                 break;
             }
+            case kVisionControl_v:
+            {
+#ifdef VISION_STATUS_CONTROL_GENERATED
+                return SERIALISE(VISION_STATUS_CONTROL_C_STRUCT, (struct VISION_STATUS_CONTROL_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //VISION_STATUS_CONTROL_GENERATED
+                break;
+            }
+            case kVisionStatus_v:
+            {
+#ifdef VISION_STATUS_CONTROL_GENERATED
+                return SERIALISE(VISION_STATUS_CONTROL_C_STRUCT, (struct VISION_STATUS_CONTROL_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //VISION_STATUS_CONTROL_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -124,6 +124,7 @@
 #include "TeleoperationControlStatus.h"
 #include "TeleoperationControl.h"
 #include "TeleoperationStatus.h"
+#include "VisionStatusControl.h"
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

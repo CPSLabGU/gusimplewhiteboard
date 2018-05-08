@@ -121,3 +121,5 @@ type:fieldGoals, nonatomic, FieldGoals, Reports robocup spl goals found with guv
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
 type:fieldBalls, nonatomic, FieldBalls, Reports robocup spl ball found with guvision and BallRayTracer.
+type:vision_status_control, nonatomic, VisionControl, Used to set various paramaters of guvision
+type:vision_status_control, nonatomic, VisionStatus, Posted by guvision once per pipeline iteration to report various paramaters
