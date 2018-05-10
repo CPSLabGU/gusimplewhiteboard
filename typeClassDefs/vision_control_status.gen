@@ -67,5 +67,37 @@ bool runPipelineOnce = false // run the pipeline one time only if true
 uint64_t frameNumber = 0 // The current frame number reported by guvison
 string colourCalibration[20] = "class" //the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
 
++c++
+/**
+ * @brief Resolution wrapper class for Resolutions enum
+ * Contains a Resolution and provides a number of convenience
+ * methods for each resolution. Width Height etc.
+ */
+class ResolutionType {
+private:
+	/** The resolution that this object should work with*/
+	PROPERTY(Resolutions, resolution)
+public:
+	/**
+	 * @brief Constructor using value from Resolutions enum
+	 * @param res The resolution to use
+	*/
+	ResolutionType(Resolutions res = VGA): _resolution(res) {}
+
+	/** get the width of the current resolution */
+	int width() const
+	{
+		static const int Widths[] = {160, 320, 640, 1280, 800};
+		return Widths[_resolution];
+	}
+
+	/** get the height of the current resolution */
+	int height() const
+	{
+		static const int Heights[] = {120, 240, 480, 960, 600};
+		return Heights[_resolution];
+	}
+};
+
 -comment
 The control status message used by guvision, guvision will post the current state of the pipeline once a frame with the message, various properties can also be set by post a vision_controll message with this type

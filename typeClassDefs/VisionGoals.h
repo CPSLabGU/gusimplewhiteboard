@@ -10,10 +10,9 @@
 
 #include <SimpleShapes.h>
 #include <string>
+#include <sstream>
 #include <gu_util.h>
 #include "wb_goal.h"
-
-#include "Vision_Control.h"
 
 namespace guWhiteboard {
 /**

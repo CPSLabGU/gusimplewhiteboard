@@ -705,48 +705,48 @@ public:
 
 
 #ifdef VisionControlStatus_DEFINED
-/** WBFunctor definition for Vision_Control_WBFunctor_T */ 
-template <typename Vision_Control_WBFunctor_T >
-class Vision_Control_WBFunctor: public WBFunctor<Vision_Control_WBFunctor_T > {
+/** WBFunctor definition for VisionControl_WBFunctor_T */ 
+template <typename VisionControl_WBFunctor_T >
+class VisionControl_WBFunctor: public WBFunctor<VisionControl_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for Vision_Control_WBFunctor_T */
-    Vision_Control_WBFunctor(Vision_Control_WBFunctor_T* obj, void (Vision_Control_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<Vision_Control_WBFunctor_T >(obj, (void (Vision_Control_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for VisionControl_WBFunctor_T */
+    VisionControl_WBFunctor(VisionControl_WBFunctor_T* obj, void (VisionControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<VisionControl_WBFunctor_T >(obj, (void (VisionControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class Vision_Control_WBFunctor */
+    /** call method for callbacks, for class VisionControl_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::VisionControlStatus result = guWhiteboard::Vision_Control_t().get_from(m);
-        Vision_Control_function_t funct((void (Vision_Control_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<Vision_Control_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<Vision_Control_WBFunctor_T >::fObject->*funct)(WBFunctor<Vision_Control_WBFunctor_T >::type_enum, result);
+        guWhiteboard::VisionControlStatus result = guWhiteboard::VisionControl_t().get_from(m);
+        VisionControl_function_t funct((void (VisionControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<VisionControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<VisionControl_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionControl_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (Vision_Control_WBFunctor_T::*Vision_Control_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &);
+    typedef void (VisionControl_WBFunctor_T::*VisionControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(Vision_Control_WBFunctor_T *obj, void (Vision_Control_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t) { return new Vision_Control_WBFunctor<Vision_Control_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(VisionControl_WBFunctor_T *obj, void (VisionControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t) { return new VisionControl_WBFunctor<VisionControl_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //VisionControlStatus_DEFINED
 
 #ifdef VisionControlStatus_DEFINED
-/** WBFunctor definition for Vision_Status_WBFunctor_T */ 
-template <typename Vision_Status_WBFunctor_T >
-class Vision_Status_WBFunctor: public WBFunctor<Vision_Status_WBFunctor_T > {
+/** WBFunctor definition for VisionStatus_WBFunctor_T */ 
+template <typename VisionStatus_WBFunctor_T >
+class VisionStatus_WBFunctor: public WBFunctor<VisionStatus_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for Vision_Status_WBFunctor_T */
-    Vision_Status_WBFunctor(Vision_Status_WBFunctor_T* obj, void (Vision_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<Vision_Status_WBFunctor_T >(obj, (void (Vision_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for VisionStatus_WBFunctor_T */
+    VisionStatus_WBFunctor(VisionStatus_WBFunctor_T* obj, void (VisionStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<VisionStatus_WBFunctor_T >(obj, (void (VisionStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class Vision_Status_WBFunctor */
+    /** call method for callbacks, for class VisionStatus_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::VisionControlStatus result = guWhiteboard::Vision_Status_t().get_from(m);
-        Vision_Status_function_t funct((void (Vision_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<Vision_Status_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<Vision_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<Vision_Status_WBFunctor_T >::type_enum, result);
+        guWhiteboard::VisionControlStatus result = guWhiteboard::VisionStatus_t().get_from(m);
+        VisionStatus_function_t funct((void (VisionStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<VisionStatus_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<VisionStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionStatus_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (Vision_Status_WBFunctor_T::*Vision_Status_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &);
+    typedef void (VisionStatus_WBFunctor_T::*VisionStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(Vision_Status_WBFunctor_T *obj, void (Vision_Status_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t) { return new Vision_Status_WBFunctor<Vision_Status_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(VisionStatus_WBFunctor_T *obj, void (VisionStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t) { return new VisionStatus_WBFunctor<VisionStatus_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //VisionControlStatus_DEFINED
 
@@ -2842,52 +2842,6 @@ public:
     static WBFunctorBase *bind(FieldBalls_WBFunctor_T *obj, void (FieldBalls_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldBalls &), guWhiteboard::WBTypes t) { return new FieldBalls_WBFunctor<FieldBalls_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //FieldBalls_DEFINED
-
-#ifdef VisionStatusControl_DEFINED
-/** WBFunctor definition for VisionControl_WBFunctor_T */ 
-template <typename VisionControl_WBFunctor_T >
-class VisionControl_WBFunctor: public WBFunctor<VisionControl_WBFunctor_T > {
-public:
-    /** WBFunctor constructor for VisionControl_WBFunctor_T */
-    VisionControl_WBFunctor(VisionControl_WBFunctor_T* obj, void (VisionControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &), guWhiteboard::WBTypes t): WBFunctor<VisionControl_WBFunctor_T >(obj, (void (VisionControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
-
-    /** call method for callbacks, for class VisionControl_WBFunctor */
-    void call(gu_simple_message *m) {
-        guWhiteboard::VisionStatusControl result = guWhiteboard::VisionControl_t().get_from(m);
-        VisionControl_function_t funct((void (VisionControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &))WBFunctor<VisionControl_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<VisionControl_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionControl_WBFunctor_T >::type_enum, result);
-    }
-
-    /** define callback signature */
-    typedef void (VisionControl_WBFunctor_T::*VisionControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &);
-
-    /** internal method of linking classes */
-    static WBFunctorBase *bind(VisionControl_WBFunctor_T *obj, void (VisionControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &), guWhiteboard::WBTypes t) { return new VisionControl_WBFunctor<VisionControl_WBFunctor_T >(obj, f, t); }
-}; 
-#endif //VisionStatusControl_DEFINED
-
-#ifdef VisionStatusControl_DEFINED
-/** WBFunctor definition for VisionStatus_WBFunctor_T */ 
-template <typename VisionStatus_WBFunctor_T >
-class VisionStatus_WBFunctor: public WBFunctor<VisionStatus_WBFunctor_T > {
-public:
-    /** WBFunctor constructor for VisionStatus_WBFunctor_T */
-    VisionStatus_WBFunctor(VisionStatus_WBFunctor_T* obj, void (VisionStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &), guWhiteboard::WBTypes t): WBFunctor<VisionStatus_WBFunctor_T >(obj, (void (VisionStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
-
-    /** call method for callbacks, for class VisionStatus_WBFunctor */
-    void call(gu_simple_message *m) {
-        guWhiteboard::VisionStatusControl result = guWhiteboard::VisionStatus_t().get_from(m);
-        VisionStatus_function_t funct((void (VisionStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &))WBFunctor<VisionStatus_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<VisionStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionStatus_WBFunctor_T >::type_enum, result);
-    }
-
-    /** define callback signature */
-    typedef void (VisionStatus_WBFunctor_T::*VisionStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &);
-
-    /** internal method of linking classes */
-    static WBFunctorBase *bind(VisionStatus_WBFunctor_T *obj, void (VisionStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionStatusControl &), guWhiteboard::WBTypes t) { return new VisionStatus_WBFunctor<VisionStatus_WBFunctor_T >(obj, f, t); }
-}; 
-#endif //VisionStatusControl_DEFINED
 
 
 #pragma clang diagnostic pop

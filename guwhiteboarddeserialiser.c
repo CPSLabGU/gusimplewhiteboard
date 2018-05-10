@@ -248,22 +248,22 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVision_Control_v:
+            case kVisionControl_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kVision_Status_v:
+            case kVisionStatus_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
             case kFFTStatus_v:
@@ -967,24 +967,6 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #else
                 return -1;
 #endif //FIELDBALLS_GENERATED
-                break;
-            }
-            case kVisionControl_v:
-            {
-#ifdef VISION_STATUS_CONTROL_GENERATED
-                return DESERIALISE(VISION_STATUS_CONTROL_C_STRUCT, serialised_in, (struct VISION_STATUS_CONTROL_C_STRUCT *)message_out)
-#else
-                return -1;
-#endif //VISION_STATUS_CONTROL_GENERATED
-                break;
-            }
-            case kVisionStatus_v:
-            {
-#ifdef VISION_STATUS_CONTROL_GENERATED
-                return DESERIALISE(VISION_STATUS_CONTROL_C_STRUCT, serialised_in, (struct VISION_STATUS_CONTROL_C_STRUCT *)message_out)
-#else
-                return -1;
-#endif //VISION_STATUS_CONTROL_GENERATED
                 break;
             }
     }

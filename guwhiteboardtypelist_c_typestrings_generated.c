@@ -45,8 +45,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "UDPRN",
         "PlayerNumber",
         "ManuallyPenalized",
-        "Vision_Control",
-        "Vision_Status",
+        "VisionControl",
+        "VisionStatus",
         "FFTStatus",
         "FSOsighting",
         "TopParticles",
@@ -137,9 +137,7 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "FieldGoals",
         "TeleoperationControl",
         "TeleoperationStatus",
-        "FieldBalls",
-        "VisionControl",
-        "VisionStatus"
+        "FieldBalls"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -175,8 +173,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "wb_int8_t",
         "wb_int8_t",
-        "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
+        "wb_vision_control_status",
+        "wb_vision_control_status",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "wb_top_particles",
@@ -267,9 +265,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_field_goals",
         "wb_teleoperation_control",
         "wb_teleoperation_status",
-        "wb_field_balls",
-        "wb_vision_status_control",
-        "wb_vision_status_control"
+        "wb_field_balls"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

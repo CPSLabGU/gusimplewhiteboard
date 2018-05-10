@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 125
+#define GSW_NUM_TYPES_DEFINED 123
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -52,8 +52,8 @@ typedef enum wb_types
     kUDPRN_v = 27, 		///< game state notfication from the UDP receiver.
     kPlayerNumber_v = 28, 		///< what player number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
     kManuallyPenalized_v = 29, 		///< what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
-    kVision_Control_v = 30, 		///< control various attributes of the vision pipeline.
-    kVision_Status_v = 31, 		///< message sent by vision that contains the current status of
+    kVisionControl_v = 30, 		///< Used to set various paramaters of guvision
+    kVisionStatus_v = 31, 		///< Posted by guvision once per pipeline iteration to report various paramaters
     kFFTStatus_v = 32, 		///< stereo channel RMS and list of dominant frequencies from FFT
     kFSOsighting_v = 33, 		///< Class that contains the Karman filtered  SONAR objects after a sighting
     kTopParticles_v = 34, 		///< Class that contains the top particles for possible robot positions
@@ -144,10 +144,8 @@ typedef enum wb_types
     kFieldGoals_v = 119, 		///< Reports robocup spl goals found with guvision and GoalRayTracer.
     kTeleoperationControl_v = 120, 		///< Control message for teleop VR app
     kTeleoperationStatus_v = 121, 		///< Status message for teleop VR app
-    kFieldBalls_v = 122, 		///< Reports robocup spl ball found with guvision and BallRayTracer.
-    kVisionControl_v = 123, 		///< Used to set various paramaters of guvision
 
-    kVisionStatus_v = 124 		///< Posted by guvision once per pipeline iteration to report various paramaters
+    kFieldBalls_v = 122 		///< Reports robocup spl ball found with guvision and BallRayTracer.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

@@ -14,8 +14,6 @@
 #include <gu_util.h>
 #include "wb_robot.h"
 
-#include "Vision_Control.h"
-
 #define TOPLIMIT 5
 #define BOTTOMLIMIT 5
 

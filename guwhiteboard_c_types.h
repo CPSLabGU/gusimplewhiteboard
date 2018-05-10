@@ -12,6 +12,8 @@
 #include <gusimplewhiteboard/guwhiteboard_c_types_manual_definitions.h>
 
 
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
@@ -22,7 +24,5 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_field_balls.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_status_control.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_status_control.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
