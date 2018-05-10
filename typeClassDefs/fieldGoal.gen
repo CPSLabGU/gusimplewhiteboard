@@ -2,7 +2,7 @@
 
 -c
 #include <stdint.h>
-#include <wb_field_goal_post.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_field_goal_post.h>
 
 enum GoalOptions {
 	NoGoalDetected = 0,

@@ -1,7 +1,7 @@
 -author Carl Lusty
 
 -c
-#include <wb_field_horizon.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_field_horizon.h>
 
 -properties
 
