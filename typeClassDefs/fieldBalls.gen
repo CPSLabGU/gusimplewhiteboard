@@ -7,6 +7,7 @@
 
 -properties
 
+uint64 frameNumber = 0  //visionFrameNumber
 gen fieldBall balls[2] //ball objects
 
 -comment
