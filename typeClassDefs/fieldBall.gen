@@ -8,6 +8,44 @@ enum BallOptions {
 	BallDetected        ///< Ball Found
 };
 
+%c++
+/**                                            
+ * Create a new `FieldBall`, using centered 0,0 coords.
+ */
+FieldBall(uint16_t nx, uint16_t ny, enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, float r = 0)     {
+  set_sightingType(sightingType);
+  set_x(x - (nx / 2));
+  set_y(y - (ny / 2));
+  set_r(r);
+}
+
+int x_centered(uint16_t nx) {
+    return x() + (nx / 2);
+}
+
+int y_centered(uint16_t ny) {
+    return y() + (ny / 2);
+}
+
+%swift
+/**
+ * Create a new `wb_field_ball`, using centered 0,0 coords.
+ */ 
+public init(nx: UInt16, ny: UInt16, sightingType: BallOptions = NoBallDetected, x: UInt16 = 0, y: UInt16 = 0, r: Float = 0) {
+    self.sightingType = sightingType
+    self.x = x - (nx / 2)
+    self.y = y - (ny / 2)
+    self.r = r
+}
+
+public func x_centered(nx: UInt16) -> Int {
+    return self.x + (nx / 2)
+}
+
+public func y_centered(ny: UInt16) -> Int {
+    return self.y + (ny / 2)
+}
+
 -properties
 enum BallOptions sightingType = NoBallDetected // Ball detection details.
 
