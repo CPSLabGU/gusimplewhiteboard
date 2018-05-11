@@ -73,7 +73,6 @@
 #include "MOTION_Interface.h"
 #include "FSMControlStatus.h"
 #include "FFTStatus.h"
-#include "Vision_Control.h"
 #include "FilteredOneDimSonar.h"
 #include "FilteredVisionObject.h"
 #include "FilteredOneDimObject.h"
@@ -124,6 +123,7 @@
 #include "TeleoperationControlStatus.h"
 #include "TeleoperationControl.h"
 #include "TeleoperationStatus.h"
+#include "VisionControlStatus.h"
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

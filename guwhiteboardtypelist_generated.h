@@ -275,19 +275,19 @@ PlayerNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): ge
 ManuallyPenalized_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int8_t >(value, kManuallyPenalized_v, wbd, false) {} 
     };
 
-    /** WB Ptr Class: Vision_Control_t @brief control various attributes of the vision pipeline. */ 
-    class Vision_Control_t: public generic_whiteboard_object<class VisionControlStatus > { 
+    /** WB Ptr Class: VisionControl_t @brief Used to set various paramaters of guvision */ 
+    class VisionControl_t: public generic_whiteboard_object<class VisionControlStatus > { 
         public: 
-        /** Constructor: Vision_Control_t */ 
-        Vision_Control_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Control_v, false) {}
+        /** Constructor: VisionControl_t */ 
+        VisionControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVisionControl_v, false) {}
         
     };
 
-    /** WB Ptr Class: Vision_Status_t @brief message sent by vision that contains the current status of */ 
-    class Vision_Status_t: public generic_whiteboard_object<class VisionControlStatus > { 
+    /** WB Ptr Class: VisionStatus_t @brief Posted by guvision once per pipeline iteration to report various paramaters */ 
+    class VisionStatus_t: public generic_whiteboard_object<class VisionControlStatus > { 
         public: 
-        /** Constructor: Vision_Status_t */ 
-        Vision_Status_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVision_Status_v, false) {}
+        /** Constructor: VisionStatus_t */ 
+        VisionStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionControlStatus >(wbd, kVisionStatus_v, false) {}
         
     };
 

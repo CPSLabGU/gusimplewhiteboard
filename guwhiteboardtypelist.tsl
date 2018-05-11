@@ -28,8 +28,8 @@ class:NAO_State, nonatomic, NAO_State, Stores the orientation of the robot as we
 class:GCGameState, nonatomic, UDPRN, game state notfication from the UDP receiver.
 int8_t,          nonatomic, PlayerNumber, what player number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
 int8_t,          nonatomic, ManuallyPenalized, what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
-class:VisionControlStatus, nonatomic, Vision_Control, control various attributes of the vision pipeline.
-class:VisionControlStatus, nonatomic, Vision_Status, message sent by vision that contains the current status of
+type:vision_control_status, nonatomic, VisionControl, Used to set various paramaters of guvision
+type:vision_control_status, nonatomic, VisionStatus, Posted by guvision once per pipeline iteration to report various paramaters
 class:FFTStatus, nonatomic,         FFTStatus, stereo channel RMS and list of dominant frequencies from FFT
 class:FilteredArrayOneDimSonar, nonatomic, FSOsighting, Class that contains the Karman filtered  SONAR objects after a sighting
 type:TopParticles, nonatomic, TopParticles, Class that contains the top particles for possible robot positions

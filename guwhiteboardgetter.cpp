@@ -323,19 +323,19 @@ namespace guWhiteboard
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kVision_Control_v:
+            case kVisionControl_v:
             {
 #ifdef VisionControlStatus_DEFINED
-                class Vision_Control_t m(wbd);
+                class VisionControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
 #endif //VisionControlStatus_DEFINED
             }
-            case kVision_Status_v:
+            case kVisionStatus_v:
             {
 #ifdef VisionControlStatus_DEFINED
-                class Vision_Status_t m(wbd);
+                class VisionStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";

@@ -52,8 +52,8 @@ typedef enum wb_types
     kUDPRN_v = 27, 		///< game state notfication from the UDP receiver.
     kPlayerNumber_v = 28, 		///< what player number is this robot wearing at RoboCup in its back, retrieved from data/playernumber and posted by the UDPreceiver
     kManuallyPenalized_v = 29, 		///< what player number is this robot wearing at RoboCup in its back whn manually penalized, from GameController FSM sent to the UDPreceiver to forward to the JAVA referee
-    kVision_Control_v = 30, 		///< control various attributes of the vision pipeline.
-    kVision_Status_v = 31, 		///< message sent by vision that contains the current status of
+    kVisionControl_v = 30, 		///< Used to set various paramaters of guvision
+    kVisionStatus_v = 31, 		///< Posted by guvision once per pipeline iteration to report various paramaters
     kFFTStatus_v = 32, 		///< stereo channel RMS and list of dominant frequencies from FFT
     kFSOsighting_v = 33, 		///< Class that contains the Karman filtered  SONAR objects after a sighting
     kTopParticles_v = 34, 		///< Class that contains the top particles for possible robot positions

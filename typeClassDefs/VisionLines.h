@@ -10,10 +10,11 @@
 
 #include <vector>
 #include <string>
+#include <sstream>
 #include <SimpleShapes.h>
+#include <VisionControlStatus.h>
 
 #include "wb_lines.h"
-#include "Vision_Control.h"
 
 namespace guWhiteboard {
 /**

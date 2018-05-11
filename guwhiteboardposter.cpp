@@ -408,10 +408,10 @@ case kManuallyPenalized_v:
     return true;
 
 }
-case kVision_Control_v:
+case kVisionControl_v:
 {
 #ifdef VisionControlStatus_DEFINED
-    class Vision_Control_t msg_ptr(wbd);
+    class VisionControl_t msg_ptr(wbd);
     VisionControlStatus v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
@@ -420,10 +420,10 @@ v.from_string(message_content);
     return false;
 #endif //VisionControlStatus_DEFINED
 }
-case kVision_Status_v:
+case kVisionStatus_v:
 {
 #ifdef VisionControlStatus_DEFINED
-    class Vision_Status_t msg_ptr(wbd);
+    class VisionStatus_t msg_ptr(wbd);
     VisionControlStatus v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
@@ -1482,8 +1482,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["UDPRN"] = kUDPRN_v;
     self["PlayerNumber"] = kPlayerNumber_v;
     self["ManuallyPenalized"] = kManuallyPenalized_v;
-    self["Vision_Control"] = kVision_Control_v;
-    self["Vision_Status"] = kVision_Status_v;
+    self["VisionControl"] = kVisionControl_v;
+    self["VisionStatus"] = kVisionStatus_v;
     self["FFTStatus"] = kFFTStatus_v;
     self["FSOsighting"] = kFSOsighting_v;
     self["TopParticles"] = kTopParticles_v;
