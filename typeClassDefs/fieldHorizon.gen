@@ -10,6 +10,84 @@ enum HorizonOptions {
 	HorizonFailed
 };
 
+%c++
+/**
+ * Create a new `FieldHorizon`, using centered 0,0 coords.
+ */
+FieldHorizon(uint16_t nx, uint16_t ny, enum HorizonOptions horizonType = HorizonFailed, uint16_t lhp_x = 0, int16_t lhp_y = 0, uint16    _t rhp_x = 0, int16_t rhp_y = 0, uint16_t chp_x = 0, int16_t chp_y = 0) {
+  set_horizonType(horizonType);
+  set_lhp_x(lhp_x + (nx / 2));
+  set_lhp_y(lhp_y + (ny / 2));
+  set_rhp_x(rhp_x + (nx / 2));
+  set_rhp_y(rhp_y + (ny / 2));
+  set_chp_x(chp_x + (nx / 2));
+  set_chp_y(chp_y + (ny / 2));
+}
+
+int lhp_x_centered(uint16_t nx) {
+    return lhp_x() - (nx / 2);
+}
+
+int chp_x_centered(uint16_t nx) {
+    return chp_x() - (nx / 2);
+}
+
+int rhp_x_centered(uint16_t nx) {
+    return rhp_x() - (nx / 2);
+}
+
+int lhp_y_centered(uint16_t ny) {
+    return lhp_y() - (ny / 2);
+}
+
+int chp_y_centered(uint16_t ny) {
+    return chp_y() - (ny / 2);
+}
+
+int rhp_y_centered(uint16_t ny) {
+    return rhp_y() - (ny / 2);
+}
+
+%swift
+/**
+ * Create a new `wb_field_horizon`, using centered 0,0 coords.
+ */ 
+public init(nx: UInt16, ny: UInt16, horizonType: HorizonOptions = HorizonFailed, lhp_x: UInt16 = 0, lhp_y: Int16 = 0, rhp_x: UInt16 = 0, rhp_y: Int16 = 0, chp_x: UInt16 = 0, chp_y: Int16 = 0) {
+  self.init()
+  self.horizonType = horizonType
+  self.lhp_x = lhp_x + (nx / 2)
+  self.lhp_y = lhp_y + (ny / 2)
+  self.rhp_x = rhp_x + (nx / 2)
+  self.rhp_y = rhp_y + (ny / 2)
+  self.chp_x = chp_x + (nx / 2)
+  self.chp_y = chp_y + (ny / 2)
+}
+
+public func lhp_x_centered(nx: UInt16) -> Int {
+    return self.lhp_x - (nx / 2)
+}
+
+public func chp_x_centered(nx: UInt16) -> Int {
+    return self.chp_x - (nx / 2)
+}
+
+public func rhp_x_centered(nx: UInt16) -> Int {
+    return self.rhp_x - (nx / 2)
+}
+
+public func lhp_y_centered(ny: UInt16) -> Int {
+    return self.lhp_y - (ny / 2)
+}
+
+public func chp_y_centered(ny: UInt16) -> Int {
+    return self.chp_y - (ny / 2)
+}
+
+public func rhp_y_centered(ny: UInt16) -> Int {
+    return self.rhp_y - (ny / 2)
+}
+
+
 -properties
 enum HorizonOptions horizonType = HorizonFailed // Type of Horizon 
 
