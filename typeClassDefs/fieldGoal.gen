@@ -3,6 +3,8 @@
 -c
 #include <stdint.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_field_goal_post.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/FieldGoalPost.h>
 
 enum GoalOptions {
 	NoGoalDetected = 0,
@@ -13,9 +15,9 @@ enum GoalOptions {
 -properties
 enum GoalOptions sightingType = NoGoalDetected // Goal detection details.
 
-struct wb_field_goal_post post1 = wb_field_goal_post() //First post found
+gen fieldGoalPost post1 //First post found
 
-struct wb_field_goal_post post2 = wb_field_goal_post() //Second post found
+gen fieldGoalPost post2 //Second post found
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
