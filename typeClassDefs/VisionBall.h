@@ -15,7 +15,7 @@
 #include <SimpleShapes.h>
 #include "wb_ball.h"
 
-#include <VisionControlStatus.h>
+#include "VisionControlStatus.h"
 
 namespace guWhiteboard {
 	

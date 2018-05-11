@@ -14,7 +14,7 @@
 #include <gu_util.h>
 #include "wb_goal.h"
 
-#include <VisionControlStatus.h>
+#include "VisionControlStatus.h"
 
 namespace guWhiteboard {
 /**

@@ -65,7 +65,7 @@ int jpegStreamStride = 4 // The stride to use when streaming jpeg images
 int frameRate = 0 // The current framerate that the pipeline is running at
 bool runPipelineOnce = false // run the pipeline one time only if true
 uint64_t frameNumber = 0 // The current frame number reported by guvison
-string colourCalibration[20] = "class" //the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
+string colourCalibration = "class" //the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
 
 +c++
 /**
