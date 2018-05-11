@@ -14,6 +14,8 @@
 #include <gu_util.h>
 #include "wb_goal.h"
 
+#include <VisionControlStatus.h>
+
 namespace guWhiteboard {
 /**
  * @brief Class to post information about goal posts detected from vision
