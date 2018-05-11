@@ -11,6 +11,7 @@
 #include <SimpleShapes.h>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include <gu_util.h>
 #include "wb_goal.h"
 

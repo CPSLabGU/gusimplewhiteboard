@@ -11,6 +11,7 @@
 #include <string>
 #include <cstdlib>
 #include <bitset>
+#include <algorithm>
 
 #include <SimpleShapes.h>
 #include "wb_ball.h"

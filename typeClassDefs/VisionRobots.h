@@ -11,6 +11,7 @@
 #include <SimpleShapes.h>
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include <gu_util.h>
 #include "wb_robot.h"
 
