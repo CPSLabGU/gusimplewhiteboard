@@ -20,4 +20,13 @@ HDRS?=${TMP_HDRS}
 CI_DOC_JOBS?=${HDRS}
 CI_MAKE_ARGS+= HDRS="${HDRS}"
 
+.include "../../../mk/whiteboard.mk"
+
+GEN_FILES!=ls ${WB_TYPECLASSDEFS}/*.gen
+## Use the classgenerator (must be installed) to regenerate the generated code from the .gen files.
+gen:
+.for gen in ${GEN_FILES}
+	-@cd ${WB_TYPECLASSDEFS} && classgenerator ${gen} ;
+.endfor
+
 .include "../../../mk/mipal.mk"		# comes last!
