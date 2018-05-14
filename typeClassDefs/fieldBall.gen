@@ -19,12 +19,18 @@ FieldBall(uint16_t nx, uint16_t ny, enum BallOptions sightingType = NoBallDetect
   set_r(r);
 }
 
-int x_centered(uint16_t nx) {
+/**
+ * From the center of the image, positive is to the right of the image
+ */
+int x_centered(uint16_t nx) { 
     return x() - (nx / 2);
 }
 
+/**
+ * From the center of the image, positive is upwards in the image
+ */
 int y_centered(uint16_t ny) {
-    return y() - (ny / 2);
+    return -(  - (ny /2) + y() );
 }
 
 %swift
@@ -43,7 +49,7 @@ public func x_centered(nx: UInt16) -> Int {
 }
 
 public func y_centered(ny: UInt16) -> Int {
-    return self.y - (ny / 2)
+    return -( - (ny / 2) + self.y)
 }
 
 -properties
