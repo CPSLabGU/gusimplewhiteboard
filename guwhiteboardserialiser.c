@@ -21,7 +21,7 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)
+size_t serialisemsg(WBTypes message_index, const void *message_in, void *serialised_out)
 {
     switch (message_index)
     {
