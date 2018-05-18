@@ -1,9 +1,9 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_field_horizon.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizon.h>
 -c++
-#include <gusimplewhiteboard/typeClassDefs/FieldHorizon.h>
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionHorizon.h>
 
 -properties
 

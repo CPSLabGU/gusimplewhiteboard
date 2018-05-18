@@ -1,11 +1,11 @@
 -author Carl Lusty
 
 -c++
-#include <gusimplewhiteboard/typeClassDefs/FieldGoalPost.h>
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionGoalPost.h>
 
 -c
 #include <stdint.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_field_goal_post.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal_post.h>
 
 enum GoalOptions {
 	NoGoalDetected = 0,

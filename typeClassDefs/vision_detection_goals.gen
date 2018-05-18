@@ -1,9 +1,9 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_field_goal.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
 -c++
-#include <gusimplewhiteboard/typeClassDefs/FieldGoal.h>
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionGoal.h>
 
 -properties
 
