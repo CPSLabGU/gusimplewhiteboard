@@ -945,10 +945,10 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
     };
 
     /** WB Ptr Class: FieldHorizons_t @brief Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera. */ 
-    class FieldHorizons_t: public generic_whiteboard_object<class FieldHorizons > { 
+    class FieldHorizons_t: public generic_whiteboard_object<class VisionDetectionHorizons > { 
         public: 
         /** Constructor: FieldHorizons_t */ 
-        FieldHorizons_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldHorizons >(wbd, kFieldHorizons_v, false) {}
+        FieldHorizons_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionDetectionHorizons >(wbd, kFieldHorizons_v, false) {}
         
     };
 
@@ -1017,10 +1017,10 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
     };
 
     /** WB Ptr Class: FieldGoals_t @brief Reports robocup spl goals found with guvision and GoalRayTracer. */ 
-    class FieldGoals_t: public generic_whiteboard_object<class FieldGoals > { 
+    class FieldGoals_t: public generic_whiteboard_object<class VisionDetectionGoals > { 
         public: 
         /** Constructor: FieldGoals_t */ 
-        FieldGoals_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldGoals >(wbd, kFieldGoals_v, false) {}
+        FieldGoals_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionDetectionGoals >(wbd, kFieldGoals_v, false) {}
         
     };
 
@@ -1041,10 +1041,10 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
     };
 
     /** WB Ptr Class: FieldBalls_t @brief Reports robocup spl ball found with guvision and BallRayTracer. */ 
-    class FieldBalls_t: public generic_whiteboard_object<class FieldBalls > { 
+    class FieldBalls_t: public generic_whiteboard_object<class VisionDetectionBalls > { 
         public: 
         /** Constructor: FieldBalls_t */ 
-        FieldBalls_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FieldBalls >(wbd, kFieldBalls_v, false) {}
+        FieldBalls_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class VisionDetectionBalls >(wbd, kFieldBalls_v, false) {}
         
     };
 

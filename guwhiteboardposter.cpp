@@ -1283,15 +1283,15 @@ v.from_string(message_content);
 }
 case kFieldHorizons_v:
 {
-#ifdef FieldHorizons_DEFINED
+#ifdef VisionDetectionHorizons_DEFINED
     class FieldHorizons_t msg_ptr(wbd);
-    FieldHorizons v = msg_ptr.get();
+    VisionDetectionHorizons v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldHorizons_DEFINED
+#endif //VisionDetectionHorizons_DEFINED
 }
 case kNaoWalkCommand_v:
 {
@@ -1391,15 +1391,15 @@ v.from_string(message_content);
 }
 case kFieldGoals_v:
 {
-#ifdef FieldGoals_DEFINED
+#ifdef VisionDetectionGoals_DEFINED
     class FieldGoals_t msg_ptr(wbd);
-    FieldGoals v = msg_ptr.get();
+    VisionDetectionGoals v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldGoals_DEFINED
+#endif //VisionDetectionGoals_DEFINED
 }
 case kTeleoperationControl_v:
 {
@@ -1427,15 +1427,15 @@ v.from_string(message_content);
 }
 case kFieldBalls_v:
 {
-#ifdef FieldBalls_DEFINED
+#ifdef VisionDetectionBalls_DEFINED
     class FieldBalls_t msg_ptr(wbd);
-    FieldBalls v = msg_ptr.get();
+    VisionDetectionBalls v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldBalls_DEFINED
+#endif //VisionDetectionBalls_DEFINED
 }
 
 #pragma clang diagnostic push

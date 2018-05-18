@@ -987,12 +987,12 @@ namespace guWhiteboard
             }
             case kFieldHorizons_v:
             {
-#ifdef FieldHorizons_DEFINED
+#ifdef VisionDetectionHorizons_DEFINED
                 class FieldHorizons_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldHorizons_DEFINED
+#endif //VisionDetectionHorizons_DEFINED
             }
             case kNaoWalkCommand_v:
             {
@@ -1068,12 +1068,12 @@ namespace guWhiteboard
             }
             case kFieldGoals_v:
             {
-#ifdef FieldGoals_DEFINED
+#ifdef VisionDetectionGoals_DEFINED
                 class FieldGoals_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldGoals_DEFINED
+#endif //VisionDetectionGoals_DEFINED
             }
             case kTeleoperationControl_v:
             {
@@ -1095,12 +1095,12 @@ namespace guWhiteboard
             }
             case kFieldBalls_v:
             {
-#ifdef FieldBalls_DEFINED
+#ifdef VisionDetectionBalls_DEFINED
                 class FieldBalls_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldBalls_DEFINED
+#endif //VisionDetectionBalls_DEFINED
             }
         }
 #pragma clang diagnostic push

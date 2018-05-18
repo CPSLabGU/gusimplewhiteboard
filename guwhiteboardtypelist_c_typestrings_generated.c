@@ -253,7 +253,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_uint8_t",
         "NotSupportedWithLegacyNaming",
-        "wb_field_horizons",
+        "wb_vision_detection_horizons",
         "wb_nao_walk_command",
         "wb_nao_walk_status",
         "NotSupportedWithLegacyNaming",
@@ -262,10 +262,10 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "wb_field_goals",
+        "wb_vision_detection_goals",
         "wb_teleoperation_control",
         "wb_teleoperation_status",
-        "wb_field_balls"
+        "wb_vision_detection_balls"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

@@ -2544,28 +2544,28 @@ public:
 }; 
 #endif //VisionRobots_DEFINED
 
-#ifdef FieldHorizons_DEFINED
+#ifdef VisionDetectionHorizons_DEFINED
 /** WBFunctor definition for FieldHorizons_WBFunctor_T */ 
 template <typename FieldHorizons_WBFunctor_T >
 class FieldHorizons_WBFunctor: public WBFunctor<FieldHorizons_WBFunctor_T > {
 public:
     /** WBFunctor constructor for FieldHorizons_WBFunctor_T */
-    FieldHorizons_WBFunctor(FieldHorizons_WBFunctor_T* obj, void (FieldHorizons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &), guWhiteboard::WBTypes t): WBFunctor<FieldHorizons_WBFunctor_T >(obj, (void (FieldHorizons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    FieldHorizons_WBFunctor(FieldHorizons_WBFunctor_T* obj, void (FieldHorizons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &), guWhiteboard::WBTypes t): WBFunctor<FieldHorizons_WBFunctor_T >(obj, (void (FieldHorizons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FieldHorizons_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::FieldHorizons result = guWhiteboard::FieldHorizons_t().get_from(m);
-        FieldHorizons_function_t funct((void (FieldHorizons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &))WBFunctor<FieldHorizons_WBFunctor_T >::get_s_func_ptr());
+        guWhiteboard::VisionDetectionHorizons result = guWhiteboard::FieldHorizons_t().get_from(m);
+        FieldHorizons_function_t funct((void (FieldHorizons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &))WBFunctor<FieldHorizons_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FieldHorizons_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldHorizons_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (FieldHorizons_WBFunctor_T::*FieldHorizons_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &);
+    typedef void (FieldHorizons_WBFunctor_T::*FieldHorizons_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(FieldHorizons_WBFunctor_T *obj, void (FieldHorizons_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldHorizons &), guWhiteboard::WBTypes t) { return new FieldHorizons_WBFunctor<FieldHorizons_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(FieldHorizons_WBFunctor_T *obj, void (FieldHorizons_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &), guWhiteboard::WBTypes t) { return new FieldHorizons_WBFunctor<FieldHorizons_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FieldHorizons_DEFINED
+#endif //VisionDetectionHorizons_DEFINED
 
 #ifdef NaoWalkCommand_DEFINED
 /** WBFunctor definition for NaoWalkCommand_WBFunctor_T */ 
@@ -2751,28 +2751,28 @@ public:
 }; 
 #endif //HAL_LegTarget_DEFINED
 
-#ifdef FieldGoals_DEFINED
+#ifdef VisionDetectionGoals_DEFINED
 /** WBFunctor definition for FieldGoals_WBFunctor_T */ 
 template <typename FieldGoals_WBFunctor_T >
 class FieldGoals_WBFunctor: public WBFunctor<FieldGoals_WBFunctor_T > {
 public:
     /** WBFunctor constructor for FieldGoals_WBFunctor_T */
-    FieldGoals_WBFunctor(FieldGoals_WBFunctor_T* obj, void (FieldGoals_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldGoals &), guWhiteboard::WBTypes t): WBFunctor<FieldGoals_WBFunctor_T >(obj, (void (FieldGoals_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    FieldGoals_WBFunctor(FieldGoals_WBFunctor_T* obj, void (FieldGoals_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &), guWhiteboard::WBTypes t): WBFunctor<FieldGoals_WBFunctor_T >(obj, (void (FieldGoals_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FieldGoals_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::FieldGoals result = guWhiteboard::FieldGoals_t().get_from(m);
-        FieldGoals_function_t funct((void (FieldGoals_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldGoals &))WBFunctor<FieldGoals_WBFunctor_T >::get_s_func_ptr());
+        guWhiteboard::VisionDetectionGoals result = guWhiteboard::FieldGoals_t().get_from(m);
+        FieldGoals_function_t funct((void (FieldGoals_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &))WBFunctor<FieldGoals_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FieldGoals_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldGoals_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (FieldGoals_WBFunctor_T::*FieldGoals_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldGoals &);
+    typedef void (FieldGoals_WBFunctor_T::*FieldGoals_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(FieldGoals_WBFunctor_T *obj, void (FieldGoals_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldGoals &), guWhiteboard::WBTypes t) { return new FieldGoals_WBFunctor<FieldGoals_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(FieldGoals_WBFunctor_T *obj, void (FieldGoals_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &), guWhiteboard::WBTypes t) { return new FieldGoals_WBFunctor<FieldGoals_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FieldGoals_DEFINED
+#endif //VisionDetectionGoals_DEFINED
 
 #ifdef TeleoperationControl_DEFINED
 /** WBFunctor definition for TeleoperationControl_WBFunctor_T */ 
@@ -2820,28 +2820,28 @@ public:
 }; 
 #endif //TeleoperationStatus_DEFINED
 
-#ifdef FieldBalls_DEFINED
+#ifdef VisionDetectionBalls_DEFINED
 /** WBFunctor definition for FieldBalls_WBFunctor_T */ 
 template <typename FieldBalls_WBFunctor_T >
 class FieldBalls_WBFunctor: public WBFunctor<FieldBalls_WBFunctor_T > {
 public:
     /** WBFunctor constructor for FieldBalls_WBFunctor_T */
-    FieldBalls_WBFunctor(FieldBalls_WBFunctor_T* obj, void (FieldBalls_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FieldBalls &), guWhiteboard::WBTypes t): WBFunctor<FieldBalls_WBFunctor_T >(obj, (void (FieldBalls_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    FieldBalls_WBFunctor(FieldBalls_WBFunctor_T* obj, void (FieldBalls_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &), guWhiteboard::WBTypes t): WBFunctor<FieldBalls_WBFunctor_T >(obj, (void (FieldBalls_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FieldBalls_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::FieldBalls result = guWhiteboard::FieldBalls_t().get_from(m);
-        FieldBalls_function_t funct((void (FieldBalls_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FieldBalls &))WBFunctor<FieldBalls_WBFunctor_T >::get_s_func_ptr());
+        guWhiteboard::VisionDetectionBalls result = guWhiteboard::FieldBalls_t().get_from(m);
+        FieldBalls_function_t funct((void (FieldBalls_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &))WBFunctor<FieldBalls_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FieldBalls_WBFunctor_T >::fObject->*funct)(WBFunctor<FieldBalls_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (FieldBalls_WBFunctor_T::*FieldBalls_function_t) (guWhiteboard::WBTypes, guWhiteboard::FieldBalls &);
+    typedef void (FieldBalls_WBFunctor_T::*FieldBalls_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(FieldBalls_WBFunctor_T *obj, void (FieldBalls_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FieldBalls &), guWhiteboard::WBTypes t) { return new FieldBalls_WBFunctor<FieldBalls_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(FieldBalls_WBFunctor_T *obj, void (FieldBalls_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &), guWhiteboard::WBTypes t) { return new FieldBalls_WBFunctor<FieldBalls_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FieldBalls_DEFINED
+#endif //VisionDetectionBalls_DEFINED
 
 
 #pragma clang diagnostic pop

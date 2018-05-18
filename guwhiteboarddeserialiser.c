@@ -854,11 +854,11 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
             }
             case kFieldHorizons_v:
             {
-#ifdef FIELDHORIZONS_GENERATED
-                return DESERIALISE(FIELDHORIZONS_C_STRUCT, serialised_in, (struct FIELDHORIZONS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_HORIZONS_GENERATED
+                return DESERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, serialised_in, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDHORIZONS_GENERATED
+#endif //VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:
@@ -935,11 +935,11 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
             }
             case kFieldGoals_v:
             {
-#ifdef FIELDGOALS_GENERATED
-                return DESERIALISE(FIELDGOALS_C_STRUCT, serialised_in, (struct FIELDGOALS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_GOALS_GENERATED
+                return DESERIALISE(VISION_DETECTION_GOALS_C_STRUCT, serialised_in, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDGOALS_GENERATED
+#endif //VISION_DETECTION_GOALS_GENERATED
                 break;
             }
             case kTeleoperationControl_v:
@@ -962,11 +962,11 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
             }
             case kFieldBalls_v:
             {
-#ifdef FIELDBALLS_GENERATED
-                return DESERIALISE(FIELDBALLS_C_STRUCT, serialised_in, (struct FIELDBALLS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_BALLS_GENERATED
+                return DESERIALISE(VISION_DETECTION_BALLS_C_STRUCT, serialised_in, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDBALLS_GENERATED
+#endif //VISION_DETECTION_BALLS_GENERATED
                 break;
             }
     }
