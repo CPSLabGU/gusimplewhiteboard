@@ -16,9 +16,9 @@ enum GoalOptions {
 -properties
 enum GoalOptions sightingType = NoGoalDetected // Goal detection details.
 
-gen fieldGoalPost post1 //First post found
+gen vision_detection_goal_post post1 //First post found
 
-gen fieldGoalPost post2 //Second post found
+gen vision_detection_goal_post post2 //Second post found
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
