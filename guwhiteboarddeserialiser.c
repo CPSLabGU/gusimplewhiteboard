@@ -852,7 +852,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldHorizons_v:
+            case kVisionDetectionHorizons_v:
             {
 #ifdef VISION_DETECTION_HORIZONS_GENERATED
                 return DESERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, serialised_in, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_out)
@@ -933,7 +933,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldGoals_v:
+            case kVisionDetectionGoals_v:
             {
 #ifdef VISION_DETECTION_GOALS_GENERATED
                 return DESERIALISE(VISION_DETECTION_GOALS_C_STRUCT, serialised_in, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_out)
@@ -960,7 +960,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //TELEOPERATIONSTATUS_GENERATED
                 break;
             }
-            case kFieldBalls_v:
+            case kVisionDetectionBalls_v:
             {
 #ifdef VISION_DETECTION_BALLS_GENERATED
                 return DESERIALISE(VISION_DETECTION_BALLS_C_STRUCT, serialised_in, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_out)

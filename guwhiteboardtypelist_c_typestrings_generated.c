@@ -125,7 +125,7 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "WhistleBlown",
         "VolumeControl",
         "VisionRobots",
-        "FieldHorizons",
+        "VisionDetectionHorizons",
         "NaoWalkCommand",
         "NaoWalkStatus",
         "HAL_LLegTarget_Ctrl",
@@ -134,10 +134,10 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "HAL_RLegTarget_Ctrl",
         "HAL_RLegTarget_Stat",
         "HAL_RLegTarget_Tolr",
-        "FieldGoals",
+        "VisionDetectionGoals",
         "TeleoperationControl",
         "TeleoperationStatus",
-        "FieldBalls"
+        "VisionDetectionBalls"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
