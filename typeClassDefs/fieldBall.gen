@@ -23,8 +23,8 @@ Coords:
     x, Int16.MinValue <-> Int16.MaxValue
     y, Int16.MinValue <-> Int16.MaxValue
     r, 0 <-> UInt16.MaxValue
--x Left
-+x Right
-+y Up
--y Down
+Minus x Left
+Plus x Right
+Plus y Up
+Minus y Down
 Center near 0,0
