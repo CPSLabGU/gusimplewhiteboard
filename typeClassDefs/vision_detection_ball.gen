@@ -13,7 +13,7 @@ enum BallOptions sightingType = NoBallDetected // Ball detection details.
 
 int16_t x = 0  //X position
 int16_t y = 0  //Y position
-uint16  r = 0  //Radius
+uint16_t r = 0  //Radius
 
 -comment
 Results for the Ball Ray Tracer (guvision). 
