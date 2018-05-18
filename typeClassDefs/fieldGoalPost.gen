@@ -15,123 +15,33 @@ enum GoalPostOrientation {
 	RightPost       ///< This is the right post of a goal.
 };
 
-%c++
-/**
- * Create a new `FieldGoalPost`, using centered 0,0 coords.
- */
-FieldGoalPost(uint16_t nx, uint16_t ny, enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, uint16_t tl_x = 0, uint16_t tl_y = 0, uint16_t tr_x = 0, uint16_t tr_y = 0, uint16_t bl_x = 0, uint16_t bl_y = 0, uint16_t br_x = 0, uint16_t br_y = 0) {
-  set_sightingType(sightingType);
-  set_orientation(orientation);
-  set_tl_x(tl_x + (nx / 2));
-  set_tl_y(tl_y + (ny / 2));
-  set_tr_x(tr_x + (nx / 2));
-  set_tr_y(tr_y + (ny / 2));
-  set_bl_x(bl_x + (nx / 2));
-  set_bl_y(bl_y + (ny / 2));
-  set_br_x(br_x + (nx / 2));
-  set_br_y(br_y + (ny / 2));
-}
-
-int tl_x_centered(uint16_t nx) {
-    return tl_x() - (nx / 2);
-}
-
-int tr_x_centered(uint16_t nx) {
-    return tr_x() - (nx / 2);
-}
-
-int bl_x_centered(uint16_t nx) {
-    return bl_x() - (nx / 2);
-}
-
-int br_x_centered(uint16_t nx) {
-    return br_x() - (nx / 2);
-}
-
-int tl_y_centered(uint16_t ny) {
-    return tl_y() - (ny / 2);
-}
-
-int tr_y_centered(uint16_t ny) {
-    return tr_y() - (ny / 2);
-}
-
-int bl_y_centered(uint16_t ny) {
-    return bl_y() - (ny / 2);
-}
-
-int br_y_centered(uint16_t ny) {
-    return br_y() - (ny / 2);
-}
-
-%swift
-/**
- * Create a new `wb_field_goal_post`, using centered 0,0 coords.
- */ 
-public init(nx: UInt16, ny: UInt16, sightingType: GoalPostOptions = NoPostDetected, orientation: GoalPostOrientation = GenericPost, tl_x: UInt16 = 0, tl_y: UInt16 = 0, tr_x: UInt16 = 0, tr_y: UInt16 = 0, bl_x: UInt16 = 0, bl_y: UInt16 = 0, br_x: UInt16 = 0, br_y: UInt16 = 0) {
-  self.init()
-  self.sightingType = sightingType
-  self.orientation = orientation
-  self.tl_x = tl_x + (nx / 2)
-  self.tl_y = tl_y + (ny / 2)
-  self.tr_x = tr_x + (nx / 2)
-  self.tr_y = tr_y + (ny / 2)
-  self.bl_x = bl_x + (nx / 2)
-  self.bl_y = bl_y + (ny / 2)
-  self.br_x = br_x + (nx / 2)
-  self.br_y = br_y + (ny / 2)
-} 
-
-public func tl_x_centered(nx: UInt16) -> Int {
-    return self.tl_x - (nx / 2)
-}
-
-public func tr_x_centered(nx: UInt16) -> Int {
-    return self.tr_x - (nx / 2)
-}
-
-public func bl_x_centered(nx: UInt16) -> Int {
-    return self.bl_x - (nx / 2)
-}
-
-public func br_x_centered(nx: UInt16) -> Int {
-    return self.br_x - (nx / 2)
-}
-
-public func tl_y_centered(ny: UInt16) -> Int {
-    return self.tl_y - (ny / 2)
-}
-
-public func tr_y_centered(ny: UInt16) -> Int {
-    return self.tr_y - (ny / 2)
-}
-
-public func bl_y_centered(ny: UInt16) -> Int {
-    return self.bl_y - (ny / 2)
-}
-
-public func br_y_centered(ny: UInt16) -> Int {
-    return self.br_y - (ny / 2)
-}
-
-
 -properties
 enum GoalPostOptions sightingType = NoPostDetected // Goal post details.
 
 enum GoalPostOrientation orientation = GenericPost // Goal post orientation.
 
-uint16_t tl_x = 0 // Top Left X coord.
-uint16_t tl_y = 0 // Top Left Y coord.
+int16_t tl_x = 0 // Top Left X coord.
+int16_t tl_y = 0 // Top Left Y coord.
 
-uint16_t tr_x = 0 // Top Right X coord.
-uint16_t tr_y = 0 // Top Right Y coord.
+int16_t tr_x = 0 // Top Right X coord.
+int16_t tr_y = 0 // Top Right Y coord.
 
-uint16_t bl_x = 0 // Bottom Left X coord.
-uint16_t bl_y = 0 // Bottom Left Y coord.
+int16_t bl_x = 0 // Bottom Left X coord.
+int16_t bl_y = 0 // Bottom Left Y coord.
 
-uint16_t br_x = 0 // Bottom Right X coord.
-uint16_t br_y = 0 // Bottom Right Y coord.
+int16_t br_x = 0 // Bottom Right X coord.
+int16_t br_y = 0 // Bottom Right Y coord.
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
+Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
+You can check the vision status message for resolution and FOV information.
+Coords:
+    x, Int16.MinValue <-> Int16.MaxValue
+    y, Int16.MinValue <-> Int16.MaxValue
+Minus x Left
+Plus x Right
+Plus y Up
+Minus y Down
+Center near 0,0
 
