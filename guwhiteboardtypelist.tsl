@@ -108,7 +108,7 @@ type:Vision_FieldFeatures, nonatomic, VisionFieldFeatures, Posts information fro
 bool,                nonatomic, WhistleBlown, Whistle blown flag
 uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to control the volume via pulse audio commands
 class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that vision sees.
-type:fieldHorizons, nonatomic, FieldHorizons, Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
+type:vision_detection_horizons, nonatomic, VisionDetectionHorizons, Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
 type:naoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
 type:naoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
 class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
@@ -117,7 +117,7 @@ class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
 class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-type:fieldGoals, nonatomic, FieldGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
+type:vision_detection_goals, nonatomic, VisionDetectionGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
-type:fieldBalls, nonatomic, FieldBalls, Reports robocup spl ball found with guvision and BallRayTracer.
+type:vision_detection_balls, nonatomic, VisionDetectionBalls, Reports robocup spl ball found with guvision and BallRayTracer.

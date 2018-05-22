@@ -132,7 +132,7 @@ typedef enum wb_types
     kWhistleBlown_v = 107, 		///< Whistle blown flag
     kVolumeControl_v = 108, 		///< Variable used by SMVolumeController to control the volume via pulse audio commands
     kVisionRobots_v = 109, 		///< Class that reports the robots that vision sees.
-    kFieldHorizons_v = 110, 		///< Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
+    kVisionDetectionHorizons_v = 110, 		///< Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
     kNaoWalkCommand_v = 111, 		///< Class that controls the latest version of the UNSW 2014 walk engine.
     kNaoWalkStatus_v = 112, 		///< Status class for the latest version of the UNSW 2014 walk engine.
     kHAL_LLegTarget_Ctrl_v = 113, 		///< Used to control the left leg via DCM
@@ -141,11 +141,11 @@ typedef enum wb_types
     kHAL_RLegTarget_Ctrl_v = 116, 		///< Used to control the right leg via DCM
     kHAL_RLegTarget_Stat_v = 117, 		///< Used to report DCM status of the right leg
     kHAL_RLegTarget_Tolr_v = 118, 		///< Used to set the joing angle tolerance for motion completion detection.
-    kFieldGoals_v = 119, 		///< Reports robocup spl goals found with guvision and GoalRayTracer.
+    kVisionDetectionGoals_v = 119, 		///< Reports robocup spl goals found with guvision and GoalRayTracer.
     kTeleoperationControl_v = 120, 		///< Control message for teleop VR app
     kTeleoperationStatus_v = 121, 		///< Status message for teleop VR app
 
-    kFieldBalls_v = 122 		///< Reports robocup spl ball found with guvision and BallRayTracer.
+    kVisionDetectionBalls_v = 122 		///< Reports robocup spl ball found with guvision and BallRayTracer.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

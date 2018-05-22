@@ -1281,17 +1281,17 @@ v.from_string(message_content);
     return false;
 #endif //VisionRobots_DEFINED
 }
-case kFieldHorizons_v:
+case kVisionDetectionHorizons_v:
 {
-#ifdef FieldHorizons_DEFINED
-    class FieldHorizons_t msg_ptr(wbd);
-    FieldHorizons v = msg_ptr.get();
+#ifdef VisionDetectionHorizons_DEFINED
+    class VisionDetectionHorizons_t msg_ptr(wbd);
+    VisionDetectionHorizons v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldHorizons_DEFINED
+#endif //VisionDetectionHorizons_DEFINED
 }
 case kNaoWalkCommand_v:
 {
@@ -1389,17 +1389,17 @@ v.from_string(message_content);
     return false;
 #endif //HAL_LegTarget_DEFINED
 }
-case kFieldGoals_v:
+case kVisionDetectionGoals_v:
 {
-#ifdef FieldGoals_DEFINED
-    class FieldGoals_t msg_ptr(wbd);
-    FieldGoals v = msg_ptr.get();
+#ifdef VisionDetectionGoals_DEFINED
+    class VisionDetectionGoals_t msg_ptr(wbd);
+    VisionDetectionGoals v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldGoals_DEFINED
+#endif //VisionDetectionGoals_DEFINED
 }
 case kTeleoperationControl_v:
 {
@@ -1425,17 +1425,17 @@ v.from_string(message_content);
     return false;
 #endif //TeleoperationStatus_DEFINED
 }
-case kFieldBalls_v:
+case kVisionDetectionBalls_v:
 {
-#ifdef FieldBalls_DEFINED
-    class FieldBalls_t msg_ptr(wbd);
-    FieldBalls v = msg_ptr.get();
+#ifdef VisionDetectionBalls_DEFINED
+    class VisionDetectionBalls_t msg_ptr(wbd);
+    VisionDetectionBalls v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //FieldBalls_DEFINED
+#endif //VisionDetectionBalls_DEFINED
 }
 
 #pragma clang diagnostic push
@@ -1562,7 +1562,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["WhistleBlown"] = kWhistleBlown_v;
     self["VolumeControl"] = kVolumeControl_v;
     self["VisionRobots"] = kVisionRobots_v;
-    self["FieldHorizons"] = kFieldHorizons_v;
+    self["VisionDetectionHorizons"] = kVisionDetectionHorizons_v;
     self["NaoWalkCommand"] = kNaoWalkCommand_v;
     self["NaoWalkStatus"] = kNaoWalkStatus_v;
     self["HAL_LLegTarget_Ctrl"] = kHAL_LLegTarget_Ctrl_v;
@@ -1571,10 +1571,10 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["HAL_RLegTarget_Ctrl"] = kHAL_RLegTarget_Ctrl_v;
     self["HAL_RLegTarget_Stat"] = kHAL_RLegTarget_Stat_v;
     self["HAL_RLegTarget_Tolr"] = kHAL_RLegTarget_Tolr_v;
-    self["FieldGoals"] = kFieldGoals_v;
+    self["VisionDetectionGoals"] = kVisionDetectionGoals_v;
     self["TeleoperationControl"] = kTeleoperationControl_v;
     self["TeleoperationStatus"] = kTeleoperationStatus_v;
-    self["FieldBalls"] = kFieldBalls_v;
+    self["VisionDetectionBalls"] = kVisionDetectionBalls_v;
 
     (void) self;
 }

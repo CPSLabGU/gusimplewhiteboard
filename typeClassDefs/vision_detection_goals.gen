@@ -1,0 +1,13 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionGoal.h>
+
+-properties
+
+gen vision_detection_goal goals[2] //goal objects
+
+-comment
+Array of fieldGoals, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao. Reported by the GoalRayTracer.

@@ -985,14 +985,14 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //VisionRobots_DEFINED
             }
-            case kFieldHorizons_v:
+            case kVisionDetectionHorizons_v:
             {
-#ifdef FieldHorizons_DEFINED
-                class FieldHorizons_t m(wbd);
+#ifdef VisionDetectionHorizons_DEFINED
+                class VisionDetectionHorizons_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldHorizons_DEFINED
+#endif //VisionDetectionHorizons_DEFINED
             }
             case kNaoWalkCommand_v:
             {
@@ -1066,14 +1066,14 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //HAL_LegTarget_DEFINED
             }
-            case kFieldGoals_v:
+            case kVisionDetectionGoals_v:
             {
-#ifdef FieldGoals_DEFINED
-                class FieldGoals_t m(wbd);
+#ifdef VisionDetectionGoals_DEFINED
+                class VisionDetectionGoals_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldGoals_DEFINED
+#endif //VisionDetectionGoals_DEFINED
             }
             case kTeleoperationControl_v:
             {
@@ -1093,14 +1093,14 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //TeleoperationStatus_DEFINED
             }
-            case kFieldBalls_v:
+            case kVisionDetectionBalls_v:
             {
-#ifdef FieldBalls_DEFINED
-                class FieldBalls_t m(wbd);
+#ifdef VisionDetectionBalls_DEFINED
+                class VisionDetectionBalls_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FieldBalls_DEFINED
+#endif //VisionDetectionBalls_DEFINED
             }
         }
 #pragma clang diagnostic push
