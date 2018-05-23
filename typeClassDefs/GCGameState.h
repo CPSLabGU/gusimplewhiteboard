@@ -154,9 +154,15 @@ namespace guWhiteboard
 
     /// high level state of the Game Controller
 	enum GameState {  Initial, Ready, Set, Playing, Finished, NUM_GAME_STATES };
-
-	/// Game sub-state
-	enum GameSubState {Normal, PenaltyShoot, Overtime, Timeout, NUM_SUB_STATES};
+    
+    ///Phase of the competition
+    enum CompetitionPhase {RoundRobin, PlayOff, NUM_COMPETITION_PHASES };
+    
+    ///type of the competition
+    enum CompetitionType { NormalCompetition, MixedTeam, GeneralPenaltyKick, NUM_COMPETITION_TYPES };
+    
+    ///phase of the game
+    enum GamePhase { NormalPhase, PenaltyShoot, Overtime, Timeout };
 	
 	
     /// received command from the Game Controller
@@ -196,8 +202,12 @@ namespace guWhiteboard
 
             /// GS half
                 PROPERTY(GameHalf, theGSHalf )
-            ///  GS game format
-                PROPERTY(GameSubState, theGSGameformat )
+            /// GS compeition type
+                PROPERTY(CompetitionType, theGSCompetitionType )
+            /// GS competition phase
+                PROPERTY(CompetitionPhase, theGSCompetitionPhase )
+            /// GS game phase
+                PROPERTY(GamePhase, theGSGamePhase )
             /// our internal state
                 PROPERTY(GameState, theGSGameState )  
             ///  GS GameControllerCommand
@@ -214,15 +224,19 @@ namespace guWhiteboard
         public:
             /** designated constructor */
             GCGameState(GameHalf theGSHalf = FirstHalf, 
-			GameSubState theGSGameformat = Normal,
+			CompetitionType theGSCompetitionType = NormalCompetition,
+            CompetitionPhase theGSCompetitionPhase = RoundRobin,
+            GamePhase theGSGamePhase = NormalPhase,
 			GameState theGSGameState = Initial,
 			HomeAway theGSteamThatHasKickOf = Home,
 			HomeAway theGSteamCausedlastDropIn = Home,
 			int16_t theSecondReminingInHalf = Home ,
 			HomeAway homeaway = Home
 			):
-		       _theGSHalf(theGSHalf), 
-		       _theGSGameformat(theGSGameformat),
+		       _theGSHalf(theGSHalf),
+               _theGSCompetitionType(theGSCompetitionType),
+               _theGSCompetitionPhase(theGSCompetitionPhase),
+               _theGSGamePhase(theGSGamePhase),
 		       _theGSGameState(theGSGameState),
 		       _theGSteamThatHasKickOf(theGSteamThatHasKickOf),
 		       _theGSteamCausedlastDropIn(theGSteamCausedlastDropIn),
@@ -247,7 +261,9 @@ namespace guWhiteboard
             /** copy constructor */
             GCGameState(const GCGameState &other):
                       _theGSHalf(other._theGSHalf),
-                      _theGSGameformat(other._theGSGameformat),
+                      _theGSCompetitionType(other._theGSCompetitionType),
+                      _theGSCompetitionPhase(other._theGSCompetitionPhase),
+                      _theGSGamePhase(other._theGSGamePhase),
                        _theGSGameState(other._theGSGameState),
                        _theGSteamThatHasKickOf(other._theGSteamThatHasKickOf),
                        _theGSteamCausedlastDropIn(other._theGSteamCausedlastDropIn),
@@ -350,7 +366,7 @@ namespace guWhiteboard
 
 	        if  ( FirstHalf == theGSHalf() ) ss << kGSFirstHalf<<","; else ss << kGSSecondHalf<<",";
 
-	        if  ( Normal == theGSGameformat() ) ss << kGSNormalGame<<","; else ss << kGSPenaltyShots<<",";
+	        if  ( NormalCompetition == theGSCompetitionType()) ss << kGSNormalGame<<","; else ss << kGSPenaltyShots<<",";
 
 		switch(int (_theGSGameState))
 		{ case Initial: ss << kGSInitial<<",";
