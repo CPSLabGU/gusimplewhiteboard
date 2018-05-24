@@ -3,13 +3,13 @@
 
 #include <sys/types.h>
 
-/************************ For some strange reasong the
-        Hexapod models starts numebring legs from zero
-        but the joitns from 1 */
+/************************ 
+            enum to index the cameras
+         */
 
 enum FilteredVisionObjectType  //: int32_t
-{       FVOBallTop =0, ///< Filtered informaiton ball on top camera
-        FVOBallBottom =1,  ///< Filtered informaiton ball on bottom camera
+{       FVOBallTop =0, ///< Filtered information ball on top camera
+        FVOBallBottom =1,  ///< Filtered information ball on bottom camera
         FVO_NUM_CAMERAS = 2 ///< number of different cameras
 };
 

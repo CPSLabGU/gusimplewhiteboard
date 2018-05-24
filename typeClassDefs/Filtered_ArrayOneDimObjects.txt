@@ -1,4 +1,4 @@
 author	Vlad Estivill-Castro
 struct wb_filtered_vision_object	objects[4]	// the array containing various filtered parts of the goals reported by vision FVO_NUM_OBJECTS =4
 
-The class of landmarks filtered regarding goal sigthings
+The class of landmarks filtered regarding goal sightings
