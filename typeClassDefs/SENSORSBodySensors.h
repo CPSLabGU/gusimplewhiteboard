@@ -170,9 +170,9 @@ namespace guWhiteboard
             ss << ", "; 
             ss << "InertialSensor_AngleY=" << InertialSensor_AngleY(); 
             ss << ", "; 
-            ss << "Battery_Charge=" << Battery_Charge(); 
+            ss << "Battery_Charge=" << static_cast<int>(Battery_Charge());
             ss << ", "; 
-            ss << "Battery_Current=" << Battery_Current(); 
+            ss << "Battery_Current=" << static_cast<int>(Battery_Current());
             ss << ", "; 
             ss << "US=" << US(); 
             ss << ", "; 
@@ -180,8 +180,8 @@ namespace guWhiteboard
             ss << ", "; 
             ss << "pad1=" << pad1(); 
             ss << ", "; 
-            ss << "pad2=" << pad2(); 
-
+            ss << "pad2=" << pad2();
+            
             return ss.str(); 
 
 #endif /// USE_WB_SENSORS_BODYSENSORS_C_CONVERSION
