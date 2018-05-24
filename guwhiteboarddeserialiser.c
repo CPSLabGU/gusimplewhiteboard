@@ -21,7 +21,7 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_out)
+size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out)
 {
     switch (message_index)
     {
@@ -248,22 +248,22 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVision_Control_v:
+            case kVisionControl_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kVision_Status_v:
+            case kVisionStatus_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
             case kFFTStatus_v:
@@ -852,13 +852,13 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldHorizons_v:
+            case kVisionDetectionHorizons_v:
             {
-#ifdef FIELDHORIZONS_GENERATED
-                return DESERIALISE(FIELDHORIZONS_C_STRUCT, serialised_in, (struct FIELDHORIZONS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_HORIZONS_GENERATED
+                return DESERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, serialised_in, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDHORIZONS_GENERATED
+#endif //VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:
@@ -933,13 +933,13 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldGoals_v:
+            case kVisionDetectionGoals_v:
             {
-#ifdef FIELDGOALS_GENERATED
-                return DESERIALISE(FIELDGOALS_C_STRUCT, serialised_in, (struct FIELDGOALS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_GOALS_GENERATED
+                return DESERIALISE(VISION_DETECTION_GOALS_C_STRUCT, serialised_in, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDGOALS_GENERATED
+#endif //VISION_DETECTION_GOALS_GENERATED
                 break;
             }
             case kTeleoperationControl_v:
@@ -960,13 +960,13 @@ size_t deserialisemsg(WBTypes message_index, void *serialised_in, void *message_
 #endif //TELEOPERATIONSTATUS_GENERATED
                 break;
             }
-            case kFieldBalls_v:
+            case kVisionDetectionBalls_v:
             {
-#ifdef FIELDBALLS_GENERATED
-                return DESERIALISE(FIELDBALLS_C_STRUCT, serialised_in, (struct FIELDBALLS_C_STRUCT *)message_out)
+#ifdef VISION_DETECTION_BALLS_GENERATED
+                return DESERIALISE(VISION_DETECTION_BALLS_C_STRUCT, serialised_in, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FIELDBALLS_GENERATED
+#endif //VISION_DETECTION_BALLS_GENERATED
                 break;
             }
     }

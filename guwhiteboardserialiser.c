@@ -21,7 +21,7 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_out)
+size_t serialisemsg(WBTypes message_index, const void *message_in, void *serialised_out)
 {
     switch (message_index)
     {
@@ -248,22 +248,22 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVision_Control_v:
+            case kVisionControl_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return SERIALISE(VISION_CONTROL_STATUS_C_STRUCT, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kVision_Status_v:
+            case kVisionStatus_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
+#ifdef VISION_CONTROL_STATUS_GENERATED
+                return SERIALISE(VISION_CONTROL_STATUS_C_STRUCT, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
             case kFFTStatus_v:
@@ -852,13 +852,13 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldHorizons_v:
+            case kVisionDetectionHorizons_v:
             {
-#ifdef FIELDHORIZONS_GENERATED
-                return SERIALISE(FIELDHORIZONS_C_STRUCT, (struct FIELDHORIZONS_C_STRUCT *)message_in, serialised_out)
+#ifdef VISION_DETECTION_HORIZONS_GENERATED
+                return SERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //FIELDHORIZONS_GENERATED
+#endif //VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:
@@ -933,13 +933,13 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFieldGoals_v:
+            case kVisionDetectionGoals_v:
             {
-#ifdef FIELDGOALS_GENERATED
-                return SERIALISE(FIELDGOALS_C_STRUCT, (struct FIELDGOALS_C_STRUCT *)message_in, serialised_out)
+#ifdef VISION_DETECTION_GOALS_GENERATED
+                return SERIALISE(VISION_DETECTION_GOALS_C_STRUCT, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //FIELDGOALS_GENERATED
+#endif //VISION_DETECTION_GOALS_GENERATED
                 break;
             }
             case kTeleoperationControl_v:
@@ -960,13 +960,13 @@ size_t serialisemsg(WBTypes message_index, void *message_in, void *serialised_ou
 #endif //TELEOPERATIONSTATUS_GENERATED
                 break;
             }
-            case kFieldBalls_v:
+            case kVisionDetectionBalls_v:
             {
-#ifdef FIELDBALLS_GENERATED
-                return SERIALISE(FIELDBALLS_C_STRUCT, (struct FIELDBALLS_C_STRUCT *)message_in, serialised_out)
+#ifdef VISION_DETECTION_BALLS_GENERATED
+                return SERIALISE(VISION_DETECTION_BALLS_C_STRUCT, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //FIELDBALLS_GENERATED
+#endif //VISION_DETECTION_BALLS_GENERATED
                 break;
             }
     }

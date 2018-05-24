@@ -78,7 +78,6 @@
 		C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD91CBCD2740061A970 /* NXT_Two_Touch_Status.h */; };
 		C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */; };
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
-		C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBDE1CBCD2740061A970 /* Point2D.txt */; };
 		C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */; };
 		C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */; };
 		C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */; };
@@ -204,6 +203,7 @@
 		F1FF77861A0364D7009E269F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D2BE1B1A0358C400700948 /* libc++.dylib */; };
 		F5BC000B1F0DEF7900987168 /* FilteredVisionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BC000A1F0DEF7900987168 /* FilteredVisionObject.h */; };
 		F5BC000D1F0DEF9700987168 /* FilteredArrayBallSightings.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BC000C1F0DEF9700987168 /* FilteredArrayBallSightings.h */; };
+		F5F25CA720A582150057B540 /* wb_vision_control_status.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F25CA620A582150057B540 /* wb_vision_control_status.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -785,6 +785,7 @@
 		F5C315A01F11B35900C517C2 /* wb_top_particles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_top_particles.h; sourceTree = "<group>"; };
 		F5D8199B18FCF4EB00F64A81 /* ros_publish_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_publish_test.cc; sourceTree = "<group>"; };
 		F5D8199C18FCF4EB00F64A81 /* ros_publish_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_publish_test.h; sourceTree = "<group>"; };
+		F5F25CA620A582150057B540 /* wb_vision_control_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_vision_control_status.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1467,6 +1468,7 @@
 				C3B4EC1D1CBCD2740061A970 /* wb_switch_subsumption_traffic_lights.h */,
 				C3B4EC1E1CBCD2740061A970 /* wb_switch_subsumption.h */,
 				C3B4EC1F1CBCD2740061A970 /* wb_teleoperation.h */,
+				F5F25CA620A582150057B540 /* wb_vision_control_status.h */,
 				C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */,
 				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
 				F1E5543E18EBD16D00639B1E /* WalkData.h */,
@@ -1670,6 +1672,7 @@
 				C3B4EC861CBCD2740061A970 /* wb_sound.h in Headers */,
 				C3B4EC311CBCD2740061A970 /* GCGameState.h in Headers */,
 				C3B4EC6C1CBCD2740061A970 /* wb_goal.h in Headers */,
+				F5F25CA720A582150057B540 /* wb_vision_control_status.h in Headers */,
 				C3B4EC521CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h in Headers */,
 				EF203BD71F71E57B001582D8 /* VisionRobots.h in Headers */,
 				F1D9265A14A151C500BDAEED /* WBFunctor.h in Headers */,
@@ -2123,7 +2126,6 @@
 				C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */,
 				C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */,
 				F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */,
-				C3B4EC461CBCD2740061A970 /* Point2D.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2709,7 +2711,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "swift_wb/swift_wb-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

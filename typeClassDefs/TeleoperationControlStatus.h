@@ -9,7 +9,7 @@
 #define	TeleoperationControlStatus_DEFINED
 
 #include "MOTION_Interface.h"
-#include "Vision_Control.h"
+#include "VisionControlStatus.h"
 #include "wb_teleoperation.h"
 #include <gu_util.h>
 namespace guWhiteboard

@@ -45,8 +45,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "UDPRN",
         "PlayerNumber",
         "ManuallyPenalized",
-        "Vision_Control",
-        "Vision_Status",
+        "VisionControl",
+        "VisionStatus",
         "FFTStatus",
         "FSOsighting",
         "TopParticles",
@@ -125,7 +125,7 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "WhistleBlown",
         "VolumeControl",
         "VisionRobots",
-        "FieldHorizons",
+        "VisionDetectionHorizons",
         "NaoWalkCommand",
         "NaoWalkStatus",
         "HAL_LLegTarget_Ctrl",
@@ -134,10 +134,10 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "HAL_RLegTarget_Ctrl",
         "HAL_RLegTarget_Stat",
         "HAL_RLegTarget_Tolr",
-        "FieldGoals",
+        "VisionDetectionGoals",
         "TeleoperationControl",
         "TeleoperationStatus",
-        "FieldBalls"
+        "VisionDetectionBalls"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -173,8 +173,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "wb_int8_t",
         "wb_int8_t",
-        "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
+        "wb_vision_control_status",
+        "wb_vision_control_status",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "wb_top_particles",
@@ -253,7 +253,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_uint8_t",
         "NotSupportedWithLegacyNaming",
-        "wb_field_horizons",
+        "wb_vision_detection_horizons",
         "wb_nao_walk_command",
         "wb_nao_walk_status",
         "NotSupportedWithLegacyNaming",
@@ -262,10 +262,10 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "wb_field_goals",
+        "wb_vision_detection_goals",
         "wb_teleoperation_control",
         "wb_teleoperation_status",
-        "wb_field_balls"
+        "wb_vision_detection_balls"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

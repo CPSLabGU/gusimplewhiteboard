@@ -1,0 +1,44 @@
+-author Carl Lusty
+
+-c
+#include <stdint.h>
+
+enum HorizonOptions {
+	OnlyField = 0,
+	SingleHorizon,
+	CornerHorizon,
+	HorizonFailed
+};
+
+-properties
+enum HorizonOptions horizonType = HorizonFailed // Type of Horizon 
+
+int16_t lhp_x = 0 // Left Horizon Point X
+int32_t lhp_y = 0 // Left Horizon Point Y
+
+int16_t rhp_x = 0 // Right Horizon Point X
+int32_t rhp_y = 0 // Right Horizon Point Y
+
+int16_t chp_x = 0 // Center Horizon Point X
+int32_t chp_y = 0 // Center Horizon Point Y
+
+-comment
+This class is for Vision to report the edge of the SPL soccer field.
+It does not report the field Bounds, that needs white line detection.
+This is for the edge of green. 
+
+Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
+You can check the vision status message for resolution and FOV information.
+Coords:
+    x, Int16.MinValue <-> Int16.MaxValue
+    y, Int32.MinValue <-> Int32.MaxValue
+Minus x Left
+Plus x Right
+Plus y Up
+Minus y Down
+Center near 0,0
+
+It will always report the projected horizon to the far left X position and the far right position.
+As such, Y values may be projected to points that are not on the image itself. 
+That is why the y value is an int32 instead of int16. It uses the same positions for top Y and bottom Y but the values reported may exceed those positions because it's a projection of the horizon.
+

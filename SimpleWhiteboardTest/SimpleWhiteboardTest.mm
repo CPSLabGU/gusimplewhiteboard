@@ -63,6 +63,7 @@
 #import "FilteredOneDimObject.h"
 #import "FilteredArrayOneDimSonar.h"
 #import "FilteredArrayOneDimObjects.h"
+#import "VisionControlStatus.h"
 
 #import "FSMControlStatus.h"
 

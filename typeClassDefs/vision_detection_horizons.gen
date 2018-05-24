@@ -1,0 +1,13 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizon.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionHorizon.h>
+
+-properties
+
+gen vision_detection_horizon horizons[2] //horizon objects
+
+-comment
+Array of fieldHorizons, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao.

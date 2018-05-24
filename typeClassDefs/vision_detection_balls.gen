@@ -1,0 +1,15 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_ball.h>
+#include <stdint.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionBall.h>
+
+-properties
+
+uint64_t frameNumber = 0  //visionFrameNumber
+gen vision_detection_ball balls[2] //ball objects
+
+-comment
+Array of fieldBalls, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao. Reported by the BallRayTracer.

@@ -10,12 +10,13 @@
 
 #include <string>
 #include <cstdlib>
+#include <bitset>
+#include <algorithm>
 
 #include <SimpleShapes.h>
-#include "Vision_Control.h"
 #include "wb_ball.h"
 
-
+#include "VisionControlStatus.h"
 
 namespace guWhiteboard {
 	
