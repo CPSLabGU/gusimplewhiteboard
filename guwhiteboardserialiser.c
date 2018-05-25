@@ -969,6 +969,15 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
 #endif //VISION_DETECTION_BALLS_GENERATED
                 break;
             }
+            case kTeleoperationControlVR_v:
+            {
+#ifdef TELEOPERATIONCONTROLVR_GENERATED
+                return SERIALISE(TELEOPERATIONCONTROLVR_C_STRUCT, (struct TELEOPERATIONCONTROLVR_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //TELEOPERATIONCONTROLVR_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

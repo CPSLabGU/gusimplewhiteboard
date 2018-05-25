@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 123
+#define GSW_NUM_TYPES_DEFINED 124
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -144,8 +144,9 @@ typedef enum wb_types
     kVisionDetectionGoals_v = 119, 		///< Reports robocup spl goals found with guvision and GoalRayTracer.
     kTeleoperationControl_v = 120, 		///< Control message for teleop VR app
     kTeleoperationStatus_v = 121, 		///< Status message for teleop VR app
+    kVisionDetectionBalls_v = 122, 		///< Reports robocup spl ball found with guvision and BallRayTracer.
 
-    kVisionDetectionBalls_v = 122 		///< Reports robocup spl ball found with guvision and BallRayTracer.
+    kTeleoperationControlVR_v = 123 		///< Virtual Reality extended class
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 
