@@ -121,3 +121,4 @@ type:vision_detection_goals, nonatomic, VisionDetectionGoals, Reports robocup sp
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
 type:vision_detection_balls, nonatomic, VisionDetectionBalls, Reports robocup spl ball found with guvision and BallRayTracer.
+type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality extended class

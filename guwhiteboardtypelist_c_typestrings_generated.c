@@ -137,7 +137,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "VisionDetectionGoals",
         "TeleoperationControl",
         "TeleoperationStatus",
-        "VisionDetectionBalls"
+        "VisionDetectionBalls",
+        "TeleoperationControlVR"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -265,7 +266,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_vision_detection_goals",
         "wb_teleoperation_control",
         "wb_teleoperation_status",
-        "wb_vision_detection_balls"
+        "wb_vision_detection_balls",
+        "wb_teleoperation_control_v_r"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

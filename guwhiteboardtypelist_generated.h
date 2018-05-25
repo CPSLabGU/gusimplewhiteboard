@@ -1048,6 +1048,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: TeleoperationControlVR_t @brief Virtual Reality extended class */ 
+    class TeleoperationControlVR_t: public generic_whiteboard_object<class TeleoperationControlVR > { 
+        public: 
+        /** Constructor: TeleoperationControlVR_t */ 
+        TeleoperationControlVR_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class TeleoperationControlVR >(wbd, kTeleoperationControlVR_v, false) {}
+        
+    };
+
 
 }
 

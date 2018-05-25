@@ -2843,6 +2843,29 @@ public:
 }; 
 #endif //VisionDetectionBalls_DEFINED
 
+#ifdef TeleoperationControlVR_DEFINED
+/** WBFunctor definition for TeleoperationControlVR_WBFunctor_T */ 
+template <typename TeleoperationControlVR_WBFunctor_T >
+class TeleoperationControlVR_WBFunctor: public WBFunctor<TeleoperationControlVR_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for TeleoperationControlVR_WBFunctor_T */
+    TeleoperationControlVR_WBFunctor(TeleoperationControlVR_WBFunctor_T* obj, void (TeleoperationControlVR_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationControlVR_WBFunctor_T >(obj, (void (TeleoperationControlVR_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class TeleoperationControlVR_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::TeleoperationControlVR result = guWhiteboard::TeleoperationControlVR_t().get_from(m);
+        TeleoperationControlVR_function_t funct((void (TeleoperationControlVR_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &))WBFunctor<TeleoperationControlVR_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<TeleoperationControlVR_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationControlVR_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (TeleoperationControlVR_WBFunctor_T::*TeleoperationControlVR_function_t) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(TeleoperationControlVR_WBFunctor_T *obj, void (TeleoperationControlVR_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &), guWhiteboard::WBTypes t) { return new TeleoperationControlVR_WBFunctor<TeleoperationControlVR_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //TeleoperationControlVR_DEFINED
+
 
 #pragma clang diagnostic pop
 

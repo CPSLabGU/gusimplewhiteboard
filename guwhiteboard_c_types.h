@@ -24,5 +24,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_balls.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control_v_r.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
