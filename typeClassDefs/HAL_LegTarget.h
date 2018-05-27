@@ -12,12 +12,12 @@
 #define HAL_LegTarget_DEFINED
 
 #include "wb_hal_legtarget.h"
-#include <cmath>
+//#include <cmath>
 #include <sstream>
 
-#ifndef M_PIF
-#define M_PIF static_cast<float>(M_PI)
-#endif  // M_PIF
+//#ifndef M_PIF
+//#define M_PIF static_cast<float>(M_PI)
+//#endif  // M_PIF
 
 namespace guWhiteboard
 {
@@ -650,29 +650,30 @@ namespace guWhiteboard
                 set_target_ankleroll(static_cast<int16_t>(setting * 10.0f));
             }
 
+
 /// Movement Setters (Radians)
             void set_hipyawpitch_RAD(float setting) {
-                set_target_hipyawpitch(static_cast<int16_t>(setting* (1800.0f / M_PIF)));
+                set_target_hipyawpitch(static_cast<int16_t>(setting* DEG_OVER_RAD_10));
             }
             
             void set_hiproll_RAD(float setting) {
-                set_target_hiproll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_hiproll(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
         
             void set_hippitch_RAD(float setting) {
-                set_target_hippitch(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_hippitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
         
             void set_kneepitch_RAD(float setting) {
-                set_target_kneepitch(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_kneepitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
             
             void set_anklepitch_RAD(float setting) {
-                set_target_anklepitch(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_anklepitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
 
             void set_ankleroll_RAD(float setting) {
-                set_target_ankleroll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_ankleroll(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
 
 /// Stiffness Setters
@@ -732,29 +733,30 @@ namespace guWhiteboard
                 return static_cast<float>(target_ankleroll() * 0.1f);
             }
 
+
 /// Movement Getters (Radians)
             float get_hipyawpitch_RAD() {
-                return static_cast<float>(target_hipyawpitch()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_hipyawpitch()) * RAD_OVER_DEG_10;
             }
             
             float get_hiproll_RAD() {
-                return static_cast<float>(target_hiproll()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_hiproll()) * RAD_OVER_DEG_10;
             }
         
             float get_hippitch_RAD() {
-                return static_cast<float>(target_hippitch()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_hippitch()) * RAD_OVER_DEG_10;
             }
         
             float get_kneepitch_RAD() {
-                return static_cast<float>(target_kneepitch()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_kneepitch()) * RAD_OVER_DEG_10;
             }
             
             float get_anklepitch_RAD() {
-                return static_cast<float>(target_anklepitch()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_anklepitch()) * RAD_OVER_DEG_10;
             }
 
             float get_ankleroll_RAD() {
-                return static_cast<float>(target_ankleroll()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_ankleroll()) * RAD_OVER_DEG_10;
             }
 
 /// Stiffness Getters
