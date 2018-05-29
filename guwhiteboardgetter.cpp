@@ -1102,6 +1102,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //VisionDetectionBalls_DEFINED
             }
+            case kTeleoperationControlVR_v:
+            {
+#ifdef TeleoperationControlVR_DEFINED
+                class TeleoperationControlVR_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //TeleoperationControlVR_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

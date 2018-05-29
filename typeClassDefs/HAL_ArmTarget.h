@@ -12,12 +12,12 @@
 #define HAL_ArmTarget_DEFINED
 
 #include "wb_hal_armtarget.h"
-#include <cmath>
+//#include <cmath>
 #include <sstream>
 
-#ifndef M_PIF
-#define M_PIF static_cast<float>(M_PI)
-#endif  // M_PIF
+//#ifndef M_PIF
+//#define M_PIF static_cast<float>(M_PI)
+//#endif  // M_PIF
 
 namespace guWhiteboard
 {
@@ -690,23 +690,23 @@ namespace guWhiteboard
 
 /// Movement Setters (Radians)
             void set_shoulderpitch_RAD(float setting) {
-                set_target_shoulderpitch(static_cast<int16_t>(setting* (1800.0f / M_PIF)));
+                set_target_shoulderpitch(static_cast<int16_t>(setting* DEG_OVER_RAD_10));
             }
             
             void set_shoulderroll_RAD(float setting) {
-                set_target_shoulderroll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_shoulderroll(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
         
             void set_elbowroll_RAD(float setting) {
-                set_target_elbowroll(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_elbowroll(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
         
             void set_elbowyaw_RAD(float setting) {
-                set_target_elbowyaw(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_elbowyaw(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
             
             void set_wristyaw_RAD(float setting) {
-                set_target_wristyaw(static_cast<int16_t>(setting * (1800.0f / M_PIF)));
+                set_target_wristyaw(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
         
 /// Hand Movement Setter
@@ -769,23 +769,23 @@ namespace guWhiteboard
 
 /// Movement Getters (Radians)
             float get_shoulderpitch_RAD() {
-                return static_cast<float>(target_shoulderpitch()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_shoulderpitch()) * RAD_OVER_DEG_10;
             }
             
             float get_shoulderroll_RAD() {
-                return static_cast<float>(target_shoulderroll()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_shoulderroll()) * RAD_OVER_DEG_10;
             }
         
             float get_elbowroll_RAD() {
-                return static_cast<float>(target_elbowroll()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_elbowroll()) * RAD_OVER_DEG_10;
             }
         
             float get_elbowyaw_RAD() {
-                return static_cast<float>(target_elbowyaw()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_elbowyaw()) * RAD_OVER_DEG_10;
             }
             
             float get_wristyaw_RAD() {
-                return static_cast<float>(target_wristyaw()) * M_PIF/ 1800.0f;
+                return static_cast<float>(target_wristyaw()) * RAD_OVER_DEG_10;
             }
 
 /// Hand Movement Getter
