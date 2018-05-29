@@ -1064,6 +1064,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: ParticleOutputMapControl_t @brief Posted by readers of the particles list to notify the filter to swap buffers. */ 
+    class ParticleOutputMapControl_t: public generic_whiteboard_object<class ParticleOutputMap > { 
+        public: 
+        /** Constructor: ParticleOutputMapControl_t */ 
+        ParticleOutputMapControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class ParticleOutputMap >(wbd, kParticleOutputMapControl_v, false) {}
+        
+    };
+
 
 }
 

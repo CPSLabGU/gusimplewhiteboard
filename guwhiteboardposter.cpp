@@ -1461,6 +1461,18 @@ v.from_string(message_content);
     return false;
 #endif //ParticleOutputMap_DEFINED
 }
+case kParticleOutputMapControl_v:
+{
+#ifdef ParticleOutputMap_DEFINED
+    class ParticleOutputMapControl_t msg_ptr(wbd);
+    ParticleOutputMap v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //ParticleOutputMap_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1601,6 +1613,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["VisionDetectionBalls"] = kVisionDetectionBalls_v;
     self["TeleoperationControlVR"] = kTeleoperationControlVR_v;
     self["ParticleOutputMap"] = kParticleOutputMap_v;
+    self["ParticleOutputMapControl"] = kParticleOutputMapControl_v;
 
     (void) self;
 }

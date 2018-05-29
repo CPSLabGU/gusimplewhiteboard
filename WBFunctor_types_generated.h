@@ -2889,6 +2889,29 @@ public:
 }; 
 #endif //ParticleOutputMap_DEFINED
 
+#ifdef ParticleOutputMap_DEFINED
+/** WBFunctor definition for ParticleOutputMapControl_WBFunctor_T */ 
+template <typename ParticleOutputMapControl_WBFunctor_T >
+class ParticleOutputMapControl_WBFunctor: public WBFunctor<ParticleOutputMapControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for ParticleOutputMapControl_WBFunctor_T */
+    ParticleOutputMapControl_WBFunctor(ParticleOutputMapControl_WBFunctor_T* obj, void (ParticleOutputMapControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &), guWhiteboard::WBTypes t): WBFunctor<ParticleOutputMapControl_WBFunctor_T >(obj, (void (ParticleOutputMapControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class ParticleOutputMapControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::ParticleOutputMap result = guWhiteboard::ParticleOutputMapControl_t().get_from(m);
+        ParticleOutputMapControl_function_t funct((void (ParticleOutputMapControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &))WBFunctor<ParticleOutputMapControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<ParticleOutputMapControl_WBFunctor_T >::fObject->*funct)(WBFunctor<ParticleOutputMapControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (ParticleOutputMapControl_WBFunctor_T::*ParticleOutputMapControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(ParticleOutputMapControl_WBFunctor_T *obj, void (ParticleOutputMapControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &), guWhiteboard::WBTypes t) { return new ParticleOutputMapControl_WBFunctor<ParticleOutputMapControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //ParticleOutputMap_DEFINED
+
 
 #pragma clang diagnostic pop
 

@@ -3,7 +3,7 @@
 -properties
 
 uint8_t fileId // The id of the file.
-string filePath[128] // The path to the file containing the list of particles.
+string filePath[64] // The path to the file containing the list of particles.
 
 -comment
 

@@ -26,5 +26,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_balls.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control_v_r.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_particle_output_map.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_particle_output_map.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
