@@ -2866,6 +2866,29 @@ public:
 }; 
 #endif //TeleoperationControlVR_DEFINED
 
+#ifdef ParticleOutputMap_DEFINED
+/** WBFunctor definition for ParticleOutputMap_WBFunctor_T */ 
+template <typename ParticleOutputMap_WBFunctor_T >
+class ParticleOutputMap_WBFunctor: public WBFunctor<ParticleOutputMap_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for ParticleOutputMap_WBFunctor_T */
+    ParticleOutputMap_WBFunctor(ParticleOutputMap_WBFunctor_T* obj, void (ParticleOutputMap_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &), guWhiteboard::WBTypes t): WBFunctor<ParticleOutputMap_WBFunctor_T >(obj, (void (ParticleOutputMap_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class ParticleOutputMap_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::ParticleOutputMap result = guWhiteboard::ParticleOutputMap_t().get_from(m);
+        ParticleOutputMap_function_t funct((void (ParticleOutputMap_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &))WBFunctor<ParticleOutputMap_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<ParticleOutputMap_WBFunctor_T >::fObject->*funct)(WBFunctor<ParticleOutputMap_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (ParticleOutputMap_WBFunctor_T::*ParticleOutputMap_function_t) (guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(ParticleOutputMap_WBFunctor_T *obj, void (ParticleOutputMap_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::ParticleOutputMap &), guWhiteboard::WBTypes t) { return new ParticleOutputMap_WBFunctor<ParticleOutputMap_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //ParticleOutputMap_DEFINED
+
 
 #pragma clang diagnostic pop
 

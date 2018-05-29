@@ -138,7 +138,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "TeleoperationControl",
         "TeleoperationStatus",
         "VisionDetectionBalls",
-        "TeleoperationControlVR"
+        "TeleoperationControlVR",
+        "ParticleOutputMap"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -267,7 +268,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_teleoperation_control",
         "wb_teleoperation_status",
         "wb_vision_detection_balls",
-        "wb_teleoperation_control_v_r"
+        "wb_teleoperation_control_v_r",
+        "wb_particle_output_map"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

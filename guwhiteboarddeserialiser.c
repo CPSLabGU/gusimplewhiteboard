@@ -978,6 +978,15 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //TELEOPERATIONCONTROLVR_GENERATED
                 break;
             }
+            case kParticleOutputMap_v:
+            {
+#ifdef PARTICLE_OUTPUT_MAP_GENERATED
+                return DESERIALISE(PARTICLE_OUTPUT_MAP_C_STRUCT, serialised_in, (struct PARTICLE_OUTPUT_MAP_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //PARTICLE_OUTPUT_MAP_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

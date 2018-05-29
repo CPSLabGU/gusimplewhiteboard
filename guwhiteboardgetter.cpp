@@ -1111,6 +1111,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //TeleoperationControlVR_DEFINED
             }
+            case kParticleOutputMap_v:
+            {
+#ifdef ParticleOutputMap_DEFINED
+                class ParticleOutputMap_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //ParticleOutputMap_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -1056,6 +1056,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: ParticleOutputMap_t @brief Contains a path to a file containing the list of particles posted by the particle filter. */ 
+    class ParticleOutputMap_t: public generic_whiteboard_object<class ParticleOutputMap > { 
+        public: 
+        /** Constructor: ParticleOutputMap_t */ 
+        ParticleOutputMap_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class ParticleOutputMap >(wbd, kParticleOutputMap_v, false) {}
+        
+    };
+
 
 }
 
