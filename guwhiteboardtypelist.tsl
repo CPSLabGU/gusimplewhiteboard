@@ -124,3 +124,4 @@ type:vision_detection_balls, nonatomic, VisionDetectionBalls, Reports robocup sp
 type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality extended class
 type:particle_output_map, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
 type:particle_output_map, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
+bool, nonatomic,         FFTControl, Turn on or off the FFT module

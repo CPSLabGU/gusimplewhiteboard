@@ -1072,6 +1072,15 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: FFTControl_t @brief Turn on or off the FFT module */ 
+    class FFTControl_t: public generic_whiteboard_object<bool > { 
+        public: 
+        /** Constructor: FFTControl_t */ 
+        FFTControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kFFTControl_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: FFTControl_t */ 
+FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kFFTControl_v, wbd, false) {} 
+    };
+
 
 }
 

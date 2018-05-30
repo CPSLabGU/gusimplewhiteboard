@@ -2913,6 +2913,29 @@ public:
 #endif //ParticleOutputMap_DEFINED
 
 
+/** WBFunctor definition for FFTControl_WBFunctor_T */ 
+template <typename FFTControl_WBFunctor_T >
+class FFTControl_WBFunctor: public WBFunctor<FFTControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FFTControl_WBFunctor_T */
+    FFTControl_WBFunctor(FFTControl_WBFunctor_T* obj, void (FFTControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<FFTControl_WBFunctor_T >(obj, (void (FFTControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FFTControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::FFTControl_t().get_from(m);
+        FFTControl_function_t funct((void (FFTControl_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<FFTControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FFTControl_WBFunctor_T >::fObject->*funct)(WBFunctor<FFTControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FFTControl_WBFunctor_T::*FFTControl_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FFTControl_WBFunctor_T *obj, void (FFTControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new FFTControl_WBFunctor<FFTControl_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

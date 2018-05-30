@@ -1129,6 +1129,13 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //ParticleOutputMap_DEFINED
             }
+            case kFFTControl_v:
+            {
+
+                class FFTControl_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
