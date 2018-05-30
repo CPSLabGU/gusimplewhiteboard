@@ -1449,6 +1449,39 @@ v.from_string(message_content);
     return false;
 #endif //TeleoperationControlVR_DEFINED
 }
+case kParticleOutputMap_v:
+{
+#ifdef ParticleOutputMap_DEFINED
+    class ParticleOutputMap_t msg_ptr(wbd);
+    ParticleOutputMap v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //ParticleOutputMap_DEFINED
+}
+case kParticleOutputMapControl_v:
+{
+#ifdef ParticleOutputMap_DEFINED
+    class ParticleOutputMapControl_t msg_ptr(wbd);
+    ParticleOutputMap v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //ParticleOutputMap_DEFINED
+}
+case kFFTControl_v:
+{
+
+    class FFTControl_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1588,6 +1621,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["TeleoperationStatus"] = kTeleoperationStatus_v;
     self["VisionDetectionBalls"] = kVisionDetectionBalls_v;
     self["TeleoperationControlVR"] = kTeleoperationControlVR_v;
+    self["ParticleOutputMap"] = kParticleOutputMap_v;
+    self["ParticleOutputMapControl"] = kParticleOutputMapControl_v;
+    self["FFTControl"] = kFFTControl_v;
 
     (void) self;
 }
