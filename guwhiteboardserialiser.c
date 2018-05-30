@@ -996,6 +996,11 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
 #endif //PARTICLE_OUTPUT_MAP_GENERATED
                 break;
             }
+            case kFFTControl_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

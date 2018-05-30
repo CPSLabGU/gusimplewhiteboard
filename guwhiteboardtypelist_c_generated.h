@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 126
+#define GSW_NUM_TYPES_DEFINED 127
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -147,8 +147,9 @@ typedef enum wb_types
     kVisionDetectionBalls_v = 122, 		///< Reports robocup spl ball found with guvision and BallRayTracer.
     kTeleoperationControlVR_v = 123, 		///< Virtual Reality extended class
     kParticleOutputMap_v = 124, 		///< Contains a path to a file containing the list of particles posted by the particle filter.
+    kParticleOutputMapControl_v = 125, 		///< Posted by readers of the particles list to notify the filter to swap buffers.
 
-    kParticleOutputMapControl_v = 125 		///< Posted by readers of the particles list to notify the filter to swap buffers.
+    kFFTControl_v = 126 		///< Turn on or off the FFT module
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

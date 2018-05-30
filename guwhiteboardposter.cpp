@@ -1473,6 +1473,15 @@ v.from_string(message_content);
     return false;
 #endif //ParticleOutputMap_DEFINED
 }
+case kFFTControl_v:
+{
+
+    class FFTControl_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1614,6 +1623,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["TeleoperationControlVR"] = kTeleoperationControlVR_v;
     self["ParticleOutputMap"] = kParticleOutputMap_v;
     self["ParticleOutputMapControl"] = kParticleOutputMapControl_v;
+    self["FFTControl"] = kFFTControl_v;
 
     (void) self;
 }
