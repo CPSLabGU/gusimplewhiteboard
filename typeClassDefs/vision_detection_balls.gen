@@ -13,3 +13,7 @@ gen vision_detection_ball balls[2] //ball objects
 
 -comment
 Array of fieldBalls, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao. Reported by the BallRayTracer.
+The enum in vision_control_status has
+Top
+Bottom
+as IDs for the camera
