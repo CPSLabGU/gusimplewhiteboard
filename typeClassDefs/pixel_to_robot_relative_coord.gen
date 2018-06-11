@@ -54,8 +54,8 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
     int image_width = 640;
     int image_height = 480;
 
-    uint16_t x = CONV_TO_IMG(sx, image_width);
-    uint16_t y = CONV_TO_IMG(-sy, image_height);
+    int32_t x = CONV_TO_IMG(sx, image_width);
+    int32_t y = CONV_TO_IMG(-sy, image_height);
 
 	double camHeight = get_camera_height(camera, joints);
 	
@@ -69,7 +69,7 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 	double frontDistance = camHeight*tan(angleY);
 	
 	int im_width_2 = (image_width+1)/2;
-	double imageAngleX = ((double)(abs(x-im_width_2))/im_width_2)*CAMERA_HFOV/2;
+	double imageAngleX = ((double)((x-im_width_2))/im_width_2)*CAMERA_HFOV/2;
 	
 	*distance = frontDistance/cos(imageAngleX);
 	
@@ -77,8 +77,8 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 		*distance = 10;
 	if(angleY < 0)
 		*distance = 0;
-	
-	*angle = imageAngleX-joints->HeadYaw;   
+
+	*angle = -(imageAngleX-joints->HeadYaw);   
 }
 
 static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints) {
