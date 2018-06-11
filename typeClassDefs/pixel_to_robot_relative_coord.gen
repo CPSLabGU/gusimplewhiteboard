@@ -1,0 +1,96 @@
+-author Carl Lusty
+
+-c++
+
+-c
+#include "wb_sensors_torsojointsensors.h"
+#include "wb_vision_control_status.h"
+#include "gu_util.h"
+#include <stdlib.h> //abs
+
+#define CAMERA_HFOV (60.97*M_PI/180)
+#define CAMERA_VFOV (47.64*M_PI/180)
+
+#define BOTTOM_CAMERA_ANGLE (-39.7*M_PI/180)
+#define TOP_CAMERA_ANGLE (-1.2*M_PI/180)
+
+#define HEAD_BASE_HEIGHT 0.45959
+
+#define BOTTOM_CAMERA_OFFSET_Z 0.01774
+#define TOP_CAMERA_OFFSET_Z 0.06364
+#define BOTTOM_CAMERA_OFFSET_X 0.05071
+#define TOP_CAMERA_OFFSET_X 0.05871
+
+#define CONV_TO_IMG(x, r) ((uint16_t)( x / ((INT16_MAX * 2) / r)))
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints);
+
+// x: image X coord
+// y: image Y coord
+// camera: which camera you want this related to
+// vs: the vision status message, needed for resolution
+// joints: the nao joint positions
+// *distance: output pararm, populated with the calculated distance
+// *angle: the bearing to the object in the image. Relative to the robot torso.
+static void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle);
+
+static void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
+
+    //TODO Eugene needs to write a C version of the resolution enum to actual values
+    //This should query 'vs' for the resolution!
+    int image_width = 640;
+    int image_height = 480;
+
+    uint16_t x = CONV_TO_IMG(sx, image_width);
+    uint16_t y = CONV_TO_IMG(sy, image_height);
+
+	double camHeight = get_camera_height(camera, joints);
+	
+	//the lowest angle we can see at for the camera
+	double cameraBottomVFOV = M_PI_2 + (-joints->HeadPitch - CAMERA_VFOV/2 + (camera?BOTTOM_CAMERA_ANGLE:TOP_CAMERA_ANGLE));
+	
+	double imageAngleY = ((double)(image_height-y)/image_height)*CAMERA_VFOV;
+	
+	double angleY = cameraBottomVFOV + imageAngleY;
+	
+	double frontDistance = camHeight*tan(angleY);
+	
+	int im_width_2 = (image_width+1)/2;
+	double imageAngleX = ((double)(abs(x-im_width_2))/im_width_2)*CAMERA_HFOV/2;
+	
+	*distance = frontDistance/cos(imageAngleX);
+	
+	if(angleY > DEG2RAD(85))
+		*distance = 10;
+	if(angleY < 0)
+		*distance = 0;
+	
+	*angle = imageAngleX-joints->HeadYaw;   
+}
+
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints) {
+    double dx = (camera?BOTTOM_CAMERA_OFFSET_X:TOP_CAMERA_OFFSET_X);
+    double dz = (camera?BOTTOM_CAMERA_OFFSET_Z:TOP_CAMERA_OFFSET_Z);
+
+    double height = dz*cos(-joints->HeadPitch) + dx*sin(-joints->HeadPitch);
+    return height + HEAD_BASE_HEIGHT;
+}
+
+#pragma clang diagnostic pop
+
+#ifdef __cplusplus
+} //extern "C"
+#endif
+
+-properties
+
+-comment
+Contains a static method for converting from Nao vision format to a bearing and a dist
+
