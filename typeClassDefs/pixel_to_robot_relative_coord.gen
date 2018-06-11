@@ -19,9 +19,11 @@
 #define BOTTOM_CAMERA_OFFSET_X 0.05071
 #define TOP_CAMERA_OFFSET_X 0.05871
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 
-#define CONV_TO_IMG(x, r) ((uint16_t)( x / ((INT16_MAX * 2) / r)))
+#define CONV_TO_IMG(x, r) ((uint16_t)((x + INT16_MAX) / ((INT16_MAX * 2) / r)))
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
@@ -39,7 +41,9 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
 #pragma clang diagnostic pop
 
+#ifdef __cplusplus
 } //extern "C"
+#endif
 
 %c
 
@@ -51,7 +55,7 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
     int image_height = 480;
 
     uint16_t x = CONV_TO_IMG(sx, image_width);
-    uint16_t y = CONV_TO_IMG(sy, image_height);
+    uint16_t y = CONV_TO_IMG(-sy, image_height);
 
 	double camHeight = get_camera_height(camera, joints);
 	
