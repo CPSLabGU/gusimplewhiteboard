@@ -15,6 +15,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_lines.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizons.h>
