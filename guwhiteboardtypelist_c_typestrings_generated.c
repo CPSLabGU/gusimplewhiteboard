@@ -199,7 +199,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_int8_t",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
+        "wb_vision_lines",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "wb_point2d",

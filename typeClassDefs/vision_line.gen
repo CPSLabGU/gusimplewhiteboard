@@ -1,0 +1,15 @@
+-author Eugene Gilmore 
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/Point2D.h>
+
+-properties
+gen point2D lineStart //The start of the line
+gen point2D lineEnd //The end of the line
+uint8_t startThickness //The thickness of the line at the line start point
+uint8_t endThickness //The thickness of the line at the line end point
+
+-comment
+Class use to represent a single line that is posted to the whiteboard from vision
