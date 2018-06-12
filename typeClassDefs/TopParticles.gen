@@ -22,9 +22,23 @@
 
 #include "ParticlePosition.h"
 
+%c++
+const ParticlePosition topParticle() {
+    return this->particles(0);
+}
+
++swift
+
+extension wb_top_particles {
+
+    public var topParticle: ParticlePosition {
+        return self.particles.0
+    }
+
+}
+
 -properties
-struct wb_particle_position particles[4] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()} // these 4 should be the constant NUM_TOP_PARTICLES
-int dummyValuePleaseRemoveOnceArrayParsingIsImplementedOtherwiseTheParserHasAnUnUsedVariable=0 //dummy
+gen Particle_Position particles[4] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()} // these 4 should be the constant NUM_TOP_PARTICLES
 
 -comment
 The class of the top particles in a Localization Filter
