@@ -3,11 +3,12 @@
 -properties
 int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right.
 uint16_t ball_distance = 0 //CM distance to the ball.
-
+bool ball_visible = 0 //has the ball been seen enough by vision to be considered actually 'visible'.
 
 
 int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right. NYI
 uint16_t goal_distance = 0 //CM distance to the ball. NYI
+bool goal_visible = 0 //has the ball been seen enough by vision to be considered actually 'visible'. NYI
 
 -comment
 Results of the FSM (and sub machines) "SMFilterVision".
