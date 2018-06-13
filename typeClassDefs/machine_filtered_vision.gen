@@ -1,0 +1,16 @@
+-author Carl Lusty
+
+-properties
+int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right.
+uint16_t ball_distance = 0 //CM distance to the ball.
+
+//NYI
+int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right.
+uint16_t goal_distance = 0 //CM distance to the ball.
+
+
+-comment
+Results of the FSM (and sub machines) "SMFilterVision".
+This machine applies some basic filtering to vision output messages.
+It also handles the coord conversion and kinematics for distance and bearing calculations on the Nao robot.
+
