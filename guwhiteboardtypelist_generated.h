@@ -1081,6 +1081,14 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
 FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kFFTControl_v, wbd, false) {} 
     };
 
+    /** WB Ptr Class: MachineFilteredNaoVision_t @brief Vision filtering and distance estimates. */ 
+    class MachineFilteredNaoVision_t: public generic_whiteboard_object<class MachineFilteredVision > { 
+        public: 
+        /** Constructor: MachineFilteredNaoVision_t */ 
+        MachineFilteredNaoVision_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MachineFilteredVision >(wbd, kMachineFilteredNaoVision_v, false) {}
+        
+    };
+
 
 }
 

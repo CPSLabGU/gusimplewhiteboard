@@ -125,3 +125,4 @@ type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality 
 type:particle_output_map, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
 type:particle_output_map, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
 bool, nonatomic,         FFTControl, Turn on or off the FFT module
+type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates. 

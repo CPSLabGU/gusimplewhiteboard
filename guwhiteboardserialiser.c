@@ -1001,6 +1001,15 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
+            case kMachineFilteredNaoVision_v:
+            {
+#ifdef MACHINE_FILTERED_VISION_GENERATED
+                return SERIALISE(MACHINE_FILTERED_VISION_C_STRUCT, (struct MACHINE_FILTERED_VISION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_VISION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
