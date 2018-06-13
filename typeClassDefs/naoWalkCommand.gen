@@ -94,10 +94,10 @@ uint8_t odometryResetCounter = 0 //Odometry will reset any time this is changed 
 bool isFast = false //for kicks. True results in a 'Jab'/rapid kick.
 bool kickWithLeftFoot = true //which foot to use for kicking
 
-bool useShuffle = false //limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obstacles that could trip the robot, if it tried to step onto it.
+bool useShuffle = true //limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obstacles that could trip the robot, if it tried to step onto it.
 
-bool leftArmLimp = true //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
-bool rightArmLimp = true //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+bool leftArmLimp = false //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+bool rightArmLimp = false //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
 
 uint8_t power = 0   //[0 - 100] stiffness, auto set to minimum needed values. Advanced pararm! don't alter this without knowledge of exactly what it does.
 
