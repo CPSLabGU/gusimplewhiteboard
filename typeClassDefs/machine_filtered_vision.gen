@@ -4,10 +4,10 @@
 int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right.
 uint16_t ball_distance = 0 //CM distance to the ball.
 
-//NYI
-int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right.
-uint16_t goal_distance = 0 //CM distance to the ball.
 
+
+int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. - == left, 0 == straight, + == right. NYI
+uint16_t goal_distance = 0 //CM distance to the ball. NYI
 
 -comment
 Results of the FSM (and sub machines) "SMFilterVision".
