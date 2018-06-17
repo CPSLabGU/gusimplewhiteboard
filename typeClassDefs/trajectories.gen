@@ -1,0 +1,73 @@
+-author Callum
+
+-c
+#include <stdlib.h> //abs
+#include <math.h>
+#include <typeClassDefs/wb_point2d.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ *  Calculate the absolute position of a point relative to a known position.
+ *
+ *  @param position The known position.
+ *  @param orientation The orientation of the known point (which way we are facing) in radians.
+ *  @param distance The distance from the known position to the relative point.
+ *
+ *  @return The absolute position of the relative point.
+ */
+struct wb_point2d positionFromKnownPoint(struct wb_point2d position, double orientation, int distance);
+
+double calculateDifferentialAngle(struct wb_point2d point1, struct wb_point2d point2);
+
+double rotationToInline(struct wb_point2d position, double orientation, int distance, struct wb_point2d target);
+
+int numberOfPointsInArc(double angle, int distance);
+
+double stepAngleInArc(double angle, int steps);
+
+struct wb_point2d positionOfStep(double stepAngle, int distance);
+
+#ifdef __cplusplus
+} //extern "C"
+#endif
+
+%c
+
+struct wb_point2d positionFromKnownPoint(struct wb_point2d position, double orientation, int distance) {
+    const int16_t x = position.x + distance * cos(orientation);
+    const int16_t y = position.y + distance * sin(orientation);
+    const struct wb_point2d newPoint = { x, y };
+    return newPoint;
+}
+
+double calculateDifferentialAngle(struct wb_point2d point1, struct wb_point2d point2) {
+    return atan2(point2.y - point1.y, point2.x - point1.x);
+}
+
+double rotationToInline(struct wb_point2d position, double orientation, int distance, struct wb_point2d target) {
+    const struct wb_point2d centerPosition = positionFromKnownPoint(position, orientation, distance);
+    return calculateDifferentialAngle(centerPosition, position) + calculateDifferentialAngle(centerPosition, target);
+}
+
+int numberOfPointsInArc(double angle, int distance) {
+    return (int) round(distance * (angle / 0.785398163397448)); // 45 degrees
+}
+
+double stepAngleInArc(double angle, int steps) {
+    return angle / ((double) steps);
+}
+
+struct wb_point2d positionOfStep(double stepAngle, int distance) {
+    const int16_t x = distance * cos(stepAngle);
+    const int16_t y = distance * sin(stepAngle);
+    const struct wb_point2d relativePoint = { x, y };
+    return relativePoint;
+}
+
+-properties
+
+-comment
+

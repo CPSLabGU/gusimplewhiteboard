@@ -2935,6 +2935,29 @@ public:
 }; 
 
 
+#ifdef MachineFilteredVision_DEFINED
+/** WBFunctor definition for MachineFilteredNaoVision_WBFunctor_T */ 
+template <typename MachineFilteredNaoVision_WBFunctor_T >
+class MachineFilteredNaoVision_WBFunctor: public WBFunctor<MachineFilteredNaoVision_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MachineFilteredNaoVision_WBFunctor_T */
+    MachineFilteredNaoVision_WBFunctor(MachineFilteredNaoVision_WBFunctor_T* obj, void (MachineFilteredNaoVision_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredNaoVision_WBFunctor_T >(obj, (void (MachineFilteredNaoVision_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MachineFilteredNaoVision_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MachineFilteredVision result = guWhiteboard::MachineFilteredNaoVision_t().get_from(m);
+        MachineFilteredNaoVision_function_t funct((void (MachineFilteredNaoVision_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &))WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MachineFilteredNaoVision_WBFunctor_T::*MachineFilteredNaoVision_function_t) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MachineFilteredNaoVision_WBFunctor_T *obj, void (MachineFilteredNaoVision_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &), guWhiteboard::WBTypes t) { return new MachineFilteredNaoVision_WBFunctor<MachineFilteredNaoVision_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MachineFilteredVision_DEFINED
+
 
 #pragma clang diagnostic pop
 

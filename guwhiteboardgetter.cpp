@@ -1136,6 +1136,15 @@ namespace guWhiteboard
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
+            case kMachineFilteredNaoVision_v:
+            {
+#ifdef MachineFilteredVision_DEFINED
+                class MachineFilteredNaoVision_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MachineFilteredVision_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

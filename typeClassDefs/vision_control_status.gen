@@ -50,6 +50,17 @@ enum SaveFileType {
 	None
 };
 
+/**
+ * @brief List of neural network architectures that vision can run
+ */
+enum NeuralNetworkType {
+	v2, ///< Current default (separable convolutions)
+	Vanilla, ///< PB_FCN
+	VGANet, ///< PB_FCN on VGA resolution
+	BallOnly ///< PB_FCN v2 binary classifier
+};
+
+
 
 -properties
 enum Resolutions cameraResolution = VGA // Resolution that the camera should caputre images at
@@ -58,6 +69,7 @@ enum VisionCamera selectedCamera = Top // Which camera to use
 enum SaveFileType saveImage = None // Whether to save the image used in the next iteration of the pipeline to file
 bool saveClassifiedImage = false // Whether to save the classified version of the image used in the next iteration of the pipeline to file
 enum NamedPipeline pipeline = Soccer // vision pipeline to be run 
+enum NeuralNetworkType network = v2 // neural network to run 
 enum StreamingType streamingSource = Normal // The type of streaming to be used
 bool imageInput = false // Use /tmp/test.ai2 as pipeline image rather then camera if true
 int jpegStreamQuality = 30 // The quality to compress jpeg images at for streaming can be between 0 and 100

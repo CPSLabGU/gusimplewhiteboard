@@ -436,11 +436,11 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
             }
             case kVisionLines_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef VISION_LINES_GENERATED
+                return DESERIALISE(VISION_LINES_C_STRUCT, serialised_in, (struct VISION_LINES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //VISION_LINES_GENERATED
                 break;
             }
             case kDifferentialRobotStatus_v:
@@ -999,6 +999,15 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
             case kFFTControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kMachineFilteredNaoVision_v:
+            {
+#ifdef MACHINE_FILTERED_VISION_GENERATED
+                return DESERIALISE(MACHINE_FILTERED_VISION_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_VISION_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_VISION_GENERATED
                 break;
             }
     }

@@ -15,6 +15,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_lines.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizons.h>
@@ -27,5 +28,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control_v_r.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_particle_output_map.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_particle_output_map.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_vision.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

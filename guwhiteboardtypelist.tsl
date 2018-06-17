@@ -50,7 +50,7 @@ int8_t, nonatomic, TeleoperationConnection, Integer indication which remote whit
 int8_t, nonatomic, UDPWBNumber, ID number being used to broadcast udp whiteboard
 class:WEBOTS_NXT_bumper, nonatomic, WEBOTS_NXT_bumper, Class that contains data from 2 rouch sensors in an NXT bumper by the bridge
 class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge, Class that will define actuators for the Diferential motor bridge
-class:VisionLines, nonatomic, VisionLines, Class that reports the lines that vision sees.
+type:vision_lines, nonatomic, VisionLines, Class that reports the lines that vision sees.
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus, Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl, Class that sends commands to the robot from the whiteboard
 type:point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
@@ -125,3 +125,4 @@ type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality 
 type:particle_output_map, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
 type:particle_output_map, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
 bool, nonatomic,         FFTControl, Turn on or off the FFT module
+type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates. 

@@ -90,7 +90,7 @@ public:
         { /*  */ }
         
         /** copy constructor */
-        FilteredOneDimObject(const FilteredOneDimObject &other):FilteredVisionObject(other.visibilityHistory(),other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.isVisible(),0,0) 
+        FilteredOneDimObject(const FilteredOneDimObject &other):FilteredVisionObject(other.visibilityHistory(),other.frameCounter(), other.distance() ,other.x(),other.y(),other.yaw(),other.ray_angle(),other.isVisible(),0)
         {
         }
     
