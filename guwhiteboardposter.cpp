@@ -1451,27 +1451,21 @@ v.from_string(message_content);
 }
 case kParticleOutputMap_v:
 {
-#ifdef ParticleOutputMap_DEFINED
+
     class ParticleOutputMap_t msg_ptr(wbd);
-    ParticleOutputMap v = msg_ptr.get();
-v.from_string(message_content);
+    uint64_t v = static_cast<uint64_t>(atoi(message_content.c_str()));
     msg_ptr.post(v);
     return true;
-#else
-    return false;
-#endif //ParticleOutputMap_DEFINED
+
 }
 case kParticleOutputMapControl_v:
 {
-#ifdef ParticleOutputMap_DEFINED
+
     class ParticleOutputMapControl_t msg_ptr(wbd);
-    ParticleOutputMap v = msg_ptr.get();
-v.from_string(message_content);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
     msg_ptr.post(v);
     return true;
-#else
-    return false;
-#endif //ParticleOutputMap_DEFINED
+
 }
 case kFFTControl_v:
 {
