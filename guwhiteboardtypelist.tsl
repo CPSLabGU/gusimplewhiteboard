@@ -122,7 +122,7 @@ type:teleoperationControl, nonatomic, TeleoperationControl, Control message for 
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
 type:vision_detection_balls, nonatomic, VisionDetectionBalls, Reports robocup spl ball found with guvision and BallRayTracer.
 type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality extended class
-type:particle_output_map, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
-type:particle_output_map, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
+uint64_t, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
+bool, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
 bool, nonatomic,         FFTControl, Turn on or off the FFT module
 type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates. 

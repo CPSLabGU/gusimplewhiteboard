@@ -1057,19 +1057,21 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
     };
 
     /** WB Ptr Class: ParticleOutputMap_t @brief Contains a path to a file containing the list of particles posted by the particle filter. */ 
-    class ParticleOutputMap_t: public generic_whiteboard_object<class ParticleOutputMap > { 
+    class ParticleOutputMap_t: public generic_whiteboard_object<uint64_t > { 
         public: 
         /** Constructor: ParticleOutputMap_t */ 
-        ParticleOutputMap_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class ParticleOutputMap >(wbd, kParticleOutputMap_v, false) {}
-        
+        ParticleOutputMap_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<uint64_t >(wbd, kParticleOutputMap_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: ParticleOutputMap_t */ 
+ParticleOutputMap_t(uint64_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<uint64_t >(value, kParticleOutputMap_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: ParticleOutputMapControl_t @brief Posted by readers of the particles list to notify the filter to swap buffers. */ 
-    class ParticleOutputMapControl_t: public generic_whiteboard_object<class ParticleOutputMap > { 
+    class ParticleOutputMapControl_t: public generic_whiteboard_object<bool > { 
         public: 
         /** Constructor: ParticleOutputMapControl_t */ 
-        ParticleOutputMapControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class ParticleOutputMap >(wbd, kParticleOutputMapControl_v, false) {}
-        
+        ParticleOutputMapControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kParticleOutputMapControl_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: ParticleOutputMapControl_t */ 
+ParticleOutputMapControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kParticleOutputMapControl_v, wbd, false) {} 
     };
 
     /** WB Ptr Class: FFTControl_t @brief Turn on or off the FFT module */ 

@@ -1113,21 +1113,17 @@ namespace guWhiteboard
             }
             case kParticleOutputMap_v:
             {
-#ifdef ParticleOutputMap_DEFINED
+
                 class ParticleOutputMap_t m(wbd);
-                return msg ? m.get_from(msg).description() : m.get().description();
-#else
-                return "##unsupported##";
-#endif //ParticleOutputMap_DEFINED
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
             }
             case kParticleOutputMapControl_v:
             {
-#ifdef ParticleOutputMap_DEFINED
+
                 class ParticleOutputMapControl_t m(wbd);
-                return msg ? m.get_from(msg).description() : m.get().description();
-#else
-                return "##unsupported##";
-#endif //ParticleOutputMap_DEFINED
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
             }
             case kFFTControl_v:
             {

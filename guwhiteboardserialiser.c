@@ -980,20 +980,12 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
             }
             case kParticleOutputMap_v:
             {
-#ifdef PARTICLE_OUTPUT_MAP_GENERATED
-                return SERIALISE(PARTICLE_OUTPUT_MAP_C_STRUCT, (struct PARTICLE_OUTPUT_MAP_C_STRUCT *)message_in, serialised_out)
-#else
-                return -1;
-#endif //PARTICLE_OUTPUT_MAP_GENERATED
+                return -1; /*TODO, add support for POD types.*/
                 break;
             }
             case kParticleOutputMapControl_v:
             {
-#ifdef PARTICLE_OUTPUT_MAP_GENERATED
-                return SERIALISE(PARTICLE_OUTPUT_MAP_C_STRUCT, (struct PARTICLE_OUTPUT_MAP_C_STRUCT *)message_in, serialised_out)
-#else
-                return -1;
-#endif //PARTICLE_OUTPUT_MAP_GENERATED
+                return -1; /*TODO, add support for POD types.*/
                 break;
             }
             case kFFTControl_v:

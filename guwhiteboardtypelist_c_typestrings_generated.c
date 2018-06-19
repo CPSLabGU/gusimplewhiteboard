@@ -272,8 +272,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_teleoperation_status",
         "wb_vision_detection_balls",
         "wb_teleoperation_control_v_r",
-        "wb_particle_output_map",
-        "wb_particle_output_map",
+        "wb_uint64_t",
+        "wb_bool",
         "wb_bool",
         "wb_machine_filtered_vision"
 };
