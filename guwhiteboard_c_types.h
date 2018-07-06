@@ -17,6 +17,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_lines.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_count.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizons.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_walk_command.h>

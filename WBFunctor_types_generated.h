@@ -1831,28 +1831,28 @@ public:
 }; 
 #endif //TotoDoingMotion_DEFINED
 
-#ifdef wb_count_DEFINED
+#ifdef Count_DEFINED
 /** WBFunctor definition for Count_WBFunctor_T */ 
 template <typename Count_WBFunctor_T >
 class Count_WBFunctor: public WBFunctor<Count_WBFunctor_T > {
 public:
     /** WBFunctor constructor for Count_WBFunctor_T */
-    Count_WBFunctor(Count_WBFunctor_T* obj, void (Count_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::wb_count &), guWhiteboard::WBTypes t): WBFunctor<Count_WBFunctor_T >(obj, (void (Count_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    Count_WBFunctor(Count_WBFunctor_T* obj, void (Count_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Count &), guWhiteboard::WBTypes t): WBFunctor<Count_WBFunctor_T >(obj, (void (Count_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Count_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::wb_count result = guWhiteboard::Count_t().get_from(m);
-        Count_function_t funct((void (Count_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::wb_count &))WBFunctor<Count_WBFunctor_T >::get_s_func_ptr());
+        guWhiteboard::Count result = guWhiteboard::Count_t().get_from(m);
+        Count_function_t funct((void (Count_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Count &))WBFunctor<Count_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Count_WBFunctor_T >::fObject->*funct)(WBFunctor<Count_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (Count_WBFunctor_T::*Count_function_t) (guWhiteboard::WBTypes, guWhiteboard::wb_count &);
+    typedef void (Count_WBFunctor_T::*Count_function_t) (guWhiteboard::WBTypes, guWhiteboard::Count &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(Count_WBFunctor_T *obj, void (Count_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::wb_count &), guWhiteboard::WBTypes t) { return new Count_WBFunctor<Count_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(Count_WBFunctor_T *obj, void (Count_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Count &), guWhiteboard::WBTypes t) { return new Count_WBFunctor<Count_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //wb_count_DEFINED
+#endif //Count_DEFINED
 
 
 /** WBFunctor definition for GreenEWon_WBFunctor_T */ 

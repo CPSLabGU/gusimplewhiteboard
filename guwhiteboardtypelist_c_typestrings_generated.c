@@ -227,7 +227,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
+        "wb_count",
         "wb_bool",
         "wb_bool",
         "wb_bool",

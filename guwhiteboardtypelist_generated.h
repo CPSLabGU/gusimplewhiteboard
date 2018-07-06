@@ -676,10 +676,10 @@ CBall_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_w
     };
 
     /** WB Ptr Class: Count_t @brief Uncommented */ 
-    class Count_t: public generic_whiteboard_object<class wb_count > { 
+    class Count_t: public generic_whiteboard_object<class Count > { 
         public: 
         /** Constructor: Count_t */ 
-        Count_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class wb_count >(wbd, kCount_v, false) {}
+        Count_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Count >(wbd, kCount_v, false) {}
         
     };
 
