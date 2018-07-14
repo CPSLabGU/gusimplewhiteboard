@@ -750,12 +750,12 @@ namespace guWhiteboard
             }
             case kCount_v:
             {
-#ifdef wb_count_DEFINED
+#ifdef Count_DEFINED
                 class Count_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //wb_count_DEFINED
+#endif //Count_DEFINED
             }
             case kGreenEWon_v:
             {

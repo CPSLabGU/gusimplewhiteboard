@@ -974,15 +974,15 @@ v.from_string(message_content);
 }
 case kCount_v:
 {
-#ifdef wb_count_DEFINED
+#ifdef Count_DEFINED
     class Count_t msg_ptr(wbd);
-    wb_count v = msg_ptr.get();
+    Count v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //wb_count_DEFINED
+#endif //Count_DEFINED
 }
 case kGreenEWon_v:
 {

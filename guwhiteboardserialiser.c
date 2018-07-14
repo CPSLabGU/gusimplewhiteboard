@@ -659,11 +659,11 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
             }
             case kCount_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
+#ifdef COUNT_GENERATED
+                return SERIALISE(COUNT_C_STRUCT, (struct COUNT_C_STRUCT *)message_in, serialised_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //COUNT_GENERATED
                 break;
             }
             case kGreenEWon_v:

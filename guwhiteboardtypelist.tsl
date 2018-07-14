@@ -77,7 +77,7 @@ class:Clocks, nonatomic,      Clocks,       Class for keeping track of time
 class:Channels, nonatomic,      Channels,     UPPAAL-Style synchronisation channels
 class:SwitchSubsumption, nonatomic, SwitchSubsumption, Uncommented
 class:TotoDoingMotion, nonatomic, TotoDoingMotion, Uncommented
-class:wb_count, nonatomic, Count, Uncommented
+type:count, nonatomic, Count, Uncommented
 bool,           nonatomic, GreenEWon, status of the EWgreen light
 bool,           nonatomic, WarnEW, status of the recommendaiton of the EW light
 bool,           nonatomic, TimeGTthirty, status of the timer with respect to 30
