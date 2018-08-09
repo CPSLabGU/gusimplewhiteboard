@@ -2576,6 +2576,7 @@
 					"$(inherited)",
 					.,
 					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/..",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2591,6 +2592,7 @@
 					"$(inherited)",
 					.,
 					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/..",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
