@@ -9,6 +9,12 @@ enum GoalSightingType {
     GoalSightingType
 };
 
+enum HorizonSightingType {
+    NoHorizonSightingType,
+    LineHorizonSightingType,
+    CornerHorizonSightingType
+};
+
 -properties
 int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
 uint16_t ball_distance = 0 //CM distance to the ball.
@@ -19,6 +25,11 @@ int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. + 
 uint16_t goal_distance = 0 //CM distance to the ball. NYI
 bool goal_visible = 0 //has the ball been seen enough by vision to be considered actually 'visible'. NYI
 enum GoalSightingType goal_sightingType = NoSightingType // The type of the goal sighting.
+
+int8_t horizon_direction = 0 //degrees to the center point of the horizon, relative to the center of the nao torso. + == left, 0 == straight, - == right.
+uint16_t horizon_distance = 0 //CM distance to the center point of the horizon.
+bool horizon_visible = 0 //has the horizon been seen enough by vision to be considered actually 'visible'.
+enum HorizonSightingType horizon_sightingType = NoHorizonSightingType // The type of the horizon sighting.
 
 -comment
 Results of the FSM (and sub machines) "SMFilterVision".
