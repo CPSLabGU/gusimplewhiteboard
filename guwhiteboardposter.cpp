@@ -1488,6 +1488,18 @@ v.from_string(message_content);
     return false;
 #endif //MachineFilteredVision_DEFINED
 }
+case kMicrowaveStatus_v:
+{
+#ifdef MicrowaveStatus_DEFINED
+    class MicrowaveStatus_t msg_ptr(wbd);
+    MicrowaveStatus v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MicrowaveStatus_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1631,6 +1643,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["ParticleOutputMapControl"] = kParticleOutputMapControl_v;
     self["FFTControl"] = kFFTControl_v;
     self["MachineFilteredNaoVision"] = kMachineFilteredNaoVision_v;
+    self["MicrowaveStatus"] = kMicrowaveStatus_v;
 
     (void) self;
 }

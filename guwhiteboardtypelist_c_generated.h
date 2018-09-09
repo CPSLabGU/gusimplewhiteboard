@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 128
+#define GSW_NUM_TYPES_DEFINED 129
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -149,8 +149,9 @@ typedef enum wb_types
     kParticleOutputMap_v = 124, 		///< Contains a path to a file containing the list of particles posted by the particle filter.
     kParticleOutputMapControl_v = 125, 		///< Posted by readers of the particles list to notify the filter to swap buffers.
     kFFTControl_v = 126, 		///< Turn on or off the FFT module
+    kMachineFilteredNaoVision_v = 127, 		///< Vision filtering and distance estimates.
 
-    kMachineFilteredNaoVision_v = 127 		///< Vision filtering and distance estimates.
+    kMicrowaveStatus_v = 128 		///< External Variables for the One Minute Microwave.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

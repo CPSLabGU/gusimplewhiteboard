@@ -1091,6 +1091,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: MicrowaveStatus_t @brief External Variables for the One Minute Microwave. */ 
+    class MicrowaveStatus_t: public generic_whiteboard_object<class MicrowaveStatus > { 
+        public: 
+        /** Constructor: MicrowaveStatus_t */ 
+        MicrowaveStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MicrowaveStatus >(wbd, kMicrowaveStatus_v, false) {}
+        
+    };
+
 
 }
 

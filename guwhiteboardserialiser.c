@@ -1002,6 +1002,15 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
 #endif //MACHINE_FILTERED_VISION_GENERATED
                 break;
             }
+            case kMicrowaveStatus_v:
+            {
+#ifdef MICROWAVE_STATUS_GENERATED
+                return SERIALISE(MICROWAVE_STATUS_C_STRUCT, (struct MICROWAVE_STATUS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //MICROWAVE_STATUS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
