@@ -2958,6 +2958,29 @@ public:
 }; 
 #endif //MachineFilteredVision_DEFINED
 
+#ifdef MicrowaveStatus_DEFINED
+/** WBFunctor definition for MicrowaveStatus_WBFunctor_T */ 
+template <typename MicrowaveStatus_WBFunctor_T >
+class MicrowaveStatus_WBFunctor: public WBFunctor<MicrowaveStatus_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MicrowaveStatus_WBFunctor_T */
+    MicrowaveStatus_WBFunctor(MicrowaveStatus_WBFunctor_T* obj, void (MicrowaveStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &), guWhiteboard::WBTypes t): WBFunctor<MicrowaveStatus_WBFunctor_T >(obj, (void (MicrowaveStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MicrowaveStatus_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MicrowaveStatus result = guWhiteboard::MicrowaveStatus_t().get_from(m);
+        MicrowaveStatus_function_t funct((void (MicrowaveStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &))WBFunctor<MicrowaveStatus_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MicrowaveStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<MicrowaveStatus_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MicrowaveStatus_WBFunctor_T::*MicrowaveStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MicrowaveStatus_WBFunctor_T *obj, void (MicrowaveStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &), guWhiteboard::WBTypes t) { return new MicrowaveStatus_WBFunctor<MicrowaveStatus_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MicrowaveStatus_DEFINED
+
 
 #pragma clang diagnostic pop
 

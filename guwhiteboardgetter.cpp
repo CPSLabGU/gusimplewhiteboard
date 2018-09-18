@@ -1141,6 +1141,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MachineFilteredVision_DEFINED
             }
+            case kMicrowaveStatus_v:
+            {
+#ifdef MicrowaveStatus_DEFINED
+                class MicrowaveStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MicrowaveStatus_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

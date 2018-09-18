@@ -142,7 +142,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "ParticleOutputMap",
         "ParticleOutputMapControl",
         "FFTControl",
-        "MachineFilteredNaoVision"
+        "MachineFilteredNaoVision",
+        "MicrowaveStatus"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -275,7 +276,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_uint64_t",
         "wb_bool",
         "wb_bool",
-        "wb_machine_filtered_vision"
+        "wb_machine_filtered_vision",
+        "wb_microwave_status"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
