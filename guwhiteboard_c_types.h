@@ -29,5 +29,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_teleoperation_control_v_r.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_vision.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_microwave_status.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_buttons.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

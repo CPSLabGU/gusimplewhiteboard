@@ -1150,6 +1150,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MicrowaveStatus_DEFINED
             }
+            case kButtons_v:
+            {
+#ifdef Buttons_DEFINED
+                class Buttons_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Buttons_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

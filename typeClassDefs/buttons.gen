@@ -1,0 +1,15 @@
+-author	Callum McColl
+
+-properties
+bool button1Pushed // The first button.
+bool button2Pushed // The second button.
+
+-comment
+Contains the status of two buttons.
+
+-swift
+
+import Buttons
+import FSM
+
+extension wb_buttons: ExternalVariables {}

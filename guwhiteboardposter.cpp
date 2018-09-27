@@ -1500,6 +1500,18 @@ v.from_string(message_content);
     return false;
 #endif //MicrowaveStatus_DEFINED
 }
+case kButtons_v:
+{
+#ifdef Buttons_DEFINED
+    class Buttons_t msg_ptr(wbd);
+    Buttons v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Buttons_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1644,6 +1656,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["FFTControl"] = kFFTControl_v;
     self["MachineFilteredNaoVision"] = kMachineFilteredNaoVision_v;
     self["MicrowaveStatus"] = kMicrowaveStatus_v;
+    self["Buttons"] = kButtons_v;
 
     (void) self;
 }
