@@ -1011,6 +1011,15 @@ size_t serialisemsg(WBTypes message_index, const void *message_in, void *seriali
 #endif //MICROWAVE_STATUS_GENERATED
                 break;
             }
+            case kButtons_v:
+            {
+#ifdef BUTTONS_GENERATED
+                return SERIALISE(BUTTONS_C_STRUCT, (struct BUTTONS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //BUTTONS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -2981,6 +2981,29 @@ public:
 }; 
 #endif //MicrowaveStatus_DEFINED
 
+#ifdef Buttons_DEFINED
+/** WBFunctor definition for Buttons_WBFunctor_T */ 
+template <typename Buttons_WBFunctor_T >
+class Buttons_WBFunctor: public WBFunctor<Buttons_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Buttons_WBFunctor_T */
+    Buttons_WBFunctor(Buttons_WBFunctor_T* obj, void (Buttons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Buttons &), guWhiteboard::WBTypes t): WBFunctor<Buttons_WBFunctor_T >(obj, (void (Buttons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Buttons_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Buttons result = guWhiteboard::Buttons_t().get_from(m);
+        Buttons_function_t funct((void (Buttons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Buttons &))WBFunctor<Buttons_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Buttons_WBFunctor_T >::fObject->*funct)(WBFunctor<Buttons_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Buttons_WBFunctor_T::*Buttons_function_t) (guWhiteboard::WBTypes, guWhiteboard::Buttons &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Buttons_WBFunctor_T *obj, void (Buttons_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Buttons &), guWhiteboard::WBTypes t) { return new Buttons_WBFunctor<Buttons_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Buttons_DEFINED
+
 
 #pragma clang diagnostic pop
 

@@ -1099,6 +1099,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: Buttons_t @brief External Variables for the Incrementing LLFSM. */ 
+    class Buttons_t: public generic_whiteboard_object<class Buttons > { 
+        public: 
+        /** Constructor: Buttons_t */ 
+        Buttons_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Buttons >(wbd, kButtons_v, false) {}
+        
+    };
+
 
 }
 
