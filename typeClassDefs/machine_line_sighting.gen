@@ -1,0 +1,19 @@
+-author Callum McColl
+
+-c
+
+enum LineSightingType {
+    StraightLineSightingType,
+    CornerLineSightingType,
+    TIntersectionLineSightingType,
+    CrossLineSightingType
+};
+
+-properties
+int8_t direction = 0 // degrees, relative to the center of te nao torso. + == left, 0 == straight, - == right.
+int16_t distance = 0 // CM distance to the sighting.
+enum LineSightingType sightingType = StraightLineSightingType // The type of the sighting - what did we see? A corner? A straight line?
+
+-comment
+Contains information about a single sighting of a line.
+This structure is used within the machine_filtered_vision message which contains sighting data for all lines that were detected by vision.
