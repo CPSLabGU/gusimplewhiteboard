@@ -37,7 +37,7 @@ bool horizon_visible = 0 //has the horizon been seen enough by vision to be cons
 enum HorizonSightingType horizon_sightingType = NoHorizonSightingType // The type of the horizon sighting.
 
 gen machine_line_sighting lineSightings[20] // Contains all line sightings.
-int numLineSightings = 0 // How many line objects did we see? This number corresponds to the number of elements in the `lineSightings` array.
+uint8_t numLineSightings = 0 // How many line objects did we see? This number corresponds to the number of elements in the `lineSightings` array.
 
 -comment
 Results of the FSM (and sub machines) "SMFilterVision".
