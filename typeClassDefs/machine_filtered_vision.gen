@@ -36,7 +36,7 @@ uint16_t horizon_distance = 0 //CM distance to the center point of the horizon.
 bool horizon_visible = 0 //has the horizon been seen enough by vision to be considered actually 'visible'.
 enum HorizonSightingType horizon_sightingType = NoHorizonSightingType // The type of the horizon sighting.
 
-gen machine_line_sighting lineSightings[8] // Contains all line sightings.
+gen machine_line_sighting lineSightings[20] // Contains all line sightings.
 int numLineSightings = 0 // How many line objects did we see? This number corresponds to the number of elements in the `lineSightings` array.
 
 -comment
