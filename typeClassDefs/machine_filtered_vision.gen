@@ -2,6 +2,8 @@
 
 -c
 
+#include "wb_machine_line_sighting.h"
+
 enum GoalSightingType {
     NoSightingType,
     LeftPostSightingType,
@@ -15,11 +17,14 @@ enum HorizonSightingType {
     CornerHorizonSightingType
 };
 
+-c++
+
+#include "MachineLineSighting.h"
+
 -properties
 int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
 uint16_t ball_distance = 0 //CM distance to the ball.
 bool ball_visible = 0 //has the ball been seen enough by vision to be considered actually 'visible'.
-
 
 int8_t goal_direction = 0 //degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right. NYI
 uint16_t goal_distance = 0 //CM distance to the ball. NYI
@@ -30,6 +35,9 @@ int8_t horizon_direction = 0 //degrees to the center point of the horizon, relat
 uint16_t horizon_distance = 0 //CM distance to the center point of the horizon.
 bool horizon_visible = 0 //has the horizon been seen enough by vision to be considered actually 'visible'.
 enum HorizonSightingType horizon_sightingType = NoHorizonSightingType // The type of the horizon sighting.
+
+gen machine_line_sighting lineSightings[12] // Contains all line sightings.
+uint8_t numLineSightings = 0 // How many line objects did we see? This number corresponds to the number of elements in the `lineSightings` array.
 
 -comment
 Results of the FSM (and sub machines) "SMFilterVision".
