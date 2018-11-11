@@ -70,14 +70,22 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED1_v:
+            case kSensorsHandSensors_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED2_v:
+            case kSensorsHeadSensors_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
             case kMOTION_Commands_v:
@@ -107,7 +115,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSFootSensors_v:
+            case kSensorsFootSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
@@ -116,7 +124,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSBodySensors_v:
+            case kSensorsBodySensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)

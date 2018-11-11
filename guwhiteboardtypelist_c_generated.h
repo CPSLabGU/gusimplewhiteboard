@@ -30,13 +30,13 @@ typedef enum wb_types
     kQSpeech_v = 5, 		///< debug speech message (queued)
     kSpeechOutput_v = 6, 		///< toggle, treat speech messages as silent output unless this is turned on
     kGCGameState_v = 7, 		///< game state as posted by the game controller state machine
-    kREMOVED1_v = 8, 		///< Old class, can be removed from tsl file during the next wb version bump
-    kREMOVED2_v = 9, 		///< Old class, can be removed from tsl file during the next wb version bump
+    kSensorsHandSensors_v = 8, 		///< Posts the sensor information for the hands via the DCM loop (read only)
+    kSensorsHeadSensors_v = 9, 		///< Posts the sensor information for the head via the DCM loop (read only)
     kMOTION_Commands_v = 10, 		///< WB interface for sending motion commands
     kMOTION_Status_v = 11, 		///< WB interface for checking the status of commands sent
     kHAL_HeadTarget_v = 12, 		///< Used to alter the head position via the DCM
-    kSENSORSFootSensors_v = 13, 		///< Posts the sensor information for the feet via the DCM loop (read only)
-    kSENSORSBodySensors_v = 14, 		///< Posts the sensor information for the body via the DCM loop (read only)
+    kSensorsFootSensors_v = 13, 		///< Posts the sensor information for the feet via the DCM loop (read only)
+    kSensorsBodySensors_v = 14, 		///< Posts the sensor information for the body via the DCM loop (read only)
     kSENSORSLedsSensors_v = 15, 		///< Posts the current LEDs info, can be modified. (read/write)
     kSENSORSLegJointTemps_v = 16, 		///< Posts the temperature of the leg joints via the DCM loop (read only)
     kSENSORSTorsoJointTemps_v = 17, 		///< Posts the temperature of the torso joints via the DCM loop (read only)

@@ -94,22 +94,20 @@ SpeechOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): gene
         
     };
 
-    /** WB Ptr Class: REMOVED1_t @brief Old class, can be removed from tsl file during the next wb version bump */ 
-    class REMOVED1_t: public generic_whiteboard_object<bool > { 
+    /** WB Ptr Class: SensorsHandSensors_t @brief Posts the sensor information for the hands via the DCM loop (read only) */ 
+    class SensorsHandSensors_t: public generic_whiteboard_object<class SensorsHandSensors > { 
         public: 
-        /** Constructor: REMOVED1_t */ 
-        REMOVED1_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED1_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED1_t */ 
-REMOVED1_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED1_v, wbd, false) {} 
+        /** Constructor: SensorsHandSensors_t */ 
+        SensorsHandSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SensorsHandSensors >(wbd, kSensorsHandSensors_v, false) {}
+        
     };
 
-    /** WB Ptr Class: REMOVED2_t @brief Old class, can be removed from tsl file during the next wb version bump */ 
-    class REMOVED2_t: public generic_whiteboard_object<bool > { 
+    /** WB Ptr Class: SensorsHeadSensors_t @brief Posts the sensor information for the head via the DCM loop (read only) */ 
+    class SensorsHeadSensors_t: public generic_whiteboard_object<class SensorsHeadSensors > { 
         public: 
-        /** Constructor: REMOVED2_t */ 
-        REMOVED2_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kREMOVED2_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: REMOVED2_t */ 
-REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kREMOVED2_v, wbd, false) {} 
+        /** Constructor: SensorsHeadSensors_t */ 
+        SensorsHeadSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SensorsHeadSensors >(wbd, kSensorsHeadSensors_v, false) {}
+        
     };
 
     /** WB Ptr Class: MOTION_Commands_t @brief WB interface for sending motion commands */ 
@@ -136,19 +134,19 @@ REMOVED2_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_
         
     };
 
-    /** WB Ptr Class: SENSORSFootSensors_t @brief Posts the sensor information for the feet via the DCM loop (read only) */ 
-    class SENSORSFootSensors_t: public generic_whiteboard_object<class SENSORSFootSensors > { 
+    /** WB Ptr Class: SensorsFootSensors_t @brief Posts the sensor information for the feet via the DCM loop (read only) */ 
+    class SensorsFootSensors_t: public generic_whiteboard_object<class SensorsFootSensors > { 
         public: 
-        /** Constructor: SENSORSFootSensors_t */ 
-        SENSORSFootSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSFootSensors >(wbd, kSENSORSFootSensors_v, false) {}
+        /** Constructor: SensorsFootSensors_t */ 
+        SensorsFootSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SensorsFootSensors >(wbd, kSensorsFootSensors_v, false) {}
         
     };
 
-    /** WB Ptr Class: SENSORSBodySensors_t @brief Posts the sensor information for the body via the DCM loop (read only) */ 
-    class SENSORSBodySensors_t: public generic_whiteboard_object<class SENSORSBodySensors > { 
+    /** WB Ptr Class: SensorsBodySensors_t @brief Posts the sensor information for the body via the DCM loop (read only) */ 
+    class SensorsBodySensors_t: public generic_whiteboard_object<class SensorsBodySensors > { 
         public: 
-        /** Constructor: SENSORSBodySensors_t */ 
-        SENSORSBodySensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SENSORSBodySensors >(wbd, kSENSORSBodySensors_v, false) {}
+        /** Constructor: SensorsBodySensors_t */ 
+        SensorsBodySensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SensorsBodySensors >(wbd, kSensorsBodySensors_v, false) {}
         
     };
 

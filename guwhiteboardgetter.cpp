@@ -135,19 +135,23 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //GCGameState_DEFINED
             }
-            case kREMOVED1_v:
+            case kSensorsHandSensors_v:
             {
-
-                class REMOVED1_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
+#ifdef SensorsHandSensors_DEFINED
+                class SensorsHandSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //SensorsHandSensors_DEFINED
             }
-            case kREMOVED2_v:
+            case kSensorsHeadSensors_v:
             {
-
-                class REMOVED2_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
+#ifdef SensorsHeadSensors_DEFINED
+                class SensorsHeadSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //SensorsHeadSensors_DEFINED
             }
             case kMOTION_Commands_v:
             {
@@ -176,23 +180,23 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //HAL_HeadTarget_DEFINED
             }
-            case kSENSORSFootSensors_v:
+            case kSensorsFootSensors_v:
             {
-#ifdef SENSORSFootSensors_DEFINED
-                class SENSORSFootSensors_t m(wbd);
+#ifdef SensorsFootSensors_DEFINED
+                class SensorsFootSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSFootSensors_DEFINED
+#endif //SensorsFootSensors_DEFINED
             }
-            case kSENSORSBodySensors_v:
+            case kSensorsBodySensors_v:
             {
-#ifdef SENSORSBodySensors_DEFINED
-                class SENSORSBodySensors_t m(wbd);
+#ifdef SensorsBodySensors_DEFINED
+                class SensorsBodySensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSBodySensors_DEFINED
+#endif //SensorsBodySensors_DEFINED
             }
             case kSENSORSLedsSensors_v:
             {

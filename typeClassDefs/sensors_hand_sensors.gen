@@ -1,0 +1,23 @@
+-author    Dimitri Joukoff
+
+-properties
+
+bool        LHand_Touch_Left                //  state of the hand capacitive sensor on the Left side of Left Hand, on / off. could use a 1 bit var here
+bool        LHand_Touch_Back                //  state of the hand capacitive sensor on the Back of Left Hand, on / off. could use a 1 bit var here
+bool        LHand_Touch_Right               //  state of the hand capacitive sensor on the Right side of Left Hand, on / off. could use a 1 bit var here
+bool        RHand_Touch_Left                //  state of the hand capacitive sensor on the Left side of Right Hand, on / off. could use a 1 bit var here
+bool        RHand_Touch_Back                //  state of the hand capacitive sensor on the Back of Right Hand, on / off. could use a 1 bit var here
+bool        RHand_Touch_Right               //  state of the hand capacitive sensor on the Right side of Right Hand, on / off. could use a 1 bit var here
+
+-comment
+ Contains the current values of sensors located on the robots hands (designed for Nao H25 only)
+
+Examples
+
+Get the state of the LHand_Touch_Left sensor
+
+    SensorsArmSensors s = SensorsArmSensors_t.get(); //get from the whiteboard
+    bool button_state = s.LHand_Touch_Left(); //pull the variable out of the class
+
+Notes:
+Only the H25 model has capacitive sensors in the hands.  Our V5's are H25 models.
