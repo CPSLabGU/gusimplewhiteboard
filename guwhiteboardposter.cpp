@@ -159,23 +159,29 @@ v.from_string(message_content);
     return false;
 #endif //GCGameState_DEFINED
 }
-case kREMOVED1_v:
+case kSensorsHandSensors_v:
 {
-
-    class REMOVED1_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
+#ifdef SensorsHandSensors_DEFINED
+    class SensorsHandSensors_t msg_ptr(wbd);
+    SensorsHandSensors v = msg_ptr.get();
+v.from_string(message_content);
     msg_ptr.post(v);
     return true;
-
+#else
+    return false;
+#endif //SensorsHandSensors_DEFINED
 }
-case kREMOVED2_v:
+case kSensorsHeadSensors_v:
 {
-
-    class REMOVED2_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
+#ifdef SensorsHeadSensors_DEFINED
+    class SensorsHeadSensors_t msg_ptr(wbd);
+    SensorsHeadSensors v = msg_ptr.get();
+v.from_string(message_content);
     msg_ptr.post(v);
     return true;
-
+#else
+    return false;
+#endif //SensorsHeadSensors_DEFINED
 }
 case kMOTION_Commands_v:
 {
@@ -213,29 +219,29 @@ v.from_string(message_content);
     return false;
 #endif //HAL_HeadTarget_DEFINED
 }
-case kSENSORSFootSensors_v:
+case kSensorsFootSensors_v:
 {
-#ifdef SENSORSFootSensors_DEFINED
-    class SENSORSFootSensors_t msg_ptr(wbd);
-    SENSORSFootSensors v = msg_ptr.get();
+#ifdef SensorsFootSensors_DEFINED
+    class SensorsFootSensors_t msg_ptr(wbd);
+    SensorsFootSensors v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //SENSORSFootSensors_DEFINED
+#endif //SensorsFootSensors_DEFINED
 }
-case kSENSORSBodySensors_v:
+case kSensorsBodySensors_v:
 {
-#ifdef SENSORSBodySensors_DEFINED
-    class SENSORSBodySensors_t msg_ptr(wbd);
-    SENSORSBodySensors v = msg_ptr.get();
+#ifdef SensorsBodySensors_DEFINED
+    class SensorsBodySensors_t msg_ptr(wbd);
+    SensorsBodySensors v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //SENSORSBodySensors_DEFINED
+#endif //SensorsBodySensors_DEFINED
 }
 case kSENSORSLedsSensors_v:
 {
@@ -1535,13 +1541,13 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["QSpeech"] = kQSpeech_v;
     self["SpeechOutput"] = kSpeechOutput_v;
     self["GCGameState"] = kGCGameState_v;
-    self["REMOVED1"] = kREMOVED1_v;
-    self["REMOVED2"] = kREMOVED2_v;
+    self["SensorsHandSensors"] = kSensorsHandSensors_v;
+    self["SensorsHeadSensors"] = kSensorsHeadSensors_v;
     self["MOTION_Commands"] = kMOTION_Commands_v;
     self["MOTION_Status"] = kMOTION_Status_v;
     self["HAL_HeadTarget"] = kHAL_HeadTarget_v;
-    self["SENSORSFootSensors"] = kSENSORSFootSensors_v;
-    self["SENSORSBodySensors"] = kSENSORSBodySensors_v;
+    self["SensorsFootSensors"] = kSensorsFootSensors_v;
+    self["SensorsBodySensors"] = kSensorsBodySensors_v;
     self["SENSORSLedsSensors"] = kSENSORSLedsSensors_v;
     self["SENSORSLegJointTemps"] = kSENSORSLegJointTemps_v;
     self["SENSORSTorsoJointTemps"] = kSENSORSTorsoJointTemps_v;
