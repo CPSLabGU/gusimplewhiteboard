@@ -24,7 +24,11 @@
 extern "C" {
 #endif
 
-#define CONV_TO_IMG(x, r) ((uint16_t)((x + INT16_MAX) / ((INT16_MAX * 2) / r)))
+#ifdef __cplusplus
+# define CONV_TO_IMG(x, r) (static_cast<uint16_t>((x + INT16_MAX) / ((INT16_MAX * 2) / r)))
+#else
+# define CONV_TO_IMG(x, r) ((uint16_t)((x + INT16_MAX) / ((INT16_MAX * 2) / r)))
+#endif
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
