@@ -67,7 +67,9 @@
 #pragma clang diagnostic ignored "-Wold-style-cast"
 
 #ifdef __APPLE__
-#include <AvailabilityMacros.h>
+# ifndef TARGET_OS_IPHONE
+#  include <AvailabilityMacros.h>
+# endif
 #endif
 #ifndef WITHOUT_LIBDISPATCH
 #include <dispatch/dispatch.h>
