@@ -300,7 +300,7 @@ typedef struct gsw_simple_whiteboard_s
 } gu_simple_whiteboard;
 
 #ifdef GSW_IOS_DEVICE
-typedef dispatch_semaphore_t *gsw_sema_t;
+typedef dispatch_semaphore_t __strong *gsw_sema_t;
 #else
 typedef int gsw_sema_t;
 #endif
