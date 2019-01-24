@@ -81,9 +81,10 @@ namespace guWhiteboard {
         /**
          * Create a new `LandmarkSighting`.
          */
-        LandmarkSighting(int8_t direction = 0, uint16_t distance = 0) {
+        LandmarkSighting(int8_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
             set_direction(direction);
             set_distance(distance);
+            set_sightingType(sightingType);
         }
 
         /**
@@ -92,6 +93,7 @@ namespace guWhiteboard {
         LandmarkSighting(const LandmarkSighting &other): wb_landmark_sighting() {
             set_direction(other.direction());
             set_distance(other.distance());
+            set_sightingType(other.sightingType());
         }
 
         /**
@@ -100,6 +102,7 @@ namespace guWhiteboard {
         LandmarkSighting(const struct wb_landmark_sighting &other): wb_landmark_sighting() {
             set_direction(other.direction());
             set_distance(other.distance());
+            set_sightingType(other.sightingType());
         }
 
         /**
@@ -108,6 +111,7 @@ namespace guWhiteboard {
         LandmarkSighting &operator = (const LandmarkSighting &other) {
             set_direction(other.direction());
             set_distance(other.distance());
+            set_sightingType(other.sightingType());
             return *this;
         }
 
@@ -117,6 +121,7 @@ namespace guWhiteboard {
         LandmarkSighting &operator = (const struct wb_landmark_sighting &other) {
             set_direction(other.direction());
             set_distance(other.distance());
+            set_sightingType(other.sightingType());
             return *this;
         }
 
@@ -137,6 +142,8 @@ namespace guWhiteboard {
             ss << "direction=" << static_cast<signed>(this->direction());
             ss << ", ";
             ss << "distance=" << static_cast<unsigned>(this->distance());
+            ss << ", ";
+            ss << "sightingType=" << this->sightingType();
             return ss.str();
 #endif /// USE_WB_LANDMARK_SIGHTING_C_CONVERSION
         }
@@ -152,6 +159,8 @@ namespace guWhiteboard {
             ss << static_cast<signed>(this->direction());
             ss << ", ";
             ss << static_cast<unsigned>(this->distance());
+            ss << ", ";
+            ss << this->sightingType();
             return ss.str();
 #endif /// USE_WB_LANDMARK_SIGHTING_C_CONVERSION
         }
@@ -169,7 +178,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[10];
+            char key_buffer[13];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int lastBrace = -1;
@@ -238,6 +247,8 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("distance", key)) {
                         varIndex = 1;
+                    } else if (0 == strcmp("sightingType", key)) {
+                        varIndex = 2;
                     }
                 }
                 switch (varIndex) {
@@ -249,6 +260,11 @@ namespace guWhiteboard {
                     case 1:
                     {
                         this->set_distance(static_cast<uint16_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 2:
+                    {
+                        this->set_sightingType(static_cast<enum LandmarkSightingType>(atoi(var_str)));
                         break;
                     }
                 }

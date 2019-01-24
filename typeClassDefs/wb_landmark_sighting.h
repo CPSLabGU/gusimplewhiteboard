@@ -94,11 +94,11 @@ enum LandmarkSightingType {
 
 #define LANDMARK_SIGHTING_GENERATED 
 #define LANDMARK_SIGHTING_C_STRUCT wb_landmark_sighting 
-#define LANDMARK_SIGHTING_NUMBER_OF_VARIABLES 2
+#define LANDMARK_SIGHTING_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 31
-#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 12
+#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 301
+#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 269
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -116,6 +116,11 @@ struct wb_landmark_sighting
      * CM distance to the center point of the sighting.
      */
     PROPERTY(uint16_t, distance)
+
+    /**
+     * The type of sighting.
+     */
+    PROPERTY(enum LandmarkSightingType, sightingType)
 
 };
 

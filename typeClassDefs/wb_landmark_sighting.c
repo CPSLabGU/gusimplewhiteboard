@@ -131,6 +131,14 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "distance=%u", self->distance);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
     return descString;
 }
 
@@ -154,6 +162,14 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->distance);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
     return toString;
 }
 
@@ -169,7 +185,7 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
     }
     char var_str_buffer[LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[10];
+    char key_buffer[13];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int lastBrace = -1;
@@ -238,6 +254,8 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
                 varIndex = 0;
             } else if (0 == strcmp("distance", key)) {
                 varIndex = 1;
+            } else if (0 == strcmp("sightingType", key)) {
+                varIndex = 2;
             }
         }
         switch (varIndex) {
@@ -249,6 +267,11 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
             case 1:
             {
                 self->distance = ((uint16_t)atoi(var_str));
+                break;
+            }
+            case 2:
+            {
+                self->sightingType = ((enum LandmarkSightingType)atoi(var_str));
                 break;
             }
         }
