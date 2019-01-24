@@ -81,7 +81,7 @@ namespace guWhiteboard {
         /**
          * Create a new `LandmarkSighting`.
          */
-        LandmarkSighting(int8_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
+        LandmarkSighting(int16_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
             set_direction(direction);
             set_distance(distance);
             set_sightingType(sightingType);
@@ -254,7 +254,7 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_direction(static_cast<int8_t>(atoi(var_str)));
+                        this->set_direction(static_cast<int16_t>(atoi(var_str)));
                         break;
                     }
                     case 1:

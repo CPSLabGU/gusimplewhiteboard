@@ -77,7 +77,7 @@ extension wb_landmark_sighting {
     /**
      * Create a new `wb_landmark_sighting`.
      */
-    public init(_ direction: Int8 = 0, distance: UInt16 = 0, sightingType: LandmarkSightingType = 0) {
+    public init(_ direction: Int16 = 0, distance: UInt16 = 0, sightingType: LandmarkSightingType = 0) {
         self.init()
         self.direction = direction
         self.distance = distance
@@ -90,7 +90,7 @@ extension wb_landmark_sighting {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let direction = dictionary["direction"] as? Int8,
+            let direction = dictionary["direction"] as? Int16,
             let distance = dictionary["distance"] as? UInt16,
             let sightingType = dictionary["sightingType"] as? LandmarkSightingType
         else {

@@ -97,8 +97,8 @@ enum LandmarkSightingType {
 #define LANDMARK_SIGHTING_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 301
-#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 269
+#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 303
+#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 271
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -110,7 +110,7 @@ struct wb_landmark_sighting
     /**
      * degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
      */
-    PROPERTY(int8_t, direction)
+    PROPERTY(int16_t, direction)
 
     /**
      * CM distance to the center point of the sighting.

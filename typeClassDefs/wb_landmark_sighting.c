@@ -261,7 +261,7 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
         switch (varIndex) {
             case 0:
             {
-                self->direction = ((int8_t)atoi(var_str));
+                self->direction = ((int16_t)atoi(var_str));
                 break;
             }
             case 1:
@@ -290,10 +290,10 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
 size_t wb_landmark_sighting_to_network_serialised(const struct wb_landmark_sighting *self, char *dst)
 {
     uint16_t bit_offset = 0;
-    int8_t direction_nbo = (self->direction);
+    int16_t direction_nbo = htons(self->direction);
     do {
       int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
+      for (b = (16 - 1); b >= 0; b--) {
           do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
@@ -328,7 +328,7 @@ size_t wb_landmark_sighting_from_network_serialised(const char *src, struct wb_l
     uint16_t bit_offset = 0;
     do {
       int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
+      for (b = (16 - 1); b >= 0; b--) {
           do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
@@ -339,7 +339,7 @@ size_t wb_landmark_sighting_from_network_serialised(const char *src, struct wb_l
       } while(false);
       }
     } while(false);
-    dst->direction = (dst->direction);
+    dst->direction = ntohs(dst->direction);
 
     do {
       int8_t b;
