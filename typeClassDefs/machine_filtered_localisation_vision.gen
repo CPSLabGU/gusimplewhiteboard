@@ -1,0 +1,20 @@
+-author Callum McColl
+
+-c
+
+#include "wb_landmark_sighting.h"
+
+-c++
+
+#include "LandmarkSighting.h"
+
+-properties
+
+uint8_t numberOfSightings = 0 // The number of sightings in `sightings`.
+gen landmark_sighting sightings[12] // All sightings.
+
+-comment
+Results of the FSM (and sub machines) "SMFilterVision".
+This machine applies some basic filtering to vision output messages.
+It also handles the coord conversion and kinematics for distance and bearing calculations on the Nao robot.
+
