@@ -3004,6 +3004,29 @@ public:
 }; 
 #endif //Buttons_DEFINED
 
+#ifdef MachineFilteredLocalisationVision_DEFINED
+/** WBFunctor definition for MachineFilteredLocalisationVision_WBFunctor_T */ 
+template <typename MachineFilteredLocalisationVision_WBFunctor_T >
+class MachineFilteredLocalisationVision_WBFunctor: public WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MachineFilteredLocalisationVision_WBFunctor_T */
+    MachineFilteredLocalisationVision_WBFunctor(MachineFilteredLocalisationVision_WBFunctor_T* obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, (void (MachineFilteredLocalisationVision_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MachineFilteredLocalisationVision_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MachineFilteredLocalisationVision result = guWhiteboard::MachineFilteredLocalisationVision_t().get_from(m);
+        MachineFilteredLocalisationVision_function_t funct((void (MachineFilteredLocalisationVision_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &))WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MachineFilteredLocalisationVision_WBFunctor_T::*MachineFilteredLocalisationVision_function_t) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MachineFilteredLocalisationVision_WBFunctor_T *obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::WBTypes t) { return new MachineFilteredLocalisationVision_WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MachineFilteredLocalisationVision_DEFINED
+
 
 #pragma clang diagnostic pop
 

@@ -1518,6 +1518,18 @@ v.from_string(message_content);
     return false;
 #endif //Buttons_DEFINED
 }
+case kMachineFilteredLocalisationVision_v:
+{
+#ifdef MachineFilteredLocalisationVision_DEFINED
+    class MachineFilteredLocalisationVision_t msg_ptr(wbd);
+    MachineFilteredLocalisationVision v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MachineFilteredLocalisationVision_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1663,6 +1675,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["MachineFilteredNaoVision"] = kMachineFilteredNaoVision_v;
     self["MicrowaveStatus"] = kMicrowaveStatus_v;
     self["Buttons"] = kButtons_v;
+    self["MachineFilteredLocalisationVision"] = kMachineFilteredLocalisationVision_v;
 
     (void) self;
 }

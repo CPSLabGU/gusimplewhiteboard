@@ -128,3 +128,4 @@ bool, nonatomic,         FFTControl, Turn on or off the FFT module
 type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates.
 type:microwave_status, nonatomic, MicrowaveStatus, External Variables for the One Minute Microwave.
 type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
+type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.

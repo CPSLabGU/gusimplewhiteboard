@@ -1028,6 +1028,15 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //BUTTONS_GENERATED
                 break;
             }
+            case kMachineFilteredLocalisationVision_v:
+            {
+#ifdef MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+                return SERIALISE(MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, (struct MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
