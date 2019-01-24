@@ -69,8 +69,6 @@
 #include <gu_util.h>
 #include "wb_machine_filtered_vision.h"
 
-#include "MachineLineSighting.h"
-
 namespace guWhiteboard {
 
     /**
