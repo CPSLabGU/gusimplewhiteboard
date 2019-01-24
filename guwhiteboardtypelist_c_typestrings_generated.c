@@ -144,7 +144,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "FFTControl",
         "MachineFilteredNaoVision",
         "MicrowaveStatus",
-        "Buttons"
+        "Buttons",
+        "MachineFilteredLocalisationVision"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -279,7 +280,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_machine_filtered_vision",
         "wb_microwave_status",
-        "wb_buttons"
+        "wb_buttons",
+        "wb_machine_filtered_localisation_vision"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

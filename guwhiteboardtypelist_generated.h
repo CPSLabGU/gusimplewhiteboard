@@ -1105,6 +1105,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: MachineFilteredLocalisationVision_t @brief Vision filtering and distance estimates for landmarks: goal, lines and horizon. */ 
+    class MachineFilteredLocalisationVision_t: public generic_whiteboard_object<class MachineFilteredLocalisationVision > { 
+        public: 
+        /** Constructor: MachineFilteredLocalisationVision_t */ 
+        MachineFilteredLocalisationVision_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MachineFilteredLocalisationVision >(wbd, kMachineFilteredLocalisationVision_v, false) {}
+        
+    };
+
 
 }
 

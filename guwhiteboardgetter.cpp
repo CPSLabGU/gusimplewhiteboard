@@ -1163,6 +1163,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //Buttons_DEFINED
             }
+            case kMachineFilteredLocalisationVision_v:
+            {
+#ifdef MachineFilteredLocalisationVision_DEFINED
+                class MachineFilteredLocalisationVision_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MachineFilteredLocalisationVision_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
