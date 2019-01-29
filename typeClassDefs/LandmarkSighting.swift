@@ -77,10 +77,11 @@ extension wb_landmark_sighting {
     /**
      * Create a new `wb_landmark_sighting`.
      */
-    public init(_ direction: Int8 = 0, distance: UInt16 = 0) {
+    public init(_ direction: Int16 = 0, distance: UInt16 = 0, sightingType: LandmarkSightingType = 0) {
         self.init()
         self.direction = direction
         self.distance = distance
+        self.sightingType = sightingType
     }
 
     /**
@@ -89,13 +90,15 @@ extension wb_landmark_sighting {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let direction = dictionary["direction"] as? Int8,
-            let distance = dictionary["distance"] as? UInt16
+            let direction = dictionary["direction"] as? Int16,
+            let distance = dictionary["distance"] as? UInt16,
+            let sightingType = dictionary["sightingType"] as? LandmarkSightingType
         else {
             fatalError("Unable to convert \(dictionary) to wb_landmark_sighting.")
         }
         self.direction = direction
         self.distance = distance
+        self.sightingType = sightingType
     }
 
 }
@@ -110,6 +113,8 @@ extension wb_landmark_sighting: CustomStringConvertible {
         descString += "direction=\(self.direction)"
         descString += ", "
         descString += "distance=\(self.distance)"
+        descString += ", "
+        descString += "sightingType=\(self.sightingType.rawValue)"
         return descString
     }
 
@@ -120,4 +125,5 @@ extension wb_landmark_sighting: Equatable {}
 public func == (lhs: wb_landmark_sighting, rhs: wb_landmark_sighting) -> Bool {
     return lhs.direction == rhs.direction
         && lhs.distance == rhs.distance
+        && lhs.sightingType == rhs.sightingType
 }

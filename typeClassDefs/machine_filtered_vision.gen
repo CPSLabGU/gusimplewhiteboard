@@ -9,10 +9,6 @@ enum GoalSightingType {
     GoalSightingType
 };
 
--c++
-
-#include "MachineLineSighting.h"
-
 -properties
 int8_t ball_direction = 0 //degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
 uint16_t ball_distance = 0 //CM distance to the ball.

@@ -128,6 +128,8 @@
 #include "VisionControlStatus.h"
 #include "TeleoperationControlVR.h"
 #include "GCGameState.h"
+#include "MachineFilteredVision.h"
+#include "MachineFilteredLocalisationVision.h"
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
