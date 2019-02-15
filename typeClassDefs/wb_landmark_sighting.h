@@ -60,6 +60,9 @@
 #ifndef wb_landmark_sighting_h
 #define wb_landmark_sighting_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -84,6 +89,7 @@ enum LandmarkSightingType {
     GenericGoalPostSightingType,
     LeftGoalPostSightingType,
     RightGoalPostSightingType,
+    GoalSightingType,
     LineHorizonSightingType,
     CornerHorizonSightingType,
     StraightLineSightingType,
