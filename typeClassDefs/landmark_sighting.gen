@@ -6,6 +6,7 @@ enum LandmarkSightingType {
     GenericGoalPostSightingType,
     LeftGoalPostSightingType,
     RightGoalPostSightingType,
+    GoalLandmarkSightingType,
     LineHorizonSightingType,
     CornerHorizonSightingType,
     StraightLineSightingType,

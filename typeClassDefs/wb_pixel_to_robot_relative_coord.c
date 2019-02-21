@@ -64,12 +64,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,6 +110,7 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
 
@@ -274,6 +277,9 @@ size_t wb_pixel_to_robot_relative_coord_to_network_serialised(const struct wb_pi
 {
     uint16_t bit_offset = 0;
 
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -284,6 +290,9 @@ size_t wb_pixel_to_robot_relative_coord_from_network_serialised(const char *src,
 {
     uint16_t bit_offset = 0;
 
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 
