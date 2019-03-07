@@ -60,9 +60,6 @@
 #ifndef wb_pixel_to_robot_relative_coord_h
 #define wb_pixel_to_robot_relative_coord_h
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreserved-id-macro"
-
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -80,12 +77,11 @@
 # endif
 #endif
 
-#pragma clang diagnostic pop
-
 #include <gu_util.h>
 #include <stdint.h>
 
 #include "wb_sensors_torsojointsensors.h"
+#include "wb_sensors_legjointsensors.h"
 #include "wb_vision_control_status.h"
 #include "gu_util.h"
 #include <stdlib.h> //abs
@@ -98,6 +94,7 @@
 
 //#define HEAD_BASE_HEIGHT 0.45959
 #define HEAD_BASE_HEIGHT 0.417
+#define HEAD_BASE_HEIGHT_KNEELING 0.377
 
 #define BOTTOM_CAMERA_OFFSET_Z 0.01774
 #define TOP_CAMERA_OFFSET_Z 0.06364
@@ -117,7 +114,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints);
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling);
 
 // x: image X coord
 // y: image Y coord
@@ -127,6 +124,10 @@ static double get_camera_height(enum VisionCamera camera, struct wb_sensors_tors
 // *distance: output pararm, populated with the calculated distance
 // *angle: the bearing to the object in the image. Relative to the robot torso.
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle);
+
+void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle);
+
+void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling);
 
 #pragma clang diagnostic pop
 
