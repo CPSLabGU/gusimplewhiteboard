@@ -2,6 +2,7 @@
 
 -c
 #include "wb_sensors_torsojointsensors.h"
+#include "wb_sensors_legjointsensors.h"
 #include "wb_vision_control_status.h"
 #include "gu_util.h"
 #include <stdlib.h> //abs
@@ -34,9 +35,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints);
-
-void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *legs, struct wb_sensors_double *distance, double *angle);
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling);
 
 // x: image X coord
 // y: image Y coord
@@ -47,7 +46,9 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 // *angle: the bearing to the object in the image. Relative to the robot torso.
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle);
 
-void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling);
+void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle);
+
+void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling);
 
 #pragma clang diagnostic pop
 
@@ -57,17 +58,15 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
 %c
 
-
-void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *legs, struct wb_sensors_double *distance, double *angle) {
-    pixel_to_rr_coord(sx, sy, camera, vs, joints, distance, angle, legs->LKneePitch > 2.0f && legs->RKneePitch > 2.0f);
-}
-
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
-    pixel_to_rr_coord(sx, sy, camera, vs, joins, distance, angle, false);
+    pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, false);
 }
 
+void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle) {
+    pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, leg_sensors->LKneePitch > 2.0f && leg_sensors->RKneePitch > 2.0f);
+}
 
-void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling) {
+void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling) {
 
     //TODO Eugene needs to write a C version of the resolution enum to actual values
     //This should query 'vs' for the resolution!
