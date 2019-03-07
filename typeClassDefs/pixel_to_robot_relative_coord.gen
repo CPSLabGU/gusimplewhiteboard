@@ -14,6 +14,7 @@
 
 //#define HEAD_BASE_HEIGHT 0.45959
 #define HEAD_BASE_HEIGHT 0.417
+#define HEAD_BASE_HEIGHT_KNEELING 0.377
 
 #define BOTTOM_CAMERA_OFFSET_Z 0.01774
 #define TOP_CAMERA_OFFSET_Z 0.06364
@@ -35,6 +36,8 @@ extern "C" {
 
 static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints);
 
+void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *legs, struct wb_sensors_double *distance, double *angle);
+
 // x: image X coord
 // y: image Y coord
 // camera: which camera you want this related to
@@ -44,6 +47,8 @@ static double get_camera_height(enum VisionCamera camera, struct wb_sensors_tors
 // *angle: the bearing to the object in the image. Relative to the robot torso.
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle);
 
+void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling);
+
 #pragma clang diagnostic pop
 
 #ifdef __cplusplus
@@ -52,7 +57,17 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
 %c
 
+
+void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *legs, struct wb_sensors_double *distance, double *angle) {
+    pixel_to_rr_coord(sx, sy, camera, vs, joints, distance, angle, legs->LKneePitch > 2.0f && legs->RKneePitch > 2.0f);
+}
+
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
+    pixel_to_rr_coord(sx, sy, camera, vs, joins, distance, angle, false);
+}
+
+
+void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling) {
 
     //TODO Eugene needs to write a C version of the resolution enum to actual values
     //This should query 'vs' for the resolution!
@@ -61,7 +76,7 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
     int32_t x = CONV_TO_IMG(sx, image_width);
     int32_t y = CONV_TO_IMG(-sy, image_height);
-	double camHeight = get_camera_height(camera, joints);
+	double camHeight = get_camera_height(camera, joints, kneeling);
 	
 	//the lowest angle we can see at for the camera
 	double cameraBottomVFOV = M_PI_2 + (-joints->HeadPitch - CAMERA_VFOV/2 + (camera?BOTTOM_CAMERA_ANGLE:TOP_CAMERA_ANGLE));
@@ -85,11 +100,14 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 	*angle = -(imageAngleX-joints->HeadYaw);   
 }
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints) {
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling) {
     double dx = (camera?BOTTOM_CAMERA_OFFSET_X:TOP_CAMERA_OFFSET_X);
     double dz = (camera?BOTTOM_CAMERA_OFFSET_Z:TOP_CAMERA_OFFSET_Z);
 
     double height = dz*cos(-joints->HeadPitch) + dx*sin(-joints->HeadPitch);
+    if (kneeling) {
+        return height + HEAD_BASE_HEIGHT_KNEELING;
+    }
     return height + HEAD_BASE_HEIGHT;
 }
 
