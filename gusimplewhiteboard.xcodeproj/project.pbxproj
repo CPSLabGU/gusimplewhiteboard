@@ -79,7 +79,6 @@
 		C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */; };
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
 		C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */; };
-		C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */; };
 		C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */; };
 		C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */; };
 		C3B4EC4B1CBCD2740061A970 /* SENSORSLegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */; };
@@ -122,9 +121,6 @@
 		C3B4EC791CBCD2740061A970 /* wb_point2d.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC101CBCD2740061A970 /* wb_point2d.c */; };
 		C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC111CBCD2740061A970 /* wb_point2d.h */; };
 		C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */; };
-		C3B4EC7C1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */; };
-		C3B4EC7D1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */; };
-		C3B4EC7E1CBCD2740061A970 /* wb_sensors_bodysensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */; };
 		C3B4EC7F1CBCD2740061A970 /* wb_sensors_foot.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */; };
 		C3B4EC801CBCD2740061A970 /* wb_sensors_leds.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */; };
 		C3B4EC811CBCD2740061A970 /* wb_sensors_legs.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */; };
@@ -392,7 +388,6 @@
 		C3B4EBDD1CBCD2740061A970 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		C3B4EBDE1CBCD2740061A970 /* Point2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Point2D.txt; sourceTree = "<group>"; };
 		C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
-		C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORS_BodySensors.txt; sourceTree = "<group>"; };
 		C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
 		C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
 		C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
@@ -438,8 +433,6 @@
 		C3B4EC101CBCD2740061A970 /* wb_point2d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wb_point2d.c; sourceTree = "<group>"; };
 		C3B4EC111CBCD2740061A970 /* wb_point2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_point2d.h; sourceTree = "<group>"; };
 		C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_body.h; sourceTree = "<group>"; };
-		C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wb_sensors_bodysensors.c; sourceTree = "<group>"; };
-		C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_bodysensors.h; sourceTree = "<group>"; };
 		C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_foot.h; sourceTree = "<group>"; };
 		C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_leds.h; sourceTree = "<group>"; };
 		C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_legs.h; sourceTree = "<group>"; };
@@ -1403,7 +1396,6 @@
 				C3B4EBDD1CBCD2740061A970 /* Point2D.h */,
 				C3B4EBDE1CBCD2740061A970 /* Point2D.txt */,
 				C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */,
-				C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */,
 				C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */,
 				C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */,
 				C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */,
@@ -1455,8 +1447,6 @@
 				F5C3159F1F11B35800C517C2 /* wb_top_particles.c */,
 				F5C315A01F11B35900C517C2 /* wb_top_particles.h */,
 				C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */,
-				C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */,
-				C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */,
 				C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */,
 				C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */,
 				C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */,
@@ -1719,7 +1709,6 @@
 				C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */,
 				C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */,
 				C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */,
-				C3B4EC7E1CBCD2740061A970 /* wb_sensors_bodysensors.h in Headers */,
 				C3B4EC741CBCD2740061A970 /* wb_nxt_interface.h in Headers */,
 				C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */,
 				C3B4EC821CBCD2740061A970 /* wb_sensors_legtemps.h in Headers */,
@@ -2123,7 +2112,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */,
-				C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */,
 				C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */,
 				F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */,
 			);
@@ -2230,7 +2218,6 @@
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 				F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
-				C3B4EC7C1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */,
 				8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */,
 				F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */,
 			);
@@ -2283,7 +2270,6 @@
 				F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */,
 				F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */,
 				F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
-				C3B4EC7D1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */,
 				C3B4EC791CBCD2740061A970 /* wb_point2d.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
