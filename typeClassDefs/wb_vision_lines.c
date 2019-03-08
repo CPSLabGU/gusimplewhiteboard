@@ -64,14 +64,12 @@
 #include <ctype.h>
 
 /* Network byte order functions */
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) 
-#  include <machine/endian.h>           //Needed for __BYTE_ORDER
-#  include <architecture/byte_order.h>   //Needed for byte swap functions
+#elif defined(__APPLE__) //Needs double checking
+#  include <machine/endian.h>
+#  include <machine/byte_order.h>
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -110,7 +108,6 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
-#pragma clang diagnostic pop
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
@@ -560,7 +557,7 @@ size_t wb_vision_lines_to_network_serialised(const struct wb_vision_lines *self,
         do { //limit declaration scope
           uint32_t len = 5;
           uint32_t bytes = len * sizeof(struct wb_vision_line);
-          const char *buf = (const char *)&self->topLines[0];
+          char *buf = (char *)&self->topLines[0];
           uint32_t c;
           int8_t b;
           for (c = 0; c < bytes; c++) {
@@ -581,7 +578,7 @@ size_t wb_vision_lines_to_network_serialised(const struct wb_vision_lines *self,
         do { //limit declaration scope
           uint32_t len = 5;
           uint32_t bytes = len * sizeof(struct wb_vision_line);
-          const char *buf = (const char *)&self->bottomLines[0];
+          char *buf = (char *)&self->bottomLines[0];
           uint32_t c;
           int8_t b;
           for (c = 0; c < bytes; c++) {
@@ -638,9 +635,6 @@ size_t wb_vision_lines_to_network_serialised(const struct wb_vision_lines *self,
       } while(false);
       }
     } while(false);
-    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
-    (void)self;
-    (void)dst;
     return bit_offset;
 }
 
@@ -742,9 +736,6 @@ size_t wb_vision_lines_from_network_serialised(const char *src, struct wb_vision
       }
     } while(false);
     dst->frameNumber = ntohll(dst->frameNumber);
-    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
-    (void)src;
-    (void)dst;
     return bit_offset;
 }
 
