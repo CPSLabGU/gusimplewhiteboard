@@ -4,7 +4,6 @@
 # GU localisation module Makefile
 #
 LIB=gusimplewhiteboard
-LOCAL=_LOCAL
 
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
