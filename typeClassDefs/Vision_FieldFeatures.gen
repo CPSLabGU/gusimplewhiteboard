@@ -2,6 +2,7 @@
 
 -c
 #include "wb_vision_field_feature.h"
+#include <stdint.h>
 
 -c++
 #include "VisionFieldFeature.h"
