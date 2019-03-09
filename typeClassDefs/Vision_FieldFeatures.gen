@@ -7,8 +7,8 @@
 #include "VisionFieldFeature.h"
 
 -properties
-struct wb_vision_field_feature	fieldCorner[8]= { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() }  //location of corners on the field
-struct wb_vision_field_feature	fieldIntersection[8]= { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() } //location of T-Intersections on the field
+gen Vision_FieldFeature	fieldCorner[8]= { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() }  //location of corners on the field
+gen Vision_FieldFeature	fieldIntersection[8]= { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() } //location of T-Intersections on the field
 uint8_t	numCorners=0	//number of corners in this message
 uint8_t	numIntersections=0	//number of T-Intersections in this message
 
