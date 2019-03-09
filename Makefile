@@ -45,6 +45,13 @@ generate:
 	classgenerator --c-header typeClassDefs ${f}
 .endfor
 
+WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*._gen
+
+generate-old:
+.for f in ${WB_MSG_OLD_GEN_FILES}
+	classgenerator --c-header typeClassDefs -b ${f}
+.endfor
+
 test:
 . if !defined(LOCAL) || ${LOCAL} != _LOCAL
 	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} test
