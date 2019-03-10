@@ -375,7 +375,7 @@ namespace guWhiteboard
             void mirrorPose(const HAL_LegTarget &other)
             {
                 // Roll and Yaw angles need to be mirrored, others just copied.
-                set_target_hipyawpitch(other.target_hipyawpitch());
+                set_target_hipyawpitch(-other.target_hipyawpitch());
                 set_target_hiproll(-other.target_hiproll());
                 set_target_hippitch(other.target_hippitch());
                 set_target_kneepitch(other.target_kneepitch());
@@ -792,27 +792,27 @@ namespace guWhiteboard
             std::string description() const
             {
                 std::stringstream ss;
-                ss << static_cast<int>(target_hipyawpitch()) << "-|-"
-                << static_cast<int>(target_hiproll()) << "-|-"
-                << static_cast<int>(target_hippitch()) << "-|-"
-                << static_cast<int>(target_kneepitch()) << "-|-"
-                << static_cast<int>(target_anklepitch()) << "-|-"
-                << static_cast<int>(target_ankleroll()) << "-|-"
-                << static_cast<int>(target_hipyawpitchstiffness()) << "-|-"
-                << static_cast<int>(target_hiprollstiffness()) << "-|-"
-                << static_cast<int>(target_hippitchstiffness()) << "-|-"
-                << static_cast<int>(target_kneepitchstiffness()) << "-|-"
-                << static_cast<int>(target_anklepitchstiffness()) << "-|-"
-                << static_cast<int>(target_anklerollstiffness()) << "-|-"
-                << static_cast<int>(target_hipyawpitch_active()) << "-|-"
-                << static_cast<int>(target_hiproll_active()) << "-|-"
-                << static_cast<int>(target_hippitch_active()) << "-|-"
-                << static_cast<int>(target_kneepitch_active()) << "-|-"
-                << static_cast<int>(target_anklepitch_active()) << "-|-"
-                << static_cast<int>(target_ankleroll_active()) << "-|-"
-                << static_cast<int>(target_movement_time()) << "-|-"
-                << static_cast<int>(target_pliability()) << "-|-"
-                << static_cast<int>(target_leg_at_goal()) << "-|-"
+                ss << static_cast<int>(target_hipyawpitch()) << " | "
+                << static_cast<int>(target_hiproll()) << " | "
+                << static_cast<int>(target_hippitch()) << " | "
+                << static_cast<int>(target_kneepitch()) << " | "
+                << static_cast<int>(target_anklepitch()) << " | "
+                << static_cast<int>(target_ankleroll()) << " | "
+                << static_cast<int>(target_hipyawpitchstiffness()) << " | "
+                << static_cast<int>(target_hiprollstiffness()) << " | "
+                << static_cast<int>(target_hippitchstiffness()) << " | "
+                << static_cast<int>(target_kneepitchstiffness()) << " | "
+                << static_cast<int>(target_anklepitchstiffness()) << " | "
+                << static_cast<int>(target_anklerollstiffness()) << " | "
+                << static_cast<int>(target_hipyawpitch_active()) << " | "
+                << static_cast<int>(target_hiproll_active()) << " | "
+                << static_cast<int>(target_hippitch_active()) << " | "
+                << static_cast<int>(target_kneepitch_active()) << " | "
+                << static_cast<int>(target_anklepitch_active()) << " | "
+                << static_cast<int>(target_ankleroll_active()) << " | "
+                << static_cast<int>(target_movement_time()) << " | "
+                << static_cast<int>(target_pliability()) << " | "
+                << static_cast<int>(target_leg_at_goal()) << " | "
                 << static_cast<int>(target_leg_stop());
                 return ss.str();
             }
