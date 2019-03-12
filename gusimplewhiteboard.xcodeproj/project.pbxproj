@@ -2557,6 +2557,7 @@
 					.,
 					"$(SRCROOT)/../../Common",
 					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2573,6 +2574,7 @@
 					.,
 					"$(SRCROOT)/../../Common",
 					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2946,6 +2948,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2960,6 +2970,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
