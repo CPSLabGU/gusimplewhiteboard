@@ -197,7 +197,6 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
     char key_buffer[9];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -229,9 +228,6 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {

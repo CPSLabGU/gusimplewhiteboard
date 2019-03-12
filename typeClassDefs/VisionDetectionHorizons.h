@@ -304,9 +304,6 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
-                                    if (bracecount == 1) {
-                                        lastBrace = i;
-                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {

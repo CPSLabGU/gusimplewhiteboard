@@ -303,9 +303,6 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
