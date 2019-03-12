@@ -136,6 +136,9 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
+            guWhiteboard::Point2D * location_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->location()));
+            ss << "location=" << "{" << location_cast->description() << "}";
+            ss << ", ";
             ss << "camera=" << static_cast<unsigned>(this->camera());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURE_C_CONVERSION
@@ -149,6 +152,9 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
+            guWhiteboard::Point2D * location_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->location()));
+            ss << "{" << location_cast->to_string() << "}";
+            ss << ", ";
             ss << static_cast<unsigned>(this->camera());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURE_C_CONVERSION
@@ -232,12 +238,21 @@ namespace guWhiteboard {
                 startKey = startVar;
                 endKey = -1;
                 if (key != NULLPTR) {
-                    if (0 == strcmp("camera", key)) {
+                    if (0 == strcmp("location", key)) {
                         varIndex = 0;
+                    } else if (0 == strcmp("camera", key)) {
+                        varIndex = 1;
                     }
                 }
                 switch (varIndex) {
                     case 0:
+                    {
+                        Point2D location_temp = Point2D();
+                        location_temp.from_string(var_str);
+                        this->set_location(location_temp);
+                        break;
+                    }
+                    case 1:
                     {
                         this->set_camera(static_cast<uint8_t>(atoi(var_str)));
                         break;

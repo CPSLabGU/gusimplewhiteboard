@@ -64,12 +64,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,6 +110,7 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
@@ -119,6 +122,70 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     size_t len = 0;
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "fieldCorner={", bufferSize);
+    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
+        if (len >= bufferSize) {
+            return descString;
+        }
+        if (fieldCorner_index > 0) {
+            len = gu_strlcat(descString, ", ", bufferSize);
+        }
+        len = gu_strlcat(descString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        char fieldCorner_1_buffer[VISION_FIELDFEATURE_DESC_BUFFER_SIZE];
+        char* fieldCorner_1_p = fieldCorner_1_buffer;
+        const char* fieldCorner_1_description = wb_vision_field_feature_description(&self->fieldCorner[fieldCorner_index], fieldCorner_1_p, VISION_FIELDFEATURE_DESC_BUFFER_SIZE);
+        len = gu_strlcat(descString, fieldCorner_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        len = gu_strlcat(descString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "fieldIntersection={", bufferSize);
+    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
+        if (len >= bufferSize) {
+            return descString;
+        }
+        if (fieldIntersection_index > 0) {
+            len = gu_strlcat(descString, ", ", bufferSize);
+        }
+        len = gu_strlcat(descString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        char fieldIntersection_1_buffer[VISION_FIELDFEATURE_DESC_BUFFER_SIZE];
+        char* fieldIntersection_1_p = fieldIntersection_1_buffer;
+        const char* fieldIntersection_1_description = wb_vision_field_feature_description(&self->fieldIntersection[fieldIntersection_index], fieldIntersection_1_p, VISION_FIELDFEATURE_DESC_BUFFER_SIZE);
+        len = gu_strlcat(descString, fieldIntersection_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        len = gu_strlcat(descString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -142,6 +209,70 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     size_t len = 0;
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "{", bufferSize);
+    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
+        if (len >= bufferSize) {
+            return toString;
+        }
+        if (fieldCorner_index > 0) {
+            len = gu_strlcat(toString, ", ", bufferSize);
+        }
+        len = gu_strlcat(toString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        char fieldCorner_1_buffer[VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE];
+        char* fieldCorner_1_p = fieldCorner_1_buffer;
+        const char* fieldCorner_1_to_string = wb_vision_field_feature_to_string(&self->fieldCorner[fieldCorner_index], fieldCorner_1_p, VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE);
+        len = gu_strlcat(toString, fieldCorner_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        len = gu_strlcat(toString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "{", bufferSize);
+    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
+        if (len >= bufferSize) {
+            return toString;
+        }
+        if (fieldIntersection_index > 0) {
+            len = gu_strlcat(toString, ", ", bufferSize);
+        }
+        len = gu_strlcat(toString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        char fieldIntersection_1_buffer[VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE];
+        char* fieldIntersection_1_p = fieldIntersection_1_buffer;
+        const char* fieldIntersection_1_to_string = wb_vision_field_feature_to_string(&self->fieldIntersection[fieldIntersection_index], fieldIntersection_1_p, VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE);
+        len = gu_strlcat(toString, fieldIntersection_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        len = gu_strlcat(toString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -245,6 +376,136 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
             }
         }
         switch (varIndex) {
+            case 0:
+            {
+                int restartIndex = index;
+                index = lastBrace + 1;
+                startVar = index;
+                startKey = startVar;
+                endKey = -1;
+                bracecount = 0;
+                for (int fieldCorner_0_index = 0; fieldCorner_0_index < VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_0_index++) {
+                    for (int i = index; i < length; i++) {
+                        index = i + 1;
+                        if (bracecount == 0 && str[i] == '=') {
+                            endKey = i - 1;
+                            startVar = index;
+                            continue;
+                        }
+                        if (bracecount == 0 && isspace(str[i])) {
+                            startVar = index;
+                            if (endKey == -1) {
+                                startKey = index;
+                            }
+                            continue;
+                        }
+                        if (bracecount == 0 && str[i] == ',') {
+                            index = i - 1;
+                            break;
+                        }
+                        if (str[i] == '{') {
+                            bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
+                            continue;
+                        }
+                        if (str[i] == '}') {
+                            bracecount--;
+                            if (bracecount < 0) {
+                                index = i - 1;
+                                break;
+                            }
+                        }
+                        if (i == length - 1) {
+                            index = i;
+                        }
+                    }
+                    if (endKey >= startKey && endKey - startKey < length) {
+                        strncpy(key, str + startKey, (endKey - startKey) + 1);
+                        key[(endKey - startKey) + 1] = 0;
+                    } else {
+                        key[0] = 0;
+                    }
+                    strncpy(var_str, str + startVar, (index - startVar) + 1);
+                    var_str[(index - startVar) + 1] = 0;
+                    bracecount = 0;
+                    index += 2;
+                    startVar = index;
+                    startKey = startVar;
+                    endKey = -1;
+                    struct wb_vision_field_feature fieldCorner_0;
+                    wb_vision_field_feature_from_string(&fieldCorner_0, var_str);
+                    self->fieldCorner[fieldCorner_0_index] = fieldCorner_0;;
+                }
+                index = restartIndex;
+                break;
+            }
+            case 1:
+            {
+                int restartIndex = index;
+                index = lastBrace + 1;
+                startVar = index;
+                startKey = startVar;
+                endKey = -1;
+                bracecount = 0;
+                for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_0_index++) {
+                    for (int i = index; i < length; i++) {
+                        index = i + 1;
+                        if (bracecount == 0 && str[i] == '=') {
+                            endKey = i - 1;
+                            startVar = index;
+                            continue;
+                        }
+                        if (bracecount == 0 && isspace(str[i])) {
+                            startVar = index;
+                            if (endKey == -1) {
+                                startKey = index;
+                            }
+                            continue;
+                        }
+                        if (bracecount == 0 && str[i] == ',') {
+                            index = i - 1;
+                            break;
+                        }
+                        if (str[i] == '{') {
+                            bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
+                            continue;
+                        }
+                        if (str[i] == '}') {
+                            bracecount--;
+                            if (bracecount < 0) {
+                                index = i - 1;
+                                break;
+                            }
+                        }
+                        if (i == length - 1) {
+                            index = i;
+                        }
+                    }
+                    if (endKey >= startKey && endKey - startKey < length) {
+                        strncpy(key, str + startKey, (endKey - startKey) + 1);
+                        key[(endKey - startKey) + 1] = 0;
+                    } else {
+                        key[0] = 0;
+                    }
+                    strncpy(var_str, str + startVar, (index - startVar) + 1);
+                    var_str[(index - startVar) + 1] = 0;
+                    bracecount = 0;
+                    index += 2;
+                    startVar = index;
+                    startKey = startVar;
+                    endKey = -1;
+                    struct wb_vision_field_feature fieldIntersection_0;
+                    wb_vision_field_feature_from_string(&fieldIntersection_0, var_str);
+                    self->fieldIntersection[fieldIntersection_0_index] = fieldIntersection_0;;
+                }
+                index = restartIndex;
+                break;
+            }
             case 2:
             {
                 self->numCorners = ((uint8_t)atoi(var_str));
@@ -276,7 +537,7 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
         do { //limit declaration scope
           uint32_t len = 8;
           uint32_t bytes = len * sizeof(struct wb_vision_field_feature);
-          char *buf = (char *)&self->fieldCorner[0];
+          const char *buf = (const char *)&self->fieldCorner[0];
           uint32_t c;
           int8_t b;
           for (c = 0; c < bytes; c++) {
@@ -297,7 +558,7 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
         do { //limit declaration scope
           uint32_t len = 8;
           uint32_t bytes = len * sizeof(struct wb_vision_field_feature);
-          char *buf = (char *)&self->fieldIntersection[0];
+          const char *buf = (const char *)&self->fieldIntersection[0];
           uint32_t c;
           int8_t b;
           for (c = 0; c < bytes; c++) {
@@ -340,6 +601,9 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
       } while(false);
       }
     } while(false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -426,6 +690,9 @@ size_t wb_vision_field_features_from_network_serialised(const char *src, struct 
       }
     } while(false);
     dst->numIntersections = (dst->numIntersections);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 

@@ -161,6 +161,24 @@ extension wb_vision_field_features: CustomStringConvertible {
      */
     public var description: String {
         var descString = ""
+        if self._fieldCorner.isEmpty {
+            descString += "fieldCorner={}"
+        } else {
+            let first = "{" + self.fieldCorner.0.description + "}"
+            descString += "fieldCorner={"
+            descString += self._fieldCorner.dropFirst().reduce("\(first)") { $0 + ", " + "{" + $1.description + "}" }
+            descString += "}"
+        }
+        descString += ", "
+        if self._fieldIntersection.isEmpty {
+            descString += "fieldIntersection={}"
+        } else {
+            let first = "{" + self.fieldIntersection.0.description + "}"
+            descString += "fieldIntersection={"
+            descString += self._fieldIntersection.dropFirst().reduce("\(first)") { $0 + ", " + "{" + $1.description + "}" }
+            descString += "}"
+        }
+        descString += ", "
         descString += "numCorners=\(self.numCorners)"
         descString += ", "
         descString += "numIntersections=\(self.numIntersections)"

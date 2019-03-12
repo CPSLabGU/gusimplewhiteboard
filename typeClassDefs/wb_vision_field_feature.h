@@ -60,6 +60,9 @@
 #ifndef wb_vision_field_feature_h
 #define wb_vision_field_feature_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,10 +80,13 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
 #include "wb_point2d.h"
+#include <stdint.h>
 
 #define VISION_FIELDFEATURE_GENERATED 
 #define VISION_FIELDFEATURE_C_STRUCT wb_vision_field_feature 

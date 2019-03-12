@@ -64,12 +64,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,6 +110,7 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
@@ -412,7 +415,6 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
     char key_buffer[20];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -444,9 +446,6 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -612,6 +611,20 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
 size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_control_status *self, char *dst)
 {
     uint16_t bit_offset = 0;
+    enum Resolutions cameraResolution_nbo = htonl(self->cameraResolution);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((cameraResolution_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
       do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
@@ -619,6 +632,34 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
+
+    enum VisionCamera selectedCamera_nbo = htonl(self->selectedCamera);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((selectedCamera_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    enum SaveFileType saveImage_nbo = htonl(self->saveImage);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((saveImage_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
 
       do {
         uint16_t byte = bit_offset / 8;
@@ -628,6 +669,20 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
         bit_offset = bit_offset + 1;
       } while(false);
 
+    enum NamedPipeline pipeline_nbo = htonl(self->pipeline);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((pipeline_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
     int chooseCamera_nbo = htonl(self->chooseCamera);
     do {
       int8_t b;
@@ -636,6 +691,48 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((chooseCamera_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    enum NeuralNetworkType networkTop_nbo = htonl(self->networkTop);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((networkTop_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    enum NeuralNetworkType networkBottom_nbo = htonl(self->networkBottom);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((networkBottom_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    enum StreamingType streamingSource_nbo = htonl(self->streamingSource);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((streamingSource_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -739,6 +836,9 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
         }
       }
     } while(false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -748,6 +848,21 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
 size_t wb_vision_control_status_from_network_serialised(const char *src, struct wb_vision_control_status *dst)
 {
     uint16_t bit_offset = 0;
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->cameraResolution ^= (-bitValue ^ dst->cameraResolution) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->cameraResolution = ntohl(dst->cameraResolution);
+
       do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
@@ -756,6 +871,36 @@ size_t wb_vision_control_status_from_network_serialised(const char *src, struct 
         dst->pipelineRunning = bitValue != 0;
         bit_offset = bit_offset + 1;
       } while(false);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->selectedCamera ^= (-bitValue ^ dst->selectedCamera) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->selectedCamera = ntohl(dst->selectedCamera);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->saveImage ^= (-bitValue ^ dst->saveImage) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->saveImage = ntohl(dst->saveImage);
 
       do {
         uint16_t byte = bit_offset / 8;
@@ -774,12 +919,72 @@ size_t wb_vision_control_status_from_network_serialised(const char *src, struct 
         uint16_t bit = 7 - (bit_offset % 8);
         char dataByte = src[byte];
         unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->pipeline ^= (-bitValue ^ dst->pipeline) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->pipeline = ntohl(dst->pipeline);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
         dst->chooseCamera ^= (-bitValue ^ dst->chooseCamera) & (1UL << b);
         bit_offset = bit_offset + 1;
       } while(false);
       }
     } while(false);
     dst->chooseCamera = ntohl(dst->chooseCamera);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->networkTop ^= (-bitValue ^ dst->networkTop) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->networkTop = ntohl(dst->networkTop);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->networkBottom ^= (-bitValue ^ dst->networkBottom) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->networkBottom = ntohl(dst->networkBottom);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->streamingSource ^= (-bitValue ^ dst->streamingSource) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->streamingSource = ntohl(dst->streamingSource);
 
       do {
         uint16_t byte = bit_offset / 8;
@@ -886,6 +1091,9 @@ size_t wb_vision_control_status_from_network_serialised(const char *src, struct 
         }
       }
     } while (false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 
