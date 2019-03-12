@@ -23,13 +23,13 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "QSpeech",
         "SpeechOutput",
         "GCGameState",
-        "REMOVED1",
-        "REMOVED2",
+        "SensorsHandSensors",
+        "SensorsHeadSensors",
         "MOTION_Commands",
         "MOTION_Status",
         "HAL_HeadTarget",
-        "SENSORSFootSensors",
-        "SENSORSBodySensors",
+        "SensorsFootSensors",
+        "SensorsBodySensors",
         "SENSORSLedsSensors",
         "SENSORSLegJointTemps",
         "SENSORSTorsoJointTemps",
@@ -143,7 +143,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "ParticleOutputMapControl",
         "FFTControl",
         "MachineFilteredNaoVision",
-        "MicrowaveStatus"
+        "MicrowaveStatus",
+        "Buttons",
+        "MachineFilteredLocalisationVision"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -157,8 +159,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_std_string",
         "wb_bool",
         "NotSupportedWithLegacyNaming",
-        "wb_bool",
-        "wb_bool",
+        "NotSupportedWithLegacyNaming",
+        "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
@@ -277,7 +279,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_bool",
         "wb_machine_filtered_vision",
-        "wb_microwave_status"
+        "wb_microwave_status",
+        "wb_buttons",
+        "wb_machine_filtered_localisation_vision"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

@@ -1,0 +1,14 @@
+-author	Vlad Estivill-Castro
+
+-c
+#include "wb_filtered_vision_object.h"
+#include "wb_filtered_vision_object_type.h"
+
+-c++
+#include "FilteredVisionObject.h"
+
+-properties
+gen Filtered_Vision_Object objects[4] // the array containing various filtered parts of the goals reported by vision FVO_NUM_OBJECTS =4
+
+-comment
+The class of landmarks filtered regarding goal sightings

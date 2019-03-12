@@ -4,7 +4,6 @@
 # GU localisation module Makefile
 #
 LIB=gusimplewhiteboard
-LOCAL=_LOCAL
 
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
@@ -44,6 +43,13 @@ all: all-real
 generate:
 .for f in ${WB_MSG_GEN_FILES}
 	classgenerator --c-header typeClassDefs ${f}
+.endfor
+
+WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*._gen
+
+generate-old:
+.for f in ${WB_MSG_OLD_GEN_FILES}
+	classgenerator --c-header typeClassDefs -b ${f}
 .endfor
 
 test:

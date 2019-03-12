@@ -80,7 +80,10 @@
 #include "FilteredArrayOneDimObjects.h"
 #include "FilteredArrayBallSightings.h"
 #include "SENSORSSonarSensors.h"
-#include "SENSORSFootSensors.h"
+#include "SensorsFootSensors.h"
+#include "SensorsHandSensors.h"
+#include "SensorsHeadSensors.h"
+#include "SensorsBodySensors.h"
 #include "SENSORSTorsoJointTemps.h"
 #include "SENSORSLegJointTemps.h"
 #include "NAO_State.h"
@@ -91,7 +94,6 @@
 #include "Point2D.h"
 #include "ParticlePosition.h"
 #include "TopParticles.h"
-#include "SENSORSBodySensors.h"
 #include "WEBOTS_NXT_bridge.h"
 #include "VisionBall.h"
 #include "VisionGoals.h"
@@ -110,7 +112,6 @@
 #include "SwitchSubsumption.h"
 #include "SwitchSubsumptionTrafficLights.h"
 #include "Input3D.h"
-#include "HAL_ArmTarget.h"
 #include "VisionLines.h"
 #include "VisionRobots.h"
 #include "VisionDetectionHorizon.h"
@@ -127,6 +128,13 @@
 #include "TeleoperationControlVR.h"
 #include "GCGameState.h"
 #include "MachineFilteredVision.h"
+#include "MachineFilteredLocalisationVision.h"
+#include "VisionFieldFeatures.h"
+#include "HAL_ArmTarget.h"
+#include "HAL_LegTarget.h"
+#include "MicrowaveStatus.h"
+#include "Buttons.h"
+
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
@@ -192,7 +200,7 @@ namespace guWhiteboard
          * @param message_index the offset or enum value of the type to post
          * @param message_content the string data to pass to the types string constructor
          * @param wbd whiteboard descriptor (NULLPTR for the default whiteboard)
-         * @return true if there is a string constructor for the passed in type 
+         * @return true if there is a string constructor for the passed in type
          */
         bool postmsg(guWhiteboard::WBTypes message_index, std::string message_content, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
 

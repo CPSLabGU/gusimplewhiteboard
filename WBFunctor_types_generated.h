@@ -198,51 +198,51 @@ public:
 }; 
 #endif //GCGameState_DEFINED
 
-
-/** WBFunctor definition for REMOVED1_WBFunctor_T */ 
-template <typename REMOVED1_WBFunctor_T >
-class REMOVED1_WBFunctor: public WBFunctor<REMOVED1_WBFunctor_T > {
+#ifdef SensorsHandSensors_DEFINED
+/** WBFunctor definition for SensorsHandSensors_WBFunctor_T */ 
+template <typename SensorsHandSensors_WBFunctor_T >
+class SensorsHandSensors_WBFunctor: public WBFunctor<SensorsHandSensors_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for REMOVED1_WBFunctor_T */
-    REMOVED1_WBFunctor(REMOVED1_WBFunctor_T* obj, void (REMOVED1_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<REMOVED1_WBFunctor_T >(obj, (void (REMOVED1_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for SensorsHandSensors_WBFunctor_T */
+    SensorsHandSensors_WBFunctor(SensorsHandSensors_WBFunctor_T* obj, void (SensorsHandSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsHandSensors_WBFunctor_T >(obj, (void (SensorsHandSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class REMOVED1_WBFunctor */
+    /** call method for callbacks, for class SensorsHandSensors_WBFunctor */
     void call(gu_simple_message *m) {
-        bool result = guWhiteboard::REMOVED1_t().get_from(m);
-        REMOVED1_function_t funct((void (REMOVED1_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<REMOVED1_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<REMOVED1_WBFunctor_T >::fObject->*funct)(WBFunctor<REMOVED1_WBFunctor_T >::type_enum, result);
+        guWhiteboard::SensorsHandSensors result = guWhiteboard::SensorsHandSensors_t().get_from(m);
+        SensorsHandSensors_function_t funct((void (SensorsHandSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &))WBFunctor<SensorsHandSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<SensorsHandSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsHandSensors_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (REMOVED1_WBFunctor_T::*REMOVED1_function_t) (guWhiteboard::WBTypes, bool &);
+    typedef void (SensorsHandSensors_WBFunctor_T::*SensorsHandSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(REMOVED1_WBFunctor_T *obj, void (REMOVED1_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new REMOVED1_WBFunctor<REMOVED1_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(SensorsHandSensors_WBFunctor_T *obj, void (SensorsHandSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &), guWhiteboard::WBTypes t) { return new SensorsHandSensors_WBFunctor<SensorsHandSensors_WBFunctor_T >(obj, f, t); }
 }; 
+#endif //SensorsHandSensors_DEFINED
 
-
-
-/** WBFunctor definition for REMOVED2_WBFunctor_T */ 
-template <typename REMOVED2_WBFunctor_T >
-class REMOVED2_WBFunctor: public WBFunctor<REMOVED2_WBFunctor_T > {
+#ifdef SensorsHeadSensors_DEFINED
+/** WBFunctor definition for SensorsHeadSensors_WBFunctor_T */ 
+template <typename SensorsHeadSensors_WBFunctor_T >
+class SensorsHeadSensors_WBFunctor: public WBFunctor<SensorsHeadSensors_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for REMOVED2_WBFunctor_T */
-    REMOVED2_WBFunctor(REMOVED2_WBFunctor_T* obj, void (REMOVED2_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<REMOVED2_WBFunctor_T >(obj, (void (REMOVED2_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for SensorsHeadSensors_WBFunctor_T */
+    SensorsHeadSensors_WBFunctor(SensorsHeadSensors_WBFunctor_T* obj, void (SensorsHeadSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsHeadSensors_WBFunctor_T >(obj, (void (SensorsHeadSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class REMOVED2_WBFunctor */
+    /** call method for callbacks, for class SensorsHeadSensors_WBFunctor */
     void call(gu_simple_message *m) {
-        bool result = guWhiteboard::REMOVED2_t().get_from(m);
-        REMOVED2_function_t funct((void (REMOVED2_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<REMOVED2_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<REMOVED2_WBFunctor_T >::fObject->*funct)(WBFunctor<REMOVED2_WBFunctor_T >::type_enum, result);
+        guWhiteboard::SensorsHeadSensors result = guWhiteboard::SensorsHeadSensors_t().get_from(m);
+        SensorsHeadSensors_function_t funct((void (SensorsHeadSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &))WBFunctor<SensorsHeadSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<SensorsHeadSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsHeadSensors_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (REMOVED2_WBFunctor_T::*REMOVED2_function_t) (guWhiteboard::WBTypes, bool &);
+    typedef void (SensorsHeadSensors_WBFunctor_T::*SensorsHeadSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(REMOVED2_WBFunctor_T *obj, void (REMOVED2_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new REMOVED2_WBFunctor<REMOVED2_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(SensorsHeadSensors_WBFunctor_T *obj, void (SensorsHeadSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &), guWhiteboard::WBTypes t) { return new SensorsHeadSensors_WBFunctor<SensorsHeadSensors_WBFunctor_T >(obj, f, t); }
 }; 
-
+#endif //SensorsHeadSensors_DEFINED
 
 #ifdef MOTION_Commands_DEFINED
 /** WBFunctor definition for MOTION_Commands_WBFunctor_T */ 
@@ -313,51 +313,51 @@ public:
 }; 
 #endif //HAL_HeadTarget_DEFINED
 
-#ifdef SENSORSFootSensors_DEFINED
-/** WBFunctor definition for SENSORSFootSensors_WBFunctor_T */ 
-template <typename SENSORSFootSensors_WBFunctor_T >
-class SENSORSFootSensors_WBFunctor: public WBFunctor<SENSORSFootSensors_WBFunctor_T > {
+#ifdef SensorsFootSensors_DEFINED
+/** WBFunctor definition for SensorsFootSensors_WBFunctor_T */ 
+template <typename SensorsFootSensors_WBFunctor_T >
+class SensorsFootSensors_WBFunctor: public WBFunctor<SensorsFootSensors_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for SENSORSFootSensors_WBFunctor_T */
-    SENSORSFootSensors_WBFunctor(SENSORSFootSensors_WBFunctor_T* obj, void (SENSORSFootSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSFootSensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSFootSensors_WBFunctor_T >(obj, (void (SENSORSFootSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for SensorsFootSensors_WBFunctor_T */
+    SensorsFootSensors_WBFunctor(SensorsFootSensors_WBFunctor_T* obj, void (SensorsFootSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsFootSensors_WBFunctor_T >(obj, (void (SensorsFootSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class SENSORSFootSensors_WBFunctor */
+    /** call method for callbacks, for class SensorsFootSensors_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::SENSORSFootSensors result = guWhiteboard::SENSORSFootSensors_t().get_from(m);
-        SENSORSFootSensors_function_t funct((void (SENSORSFootSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSFootSensors &))WBFunctor<SENSORSFootSensors_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<SENSORSFootSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSFootSensors_WBFunctor_T >::type_enum, result);
+        guWhiteboard::SensorsFootSensors result = guWhiteboard::SensorsFootSensors_t().get_from(m);
+        SensorsFootSensors_function_t funct((void (SensorsFootSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &))WBFunctor<SensorsFootSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<SensorsFootSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsFootSensors_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (SENSORSFootSensors_WBFunctor_T::*SENSORSFootSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SENSORSFootSensors &);
+    typedef void (SensorsFootSensors_WBFunctor_T::*SensorsFootSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(SENSORSFootSensors_WBFunctor_T *obj, void (SENSORSFootSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SENSORSFootSensors &), guWhiteboard::WBTypes t) { return new SENSORSFootSensors_WBFunctor<SENSORSFootSensors_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(SensorsFootSensors_WBFunctor_T *obj, void (SensorsFootSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &), guWhiteboard::WBTypes t) { return new SensorsFootSensors_WBFunctor<SensorsFootSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSFootSensors_DEFINED
+#endif //SensorsFootSensors_DEFINED
 
-#ifdef SENSORSBodySensors_DEFINED
-/** WBFunctor definition for SENSORSBodySensors_WBFunctor_T */ 
-template <typename SENSORSBodySensors_WBFunctor_T >
-class SENSORSBodySensors_WBFunctor: public WBFunctor<SENSORSBodySensors_WBFunctor_T > {
+#ifdef SensorsBodySensors_DEFINED
+/** WBFunctor definition for SensorsBodySensors_WBFunctor_T */ 
+template <typename SensorsBodySensors_WBFunctor_T >
+class SensorsBodySensors_WBFunctor: public WBFunctor<SensorsBodySensors_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for SENSORSBodySensors_WBFunctor_T */
-    SENSORSBodySensors_WBFunctor(SENSORSBodySensors_WBFunctor_T* obj, void (SENSORSBodySensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSBodySensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSBodySensors_WBFunctor_T >(obj, (void (SENSORSBodySensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for SensorsBodySensors_WBFunctor_T */
+    SensorsBodySensors_WBFunctor(SensorsBodySensors_WBFunctor_T* obj, void (SensorsBodySensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsBodySensors_WBFunctor_T >(obj, (void (SensorsBodySensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class SENSORSBodySensors_WBFunctor */
+    /** call method for callbacks, for class SensorsBodySensors_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::SENSORSBodySensors result = guWhiteboard::SENSORSBodySensors_t().get_from(m);
-        SENSORSBodySensors_function_t funct((void (SENSORSBodySensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSBodySensors &))WBFunctor<SENSORSBodySensors_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<SENSORSBodySensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSBodySensors_WBFunctor_T >::type_enum, result);
+        guWhiteboard::SensorsBodySensors result = guWhiteboard::SensorsBodySensors_t().get_from(m);
+        SensorsBodySensors_function_t funct((void (SensorsBodySensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &))WBFunctor<SensorsBodySensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<SensorsBodySensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsBodySensors_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (SENSORSBodySensors_WBFunctor_T::*SENSORSBodySensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SENSORSBodySensors &);
+    typedef void (SensorsBodySensors_WBFunctor_T::*SensorsBodySensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(SENSORSBodySensors_WBFunctor_T *obj, void (SENSORSBodySensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SENSORSBodySensors &), guWhiteboard::WBTypes t) { return new SENSORSBodySensors_WBFunctor<SENSORSBodySensors_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(SensorsBodySensors_WBFunctor_T *obj, void (SensorsBodySensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &), guWhiteboard::WBTypes t) { return new SensorsBodySensors_WBFunctor<SensorsBodySensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSBodySensors_DEFINED
+#endif //SensorsBodySensors_DEFINED
 
 #ifdef SENSORSLedsSensors_DEFINED
 /** WBFunctor definition for SENSORSLedsSensors_WBFunctor_T */ 
@@ -2980,6 +2980,52 @@ public:
     static WBFunctorBase *bind(MicrowaveStatus_WBFunctor_T *obj, void (MicrowaveStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &), guWhiteboard::WBTypes t) { return new MicrowaveStatus_WBFunctor<MicrowaveStatus_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //MicrowaveStatus_DEFINED
+
+#ifdef Buttons_DEFINED
+/** WBFunctor definition for Buttons_WBFunctor_T */ 
+template <typename Buttons_WBFunctor_T >
+class Buttons_WBFunctor: public WBFunctor<Buttons_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Buttons_WBFunctor_T */
+    Buttons_WBFunctor(Buttons_WBFunctor_T* obj, void (Buttons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Buttons &), guWhiteboard::WBTypes t): WBFunctor<Buttons_WBFunctor_T >(obj, (void (Buttons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Buttons_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Buttons result = guWhiteboard::Buttons_t().get_from(m);
+        Buttons_function_t funct((void (Buttons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Buttons &))WBFunctor<Buttons_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Buttons_WBFunctor_T >::fObject->*funct)(WBFunctor<Buttons_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Buttons_WBFunctor_T::*Buttons_function_t) (guWhiteboard::WBTypes, guWhiteboard::Buttons &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Buttons_WBFunctor_T *obj, void (Buttons_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Buttons &), guWhiteboard::WBTypes t) { return new Buttons_WBFunctor<Buttons_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Buttons_DEFINED
+
+#ifdef MachineFilteredLocalisationVision_DEFINED
+/** WBFunctor definition for MachineFilteredLocalisationVision_WBFunctor_T */ 
+template <typename MachineFilteredLocalisationVision_WBFunctor_T >
+class MachineFilteredLocalisationVision_WBFunctor: public WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MachineFilteredLocalisationVision_WBFunctor_T */
+    MachineFilteredLocalisationVision_WBFunctor(MachineFilteredLocalisationVision_WBFunctor_T* obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, (void (MachineFilteredLocalisationVision_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MachineFilteredLocalisationVision_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MachineFilteredLocalisationVision result = guWhiteboard::MachineFilteredLocalisationVision_t().get_from(m);
+        MachineFilteredLocalisationVision_function_t funct((void (MachineFilteredLocalisationVision_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &))WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MachineFilteredLocalisationVision_WBFunctor_T::*MachineFilteredLocalisationVision_function_t) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MachineFilteredLocalisationVision_WBFunctor_T *obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::WBTypes t) { return new MachineFilteredLocalisationVision_WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MachineFilteredLocalisationVision_DEFINED
 
 
 #pragma clang diagnostic pop

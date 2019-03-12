@@ -21,7 +21,7 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out)
+int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out)
 {
     switch (message_index)
     {
@@ -70,14 +70,22 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED1_v:
+            case kSensorsHandSensors_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED2_v:
+            case kSensorsHeadSensors_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
             case kMOTION_Commands_v:
@@ -107,7 +115,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSFootSensors_v:
+            case kSensorsFootSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
@@ -116,7 +124,7 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSBodySensors_v:
+            case kSensorsBodySensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
@@ -1009,6 +1017,24 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #else
                 return -1;
 #endif //MICROWAVE_STATUS_GENERATED
+                break;
+            }
+            case kButtons_v:
+            {
+#ifdef BUTTONS_GENERATED
+                return DESERIALISE(BUTTONS_C_STRUCT, serialised_in, (struct BUTTONS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //BUTTONS_GENERATED
+                break;
+            }
+            case kMachineFilteredLocalisationVision_v:
+            {
+#ifdef MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+                return DESERIALISE(MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
     }

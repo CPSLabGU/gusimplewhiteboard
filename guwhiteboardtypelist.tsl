@@ -6,13 +6,13 @@ std::string,    atomic, QSay,         speech output message (queued)
 std::string,    atomic, QSpeech,      debug speech message (queued)
 bool,           nonatomic, SpeechOutput, toggle, treat speech messages as silent output unless this is turned on
 class:GCGameState, nonatomic, GCGameState,  game state as posted by the game controller state machine
-bool, nonatomic, REMOVED1, Old class, can be removed from tsl file during the next wb version bump
-bool, nonatomic, REMOVED2, Old class, can be removed from tsl file during the next wb version bump
+class:SensorsHandSensors, nonatomic, SensorsHandSensors, Posts the sensor information for the hands via the DCM loop (read only)
+class:SensorsHeadSensors, nonatomic, SensorsHeadSensors, Posts the sensor information for the head via the DCM loop (read only)
 class:MOTION_Commands, nonatomic, MOTION_Commands, WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status, WB interface for checking the status of commands sent
 class:HAL_HeadTarget, nonatomic, HAL_HeadTarget, Used to alter the head position via the DCM
-class:SENSORSFootSensors, nonatomic, SENSORSFootSensors, Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORSBodySensors, nonatomic, SENSORSBodySensors, Posts the sensor information for the body via the DCM loop (read only)
+class:SensorsFootSensors, nonatomic, SensorsFootSensors, Posts the sensor information for the feet via the DCM loop (read only)
+class:SensorsBodySensors, nonatomic, SensorsBodySensors, Posts the sensor information for the body via the DCM loop (read only)
 class:SENSORSLedsSensors, nonatomic, SENSORSLedsSensors, Posts the current LEDs info, can be modified. (read/write)
 class:SENSORSLegJointTemps, nonatomic, SENSORSLegJointTemps, Posts the temperature of the leg joints via the DCM loop (read only)
 class:SENSORSTorsoJointTemps, nonatomic, SENSORSTorsoJointTemps, Posts the temperature of the torso joints via the DCM loop (read only)
@@ -125,5 +125,7 @@ type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality 
 uint64_t, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
 bool, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
 bool, nonatomic,         FFTControl, Turn on or off the FFT module
-type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates. 
+type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates.
 type:microwave_status, nonatomic, MicrowaveStatus, External Variables for the One Minute Microwave.
+type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
+type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.
