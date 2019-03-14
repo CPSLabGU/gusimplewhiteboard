@@ -141,7 +141,27 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case SinglePostGoal:
+                {
+                    ss << "sightingType=" << "SinglePostGoal";
+                    break;
+                }
+                case NoGoalDetected:
+                {
+                    ss << "sightingType=" << "NoGoalDetected";
+                    break;
+                }
+                case DoublePostGoal:
+                {
+                    ss << "sightingType=" << "DoublePostGoal";
+                    break;
+                }
+                default: {
+                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
+                    break;
+                }
+            }
             ss << ", ";
             guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
             ss << "post1=" << "{" << post1_cast->description() << "}";
@@ -160,7 +180,27 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case SinglePostGoal:
+                {
+                    ss << "SinglePostGoal";
+                    break;
+                }
+                case NoGoalDetected:
+                {
+                    ss << "NoGoalDetected";
+                    break;
+                }
+                case DoublePostGoal:
+                {
+                    ss << "DoublePostGoal";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->sightingType());
+                    break;
+                }
+            }
             ss << ", ";
             guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
             ss << "{" << post1_cast->to_string() << "}";
@@ -256,7 +296,15 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+                        if (strcmp("SinglePostGoal", var_str) == 0) {
+                            this->set_sightingType(SinglePostGoal);
+                        } else if (strcmp("NoGoalDetected", var_str) == 0) {
+                            this->set_sightingType(NoGoalDetected);
+                        } else if (strcmp("DoublePostGoal", var_str) == 0) {
+                            this->set_sightingType(DoublePostGoal);
+                        } else {
+                            this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:

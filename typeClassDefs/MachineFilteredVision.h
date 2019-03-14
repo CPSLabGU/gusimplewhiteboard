@@ -171,7 +171,32 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "goal_visible=" << (this->goal_visible() ? "true" : "false");
             ss << ", ";
-            ss << "goal_sightingType=" << this->goal_sightingType();
+            switch (this->goal_sightingType()) {
+                case NoSightingType:
+                {
+                    ss << "goal_sightingType=" << "NoSightingType";
+                    break;
+                }
+                case LeftPostSightingType:
+                {
+                    ss << "goal_sightingType=" << "LeftPostSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "goal_sightingType=" << "RightPostSightingType";
+                    break;
+                }
+                case GoalSightingType:
+                {
+                    ss << "goal_sightingType=" << "GoalSightingType";
+                    break;
+                }
+                default: {
+                    ss << "goal_sightingType=" << static_cast<signed>(this->goal_sightingType());
+                    break;
+                }
+            }
             return ss.str();
 #endif /// USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
         }
@@ -196,7 +221,32 @@ namespace guWhiteboard {
             ss << ", ";
             ss << (this->goal_visible() ? "true" : "false");
             ss << ", ";
-            ss << this->goal_sightingType();
+            switch (this->goal_sightingType()) {
+                case NoSightingType:
+                {
+                    ss << "NoSightingType";
+                    break;
+                }
+                case LeftPostSightingType:
+                {
+                    ss << "LeftPostSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "RightPostSightingType";
+                    break;
+                }
+                case GoalSightingType:
+                {
+                    ss << "GoalSightingType";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->goal_sightingType());
+                    break;
+                }
+            }
             return ss.str();
 #endif /// USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
         }
@@ -324,7 +374,17 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
+                        if (strcmp("NoSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(NoSightingType);
+                        } else if (strcmp("LeftPostSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(LeftPostSightingType);
+                        } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(RightPostSightingType);
+                        } else if (strcmp("GoalSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(GoalSightingType);
+                        } else {
+                            this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
+                        }
                         break;
                     }
                 }

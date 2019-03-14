@@ -144,7 +144,22 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case NoBallDetected:
+                {
+                    ss << "sightingType=" << "NoBallDetected";
+                    break;
+                }
+                case BallDetected:
+                {
+                    ss << "sightingType=" << "BallDetected";
+                    break;
+                }
+                default: {
+                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
+                    break;
+                }
+            }
             ss << ", ";
             ss << "x=" << static_cast<signed>(this->x());
             ss << ", ";
@@ -163,7 +178,22 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case NoBallDetected:
+                {
+                    ss << "NoBallDetected";
+                    break;
+                }
+                case BallDetected:
+                {
+                    ss << "BallDetected";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->sightingType());
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<signed>(this->x());
             ss << ", ";
@@ -261,7 +291,13 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        if (strcmp("NoBallDetected", var_str) == 0) {
+                            this->set_sightingType(NoBallDetected);
+                        } else if (strcmp("BallDetected", var_str) == 0) {
+                            this->set_sightingType(BallDetected);
+                        } else {
+                            this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:

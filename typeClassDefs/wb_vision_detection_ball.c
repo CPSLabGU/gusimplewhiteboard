@@ -125,7 +125,22 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
+    switch (self->sightingType) {
+        case NoBallDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoBallDetected");
+            break;
+        }
+        case BallDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=BallDetected");
+            break;
+        }
+        default: {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -164,7 +179,22 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
+    switch (self->sightingType) {
+        case NoBallDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoBallDetected");
+            break;
+        }
+        case BallDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "BallDetected");
+            break;
+        }
+        default: {
+            len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -278,7 +308,13 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                self->sightingType = ((enum BallOptions)atoi(var_str));
+                if (strcmp("NoBallDetected", var_str) == 0) {
+                    self->sightingType = NoBallDetected;
+                } else if (strcmp("BallDetected", var_str) == 0) {
+                    self->sightingType = BallDetected;
+                } else {
+                    self->sightingType = ((enum BallOptions)atoi(var_str));
+                }
                 break;
             }
             case 1:

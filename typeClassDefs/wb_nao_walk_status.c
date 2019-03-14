@@ -125,7 +125,32 @@ const char* wb_nao_walk_status_description(const struct wb_nao_walk_status* self
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "walkEngineState=%d", self->walkEngineState);
+    switch (self->walkEngineState) {
+        case wes_StoppedReady:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedReady");
+            break;
+        }
+        case wes_Disconnected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Disconnected");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Walking");
+            break;
+        }
+        case wes_StoppedStanding:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedStanding");
+            break;
+        }
+        default: {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=%d", self->walkEngineState);
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -148,7 +173,32 @@ const char* wb_nao_walk_status_to_string(const struct wb_nao_walk_status* self, 
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->walkEngineState);
+    switch (self->walkEngineState) {
+        case wes_StoppedReady:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_StoppedReady");
+            break;
+        }
+        case wes_Disconnected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_Disconnected");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_Walking");
+            break;
+        }
+        case wes_StoppedStanding:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_StoppedStanding");
+            break;
+        }
+        default: {
+            len += snprintf(toString + len, bufferSize - len, "%d", self->walkEngineState);
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -242,7 +292,17 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
         switch (varIndex) {
             case 0:
             {
-                self->walkEngineState = ((enum WalkEngineState)atoi(var_str));
+                if (strcmp("wes_StoppedReady", var_str) == 0) {
+                    self->walkEngineState = wes_StoppedReady;
+                } else if (strcmp("wes_Disconnected", var_str) == 0) {
+                    self->walkEngineState = wes_Disconnected;
+                } else if (strcmp("wes_Walking", var_str) == 0) {
+                    self->walkEngineState = wes_Walking;
+                } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                    self->walkEngineState = wes_StoppedStanding;
+                } else {
+                    self->walkEngineState = ((enum WalkEngineState)atoi(var_str));
+                }
                 break;
             }
             case 1:

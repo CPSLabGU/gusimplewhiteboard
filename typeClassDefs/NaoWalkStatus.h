@@ -139,7 +139,32 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "walkEngineState=" << this->walkEngineState();
+            switch (this->walkEngineState()) {
+                case wes_StoppedReady:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedReady";
+                    break;
+                }
+                case wes_Disconnected:
+                {
+                    ss << "walkEngineState=" << "wes_Disconnected";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "walkEngineState=" << "wes_Walking";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedStanding";
+                    break;
+                }
+                default: {
+                    ss << "walkEngineState=" << static_cast<signed>(this->walkEngineState());
+                    break;
+                }
+            }
             ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -154,7 +179,32 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->walkEngineState();
+            switch (this->walkEngineState()) {
+                case wes_StoppedReady:
+                {
+                    ss << "wes_StoppedReady";
+                    break;
+                }
+                case wes_Disconnected:
+                {
+                    ss << "wes_Disconnected";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "wes_Walking";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "wes_StoppedStanding";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->walkEngineState());
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -244,7 +294,17 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+                        if (strcmp("wes_StoppedReady", var_str) == 0) {
+                            this->set_walkEngineState(wes_StoppedReady);
+                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
+                            this->set_walkEngineState(wes_Disconnected);
+                        } else if (strcmp("wes_Walking", var_str) == 0) {
+                            this->set_walkEngineState(wes_Walking);
+                        } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                            this->set_walkEngineState(wes_StoppedStanding);
+                        } else {
+                            this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
