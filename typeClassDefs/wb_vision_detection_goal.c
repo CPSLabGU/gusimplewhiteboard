@@ -125,23 +125,7 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    switch (self->sightingType) {
-        case SinglePostGoal:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=SinglePostGoal");
-            break;
-        }
-        case DoublePostGoal:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=DoublePostGoal");
-            break;
-        }
-        case NoGoalDetected:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=NoGoalDetected");
-            break;
-        }
-    }
+    len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,23 +178,7 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    switch (self->sightingType) {
-        case SinglePostGoal:
-        {
-            len += snprintf(toString + len, bufferSize - len, "SinglePostGoal");
-            break;
-        }
-        case DoublePostGoal:
-        {
-            len += snprintf(toString + len, bufferSize - len, "DoublePostGoal");
-            break;
-        }
-        case NoGoalDetected:
-        {
-            len += snprintf(toString + len, bufferSize - len, "NoGoalDetected");
-            break;
-        }
-    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
     if (len >= bufferSize) {
         return toString;
     }
@@ -267,6 +235,7 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
     char key_buffer[13];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -298,6 +267,9 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {
@@ -336,15 +308,7 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("SinglePostGoal", var_str) == 0) {
-                    self->sightingType = SinglePostGoal;
-                } else if (strcmp("DoublePostGoal", var_str) == 0) {
-                    self->sightingType = DoublePostGoal;
-                } else if (strcmp("NoGoalDetected", var_str) == 0) {
-                    self->sightingType = NoGoalDetected;
-                } else {
-                    self->sightingType = ((enum GoalOptions)atoi(var_str));
-                }
+                self->sightingType = ((enum GoalOptions)atoi(var_str));
                 break;
             }
             case 1:

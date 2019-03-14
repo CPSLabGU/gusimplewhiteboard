@@ -251,6 +251,7 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
     char key_buffer[15];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -282,6 +283,9 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

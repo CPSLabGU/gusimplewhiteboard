@@ -326,6 +326,9 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {

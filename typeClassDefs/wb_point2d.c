@@ -175,6 +175,7 @@ struct wb_point2d* wb_point2d_from_string(struct wb_point2d* self, const char* s
     char key_buffer[2];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -206,6 +207,9 @@ struct wb_point2d* wb_point2d_from_string(struct wb_point2d* self, const char* s
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

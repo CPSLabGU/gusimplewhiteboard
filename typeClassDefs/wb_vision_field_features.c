@@ -405,6 +405,9 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -467,6 +470,9 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {

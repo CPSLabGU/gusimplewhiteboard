@@ -326,6 +326,9 @@ struct wb_vision_detection_balls* wb_vision_detection_balls_from_string(struct w
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {

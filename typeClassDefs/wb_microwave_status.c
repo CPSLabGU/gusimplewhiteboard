@@ -191,6 +191,7 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
     char key_buffer[13];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -222,6 +223,9 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

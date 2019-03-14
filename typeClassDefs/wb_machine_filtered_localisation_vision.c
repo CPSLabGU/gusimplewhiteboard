@@ -326,6 +326,9 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {

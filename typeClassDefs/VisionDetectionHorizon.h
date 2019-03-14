@@ -159,28 +159,7 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            switch (this->horizonType()) {
-                case SingleHorizon:
-                {
-                    ss << "horizonType=" << "SingleHorizon";
-                    break;
-                }
-                case HorizonFailed:
-                {
-                    ss << "horizonType=" << "HorizonFailed";
-                    break;
-                }
-                case CornerHorizon:
-                {
-                    ss << "horizonType=" << "CornerHorizon";
-                    break;
-                }
-                case OnlyField:
-                {
-                    ss << "horizonType=" << "OnlyField";
-                    break;
-                }
-            }
+            ss << "horizonType=" << this->horizonType();
             ss << ", ";
             ss << "lhp_x=" << static_cast<signed>(this->lhp_x());
             ss << ", ";
@@ -205,28 +184,7 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            switch (this->horizonType()) {
-                case SingleHorizon:
-                {
-                    ss << "SingleHorizon";
-                    break;
-                }
-                case HorizonFailed:
-                {
-                    ss << "HorizonFailed";
-                    break;
-                }
-                case CornerHorizon:
-                {
-                    ss << "CornerHorizon";
-                    break;
-                }
-                case OnlyField:
-                {
-                    ss << "OnlyField";
-                    break;
-                }
-            }
+            ss << this->horizonType();
             ss << ", ";
             ss << static_cast<signed>(this->lhp_x());
             ss << ", ";
@@ -259,6 +217,7 @@ namespace guWhiteboard {
             char key_buffer[12];
             char* key = &key_buffer[0];
             int bracecount = 0;
+            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -290,6 +249,9 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
+                        if (bracecount == 1) {
+                            lastBrace = i;
+                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -336,17 +298,7 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("SingleHorizon", var_str) == 0) {
-                            this->set_horizonType(SingleHorizon);
-                        } else if (strcmp("HorizonFailed", var_str) == 0) {
-                            this->set_horizonType(HorizonFailed);
-                        } else if (strcmp("CornerHorizon", var_str) == 0) {
-                            this->set_horizonType(CornerHorizon);
-                        } else if (strcmp("OnlyField", var_str) == 0) {
-                            this->set_horizonType(OnlyField);
-                        } else {
-                            this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
-                        }
+                        this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
                         break;
                     }
                     case 1:

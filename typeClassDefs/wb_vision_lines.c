@@ -423,6 +423,9 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -485,6 +488,9 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {
