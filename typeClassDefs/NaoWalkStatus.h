@@ -139,28 +139,7 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            switch (this->walkEngineState()) {
-                case wes_StoppedReady:
-                {
-                    ss << "walkEngineState=" << "wes_StoppedReady";
-                    break;
-                }
-                case wes_StoppedStanding:
-                {
-                    ss << "walkEngineState=" << "wes_StoppedStanding";
-                    break;
-                }
-                case wes_Walking:
-                {
-                    ss << "walkEngineState=" << "wes_Walking";
-                    break;
-                }
-                case wes_Disconnected:
-                {
-                    ss << "walkEngineState=" << "wes_Disconnected";
-                    break;
-                }
-            }
+            ss << "walkEngineState=" << this->walkEngineState();
             ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -175,28 +154,7 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            switch (this->walkEngineState()) {
-                case wes_StoppedReady:
-                {
-                    ss << "wes_StoppedReady";
-                    break;
-                }
-                case wes_StoppedStanding:
-                {
-                    ss << "wes_StoppedStanding";
-                    break;
-                }
-                case wes_Walking:
-                {
-                    ss << "wes_Walking";
-                    break;
-                }
-                case wes_Disconnected:
-                {
-                    ss << "wes_Disconnected";
-                    break;
-                }
-            }
+            ss << this->walkEngineState();
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -219,6 +177,7 @@ namespace guWhiteboard {
             char key_buffer[21];
             char* key = &key_buffer[0];
             int bracecount = 0;
+            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -250,6 +209,9 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
+                        if (bracecount == 1) {
+                            lastBrace = i;
+                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -286,17 +248,7 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("wes_StoppedReady", var_str) == 0) {
-                            this->set_walkEngineState(wes_StoppedReady);
-                        } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
-                            this->set_walkEngineState(wes_StoppedStanding);
-                        } else if (strcmp("wes_Walking", var_str) == 0) {
-                            this->set_walkEngineState(wes_Walking);
-                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
-                            this->set_walkEngineState(wes_Disconnected);
-                        } else {
-                            this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
-                        }
+                        this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
                         break;
                     }
                     case 1:

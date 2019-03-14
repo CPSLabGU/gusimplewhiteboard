@@ -184,6 +184,7 @@ struct wb_trajectories* wb_trajectories_from_string(struct wb_trajectories* self
     char key_buffer[0];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -215,6 +216,9 @@ struct wb_trajectories* wb_trajectories_from_string(struct wb_trajectories* self
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

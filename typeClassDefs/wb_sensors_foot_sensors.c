@@ -431,6 +431,7 @@ struct wb_sensors_foot_sensors* wb_sensors_foot_sensors_from_string(struct wb_se
     char key_buffer[29];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -462,6 +463,9 @@ struct wb_sensors_foot_sensors* wb_sensors_foot_sensors_from_string(struct wb_se
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

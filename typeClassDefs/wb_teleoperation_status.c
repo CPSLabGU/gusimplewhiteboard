@@ -159,6 +159,7 @@ struct wb_teleoperation_status* wb_teleoperation_status_from_string(struct wb_te
     char key_buffer[10];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -190,6 +191,9 @@ struct wb_teleoperation_status* wb_teleoperation_status_from_string(struct wb_te
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {

@@ -1,118 +1,133 @@
-/**
- *  /file HalLegTarget.h
- *
- *  Created by Dimitri Joukoff 2016.
- *  Copyright (c) 2016 Dimitri Joukoff
- *  All rights reserved.
+-author    Dimitri Joukoff
+
+-c
+#define LEFT_LEG 0
+#define RIGHT_LEG 1
+
+/** Issued Commands that exceed the movement limits given below
+ *  are treated as NO-OP.  I.e. the pose of the joint is not altered
+ *  by the command.
  */
 
+/** Limits expressed in degrees (from Aldebaran Docs ./family/nao_h25/joints_h25.html) */
+#define HIP_YAWPITCH_LIMIT_BACK_DEG -65.62f
+#define HIP_YAWPITCH_LIMIT_FRONT_DEG 42.44f
 
+#define LEFT_HIP_ROLL_OUT_DEG 45.29f
+#define LEFT_HIP_ROLL_IN_DEG -21.74f
+#define LEFT_HIP_PITCH_FRONT_DEG -88.00f
+#define LEFT_HIP_PITCH_BACK_DEG 27.73f
+#define LEFT_KNEE_PITCH_FRONT_DEG -5.29f
+#define LEFT_KNEE_PITCH_BACK_DEG 121.04f
+#define LEFT_ANKLE_PITCH_FRONT_DEG -68.15f
+#define LEFT_ANKLE_PITCH_BACK_DEG 52.86f
+#define LEFT_ANKLE_ROLL_OUT_DEG 44.06f
+#define LEFT_ANKLE_ROLL_IN_DEG -22.79f
 
-#ifndef HalLegTarget_DEFINED
-#define HalLegTarget_DEFINED
+#define RIGHT_HIP_ROLL_OUT_DEG -45.29f
+#define RIGHT_HIP_ROLL_IN_DEG 21.74f
+#define RIGHT_HIP_PITCH_FRONT_DEG -88.00f
+#define RIGHT_HIP_PITCH_BACK_DEG 27.73f
+#define RIGHT_KNEE_PITCH_FRONT_DEG -5.90f
+#define RIGHT_KNEE_PITCH_BACK_DEG 121.47f
+#define RIGHT_ANKLE_PITCH_FRONT_DEG -67.97f
+#define RIGHT_ANKLE_PITCH_BACK_DEG 53.40f
+#define RIGHT_ANKLE_ROLL_OUT_DEG -44.06f
+#define RIGHT_ANKLE_ROLL_IN_DEG 22.80f
 
-#include "wb_hal_legtarget.h"
-//#include <cmath>
-#include <sstream>
+/** Limits expressed in radians */
+#define HIP_YAWPITCH_LIMIT_BACK_RAD -1.145303f
+#define HIP_YAWPITCH_LIMIT_FRONT_RAD 0.740810f
 
-//#ifndef M_PIF
-//#define M_PIF static_cast<float>(M_PI)
-//#endif  // M_PIF
+#define LEFT_HIP_ROLL_OUT_RAD 0.790477f
+#define LEFT_HIP_ROLL_IN_RAD -0.379472f
+#define LEFT_HIP_PITCH_FRONT_RAD -1.535889f
+#define LEFT_HIP_PITCH_BACK_RAD 0.484090f
+#define LEFT_KNEE_PITCH_FRONT_RAD -0.092346f
+#define LEFT_KNEE_PITCH_BACK_RAD 2.112528f
+#define LEFT_ANKLE_PITCH_FRONT_RAD -1.189516f
+#define LEFT_ANKLE_PITCH_BACK_RAD 0.922747f
+#define LEFT_ANKLE_ROLL_OUT_RAD 0.769001f
+#define LEFT_ANKLE_ROLL_IN_RAD -0.397880f
 
-namespace guWhiteboard
-{
-	/**
- 	 * @brief Class for moving a SINGLE robotic leg with up to 6 degrees of freedom using local coords of each joint.
-     *        NAO Leg has upto 6 degrees of freedom with the axes being:
-     *           'hipyawpitch, hip roll, hip pitch, knee pitch, ankle pitch, ankle roll'.
-     *        The left and right legs are mirrored about the XZ plane as are (most of) the movement limits and ranges.
-     *        (Aldebaran Docs ./family/robots/links_robot.html)
-	 *
-	 * Move the robotic leg to the (local) coord provided in this class.
-	 *
-	 * Examples
-	 * --------
-	 *
-	 * Examples of what to do with the class
-	 *
-     *     Move (left) leg such that the thigh is almost parallel to the ground pointing directly in front of the robot,
-     *     and the knee is bent right angle with the foot horizontal in the pitch and roll axis, in one second.
-     *     myLegTarget = new HalLegTarget(LEFT_LEG);
-     *     myLegTarget.GoToWithTime_Deg(0, 0, -88, 90, 0, 0, 1000);
-	 *     HalLegTarget().GoToWithTime_Rad(...) provides a method to control the leg using radian based units.
-     *
-     *
-     *     HalLegTarget().setLegActive(); 	 // Puts the leg into active mode, Naoqi DCM default.
-     *     HalLegTarget().setLegPassive();  // Puts the leg into passive mode, allowing the leg to be manupulated by external forces.
-	 *
-	 * Class values need to be passed to the Whiteboard, using the handler, for them to take effect.
-	 *
-     *     HalLegTarget_t.set(HalLegTarget());
-	 *     HalLegTarget_t.set(HalLegTarget().setLegPassive());
-	 *
- 	 */
-    class HalLegTarget : public wb_hal_legtarget
-    {
+#define RIGHT_HIP_ROLL_OUT_RAD -0.790477f
+#define RIGHT_HIP_ROLL_IN_RAD 0.379472f
+#define RIGHT_HIP_PITCH_FRONT_RAD -1.535889f
+#define RIGHT_HIP_PITCH_BACK_RAD 0.484090f
+#define RIGHT_KNEE_PITCH_FRONT_RAD -0.103083f
+#define RIGHT_KNEE_PITCH_BACK_RAD 2.120198f
+#define RIGHT_ANKLE_PITCH_FRONT_RAD -1.186448f
+#define RIGHT_ANKLE_PITCH_BACK_RAD 0.932056f
+#define RIGHT_ANKLE_ROLL_OUT_RAD -0.768992f
+#define RIGHT_ANKLE_ROLL_IN_RAD 0.397935f
 
-        public:
-            /**
-             *  Constructor, defaults to LEFT_LEG
-             */
-//            HalLegTarget(const uint8_t &target_leg = LEFT_LEG): wb_hal_legtarget(target_leg) {}
-        
-            /**
-             * Constructor using float parameters
-             * This constructor should be used because the whiteboard
-             * holds integer representations of the angles.
-             *
-             */
-            HalLegTarget(const uint8_t &target_leg = LEFT_LEG,
-                         const float hipyawpitch = 0,
-                         const float hiproll = 0,
-                         const float hippitch = 0,
-                         const float kneepitch = 0,
-                         const float anklepitch = 0,
-                         const float ankleroll = 0,
-                         const float hipyawpitchstiffness = 0,
-                         const float hiprollstiffness = 0,
-                         const float hippitchstiffness = 0,
-                         const float kneepitchstiffness = 0,
-                         const float anklepitchstiffness = 0,
-                         const float anklerollstiffness = 0,
-                         const bool  hipyawpitch_active = true,
-                         const bool  hiproll_active = true,
-                         const bool  hippitch_active = true,
-                         const bool  kneepitch_active = true,
-                         const bool  anklepitch_active = true,
-                         const bool  ankleroll_active = true,
-                         const int32_t movement_time = 1000000,
-                         const uint8_t pliability = 10,
-                         const bool  leg_stop = false,
-                         const bool inRadians = false)
-            : wb_hal_legtarget(target_leg)
-            {
-               if (inRadians) {
-                   setPose_Rad(hipyawpitch, hiproll,
-                               hippitch, kneepitch,
-                               anklepitch, ankleroll);
-               } else {
-                   setPose_Deg(hipyawpitch, hiproll,
-                               hippitch, kneepitch,
-                               anklepitch, ankleroll);
-               }
-               set_target_movement_time(movement_time);
-               set_target_leg_stop(leg_stop);
-               set_hipyawpitchstiffness(hipyawpitchstiffness);
-               set_hiprollstiffness(hiprollstiffness);
-               set_hippitchstiffness(hippitchstiffness);
-               set_kneepitchstiffness(kneepitchstiffness);
-               set_anklepitchstiffness(anklepitchstiffness);
-               set_anklerollstiffness(anklerollstiffness);
-               setLegPliability(hipyawpitch_active, hiproll_active, hippitch_active,
-                                kneepitch_active, anklepitch_active, ankleroll_active);
-               set_target_pliability(pliability);
+-properties
+
+    int32_t   target_movement_time        = INT_MAX     // Control Message: The elapsed time, in mSec, in which the movement should be completed. Status Message: Absolute time when the current action will complete. (Thus this is an int32_t.)
+    int16_t   target_hipyawpitch          = 0           // target hip yaw pitch angle in 10ths of degrees
+    int16_t   target_hiproll              = 0           // target hip roll angle angle in 10ths of degrees
+    int16_t   target_hippitch             = 0           // target hip pitch angle in 10ths of degrees
+    int16_t   target_kneepitch            = 0           // target knee pitch angle in 10ths of degrees
+    int16_t   target_anklepitch           = 0           // target ankle pitch angle in 10ths of degrees
+    int16_t   target_ankleroll            = 0           // target ankle roll angle in 10ths of degrees
+    uint8_t   target_leg                  = LEFT_LEG    // target leg number; This property is used strictly for accounting purposes when the struct is stored within an array and the robot has numerous legs.
+    uint8_t   target_hipyawpitchstiffness = 0           // target hip yaw pitch stiffness as a percentage
+    uint8_t   target_hiprollstiffness     = 0           // target hip roll stiffness as a percentage
+    uint8_t   target_hippitchstiffness    = 0           // target hip pitch stiffness as a percentage
+    uint8_t   target_kneepitchstiffness   = 0           // target knee pitch stiffness as a percentage
+    uint8_t   target_anklepitchstiffness  = 0           // target ankle pitch stiffness as a percentage
+    uint8_t   target_anklerollstiffness   = 0           // target ankle roll stiffness as a percentage
+    uint8_t   target_pliability           = 0           // target leg's pliability when in Passive Mode; When the leg is passive, this value reduces the update frequency, thus making the leg more resistant to external forces. Use of values from 0 to 10 is recommended. A value of zero (0), allows the quickest reponse to external forces (e.g. gravity). Higher values stiffen the leg and reduce responsiveness, the movement will become stepped. HOWEVER, the robot will fall under its own weight unless active mode is re-engaged.
+    bit       target_hipyawpitch_active   = true        // Is the hipyawpitch Active (true[DEFAULT]) or Passive (false). Active :  The robot's DCM will prevent movement of the hip from the requested pose in accordance to the joint stiffness. (This is the normal behaviour of the robot.) Passive:  Once the requested pose is achieved, the DCM will automatically update the requested pose according to deviations in the joints. The effect of this is that the robot's legs will be susceptible to gravity (and will fall slowly over time) as well as to externally applied forces (allowing it to be manipulated).
+    bit       target_hiproll_active       = true        // Is the hip roll Active (true[DEFAULT]) or Passive (false)
+    bit       target_hippitch_active      = true        // Is the hip pitch Active (true[DEFAULT]) or Passive (false)
+    bit       target_kneepitch_active     = true        // Is the knee pitch Active (true[DEFAULT]) or Passive (false)
+    bit       target_anklepitch_active    = true        // Is the ankle pitch Active (true[DEFAULT]) or Passive (false)
+    bit       target_ankleroll_active     = true        // Is the ankle roll Active (true[DEFAULT]) or Passive (false)
+    bit       target_leg_at_goal          = false       // Control Message: Not used. Status Message: Naoqiinterface reports that the goal location of all joints have been reached (within specified tolerance).
+    bit       target_leg_stop             = false       // Control Message: Stop the leg at its current location. Status Message: Indicates if the last control message issued a STOP command.
+
+%c++
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+        /**
+         *  Description function which prints values only
+         *  (Spreadsheet friendly)
+         */
+        std::string valueDescription() {
+#ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
+            char buffer[HAL_ARM_TARGET_DESC_BUFFER_SIZE];
+            wb_hal_arm_target_value_description(this, buffer, sizeof(buffer));
+            std::string descr = buffer;
+            return descr;
+#else
+                std::stringstream ss;
+                ss << static_cast<int>(target_hipyawpitch()) << " | "
+                << static_cast<int>(target_hiproll()) << " | "
+                << static_cast<int>(target_hippitch()) << " | "
+                << static_cast<int>(target_kneepitch()) << " | "
+                << static_cast<int>(target_anklepitch()) << " | "
+                << static_cast<int>(target_ankleroll()) << " | "
+                << static_cast<int>(target_hipyawpitchstiffness()) << " | "
+                << static_cast<int>(target_hiprollstiffness()) << " | "
+                << static_cast<int>(target_hippitchstiffness()) << " | "
+                << static_cast<int>(target_kneepitchstiffness()) << " | "
+                << static_cast<int>(target_anklepitchstiffness()) << " | "
+                << static_cast<int>(target_anklerollstiffness()) << " | "
+                << static_cast<int>(target_hipyawpitch_active()) << " | "
+                << static_cast<int>(target_hiproll_active()) << " | "
+                << static_cast<int>(target_hippitch_active()) << " | "
+                << static_cast<int>(target_kneepitch_active()) << " | "
+                << static_cast<int>(target_anklepitch_active()) << " | "
+                << static_cast<int>(target_ankleroll_active()) << " | "
+                << static_cast<int>(target_movement_time()) << " | "
+                << static_cast<int>(target_pliability()) << " | "
+                << static_cast<int>(target_leg_at_goal()) << " | "
+                << static_cast<int>(target_leg_stop());
+                return ss.str();
             }
-
+#endif /// USE_WB_HAL_ARM_TARGET_C_CONVERSION
+#endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 //MARK: Leg - General
             /**
@@ -154,7 +169,7 @@ namespace guWhiteboard
                             anklepitch, ankleroll);
                 set_target_movement_time(time);
             }
-            
+
             /**
              * move to position in degrees over a given time
              * @param   hipyawpitch    down to up
@@ -179,7 +194,7 @@ namespace guWhiteboard
                             anklepitch, ankleroll);
                 set_target_movement_time(time);
             }
-        
+
             /**
              * Command the leg to stop at its current
              * location and not act on motion commands
@@ -190,7 +205,7 @@ namespace guWhiteboard
                 set_target_leg_stop(true);
             }
 
-        
+
             /**
              * Set leg to ready state (Default)
              * The leg will act on motion commands.
@@ -200,7 +215,7 @@ namespace guWhiteboard
                 set_target_leg_stop(false);
             }
 
-        
+
             /**
              *  Leg at Goal Setter
              *      Clients/Machines should not use this method.
@@ -215,7 +230,7 @@ namespace guWhiteboard
             {
                 set_target_leg_at_goal(goalReached);
             }
-            
+
             /**
              *  Leg at Goal Getter
              *      Clients/Machines should use this getter to test if the DCM
@@ -292,7 +307,7 @@ namespace guWhiteboard
                 set_anklepitch_RAD(anklepitch);
                 set_ankleroll_RAD(ankleroll);
             }
-            
+
             /**
              * Set Pose in degrees
              * @param   hipyawpitch    down to up
@@ -318,7 +333,7 @@ namespace guWhiteboard
                 set_ankleroll_DEG(ankleroll);
             }
 
-            
+
             /**
              *  Convenience function to mirror leg settings about the XZ plane from one HalLegTarget object to another.
              *
@@ -349,7 +364,7 @@ namespace guWhiteboard
                 set_target_movement_time(other.target_movement_time());
                 set_target_pliability(other.target_pliability());
             }
-            
+
             /**
              *  Convenience function to copy pose settings from one HalLegTarget object to another.
              *
@@ -365,7 +380,7 @@ namespace guWhiteboard
                 set_target_anklepitch(other.target_anklepitch());
                 set_target_ankleroll(other.target_ankleroll());
             }
-            
+
             /**
              *  Convenience function to mirror pose settings about the XZ plane from one HalLegTarget object to another.
              *
@@ -382,7 +397,7 @@ namespace guWhiteboard
                 set_target_anklepitch(other.target_anklepitch());
                 set_target_ankleroll(-other.target_ankleroll());
             }
-            
+
             /**
              *  Tests if this HalLegTarget object has the same pose settings as the other HalLegTarget object.
              *      NOTE this DOES NOT take into account mirroring about the XZ plane.
@@ -406,7 +421,7 @@ namespace guWhiteboard
                 }
                 return false;
             }
-            
+
             /**
              *  Tests if this HalLegTarget object has the same mirrored pose settings as the other HalLegTarget object.
              *      NOTE this method DOES take into account mirroring about the XZ plane.
@@ -498,7 +513,7 @@ namespace guWhiteboard
                 set_anklerollstiffness(0.0f);
             }
 
-        
+
             /**
              *  Convenience function to copy stiffness settings from one HalLegTarget object to another.
              *
@@ -514,7 +529,7 @@ namespace guWhiteboard
                 target_anklepitchstiffness() = other.target_anklepitchstiffness();
                 target_anklerollstiffness() = other.target_anklerollstiffness();
             }
-        
+
 
 
             /**
@@ -541,7 +556,7 @@ namespace guWhiteboard
             }
 
 //MARK: Leg - Pliability
-                
+
             /**
              *  Set leg to be Active (DEDAULT DCM state)
              *  The leg is active and manual movements will be resisted, be careful when the stiffness is set high.
@@ -582,8 +597,8 @@ namespace guWhiteboard
                 set_target_anklepitch_active(false);
                 set_target_ankleroll_active(false);
             }
-            
-            
+
+
             /**
              *  Individually set the active/passive state of each joint.
              *  See setLegActive() and setLegPassive() methods for an explanation of the Active/Passive effect.
@@ -615,7 +630,7 @@ namespace guWhiteboard
             bool isLegAllPassive() {
                 return !target_hipyawpitch_active() && !target_hiproll_active() && !target_hippitch_active() && !target_kneepitch_active() && !target_anklepitch_active() && !target_ankleroll_active();
             }
-        
+
             /**
              *  Are all of the leg's joints set to active
              *
@@ -623,25 +638,25 @@ namespace guWhiteboard
             bool isLegAllActive() {
                 return target_hipyawpitch_active() && target_hiproll_active() && target_hippitch_active() && target_kneepitch_active() && target_anklepitch_active() && target_ankleroll_active();
             }
-        
+
 //MARK: CUSTOM SETTERS (Converting floats into Integer representations)
 /// Movement Setters (Degrees)
             void set_hipyawpitch_DEG(float setting) {
                 set_target_hipyawpitch(static_cast<int16_t>(setting * 10.0f));
             }
-            
+
             void set_hiproll_DEG(float setting) {
                 set_target_hiproll(static_cast<int16_t>(setting * 10.0f));
             }
-        
+
             void set_hippitch_DEG(float setting) {
                 set_target_hippitch(static_cast<int16_t>(setting * 10.0f));
             }
-        
+
             void set_kneepitch_DEG(float setting) {
                 set_target_kneepitch(static_cast<int16_t>(setting * 10.0f));
             }
-            
+
             void set_anklepitch_DEG(float setting) {
                 set_target_anklepitch(static_cast<int16_t>(setting * 10.0f));
             }
@@ -655,19 +670,19 @@ namespace guWhiteboard
             void set_hipyawpitch_RAD(float setting) {
                 set_target_hipyawpitch(static_cast<int16_t>(setting* DEG_OVER_RAD_10));
             }
-            
+
             void set_hiproll_RAD(float setting) {
                 set_target_hiproll(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
-        
+
             void set_hippitch_RAD(float setting) {
                 set_target_hippitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
-        
+
             void set_kneepitch_RAD(float setting) {
                 set_target_kneepitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
-            
+
             void set_anklepitch_RAD(float setting) {
                 set_target_anklepitch(static_cast<int16_t>(setting * DEG_OVER_RAD_10));
             }
@@ -680,19 +695,19 @@ namespace guWhiteboard
             void set_hipyawpitchstiffness(float setting) {
                 set_target_hipyawpitchstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
-            
+
             void set_hiprollstiffness(float setting) {
                 set_target_hiprollstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
-        
+
             void set_hippitchstiffness(float setting) {
                 set_target_hippitchstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
-        
+
             void set_kneepitchstiffness(float setting) {
                 set_target_kneepitchstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
-            
+
             void set_anklepitchstiffness(float setting) {
                 set_target_anklepitchstiffness(static_cast<uint8_t>(setting * 100.0f));
             }
@@ -706,25 +721,25 @@ namespace guWhiteboard
 //            void set_movement_time(int32_t time) {
 //                set_target_movement_time(time);
 //            }
-        
+
 //MARK: CUSTOM GETTERS (Converting Integer representations back to floats)
 /// Movement Getters (Degrees)
             float get_hipyawpitch_DEG() {
                 return static_cast<float>(target_hipyawpitch() * 0.1f);
             }
-            
+
             float get_hiproll_DEG() {
                 return static_cast<float>(target_hiproll() * 0.1f);
             }
-        
+
             float get_hippitch_DEG() {
                 return static_cast<float>(target_hippitch() * 0.1f);
             }
-        
+
             float get_kneepitch_DEG() {
                 return static_cast<float>(target_kneepitch() * 0.1f);
             }
-            
+
             float get_anklepitch_DEG() {
                 return static_cast<float>(target_anklepitch() * 0.1f);
             }
@@ -738,19 +753,19 @@ namespace guWhiteboard
             float get_hipyawpitch_RAD() {
                 return static_cast<float>(target_hipyawpitch()) * RAD_OVER_DEG_10;
             }
-            
+
             float get_hiproll_RAD() {
                 return static_cast<float>(target_hiproll()) * RAD_OVER_DEG_10;
             }
-        
+
             float get_hippitch_RAD() {
                 return static_cast<float>(target_hippitch()) * RAD_OVER_DEG_10;
             }
-        
+
             float get_kneepitch_RAD() {
                 return static_cast<float>(target_kneepitch()) * RAD_OVER_DEG_10;
             }
-            
+
             float get_anklepitch_RAD() {
                 return static_cast<float>(target_anklepitch()) * RAD_OVER_DEG_10;
             }
@@ -763,19 +778,19 @@ namespace guWhiteboard
             float get_hipyawpitchstiffness() {
                 return static_cast<float>(target_hipyawpitchstiffness()) * 0.01f;
             }
-            
+
             float get_hiprollstiffness() {
                 return static_cast<float>(target_hiprollstiffness()) * 0.01f;
             }
-        
+
             float get_hippitchstiffness() {
                 return static_cast<float>(target_hippitchstiffness()) * 0.01f;
             }
-        
+
             float get_kneepitchstiffness() {
                 return static_cast<float>(target_kneepitchstiffness()) * 0.01f;
             }
-            
+
             float get_anklepitchstiffness() {
                 return static_cast<float>(target_anklepitchstiffness()) * 0.01f;
             }
@@ -784,62 +799,6 @@ namespace guWhiteboard
                 return static_cast<float>(target_anklerollstiffness()) * 0.01f;
             }
 
-//MARK: WHITEBOAR POSTER STRING CONVERSION & Description
-        
-            /**
-             *  Description function
-             */
-            std::string description() const
-            {
-                std::stringstream ss;
-                ss << static_cast<int>(target_hipyawpitch()) << " | "
-                << static_cast<int>(target_hiproll()) << " | "
-                << static_cast<int>(target_hippitch()) << " | "
-                << static_cast<int>(target_kneepitch()) << " | "
-                << static_cast<int>(target_anklepitch()) << " | "
-                << static_cast<int>(target_ankleroll()) << " | "
-                << static_cast<int>(target_hipyawpitchstiffness()) << " | "
-                << static_cast<int>(target_hiprollstiffness()) << " | "
-                << static_cast<int>(target_hippitchstiffness()) << " | "
-                << static_cast<int>(target_kneepitchstiffness()) << " | "
-                << static_cast<int>(target_anklepitchstiffness()) << " | "
-                << static_cast<int>(target_anklerollstiffness()) << " | "
-                << static_cast<int>(target_hipyawpitch_active()) << " | "
-                << static_cast<int>(target_hiproll_active()) << " | "
-                << static_cast<int>(target_hippitch_active()) << " | "
-                << static_cast<int>(target_kneepitch_active()) << " | "
-                << static_cast<int>(target_anklepitch_active()) << " | "
-                << static_cast<int>(target_ankleroll_active()) << " | "
-                << static_cast<int>(target_movement_time()) << " | "
-                << static_cast<int>(target_pliability()) << " | "
-                << static_cast<int>(target_leg_at_goal()) << " | "
-                << static_cast<int>(target_leg_stop());
-                return ss.str();
-            }
 
-
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-            /**
-             * String constructor (NYI)
-             * @param str the string to parse and use to recreate the this object
-             */
-            HalLegTarget(const std::string &str) { from_string(str); }
-
-            /**
-             * Parser for recreating this class (NYI)
-             * @param str the string to parse and use to recreate the this object
-             */
-            void from_string(const std::string &str)
-            {
-                fprintf(stderr, "NYI - Have it back: %s\n", const_cast<char *>(str.c_str()));
-            }
-
-            /**
-             * Description method for pretty printing the values in this class
-             * @return pretty printed string
-             */
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-        };
-}
-
-#endif //HalLegTarget_DEFINED
+-comment
+Classgenerator version
