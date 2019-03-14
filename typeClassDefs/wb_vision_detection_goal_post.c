@@ -126,9 +126,9 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
         return descString;
     }
     switch (self->sightingType) {
-        case PartialPostSeen:
+        case NoPostDetected:
         {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=PartialPostSeen");
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoPostDetected");
             break;
         }
         case FullPostSeen:
@@ -136,9 +136,9 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
             len += snprintf(descString + len, bufferSize - len, "sightingType=FullPostSeen");
             break;
         }
-        case NoPostDetected:
+        case PartialPostSeen:
         {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=NoPostDetected");
+            len += snprintf(descString + len, bufferSize - len, "sightingType=PartialPostSeen");
             break;
         }
         default: {
@@ -154,9 +154,9 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
         return descString;
     }
     switch (self->orientation) {
-        case RightPost:
+        case GenericPost:
         {
-            len += snprintf(descString + len, bufferSize - len, "orientation=RightPost");
+            len += snprintf(descString + len, bufferSize - len, "orientation=GenericPost");
             break;
         }
         case LeftPost:
@@ -164,9 +164,9 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
             len += snprintf(descString + len, bufferSize - len, "orientation=LeftPost");
             break;
         }
-        case GenericPost:
+        case RightPost:
         {
-            len += snprintf(descString + len, bufferSize - len, "orientation=GenericPost");
+            len += snprintf(descString + len, bufferSize - len, "orientation=RightPost");
             break;
         }
         default: {
@@ -253,9 +253,9 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
         return toString;
     }
     switch (self->sightingType) {
-        case PartialPostSeen:
+        case NoPostDetected:
         {
-            len += snprintf(toString + len, bufferSize - len, "PartialPostSeen");
+            len += snprintf(toString + len, bufferSize - len, "NoPostDetected");
             break;
         }
         case FullPostSeen:
@@ -263,9 +263,9 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
             len += snprintf(toString + len, bufferSize - len, "FullPostSeen");
             break;
         }
-        case NoPostDetected:
+        case PartialPostSeen:
         {
-            len += snprintf(toString + len, bufferSize - len, "NoPostDetected");
+            len += snprintf(toString + len, bufferSize - len, "PartialPostSeen");
             break;
         }
         default: {
@@ -281,9 +281,9 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
         return toString;
     }
     switch (self->orientation) {
-        case RightPost:
+        case GenericPost:
         {
-            len += snprintf(toString + len, bufferSize - len, "RightPost");
+            len += snprintf(toString + len, bufferSize - len, "GenericPost");
             break;
         }
         case LeftPost:
@@ -291,9 +291,9 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
             len += snprintf(toString + len, bufferSize - len, "LeftPost");
             break;
         }
-        case GenericPost:
+        case RightPost:
         {
-            len += snprintf(toString + len, bufferSize - len, "GenericPost");
+            len += snprintf(toString + len, bufferSize - len, "RightPost");
             break;
         }
         default: {
@@ -466,12 +466,12 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("PartialPostSeen", var_str) == 0) {
-                    self->sightingType = PartialPostSeen;
+                if (strcmp("NoPostDetected", var_str) == 0) {
+                    self->sightingType = NoPostDetected;
                 } else if (strcmp("FullPostSeen", var_str) == 0) {
                     self->sightingType = FullPostSeen;
-                } else if (strcmp("NoPostDetected", var_str) == 0) {
-                    self->sightingType = NoPostDetected;
+                } else if (strcmp("PartialPostSeen", var_str) == 0) {
+                    self->sightingType = PartialPostSeen;
                 } else {
                     self->sightingType = ((enum GoalPostOptions)atoi(var_str));
                 }
@@ -479,12 +479,12 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
             }
             case 1:
             {
-                if (strcmp("RightPost", var_str) == 0) {
-                    self->orientation = RightPost;
+                if (strcmp("GenericPost", var_str) == 0) {
+                    self->orientation = GenericPost;
                 } else if (strcmp("LeftPost", var_str) == 0) {
                     self->orientation = LeftPost;
-                } else if (strcmp("GenericPost", var_str) == 0) {
-                    self->orientation = GenericPost;
+                } else if (strcmp("RightPost", var_str) == 0) {
+                    self->orientation = RightPost;
                 } else {
                     self->orientation = ((enum GoalPostOrientation)atoi(var_str));
                 }

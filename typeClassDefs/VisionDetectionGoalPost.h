@@ -175,9 +175,9 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case PartialPostSeen:
+                case NoPostDetected:
                 {
-                    ss << "sightingType=" << "PartialPostSeen";
+                    ss << "sightingType=" << "NoPostDetected";
                     break;
                 }
                 case FullPostSeen:
@@ -185,9 +185,9 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "FullPostSeen";
                     break;
                 }
-                case NoPostDetected:
+                case PartialPostSeen:
                 {
-                    ss << "sightingType=" << "NoPostDetected";
+                    ss << "sightingType=" << "PartialPostSeen";
                     break;
                 }
                 default: {
@@ -197,9 +197,9 @@ namespace guWhiteboard {
             }
             ss << ", ";
             switch (this->orientation()) {
-                case RightPost:
+                case GenericPost:
                 {
-                    ss << "orientation=" << "RightPost";
+                    ss << "orientation=" << "GenericPost";
                     break;
                 }
                 case LeftPost:
@@ -207,9 +207,9 @@ namespace guWhiteboard {
                     ss << "orientation=" << "LeftPost";
                     break;
                 }
-                case GenericPost:
+                case RightPost:
                 {
-                    ss << "orientation=" << "GenericPost";
+                    ss << "orientation=" << "RightPost";
                     break;
                 }
                 default: {
@@ -246,9 +246,9 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case PartialPostSeen:
+                case NoPostDetected:
                 {
-                    ss << "PartialPostSeen";
+                    ss << "NoPostDetected";
                     break;
                 }
                 case FullPostSeen:
@@ -256,9 +256,9 @@ namespace guWhiteboard {
                     ss << "FullPostSeen";
                     break;
                 }
-                case NoPostDetected:
+                case PartialPostSeen:
                 {
-                    ss << "NoPostDetected";
+                    ss << "PartialPostSeen";
                     break;
                 }
                 default: {
@@ -268,9 +268,9 @@ namespace guWhiteboard {
             }
             ss << ", ";
             switch (this->orientation()) {
-                case RightPost:
+                case GenericPost:
                 {
-                    ss << "RightPost";
+                    ss << "GenericPost";
                     break;
                 }
                 case LeftPost:
@@ -278,9 +278,9 @@ namespace guWhiteboard {
                     ss << "LeftPost";
                     break;
                 }
-                case GenericPost:
+                case RightPost:
                 {
-                    ss << "GenericPost";
+                    ss << "RightPost";
                     break;
                 }
                 default: {
@@ -407,12 +407,12 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("PartialPostSeen", var_str) == 0) {
-                            this->set_sightingType(PartialPostSeen);
+                        if (strcmp("NoPostDetected", var_str) == 0) {
+                            this->set_sightingType(NoPostDetected);
                         } else if (strcmp("FullPostSeen", var_str) == 0) {
                             this->set_sightingType(FullPostSeen);
-                        } else if (strcmp("NoPostDetected", var_str) == 0) {
-                            this->set_sightingType(NoPostDetected);
+                        } else if (strcmp("PartialPostSeen", var_str) == 0) {
+                            this->set_sightingType(PartialPostSeen);
                         } else {
                             this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
                         }
@@ -420,12 +420,12 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        if (strcmp("RightPost", var_str) == 0) {
-                            this->set_orientation(RightPost);
+                        if (strcmp("GenericPost", var_str) == 0) {
+                            this->set_orientation(GenericPost);
                         } else if (strcmp("LeftPost", var_str) == 0) {
                             this->set_orientation(LeftPost);
-                        } else if (strcmp("GenericPost", var_str) == 0) {
-                            this->set_orientation(GenericPost);
+                        } else if (strcmp("RightPost", var_str) == 0) {
+                            this->set_orientation(RightPost);
                         } else {
                             this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
                         }

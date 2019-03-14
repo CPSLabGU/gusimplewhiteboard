@@ -160,11 +160,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case SingleHorizon:
-                {
-                    ss << "horizonType=" << "SingleHorizon";
-                    break;
-                }
                 case OnlyField:
                 {
                     ss << "horizonType=" << "OnlyField";
@@ -173,6 +168,11 @@ namespace guWhiteboard {
                 case CornerHorizon:
                 {
                     ss << "horizonType=" << "CornerHorizon";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "horizonType=" << "SingleHorizon";
                     break;
                 }
                 case HorizonFailed:
@@ -210,11 +210,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case SingleHorizon:
-                {
-                    ss << "SingleHorizon";
-                    break;
-                }
                 case OnlyField:
                 {
                     ss << "OnlyField";
@@ -223,6 +218,11 @@ namespace guWhiteboard {
                 case CornerHorizon:
                 {
                     ss << "CornerHorizon";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "SingleHorizon";
                     break;
                 }
                 case HorizonFailed:
@@ -344,12 +344,12 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("SingleHorizon", var_str) == 0) {
-                            this->set_horizonType(SingleHorizon);
-                        } else if (strcmp("OnlyField", var_str) == 0) {
+                        if (strcmp("OnlyField", var_str) == 0) {
                             this->set_horizonType(OnlyField);
                         } else if (strcmp("CornerHorizon", var_str) == 0) {
                             this->set_horizonType(CornerHorizon);
+                        } else if (strcmp("SingleHorizon", var_str) == 0) {
+                            this->set_horizonType(SingleHorizon);
                         } else if (strcmp("HorizonFailed", var_str) == 0) {
                             this->set_horizonType(HorizonFailed);
                         } else {

@@ -142,24 +142,29 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
         return descString;
     }
     switch (self->sightingType) {
+        case StraightLineSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=StraightLineSightingType");
+            break;
+        }
         case LineHorizonSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=LineHorizonSightingType");
             break;
         }
+        case GenericGoalPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=GenericGoalPostSightingType");
+            break;
+        }
+        case CornerHorizonSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=CornerHorizonSightingType");
+            break;
+        }
         case TIntersectionLineSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=TIntersectionLineSightingType");
-            break;
-        }
-        case GoalLandmarkSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=GoalLandmarkSightingType");
-            break;
-        }
-        case StraightLineSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=StraightLineSightingType");
             break;
         }
         case LeftGoalPostSightingType:
@@ -172,9 +177,9 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
             len += snprintf(descString + len, bufferSize - len, "sightingType=RightGoalPostSightingType");
             break;
         }
-        case CornerHorizonSightingType:
+        case GoalLandmarkSightingType:
         {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=CornerHorizonSightingType");
+            len += snprintf(descString + len, bufferSize - len, "sightingType=GoalLandmarkSightingType");
             break;
         }
         case CornerLineSightingType:
@@ -185,11 +190,6 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
         case CrossLineSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=CrossLineSightingType");
-            break;
-        }
-        case GenericGoalPostSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=GenericGoalPostSightingType");
             break;
         }
         default: {
@@ -228,24 +228,29 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
         return toString;
     }
     switch (self->sightingType) {
+        case StraightLineSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "StraightLineSightingType");
+            break;
+        }
         case LineHorizonSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "LineHorizonSightingType");
             break;
         }
+        case GenericGoalPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "GenericGoalPostSightingType");
+            break;
+        }
+        case CornerHorizonSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "CornerHorizonSightingType");
+            break;
+        }
         case TIntersectionLineSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "TIntersectionLineSightingType");
-            break;
-        }
-        case GoalLandmarkSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "GoalLandmarkSightingType");
-            break;
-        }
-        case StraightLineSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "StraightLineSightingType");
             break;
         }
         case LeftGoalPostSightingType:
@@ -258,9 +263,9 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
             len += snprintf(toString + len, bufferSize - len, "RightGoalPostSightingType");
             break;
         }
-        case CornerHorizonSightingType:
+        case GoalLandmarkSightingType:
         {
-            len += snprintf(toString + len, bufferSize - len, "CornerHorizonSightingType");
+            len += snprintf(toString + len, bufferSize - len, "GoalLandmarkSightingType");
             break;
         }
         case CornerLineSightingType:
@@ -271,11 +276,6 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
         case CrossLineSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "CrossLineSightingType");
-            break;
-        }
-        case GenericGoalPostSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "GenericGoalPostSightingType");
             break;
         }
         default: {
@@ -380,26 +380,26 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
             }
             case 2:
             {
-                if (strcmp("LineHorizonSightingType", var_str) == 0) {
+                if (strcmp("StraightLineSightingType", var_str) == 0) {
+                    self->sightingType = StraightLineSightingType;
+                } else if (strcmp("LineHorizonSightingType", var_str) == 0) {
                     self->sightingType = LineHorizonSightingType;
+                } else if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
+                    self->sightingType = GenericGoalPostSightingType;
+                } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
+                    self->sightingType = CornerHorizonSightingType;
                 } else if (strcmp("TIntersectionLineSightingType", var_str) == 0) {
                     self->sightingType = TIntersectionLineSightingType;
-                } else if (strcmp("GoalLandmarkSightingType", var_str) == 0) {
-                    self->sightingType = GoalLandmarkSightingType;
-                } else if (strcmp("StraightLineSightingType", var_str) == 0) {
-                    self->sightingType = StraightLineSightingType;
                 } else if (strcmp("LeftGoalPostSightingType", var_str) == 0) {
                     self->sightingType = LeftGoalPostSightingType;
                 } else if (strcmp("RightGoalPostSightingType", var_str) == 0) {
                     self->sightingType = RightGoalPostSightingType;
-                } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
-                    self->sightingType = CornerHorizonSightingType;
+                } else if (strcmp("GoalLandmarkSightingType", var_str) == 0) {
+                    self->sightingType = GoalLandmarkSightingType;
                 } else if (strcmp("CornerLineSightingType", var_str) == 0) {
                     self->sightingType = CornerLineSightingType;
                 } else if (strcmp("CrossLineSightingType", var_str) == 0) {
                     self->sightingType = CrossLineSightingType;
-                } else if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
-                    self->sightingType = GenericGoalPostSightingType;
                 } else {
                     self->sightingType = ((enum LandmarkSightingType)atoi(var_str));
                 }
