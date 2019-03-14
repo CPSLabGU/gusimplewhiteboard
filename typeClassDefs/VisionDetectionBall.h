@@ -155,10 +155,6 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "BallDetected";
                     break;
                 }
-                default: {
-                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
-                    break;
-                }
             }
             ss << ", ";
             ss << "x=" << static_cast<signed>(this->x());
@@ -187,10 +183,6 @@ namespace guWhiteboard {
                 case BallDetected:
                 {
                     ss << "BallDetected";
-                    break;
-                }
-                default: {
-                    ss << static_cast<signed>(this->sightingType());
                     break;
                 }
             }

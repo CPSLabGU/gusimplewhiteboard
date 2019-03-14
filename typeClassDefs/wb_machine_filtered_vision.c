@@ -174,14 +174,9 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
         return descString;
     }
     switch (self->goal_sightingType) {
-        case NoSightingType:
+        case GoalSightingType:
         {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
-            break;
-        }
-        case LeftPostSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=LeftPostSightingType");
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=GoalSightingType");
             break;
         }
         case RightPostSightingType:
@@ -189,13 +184,14 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
             len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
             break;
         }
-        case GoalSightingType:
+        case LeftPostSightingType:
         {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=GoalSightingType");
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=LeftPostSightingType");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=%d", self->goal_sightingType);
+        case NoSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
             break;
         }
     }
@@ -262,14 +258,9 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
         return toString;
     }
     switch (self->goal_sightingType) {
-        case NoSightingType:
+        case GoalSightingType:
         {
-            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
-            break;
-        }
-        case LeftPostSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "LeftPostSightingType");
+            len += snprintf(toString + len, bufferSize - len, "GoalSightingType");
             break;
         }
         case RightPostSightingType:
@@ -277,13 +268,14 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
             len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
             break;
         }
-        case GoalSightingType:
+        case LeftPostSightingType:
         {
-            len += snprintf(toString + len, bufferSize - len, "GoalSightingType");
+            len += snprintf(toString + len, bufferSize - len, "LeftPostSightingType");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->goal_sightingType);
+        case NoSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
             break;
         }
     }
@@ -412,14 +404,14 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             case 6:
             {
-                if (strcmp("NoSightingType", var_str) == 0) {
-                    self->goal_sightingType = NoSightingType;
-                } else if (strcmp("LeftPostSightingType", var_str) == 0) {
-                    self->goal_sightingType = LeftPostSightingType;
+                if (strcmp("GoalSightingType", var_str) == 0) {
+                    self->goal_sightingType = GoalSightingType;
                 } else if (strcmp("RightPostSightingType", var_str) == 0) {
                     self->goal_sightingType = RightPostSightingType;
-                } else if (strcmp("GoalSightingType", var_str) == 0) {
-                    self->goal_sightingType = GoalSightingType;
+                } else if (strcmp("LeftPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = LeftPostSightingType;
+                } else if (strcmp("NoSightingType", var_str) == 0) {
+                    self->goal_sightingType = NoSightingType;
                 } else {
                     self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
                 }

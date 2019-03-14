@@ -136,10 +136,6 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
             len += snprintf(descString + len, bufferSize - len, "sightingType=BallDetected");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
-            break;
-        }
     }
     if (len >= bufferSize) {
         return descString;
@@ -188,10 +184,6 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
         case BallDetected:
         {
             len += snprintf(toString + len, bufferSize - len, "BallDetected");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
             break;
         }
     }

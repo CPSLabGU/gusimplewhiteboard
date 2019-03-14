@@ -126,6 +126,11 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
         return descString;
     }
     switch (self->cameraResolution) {
+        case HD_4VGA:
+        {
+            len += snprintf(descString + len, bufferSize - len, "cameraResolution=HD_4VGA");
+            break;
+        }
         case SVGA:
         {
             len += snprintf(descString + len, bufferSize - len, "cameraResolution=SVGA");
@@ -136,23 +141,14 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "cameraResolution=QVGA");
             break;
         }
-        case VGA:
-        {
-            len += snprintf(descString + len, bufferSize - len, "cameraResolution=VGA");
-            break;
-        }
         case QQVGA:
         {
             len += snprintf(descString + len, bufferSize - len, "cameraResolution=QQVGA");
             break;
         }
-        case HD_4VGA:
+        case VGA:
         {
-            len += snprintf(descString + len, bufferSize - len, "cameraResolution=HD_4VGA");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "cameraResolution=%d", self->cameraResolution);
+            len += snprintf(descString + len, bufferSize - len, "cameraResolution=VGA");
             break;
         }
     }
@@ -182,10 +178,6 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "selectedCamera=Top");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "selectedCamera=%d", self->selectedCamera);
-            break;
-        }
     }
     if (len >= bufferSize) {
         return descString;
@@ -195,11 +187,6 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
         return descString;
     }
     switch (self->saveImage) {
-        case None:
-        {
-            len += snprintf(descString + len, bufferSize - len, "saveImage=None");
-            break;
-        }
         case JPG:
         {
             len += snprintf(descString + len, bufferSize - len, "saveImage=JPG");
@@ -210,8 +197,9 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "saveImage=AI2");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "saveImage=%d", self->saveImage);
+        case None:
+        {
+            len += snprintf(descString + len, bufferSize - len, "saveImage=None");
             break;
         }
     }
@@ -231,26 +219,6 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
         return descString;
     }
     switch (self->pipeline) {
-        case Neural_Network:
-        {
-            len += snprintf(descString + len, bufferSize - len, "pipeline=Neural_Network");
-            break;
-        }
-        case Soccer:
-        {
-            len += snprintf(descString + len, bufferSize - len, "pipeline=Soccer");
-            break;
-        }
-        case OpenCVFaces:
-        {
-            len += snprintf(descString + len, bufferSize - len, "pipeline=OpenCVFaces");
-            break;
-        }
-        case HTWK:
-        {
-            len += snprintf(descString + len, bufferSize - len, "pipeline=HTWK");
-            break;
-        }
         case OpenChallenge:
         {
             len += snprintf(descString + len, bufferSize - len, "pipeline=OpenChallenge");
@@ -261,8 +229,24 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "pipeline=Streaming");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "pipeline=%d", self->pipeline);
+        case Soccer:
+        {
+            len += snprintf(descString + len, bufferSize - len, "pipeline=Soccer");
+            break;
+        }
+        case Neural_Network:
+        {
+            len += snprintf(descString + len, bufferSize - len, "pipeline=Neural_Network");
+            break;
+        }
+        case OpenCVFaces:
+        {
+            len += snprintf(descString + len, bufferSize - len, "pipeline=OpenCVFaces");
+            break;
+        }
+        case HTWK:
+        {
+            len += snprintf(descString + len, bufferSize - len, "pipeline=HTWK");
             break;
         }
     }
@@ -287,23 +271,19 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "networkTop=Vanilla");
             break;
         }
-        case BallOnly:
-        {
-            len += snprintf(descString + len, bufferSize - len, "networkTop=BallOnly");
-            break;
-        }
         case VGANet:
         {
             len += snprintf(descString + len, bufferSize - len, "networkTop=VGANet");
             break;
         }
+        case BallOnly:
+        {
+            len += snprintf(descString + len, bufferSize - len, "networkTop=BallOnly");
+            break;
+        }
         case v2:
         {
             len += snprintf(descString + len, bufferSize - len, "networkTop=v2");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "networkTop=%d", self->networkTop);
             break;
         }
     }
@@ -320,23 +300,19 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "networkBottom=Vanilla");
             break;
         }
-        case BallOnly:
-        {
-            len += snprintf(descString + len, bufferSize - len, "networkBottom=BallOnly");
-            break;
-        }
         case VGANet:
         {
             len += snprintf(descString + len, bufferSize - len, "networkBottom=VGANet");
             break;
         }
+        case BallOnly:
+        {
+            len += snprintf(descString + len, bufferSize - len, "networkBottom=BallOnly");
+            break;
+        }
         case v2:
         {
             len += snprintf(descString + len, bufferSize - len, "networkBottom=v2");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "networkBottom=%d", self->networkBottom);
             break;
         }
     }
@@ -361,10 +337,6 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
         case Recognized:
         {
             len += snprintf(descString + len, bufferSize - len, "streamingSource=Recognized");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "streamingSource=%d", self->streamingSource);
             break;
         }
     }
@@ -439,6 +411,11 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         return toString;
     }
     switch (self->cameraResolution) {
+        case HD_4VGA:
+        {
+            len += snprintf(toString + len, bufferSize - len, "HD_4VGA");
+            break;
+        }
         case SVGA:
         {
             len += snprintf(toString + len, bufferSize - len, "SVGA");
@@ -449,23 +426,14 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "QVGA");
             break;
         }
-        case VGA:
-        {
-            len += snprintf(toString + len, bufferSize - len, "VGA");
-            break;
-        }
         case QQVGA:
         {
             len += snprintf(toString + len, bufferSize - len, "QQVGA");
             break;
         }
-        case HD_4VGA:
+        case VGA:
         {
-            len += snprintf(toString + len, bufferSize - len, "HD_4VGA");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->cameraResolution);
+            len += snprintf(toString + len, bufferSize - len, "VGA");
             break;
         }
     }
@@ -495,10 +463,6 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "Top");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->selectedCamera);
-            break;
-        }
     }
     if (len >= bufferSize) {
         return toString;
@@ -508,11 +472,6 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         return toString;
     }
     switch (self->saveImage) {
-        case None:
-        {
-            len += snprintf(toString + len, bufferSize - len, "None");
-            break;
-        }
         case JPG:
         {
             len += snprintf(toString + len, bufferSize - len, "JPG");
@@ -523,8 +482,9 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "AI2");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->saveImage);
+        case None:
+        {
+            len += snprintf(toString + len, bufferSize - len, "None");
             break;
         }
     }
@@ -544,26 +504,6 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         return toString;
     }
     switch (self->pipeline) {
-        case Neural_Network:
-        {
-            len += snprintf(toString + len, bufferSize - len, "Neural_Network");
-            break;
-        }
-        case Soccer:
-        {
-            len += snprintf(toString + len, bufferSize - len, "Soccer");
-            break;
-        }
-        case OpenCVFaces:
-        {
-            len += snprintf(toString + len, bufferSize - len, "OpenCVFaces");
-            break;
-        }
-        case HTWK:
-        {
-            len += snprintf(toString + len, bufferSize - len, "HTWK");
-            break;
-        }
         case OpenChallenge:
         {
             len += snprintf(toString + len, bufferSize - len, "OpenChallenge");
@@ -574,8 +514,24 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "Streaming");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->pipeline);
+        case Soccer:
+        {
+            len += snprintf(toString + len, bufferSize - len, "Soccer");
+            break;
+        }
+        case Neural_Network:
+        {
+            len += snprintf(toString + len, bufferSize - len, "Neural_Network");
+            break;
+        }
+        case OpenCVFaces:
+        {
+            len += snprintf(toString + len, bufferSize - len, "OpenCVFaces");
+            break;
+        }
+        case HTWK:
+        {
+            len += snprintf(toString + len, bufferSize - len, "HTWK");
             break;
         }
     }
@@ -600,23 +556,19 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "Vanilla");
             break;
         }
-        case BallOnly:
-        {
-            len += snprintf(toString + len, bufferSize - len, "BallOnly");
-            break;
-        }
         case VGANet:
         {
             len += snprintf(toString + len, bufferSize - len, "VGANet");
             break;
         }
+        case BallOnly:
+        {
+            len += snprintf(toString + len, bufferSize - len, "BallOnly");
+            break;
+        }
         case v2:
         {
             len += snprintf(toString + len, bufferSize - len, "v2");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->networkTop);
             break;
         }
     }
@@ -633,23 +585,19 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
             len += snprintf(toString + len, bufferSize - len, "Vanilla");
             break;
         }
-        case BallOnly:
-        {
-            len += snprintf(toString + len, bufferSize - len, "BallOnly");
-            break;
-        }
         case VGANet:
         {
             len += snprintf(toString + len, bufferSize - len, "VGANet");
             break;
         }
+        case BallOnly:
+        {
+            len += snprintf(toString + len, bufferSize - len, "BallOnly");
+            break;
+        }
         case v2:
         {
             len += snprintf(toString + len, bufferSize - len, "v2");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->networkBottom);
             break;
         }
     }
@@ -674,10 +622,6 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         case Recognized:
         {
             len += snprintf(toString + len, bufferSize - len, "Recognized");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->streamingSource);
             break;
         }
     }
@@ -852,16 +796,16 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("SVGA", var_str) == 0) {
+                if (strcmp("HD_4VGA", var_str) == 0) {
+                    self->cameraResolution = HD_4VGA;
+                } else if (strcmp("SVGA", var_str) == 0) {
                     self->cameraResolution = SVGA;
                 } else if (strcmp("QVGA", var_str) == 0) {
                     self->cameraResolution = QVGA;
-                } else if (strcmp("VGA", var_str) == 0) {
-                    self->cameraResolution = VGA;
                 } else if (strcmp("QQVGA", var_str) == 0) {
                     self->cameraResolution = QQVGA;
-                } else if (strcmp("HD_4VGA", var_str) == 0) {
-                    self->cameraResolution = HD_4VGA;
+                } else if (strcmp("VGA", var_str) == 0) {
+                    self->cameraResolution = VGA;
                 } else {
                     self->cameraResolution = ((enum Resolutions)atoi(var_str));
                 }
@@ -885,12 +829,12 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             }
             case 3:
             {
-                if (strcmp("None", var_str) == 0) {
-                    self->saveImage = None;
-                } else if (strcmp("JPG", var_str) == 0) {
+                if (strcmp("JPG", var_str) == 0) {
                     self->saveImage = JPG;
                 } else if (strcmp("AI2", var_str) == 0) {
                     self->saveImage = AI2;
+                } else if (strcmp("None", var_str) == 0) {
+                    self->saveImage = None;
                 } else {
                     self->saveImage = ((enum SaveFileType)atoi(var_str));
                 }
@@ -903,18 +847,18 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             }
             case 5:
             {
-                if (strcmp("Neural_Network", var_str) == 0) {
-                    self->pipeline = Neural_Network;
+                if (strcmp("OpenChallenge", var_str) == 0) {
+                    self->pipeline = OpenChallenge;
+                } else if (strcmp("Streaming", var_str) == 0) {
+                    self->pipeline = Streaming;
                 } else if (strcmp("Soccer", var_str) == 0) {
                     self->pipeline = Soccer;
+                } else if (strcmp("Neural_Network", var_str) == 0) {
+                    self->pipeline = Neural_Network;
                 } else if (strcmp("OpenCVFaces", var_str) == 0) {
                     self->pipeline = OpenCVFaces;
                 } else if (strcmp("HTWK", var_str) == 0) {
                     self->pipeline = HTWK;
-                } else if (strcmp("OpenChallenge", var_str) == 0) {
-                    self->pipeline = OpenChallenge;
-                } else if (strcmp("Streaming", var_str) == 0) {
-                    self->pipeline = Streaming;
                 } else {
                     self->pipeline = ((enum NamedPipeline)atoi(var_str));
                 }
@@ -929,10 +873,10 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             {
                 if (strcmp("Vanilla", var_str) == 0) {
                     self->networkTop = Vanilla;
-                } else if (strcmp("BallOnly", var_str) == 0) {
-                    self->networkTop = BallOnly;
                 } else if (strcmp("VGANet", var_str) == 0) {
                     self->networkTop = VGANet;
+                } else if (strcmp("BallOnly", var_str) == 0) {
+                    self->networkTop = BallOnly;
                 } else if (strcmp("v2", var_str) == 0) {
                     self->networkTop = v2;
                 } else {
@@ -944,10 +888,10 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             {
                 if (strcmp("Vanilla", var_str) == 0) {
                     self->networkBottom = Vanilla;
-                } else if (strcmp("BallOnly", var_str) == 0) {
-                    self->networkBottom = BallOnly;
                 } else if (strcmp("VGANet", var_str) == 0) {
                     self->networkBottom = VGANet;
+                } else if (strcmp("BallOnly", var_str) == 0) {
+                    self->networkBottom = BallOnly;
                 } else if (strcmp("v2", var_str) == 0) {
                     self->networkBottom = v2;
                 } else {

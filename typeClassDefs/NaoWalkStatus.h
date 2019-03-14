@@ -140,11 +140,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_Walking:
-                {
-                    ss << "walkEngineState=" << "wes_Walking";
-                    break;
-                }
                 case wes_StoppedReady:
                 {
                     ss << "walkEngineState=" << "wes_StoppedReady";
@@ -155,13 +150,14 @@ namespace guWhiteboard {
                     ss << "walkEngineState=" << "wes_StoppedStanding";
                     break;
                 }
+                case wes_Walking:
+                {
+                    ss << "walkEngineState=" << "wes_Walking";
+                    break;
+                }
                 case wes_Disconnected:
                 {
                     ss << "walkEngineState=" << "wes_Disconnected";
-                    break;
-                }
-                default: {
-                    ss << "walkEngineState=" << static_cast<signed>(this->walkEngineState());
                     break;
                 }
             }
@@ -180,11 +176,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_Walking:
-                {
-                    ss << "wes_Walking";
-                    break;
-                }
                 case wes_StoppedReady:
                 {
                     ss << "wes_StoppedReady";
@@ -195,13 +186,14 @@ namespace guWhiteboard {
                     ss << "wes_StoppedStanding";
                     break;
                 }
+                case wes_Walking:
+                {
+                    ss << "wes_Walking";
+                    break;
+                }
                 case wes_Disconnected:
                 {
                     ss << "wes_Disconnected";
-                    break;
-                }
-                default: {
-                    ss << static_cast<signed>(this->walkEngineState());
                     break;
                 }
             }
@@ -294,12 +286,12 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("wes_Walking", var_str) == 0) {
-                            this->set_walkEngineState(wes_Walking);
-                        } else if (strcmp("wes_StoppedReady", var_str) == 0) {
+                        if (strcmp("wes_StoppedReady", var_str) == 0) {
                             this->set_walkEngineState(wes_StoppedReady);
                         } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
                             this->set_walkEngineState(wes_StoppedStanding);
+                        } else if (strcmp("wes_Walking", var_str) == 0) {
+                            this->set_walkEngineState(wes_Walking);
                         } else if (strcmp("wes_Disconnected", var_str) == 0) {
                             this->set_walkEngineState(wes_Disconnected);
                         } else {

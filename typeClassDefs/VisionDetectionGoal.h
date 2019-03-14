@@ -142,23 +142,19 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case DoublePostGoal:
-                {
-                    ss << "sightingType=" << "DoublePostGoal";
-                    break;
-                }
                 case SinglePostGoal:
                 {
                     ss << "sightingType=" << "SinglePostGoal";
                     break;
                 }
+                case DoublePostGoal:
+                {
+                    ss << "sightingType=" << "DoublePostGoal";
+                    break;
+                }
                 case NoGoalDetected:
                 {
                     ss << "sightingType=" << "NoGoalDetected";
-                    break;
-                }
-                default: {
-                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
                     break;
                 }
             }
@@ -181,23 +177,19 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case DoublePostGoal:
-                {
-                    ss << "DoublePostGoal";
-                    break;
-                }
                 case SinglePostGoal:
                 {
                     ss << "SinglePostGoal";
                     break;
                 }
+                case DoublePostGoal:
+                {
+                    ss << "DoublePostGoal";
+                    break;
+                }
                 case NoGoalDetected:
                 {
                     ss << "NoGoalDetected";
-                    break;
-                }
-                default: {
-                    ss << static_cast<signed>(this->sightingType());
                     break;
                 }
             }
@@ -296,10 +288,10 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("DoublePostGoal", var_str) == 0) {
-                            this->set_sightingType(DoublePostGoal);
-                        } else if (strcmp("SinglePostGoal", var_str) == 0) {
+                        if (strcmp("SinglePostGoal", var_str) == 0) {
                             this->set_sightingType(SinglePostGoal);
+                        } else if (strcmp("DoublePostGoal", var_str) == 0) {
+                            this->set_sightingType(DoublePostGoal);
                         } else if (strcmp("NoGoalDetected", var_str) == 0) {
                             this->set_sightingType(NoGoalDetected);
                         } else {
