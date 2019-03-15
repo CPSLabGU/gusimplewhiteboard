@@ -83,6 +83,190 @@
     bit       target_arm_at_goal            =  false       // Control Message: Not used. Status Message: Naoqiinterface reports that the goal location of all joints has been reached (within specified tolerance).
     bit       target_arm_stop               =  false       // Control Message: Stop the arm at its current location. Status Message: Indicates if the last control message issued a STOP command.
 
+%c
+/**
+ * Convert to a string.
+ */
+const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* self, char* toString, size_t bufferSize)
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+    size_t len = 0;
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_shoulderpitch);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_shoulderroll);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_elbowroll);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_elbowyaw);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_wristyaw);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_hand);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderpitchstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderrollstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowrollstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowyawstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_wristyawstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_handstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderpitch_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderroll_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowroll_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowyaw_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_wrist_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_hand_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_movement_time);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_pliability);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_at_goal);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_stop);
+    return toString;
+}
+
 %c++
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -92,7 +276,7 @@
          */
         std::string valueDescription() {
 #ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
-            char buffer[HAL_ARM_TARGET_DESC_BUFFER_SIZE];
+            char buffer[HAL_ARM_TARGET_DESC_BUFFER_SIZE+22];
             wb_hal_arm_target_value_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
