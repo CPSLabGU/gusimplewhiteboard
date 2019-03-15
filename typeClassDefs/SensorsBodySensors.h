@@ -214,9 +214,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        SensorsBodySensors(const std::string &str) {
-            this->from_string(str);
-        }
+        SensorsBodySensors(const std::string &str) { wb_sensors_body_sensors_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_SENSORS_BODY_SENSORS_C_CONVERSION
@@ -328,10 +326,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE) {
+            if (length < 1) {
                 return;
             }
-            char var_str_buffer[SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[SENSORS_BODY_SENSORS_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[30];
             char* key = &key_buffer[0];

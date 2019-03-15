@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_machine_filtered_localisation_vision.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -219,10 +215,10 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE) {
+    if (length < 1) {
         return self;
     }
-    char var_str_buffer[MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[MACHINE_FILTERED_LOCALISATION_VISION_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];
@@ -368,6 +364,8 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

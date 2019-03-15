@@ -129,9 +129,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        NaoWalkStatus(const std::string &str) {
-            this->from_string(str);
-        }
+        NaoWalkStatus(const std::string &str) { wb_nao_walk_status_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_NAO_WALK_STATUS_C_CONVERSION
@@ -142,14 +140,19 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_StoppedStanding:
-                {
-                    ss << "walkEngineState=" << "wes_StoppedStanding";
-                    break;
-                }
                 case wes_Walking:
                 {
                     ss << "walkEngineState=" << "wes_Walking";
+                    break;
+                }
+                case wes_StoppedReady:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedReady";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedStanding";
                     break;
                 }
                 case wes_Disconnected:
@@ -157,9 +160,8 @@ namespace guWhiteboard {
                     ss << "walkEngineState=" << "wes_Disconnected";
                     break;
                 }
-                case wes_StoppedReady:
-                {
-                    ss << "walkEngineState=" << "wes_StoppedReady";
+                default: {
+                    ss << "walkEngineState=" << static_cast<signed>(this->walkEngineState());
                     break;
                 }
             }
@@ -178,14 +180,19 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_StoppedStanding:
-                {
-                    ss << "wes_StoppedStanding";
-                    break;
-                }
                 case wes_Walking:
                 {
                     ss << "wes_Walking";
+                    break;
+                }
+                case wes_StoppedReady:
+                {
+                    ss << "wes_StoppedReady";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "wes_StoppedStanding";
                     break;
                 }
                 case wes_Disconnected:
@@ -193,9 +200,8 @@ namespace guWhiteboard {
                     ss << "wes_Disconnected";
                     break;
                 }
-                case wes_StoppedReady:
-                {
-                    ss << "wes_StoppedReady";
+                default: {
+                    ss << static_cast<signed>(this->walkEngineState());
                     break;
                 }
             }
@@ -213,10 +219,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > NAOWALKSTATUS_DESC_BUFFER_SIZE) {
+            if (length < 1) {
                 return;
             }
-            char var_str_buffer[NAOWALKSTATUS_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[NAOWALKSTATUS_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[21];
             char* key = &key_buffer[0];
@@ -288,14 +294,14 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("wes_StoppedStanding", var_str) == 0) {
-                            this->set_walkEngineState(wes_StoppedStanding);
-                        } else if (strcmp("wes_Walking", var_str) == 0) {
+                        if (strcmp("wes_Walking", var_str) == 0) {
                             this->set_walkEngineState(wes_Walking);
-                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
-                            this->set_walkEngineState(wes_Disconnected);
                         } else if (strcmp("wes_StoppedReady", var_str) == 0) {
                             this->set_walkEngineState(wes_StoppedReady);
+                        } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                            this->set_walkEngineState(wes_StoppedStanding);
+                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
+                            this->set_walkEngineState(wes_Disconnected);
                         } else {
                             this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
                         }

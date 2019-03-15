@@ -1,5 +1,5 @@
 /**
- *  /file HalArmTarget.h
+ *  /file HAL_ArmTarget.h
  *
  *  Created by Dimitri Joukoff 2016.
  *  Copyright (c) 2016 Dimitri Joukoff
@@ -8,8 +8,8 @@
 
 
 
-#ifndef HalArmTarget_DEFINED
-#define HalArmTarget_DEFINED
+#ifndef HAL_ArmTarget_DEFINED
+#define HAL_ArmTarget_DEFINED
 
 #include "wb_hal_armtarget.h"
 //#include <cmath>
@@ -39,33 +39,33 @@ namespace guWhiteboard
 	 *
      *     Move (left) arm down such that it is parallel to the body at an angle of 5 deg with elbow straight,
      *     inner-forearm and palm facing body, gripper closed over 1 second
-	 *     HalArmTarget().GoToWithTime_Rad(1.5708, 0.0873, -0.0349, -1.5708, -1.5708, 0.0f 10000);
-     *     HalArmTarget().GoToWithTime_Deg(90, 5, -2, -90, -90, 0.0 10000);
+	 *     HAL_ArmTarget().GoToWithTime_Rad(1.5708, 0.0873, -0.0349, -1.5708, -1.5708, 0.0f 10000);
+     *     HAL_ArmTarget().GoToWithTime_Deg(90, 5, -2, -90, -90, 0.0 10000);
      *          // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
      *
      *     Move (right) arm down such that it is parallel to the body at an angle of 5 deg with elbow straight,
      *     inner-forearm and palm facing body, gripper fully openned over 1 second
-     *     HalArmTarget().GoToWithTime_Rad(1.5708, -0.0873, 0.0349, 1.5708, 1.5708, 1.0, 10000);
-     *     HalArmTarget().GoToWithTime_Deg(90, -5, 2, 90, 90, 1.0, 10000);
+     *     HAL_ArmTarget().GoToWithTime_Rad(1.5708, -0.0873, 0.0349, 1.5708, 1.5708, 1.0, 10000);
+     *     HAL_ArmTarget().GoToWithTime_Deg(90, -5, 2, 90, 90, 1.0, 10000);
      *          // Note the NAO elbow cannot actually move to a roll angle of 0 degrees.
      *
-     *     HalArmTarget().Active(); 	// Puts the arm into active mode, Naoqi DCM default.
-     *     HalArmTarget().Passive();   // Puts the arm into passive mode, allowing the arm to be manupulated by external forces.
+     *     HAL_ArmTarget().Active(); 	// Puts the arm into active mode, Naoqi DCM default.
+     *     HAL_ArmTarget().Passive();   // Puts the arm into passive mode, allowing the arm to be manupulated by external forces.
 	 *
 	 * Class values need to be passed to the Whiteboard, using the handler, for them to take effect.
 	 *
-     *     HalArmTarget_t.set(HalArmTarget());
-	 *     HalArmTarget_t.set(HalArmTarget().Passive());
+     *     HAL_ArmTarget_t.set(HAL_ArmTarget());
+	 *     HAL_ArmTarget_t.set(HAL_ArmTarget().Passive());
 	 *
  	 */
-    class HalArmTarget : public wb_hal_armtarget
+    class HAL_ArmTarget : public wb_hal_armtarget
     {
 
         public:
             /**
              *  Constructor, defaults to LEFT_ARM
              */
-//            HalArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
+//            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM): wb_hal_armtarget(target_arm) {}
         
             /**
              * Constructor using float parameters
@@ -73,7 +73,7 @@ namespace guWhiteboard
              * holds integer representations of the angles.
              *
              */
-            HalArmTarget(const uint8_t &target_arm = LEFT_ARM,
+            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM,
                          const float shoulderpitch = 0,
                          const float shoulderroll = 0,
                          const float elbowroll = 0,
@@ -120,7 +120,7 @@ namespace guWhiteboard
                set_target_pliability(pliability);
             }
 
-//            HalArmTarget(const uint8_t &target_arm = LEFT_ARM,
+//            HAL_ArmTarget(const uint8_t &target_arm = LEFT_ARM,
 //                          const float shoulderpitch_DEG = 0,
 //                          const float shoulderroll_DEG = 0,
 //                          const float elbowroll_DEG = 0,
@@ -282,12 +282,12 @@ namespace guWhiteboard
              *
              *  'this' object contains the target pose settings.
              *
-             *  @param  status      HalArmTarget object which contains actual pose settings reported by the robot's sensors.
-             *  @param  tolerance   HalArmTarget object whose pose settings specify the tolerance for each joint/gripper
+             *  @param  status      HAL_ArmTarget object which contains actual pose settings reported by the robot's sensors.
+             *  @param  tolerance   HAL_ArmTarget object whose pose settings specify the tolerance for each joint/gripper
              *  @return bool        whether or not the status is within range of the target location.
              *
              */
-            bool atTargetLocation(HalArmTarget status, HalArmTarget tolerance)
+            bool atTargetLocation(HAL_ArmTarget status, HAL_ArmTarget tolerance)
             {
                 int16_t shoulderpitchMargin = static_cast<int16_t>(abs(target_shoulderpitch() - status.target_shoulderpitch()));
                 int16_t shoulderrollMargin = static_cast<int16_t>(abs(target_shoulderroll() - status.target_shoulderroll()));
@@ -364,12 +364,12 @@ namespace guWhiteboard
 
             
             /**
-             *  Convenience function to mirror arm settings about the XZ plane from one HalArmTarget object to another.
+             *  Convenience function to mirror arm settings about the XZ plane from one HAL_ArmTarget object to another.
              *
-             *  @param  other    HalArmTarget object to be mirrored.
+             *  @param  other    HAL_ArmTarget object to be mirrored.
              *
              */
-            void mirrorArm(const HalArmTarget &other)
+            void mirrorArm(const HAL_ArmTarget &other)
             {
                 // Roll and Yaw angles need to be mirrored, others just copied.
                 set_target_shoulderpitch(other.target_shoulderpitch());
@@ -395,12 +395,12 @@ namespace guWhiteboard
             }
             
             /**
-             *  Convenience function to copy pose settings from one HalArmTarget object to another.
+             *  Convenience function to copy pose settings from one HAL_ArmTarget object to another.
              *
-             *  @param  other    HalArmTarget object from which to copy pose settings from.
+             *  @param  other    HAL_ArmTarget object from which to copy pose settings from.
              *
              */
-            void copyPose(const HalArmTarget &other)
+            void copyPose(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
                 set_target_shoulderroll(other.target_shoulderroll());
@@ -411,12 +411,12 @@ namespace guWhiteboard
             }
             
             /**
-             *  Convenience function to mirror pose settings about the XZ plane from one HalArmTarget object to another.
+             *  Convenience function to mirror pose settings about the XZ plane from one HAL_ArmTarget object to another.
              *
-             *  @param  other    HalArmTarget object whose pose settings are to be mirrored.
+             *  @param  other    HAL_ArmTarget object whose pose settings are to be mirrored.
              *
              */
-            void mirrorPose(const HalArmTarget &other)
+            void mirrorPose(const HAL_ArmTarget &other)
             {
                 set_target_shoulderpitch(other.target_shoulderpitch());
                 set_target_shoulderroll(-other.target_shoulderroll());
@@ -427,14 +427,14 @@ namespace guWhiteboard
             }
             
             /**
-             *  Tests if this HalArmTarget object has the same pose settings as the other HalArmTarget object.
+             *  Tests if this HAL_ArmTarget object has the same pose settings as the other HAL_ArmTarget object.
              *      NOTE this does not take into account mirroring about the XZ plane.
              *
-             *  @param  other   HalArmTarget object whose pose settings are being compared.
+             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool hasSamePose(const HalArmTarget &other)
+            bool hasSamePose(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitch() == other.target_shoulderpitch()
@@ -451,14 +451,14 @@ namespace guWhiteboard
             }
             
             /**
-             *  Tests if this HalArmTarget object has the same mirrored pose settings as the other HalArmTarget object.
+             *  Tests if this HAL_ArmTarget object has the same mirrored pose settings as the other HAL_ArmTarget object.
              *      NOTE this method takes into account mirroring about the XZ plane.
              *
-             *  @param  other   HalArmTarget object whose pose settings are being compared.
+             *  @param  other   HAL_ArmTarget object whose pose settings are being compared.
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool hasSameMirroredPose(const HalArmTarget &other)
+            bool hasSameMirroredPose(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitch() == other.target_shoulderpitch()
@@ -543,12 +543,12 @@ namespace guWhiteboard
 
         
             /**
-             *  Convenience function to copy stiffness settings from one HalArmTarget object to another.
+             *  Convenience function to copy stiffness settings from one HAL_ArmTarget object to another.
              *
-             *  @param  other    HalArmTarget object from which to copy stiffness settings.
+             *  @param  other    HAL_ArmTarget object from which to copy stiffness settings.
              *
              */
-            void copyStiffness(const HalArmTarget &other)
+            void copyStiffness(const HAL_ArmTarget &other)
             {
                 target_shoulderpitchstiffness() = other.target_shoulderpitchstiffness();
                 target_shoulderrollstiffness() = other.target_shoulderrollstiffness();
@@ -561,13 +561,13 @@ namespace guWhiteboard
 
 
             /**
-             *  Tests if this HalArmTarget object has the same stiffness settings as the other HalArmTarget object.
+             *  Tests if this HAL_ArmTarget object has the same stiffness settings as the other HAL_ArmTarget object.
              *
-             *  @param  other   HalArmTarget object whose stiffness settings are being compared.
+             *  @param  other   HAL_ArmTarget object whose stiffness settings are being compared.
              *  @return bool    whether the two objects have the same stiffness or not.
              *
              */
-            bool hasSameStiffness(const HalArmTarget &other)
+            bool hasSameStiffness(const HAL_ArmTarget &other)
             {
                 if (
                     target_shoulderpitchstiffness() == other.target_shoulderpitchstiffness()
@@ -857,7 +857,7 @@ namespace guWhiteboard
              * String constructor (NYI)
              * @param str the string to parse and use to recreate the this object
              */
-            HalArmTarget(const std::string &str) { from_string(str); }
+            HAL_ArmTarget(const std::string &str) { from_string(str); }
 
             /**
              * Parser for recreating this class (NYI)

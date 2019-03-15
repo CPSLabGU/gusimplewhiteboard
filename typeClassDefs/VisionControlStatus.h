@@ -199,9 +199,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionControlStatus(const std::string &str) {
-            this->from_string(str);
-        }
+        VisionControlStatus(const std::string &str) { wb_vision_control_status_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_VISION_CONTROL_STATUS_C_CONVERSION
@@ -212,6 +210,11 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->cameraResolution()) {
+                case SVGA:
+                {
+                    ss << "cameraResolution=" << "SVGA";
+                    break;
+                }
                 case QVGA:
                 {
                     ss << "cameraResolution=" << "QVGA";
@@ -232,9 +235,8 @@ namespace guWhiteboard {
                     ss << "cameraResolution=" << "HD_4VGA";
                     break;
                 }
-                case SVGA:
-                {
-                    ss << "cameraResolution=" << "SVGA";
+                default: {
+                    ss << "cameraResolution=" << static_cast<signed>(this->cameraResolution());
                     break;
                 }
             }
@@ -242,19 +244,28 @@ namespace guWhiteboard {
             ss << "pipelineRunning=" << (this->pipelineRunning() ? "true" : "false");
             ss << ", ";
             switch (this->selectedCamera()) {
-                case Top:
-                {
-                    ss << "selectedCamera=" << "Top";
-                    break;
-                }
                 case Bottom:
                 {
                     ss << "selectedCamera=" << "Bottom";
                     break;
                 }
+                case Top:
+                {
+                    ss << "selectedCamera=" << "Top";
+                    break;
+                }
+                default: {
+                    ss << "selectedCamera=" << static_cast<signed>(this->selectedCamera());
+                    break;
+                }
             }
             ss << ", ";
             switch (this->saveImage()) {
+                case None:
+                {
+                    ss << "saveImage=" << "None";
+                    break;
+                }
                 case JPG:
                 {
                     ss << "saveImage=" << "JPG";
@@ -265,9 +276,8 @@ namespace guWhiteboard {
                     ss << "saveImage=" << "AI2";
                     break;
                 }
-                case None:
-                {
-                    ss << "saveImage=" << "None";
+                default: {
+                    ss << "saveImage=" << static_cast<signed>(this->saveImage());
                     break;
                 }
             }
@@ -275,6 +285,26 @@ namespace guWhiteboard {
             ss << "saveClassifiedImage=" << (this->saveClassifiedImage() ? "true" : "false");
             ss << ", ";
             switch (this->pipeline()) {
+                case Neural_Network:
+                {
+                    ss << "pipeline=" << "Neural_Network";
+                    break;
+                }
+                case Soccer:
+                {
+                    ss << "pipeline=" << "Soccer";
+                    break;
+                }
+                case OpenCVFaces:
+                {
+                    ss << "pipeline=" << "OpenCVFaces";
+                    break;
+                }
+                case HTWK:
+                {
+                    ss << "pipeline=" << "HTWK";
+                    break;
+                }
                 case OpenChallenge:
                 {
                     ss << "pipeline=" << "OpenChallenge";
@@ -285,24 +315,8 @@ namespace guWhiteboard {
                     ss << "pipeline=" << "Streaming";
                     break;
                 }
-                case OpenCVFaces:
-                {
-                    ss << "pipeline=" << "OpenCVFaces";
-                    break;
-                }
-                case Neural_Network:
-                {
-                    ss << "pipeline=" << "Neural_Network";
-                    break;
-                }
-                case HTWK:
-                {
-                    ss << "pipeline=" << "HTWK";
-                    break;
-                }
-                case Soccer:
-                {
-                    ss << "pipeline=" << "Soccer";
+                default: {
+                    ss << "pipeline=" << static_cast<signed>(this->pipeline());
                     break;
                 }
             }
@@ -315,6 +329,11 @@ namespace guWhiteboard {
                     ss << "networkTop=" << "Vanilla";
                     break;
                 }
+                case BallOnly:
+                {
+                    ss << "networkTop=" << "BallOnly";
+                    break;
+                }
                 case VGANet:
                 {
                     ss << "networkTop=" << "VGANet";
@@ -325,9 +344,8 @@ namespace guWhiteboard {
                     ss << "networkTop=" << "v2";
                     break;
                 }
-                case BallOnly:
-                {
-                    ss << "networkTop=" << "BallOnly";
+                default: {
+                    ss << "networkTop=" << static_cast<signed>(this->networkTop());
                     break;
                 }
             }
@@ -336,6 +354,11 @@ namespace guWhiteboard {
                 case Vanilla:
                 {
                     ss << "networkBottom=" << "Vanilla";
+                    break;
+                }
+                case BallOnly:
+                {
+                    ss << "networkBottom=" << "BallOnly";
                     break;
                 }
                 case VGANet:
@@ -348,27 +371,30 @@ namespace guWhiteboard {
                     ss << "networkBottom=" << "v2";
                     break;
                 }
-                case BallOnly:
-                {
-                    ss << "networkBottom=" << "BallOnly";
+                default: {
+                    ss << "networkBottom=" << static_cast<signed>(this->networkBottom());
                     break;
                 }
             }
             ss << ", ";
             switch (this->streamingSource()) {
-                case Normal:
-                {
-                    ss << "streamingSource=" << "Normal";
-                    break;
-                }
                 case Classified:
                 {
                     ss << "streamingSource=" << "Classified";
                     break;
                 }
+                case Normal:
+                {
+                    ss << "streamingSource=" << "Normal";
+                    break;
+                }
                 case Recognized:
                 {
                     ss << "streamingSource=" << "Recognized";
+                    break;
+                }
+                default: {
+                    ss << "streamingSource=" << static_cast<signed>(this->streamingSource());
                     break;
                 }
             }
@@ -403,6 +429,11 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->cameraResolution()) {
+                case SVGA:
+                {
+                    ss << "SVGA";
+                    break;
+                }
                 case QVGA:
                 {
                     ss << "QVGA";
@@ -423,9 +454,8 @@ namespace guWhiteboard {
                     ss << "HD_4VGA";
                     break;
                 }
-                case SVGA:
-                {
-                    ss << "SVGA";
+                default: {
+                    ss << static_cast<signed>(this->cameraResolution());
                     break;
                 }
             }
@@ -433,19 +463,28 @@ namespace guWhiteboard {
             ss << (this->pipelineRunning() ? "true" : "false");
             ss << ", ";
             switch (this->selectedCamera()) {
-                case Top:
-                {
-                    ss << "Top";
-                    break;
-                }
                 case Bottom:
                 {
                     ss << "Bottom";
                     break;
                 }
+                case Top:
+                {
+                    ss << "Top";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->selectedCamera());
+                    break;
+                }
             }
             ss << ", ";
             switch (this->saveImage()) {
+                case None:
+                {
+                    ss << "None";
+                    break;
+                }
                 case JPG:
                 {
                     ss << "JPG";
@@ -456,9 +495,8 @@ namespace guWhiteboard {
                     ss << "AI2";
                     break;
                 }
-                case None:
-                {
-                    ss << "None";
+                default: {
+                    ss << static_cast<signed>(this->saveImage());
                     break;
                 }
             }
@@ -466,6 +504,26 @@ namespace guWhiteboard {
             ss << (this->saveClassifiedImage() ? "true" : "false");
             ss << ", ";
             switch (this->pipeline()) {
+                case Neural_Network:
+                {
+                    ss << "Neural_Network";
+                    break;
+                }
+                case Soccer:
+                {
+                    ss << "Soccer";
+                    break;
+                }
+                case OpenCVFaces:
+                {
+                    ss << "OpenCVFaces";
+                    break;
+                }
+                case HTWK:
+                {
+                    ss << "HTWK";
+                    break;
+                }
                 case OpenChallenge:
                 {
                     ss << "OpenChallenge";
@@ -476,24 +534,8 @@ namespace guWhiteboard {
                     ss << "Streaming";
                     break;
                 }
-                case OpenCVFaces:
-                {
-                    ss << "OpenCVFaces";
-                    break;
-                }
-                case Neural_Network:
-                {
-                    ss << "Neural_Network";
-                    break;
-                }
-                case HTWK:
-                {
-                    ss << "HTWK";
-                    break;
-                }
-                case Soccer:
-                {
-                    ss << "Soccer";
+                default: {
+                    ss << static_cast<signed>(this->pipeline());
                     break;
                 }
             }
@@ -506,6 +548,11 @@ namespace guWhiteboard {
                     ss << "Vanilla";
                     break;
                 }
+                case BallOnly:
+                {
+                    ss << "BallOnly";
+                    break;
+                }
                 case VGANet:
                 {
                     ss << "VGANet";
@@ -516,9 +563,8 @@ namespace guWhiteboard {
                     ss << "v2";
                     break;
                 }
-                case BallOnly:
-                {
-                    ss << "BallOnly";
+                default: {
+                    ss << static_cast<signed>(this->networkTop());
                     break;
                 }
             }
@@ -529,6 +575,11 @@ namespace guWhiteboard {
                     ss << "Vanilla";
                     break;
                 }
+                case BallOnly:
+                {
+                    ss << "BallOnly";
+                    break;
+                }
                 case VGANet:
                 {
                     ss << "VGANet";
@@ -539,27 +590,30 @@ namespace guWhiteboard {
                     ss << "v2";
                     break;
                 }
-                case BallOnly:
-                {
-                    ss << "BallOnly";
+                default: {
+                    ss << static_cast<signed>(this->networkBottom());
                     break;
                 }
             }
             ss << ", ";
             switch (this->streamingSource()) {
-                case Normal:
-                {
-                    ss << "Normal";
-                    break;
-                }
                 case Classified:
                 {
                     ss << "Classified";
                     break;
                 }
+                case Normal:
+                {
+                    ss << "Normal";
+                    break;
+                }
                 case Recognized:
                 {
                     ss << "Recognized";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->streamingSource());
                     break;
                 }
             }
@@ -593,10 +647,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > VISION_CONTROL_STATUS_DESC_BUFFER_SIZE) {
+            if (length < 1) {
                 return;
             }
-            char var_str_buffer[VISION_CONTROL_STATUS_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[20];
             char* key = &key_buffer[0];
@@ -698,7 +752,9 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("QVGA", var_str) == 0) {
+                        if (strcmp("SVGA", var_str) == 0) {
+                            this->set_cameraResolution(SVGA);
+                        } else if (strcmp("QVGA", var_str) == 0) {
                             this->set_cameraResolution(QVGA);
                         } else if (strcmp("VGA", var_str) == 0) {
                             this->set_cameraResolution(VGA);
@@ -706,8 +762,6 @@ namespace guWhiteboard {
                             this->set_cameraResolution(QQVGA);
                         } else if (strcmp("HD_4VGA", var_str) == 0) {
                             this->set_cameraResolution(HD_4VGA);
-                        } else if (strcmp("SVGA", var_str) == 0) {
-                            this->set_cameraResolution(SVGA);
                         } else {
                             this->set_cameraResolution(static_cast<enum Resolutions>(atoi(var_str)));
                         }
@@ -720,10 +774,10 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        if (strcmp("Top", var_str) == 0) {
-                            this->set_selectedCamera(Top);
-                        } else if (strcmp("Bottom", var_str) == 0) {
+                        if (strcmp("Bottom", var_str) == 0) {
                             this->set_selectedCamera(Bottom);
+                        } else if (strcmp("Top", var_str) == 0) {
+                            this->set_selectedCamera(Top);
                         } else {
                             this->set_selectedCamera(static_cast<enum VisionCamera>(atoi(var_str)));
                         }
@@ -731,12 +785,12 @@ namespace guWhiteboard {
                     }
                     case 3:
                     {
-                        if (strcmp("JPG", var_str) == 0) {
+                        if (strcmp("None", var_str) == 0) {
+                            this->set_saveImage(None);
+                        } else if (strcmp("JPG", var_str) == 0) {
                             this->set_saveImage(JPG);
                         } else if (strcmp("AI2", var_str) == 0) {
                             this->set_saveImage(AI2);
-                        } else if (strcmp("None", var_str) == 0) {
-                            this->set_saveImage(None);
                         } else {
                             this->set_saveImage(static_cast<enum SaveFileType>(atoi(var_str)));
                         }
@@ -749,18 +803,18 @@ namespace guWhiteboard {
                     }
                     case 5:
                     {
-                        if (strcmp("OpenChallenge", var_str) == 0) {
+                        if (strcmp("Neural_Network", var_str) == 0) {
+                            this->set_pipeline(Neural_Network);
+                        } else if (strcmp("Soccer", var_str) == 0) {
+                            this->set_pipeline(Soccer);
+                        } else if (strcmp("OpenCVFaces", var_str) == 0) {
+                            this->set_pipeline(OpenCVFaces);
+                        } else if (strcmp("HTWK", var_str) == 0) {
+                            this->set_pipeline(HTWK);
+                        } else if (strcmp("OpenChallenge", var_str) == 0) {
                             this->set_pipeline(OpenChallenge);
                         } else if (strcmp("Streaming", var_str) == 0) {
                             this->set_pipeline(Streaming);
-                        } else if (strcmp("OpenCVFaces", var_str) == 0) {
-                            this->set_pipeline(OpenCVFaces);
-                        } else if (strcmp("Neural_Network", var_str) == 0) {
-                            this->set_pipeline(Neural_Network);
-                        } else if (strcmp("HTWK", var_str) == 0) {
-                            this->set_pipeline(HTWK);
-                        } else if (strcmp("Soccer", var_str) == 0) {
-                            this->set_pipeline(Soccer);
                         } else {
                             this->set_pipeline(static_cast<enum NamedPipeline>(atoi(var_str)));
                         }
@@ -775,12 +829,12 @@ namespace guWhiteboard {
                     {
                         if (strcmp("Vanilla", var_str) == 0) {
                             this->set_networkTop(Vanilla);
+                        } else if (strcmp("BallOnly", var_str) == 0) {
+                            this->set_networkTop(BallOnly);
                         } else if (strcmp("VGANet", var_str) == 0) {
                             this->set_networkTop(VGANet);
                         } else if (strcmp("v2", var_str) == 0) {
                             this->set_networkTop(v2);
-                        } else if (strcmp("BallOnly", var_str) == 0) {
-                            this->set_networkTop(BallOnly);
                         } else {
                             this->set_networkTop(static_cast<enum NeuralNetworkType>(atoi(var_str)));
                         }
@@ -790,12 +844,12 @@ namespace guWhiteboard {
                     {
                         if (strcmp("Vanilla", var_str) == 0) {
                             this->set_networkBottom(Vanilla);
+                        } else if (strcmp("BallOnly", var_str) == 0) {
+                            this->set_networkBottom(BallOnly);
                         } else if (strcmp("VGANet", var_str) == 0) {
                             this->set_networkBottom(VGANet);
                         } else if (strcmp("v2", var_str) == 0) {
                             this->set_networkBottom(v2);
-                        } else if (strcmp("BallOnly", var_str) == 0) {
-                            this->set_networkBottom(BallOnly);
                         } else {
                             this->set_networkBottom(static_cast<enum NeuralNetworkType>(atoi(var_str)));
                         }
@@ -803,10 +857,10 @@ namespace guWhiteboard {
                     }
                     case 9:
                     {
-                        if (strcmp("Normal", var_str) == 0) {
-                            this->set_streamingSource(Normal);
-                        } else if (strcmp("Classified", var_str) == 0) {
+                        if (strcmp("Classified", var_str) == 0) {
                             this->set_streamingSource(Classified);
+                        } else if (strcmp("Normal", var_str) == 0) {
+                            this->set_streamingSource(Normal);
                         } else if (strcmp("Recognized", var_str) == 0) {
                             this->set_streamingSource(Recognized);
                         } else {

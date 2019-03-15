@@ -131,9 +131,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionGoal(const std::string &str) {
-            this->from_string(str);
-        }
+        VisionDetectionGoal(const std::string &str) { wb_vision_detection_goal_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
@@ -144,9 +142,9 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoGoalDetected:
+                case DoublePostGoal:
                 {
-                    ss << "sightingType=" << "NoGoalDetected";
+                    ss << "sightingType=" << "DoublePostGoal";
                     break;
                 }
                 case SinglePostGoal:
@@ -154,9 +152,13 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "SinglePostGoal";
                     break;
                 }
-                case DoublePostGoal:
+                case NoGoalDetected:
                 {
-                    ss << "sightingType=" << "DoublePostGoal";
+                    ss << "sightingType=" << "NoGoalDetected";
+                    break;
+                }
+                default: {
+                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
                     break;
                 }
             }
@@ -179,9 +181,9 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoGoalDetected:
+                case DoublePostGoal:
                 {
-                    ss << "NoGoalDetected";
+                    ss << "DoublePostGoal";
                     break;
                 }
                 case SinglePostGoal:
@@ -189,9 +191,13 @@ namespace guWhiteboard {
                     ss << "SinglePostGoal";
                     break;
                 }
-                case DoublePostGoal:
+                case NoGoalDetected:
                 {
-                    ss << "DoublePostGoal";
+                    ss << "NoGoalDetected";
+                    break;
+                }
+                default: {
+                    ss << static_cast<signed>(this->sightingType());
                     break;
                 }
             }
@@ -213,10 +219,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {
+            if (length < 1) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_GOAL_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
@@ -290,12 +296,12 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("NoGoalDetected", var_str) == 0) {
-                            this->set_sightingType(NoGoalDetected);
+                        if (strcmp("DoublePostGoal", var_str) == 0) {
+                            this->set_sightingType(DoublePostGoal);
                         } else if (strcmp("SinglePostGoal", var_str) == 0) {
                             this->set_sightingType(SinglePostGoal);
-                        } else if (strcmp("DoublePostGoal", var_str) == 0) {
-                            this->set_sightingType(DoublePostGoal);
+                        } else if (strcmp("NoGoalDetected", var_str) == 0) {
+                            this->set_sightingType(NoGoalDetected);
                         } else {
                             this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
                         }

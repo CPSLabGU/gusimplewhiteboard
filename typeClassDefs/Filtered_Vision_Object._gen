@@ -1,0 +1,17 @@
+-author	Vlad Estivill-Castro
+
+-properties
+uint64_t visibilityHistory //a 64-bit history of whether vision said visible 1 or not visible 0. visibilityHistory&0X1 is the most recent frame  
+int32_t frameCounter //incremented every time we do not see the object. 
+int16_t distance // distance to landmark in cm
+int16_t x // centre x-coordinate in image  (0,0) is the centre of the image, positive is to the right
+int16_t y // centre  y-coordinate in image, positive is upwards
+int16_t yaw //the Yaw in Degrees when the object was last used to generated filtered values. 
+int16_t ray_angle //In degrees, position of the object, positive is left, negative is right, with distance polar position of object in frame of reference of robot. The sign is consistent with the yaw, but not with the fact that x positive is to the right
+bool isVisible //is this a credible sighting. 
+bool pad1 //16 bit padding . 
+
+-comment
+@brief Posting by Kalman filter on object sighting 
+
+ 

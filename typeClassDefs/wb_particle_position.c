@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_particle_position.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -209,10 +205,10 @@ struct wb_particle_position* wb_particle_position_from_string(struct wb_particle
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > PARTICLE_POSITION_DESC_BUFFER_SIZE) {
+    if (length < 1) {
         return self;
     }
-    char var_str_buffer[PARTICLE_POSITION_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[PARTICLE_POSITION_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[17];
     char* key = &key_buffer[0];
@@ -304,6 +300,8 @@ struct wb_particle_position* wb_particle_position_from_string(struct wb_particle
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

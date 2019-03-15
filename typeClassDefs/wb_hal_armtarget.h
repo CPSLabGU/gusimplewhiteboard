@@ -69,7 +69,7 @@
 #define RIGHT_WRIST_YAW_LEFT_RAD -LEFT_WRIST_YAW_RIGHT_RAD
 
 /**
- * HalArmTarget c struct
+ * HAL_ArmTarget c struct
  *
  * The struct is designed around a single arm,
  * allowing independent control of the NAO's arms.
@@ -212,7 +212,7 @@ struct wb_hal_armtarget
 
 #ifdef __cplusplus
     /**
-    * constructor for the HalArmTarget stuct. This is the data that is placed on the Whiteboard
+    * constructor for the HAL_ArmTarget stuct. This is the data that is placed on the Whiteboard
     * @param arm                     uint8_t enumeration of the arm 
     * @param shoulderpitch           desired shoulder pitch
     * @param shoulderroll            desired shoulder roll

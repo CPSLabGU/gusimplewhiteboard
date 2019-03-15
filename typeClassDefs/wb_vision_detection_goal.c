@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_vision_detection_goal.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -130,9 +126,9 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
         return descString;
     }
     switch (self->sightingType) {
-        case NoGoalDetected:
+        case DoublePostGoal:
         {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=NoGoalDetected");
+            len += snprintf(descString + len, bufferSize - len, "sightingType=DoublePostGoal");
             break;
         }
         case SinglePostGoal:
@@ -140,9 +136,13 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
             len += snprintf(descString + len, bufferSize - len, "sightingType=SinglePostGoal");
             break;
         }
-        case DoublePostGoal:
+        case NoGoalDetected:
         {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=DoublePostGoal");
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoGoalDetected");
+            break;
+        }
+        default: {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
             break;
         }
     }
@@ -199,9 +199,9 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
         return toString;
     }
     switch (self->sightingType) {
-        case NoGoalDetected:
+        case DoublePostGoal:
         {
-            len += snprintf(toString + len, bufferSize - len, "NoGoalDetected");
+            len += snprintf(toString + len, bufferSize - len, "DoublePostGoal");
             break;
         }
         case SinglePostGoal:
@@ -209,9 +209,13 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
             len += snprintf(toString + len, bufferSize - len, "SinglePostGoal");
             break;
         }
-        case DoublePostGoal:
+        case NoGoalDetected:
         {
-            len += snprintf(toString + len, bufferSize - len, "DoublePostGoal");
+            len += snprintf(toString + len, bufferSize - len, "NoGoalDetected");
+            break;
+        }
+        default: {
+            len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
             break;
         }
     }
@@ -263,10 +267,10 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {
+    if (length < 1) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_GOAL_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];
@@ -340,12 +344,12 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("NoGoalDetected", var_str) == 0) {
-                    self->sightingType = NoGoalDetected;
+                if (strcmp("DoublePostGoal", var_str) == 0) {
+                    self->sightingType = DoublePostGoal;
                 } else if (strcmp("SinglePostGoal", var_str) == 0) {
                     self->sightingType = SinglePostGoal;
-                } else if (strcmp("DoublePostGoal", var_str) == 0) {
-                    self->sightingType = DoublePostGoal;
+                } else if (strcmp("NoGoalDetected", var_str) == 0) {
+                    self->sightingType = NoGoalDetected;
                 } else {
                     self->sightingType = ((enum GoalOptions)atoi(var_str));
                 }
@@ -366,6 +370,8 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

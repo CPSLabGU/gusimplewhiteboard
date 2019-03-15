@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_top_particles.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -130,7 +126,7 @@ const char* wb_top_particles_description(const struct wb_top_particles* self, ch
         return descString;
     }
     len = gu_strlcat(descString, "particles={", bufferSize);
-    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOP_PARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -169,7 +165,7 @@ const char* wb_top_particles_to_string(const struct wb_top_particles* self, char
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOP_PARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -203,10 +199,10 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > TOPPARTICLES_DESC_BUFFER_SIZE) {
+    if (length < 1) {
         return self;
     }
-    char var_str_buffer[TOPPARTICLES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[TOPPARTICLES_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[10];
     char* key = &key_buffer[0];
@@ -345,6 +341,8 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

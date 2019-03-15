@@ -144,9 +144,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        TeleoperationControl(const std::string &str) {
-            this->from_string(str);
-        }
+        TeleoperationControl(const std::string &str) { wb_teleoperation_control_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_TELEOPERATION_CONTROL_C_CONVERSION
@@ -210,10 +208,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > TELEOPERATIONCONTROL_DESC_BUFFER_SIZE) {
+            if (length < 1) {
                 return;
             }
-            char var_str_buffer[TELEOPERATIONCONTROL_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[TELEOPERATIONCONTROL_TO_STRING_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[15];
             char* key = &key_buffer[0];

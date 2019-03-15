@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_teleoperation_status.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -155,10 +151,10 @@ struct wb_teleoperation_status* wb_teleoperation_status_from_string(struct wb_te
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > TELEOPERATIONSTATUS_DESC_BUFFER_SIZE) {
+    if (length < 1) {
         return self;
     }
-    char var_str_buffer[TELEOPERATIONSTATUS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[TELEOPERATIONSTATUS_TO_STRING_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[10];
     char* key = &key_buffer[0];
@@ -236,6 +232,8 @@ struct wb_teleoperation_status* wb_teleoperation_status_from_string(struct wb_te
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
