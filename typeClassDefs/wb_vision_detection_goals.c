@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_goals.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -326,9 +330,6 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -367,8 +368,6 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

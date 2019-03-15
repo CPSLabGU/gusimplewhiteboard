@@ -124,7 +124,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        ParticleOutputMap(const std::string &str) { wb_particle_output_map_from_string(this, str.c_str()); }
+        ParticleOutputMap(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_PARTICLE_OUTPUT_MAP_C_CONVERSION
@@ -180,7 +182,6 @@ namespace guWhiteboard {
             char key_buffer[9];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -212,9 +213,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {

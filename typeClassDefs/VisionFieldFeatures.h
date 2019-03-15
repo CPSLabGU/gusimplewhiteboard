@@ -162,7 +162,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionFieldFeatures(const std::string &str) { wb_vision_field_features_from_string(this, str.c_str()); }
+        VisionFieldFeatures(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
@@ -348,9 +350,6 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
-                                    if (bracecount == 1) {
-                                        lastBrace = i;
-                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {
@@ -414,9 +413,6 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
-                                    if (bracecount == 1) {
-                                        lastBrace = i;
-                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {

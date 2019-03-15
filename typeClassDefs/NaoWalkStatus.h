@@ -129,7 +129,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        NaoWalkStatus(const std::string &str) { wb_nao_walk_status_from_string(this, str.c_str()); }
+        NaoWalkStatus(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_NAO_WALK_STATUS_C_CONVERSION
@@ -139,7 +141,28 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "walkEngineState=" << this->walkEngineState();
+            switch (this->walkEngineState()) {
+                case wes_StoppedReady:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedReady";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "walkEngineState=" << "wes_StoppedStanding";
+                    break;
+                }
+                case wes_Disconnected:
+                {
+                    ss << "walkEngineState=" << "wes_Disconnected";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "walkEngineState=" << "wes_Walking";
+                    break;
+                }
+            }
             ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -154,7 +177,28 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->walkEngineState();
+            switch (this->walkEngineState()) {
+                case wes_StoppedReady:
+                {
+                    ss << "wes_StoppedReady";
+                    break;
+                }
+                case wes_StoppedStanding:
+                {
+                    ss << "wes_StoppedStanding";
+                    break;
+                }
+                case wes_Disconnected:
+                {
+                    ss << "wes_Disconnected";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "wes_Walking";
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -177,7 +221,6 @@ namespace guWhiteboard {
             char key_buffer[21];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -209,9 +252,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -248,7 +288,17 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+                        if (strcmp("wes_StoppedReady", var_str) == 0) {
+                            this->set_walkEngineState(wes_StoppedReady);
+                        } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                            this->set_walkEngineState(wes_StoppedStanding);
+                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
+                            this->set_walkEngineState(wes_Disconnected);
+                        } else if (strcmp("wes_Walking", var_str) == 0) {
+                            this->set_walkEngineState(wes_Walking);
+                        } else {
+                            this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
