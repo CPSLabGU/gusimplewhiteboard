@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_ball.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -125,7 +129,18 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
+    switch (self->sightingType) {
+        case NoBallDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoBallDetected");
+            break;
+        }
+        case BallDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=BallDetected");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -164,7 +179,18 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
+    switch (self->sightingType) {
+        case NoBallDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoBallDetected");
+            break;
+        }
+        case BallDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "BallDetected");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -199,15 +225,14 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -239,9 +264,6 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -282,7 +304,13 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                self->sightingType = ((enum BallOptions)atoi(var_str));
+                if (strcmp("NoBallDetected", var_str) == 0) {
+                    self->sightingType = NoBallDetected;
+                } else if (strcmp("BallDetected", var_str) == 0) {
+                    self->sightingType = BallDetected;
+                } else {
+                    self->sightingType = ((enum BallOptions)atoi(var_str));
+                }
                 break;
             }
             case 1:
@@ -305,8 +333,6 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

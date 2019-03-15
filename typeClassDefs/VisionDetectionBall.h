@@ -134,7 +134,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionBall(const std::string &str) { wb_vision_detection_ball_from_string(this, str.c_str()); }
+        VisionDetectionBall(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
@@ -144,7 +146,18 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case NoBallDetected:
+                {
+                    ss << "sightingType=" << "NoBallDetected";
+                    break;
+                }
+                case BallDetected:
+                {
+                    ss << "sightingType=" << "BallDetected";
+                    break;
+                }
+            }
             ss << ", ";
             ss << "x=" << static_cast<signed>(this->x());
             ss << ", ";
@@ -163,7 +176,18 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case NoBallDetected:
+                {
+                    ss << "NoBallDetected";
+                    break;
+                }
+                case BallDetected:
+                {
+                    ss << "BallDetected";
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<signed>(this->x());
             ss << ", ";
@@ -182,15 +206,14 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -222,9 +245,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -265,7 +285,13 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        if (strcmp("NoBallDetected", var_str) == 0) {
+                            this->set_sightingType(NoBallDetected);
+                        } else if (strcmp("BallDetected", var_str) == 0) {
+                            this->set_sightingType(BallDetected);
+                        } else {
+                            this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:

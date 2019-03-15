@@ -129,7 +129,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        LandmarkSighting(const std::string &str) { wb_landmark_sighting_from_string(this, str.c_str()); }
+        LandmarkSighting(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_LANDMARK_SIGHTING_C_CONVERSION
@@ -143,7 +145,58 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "distance=" << static_cast<unsigned>(this->distance());
             ss << ", ";
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case GenericGoalPostSightingType:
+                {
+                    ss << "sightingType=" << "GenericGoalPostSightingType";
+                    break;
+                }
+                case LineHorizonSightingType:
+                {
+                    ss << "sightingType=" << "LineHorizonSightingType";
+                    break;
+                }
+                case TIntersectionLineSightingType:
+                {
+                    ss << "sightingType=" << "TIntersectionLineSightingType";
+                    break;
+                }
+                case StraightLineSightingType:
+                {
+                    ss << "sightingType=" << "StraightLineSightingType";
+                    break;
+                }
+                case GoalLandmarkSightingType:
+                {
+                    ss << "sightingType=" << "GoalLandmarkSightingType";
+                    break;
+                }
+                case LeftGoalPostSightingType:
+                {
+                    ss << "sightingType=" << "LeftGoalPostSightingType";
+                    break;
+                }
+                case CrossLineSightingType:
+                {
+                    ss << "sightingType=" << "CrossLineSightingType";
+                    break;
+                }
+                case CornerLineSightingType:
+                {
+                    ss << "sightingType=" << "CornerLineSightingType";
+                    break;
+                }
+                case RightGoalPostSightingType:
+                {
+                    ss << "sightingType=" << "RightGoalPostSightingType";
+                    break;
+                }
+                case CornerHorizonSightingType:
+                {
+                    ss << "sightingType=" << "CornerHorizonSightingType";
+                    break;
+                }
+            }
             return ss.str();
 #endif /// USE_WB_LANDMARK_SIGHTING_C_CONVERSION
         }
@@ -160,7 +213,58 @@ namespace guWhiteboard {
             ss << ", ";
             ss << static_cast<unsigned>(this->distance());
             ss << ", ";
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case GenericGoalPostSightingType:
+                {
+                    ss << "GenericGoalPostSightingType";
+                    break;
+                }
+                case LineHorizonSightingType:
+                {
+                    ss << "LineHorizonSightingType";
+                    break;
+                }
+                case TIntersectionLineSightingType:
+                {
+                    ss << "TIntersectionLineSightingType";
+                    break;
+                }
+                case StraightLineSightingType:
+                {
+                    ss << "StraightLineSightingType";
+                    break;
+                }
+                case GoalLandmarkSightingType:
+                {
+                    ss << "GoalLandmarkSightingType";
+                    break;
+                }
+                case LeftGoalPostSightingType:
+                {
+                    ss << "LeftGoalPostSightingType";
+                    break;
+                }
+                case CrossLineSightingType:
+                {
+                    ss << "CrossLineSightingType";
+                    break;
+                }
+                case CornerLineSightingType:
+                {
+                    ss << "CornerLineSightingType";
+                    break;
+                }
+                case RightGoalPostSightingType:
+                {
+                    ss << "RightGoalPostSightingType";
+                    break;
+                }
+                case CornerHorizonSightingType:
+                {
+                    ss << "CornerHorizonSightingType";
+                    break;
+                }
+            }
             return ss.str();
 #endif /// USE_WB_LANDMARK_SIGHTING_C_CONVERSION
         }
@@ -173,15 +277,14 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > LANDMARK_SIGHTING_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[LANDMARK_SIGHTING_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -213,9 +316,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -264,7 +364,29 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        this->set_sightingType(static_cast<enum LandmarkSightingType>(atoi(var_str)));
+                        if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(GenericGoalPostSightingType);
+                        } else if (strcmp("LineHorizonSightingType", var_str) == 0) {
+                            this->set_sightingType(LineHorizonSightingType);
+                        } else if (strcmp("TIntersectionLineSightingType", var_str) == 0) {
+                            this->set_sightingType(TIntersectionLineSightingType);
+                        } else if (strcmp("StraightLineSightingType", var_str) == 0) {
+                            this->set_sightingType(StraightLineSightingType);
+                        } else if (strcmp("GoalLandmarkSightingType", var_str) == 0) {
+                            this->set_sightingType(GoalLandmarkSightingType);
+                        } else if (strcmp("LeftGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(LeftGoalPostSightingType);
+                        } else if (strcmp("CrossLineSightingType", var_str) == 0) {
+                            this->set_sightingType(CrossLineSightingType);
+                        } else if (strcmp("CornerLineSightingType", var_str) == 0) {
+                            this->set_sightingType(CornerLineSightingType);
+                        } else if (strcmp("RightGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(RightGoalPostSightingType);
+                        } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
+                            this->set_sightingType(CornerHorizonSightingType);
+                        } else {
+                            this->set_sightingType(static_cast<enum LandmarkSightingType>(atoi(var_str)));
+                        }
                         break;
                     }
                 }

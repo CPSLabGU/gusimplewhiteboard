@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_sensors_body_sensors.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -455,15 +459,14 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[SENSORS_BODY_SENSORS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[30];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -495,9 +498,6 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -673,8 +673,6 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

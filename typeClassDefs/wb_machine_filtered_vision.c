@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_machine_filtered_vision.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -173,7 +177,28 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "goal_sightingType=%d", self->goal_sightingType);
+    switch (self->goal_sightingType) {
+        case RightPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
+            break;
+        }
+        case GoalSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=GoalSightingType");
+            break;
+        }
+        case LeftPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=LeftPostSightingType");
+            break;
+        }
+    }
     return descString;
 }
 
@@ -236,7 +261,28 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->goal_sightingType);
+    switch (self->goal_sightingType) {
+        case RightPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
+            break;
+        }
+        case GoalSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "GoalSightingType");
+            break;
+        }
+        case LeftPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "LeftPostSightingType");
+            break;
+        }
+    }
     return toString;
 }
 
@@ -247,15 +293,14 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[MACHINE_FILTERED_VISION_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -287,9 +332,6 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -366,7 +408,17 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             case 6:
             {
-                self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+                if (strcmp("RightPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = RightPostSightingType;
+                } else if (strcmp("NoSightingType", var_str) == 0) {
+                    self->goal_sightingType = NoSightingType;
+                } else if (strcmp("GoalSightingType", var_str) == 0) {
+                    self->goal_sightingType = GoalSightingType;
+                } else if (strcmp("LeftPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = LeftPostSightingType;
+                } else {
+                    self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+                }
                 break;
             }
         }
@@ -374,8 +426,6 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
