@@ -84,6 +84,7 @@
     bit       target_arm_stop               =  false       // Control Message: Stop the arm at its current location. Status Message: Indicates if the last control message issued a STOP command.
 
 %c
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 /**
  * Convert to a string.
  */
@@ -266,6 +267,7 @@ const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* 
     len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_stop);
     return toString;
 }
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 %c++
 
