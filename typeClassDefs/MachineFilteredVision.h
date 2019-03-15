@@ -149,9 +149,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        MachineFilteredVision(const std::string &str) {
-            this->from_string(str);
-        }
+        MachineFilteredVision(const std::string &str) { wb_machine_filtered_vision_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
@@ -173,28 +171,7 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "goal_visible=" << (this->goal_visible() ? "true" : "false");
             ss << ", ";
-            switch (this->goal_sightingType()) {
-                case RightPostSightingType:
-                {
-                    ss << "goal_sightingType=" << "RightPostSightingType";
-                    break;
-                }
-                case NoSightingType:
-                {
-                    ss << "goal_sightingType=" << "NoSightingType";
-                    break;
-                }
-                case GoalSightingType:
-                {
-                    ss << "goal_sightingType=" << "GoalSightingType";
-                    break;
-                }
-                case LeftPostSightingType:
-                {
-                    ss << "goal_sightingType=" << "LeftPostSightingType";
-                    break;
-                }
-            }
+            ss << "goal_sightingType=" << this->goal_sightingType();
             return ss.str();
 #endif /// USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
         }
@@ -219,28 +196,7 @@ namespace guWhiteboard {
             ss << ", ";
             ss << (this->goal_visible() ? "true" : "false");
             ss << ", ";
-            switch (this->goal_sightingType()) {
-                case RightPostSightingType:
-                {
-                    ss << "RightPostSightingType";
-                    break;
-                }
-                case NoSightingType:
-                {
-                    ss << "NoSightingType";
-                    break;
-                }
-                case GoalSightingType:
-                {
-                    ss << "GoalSightingType";
-                    break;
-                }
-                case LeftPostSightingType:
-                {
-                    ss << "LeftPostSightingType";
-                    break;
-                }
-            }
+            ss << this->goal_sightingType();
             return ss.str();
 #endif /// USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
         }
@@ -261,6 +217,7 @@ namespace guWhiteboard {
             char key_buffer[18];
             char* key = &key_buffer[0];
             int bracecount = 0;
+            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -292,6 +249,9 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
+                        if (bracecount == 1) {
+                            lastBrace = i;
+                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -368,17 +328,7 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        if (strcmp("RightPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(RightPostSightingType);
-                        } else if (strcmp("NoSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(NoSightingType);
-                        } else if (strcmp("GoalSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(GoalSightingType);
-                        } else if (strcmp("LeftPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(LeftPostSightingType);
-                        } else {
-                            this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
-                        }
+                        this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
                         break;
                     }
                 }

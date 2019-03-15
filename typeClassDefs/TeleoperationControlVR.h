@@ -159,9 +159,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        TeleoperationControlVR(const std::string &str) {
-            this->from_string(str);
-        }
+        TeleoperationControlVR(const std::string &str) { wb_teleoperation_control_v_r_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_TELEOPERATION_CONTROL_V_R_C_CONVERSION
@@ -245,6 +243,7 @@ namespace guWhiteboard {
             char key_buffer[15];
             char* key = &key_buffer[0];
             int bracecount = 0;
+            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -276,6 +275,9 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
+                        if (bracecount == 1) {
+                            lastBrace = i;
+                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {

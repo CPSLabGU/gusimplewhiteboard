@@ -229,9 +229,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        HalLegTarget(const std::string &str) {
-            this->from_string(str);
-        }
+        HalLegTarget(const std::string &str) { wb_hal_leg_target_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_HAL_LEG_TARGET_C_CONVERSION
@@ -363,6 +361,7 @@ namespace guWhiteboard {
             char key_buffer[28];
             char* key = &key_buffer[0];
             int bracecount = 0;
+            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
@@ -394,6 +393,9 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
+                        if (bracecount == 1) {
+                            lastBrace = i;
+                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -598,9 +600,9 @@ namespace guWhiteboard {
                  *  (Spreadsheet friendly)
                  */
                 std::string valueDescription() {
-        #ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
-                    char buffer[HAL_ARM_TARGET_DESC_BUFFER_SIZE];
-                    wb_hal_arm_target_value_description(this, buffer, sizeof(buffer));
+        #ifdef USE_WB_HAL_LEG_TARGET_C_CONVERSION
+                    char buffer[HAL_LEG_TARGET_DESC_BUFFER_SIZE+22];
+                    wb_hal_leg_target_value_description(this, buffer, sizeof(buffer));
                     std::string descr = buffer;
                     return descr;
         #else
@@ -629,7 +631,7 @@ namespace guWhiteboard {
                         << static_cast<int>(target_leg_stop());
                         return ss.str();
                     }
-        #endif /// USE_WB_HAL_ARM_TARGET_C_CONVERSION
+        #endif /// USE_WB_HAL_LEG_TARGET_C_CONVERSION
         #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
         //MARK: Leg - General

@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_trajectories.h"
 #include <stdio.h>
 #include <string.h>
@@ -147,7 +143,7 @@ struct wb_point2d positionOfStep(double stepAngle, int distance) {
     return relativePoint;
 }
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -188,6 +184,7 @@ struct wb_trajectories* wb_trajectories_from_string(struct wb_trajectories* self
     char key_buffer[0];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -219,6 +216,9 @@ struct wb_trajectories* wb_trajectories_from_string(struct wb_trajectories* self
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {
@@ -255,6 +255,8 @@ struct wb_trajectories* wb_trajectories_from_string(struct wb_trajectories* self
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

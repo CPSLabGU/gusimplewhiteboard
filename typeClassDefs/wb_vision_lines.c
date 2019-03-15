@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_vision_lines.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,7 @@
 #endif
 #pragma clang diagnostic pop
 
-
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -427,6 +423,9 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -489,6 +488,9 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                         }
                         if (str[i] == '{') {
                             bracecount++;
+                            if (bracecount == 1) {
+                                lastBrace = i;
+                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -542,6 +544,8 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

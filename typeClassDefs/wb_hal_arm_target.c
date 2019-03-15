@@ -57,10 +57,6 @@
  *
  */
 
-#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WHITEBOARD_POSTER_STRING_CONVERSION
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
-
 #include "wb_hal_arm_target.h"
 #include <stdio.h>
 #include <string.h>
@@ -116,7 +112,192 @@
 #endif
 #pragma clang diagnostic pop
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+/**
+ * Convert to a string.
+ */
+const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* self, char* toString, size_t bufferSize)
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+    size_t len = 0;
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_shoulderpitch);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_shoulderroll);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_elbowroll);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_elbowyaw);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_wristyaw);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_hand);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderpitchstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderrollstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowrollstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowyawstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_wristyawstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_handstiffness);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderpitch_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_shoulderroll_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowroll_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_elbowyaw_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_wrist_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_hand_active);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->target_movement_time);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_pliability);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_at_goal);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, " | ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_stop);
+    return toString;
+}
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Convert to a description string.
@@ -515,6 +696,7 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
     char key_buffer[30];
     char* key = &key_buffer[0];
     int bracecount = 0;
+    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
@@ -546,6 +728,9 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
             }
             if (str[i] == '{') {
                 bracecount++;
+                if (bracecount == 1) {
+                    lastBrace = i;
+                }
                 continue;
             }
             if (str[i] == '}') {
@@ -742,6 +927,8 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
     } while(index < length);
     return self;
 }
+
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

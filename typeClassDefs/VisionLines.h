@@ -167,9 +167,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionLines(const std::string &str) {
-            this->from_string(str);
-        }
+        VisionLines(const std::string &str) { wb_vision_lines_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_VISION_LINES_C_CONVERSION
@@ -361,6 +359,9 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
+                                    if (bracecount == 1) {
+                                        lastBrace = i;
+                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {
@@ -424,6 +425,9 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
+                                    if (bracecount == 1) {
+                                        lastBrace = i;
+                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {

@@ -139,9 +139,7 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionGoals(const std::string &str) {
-            this->from_string(str);
-        }
+        VisionDetectionGoals(const std::string &str) { wb_vision_detection_goals_from_string(this, str.c_str()); }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_GOALS_C_CONVERSION
@@ -306,6 +304,9 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
+                                    if (bracecount == 1) {
+                                        lastBrace = i;
+                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {
