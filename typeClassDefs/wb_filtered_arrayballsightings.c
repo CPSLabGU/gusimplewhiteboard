@@ -203,10 +203,10 @@ struct wb_filtered_arrayballsightings* wb_filtered_arrayballsightings_from_strin
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > FILTERED_ARRAYBALLSIGHTINGS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[FILTERED_ARRAYBALLSIGHTINGS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[FILTERED_ARRAYBALLSIGHTINGS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[8];
     char* key = &key_buffer[0];

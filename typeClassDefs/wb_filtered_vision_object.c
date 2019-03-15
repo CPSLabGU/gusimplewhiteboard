@@ -283,10 +283,10 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];

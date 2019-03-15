@@ -184,10 +184,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > INPUT3D_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[INPUT3D_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[INPUT3D_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[6];
             char* key = &key_buffer[0];
