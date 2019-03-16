@@ -86,6 +86,7 @@
 #include <stdint.h>
 
 #include "wb_filtered_vision_object.h"
+#include "wb_filtered_vision_ball_type.h"
 
 #define FILTERED_ARRAYBALLSIGHTINGS_GENERATED 
 #define FILTERED_ARRAYBALLSIGHTINGS_C_STRUCT wb_filtered_arrayballsightings 

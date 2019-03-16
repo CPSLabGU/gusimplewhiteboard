@@ -2,6 +2,7 @@
 
 -c
 #include "wb_filtered_vision_object.h"
+#include "wb_filtered_vision_ball_type.h"
 
 -c++
 #include "FilteredVisionObject.h"
