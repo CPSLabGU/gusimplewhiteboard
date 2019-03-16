@@ -177,11 +177,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoPostDetected:
-                {
-                    ss << "sightingType=" << "NoPostDetected";
-                    break;
-                }
                 case PartialPostSeen:
                 {
                     ss << "sightingType=" << "PartialPostSeen";
@@ -192,9 +187,19 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "FullPostSeen";
                     break;
                 }
+                case NoPostDetected:
+                {
+                    ss << "sightingType=" << "NoPostDetected";
+                    break;
+                }
             }
             ss << ", ";
             switch (this->orientation()) {
+                case LeftPost:
+                {
+                    ss << "orientation=" << "LeftPost";
+                    break;
+                }
                 case RightPost:
                 {
                     ss << "orientation=" << "RightPost";
@@ -203,11 +208,6 @@ namespace guWhiteboard {
                 case GenericPost:
                 {
                     ss << "orientation=" << "GenericPost";
-                    break;
-                }
-                case LeftPost:
-                {
-                    ss << "orientation=" << "LeftPost";
                     break;
                 }
             }
@@ -240,11 +240,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoPostDetected:
-                {
-                    ss << "NoPostDetected";
-                    break;
-                }
                 case PartialPostSeen:
                 {
                     ss << "PartialPostSeen";
@@ -255,9 +250,19 @@ namespace guWhiteboard {
                     ss << "FullPostSeen";
                     break;
                 }
+                case NoPostDetected:
+                {
+                    ss << "NoPostDetected";
+                    break;
+                }
             }
             ss << ", ";
             switch (this->orientation()) {
+                case LeftPost:
+                {
+                    ss << "LeftPost";
+                    break;
+                }
                 case RightPost:
                 {
                     ss << "RightPost";
@@ -266,11 +271,6 @@ namespace guWhiteboard {
                 case GenericPost:
                 {
                     ss << "GenericPost";
-                    break;
-                }
-                case LeftPost:
-                {
-                    ss << "LeftPost";
                     break;
                 }
             }
@@ -393,12 +393,12 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("NoPostDetected", var_str) == 0) {
-                            this->set_sightingType(NoPostDetected);
-                        } else if (strcmp("PartialPostSeen", var_str) == 0) {
+                        if (strcmp("PartialPostSeen", var_str) == 0) {
                             this->set_sightingType(PartialPostSeen);
                         } else if (strcmp("FullPostSeen", var_str) == 0) {
                             this->set_sightingType(FullPostSeen);
+                        } else if (strcmp("NoPostDetected", var_str) == 0) {
+                            this->set_sightingType(NoPostDetected);
                         } else {
                             this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
                         }
@@ -406,12 +406,12 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        if (strcmp("RightPost", var_str) == 0) {
+                        if (strcmp("LeftPost", var_str) == 0) {
+                            this->set_orientation(LeftPost);
+                        } else if (strcmp("RightPost", var_str) == 0) {
                             this->set_orientation(RightPost);
                         } else if (strcmp("GenericPost", var_str) == 0) {
                             this->set_orientation(GenericPost);
-                        } else if (strcmp("LeftPost", var_str) == 0) {
-                            this->set_orientation(LeftPost);
                         } else {
                             this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
                         }

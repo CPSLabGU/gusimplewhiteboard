@@ -146,24 +146,9 @@ namespace guWhiteboard {
             ss << "distance=" << static_cast<unsigned>(this->distance());
             ss << ", ";
             switch (this->sightingType()) {
-                case GenericGoalPostSightingType:
-                {
-                    ss << "sightingType=" << "GenericGoalPostSightingType";
-                    break;
-                }
                 case LineHorizonSightingType:
                 {
                     ss << "sightingType=" << "LineHorizonSightingType";
-                    break;
-                }
-                case TIntersectionLineSightingType:
-                {
-                    ss << "sightingType=" << "TIntersectionLineSightingType";
-                    break;
-                }
-                case StraightLineSightingType:
-                {
-                    ss << "sightingType=" << "StraightLineSightingType";
                     break;
                 }
                 case GoalLandmarkSightingType:
@@ -171,14 +156,24 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "GoalLandmarkSightingType";
                     break;
                 }
+                case CornerHorizonSightingType:
+                {
+                    ss << "sightingType=" << "CornerHorizonSightingType";
+                    break;
+                }
+                case StraightLineSightingType:
+                {
+                    ss << "sightingType=" << "StraightLineSightingType";
+                    break;
+                }
                 case LeftGoalPostSightingType:
                 {
                     ss << "sightingType=" << "LeftGoalPostSightingType";
                     break;
                 }
-                case CrossLineSightingType:
+                case GenericGoalPostSightingType:
                 {
-                    ss << "sightingType=" << "CrossLineSightingType";
+                    ss << "sightingType=" << "GenericGoalPostSightingType";
                     break;
                 }
                 case CornerLineSightingType:
@@ -186,14 +181,19 @@ namespace guWhiteboard {
                     ss << "sightingType=" << "CornerLineSightingType";
                     break;
                 }
+                case CrossLineSightingType:
+                {
+                    ss << "sightingType=" << "CrossLineSightingType";
+                    break;
+                }
                 case RightGoalPostSightingType:
                 {
                     ss << "sightingType=" << "RightGoalPostSightingType";
                     break;
                 }
-                case CornerHorizonSightingType:
+                case TIntersectionLineSightingType:
                 {
-                    ss << "sightingType=" << "CornerHorizonSightingType";
+                    ss << "sightingType=" << "TIntersectionLineSightingType";
                     break;
                 }
             }
@@ -214,24 +214,9 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->distance());
             ss << ", ";
             switch (this->sightingType()) {
-                case GenericGoalPostSightingType:
-                {
-                    ss << "GenericGoalPostSightingType";
-                    break;
-                }
                 case LineHorizonSightingType:
                 {
                     ss << "LineHorizonSightingType";
-                    break;
-                }
-                case TIntersectionLineSightingType:
-                {
-                    ss << "TIntersectionLineSightingType";
-                    break;
-                }
-                case StraightLineSightingType:
-                {
-                    ss << "StraightLineSightingType";
                     break;
                 }
                 case GoalLandmarkSightingType:
@@ -239,14 +224,24 @@ namespace guWhiteboard {
                     ss << "GoalLandmarkSightingType";
                     break;
                 }
+                case CornerHorizonSightingType:
+                {
+                    ss << "CornerHorizonSightingType";
+                    break;
+                }
+                case StraightLineSightingType:
+                {
+                    ss << "StraightLineSightingType";
+                    break;
+                }
                 case LeftGoalPostSightingType:
                 {
                     ss << "LeftGoalPostSightingType";
                     break;
                 }
-                case CrossLineSightingType:
+                case GenericGoalPostSightingType:
                 {
-                    ss << "CrossLineSightingType";
+                    ss << "GenericGoalPostSightingType";
                     break;
                 }
                 case CornerLineSightingType:
@@ -254,14 +249,19 @@ namespace guWhiteboard {
                     ss << "CornerLineSightingType";
                     break;
                 }
+                case CrossLineSightingType:
+                {
+                    ss << "CrossLineSightingType";
+                    break;
+                }
                 case RightGoalPostSightingType:
                 {
                     ss << "RightGoalPostSightingType";
                     break;
                 }
-                case CornerHorizonSightingType:
+                case TIntersectionLineSightingType:
                 {
-                    ss << "CornerHorizonSightingType";
+                    ss << "TIntersectionLineSightingType";
                     break;
                 }
             }
@@ -364,26 +364,26 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
-                            this->set_sightingType(GenericGoalPostSightingType);
-                        } else if (strcmp("LineHorizonSightingType", var_str) == 0) {
+                        if (strcmp("LineHorizonSightingType", var_str) == 0) {
                             this->set_sightingType(LineHorizonSightingType);
-                        } else if (strcmp("TIntersectionLineSightingType", var_str) == 0) {
-                            this->set_sightingType(TIntersectionLineSightingType);
-                        } else if (strcmp("StraightLineSightingType", var_str) == 0) {
-                            this->set_sightingType(StraightLineSightingType);
                         } else if (strcmp("GoalLandmarkSightingType", var_str) == 0) {
                             this->set_sightingType(GoalLandmarkSightingType);
-                        } else if (strcmp("LeftGoalPostSightingType", var_str) == 0) {
-                            this->set_sightingType(LeftGoalPostSightingType);
-                        } else if (strcmp("CrossLineSightingType", var_str) == 0) {
-                            this->set_sightingType(CrossLineSightingType);
-                        } else if (strcmp("CornerLineSightingType", var_str) == 0) {
-                            this->set_sightingType(CornerLineSightingType);
-                        } else if (strcmp("RightGoalPostSightingType", var_str) == 0) {
-                            this->set_sightingType(RightGoalPostSightingType);
                         } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
                             this->set_sightingType(CornerHorizonSightingType);
+                        } else if (strcmp("StraightLineSightingType", var_str) == 0) {
+                            this->set_sightingType(StraightLineSightingType);
+                        } else if (strcmp("LeftGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(LeftGoalPostSightingType);
+                        } else if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(GenericGoalPostSightingType);
+                        } else if (strcmp("CornerLineSightingType", var_str) == 0) {
+                            this->set_sightingType(CornerLineSightingType);
+                        } else if (strcmp("CrossLineSightingType", var_str) == 0) {
+                            this->set_sightingType(CrossLineSightingType);
+                        } else if (strcmp("RightGoalPostSightingType", var_str) == 0) {
+                            this->set_sightingType(RightGoalPostSightingType);
+                        } else if (strcmp("TIntersectionLineSightingType", var_str) == 0) {
+                            this->set_sightingType(TIntersectionLineSightingType);
                         } else {
                             this->set_sightingType(static_cast<enum LandmarkSightingType>(atoi(var_str)));
                         }

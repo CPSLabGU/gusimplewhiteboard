@@ -178,14 +178,14 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
         return descString;
     }
     switch (self->goal_sightingType) {
-        case RightPostSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
-            break;
-        }
         case NoSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
             break;
         }
         case GoalSightingType:
@@ -262,14 +262,14 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
         return toString;
     }
     switch (self->goal_sightingType) {
-        case RightPostSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
-            break;
-        }
         case NoSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
             break;
         }
         case GoalSightingType:
@@ -408,10 +408,10 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             case 6:
             {
-                if (strcmp("RightPostSightingType", var_str) == 0) {
-                    self->goal_sightingType = RightPostSightingType;
-                } else if (strcmp("NoSightingType", var_str) == 0) {
+                if (strcmp("NoSightingType", var_str) == 0) {
                     self->goal_sightingType = NoSightingType;
+                } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = RightPostSightingType;
                 } else if (strcmp("GoalSightingType", var_str) == 0) {
                     self->goal_sightingType = GoalSightingType;
                 } else if (strcmp("LeftPostSightingType", var_str) == 0) {

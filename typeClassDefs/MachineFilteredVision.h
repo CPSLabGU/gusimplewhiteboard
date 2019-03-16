@@ -174,14 +174,14 @@ namespace guWhiteboard {
             ss << "goal_visible=" << (this->goal_visible() ? "true" : "false");
             ss << ", ";
             switch (this->goal_sightingType()) {
-                case RightPostSightingType:
-                {
-                    ss << "goal_sightingType=" << "RightPostSightingType";
-                    break;
-                }
                 case NoSightingType:
                 {
                     ss << "goal_sightingType=" << "NoSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "goal_sightingType=" << "RightPostSightingType";
                     break;
                 }
                 case GoalSightingType:
@@ -220,14 +220,14 @@ namespace guWhiteboard {
             ss << (this->goal_visible() ? "true" : "false");
             ss << ", ";
             switch (this->goal_sightingType()) {
-                case RightPostSightingType:
-                {
-                    ss << "RightPostSightingType";
-                    break;
-                }
                 case NoSightingType:
                 {
                     ss << "NoSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "RightPostSightingType";
                     break;
                 }
                 case GoalSightingType:
@@ -368,10 +368,10 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        if (strcmp("RightPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(RightPostSightingType);
-                        } else if (strcmp("NoSightingType", var_str) == 0) {
+                        if (strcmp("NoSightingType", var_str) == 0) {
                             this->set_goal_sightingType(NoSightingType);
+                        } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(RightPostSightingType);
                         } else if (strcmp("GoalSightingType", var_str) == 0) {
                             this->set_goal_sightingType(GoalSightingType);
                         } else if (strcmp("LeftPostSightingType", var_str) == 0) {
