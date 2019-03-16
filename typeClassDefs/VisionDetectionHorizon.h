@@ -162,24 +162,24 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case HorizonFailed:
-                {
-                    ss << "horizonType=" << "HorizonFailed";
-                    break;
-                }
-                case SingleHorizon:
-                {
-                    ss << "horizonType=" << "SingleHorizon";
-                    break;
-                }
                 case CornerHorizon:
                 {
                     ss << "horizonType=" << "CornerHorizon";
                     break;
                 }
+                case HorizonFailed:
+                {
+                    ss << "horizonType=" << "HorizonFailed";
+                    break;
+                }
                 case OnlyField:
                 {
                     ss << "horizonType=" << "OnlyField";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "horizonType=" << "SingleHorizon";
                     break;
                 }
             }
@@ -208,24 +208,24 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case HorizonFailed:
-                {
-                    ss << "HorizonFailed";
-                    break;
-                }
-                case SingleHorizon:
-                {
-                    ss << "SingleHorizon";
-                    break;
-                }
                 case CornerHorizon:
                 {
                     ss << "CornerHorizon";
                     break;
                 }
+                case HorizonFailed:
+                {
+                    ss << "HorizonFailed";
+                    break;
+                }
                 case OnlyField:
                 {
                     ss << "OnlyField";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "SingleHorizon";
                     break;
                 }
             }
@@ -338,14 +338,14 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("HorizonFailed", var_str) == 0) {
-                            this->set_horizonType(HorizonFailed);
-                        } else if (strcmp("SingleHorizon", var_str) == 0) {
-                            this->set_horizonType(SingleHorizon);
-                        } else if (strcmp("CornerHorizon", var_str) == 0) {
+                        if (strcmp("CornerHorizon", var_str) == 0) {
                             this->set_horizonType(CornerHorizon);
+                        } else if (strcmp("HorizonFailed", var_str) == 0) {
+                            this->set_horizonType(HorizonFailed);
                         } else if (strcmp("OnlyField", var_str) == 0) {
                             this->set_horizonType(OnlyField);
+                        } else if (strcmp("SingleHorizon", var_str) == 0) {
+                            this->set_horizonType(SingleHorizon);
                         } else {
                             this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
                         }

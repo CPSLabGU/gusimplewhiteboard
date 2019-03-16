@@ -130,11 +130,6 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
         return descString;
     }
     switch (self->sightingType) {
-        case SinglePostGoal:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=SinglePostGoal");
-            break;
-        }
         case DoublePostGoal:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=DoublePostGoal");
@@ -143,6 +138,11 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
         case NoGoalDetected:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=NoGoalDetected");
+            break;
+        }
+        case SinglePostGoal:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=SinglePostGoal");
             break;
         }
     }
@@ -199,11 +199,6 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
         return toString;
     }
     switch (self->sightingType) {
-        case SinglePostGoal:
-        {
-            len += snprintf(toString + len, bufferSize - len, "SinglePostGoal");
-            break;
-        }
         case DoublePostGoal:
         {
             len += snprintf(toString + len, bufferSize - len, "DoublePostGoal");
@@ -212,6 +207,11 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
         case NoGoalDetected:
         {
             len += snprintf(toString + len, bufferSize - len, "NoGoalDetected");
+            break;
+        }
+        case SinglePostGoal:
+        {
+            len += snprintf(toString + len, bufferSize - len, "SinglePostGoal");
             break;
         }
     }
@@ -340,12 +340,12 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("SinglePostGoal", var_str) == 0) {
-                    self->sightingType = SinglePostGoal;
-                } else if (strcmp("DoublePostGoal", var_str) == 0) {
+                if (strcmp("DoublePostGoal", var_str) == 0) {
                     self->sightingType = DoublePostGoal;
                 } else if (strcmp("NoGoalDetected", var_str) == 0) {
                     self->sightingType = NoGoalDetected;
+                } else if (strcmp("SinglePostGoal", var_str) == 0) {
+                    self->sightingType = SinglePostGoal;
                 } else {
                     self->sightingType = ((enum GoalOptions)atoi(var_str));
                 }

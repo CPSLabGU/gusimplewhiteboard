@@ -142,11 +142,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_Walking:
-                {
-                    ss << "walkEngineState=" << "wes_Walking";
-                    break;
-                }
                 case wes_Disconnected:
                 {
                     ss << "walkEngineState=" << "wes_Disconnected";
@@ -160,6 +155,11 @@ namespace guWhiteboard {
                 case wes_StoppedStanding:
                 {
                     ss << "walkEngineState=" << "wes_StoppedStanding";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "walkEngineState=" << "wes_Walking";
                     break;
                 }
             }
@@ -178,11 +178,6 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->walkEngineState()) {
-                case wes_Walking:
-                {
-                    ss << "wes_Walking";
-                    break;
-                }
                 case wes_Disconnected:
                 {
                     ss << "wes_Disconnected";
@@ -196,6 +191,11 @@ namespace guWhiteboard {
                 case wes_StoppedStanding:
                 {
                     ss << "wes_StoppedStanding";
+                    break;
+                }
+                case wes_Walking:
+                {
+                    ss << "wes_Walking";
                     break;
                 }
             }
@@ -288,14 +288,14 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("wes_Walking", var_str) == 0) {
-                            this->set_walkEngineState(wes_Walking);
-                        } else if (strcmp("wes_Disconnected", var_str) == 0) {
+                        if (strcmp("wes_Disconnected", var_str) == 0) {
                             this->set_walkEngineState(wes_Disconnected);
                         } else if (strcmp("wes_StoppedReady", var_str) == 0) {
                             this->set_walkEngineState(wes_StoppedReady);
                         } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
                             this->set_walkEngineState(wes_StoppedStanding);
+                        } else if (strcmp("wes_Walking", var_str) == 0) {
+                            this->set_walkEngineState(wes_Walking);
                         } else {
                             this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
                         }

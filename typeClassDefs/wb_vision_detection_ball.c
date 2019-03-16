@@ -130,14 +130,14 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
         return descString;
     }
     switch (self->sightingType) {
-        case NoBallDetected:
-        {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=NoBallDetected");
-            break;
-        }
         case BallDetected:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=BallDetected");
+            break;
+        }
+        case NoBallDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoBallDetected");
             break;
         }
     }
@@ -180,14 +180,14 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
         return toString;
     }
     switch (self->sightingType) {
-        case NoBallDetected:
-        {
-            len += snprintf(toString + len, bufferSize - len, "NoBallDetected");
-            break;
-        }
         case BallDetected:
         {
             len += snprintf(toString + len, bufferSize - len, "BallDetected");
+            break;
+        }
+        case NoBallDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoBallDetected");
             break;
         }
     }
@@ -304,10 +304,10 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("NoBallDetected", var_str) == 0) {
-                    self->sightingType = NoBallDetected;
-                } else if (strcmp("BallDetected", var_str) == 0) {
+                if (strcmp("BallDetected", var_str) == 0) {
                     self->sightingType = BallDetected;
+                } else if (strcmp("NoBallDetected", var_str) == 0) {
+                    self->sightingType = NoBallDetected;
                 } else {
                     self->sightingType = ((enum BallOptions)atoi(var_str));
                 }

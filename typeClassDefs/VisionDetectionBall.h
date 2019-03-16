@@ -147,14 +147,14 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoBallDetected:
-                {
-                    ss << "sightingType=" << "NoBallDetected";
-                    break;
-                }
                 case BallDetected:
                 {
                     ss << "sightingType=" << "BallDetected";
+                    break;
+                }
+                case NoBallDetected:
+                {
+                    ss << "sightingType=" << "NoBallDetected";
                     break;
                 }
             }
@@ -177,14 +177,14 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->sightingType()) {
-                case NoBallDetected:
-                {
-                    ss << "NoBallDetected";
-                    break;
-                }
                 case BallDetected:
                 {
                     ss << "BallDetected";
+                    break;
+                }
+                case NoBallDetected:
+                {
+                    ss << "NoBallDetected";
                     break;
                 }
             }
@@ -285,10 +285,10 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("NoBallDetected", var_str) == 0) {
-                            this->set_sightingType(NoBallDetected);
-                        } else if (strcmp("BallDetected", var_str) == 0) {
+                        if (strcmp("BallDetected", var_str) == 0) {
                             this->set_sightingType(BallDetected);
+                        } else if (strcmp("NoBallDetected", var_str) == 0) {
+                            this->set_sightingType(NoBallDetected);
                         } else {
                             this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
                         }

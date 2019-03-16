@@ -178,16 +178,6 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
         return descString;
     }
     switch (self->goal_sightingType) {
-        case NoSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
-            break;
-        }
-        case RightPostSightingType:
-        {
-            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
-            break;
-        }
         case GoalSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "goal_sightingType=GoalSightingType");
@@ -196,6 +186,16 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
         case LeftPostSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "goal_sightingType=LeftPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
             break;
         }
     }
@@ -262,16 +262,6 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
         return toString;
     }
     switch (self->goal_sightingType) {
-        case NoSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
-            break;
-        }
-        case RightPostSightingType:
-        {
-            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
-            break;
-        }
         case GoalSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "GoalSightingType");
@@ -280,6 +270,16 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
         case LeftPostSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "LeftPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
             break;
         }
     }
@@ -408,14 +408,14 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             case 6:
             {
-                if (strcmp("NoSightingType", var_str) == 0) {
-                    self->goal_sightingType = NoSightingType;
-                } else if (strcmp("RightPostSightingType", var_str) == 0) {
-                    self->goal_sightingType = RightPostSightingType;
-                } else if (strcmp("GoalSightingType", var_str) == 0) {
+                if (strcmp("GoalSightingType", var_str) == 0) {
                     self->goal_sightingType = GoalSightingType;
                 } else if (strcmp("LeftPostSightingType", var_str) == 0) {
                     self->goal_sightingType = LeftPostSightingType;
+                } else if (strcmp("NoSightingType", var_str) == 0) {
+                    self->goal_sightingType = NoSightingType;
+                } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = RightPostSightingType;
                 } else {
                     self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
                 }

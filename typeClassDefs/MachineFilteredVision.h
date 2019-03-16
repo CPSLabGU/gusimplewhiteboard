@@ -174,16 +174,6 @@ namespace guWhiteboard {
             ss << "goal_visible=" << (this->goal_visible() ? "true" : "false");
             ss << ", ";
             switch (this->goal_sightingType()) {
-                case NoSightingType:
-                {
-                    ss << "goal_sightingType=" << "NoSightingType";
-                    break;
-                }
-                case RightPostSightingType:
-                {
-                    ss << "goal_sightingType=" << "RightPostSightingType";
-                    break;
-                }
                 case GoalSightingType:
                 {
                     ss << "goal_sightingType=" << "GoalSightingType";
@@ -192,6 +182,16 @@ namespace guWhiteboard {
                 case LeftPostSightingType:
                 {
                     ss << "goal_sightingType=" << "LeftPostSightingType";
+                    break;
+                }
+                case NoSightingType:
+                {
+                    ss << "goal_sightingType=" << "NoSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "goal_sightingType=" << "RightPostSightingType";
                     break;
                 }
             }
@@ -220,16 +220,6 @@ namespace guWhiteboard {
             ss << (this->goal_visible() ? "true" : "false");
             ss << ", ";
             switch (this->goal_sightingType()) {
-                case NoSightingType:
-                {
-                    ss << "NoSightingType";
-                    break;
-                }
-                case RightPostSightingType:
-                {
-                    ss << "RightPostSightingType";
-                    break;
-                }
                 case GoalSightingType:
                 {
                     ss << "GoalSightingType";
@@ -238,6 +228,16 @@ namespace guWhiteboard {
                 case LeftPostSightingType:
                 {
                     ss << "LeftPostSightingType";
+                    break;
+                }
+                case NoSightingType:
+                {
+                    ss << "NoSightingType";
+                    break;
+                }
+                case RightPostSightingType:
+                {
+                    ss << "RightPostSightingType";
                     break;
                 }
             }
@@ -368,14 +368,14 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        if (strcmp("NoSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(NoSightingType);
-                        } else if (strcmp("RightPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(RightPostSightingType);
-                        } else if (strcmp("GoalSightingType", var_str) == 0) {
+                        if (strcmp("GoalSightingType", var_str) == 0) {
                             this->set_goal_sightingType(GoalSightingType);
                         } else if (strcmp("LeftPostSightingType", var_str) == 0) {
                             this->set_goal_sightingType(LeftPostSightingType);
+                        } else if (strcmp("NoSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(NoSightingType);
+                        } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                            this->set_goal_sightingType(RightPostSightingType);
                         } else {
                             this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
                         }

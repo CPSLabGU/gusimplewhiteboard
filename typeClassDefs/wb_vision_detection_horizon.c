@@ -130,24 +130,24 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
         return descString;
     }
     switch (self->horizonType) {
-        case HorizonFailed:
-        {
-            len += snprintf(descString + len, bufferSize - len, "horizonType=HorizonFailed");
-            break;
-        }
-        case SingleHorizon:
-        {
-            len += snprintf(descString + len, bufferSize - len, "horizonType=SingleHorizon");
-            break;
-        }
         case CornerHorizon:
         {
             len += snprintf(descString + len, bufferSize - len, "horizonType=CornerHorizon");
             break;
         }
+        case HorizonFailed:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=HorizonFailed");
+            break;
+        }
         case OnlyField:
         {
             len += snprintf(descString + len, bufferSize - len, "horizonType=OnlyField");
+            break;
+        }
+        case SingleHorizon:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=SingleHorizon");
             break;
         }
     }
@@ -214,24 +214,24 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
         return toString;
     }
     switch (self->horizonType) {
-        case HorizonFailed:
-        {
-            len += snprintf(toString + len, bufferSize - len, "HorizonFailed");
-            break;
-        }
-        case SingleHorizon:
-        {
-            len += snprintf(toString + len, bufferSize - len, "SingleHorizon");
-            break;
-        }
         case CornerHorizon:
         {
             len += snprintf(toString + len, bufferSize - len, "CornerHorizon");
             break;
         }
+        case HorizonFailed:
+        {
+            len += snprintf(toString + len, bufferSize - len, "HorizonFailed");
+            break;
+        }
         case OnlyField:
         {
             len += snprintf(toString + len, bufferSize - len, "OnlyField");
+            break;
+        }
+        case SingleHorizon:
+        {
+            len += snprintf(toString + len, bufferSize - len, "SingleHorizon");
             break;
         }
     }
@@ -378,14 +378,14 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("HorizonFailed", var_str) == 0) {
-                    self->horizonType = HorizonFailed;
-                } else if (strcmp("SingleHorizon", var_str) == 0) {
-                    self->horizonType = SingleHorizon;
-                } else if (strcmp("CornerHorizon", var_str) == 0) {
+                if (strcmp("CornerHorizon", var_str) == 0) {
                     self->horizonType = CornerHorizon;
+                } else if (strcmp("HorizonFailed", var_str) == 0) {
+                    self->horizonType = HorizonFailed;
                 } else if (strcmp("OnlyField", var_str) == 0) {
                     self->horizonType = OnlyField;
+                } else if (strcmp("SingleHorizon", var_str) == 0) {
+                    self->horizonType = SingleHorizon;
                 } else {
                     self->horizonType = ((enum HorizonOptions)atoi(var_str));
                 }
