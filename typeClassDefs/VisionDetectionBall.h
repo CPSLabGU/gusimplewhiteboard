@@ -134,7 +134,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionBall(const std::string &str) { wb_vision_detection_ball_from_string(this, str.c_str()); }
+        VisionDetectionBall(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
@@ -153,10 +155,6 @@ namespace guWhiteboard {
                 case BallDetected:
                 {
                     ss << "sightingType=" << "BallDetected";
-                    break;
-                }
-                default: {
-                    ss << "sightingType=" << static_cast<signed>(this->sightingType());
                     break;
                 }
             }
@@ -189,10 +187,6 @@ namespace guWhiteboard {
                     ss << "BallDetected";
                     break;
                 }
-                default: {
-                    ss << static_cast<signed>(this->sightingType());
-                    break;
-                }
             }
             ss << ", ";
             ss << static_cast<signed>(this->x());
@@ -212,10 +206,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];

@@ -149,7 +149,9 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionHorizon(const std::string &str) { wb_vision_detection_horizon_from_string(this, str.c_str()); }
+        VisionDetectionHorizon(const std::string &str) {
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
@@ -160,14 +162,14 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case OnlyField:
-                {
-                    ss << "horizonType=" << "OnlyField";
-                    break;
-                }
                 case CornerHorizon:
                 {
                     ss << "horizonType=" << "CornerHorizon";
+                    break;
+                }
+                case OnlyField:
+                {
+                    ss << "horizonType=" << "OnlyField";
                     break;
                 }
                 case SingleHorizon:
@@ -178,10 +180,6 @@ namespace guWhiteboard {
                 case HorizonFailed:
                 {
                     ss << "horizonType=" << "HorizonFailed";
-                    break;
-                }
-                default: {
-                    ss << "horizonType=" << static_cast<signed>(this->horizonType());
                     break;
                 }
             }
@@ -210,14 +208,14 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->horizonType()) {
-                case OnlyField:
-                {
-                    ss << "OnlyField";
-                    break;
-                }
                 case CornerHorizon:
                 {
                     ss << "CornerHorizon";
+                    break;
+                }
+                case OnlyField:
+                {
+                    ss << "OnlyField";
                     break;
                 }
                 case SingleHorizon:
@@ -228,10 +226,6 @@ namespace guWhiteboard {
                 case HorizonFailed:
                 {
                     ss << "HorizonFailed";
-                    break;
-                }
-                default: {
-                    ss << static_cast<signed>(this->horizonType());
                     break;
                 }
             }
@@ -259,10 +253,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -344,10 +338,10 @@ namespace guWhiteboard {
                 switch (varIndex) {
                     case 0:
                     {
-                        if (strcmp("OnlyField", var_str) == 0) {
-                            this->set_horizonType(OnlyField);
-                        } else if (strcmp("CornerHorizon", var_str) == 0) {
+                        if (strcmp("CornerHorizon", var_str) == 0) {
                             this->set_horizonType(CornerHorizon);
+                        } else if (strcmp("OnlyField", var_str) == 0) {
+                            this->set_horizonType(OnlyField);
                         } else if (strcmp("SingleHorizon", var_str) == 0) {
                             this->set_horizonType(SingleHorizon);
                         } else if (strcmp("HorizonFailed", var_str) == 0) {

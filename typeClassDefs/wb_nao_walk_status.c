@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_nao_walk_status.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -126,19 +130,14 @@ const char* wb_nao_walk_status_description(const struct wb_nao_walk_status* self
         return descString;
     }
     switch (self->walkEngineState) {
-        case wes_Walking:
-        {
-            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Walking");
-            break;
-        }
-        case wes_StoppedReady:
-        {
-            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedReady");
-            break;
-        }
         case wes_StoppedStanding:
         {
             len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedStanding");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Walking");
             break;
         }
         case wes_Disconnected:
@@ -146,8 +145,9 @@ const char* wb_nao_walk_status_description(const struct wb_nao_walk_status* self
             len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Disconnected");
             break;
         }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "walkEngineState=%d", self->walkEngineState);
+        case wes_StoppedReady:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedReady");
             break;
         }
     }
@@ -174,19 +174,14 @@ const char* wb_nao_walk_status_to_string(const struct wb_nao_walk_status* self, 
         return toString;
     }
     switch (self->walkEngineState) {
-        case wes_Walking:
-        {
-            len += snprintf(toString + len, bufferSize - len, "wes_Walking");
-            break;
-        }
-        case wes_StoppedReady:
-        {
-            len += snprintf(toString + len, bufferSize - len, "wes_StoppedReady");
-            break;
-        }
         case wes_StoppedStanding:
         {
             len += snprintf(toString + len, bufferSize - len, "wes_StoppedStanding");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_Walking");
             break;
         }
         case wes_Disconnected:
@@ -194,8 +189,9 @@ const char* wb_nao_walk_status_to_string(const struct wb_nao_walk_status* self, 
             len += snprintf(toString + len, bufferSize - len, "wes_Disconnected");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->walkEngineState);
+        case wes_StoppedReady:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_StoppedReady");
             break;
         }
     }
@@ -217,10 +213,10 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > NAOWALKSTATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[NAOWALKSTATUS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[NAOWALKSTATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[21];
     char* key = &key_buffer[0];
@@ -292,14 +288,14 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("wes_Walking", var_str) == 0) {
-                    self->walkEngineState = wes_Walking;
-                } else if (strcmp("wes_StoppedReady", var_str) == 0) {
-                    self->walkEngineState = wes_StoppedReady;
-                } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                if (strcmp("wes_StoppedStanding", var_str) == 0) {
                     self->walkEngineState = wes_StoppedStanding;
+                } else if (strcmp("wes_Walking", var_str) == 0) {
+                    self->walkEngineState = wes_Walking;
                 } else if (strcmp("wes_Disconnected", var_str) == 0) {
                     self->walkEngineState = wes_Disconnected;
+                } else if (strcmp("wes_StoppedReady", var_str) == 0) {
+                    self->walkEngineState = wes_StoppedReady;
                 } else {
                     self->walkEngineState = ((enum WalkEngineState)atoi(var_str));
                 }
@@ -315,8 +311,6 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

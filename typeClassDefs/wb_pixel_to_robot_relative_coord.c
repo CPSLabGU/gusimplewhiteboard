@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_pixel_to_robot_relative_coord.h"
 #include <stdio.h>
 #include <string.h>
@@ -164,7 +168,7 @@ static double get_camera_height(enum VisionCamera camera, struct wb_sensors_tors
     return height + HEAD_BASE_HEIGHT;
 }
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -197,10 +201,10 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[0];
     char* key = &key_buffer[0];
@@ -272,8 +276,6 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

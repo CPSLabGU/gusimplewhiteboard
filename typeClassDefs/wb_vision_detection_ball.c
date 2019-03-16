@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_ball.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -134,10 +138,6 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
         case BallDetected:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=BallDetected");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
             break;
         }
     }
@@ -190,10 +190,6 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
             len += snprintf(toString + len, bufferSize - len, "BallDetected");
             break;
         }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
-            break;
-        }
     }
     if (len >= bufferSize) {
         return toString;
@@ -229,10 +225,10 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];
@@ -337,8 +333,6 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

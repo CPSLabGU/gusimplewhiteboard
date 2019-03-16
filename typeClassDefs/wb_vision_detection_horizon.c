@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_horizon.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -126,14 +130,14 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
         return descString;
     }
     switch (self->horizonType) {
-        case OnlyField:
-        {
-            len += snprintf(descString + len, bufferSize - len, "horizonType=OnlyField");
-            break;
-        }
         case CornerHorizon:
         {
             len += snprintf(descString + len, bufferSize - len, "horizonType=CornerHorizon");
+            break;
+        }
+        case OnlyField:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=OnlyField");
             break;
         }
         case SingleHorizon:
@@ -144,10 +148,6 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
         case HorizonFailed:
         {
             len += snprintf(descString + len, bufferSize - len, "horizonType=HorizonFailed");
-            break;
-        }
-        default: {
-            len += snprintf(descString + len, bufferSize - len, "horizonType=%d", self->horizonType);
             break;
         }
     }
@@ -214,14 +214,14 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
         return toString;
     }
     switch (self->horizonType) {
-        case OnlyField:
-        {
-            len += snprintf(toString + len, bufferSize - len, "OnlyField");
-            break;
-        }
         case CornerHorizon:
         {
             len += snprintf(toString + len, bufferSize - len, "CornerHorizon");
+            break;
+        }
+        case OnlyField:
+        {
+            len += snprintf(toString + len, bufferSize - len, "OnlyField");
             break;
         }
         case SingleHorizon:
@@ -232,10 +232,6 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
         case HorizonFailed:
         {
             len += snprintf(toString + len, bufferSize - len, "HorizonFailed");
-            break;
-        }
-        default: {
-            len += snprintf(toString + len, bufferSize - len, "%d", self->horizonType);
             break;
         }
     }
@@ -297,10 +293,10 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -382,10 +378,10 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
         switch (varIndex) {
             case 0:
             {
-                if (strcmp("OnlyField", var_str) == 0) {
-                    self->horizonType = OnlyField;
-                } else if (strcmp("CornerHorizon", var_str) == 0) {
+                if (strcmp("CornerHorizon", var_str) == 0) {
                     self->horizonType = CornerHorizon;
+                } else if (strcmp("OnlyField", var_str) == 0) {
+                    self->horizonType = OnlyField;
                 } else if (strcmp("SingleHorizon", var_str) == 0) {
                     self->horizonType = SingleHorizon;
                 } else if (strcmp("HorizonFailed", var_str) == 0) {
@@ -430,8 +426,6 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
