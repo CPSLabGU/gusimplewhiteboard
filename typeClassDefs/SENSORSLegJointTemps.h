@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SENSORSLegJointTemps: public wb_sensors_legjointtemps {
 
-    public:
+    private:
 
         /**
-         * Create a new `SENSORSLegJointTemps`.
+         * Set the members of the class.
          */
-        SENSORSLegJointTemps(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
+        void init(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
             set_LKneePitch(LKneePitch);
             set_LAnklePitch(LAnklePitch);
             set_LAnkleRoll(LAnkleRoll);
@@ -90,40 +90,34 @@ namespace guWhiteboard {
             set_RAnkleRoll(RAnkleRoll);
         }
 
+    public:
+
+        /**
+         * Create a new `SENSORSLegJointTemps`.
+         */
+        SENSORSLegJointTemps(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
+            this->init(LKneePitch, LAnklePitch, LAnkleRoll, RKneePitch, RAnklePitch, RAnkleRoll);
+        }
+
         /**
          * Copy Constructor.
          */
         SENSORSLegJointTemps(const SENSORSLegJointTemps &other): wb_sensors_legjointtemps() {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
         }
 
         /**
          * Copy Constructor.
          */
         SENSORSLegJointTemps(const struct wb_sensors_legjointtemps &other): wb_sensors_legjointtemps() {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SENSORSLegJointTemps &operator = (const SENSORSLegJointTemps &other) {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
             return *this;
         }
 
@@ -131,12 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SENSORSLegJointTemps &operator = (const struct wb_sensors_legjointtemps &other) {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
             return *this;
         }
 
@@ -145,6 +134,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SENSORSLegJointTemps(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

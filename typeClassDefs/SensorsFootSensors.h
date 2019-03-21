@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SensorsFootSensors: public wb_sensors_foot_sensors {
 
-    public:
+    private:
 
         /**
-         * Create a new `SensorsFootSensors`.
+         * Set the members of the class.
          */
-        SensorsFootSensors(float LFoot_FSR_FrontLeft = 0.0f, float LFoot_FSR_FrontRight = 0.0f, float LFoot_FSR_RearLeft = 0.0f, float LFoot_FSR_RearRight = 0.0f, float LFoot_FSR_CenterOfPressure_X = 0.0f, float LFoot_FSR_CenterOfPressure_Y = 0.0f, float LFoot_FSR_TotalWeight = 0.0f, float RFoot_FSR_FrontLeft = 0.0f, float RFoot_FSR_FrontRight = 0.0f, float RFoot_FSR_RearLeft = 0.0f, float RFoot_FSR_RearRight = 0.0f, float RFoot_FSR_CenterOfPressure_X = 0.0f, float RFoot_FSR_CenterOfPressure_Y = 0.0f, float RFoot_FSR_TotalWeight = 0.0f, bool LFoot_Bumper_Left = true, bool LFoot_Bumper_Right = true, bool RFoot_Bumper_Left = true, bool RFoot_Bumper_Right = true) {
+        void init(float LFoot_FSR_FrontLeft = 0.0f, float LFoot_FSR_FrontRight = 0.0f, float LFoot_FSR_RearLeft = 0.0f, float LFoot_FSR_RearRight = 0.0f, float LFoot_FSR_CenterOfPressure_X = 0.0f, float LFoot_FSR_CenterOfPressure_Y = 0.0f, float LFoot_FSR_TotalWeight = 0.0f, float RFoot_FSR_FrontLeft = 0.0f, float RFoot_FSR_FrontRight = 0.0f, float RFoot_FSR_RearLeft = 0.0f, float RFoot_FSR_RearRight = 0.0f, float RFoot_FSR_CenterOfPressure_X = 0.0f, float RFoot_FSR_CenterOfPressure_Y = 0.0f, float RFoot_FSR_TotalWeight = 0.0f, bool LFoot_Bumper_Left = true, bool LFoot_Bumper_Right = true, bool RFoot_Bumper_Left = true, bool RFoot_Bumper_Right = true) {
             set_LFoot_FSR_FrontLeft(LFoot_FSR_FrontLeft);
             set_LFoot_FSR_FrontRight(LFoot_FSR_FrontRight);
             set_LFoot_FSR_RearLeft(LFoot_FSR_RearLeft);
@@ -102,76 +102,34 @@ namespace guWhiteboard {
             set_RFoot_Bumper_Right(RFoot_Bumper_Right);
         }
 
+    public:
+
+        /**
+         * Create a new `SensorsFootSensors`.
+         */
+        SensorsFootSensors(float LFoot_FSR_FrontLeft = 0.0f, float LFoot_FSR_FrontRight = 0.0f, float LFoot_FSR_RearLeft = 0.0f, float LFoot_FSR_RearRight = 0.0f, float LFoot_FSR_CenterOfPressure_X = 0.0f, float LFoot_FSR_CenterOfPressure_Y = 0.0f, float LFoot_FSR_TotalWeight = 0.0f, float RFoot_FSR_FrontLeft = 0.0f, float RFoot_FSR_FrontRight = 0.0f, float RFoot_FSR_RearLeft = 0.0f, float RFoot_FSR_RearRight = 0.0f, float RFoot_FSR_CenterOfPressure_X = 0.0f, float RFoot_FSR_CenterOfPressure_Y = 0.0f, float RFoot_FSR_TotalWeight = 0.0f, bool LFoot_Bumper_Left = true, bool LFoot_Bumper_Right = true, bool RFoot_Bumper_Left = true, bool RFoot_Bumper_Right = true) {
+            this->init(LFoot_FSR_FrontLeft, LFoot_FSR_FrontRight, LFoot_FSR_RearLeft, LFoot_FSR_RearRight, LFoot_FSR_CenterOfPressure_X, LFoot_FSR_CenterOfPressure_Y, LFoot_FSR_TotalWeight, RFoot_FSR_FrontLeft, RFoot_FSR_FrontRight, RFoot_FSR_RearLeft, RFoot_FSR_RearRight, RFoot_FSR_CenterOfPressure_X, RFoot_FSR_CenterOfPressure_Y, RFoot_FSR_TotalWeight, LFoot_Bumper_Left, LFoot_Bumper_Right, RFoot_Bumper_Left, RFoot_Bumper_Right);
+        }
+
         /**
          * Copy Constructor.
          */
         SensorsFootSensors(const SensorsFootSensors &other): wb_sensors_foot_sensors() {
-            set_LFoot_FSR_FrontLeft(other.LFoot_FSR_FrontLeft());
-            set_LFoot_FSR_FrontRight(other.LFoot_FSR_FrontRight());
-            set_LFoot_FSR_RearLeft(other.LFoot_FSR_RearLeft());
-            set_LFoot_FSR_RearRight(other.LFoot_FSR_RearRight());
-            set_LFoot_FSR_CenterOfPressure_X(other.LFoot_FSR_CenterOfPressure_X());
-            set_LFoot_FSR_CenterOfPressure_Y(other.LFoot_FSR_CenterOfPressure_Y());
-            set_LFoot_FSR_TotalWeight(other.LFoot_FSR_TotalWeight());
-            set_RFoot_FSR_FrontLeft(other.RFoot_FSR_FrontLeft());
-            set_RFoot_FSR_FrontRight(other.RFoot_FSR_FrontRight());
-            set_RFoot_FSR_RearLeft(other.RFoot_FSR_RearLeft());
-            set_RFoot_FSR_RearRight(other.RFoot_FSR_RearRight());
-            set_RFoot_FSR_CenterOfPressure_X(other.RFoot_FSR_CenterOfPressure_X());
-            set_RFoot_FSR_CenterOfPressure_Y(other.RFoot_FSR_CenterOfPressure_Y());
-            set_RFoot_FSR_TotalWeight(other.RFoot_FSR_TotalWeight());
-            set_LFoot_Bumper_Left(other.LFoot_Bumper_Left());
-            set_LFoot_Bumper_Right(other.LFoot_Bumper_Right());
-            set_RFoot_Bumper_Left(other.RFoot_Bumper_Left());
-            set_RFoot_Bumper_Right(other.RFoot_Bumper_Right());
+            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
         }
 
         /**
          * Copy Constructor.
          */
         SensorsFootSensors(const struct wb_sensors_foot_sensors &other): wb_sensors_foot_sensors() {
-            set_LFoot_FSR_FrontLeft(other.LFoot_FSR_FrontLeft());
-            set_LFoot_FSR_FrontRight(other.LFoot_FSR_FrontRight());
-            set_LFoot_FSR_RearLeft(other.LFoot_FSR_RearLeft());
-            set_LFoot_FSR_RearRight(other.LFoot_FSR_RearRight());
-            set_LFoot_FSR_CenterOfPressure_X(other.LFoot_FSR_CenterOfPressure_X());
-            set_LFoot_FSR_CenterOfPressure_Y(other.LFoot_FSR_CenterOfPressure_Y());
-            set_LFoot_FSR_TotalWeight(other.LFoot_FSR_TotalWeight());
-            set_RFoot_FSR_FrontLeft(other.RFoot_FSR_FrontLeft());
-            set_RFoot_FSR_FrontRight(other.RFoot_FSR_FrontRight());
-            set_RFoot_FSR_RearLeft(other.RFoot_FSR_RearLeft());
-            set_RFoot_FSR_RearRight(other.RFoot_FSR_RearRight());
-            set_RFoot_FSR_CenterOfPressure_X(other.RFoot_FSR_CenterOfPressure_X());
-            set_RFoot_FSR_CenterOfPressure_Y(other.RFoot_FSR_CenterOfPressure_Y());
-            set_RFoot_FSR_TotalWeight(other.RFoot_FSR_TotalWeight());
-            set_LFoot_Bumper_Left(other.LFoot_Bumper_Left());
-            set_LFoot_Bumper_Right(other.LFoot_Bumper_Right());
-            set_RFoot_Bumper_Left(other.RFoot_Bumper_Left());
-            set_RFoot_Bumper_Right(other.RFoot_Bumper_Right());
+            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SensorsFootSensors &operator = (const SensorsFootSensors &other) {
-            set_LFoot_FSR_FrontLeft(other.LFoot_FSR_FrontLeft());
-            set_LFoot_FSR_FrontRight(other.LFoot_FSR_FrontRight());
-            set_LFoot_FSR_RearLeft(other.LFoot_FSR_RearLeft());
-            set_LFoot_FSR_RearRight(other.LFoot_FSR_RearRight());
-            set_LFoot_FSR_CenterOfPressure_X(other.LFoot_FSR_CenterOfPressure_X());
-            set_LFoot_FSR_CenterOfPressure_Y(other.LFoot_FSR_CenterOfPressure_Y());
-            set_LFoot_FSR_TotalWeight(other.LFoot_FSR_TotalWeight());
-            set_RFoot_FSR_FrontLeft(other.RFoot_FSR_FrontLeft());
-            set_RFoot_FSR_FrontRight(other.RFoot_FSR_FrontRight());
-            set_RFoot_FSR_RearLeft(other.RFoot_FSR_RearLeft());
-            set_RFoot_FSR_RearRight(other.RFoot_FSR_RearRight());
-            set_RFoot_FSR_CenterOfPressure_X(other.RFoot_FSR_CenterOfPressure_X());
-            set_RFoot_FSR_CenterOfPressure_Y(other.RFoot_FSR_CenterOfPressure_Y());
-            set_RFoot_FSR_TotalWeight(other.RFoot_FSR_TotalWeight());
-            set_LFoot_Bumper_Left(other.LFoot_Bumper_Left());
-            set_LFoot_Bumper_Right(other.LFoot_Bumper_Right());
-            set_RFoot_Bumper_Left(other.RFoot_Bumper_Left());
-            set_RFoot_Bumper_Right(other.RFoot_Bumper_Right());
+            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
             return *this;
         }
 
@@ -179,24 +137,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SensorsFootSensors &operator = (const struct wb_sensors_foot_sensors &other) {
-            set_LFoot_FSR_FrontLeft(other.LFoot_FSR_FrontLeft());
-            set_LFoot_FSR_FrontRight(other.LFoot_FSR_FrontRight());
-            set_LFoot_FSR_RearLeft(other.LFoot_FSR_RearLeft());
-            set_LFoot_FSR_RearRight(other.LFoot_FSR_RearRight());
-            set_LFoot_FSR_CenterOfPressure_X(other.LFoot_FSR_CenterOfPressure_X());
-            set_LFoot_FSR_CenterOfPressure_Y(other.LFoot_FSR_CenterOfPressure_Y());
-            set_LFoot_FSR_TotalWeight(other.LFoot_FSR_TotalWeight());
-            set_RFoot_FSR_FrontLeft(other.RFoot_FSR_FrontLeft());
-            set_RFoot_FSR_FrontRight(other.RFoot_FSR_FrontRight());
-            set_RFoot_FSR_RearLeft(other.RFoot_FSR_RearLeft());
-            set_RFoot_FSR_RearRight(other.RFoot_FSR_RearRight());
-            set_RFoot_FSR_CenterOfPressure_X(other.RFoot_FSR_CenterOfPressure_X());
-            set_RFoot_FSR_CenterOfPressure_Y(other.RFoot_FSR_CenterOfPressure_Y());
-            set_RFoot_FSR_TotalWeight(other.RFoot_FSR_TotalWeight());
-            set_LFoot_Bumper_Left(other.LFoot_Bumper_Left());
-            set_LFoot_Bumper_Right(other.LFoot_Bumper_Right());
-            set_RFoot_Bumper_Left(other.RFoot_Bumper_Left());
-            set_RFoot_Bumper_Right(other.RFoot_Bumper_Right());
+            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
             return *this;
         }
 
@@ -205,6 +146,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SensorsFootSensors(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

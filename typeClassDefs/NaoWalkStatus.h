@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class NaoWalkStatus: public wb_nao_walk_status {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(enum WalkEngineState walkEngineState = wes_Disconnected, struct Odometry_s odometry = Odometry_s(), uint8_t odometryResetCounter = 0) {
+            set_walkEngineState(walkEngineState);
+            set_odometry(odometry);
+            set_odometryResetCounter(odometryResetCounter);
+        }
+
     public:
 
         /**
          * Create a new `NaoWalkStatus`.
          */
         NaoWalkStatus(enum WalkEngineState walkEngineState = wes_Disconnected, struct Odometry_s odometry = Odometry_s(), uint8_t odometryResetCounter = 0) {
-            set_walkEngineState(walkEngineState);
-            set_odometry(odometry);
-            set_odometryResetCounter(odometryResetCounter);
+            this->init(walkEngineState, odometry, odometryResetCounter);
         }
 
         /**
          * Copy Constructor.
          */
         NaoWalkStatus(const NaoWalkStatus &other): wb_nao_walk_status() {
-            set_walkEngineState(other.walkEngineState());
-            set_odometry(other.odometry());
-            set_odometryResetCounter(other.odometryResetCounter());
+            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
         }
 
         /**
          * Copy Constructor.
          */
         NaoWalkStatus(const struct wb_nao_walk_status &other): wb_nao_walk_status() {
-            set_walkEngineState(other.walkEngineState());
-            set_odometry(other.odometry());
-            set_odometryResetCounter(other.odometryResetCounter());
+            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
         }
 
         /**
          * Copy Assignment Operator.
          */
         NaoWalkStatus &operator = (const NaoWalkStatus &other) {
-            set_walkEngineState(other.walkEngineState());
-            set_odometry(other.odometry());
-            set_odometryResetCounter(other.odometryResetCounter());
+            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         NaoWalkStatus &operator = (const struct wb_nao_walk_status &other) {
-            set_walkEngineState(other.walkEngineState());
-            set_odometry(other.odometry());
-            set_odometryResetCounter(other.odometryResetCounter());
+            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
             return *this;
         }
 
@@ -130,6 +131,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         NaoWalkStatus(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

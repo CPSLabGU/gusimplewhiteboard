@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class HalLegTarget: public wb_hal_leg_target {
 
-    public:
+    private:
 
         /**
-         * Create a new `HalLegTarget`.
+         * Set the members of the class.
          */
-        HalLegTarget(int32_t target_movement_time = INT_MAX, int16_t target_hipyawpitch = 0, int16_t target_hiproll = 0, int16_t target_hippitch = 0, int16_t target_kneepitch = 0, int16_t target_anklepitch = 0, int16_t target_ankleroll = 0, uint8_t target_leg = LEFT_LEG, uint8_t target_hipyawpitchstiffness = 0, uint8_t target_hiprollstiffness = 0, uint8_t target_hippitchstiffness = 0, uint8_t target_kneepitchstiffness = 0, uint8_t target_anklepitchstiffness = 0, uint8_t target_anklerollstiffness = 0, uint8_t target_pliability = 0, unsigned int target_hipyawpitch_active = true, unsigned int target_hiproll_active = true, unsigned int target_hippitch_active = true, unsigned int target_kneepitch_active = true, unsigned int target_anklepitch_active = true, unsigned int target_ankleroll_active = true, unsigned int target_leg_at_goal = false, unsigned int target_leg_stop = false) {
+        void init(int32_t target_movement_time = INT_MAX, int16_t target_hipyawpitch = 0, int16_t target_hiproll = 0, int16_t target_hippitch = 0, int16_t target_kneepitch = 0, int16_t target_anklepitch = 0, int16_t target_ankleroll = 0, uint8_t target_leg = LEFT_LEG, uint8_t target_hipyawpitchstiffness = 0, uint8_t target_hiprollstiffness = 0, uint8_t target_hippitchstiffness = 0, uint8_t target_kneepitchstiffness = 0, uint8_t target_anklepitchstiffness = 0, uint8_t target_anklerollstiffness = 0, uint8_t target_pliability = 0, unsigned int target_hipyawpitch_active = true, unsigned int target_hiproll_active = true, unsigned int target_hippitch_active = true, unsigned int target_kneepitch_active = true, unsigned int target_anklepitch_active = true, unsigned int target_ankleroll_active = true, unsigned int target_leg_at_goal = false, unsigned int target_leg_stop = false) {
             set_target_movement_time(target_movement_time);
             set_target_hipyawpitch(target_hipyawpitch);
             set_target_hiproll(target_hiproll);
@@ -107,91 +107,34 @@ namespace guWhiteboard {
             set_target_leg_stop(target_leg_stop);
         }
 
+    public:
+
+        /**
+         * Create a new `HalLegTarget`.
+         */
+        HalLegTarget(int32_t target_movement_time = INT_MAX, int16_t target_hipyawpitch = 0, int16_t target_hiproll = 0, int16_t target_hippitch = 0, int16_t target_kneepitch = 0, int16_t target_anklepitch = 0, int16_t target_ankleroll = 0, uint8_t target_leg = LEFT_LEG, uint8_t target_hipyawpitchstiffness = 0, uint8_t target_hiprollstiffness = 0, uint8_t target_hippitchstiffness = 0, uint8_t target_kneepitchstiffness = 0, uint8_t target_anklepitchstiffness = 0, uint8_t target_anklerollstiffness = 0, uint8_t target_pliability = 0, unsigned int target_hipyawpitch_active = true, unsigned int target_hiproll_active = true, unsigned int target_hippitch_active = true, unsigned int target_kneepitch_active = true, unsigned int target_anklepitch_active = true, unsigned int target_ankleroll_active = true, unsigned int target_leg_at_goal = false, unsigned int target_leg_stop = false) {
+            this->init(target_movement_time, target_hipyawpitch, target_hiproll, target_hippitch, target_kneepitch, target_anklepitch, target_ankleroll, target_leg, target_hipyawpitchstiffness, target_hiprollstiffness, target_hippitchstiffness, target_kneepitchstiffness, target_anklepitchstiffness, target_anklerollstiffness, target_pliability, target_hipyawpitch_active, target_hiproll_active, target_hippitch_active, target_kneepitch_active, target_anklepitch_active, target_ankleroll_active, target_leg_at_goal, target_leg_stop);
+        }
+
         /**
          * Copy Constructor.
          */
         HalLegTarget(const HalLegTarget &other): wb_hal_leg_target() {
-            set_target_movement_time(other.target_movement_time());
-            set_target_hipyawpitch(other.target_hipyawpitch());
-            set_target_hiproll(other.target_hiproll());
-            set_target_hippitch(other.target_hippitch());
-            set_target_kneepitch(other.target_kneepitch());
-            set_target_anklepitch(other.target_anklepitch());
-            set_target_ankleroll(other.target_ankleroll());
-            set_target_leg(other.target_leg());
-            set_target_hipyawpitchstiffness(other.target_hipyawpitchstiffness());
-            set_target_hiprollstiffness(other.target_hiprollstiffness());
-            set_target_hippitchstiffness(other.target_hippitchstiffness());
-            set_target_kneepitchstiffness(other.target_kneepitchstiffness());
-            set_target_anklepitchstiffness(other.target_anklepitchstiffness());
-            set_target_anklerollstiffness(other.target_anklerollstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_hipyawpitch_active(other.target_hipyawpitch_active());
-            set_target_hiproll_active(other.target_hiproll_active());
-            set_target_hippitch_active(other.target_hippitch_active());
-            set_target_kneepitch_active(other.target_kneepitch_active());
-            set_target_anklepitch_active(other.target_anklepitch_active());
-            set_target_ankleroll_active(other.target_ankleroll_active());
-            set_target_leg_at_goal(other.target_leg_at_goal());
-            set_target_leg_stop(other.target_leg_stop());
+            this->init(other.target_movement_time(), other.target_hipyawpitch(), other.target_hiproll(), other.target_hippitch(), other.target_kneepitch(), other.target_anklepitch(), other.target_ankleroll(), other.target_leg(), other.target_hipyawpitchstiffness(), other.target_hiprollstiffness(), other.target_hippitchstiffness(), other.target_kneepitchstiffness(), other.target_anklepitchstiffness(), other.target_anklerollstiffness(), other.target_pliability(), other.target_hipyawpitch_active(), other.target_hiproll_active(), other.target_hippitch_active(), other.target_kneepitch_active(), other.target_anklepitch_active(), other.target_ankleroll_active(), other.target_leg_at_goal(), other.target_leg_stop());
         }
 
         /**
          * Copy Constructor.
          */
         HalLegTarget(const struct wb_hal_leg_target &other): wb_hal_leg_target() {
-            set_target_movement_time(other.target_movement_time());
-            set_target_hipyawpitch(other.target_hipyawpitch());
-            set_target_hiproll(other.target_hiproll());
-            set_target_hippitch(other.target_hippitch());
-            set_target_kneepitch(other.target_kneepitch());
-            set_target_anklepitch(other.target_anklepitch());
-            set_target_ankleroll(other.target_ankleroll());
-            set_target_leg(other.target_leg());
-            set_target_hipyawpitchstiffness(other.target_hipyawpitchstiffness());
-            set_target_hiprollstiffness(other.target_hiprollstiffness());
-            set_target_hippitchstiffness(other.target_hippitchstiffness());
-            set_target_kneepitchstiffness(other.target_kneepitchstiffness());
-            set_target_anklepitchstiffness(other.target_anklepitchstiffness());
-            set_target_anklerollstiffness(other.target_anklerollstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_hipyawpitch_active(other.target_hipyawpitch_active());
-            set_target_hiproll_active(other.target_hiproll_active());
-            set_target_hippitch_active(other.target_hippitch_active());
-            set_target_kneepitch_active(other.target_kneepitch_active());
-            set_target_anklepitch_active(other.target_anklepitch_active());
-            set_target_ankleroll_active(other.target_ankleroll_active());
-            set_target_leg_at_goal(other.target_leg_at_goal());
-            set_target_leg_stop(other.target_leg_stop());
+            this->init(other.target_movement_time(), other.target_hipyawpitch(), other.target_hiproll(), other.target_hippitch(), other.target_kneepitch(), other.target_anklepitch(), other.target_ankleroll(), other.target_leg(), other.target_hipyawpitchstiffness(), other.target_hiprollstiffness(), other.target_hippitchstiffness(), other.target_kneepitchstiffness(), other.target_anklepitchstiffness(), other.target_anklerollstiffness(), other.target_pliability(), other.target_hipyawpitch_active(), other.target_hiproll_active(), other.target_hippitch_active(), other.target_kneepitch_active(), other.target_anklepitch_active(), other.target_ankleroll_active(), other.target_leg_at_goal(), other.target_leg_stop());
         }
 
         /**
          * Copy Assignment Operator.
          */
         HalLegTarget &operator = (const HalLegTarget &other) {
-            set_target_movement_time(other.target_movement_time());
-            set_target_hipyawpitch(other.target_hipyawpitch());
-            set_target_hiproll(other.target_hiproll());
-            set_target_hippitch(other.target_hippitch());
-            set_target_kneepitch(other.target_kneepitch());
-            set_target_anklepitch(other.target_anklepitch());
-            set_target_ankleroll(other.target_ankleroll());
-            set_target_leg(other.target_leg());
-            set_target_hipyawpitchstiffness(other.target_hipyawpitchstiffness());
-            set_target_hiprollstiffness(other.target_hiprollstiffness());
-            set_target_hippitchstiffness(other.target_hippitchstiffness());
-            set_target_kneepitchstiffness(other.target_kneepitchstiffness());
-            set_target_anklepitchstiffness(other.target_anklepitchstiffness());
-            set_target_anklerollstiffness(other.target_anklerollstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_hipyawpitch_active(other.target_hipyawpitch_active());
-            set_target_hiproll_active(other.target_hiproll_active());
-            set_target_hippitch_active(other.target_hippitch_active());
-            set_target_kneepitch_active(other.target_kneepitch_active());
-            set_target_anklepitch_active(other.target_anklepitch_active());
-            set_target_ankleroll_active(other.target_ankleroll_active());
-            set_target_leg_at_goal(other.target_leg_at_goal());
-            set_target_leg_stop(other.target_leg_stop());
+            this->init(other.target_movement_time(), other.target_hipyawpitch(), other.target_hiproll(), other.target_hippitch(), other.target_kneepitch(), other.target_anklepitch(), other.target_ankleroll(), other.target_leg(), other.target_hipyawpitchstiffness(), other.target_hiprollstiffness(), other.target_hippitchstiffness(), other.target_kneepitchstiffness(), other.target_anklepitchstiffness(), other.target_anklerollstiffness(), other.target_pliability(), other.target_hipyawpitch_active(), other.target_hiproll_active(), other.target_hippitch_active(), other.target_kneepitch_active(), other.target_anklepitch_active(), other.target_ankleroll_active(), other.target_leg_at_goal(), other.target_leg_stop());
             return *this;
         }
 
@@ -199,29 +142,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         HalLegTarget &operator = (const struct wb_hal_leg_target &other) {
-            set_target_movement_time(other.target_movement_time());
-            set_target_hipyawpitch(other.target_hipyawpitch());
-            set_target_hiproll(other.target_hiproll());
-            set_target_hippitch(other.target_hippitch());
-            set_target_kneepitch(other.target_kneepitch());
-            set_target_anklepitch(other.target_anklepitch());
-            set_target_ankleroll(other.target_ankleroll());
-            set_target_leg(other.target_leg());
-            set_target_hipyawpitchstiffness(other.target_hipyawpitchstiffness());
-            set_target_hiprollstiffness(other.target_hiprollstiffness());
-            set_target_hippitchstiffness(other.target_hippitchstiffness());
-            set_target_kneepitchstiffness(other.target_kneepitchstiffness());
-            set_target_anklepitchstiffness(other.target_anklepitchstiffness());
-            set_target_anklerollstiffness(other.target_anklerollstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_hipyawpitch_active(other.target_hipyawpitch_active());
-            set_target_hiproll_active(other.target_hiproll_active());
-            set_target_hippitch_active(other.target_hippitch_active());
-            set_target_kneepitch_active(other.target_kneepitch_active());
-            set_target_anklepitch_active(other.target_anklepitch_active());
-            set_target_ankleroll_active(other.target_ankleroll_active());
-            set_target_leg_at_goal(other.target_leg_at_goal());
-            set_target_leg_stop(other.target_leg_stop());
+            this->init(other.target_movement_time(), other.target_hipyawpitch(), other.target_hiproll(), other.target_hippitch(), other.target_kneepitch(), other.target_anklepitch(), other.target_ankleroll(), other.target_leg(), other.target_hipyawpitchstiffness(), other.target_hiprollstiffness(), other.target_hippitchstiffness(), other.target_kneepitchstiffness(), other.target_anklepitchstiffness(), other.target_anklerollstiffness(), other.target_pliability(), other.target_hipyawpitch_active(), other.target_hiproll_active(), other.target_hippitch_active(), other.target_kneepitch_active(), other.target_anklepitch_active(), other.target_ankleroll_active(), other.target_leg_at_goal(), other.target_leg_stop());
             return *this;
         }
 
@@ -230,6 +151,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         HalLegTarget(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

@@ -78,38 +78,44 @@ namespace guWhiteboard {
      */
     class VisionFieldFeature: public wb_vision_field_feature {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(struct wb_point2d location = wb_point2d(), uint8_t camera = 1) {
+            set_location(location);
+            set_camera(camera);
+        }
+
     public:
 
         /**
          * Create a new `VisionFieldFeature`.
          */
         VisionFieldFeature(struct wb_point2d location = wb_point2d(), uint8_t camera = 1) {
-            set_location(location);
-            set_camera(camera);
+            this->init(location, camera);
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeature(const VisionFieldFeature &other): wb_vision_field_feature() {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeature(const struct wb_vision_field_feature &other): wb_vision_field_feature() {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionFieldFeature &operator = (const VisionFieldFeature &other) {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
             return *this;
         }
 
@@ -117,8 +123,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionFieldFeature &operator = (const struct wb_vision_field_feature &other) {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
             return *this;
         }
 
@@ -127,6 +132,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionFieldFeature(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

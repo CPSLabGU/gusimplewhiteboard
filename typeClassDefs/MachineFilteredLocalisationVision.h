@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class MachineFilteredLocalisationVision: public wb_machine_filtered_localisation_vision {
 
-    public:
+    private:
 
         /**
-         * Create a new `MachineFilteredLocalisationVision`.
+         * Set the members of the class.
          */
-        MachineFilteredLocalisationVision(uint8_t numberOfSightings = 0, struct wb_landmark_sighting sightings[12] = NULLPTR) {
+        void init(uint8_t numberOfSightings = 0, const struct wb_landmark_sighting sightings[12] = NULLPTR) {
             set_numberOfSightings(numberOfSightings);
             if (sightings != NULLPTR) {
                 std::memcpy(this->_sightings, sightings, MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
@@ -93,34 +93,34 @@ namespace guWhiteboard {
             }
         }
 
+    public:
+
+        /**
+         * Create a new `MachineFilteredLocalisationVision`.
+         */
+        MachineFilteredLocalisationVision(uint8_t numberOfSightings = 0, const struct wb_landmark_sighting sightings[12] = NULLPTR) {
+            this->init(numberOfSightings, sightings);
+        }
+
         /**
          * Copy Constructor.
          */
         MachineFilteredLocalisationVision(const MachineFilteredLocalisationVision &other): wb_machine_filtered_localisation_vision() {
-            set_numberOfSightings(other.numberOfSightings());
-            if (other.sightings() != NULLPTR) {
-                std::memcpy(this->_sightings, other.sightings(), MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
-            }
+            this->init(other.numberOfSightings(), other.sightings());
         }
 
         /**
          * Copy Constructor.
          */
         MachineFilteredLocalisationVision(const struct wb_machine_filtered_localisation_vision &other): wb_machine_filtered_localisation_vision() {
-            set_numberOfSightings(other.numberOfSightings());
-            if (other.sightings() != NULLPTR) {
-                std::memcpy(this->_sightings, other.sightings(), MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
-            }
+            this->init(other.numberOfSightings(), other.sightings());
         }
 
         /**
          * Copy Assignment Operator.
          */
         MachineFilteredLocalisationVision &operator = (const MachineFilteredLocalisationVision &other) {
-            set_numberOfSightings(other.numberOfSightings());
-            if (other.sightings() != NULLPTR) {
-                std::memcpy(this->_sightings, other.sightings(), MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
-            }
+            this->init(other.numberOfSightings(), other.sightings());
             return *this;
         }
 
@@ -128,10 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         MachineFilteredLocalisationVision &operator = (const struct wb_machine_filtered_localisation_vision &other) {
-            set_numberOfSightings(other.numberOfSightings());
-            if (other.sightings() != NULLPTR) {
-                std::memcpy(this->_sightings, other.sightings(), MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
-            }
+            this->init(other.numberOfSightings(), other.sightings());
             return *this;
         }
 
@@ -140,6 +137,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         MachineFilteredLocalisationVision(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

@@ -78,46 +78,46 @@ namespace guWhiteboard {
      */
     class VisionLine: public wb_vision_line {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionLine`.
+         * Set the members of the class.
          */
-        VisionLine(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
+        void init(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
             set_lineStart(lineStart);
             set_lineEnd(lineEnd);
             set_startThickness(startThickness);
             set_endThickness(endThickness);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionLine`.
+         */
+        VisionLine(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
+            this->init(lineStart, lineEnd, startThickness, endThickness);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionLine(const VisionLine &other): wb_vision_line() {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLine(const struct wb_vision_line &other): wb_vision_line() {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const VisionLine &other) {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
             return *this;
         }
 
@@ -125,10 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const struct wb_vision_line &other) {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
             return *this;
         }
 
@@ -137,6 +134,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionLine(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

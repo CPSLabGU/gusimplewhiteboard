@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class HalArmTarget: public wb_hal_arm_target {
 
-    public:
+    private:
 
         /**
-         * Create a new `HalArmTarget`.
+         * Set the members of the class.
          */
-        HalArmTarget(int32_t target_movement_time = INT_MAX, int16_t target_shoulderpitch = 0, int16_t target_shoulderroll = 0, int16_t target_elbowroll = 0, int16_t target_elbowyaw = 0, int16_t target_wristyaw = 0, uint8_t target_arm = LEFT_ARM, uint8_t target_hand = 0, uint8_t target_shoulderpitchstiffness = 0, uint8_t target_shoulderrollstiffness = 0, uint8_t target_elbowrollstiffness = 0, uint8_t target_elbowyawstiffness = 0, uint8_t target_wristyawstiffness = 0, uint8_t target_handstiffness = 0, uint8_t target_pliability = 0, unsigned int target_shoulderpitch_active = true, unsigned int target_shoulderroll_active = true, unsigned int target_elbowroll_active = true, unsigned int target_elbowyaw_active = true, unsigned int target_wrist_active = true, unsigned int target_hand_active = true, unsigned int target_arm_at_goal = false, unsigned int target_arm_stop = false) {
+        void init(int32_t target_movement_time = INT_MAX, int16_t target_shoulderpitch = 0, int16_t target_shoulderroll = 0, int16_t target_elbowroll = 0, int16_t target_elbowyaw = 0, int16_t target_wristyaw = 0, uint8_t target_arm = LEFT_ARM, uint8_t target_hand = 0, uint8_t target_shoulderpitchstiffness = 0, uint8_t target_shoulderrollstiffness = 0, uint8_t target_elbowrollstiffness = 0, uint8_t target_elbowyawstiffness = 0, uint8_t target_wristyawstiffness = 0, uint8_t target_handstiffness = 0, uint8_t target_pliability = 0, unsigned int target_shoulderpitch_active = true, unsigned int target_shoulderroll_active = true, unsigned int target_elbowroll_active = true, unsigned int target_elbowyaw_active = true, unsigned int target_wrist_active = true, unsigned int target_hand_active = true, unsigned int target_arm_at_goal = false, unsigned int target_arm_stop = false) {
             set_target_movement_time(target_movement_time);
             set_target_shoulderpitch(target_shoulderpitch);
             set_target_shoulderroll(target_shoulderroll);
@@ -107,91 +107,34 @@ namespace guWhiteboard {
             set_target_arm_stop(target_arm_stop);
         }
 
+    public:
+
+        /**
+         * Create a new `HalArmTarget`.
+         */
+        HalArmTarget(int32_t target_movement_time = INT_MAX, int16_t target_shoulderpitch = 0, int16_t target_shoulderroll = 0, int16_t target_elbowroll = 0, int16_t target_elbowyaw = 0, int16_t target_wristyaw = 0, uint8_t target_arm = LEFT_ARM, uint8_t target_hand = 0, uint8_t target_shoulderpitchstiffness = 0, uint8_t target_shoulderrollstiffness = 0, uint8_t target_elbowrollstiffness = 0, uint8_t target_elbowyawstiffness = 0, uint8_t target_wristyawstiffness = 0, uint8_t target_handstiffness = 0, uint8_t target_pliability = 0, unsigned int target_shoulderpitch_active = true, unsigned int target_shoulderroll_active = true, unsigned int target_elbowroll_active = true, unsigned int target_elbowyaw_active = true, unsigned int target_wrist_active = true, unsigned int target_hand_active = true, unsigned int target_arm_at_goal = false, unsigned int target_arm_stop = false) {
+            this->init(target_movement_time, target_shoulderpitch, target_shoulderroll, target_elbowroll, target_elbowyaw, target_wristyaw, target_arm, target_hand, target_shoulderpitchstiffness, target_shoulderrollstiffness, target_elbowrollstiffness, target_elbowyawstiffness, target_wristyawstiffness, target_handstiffness, target_pliability, target_shoulderpitch_active, target_shoulderroll_active, target_elbowroll_active, target_elbowyaw_active, target_wrist_active, target_hand_active, target_arm_at_goal, target_arm_stop);
+        }
+
         /**
          * Copy Constructor.
          */
         HalArmTarget(const HalArmTarget &other): wb_hal_arm_target() {
-            set_target_movement_time(other.target_movement_time());
-            set_target_shoulderpitch(other.target_shoulderpitch());
-            set_target_shoulderroll(other.target_shoulderroll());
-            set_target_elbowroll(other.target_elbowroll());
-            set_target_elbowyaw(other.target_elbowyaw());
-            set_target_wristyaw(other.target_wristyaw());
-            set_target_arm(other.target_arm());
-            set_target_hand(other.target_hand());
-            set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-            set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-            set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-            set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-            set_target_wristyawstiffness(other.target_wristyawstiffness());
-            set_target_handstiffness(other.target_handstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_shoulderpitch_active(other.target_shoulderpitch_active());
-            set_target_shoulderroll_active(other.target_shoulderroll_active());
-            set_target_elbowroll_active(other.target_elbowroll_active());
-            set_target_elbowyaw_active(other.target_elbowyaw_active());
-            set_target_wrist_active(other.target_wrist_active());
-            set_target_hand_active(other.target_hand_active());
-            set_target_arm_at_goal(other.target_arm_at_goal());
-            set_target_arm_stop(other.target_arm_stop());
+            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
         }
 
         /**
          * Copy Constructor.
          */
         HalArmTarget(const struct wb_hal_arm_target &other): wb_hal_arm_target() {
-            set_target_movement_time(other.target_movement_time());
-            set_target_shoulderpitch(other.target_shoulderpitch());
-            set_target_shoulderroll(other.target_shoulderroll());
-            set_target_elbowroll(other.target_elbowroll());
-            set_target_elbowyaw(other.target_elbowyaw());
-            set_target_wristyaw(other.target_wristyaw());
-            set_target_arm(other.target_arm());
-            set_target_hand(other.target_hand());
-            set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-            set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-            set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-            set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-            set_target_wristyawstiffness(other.target_wristyawstiffness());
-            set_target_handstiffness(other.target_handstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_shoulderpitch_active(other.target_shoulderpitch_active());
-            set_target_shoulderroll_active(other.target_shoulderroll_active());
-            set_target_elbowroll_active(other.target_elbowroll_active());
-            set_target_elbowyaw_active(other.target_elbowyaw_active());
-            set_target_wrist_active(other.target_wrist_active());
-            set_target_hand_active(other.target_hand_active());
-            set_target_arm_at_goal(other.target_arm_at_goal());
-            set_target_arm_stop(other.target_arm_stop());
+            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
         }
 
         /**
          * Copy Assignment Operator.
          */
         HalArmTarget &operator = (const HalArmTarget &other) {
-            set_target_movement_time(other.target_movement_time());
-            set_target_shoulderpitch(other.target_shoulderpitch());
-            set_target_shoulderroll(other.target_shoulderroll());
-            set_target_elbowroll(other.target_elbowroll());
-            set_target_elbowyaw(other.target_elbowyaw());
-            set_target_wristyaw(other.target_wristyaw());
-            set_target_arm(other.target_arm());
-            set_target_hand(other.target_hand());
-            set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-            set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-            set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-            set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-            set_target_wristyawstiffness(other.target_wristyawstiffness());
-            set_target_handstiffness(other.target_handstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_shoulderpitch_active(other.target_shoulderpitch_active());
-            set_target_shoulderroll_active(other.target_shoulderroll_active());
-            set_target_elbowroll_active(other.target_elbowroll_active());
-            set_target_elbowyaw_active(other.target_elbowyaw_active());
-            set_target_wrist_active(other.target_wrist_active());
-            set_target_hand_active(other.target_hand_active());
-            set_target_arm_at_goal(other.target_arm_at_goal());
-            set_target_arm_stop(other.target_arm_stop());
+            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
             return *this;
         }
 
@@ -199,29 +142,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         HalArmTarget &operator = (const struct wb_hal_arm_target &other) {
-            set_target_movement_time(other.target_movement_time());
-            set_target_shoulderpitch(other.target_shoulderpitch());
-            set_target_shoulderroll(other.target_shoulderroll());
-            set_target_elbowroll(other.target_elbowroll());
-            set_target_elbowyaw(other.target_elbowyaw());
-            set_target_wristyaw(other.target_wristyaw());
-            set_target_arm(other.target_arm());
-            set_target_hand(other.target_hand());
-            set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
-            set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
-            set_target_elbowrollstiffness(other.target_elbowrollstiffness());
-            set_target_elbowyawstiffness(other.target_elbowyawstiffness());
-            set_target_wristyawstiffness(other.target_wristyawstiffness());
-            set_target_handstiffness(other.target_handstiffness());
-            set_target_pliability(other.target_pliability());
-            set_target_shoulderpitch_active(other.target_shoulderpitch_active());
-            set_target_shoulderroll_active(other.target_shoulderroll_active());
-            set_target_elbowroll_active(other.target_elbowroll_active());
-            set_target_elbowyaw_active(other.target_elbowyaw_active());
-            set_target_wrist_active(other.target_wrist_active());
-            set_target_hand_active(other.target_hand_active());
-            set_target_arm_at_goal(other.target_arm_at_goal());
-            set_target_arm_stop(other.target_arm_stop());
+            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
             return *this;
         }
 
@@ -230,6 +151,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         HalArmTarget(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

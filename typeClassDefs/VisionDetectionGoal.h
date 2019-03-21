@@ -78,42 +78,45 @@ namespace guWhiteboard {
      */
     class VisionDetectionGoal: public wb_vision_detection_goal {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
+            set_sightingType(sightingType);
+            set_post1(post1);
+            set_post2(post2);
+        }
+
     public:
 
         /**
          * Create a new `VisionDetectionGoal`.
          */
         VisionDetectionGoal(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
-            set_sightingType(sightingType);
-            set_post1(post1);
-            set_post2(post2);
+            this->init(sightingType, post1, post2);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoal(const VisionDetectionGoal &other): wb_vision_detection_goal() {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoal(const struct wb_vision_detection_goal &other): wb_vision_detection_goal() {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoal &operator = (const VisionDetectionGoal &other) {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
             return *this;
         }
 
@@ -121,9 +124,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoal &operator = (const struct wb_vision_detection_goal &other) {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
             return *this;
         }
 
@@ -132,6 +133,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionDetectionGoal(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

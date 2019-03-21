@@ -76,38 +76,44 @@ namespace guWhiteboard {
      */
     class Point2D: public wb_point2d {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(int16_t x = 0, int16_t y = 0) {
+            set_x(x);
+            set_y(y);
+        }
+
     public:
 
         /**
          * Create a new `Point2D`.
          */
         Point2D(int16_t x = 0, int16_t y = 0) {
-            set_x(x);
-            set_y(y);
+            this->init(x, y);
         }
 
         /**
          * Copy Constructor.
          */
         Point2D(const Point2D &other): wb_point2d() {
-            set_x(other.x());
-            set_y(other.y());
+            this->init(other.x(), other.y());
         }
 
         /**
          * Copy Constructor.
          */
         Point2D(const struct wb_point2d &other): wb_point2d() {
-            set_x(other.x());
-            set_y(other.y());
+            this->init(other.x(), other.y());
         }
 
         /**
          * Copy Assignment Operator.
          */
         Point2D &operator = (const Point2D &other) {
-            set_x(other.x());
-            set_y(other.y());
+            this->init(other.x(), other.y());
             return *this;
         }
 
@@ -115,8 +121,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Point2D &operator = (const struct wb_point2d &other) {
-            set_x(other.x());
-            set_y(other.y());
+            this->init(other.x(), other.y());
             return *this;
         }
 
@@ -125,6 +130,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         Point2D(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

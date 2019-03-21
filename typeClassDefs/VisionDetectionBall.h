@@ -76,46 +76,46 @@ namespace guWhiteboard {
      */
     class VisionDetectionBall: public wb_vision_detection_ball {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionBall`.
+         * Set the members of the class.
          */
-        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
+        void init(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
             set_sightingType(sightingType);
             set_x(x);
             set_y(y);
             set_r(r);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionBall`.
+         */
+        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
+            this->init(sightingType, x, y, r);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const VisionDetectionBall &other): wb_vision_detection_ball() {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const struct wb_vision_detection_ball &other): wb_vision_detection_ball() {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const VisionDetectionBall &other) {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
             return *this;
         }
 
@@ -123,10 +123,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const struct wb_vision_detection_ball &other) {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
             return *this;
         }
 
@@ -135,6 +132,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionDetectionBall(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

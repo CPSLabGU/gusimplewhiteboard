@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class PixelToRobotRelativeCoord: public wb_pixel_to_robot_relative_coord {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init() {
+
+        }
+
     public:
 
         /**
          * Create a new `PixelToRobotRelativeCoord`.
          */
         PixelToRobotRelativeCoord() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const PixelToRobotRelativeCoord &other): wb_pixel_to_robot_relative_coord() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const struct wb_pixel_to_robot_relative_coord &other): wb_pixel_to_robot_relative_coord() {
-
+            this->init();
         }
 
         /**
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const PixelToRobotRelativeCoord &other) {
-
+            this->init();
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const struct wb_pixel_to_robot_relative_coord &other) {
-
+            this->init();
             return *this;
         }
 
@@ -120,6 +129,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         PixelToRobotRelativeCoord(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

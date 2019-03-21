@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class TeleoperationStatus: public wb_teleoperation_status {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(std::string sayString = "") {
+            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
+        }
+
     public:
 
         /**
          * Create a new `TeleoperationStatus`.
          */
         TeleoperationStatus(std::string sayString = "") {
-            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
+            this->init(sayString);
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationStatus(const TeleoperationStatus &other): wb_teleoperation_status() {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationStatus(const struct wb_teleoperation_status &other): wb_teleoperation_status() {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
         }
 
         /**
          * Copy Assignment Operator.
          */
         TeleoperationStatus &operator = (const TeleoperationStatus &other) {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TeleoperationStatus &operator = (const struct wb_teleoperation_status &other) {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
             return *this;
         }
 
@@ -120,6 +129,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         TeleoperationStatus(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

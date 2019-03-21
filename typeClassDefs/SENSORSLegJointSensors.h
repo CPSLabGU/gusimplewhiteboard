@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SENSORSLegJointSensors: public wb_sensors_legjointsensors {
 
-    public:
+    private:
 
         /**
-         * Create a new `SENSORSLegJointSensors`.
+         * Set the members of the class.
          */
-        SENSORSLegJointSensors(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipYawPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f) {
+        void init(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipYawPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f) {
             set_LKneePitch(LKneePitch);
             set_LAnklePitch(LAnklePitch);
             set_LAnkleRoll(LAnkleRoll);
@@ -96,58 +96,34 @@ namespace guWhiteboard {
             set_RHipPitch(RHipPitch);
         }
 
+    public:
+
+        /**
+         * Create a new `SENSORSLegJointSensors`.
+         */
+        SENSORSLegJointSensors(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipYawPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f) {
+            this->init(LKneePitch, LAnklePitch, LAnkleRoll, RKneePitch, RAnklePitch, RAnkleRoll, LHipYawPitch, LHipRoll, LHipPitch, RHipYawPitch, RHipRoll, RHipPitch);
+        }
+
         /**
          * Copy Constructor.
          */
         SENSORSLegJointSensors(const SENSORSLegJointSensors &other): wb_sensors_legjointsensors() {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipYawPitch(other.RHipYawPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
         }
 
         /**
          * Copy Constructor.
          */
         SENSORSLegJointSensors(const struct wb_sensors_legjointsensors &other): wb_sensors_legjointsensors() {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipYawPitch(other.RHipYawPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SENSORSLegJointSensors &operator = (const SENSORSLegJointSensors &other) {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipYawPitch(other.RHipYawPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
             return *this;
         }
 
@@ -155,18 +131,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SENSORSLegJointSensors &operator = (const struct wb_sensors_legjointsensors &other) {
-            set_LKneePitch(other.LKneePitch());
-            set_LAnklePitch(other.LAnklePitch());
-            set_LAnkleRoll(other.LAnkleRoll());
-            set_RKneePitch(other.RKneePitch());
-            set_RAnklePitch(other.RAnklePitch());
-            set_RAnkleRoll(other.RAnkleRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipYawPitch(other.RHipYawPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
+            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
             return *this;
         }
 
@@ -175,6 +140,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SENSORSLegJointSensors(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

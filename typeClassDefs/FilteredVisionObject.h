@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class FilteredVisionObject: public wb_filtered_vision_object {
 
-    public:
+    private:
 
         /**
-         * Create a new `FilteredVisionObject`.
+         * Set the members of the class.
          */
-        FilteredVisionObject(uint64_t visibilityHistory = 0, int32_t frameCounter = 0, int16_t distance = 0, int16_t x = 0, int16_t y = 0, int16_t yaw = 0, int16_t ray_angle = 0, bool isVisible = true, bool pad1 = true) {
+        void init(uint64_t visibilityHistory = 0, int32_t frameCounter = 0, int16_t distance = 0, int16_t x = 0, int16_t y = 0, int16_t yaw = 0, int16_t ray_angle = 0, bool isVisible = true, bool pad1 = true) {
             set_visibilityHistory(visibilityHistory);
             set_frameCounter(frameCounter);
             set_distance(distance);
@@ -93,49 +93,34 @@ namespace guWhiteboard {
             set_pad1(pad1);
         }
 
+    public:
+
+        /**
+         * Create a new `FilteredVisionObject`.
+         */
+        FilteredVisionObject(uint64_t visibilityHistory = 0, int32_t frameCounter = 0, int16_t distance = 0, int16_t x = 0, int16_t y = 0, int16_t yaw = 0, int16_t ray_angle = 0, bool isVisible = true, bool pad1 = true) {
+            this->init(visibilityHistory, frameCounter, distance, x, y, yaw, ray_angle, isVisible, pad1);
+        }
+
         /**
          * Copy Constructor.
          */
         FilteredVisionObject(const FilteredVisionObject &other): wb_filtered_vision_object() {
-            set_visibilityHistory(other.visibilityHistory());
-            set_frameCounter(other.frameCounter());
-            set_distance(other.distance());
-            set_x(other.x());
-            set_y(other.y());
-            set_yaw(other.yaw());
-            set_ray_angle(other.ray_angle());
-            set_isVisible(other.isVisible());
-            set_pad1(other.pad1());
+            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
         }
 
         /**
          * Copy Constructor.
          */
         FilteredVisionObject(const struct wb_filtered_vision_object &other): wb_filtered_vision_object() {
-            set_visibilityHistory(other.visibilityHistory());
-            set_frameCounter(other.frameCounter());
-            set_distance(other.distance());
-            set_x(other.x());
-            set_y(other.y());
-            set_yaw(other.yaw());
-            set_ray_angle(other.ray_angle());
-            set_isVisible(other.isVisible());
-            set_pad1(other.pad1());
+            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
         }
 
         /**
          * Copy Assignment Operator.
          */
         FilteredVisionObject &operator = (const FilteredVisionObject &other) {
-            set_visibilityHistory(other.visibilityHistory());
-            set_frameCounter(other.frameCounter());
-            set_distance(other.distance());
-            set_x(other.x());
-            set_y(other.y());
-            set_yaw(other.yaw());
-            set_ray_angle(other.ray_angle());
-            set_isVisible(other.isVisible());
-            set_pad1(other.pad1());
+            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
             return *this;
         }
 
@@ -143,15 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         FilteredVisionObject &operator = (const struct wb_filtered_vision_object &other) {
-            set_visibilityHistory(other.visibilityHistory());
-            set_frameCounter(other.frameCounter());
-            set_distance(other.distance());
-            set_x(other.x());
-            set_y(other.y());
-            set_yaw(other.yaw());
-            set_ray_angle(other.ray_angle());
-            set_isVisible(other.isVisible());
-            set_pad1(other.pad1());
+            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
             return *this;
         }
 
@@ -160,6 +137,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         FilteredVisionObject(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

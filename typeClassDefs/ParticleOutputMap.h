@@ -76,38 +76,44 @@ namespace guWhiteboard {
      */
     class ParticleOutputMap: public wb_particle_output_map {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(uint8_t fileId = 0, std::string filePath = "") {
+            set_fileId(fileId);
+            gu_strlcpy(const_cast<char *>(this->filePath()), filePath.c_str(), 64);
+        }
+
     public:
 
         /**
          * Create a new `ParticleOutputMap`.
          */
         ParticleOutputMap(uint8_t fileId = 0, std::string filePath = "") {
-            set_fileId(fileId);
-            gu_strlcpy(const_cast<char *>(this->filePath()), filePath.c_str(), 64);
+            this->init(fileId, filePath);
         }
 
         /**
          * Copy Constructor.
          */
         ParticleOutputMap(const ParticleOutputMap &other): wb_particle_output_map() {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
         }
 
         /**
          * Copy Constructor.
          */
         ParticleOutputMap(const struct wb_particle_output_map &other): wb_particle_output_map() {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
         }
 
         /**
          * Copy Assignment Operator.
          */
         ParticleOutputMap &operator = (const ParticleOutputMap &other) {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
             return *this;
         }
 
@@ -115,8 +121,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         ParticleOutputMap &operator = (const struct wb_particle_output_map &other) {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
             return *this;
         }
 
@@ -125,6 +130,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         ParticleOutputMap(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

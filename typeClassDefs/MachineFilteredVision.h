@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class MachineFilteredVision: public wb_machine_filtered_vision {
 
-    public:
+    private:
 
         /**
-         * Create a new `MachineFilteredVision`.
+         * Set the members of the class.
          */
-        MachineFilteredVision(int8_t ball_direction = 0, uint16_t ball_distance = 0, bool ball_visible = 0, int8_t goal_direction = 0, uint16_t goal_distance = 0, bool goal_visible = 0, enum GoalSightingType goal_sightingType = NoSightingType) {
+        void init(int8_t ball_direction = 0, uint16_t ball_distance = 0, bool ball_visible = 0, int8_t goal_direction = 0, uint16_t goal_distance = 0, bool goal_visible = 0, enum GoalSightingType goal_sightingType = NoSightingType) {
             set_ball_direction(ball_direction);
             set_ball_distance(ball_distance);
             set_ball_visible(ball_visible);
@@ -91,43 +91,34 @@ namespace guWhiteboard {
             set_goal_sightingType(goal_sightingType);
         }
 
+    public:
+
+        /**
+         * Create a new `MachineFilteredVision`.
+         */
+        MachineFilteredVision(int8_t ball_direction = 0, uint16_t ball_distance = 0, bool ball_visible = 0, int8_t goal_direction = 0, uint16_t goal_distance = 0, bool goal_visible = 0, enum GoalSightingType goal_sightingType = NoSightingType) {
+            this->init(ball_direction, ball_distance, ball_visible, goal_direction, goal_distance, goal_visible, goal_sightingType);
+        }
+
         /**
          * Copy Constructor.
          */
         MachineFilteredVision(const MachineFilteredVision &other): wb_machine_filtered_vision() {
-            set_ball_direction(other.ball_direction());
-            set_ball_distance(other.ball_distance());
-            set_ball_visible(other.ball_visible());
-            set_goal_direction(other.goal_direction());
-            set_goal_distance(other.goal_distance());
-            set_goal_visible(other.goal_visible());
-            set_goal_sightingType(other.goal_sightingType());
+            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
         }
 
         /**
          * Copy Constructor.
          */
         MachineFilteredVision(const struct wb_machine_filtered_vision &other): wb_machine_filtered_vision() {
-            set_ball_direction(other.ball_direction());
-            set_ball_distance(other.ball_distance());
-            set_ball_visible(other.ball_visible());
-            set_goal_direction(other.goal_direction());
-            set_goal_distance(other.goal_distance());
-            set_goal_visible(other.goal_visible());
-            set_goal_sightingType(other.goal_sightingType());
+            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
         }
 
         /**
          * Copy Assignment Operator.
          */
         MachineFilteredVision &operator = (const MachineFilteredVision &other) {
-            set_ball_direction(other.ball_direction());
-            set_ball_distance(other.ball_distance());
-            set_ball_visible(other.ball_visible());
-            set_goal_direction(other.goal_direction());
-            set_goal_distance(other.goal_distance());
-            set_goal_visible(other.goal_visible());
-            set_goal_sightingType(other.goal_sightingType());
+            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
             return *this;
         }
 
@@ -135,13 +126,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         MachineFilteredVision &operator = (const struct wb_machine_filtered_vision &other) {
-            set_ball_direction(other.ball_direction());
-            set_ball_distance(other.ball_distance());
-            set_ball_visible(other.ball_visible());
-            set_goal_direction(other.goal_direction());
-            set_goal_distance(other.goal_distance());
-            set_goal_visible(other.goal_visible());
-            set_goal_sightingType(other.goal_sightingType());
+            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
             return *this;
         }
 
@@ -150,6 +135,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         MachineFilteredVision(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

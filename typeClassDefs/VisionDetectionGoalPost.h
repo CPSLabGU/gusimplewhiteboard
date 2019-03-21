@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class VisionDetectionGoalPost: public wb_vision_detection_goal_post {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionGoalPost`.
+         * Set the members of the class.
          */
-        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
+        void init(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
             set_sightingType(sightingType);
             set_orientation(orientation);
             set_tl_x(tl_x);
@@ -94,52 +94,34 @@ namespace guWhiteboard {
             set_br_y(br_y);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionGoalPost`.
+         */
+        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
+            this->init(sightingType, orientation, tl_x, tl_y, tr_x, tr_y, bl_x, bl_y, br_x, br_y);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const VisionDetectionGoalPost &other): wb_vision_detection_goal_post() {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const struct wb_vision_detection_goal_post &other): wb_vision_detection_goal_post() {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const VisionDetectionGoalPost &other) {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
             return *this;
         }
 
@@ -147,16 +129,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const struct wb_vision_detection_goal_post &other) {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
             return *this;
         }
 
@@ -165,6 +138,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionDetectionGoalPost(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

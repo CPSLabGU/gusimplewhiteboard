@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class TeleoperationControl: public wb_teleoperation_control {
 
-    public:
+    private:
 
         /**
-         * Create a new `TeleoperationControl`.
+         * Set the members of the class.
          */
-        TeleoperationControl(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "") {
+        void init(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "") {
             set_ip(ip);
             set_action(action);
             set_stance(stance);
@@ -90,40 +90,34 @@ namespace guWhiteboard {
             gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
         }
 
+    public:
+
+        /**
+         * Create a new `TeleoperationControl`.
+         */
+        TeleoperationControl(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "") {
+            this->init(ip, action, stance, streamType, selectedCamera, sayString);
+        }
+
         /**
          * Copy Constructor.
          */
         TeleoperationControl(const TeleoperationControl &other): wb_teleoperation_control() {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationControl(const struct wb_teleoperation_control &other): wb_teleoperation_control() {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
         }
 
         /**
          * Copy Assignment Operator.
          */
         TeleoperationControl &operator = (const TeleoperationControl &other) {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
             return *this;
         }
 
@@ -131,12 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TeleoperationControl &operator = (const struct wb_teleoperation_control &other) {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
             return *this;
         }
 
@@ -145,6 +134,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         TeleoperationControl(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

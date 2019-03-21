@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class Count: public wb_count {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(int64_t count = 0) {
+            set_count(count);
+        }
+
     public:
 
         /**
          * Create a new `Count`.
          */
         Count(int64_t count = 0) {
-            set_count(count);
+            this->init(count);
         }
 
         /**
          * Copy Constructor.
          */
         Count(const Count &other): wb_count() {
-            set_count(other.count());
+            this->init(other.count());
         }
 
         /**
          * Copy Constructor.
          */
         Count(const struct wb_count &other): wb_count() {
-            set_count(other.count());
+            this->init(other.count());
         }
 
         /**
          * Copy Assignment Operator.
          */
         Count &operator = (const Count &other) {
-            set_count(other.count());
+            this->init(other.count());
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Count &operator = (const struct wb_count &other) {
-            set_count(other.count());
+            this->init(other.count());
             return *this;
         }
 
@@ -120,6 +129,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         Count(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

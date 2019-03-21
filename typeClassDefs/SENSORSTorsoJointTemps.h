@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SENSORSTorsoJointTemps: public wb_sensors_torsojointtemps {
 
-    public:
+    private:
 
         /**
-         * Create a new `SENSORSTorsoJointTemps`.
+         * Set the members of the class.
          */
-        SENSORSTorsoJointTemps(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f) {
+        void init(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f) {
             set_HeadYaw(HeadYaw);
             set_HeadPitch(HeadPitch);
             set_LShoulderPitch(LShoulderPitch);
@@ -99,67 +99,34 @@ namespace guWhiteboard {
             set_RElbowRoll(RElbowRoll);
         }
 
+    public:
+
+        /**
+         * Create a new `SENSORSTorsoJointTemps`.
+         */
+        SENSORSTorsoJointTemps(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f) {
+            this->init(HeadYaw, HeadPitch, LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll, LHipYawPitch, LHipRoll, LHipPitch, RHipRoll, RHipPitch, RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll);
+        }
+
         /**
          * Copy Constructor.
          */
         SENSORSTorsoJointTemps(const SENSORSTorsoJointTemps &other): wb_sensors_torsojointtemps() {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipRoll(), other.RHipPitch(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll());
         }
 
         /**
          * Copy Constructor.
          */
         SENSORSTorsoJointTemps(const struct wb_sensors_torsojointtemps &other): wb_sensors_torsojointtemps() {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipRoll(), other.RHipPitch(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SENSORSTorsoJointTemps &operator = (const SENSORSTorsoJointTemps &other) {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipRoll(), other.RHipPitch(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll());
             return *this;
         }
 
@@ -167,21 +134,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SENSORSTorsoJointTemps &operator = (const struct wb_sensors_torsojointtemps &other) {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_LHipYawPitch(other.LHipYawPitch());
-            set_LHipRoll(other.LHipRoll());
-            set_LHipPitch(other.LHipPitch());
-            set_RHipRoll(other.RHipRoll());
-            set_RHipPitch(other.RHipPitch());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipRoll(), other.RHipPitch(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll());
             return *this;
         }
 
@@ -190,6 +143,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SENSORSTorsoJointTemps(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

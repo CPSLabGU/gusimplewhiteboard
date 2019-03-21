@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class VisionControlStatus: public wb_vision_control_status {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionControlStatus`.
+         * Set the members of the class.
          */
-        VisionControlStatus(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class") {
+        void init(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class") {
             set_cameraResolution(cameraResolution);
             set_pipelineRunning(pipelineRunning);
             set_selectedCamera(selectedCamera);
@@ -101,73 +101,34 @@ namespace guWhiteboard {
             gu_strlcpy(const_cast<char *>(this->colourCalibration()), colourCalibration.c_str(), 10);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionControlStatus`.
+         */
+        VisionControlStatus(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class") {
+            this->init(cameraResolution, pipelineRunning, selectedCamera, saveImage, saveClassifiedImage, pipeline, chooseCamera, networkTop, networkBottom, streamingSource, imageInput, jpegStreamQuality, jpegStreamStride, frameRate, runPipelineOnce, frameNumber, colourCalibration);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionControlStatus(const VisionControlStatus &other): wb_vision_control_status() {
-            set_cameraResolution(other.cameraResolution());
-            set_pipelineRunning(other.pipelineRunning());
-            set_selectedCamera(other.selectedCamera());
-            set_saveImage(other.saveImage());
-            set_saveClassifiedImage(other.saveClassifiedImage());
-            set_pipeline(other.pipeline());
-            set_chooseCamera(other.chooseCamera());
-            set_networkTop(other.networkTop());
-            set_networkBottom(other.networkBottom());
-            set_streamingSource(other.streamingSource());
-            set_imageInput(other.imageInput());
-            set_jpegStreamQuality(other.jpegStreamQuality());
-            set_jpegStreamStride(other.jpegStreamStride());
-            set_frameRate(other.frameRate());
-            set_runPipelineOnce(other.runPipelineOnce());
-            set_frameNumber(other.frameNumber());
-            gu_strlcpy(const_cast<char *>(this->colourCalibration()), other.colourCalibration(), 10);
+            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration());
         }
 
         /**
          * Copy Constructor.
          */
         VisionControlStatus(const struct wb_vision_control_status &other): wb_vision_control_status() {
-            set_cameraResolution(other.cameraResolution());
-            set_pipelineRunning(other.pipelineRunning());
-            set_selectedCamera(other.selectedCamera());
-            set_saveImage(other.saveImage());
-            set_saveClassifiedImage(other.saveClassifiedImage());
-            set_pipeline(other.pipeline());
-            set_chooseCamera(other.chooseCamera());
-            set_networkTop(other.networkTop());
-            set_networkBottom(other.networkBottom());
-            set_streamingSource(other.streamingSource());
-            set_imageInput(other.imageInput());
-            set_jpegStreamQuality(other.jpegStreamQuality());
-            set_jpegStreamStride(other.jpegStreamStride());
-            set_frameRate(other.frameRate());
-            set_runPipelineOnce(other.runPipelineOnce());
-            set_frameNumber(other.frameNumber());
-            gu_strlcpy(const_cast<char *>(this->colourCalibration()), other.colourCalibration(), 10);
+            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionControlStatus &operator = (const VisionControlStatus &other) {
-            set_cameraResolution(other.cameraResolution());
-            set_pipelineRunning(other.pipelineRunning());
-            set_selectedCamera(other.selectedCamera());
-            set_saveImage(other.saveImage());
-            set_saveClassifiedImage(other.saveClassifiedImage());
-            set_pipeline(other.pipeline());
-            set_chooseCamera(other.chooseCamera());
-            set_networkTop(other.networkTop());
-            set_networkBottom(other.networkBottom());
-            set_streamingSource(other.streamingSource());
-            set_imageInput(other.imageInput());
-            set_jpegStreamQuality(other.jpegStreamQuality());
-            set_jpegStreamStride(other.jpegStreamStride());
-            set_frameRate(other.frameRate());
-            set_runPipelineOnce(other.runPipelineOnce());
-            set_frameNumber(other.frameNumber());
-            gu_strlcpy(const_cast<char *>(this->colourCalibration()), other.colourCalibration(), 10);
+            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration());
             return *this;
         }
 
@@ -175,23 +136,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionControlStatus &operator = (const struct wb_vision_control_status &other) {
-            set_cameraResolution(other.cameraResolution());
-            set_pipelineRunning(other.pipelineRunning());
-            set_selectedCamera(other.selectedCamera());
-            set_saveImage(other.saveImage());
-            set_saveClassifiedImage(other.saveClassifiedImage());
-            set_pipeline(other.pipeline());
-            set_chooseCamera(other.chooseCamera());
-            set_networkTop(other.networkTop());
-            set_networkBottom(other.networkBottom());
-            set_streamingSource(other.streamingSource());
-            set_imageInput(other.imageInput());
-            set_jpegStreamQuality(other.jpegStreamQuality());
-            set_jpegStreamStride(other.jpegStreamStride());
-            set_frameRate(other.frameRate());
-            set_runPipelineOnce(other.runPipelineOnce());
-            set_frameNumber(other.frameNumber());
-            gu_strlcpy(const_cast<char *>(this->colourCalibration()), other.colourCalibration(), 10);
+            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration());
             return *this;
         }
 
@@ -200,6 +145,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionControlStatus(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

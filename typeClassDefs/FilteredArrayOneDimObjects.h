@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class FilteredArrayOneDimObjects: public wb_filtered_arrayonedimobjects {
 
-    public:
+    private:
 
         /**
-         * Create a new `FilteredArrayOneDimObjects`.
+         * Set the members of the class.
          */
-        FilteredArrayOneDimObjects(struct wb_filtered_vision_object objects[4] = NULLPTR) {
+        void init(const struct wb_filtered_vision_object objects[4] = NULLPTR) {
             if (objects != NULLPTR) {
                 std::memcpy(this->_objects, objects, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
             } else {
@@ -92,31 +92,34 @@ namespace guWhiteboard {
             }
         }
 
+    public:
+
+        /**
+         * Create a new `FilteredArrayOneDimObjects`.
+         */
+        FilteredArrayOneDimObjects(const struct wb_filtered_vision_object objects[4] = NULLPTR) {
+            this->init(objects);
+        }
+
         /**
          * Copy Constructor.
          */
         FilteredArrayOneDimObjects(const FilteredArrayOneDimObjects &other): wb_filtered_arrayonedimobjects() {
-            if (other.objects() != NULLPTR) {
-                std::memcpy(this->_objects, other.objects(), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
-            }
+            this->init(other.objects());
         }
 
         /**
          * Copy Constructor.
          */
         FilteredArrayOneDimObjects(const struct wb_filtered_arrayonedimobjects &other): wb_filtered_arrayonedimobjects() {
-            if (other.objects() != NULLPTR) {
-                std::memcpy(this->_objects, other.objects(), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
-            }
+            this->init(other.objects());
         }
 
         /**
          * Copy Assignment Operator.
          */
         FilteredArrayOneDimObjects &operator = (const FilteredArrayOneDimObjects &other) {
-            if (other.objects() != NULLPTR) {
-                std::memcpy(this->_objects, other.objects(), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
-            }
+            this->init(other.objects());
             return *this;
         }
 
@@ -124,9 +127,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         FilteredArrayOneDimObjects &operator = (const struct wb_filtered_arrayonedimobjects &other) {
-            if (other.objects() != NULLPTR) {
-                std::memcpy(this->_objects, other.objects(), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
-            }
+            this->init(other.objects());
             return *this;
         }
 
@@ -135,6 +136,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         FilteredArrayOneDimObjects(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

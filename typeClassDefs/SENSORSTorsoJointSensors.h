@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SENSORSTorsoJointSensors: public wb_sensors_torsojointsensors {
 
-    public:
+    private:
 
         /**
-         * Create a new `SENSORSTorsoJointSensors`.
+         * Set the members of the class.
          */
-        SENSORSTorsoJointSensors(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f, float LWristYaw = 0.0f, float RWristYaw = 0.0f) {
+        void init(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f, float LWristYaw = 0.0f, float RWristYaw = 0.0f) {
             set_HeadYaw(HeadYaw);
             set_HeadPitch(HeadPitch);
             set_LShoulderPitch(LShoulderPitch);
@@ -96,58 +96,34 @@ namespace guWhiteboard {
             set_RWristYaw(RWristYaw);
         }
 
+    public:
+
+        /**
+         * Create a new `SENSORSTorsoJointSensors`.
+         */
+        SENSORSTorsoJointSensors(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f, float LWristYaw = 0.0f, float RWristYaw = 0.0f) {
+            this->init(HeadYaw, HeadPitch, LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll, RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll, LWristYaw, RWristYaw);
+        }
+
         /**
          * Copy Constructor.
          */
         SENSORSTorsoJointSensors(const SENSORSTorsoJointSensors &other): wb_sensors_torsojointsensors() {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
-            set_LWristYaw(other.LWristYaw());
-            set_RWristYaw(other.RWristYaw());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.LWristYaw(), other.RWristYaw());
         }
 
         /**
          * Copy Constructor.
          */
         SENSORSTorsoJointSensors(const struct wb_sensors_torsojointsensors &other): wb_sensors_torsojointsensors() {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
-            set_LWristYaw(other.LWristYaw());
-            set_RWristYaw(other.RWristYaw());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.LWristYaw(), other.RWristYaw());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SENSORSTorsoJointSensors &operator = (const SENSORSTorsoJointSensors &other) {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
-            set_LWristYaw(other.LWristYaw());
-            set_RWristYaw(other.RWristYaw());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.LWristYaw(), other.RWristYaw());
             return *this;
         }
 
@@ -155,18 +131,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SENSORSTorsoJointSensors &operator = (const struct wb_sensors_torsojointsensors &other) {
-            set_HeadYaw(other.HeadYaw());
-            set_HeadPitch(other.HeadPitch());
-            set_LShoulderPitch(other.LShoulderPitch());
-            set_LShoulderRoll(other.LShoulderRoll());
-            set_LElbowYaw(other.LElbowYaw());
-            set_LElbowRoll(other.LElbowRoll());
-            set_RShoulderPitch(other.RShoulderPitch());
-            set_RShoulderRoll(other.RShoulderRoll());
-            set_RElbowYaw(other.RElbowYaw());
-            set_RElbowRoll(other.RElbowRoll());
-            set_LWristYaw(other.LWristYaw());
-            set_RWristYaw(other.RWristYaw());
+            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.LWristYaw(), other.RWristYaw());
             return *this;
         }
 
@@ -175,6 +140,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SENSORSTorsoJointSensors(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class VisionFieldFeatures: public wb_vision_field_features {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionFieldFeatures`.
+         * Set the members of the class.
          */
-        VisionFieldFeatures(struct wb_vision_field_feature fieldCorner[8] = NULLPTR, struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0) {
+        void init(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0) {
             if (fieldCorner != NULLPTR) {
                 std::memcpy(this->_fieldCorner, fieldCorner, VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
@@ -100,46 +100,34 @@ namespace guWhiteboard {
             set_numIntersections(numIntersections);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionFieldFeatures`.
+         */
+        VisionFieldFeatures(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0) {
+            this->init(fieldCorner, fieldIntersection, numCorners, numIntersections);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const VisionFieldFeatures &other): wb_vision_field_features() {
-            if (other.fieldCorner() != NULLPTR) {
-                std::memcpy(this->_fieldCorner, other.fieldCorner(), VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            if (other.fieldIntersection() != NULLPTR) {
-                std::memcpy(this->_fieldIntersection, other.fieldIntersection(), VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            set_numCorners(other.numCorners());
-            set_numIntersections(other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const struct wb_vision_field_features &other): wb_vision_field_features() {
-            if (other.fieldCorner() != NULLPTR) {
-                std::memcpy(this->_fieldCorner, other.fieldCorner(), VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            if (other.fieldIntersection() != NULLPTR) {
-                std::memcpy(this->_fieldIntersection, other.fieldIntersection(), VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            set_numCorners(other.numCorners());
-            set_numIntersections(other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const VisionFieldFeatures &other) {
-            if (other.fieldCorner() != NULLPTR) {
-                std::memcpy(this->_fieldCorner, other.fieldCorner(), VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            if (other.fieldIntersection() != NULLPTR) {
-                std::memcpy(this->_fieldIntersection, other.fieldIntersection(), VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            set_numCorners(other.numCorners());
-            set_numIntersections(other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
             return *this;
         }
 
@@ -147,14 +135,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const struct wb_vision_field_features &other) {
-            if (other.fieldCorner() != NULLPTR) {
-                std::memcpy(this->_fieldCorner, other.fieldCorner(), VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            if (other.fieldIntersection() != NULLPTR) {
-                std::memcpy(this->_fieldIntersection, other.fieldIntersection(), VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
-            }
-            set_numCorners(other.numCorners());
-            set_numIntersections(other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
             return *this;
         }
 
@@ -163,6 +144,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionFieldFeatures(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

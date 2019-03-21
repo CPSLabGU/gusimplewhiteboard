@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class LandmarkSighting: public wb_landmark_sighting {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(int16_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
+            set_direction(direction);
+            set_distance(distance);
+            set_sightingType(sightingType);
+        }
+
     public:
 
         /**
          * Create a new `LandmarkSighting`.
          */
         LandmarkSighting(int16_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
-            set_direction(direction);
-            set_distance(distance);
-            set_sightingType(sightingType);
+            this->init(direction, distance, sightingType);
         }
 
         /**
          * Copy Constructor.
          */
         LandmarkSighting(const LandmarkSighting &other): wb_landmark_sighting() {
-            set_direction(other.direction());
-            set_distance(other.distance());
-            set_sightingType(other.sightingType());
+            this->init(other.direction(), other.distance(), other.sightingType());
         }
 
         /**
          * Copy Constructor.
          */
         LandmarkSighting(const struct wb_landmark_sighting &other): wb_landmark_sighting() {
-            set_direction(other.direction());
-            set_distance(other.distance());
-            set_sightingType(other.sightingType());
+            this->init(other.direction(), other.distance(), other.sightingType());
         }
 
         /**
          * Copy Assignment Operator.
          */
         LandmarkSighting &operator = (const LandmarkSighting &other) {
-            set_direction(other.direction());
-            set_distance(other.distance());
-            set_sightingType(other.sightingType());
+            this->init(other.direction(), other.distance(), other.sightingType());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         LandmarkSighting &operator = (const struct wb_landmark_sighting &other) {
-            set_direction(other.direction());
-            set_distance(other.distance());
-            set_sightingType(other.sightingType());
+            this->init(other.direction(), other.distance(), other.sightingType());
             return *this;
         }
 
@@ -130,6 +131,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         LandmarkSighting(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

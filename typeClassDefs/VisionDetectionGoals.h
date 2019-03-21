@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class VisionDetectionGoals: public wb_vision_detection_goals {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionGoals`.
+         * Set the members of the class.
          */
-        VisionDetectionGoals(uint64_t frameNumber = 0, struct wb_vision_detection_goal goals[2] = NULLPTR) {
+        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_goal goals[2] = NULLPTR) {
             set_frameNumber(frameNumber);
             if (goals != NULLPTR) {
                 std::memcpy(this->_goals, goals, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
@@ -93,34 +93,34 @@ namespace guWhiteboard {
             }
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionGoals`.
+         */
+        VisionDetectionGoals(uint64_t frameNumber = 0, const struct wb_vision_detection_goal goals[2] = NULLPTR) {
+            this->init(frameNumber, goals);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionGoals(const VisionDetectionGoals &other): wb_vision_detection_goals() {
-            set_frameNumber(other.frameNumber());
-            if (other.goals() != NULLPTR) {
-                std::memcpy(this->_goals, other.goals(), VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
-            }
+            this->init(other.frameNumber(), other.goals());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoals(const struct wb_vision_detection_goals &other): wb_vision_detection_goals() {
-            set_frameNumber(other.frameNumber());
-            if (other.goals() != NULLPTR) {
-                std::memcpy(this->_goals, other.goals(), VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
-            }
+            this->init(other.frameNumber(), other.goals());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoals &operator = (const VisionDetectionGoals &other) {
-            set_frameNumber(other.frameNumber());
-            if (other.goals() != NULLPTR) {
-                std::memcpy(this->_goals, other.goals(), VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
-            }
+            this->init(other.frameNumber(), other.goals());
             return *this;
         }
 
@@ -128,10 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoals &operator = (const struct wb_vision_detection_goals &other) {
-            set_frameNumber(other.frameNumber());
-            if (other.goals() != NULLPTR) {
-                std::memcpy(this->_goals, other.goals(), VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
-            }
+            this->init(other.frameNumber(), other.goals());
             return *this;
         }
 
@@ -140,6 +137,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionDetectionGoals(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

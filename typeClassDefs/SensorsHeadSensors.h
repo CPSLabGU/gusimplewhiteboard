@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class SensorsHeadSensors: public wb_sensors_head_sensors {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
+            set_Head_Touch_Front(Head_Touch_Front);
+            set_Head_Touch_Middle(Head_Touch_Middle);
+            set_Head_Touch_Rear(Head_Touch_Rear);
+        }
+
     public:
 
         /**
          * Create a new `SensorsHeadSensors`.
          */
         SensorsHeadSensors(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
-            set_Head_Touch_Front(Head_Touch_Front);
-            set_Head_Touch_Middle(Head_Touch_Middle);
-            set_Head_Touch_Rear(Head_Touch_Rear);
+            this->init(Head_Touch_Front, Head_Touch_Middle, Head_Touch_Rear);
         }
 
         /**
          * Copy Constructor.
          */
         SensorsHeadSensors(const SensorsHeadSensors &other): wb_sensors_head_sensors() {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
         }
 
         /**
          * Copy Constructor.
          */
         SensorsHeadSensors(const struct wb_sensors_head_sensors &other): wb_sensors_head_sensors() {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SensorsHeadSensors &operator = (const SensorsHeadSensors &other) {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SensorsHeadSensors &operator = (const struct wb_sensors_head_sensors &other) {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
             return *this;
         }
 
@@ -130,6 +131,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         SensorsHeadSensors(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

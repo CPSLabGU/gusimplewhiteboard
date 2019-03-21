@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class VisionDetectionHorizons: public wb_vision_detection_horizons {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionHorizons`.
+         * Set the members of the class.
          */
-        VisionDetectionHorizons(uint64_t frameNumber = 0, struct wb_vision_detection_horizon horizons[2] = NULLPTR) {
+        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR) {
             set_frameNumber(frameNumber);
             if (horizons != NULLPTR) {
                 std::memcpy(this->_horizons, horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
@@ -93,34 +93,34 @@ namespace guWhiteboard {
             }
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionHorizons`.
+         */
+        VisionDetectionHorizons(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR) {
+            this->init(frameNumber, horizons);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizons(const VisionDetectionHorizons &other): wb_vision_detection_horizons() {
-            set_frameNumber(other.frameNumber());
-            if (other.horizons() != NULLPTR) {
-                std::memcpy(this->_horizons, other.horizons(), VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
-            }
+            this->init(other.frameNumber(), other.horizons());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizons(const struct wb_vision_detection_horizons &other): wb_vision_detection_horizons() {
-            set_frameNumber(other.frameNumber());
-            if (other.horizons() != NULLPTR) {
-                std::memcpy(this->_horizons, other.horizons(), VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
-            }
+            this->init(other.frameNumber(), other.horizons());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionHorizons &operator = (const VisionDetectionHorizons &other) {
-            set_frameNumber(other.frameNumber());
-            if (other.horizons() != NULLPTR) {
-                std::memcpy(this->_horizons, other.horizons(), VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
-            }
+            this->init(other.frameNumber(), other.horizons());
             return *this;
         }
 
@@ -128,10 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionHorizons &operator = (const struct wb_vision_detection_horizons &other) {
-            set_frameNumber(other.frameNumber());
-            if (other.horizons() != NULLPTR) {
-                std::memcpy(this->_horizons, other.horizons(), VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
-            }
+            this->init(other.frameNumber(), other.horizons());
             return *this;
         }
 
@@ -140,6 +137,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionDetectionHorizons(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

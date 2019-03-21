@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class NaoWalkCommand: public wb_nao_walk_command {
 
-    public:
+    private:
 
         /**
-         * Create a new `NaoWalkCommand`.
+         * Set the members of the class.
          */
-        NaoWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t speed = 100, uint8_t odometryResetCounter = 0, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t bend = 0) {
+        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t speed = 100, uint8_t odometryResetCounter = 0, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t bend = 0) {
             set_walkEngineOn(walkEngineOn);
             set_forward(forward);
             set_left(left);
@@ -98,64 +98,34 @@ namespace guWhiteboard {
             set_bend(bend);
         }
 
+    public:
+
+        /**
+         * Create a new `NaoWalkCommand`.
+         */
+        NaoWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t speed = 100, uint8_t odometryResetCounter = 0, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t bend = 0) {
+            this->init(walkEngineOn, forward, left, turn, exactStepsRequested, speed, odometryResetCounter, isFast, kickWithLeftFoot, useShuffle, leftArmLimp, rightArmLimp, power, bend);
+        }
+
         /**
          * Copy Constructor.
          */
         NaoWalkCommand(const NaoWalkCommand &other): wb_nao_walk_command() {
-            set_walkEngineOn(other.walkEngineOn());
-            set_forward(other.forward());
-            set_left(other.left());
-            set_turn(other.turn());
-            set_exactStepsRequested(other.exactStepsRequested());
-            set_speed(other.speed());
-            set_odometryResetCounter(other.odometryResetCounter());
-            set_isFast(other.isFast());
-            set_kickWithLeftFoot(other.kickWithLeftFoot());
-            set_useShuffle(other.useShuffle());
-            set_leftArmLimp(other.leftArmLimp());
-            set_rightArmLimp(other.rightArmLimp());
-            set_power(other.power());
-            set_bend(other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.speed(), other.odometryResetCounter(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.bend());
         }
 
         /**
          * Copy Constructor.
          */
         NaoWalkCommand(const struct wb_nao_walk_command &other): wb_nao_walk_command() {
-            set_walkEngineOn(other.walkEngineOn());
-            set_forward(other.forward());
-            set_left(other.left());
-            set_turn(other.turn());
-            set_exactStepsRequested(other.exactStepsRequested());
-            set_speed(other.speed());
-            set_odometryResetCounter(other.odometryResetCounter());
-            set_isFast(other.isFast());
-            set_kickWithLeftFoot(other.kickWithLeftFoot());
-            set_useShuffle(other.useShuffle());
-            set_leftArmLimp(other.leftArmLimp());
-            set_rightArmLimp(other.rightArmLimp());
-            set_power(other.power());
-            set_bend(other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.speed(), other.odometryResetCounter(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.bend());
         }
 
         /**
          * Copy Assignment Operator.
          */
         NaoWalkCommand &operator = (const NaoWalkCommand &other) {
-            set_walkEngineOn(other.walkEngineOn());
-            set_forward(other.forward());
-            set_left(other.left());
-            set_turn(other.turn());
-            set_exactStepsRequested(other.exactStepsRequested());
-            set_speed(other.speed());
-            set_odometryResetCounter(other.odometryResetCounter());
-            set_isFast(other.isFast());
-            set_kickWithLeftFoot(other.kickWithLeftFoot());
-            set_useShuffle(other.useShuffle());
-            set_leftArmLimp(other.leftArmLimp());
-            set_rightArmLimp(other.rightArmLimp());
-            set_power(other.power());
-            set_bend(other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.speed(), other.odometryResetCounter(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.bend());
             return *this;
         }
 
@@ -163,20 +133,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         NaoWalkCommand &operator = (const struct wb_nao_walk_command &other) {
-            set_walkEngineOn(other.walkEngineOn());
-            set_forward(other.forward());
-            set_left(other.left());
-            set_turn(other.turn());
-            set_exactStepsRequested(other.exactStepsRequested());
-            set_speed(other.speed());
-            set_odometryResetCounter(other.odometryResetCounter());
-            set_isFast(other.isFast());
-            set_kickWithLeftFoot(other.kickWithLeftFoot());
-            set_useShuffle(other.useShuffle());
-            set_leftArmLimp(other.leftArmLimp());
-            set_rightArmLimp(other.rightArmLimp());
-            set_power(other.power());
-            set_bend(other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.speed(), other.odometryResetCounter(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.bend());
             return *this;
         }
 
@@ -185,6 +142,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         NaoWalkCommand(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

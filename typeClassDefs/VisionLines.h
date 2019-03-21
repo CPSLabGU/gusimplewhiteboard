@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class VisionLines: public wb_vision_lines {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionLines`.
+         * Set the members of the class.
          */
-        VisionLines(struct wb_vision_line topLines[5] = NULLPTR, struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
+        void init(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
             if (topLines != NULLPTR) {
                 std::memcpy(this->_topLines, topLines, VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
@@ -101,49 +101,34 @@ namespace guWhiteboard {
             set_frameNumber(frameNumber);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionLines`.
+         */
+        VisionLines(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
+            this->init(topLines, bottomLines, numTopLines, numBottomLines, frameNumber);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionLines(const VisionLines &other): wb_vision_lines() {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const struct wb_vision_lines &other): wb_vision_lines() {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const VisionLines &other) {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
             return *this;
         }
 
@@ -151,15 +136,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const struct wb_vision_lines &other) {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
             return *this;
         }
 
@@ -168,6 +145,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         VisionLines(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

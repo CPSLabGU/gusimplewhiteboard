@@ -78,42 +78,45 @@ namespace guWhiteboard {
      */
     class ParticlePosition: public wb_particle_position {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
+            set_position(position);
+            set_headingInDegrees(headingInDegrees);
+            set_confidence(confidence);
+        }
+
     public:
 
         /**
          * Create a new `ParticlePosition`.
          */
         ParticlePosition(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
-            set_position(position);
-            set_headingInDegrees(headingInDegrees);
-            set_confidence(confidence);
+            this->init(position, headingInDegrees, confidence);
         }
 
         /**
          * Copy Constructor.
          */
         ParticlePosition(const ParticlePosition &other): wb_particle_position() {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
         }
 
         /**
          * Copy Constructor.
          */
         ParticlePosition(const struct wb_particle_position &other): wb_particle_position() {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
         }
 
         /**
          * Copy Assignment Operator.
          */
         ParticlePosition &operator = (const ParticlePosition &other) {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
             return *this;
         }
 
@@ -121,9 +124,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         ParticlePosition &operator = (const struct wb_particle_position &other) {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
             return *this;
         }
 
@@ -132,6 +133,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         ParticlePosition(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

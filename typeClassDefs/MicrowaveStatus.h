@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class MicrowaveStatus: public wb_microwave_status {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
+            set_timeLeft(timeLeft);
+            set_doorOpen(doorOpen);
+            set_buttonPushed(buttonPushed);
+        }
+
     public:
 
         /**
          * Create a new `MicrowaveStatus`.
          */
         MicrowaveStatus(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
-            set_timeLeft(timeLeft);
-            set_doorOpen(doorOpen);
-            set_buttonPushed(buttonPushed);
+            this->init(timeLeft, doorOpen, buttonPushed);
         }
 
         /**
          * Copy Constructor.
          */
         MicrowaveStatus(const MicrowaveStatus &other): wb_microwave_status() {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
         }
 
         /**
          * Copy Constructor.
          */
         MicrowaveStatus(const struct wb_microwave_status &other): wb_microwave_status() {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
         }
 
         /**
          * Copy Assignment Operator.
          */
         MicrowaveStatus &operator = (const MicrowaveStatus &other) {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         MicrowaveStatus &operator = (const struct wb_microwave_status &other) {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
             return *this;
         }
 
@@ -130,6 +131,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         MicrowaveStatus(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

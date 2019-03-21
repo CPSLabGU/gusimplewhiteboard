@@ -76,38 +76,44 @@ namespace guWhiteboard {
      */
     class Buttons: public wb_buttons {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(bool button1Pushed = false, bool button2Pushed = false) {
+            set_button1Pushed(button1Pushed);
+            set_button2Pushed(button2Pushed);
+        }
+
     public:
 
         /**
          * Create a new `Buttons`.
          */
         Buttons(bool button1Pushed = false, bool button2Pushed = false) {
-            set_button1Pushed(button1Pushed);
-            set_button2Pushed(button2Pushed);
+            this->init(button1Pushed, button2Pushed);
         }
 
         /**
          * Copy Constructor.
          */
         Buttons(const Buttons &other): wb_buttons() {
-            set_button1Pushed(other.button1Pushed());
-            set_button2Pushed(other.button2Pushed());
+            this->init(other.button1Pushed(), other.button2Pushed());
         }
 
         /**
          * Copy Constructor.
          */
         Buttons(const struct wb_buttons &other): wb_buttons() {
-            set_button1Pushed(other.button1Pushed());
-            set_button2Pushed(other.button2Pushed());
+            this->init(other.button1Pushed(), other.button2Pushed());
         }
 
         /**
          * Copy Assignment Operator.
          */
         Buttons &operator = (const Buttons &other) {
-            set_button1Pushed(other.button1Pushed());
-            set_button2Pushed(other.button2Pushed());
+            this->init(other.button1Pushed(), other.button2Pushed());
             return *this;
         }
 
@@ -115,8 +121,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Buttons &operator = (const struct wb_buttons &other) {
-            set_button1Pushed(other.button1Pushed());
-            set_button2Pushed(other.button2Pushed());
+            this->init(other.button1Pushed(), other.button2Pushed());
             return *this;
         }
 
@@ -125,6 +130,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         Buttons(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

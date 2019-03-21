@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class Trajectories: public wb_trajectories {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init() {
+
+        }
+
     public:
 
         /**
          * Create a new `Trajectories`.
          */
         Trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         Trajectories(const Trajectories &other): wb_trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         Trajectories(const struct wb_trajectories &other): wb_trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Assignment Operator.
          */
         Trajectories &operator = (const Trajectories &other) {
-
+            this->init();
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Trajectories &operator = (const struct wb_trajectories &other) {
-
+            this->init();
             return *this;
         }
 
@@ -120,6 +129,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         Trajectories(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 

@@ -76,46 +76,46 @@ namespace guWhiteboard {
      */
     class Input3D: public wb_input3d {
 
-    public:
+    private:
 
         /**
-         * Create a new `Input3D`.
+         * Set the members of the class.
          */
-        Input3D(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0) {
+        void init(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0) {
             set_yaw(yaw);
             set_pitch(pitch);
             set_roll(roll);
             set_power(power);
         }
 
+    public:
+
+        /**
+         * Create a new `Input3D`.
+         */
+        Input3D(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0) {
+            this->init(yaw, pitch, roll, power);
+        }
+
         /**
          * Copy Constructor.
          */
         Input3D(const Input3D &other): wb_input3d() {
-            set_yaw(other.yaw());
-            set_pitch(other.pitch());
-            set_roll(other.roll());
-            set_power(other.power());
+            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
         }
 
         /**
          * Copy Constructor.
          */
         Input3D(const struct wb_input3d &other): wb_input3d() {
-            set_yaw(other.yaw());
-            set_pitch(other.pitch());
-            set_roll(other.roll());
-            set_power(other.power());
+            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
         }
 
         /**
          * Copy Assignment Operator.
          */
         Input3D &operator = (const Input3D &other) {
-            set_yaw(other.yaw());
-            set_pitch(other.pitch());
-            set_roll(other.roll());
-            set_power(other.power());
+            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
             return *this;
         }
 
@@ -123,10 +123,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Input3D &operator = (const struct wb_input3d &other) {
-            set_yaw(other.yaw());
-            set_pitch(other.pitch());
-            set_roll(other.roll());
-            set_power(other.power());
+            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
             return *this;
         }
 
@@ -135,6 +132,7 @@ namespace guWhiteboard {
          * String Constructor.
          */
         Input3D(const std::string &str) {
+            this->init();
             this->from_string(str);
         }
 
