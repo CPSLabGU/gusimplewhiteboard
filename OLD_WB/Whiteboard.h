@@ -2,7 +2,7 @@
  *  Whiteboard.h
  *  
  *  Created by René Hexel on 21/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2019 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,6 +62,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <gu_util.h>
 #include "gusimplewhiteboard.h"
 #include "WhiteboardConstants.h"
 #include "WBFunctor.h"
@@ -175,7 +176,7 @@ namespace guWhiteboard
                  * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not
                  * @return The message object
                  */
-                WBMsg getMessage(gsw_hash_info *hashinfo, WBResult *result = NULL);
+                WBMsg getMessage(gsw_hash_info *hashinfo, WBResult *result = NULLPTR);
             
                 /**
                  * subscription callback: not really public!
@@ -263,7 +264,7 @@ namespace guWhiteboard
                  * @param[out] result A pointer (!) to WBResult to indicate whether a message existed or not                  
                  * @return The message object
                  */
-                WBMsg getMessage(std::string type, WBResult *result = NULL);
+                WBMsg getMessage(std::string type, WBResult *result = NULLPTR);
             
             
 		/**
