@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class Trajectories: public wb_trajectories {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init() {
+
+        }
+
     public:
 
         /**
          * Create a new `Trajectories`.
          */
         Trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         Trajectories(const Trajectories &other): wb_trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         Trajectories(const struct wb_trajectories &other): wb_trajectories() {
-
+            this->init();
         }
 
         /**
          * Copy Assignment Operator.
          */
         Trajectories &operator = (const Trajectories &other) {
-
+            this->init();
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Trajectories &operator = (const struct wb_trajectories &other) {
-
+            this->init();
             return *this;
         }
 
@@ -119,7 +128,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        Trajectories(const std::string &str) { wb_trajectories_from_string(this, str.c_str()); }
+        Trajectories(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_TRAJECTORIES_C_CONVERSION
@@ -155,19 +167,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > TRAJECTORIES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[TRAJECTORIES_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[TRAJECTORIES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[0];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -195,9 +206,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -224,13 +232,16 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
-
+                if (strlen(key) > 0) {
+                    varIndex = -1;
                 }
                 switch (varIndex) {
+                    case -1: { break; }
 
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_TRAJECTORIES_C_CONVERSION
         }

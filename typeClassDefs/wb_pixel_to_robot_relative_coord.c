@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_pixel_to_robot_relative_coord.h"
 #include <stdio.h>
 #include <string.h>
@@ -113,6 +117,14 @@
 #pragma clang diagnostic pop
 
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
+    pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, false);
+}
+
+void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle) {
+    pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, leg_sensors->LKneePitch > 2.0f && leg_sensors->RKneePitch > 2.0f);
+}
+
+void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling) {
 
     //TODO Eugene needs to write a C version of the resolution enum to actual values
     //This should query 'vs' for the resolution!
@@ -121,7 +133,7 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
     int32_t x = CONV_TO_IMG(sx, image_width);
     int32_t y = CONV_TO_IMG(-sy, image_height);
-	double camHeight = get_camera_height(camera, joints);
+	double camHeight = get_camera_height(camera, joints, kneeling);
 	
 	//the lowest angle we can see at for the camera
 	double cameraBottomVFOV = M_PI_2 + (-joints->HeadPitch - CAMERA_VFOV/2 + (camera?BOTTOM_CAMERA_ANGLE:TOP_CAMERA_ANGLE));
@@ -145,15 +157,18 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 	*angle = -(imageAngleX-joints->HeadYaw);   
 }
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints) {
+static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling) {
     double dx = (camera?BOTTOM_CAMERA_OFFSET_X:TOP_CAMERA_OFFSET_X);
     double dz = (camera?BOTTOM_CAMERA_OFFSET_Z:TOP_CAMERA_OFFSET_Z);
 
     double height = dz*cos(-joints->HeadPitch) + dx*sin(-joints->HeadPitch);
+    if (kneeling) {
+        return height + HEAD_BASE_HEIGHT_KNEELING;
+    }
     return height + HEAD_BASE_HEIGHT;
 }
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -186,19 +201,18 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[0];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -226,9 +240,6 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -255,18 +266,19 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
-
+        if (strlen(key) > 0) {
+            varIndex = -1;
         }
         switch (varIndex) {
+            case -1: { break; }
 
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

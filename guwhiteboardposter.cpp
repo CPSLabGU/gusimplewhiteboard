@@ -1175,75 +1175,75 @@ case kBall_Color_Num_v:
 }
 case kHAL_LArmTarget_Ctrl_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_LArmTarget_Ctrl_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kHAL_LArmTarget_Stat_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_LArmTarget_Stat_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kHAL_LArmTarget_Tolr_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_LArmTarget_Tolr_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kHAL_RArmTarget_Ctrl_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_RArmTarget_Ctrl_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kHAL_RArmTarget_Stat_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_RArmTarget_Stat_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kHAL_RArmTarget_Tolr_v:
 {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
     class HAL_RArmTarget_Tolr_t msg_ptr(wbd);
-    HAL_ArmTarget v = msg_ptr.get();
+    HalArmTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
 }
 case kVisionFieldFeatures_v:
 {
@@ -1325,75 +1325,75 @@ v.from_string(message_content);
 }
 case kHAL_LLegTarget_Ctrl_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_LLegTarget_Ctrl_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kHAL_LLegTarget_Stat_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_LLegTarget_Stat_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kHAL_LLegTarget_Tolr_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_LLegTarget_Tolr_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kHAL_RLegTarget_Ctrl_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_RLegTarget_Ctrl_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kHAL_RLegTarget_Stat_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_RLegTarget_Stat_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kHAL_RLegTarget_Tolr_v:
 {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
     class HAL_RLegTarget_Tolr_t msg_ptr(wbd);
-    HAL_LegTarget v = msg_ptr.get();
+    HalLegTarget v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
 }
 case kVisionDetectionGoals_v:
 {

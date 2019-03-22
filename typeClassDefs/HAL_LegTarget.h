@@ -1,5 +1,5 @@
 /**
- *  /file HAL_LegTarget.h
+ *  /file HalLegTarget.h
  *
  *  Created by Dimitri Joukoff 2016.
  *  Copyright (c) 2016 Dimitri Joukoff
@@ -8,8 +8,8 @@
 
 
 
-#ifndef HAL_LegTarget_DEFINED
-#define HAL_LegTarget_DEFINED
+#ifndef HalLegTarget_DEFINED
+#define HalLegTarget_DEFINED
 
 #include "wb_hal_legtarget.h"
 //#include <cmath>
@@ -37,28 +37,28 @@ namespace guWhiteboard
 	 *
      *     Move (left) leg such that the thigh is almost parallel to the ground pointing directly in front of the robot,
      *     and the knee is bent right angle with the foot horizontal in the pitch and roll axis, in one second.
-     *     myLegTarget = new HAL_LegTarget(LEFT_LEG);
+     *     myLegTarget = new HalLegTarget(LEFT_LEG);
      *     myLegTarget.GoToWithTime_Deg(0, 0, -88, 90, 0, 0, 1000);
-	 *     HAL_LegTarget().GoToWithTime_Rad(...) provides a method to control the leg using radian based units.
+	 *     HalLegTarget().GoToWithTime_Rad(...) provides a method to control the leg using radian based units.
      *
      *
-     *     HAL_LegTarget().setLegActive(); 	 // Puts the leg into active mode, Naoqi DCM default.
-     *     HAL_LegTarget().setLegPassive();  // Puts the leg into passive mode, allowing the leg to be manupulated by external forces.
+     *     HalLegTarget().setLegActive(); 	 // Puts the leg into active mode, Naoqi DCM default.
+     *     HalLegTarget().setLegPassive();  // Puts the leg into passive mode, allowing the leg to be manupulated by external forces.
 	 *
 	 * Class values need to be passed to the Whiteboard, using the handler, for them to take effect.
 	 *
-     *     HAL_LegTarget_t.set(HAL_LegTarget());
-	 *     HAL_LegTarget_t.set(HAL_LegTarget().setLegPassive());
+     *     HalLegTarget_t.set(HalLegTarget());
+	 *     HalLegTarget_t.set(HalLegTarget().setLegPassive());
 	 *
  	 */
-    class HAL_LegTarget : public wb_hal_legtarget
+    class HalLegTarget : public wb_hal_legtarget
     {
 
         public:
             /**
              *  Constructor, defaults to LEFT_LEG
              */
-//            HAL_LegTarget(const uint8_t &target_leg = LEFT_LEG): wb_hal_legtarget(target_leg) {}
+//            HalLegTarget(const uint8_t &target_leg = LEFT_LEG): wb_hal_legtarget(target_leg) {}
         
             /**
              * Constructor using float parameters
@@ -66,7 +66,7 @@ namespace guWhiteboard
              * holds integer representations of the angles.
              *
              */
-            HAL_LegTarget(const uint8_t &target_leg = LEFT_LEG,
+            HalLegTarget(const uint8_t &target_leg = LEFT_LEG,
                          const float hipyawpitch = 0,
                          const float hiproll = 0,
                          const float hippitch = 0,
@@ -240,12 +240,12 @@ namespace guWhiteboard
              *
              *  'this' object contains the target pose settings.
              *
-             *  @param  status      HAL_LegTarget object which contains actual pose settings reported by the robot's sensors.
-             *  @param  tolerance   HAL_LegTarget object whose pose settings specify the tolerance for each joint
+             *  @param  status      HalLegTarget object which contains actual pose settings reported by the robot's sensors.
+             *  @param  tolerance   HalLegTarget object whose pose settings specify the tolerance for each joint
              *  @return bool        whether or not the status is within range of the target location.
              *
              */
-            bool atTargetLocation(HAL_LegTarget status, HAL_LegTarget tolerance)
+            bool atTargetLocation(HalLegTarget status, HalLegTarget tolerance)
             {
                 int16_t hipyawpitchMargin = static_cast<int16_t>(abs(target_hipyawpitch() - status.target_hipyawpitch()));
                 int16_t hiprollMargin = static_cast<int16_t>(abs(target_hiproll() - status.target_hiproll()));
@@ -320,12 +320,12 @@ namespace guWhiteboard
 
             
             /**
-             *  Convenience function to mirror leg settings about the XZ plane from one HAL_LegTarget object to another.
+             *  Convenience function to mirror leg settings about the XZ plane from one HalLegTarget object to another.
              *
-             *  @param  other    HAL_LegTarget object to be mirrored.
+             *  @param  other    HalLegTarget object to be mirrored.
              *
              */
-            void mirrorLeg(const HAL_LegTarget &other)
+            void mirrorLeg(const HalLegTarget &other)
             {
                 // Roll and Yaw angles need to be mirrored, others just copied.
                 set_target_hipyawpitch(other.target_hipyawpitch());
@@ -351,12 +351,12 @@ namespace guWhiteboard
             }
             
             /**
-             *  Convenience function to copy pose settings from one HAL_LegTarget object to another.
+             *  Convenience function to copy pose settings from one HalLegTarget object to another.
              *
-             *  @param  other    HAL_LegTarget object from which to copy pose settings from.
+             *  @param  other    HalLegTarget object from which to copy pose settings from.
              *
              */
-            void copyPose(const HAL_LegTarget &other)
+            void copyPose(const HalLegTarget &other)
             {
                 set_target_hipyawpitch(other.target_hipyawpitch());
                 set_target_hiproll(other.target_hiproll());
@@ -367,15 +367,15 @@ namespace guWhiteboard
             }
             
             /**
-             *  Convenience function to mirror pose settings about the XZ plane from one HAL_LegTarget object to another.
+             *  Convenience function to mirror pose settings about the XZ plane from one HalLegTarget object to another.
              *
-             *  @param  other    HAL_LegTarget object whose pose settings are to be mirrored.
+             *  @param  other    HalLegTarget object whose pose settings are to be mirrored.
              *
              */
-            void mirrorPose(const HAL_LegTarget &other)
+            void mirrorPose(const HalLegTarget &other)
             {
                 // Roll and Yaw angles need to be mirrored, others just copied.
-                set_target_hipyawpitch(other.target_hipyawpitch());
+                set_target_hipyawpitch(-other.target_hipyawpitch());
                 set_target_hiproll(-other.target_hiproll());
                 set_target_hippitch(other.target_hippitch());
                 set_target_kneepitch(other.target_kneepitch());
@@ -384,14 +384,14 @@ namespace guWhiteboard
             }
             
             /**
-             *  Tests if this HAL_LegTarget object has the same pose settings as the other HAL_LegTarget object.
+             *  Tests if this HalLegTarget object has the same pose settings as the other HalLegTarget object.
              *      NOTE this DOES NOT take into account mirroring about the XZ plane.
              *
-             *  @param  other   HAL_LegTarget object whose pose settings are being compared.
+             *  @param  other   HalLegTarget object whose pose settings are being compared.
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool hasSamePose(const HAL_LegTarget &other)
+            bool hasSamePose(const HalLegTarget &other)
             {
                 if (
                     target_hipyawpitch() == other.target_hipyawpitch()
@@ -408,14 +408,14 @@ namespace guWhiteboard
             }
             
             /**
-             *  Tests if this HAL_LegTarget object has the same mirrored pose settings as the other HAL_LegTarget object.
+             *  Tests if this HalLegTarget object has the same mirrored pose settings as the other HalLegTarget object.
              *      NOTE this method DOES take into account mirroring about the XZ plane.
              *
-             *  @param  other   HAL_LegTarget object whose pose settings are being compared.
+             *  @param  other   HalLegTarget object whose pose settings are being compared.
              *  @return bool    whether the two objects have the same pose or not.
              *
              */
-            bool hasSameMirroredPose(const HAL_LegTarget &other)
+            bool hasSameMirroredPose(const HalLegTarget &other)
             {
                 if (
                     target_hipyawpitch() == other.target_hipyawpitch()
@@ -500,12 +500,12 @@ namespace guWhiteboard
 
         
             /**
-             *  Convenience function to copy stiffness settings from one HAL_LegTarget object to another.
+             *  Convenience function to copy stiffness settings from one HalLegTarget object to another.
              *
-             *  @param  other    HAL_LegTarget object from which to copy stiffness settings.
+             *  @param  other    HalLegTarget object from which to copy stiffness settings.
              *
              */
-            void copyStiffness(const HAL_LegTarget &other)
+            void copyStiffness(const HalLegTarget &other)
             {
                 target_hipyawpitchstiffness() = other.target_hipyawpitchstiffness();
                 target_hiprollstiffness() = other.target_hiprollstiffness();
@@ -518,13 +518,13 @@ namespace guWhiteboard
 
 
             /**
-             *  Tests if this HAL_LegTarget object has the same stiffness settings as the other HAL_LegTarget object.
+             *  Tests if this HalLegTarget object has the same stiffness settings as the other HalLegTarget object.
              *
-             *  @param  other   HAL_LegTarget object whose stiffness settings are being compared.
+             *  @param  other   HalLegTarget object whose stiffness settings are being compared.
              *  @return bool    whether the two objects have the same stiffness or not.
              *
              */
-            bool hasSameStiffness(const HAL_LegTarget &other)
+            bool hasSameStiffness(const HalLegTarget &other)
             {
                 if (
                     target_hipyawpitchstiffness() == other.target_hipyawpitchstiffness()
@@ -792,27 +792,27 @@ namespace guWhiteboard
             std::string description() const
             {
                 std::stringstream ss;
-                ss << static_cast<int>(target_hipyawpitch()) << "-|-"
-                << static_cast<int>(target_hiproll()) << "-|-"
-                << static_cast<int>(target_hippitch()) << "-|-"
-                << static_cast<int>(target_kneepitch()) << "-|-"
-                << static_cast<int>(target_anklepitch()) << "-|-"
-                << static_cast<int>(target_ankleroll()) << "-|-"
-                << static_cast<int>(target_hipyawpitchstiffness()) << "-|-"
-                << static_cast<int>(target_hiprollstiffness()) << "-|-"
-                << static_cast<int>(target_hippitchstiffness()) << "-|-"
-                << static_cast<int>(target_kneepitchstiffness()) << "-|-"
-                << static_cast<int>(target_anklepitchstiffness()) << "-|-"
-                << static_cast<int>(target_anklerollstiffness()) << "-|-"
-                << static_cast<int>(target_hipyawpitch_active()) << "-|-"
-                << static_cast<int>(target_hiproll_active()) << "-|-"
-                << static_cast<int>(target_hippitch_active()) << "-|-"
-                << static_cast<int>(target_kneepitch_active()) << "-|-"
-                << static_cast<int>(target_anklepitch_active()) << "-|-"
-                << static_cast<int>(target_ankleroll_active()) << "-|-"
-                << static_cast<int>(target_movement_time()) << "-|-"
-                << static_cast<int>(target_pliability()) << "-|-"
-                << static_cast<int>(target_leg_at_goal()) << "-|-"
+                ss << static_cast<int>(target_hipyawpitch()) << " | "
+                << static_cast<int>(target_hiproll()) << " | "
+                << static_cast<int>(target_hippitch()) << " | "
+                << static_cast<int>(target_kneepitch()) << " | "
+                << static_cast<int>(target_anklepitch()) << " | "
+                << static_cast<int>(target_ankleroll()) << " | "
+                << static_cast<int>(target_hipyawpitchstiffness()) << " | "
+                << static_cast<int>(target_hiprollstiffness()) << " | "
+                << static_cast<int>(target_hippitchstiffness()) << " | "
+                << static_cast<int>(target_kneepitchstiffness()) << " | "
+                << static_cast<int>(target_anklepitchstiffness()) << " | "
+                << static_cast<int>(target_anklerollstiffness()) << " | "
+                << static_cast<int>(target_hipyawpitch_active()) << " | "
+                << static_cast<int>(target_hiproll_active()) << " | "
+                << static_cast<int>(target_hippitch_active()) << " | "
+                << static_cast<int>(target_kneepitch_active()) << " | "
+                << static_cast<int>(target_anklepitch_active()) << " | "
+                << static_cast<int>(target_ankleroll_active()) << " | "
+                << static_cast<int>(target_movement_time()) << " | "
+                << static_cast<int>(target_pliability()) << " | "
+                << static_cast<int>(target_leg_at_goal()) << " | "
                 << static_cast<int>(target_leg_stop());
                 return ss.str();
             }
@@ -823,7 +823,7 @@ namespace guWhiteboard
              * String constructor (NYI)
              * @param str the string to parse and use to recreate the this object
              */
-            HAL_LegTarget(const std::string &str) { from_string(str); }
+            HalLegTarget(const std::string &str) { from_string(str); }
 
             /**
              * Parser for recreating this class (NYI)
@@ -842,4 +842,4 @@ namespace guWhiteboard
         };
 }
 
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED

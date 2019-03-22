@@ -73,7 +73,7 @@
 #define RIGHT_ANKLE_ROLL_IN_RAD 0.397935f
 
 /**
- * HAL_LegTarget c struct
+ * HalLegTarget c struct
  *
  * The struct is designed around a single leg,
  * allowing independent control of the NAO's legs.
@@ -214,7 +214,7 @@ struct wb_hal_legtarget
 
 #ifdef __cplusplus
     /**
-    * constructor for the HAL_LegTarget stuct. This is the data that is placed on the Whiteboard
+    * constructor for the HalLegTarget stuct. This is the data that is placed on the Whiteboard
     * @param leg                     uint8_t enumeration of the leg
     * @param hipyawpitch             desired hipyawpitch
     * @param hiproll                 desired hip roll

@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_microwave_status.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -183,19 +187,18 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > MICROWAVE_STATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[MICROWAVE_STATUS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[MICROWAVE_STATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -223,9 +226,6 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -252,16 +252,19 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("timeLeft", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("doorOpen", key)) {
                 varIndex = 1;
             } else if (0 == strcmp("buttonPushed", key)) {
                 varIndex = 2;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->timeLeft = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
@@ -278,12 +281,12 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

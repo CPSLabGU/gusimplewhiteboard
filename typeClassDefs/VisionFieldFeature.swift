@@ -89,7 +89,7 @@ extension wb_vision_field_feature {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let location = dictionary["location"] as? wb_point2d,
+            let location = (dictionary["location"] as? [String: Any]).flatMap({ wb_point2d(fromDictionary: $0)  }),
             let camera = dictionary["camera"] as? UInt8
         else {
             fatalError("Unable to convert \(dictionary) to wb_vision_field_feature.")
@@ -107,6 +107,8 @@ extension wb_vision_field_feature: CustomStringConvertible {
      */
     public var description: String {
         var descString = ""
+        descString += "location={" + self.location.description + "}"
+        descString += ", "
         descString += "camera=\(self.camera)"
         return descString
     }
@@ -116,5 +118,6 @@ extension wb_vision_field_feature: CustomStringConvertible {
 extension wb_vision_field_feature: Equatable {}
 
 public func == (lhs: wb_vision_field_feature, rhs: wb_vision_field_feature) -> Bool {
-    return lhs.camera == rhs.camera
+    return lhs.location == rhs.location
+        && lhs.camera == rhs.camera
 }

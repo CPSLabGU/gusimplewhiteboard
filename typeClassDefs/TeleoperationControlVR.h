@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class TeleoperationControlVR: public wb_teleoperation_control_v_r {
 
-    public:
+    private:
 
         /**
-         * Create a new `TeleoperationControlVR`.
+         * Set the members of the class.
          */
-        TeleoperationControlVR(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
+        void init(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
             set_ip(ip);
             set_action(action);
             set_stance(stance);
@@ -93,49 +93,34 @@ namespace guWhiteboard {
             set_timestamp(timestamp);
         }
 
+    public:
+
+        /**
+         * Create a new `TeleoperationControlVR`.
+         */
+        TeleoperationControlVR(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
+            this->init(ip, action, stance, streamType, selectedCamera, sayString, walk, turn, timestamp);
+        }
+
         /**
          * Copy Constructor.
          */
         TeleoperationControlVR(const TeleoperationControlVR &other): wb_teleoperation_control_v_r() {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
-            set_walk(other.walk());
-            set_turn(other.turn());
-            set_timestamp(other.timestamp());
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationControlVR(const struct wb_teleoperation_control_v_r &other): wb_teleoperation_control_v_r() {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
-            set_walk(other.walk());
-            set_turn(other.turn());
-            set_timestamp(other.timestamp());
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
         }
 
         /**
          * Copy Assignment Operator.
          */
         TeleoperationControlVR &operator = (const TeleoperationControlVR &other) {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
-            set_walk(other.walk());
-            set_turn(other.turn());
-            set_timestamp(other.timestamp());
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
             return *this;
         }
 
@@ -143,15 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TeleoperationControlVR &operator = (const struct wb_teleoperation_control_v_r &other) {
-            set_ip(other.ip());
-            set_action(other.action());
-            set_stance(other.stance());
-            set_streamType(other.streamType());
-            set_selectedCamera(other.selectedCamera());
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
-            set_walk(other.walk());
-            set_turn(other.turn());
-            set_timestamp(other.timestamp());
+            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
             return *this;
         }
 
@@ -159,7 +136,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        TeleoperationControlVR(const std::string &str) { wb_teleoperation_control_v_r_from_string(this, str.c_str()); }
+        TeleoperationControlVR(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_TELEOPERATION_CONTROL_V_R_C_CONVERSION
@@ -235,19 +215,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[TELEOPERATIONCONTROLVR_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[15];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -275,9 +254,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -304,7 +280,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("ip", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("action", key)) {
@@ -323,9 +299,12 @@ namespace guWhiteboard {
                         varIndex = 7;
                     } else if (0 == strcmp("timestamp", key)) {
                         varIndex = 8;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_ip(static_cast<uint8_t>(atoi(var_str)));
@@ -372,7 +351,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_TELEOPERATIONCONTROLVR_C_CONVERSION
         }

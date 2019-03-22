@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_field_feature.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -122,6 +126,25 @@ const char* wb_vision_field_feature_description(const struct wb_vision_field_fea
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
     size_t len = 0;
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "location={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char location_buffer[POINT2D_DESC_BUFFER_SIZE];
+    char* location_p = location_buffer;
+    const char* location_description = wb_point2d_description(&self->location, location_p, POINT2D_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, location_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -140,6 +163,25 @@ const char* wb_vision_field_feature_to_string(const struct wb_vision_field_featu
     if (len >= bufferSize) {
         return toString;
     }
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char location_buffer[POINT2D_TO_STRING_BUFFER_SIZE];
+    char* location_p = location_buffer;
+    const char* location_to_string = wb_point2d_to_string(&self->location, location_p, POINT2D_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, location_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
     len += snprintf(toString + len, bufferSize - len, "%u", self->camera);
     return toString;
 }
@@ -151,19 +193,18 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_FIELDFEATURE_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_FIELDFEATURE_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[9];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -191,9 +232,6 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -220,24 +258,34 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
-            if (0 == strcmp("camera", key)) {
+        if (strlen(key) > 0) {
+            if (0 == strcmp("location", key)) {
                 varIndex = 0;
+            } else if (0 == strcmp("camera", key)) {
+                varIndex = 1;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
+            {
+                wb_point2d_from_string(&self->location, var_str);
+                break;
+            }
+            case 1:
             {
                 self->camera = ((uint8_t)atoi(var_str));
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
