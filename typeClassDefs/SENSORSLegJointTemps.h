@@ -203,7 +203,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -257,7 +257,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("LKneePitch", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("LAnklePitch", key)) {
@@ -270,9 +270,12 @@ namespace guWhiteboard {
                         varIndex = 4;
                     } else if (0 == strcmp("RAnkleRoll", key)) {
                         varIndex = 5;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_LKneePitch(static_cast<float>(atof(var_str)));
@@ -304,7 +307,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_SENSORS_LEGJOINTTEMPS_C_CONVERSION
         }

@@ -178,7 +178,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -232,13 +232,16 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
-
+                if (strlen(key) > 0) {
+                    varIndex = -1;
                 }
                 switch (varIndex) {
+                    case -1: { break; }
 
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
         }

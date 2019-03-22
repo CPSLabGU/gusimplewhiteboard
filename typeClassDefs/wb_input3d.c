@@ -214,7 +214,7 @@ struct wb_input3d* wb_input3d_from_string(struct wb_input3d* self, const char* s
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -268,7 +268,7 @@ struct wb_input3d* wb_input3d_from_string(struct wb_input3d* self, const char* s
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("yaw", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("pitch", key)) {
@@ -277,9 +277,12 @@ struct wb_input3d* wb_input3d_from_string(struct wb_input3d* self, const char* s
                 varIndex = 2;
             } else if (0 == strcmp("power", key)) {
                 varIndex = 3;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->yaw = ((int16_t)atoi(var_str));
@@ -301,7 +304,9 @@ struct wb_input3d* wb_input3d_from_string(struct wb_input3d* self, const char* s
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

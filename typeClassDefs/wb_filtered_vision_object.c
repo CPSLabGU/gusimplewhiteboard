@@ -294,7 +294,7 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -348,7 +348,7 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("visibilityHistory", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("frameCounter", key)) {
@@ -367,9 +367,12 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
                 varIndex = 7;
             } else if (0 == strcmp("pad1", key)) {
                 varIndex = 8;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->visibilityHistory = ((uint64_t)atoll(var_str));
@@ -416,7 +419,9 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

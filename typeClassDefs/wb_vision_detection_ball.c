@@ -236,7 +236,7 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -290,7 +290,7 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("sightingType", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("x", key)) {
@@ -299,9 +299,12 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
                 varIndex = 2;
             } else if (0 == strcmp("r", key)) {
                 varIndex = 3;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 if (strcmp("BallDetected", var_str) == 0) {
@@ -329,7 +332,9 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

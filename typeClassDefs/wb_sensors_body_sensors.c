@@ -470,7 +470,7 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -524,7 +524,7 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("DCM_Time", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("InertialSensor_AccX", key)) {
@@ -565,9 +565,12 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
                 varIndex = 18;
             } else if (0 == strcmp("ChestBoard_Button", key)) {
                 varIndex = 19;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->DCM_Time = ((signed int)atoi(var_str));
@@ -669,7 +672,9 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

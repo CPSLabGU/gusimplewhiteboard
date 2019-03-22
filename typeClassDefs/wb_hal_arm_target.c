@@ -703,7 +703,7 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -757,7 +757,7 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("target_movement_time", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("target_shoulderpitch", key)) {
@@ -804,9 +804,12 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
                 varIndex = 21;
             } else if (0 == strcmp("target_arm_stop", key)) {
                 varIndex = 22;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->target_movement_time = ((int32_t)atoi(var_str));
@@ -923,7 +926,9 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

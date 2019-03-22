@@ -182,7 +182,7 @@ struct wb_particle_output_map* wb_particle_output_map_from_string(struct wb_part
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -236,14 +236,17 @@ struct wb_particle_output_map* wb_particle_output_map_from_string(struct wb_part
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("fileId", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("filePath", key)) {
                 varIndex = 1;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->fileId = ((uint8_t)atoi(var_str));
@@ -255,7 +258,9 @@ struct wb_particle_output_map* wb_particle_output_map_from_string(struct wb_part
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

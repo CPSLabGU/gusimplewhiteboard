@@ -198,7 +198,7 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -252,16 +252,19 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("timeLeft", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("doorOpen", key)) {
                 varIndex = 1;
             } else if (0 == strcmp("buttonPushed", key)) {
                 varIndex = 2;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->timeLeft = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
@@ -278,7 +281,9 @@ struct wb_microwave_status* wb_microwave_status_from_string(struct wb_microwave_
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

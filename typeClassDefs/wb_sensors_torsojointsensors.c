@@ -342,7 +342,7 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -396,7 +396,7 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("HeadYaw", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("HeadPitch", key)) {
@@ -421,9 +421,12 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
                 varIndex = 10;
             } else if (0 == strcmp("RWristYaw", key)) {
                 varIndex = 11;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->HeadYaw = ((float)atof(var_str));
@@ -485,7 +488,9 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

@@ -258,7 +258,7 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -312,7 +312,7 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("lineStart", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("lineEnd", key)) {
@@ -321,9 +321,12 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
                 varIndex = 2;
             } else if (0 == strcmp("endThickness", key)) {
                 varIndex = 3;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 wb_point2d_from_string(&self->lineStart, var_str);
@@ -345,7 +348,9 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

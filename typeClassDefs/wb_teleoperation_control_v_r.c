@@ -294,7 +294,7 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -348,7 +348,7 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("ip", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("action", key)) {
@@ -367,9 +367,12 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
                 varIndex = 7;
             } else if (0 == strcmp("timestamp", key)) {
                 varIndex = 8;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->ip = ((uint8_t)atoi(var_str));
@@ -416,7 +419,9 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

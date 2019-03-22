@@ -374,7 +374,7 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -428,7 +428,7 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("sightingType", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("orientation", key)) {
@@ -449,9 +449,12 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
                 varIndex = 8;
             } else if (0 == strcmp("br_y", key)) {
                 varIndex = 9;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 if (strcmp("FullPostSeen", var_str) == 0) {
@@ -519,7 +522,9 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

@@ -226,7 +226,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -280,7 +280,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("ip", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("action", key)) {
@@ -299,9 +299,12 @@ namespace guWhiteboard {
                         varIndex = 7;
                     } else if (0 == strcmp("timestamp", key)) {
                         varIndex = 8;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_ip(static_cast<uint8_t>(atoi(var_str)));
@@ -348,7 +351,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_TELEOPERATIONCONTROLVR_C_CONVERSION
         }

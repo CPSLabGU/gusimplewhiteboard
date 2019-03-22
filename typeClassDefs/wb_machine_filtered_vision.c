@@ -304,7 +304,7 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -358,7 +358,7 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("ball_direction", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("ball_distance", key)) {
@@ -373,9 +373,12 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
                 varIndex = 5;
             } else if (0 == strcmp("goal_sightingType", key)) {
                 varIndex = 6;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->ball_direction = ((int8_t)atoi(var_str));
@@ -422,7 +425,9 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }

@@ -198,7 +198,7 @@ struct wb_sensors_head_sensors* wb_sensors_head_sensors_from_string(struct wb_se
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -252,16 +252,19 @@ struct wb_sensors_head_sensors* wb_sensors_head_sensors_from_string(struct wb_se
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("Head_Touch_Front", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("Head_Touch_Middle", key)) {
                 varIndex = 1;
             } else if (0 == strcmp("Head_Touch_Rear", key)) {
                 varIndex = 2;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->Head_Touch_Front = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
@@ -278,7 +281,9 @@ struct wb_sensors_head_sensors* wb_sensors_head_sensors_from_string(struct wb_se
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
