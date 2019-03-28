@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class VisionDetectionHorizon: public wb_vision_detection_horizon {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionHorizon`.
+         * Set the members of the class.
          */
-        VisionDetectionHorizon(enum HorizonOptions horizonType = HorizonFailed, int16_t lhp_x = 0, int16_t lhp_y = 0, int16_t rhp_x = 0, int16_t rhp_y = 0, int16_t chp_x = 0, int16_t chp_y = 0) {
+        void init(enum HorizonOptions horizonType = HorizonFailed, int16_t lhp_x = 0, int16_t lhp_y = 0, int16_t rhp_x = 0, int16_t rhp_y = 0, int16_t chp_x = 0, int16_t chp_y = 0) {
             set_horizonType(horizonType);
             set_lhp_x(lhp_x);
             set_lhp_y(lhp_y);
@@ -91,43 +91,34 @@ namespace guWhiteboard {
             set_chp_y(chp_y);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionHorizon`.
+         */
+        VisionDetectionHorizon(enum HorizonOptions horizonType = HorizonFailed, int16_t lhp_x = 0, int16_t lhp_y = 0, int16_t rhp_x = 0, int16_t rhp_y = 0, int16_t chp_x = 0, int16_t chp_y = 0) {
+            this->init(horizonType, lhp_x, lhp_y, rhp_x, rhp_y, chp_x, chp_y);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizon(const VisionDetectionHorizon &other): wb_vision_detection_horizon() {
-            set_horizonType(other.horizonType());
-            set_lhp_x(other.lhp_x());
-            set_lhp_y(other.lhp_y());
-            set_rhp_x(other.rhp_x());
-            set_rhp_y(other.rhp_y());
-            set_chp_x(other.chp_x());
-            set_chp_y(other.chp_y());
+            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizon(const struct wb_vision_detection_horizon &other): wb_vision_detection_horizon() {
-            set_horizonType(other.horizonType());
-            set_lhp_x(other.lhp_x());
-            set_lhp_y(other.lhp_y());
-            set_rhp_x(other.rhp_x());
-            set_rhp_y(other.rhp_y());
-            set_chp_x(other.chp_x());
-            set_chp_y(other.chp_y());
+            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionHorizon &operator = (const VisionDetectionHorizon &other) {
-            set_horizonType(other.horizonType());
-            set_lhp_x(other.lhp_x());
-            set_lhp_y(other.lhp_y());
-            set_rhp_x(other.rhp_x());
-            set_rhp_y(other.rhp_y());
-            set_chp_x(other.chp_x());
-            set_chp_y(other.chp_y());
+            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
             return *this;
         }
 
@@ -135,13 +126,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionHorizon &operator = (const struct wb_vision_detection_horizon &other) {
-            set_horizonType(other.horizonType());
-            set_lhp_x(other.lhp_x());
-            set_lhp_y(other.lhp_y());
-            set_rhp_x(other.rhp_x());
-            set_rhp_y(other.rhp_y());
-            set_chp_x(other.chp_x());
-            set_chp_y(other.chp_y());
+            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
             return *this;
         }
 
@@ -149,7 +134,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionHorizon(const std::string &str) { wb_vision_detection_horizon_from_string(this, str.c_str()); }
+        VisionDetectionHorizon(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
@@ -159,7 +147,28 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "horizonType=" << this->horizonType();
+            switch (this->horizonType()) {
+                case CornerHorizon:
+                {
+                    ss << "horizonType=" << "CornerHorizon";
+                    break;
+                }
+                case HorizonFailed:
+                {
+                    ss << "horizonType=" << "HorizonFailed";
+                    break;
+                }
+                case OnlyField:
+                {
+                    ss << "horizonType=" << "OnlyField";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "horizonType=" << "SingleHorizon";
+                    break;
+                }
+            }
             ss << ", ";
             ss << "lhp_x=" << static_cast<signed>(this->lhp_x());
             ss << ", ";
@@ -184,7 +193,28 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->horizonType();
+            switch (this->horizonType()) {
+                case CornerHorizon:
+                {
+                    ss << "CornerHorizon";
+                    break;
+                }
+                case HorizonFailed:
+                {
+                    ss << "HorizonFailed";
+                    break;
+                }
+                case OnlyField:
+                {
+                    ss << "OnlyField";
+                    break;
+                }
+                case SingleHorizon:
+                {
+                    ss << "SingleHorizon";
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<signed>(this->lhp_x());
             ss << ", ";
@@ -209,10 +239,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -220,7 +250,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -274,7 +304,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("horizonType", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("lhp_x", key)) {
@@ -289,12 +319,25 @@ namespace guWhiteboard {
                         varIndex = 5;
                     } else if (0 == strcmp("chp_y", key)) {
                         varIndex = 6;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
-                        this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
+                        if (strcmp("CornerHorizon", var_str) == 0) {
+                            this->set_horizonType(CornerHorizon);
+                        } else if (strcmp("HorizonFailed", var_str) == 0) {
+                            this->set_horizonType(HorizonFailed);
+                        } else if (strcmp("OnlyField", var_str) == 0) {
+                            this->set_horizonType(OnlyField);
+                        } else if (strcmp("SingleHorizon", var_str) == 0) {
+                            this->set_horizonType(SingleHorizon);
+                        } else {
+                            this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
@@ -328,7 +371,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }

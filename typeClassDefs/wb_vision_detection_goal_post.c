@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_goal_post.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -125,7 +129,23 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "sightingType=%d", self->sightingType);
+    switch (self->sightingType) {
+        case FullPostSeen:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=FullPostSeen");
+            break;
+        }
+        case NoPostDetected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=NoPostDetected");
+            break;
+        }
+        case PartialPostSeen:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=PartialPostSeen");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -133,7 +153,23 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "orientation=%d", self->orientation);
+    switch (self->orientation) {
+        case GenericPost:
+        {
+            len += snprintf(descString + len, bufferSize - len, "orientation=GenericPost");
+            break;
+        }
+        case LeftPost:
+        {
+            len += snprintf(descString + len, bufferSize - len, "orientation=LeftPost");
+            break;
+        }
+        case RightPost:
+        {
+            len += snprintf(descString + len, bufferSize - len, "orientation=RightPost");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -212,7 +248,23 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->sightingType);
+    switch (self->sightingType) {
+        case FullPostSeen:
+        {
+            len += snprintf(toString + len, bufferSize - len, "FullPostSeen");
+            break;
+        }
+        case NoPostDetected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoPostDetected");
+            break;
+        }
+        case PartialPostSeen:
+        {
+            len += snprintf(toString + len, bufferSize - len, "PartialPostSeen");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -220,7 +272,23 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->orientation);
+    switch (self->orientation) {
+        case GenericPost:
+        {
+            len += snprintf(toString + len, bufferSize - len, "GenericPost");
+            break;
+        }
+        case LeftPost:
+        {
+            len += snprintf(toString + len, bufferSize - len, "LeftPost");
+            break;
+        }
+        case RightPost:
+        {
+            len += snprintf(toString + len, bufferSize - len, "RightPost");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -295,10 +363,10 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];
@@ -306,7 +374,7 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -360,7 +428,7 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("sightingType", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("orientation", key)) {
@@ -381,17 +449,36 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
                 varIndex = 8;
             } else if (0 == strcmp("br_y", key)) {
                 varIndex = 9;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
-                self->sightingType = ((enum GoalPostOptions)atoi(var_str));
+                if (strcmp("FullPostSeen", var_str) == 0) {
+                    self->sightingType = FullPostSeen;
+                } else if (strcmp("NoPostDetected", var_str) == 0) {
+                    self->sightingType = NoPostDetected;
+                } else if (strcmp("PartialPostSeen", var_str) == 0) {
+                    self->sightingType = PartialPostSeen;
+                } else {
+                    self->sightingType = ((enum GoalPostOptions)atoi(var_str));
+                }
                 break;
             }
             case 1:
             {
-                self->orientation = ((enum GoalPostOrientation)atoi(var_str));
+                if (strcmp("GenericPost", var_str) == 0) {
+                    self->orientation = GenericPost;
+                } else if (strcmp("LeftPost", var_str) == 0) {
+                    self->orientation = LeftPost;
+                } else if (strcmp("RightPost", var_str) == 0) {
+                    self->orientation = RightPost;
+                } else {
+                    self->orientation = ((enum GoalPostOrientation)atoi(var_str));
+                }
                 break;
             }
             case 2:
@@ -435,12 +522,12 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

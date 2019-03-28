@@ -130,8 +130,8 @@
 #include "MachineFilteredVision.h"
 #include "MachineFilteredLocalisationVision.h"
 #include "VisionFieldFeatures.h"
-#include "HAL_ArmTarget.h"
-#include "HAL_LegTarget.h"
+#include "HalArmTarget.h"
+#include "HalLegTarget.h"
 #include "MicrowaveStatus.h"
 #include "Buttons.h"
 

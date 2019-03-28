@@ -76,38 +76,44 @@ namespace guWhiteboard {
      */
     class ParticleOutputMap: public wb_particle_output_map {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(uint8_t fileId = 0, std::string filePath = "") {
+            set_fileId(fileId);
+            gu_strlcpy(const_cast<char *>(this->filePath()), filePath.c_str(), 64);
+        }
+
     public:
 
         /**
          * Create a new `ParticleOutputMap`.
          */
         ParticleOutputMap(uint8_t fileId = 0, std::string filePath = "") {
-            set_fileId(fileId);
-            gu_strlcpy(const_cast<char *>(this->filePath()), filePath.c_str(), 64);
+            this->init(fileId, filePath);
         }
 
         /**
          * Copy Constructor.
          */
         ParticleOutputMap(const ParticleOutputMap &other): wb_particle_output_map() {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
         }
 
         /**
          * Copy Constructor.
          */
         ParticleOutputMap(const struct wb_particle_output_map &other): wb_particle_output_map() {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
         }
 
         /**
          * Copy Assignment Operator.
          */
         ParticleOutputMap &operator = (const ParticleOutputMap &other) {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
             return *this;
         }
 
@@ -115,8 +121,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         ParticleOutputMap &operator = (const struct wb_particle_output_map &other) {
-            set_fileId(other.fileId());
-            gu_strlcpy(const_cast<char *>(this->filePath()), other.filePath(), 64);
+            this->init(other.fileId(), other.filePath());
             return *this;
         }
 
@@ -124,7 +129,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        ParticleOutputMap(const std::string &str) { wb_particle_output_map_from_string(this, str.c_str()); }
+        ParticleOutputMap(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_PARTICLE_OUTPUT_MAP_C_CONVERSION
@@ -172,10 +180,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[PARTICLE_OUTPUT_MAP_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[9];
             char* key = &key_buffer[0];
@@ -183,7 +191,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -237,14 +245,17 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("fileId", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("filePath", key)) {
                         varIndex = 1;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_fileId(static_cast<uint8_t>(atoi(var_str)));
@@ -256,7 +267,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_PARTICLE_OUTPUT_MAP_C_CONVERSION
         }

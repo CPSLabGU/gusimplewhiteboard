@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class SensorsHandSensors: public wb_sensors_hand_sensors {
 
-    public:
+    private:
 
         /**
-         * Create a new `SensorsHandSensors`.
+         * Set the members of the class.
          */
-        SensorsHandSensors(bool LHand_Touch_Left = true, bool LHand_Touch_Back = true, bool LHand_Touch_Right = true, bool RHand_Touch_Left = true, bool RHand_Touch_Back = true, bool RHand_Touch_Right = true) {
+        void init(bool LHand_Touch_Left = true, bool LHand_Touch_Back = true, bool LHand_Touch_Right = true, bool RHand_Touch_Left = true, bool RHand_Touch_Back = true, bool RHand_Touch_Right = true) {
             set_LHand_Touch_Left(LHand_Touch_Left);
             set_LHand_Touch_Back(LHand_Touch_Back);
             set_LHand_Touch_Right(LHand_Touch_Right);
@@ -90,40 +90,34 @@ namespace guWhiteboard {
             set_RHand_Touch_Right(RHand_Touch_Right);
         }
 
+    public:
+
+        /**
+         * Create a new `SensorsHandSensors`.
+         */
+        SensorsHandSensors(bool LHand_Touch_Left = true, bool LHand_Touch_Back = true, bool LHand_Touch_Right = true, bool RHand_Touch_Left = true, bool RHand_Touch_Back = true, bool RHand_Touch_Right = true) {
+            this->init(LHand_Touch_Left, LHand_Touch_Back, LHand_Touch_Right, RHand_Touch_Left, RHand_Touch_Back, RHand_Touch_Right);
+        }
+
         /**
          * Copy Constructor.
          */
         SensorsHandSensors(const SensorsHandSensors &other): wb_sensors_hand_sensors() {
-            set_LHand_Touch_Left(other.LHand_Touch_Left());
-            set_LHand_Touch_Back(other.LHand_Touch_Back());
-            set_LHand_Touch_Right(other.LHand_Touch_Right());
-            set_RHand_Touch_Left(other.RHand_Touch_Left());
-            set_RHand_Touch_Back(other.RHand_Touch_Back());
-            set_RHand_Touch_Right(other.RHand_Touch_Right());
+            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
         }
 
         /**
          * Copy Constructor.
          */
         SensorsHandSensors(const struct wb_sensors_hand_sensors &other): wb_sensors_hand_sensors() {
-            set_LHand_Touch_Left(other.LHand_Touch_Left());
-            set_LHand_Touch_Back(other.LHand_Touch_Back());
-            set_LHand_Touch_Right(other.LHand_Touch_Right());
-            set_RHand_Touch_Left(other.RHand_Touch_Left());
-            set_RHand_Touch_Back(other.RHand_Touch_Back());
-            set_RHand_Touch_Right(other.RHand_Touch_Right());
+            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SensorsHandSensors &operator = (const SensorsHandSensors &other) {
-            set_LHand_Touch_Left(other.LHand_Touch_Left());
-            set_LHand_Touch_Back(other.LHand_Touch_Back());
-            set_LHand_Touch_Right(other.LHand_Touch_Right());
-            set_RHand_Touch_Left(other.RHand_Touch_Left());
-            set_RHand_Touch_Back(other.RHand_Touch_Back());
-            set_RHand_Touch_Right(other.RHand_Touch_Right());
+            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
             return *this;
         }
 
@@ -131,12 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SensorsHandSensors &operator = (const struct wb_sensors_hand_sensors &other) {
-            set_LHand_Touch_Left(other.LHand_Touch_Left());
-            set_LHand_Touch_Back(other.LHand_Touch_Back());
-            set_LHand_Touch_Right(other.LHand_Touch_Right());
-            set_RHand_Touch_Left(other.RHand_Touch_Left());
-            set_RHand_Touch_Back(other.RHand_Touch_Back());
-            set_RHand_Touch_Right(other.RHand_Touch_Right());
+            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
             return *this;
         }
 
@@ -144,7 +133,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        SensorsHandSensors(const std::string &str) { wb_sensors_hand_sensors_from_string(this, str.c_str()); }
+        SensorsHandSensors(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_SENSORS_HAND_SENSORS_C_CONVERSION
@@ -200,10 +192,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > SENSORS_HAND_SENSORS_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[SENSORS_HAND_SENSORS_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[SENSORS_HAND_SENSORS_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[18];
             char* key = &key_buffer[0];
@@ -211,7 +203,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -265,7 +257,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("LHand_Touch_Left", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("LHand_Touch_Back", key)) {
@@ -278,9 +270,12 @@ namespace guWhiteboard {
                         varIndex = 4;
                     } else if (0 == strcmp("RHand_Touch_Right", key)) {
                         varIndex = 5;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_LHand_Touch_Left(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
@@ -312,7 +307,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_SENSORS_HAND_SENSORS_C_CONVERSION
         }

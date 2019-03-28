@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_goals.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -215,10 +219,10 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_GOALS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_GOALS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_GOALS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -227,7 +231,7 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -284,14 +288,17 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("frameNumber", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("goals", key)) {
                 varIndex = 1;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->frameNumber = ((uint64_t)atoll(var_str));
@@ -326,9 +333,6 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -363,12 +367,12 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

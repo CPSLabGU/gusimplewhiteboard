@@ -91,10 +91,12 @@ extension wb_teleoperation_control_v_r {
     /**
      * Create a new `wb_teleoperation_control_v_r`.
      */
-    public init(_ ip: UInt8 = 0, action: Int32 = 0, stance: Int32 = 0, streamType: Int32 = 0, selectedCamera: Int32 = 0, sayString: String = "", walk: Int32 = 0, turn: Int32 = 0, timestamp: Int32 = 0) {
+    public init(_ ip: UInt8 = 0, action: Int32 = 0, HeadYaw: Float = 0, HeadPitch: Float = 0, stance: Int32 = 0, streamType: Int32 = 0, selectedCamera: Int32 = 0, sayString: String = "", walk: Int32 = 0, turn: Int32 = 0, timestamp: Int32 = 0) {
         self.init()
         self.ip = ip
         self.action = action
+        self.HeadYaw = HeadYaw
+        self.HeadPitch = HeadPitch
         self.stance = stance
         self.streamType = streamType
         self.selectedCamera = selectedCamera
@@ -112,6 +114,8 @@ extension wb_teleoperation_control_v_r {
         guard
             let ip = dictionary["ip"] as? UInt8,
             let action = dictionary["action"] as? Int32,
+            let HeadYaw = dictionary["HeadYaw"] as? Float,
+            let HeadPitch = dictionary["HeadPitch"] as? Float,
             let stance = dictionary["stance"] as? Int32,
             let streamType = dictionary["streamType"] as? Int32,
             let selectedCamera = dictionary["selectedCamera"] as? Int32,
@@ -124,6 +128,8 @@ extension wb_teleoperation_control_v_r {
         }
         self.ip = ip
         self.action = action
+        self.HeadYaw = HeadYaw
+        self.HeadPitch = HeadPitch
         self.stance = stance
         self.streamType = streamType
         self.selectedCamera = selectedCamera
@@ -150,6 +156,10 @@ extension wb_teleoperation_control_v_r: CustomStringConvertible {
         descString += ", "
         descString += "action=\(self.action)"
         descString += ", "
+        descString += "HeadYaw=\(self.HeadYaw)"
+        descString += ", "
+        descString += "HeadPitch=\(self.HeadPitch)"
+        descString += ", "
         descString += "stance=\(self.stance)"
         descString += ", "
         descString += "streamType=\(self.streamType)"
@@ -173,6 +183,8 @@ extension wb_teleoperation_control_v_r: Equatable {}
 public func == (lhs: wb_teleoperation_control_v_r, rhs: wb_teleoperation_control_v_r) -> Bool {
     return lhs.ip == rhs.ip
         && lhs.action == rhs.action
+        && lhs.HeadYaw == rhs.HeadYaw
+        && lhs.HeadPitch == rhs.HeadPitch
         && lhs.stance == rhs.stance
         && lhs.streamType == rhs.streamType
         && lhs.selectedCamera == rhs.selectedCamera

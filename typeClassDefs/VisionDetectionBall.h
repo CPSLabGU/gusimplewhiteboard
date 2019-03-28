@@ -76,46 +76,46 @@ namespace guWhiteboard {
      */
     class VisionDetectionBall: public wb_vision_detection_ball {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionBall`.
+         * Set the members of the class.
          */
-        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
+        void init(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
             set_sightingType(sightingType);
             set_x(x);
             set_y(y);
             set_r(r);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionBall`.
+         */
+        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
+            this->init(sightingType, x, y, r);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const VisionDetectionBall &other): wb_vision_detection_ball() {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const struct wb_vision_detection_ball &other): wb_vision_detection_ball() {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const VisionDetectionBall &other) {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
             return *this;
         }
 
@@ -123,10 +123,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const struct wb_vision_detection_ball &other) {
-            set_sightingType(other.sightingType());
-            set_x(other.x());
-            set_y(other.y());
-            set_r(other.r());
+            this->init(other.sightingType(), other.x(), other.y(), other.r());
             return *this;
         }
 
@@ -134,7 +131,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionBall(const std::string &str) { wb_vision_detection_ball_from_string(this, str.c_str()); }
+        VisionDetectionBall(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
@@ -144,7 +144,18 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case BallDetected:
+                {
+                    ss << "sightingType=" << "BallDetected";
+                    break;
+                }
+                case NoBallDetected:
+                {
+                    ss << "sightingType=" << "NoBallDetected";
+                    break;
+                }
+            }
             ss << ", ";
             ss << "x=" << static_cast<signed>(this->x());
             ss << ", ";
@@ -163,7 +174,18 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case BallDetected:
+                {
+                    ss << "BallDetected";
+                    break;
+                }
+                case NoBallDetected:
+                {
+                    ss << "NoBallDetected";
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<signed>(this->x());
             ss << ", ";
@@ -182,10 +204,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
@@ -193,7 +215,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -247,7 +269,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("sightingType", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("x", key)) {
@@ -256,12 +278,21 @@ namespace guWhiteboard {
                         varIndex = 2;
                     } else if (0 == strcmp("r", key)) {
                         varIndex = 3;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        if (strcmp("BallDetected", var_str) == 0) {
+                            this->set_sightingType(BallDetected);
+                        } else if (strcmp("NoBallDetected", var_str) == 0) {
+                            this->set_sightingType(NoBallDetected);
+                        } else {
+                            this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
@@ -280,7 +311,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_DETECTION_BALL_C_CONVERSION
         }

@@ -37,6 +37,7 @@ PKGCONFIG_VERSION=${WB_VERSION}
 PKGCONFIG_DESCRIPTION=Shared memory IPC mechanism
 
 WB_MSG_GEN_FILES!= ls typeClassDefs/*.gen
+WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*.txt
 
 all: all-real
 
@@ -44,10 +45,6 @@ generate:
 .for f in ${WB_MSG_GEN_FILES}
 	classgenerator --c-header typeClassDefs ${f}
 .endfor
-
-WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*._gen
-
-generate-old:
 .for f in ${WB_MSG_OLD_GEN_FILES}
 	classgenerator --c-header typeClassDefs -b ${f}
 .endfor

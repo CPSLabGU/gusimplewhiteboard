@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_field_features.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -126,7 +130,7 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
         return descString;
     }
     len = gu_strlcat(descString, "fieldCorner={", bufferSize);
-    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
+    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -158,7 +162,7 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
         return descString;
     }
     len = gu_strlcat(descString, "fieldIntersection={", bufferSize);
-    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
+    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -213,7 +217,7 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
+    for (int fieldCorner_index = 0; fieldCorner_index < VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -245,7 +249,7 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
+    for (int fieldIntersection_index = 0; fieldIntersection_index < VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -295,10 +299,10 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_FIELDFEATURES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_FIELDFEATURES_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_FIELDFEATURES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];
@@ -307,7 +311,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -364,7 +368,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("fieldCorner", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("fieldIntersection", key)) {
@@ -373,9 +377,12 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 varIndex = 2;
             } else if (0 == strcmp("numIntersections", key)) {
                 varIndex = 3;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 int restartIndex = index;
@@ -405,9 +412,6 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -470,9 +474,6 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -517,12 +518,12 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

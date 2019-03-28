@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_sensors_body_sensors.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -455,10 +459,10 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[SENSORS_BODY_SENSORS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[30];
     char* key = &key_buffer[0];
@@ -466,7 +470,7 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -520,7 +524,7 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("DCM_Time", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("InertialSensor_AccX", key)) {
@@ -561,9 +565,12 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
                 varIndex = 18;
             } else if (0 == strcmp("ChestBoard_Button", key)) {
                 varIndex = 19;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->DCM_Time = ((signed int)atoi(var_str));
@@ -665,12 +672,12 @@ struct wb_sensors_body_sensors* wb_sensors_body_sensors_from_string(struct wb_se
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

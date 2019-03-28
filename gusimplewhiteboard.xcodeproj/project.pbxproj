@@ -142,7 +142,7 @@
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
 		F11BC0CA1761247F0069F6FB /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F11BC114176124D50069F6FB /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F11BC0FF176124CB0069F6FB /* gu_util.cpp */; };
-		F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167311EADF4B70007E421 /* HAL_ArmTarget.h */; };
+		F12167331EADF4B70007E421 /* HalArmTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167311EADF4B70007E421 /* HalArmTarget.h */; };
 		F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167321EADF4B70007E421 /* wb_hal_armtarget.h */; };
 		F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
@@ -519,7 +519,7 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
-		F12167311EADF4B70007E421 /* HAL_ArmTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HAL_ArmTarget.h; path = typeClassDefs/HAL_ArmTarget.h; sourceTree = "<group>"; };
+		F12167311EADF4B70007E421 /* HalArmTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HalArmTarget.h; path = typeClassDefs/HalArmTarget.h; sourceTree = "<group>"; };
 		F12167321EADF4B70007E421 /* wb_hal_armtarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = wb_hal_armtarget.h; path = typeClassDefs/wb_hal_armtarget.h; sourceTree = "<group>"; };
 		F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_subscribe_test.cc; sourceTree = "<group>"; };
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
@@ -1026,7 +1026,7 @@
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
-				F12167311EADF4B70007E421 /* HAL_ArmTarget.h */,
+				F12167311EADF4B70007E421 /* HalArmTarget.h */,
 				F12167321EADF4B70007E421 /* wb_hal_armtarget.h */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
@@ -1723,7 +1723,7 @@
 				C3B4EC881CBCD2740061A970 /* wb_switch_subsumption.h in Headers */,
 				C3B4EC291CBCD2740061A970 /* FilteredArrayOneDimBall.h in Headers */,
 				C3B4EC2E1CBCD2740061A970 /* FilteredOneDimSonar.h in Headers */,
-				F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */,
+				F12167331EADF4B70007E421 /* HalArmTarget.h in Headers */,
 				F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */,
 				F5BC000B1F0DEF7900987168 /* FilteredVisionObject.h in Headers */,
 				C3B4EC721CBCD2740061A970 /* wb_lines.h in Headers */,
@@ -2557,6 +2557,7 @@
 					.,
 					"$(SRCROOT)/../../Common",
 					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2573,6 +2574,7 @@
 					.,
 					"$(SRCROOT)/../../Common",
 					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2946,6 +2948,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2960,6 +2970,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

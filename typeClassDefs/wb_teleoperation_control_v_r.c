@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_teleoperation_control_v_r.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -134,6 +138,22 @@ const char* wb_teleoperation_control_v_r_description(const struct wb_teleoperati
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "action=%d", self->action);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%f", self->HeadYaw);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -220,6 +240,22 @@ const char* wb_teleoperation_control_v_r_to_string(const struct wb_teleoperation
     if (len >= bufferSize) {
         return toString;
     }
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadYaw);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
     len += snprintf(toString + len, bufferSize - len, "%d", self->stance);
     if (len >= bufferSize) {
         return toString;
@@ -279,10 +315,10 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[TELEOPERATIONCONTROLVR_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[15];
     char* key = &key_buffer[0];
@@ -290,7 +326,7 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -344,28 +380,35 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("ip", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("action", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("stance", key)) {
+            } else if (0 == strcmp("HeadYaw", key)) {
                 varIndex = 2;
-            } else if (0 == strcmp("streamType", key)) {
+            } else if (0 == strcmp("HeadPitch", key)) {
                 varIndex = 3;
-            } else if (0 == strcmp("selectedCamera", key)) {
+            } else if (0 == strcmp("stance", key)) {
                 varIndex = 4;
-            } else if (0 == strcmp("sayString", key)) {
+            } else if (0 == strcmp("streamType", key)) {
                 varIndex = 5;
-            } else if (0 == strcmp("walk", key)) {
+            } else if (0 == strcmp("selectedCamera", key)) {
                 varIndex = 6;
-            } else if (0 == strcmp("turn", key)) {
+            } else if (0 == strcmp("sayString", key)) {
                 varIndex = 7;
-            } else if (0 == strcmp("timestamp", key)) {
+            } else if (0 == strcmp("walk", key)) {
                 varIndex = 8;
+            } else if (0 == strcmp("turn", key)) {
+                varIndex = 9;
+            } else if (0 == strcmp("timestamp", key)) {
+                varIndex = 10;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->ip = ((uint8_t)atoi(var_str));
@@ -378,46 +421,56 @@ struct wb_teleoperation_control_v_r* wb_teleoperation_control_v_r_from_string(st
             }
             case 2:
             {
-                self->stance = ((int32_t)atoi(var_str));
+                self->HeadYaw = ((float)atof(var_str));
                 break;
             }
             case 3:
             {
-                self->streamType = ((int32_t)atoi(var_str));
+                self->HeadPitch = ((float)atof(var_str));
                 break;
             }
             case 4:
             {
-                self->selectedCamera = ((int32_t)atoi(var_str));
+                self->stance = ((int32_t)atoi(var_str));
                 break;
             }
             case 5:
             {
-                strncpy(self->sayString, var_str, 30);
+                self->streamType = ((int32_t)atoi(var_str));
                 break;
             }
             case 6:
             {
-                self->walk = ((int32_t)atoi(var_str));
+                self->selectedCamera = ((int32_t)atoi(var_str));
                 break;
             }
             case 7:
             {
-                self->turn = ((int32_t)atoi(var_str));
+                strncpy(self->sayString, var_str, 30);
                 break;
             }
             case 8:
+            {
+                self->walk = ((int32_t)atoi(var_str));
+                break;
+            }
+            case 9:
+            {
+                self->turn = ((int32_t)atoi(var_str));
+                break;
+            }
+            case 10:
             {
                 self->timestamp = ((int32_t)atoi(var_str));
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
@@ -454,6 +507,10 @@ size_t wb_teleoperation_control_v_r_to_network_serialised(const struct wb_teleop
       } while(false);
       }
     } while(false);
+
+    //The class generator does not support float types for network conversion.
+
+    //The class generator does not support float types for network conversion.
 
     int32_t stance_nbo = htonl(self->stance);
     do {
@@ -605,6 +662,10 @@ size_t wb_teleoperation_control_v_r_from_network_serialised(const char *src, str
       }
     } while(false);
     dst->action = ntohl(dst->action);
+
+    //The class generator does not support float types for network conversion.
+
+    //The class generator does not support float types for network conversion.
 
     do {
       int8_t b;

@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class MicrowaveStatus: public wb_microwave_status {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
+            set_timeLeft(timeLeft);
+            set_doorOpen(doorOpen);
+            set_buttonPushed(buttonPushed);
+        }
+
     public:
 
         /**
          * Create a new `MicrowaveStatus`.
          */
         MicrowaveStatus(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
-            set_timeLeft(timeLeft);
-            set_doorOpen(doorOpen);
-            set_buttonPushed(buttonPushed);
+            this->init(timeLeft, doorOpen, buttonPushed);
         }
 
         /**
          * Copy Constructor.
          */
         MicrowaveStatus(const MicrowaveStatus &other): wb_microwave_status() {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
         }
 
         /**
          * Copy Constructor.
          */
         MicrowaveStatus(const struct wb_microwave_status &other): wb_microwave_status() {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
         }
 
         /**
          * Copy Assignment Operator.
          */
         MicrowaveStatus &operator = (const MicrowaveStatus &other) {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         MicrowaveStatus &operator = (const struct wb_microwave_status &other) {
-            set_timeLeft(other.timeLeft());
-            set_doorOpen(other.doorOpen());
-            set_buttonPushed(other.buttonPushed());
+            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
             return *this;
         }
 
@@ -129,7 +130,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        MicrowaveStatus(const std::string &str) { wb_microwave_status_from_string(this, str.c_str()); }
+        MicrowaveStatus(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_MICROWAVE_STATUS_C_CONVERSION
@@ -173,10 +177,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > MICROWAVE_STATUS_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[MICROWAVE_STATUS_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[MICROWAVE_STATUS_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
@@ -184,7 +188,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -238,16 +242,19 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("timeLeft", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("doorOpen", key)) {
                         varIndex = 1;
                     } else if (0 == strcmp("buttonPushed", key)) {
                         varIndex = 2;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_timeLeft(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
@@ -264,7 +271,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_MICROWAVE_STATUS_C_CONVERSION
         }

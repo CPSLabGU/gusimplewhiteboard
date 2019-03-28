@@ -78,12 +78,12 @@ namespace guWhiteboard {
      */
     class VisionLines: public wb_vision_lines {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionLines`.
+         * Set the members of the class.
          */
-        VisionLines(struct wb_vision_line topLines[5] = NULLPTR, struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
+        void init(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
             if (topLines != NULLPTR) {
                 std::memcpy(this->_topLines, topLines, VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
@@ -101,49 +101,34 @@ namespace guWhiteboard {
             set_frameNumber(frameNumber);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionLines`.
+         */
+        VisionLines(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
+            this->init(topLines, bottomLines, numTopLines, numBottomLines, frameNumber);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionLines(const VisionLines &other): wb_vision_lines() {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const struct wb_vision_lines &other): wb_vision_lines() {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const VisionLines &other) {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
             return *this;
         }
 
@@ -151,15 +136,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const struct wb_vision_lines &other) {
-            if (other.topLines() != NULLPTR) {
-                std::memcpy(this->_topLines, other.topLines(), VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            if (other.bottomLines() != NULLPTR) {
-                std::memcpy(this->_bottomLines, other.bottomLines(), VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(other.numTopLines());
-            set_numBottomLines(other.numBottomLines());
-            set_frameNumber(other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
             return *this;
         }
 
@@ -167,7 +144,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionLines(const std::string &str) { wb_vision_lines_from_string(this, str.c_str()); }
+        VisionLines(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_LINES_C_CONVERSION
@@ -247,10 +227,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_LINES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_LINES_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_LINES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[15];
             char* key = &key_buffer[0];
@@ -259,7 +239,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -316,7 +296,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("topLines", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("bottomLines", key)) {
@@ -327,9 +307,12 @@ namespace guWhiteboard {
                         varIndex = 3;
                     } else if (0 == strcmp("frameNumber", key)) {
                         varIndex = 4;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         int restartIndex = index;
@@ -359,9 +342,6 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
-                                    if (bracecount == 1) {
-                                        lastBrace = i;
-                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {
@@ -425,9 +405,6 @@ namespace guWhiteboard {
                                 }
                                 if (str_cstr[i] == '{') {
                                     bracecount++;
-                                    if (bracecount == 1) {
-                                        lastBrace = i;
-                                    }
                                     continue;
                                 }
                                 if (str_cstr[i] == '}') {
@@ -478,7 +455,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_LINES_C_CONVERSION
         }

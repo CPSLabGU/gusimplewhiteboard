@@ -78,38 +78,44 @@ namespace guWhiteboard {
      */
     class VisionFieldFeature: public wb_vision_field_feature {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(struct wb_point2d location = wb_point2d(), uint8_t camera = 1) {
+            set_location(location);
+            set_camera(camera);
+        }
+
     public:
 
         /**
          * Create a new `VisionFieldFeature`.
          */
         VisionFieldFeature(struct wb_point2d location = wb_point2d(), uint8_t camera = 1) {
-            set_location(location);
-            set_camera(camera);
+            this->init(location, camera);
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeature(const VisionFieldFeature &other): wb_vision_field_feature() {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeature(const struct wb_vision_field_feature &other): wb_vision_field_feature() {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionFieldFeature &operator = (const VisionFieldFeature &other) {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
             return *this;
         }
 
@@ -117,8 +123,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionFieldFeature &operator = (const struct wb_vision_field_feature &other) {
-            set_location(other.location());
-            set_camera(other.camera());
+            this->init(other.location(), other.camera());
             return *this;
         }
 
@@ -126,7 +131,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionFieldFeature(const std::string &str) { wb_vision_field_feature_from_string(this, str.c_str()); }
+        VisionFieldFeature(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_FIELD_FEATURE_C_CONVERSION
@@ -168,19 +176,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_FIELDFEATURE_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_FIELDFEATURE_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[9];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -208,9 +215,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -237,14 +241,17 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("location", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("camera", key)) {
                         varIndex = 1;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         Point2D location_temp = Point2D();
@@ -258,7 +265,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_FIELDFEATURE_C_CONVERSION
         }

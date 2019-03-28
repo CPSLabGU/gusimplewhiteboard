@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class PixelToRobotRelativeCoord: public wb_pixel_to_robot_relative_coord {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init() {
+
+        }
+
     public:
 
         /**
          * Create a new `PixelToRobotRelativeCoord`.
          */
         PixelToRobotRelativeCoord() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const PixelToRobotRelativeCoord &other): wb_pixel_to_robot_relative_coord() {
-
+            this->init();
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const struct wb_pixel_to_robot_relative_coord &other): wb_pixel_to_robot_relative_coord() {
-
+            this->init();
         }
 
         /**
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const PixelToRobotRelativeCoord &other) {
-
+            this->init();
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const struct wb_pixel_to_robot_relative_coord &other) {
-
+            this->init();
             return *this;
         }
 
@@ -119,7 +128,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        PixelToRobotRelativeCoord(const std::string &str) { wb_pixel_to_robot_relative_coord_from_string(this, str.c_str()); }
+        PixelToRobotRelativeCoord(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
@@ -155,10 +167,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[0];
             char* key = &key_buffer[0];
@@ -166,7 +178,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -220,13 +232,16 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
-
+                if (strlen(key) > 0) {
+                    varIndex = -1;
                 }
                 switch (varIndex) {
+                    case -1: { break; }
 
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
         }

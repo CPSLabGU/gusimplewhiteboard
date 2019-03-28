@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_top_particles.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -126,7 +130,7 @@ const char* wb_top_particles_description(const struct wb_top_particles* self, ch
         return descString;
     }
     len = gu_strlcat(descString, "particles={", bufferSize);
-    for (int particles_index = 0; particles_index < TOP_PARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -165,7 +169,7 @@ const char* wb_top_particles_to_string(const struct wb_top_particles* self, char
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int particles_index = 0; particles_index < TOP_PARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -199,10 +203,10 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > TOPPARTICLES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[TOPPARTICLES_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[TOPPARTICLES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[10];
     char* key = &key_buffer[0];
@@ -211,7 +215,7 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -268,12 +272,15 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("particles", key)) {
                 varIndex = 0;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 int restartIndex = index;
@@ -303,9 +310,6 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
                         }
                         if (str[i] == '{') {
                             bracecount++;
-                            if (bracecount == 1) {
-                                lastBrace = i;
-                            }
                             continue;
                         }
                         if (str[i] == '}') {
@@ -340,12 +344,12 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

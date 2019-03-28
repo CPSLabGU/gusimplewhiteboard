@@ -78,42 +78,45 @@ namespace guWhiteboard {
      */
     class ParticlePosition: public wb_particle_position {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
+            set_position(position);
+            set_headingInDegrees(headingInDegrees);
+            set_confidence(confidence);
+        }
+
     public:
 
         /**
          * Create a new `ParticlePosition`.
          */
         ParticlePosition(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
-            set_position(position);
-            set_headingInDegrees(headingInDegrees);
-            set_confidence(confidence);
+            this->init(position, headingInDegrees, confidence);
         }
 
         /**
          * Copy Constructor.
          */
         ParticlePosition(const ParticlePosition &other): wb_particle_position() {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
         }
 
         /**
          * Copy Constructor.
          */
         ParticlePosition(const struct wb_particle_position &other): wb_particle_position() {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
         }
 
         /**
          * Copy Assignment Operator.
          */
         ParticlePosition &operator = (const ParticlePosition &other) {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
             return *this;
         }
 
@@ -121,9 +124,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         ParticlePosition &operator = (const struct wb_particle_position &other) {
-            set_position(other.position());
-            set_headingInDegrees(other.headingInDegrees());
-            set_confidence(other.confidence());
+            this->init(other.position(), other.headingInDegrees(), other.confidence());
             return *this;
         }
 
@@ -131,7 +132,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        ParticlePosition(const std::string &str) { wb_particle_position_from_string(this, str.c_str()); }
+        ParticlePosition(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_PARTICLE_POSITION_C_CONVERSION
@@ -177,19 +181,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > PARTICLE_POSITION_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[PARTICLE_POSITION_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[PARTICLE_POSITION_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[17];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -217,9 +220,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -246,16 +246,19 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("position", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("headingInDegrees", key)) {
                         varIndex = 1;
                     } else if (0 == strcmp("confidence", key)) {
                         varIndex = 2;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         Point2D position_temp = Point2D();
@@ -274,7 +277,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_PARTICLE_POSITION_C_CONVERSION
         }

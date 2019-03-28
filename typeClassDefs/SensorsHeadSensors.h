@@ -76,42 +76,45 @@ namespace guWhiteboard {
      */
     class SensorsHeadSensors: public wb_sensors_head_sensors {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
+            set_Head_Touch_Front(Head_Touch_Front);
+            set_Head_Touch_Middle(Head_Touch_Middle);
+            set_Head_Touch_Rear(Head_Touch_Rear);
+        }
+
     public:
 
         /**
          * Create a new `SensorsHeadSensors`.
          */
         SensorsHeadSensors(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
-            set_Head_Touch_Front(Head_Touch_Front);
-            set_Head_Touch_Middle(Head_Touch_Middle);
-            set_Head_Touch_Rear(Head_Touch_Rear);
+            this->init(Head_Touch_Front, Head_Touch_Middle, Head_Touch_Rear);
         }
 
         /**
          * Copy Constructor.
          */
         SensorsHeadSensors(const SensorsHeadSensors &other): wb_sensors_head_sensors() {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
         }
 
         /**
          * Copy Constructor.
          */
         SensorsHeadSensors(const struct wb_sensors_head_sensors &other): wb_sensors_head_sensors() {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
         }
 
         /**
          * Copy Assignment Operator.
          */
         SensorsHeadSensors &operator = (const SensorsHeadSensors &other) {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
             return *this;
         }
 
@@ -119,9 +122,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         SensorsHeadSensors &operator = (const struct wb_sensors_head_sensors &other) {
-            set_Head_Touch_Front(other.Head_Touch_Front());
-            set_Head_Touch_Middle(other.Head_Touch_Middle());
-            set_Head_Touch_Rear(other.Head_Touch_Rear());
+            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
             return *this;
         }
 
@@ -129,7 +130,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        SensorsHeadSensors(const std::string &str) { wb_sensors_head_sensors_from_string(this, str.c_str()); }
+        SensorsHeadSensors(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_SENSORS_HEAD_SENSORS_C_CONVERSION
@@ -173,10 +177,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > SENSORS_HEAD_SENSORS_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[SENSORS_HEAD_SENSORS_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[SENSORS_HEAD_SENSORS_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[18];
             char* key = &key_buffer[0];
@@ -184,7 +188,7 @@ namespace guWhiteboard {
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -238,16 +242,19 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("Head_Touch_Front", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("Head_Touch_Middle", key)) {
                         varIndex = 1;
                     } else if (0 == strcmp("Head_Touch_Rear", key)) {
                         varIndex = 2;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         this->set_Head_Touch_Front(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
@@ -264,7 +271,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_SENSORS_HEAD_SENSORS_C_CONVERSION
         }

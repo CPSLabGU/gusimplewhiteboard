@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_machine_filtered_vision.h"
 #include <stdio.h>
 #include <string.h>
@@ -112,7 +116,7 @@
 #endif
 #pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -173,7 +177,28 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "goal_sightingType=%d", self->goal_sightingType);
+    switch (self->goal_sightingType) {
+        case GoalSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=GoalSightingType");
+            break;
+        }
+        case LeftPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=LeftPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "goal_sightingType=RightPostSightingType");
+            break;
+        }
+    }
     return descString;
 }
 
@@ -236,7 +261,28 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->goal_sightingType);
+    switch (self->goal_sightingType) {
+        case GoalSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "GoalSightingType");
+            break;
+        }
+        case LeftPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "LeftPostSightingType");
+            break;
+        }
+        case NoSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NoSightingType");
+            break;
+        }
+        case RightPostSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "RightPostSightingType");
+            break;
+        }
+    }
     return toString;
 }
 
@@ -247,10 +293,10 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[MACHINE_FILTERED_VISION_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];
@@ -258,7 +304,7 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -312,7 +358,7 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("ball_direction", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("ball_distance", key)) {
@@ -327,9 +373,12 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
                 varIndex = 5;
             } else if (0 == strcmp("goal_sightingType", key)) {
                 varIndex = 6;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->ball_direction = ((int8_t)atoi(var_str));
@@ -362,16 +411,26 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             }
             case 6:
             {
-                self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+                if (strcmp("GoalSightingType", var_str) == 0) {
+                    self->goal_sightingType = GoalSightingType;
+                } else if (strcmp("LeftPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = LeftPostSightingType;
+                } else if (strcmp("NoSightingType", var_str) == 0) {
+                    self->goal_sightingType = NoSightingType;
+                } else if (strcmp("RightPostSightingType", var_str) == 0) {
+                    self->goal_sightingType = RightPostSightingType;
+                } else {
+                    self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+                }
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
