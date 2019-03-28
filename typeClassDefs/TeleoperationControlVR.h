@@ -81,9 +81,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
+        void init(uint8_t ip = 0, int32_t action = 0, float HeadYaw = 0, float HeadPitch = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
             set_ip(ip);
             set_action(action);
+            set_HeadYaw(HeadYaw);
+            set_HeadPitch(HeadPitch);
             set_stance(stance);
             set_streamType(streamType);
             set_selectedCamera(selectedCamera);
@@ -98,29 +100,29 @@ namespace guWhiteboard {
         /**
          * Create a new `TeleoperationControlVR`.
          */
-        TeleoperationControlVR(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
-            this->init(ip, action, stance, streamType, selectedCamera, sayString, walk, turn, timestamp);
+        TeleoperationControlVR(uint8_t ip = 0, int32_t action = 0, float HeadYaw = 0, float HeadPitch = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
+            this->init(ip, action, HeadYaw, HeadPitch, stance, streamType, selectedCamera, sayString, walk, turn, timestamp);
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationControlVR(const TeleoperationControlVR &other): wb_teleoperation_control_v_r() {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationControlVR(const struct wb_teleoperation_control_v_r &other): wb_teleoperation_control_v_r() {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
         }
 
         /**
          * Copy Assignment Operator.
          */
         TeleoperationControlVR &operator = (const TeleoperationControlVR &other) {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
             return *this;
         }
 
@@ -128,7 +130,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TeleoperationControlVR &operator = (const struct wb_teleoperation_control_v_r &other) {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
             return *this;
         }
 
@@ -152,6 +154,10 @@ namespace guWhiteboard {
             ss << "ip=" << static_cast<unsigned>(this->ip());
             ss << ", ";
             ss << "action=" << static_cast<signed>(this->action());
+            ss << ", ";
+            ss << "HeadYaw=" << this->HeadYaw();
+            ss << ", ";
+            ss << "HeadPitch=" << this->HeadPitch();
             ss << ", ";
             ss << "stance=" << static_cast<signed>(this->stance());
             ss << ", ";
@@ -185,6 +191,10 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->ip());
             ss << ", ";
             ss << static_cast<signed>(this->action());
+            ss << ", ";
+            ss << this->HeadYaw();
+            ss << ", ";
+            ss << this->HeadPitch();
             ss << ", ";
             ss << static_cast<signed>(this->stance());
             ss << ", ";
@@ -285,20 +295,24 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("action", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("stance", key)) {
+                    } else if (0 == strcmp("HeadYaw", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("streamType", key)) {
+                    } else if (0 == strcmp("HeadPitch", key)) {
                         varIndex = 3;
-                    } else if (0 == strcmp("selectedCamera", key)) {
+                    } else if (0 == strcmp("stance", key)) {
                         varIndex = 4;
-                    } else if (0 == strcmp("sayString", key)) {
+                    } else if (0 == strcmp("streamType", key)) {
                         varIndex = 5;
-                    } else if (0 == strcmp("walk", key)) {
+                    } else if (0 == strcmp("selectedCamera", key)) {
                         varIndex = 6;
-                    } else if (0 == strcmp("turn", key)) {
+                    } else if (0 == strcmp("sayString", key)) {
                         varIndex = 7;
-                    } else if (0 == strcmp("timestamp", key)) {
+                    } else if (0 == strcmp("walk", key)) {
                         varIndex = 8;
+                    } else if (0 == strcmp("turn", key)) {
+                        varIndex = 9;
+                    } else if (0 == strcmp("timestamp", key)) {
+                        varIndex = 10;
                     } else {
                         varIndex = -1;
                     }
@@ -317,35 +331,45 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        this->set_stance(static_cast<int32_t>(atoi(var_str)));
+                        this->set_HeadYaw(static_cast<float>(atof(var_str)));
                         break;
                     }
                     case 3:
                     {
-                        this->set_streamType(static_cast<int32_t>(atoi(var_str)));
+                        this->set_HeadPitch(static_cast<float>(atof(var_str)));
                         break;
                     }
                     case 4:
                     {
-                        this->set_selectedCamera(static_cast<int32_t>(atoi(var_str)));
+                        this->set_stance(static_cast<int32_t>(atoi(var_str)));
                         break;
                     }
                     case 5:
                     {
-                        strncpy(this->sayString(), var_str, 30);
+                        this->set_streamType(static_cast<int32_t>(atoi(var_str)));
                         break;
                     }
                     case 6:
                     {
-                        this->set_walk(static_cast<int32_t>(atoi(var_str)));
+                        this->set_selectedCamera(static_cast<int32_t>(atoi(var_str)));
                         break;
                     }
                     case 7:
                     {
-                        this->set_turn(static_cast<int32_t>(atoi(var_str)));
+                        strncpy(this->sayString(), var_str, 30);
                         break;
                     }
                     case 8:
+                    {
+                        this->set_walk(static_cast<int32_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 9:
+                    {
+                        this->set_turn(static_cast<int32_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 10:
                     {
                         this->set_timestamp(static_cast<int32_t>(atoi(var_str)));
                         break;
