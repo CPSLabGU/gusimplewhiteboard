@@ -90,11 +90,6 @@ void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera
 	double imageAngleX = ((double)((x-im_width_2))/im_width_2)*CAMERA_HFOV/2;
 	
 	*distance = frontDistance/cos(imageAngleX);
-	
-	if(angleY > DEG2RAD(85))
-		*distance = 10;
-	if(angleY < 0)
-		*distance = 0;
 
 	*angle = -(imageAngleX-joints->HeadYaw);   
 }
