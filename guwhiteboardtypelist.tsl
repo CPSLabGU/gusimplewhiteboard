@@ -98,12 +98,12 @@ bool, nonatomic, Ball_Found, whether ball is detected in STEM6 DetectBallColor
 std::string, nonatomic, Ball_Calibration_File, name of DLC file to load for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Calibration_Num, number (size_t) to load with DLC file for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Color_Num, number for each ball color as defined in STEM6Master
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Ctrl, Used to control the left arm via DCM
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Stat, Used to report DCM status of the left arm
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Ctrl, Used to control the left arm via DCM
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Stat, Used to report DCM status of the left arm
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
 type:Vision_FieldFeatures, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
 bool,                nonatomic, WhistleBlown, Whistle blown flag
 uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to control the volume via pulse audio commands
@@ -111,12 +111,12 @@ class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that 
 type:vision_detection_horizons, nonatomic, VisionDetectionHorizons, Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
 type:naoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
 type:naoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Stat, Used to report DCM status of the left leg
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Stat, Used to report DCM status of the left leg
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
 type:vision_detection_goals, nonatomic, VisionDetectionGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
@@ -128,3 +128,4 @@ bool, nonatomic,         FFTControl, Turn on or off the FFT module
 type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates.
 type:microwave_status, nonatomic, MicrowaveStatus, External Variables for the One Minute Microwave.
 type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
+type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.

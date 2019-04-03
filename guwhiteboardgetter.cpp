@@ -905,57 +905,57 @@ namespace guWhiteboard
             }
             case kHAL_LArmTarget_Ctrl_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_LArmTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kHAL_LArmTarget_Stat_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_LArmTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kHAL_LArmTarget_Tolr_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_LArmTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kHAL_RArmTarget_Ctrl_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_RArmTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kHAL_RArmTarget_Stat_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_RArmTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kHAL_RArmTarget_Tolr_v:
             {
-#ifdef HAL_ArmTarget_DEFINED
+#ifdef HalArmTarget_DEFINED
                 class HAL_RArmTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_ArmTarget_DEFINED
+#endif //HalArmTarget_DEFINED
             }
             case kVisionFieldFeatures_v:
             {
@@ -1018,57 +1018,57 @@ namespace guWhiteboard
             }
             case kHAL_LLegTarget_Ctrl_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_LLegTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kHAL_LLegTarget_Stat_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_LLegTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kHAL_LLegTarget_Tolr_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_LLegTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kHAL_RLegTarget_Ctrl_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_RLegTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kHAL_RLegTarget_Stat_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_RLegTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kHAL_RLegTarget_Tolr_v:
             {
-#ifdef HAL_LegTarget_DEFINED
+#ifdef HalLegTarget_DEFINED
                 class HAL_RLegTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_LegTarget_DEFINED
+#endif //HalLegTarget_DEFINED
             }
             case kVisionDetectionGoals_v:
             {
@@ -1162,6 +1162,15 @@ namespace guWhiteboard
 #else
                 return "##unsupported##";
 #endif //Buttons_DEFINED
+            }
+            case kMachineFilteredLocalisationVision_v:
+            {
+#ifdef MachineFilteredLocalisationVision_DEFINED
+                class MachineFilteredLocalisationVision_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MachineFilteredLocalisationVision_DEFINED
             }
         }
 #pragma clang diagnostic push

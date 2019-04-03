@@ -21,7 +21,7 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out)
+int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out)
 {
     switch (message_index)
     {
@@ -1026,6 +1026,15 @@ size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *me
 #else
                 return -1;
 #endif //BUTTONS_GENERATED
+                break;
+            }
+            case kMachineFilteredLocalisationVision_v:
+            {
+#ifdef MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+                return DESERIALISE(MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
     }

@@ -861,50 +861,50 @@ Ball_Color_Num_t(int32_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR):
     };
 
     /** WB Ptr Class: HAL_LArmTarget_Ctrl_t @brief Used to control the left arm via DCM */ 
-    class HAL_LArmTarget_Ctrl_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_LArmTarget_Ctrl_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Ctrl_t */ 
-        HAL_LArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Ctrl_v, false) {}
+        HAL_LArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_LArmTarget_Ctrl_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_LArmTarget_Stat_t @brief Used to report DCM status of the left arm */ 
-    class HAL_LArmTarget_Stat_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_LArmTarget_Stat_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Stat_t */ 
-        HAL_LArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Stat_v, false) {}
+        HAL_LArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_LArmTarget_Stat_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_LArmTarget_Tolr_t @brief Used to set the joing angle tolerance for motion completion detection. */ 
-    class HAL_LArmTarget_Tolr_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_LArmTarget_Tolr_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_LArmTarget_Tolr_t */ 
-        HAL_LArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_LArmTarget_Tolr_v, false) {}
+        HAL_LArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_LArmTarget_Tolr_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RArmTarget_Ctrl_t @brief Used to control the right arm via DCM */ 
-    class HAL_RArmTarget_Ctrl_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_RArmTarget_Ctrl_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Ctrl_t */ 
-        HAL_RArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Ctrl_v, false) {}
+        HAL_RArmTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_RArmTarget_Ctrl_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RArmTarget_Stat_t @brief Used to report DCM status of the right arm */ 
-    class HAL_RArmTarget_Stat_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_RArmTarget_Stat_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Stat_t */ 
-        HAL_RArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Stat_v, false) {}
+        HAL_RArmTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_RArmTarget_Stat_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RArmTarget_Tolr_t @brief Used to set the joing angle tolerance for motion completion detection. */ 
-    class HAL_RArmTarget_Tolr_t: public generic_whiteboard_object<class HAL_ArmTarget > { 
+    class HAL_RArmTarget_Tolr_t: public generic_whiteboard_object<class HalArmTarget > { 
         public: 
         /** Constructor: HAL_RArmTarget_Tolr_t */ 
-        HAL_RArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_ArmTarget >(wbd, kHAL_RArmTarget_Tolr_v, false) {}
+        HAL_RArmTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalArmTarget >(wbd, kHAL_RArmTarget_Tolr_v, false) {}
         
     };
 
@@ -967,50 +967,50 @@ VolumeControl_t(uint8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
     };
 
     /** WB Ptr Class: HAL_LLegTarget_Ctrl_t @brief Used to control the left leg via DCM */ 
-    class HAL_LLegTarget_Ctrl_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_LLegTarget_Ctrl_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Ctrl_t */ 
-        HAL_LLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Ctrl_v, false) {}
+        HAL_LLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_LLegTarget_Ctrl_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_LLegTarget_Stat_t @brief Used to report DCM status of the left leg */ 
-    class HAL_LLegTarget_Stat_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_LLegTarget_Stat_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Stat_t */ 
-        HAL_LLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Stat_v, false) {}
+        HAL_LLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_LLegTarget_Stat_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_LLegTarget_Tolr_t @brief Used to set the joing angle tolerance for motion completion detection. */ 
-    class HAL_LLegTarget_Tolr_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_LLegTarget_Tolr_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_LLegTarget_Tolr_t */ 
-        HAL_LLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_LLegTarget_Tolr_v, false) {}
+        HAL_LLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_LLegTarget_Tolr_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RLegTarget_Ctrl_t @brief Used to control the right leg via DCM */ 
-    class HAL_RLegTarget_Ctrl_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_RLegTarget_Ctrl_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Ctrl_t */ 
-        HAL_RLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Ctrl_v, false) {}
+        HAL_RLegTarget_Ctrl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_RLegTarget_Ctrl_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RLegTarget_Stat_t @brief Used to report DCM status of the right leg */ 
-    class HAL_RLegTarget_Stat_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_RLegTarget_Stat_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Stat_t */ 
-        HAL_RLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Stat_v, false) {}
+        HAL_RLegTarget_Stat_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_RLegTarget_Stat_v, false) {}
         
     };
 
     /** WB Ptr Class: HAL_RLegTarget_Tolr_t @brief Used to set the joing angle tolerance for motion completion detection. */ 
-    class HAL_RLegTarget_Tolr_t: public generic_whiteboard_object<class HAL_LegTarget > { 
+    class HAL_RLegTarget_Tolr_t: public generic_whiteboard_object<class HalLegTarget > { 
         public: 
         /** Constructor: HAL_RLegTarget_Tolr_t */ 
-        HAL_RLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HAL_LegTarget >(wbd, kHAL_RLegTarget_Tolr_v, false) {}
+        HAL_RLegTarget_Tolr_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HalLegTarget >(wbd, kHAL_RLegTarget_Tolr_v, false) {}
         
     };
 
@@ -1102,6 +1102,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         public: 
         /** Constructor: Buttons_t */ 
         Buttons_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Buttons >(wbd, kButtons_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: MachineFilteredLocalisationVision_t @brief Vision filtering and distance estimates for landmarks: goal, lines and horizon. */ 
+    class MachineFilteredLocalisationVision_t: public generic_whiteboard_object<class MachineFilteredLocalisationVision > { 
+        public: 
+        /** Constructor: MachineFilteredLocalisationVision_t */ 
+        MachineFilteredLocalisationVision_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MachineFilteredLocalisationVision >(wbd, kMachineFilteredLocalisationVision_v, false) {}
         
     };
 

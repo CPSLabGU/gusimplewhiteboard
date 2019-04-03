@@ -20,8 +20,8 @@
 
 #include "guwhiteboardtypelist_c_generated.h"
 
-size_t serialisemsg(WBTypes message_index, const void *message_in, void *serialised_out);
+int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serialised_out);
 
-size_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out);
+int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *message_out);
 
 #endif //gusimplewhiteboard_guwhiteboardserialiser_h

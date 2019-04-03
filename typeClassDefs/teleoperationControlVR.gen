@@ -7,6 +7,8 @@
 
 uint8_t ip = 0 //Last octet of IP address. Lets the robot work out if this message if for itself.
 int32_t action = 0 //Use guWhiteboard::Motions::action enum values!
+float HeadYaw = 0 //Head pos in RAD
+float HeadPitch = 0 //Head pos in RAD
 int32_t stance = 0 //guWhiteboard::Motions::stance
 int32_t streamType = 0 //Use enum StreamingType (Vision_Control.h)
 int32_t selectedCamera = 0 //VisionCamera
