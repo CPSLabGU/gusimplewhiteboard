@@ -349,6 +349,71 @@ namespace guWhiteboard {
 #endif /// USE_WB_MACHINE_FILTERED_LOCALISATION_VISION_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        int firstSighting(LandmarkSightingType sightingType)
+        {
+            for (int i = 0; i < this->numberOfSightings(); i++) {
+                if (this->sightings(i).sightingType() == sightingType)
+                {
+                    return i;
+                }
+            }
+            return -1;
+
+        }
+
+        int firstGenericGoalPost()
+        {
+            return this->firstSighting(GenericGoalPostSightingType);
+        }
+
+        int leftGoalPost()
+        {
+            return this->firstSighting(LeftGoalPostSightingType);
+        }
+
+        int rightGoalPost() {
+            return this->firstSighting(RightGoalPostSightingType);
+        }
+
+        int goal() {
+            return this->firstSighting(GoalLandmarkSightingType);
+        }
+
+        int lineHorizon()
+        {
+            return this->firstSighting(LineHorizonSightingType);
+        }
+
+        int cornerHorizon()
+        {
+            return this->firstSighting(CornerHorizonSightingType);
+        }
+
+        int horizon()
+        {
+            return MAX(this->lineHorizon(), this->cornerHorizon());
+        }
+
+        int line()
+        {
+            return this->firstSighting(StraightLineSightingType);
+        }
+
+        int cornerLine()
+        {
+            return this->firstSighting(CornerLineSightingType);
+        }
+
+        int tLine()
+        {
+            return this->firstSighting(TIntersectionLineSightingType);
+        }
+
+        int crossLine()
+        {
+            return this->firstSighting(CrossLineSightingType);
+        }
     };
 
 } /// namespace guWhiteboard
