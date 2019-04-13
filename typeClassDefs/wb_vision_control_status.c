@@ -196,6 +196,11 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "saveImage=AI2");
             break;
         }
+        case AI3:
+        {
+            len += snprintf(descString + len, bufferSize - len, "saveImage=AI3");
+            break;
+        }
         case JPG:
         {
             len += snprintf(descString + len, bufferSize - len, "saveImage=JPG");
@@ -479,6 +484,11 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         case AI2:
         {
             len += snprintf(toString + len, bufferSize - len, "AI2");
+            break;
+        }
+        case AI3:
+        {
+            len += snprintf(toString + len, bufferSize - len, "AI3");
             break;
         }
         case JPG:
@@ -838,6 +848,8 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             {
                 if (strcmp("AI2", var_str) == 0) {
                     self->saveImage = AI2;
+                } else if (strcmp("AI3", var_str) == 0) {
+                    self->saveImage = AI3;
                 } else if (strcmp("JPG", var_str) == 0) {
                     self->saveImage = JPG;
                 } else if (strcmp("None", var_str) == 0) {

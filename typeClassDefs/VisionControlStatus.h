@@ -206,6 +206,11 @@ namespace guWhiteboard {
                     ss << "saveImage=" << "AI2";
                     break;
                 }
+                case AI3:
+                {
+                    ss << "saveImage=" << "AI3";
+                    break;
+                }
                 case JPG:
                 {
                     ss << "saveImage=" << "JPG";
@@ -395,6 +400,11 @@ namespace guWhiteboard {
                 case AI2:
                 {
                     ss << "AI2";
+                    break;
+                }
+                case AI3:
+                {
+                    ss << "AI3";
                     break;
                 }
                 case JPG:
@@ -682,6 +692,8 @@ namespace guWhiteboard {
                     {
                         if (strcmp("AI2", var_str) == 0) {
                             this->set_saveImage(AI2);
+                        } else if (strcmp("AI3", var_str) == 0) {
+                            this->set_saveImage(AI3);
                         } else if (strcmp("JPG", var_str) == 0) {
                             this->set_saveImage(JPG);
                         } else if (strcmp("None", var_str) == 0) {
