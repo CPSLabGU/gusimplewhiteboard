@@ -1,8 +1,8 @@
 -author    Dimitri Joukoff
 
 -c
-#define LEFT_LEG 0
-#define RIGHT_LEG 1
+#define LEFT_LEG ((uint8_t)0)
+#define RIGHT_LEG ((uint8_t)1)
 
 /** Issued Commands that exceed the movement limits given below
  *  are treated as NO-OP.  I.e. the pose of the joint is not altered

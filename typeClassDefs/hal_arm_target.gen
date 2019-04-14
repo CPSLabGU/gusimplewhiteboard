@@ -1,8 +1,8 @@
 -author    Dimitri Joukoff
 
 -c
-#define LEFT_ARM 0
-#define RIGHT_ARM 1
+#define LEFT_ARM ((uint8_t)0)
+#define RIGHT_ARM ((uint8_t)1)
 
 /** Issued Commands that exceed the movement limits given below
  *  are treated as NO-OP.  I.e. the pose of the joint is not altered
