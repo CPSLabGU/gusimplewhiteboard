@@ -132,6 +132,7 @@
 #include "VisionFieldFeatures.h"
 #include "HalArmTarget.h"
 #include "HalLegTarget.h"
+#include "NaoJointListFloat.h"
 #include "MicrowaveStatus.h"
 #include "Buttons.h"
 

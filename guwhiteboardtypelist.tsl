@@ -129,3 +129,4 @@ type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filter
 type:microwave_status, nonatomic, MicrowaveStatus, External Variables for the One Minute Microwave.
 type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
 type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.
+class:NaoJointListFloat, nonatomic, SensorsJointCurrent, Posts the current flowing through each joint via the DCM loop (read only)
