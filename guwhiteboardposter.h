@@ -134,6 +134,7 @@
 #include "HalLegTarget.h"
 #include "NaoJointListFloat.h"
 #include "MicrowaveStatus.h"
+#include "DataLogger.h"
 #include "Buttons.h"
 
 
