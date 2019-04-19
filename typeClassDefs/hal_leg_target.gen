@@ -1,8 +1,15 @@
 -author    Dimitri Joukoff
 
 -c
+#include <stdint.h>
+
+#ifdef __cplusplus
+#define LEFT_LEG (static_cast<uint8_t>(0))
+#define RIGHT_LEG (static_cast<uint8_t>(1))
+#else
 #define LEFT_LEG ((uint8_t)0)
 #define RIGHT_LEG ((uint8_t)1)
+#endif
 
 /** Issued Commands that exceed the movement limits given below
  *  are treated as NO-OP.  I.e. the pose of the joint is not altered

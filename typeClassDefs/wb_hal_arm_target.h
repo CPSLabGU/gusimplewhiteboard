@@ -85,8 +85,13 @@
 #include <gu_util.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+#define LEFT_ARM (static_cast<uint8_t>(0))
+#define RIGHT_ARM (static_cast<uint8_t>(1))
+#else
 #define LEFT_ARM ((uint8_t)0)
 #define RIGHT_ARM ((uint8_t)1)
+#endif
 
 /** Issued Commands that exceed the movement limits given below
  *  are treated as NO-OP.  I.e. the pose of the joint is not altered
