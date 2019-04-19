@@ -146,6 +146,11 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
         return descString;
     }
     switch (self->sightingType) {
+        case BallSightingType:
+        {
+            len += snprintf(descString + len, bufferSize - len, "sightingType=BallSightingType");
+            break;
+        }
         case CornerHorizonSightingType:
         {
             len += snprintf(descString + len, bufferSize - len, "sightingType=CornerHorizonSightingType");
@@ -228,6 +233,11 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
         return toString;
     }
     switch (self->sightingType) {
+        case BallSightingType:
+        {
+            len += snprintf(toString + len, bufferSize - len, "BallSightingType");
+            break;
+        }
         case CornerHorizonSightingType:
         {
             len += snprintf(toString + len, bufferSize - len, "CornerHorizonSightingType");
@@ -379,7 +389,9 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
             }
             case 2:
             {
-                if (strcmp("CornerHorizonSightingType", var_str) == 0) {
+                if (strcmp("BallSightingType", var_str) == 0) {
+                    self->sightingType = BallSightingType;
+                } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
                     self->sightingType = CornerHorizonSightingType;
                 } else if (strcmp("CornerLineSightingType", var_str) == 0) {
                     self->sightingType = CornerLineSightingType;

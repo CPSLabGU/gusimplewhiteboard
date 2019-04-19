@@ -95,7 +95,8 @@ enum LandmarkSightingType {
     StraightLineSightingType,
     CornerLineSightingType,
     TIntersectionLineSightingType,
-    CrossLineSightingType
+    CrossLineSightingType,
+    BallSightingType
 };
 
 #define LANDMARK_SIGHTING_GENERATED 

@@ -148,6 +148,11 @@ namespace guWhiteboard {
             ss << "distance=" << static_cast<unsigned>(this->distance());
             ss << ", ";
             switch (this->sightingType()) {
+                case BallSightingType:
+                {
+                    ss << "sightingType=" << "BallSightingType";
+                    break;
+                }
                 case CornerHorizonSightingType:
                 {
                     ss << "sightingType=" << "CornerHorizonSightingType";
@@ -216,6 +221,11 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->distance());
             ss << ", ";
             switch (this->sightingType()) {
+                case BallSightingType:
+                {
+                    ss << "BallSightingType";
+                    break;
+                }
                 case CornerHorizonSightingType:
                 {
                     ss << "CornerHorizonSightingType";
@@ -369,7 +379,9 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        if (strcmp("CornerHorizonSightingType", var_str) == 0) {
+                        if (strcmp("BallSightingType", var_str) == 0) {
+                            this->set_sightingType(BallSightingType);
+                        } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
                             this->set_sightingType(CornerHorizonSightingType);
                         } else if (strcmp("CornerLineSightingType", var_str) == 0) {
                             this->set_sightingType(CornerLineSightingType);
