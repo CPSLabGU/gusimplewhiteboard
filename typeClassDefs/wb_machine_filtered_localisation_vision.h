@@ -60,6 +60,9 @@
 #ifndef wb_machine_filtered_localisation_vision_h
 #define wb_machine_filtered_localisation_vision_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -87,8 +92,8 @@
 #define MACHINE_FILTERED_LOCALISATION_VISION_NUMBER_OF_VARIABLES 2
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE 289
-#define MACHINE_FILTERED_LOCALISATION_VISION_TO_STRING_BUFFER_SIZE 261
+#define MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE 546
+#define MACHINE_FILTERED_LOCALISATION_VISION_TO_STRING_BUFFER_SIZE 518
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE 12

@@ -60,6 +60,9 @@
 #ifndef wb_vision_detection_goal_post_h
 #define wb_vision_detection_goal_post_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -76,6 +79,8 @@
 #  define __DARWIN_C_LEVEL 200112L
 # endif
 #endif
+
+#pragma clang diagnostic pop
 
 #include <gu_util.h>
 #include <stdint.h>
@@ -99,8 +104,8 @@ enum GoalPostOrientation {
 #define VISION_DETECTION_GOAL_POST_NUMBER_OF_VARIABLES 10
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE 642
-#define VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE 577
+#define VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE 1156
+#define VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE 1091
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

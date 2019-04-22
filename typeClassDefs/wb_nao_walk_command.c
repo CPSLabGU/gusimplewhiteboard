@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_nao_walk_command.h"
 #include <stdio.h>
 #include <string.h>
@@ -64,12 +68,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,8 +114,9 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -356,19 +363,18 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > NAOWALKCOMMAND_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[NAOWALKCOMMAND_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[NAOWALKCOMMAND_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[21];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -396,9 +402,6 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -425,7 +428,7 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("walkEngineOn", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("forward", key)) {
@@ -454,9 +457,12 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
                 varIndex = 12;
             } else if (0 == strcmp("bend", key)) {
                 varIndex = 13;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
                 self->walkEngineOn = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
@@ -528,12 +534,12 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
@@ -696,6 +702,9 @@ size_t wb_nao_walk_command_to_network_serialised(const struct wb_nao_walk_comman
       } while(false);
       }
     } while(false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -872,6 +881,9 @@ size_t wb_nao_walk_command_from_network_serialised(const char *src, struct wb_na
       }
     } while(false);
     dst->bend = (dst->bend);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 

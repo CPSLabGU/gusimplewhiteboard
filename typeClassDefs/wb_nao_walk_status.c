@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_nao_walk_status.h"
 #include <stdio.h>
 #include <string.h>
@@ -64,12 +68,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,8 +114,9 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -122,7 +129,28 @@ const char* wb_nao_walk_status_description(const struct wb_nao_walk_status* self
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "walkEngineState=%d", self->walkEngineState);
+    switch (self->walkEngineState) {
+        case wes_Disconnected:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Disconnected");
+            break;
+        }
+        case wes_StoppedReady:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedReady");
+            break;
+        }
+        case wes_StoppedStanding:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_StoppedStanding");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkEngineState=wes_Walking");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -145,7 +173,28 @@ const char* wb_nao_walk_status_to_string(const struct wb_nao_walk_status* self, 
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->walkEngineState);
+    switch (self->walkEngineState) {
+        case wes_Disconnected:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_Disconnected");
+            break;
+        }
+        case wes_StoppedReady:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_StoppedReady");
+            break;
+        }
+        case wes_StoppedStanding:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_StoppedStanding");
+            break;
+        }
+        case wes_Walking:
+        {
+            len += snprintf(toString + len, bufferSize - len, "wes_Walking");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -164,19 +213,18 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > NAOWALKSTATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[NAOWALKSTATUS_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[NAOWALKSTATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[21];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -204,9 +252,6 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -233,17 +278,30 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("walkEngineState", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("odometryResetCounter", key)) {
                 varIndex = 1;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
-                self->walkEngineState = ((enum WalkEngineState)atoi(var_str));
+                if (strcmp("wes_Disconnected", var_str) == 0) {
+                    self->walkEngineState = wes_Disconnected;
+                } else if (strcmp("wes_StoppedReady", var_str) == 0) {
+                    self->walkEngineState = wes_StoppedReady;
+                } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
+                    self->walkEngineState = wes_StoppedStanding;
+                } else if (strcmp("wes_Walking", var_str) == 0) {
+                    self->walkEngineState = wes_Walking;
+                } else {
+                    self->walkEngineState = ((enum WalkEngineState)atoi(var_str));
+                }
                 break;
             }
             case 1:
@@ -252,12 +310,12 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
@@ -267,6 +325,20 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
 size_t wb_nao_walk_status_to_network_serialised(const struct wb_nao_walk_status *self, char *dst)
 {
     uint16_t bit_offset = 0;
+    enum WalkEngineState walkEngineState_nbo = htonl(self->walkEngineState);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((walkEngineState_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
     uint8_t odometryResetCounter_nbo = (self->odometryResetCounter);
     do {
       int8_t b;
@@ -280,6 +352,9 @@ size_t wb_nao_walk_status_to_network_serialised(const struct wb_nao_walk_status 
       } while(false);
       }
     } while(false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -289,6 +364,21 @@ size_t wb_nao_walk_status_to_network_serialised(const struct wb_nao_walk_status 
 size_t wb_nao_walk_status_from_network_serialised(const char *src, struct wb_nao_walk_status *dst)
 {
     uint16_t bit_offset = 0;
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->walkEngineState ^= (-bitValue ^ dst->walkEngineState) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->walkEngineState = ntohl(dst->walkEngineState);
+
     do {
       int8_t b;
       for (b = (8 - 1); b >= 0; b--) {
@@ -303,6 +393,9 @@ size_t wb_nao_walk_status_from_network_serialised(const char *src, struct wb_nao
       }
     } while(false);
     dst->odometryResetCounter = (dst->odometryResetCounter);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 

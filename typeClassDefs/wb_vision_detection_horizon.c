@@ -57,6 +57,10 @@
  *
  */
 
+#ifndef WHITEBOARD_POSTER_STRING_CONVERSION
+#define WHITEBOARD_POSTER_STRING_CONVERSION
+#endif // WHITEBOARD_POSTER_STRING_CONVERSION
+
 #include "wb_vision_detection_horizon.h"
 #include <stdio.h>
 #include <string.h>
@@ -64,12 +68,14 @@
 #include <ctype.h>
 
 /* Network byte order functions */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #if defined(__linux)
 #  include <endian.h>
 #  include <byteswap.h>
-#elif defined(__APPLE__) //Needs double checking
-#  include <machine/endian.h>
-#  include <machine/byte_order.h>
+#elif defined(__APPLE__) 
+#  include <machine/endian.h>           //Needed for __BYTE_ORDER
+#  include <architecture/byte_order.h>   //Needed for byte swap functions
 #  define bswap_16(x) NXSwapShort(x)
 #  define bswap_32(x) NXSwapInt(x)
 #  define bswap_64(x) NXSwapLongLong(x)
@@ -108,8 +114,9 @@
 #   define ntohs(x) (x)
 #  endif
 #endif
+#pragma clang diagnostic pop
 
-#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+
 
 /**
  * Convert to a description string.
@@ -122,7 +129,28 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "horizonType=%d", self->horizonType);
+    switch (self->horizonType) {
+        case CornerHorizon:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=CornerHorizon");
+            break;
+        }
+        case HorizonFailed:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=HorizonFailed");
+            break;
+        }
+        case OnlyField:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=OnlyField");
+            break;
+        }
+        case SingleHorizon:
+        {
+            len += snprintf(descString + len, bufferSize - len, "horizonType=SingleHorizon");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return descString;
     }
@@ -185,7 +213,28 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->horizonType);
+    switch (self->horizonType) {
+        case CornerHorizon:
+        {
+            len += snprintf(toString + len, bufferSize - len, "CornerHorizon");
+            break;
+        }
+        case HorizonFailed:
+        {
+            len += snprintf(toString + len, bufferSize - len, "HorizonFailed");
+            break;
+        }
+        case OnlyField:
+        {
+            len += snprintf(toString + len, bufferSize - len, "OnlyField");
+            break;
+        }
+        case SingleHorizon:
+        {
+            len += snprintf(toString + len, bufferSize - len, "SingleHorizon");
+            break;
+        }
+    }
     if (len >= bufferSize) {
         return toString;
     }
@@ -244,19 +293,18 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1) {
+    if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
     int bracecount = 0;
-    int lastBrace = -1;
     int startVar = 0;
     int index = 0;
     int startKey = 0;
-    int endKey = 0;
+    int endKey = -1;
     int varIndex = 0;
     if (index == 0 && str[0] == '{') {
         index = 1;
@@ -284,9 +332,6 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
             }
             if (str[i] == '{') {
                 bracecount++;
-                if (bracecount == 1) {
-                    lastBrace = i;
-                }
                 continue;
             }
             if (str[i] == '}') {
@@ -313,7 +358,7 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
         startVar = index;
         startKey = startVar;
         endKey = -1;
-        if (key != NULLPTR) {
+        if (strlen(key) > 0) {
             if (0 == strcmp("horizonType", key)) {
                 varIndex = 0;
             } else if (0 == strcmp("lhp_x", key)) {
@@ -328,12 +373,25 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
                 varIndex = 5;
             } else if (0 == strcmp("chp_y", key)) {
                 varIndex = 6;
+            } else {
+                varIndex = -1;
             }
         }
         switch (varIndex) {
+            case -1: { break; }
             case 0:
             {
-                self->horizonType = ((enum HorizonOptions)atoi(var_str));
+                if (strcmp("CornerHorizon", var_str) == 0) {
+                    self->horizonType = CornerHorizon;
+                } else if (strcmp("HorizonFailed", var_str) == 0) {
+                    self->horizonType = HorizonFailed;
+                } else if (strcmp("OnlyField", var_str) == 0) {
+                    self->horizonType = OnlyField;
+                } else if (strcmp("SingleHorizon", var_str) == 0) {
+                    self->horizonType = SingleHorizon;
+                } else {
+                    self->horizonType = ((enum HorizonOptions)atoi(var_str));
+                }
                 break;
             }
             case 1:
@@ -367,12 +425,12 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
                 break;
             }
         }
-        varIndex++;
+        if (varIndex >= 0) {
+            varIndex++;
+        }
     } while(index < length);
     return self;
 }
-
-#endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
@@ -382,6 +440,20 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
 size_t wb_vision_detection_horizon_to_network_serialised(const struct wb_vision_detection_horizon *self, char *dst)
 {
     uint16_t bit_offset = 0;
+    enum HorizonOptions horizonType_nbo = htonl(self->horizonType);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((horizonType_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
     int16_t lhp_x_nbo = htons(self->lhp_x);
     do {
       int8_t b;
@@ -465,6 +537,9 @@ size_t wb_vision_detection_horizon_to_network_serialised(const struct wb_vision_
       } while(false);
       }
     } while(false);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)self;
+    (void)dst;
     return bit_offset;
 }
 
@@ -474,6 +549,21 @@ size_t wb_vision_detection_horizon_to_network_serialised(const struct wb_vision_
 size_t wb_vision_detection_horizon_from_network_serialised(const char *src, struct wb_vision_detection_horizon *dst)
 {
     uint16_t bit_offset = 0;
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->horizonType ^= (-bitValue ^ dst->horizonType) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->horizonType = ntohl(dst->horizonType);
+
     do {
       int8_t b;
       for (b = (16 - 1); b >= 0; b--) {
@@ -563,6 +653,9 @@ size_t wb_vision_detection_horizon_from_network_serialised(const char *src, stru
       }
     } while(false);
     dst->chp_y = ntohs(dst->chp_y);
+    //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
+    (void)src;
+    (void)dst;
     return bit_offset;
 }
 

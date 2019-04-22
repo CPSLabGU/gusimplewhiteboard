@@ -60,6 +60,9 @@
 #ifndef wb_nao_walk_status_h
 #define wb_nao_walk_status_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -76,6 +79,8 @@
 #  define __DARWIN_C_LEVEL 200112L
 # endif
 #endif
+
+#pragma clang diagnostic pop
 
 #include <gu_util.h>
 #include <stdint.h>
@@ -112,8 +117,8 @@ enum WalkEngineState {
 #define NAOWALKSTATUS_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define NAOWALKSTATUS_DESC_BUFFER_SIZE 564
-#define NAOWALKSTATUS_TO_STRING_BUFFER_SIZE 518
+#define NAOWALKSTATUS_DESC_BUFFER_SIZE 1078
+#define NAOWALKSTATUS_TO_STRING_BUFFER_SIZE 1032
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

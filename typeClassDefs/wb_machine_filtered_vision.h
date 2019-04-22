@@ -60,6 +60,9 @@
 #ifndef wb_machine_filtered_vision_h
 #define wb_machine_filtered_vision_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -92,8 +97,8 @@ enum GoalSightingType {
 #define MACHINE_FILTERED_VISION_NUMBER_OF_VARIABLES 7
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE 398
-#define MACHINE_FILTERED_VISION_TO_STRING_BUFFER_SIZE 296
+#define MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE 655
+#define MACHINE_FILTERED_VISION_TO_STRING_BUFFER_SIZE 553
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

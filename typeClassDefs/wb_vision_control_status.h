@@ -60,6 +60,9 @@
 #ifndef wb_vision_control_status_h
 #define wb_vision_control_status_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -76,6 +79,8 @@
 #  define __DARWIN_C_LEVEL 200112L
 # endif
 #endif
+
+#pragma clang diagnostic pop
 
 #include <gu_util.h>
 #include <stdint.h>
@@ -125,6 +130,7 @@ enum StreamingType {
  */
 enum SaveFileType {
 	AI2, ///< Raw YUV422 Image
+	AI3, ///< Raw YUV422 Image, with JSON image info blob
 	JPG, ///< Compressed JPEG
 	None
 };
@@ -144,8 +150,8 @@ enum NeuralNetworkType {
 #define VISION_CONTROL_STATUS_NUMBER_OF_VARIABLES 17
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 2155
-#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 1912
+#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 3954
+#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 3711
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

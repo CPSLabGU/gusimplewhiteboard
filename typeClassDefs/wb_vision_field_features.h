@@ -60,6 +60,9 @@
 #ifndef wb_vision_field_features_h
 #define wb_vision_field_features_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,18 +80,21 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
 #include "wb_vision_field_feature.h"
+#include <stdint.h>
 
 #define VISION_FIELDFEATURES_GENERATED 
 #define VISION_FIELDFEATURES_C_STRUCT wb_vision_field_features 
 #define VISION_FIELDFEATURES_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_FIELDFEATURES_DESC_BUFFER_SIZE 581
-#define VISION_FIELDFEATURES_TO_STRING_BUFFER_SIZE 523
+#define VISION_FIELDFEATURES_DESC_BUFFER_SIZE 1095
+#define VISION_FIELDFEATURES_TO_STRING_BUFFER_SIZE 1037
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE 8

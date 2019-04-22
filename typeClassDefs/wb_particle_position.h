@@ -60,6 +60,9 @@
 #ifndef wb_particle_position_h
 #define wb_particle_position_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -87,8 +92,8 @@
 #define PARTICLE_POSITION_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define PARTICLE_POSITION_DESC_BUFFER_SIZE 367
-#define PARTICLE_POSITION_TO_STRING_BUFFER_SIZE 330
+#define PARTICLE_POSITION_DESC_BUFFER_SIZE 624
+#define PARTICLE_POSITION_TO_STRING_BUFFER_SIZE 587
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

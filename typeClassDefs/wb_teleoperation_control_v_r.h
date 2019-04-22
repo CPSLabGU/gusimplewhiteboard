@@ -60,6 +60,9 @@
 #ifndef wb_teleoperation_control_v_r_h
 #define wb_teleoperation_control_v_r_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -84,11 +89,11 @@
 
 #define TELEOPERATIONCONTROLVR_GENERATED 
 #define TELEOPERATIONCONTROLVR_C_STRUCT wb_teleoperation_control_v_r 
-#define TELEOPERATIONCONTROLVR_NUMBER_OF_VARIABLES 9
+#define TELEOPERATIONCONTROLVR_NUMBER_OF_VARIABLES 11
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE 200
-#define TELEOPERATIONCONTROLVR_TO_STRING_BUFFER_SIZE 127
+#define TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE 350
+#define TELEOPERATIONCONTROLVR_TO_STRING_BUFFER_SIZE 259
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -106,6 +111,16 @@ struct wb_teleoperation_control_v_r
      * Use guWhiteboard::Motions::action enum values!
      */
     PROPERTY(int32_t, action)
+
+    /**
+     * Head pos in RAD
+     */
+    PROPERTY(float, HeadYaw)
+
+    /**
+     * Head pos in RAD
+     */
+    PROPERTY(float, HeadPitch)
 
     /**
      * guWhiteboard::Motions::stance

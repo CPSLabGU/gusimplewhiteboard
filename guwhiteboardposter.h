@@ -112,7 +112,6 @@
 #include "SwitchSubsumption.h"
 #include "SwitchSubsumptionTrafficLights.h"
 #include "Input3D.h"
-#include "HAL_ArmTarget.h"
 #include "VisionLines.h"
 #include "VisionRobots.h"
 #include "VisionDetectionHorizon.h"
@@ -130,6 +129,14 @@
 #include "GCGameState.h"
 #include "MachineFilteredVision.h"
 #include "MachineFilteredLocalisationVision.h"
+#include "VisionFieldFeatures.h"
+#include "HalArmTarget.h"
+#include "HalLegTarget.h"
+#include "NaoJointListFloat.h"
+#include "MicrowaveStatus.h"
+#include "DataLogger.h"
+#include "Buttons.h"
+
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION

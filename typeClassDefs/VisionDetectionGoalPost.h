@@ -76,12 +76,12 @@ namespace guWhiteboard {
      */
     class VisionDetectionGoalPost: public wb_vision_detection_goal_post {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionDetectionGoalPost`.
+         * Set the members of the class.
          */
-        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
+        void init(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
             set_sightingType(sightingType);
             set_orientation(orientation);
             set_tl_x(tl_x);
@@ -94,52 +94,34 @@ namespace guWhiteboard {
             set_br_y(br_y);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionDetectionGoalPost`.
+         */
+        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
+            this->init(sightingType, orientation, tl_x, tl_y, tr_x, tr_y, bl_x, bl_y, br_x, br_y);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const VisionDetectionGoalPost &other): wb_vision_detection_goal_post() {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const struct wb_vision_detection_goal_post &other): wb_vision_detection_goal_post() {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const VisionDetectionGoalPost &other) {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
             return *this;
         }
 
@@ -147,16 +129,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const struct wb_vision_detection_goal_post &other) {
-            set_sightingType(other.sightingType());
-            set_orientation(other.orientation());
-            set_tl_x(other.tl_x());
-            set_tl_y(other.tl_y());
-            set_tr_x(other.tr_x());
-            set_tr_y(other.tr_y());
-            set_bl_x(other.bl_x());
-            set_bl_y(other.bl_y());
-            set_br_x(other.br_x());
-            set_br_y(other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
             return *this;
         }
 
@@ -164,7 +137,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionGoalPost(const std::string &str) { wb_vision_detection_goal_post_from_string(this, str.c_str()); }
+        VisionDetectionGoalPost(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
@@ -174,9 +150,41 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case FullPostSeen:
+                {
+                    ss << "sightingType=" << "FullPostSeen";
+                    break;
+                }
+                case NoPostDetected:
+                {
+                    ss << "sightingType=" << "NoPostDetected";
+                    break;
+                }
+                case PartialPostSeen:
+                {
+                    ss << "sightingType=" << "PartialPostSeen";
+                    break;
+                }
+            }
             ss << ", ";
-            ss << "orientation=" << this->orientation();
+            switch (this->orientation()) {
+                case GenericPost:
+                {
+                    ss << "orientation=" << "GenericPost";
+                    break;
+                }
+                case LeftPost:
+                {
+                    ss << "orientation=" << "LeftPost";
+                    break;
+                }
+                case RightPost:
+                {
+                    ss << "orientation=" << "RightPost";
+                    break;
+                }
+            }
             ss << ", ";
             ss << "tl_x=" << static_cast<signed>(this->tl_x());
             ss << ", ";
@@ -205,9 +213,41 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case FullPostSeen:
+                {
+                    ss << "FullPostSeen";
+                    break;
+                }
+                case NoPostDetected:
+                {
+                    ss << "NoPostDetected";
+                    break;
+                }
+                case PartialPostSeen:
+                {
+                    ss << "PartialPostSeen";
+                    break;
+                }
+            }
             ss << ", ";
-            ss << this->orientation();
+            switch (this->orientation()) {
+                case GenericPost:
+                {
+                    ss << "GenericPost";
+                    break;
+                }
+                case LeftPost:
+                {
+                    ss << "LeftPost";
+                    break;
+                }
+                case RightPost:
+                {
+                    ss << "RightPost";
+                    break;
+                }
+            }
             ss << ", ";
             ss << static_cast<signed>(this->tl_x());
             ss << ", ";
@@ -236,19 +276,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -276,9 +315,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -305,7 +341,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("sightingType", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("orientation", key)) {
@@ -326,17 +362,36 @@ namespace guWhiteboard {
                         varIndex = 8;
                     } else if (0 == strcmp("br_y", key)) {
                         varIndex = 9;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
+                        if (strcmp("FullPostSeen", var_str) == 0) {
+                            this->set_sightingType(FullPostSeen);
+                        } else if (strcmp("NoPostDetected", var_str) == 0) {
+                            this->set_sightingType(NoPostDetected);
+                        } else if (strcmp("PartialPostSeen", var_str) == 0) {
+                            this->set_sightingType(PartialPostSeen);
+                        } else {
+                            this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
                     {
-                        this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
+                        if (strcmp("GenericPost", var_str) == 0) {
+                            this->set_orientation(GenericPost);
+                        } else if (strcmp("LeftPost", var_str) == 0) {
+                            this->set_orientation(LeftPost);
+                        } else if (strcmp("RightPost", var_str) == 0) {
+                            this->set_orientation(RightPost);
+                        } else {
+                            this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 2:
@@ -380,7 +435,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }

@@ -60,6 +60,9 @@
 #ifndef wb_vision_line_h
 #define wb_vision_line_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -87,8 +92,8 @@
 #define VISION_LINE_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_LINE_DESC_BUFFER_SIZE 569
-#define VISION_LINE_TO_STRING_BUFFER_SIZE 523
+#define VISION_LINE_DESC_BUFFER_SIZE 1083
+#define VISION_LINE_TO_STRING_BUFFER_SIZE 1037
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

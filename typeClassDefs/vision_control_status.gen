@@ -46,6 +46,7 @@ enum StreamingType {
  */
 enum SaveFileType {
 	AI2, ///< Raw YUV422 Image
+	AI3, ///< Raw YUV422 Image, with JSON image info blob
 	JPG, ///< Compressed JPEG
 	None
 };

@@ -60,6 +60,9 @@
 #ifndef wb_vision_detection_horizon_h
 #define wb_vision_detection_horizon_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -76,6 +79,8 @@
 #  define __DARWIN_C_LEVEL 200112L
 # endif
 #endif
+
+#pragma clang diagnostic pop
 
 #include <gu_util.h>
 #include <stdint.h>
@@ -94,8 +99,8 @@ enum HorizonOptions {
 #define VISION_DETECTION_HORIZON_NUMBER_OF_VARIABLES 7
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE 352
-#define VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE 304
+#define VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE 609
+#define VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE 561
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

@@ -60,6 +60,9 @@
 #ifndef wb_landmark_sighting_h
 #define wb_landmark_sighting_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -90,7 +95,8 @@ enum LandmarkSightingType {
     StraightLineSightingType,
     CornerLineSightingType,
     TIntersectionLineSightingType,
-    CrossLineSightingType
+    CrossLineSightingType,
+    BallSightingType
 };
 
 #define LANDMARK_SIGHTING_GENERATED 
@@ -98,8 +104,8 @@ enum LandmarkSightingType {
 #define LANDMARK_SIGHTING_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 303
-#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 271
+#define LANDMARK_SIGHTING_DESC_BUFFER_SIZE 560
+#define LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE 528
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**

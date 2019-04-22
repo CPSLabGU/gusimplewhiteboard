@@ -78,46 +78,46 @@ namespace guWhiteboard {
      */
     class VisionLine: public wb_vision_line {
 
-    public:
+    private:
 
         /**
-         * Create a new `VisionLine`.
+         * Set the members of the class.
          */
-        VisionLine(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
+        void init(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
             set_lineStart(lineStart);
             set_lineEnd(lineEnd);
             set_startThickness(startThickness);
             set_endThickness(endThickness);
         }
 
+    public:
+
+        /**
+         * Create a new `VisionLine`.
+         */
+        VisionLine(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
+            this->init(lineStart, lineEnd, startThickness, endThickness);
+        }
+
         /**
          * Copy Constructor.
          */
         VisionLine(const VisionLine &other): wb_vision_line() {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLine(const struct wb_vision_line &other): wb_vision_line() {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const VisionLine &other) {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
             return *this;
         }
 
@@ -125,10 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const struct wb_vision_line &other) {
-            set_lineStart(other.lineStart());
-            set_lineEnd(other.lineEnd());
-            set_startThickness(other.startThickness());
-            set_endThickness(other.endThickness());
+            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
             return *this;
         }
 
@@ -136,7 +133,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionLine(const std::string &str) { wb_vision_line_from_string(this, str.c_str()); }
+        VisionLine(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_LINE_C_CONVERSION
@@ -188,19 +188,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_LINE_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_LINE_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_LINE_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[15];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -228,9 +227,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -257,7 +253,7 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("lineStart", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("lineEnd", key)) {
@@ -266,9 +262,12 @@ namespace guWhiteboard {
                         varIndex = 2;
                     } else if (0 == strcmp("endThickness", key)) {
                         varIndex = 3;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         Point2D lineStart_temp = Point2D();
@@ -294,7 +293,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_LINE_C_CONVERSION
         }

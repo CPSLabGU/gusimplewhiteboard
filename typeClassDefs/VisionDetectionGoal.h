@@ -78,42 +78,45 @@ namespace guWhiteboard {
      */
     class VisionDetectionGoal: public wb_vision_detection_goal {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
+            set_sightingType(sightingType);
+            set_post1(post1);
+            set_post2(post2);
+        }
+
     public:
 
         /**
          * Create a new `VisionDetectionGoal`.
          */
         VisionDetectionGoal(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
-            set_sightingType(sightingType);
-            set_post1(post1);
-            set_post2(post2);
+            this->init(sightingType, post1, post2);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoal(const VisionDetectionGoal &other): wb_vision_detection_goal() {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoal(const struct wb_vision_detection_goal &other): wb_vision_detection_goal() {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoal &operator = (const VisionDetectionGoal &other) {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
             return *this;
         }
 
@@ -121,9 +124,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoal &operator = (const struct wb_vision_detection_goal &other) {
-            set_sightingType(other.sightingType());
-            set_post1(other.post1());
-            set_post2(other.post2());
+            this->init(other.sightingType(), other.post1(), other.post2());
             return *this;
         }
 
@@ -131,7 +132,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        VisionDetectionGoal(const std::string &str) { wb_vision_detection_goal_from_string(this, str.c_str()); }
+        VisionDetectionGoal(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
@@ -141,7 +145,23 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            ss << "sightingType=" << this->sightingType();
+            switch (this->sightingType()) {
+                case DoublePostGoal:
+                {
+                    ss << "sightingType=" << "DoublePostGoal";
+                    break;
+                }
+                case NoGoalDetected:
+                {
+                    ss << "sightingType=" << "NoGoalDetected";
+                    break;
+                }
+                case SinglePostGoal:
+                {
+                    ss << "sightingType=" << "SinglePostGoal";
+                    break;
+                }
+            }
             ss << ", ";
             guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
             ss << "post1=" << "{" << post1_cast->description() << "}";
@@ -160,7 +180,23 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            ss << this->sightingType();
+            switch (this->sightingType()) {
+                case DoublePostGoal:
+                {
+                    ss << "DoublePostGoal";
+                    break;
+                }
+                case NoGoalDetected:
+                {
+                    ss << "NoGoalDetected";
+                    break;
+                }
+                case SinglePostGoal:
+                {
+                    ss << "SinglePostGoal";
+                    break;
+                }
+            }
             ss << ", ";
             guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
             ss << "{" << post1_cast->to_string() << "}";
@@ -179,19 +215,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_GOAL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[13];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -219,9 +254,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -248,19 +280,30 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("sightingType", key)) {
                         varIndex = 0;
                     } else if (0 == strcmp("post1", key)) {
                         varIndex = 1;
                     } else if (0 == strcmp("post2", key)) {
                         varIndex = 2;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
-                        this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+                        if (strcmp("DoublePostGoal", var_str) == 0) {
+                            this->set_sightingType(DoublePostGoal);
+                        } else if (strcmp("NoGoalDetected", var_str) == 0) {
+                            this->set_sightingType(NoGoalDetected);
+                        } else if (strcmp("SinglePostGoal", var_str) == 0) {
+                            this->set_sightingType(SinglePostGoal);
+                        } else {
+                            this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+                        }
                         break;
                     }
                     case 1:
@@ -278,7 +321,9 @@ namespace guWhiteboard {
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
         }

@@ -76,34 +76,43 @@ namespace guWhiteboard {
      */
     class TeleoperationStatus: public wb_teleoperation_status {
 
+    private:
+
+        /**
+         * Set the members of the class.
+         */
+        void init(std::string sayString = "") {
+            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
+        }
+
     public:
 
         /**
          * Create a new `TeleoperationStatus`.
          */
         TeleoperationStatus(std::string sayString = "") {
-            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
+            this->init(sayString);
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationStatus(const TeleoperationStatus &other): wb_teleoperation_status() {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
         }
 
         /**
          * Copy Constructor.
          */
         TeleoperationStatus(const struct wb_teleoperation_status &other): wb_teleoperation_status() {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
         }
 
         /**
          * Copy Assignment Operator.
          */
         TeleoperationStatus &operator = (const TeleoperationStatus &other) {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
             return *this;
         }
 
@@ -111,7 +120,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         TeleoperationStatus &operator = (const struct wb_teleoperation_status &other) {
-            gu_strlcpy(const_cast<char *>(this->sayString()), other.sayString(), 30);
+            this->init(other.sayString());
             return *this;
         }
 
@@ -119,7 +128,10 @@ namespace guWhiteboard {
         /**
          * String Constructor.
          */
-        TeleoperationStatus(const std::string &str) { wb_teleoperation_status_from_string(this, str.c_str()); }
+        TeleoperationStatus(const std::string &str) {
+            this->init();
+            this->from_string(str);
+        }
 
         std::string description() {
 #ifdef USE_WB_TELEOPERATION_STATUS_C_CONVERSION
@@ -163,19 +175,18 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1) {
+            if (length < 1 || length > TELEOPERATIONSTATUS_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[TELEOPERATIONSTATUS_TO_STRING_BUFFER_SIZE + 1];
+            char var_str_buffer[TELEOPERATIONSTATUS_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[10];
             char* key = &key_buffer[0];
             int bracecount = 0;
-            int lastBrace = -1;
             int startVar = 0;
             int index = 0;
             int startKey = 0;
-            int endKey = 0;
+            int endKey = -1;
             int varIndex = 0;
             if (index == 0 && str_cstr[0] == '{') {
                 index = 1;
@@ -203,9 +214,6 @@ namespace guWhiteboard {
                     }
                     if (str_cstr[i] == '{') {
                         bracecount++;
-                        if (bracecount == 1) {
-                            lastBrace = i;
-                        }
                         continue;
                     }
                     if (str_cstr[i] == '}') {
@@ -232,19 +240,24 @@ namespace guWhiteboard {
                 startVar = index;
                 startKey = startVar;
                 endKey = -1;
-                if (key != NULLPTR) {
+                if (strlen(key) > 0) {
                     if (0 == strcmp("sayString", key)) {
                         varIndex = 0;
+                    } else {
+                        varIndex = -1;
                     }
                 }
                 switch (varIndex) {
+                    case -1: { break; }
                     case 0:
                     {
                         strncpy(this->sayString(), var_str, 30);
                         break;
                     }
                 }
-                varIndex++;
+                if (varIndex >= 0) {
+                    varIndex++;
+                }
             } while(index < length);
 #endif /// USE_WB_TELEOPERATIONSTATUS_C_CONVERSION
         }

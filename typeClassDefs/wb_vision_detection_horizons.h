@@ -60,6 +60,9 @@
 #ifndef wb_vision_detection_horizons_h
 #define wb_vision_detection_horizons_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #ifdef __linux
 # ifndef _POSIX_SOURCE
 #  define _POSIX_SOURCE 200112L
@@ -77,6 +80,8 @@
 # endif
 #endif
 
+#pragma clang diagnostic pop
+
 #include <gu_util.h>
 #include <stdint.h>
 
@@ -87,8 +92,8 @@
 #define VISION_DETECTION_HORIZONS_NUMBER_OF_VARIABLES 2
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE 299
-#define VISION_DETECTION_HORIZONS_TO_STRING_BUFFER_SIZE 278
+#define VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE 556
+#define VISION_DETECTION_HORIZONS_TO_STRING_BUFFER_SIZE 535
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE 2

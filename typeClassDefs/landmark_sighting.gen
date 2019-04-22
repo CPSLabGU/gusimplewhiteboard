@@ -12,7 +12,8 @@ enum LandmarkSightingType {
     StraightLineSightingType,
     CornerLineSightingType,
     TIntersectionLineSightingType,
-    CrossLineSightingType
+    CrossLineSightingType,
+    BallSightingType
 };
 
 -properties
