@@ -63,30 +63,58 @@
 //swiftlint:disable identifier_name
 
 /**
- *  General purpose data logger controller.
- *  DataLogger posts an initialisation DataLogger message to the WB on start-up
- *  Current implementation captures:
+ * General purpose data logger controller:
+ * Whilst the comments above refer to monitoring running machines, the DataLogger can be used to record the robot's sensors in any appropriate situation.
+ * 
+ * The current implementation of the DataLogger captures (see 'nao/utilities/datalogger/datalog.h'):
  *       currentState,
  *       currentSection,
- *       DCM Time (expressed as an uint32_t),
+ *       relative DCM Time (expressed as an uint32_t),
  *       Joint positions,
  *       Inertial sensors within the torso, and
  *       Pressure sensors on feet.
  * 
- *  Current implementation allows up to 100 seconds of data to be logged at a time.
- *  After the time expires, or when logging is stopped, the data is written to
- *  a CSV file (delimited using semi-colons) in /tmp using the following naming
- *  convention:
+ * The DataLogger does not record sonar returns nor button presses.
+ * The DataLogger does not record joint temperatures, nor the current flowing through them.
+ * 
+ * Initialisation:
+ * DataLogger posts an initialisation DataLogger message to the WB on start-up, overwritting what's there.
+ * 
+ * DCM Time:
+ * The recorded DCM Time is relative to the initial DCM time of the log run.  If absolute values are required, add the timestamp in the output file's name to the dcmTime sample value.
+ * 
+ * MAX_LOG_POINTS
+ * (See nao/utilities/datalogger/dataLogger.cc)
+ * The current implementation allows recording up to 100 seconds (at 10mS/sample) of data at a time.
+ * 
+ * CurrentSection:
+ * In states where there is a recurring internal section, the DataLogger will most likely record a value for this field that is assigned within the internal section, unless the onEntry or onExit section's execution time is long enough for the DataLogger to sample it.  Thus, the CurrentSection can be used to record internal states within the internal section.  Like decisions
+ * 
+ * Output File:
+ * The output file is written to /tmp using the following naming convention:
  *    (MachineName)-(DCM-TimeStampAtStartOfLogRun).csv
+ * Since the output file's name is set when commencing to write the data to disk, the output file is named after the machineName string contained in the most recent DataLogger WB message.
+ * The output file is a CSV file (delimited using semi-colons)  where the 1st line represents the headers for each data column, and succeeding lines represent the data collected at each sample.  Succeeding lines always begin with a sample number (starting with zero (0)) that increments by one for each sample. There are no trailing semi-colons at the end of each line.
  * 
- * In states where there is a recurring internal section, CurrentSection will most likely record any value assigned within the internal section, unless the onEntry
- * or onExit sections execution time is greater than 10mS.  Thus, the CurrentSection can be used to record internal state of the internal section.
+ * The output file is written when:
+ * 1) "loggerRunning" is set back to false or
+ * 2) MAX_LOG_POINTS (see dataLogger.cc code) have been recorded, or
+ * 3) shouldExit is set to true and there is accumulated data.
  * 
- *  Important:
- *  The output file is written immediately when:
- *  1) "loggerRunning" is set back to false or
- *  2) MAX_LOG_POINTS (see dataLogger.cc code) have been recorded, or
- *  3) shouldExit is set to true and there is accumulated data.
+ * Resources:
+ * The DataLogger reserves an array 10K * size_of(DataLogStruct) on start-up and re-uses that memory across runs.
+ * The DataLogger, when idle, polls selected Event Counters every 5mSec and sleeps in-between.
+ * The DataLogger, when running, in addition to the above, records one sample every 10mSec.
+ * 
+ * Observation of DataLogger resource usage while running TOP indicates that when the Datalogger is:
+ *   idle/collecting data    :  1% of CPU and 0.2% of memory are used,
+ *   saving the data to file :  about 20% of the CPU is used.
+ * 
+ * Running/Exiting:
+ * The DataLogger is controlled entirely through the DataLogger WB message.
+ * The DataLogger can be run in the background if desired using the '&' token.
+ * In order to terminate a DataLogger instance that's running in the background, the user should post 'shouldExit=true' to the DataLogger WB message.  This will signal the DataLogger to stop recording further data, save existing data to the output file, and exit.
+ * Upon exiting, the DataLogger notifies users that it's terminated using the Linux 'wall' command.
  */
 extension wb_data_logger {
 

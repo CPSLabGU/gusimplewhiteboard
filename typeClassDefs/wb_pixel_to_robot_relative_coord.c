@@ -148,11 +148,6 @@ void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera
 	double imageAngleX = ((double)((x-im_width_2))/im_width_2)*CAMERA_HFOV/2;
 	
 	*distance = frontDistance/cos(imageAngleX);
-	
-	if(angleY > DEG2RAD(85))
-		*distance = 10;
-	if(angleY < 0)
-		*distance = 0;
 
 	*angle = -(imageAngleX-joints->HeadYaw);   
 }
@@ -254,12 +249,12 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
             }
         }
         if (endKey >= startKey && endKey - startKey < length) {
-            strncpy(key, str + startKey, (endKey - startKey) + 1);
+            strncpy(key, str + startKey, ((size_t)(endKey - startKey) + 1));
             key[(endKey - startKey) + 1] = 0;
         } else {
             key[0] = 0;
         }
-        strncpy(var_str, str + startVar, (index - startVar) + 1);
+        strncpy(var_str, str + startVar, ((size_t)(index - startVar) + 1));
         var_str[(index - startVar) + 1] = 0;
         bracecount = 0;
         index += 2;

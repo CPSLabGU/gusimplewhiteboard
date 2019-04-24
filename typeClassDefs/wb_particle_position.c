@@ -262,12 +262,12 @@ struct wb_particle_position* wb_particle_position_from_string(struct wb_particle
             }
         }
         if (endKey >= startKey && endKey - startKey < length) {
-            strncpy(key, str + startKey, (endKey - startKey) + 1);
+            strncpy(key, str + startKey, ((size_t)(endKey - startKey) + 1));
             key[(endKey - startKey) + 1] = 0;
         } else {
             key[0] = 0;
         }
-        strncpy(var_str, str + startVar, (index - startVar) + 1);
+        strncpy(var_str, str + startVar, ((size_t)(index - startVar) + 1));
         var_str[(index - startVar) + 1] = 0;
         bracecount = 0;
         index += 2;
