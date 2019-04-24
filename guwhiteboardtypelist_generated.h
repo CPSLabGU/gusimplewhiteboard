@@ -1113,6 +1113,22 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: SensorsJointCurrent_t @brief Posts the current flowing through each joint via the DCM loop (read only) */ 
+    class SensorsJointCurrent_t: public generic_whiteboard_object<class NaoJointListFloat > { 
+        public: 
+        /** Constructor: SensorsJointCurrent_t */ 
+        SensorsJointCurrent_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NaoJointListFloat >(wbd, kSensorsJointCurrent_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: DataLogger_t @brief Controls the data logging within Naoqi Interface */ 
+    class DataLogger_t: public generic_whiteboard_object<class DataLogger > { 
+        public: 
+        /** Constructor: DataLogger_t */ 
+        DataLogger_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class DataLogger >(wbd, kDataLogger_v, false) {}
+        
+    };
+
 
 }
 

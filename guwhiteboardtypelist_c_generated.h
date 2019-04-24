@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 131
+#define GSW_NUM_TYPES_DEFINED 133
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -152,8 +152,10 @@ typedef enum wb_types
     kMachineFilteredNaoVision_v = 127, 		///< Vision filtering and distance estimates.
     kMicrowaveStatus_v = 128, 		///< External Variables for the One Minute Microwave.
     kButtons_v = 129, 		///< External Variables for the Incrementing LLFSM.
+    kMachineFilteredLocalisationVision_v = 130, 		///< Vision filtering and distance estimates for landmarks: goal, lines and horizon.
+    kSensorsJointCurrent_v = 131, 		///< Posts the current flowing through each joint via the DCM loop (read only)
 
-    kMachineFilteredLocalisationVision_v = 130 		///< Vision filtering and distance estimates for landmarks: goal, lines and horizon.
+    kDataLogger_v = 132 		///< Controls the data logging within Naoqi Interface
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

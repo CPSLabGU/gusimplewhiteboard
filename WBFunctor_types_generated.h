@@ -3027,6 +3027,52 @@ public:
 }; 
 #endif //MachineFilteredLocalisationVision_DEFINED
 
+#ifdef NaoJointListFloat_DEFINED
+/** WBFunctor definition for SensorsJointCurrent_WBFunctor_T */ 
+template <typename SensorsJointCurrent_WBFunctor_T >
+class SensorsJointCurrent_WBFunctor: public WBFunctor<SensorsJointCurrent_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for SensorsJointCurrent_WBFunctor_T */
+    SensorsJointCurrent_WBFunctor(SensorsJointCurrent_WBFunctor_T* obj, void (SensorsJointCurrent_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &), guWhiteboard::WBTypes t): WBFunctor<SensorsJointCurrent_WBFunctor_T >(obj, (void (SensorsJointCurrent_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class SensorsJointCurrent_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::NaoJointListFloat result = guWhiteboard::SensorsJointCurrent_t().get_from(m);
+        SensorsJointCurrent_function_t funct((void (SensorsJointCurrent_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &))WBFunctor<SensorsJointCurrent_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<SensorsJointCurrent_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsJointCurrent_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (SensorsJointCurrent_WBFunctor_T::*SensorsJointCurrent_function_t) (guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(SensorsJointCurrent_WBFunctor_T *obj, void (SensorsJointCurrent_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &), guWhiteboard::WBTypes t) { return new SensorsJointCurrent_WBFunctor<SensorsJointCurrent_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //NaoJointListFloat_DEFINED
+
+#ifdef DataLogger_DEFINED
+/** WBFunctor definition for DataLogger_WBFunctor_T */ 
+template <typename DataLogger_WBFunctor_T >
+class DataLogger_WBFunctor: public WBFunctor<DataLogger_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for DataLogger_WBFunctor_T */
+    DataLogger_WBFunctor(DataLogger_WBFunctor_T* obj, void (DataLogger_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DataLogger &), guWhiteboard::WBTypes t): WBFunctor<DataLogger_WBFunctor_T >(obj, (void (DataLogger_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class DataLogger_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::DataLogger result = guWhiteboard::DataLogger_t().get_from(m);
+        DataLogger_function_t funct((void (DataLogger_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DataLogger &))WBFunctor<DataLogger_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<DataLogger_WBFunctor_T >::fObject->*funct)(WBFunctor<DataLogger_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (DataLogger_WBFunctor_T::*DataLogger_function_t) (guWhiteboard::WBTypes, guWhiteboard::DataLogger &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(DataLogger_WBFunctor_T *obj, void (DataLogger_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::DataLogger &), guWhiteboard::WBTypes t) { return new DataLogger_WBFunctor<DataLogger_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //DataLogger_DEFINED
+
 
 #pragma clang diagnostic pop
 

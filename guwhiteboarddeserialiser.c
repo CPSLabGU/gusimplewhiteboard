@@ -1037,6 +1037,24 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
+            case kSensorsJointCurrent_v:
+            {
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
+                break;
+            }
+            case kDataLogger_v:
+            {
+#ifdef SerialisationNotSupportedWithLegacyNaming
+                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#else
+                return -1;
+#endif //SerialisationNotSupportedWithLegacyNaming
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

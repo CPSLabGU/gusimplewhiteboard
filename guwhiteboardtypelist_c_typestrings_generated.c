@@ -145,7 +145,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "MachineFilteredNaoVision",
         "MicrowaveStatus",
         "Buttons",
-        "MachineFilteredLocalisationVision"
+        "MachineFilteredLocalisationVision",
+        "SensorsJointCurrent",
+        "DataLogger"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -281,7 +283,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_machine_filtered_vision",
         "wb_microwave_status",
         "wb_buttons",
-        "wb_machine_filtered_localisation_vision"
+        "wb_machine_filtered_localisation_vision",
+        "NotSupportedWithLegacyNaming",
+        "NotSupportedWithLegacyNaming"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

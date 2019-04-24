@@ -1172,6 +1172,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MachineFilteredLocalisationVision_DEFINED
             }
+            case kSensorsJointCurrent_v:
+            {
+#ifdef NaoJointListFloat_DEFINED
+                class SensorsJointCurrent_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //NaoJointListFloat_DEFINED
+            }
+            case kDataLogger_v:
+            {
+#ifdef DataLogger_DEFINED
+                class DataLogger_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //DataLogger_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

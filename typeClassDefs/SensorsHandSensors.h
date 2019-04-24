@@ -245,12 +245,12 @@ namespace guWhiteboard {
                     }
                 }
                 if (endKey >= startKey && endKey - startKey < length) {
-                    strncpy(key, str_cstr + startKey, static_cast<size_t>((endKey - startKey) + 1));
+                    strncpy(key, str_cstr + startKey, (endKey - startKey) + 1);
                     key[(endKey - startKey) + 1] = 0;
                 } else {
                     key[0] = 0;
                 }
-                strncpy(var_str, str_cstr + startVar, static_cast<size_t>((index - startVar) + 1));
+                strncpy(var_str, str_cstr + startVar, (index - startVar) + 1);
                 var_str[(index - startVar) + 1] = 0;
                 bracecount = 0;
                 index += 2;

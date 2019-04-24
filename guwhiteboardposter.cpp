@@ -1530,6 +1530,30 @@ v.from_string(message_content);
     return false;
 #endif //MachineFilteredLocalisationVision_DEFINED
 }
+case kSensorsJointCurrent_v:
+{
+#ifdef NaoJointListFloat_DEFINED
+    class SensorsJointCurrent_t msg_ptr(wbd);
+    NaoJointListFloat v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //NaoJointListFloat_DEFINED
+}
+case kDataLogger_v:
+{
+#ifdef DataLogger_DEFINED
+    class DataLogger_t msg_ptr(wbd);
+    DataLogger v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //DataLogger_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1676,6 +1700,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["MicrowaveStatus"] = kMicrowaveStatus_v;
     self["Buttons"] = kButtons_v;
     self["MachineFilteredLocalisationVision"] = kMachineFilteredLocalisationVision_v;
+    self["SensorsJointCurrent"] = kSensorsJointCurrent_v;
+    self["DataLogger"] = kDataLogger_v;
 
     (void) self;
 }
