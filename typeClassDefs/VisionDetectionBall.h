@@ -318,6 +318,15 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_DETECTION_BALL_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        bool operator==(VisionDetectionBall &other) {
+            return this->sightingType() == other.sightingType() &&
+                this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
+        }
+
+        bool operator!=(VisionDetectionBall &other) {
+            return !this->operator==(other);
+        }
     };
 
 } /// namespace guWhiteboard
