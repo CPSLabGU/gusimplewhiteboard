@@ -325,7 +325,7 @@ namespace guWhiteboard {
             lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.r() == rhs.r();
     }
 
-    bool operator!=(VisionDetectionBall &lhs, VisionDetectionBalls &rhs) {
+    bool operator!=(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
         return !(lhs == rhs);
     }
 
