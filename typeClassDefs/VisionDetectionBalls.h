@@ -355,7 +355,7 @@ namespace guWhiteboard {
             VisionDetectionBall thisTop = static_cast<VisionDetectionBall>(this->balls()[1]);
             VisionDetectionBall otherBottom = static_cast<VisionDetectionBall>(other.balls()[0]);
             VisionDetectionBall otherTop = static_cast<VisionDetectionBall>(other.balls()[1]);
-            return thisBottom.isSame(otherBottom) && thisTop.isSame(otherTop);
+            return thisBottom == otherBottom && thisTop == otherTop;
         }
     };
 
