@@ -320,9 +320,6 @@ namespace guWhiteboard {
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
     };
 
-    bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs);
-    bool operator!=(VisionDetectionBall &lhs, VisionDetectionBall &rhs);
-
     bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
         return lhs.sightingType() == rhs.sightingType() &&
             lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.r() == rhs.r();

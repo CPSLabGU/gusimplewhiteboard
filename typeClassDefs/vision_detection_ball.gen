@@ -16,9 +16,6 @@ int16_t y = 0  //Y position measured from the bottom of the image, growing posit
 uint16_t r = 0  //Radius
 
 +c++
-bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs);
-bool operator!=(VisionDetectionBall &lhs, VisionDetectionBall &rhs);
-
 bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
     return lhs.sightingType() == rhs.sightingType() &&
         lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.r() == rhs.r();
