@@ -321,8 +321,8 @@ namespace guWhiteboard {
     };
 
     bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
-        return lhs->sightingType() == rhs.sightingType() &&
-            lhs->x() == rhs.x() && lhs->y() == rhs.y() && lhs->r() == rhs.r();
+        return lhs.sightingType() == rhs.sightingType() &&
+            lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.r() == rhs.r();
     }
 
     bool operator!=(VisionDetectionBall &lhs, VisionDetectionBalls &rhs) {

@@ -17,8 +17,8 @@ uint16_t r = 0  //Radius
 
 +c++
 bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
-    return lhs->sightingType() == rhs.sightingType() &&
-        lhs->x() == rhs.x() && lhs->y() == rhs.y() && lhs->r() == rhs.r();
+    return lhs.sightingType() == rhs.sightingType() &&
+        lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.r() == rhs.r();
 }
 
 bool operator!=(VisionDetectionBall &lhs, VisionDetectionBalls &rhs) {
