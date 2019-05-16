@@ -319,12 +319,12 @@ namespace guWhiteboard {
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-        bool operator==(VisionDetectionBall &other) {
+        bool operator==(const VisionDetectionBall &other) const {
             return this->sightingType() == other.sightingType() &&
                 this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
         }
 
-        bool operator!=(VisionDetectionBall &other) {
+        bool operator!=(const VisionDetectionBall &other) const {
             return !this->operator==(other);
         }
     };

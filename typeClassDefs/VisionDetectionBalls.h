@@ -350,7 +350,7 @@ namespace guWhiteboard {
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-        bool hasSameSightings(VisionDetectionBalls &other) {
+        bool hasSameSightings(const VisionDetectionBalls &other) const {
             VisionDetectionBall thisBottom = static_cast<VisionDetectionBall>(this->balls()[0]);
             VisionDetectionBall thisTop = static_cast<VisionDetectionBall>(this->balls()[1]);
             VisionDetectionBall otherBottom = static_cast<VisionDetectionBall>(other.balls()[0]);

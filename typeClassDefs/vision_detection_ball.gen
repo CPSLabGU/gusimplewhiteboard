@@ -16,12 +16,12 @@ int16_t y = 0  //Y position measured from the bottom of the image, growing posit
 uint16_t r = 0  //Radius
 
 %c++
-bool operator==(VisionDetectionBall &other) {
+bool operator==(const VisionDetectionBall &other) const {
     return this->sightingType() == other.sightingType() &&
         this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
 }
 
-bool operator!=(VisionDetectionBall &other) {
+bool operator!=(const VisionDetectionBall &other) const {
     return !this->operator==(other);
 }
 
