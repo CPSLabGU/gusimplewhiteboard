@@ -389,7 +389,7 @@ size_t wb_data_logger_to_network_serialised(const struct wb_data_logger *self, c
 {
     uint16_t bit_offset = 0;
     do { //limit declaration scope
-      uint8_t len = strlen(self->machineName);
+      uint8_t len = (uint8_t) strlen(self->machineName);
       int8_t b;
       for (b = 7; b >= 0; b--) {
           do {
@@ -473,7 +473,7 @@ size_t wb_data_logger_to_network_serialised(const struct wb_data_logger *self, c
       } while(false);
 
     do { //limit declaration scope
-      uint8_t len = strlen(self->comment);
+      uint8_t len = (uint8_t) strlen(self->comment);
       int8_t b;
       for (b = 7; b >= 0; b--) {
           do {

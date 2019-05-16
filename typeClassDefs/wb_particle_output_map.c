@@ -288,7 +288,7 @@ size_t wb_particle_output_map_to_network_serialised(const struct wb_particle_out
     } while(false);
 
     do { //limit declaration scope
-      uint8_t len = strlen(self->filePath);
+      uint8_t len = (uint8_t) strlen(self->filePath);
       int8_t b;
       for (b = 7; b >= 0; b--) {
           do {

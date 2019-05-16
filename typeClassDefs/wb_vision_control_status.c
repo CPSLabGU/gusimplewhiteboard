@@ -1183,7 +1183,7 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
     } while(false);
 
     do { //limit declaration scope
-      uint8_t len = strlen(self->colourCalibration);
+      uint8_t len = (uint8_t) strlen(self->colourCalibration);
       int8_t b;
       for (b = 7; b >= 0; b--) {
           do {

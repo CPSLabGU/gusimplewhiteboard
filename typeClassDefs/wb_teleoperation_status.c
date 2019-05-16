@@ -251,7 +251,7 @@ size_t wb_teleoperation_status_to_network_serialised(const struct wb_teleoperati
 {
     uint16_t bit_offset = 0;
     do { //limit declaration scope
-      uint8_t len = strlen(self->sayString);
+      uint8_t len = (uint8_t) strlen(self->sayString);
       int8_t b;
       for (b = 7; b >= 0; b--) {
           do {
