@@ -349,6 +349,14 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_DETECTION_BALLS_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        bool hasSameSightings(VisionDetectionBalls &other) {
+            VisionDetectionBall thisBottom = static_cast<VisionDetectionBall>(this->balls()[0]);
+            VisionDetectionBall thisTop = static_cast<VisionDetectionBall>(this->balls()[1]);
+            VisionDetectionBall otherBottom = static_cast<VisionDetectionBall>(other.balls()[0]);
+            VisionDetectionBall otherTop = static_cast<VisionDetectionBall>(other.balls()[1]);
+            return thisBottom == otherBottom && thisTop == otherTop;
+        }
     };
 
 } /// namespace guWhiteboard
