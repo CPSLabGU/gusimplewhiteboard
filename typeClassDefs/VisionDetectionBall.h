@@ -318,16 +318,16 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_DETECTION_BALL_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
-
-        bool operator==(const VisionDetectionBall &other) const {
-            return this->sightingType() == other.sightingType() &&
-                this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
-        }
-
-        bool operator!=(const VisionDetectionBall &other) const {
-            return !this->operator==(other);
-        }
     };
+
+    bool operator==(VisionDetectionBall &lhs, VisionDetectionBall &rhs) {
+        return lhs->sightingType() == rhs.sightingType() &&
+            lhs->x() == rhs.x() && lhs->y() == rhs.y() && lhs->r() == rhs.r();
+    }
+
+    bool operator!=(VisionDetectionBall &lhs, VisionDetectionBalls &rhs) {
+        return !(lhs == rhs);
+    }
 
 } /// namespace guWhiteboard
 #endif /// VisionDetectionBall_DEFINED
