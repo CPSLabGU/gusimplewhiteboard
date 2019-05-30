@@ -1190,68 +1190,32 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //DataLogger_DEFINED
             }
-            case kSonar1Input_v:
+            case kSonar1Data_v:
             {
-
-                class Sonar1Input_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
+#ifdef SonarData_DEFINED
+                class Sonar1Data_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //SonarData_DEFINED
             }
-            case kSonar1Output_v:
+            case kSonar2Data_v:
             {
-
-                class Sonar1Output_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
+#ifdef SonarData_DEFINED
+                class Sonar2Data_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //SonarData_DEFINED
             }
-            case kSonar1Distance_v:
+            case kSonar3Data_v:
             {
-
-                class Sonar1Distance_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar2Input_v:
-            {
-
-                class Sonar2Input_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar2Output_v:
-            {
-
-                class Sonar2Output_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar2Distance_v:
-            {
-
-                class Sonar2Distance_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar3Input_v:
-            {
-
-                class Sonar3Input_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar3Output_v:
-            {
-
-                class Sonar3Output_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
-            }
-            case kSonar3Distance_v:
-            {
-
-                class Sonar3Distance_t m(wbd);
-                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
-
+#ifdef SonarData_DEFINED
+                class Sonar3Data_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //SonarData_DEFINED
             }
         }
 #pragma clang diagnostic push

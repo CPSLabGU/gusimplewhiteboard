@@ -148,15 +148,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "MachineFilteredLocalisationVision",
         "SensorsJointCurrent",
         "DataLogger",
-        "Sonar1Input",
-        "Sonar1Output",
-        "Sonar1Distance",
-        "Sonar2Input",
-        "Sonar2Output",
-        "Sonar2Distance",
-        "Sonar3Input",
-        "Sonar3Output",
-        "Sonar3Distance"
+        "Sonar1Data",
+        "Sonar2Data",
+        "Sonar3Data"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -295,15 +289,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_machine_filtered_localisation_vision",
         "NotSupportedWithLegacyNaming",
         "NotSupportedWithLegacyNaming",
-        "wb_bool",
-        "wb_bool",
-        "wb_int16_t",
-        "wb_bool",
-        "wb_bool",
-        "wb_int16_t",
-        "wb_bool",
-        "wb_bool",
-        "wb_int16_t"
+        "wb_sonar_data",
+        "wb_sonar_data",
+        "wb_sonar_data"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

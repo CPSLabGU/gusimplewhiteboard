@@ -1554,86 +1554,41 @@ v.from_string(message_content);
     return false;
 #endif //DataLogger_DEFINED
 }
-case kSonar1Input_v:
+case kSonar1Data_v:
 {
-
-    class Sonar1Input_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
+#ifdef SonarData_DEFINED
+    class Sonar1Data_t msg_ptr(wbd);
+    SonarData v = msg_ptr.get();
+v.from_string(message_content);
     msg_ptr.post(v);
     return true;
-
+#else
+    return false;
+#endif //SonarData_DEFINED
 }
-case kSonar1Output_v:
+case kSonar2Data_v:
 {
-
-    class Sonar1Output_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
+#ifdef SonarData_DEFINED
+    class Sonar2Data_t msg_ptr(wbd);
+    SonarData v = msg_ptr.get();
+v.from_string(message_content);
     msg_ptr.post(v);
     return true;
-
+#else
+    return false;
+#endif //SonarData_DEFINED
 }
-case kSonar1Distance_v:
+case kSonar3Data_v:
 {
-
-    class Sonar1Distance_t msg_ptr(wbd);
-    int16_t v = static_cast<int16_t>(atoi(message_content.c_str()));
+#ifdef SonarData_DEFINED
+    class Sonar3Data_t msg_ptr(wbd);
+    SonarData v = msg_ptr.get();
+v.from_string(message_content);
     msg_ptr.post(v);
     return true;
-
-}
-case kSonar2Input_v:
-{
-
-    class Sonar2Input_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
-}
-case kSonar2Output_v:
-{
-
-    class Sonar2Output_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
-}
-case kSonar2Distance_v:
-{
-
-    class Sonar2Distance_t msg_ptr(wbd);
-    int16_t v = static_cast<int16_t>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
-}
-case kSonar3Input_v:
-{
-
-    class Sonar3Input_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
-}
-case kSonar3Output_v:
-{
-
-    class Sonar3Output_t msg_ptr(wbd);
-    bool v = static_cast<bool>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
-}
-case kSonar3Distance_v:
-{
-
-    class Sonar3Distance_t msg_ptr(wbd);
-    int16_t v = static_cast<int16_t>(atoi(message_content.c_str()));
-    msg_ptr.post(v);
-    return true;
-
+#else
+    return false;
+#endif //SonarData_DEFINED
 }
 
 #pragma clang diagnostic push
@@ -1783,15 +1738,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["MachineFilteredLocalisationVision"] = kMachineFilteredLocalisationVision_v;
     self["SensorsJointCurrent"] = kSensorsJointCurrent_v;
     self["DataLogger"] = kDataLogger_v;
-    self["Sonar1Input"] = kSonar1Input_v;
-    self["Sonar1Output"] = kSonar1Output_v;
-    self["Sonar1Distance"] = kSonar1Distance_v;
-    self["Sonar2Input"] = kSonar2Input_v;
-    self["Sonar2Output"] = kSonar2Output_v;
-    self["Sonar2Distance"] = kSonar2Distance_v;
-    self["Sonar3Input"] = kSonar3Input_v;
-    self["Sonar3Output"] = kSonar3Output_v;
-    self["Sonar3Distance"] = kSonar3Distance_v;
+    self["Sonar1Data"] = kSonar1Data_v;
+    self["Sonar2Data"] = kSonar2Data_v;
+    self["Sonar3Data"] = kSonar3Data_v;
 
     (void) self;
 }

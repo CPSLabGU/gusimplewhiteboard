@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 142
+#define GSW_NUM_TYPES_DEFINED 136
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -155,16 +155,10 @@ typedef enum wb_types
     kMachineFilteredLocalisationVision_v = 130, 		///< Vision filtering and distance estimates for landmarks: goal, lines and horizon.
     kSensorsJointCurrent_v = 131, 		///< Posts the current flowing through each joint via the DCM loop (read only)
     kDataLogger_v = 132, 		///< Controls the data logging within Naoqi Interface
-    kSonar1Input_v = 133, 		///< The input pin of the first sonar sensor.
-    kSonar1Output_v = 134, 		///< The output pin of the first sonar sensor.
-    kSonar1Distance_v = 135, 		///< The distance of the first sonar sensor.
-    kSonar2Input_v = 136, 		///< The input pin of the second sonar sensor.
-    kSonar2Output_v = 137, 		///< The output pin of the second sonar sensor.
-    kSonar2Distance_v = 138, 		///< The distance of the second sonar sensor.
-    kSonar3Input_v = 139, 		///< The input pin of the third sonar sensor.
-    kSonar3Output_v = 140, 		///< The output pin of the third sonar sensor.
+    kSonar1Data_v = 133, 		///< Data for the first sonar sensor.
+    kSonar2Data_v = 134, 		///< Data for the second sonar sensor.
 
-    kSonar3Distance_v = 141 		///< The distance of the third sonar sensor.
+    kSonar3Data_v = 135 		///< Data for the third sonar sensor.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

@@ -1129,85 +1129,28 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
-    /** WB Ptr Class: Sonar1Input_t @brief The input pin of the first sonar sensor. */ 
-    class Sonar1Input_t: public generic_whiteboard_object<bool > { 
+    /** WB Ptr Class: Sonar1Data_t @brief Data for the first sonar sensor. */ 
+    class Sonar1Data_t: public generic_whiteboard_object<class SonarData > { 
         public: 
-        /** Constructor: Sonar1Input_t */ 
-        Sonar1Input_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar1Input_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar1Input_t */ 
-Sonar1Input_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar1Input_v, wbd, false) {} 
+        /** Constructor: Sonar1Data_t */ 
+        Sonar1Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar1Data_v, false) {}
+        
     };
 
-    /** WB Ptr Class: Sonar1Output_t @brief The output pin of the first sonar sensor. */ 
-    class Sonar1Output_t: public generic_whiteboard_object<bool > { 
+    /** WB Ptr Class: Sonar2Data_t @brief Data for the second sonar sensor. */ 
+    class Sonar2Data_t: public generic_whiteboard_object<class SonarData > { 
         public: 
-        /** Constructor: Sonar1Output_t */ 
-        Sonar1Output_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar1Output_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar1Output_t */ 
-Sonar1Output_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar1Output_v, wbd, false) {} 
+        /** Constructor: Sonar2Data_t */ 
+        Sonar2Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar2Data_v, false) {}
+        
     };
 
-    /** WB Ptr Class: Sonar1Distance_t @brief The distance of the first sonar sensor. */ 
-    class Sonar1Distance_t: public generic_whiteboard_object<int16_t > { 
+    /** WB Ptr Class: Sonar3Data_t @brief Data for the third sonar sensor. */ 
+    class Sonar3Data_t: public generic_whiteboard_object<class SonarData > { 
         public: 
-        /** Constructor: Sonar1Distance_t */ 
-        Sonar1Distance_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(wbd, kSonar1Distance_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar1Distance_t */ 
-Sonar1Distance_t(int16_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(value, kSonar1Distance_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar2Input_t @brief The input pin of the second sonar sensor. */ 
-    class Sonar2Input_t: public generic_whiteboard_object<bool > { 
-        public: 
-        /** Constructor: Sonar2Input_t */ 
-        Sonar2Input_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar2Input_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar2Input_t */ 
-Sonar2Input_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar2Input_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar2Output_t @brief The output pin of the second sonar sensor. */ 
-    class Sonar2Output_t: public generic_whiteboard_object<bool > { 
-        public: 
-        /** Constructor: Sonar2Output_t */ 
-        Sonar2Output_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar2Output_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar2Output_t */ 
-Sonar2Output_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar2Output_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar2Distance_t @brief The distance of the second sonar sensor. */ 
-    class Sonar2Distance_t: public generic_whiteboard_object<int16_t > { 
-        public: 
-        /** Constructor: Sonar2Distance_t */ 
-        Sonar2Distance_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(wbd, kSonar2Distance_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar2Distance_t */ 
-Sonar2Distance_t(int16_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(value, kSonar2Distance_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar3Input_t @brief The input pin of the third sonar sensor. */ 
-    class Sonar3Input_t: public generic_whiteboard_object<bool > { 
-        public: 
-        /** Constructor: Sonar3Input_t */ 
-        Sonar3Input_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar3Input_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar3Input_t */ 
-Sonar3Input_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar3Input_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar3Output_t @brief The output pin of the third sonar sensor. */ 
-    class Sonar3Output_t: public generic_whiteboard_object<bool > { 
-        public: 
-        /** Constructor: Sonar3Output_t */ 
-        Sonar3Output_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kSonar3Output_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar3Output_t */ 
-Sonar3Output_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kSonar3Output_v, wbd, false) {} 
-    };
-
-    /** WB Ptr Class: Sonar3Distance_t @brief The distance of the third sonar sensor. */ 
-    class Sonar3Distance_t: public generic_whiteboard_object<int16_t > { 
-        public: 
-        /** Constructor: Sonar3Distance_t */ 
-        Sonar3Distance_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(wbd, kSonar3Distance_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Sonar3Distance_t */ 
-Sonar3Distance_t(int16_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<int16_t >(value, kSonar3Distance_v, wbd, false) {} 
+        /** Constructor: Sonar3Data_t */ 
+        Sonar3Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar3Data_v, false) {}
+        
     };
 
 

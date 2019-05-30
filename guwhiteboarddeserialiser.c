@@ -1055,49 +1055,31 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSonar1Input_v:
+            case kSonar1Data_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SONAR_DATA_GENERATED
+                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //SONAR_DATA_GENERATED
                 break;
             }
-            case kSonar1Output_v:
+            case kSonar2Data_v:
             {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SONAR_DATA_GENERATED
+                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //SONAR_DATA_GENERATED
                 break;
             }
-            case kSonar1Distance_v:
+            case kSonar3Data_v:
             {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar2Input_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar2Output_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar2Distance_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar3Input_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar3Output_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
-                break;
-            }
-            case kSonar3Distance_v:
-            {
-                return -1; /*TODO, add support for POD types.*/
+#ifdef SONAR_DATA_GENERATED
+                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //SONAR_DATA_GENERATED
                 break;
             }
     }
