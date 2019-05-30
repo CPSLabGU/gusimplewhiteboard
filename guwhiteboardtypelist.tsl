@@ -131,6 +131,3 @@ type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
 type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.
 class:NaoJointListFloat, nonatomic, SensorsJointCurrent, Posts the current flowing through each joint via the DCM loop (read only)
 class:DataLogger, nonatomic, DataLogger, Controls the data logging within Naoqi Interface
-type:sonar_data, nonatomic, Sonar1Data, Data for the first sonar sensor.
-type:sonar_data, nonatomic, Sonar2Data, Data for the second sonar sensor.
-type:sonar_data, nonatomic, Sonar3Data, Data for the third sonar sensor.

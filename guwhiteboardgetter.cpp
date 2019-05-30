@@ -1190,33 +1190,6 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //DataLogger_DEFINED
             }
-            case kSonar1Data_v:
-            {
-#ifdef SonarData_DEFINED
-                class Sonar1Data_t m(wbd);
-                return msg ? m.get_from(msg).description() : m.get().description();
-#else
-                return "##unsupported##";
-#endif //SonarData_DEFINED
-            }
-            case kSonar2Data_v:
-            {
-#ifdef SonarData_DEFINED
-                class Sonar2Data_t m(wbd);
-                return msg ? m.get_from(msg).description() : m.get().description();
-#else
-                return "##unsupported##";
-#endif //SonarData_DEFINED
-            }
-            case kSonar3Data_v:
-            {
-#ifdef SonarData_DEFINED
-                class Sonar3Data_t m(wbd);
-                return msg ? m.get_from(msg).description() : m.get().description();
-#else
-                return "##unsupported##";
-#endif //SonarData_DEFINED
-            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

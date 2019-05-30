@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 136
+#define GSW_NUM_TYPES_DEFINED 133
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -154,11 +154,8 @@ typedef enum wb_types
     kButtons_v = 129, 		///< External Variables for the Incrementing LLFSM.
     kMachineFilteredLocalisationVision_v = 130, 		///< Vision filtering and distance estimates for landmarks: goal, lines and horizon.
     kSensorsJointCurrent_v = 131, 		///< Posts the current flowing through each joint via the DCM loop (read only)
-    kDataLogger_v = 132, 		///< Controls the data logging within Naoqi Interface
-    kSonar1Data_v = 133, 		///< Data for the first sonar sensor.
-    kSonar2Data_v = 134, 		///< Data for the second sonar sensor.
 
-    kSonar3Data_v = 135 		///< Data for the third sonar sensor.
+    kDataLogger_v = 132 		///< Controls the data logging within Naoqi Interface
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

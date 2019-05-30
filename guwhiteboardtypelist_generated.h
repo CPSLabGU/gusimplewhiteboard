@@ -1129,30 +1129,6 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
-    /** WB Ptr Class: Sonar1Data_t @brief Data for the first sonar sensor. */ 
-    class Sonar1Data_t: public generic_whiteboard_object<class SonarData > { 
-        public: 
-        /** Constructor: Sonar1Data_t */ 
-        Sonar1Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar1Data_v, false) {}
-        
-    };
-
-    /** WB Ptr Class: Sonar2Data_t @brief Data for the second sonar sensor. */ 
-    class Sonar2Data_t: public generic_whiteboard_object<class SonarData > { 
-        public: 
-        /** Constructor: Sonar2Data_t */ 
-        Sonar2Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar2Data_v, false) {}
-        
-    };
-
-    /** WB Ptr Class: Sonar3Data_t @brief Data for the third sonar sensor. */ 
-    class Sonar3Data_t: public generic_whiteboard_object<class SonarData > { 
-        public: 
-        /** Constructor: Sonar3Data_t */ 
-        Sonar3Data_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class SonarData >(wbd, kSonar3Data_v, false) {}
-        
-    };
-
 
 }
 

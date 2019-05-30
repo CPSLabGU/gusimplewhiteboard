@@ -1055,33 +1055,6 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSonar1Data_v:
-            {
-#ifdef SONAR_DATA_GENERATED
-                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
-#else
-                return -1;
-#endif //SONAR_DATA_GENERATED
-                break;
-            }
-            case kSonar2Data_v:
-            {
-#ifdef SONAR_DATA_GENERATED
-                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
-#else
-                return -1;
-#endif //SONAR_DATA_GENERATED
-                break;
-            }
-            case kSonar3Data_v:
-            {
-#ifdef SONAR_DATA_GENERATED
-                return DESERIALISE(SONAR_DATA_C_STRUCT, serialised_in, (struct SONAR_DATA_C_STRUCT *)message_out)
-#else
-                return -1;
-#endif //SONAR_DATA_GENERATED
-                break;
-            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

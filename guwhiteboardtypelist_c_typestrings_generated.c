@@ -147,10 +147,7 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "Buttons",
         "MachineFilteredLocalisationVision",
         "SensorsJointCurrent",
-        "DataLogger",
-        "Sonar1Data",
-        "Sonar2Data",
-        "Sonar3Data"
+        "DataLogger"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -288,10 +285,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_buttons",
         "wb_machine_filtered_localisation_vision",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
-        "wb_sonar_data",
-        "wb_sonar_data",
-        "wb_sonar_data"
+        "NotSupportedWithLegacyNaming"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
