@@ -1,0 +1,53 @@
+-author Callum McColl
+
+-c 
+
+#include <gu_util.h>
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
+
+#define IO_PIN_BYTE_SIZE     (sizeof(gu_simple_message))    ///< bytes to occupy
+#define IO_PIN_BIT_SIZE      (IO_PIN_BYTE_SIZE*8)    ///< bits available
+
+#define IO_PIN_CLR(s, n)    ((s)->_pins[(n)/8] &=~(1<<((n)%8)))
+#define IO_PIN_SET(s, n)    ((s)->_pins[(n)/8] |= (1<<((n)%8)))
+#define IO_PIN_GET(s, n)    ((((s)->_pins[(n)/8]) & (1<<((n)%8))) != 0)
+
+#ifdef __cplusplus
+#define IO_PIN_ARRAY_SIZE    (int(IO_PIN_BYTE_SIZE))
+#else
+#define IO_PIN_ARRAY_SIZE    ((int) IO_PIN_BYTE_SIZE)
+#endif
+
+$c
+#ifdef __cplusplus
+/// convenience constructor: clears all I/O pins
+wb_io_pins(int value = 0) { memset(this, value, sizeof(*this)); }
+#endif
+%c++
+
+/** pin value setter */
+bool get(int pin) const { return IO_PIN_GET(this, pin); }
+
+/** pin value setter */
+void set(int pin) { IO_PIN_SET(this, pin); }
+
+/** clear the given pin */
+void clr(int pin) { IO_PIN_CLR(this, pin); }
+
+/** set the given pin to the given value */
+void set(int pin, bool value) { value ? set(pin) : clr(pin); }
+
+/** set all pins to the given value */
+void reset(int value = 0) { memset(this, value, sizeof(*this)); }
+
+-comment
+Simulated I/O pins.
+This is implemented as a bit vector with
+one bit per pin and controlled by the following macros:
+
+IO_PIN_CLR(s, n)    set pin `n` to zero (false, clear)
+IO_PIN_SET(s, n)    set pin `n` to one (true, set)
+IO_PIN_GET(s, n)    check if pin `n` is set
+
+-properties
+uint8_t pins[IO_PIN_ARRAY_SIZE] // bit vector of I/O pin values.
