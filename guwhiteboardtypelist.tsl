@@ -133,10 +133,10 @@ class:NaoJointListFloat, nonatomic, SensorsJointCurrent, Posts the current flowi
 class:DataLogger, nonatomic, DataLogger, Controls the data logging within Naoqi Interface
 bool, nonatomic, Sonar1Input, The input pin of the first sonar sensor.
 bool, nonatomic, Sonar1Output, The output pin of the first sonar sensor.
-int16_t nonatomic, Sonar1Distance, The distance of the first sonar sensor.
+int16_t, nonatomic, Sonar1Distance, The distance of the first sonar sensor.
 bool, nonatomic, Sonar2Input, The input pin of the second sonar sensor.
 bool, nonatomic, Sonar2Output, The output pin of the second sonar sensor.
-int16_t nonatomic, Sonar2Distance, The distance of the second sonar sensor.
+int16_t, nonatomic, Sonar2Distance, The distance of the second sonar sensor.
 bool, nonatomic, Sonar3Input, The input pin of the third sonar sensor.
 bool, nonatomic, Sonar3Output, The output pin of the third sonar sensor.
-int16_t nonatomic, Sonar3Distance, The distance of the third sonar sensor.
+int16_t, nonatomic, Sonar3Distance, The distance of the third sonar sensor.

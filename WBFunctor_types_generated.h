@@ -3074,6 +3074,213 @@ public:
 #endif //DataLogger_DEFINED
 
 
+/** WBFunctor definition for Sonar1Input_WBFunctor_T */ 
+template <typename Sonar1Input_WBFunctor_T >
+class Sonar1Input_WBFunctor: public WBFunctor<Sonar1Input_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar1Input_WBFunctor_T */
+    Sonar1Input_WBFunctor(Sonar1Input_WBFunctor_T* obj, void (Sonar1Input_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar1Input_WBFunctor_T >(obj, (void (Sonar1Input_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar1Input_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar1Input_t().get_from(m);
+        Sonar1Input_function_t funct((void (Sonar1Input_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar1Input_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar1Input_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar1Input_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar1Input_WBFunctor_T::*Sonar1Input_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar1Input_WBFunctor_T *obj, void (Sonar1Input_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar1Input_WBFunctor<Sonar1Input_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar1Output_WBFunctor_T */ 
+template <typename Sonar1Output_WBFunctor_T >
+class Sonar1Output_WBFunctor: public WBFunctor<Sonar1Output_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar1Output_WBFunctor_T */
+    Sonar1Output_WBFunctor(Sonar1Output_WBFunctor_T* obj, void (Sonar1Output_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar1Output_WBFunctor_T >(obj, (void (Sonar1Output_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar1Output_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar1Output_t().get_from(m);
+        Sonar1Output_function_t funct((void (Sonar1Output_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar1Output_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar1Output_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar1Output_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar1Output_WBFunctor_T::*Sonar1Output_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar1Output_WBFunctor_T *obj, void (Sonar1Output_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar1Output_WBFunctor<Sonar1Output_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar1Distance_WBFunctor_T */ 
+template <typename Sonar1Distance_WBFunctor_T >
+class Sonar1Distance_WBFunctor: public WBFunctor<Sonar1Distance_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar1Distance_WBFunctor_T */
+    Sonar1Distance_WBFunctor(Sonar1Distance_WBFunctor_T* obj, void (Sonar1Distance_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t): WBFunctor<Sonar1Distance_WBFunctor_T >(obj, (void (Sonar1Distance_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar1Distance_WBFunctor */
+    void call(gu_simple_message *m) {
+        int16_t result = guWhiteboard::Sonar1Distance_t().get_from(m);
+        Sonar1Distance_function_t funct((void (Sonar1Distance_WBFunctor_T::*)(guWhiteboard::WBTypes, int16_t &))WBFunctor<Sonar1Distance_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar1Distance_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar1Distance_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar1Distance_WBFunctor_T::*Sonar1Distance_function_t) (guWhiteboard::WBTypes, int16_t &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar1Distance_WBFunctor_T *obj, void (Sonar1Distance_WBFunctor_T::*f)(guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t) { return new Sonar1Distance_WBFunctor<Sonar1Distance_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar2Input_WBFunctor_T */ 
+template <typename Sonar2Input_WBFunctor_T >
+class Sonar2Input_WBFunctor: public WBFunctor<Sonar2Input_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar2Input_WBFunctor_T */
+    Sonar2Input_WBFunctor(Sonar2Input_WBFunctor_T* obj, void (Sonar2Input_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar2Input_WBFunctor_T >(obj, (void (Sonar2Input_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar2Input_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar2Input_t().get_from(m);
+        Sonar2Input_function_t funct((void (Sonar2Input_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar2Input_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar2Input_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar2Input_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar2Input_WBFunctor_T::*Sonar2Input_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar2Input_WBFunctor_T *obj, void (Sonar2Input_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar2Input_WBFunctor<Sonar2Input_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar2Output_WBFunctor_T */ 
+template <typename Sonar2Output_WBFunctor_T >
+class Sonar2Output_WBFunctor: public WBFunctor<Sonar2Output_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar2Output_WBFunctor_T */
+    Sonar2Output_WBFunctor(Sonar2Output_WBFunctor_T* obj, void (Sonar2Output_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar2Output_WBFunctor_T >(obj, (void (Sonar2Output_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar2Output_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar2Output_t().get_from(m);
+        Sonar2Output_function_t funct((void (Sonar2Output_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar2Output_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar2Output_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar2Output_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar2Output_WBFunctor_T::*Sonar2Output_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar2Output_WBFunctor_T *obj, void (Sonar2Output_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar2Output_WBFunctor<Sonar2Output_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar2Distance_WBFunctor_T */ 
+template <typename Sonar2Distance_WBFunctor_T >
+class Sonar2Distance_WBFunctor: public WBFunctor<Sonar2Distance_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar2Distance_WBFunctor_T */
+    Sonar2Distance_WBFunctor(Sonar2Distance_WBFunctor_T* obj, void (Sonar2Distance_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t): WBFunctor<Sonar2Distance_WBFunctor_T >(obj, (void (Sonar2Distance_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar2Distance_WBFunctor */
+    void call(gu_simple_message *m) {
+        int16_t result = guWhiteboard::Sonar2Distance_t().get_from(m);
+        Sonar2Distance_function_t funct((void (Sonar2Distance_WBFunctor_T::*)(guWhiteboard::WBTypes, int16_t &))WBFunctor<Sonar2Distance_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar2Distance_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar2Distance_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar2Distance_WBFunctor_T::*Sonar2Distance_function_t) (guWhiteboard::WBTypes, int16_t &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar2Distance_WBFunctor_T *obj, void (Sonar2Distance_WBFunctor_T::*f)(guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t) { return new Sonar2Distance_WBFunctor<Sonar2Distance_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar3Input_WBFunctor_T */ 
+template <typename Sonar3Input_WBFunctor_T >
+class Sonar3Input_WBFunctor: public WBFunctor<Sonar3Input_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar3Input_WBFunctor_T */
+    Sonar3Input_WBFunctor(Sonar3Input_WBFunctor_T* obj, void (Sonar3Input_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar3Input_WBFunctor_T >(obj, (void (Sonar3Input_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar3Input_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar3Input_t().get_from(m);
+        Sonar3Input_function_t funct((void (Sonar3Input_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar3Input_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar3Input_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar3Input_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar3Input_WBFunctor_T::*Sonar3Input_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar3Input_WBFunctor_T *obj, void (Sonar3Input_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar3Input_WBFunctor<Sonar3Input_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar3Output_WBFunctor_T */ 
+template <typename Sonar3Output_WBFunctor_T >
+class Sonar3Output_WBFunctor: public WBFunctor<Sonar3Output_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar3Output_WBFunctor_T */
+    Sonar3Output_WBFunctor(Sonar3Output_WBFunctor_T* obj, void (Sonar3Output_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Sonar3Output_WBFunctor_T >(obj, (void (Sonar3Output_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar3Output_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Sonar3Output_t().get_from(m);
+        Sonar3Output_function_t funct((void (Sonar3Output_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Sonar3Output_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar3Output_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar3Output_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar3Output_WBFunctor_T::*Sonar3Output_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar3Output_WBFunctor_T *obj, void (Sonar3Output_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Sonar3Output_WBFunctor<Sonar3Output_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Sonar3Distance_WBFunctor_T */ 
+template <typename Sonar3Distance_WBFunctor_T >
+class Sonar3Distance_WBFunctor: public WBFunctor<Sonar3Distance_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Sonar3Distance_WBFunctor_T */
+    Sonar3Distance_WBFunctor(Sonar3Distance_WBFunctor_T* obj, void (Sonar3Distance_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t): WBFunctor<Sonar3Distance_WBFunctor_T >(obj, (void (Sonar3Distance_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Sonar3Distance_WBFunctor */
+    void call(gu_simple_message *m) {
+        int16_t result = guWhiteboard::Sonar3Distance_t().get_from(m);
+        Sonar3Distance_function_t funct((void (Sonar3Distance_WBFunctor_T::*)(guWhiteboard::WBTypes, int16_t &))WBFunctor<Sonar3Distance_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Sonar3Distance_WBFunctor_T >::fObject->*funct)(WBFunctor<Sonar3Distance_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Sonar3Distance_WBFunctor_T::*Sonar3Distance_function_t) (guWhiteboard::WBTypes, int16_t &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Sonar3Distance_WBFunctor_T *obj, void (Sonar3Distance_WBFunctor_T::*f)(guWhiteboard::WBTypes, int16_t &), guWhiteboard::WBTypes t) { return new Sonar3Distance_WBFunctor<Sonar3Distance_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

@@ -1190,6 +1190,69 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //DataLogger_DEFINED
             }
+            case kSonar1Input_v:
+            {
+
+                class Sonar1Input_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar1Output_v:
+            {
+
+                class Sonar1Output_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar1Distance_v:
+            {
+
+                class Sonar1Distance_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar2Input_v:
+            {
+
+                class Sonar2Input_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar2Output_v:
+            {
+
+                class Sonar2Output_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar2Distance_v:
+            {
+
+                class Sonar2Distance_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar3Input_v:
+            {
+
+                class Sonar3Input_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar3Output_v:
+            {
+
+                class Sonar3Output_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kSonar3Distance_v:
+            {
+
+                class Sonar3Distance_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

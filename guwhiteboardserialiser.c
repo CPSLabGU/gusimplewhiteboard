@@ -1055,6 +1055,51 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
+            case kSonar1Input_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar1Output_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar1Distance_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar2Input_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar2Output_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar2Distance_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar3Input_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar3Output_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kSonar3Distance_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
