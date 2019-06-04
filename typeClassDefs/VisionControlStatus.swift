@@ -91,7 +91,7 @@ extension wb_vision_control_status {
     /**
      * Create a new `wb_vision_control_status`.
      */
-    public init(_ cameraResolution: Resolutions = VGA, pipelineRunning: Bool = true, selectedCamera: VisionCamera = Top, saveImage: SaveFileType = None, saveClassifiedImage: Bool = false, pipeline: NamedPipeline = Soccer, chooseCamera: Int32 = 0, networkTop: NeuralNetworkType = v2, networkBottom: NeuralNetworkType = v2, streamingSource: StreamingType = Normal, imageInput: Bool = false, jpegStreamQuality: Int32 = 30, jpegStreamStride: Int32 = 4, frameRate: Int32 = 0, runPipelineOnce: Bool = false, frameNumber: UInt64 = 0, colourCalibration: String = "class") {
+    public init(_ cameraResolution: Resolutions = VGA, pipelineRunning: Bool = true, selectedCamera: VisionCamera = Top, saveImage: SaveFileType = None, saveClassifiedImage: Bool = false, pipeline: NamedPipeline = Soccer, chooseCamera: Int32 = 0, networkTop: NeuralNetworkType = v2, networkBottom: NeuralNetworkType = v2, streamingSource: StreamingType = Normal, imageInput: Bool = false, jpegStreamQuality: Int32 = 30, jpegStreamStride: Int32 = 4, frameRate: Int32 = 0, runPipelineOnce: Bool = false, frameNumber: UInt64 = 0, colourCalibration: String = "class", imageTime: timeval = {}) {
         self.init()
         self.cameraResolution = cameraResolution
         self.pipelineRunning = pipelineRunning
@@ -110,6 +110,7 @@ extension wb_vision_control_status {
         self.runPipelineOnce = runPipelineOnce
         self.frameNumber = frameNumber
         self._colourCalibration = colourCalibration
+        self.imageTime = imageTime
     }
 
     /**
@@ -134,7 +135,8 @@ extension wb_vision_control_status {
             let frameRate = dictionary["frameRate"] as? Int32,
             let runPipelineOnce = dictionary["runPipelineOnce"] as? Bool,
             let frameNumber = dictionary["frameNumber"] as? UInt64,
-            var colourCalibration = dictionary["colourCalibration"]
+            var colourCalibration = dictionary["colourCalibration"],
+            let imageTime = dictionary["imageTime"] as? timeval
         else {
             fatalError("Unable to convert \(dictionary) to wb_vision_control_status.")
         }
@@ -159,6 +161,7 @@ extension wb_vision_control_status {
                 $0.pointee
             }
         }
+        self.imageTime = imageTime
     }
 
 }

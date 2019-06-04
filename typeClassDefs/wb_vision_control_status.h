@@ -85,6 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
+#include <sys/time.h>
 /**
  * @brief Resolutions Supported by Vision
  */
@@ -147,11 +148,11 @@ enum NeuralNetworkType {
 
 #define VISION_CONTROL_STATUS_GENERATED 
 #define VISION_CONTROL_STATUS_C_STRUCT wb_vision_control_status 
-#define VISION_CONTROL_STATUS_NUMBER_OF_VARIABLES 17
+#define VISION_CONTROL_STATUS_NUMBER_OF_VARIABLES 18
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 3954
-#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 3711
+#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 4478
+#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 4225
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -244,6 +245,11 @@ struct wb_vision_control_status
      * the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
      */
     STRING_PROPERTY(colourCalibration, 10)
+
+    /**
+     * the time that the image was taken that this status message refers to
+     */
+    PROPERTY(timeval, imageTime)
 
 };
 
