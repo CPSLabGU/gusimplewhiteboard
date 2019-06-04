@@ -249,7 +249,7 @@ struct wb_vision_control_status
     /**
      * the time that the image was taken that this status message refers to
      */
-    PROPERTY(timeval, imageTime)
+    PROPERTY(struct timeval, imageTime)
 
 };
 

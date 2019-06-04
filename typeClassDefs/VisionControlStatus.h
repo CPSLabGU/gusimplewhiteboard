@@ -81,7 +81,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", timeval imageTime = {}) {
+        void init(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", struct timeval imageTime = {}) {
             set_cameraResolution(cameraResolution);
             set_pipelineRunning(pipelineRunning);
             set_selectedCamera(selectedCamera);
@@ -107,7 +107,7 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionControlStatus`.
          */
-        VisionControlStatus(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", timeval imageTime = {}) {
+        VisionControlStatus(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", struct timeval imageTime = {}) {
             this->init(cameraResolution, pipelineRunning, selectedCamera, saveImage, saveClassifiedImage, pipeline, chooseCamera, networkTop, networkBottom, streamingSource, imageInput, jpegStreamQuality, jpegStreamStride, frameRate, runPipelineOnce, frameNumber, colourCalibration, imageTime);
         }
 
