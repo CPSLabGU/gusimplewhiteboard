@@ -11,6 +11,8 @@
 #ifndef HAL_HeadTarget_DEFINED                                       
 #define HAL_HeadTarget_DEFINED
 
+#include <sstream>
+
 #include "wb_hal_headtarget.h"
 
 namespace guWhiteboard                                                  
