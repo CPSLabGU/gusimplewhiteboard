@@ -4,7 +4,6 @@
 # GU localisation module Makefile
 #
 LIB=gusimplewhiteboard
-LOCAL=_LOCAL
 
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
@@ -14,7 +13,7 @@ CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 COMPILE_WHITEBOARD_SERIALISATION=yes # add serialisation API
 
-ALL_TARGETS=host-local atom-local atom1-local geode-local analyse test xc whiteboard-wrapper
+ALL_TARGETS=host-local atom-local analyse test xc whiteboard-wrapper
 
 CATKIN_COMPILE_UTIL=YES
 
@@ -38,12 +37,16 @@ PKGCONFIG_VERSION=${WB_VERSION}
 PKGCONFIG_DESCRIPTION=Shared memory IPC mechanism
 
 WB_MSG_GEN_FILES!= ls typeClassDefs/*.gen
+WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*.txt
 
 all: all-real
 
 generate:
 .for f in ${WB_MSG_GEN_FILES}
 	classgenerator --c-header typeClassDefs ${f}
+.endfor
+.for f in ${WB_MSG_OLD_GEN_FILES}
+	classgenerator --c-header typeClassDefs -b ${f}
 .endfor
 
 test:

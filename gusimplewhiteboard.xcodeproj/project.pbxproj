@@ -78,9 +78,6 @@
 		C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBD91CBCD2740061A970 /* NXT_Two_Touch_Status.h */; };
 		C3B4EC441CBCD2740061A970 /* PARTICLE_TopPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */; };
 		C3B4EC451CBCD2740061A970 /* Point2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDD1CBCD2740061A970 /* Point2D.h */; };
-		C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */; };
-		C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */; };
-		C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */; };
 		C3B4EC4A1CBCD2740061A970 /* SENSORSLedsSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */; };
 		C3B4EC4B1CBCD2740061A970 /* SENSORSLegJointSensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */; };
 		C3B4EC4C1CBCD2740061A970 /* SENSORSLegJointTemps.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */; };
@@ -122,9 +119,6 @@
 		C3B4EC791CBCD2740061A970 /* wb_point2d.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC101CBCD2740061A970 /* wb_point2d.c */; };
 		C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC111CBCD2740061A970 /* wb_point2d.h */; };
 		C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */; };
-		C3B4EC7C1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */; };
-		C3B4EC7D1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */; };
-		C3B4EC7E1CBCD2740061A970 /* wb_sensors_bodysensors.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */; };
 		C3B4EC7F1CBCD2740061A970 /* wb_sensors_foot.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */; };
 		C3B4EC801CBCD2740061A970 /* wb_sensors_leds.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */; };
 		C3B4EC811CBCD2740061A970 /* wb_sensors_legs.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */; };
@@ -148,7 +142,7 @@
 		F11BC0C7176124510069F6FB /* udp_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B68708B175EE1AA00A13AAE /* udp_receiver.cpp */; };
 		F11BC0CA1761247F0069F6FB /* libgusimplewhiteboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C46AF14A064D8006B6953 /* libgusimplewhiteboard.a */; };
 		F11BC114176124D50069F6FB /* gu_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F11BC0FF176124CB0069F6FB /* gu_util.cpp */; };
-		F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167311EADF4B70007E421 /* HAL_ArmTarget.h */; };
+		F12167331EADF4B70007E421 /* HalArmTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167311EADF4B70007E421 /* HalArmTarget.h */; };
 		F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */ = {isa = PBXBuildFile; fileRef = F12167321EADF4B70007E421 /* wb_hal_armtarget.h */; };
 		F12A9ACF194EA9D700F65BA1 /* guwhiteboardposter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F14043ED172E5E9700EB63ED /* guwhiteboardposter.cpp */; };
 		F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */ = {isa = PBXBuildFile; fileRef = F14514811760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c */; };
@@ -343,6 +337,10 @@
 		09CBB3541B9D4153007AA9D2 /* Channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channels.h; sourceTree = "<group>"; };
 		09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_clocks.h; sourceTree = "<group>"; };
 		09E2D1E11B97DF33005C1FB0 /* Clocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clocks.h; sourceTree = "<group>"; };
+		31676E072235105A008E9605 /* SensorsFootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorsFootSensors.h; sourceTree = "<group>"; };
+		31676E09223510D0008E9605 /* SensorsBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorsBodySensors.h; sourceTree = "<group>"; };
+		31676E0B2235112F008E9605 /* wb_sensors_foot_sensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_foot_sensors.h; sourceTree = "<group>"; };
+		31676E0C2235112F008E9605 /* wb_sensors_body_sensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_body_sensors.h; sourceTree = "<group>"; };
 		8B19F9BC17A0F63E00CF2365 /* tcp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_config.h; sourceTree = "<group>"; };
 		8B19F9BE17A2349600CF2365 /* tcp_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_receiver.cpp; sourceTree = "<group>"; };
 		8B19F9BF17A2349600CF2365 /* tcp_receiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_receiver.h; sourceTree = "<group>"; };
@@ -391,16 +389,12 @@
 		C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
 		C3B4EBDD1CBCD2740061A970 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
 		C3B4EBDE1CBCD2740061A970 /* Point2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Point2D.txt; sourceTree = "<group>"; };
-		C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
-		C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SENSORS_BodySensors.txt; sourceTree = "<group>"; };
-		C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
 		C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
 		C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
 		C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointTemps.h; sourceTree = "<group>"; };
 		C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSSonarSensors.h; sourceTree = "<group>"; };
 		C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointSensors.h; sourceTree = "<group>"; };
 		C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSTorsoJointTemps.h; sourceTree = "<group>"; };
-		C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
 		C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSubsumption.h; sourceTree = "<group>"; };
 		C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSubsumptionTrafficLights.h; sourceTree = "<group>"; };
 		C3B4EBEB1CBCD2740061A970 /* TeleoperationControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeleoperationControlStatus.h; sourceTree = "<group>"; };
@@ -438,8 +432,6 @@
 		C3B4EC101CBCD2740061A970 /* wb_point2d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wb_point2d.c; sourceTree = "<group>"; };
 		C3B4EC111CBCD2740061A970 /* wb_point2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_point2d.h; sourceTree = "<group>"; };
 		C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_body.h; sourceTree = "<group>"; };
-		C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wb_sensors_bodysensors.c; sourceTree = "<group>"; };
-		C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_bodysensors.h; sourceTree = "<group>"; };
 		C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_foot.h; sourceTree = "<group>"; };
 		C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_leds.h; sourceTree = "<group>"; };
 		C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_sensors_legs.h; sourceTree = "<group>"; };
@@ -527,7 +519,7 @@
 		F11BC111176124CB0069F6FB /* Trig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		F11BC112176124CB0069F6FB /* Useful.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Useful.h; sourceTree = "<group>"; };
 		F11BC113176124CB0069F6FB /* warning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = warning.h; sourceTree = "<group>"; };
-		F12167311EADF4B70007E421 /* HAL_ArmTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HAL_ArmTarget.h; path = typeClassDefs/HAL_ArmTarget.h; sourceTree = "<group>"; };
+		F12167311EADF4B70007E421 /* HalArmTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HalArmTarget.h; path = typeClassDefs/HalArmTarget.h; sourceTree = "<group>"; };
 		F12167321EADF4B70007E421 /* wb_hal_armtarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = wb_hal_armtarget.h; path = typeClassDefs/wb_hal_armtarget.h; sourceTree = "<group>"; };
 		F12BAE9518FD1FE8004195DF /* ros_subscribe_test.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ros_subscribe_test.cc; sourceTree = "<group>"; };
 		F12BAE9618FD1FE8004195DF /* ros_subscribe_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ros_subscribe_test.h; sourceTree = "<group>"; };
@@ -656,8 +648,6 @@
 		F1E5542B18EBD16D00639B1E /* MOTION_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOTION_Interface.h; sourceTree = "<group>"; };
 		F1E5542C18EBD16D00639B1E /* NAO_State.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAO_State.h; sourceTree = "<group>"; };
 		F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
-		F1E5542F18EBD16D00639B1E /* SENSORSBodySensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSBodySensors.h; sourceTree = "<group>"; };
-		F1E5543018EBD16D00639B1E /* SENSORSFootSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSFootSensors.h; sourceTree = "<group>"; };
 		F1E5543118EBD16D00639B1E /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
 		F1E5543218EBD16D00639B1E /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
 		F1E5543318EBD16D00639B1E /* SENSORSLegJointTemps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointTemps.h; sourceTree = "<group>"; };
@@ -1036,7 +1026,7 @@
 		F14C46A414A064D8006B6953 = {
 			isa = PBXGroup;
 			children = (
-				F12167311EADF4B70007E421 /* HAL_ArmTarget.h */,
+				F12167311EADF4B70007E421 /* HalArmTarget.h */,
 				F12167321EADF4B70007E421 /* wb_hal_armtarget.h */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
@@ -1306,6 +1296,8 @@
 		F1E5542618EBD16D00639B1E /* typeClassDefs */ = {
 			isa = PBXGroup;
 			children = (
+				31676E0C2235112F008E9605 /* wb_sensors_body_sensors.h */,
+				31676E0B2235112F008E9605 /* wb_sensors_foot_sensors.h */,
 				09E2D1DF1B97DF27005C1FB0 /* wb_clocks.h */,
 				F19586A0195A8FCA00DF7E5D /* wb_ball.h */,
 				F1C6F1BD1B73FACA00E2DF81 /* wb_differential_robot.h */,
@@ -1356,10 +1348,10 @@
 				F5C315951F11B30D00C517C2 /* TopParticles-Bridging-Header.h */,
 				F5C315961F11B30D00C517C2 /* TopParticles.h */,
 				F5C315971F11B30E00C517C2 /* TopParticles.swift */,
-				F1E5542F18EBD16D00639B1E /* SENSORSBodySensors.h */,
-				F1E5543018EBD16D00639B1E /* SENSORSFootSensors.h */,
 				F1E5543118EBD16D00639B1E /* SENSORSLedsSensors.h */,
 				C3ECA6211B8C1B9E00F49B44 /* NXT_Lights_Control.h */,
+				31676E09223510D0008E9605 /* SensorsBodySensors.h */,
+				31676E072235105A008E9605 /* SensorsFootSensors.h */,
 				F1E5543218EBD16D00639B1E /* SENSORSLegJointSensors.h */,
 				F1E5543318EBD16D00639B1E /* SENSORSLegJointTemps.h */,
 				F1E5543418EBD16D00639B1E /* SENSORSSonarSensors.h */,
@@ -1402,16 +1394,12 @@
 				C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */,
 				C3B4EBDD1CBCD2740061A970 /* Point2D.h */,
 				C3B4EBDE1CBCD2740061A970 /* Point2D.txt */,
-				C3B4EBDF1CBCD2740061A970 /* SENSORSBodySensors.h */,
-				C3B4EBE01CBCD2740061A970 /* SENSORS_BodySensors.txt */,
-				C3B4EBE11CBCD2740061A970 /* SENSORSFootSensors.h */,
 				C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */,
 				C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */,
 				C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */,
 				C3B4EBE51CBCD2740061A970 /* SENSORSSonarSensors.h */,
 				C3B4EBE61CBCD2740061A970 /* SENSORSTorsoJointSensors.h */,
 				C3B4EBE71CBCD2740061A970 /* SENSORSTorsoJointTemps.h */,
-				C3B4EBE81CBCD2740061A970 /* SENSORSBodySensors.h */,
 				C3B4EBE91CBCD2740061A970 /* SwitchSubsumption.h */,
 				C3B4EBEA1CBCD2740061A970 /* SwitchSubsumptionTrafficLights.h */,
 				C3B4EBEB1CBCD2740061A970 /* TeleoperationControlStatus.h */,
@@ -1455,8 +1443,6 @@
 				F5C3159F1F11B35800C517C2 /* wb_top_particles.c */,
 				F5C315A01F11B35900C517C2 /* wb_top_particles.h */,
 				C3B4EC121CBCD2740061A970 /* wb_sensors_body.h */,
-				C3B4EC131CBCD2740061A970 /* wb_sensors_bodysensors.c */,
-				C3B4EC141CBCD2740061A970 /* wb_sensors_bodysensors.h */,
 				C3B4EC151CBCD2740061A970 /* wb_sensors_foot.h */,
 				C3B4EC161CBCD2740061A970 /* wb_sensors_leds.h */,
 				C3B4EC171CBCD2740061A970 /* wb_sensors_legs.h */,
@@ -1683,7 +1669,6 @@
 				C3B4EC5B1CBCD2740061A970 /* wb_apm_interface.h in Headers */,
 				C3B4EC631CBCD2740061A970 /* wb_clocks.h in Headers */,
 				C3B4EC7F1CBCD2740061A970 /* wb_sensors_foot.h in Headers */,
-				C3B4EC491CBCD2740061A970 /* SENSORSFootSensors.h in Headers */,
 				F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */,
 				F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */,
 				F191CBD51B71A4DF0005C314 /* IOPins.h in Headers */,
@@ -1704,7 +1689,6 @@
 				C3B4EC511CBCD2740061A970 /* SwitchSubsumption.h in Headers */,
 				09E2D1E21B97DF33005C1FB0 /* Clocks.h in Headers */,
 				C3B4EC561CBCD2740061A970 /* VisionGoals.h in Headers */,
-				C3B4EC471CBCD2740061A970 /* SENSORSBodySensors.h in Headers */,
 				C3B4EC411CBCD2740061A970 /* NXT_Two_Touch_Status.h in Headers */,
 				C3B4EC3C1CBCD2740061A970 /* MOTION_Interface.h in Headers */,
 				C3B4EC301CBCD2740061A970 /* FSMControlStatus.h in Headers */,
@@ -1719,7 +1703,6 @@
 				C3B4EC261CBCD2740061A970 /* DifferentialRobotControlStatus.h in Headers */,
 				C3B4EC7A1CBCD2740061A970 /* wb_point2d.h in Headers */,
 				C3B4EC7B1CBCD2740061A970 /* wb_sensors_body.h in Headers */,
-				C3B4EC7E1CBCD2740061A970 /* wb_sensors_bodysensors.h in Headers */,
 				C3B4EC741CBCD2740061A970 /* wb_nxt_interface.h in Headers */,
 				C3B4EC4F1CBCD2740061A970 /* SENSORSTorsoJointTemps.h in Headers */,
 				C3B4EC821CBCD2740061A970 /* wb_sensors_legtemps.h in Headers */,
@@ -1740,7 +1723,7 @@
 				C3B4EC881CBCD2740061A970 /* wb_switch_subsumption.h in Headers */,
 				C3B4EC291CBCD2740061A970 /* FilteredArrayOneDimBall.h in Headers */,
 				C3B4EC2E1CBCD2740061A970 /* FilteredOneDimSonar.h in Headers */,
-				F12167331EADF4B70007E421 /* HAL_ArmTarget.h in Headers */,
+				F12167331EADF4B70007E421 /* HalArmTarget.h in Headers */,
 				F12167341EADF4B70007E421 /* wb_hal_armtarget.h in Headers */,
 				F5BC000B1F0DEF7900987168 /* FilteredVisionObject.h in Headers */,
 				C3B4EC721CBCD2740061A970 /* wb_lines.h in Headers */,
@@ -2123,7 +2106,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3B4EC351CBCD2740061A970 /* Input3D.txt in Resources */,
-				C3B4EC481CBCD2740061A970 /* SENSORS_BodySensors.txt in Resources */,
 				C3B4EC331CBCD2740061A970 /* GNUmakefile in Resources */,
 				F1D925FF14A13BAA00BDAEED /* InfoPlist.strings in Resources */,
 			);
@@ -2230,7 +2212,6 @@
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
 				C3DE479816D5FD950098F502 /* gugenericwhiteboardobject.cpp in Sources */,
 				F14514821760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
-				C3B4EC7C1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */,
 				8B19F9C017A2349600CF2365 /* tcp_receiver.cpp in Sources */,
 				F1B49A8E19F453AA009A10A1 /* guwhiteboardgetter.cpp in Sources */,
 			);
@@ -2283,7 +2264,6 @@
 				F1E2FEEF1951057C0039FFD9 /* SimpleWhiteboardTestPlainC.m in Sources */,
 				F1D9260214A13BAA00BDAEED /* SimpleWhiteboardTest.mm in Sources */,
 				F14514831760339E002DBD38 /* guwhiteboardtypelist_c_typestrings_generated.c in Sources */,
-				C3B4EC7D1CBCD2740061A970 /* wb_sensors_bodysensors.c in Sources */,
 				C3B4EC791CBCD2740061A970 /* wb_point2d.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2576,6 +2556,8 @@
 					"$(inherited)",
 					.,
 					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2591,6 +2573,8 @@
 					"$(inherited)",
 					.,
 					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/..",
+					"$(SRCROOT)/../../posix",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2964,6 +2948,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2978,6 +2970,14 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleWhiteboardTest/SimpleWhiteboardTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../gusimplewhiteboard",
+					"$(SRCROOT)/../gusimplewhiteboard/typeClassDefs",
+					"$(SRCROOT)/../gusimplewhiteboard/guudpbridge",
+					"$(SRCROOT)/../gusimplewhiteboard/OLD_WB",
+					"$(SRCROOT)/../../Common",
+					"$(SRCROOT)/../../posix",
+				);
 				INFOPLIST_FILE = "SimpleWhiteboardTest/SimpleWhiteboardTest-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.edu.griffith.ict.2501ict.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

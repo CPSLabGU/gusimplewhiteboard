@@ -1,0 +1,7 @@
+-author	Callum McColl
+
+-properties
+int64_t	count	The count.
+
+-comment
+Contains a simple counter.

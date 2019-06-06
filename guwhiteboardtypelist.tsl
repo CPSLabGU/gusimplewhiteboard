@@ -6,13 +6,13 @@ std::string,    atomic, QSay,         speech output message (queued)
 std::string,    atomic, QSpeech,      debug speech message (queued)
 bool,           nonatomic, SpeechOutput, toggle, treat speech messages as silent output unless this is turned on
 class:GCGameState, nonatomic, GCGameState,  game state as posted by the game controller state machine
-bool, nonatomic, REMOVED1, Old class, can be removed from tsl file during the next wb version bump
-bool, nonatomic, REMOVED2, Old class, can be removed from tsl file during the next wb version bump
+class:SensorsHandSensors, nonatomic, SensorsHandSensors, Posts the sensor information for the hands via the DCM loop (read only)
+class:SensorsHeadSensors, nonatomic, SensorsHeadSensors, Posts the sensor information for the head via the DCM loop (read only)
 class:MOTION_Commands, nonatomic, MOTION_Commands, WB interface for sending motion commands
 class:MOTION_Status, nonatomic, MOTION_Status, WB interface for checking the status of commands sent
 class:HAL_HeadTarget, nonatomic, HAL_HeadTarget, Used to alter the head position via the DCM
-class:SENSORSFootSensors, nonatomic, SENSORSFootSensors, Posts the sensor information for the feet via the DCM loop (read only)
-class:SENSORSBodySensors, nonatomic, SENSORSBodySensors, Posts the sensor information for the body via the DCM loop (read only)
+class:SensorsFootSensors, nonatomic, SensorsFootSensors, Posts the sensor information for the feet via the DCM loop (read only)
+class:SensorsBodySensors, nonatomic, SensorsBodySensors, Posts the sensor information for the body via the DCM loop (read only)
 class:SENSORSLedsSensors, nonatomic, SENSORSLedsSensors, Posts the current LEDs info, can be modified. (read/write)
 class:SENSORSLegJointTemps, nonatomic, SENSORSLegJointTemps, Posts the temperature of the leg joints via the DCM loop (read only)
 class:SENSORSTorsoJointTemps, nonatomic, SENSORSTorsoJointTemps, Posts the temperature of the torso joints via the DCM loop (read only)
@@ -77,7 +77,7 @@ class:Clocks, nonatomic,      Clocks,       Class for keeping track of time
 class:Channels, nonatomic,      Channels,     UPPAAL-Style synchronisation channels
 class:SwitchSubsumption, nonatomic, SwitchSubsumption, Uncommented
 class:TotoDoingMotion, nonatomic, TotoDoingMotion, Uncommented
-class:wb_count, nonatomic, Count, Uncommented
+type:count, nonatomic, Count, Uncommented
 bool,           nonatomic, GreenEWon, status of the EWgreen light
 bool,           nonatomic, WarnEW, status of the recommendaiton of the EW light
 bool,           nonatomic, TimeGTthirty, status of the timer with respect to 30
@@ -98,12 +98,12 @@ bool, nonatomic, Ball_Found, whether ball is detected in STEM6 DetectBallColor
 std::string, nonatomic, Ball_Calibration_File, name of DLC file to load for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Calibration_Num, number (size_t) to load with DLC file for STEM6 DetectBallColor
 int32_t, nonatomic, Ball_Color_Num, number for each ball color as defined in STEM6Master
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Ctrl, Used to control the left arm via DCM
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Stat, Used to report DCM status of the left arm
-class:HAL_ArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
-class:HAL_ArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Ctrl, Used to control the left arm via DCM
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Stat, Used to report DCM status of the left arm
+class:HalArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
+class:HalArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
 type:Vision_FieldFeatures, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
 bool,                nonatomic, WhistleBlown, Whistle blown flag
 uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to control the volume via pulse audio commands
@@ -111,12 +111,12 @@ class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that 
 type:vision_detection_horizons, nonatomic, VisionDetectionHorizons, Class that reports the edge of an SPL field (the edge of the green bit). Array of two values, one for each camera.
 type:naoWalkCommand, nonatomic, NaoWalkCommand, Class that controls the latest version of the UNSW 2014 walk engine.
 type:naoWalkStatus, nonatomic, NaoWalkStatus,    Status class for the latest version of the UNSW 2014 walk engine.
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Stat, Used to report DCM status of the left leg
-class:HAL_LegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
-class:HAL_LegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Ctrl, Used to control the left leg via DCM
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Stat, Used to report DCM status of the left leg
+class:HalLegTarget, nonatomic, HAL_LLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Ctrl, Used to control the right leg via DCM
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Stat, Used to report DCM status of the right leg
+class:HalLegTarget, nonatomic, HAL_RLegTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
 type:vision_detection_goals, nonatomic, VisionDetectionGoals, Reports robocup spl goals found with guvision and GoalRayTracer.
 type:teleoperationControl, nonatomic, TeleoperationControl, Control message for teleop VR app
 type:teleoperationStatus, nonatomic, TeleoperationStatus, Status message for teleop VR app
@@ -125,4 +125,9 @@ type:teleoperationControlVR, nonatomic, TeleoperationControlVR, Virtual Reality 
 uint64_t, nonatomic, ParticleOutputMap, Contains a path to a file containing the list of particles posted by the particle filter.
 bool, nonatomic, ParticleOutputMapControl, Posted by readers of the particles list to notify the filter to swap buffers.
 bool, nonatomic,         FFTControl, Turn on or off the FFT module
-type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates. 
+type:machine_filtered_vision, nonatomic, MachineFilteredNaoVision, Vision filtering and distance estimates.
+type:microwave_status, nonatomic, MicrowaveStatus, External Variables for the One Minute Microwave.
+type:buttons, nonatomic, Buttons, External Variables for the Incrementing LLFSM.
+type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisationVision, Vision filtering and distance estimates for landmarks: goal, lines and horizon.
+class:NaoJointListFloat, nonatomic, SensorsJointCurrent, Posts the current flowing through each joint via the DCM loop (read only)
+class:DataLogger, nonatomic, DataLogger, Controls the data logging within Naoqi Interface

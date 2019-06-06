@@ -1,0 +1,16 @@
+-author	Callum McColl
+
+-properties
+bool timeLeft // Is the timer at zero?
+bool doorOpen // Is the door open?
+bool buttonPushed // Has the button been pushed?
+
+-comment
+Contains properties of the one minute microwave.
+
+-swift
+
+import MicrowaveStatus
+import FSM
+
+extension wb_microwave_status: ExternalVariables {}

@@ -1,6 +1,7 @@
 -author Eugene Gilmore 
 
 -c
+#include <sys/time.h>
 /**
  * @brief Resolutions Supported by Vision
  */
@@ -46,6 +47,7 @@ enum StreamingType {
  */
 enum SaveFileType {
 	AI2, ///< Raw YUV422 Image
+	AI3, ///< Raw YUV422 Image, with JSON image info blob
 	JPG, ///< Compressed JPEG
 	None
 };
@@ -80,6 +82,7 @@ int frameRate = 0 // The current framerate that the pipeline is running at
 bool runPipelineOnce = false // run the pipeline one time only if true
 uint64_t frameNumber = 0 // The current frame number reported by guvison
 string colourCalibration[10] = "class" //the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
+struct timeval imageTime = {} //the time that the image was taken that this status message refers to
 
 +c++
 /**

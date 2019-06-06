@@ -15,6 +15,16 @@ int16_t x = 0  //X position measured from the left position of the image, growin
 int16_t y = 0  //Y position measured from the bottom of the image, growing positive up
 uint16_t r = 0  //Radius
 
+%c++
+bool operator==(const VisionDetectionBall &other) const {
+    return this->sightingType() == other.sightingType() &&
+        this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
+}
+
+bool operator!=(const VisionDetectionBall &other) const {
+    return !this->operator==(other);
+}
+
 -comment
 Results for the Ball Ray Tracer (guvision). 
 Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
