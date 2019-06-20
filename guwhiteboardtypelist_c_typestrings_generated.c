@@ -147,7 +147,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "Buttons",
         "MachineFilteredLocalisationVision",
         "SensorsJointCurrent",
-        "DataLogger"
+        "DataLogger",
+        "MachineFilteredLines"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -285,7 +286,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_buttons",
         "wb_machine_filtered_localisation_vision",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming"
+        "NotSupportedWithLegacyNaming",
+        "wb_machine_filtered_lines"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

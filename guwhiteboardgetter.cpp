@@ -1190,6 +1190,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //DataLogger_DEFINED
             }
+            case kMachineFilteredLines_v:
+            {
+#ifdef MachineFilteredLines_DEFINED
+                class MachineFilteredLines_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MachineFilteredLines_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

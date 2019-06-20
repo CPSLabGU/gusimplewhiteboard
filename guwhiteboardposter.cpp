@@ -1554,6 +1554,18 @@ v.from_string(message_content);
     return false;
 #endif //DataLogger_DEFINED
 }
+case kMachineFilteredLines_v:
+{
+#ifdef MachineFilteredLines_DEFINED
+    class MachineFilteredLines_t msg_ptr(wbd);
+    MachineFilteredLines v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MachineFilteredLines_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1702,6 +1714,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["MachineFilteredLocalisationVision"] = kMachineFilteredLocalisationVision_v;
     self["SensorsJointCurrent"] = kSensorsJointCurrent_v;
     self["DataLogger"] = kDataLogger_v;
+    self["MachineFilteredLines"] = kMachineFilteredLines_v;
 
     (void) self;
 }
