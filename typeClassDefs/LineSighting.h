@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_wb_coordinate leftPoint = wb_wb_coordinate(), struct wb_wb_coordinate rightPoint = wb_wb_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
+        void init(struct wb_coordinate leftPoint = wb_coordinate(), struct wb_coordinate rightPoint = wb_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
             set_leftPoint(leftPoint);
             set_rightPoint(rightPoint);
             set_sightingType(sightingType);
@@ -94,7 +94,7 @@ namespace guWhiteboard {
         /**
          * Create a new `LineSighting`.
          */
-        LineSighting(struct wb_wb_coordinate leftPoint = wb_wb_coordinate(), struct wb_wb_coordinate rightPoint = wb_wb_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
+        LineSighting(struct wb_coordinate leftPoint = wb_coordinate(), struct wb_coordinate rightPoint = wb_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
             this->init(leftPoint, rightPoint, sightingType);
         }
 
@@ -145,10 +145,10 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::WbCoordinate * leftPoint_cast = const_cast<guWhiteboard::WbCoordinate *>(static_cast<const guWhiteboard::WbCoordinate *>(&this->leftPoint()));
+            guWhiteboard::Coordinate * leftPoint_cast = const_cast<guWhiteboard::Coordinate *>(static_cast<const guWhiteboard::Coordinate *>(&this->leftPoint()));
             ss << "leftPoint=" << "{" << leftPoint_cast->description() << "}";
             ss << ", ";
-            guWhiteboard::WbCoordinate * rightPoint_cast = const_cast<guWhiteboard::WbCoordinate *>(static_cast<const guWhiteboard::WbCoordinate *>(&this->rightPoint()));
+            guWhiteboard::Coordinate * rightPoint_cast = const_cast<guWhiteboard::Coordinate *>(static_cast<const guWhiteboard::Coordinate *>(&this->rightPoint()));
             ss << "rightPoint=" << "{" << rightPoint_cast->description() << "}";
             ss << ", ";
             switch (this->sightingType()) {
@@ -175,10 +175,10 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::WbCoordinate * leftPoint_cast = const_cast<guWhiteboard::WbCoordinate *>(static_cast<const guWhiteboard::WbCoordinate *>(&this->leftPoint()));
+            guWhiteboard::Coordinate * leftPoint_cast = const_cast<guWhiteboard::Coordinate *>(static_cast<const guWhiteboard::Coordinate *>(&this->leftPoint()));
             ss << "{" << leftPoint_cast->to_string() << "}";
             ss << ", ";
-            guWhiteboard::WbCoordinate * rightPoint_cast = const_cast<guWhiteboard::WbCoordinate *>(static_cast<const guWhiteboard::WbCoordinate *>(&this->rightPoint()));
+            guWhiteboard::Coordinate * rightPoint_cast = const_cast<guWhiteboard::Coordinate *>(static_cast<const guWhiteboard::Coordinate *>(&this->rightPoint()));
             ss << "{" << rightPoint_cast->to_string() << "}";
             ss << ", ";
             switch (this->sightingType()) {
@@ -285,14 +285,14 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-                        WbCoordinate leftPoint_temp = WbCoordinate();
+                        Coordinate leftPoint_temp = Coordinate();
                         leftPoint_temp.from_string(var_str);
                         this->set_leftPoint(leftPoint_temp);
                         break;
                     }
                     case 1:
                     {
-                        WbCoordinate rightPoint_temp = WbCoordinate();
+                        Coordinate rightPoint_temp = Coordinate();
                         rightPoint_temp.from_string(var_str);
                         this->set_rightPoint(rightPoint_temp);
                         break;
