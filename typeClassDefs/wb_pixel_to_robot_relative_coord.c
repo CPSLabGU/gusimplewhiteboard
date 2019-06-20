@@ -166,6 +166,29 @@ void pixel_to_rr_coord_kneeling_conv(int32_t sx, int32_t sy, enum VisionCamera c
 	*angle = -(imageAngleX-joints->HeadYaw);   
 }
 
+void rr_to_pixel_coord(double angle, double distance, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, int32_t *sx, int32_t *sy, bool kneeling) {
+    int image_width = 640;
+    int image_height = 480;
+    
+    double camHeight = get_camera_height(camera, joints, kneeling);
+    
+    //the lowest angle we can see at for the camera
+    double cameraBottomVFOV = M_PI_2 + (-joints->HeadPitch - CAMERA_VFOV/2 + (camera?BOTTOM_CAMERA_ANGLE:TOP_CAMERA_ANGLE));
+    
+    int im_width_2 = (image_width+1)/2;
+    double imageAngleX = angle +joints->HeadYaw;
+    
+    *sx = (int)((imageAngleX/(CAMERA_HFOV/2))*im_width_2)+im_width_2;
+    
+    double frontDistance = distance*cos(imageAngleX);
+    
+    double angleY = atan(frontDistance/camHeight);
+    
+    double imageAngleY = angleY - cameraBottomVFOV;
+    
+    *sy = (int)(image_height-(imageAngleY*image_height/CAMERA_VFOV));
+}
+
 static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling) {
     double dx = (camera?BOTTOM_CAMERA_OFFSET_X:TOP_CAMERA_OFFSET_X);
     double dz = (camera?BOTTOM_CAMERA_OFFSET_Z:TOP_CAMERA_OFFSET_Z);
