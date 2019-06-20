@@ -1129,6 +1129,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: MachineFilteredLines_t @brief Vision filtering and distance estimates for lines. */ 
+    class MachineFilteredLines_t: public generic_whiteboard_object<class MachineFilteredLines > { 
+        public: 
+        /** Constructor: MachineFilteredLines_t */ 
+        MachineFilteredLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MachineFilteredLines >(wbd, kMachineFilteredLines_v, false) {}
+        
+    };
+
 
 }
 

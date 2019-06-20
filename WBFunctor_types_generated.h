@@ -3073,6 +3073,29 @@ public:
 }; 
 #endif //DataLogger_DEFINED
 
+#ifdef MachineFilteredLines_DEFINED
+/** WBFunctor definition for MachineFilteredLines_WBFunctor_T */ 
+template <typename MachineFilteredLines_WBFunctor_T >
+class MachineFilteredLines_WBFunctor: public WBFunctor<MachineFilteredLines_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MachineFilteredLines_WBFunctor_T */
+    MachineFilteredLines_WBFunctor(MachineFilteredLines_WBFunctor_T* obj, void (MachineFilteredLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredLines_WBFunctor_T >(obj, (void (MachineFilteredLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MachineFilteredLines_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MachineFilteredLines result = guWhiteboard::MachineFilteredLines_t().get_from(m);
+        MachineFilteredLines_function_t funct((void (MachineFilteredLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &))WBFunctor<MachineFilteredLines_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MachineFilteredLines_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredLines_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MachineFilteredLines_WBFunctor_T::*MachineFilteredLines_function_t) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MachineFilteredLines_WBFunctor_T *obj, void (MachineFilteredLines_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &), guWhiteboard::WBTypes t) { return new MachineFilteredLines_WBFunctor<MachineFilteredLines_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MachineFilteredLines_DEFINED
+
 
 #pragma clang diagnostic pop
 

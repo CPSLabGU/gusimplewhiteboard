@@ -1,0 +1,24 @@
+-author Callum McColl
+
+-c
+
+#include "wb_coordinate.h"
+
+enum LineSightingType {
+    HorizonLineSightingType,
+    FieldLineSightingType
+};
+
+-c++
+
+#include "Coordinate.h"
+
+-properties
+
+gen coordinate leftPoint // The left/bottom point of the line.
+gen coordinate rightPoint // The right/top point of the line. 
+enum LineSightingType sightingType = 0 // The type of sighting.
+
+-comment
+
+Provides a common structure for sightings of lines.

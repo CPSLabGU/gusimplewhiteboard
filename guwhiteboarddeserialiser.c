@@ -1055,6 +1055,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
+            case kMachineFilteredLines_v:
+            {
+#ifdef MACHINE_FILTERED_LINES_GENERATED
+                return DESERIALISE(MACHINE_FILTERED_LINES_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_LINES_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MACHINE_FILTERED_LINES_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

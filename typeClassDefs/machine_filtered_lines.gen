@@ -1,0 +1,43 @@
+-author Callum McColl
+
+-c
+
+#include "wb_line_sighting.h"
+
+-c++
+
+#include "LineSighting.h"
+
+%c++
+
+int firstSighting(LineSightingType sightingType)
+{
+    for (int i = 0; i < this->numberOfSightings(); i++) {
+        if (this->sightings(i).sightingType() == sightingType)
+        {
+            return i;
+        }
+    }
+    return -1;
+
+}
+
+
+int horizonLine()
+{
+    return this->firstSighting(HorizonLineSightingType);
+}
+
+int fieldLine()
+{
+    return this->firstSighting(FieldLineSightingType);
+}
+
+-properties
+
+uint8_t numberOfSightings = 0 // The number of sightings in `sightings`.
+gen line_sighting sightings[12] // All sightings.
+
+-comment
+Results of the KalmanFilter machines for lines.
+
