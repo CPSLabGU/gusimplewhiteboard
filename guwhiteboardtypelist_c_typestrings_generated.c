@@ -286,7 +286,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_buttons",
         "wb_machine_filtered_localisation_vision",
         "NotSupportedWithLegacyNaming",
-        "NotSupportedWithLegacyNaming",
+        "wb_data_logger",
         "wb_machine_filtered_lines"
 };
 

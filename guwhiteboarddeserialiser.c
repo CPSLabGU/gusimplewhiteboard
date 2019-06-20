@@ -1048,11 +1048,11 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
             }
             case kDataLogger_v:
             {
-#ifdef SerialisationNotSupportedWithLegacyNaming
-                return DESERIALISE(NotSupportedWithLegacyNaming, serialised_in, (struct NotSupportedWithLegacyNaming *)message_out)
+#ifdef DATA_LOGGER_GENERATED
+                return DESERIALISE(DATA_LOGGER_C_STRUCT, serialised_in, (struct DATA_LOGGER_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //SerialisationNotSupportedWithLegacyNaming
+#endif //DATA_LOGGER_GENERATED
                 break;
             }
             case kMachineFilteredLines_v:

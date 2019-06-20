@@ -31,6 +31,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_microwave_status.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_buttons.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_localisation_vision.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_data_logger.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_lines.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
