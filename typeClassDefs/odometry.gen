@@ -1,0 +1,49 @@
+-author Dimitri Joukoff
+
+%c++
+
+inline void clear() {
+  set_forward(0.0f);
+  set_left(0.0f);
+  set_turn(0.0f);
+}
+
+/** Comparison operator for Odometry objects */
+inline bool operator== (const Odometry& a) const {
+  return (fabs(static_cast<double>(forward() - a.forward())) < DBL_EPSILON &&
+          fabs(static_cast<double>(left() - a.left())) < DBL_EPSILON &&
+          fabs(static_cast<double>(turn() - a.turn())) < DBL_EPSILON);
+}
+
+/** comparison operator **/
+bool operator != (const Odometry &s) { return !(*this == s); }
+
+inline Odometry operator+(const Odometry& a) const {
+  Odometry c;
+  c.set_forward(forward() + a.forward());
+  c.set_left(left() + a.left());
+  c.set_turn(turn() + a.turn());
+  return c;
+}
+
+inline Odometry operator-(const Odometry& a) const {
+  Odometry c;
+  c.set_forward(forward() - a.forward());
+  c.set_left(left() - a.left());
+  c.set_turn(turn() - a.turn());
+return c;
+}
+
+-c
+#ifdef __cplusplus
+#include <float.h>
+#endif
+
+-properties
+
+float forward = 0.0f		///< forward, mm/s
+float left    = 0.0f		///< sideways, mm/s
+float turn    = 0.0f		///< rotation, deg/s
+
+-comment
+Needs to mimic UNSW odometry!

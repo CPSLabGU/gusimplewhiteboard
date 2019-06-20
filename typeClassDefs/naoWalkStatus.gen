@@ -1,49 +1,40 @@
 -author Carl Lusty
 
+-c++
+
+#include "Odometry.h"
+
 %c++
 /** comparison operator **/
-bool operator == (const NaoWalkStatus &other) { 
+bool operator== (const NaoWalkStatus &other) const {
+//    const struct wb_odometry thisOdometry = walkEngineOdometry();
+//    const struct wb_odometry otherOdometry = other.walkEngineOdometry();
+//    bool odometryEqual = static_cast<Odometry>(thisOdometry) == static_cast<Odometry>(otherOdometry);
     return walkEngineState() == other.walkEngineState() &&
-        odometry() == other.odometry() &&
-        odometryResetCounter() == other.odometryResetCounter();
+           odometryResetCounter() == other.odometryResetCounter() &&
+           static_cast<Odometry>(odometry()) == static_cast<Odometry>(other.odometry());
+//           odometryEqual;
 }
 
 /** comparison operator **/
 bool operator != (const NaoWalkStatus &s) { return !(*this == s); }
 
 -c
-#ifdef __cplusplus
-#include <float.h>
-#endif
 
-struct Odometry_s                         ///< needs to mimic UNSW odometry!
-{
-        float forward;		///< forward, mm/s
-        float left;		///< sideways, mm/s
-        float turn;		///< rotation, deg/s
-
-#ifdef __cplusplus
-   /** Comparison operator for Odometry objects */
-   inline bool operator== (const Odometry_s& a) {
-      return (	fabs(static_cast<double>(forward - a.forward)) < DBL_EPSILON &&
-		fabs(static_cast<double>(left - a.left)) < DBL_EPSILON &&
-		fabs(static_cast<double>(turn - a.turn)) < DBL_EPSILON);
-   }
-#endif
-};
+#include "wb_odometry.h"
 
 enum WalkEngineState {
 	wes_Disconnected = 0,   ///< Not connected to the DCM, does not control any joints in this state
 	wes_Walking,            ///< Walking around, includes stopping, kicking, transition from Standing etc... basically the walk engine is doing something
 	wes_StoppedReady,       ///< In the Crouched stance, ready to walk again straight away but not currently moving anywhere
-    wes_StoppedStanding     ///< In the Standing position, this position uses less power than Stopped / Crouched, it is a minimal stiffness posture. The robot it standing taller than the StoppedReady pose, with the legs straight.
+  wes_StoppedStanding     ///< In the Standing position, this position uses less power than Stopped / Crouched, it is a minimal stiffness posture. The robot it standing taller than the StoppedReady pose, with the legs straight.
 };
 
 -properties
 
 enum WalkEngineState walkEngineState = wes_Disconnected // The current state of the walk engine, see enum documentation.
 
-struct Odometry_s odometry = Odometry_s() // Current odometry object
+gen Odometry odometry // Current odometry object
 
 uint8_t odometryResetCounter // A counter used to reset the odometry object, change this value and send it via NaoWalkCommand to trigger an odometry reset.
 
