@@ -77,7 +77,7 @@ void pixel_to_rr_coord_no_conv(int32_t sx, int32_t sy, enum VisionCamera camera,
 }
 
 void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling) {
-    pixel_to_rr_coord_kneeling_conv(sx, sy, camera, vs, joints, distance, angle, true, false);
+    pixel_to_rr_coord_kneeling_conv(sx, sy, camera, vs, joints, distance, angle, true, true);
 }
 
 void pixel_to_rr_coord_kneeling_conv(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling, bool conv) {
