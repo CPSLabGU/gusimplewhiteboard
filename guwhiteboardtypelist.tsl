@@ -132,3 +132,7 @@ type:machine_filtered_localisation_vision, nonatomic, MachineFilteredLocalisatio
 class:NaoJointListFloat, nonatomic, SensorsJointCurrent, Posts the current flowing through each joint via the DCM loop (read only)
 type:data_logger, nonatomic, DataLogger, Controls the data logging within Naoqi Interface
 type:machine_filtered_lines, nonatomic, MachineFilteredLines, Vision filtering and distance estimates for lines.
+type:location, nonatomic, BallLocation, Location of the ball.
+type:location, nonatomic, LeftGoalPostLocation, Location of the left goal post.
+type:location, nonatomic, RightGoalPostLocation, Location of the right goal post.
+type:location, nonatomic, GoalLocation, Location of the goal.

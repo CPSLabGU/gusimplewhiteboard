@@ -1064,6 +1064,42 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MACHINE_FILTERED_LINES_GENERATED
                 break;
             }
+            case kBallLocation_v:
+            {
+#ifdef LOCATION_GENERATED
+                return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //LOCATION_GENERATED
+                break;
+            }
+            case kLeftGoalPostLocation_v:
+            {
+#ifdef LOCATION_GENERATED
+                return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //LOCATION_GENERATED
+                break;
+            }
+            case kRightGoalPostLocation_v:
+            {
+#ifdef LOCATION_GENERATED
+                return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //LOCATION_GENERATED
+                break;
+            }
+            case kGoalLocation_v:
+            {
+#ifdef LOCATION_GENERATED
+                return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //LOCATION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -33,5 +33,9 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_localisation_vision.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_data_logger.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_machine_filtered_lines.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

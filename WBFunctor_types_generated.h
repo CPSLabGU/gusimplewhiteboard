@@ -3096,6 +3096,98 @@ public:
 }; 
 #endif //MachineFilteredLines_DEFINED
 
+#ifdef Location_DEFINED
+/** WBFunctor definition for BallLocation_WBFunctor_T */ 
+template <typename BallLocation_WBFunctor_T >
+class BallLocation_WBFunctor: public WBFunctor<BallLocation_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for BallLocation_WBFunctor_T */
+    BallLocation_WBFunctor(BallLocation_WBFunctor_T* obj, void (BallLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<BallLocation_WBFunctor_T >(obj, (void (BallLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class BallLocation_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Location result = guWhiteboard::BallLocation_t().get_from(m);
+        BallLocation_function_t funct((void (BallLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<BallLocation_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<BallLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<BallLocation_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (BallLocation_WBFunctor_T::*BallLocation_function_t) (guWhiteboard::WBTypes, guWhiteboard::Location &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(BallLocation_WBFunctor_T *obj, void (BallLocation_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t) { return new BallLocation_WBFunctor<BallLocation_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Location_DEFINED
+
+#ifdef Location_DEFINED
+/** WBFunctor definition for LeftGoalPostLocation_WBFunctor_T */ 
+template <typename LeftGoalPostLocation_WBFunctor_T >
+class LeftGoalPostLocation_WBFunctor: public WBFunctor<LeftGoalPostLocation_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for LeftGoalPostLocation_WBFunctor_T */
+    LeftGoalPostLocation_WBFunctor(LeftGoalPostLocation_WBFunctor_T* obj, void (LeftGoalPostLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<LeftGoalPostLocation_WBFunctor_T >(obj, (void (LeftGoalPostLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class LeftGoalPostLocation_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Location result = guWhiteboard::LeftGoalPostLocation_t().get_from(m);
+        LeftGoalPostLocation_function_t funct((void (LeftGoalPostLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<LeftGoalPostLocation_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<LeftGoalPostLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<LeftGoalPostLocation_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (LeftGoalPostLocation_WBFunctor_T::*LeftGoalPostLocation_function_t) (guWhiteboard::WBTypes, guWhiteboard::Location &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(LeftGoalPostLocation_WBFunctor_T *obj, void (LeftGoalPostLocation_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t) { return new LeftGoalPostLocation_WBFunctor<LeftGoalPostLocation_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Location_DEFINED
+
+#ifdef Location_DEFINED
+/** WBFunctor definition for RightGoalPostLocation_WBFunctor_T */ 
+template <typename RightGoalPostLocation_WBFunctor_T >
+class RightGoalPostLocation_WBFunctor: public WBFunctor<RightGoalPostLocation_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for RightGoalPostLocation_WBFunctor_T */
+    RightGoalPostLocation_WBFunctor(RightGoalPostLocation_WBFunctor_T* obj, void (RightGoalPostLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<RightGoalPostLocation_WBFunctor_T >(obj, (void (RightGoalPostLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class RightGoalPostLocation_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Location result = guWhiteboard::RightGoalPostLocation_t().get_from(m);
+        RightGoalPostLocation_function_t funct((void (RightGoalPostLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<RightGoalPostLocation_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<RightGoalPostLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<RightGoalPostLocation_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (RightGoalPostLocation_WBFunctor_T::*RightGoalPostLocation_function_t) (guWhiteboard::WBTypes, guWhiteboard::Location &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(RightGoalPostLocation_WBFunctor_T *obj, void (RightGoalPostLocation_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t) { return new RightGoalPostLocation_WBFunctor<RightGoalPostLocation_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Location_DEFINED
+
+#ifdef Location_DEFINED
+/** WBFunctor definition for GoalLocation_WBFunctor_T */ 
+template <typename GoalLocation_WBFunctor_T >
+class GoalLocation_WBFunctor: public WBFunctor<GoalLocation_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for GoalLocation_WBFunctor_T */
+    GoalLocation_WBFunctor(GoalLocation_WBFunctor_T* obj, void (GoalLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<GoalLocation_WBFunctor_T >(obj, (void (GoalLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class GoalLocation_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Location result = guWhiteboard::GoalLocation_t().get_from(m);
+        GoalLocation_function_t funct((void (GoalLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<GoalLocation_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<GoalLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<GoalLocation_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (GoalLocation_WBFunctor_T::*GoalLocation_function_t) (guWhiteboard::WBTypes, guWhiteboard::Location &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(GoalLocation_WBFunctor_T *obj, void (GoalLocation_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t) { return new GoalLocation_WBFunctor<GoalLocation_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Location_DEFINED
+
 
 #pragma clang diagnostic pop
 

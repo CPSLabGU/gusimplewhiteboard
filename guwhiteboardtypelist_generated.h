@@ -1137,6 +1137,38 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: BallLocation_t @brief Location of the ball. */ 
+    class BallLocation_t: public generic_whiteboard_object<class Location > { 
+        public: 
+        /** Constructor: BallLocation_t */ 
+        BallLocation_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Location >(wbd, kBallLocation_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: LeftGoalPostLocation_t @brief Location of the left goal post. */ 
+    class LeftGoalPostLocation_t: public generic_whiteboard_object<class Location > { 
+        public: 
+        /** Constructor: LeftGoalPostLocation_t */ 
+        LeftGoalPostLocation_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Location >(wbd, kLeftGoalPostLocation_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: RightGoalPostLocation_t @brief Location of the right goal post. */ 
+    class RightGoalPostLocation_t: public generic_whiteboard_object<class Location > { 
+        public: 
+        /** Constructor: RightGoalPostLocation_t */ 
+        RightGoalPostLocation_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Location >(wbd, kRightGoalPostLocation_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: GoalLocation_t @brief Location of the goal. */ 
+    class GoalLocation_t: public generic_whiteboard_object<class Location > { 
+        public: 
+        /** Constructor: GoalLocation_t */ 
+        GoalLocation_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class Location >(wbd, kGoalLocation_v, false) {}
+        
+    };
+
 
 }
 

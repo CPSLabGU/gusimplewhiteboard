@@ -1199,6 +1199,42 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MachineFilteredLines_DEFINED
             }
+            case kBallLocation_v:
+            {
+#ifdef Location_DEFINED
+                class BallLocation_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Location_DEFINED
+            }
+            case kLeftGoalPostLocation_v:
+            {
+#ifdef Location_DEFINED
+                class LeftGoalPostLocation_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Location_DEFINED
+            }
+            case kRightGoalPostLocation_v:
+            {
+#ifdef Location_DEFINED
+                class RightGoalPostLocation_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Location_DEFINED
+            }
+            case kGoalLocation_v:
+            {
+#ifdef Location_DEFINED
+                class GoalLocation_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Location_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -148,7 +148,11 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "MachineFilteredLocalisationVision",
         "SensorsJointCurrent",
         "DataLogger",
-        "MachineFilteredLines"
+        "MachineFilteredLines",
+        "BallLocation",
+        "LeftGoalPostLocation",
+        "RightGoalPostLocation",
+        "GoalLocation"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -287,7 +291,11 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_machine_filtered_localisation_vision",
         "NotSupportedWithLegacyNaming",
         "wb_data_logger",
-        "wb_machine_filtered_lines"
+        "wb_machine_filtered_lines",
+        "wb_location",
+        "wb_location",
+        "wb_location",
+        "wb_location"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

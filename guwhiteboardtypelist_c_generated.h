@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 134
+#define GSW_NUM_TYPES_DEFINED 138
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -155,8 +155,12 @@ typedef enum wb_types
     kMachineFilteredLocalisationVision_v = 130, 		///< Vision filtering and distance estimates for landmarks: goal, lines and horizon.
     kSensorsJointCurrent_v = 131, 		///< Posts the current flowing through each joint via the DCM loop (read only)
     kDataLogger_v = 132, 		///< Controls the data logging within Naoqi Interface
+    kMachineFilteredLines_v = 133, 		///< Vision filtering and distance estimates for lines.
+    kBallLocation_v = 134, 		///< Location of the ball.
+    kLeftGoalPostLocation_v = 135, 		///< Location of the left goal post.
+    kRightGoalPostLocation_v = 136, 		///< Location of the right goal post.
 
-    kMachineFilteredLines_v = 133 		///< Vision filtering and distance estimates for lines.
+    kGoalLocation_v = 137 		///< Location of the goal.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

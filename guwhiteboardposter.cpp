@@ -1566,6 +1566,54 @@ v.from_string(message_content);
     return false;
 #endif //MachineFilteredLines_DEFINED
 }
+case kBallLocation_v:
+{
+#ifdef Location_DEFINED
+    class BallLocation_t msg_ptr(wbd);
+    Location v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Location_DEFINED
+}
+case kLeftGoalPostLocation_v:
+{
+#ifdef Location_DEFINED
+    class LeftGoalPostLocation_t msg_ptr(wbd);
+    Location v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Location_DEFINED
+}
+case kRightGoalPostLocation_v:
+{
+#ifdef Location_DEFINED
+    class RightGoalPostLocation_t msg_ptr(wbd);
+    Location v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Location_DEFINED
+}
+case kGoalLocation_v:
+{
+#ifdef Location_DEFINED
+    class GoalLocation_t msg_ptr(wbd);
+    Location v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Location_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1715,6 +1763,10 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["SensorsJointCurrent"] = kSensorsJointCurrent_v;
     self["DataLogger"] = kDataLogger_v;
     self["MachineFilteredLines"] = kMachineFilteredLines_v;
+    self["BallLocation"] = kBallLocation_v;
+    self["LeftGoalPostLocation"] = kLeftGoalPostLocation_v;
+    self["RightGoalPostLocation"] = kRightGoalPostLocation_v;
+    self["GoalLocation"] = kGoalLocation_v;
 
     (void) self;
 }
