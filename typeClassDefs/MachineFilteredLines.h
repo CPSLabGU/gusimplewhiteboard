@@ -83,12 +83,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[12] = NULLPTR) {
+        void init(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[8] = NULLPTR) {
             set_numberOfSightings(numberOfSightings);
             if (sightings != NULLPTR) {
                 std::memcpy(this->_sightings, sightings, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
             } else {
-                struct wb_line_sighting sightings_temp[MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE] = {wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting()};
+                struct wb_line_sighting sightings_temp[MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE] = {wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting()};
                 std::memcpy(this->_sightings, sightings_temp, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
             }
         }
@@ -98,7 +98,7 @@ namespace guWhiteboard {
         /**
          * Create a new `MachineFilteredLines`.
          */
-        MachineFilteredLines(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[12] = NULLPTR) {
+        MachineFilteredLines(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[8] = NULLPTR) {
             this->init(numberOfSightings, sightings);
         }
 

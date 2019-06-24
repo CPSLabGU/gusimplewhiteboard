@@ -399,7 +399,7 @@ size_t wb_machine_filtered_lines_to_network_serialised(const struct wb_machine_f
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 12;
+          uint32_t len = 8;
           uint32_t bytes = len * sizeof(struct wb_line_sighting);
           const char *buf = (const char *)&self->sightings[0];
           uint32_t c;
@@ -446,7 +446,7 @@ size_t wb_machine_filtered_lines_from_network_serialised(const char *src, struct
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 12;
+          uint32_t len = 8;
           uint32_t bytes = len * sizeof(struct wb_line_sighting);
           char *buf = (char *)malloc(bytes);
           uint32_t c;

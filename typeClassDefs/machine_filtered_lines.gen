@@ -36,7 +36,7 @@ int fieldLine()
 -properties
 
 uint8_t numberOfSightings = 0 // The number of sightings in `sightings`.
-gen line_sighting sightings[12] // All sightings.
+gen line_sighting sightings[8] // All sightings.
 
 -comment
 Results of the KalmanFilter machines for lines.

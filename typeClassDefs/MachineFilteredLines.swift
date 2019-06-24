@@ -72,15 +72,15 @@ extension wb_machine_filtered_lines {
             var sightings = self.sightings
             return withUnsafePointer(to: &sightings.0) { sightings_p in
                 var sightings: [wb_line_sighting] = []
-                sightings.reserveCapacity(12)
-                for sightings_index in 0..<12 {
+                sightings.reserveCapacity(8)
+                for sightings_index in 0..<8 {
                     sightings.append(sightings_p[sightings_index])
                 }
                 return sightings
             }
         } set {
             _ = withUnsafeMutablePointer(to: &self.sightings.0) { sightings_p in
-                for sightings_index in 0..<12 {
+                for sightings_index in 0..<8 {
                     sightings_p[sightings_index] = newValue[sightings_index]
                 }
             }
@@ -97,7 +97,7 @@ extension wb_machine_filtered_lines {
     /**
      * Create a new `wb_machine_filtered_lines`.
      */
-    public init(_ numberOfSightings: UInt8 = 0, sightings: [wb_line_sighting] = [wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting()]) {
+    public init(_ numberOfSightings: UInt8 = 0, sightings: [wb_line_sighting] = [wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting()]) {
         self.init()
         self.numberOfSightings = numberOfSightings
         self._sightings = sightings
