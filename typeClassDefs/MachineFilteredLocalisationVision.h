@@ -362,6 +362,11 @@ namespace guWhiteboard {
 
         }
 
+        int ball()
+        {
+            return this->firstSighting(BallSightingType);
+        }
+
         int firstGenericGoalPost()
         {
             return this->firstSighting(GenericGoalPostSightingType);
