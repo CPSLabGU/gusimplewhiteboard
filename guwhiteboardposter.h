@@ -136,6 +136,7 @@
 #include "MicrowaveStatus.h"
 #include "DataLogger.h"
 #include "Buttons.h"
+#include "Location.h"
 
 
 //#include "GazeboObjectPose.h"
