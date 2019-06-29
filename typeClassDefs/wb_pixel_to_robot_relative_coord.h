@@ -132,6 +132,8 @@ void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct 
 
 void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle);
 
+void pixel_to_rr_coord_legs_no_conv(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle);
+
 void pixel_to_rr_coord_kneeling(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling);
 
 void pixel_to_rr_coord_kneeling_conv(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle, bool kneeling, bool conv);

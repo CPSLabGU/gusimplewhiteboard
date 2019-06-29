@@ -124,6 +124,10 @@ void pixel_to_rr_coord_legs(int32_t sx, int32_t sy, enum VisionCamera camera, st
     pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, leg_sensors->LKneePitch > 2.0f && leg_sensors->RKneePitch > 2.0f);
 }
 
+void pixel_to_rr_coord_legs_no_conv(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, struct wb_sensors_legjointsensors *leg_sensors, double *distance, double *angle) {
+    pixel_to_rr_coord_kneeling_conv(sx, sy, camera, vs, joints, distance, angle, leg_sensors->LKneePitch > 2.0f && leg_sensors->RKneePitch > 2.0f, false);
+}
+
 void pixel_to_rr_coord_no_conv(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
     pixel_to_rr_coord_kneeling_conv(sx, sy, camera, vs, joints, distance, angle, false, false);
 }
