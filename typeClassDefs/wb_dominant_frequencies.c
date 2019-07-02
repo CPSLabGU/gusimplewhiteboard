@@ -117,8 +117,6 @@
 #endif
 #pragma clang diagnostic pop
 
-#include "gusimplewhiteboard.h"
-
 
 
 /**

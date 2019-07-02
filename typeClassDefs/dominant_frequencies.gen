@@ -24,6 +24,6 @@ gen microphone_frequencies frequencies[DOMINANT_NUMFREQi] // dominant frequencie
 #include "MicrophoneFrequencies.h"
 #include "RMSLevels.h"
 
-%c
+^c
 #include "gusimplewhiteboard.h"
 
