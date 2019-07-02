@@ -85,15 +85,16 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include "gusimplewhiteboard.h"
 #include "wb_microphone_frequencies.h"
 #include "wb_r_m_s_levels.h"
 
+#ifndef DOMINANT_NUMFREQ
 #define DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct wb_r_m_s_levels)) / sizeof(struct wb_microphone_frequencies))
 #ifdef __cplusplus
 #define DOMINANT_NUMFREQi   static_cast<int>(DOMINANT_NUMFREQ)
 #else
 #define DOMINANT_NUMFREQi   ((int)(DOMINANT_NUMFREQ))
+#endif
 #endif
 
 #define DOMINANT_FREQUENCIES_GENERATED 

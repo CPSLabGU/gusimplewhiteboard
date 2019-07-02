@@ -61,6 +61,7 @@
 #define WHITEBOARD_POSTER_STRING_CONVERSION
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
 
+#include "gusimplewhiteboard.h"
 #include "wb_dominant_frequencies.h"
 #include <stdio.h>
 #include <string.h>
@@ -115,6 +116,8 @@
 #  endif
 #endif
 #pragma clang diagnostic pop
+
+#include "gusimplewhiteboard.h"
 
 
 
