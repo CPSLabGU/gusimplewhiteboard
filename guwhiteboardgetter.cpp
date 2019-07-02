@@ -1235,6 +1235,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //Location_DEFINED
             }
+            case kNaoSonarProtectedWalkCommand_v:
+            {
+#ifdef NaoSonarProtectedWalkCommand_DEFINED
+                class NaoSonarProtectedWalkCommand_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //NaoSonarProtectedWalkCommand_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

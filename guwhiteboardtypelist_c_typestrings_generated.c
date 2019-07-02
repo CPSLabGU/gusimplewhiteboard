@@ -152,7 +152,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "BallLocation",
         "LeftGoalPostLocation",
         "RightGoalPostLocation",
-        "GoalLocation"
+        "GoalLocation",
+        "NaoSonarProtectedWalkCommand"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -295,7 +296,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_location",
         "wb_location",
         "wb_location",
-        "wb_location"
+        "wb_location",
+        "wb_nao_sonar_protected_walk_command"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

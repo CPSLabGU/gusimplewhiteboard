@@ -1169,6 +1169,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: NaoSonarProtectedWalkCommand_t @brief Send walk protected by sonar. */ 
+    class NaoSonarProtectedWalkCommand_t: public generic_whiteboard_object<class NaoSonarProtectedWalkCommand > { 
+        public: 
+        /** Constructor: NaoSonarProtectedWalkCommand_t */ 
+        NaoSonarProtectedWalkCommand_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NaoSonarProtectedWalkCommand >(wbd, kNaoSonarProtectedWalkCommand_v, false) {}
+        
+    };
+
 
 }
 

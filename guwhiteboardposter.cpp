@@ -1614,6 +1614,18 @@ v.from_string(message_content);
     return false;
 #endif //Location_DEFINED
 }
+case kNaoSonarProtectedWalkCommand_v:
+{
+#ifdef NaoSonarProtectedWalkCommand_DEFINED
+    class NaoSonarProtectedWalkCommand_t msg_ptr(wbd);
+    NaoSonarProtectedWalkCommand v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //NaoSonarProtectedWalkCommand_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1767,6 +1779,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["LeftGoalPostLocation"] = kLeftGoalPostLocation_v;
     self["RightGoalPostLocation"] = kRightGoalPostLocation_v;
     self["GoalLocation"] = kGoalLocation_v;
+    self["NaoSonarProtectedWalkCommand"] = kNaoSonarProtectedWalkCommand_v;
 
     (void) self;
 }

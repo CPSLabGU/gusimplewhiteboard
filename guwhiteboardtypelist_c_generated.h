@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 138
+#define GSW_NUM_TYPES_DEFINED 139
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -159,8 +159,9 @@ typedef enum wb_types
     kBallLocation_v = 134, 		///< Location of the ball.
     kLeftGoalPostLocation_v = 135, 		///< Location of the left goal post.
     kRightGoalPostLocation_v = 136, 		///< Location of the right goal post.
+    kGoalLocation_v = 137, 		///< Location of the goal.
 
-    kGoalLocation_v = 137 		///< Location of the goal.
+    kNaoSonarProtectedWalkCommand_v = 138 		///< Send walk protected by sonar.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

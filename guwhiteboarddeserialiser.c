@@ -1100,6 +1100,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //LOCATION_GENERATED
                 break;
             }
+            case kNaoSonarProtectedWalkCommand_v:
+            {
+#ifdef NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
+                return DESERIALISE(NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT, serialised_in, (struct NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

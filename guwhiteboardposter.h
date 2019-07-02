@@ -137,6 +137,7 @@
 #include "DataLogger.h"
 #include "Buttons.h"
 #include "Location.h"
+#include "NaoSonarProtectedWalkCommand.h"
 
 
 //#include "GazeboObjectPose.h"

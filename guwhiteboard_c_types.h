@@ -37,5 +37,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_nao_sonar_protected_walk_command.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
