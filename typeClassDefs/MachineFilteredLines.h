@@ -372,7 +372,7 @@ namespace guWhiteboard {
         			short dist = line.simpleLine().distanceToLineSegment();
         			if(dist < d || index < 0) {
         				d = dist;
-        				index = i;
+        				index = short(i);
         			}
         		}
         	}
