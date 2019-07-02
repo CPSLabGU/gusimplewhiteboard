@@ -12,6 +12,15 @@ enum LineSightingType {
 -c++
 
 #include "Coordinate.h"
+#include <SimpleShapes.h>
+
+%c++
+
+SimpleLine simpleLine() {
+	GUPoint<short> left = GUPoint<short>(leftPoint().distance(), leftPoint().direction(), true);
+	GUPoint<short> right = GUPoint<short>(rightPoint().distance(), rightPoint().direction(), true);
+	return SimpleLine(left, right);
+}
 
 -properties
 

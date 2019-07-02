@@ -70,6 +70,7 @@
 #include "wb_line_sighting.h"
 
 #include "Coordinate.h"
+#include <SimpleShapes.h>
 
 namespace guWhiteboard {
 
@@ -316,6 +317,12 @@ namespace guWhiteboard {
 #endif /// USE_WB_LINE_SIGHTING_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        SimpleLine simpleLine() {
+        	GUPoint<short> left = GUPoint<short>(leftPoint().distance(), leftPoint().direction(), true);
+        	GUPoint<short> right = GUPoint<short>(rightPoint().distance(), rightPoint().direction(), true);
+        	return SimpleLine(left, right);
+        }
     };
 
 } /// namespace guWhiteboard

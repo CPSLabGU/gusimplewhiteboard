@@ -70,6 +70,7 @@
 #include "wb_machine_filtered_lines.h"
 
 #include "LineSighting.h"
+#include <SimpleShapes.h>
 
 namespace guWhiteboard {
 
@@ -362,6 +363,21 @@ namespace guWhiteboard {
 
         }
 
+        int closestFeildLine() {
+        	short d = 0;
+        	short index = -1;
+        	for(int i = 0; i < this->numberOfSightings(); ++i) {
+        		LineSighting line(this->sightings(i));
+        		if(line.sightingType() == FieldLineSightingType) {
+        			short dist = line.simpleLine().distanceToLineSegment();
+        			if(dist < d || index < 0) {
+        				d = dist;
+        				index = i;
+        			}
+        		}
+        	}
+        	return index;
+        }
 
         int horizonLine()
         {
