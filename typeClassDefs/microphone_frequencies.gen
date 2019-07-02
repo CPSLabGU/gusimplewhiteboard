@@ -1,0 +1,13 @@
+-author Rene Hexel
+
+-comment
+Frequency quadruple for rear and front stereo channels
+
+-properties
+int16_t rear_left       // rear left frequency
+int16_t rear_right      // rear right frequency
+int16_t front_left      // front left frequency
+int16_t front_right     // front left frequency
+
+-c
+#include <stdint.h>

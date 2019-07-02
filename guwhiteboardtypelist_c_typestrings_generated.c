@@ -153,7 +153,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "LeftGoalPostLocation",
         "RightGoalPostLocation",
         "GoalLocation",
-        "NaoSonarProtectedWalkCommand"
+        "NaoSonarProtectedWalkCommand",
+        "NaoObstacleDirection",
+        "DominantFrequencies"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -297,7 +299,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_location",
         "wb_location",
         "wb_location",
-        "wb_nao_sonar_protected_walk_command"
+        "wb_nao_sonar_protected_walk_command",
+        "wb_nao_obstacle_direction",
+        "wb_dominant_frequencies"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

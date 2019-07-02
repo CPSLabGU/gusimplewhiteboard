@@ -1109,6 +1109,24 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
                 break;
             }
+            case kNaoObstacleDirection_v:
+            {
+#ifdef NAO_OBSTACLE_DIRECTION_GENERATED
+                return DESERIALISE(NAO_OBSTACLE_DIRECTION_C_STRUCT, serialised_in, (struct NAO_OBSTACLE_DIRECTION_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //NAO_OBSTACLE_DIRECTION_GENERATED
+                break;
+            }
+            case kDominantFrequencies_v:
+            {
+#ifdef DOMINANT_FREQUENCIES_GENERATED
+                return DESERIALISE(DOMINANT_FREQUENCIES_C_STRUCT, serialised_in, (struct DOMINANT_FREQUENCIES_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //DOMINANT_FREQUENCIES_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

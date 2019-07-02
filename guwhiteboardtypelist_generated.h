@@ -1177,6 +1177,22 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: NaoObstacleDirection_t @brief Send general direction if obstacle. */ 
+    class NaoObstacleDirection_t: public generic_whiteboard_object<class NaoObstacleDirection > { 
+        public: 
+        /** Constructor: NaoObstacleDirection_t */ 
+        NaoObstacleDirection_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class NaoObstacleDirection >(wbd, kNaoObstacleDirection_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: DominantFrequencies_t @brief Dominant frequencies and RMS levels for the four microphones */ 
+    class DominantFrequencies_t: public generic_whiteboard_object<class DominantFrequencies > { 
+        public: 
+        /** Constructor: DominantFrequencies_t */ 
+        DominantFrequencies_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class DominantFrequencies >(wbd, kDominantFrequencies_v, false) {}
+        
+    };
+
 
 }
 

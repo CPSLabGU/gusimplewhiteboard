@@ -1244,6 +1244,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //NaoSonarProtectedWalkCommand_DEFINED
             }
+            case kNaoObstacleDirection_v:
+            {
+#ifdef NaoObstacleDirection_DEFINED
+                class NaoObstacleDirection_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //NaoObstacleDirection_DEFINED
+            }
+            case kDominantFrequencies_v:
+            {
+#ifdef DominantFrequencies_DEFINED
+                class DominantFrequencies_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //DominantFrequencies_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

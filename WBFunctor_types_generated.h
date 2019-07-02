@@ -3211,6 +3211,52 @@ public:
 }; 
 #endif //NaoSonarProtectedWalkCommand_DEFINED
 
+#ifdef NaoObstacleDirection_DEFINED
+/** WBFunctor definition for NaoObstacleDirection_WBFunctor_T */ 
+template <typename NaoObstacleDirection_WBFunctor_T >
+class NaoObstacleDirection_WBFunctor: public WBFunctor<NaoObstacleDirection_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for NaoObstacleDirection_WBFunctor_T */
+    NaoObstacleDirection_WBFunctor(NaoObstacleDirection_WBFunctor_T* obj, void (NaoObstacleDirection_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &), guWhiteboard::WBTypes t): WBFunctor<NaoObstacleDirection_WBFunctor_T >(obj, (void (NaoObstacleDirection_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class NaoObstacleDirection_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::NaoObstacleDirection result = guWhiteboard::NaoObstacleDirection_t().get_from(m);
+        NaoObstacleDirection_function_t funct((void (NaoObstacleDirection_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &))WBFunctor<NaoObstacleDirection_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<NaoObstacleDirection_WBFunctor_T >::fObject->*funct)(WBFunctor<NaoObstacleDirection_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (NaoObstacleDirection_WBFunctor_T::*NaoObstacleDirection_function_t) (guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(NaoObstacleDirection_WBFunctor_T *obj, void (NaoObstacleDirection_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &), guWhiteboard::WBTypes t) { return new NaoObstacleDirection_WBFunctor<NaoObstacleDirection_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //NaoObstacleDirection_DEFINED
+
+#ifdef DominantFrequencies_DEFINED
+/** WBFunctor definition for DominantFrequencies_WBFunctor_T */ 
+template <typename DominantFrequencies_WBFunctor_T >
+class DominantFrequencies_WBFunctor: public WBFunctor<DominantFrequencies_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for DominantFrequencies_WBFunctor_T */
+    DominantFrequencies_WBFunctor(DominantFrequencies_WBFunctor_T* obj, void (DominantFrequencies_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &), guWhiteboard::WBTypes t): WBFunctor<DominantFrequencies_WBFunctor_T >(obj, (void (DominantFrequencies_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class DominantFrequencies_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::DominantFrequencies result = guWhiteboard::DominantFrequencies_t().get_from(m);
+        DominantFrequencies_function_t funct((void (DominantFrequencies_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &))WBFunctor<DominantFrequencies_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<DominantFrequencies_WBFunctor_T >::fObject->*funct)(WBFunctor<DominantFrequencies_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (DominantFrequencies_WBFunctor_T::*DominantFrequencies_function_t) (guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(DominantFrequencies_WBFunctor_T *obj, void (DominantFrequencies_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &), guWhiteboard::WBTypes t) { return new DominantFrequencies_WBFunctor<DominantFrequencies_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //DominantFrequencies_DEFINED
+
 
 #pragma clang diagnostic pop
 

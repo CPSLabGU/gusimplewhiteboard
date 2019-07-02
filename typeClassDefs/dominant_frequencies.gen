@@ -1,0 +1,24 @@
+-author Rene Hexel
+
+-comment
+Frequency quadruple for rear and front stereo channels
+
+-properties
+gen RMS_levels rms                           // RMS levels of dominant frequency
+gen microphone_frequencies frequencies[DOMINANT_NUMFREQi] // dominant frequencies
+
+-c
+#include "gusimplewhiteboard.h"
+#include "wb_microphone_frequencies.h"
+#include "wb_r_m_s_levels.h"
+
+#define DOMINANT_NUMFREQ    ((GU_SIMPLE_WHITEBOARD_BUFSIZE - sizeof(struct wb_r_m_s_levels)) / sizeof(struct wb_microphone_frequencies))
+#ifdef __cplusplus
+#define DOMINANT_NUMFREQi   static_cast<int>(DOMINANT_NUMFREQ)
+#else
+#define DOMINANT_NUMFREQi   ((int)(DOMINANT_NUMFREQ))
+#endif
+
+-c++
+#include "MicrophoneFrequencies.h"
+#include "RMSLevels.h"
