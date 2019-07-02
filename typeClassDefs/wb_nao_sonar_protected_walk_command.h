@@ -87,11 +87,11 @@
 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT wb_nao_sonar_protected_walk_command 
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 4
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 6
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 59
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 28
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 112
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 40
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -121,6 +121,16 @@ struct wb_nao_sonar_protected_walk_command
      * [-85 - 85] step-size(mm) per second, limited to +/- 85deg/step
      */
     PROPERTY(int8_t, turn)
+
+    /**
+     * No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
+     */
+    PROPERTY(bool, exactStepsRequested)
+
+    /**
+     * Odometry will reset any time this is changed or incremented.
+     */
+    PROPERTY(uint8_t, odometryResetCounter)
 
 };
 

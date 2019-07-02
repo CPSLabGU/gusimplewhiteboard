@@ -154,6 +154,22 @@ const char* wb_nao_sonar_protected_walk_command_description(const struct wb_nao_
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "turn=%d", self->turn);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->exactStepsRequested ? "exactStepsRequested=true" : "exactStepsRequested=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "odometryResetCounter=%u", self->odometryResetCounter);
     return descString;
 }
 
@@ -193,6 +209,22 @@ const char* wb_nao_sonar_protected_walk_command_to_string(const struct wb_nao_so
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->turn);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->exactStepsRequested ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->odometryResetCounter);
     return toString;
 }
 
@@ -208,7 +240,7 @@ struct wb_nao_sonar_protected_walk_command* wb_nao_sonar_protected_walk_command_
     }
     char var_str_buffer[NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[13];
+    char key_buffer[21];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -277,6 +309,10 @@ struct wb_nao_sonar_protected_walk_command* wb_nao_sonar_protected_walk_command_
                 varIndex = 2;
             } else if (0 == strcmp("turn", key)) {
                 varIndex = 3;
+            } else if (0 == strcmp("exactStepsRequested", key)) {
+                varIndex = 4;
+            } else if (0 == strcmp("odometryResetCounter", key)) {
+                varIndex = 5;
             } else {
                 varIndex = -1;
             }
@@ -301,6 +337,16 @@ struct wb_nao_sonar_protected_walk_command* wb_nao_sonar_protected_walk_command_
             case 3:
             {
                 self->turn = ((int8_t)atoi(var_str));
+                break;
+            }
+            case 4:
+            {
+                self->exactStepsRequested = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 5:
+            {
+                self->odometryResetCounter = ((uint8_t)atoi(var_str));
                 break;
             }
         }
@@ -363,6 +409,28 @@ size_t wb_nao_sonar_protected_walk_command_to_network_serialised(const struct wb
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((turn_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->exactStepsRequested ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+    uint8_t odometryResetCounter_nbo = (self->odometryResetCounter);
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((odometryResetCounter_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -433,6 +501,30 @@ size_t wb_nao_sonar_protected_walk_command_from_network_serialised(const char *s
       }
     } while(false);
     dst->turn = (dst->turn);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->exactStepsRequested = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->odometryResetCounter ^= (-bitValue ^ dst->odometryResetCounter) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->odometryResetCounter = (dst->odometryResetCounter);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

@@ -69,6 +69,8 @@
 #include <gu_util.h>
 #include "wb_nao_sonar_protected_walk_command.h"
 
+
+
 namespace guWhiteboard {
 
     /**
@@ -81,11 +83,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0) {
+        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0) {
             set_walkEngineOn(walkEngineOn);
             set_forward(forward);
             set_left(left);
             set_turn(turn);
+            set_exactStepsRequested(exactStepsRequested);
+            set_odometryResetCounter(odometryResetCounter);
         }
 
     public:
@@ -93,29 +97,29 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoSonarProtectedWalkCommand`.
          */
-        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0) {
-            this->init(walkEngineOn, forward, left, turn);
+        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0) {
+            this->init(walkEngineOn, forward, left, turn, exactStepsRequested, odometryResetCounter);
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const NaoSonarProtectedWalkCommand &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const struct wb_nao_sonar_protected_walk_command &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
         }
 
         /**
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const NaoSonarProtectedWalkCommand &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
             return *this;
         }
 
@@ -123,7 +127,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const struct wb_nao_sonar_protected_walk_command &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
             return *this;
         }
 
@@ -151,6 +155,10 @@ namespace guWhiteboard {
             ss << "left=" << static_cast<signed>(this->left());
             ss << ", ";
             ss << "turn=" << static_cast<signed>(this->turn());
+            ss << ", ";
+            ss << "exactStepsRequested=" << (this->exactStepsRequested() ? "true" : "false");
+            ss << ", ";
+            ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
 #endif /// USE_WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_CONVERSION
         }
@@ -170,6 +178,10 @@ namespace guWhiteboard {
             ss << static_cast<signed>(this->left());
             ss << ", ";
             ss << static_cast<signed>(this->turn());
+            ss << ", ";
+            ss << (this->exactStepsRequested() ? "true" : "false");
+            ss << ", ";
+            ss << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
 #endif /// USE_WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_CONVERSION
         }
@@ -187,7 +199,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[13];
+            char key_buffer[21];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -256,6 +268,10 @@ namespace guWhiteboard {
                         varIndex = 2;
                     } else if (0 == strcmp("turn", key)) {
                         varIndex = 3;
+                    } else if (0 == strcmp("exactStepsRequested", key)) {
+                        varIndex = 4;
+                    } else if (0 == strcmp("odometryResetCounter", key)) {
+                        varIndex = 5;
                     } else {
                         varIndex = -1;
                     }
@@ -282,6 +298,16 @@ namespace guWhiteboard {
                         this->set_turn(static_cast<int8_t>(atoi(var_str)));
                         break;
                     }
+                    case 4:
+                    {
+                        this->set_exactStepsRequested(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 5:
+                    {
+                        this->set_odometryResetCounter(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
                 }
                 if (varIndex >= 0) {
                     varIndex++;
@@ -305,6 +331,19 @@ namespace guWhiteboard {
             cmd.set_forward(forward);
             cmd.set_left(left);
             cmd.set_turn(turn);
+            return cmd;
+        }
+
+        /**
+         * Convenience function to make the nao walk, with precise step distances. There is no speed buildup with this method, it uses a consistent step size and speed. This is good for small accurate movements, like lining up a kick.
+         * @param forward see struct documentation.
+         * @param left see struct documentation.
+         * @param turn see struct documentation.
+         * @return A NaoWalkCommand instance
+         */
+        static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int16_t forward, int16_t left, int8_t turn) {
+            NaoSonarProtectedWalkCommand cmd = walkProtected(forward, left, turn);
+            cmd.set_exactStepsRequested(true);
             return cmd;
         }
     };

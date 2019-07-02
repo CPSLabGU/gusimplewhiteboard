@@ -79,12 +79,14 @@ extension wb_nao_sonar_protected_walk_command {
     /**
      * Create a new `wb_nao_sonar_protected_walk_command`.
      */
-    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0) {
+    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0, exactStepsRequested: Bool = false, odometryResetCounter: UInt8 = 0) {
         self.init()
         self.walkEngineOn = walkEngineOn
         self.forward = forward
         self.left = left
         self.turn = turn
+        self.exactStepsRequested = exactStepsRequested
+        self.odometryResetCounter = odometryResetCounter
     }
 
     /**
@@ -96,7 +98,9 @@ extension wb_nao_sonar_protected_walk_command {
             let walkEngineOn = dictionary["walkEngineOn"] as? Bool,
             let forward = dictionary["forward"] as? Int16,
             let left = dictionary["left"] as? Int16,
-            let turn = dictionary["turn"] as? Int8
+            let turn = dictionary["turn"] as? Int8,
+            let exactStepsRequested = dictionary["exactStepsRequested"] as? Bool,
+            let odometryResetCounter = dictionary["odometryResetCounter"] as? UInt8
         else {
             fatalError("Unable to convert \(dictionary) to wb_nao_sonar_protected_walk_command.")
         }
@@ -104,6 +108,8 @@ extension wb_nao_sonar_protected_walk_command {
         self.forward = forward
         self.left = left
         self.turn = turn
+        self.exactStepsRequested = exactStepsRequested
+        self.odometryResetCounter = odometryResetCounter
     }
 
 }
@@ -122,6 +128,10 @@ extension wb_nao_sonar_protected_walk_command: CustomStringConvertible {
         descString += "left=\(self.left)"
         descString += ", "
         descString += "turn=\(self.turn)"
+        descString += ", "
+        descString += "exactStepsRequested=\(self.exactStepsRequested)"
+        descString += ", "
+        descString += "odometryResetCounter=\(self.odometryResetCounter)"
         return descString
     }
 
@@ -134,4 +144,6 @@ public func == (lhs: wb_nao_sonar_protected_walk_command, rhs: wb_nao_sonar_prot
         && lhs.forward == rhs.forward
         && lhs.left == rhs.left
         && lhs.turn == rhs.turn
+        && lhs.exactStepsRequested == rhs.exactStepsRequested
+        && lhs.odometryResetCounter == rhs.odometryResetCounter
 }
