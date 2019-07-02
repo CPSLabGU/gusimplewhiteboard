@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include "wb_coordinate.h"
+#include "wb_polar_coordinate.h"
 
 enum LineSightingType {
     HorizonLineSightingType,
@@ -110,12 +110,12 @@ struct wb_line_sighting
     /**
      * The left/bottom point of the line.
      */
-    PROPERTY(struct wb_coordinate, leftPoint)
+    PROPERTY(struct wb_polar_coordinate, leftPoint)
 
     /**
      * The right/top point of the line.
      */
-    PROPERTY(struct wb_coordinate, rightPoint)
+    PROPERTY(struct wb_polar_coordinate, rightPoint)
 
     /**
      * The type of sighting.

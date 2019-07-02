@@ -71,13 +71,13 @@ extension wb_line_sighting {
      * Create a new `wb_line_sighting`.
      */
     public static func make() -> wb_line_sighting {
-        return wb_line_sighting(wb_coordinate())
+        return wb_line_sighting(wb_polar_coordinate())
     }
 
     /**
      * Create a new `wb_line_sighting`.
      */
-    public init(_ leftPoint: wb_coordinate = wb_coordinate(), rightPoint: wb_coordinate = wb_coordinate(), sightingType: LineSightingType = 0) {
+    public init(_ leftPoint: wb_polar_coordinate = wb_polar_coordinate(), rightPoint: wb_polar_coordinate = wb_polar_coordinate(), sightingType: LineSightingType = 0) {
         self.init()
         self.leftPoint = leftPoint
         self.rightPoint = rightPoint
@@ -90,8 +90,8 @@ extension wb_line_sighting {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let leftPoint = (dictionary["leftPoint"] as? [String: Any]).flatMap({ wb_coordinate(fromDictionary: $0)  }),
-            let rightPoint = (dictionary["rightPoint"] as? [String: Any]).flatMap({ wb_coordinate(fromDictionary: $0)  }),
+            let leftPoint = (dictionary["leftPoint"] as? [String: Any]).flatMap({ wb_polar_coordinate(fromDictionary: $0)  }),
+            let rightPoint = (dictionary["rightPoint"] as? [String: Any]).flatMap({ wb_polar_coordinate(fromDictionary: $0)  }),
             let sightingType = dictionary["sightingType"] as? LineSightingType
         else {
             fatalError("Unable to convert \(dictionary) to wb_line_sighting.")

@@ -2,7 +2,7 @@
 
 -c
 
-#include "wb_coordinate.h"
+#include "wb_polar_coordinate.h"
 
 enum LineSightingType {
     HorizonLineSightingType,
@@ -11,7 +11,7 @@ enum LineSightingType {
 
 -c++
 
-#include "Coordinate.h"
+#include "PolarCoordinate.h"
 #include <SimpleShapes.h>
 
 %c++
@@ -24,8 +24,8 @@ SimpleLine simpleLine() {
 
 -properties
 
-gen coordinate leftPoint // The left/bottom point of the line.
-gen coordinate rightPoint // The right/top point of the line. 
+gen polar_coordinate leftPoint // The left/bottom point of the line.
+gen polar_coordinate rightPoint // The right/top point of the line. 
 enum LineSightingType sightingType = 0 // The type of sighting.
 
 -comment
