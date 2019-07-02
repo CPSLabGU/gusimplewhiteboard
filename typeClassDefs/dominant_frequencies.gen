@@ -24,6 +24,9 @@ gen microphone_frequencies frequencies[DOMINANT_NUMFREQi] // dominant frequencie
 #include "MicrophoneFrequencies.h"
 #include "RMSLevels.h"
 
+%c++
+static int num_frequencies() { return DOMINANT_NUMFREQi; }
+
 ^c
 #include "gusimplewhiteboard.h"
 

@@ -354,6 +354,8 @@ namespace guWhiteboard {
 #endif /// USE_WB_DOMINANT_FREQUENCIES_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        static int num_frequencies() { return DOMINANT_NUMFREQi; }
     };
 
 } /// namespace guWhiteboard
