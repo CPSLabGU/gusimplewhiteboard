@@ -193,6 +193,38 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
     if (len >= bufferSize) {
         return descString;
     }
+    len = gu_strlcat(descString, "fieldCrosses={", bufferSize);
+    for (int fieldCrosses_index = 0; fieldCrosses_index < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_index++) {
+        if (len >= bufferSize) {
+            return descString;
+        }
+        if (fieldCrosses_index > 0) {
+            len = gu_strlcat(descString, ", ", bufferSize);
+        }
+        len = gu_strlcat(descString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        char fieldCrosses_1_buffer[VISION_FIELDFEATURE_DESC_BUFFER_SIZE];
+        char* fieldCrosses_1_p = fieldCrosses_1_buffer;
+        const char* fieldCrosses_1_description = wb_vision_field_feature_description(&self->fieldCrosses[fieldCrosses_index], fieldCrosses_1_p, VISION_FIELDFEATURE_DESC_BUFFER_SIZE);
+        len = gu_strlcat(descString, fieldCrosses_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return descString;
+        }
+        len = gu_strlcat(descString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
     len += snprintf(descString + len, bufferSize - len, "numCorners=%u", self->numCorners);
     if (len >= bufferSize) {
         return descString;
@@ -202,6 +234,14 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "numIntersections=%u", self->numIntersections);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "numCrosses=%u", self->numCrosses);
     return descString;
 }
 
@@ -280,6 +320,38 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
     if (len >= bufferSize) {
         return toString;
     }
+    len = gu_strlcat(toString, "{", bufferSize);
+    for (int fieldCrosses_index = 0; fieldCrosses_index < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_index++) {
+        if (len >= bufferSize) {
+            return toString;
+        }
+        if (fieldCrosses_index > 0) {
+            len = gu_strlcat(toString, ", ", bufferSize);
+        }
+        len = gu_strlcat(toString, "{", bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        char fieldCrosses_1_buffer[VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE];
+        char* fieldCrosses_1_p = fieldCrosses_1_buffer;
+        const char* fieldCrosses_1_to_string = wb_vision_field_feature_to_string(&self->fieldCrosses[fieldCrosses_index], fieldCrosses_1_p, VISION_FIELDFEATURE_TO_STRING_BUFFER_SIZE);
+        len = gu_strlcat(toString, fieldCrosses_1_p, bufferSize);
+        if (len >= bufferSize) {
+            return toString;
+        }
+        len = gu_strlcat(toString, "}", bufferSize);
+    }
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
     len += snprintf(toString + len, bufferSize - len, "%u", self->numCorners);
     if (len >= bufferSize) {
         return toString;
@@ -289,6 +361,14 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->numIntersections);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->numCrosses);
     return toString;
 }
 
@@ -373,10 +453,14 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 varIndex = 0;
             } else if (0 == strcmp("fieldIntersection", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("numCorners", key)) {
+            } else if (0 == strcmp("fieldCrosses", key)) {
                 varIndex = 2;
-            } else if (0 == strcmp("numIntersections", key)) {
+            } else if (0 == strcmp("numCorners", key)) {
                 varIndex = 3;
+            } else if (0 == strcmp("numIntersections", key)) {
+                varIndex = 4;
+            } else if (0 == strcmp("numCrosses", key)) {
+                varIndex = 5;
             } else {
                 varIndex = -1;
             }
@@ -509,12 +593,79 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
             }
             case 2:
             {
-                self->numCorners = ((uint8_t)atoi(var_str));
+                int restartIndex = index;
+                index = lastBrace + 1;
+                startVar = index;
+                startKey = startVar;
+                endKey = -1;
+                bracecount = 0;
+                for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_0_index++) {
+                    for (int i = index; i < length; i++) {
+                        index = i + 1;
+                        if (bracecount == 0 && str[i] == '=') {
+                            endKey = i - 1;
+                            startVar = index;
+                            continue;
+                        }
+                        if (bracecount == 0 && isspace(str[i])) {
+                            startVar = index;
+                            if (endKey == -1) {
+                                startKey = index;
+                            }
+                            continue;
+                        }
+                        if (bracecount == 0 && str[i] == ',') {
+                            index = i - 1;
+                            break;
+                        }
+                        if (str[i] == '{') {
+                            bracecount++;
+                            continue;
+                        }
+                        if (str[i] == '}') {
+                            bracecount--;
+                            if (bracecount < 0) {
+                                index = i - 1;
+                                break;
+                            }
+                        }
+                        if (i == length - 1) {
+                            index = i;
+                        }
+                    }
+                    if (endKey >= startKey && endKey - startKey < length) {
+                        strncpy(key, str + startKey, ((size_t)(endKey - startKey) + 1));
+                        key[(endKey - startKey) + 1] = 0;
+                    } else {
+                        key[0] = 0;
+                    }
+                    strncpy(var_str, str + startVar, ((size_t)(index - startVar) + 1));
+                    var_str[(index - startVar) + 1] = 0;
+                    bracecount = 0;
+                    index += 2;
+                    startVar = index;
+                    startKey = startVar;
+                    endKey = -1;
+                    struct wb_vision_field_feature fieldCrosses_0;
+                    wb_vision_field_feature_from_string(&fieldCrosses_0, var_str);
+                    self->fieldCrosses[fieldCrosses_0_index] = fieldCrosses_0;;
+                }
+                index = restartIndex;
                 break;
             }
             case 3:
             {
+                self->numCorners = ((uint8_t)atoi(var_str));
+                break;
+            }
+            case 4:
+            {
                 self->numIntersections = ((uint8_t)atoi(var_str));
+                break;
+            }
+            case 5:
+            {
+                self->numCrosses = ((uint8_t)atoi(var_str));
                 break;
             }
         }
@@ -575,6 +726,27 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
           }
         } while(false);
 
+        //Class generator does not support array network compression.
+        //Copying into the buffer, uncompressed
+        do { //limit declaration scope
+          uint32_t len = 3;
+          uint32_t bytes = len * sizeof(struct wb_vision_field_feature);
+          const char *buf = (const char *)&self->fieldCrosses[0];
+          uint32_t c;
+          int8_t b;
+          for (c = 0; c < bytes; c++) {
+            for (b = 7; b >= 0; b--) {
+                do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((buf[c] >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+            }
+          }
+        } while(false);
+
     uint8_t numCorners_nbo = (self->numCorners);
     do {
       int8_t b;
@@ -597,6 +769,20 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((numIntersections_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint8_t numCrosses_nbo = (self->numCrosses);
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((numCrosses_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -662,6 +848,30 @@ size_t wb_vision_field_features_from_network_serialised(const char *src, struct 
           free(buf);
         } while(false);
 
+        //Class generator does not support array network compression.
+        //Copying into the buffer, uncompressed
+        do { //limit declaration scope
+          uint32_t len = 3;
+          uint32_t bytes = len * sizeof(struct wb_vision_field_feature);
+          char *buf = (char *)malloc(bytes);
+          uint32_t c;
+          int8_t b;
+          for (c = 0; c < bytes; c++) {
+            for (b = 7; b >= 0; b--) {
+                do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        buf[c] ^= (-bitValue ^ buf[c]) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+            }
+          }
+          memcpy(&dst->fieldCrosses[0], &buf[0], bytes);
+          free(buf);
+        } while(false);
+
     do {
       int8_t b;
       for (b = (8 - 1); b >= 0; b--) {
@@ -691,6 +901,21 @@ size_t wb_vision_field_features_from_network_serialised(const char *src, struct 
       }
     } while(false);
     dst->numIntersections = (dst->numIntersections);
+
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->numCrosses ^= (-bitValue ^ dst->numCrosses) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->numCrosses = (dst->numCrosses);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

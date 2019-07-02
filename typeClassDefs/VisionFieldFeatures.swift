@@ -63,7 +63,7 @@
 //swiftlint:disable identifier_name
 
 /**
- * @brief Posting by Vision of the field corners and T-Intersections that have been seen
+ * @brief Posting by Vision of the field corners, T-Intersections and crosses that have been seen
  */
 extension wb_vision_field_features {
 
@@ -107,6 +107,26 @@ extension wb_vision_field_features {
         }
     }
 
+    public var _fieldCrosses: [wb_vision_field_feature] {
+        get {
+            var fieldCrosses = self.fieldCrosses
+            return withUnsafePointer(to: &fieldCrosses.0) { fieldCrosses_p in
+                var fieldCrosses: [wb_vision_field_feature] = []
+                fieldCrosses.reserveCapacity(3)
+                for fieldCrosses_index in 0..<3 {
+                    fieldCrosses.append(fieldCrosses_p[fieldCrosses_index])
+                }
+                return fieldCrosses
+            }
+        } set {
+            _ = withUnsafeMutablePointer(to: &self.fieldCrosses.0) { fieldCrosses_p in
+                for fieldCrosses_index in 0..<3 {
+                    fieldCrosses_p[fieldCrosses_index] = newValue[fieldCrosses_index]
+                }
+            }
+        }
+    }
+
     /**
      * Create a new `wb_vision_field_features`.
      */
@@ -117,12 +137,14 @@ extension wb_vision_field_features {
     /**
      * Create a new `wb_vision_field_features`.
      */
-    public init(_ fieldCorner: [wb_vision_field_feature] = [ wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() ], fieldIntersection: [wb_vision_field_feature] = [ wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() ], numCorners: UInt8 = 0, numIntersections: UInt8 = 0) {
+    public init(_ fieldCorner: [wb_vision_field_feature] = [ wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() ], fieldIntersection: [wb_vision_field_feature] = [ wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() ], fieldCrosses: [wb_vision_field_feature] = [ wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() ], numCorners: UInt8 = 0, numIntersections: UInt8 = 0, numCrosses: UInt8 = 0) {
         self.init()
         self._fieldCorner = fieldCorner
         self._fieldIntersection = fieldIntersection
+        self._fieldCrosses = fieldCrosses
         self.numCorners = numCorners
         self.numIntersections = numIntersections
+        self.numCrosses = numCrosses
     }
 
     /**
@@ -133,8 +155,10 @@ extension wb_vision_field_features {
         guard
             var fieldCorner = dictionary["fieldCorner"],
             var fieldIntersection = dictionary["fieldIntersection"],
+            var fieldCrosses = dictionary["fieldCrosses"],
             let numCorners = dictionary["numCorners"] as? UInt8,
-            let numIntersections = dictionary["numIntersections"] as? UInt8
+            let numIntersections = dictionary["numIntersections"] as? UInt8,
+            let numCrosses = dictionary["numCrosses"] as? UInt8
         else {
             fatalError("Unable to convert \(dictionary) to wb_vision_field_features.")
         }
@@ -148,8 +172,14 @@ extension wb_vision_field_features {
                 $0.pointee
             }
         }
+        self.fieldCrosses = withUnsafePointer(to: &fieldCrosses) {
+            $0.withMemoryRebound(to: type(of: wb_vision_field_features().fieldCrosses), capacity: 1) {
+                $0.pointee
+            }
+        }
         self.numCorners = numCorners
         self.numIntersections = numIntersections
+        self.numCrosses = numCrosses
     }
 
 }
@@ -179,9 +209,20 @@ extension wb_vision_field_features: CustomStringConvertible {
             descString += "}"
         }
         descString += ", "
+        if self._fieldCrosses.isEmpty {
+            descString += "fieldCrosses={}"
+        } else {
+            let first = "{" + self.fieldCrosses.0.description + "}"
+            descString += "fieldCrosses={"
+            descString += self._fieldCrosses.dropFirst().reduce("\(first)") { $0 + ", " + "{" + $1.description + "}" }
+            descString += "}"
+        }
+        descString += ", "
         descString += "numCorners=\(self.numCorners)"
         descString += ", "
         descString += "numIntersections=\(self.numIntersections)"
+        descString += ", "
+        descString += "numCrosses=\(self.numCrosses)"
         return descString
     }
 
@@ -192,6 +233,8 @@ extension wb_vision_field_features: Equatable {}
 public func == (lhs: wb_vision_field_features, rhs: wb_vision_field_features) -> Bool {
     return lhs._fieldCorner == rhs._fieldCorner
         && lhs._fieldIntersection == rhs._fieldIntersection
+        && lhs._fieldCrosses == rhs._fieldCrosses
         && lhs.numCorners == rhs.numCorners
         && lhs.numIntersections == rhs.numIntersections
+        && lhs.numCrosses == rhs.numCrosses
 }

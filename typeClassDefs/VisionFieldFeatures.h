@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0) {
+        void init(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0) {
             if (fieldCorner != NULLPTR) {
                 std::memcpy(this->_fieldCorner, fieldCorner, VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
@@ -96,8 +96,15 @@ namespace guWhiteboard {
                 struct wb_vision_field_feature fieldIntersection_temp[VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
                 std::memcpy(this->_fieldIntersection, fieldIntersection_temp, VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             }
+            if (fieldCrosses != NULLPTR) {
+                std::memcpy(this->_fieldCrosses, fieldCrosses, VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+            } else {
+                struct wb_vision_field_feature fieldCrosses_temp[VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
+                std::memcpy(this->_fieldCrosses, fieldCrosses_temp, VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+            }
             set_numCorners(numCorners);
             set_numIntersections(numIntersections);
+            set_numCrosses(numCrosses);
         }
 
     public:
@@ -105,29 +112,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionFieldFeatures`.
          */
-        VisionFieldFeatures(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0) {
-            this->init(fieldCorner, fieldIntersection, numCorners, numIntersections);
+        VisionFieldFeatures(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0) {
+            this->init(fieldCorner, fieldIntersection, fieldCrosses, numCorners, numIntersections, numCrosses);
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const VisionFieldFeatures &other): wb_vision_field_features() {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const struct wb_vision_field_features &other): wb_vision_field_features() {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const VisionFieldFeatures &other) {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
             return *this;
         }
 
@@ -135,7 +142,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const struct wb_vision_field_features &other) {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.numCorners(), other.numIntersections());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
             return *this;
         }
 
@@ -174,9 +181,20 @@ namespace guWhiteboard {
             }
             ss << "}";
             ss << ", ";
+            bool fieldCrosses_first = true;
+            ss << "fieldCrosses={";
+            for (int i = 0; i < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
+                guWhiteboard::VisionFieldFeature * fieldCrosses_cast = const_cast<guWhiteboard::VisionFieldFeature *>(static_cast<const guWhiteboard::VisionFieldFeature *>(&this->fieldCrosses(i)));
+                ss << (fieldCrosses_first ? "" : ", ") << "{" << fieldCrosses_cast->description() << "}";
+                fieldCrosses_first = false;
+            }
+            ss << "}";
+            ss << ", ";
             ss << "numCorners=" << static_cast<unsigned>(this->numCorners());
             ss << ", ";
             ss << "numIntersections=" << static_cast<unsigned>(this->numIntersections());
+            ss << ", ";
+            ss << "numCrosses=" << static_cast<unsigned>(this->numCrosses());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
         }
@@ -207,9 +225,20 @@ namespace guWhiteboard {
             }
             ss << "}";
             ss << ", ";
+            bool fieldCrosses_first = true;
+            ss << "{";
+            for (int i = 0; i < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
+                guWhiteboard::VisionFieldFeature * fieldCrosses_cast = const_cast<guWhiteboard::VisionFieldFeature *>(static_cast<const guWhiteboard::VisionFieldFeature *>(&this->fieldCrosses(i)));
+                ss << (fieldCrosses_first ? "" : ", ") << "{" << fieldCrosses_cast->to_string() << "}";
+                fieldCrosses_first = false;
+            }
+            ss << "}";
+            ss << ", ";
             ss << static_cast<unsigned>(this->numCorners());
             ss << ", ";
             ss << static_cast<unsigned>(this->numIntersections());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->numCrosses());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
         }
@@ -296,10 +325,14 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("fieldIntersection", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("numCorners", key)) {
+                    } else if (0 == strcmp("fieldCrosses", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("numIntersections", key)) {
+                    } else if (0 == strcmp("numCorners", key)) {
                         varIndex = 3;
+                    } else if (0 == strcmp("numIntersections", key)) {
+                        varIndex = 4;
+                    } else if (0 == strcmp("numCrosses", key)) {
+                        varIndex = 5;
                     } else {
                         varIndex = -1;
                     }
@@ -434,12 +467,80 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        this->set_numCorners(static_cast<uint8_t>(atoi(var_str)));
+                        int restartIndex = index;
+                        index = lastBrace + 1;
+                        startVar = index;
+                        startKey = startVar;
+                        endKey = -1;
+                        bracecount = 0;
+                        for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_0_index++) {
+                            for (int i = index; i < length; i++) {
+                                index = i + 1;
+                                if (bracecount == 0 && str_cstr[i] == '=') {
+                                    endKey = i - 1;
+                                    startVar = index;
+                                    continue;
+                                }
+                                if (bracecount == 0 && isspace(str_cstr[i])) {
+                                    startVar = index;
+                                    if (endKey == -1) {
+                                        startKey = index;
+                                    }
+                                    continue;
+                                }
+                                if (bracecount == 0 && str_cstr[i] == ',') {
+                                    index = i - 1;
+                                    break;
+                                }
+                                if (str_cstr[i] == '{') {
+                                    bracecount++;
+                                    continue;
+                                }
+                                if (str_cstr[i] == '}') {
+                                    bracecount--;
+                                    if (bracecount < 0) {
+                                        index = i - 1;
+                                        break;
+                                    }
+                                }
+                                if (i == length - 1) {
+                                    index = i;
+                                }
+                            }
+                            if (endKey >= startKey && endKey - startKey < length) {
+                                strncpy(key, str_cstr + startKey, static_cast<size_t>((endKey - startKey) + 1));
+                                key[(endKey - startKey) + 1] = 0;
+                            } else {
+                                key[0] = 0;
+                            }
+                            strncpy(var_str, str_cstr + startVar, static_cast<size_t>((index - startVar) + 1));
+                            var_str[(index - startVar) + 1] = 0;
+                            bracecount = 0;
+                            index += 2;
+                            startVar = index;
+                            startKey = startVar;
+                            endKey = -1;
+                            VisionFieldFeature fieldCrosses_0_temp = VisionFieldFeature();
+                            fieldCrosses_0_temp.from_string(var_str);
+                            struct wb_vision_field_feature fieldCrosses_0 = fieldCrosses_0_temp;
+                            this->set_fieldCrosses(fieldCrosses_0, fieldCrosses_0_index);;
+                        }
+                        index = restartIndex;
                         break;
                     }
                     case 3:
                     {
+                        this->set_numCorners(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 4:
+                    {
                         this->set_numIntersections(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 5:
+                    {
+                        this->set_numCrosses(static_cast<uint8_t>(atoi(var_str)));
                         break;
                     }
                 }
