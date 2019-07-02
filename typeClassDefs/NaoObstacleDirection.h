@@ -287,9 +287,9 @@ namespace guWhiteboard {
          */
         static NaoObstacleDirection sonar_direction(bool left, bool  front, bool right) {
             NaoObstacleDirection obstacles = NaoObstacleDirection();
-            cmd.set_left(left);
-            cmd.set_front(front);
-            cmd.set_right(right);
+            obstacles.set_left(left);
+            obstacles.set_front(front);
+            obstacles.set_right(right);
             return obstacles;
         }
     };
