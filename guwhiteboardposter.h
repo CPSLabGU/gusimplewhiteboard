@@ -129,6 +129,7 @@
 #include "GCGameState.h"
 #include "MachineFilteredVision.h"
 #include "MachineFilteredLocalisationVision.h"
+#include "MachineFilteredLines.h"
 #include "VisionFieldFeatures.h"
 #include "HalArmTarget.h"
 #include "HalLegTarget.h"
