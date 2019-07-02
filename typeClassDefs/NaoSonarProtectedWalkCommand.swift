@@ -79,14 +79,16 @@ extension wb_nao_sonar_protected_walk_command {
     /**
      * Create a new `wb_nao_sonar_protected_walk_command`.
      */
-    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0, exactStepsRequested: Bool = false, odometryResetCounter: UInt8 = 0) {
+    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0, priority: Int8 = 1, exactStepsRequested: Bool = false, odometryResetCounter: UInt8 = 0, bend: UInt8 = 0) {
         self.init()
         self.walkEngineOn = walkEngineOn
         self.forward = forward
         self.left = left
         self.turn = turn
+        self.priority = priority
         self.exactStepsRequested = exactStepsRequested
         self.odometryResetCounter = odometryResetCounter
+        self.bend = bend
     }
 
     /**
@@ -99,8 +101,10 @@ extension wb_nao_sonar_protected_walk_command {
             let forward = dictionary["forward"] as? Int16,
             let left = dictionary["left"] as? Int16,
             let turn = dictionary["turn"] as? Int8,
+            let priority = dictionary["priority"] as? Int8,
             let exactStepsRequested = dictionary["exactStepsRequested"] as? Bool,
-            let odometryResetCounter = dictionary["odometryResetCounter"] as? UInt8
+            let odometryResetCounter = dictionary["odometryResetCounter"] as? UInt8,
+            let bend = dictionary["bend"] as? UInt8
         else {
             fatalError("Unable to convert \(dictionary) to wb_nao_sonar_protected_walk_command.")
         }
@@ -108,8 +112,10 @@ extension wb_nao_sonar_protected_walk_command {
         self.forward = forward
         self.left = left
         self.turn = turn
+        self.priority = priority
         self.exactStepsRequested = exactStepsRequested
         self.odometryResetCounter = odometryResetCounter
+        self.bend = bend
     }
 
 }
@@ -129,9 +135,13 @@ extension wb_nao_sonar_protected_walk_command: CustomStringConvertible {
         descString += ", "
         descString += "turn=\(self.turn)"
         descString += ", "
+        descString += "priority=\(self.priority)"
+        descString += ", "
         descString += "exactStepsRequested=\(self.exactStepsRequested)"
         descString += ", "
         descString += "odometryResetCounter=\(self.odometryResetCounter)"
+        descString += ", "
+        descString += "bend=\(self.bend)"
         return descString
     }
 
@@ -144,6 +154,8 @@ public func == (lhs: wb_nao_sonar_protected_walk_command, rhs: wb_nao_sonar_prot
         && lhs.forward == rhs.forward
         && lhs.left == rhs.left
         && lhs.turn == rhs.turn
+        && lhs.priority == rhs.priority
         && lhs.exactStepsRequested == rhs.exactStepsRequested
         && lhs.odometryResetCounter == rhs.odometryResetCounter
+        && lhs.bend == rhs.bend
 }

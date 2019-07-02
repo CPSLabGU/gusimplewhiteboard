@@ -87,11 +87,11 @@
 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT wb_nao_sonar_protected_walk_command 
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 6
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 8
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 112
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 40
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 137
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 51
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -123,6 +123,11 @@ struct wb_nao_sonar_protected_walk_command
     PROPERTY(int8_t, turn)
 
     /**
+     * subsumption priority 1: unprotected walk, command unmodified. If priority 2 use protected by sonar mode.
+     */
+    PROPERTY(int8_t, priority)
+
+    /**
      * No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
      */
     PROPERTY(bool, exactStepsRequested)
@@ -131,6 +136,11 @@ struct wb_nao_sonar_protected_walk_command
      * Odometry will reset any time this is changed or incremented.
      */
     PROPERTY(uint8_t, odometryResetCounter)
+
+    /**
+     * [0 - 1] controls what the robot does when stopped, 0 == STAND and lower stiffness, 1 == stay in READY, crouched and ready to walk immediately.
+     */
+    PROPERTY(uint8_t, bend)
 
 };
 

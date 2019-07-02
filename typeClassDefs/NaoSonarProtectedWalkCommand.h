@@ -83,13 +83,15 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0) {
+        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
             set_walkEngineOn(walkEngineOn);
             set_forward(forward);
             set_left(left);
             set_turn(turn);
+            set_priority(priority);
             set_exactStepsRequested(exactStepsRequested);
             set_odometryResetCounter(odometryResetCounter);
+            set_bend(bend);
         }
 
     public:
@@ -97,29 +99,29 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoSonarProtectedWalkCommand`.
          */
-        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0) {
-            this->init(walkEngineOn, forward, left, turn, exactStepsRequested, odometryResetCounter);
+        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
+            this->init(walkEngineOn, forward, left, turn, priority, exactStepsRequested, odometryResetCounter, bend);
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const NaoSonarProtectedWalkCommand &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const struct wb_nao_sonar_protected_walk_command &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
         }
 
         /**
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const NaoSonarProtectedWalkCommand &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
             return *this;
         }
 
@@ -127,7 +129,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const struct wb_nao_sonar_protected_walk_command &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.exactStepsRequested(), other.odometryResetCounter());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
             return *this;
         }
 
@@ -156,9 +158,13 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "turn=" << static_cast<signed>(this->turn());
             ss << ", ";
+            ss << "priority=" << static_cast<signed>(this->priority());
+            ss << ", ";
             ss << "exactStepsRequested=" << (this->exactStepsRequested() ? "true" : "false");
             ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
+            ss << ", ";
+            ss << "bend=" << static_cast<unsigned>(this->bend());
             return ss.str();
 #endif /// USE_WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_CONVERSION
         }
@@ -179,9 +185,13 @@ namespace guWhiteboard {
             ss << ", ";
             ss << static_cast<signed>(this->turn());
             ss << ", ";
+            ss << static_cast<signed>(this->priority());
+            ss << ", ";
             ss << (this->exactStepsRequested() ? "true" : "false");
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->bend());
             return ss.str();
 #endif /// USE_WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_CONVERSION
         }
@@ -268,10 +278,14 @@ namespace guWhiteboard {
                         varIndex = 2;
                     } else if (0 == strcmp("turn", key)) {
                         varIndex = 3;
-                    } else if (0 == strcmp("exactStepsRequested", key)) {
+                    } else if (0 == strcmp("priority", key)) {
                         varIndex = 4;
-                    } else if (0 == strcmp("odometryResetCounter", key)) {
+                    } else if (0 == strcmp("exactStepsRequested", key)) {
                         varIndex = 5;
+                    } else if (0 == strcmp("odometryResetCounter", key)) {
+                        varIndex = 6;
+                    } else if (0 == strcmp("bend", key)) {
+                        varIndex = 7;
                     } else {
                         varIndex = -1;
                     }
@@ -300,12 +314,22 @@ namespace guWhiteboard {
                     }
                     case 4:
                     {
-                        this->set_exactStepsRequested(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        this->set_priority(static_cast<int8_t>(atoi(var_str)));
                         break;
                     }
                     case 5:
                     {
+                        this->set_exactStepsRequested(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 6:
+                    {
                         this->set_odometryResetCounter(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 7:
+                    {
+                        this->set_bend(static_cast<uint8_t>(atoi(var_str)));
                         break;
                     }
                 }
@@ -324,10 +348,11 @@ namespace guWhiteboard {
          * @param forward see struct documentation.
          * @param left see struct documentation.
          * @param turn see struct documentation.
-         * @return A NaoWalkCommand instance
+         * @return A NaoSonarProtectedWalkCommand instance
          */
-        static NaoSonarProtectedWalkCommand walkProtected(int16_t forward, int16_t left, int8_t turn) {
+        static NaoSonarProtectedWalkCommand walkProtected(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
             NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+            cmd.set_priority(priority);
             cmd.set_forward(forward);
             cmd.set_left(left);
             cmd.set_turn(turn);
@@ -339,11 +364,59 @@ namespace guWhiteboard {
          * @param forward see struct documentation.
          * @param left see struct documentation.
          * @param turn see struct documentation.
-         * @return A NaoWalkCommand instance
+         * @return A NaoSonarProtectedWalkCommand instance
          */
-        static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int16_t forward, int16_t left, int8_t turn) {
-            NaoSonarProtectedWalkCommand cmd = walkProtected(forward, left, turn);
+        static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
+            NaoSonarProtectedWalkCommand cmd = walkProtected(priority,forward, left, turn);
             cmd.set_exactStepsRequested(true);
+            return cmd;
+        }
+
+        /**
+         * Convenience function to make the nao stop walking. The robot will slow down and stop, remaining in the 'walking' position (slightly crouched).
+         * @return A NaoSonarProtectedWalkCommand instance
+         */
+        static NaoSonarProtectedWalkCommand stop() {
+            NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+            cmd.set_walkEngineOn(true);
+            cmd.set_forward(0);
+            cmd.set_left(0);
+            cmd.set_turn(0);
+            cmd.set_bend(1);
+            return cmd;
+        }
+
+        /**
+         * Convenience function to make the nao stand in the 'walk' position (slightly crouched), ready to immediately start walking again. This is handy for returning from the STANDING position, reached via 'standWithMinimalStiffness'.
+         * @return A NaoSonarProtectedWalkCommand instance
+         */
+        static NaoSonarProtectedWalkCommand standWithStiffness() {
+            NaoSonarProtectedWalkCommand cmd = stop();
+            cmd.set_walkEngineOn(true);
+            cmd.set_bend(1);
+            return cmd;
+        }
+
+
+
+        /**
+         * Convenience function to make the nao stand in the 'STANDING' position, upright with minimal stiffness. Good for longer pauses in movement, to save on battery and motor wear. You should always return to the CROUCH position before giving up control of the DCM with a 'disconnectWalk'. If you don't return to that position, other motion activities like the MotionPlayer may 'jerk' when activated. You do not need to return to the CROUCH position when you issue walk commands, it will be done automatically.
+         * @return A NaoSonarProtectedWalkCommand instance
+         */
+        static NaoSonarProtectedWalkCommand standWithMinimalStiffness() {
+            NaoSonarProtectedWalkCommand cmd = stop();
+            cmd.set_walkEngineOn(true);
+            cmd.set_bend(0);
+            return cmd;
+        }
+
+        /**
+         * Convenience function to disconnect the walk engine from the DCM. This must be done in order to give control of the joints to another module, like the Motion Player. You should return to the CROUCH position via 'standWithStiffness' or 'stop' before doing this, to ensure a smooth motion control transition.
+         * @return A NaoSonarProtectedWalkCommand instance
+         */
+        static NaoSonarProtectedWalkCommand disconnectWalk() {
+            NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+            cmd.set_walkEngineOn(false);
             return cmd;
         }
     };
