@@ -137,3 +137,4 @@ type:location, nonatomic, LeftGoalPostLocation, Location of the left goal post.
 type:location, nonatomic, RightGoalPostLocation, Location of the right goal post.
 type:location, nonatomic, GoalLocation, Location of the goal.
 type:nao_sonar_protected_walk_command, nonatomic, NaoSonarProtectedWalkCommand, Send walk protected by sonar.
+type:nao_obstacle_direction, nonatomic, NaoObstacleDirection, Send general direction if obstacle.

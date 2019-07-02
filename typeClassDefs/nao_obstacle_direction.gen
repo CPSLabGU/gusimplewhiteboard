@@ -1,0 +1,27 @@
+-author  Vlad Estivill-Castro
+-c++
+
+%c++
+public:
+
+/**
+ */
+static NaoObstacleDirection sonar_direction(bool left, bool  front, bool right) {
+    NaoObstacleDirection obstacles = NaoObstacleDirection();
+    cmd.set_left(left);
+    cmd.set_front(front);
+    cmd.set_right(right);
+    return obstacles;
+}
+
+-properties
+
+
+bool left = false  // Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
+bool right = false  // Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
+bool front = false  // Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
+
+
+-comment
+This message should tell you the postings of the SMSubsumption machine which says whether there is an obstacle
+in the general left area or in front, or the general right area.
