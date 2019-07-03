@@ -1650,6 +1650,18 @@ v.from_string(message_content);
     return false;
 #endif //DominantFrequencies_DEFINED
 }
+case kMissionPriorityForObstacles_v:
+{
+#ifdef MissionPriorityForObstacles_DEFINED
+    class MissionPriorityForObstacles_t msg_ptr(wbd);
+    MissionPriorityForObstacles v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MissionPriorityForObstacles_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1806,6 +1818,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["NaoSonarProtectedWalkCommand"] = kNaoSonarProtectedWalkCommand_v;
     self["NaoObstacleDirection"] = kNaoObstacleDirection_v;
     self["DominantFrequencies"] = kDominantFrequencies_v;
+    self["MissionPriorityForObstacles"] = kMissionPriorityForObstacles_v;
 
     (void) self;
 }

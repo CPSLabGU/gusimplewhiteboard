@@ -1262,6 +1262,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //DominantFrequencies_DEFINED
             }
+            case kMissionPriorityForObstacles_v:
+            {
+#ifdef MissionPriorityForObstacles_DEFINED
+                class MissionPriorityForObstacles_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MissionPriorityForObstacles_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -1127,6 +1127,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //DOMINANT_FREQUENCIES_GENERATED
                 break;
             }
+            case kMissionPriorityForObstacles_v:
+            {
+#ifdef MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
+                return DESERIALISE(MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT, serialised_in, (struct MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

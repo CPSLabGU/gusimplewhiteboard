@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 141
+#define GSW_NUM_TYPES_DEFINED 142
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -162,8 +162,9 @@ typedef enum wb_types
     kGoalLocation_v = 137, 		///< Location of the goal.
     kNaoSonarProtectedWalkCommand_v = 138, 		///< Send walk protected by sonar.
     kNaoObstacleDirection_v = 139, 		///< Send general direction if obstacle.
+    kDominantFrequencies_v = 140, 		///< Dominant frequencies and RMS levels for the four microphones
 
-    kDominantFrequencies_v = 140 		///< Dominant frequencies and RMS levels for the four microphones
+    kMissionPriorityForObstacles_v = 141 		///< notify trough the whiteboard the priority of the mission, high for chasing the ball, low for getting to a place in the field.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

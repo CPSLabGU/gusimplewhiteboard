@@ -40,5 +40,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_sonar_protected_walk_command.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_obstacle_direction.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_dominant_frequencies.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_mission_priority_for_obstacles.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

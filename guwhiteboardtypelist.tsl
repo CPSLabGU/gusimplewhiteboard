@@ -139,3 +139,4 @@ type:location, nonatomic, GoalLocation, Location of the goal.
 type:nao_sonar_protected_walk_command, nonatomic, NaoSonarProtectedWalkCommand, Send walk protected by sonar.
 type:nao_obstacle_direction, nonatomic, NaoObstacleDirection, Send general direction if obstacle.
 type:dominant_frequencies, nonatomic, DominantFrequencies, Dominant frequencies and RMS levels for the four microphones
+type:mission_priority_for_obstacles, nonatomic, MissionPriorityForObstacles, notify trough the whiteboard the priority of the mission, high for chasing the ball, low for getting to a place in the field.

@@ -3257,6 +3257,29 @@ public:
 }; 
 #endif //DominantFrequencies_DEFINED
 
+#ifdef MissionPriorityForObstacles_DEFINED
+/** WBFunctor definition for MissionPriorityForObstacles_WBFunctor_T */ 
+template <typename MissionPriorityForObstacles_WBFunctor_T >
+class MissionPriorityForObstacles_WBFunctor: public WBFunctor<MissionPriorityForObstacles_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MissionPriorityForObstacles_WBFunctor_T */
+    MissionPriorityForObstacles_WBFunctor(MissionPriorityForObstacles_WBFunctor_T* obj, void (MissionPriorityForObstacles_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &), guWhiteboard::WBTypes t): WBFunctor<MissionPriorityForObstacles_WBFunctor_T >(obj, (void (MissionPriorityForObstacles_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MissionPriorityForObstacles_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MissionPriorityForObstacles result = guWhiteboard::MissionPriorityForObstacles_t().get_from(m);
+        MissionPriorityForObstacles_function_t funct((void (MissionPriorityForObstacles_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &))WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::fObject->*funct)(WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MissionPriorityForObstacles_WBFunctor_T::*MissionPriorityForObstacles_function_t) (guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MissionPriorityForObstacles_WBFunctor_T *obj, void (MissionPriorityForObstacles_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &), guWhiteboard::WBTypes t) { return new MissionPriorityForObstacles_WBFunctor<MissionPriorityForObstacles_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MissionPriorityForObstacles_DEFINED
+
 
 #pragma clang diagnostic pop
 

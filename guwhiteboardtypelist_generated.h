@@ -1193,6 +1193,14 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: MissionPriorityForObstacles_t @brief notify trough the whiteboard the priority of the mission, high for chasing the ball, low for getting to a place in the field. */ 
+    class MissionPriorityForObstacles_t: public generic_whiteboard_object<class MissionPriorityForObstacles > { 
+        public: 
+        /** Constructor: MissionPriorityForObstacles_t */ 
+        MissionPriorityForObstacles_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class MissionPriorityForObstacles >(wbd, kMissionPriorityForObstacles_v, false) {}
+        
+    };
+
 
 }
 

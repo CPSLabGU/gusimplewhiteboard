@@ -155,7 +155,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "GoalLocation",
         "NaoSonarProtectedWalkCommand",
         "NaoObstacleDirection",
-        "DominantFrequencies"
+        "DominantFrequencies",
+        "MissionPriorityForObstacles"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -301,7 +302,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_location",
         "wb_nao_sonar_protected_walk_command",
         "wb_nao_obstacle_direction",
-        "wb_dominant_frequencies"
+        "wb_dominant_frequencies",
+        "wb_mission_priority_for_obstacles"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

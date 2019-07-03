@@ -140,6 +140,7 @@
 #include "Location.h"
 #include "NaoSonarProtectedWalkCommand.h"
 #include "DominantFrequencies.h"
+#include "MissionPriorityForObstacles.h"
 
 //#include "GazeboObjectPose.h"
 #endif // WHITEBOARD_POSTER_STRING_CONVERSION
