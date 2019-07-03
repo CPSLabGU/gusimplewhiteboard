@@ -79,7 +79,7 @@ extension wb_nao_sonar_protected_walk_command {
     /**
      * Create a new `wb_nao_sonar_protected_walk_command`.
      */
-    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0, priority: Int8 = 1, exactStepsRequested: Bool = false, odometryResetCounter: UInt8 = 0, bend: UInt8 = 0) {
+    public init(_ walkEngineOn: Bool = false, forward: Int16 = 0, left: Int16 = 0, turn: Int8 = 0, priority: Int8 = 1, exactStepsRequested: Bool = false, speed: UInt8 = 100, isFast: Bool = false, kickWithLeftFoot: Bool = true, useShuffle: Bool = true, leftArmLimp: Bool = false, rightArmLimp: Bool = false, power: UInt8 = 0, odometryResetCounter: UInt8 = 0, bend: UInt8 = 0) {
         self.init()
         self.walkEngineOn = walkEngineOn
         self.forward = forward
@@ -87,6 +87,13 @@ extension wb_nao_sonar_protected_walk_command {
         self.turn = turn
         self.priority = priority
         self.exactStepsRequested = exactStepsRequested
+        self.speed = speed
+        self.isFast = isFast
+        self.kickWithLeftFoot = kickWithLeftFoot
+        self.useShuffle = useShuffle
+        self.leftArmLimp = leftArmLimp
+        self.rightArmLimp = rightArmLimp
+        self.power = power
         self.odometryResetCounter = odometryResetCounter
         self.bend = bend
     }
@@ -103,6 +110,13 @@ extension wb_nao_sonar_protected_walk_command {
             let turn = dictionary["turn"] as? Int8,
             let priority = dictionary["priority"] as? Int8,
             let exactStepsRequested = dictionary["exactStepsRequested"] as? Bool,
+            let speed = dictionary["speed"] as? UInt8,
+            let isFast = dictionary["isFast"] as? Bool,
+            let kickWithLeftFoot = dictionary["kickWithLeftFoot"] as? Bool,
+            let useShuffle = dictionary["useShuffle"] as? Bool,
+            let leftArmLimp = dictionary["leftArmLimp"] as? Bool,
+            let rightArmLimp = dictionary["rightArmLimp"] as? Bool,
+            let power = dictionary["power"] as? UInt8,
             let odometryResetCounter = dictionary["odometryResetCounter"] as? UInt8,
             let bend = dictionary["bend"] as? UInt8
         else {
@@ -114,6 +128,13 @@ extension wb_nao_sonar_protected_walk_command {
         self.turn = turn
         self.priority = priority
         self.exactStepsRequested = exactStepsRequested
+        self.speed = speed
+        self.isFast = isFast
+        self.kickWithLeftFoot = kickWithLeftFoot
+        self.useShuffle = useShuffle
+        self.leftArmLimp = leftArmLimp
+        self.rightArmLimp = rightArmLimp
+        self.power = power
         self.odometryResetCounter = odometryResetCounter
         self.bend = bend
     }
@@ -139,6 +160,20 @@ extension wb_nao_sonar_protected_walk_command: CustomStringConvertible {
         descString += ", "
         descString += "exactStepsRequested=\(self.exactStepsRequested)"
         descString += ", "
+        descString += "speed=\(self.speed)"
+        descString += ", "
+        descString += "isFast=\(self.isFast)"
+        descString += ", "
+        descString += "kickWithLeftFoot=\(self.kickWithLeftFoot)"
+        descString += ", "
+        descString += "useShuffle=\(self.useShuffle)"
+        descString += ", "
+        descString += "leftArmLimp=\(self.leftArmLimp)"
+        descString += ", "
+        descString += "rightArmLimp=\(self.rightArmLimp)"
+        descString += ", "
+        descString += "power=\(self.power)"
+        descString += ", "
         descString += "odometryResetCounter=\(self.odometryResetCounter)"
         descString += ", "
         descString += "bend=\(self.bend)"
@@ -156,6 +191,13 @@ public func == (lhs: wb_nao_sonar_protected_walk_command, rhs: wb_nao_sonar_prot
         && lhs.turn == rhs.turn
         && lhs.priority == rhs.priority
         && lhs.exactStepsRequested == rhs.exactStepsRequested
+        && lhs.speed == rhs.speed
+        && lhs.isFast == rhs.isFast
+        && lhs.kickWithLeftFoot == rhs.kickWithLeftFoot
+        && lhs.useShuffle == rhs.useShuffle
+        && lhs.leftArmLimp == rhs.leftArmLimp
+        && lhs.rightArmLimp == rhs.rightArmLimp
+        && lhs.power == rhs.power
         && lhs.odometryResetCounter == rhs.odometryResetCounter
         && lhs.bend == rhs.bend
 }

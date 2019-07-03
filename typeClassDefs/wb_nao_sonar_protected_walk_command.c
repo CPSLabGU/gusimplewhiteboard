@@ -177,6 +177,62 @@ const char* wb_nao_sonar_protected_walk_command_description(const struct wb_nao_
     if (len >= bufferSize) {
         return descString;
     }
+    len += snprintf(descString + len, bufferSize - len, "speed=%u", self->speed);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->isFast ? "isFast=true" : "isFast=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->kickWithLeftFoot ? "kickWithLeftFoot=true" : "kickWithLeftFoot=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->useShuffle ? "useShuffle=true" : "useShuffle=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->leftArmLimp ? "leftArmLimp=true" : "leftArmLimp=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, self->rightArmLimp ? "rightArmLimp=true" : "rightArmLimp=false", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "power=%u", self->power);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
     len += snprintf(descString + len, bufferSize - len, "odometryResetCounter=%u", self->odometryResetCounter);
     if (len >= bufferSize) {
         return descString;
@@ -241,6 +297,62 @@ const char* wb_nao_sonar_protected_walk_command_to_string(const struct wb_nao_so
         return toString;
     }
     len = gu_strlcat(toString, self->exactStepsRequested ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->speed);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->isFast ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->kickWithLeftFoot ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->useShuffle ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->leftArmLimp ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, self->rightArmLimp ? "true" : "false", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->power);
     if (len >= bufferSize) {
         return toString;
     }
@@ -345,10 +457,24 @@ struct wb_nao_sonar_protected_walk_command* wb_nao_sonar_protected_walk_command_
                 varIndex = 4;
             } else if (0 == strcmp("exactStepsRequested", key)) {
                 varIndex = 5;
-            } else if (0 == strcmp("odometryResetCounter", key)) {
+            } else if (0 == strcmp("speed", key)) {
                 varIndex = 6;
-            } else if (0 == strcmp("bend", key)) {
+            } else if (0 == strcmp("isFast", key)) {
                 varIndex = 7;
+            } else if (0 == strcmp("kickWithLeftFoot", key)) {
+                varIndex = 8;
+            } else if (0 == strcmp("useShuffle", key)) {
+                varIndex = 9;
+            } else if (0 == strcmp("leftArmLimp", key)) {
+                varIndex = 10;
+            } else if (0 == strcmp("rightArmLimp", key)) {
+                varIndex = 11;
+            } else if (0 == strcmp("power", key)) {
+                varIndex = 12;
+            } else if (0 == strcmp("odometryResetCounter", key)) {
+                varIndex = 13;
+            } else if (0 == strcmp("bend", key)) {
+                varIndex = 14;
             } else {
                 varIndex = -1;
             }
@@ -387,10 +513,45 @@ struct wb_nao_sonar_protected_walk_command* wb_nao_sonar_protected_walk_command_
             }
             case 6:
             {
-                self->odometryResetCounter = ((uint8_t)atoi(var_str));
+                self->speed = ((uint8_t)atoi(var_str));
                 break;
             }
             case 7:
+            {
+                self->isFast = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 8:
+            {
+                self->kickWithLeftFoot = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 9:
+            {
+                self->useShuffle = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 10:
+            {
+                self->leftArmLimp = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 11:
+            {
+                self->rightArmLimp = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
+                break;
+            }
+            case 12:
+            {
+                self->power = ((uint8_t)atoi(var_str));
+                break;
+            }
+            case 13:
+            {
+                self->odometryResetCounter = ((uint8_t)atoi(var_str));
+                break;
+            }
+            case 14:
             {
                 self->bend = ((uint8_t)atoi(var_str));
                 break;
@@ -482,6 +643,74 @@ size_t wb_nao_sonar_protected_walk_command_to_network_serialised(const struct wb
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
+
+    uint8_t speed_nbo = (self->speed);
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((speed_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->isFast ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->kickWithLeftFoot ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->useShuffle ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->leftArmLimp ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!(self->rightArmLimp ? 1U : 0U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+    uint8_t power_nbo = (self->power);
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((power_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
 
     uint8_t odometryResetCounter_nbo = (self->odometryResetCounter);
     do {
@@ -599,6 +828,81 @@ size_t wb_nao_sonar_protected_walk_command_from_network_serialised(const char *s
         dst->exactStepsRequested = bitValue != 0;
         bit_offset = bit_offset + 1;
       } while(false);
+
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->speed ^= (-bitValue ^ dst->speed) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->speed = (dst->speed);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->isFast = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->kickWithLeftFoot = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->useShuffle = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->leftArmLimp = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+      do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->rightArmLimp = bitValue != 0;
+        bit_offset = bit_offset + 1;
+      } while(false);
+
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->power ^= (-bitValue ^ dst->power) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->power = (dst->power);
 
     do {
       int8_t b;

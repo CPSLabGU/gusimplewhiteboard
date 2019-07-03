@@ -83,13 +83,20 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
+        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t speed = 100, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
             set_walkEngineOn(walkEngineOn);
             set_forward(forward);
             set_left(left);
             set_turn(turn);
             set_priority(priority);
             set_exactStepsRequested(exactStepsRequested);
+            set_speed(speed);
+            set_isFast(isFast);
+            set_kickWithLeftFoot(kickWithLeftFoot);
+            set_useShuffle(useShuffle);
+            set_leftArmLimp(leftArmLimp);
+            set_rightArmLimp(rightArmLimp);
+            set_power(power);
             set_odometryResetCounter(odometryResetCounter);
             set_bend(bend);
         }
@@ -99,29 +106,29 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoSonarProtectedWalkCommand`.
          */
-        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
-            this->init(walkEngineOn, forward, left, turn, priority, exactStepsRequested, odometryResetCounter, bend);
+        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t speed = 100, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
+            this->init(walkEngineOn, forward, left, turn, priority, exactStepsRequested, speed, isFast, kickWithLeftFoot, useShuffle, leftArmLimp, rightArmLimp, power, odometryResetCounter, bend);
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const NaoSonarProtectedWalkCommand &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
         }
 
         /**
          * Copy Constructor.
          */
         NaoSonarProtectedWalkCommand(const struct wb_nao_sonar_protected_walk_command &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
         }
 
         /**
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const NaoSonarProtectedWalkCommand &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
             return *this;
         }
 
@@ -129,7 +136,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         NaoSonarProtectedWalkCommand &operator = (const struct wb_nao_sonar_protected_walk_command &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.odometryResetCounter(), other.bend());
+            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
             return *this;
         }
 
@@ -162,6 +169,20 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "exactStepsRequested=" << (this->exactStepsRequested() ? "true" : "false");
             ss << ", ";
+            ss << "speed=" << static_cast<unsigned>(this->speed());
+            ss << ", ";
+            ss << "isFast=" << (this->isFast() ? "true" : "false");
+            ss << ", ";
+            ss << "kickWithLeftFoot=" << (this->kickWithLeftFoot() ? "true" : "false");
+            ss << ", ";
+            ss << "useShuffle=" << (this->useShuffle() ? "true" : "false");
+            ss << ", ";
+            ss << "leftArmLimp=" << (this->leftArmLimp() ? "true" : "false");
+            ss << ", ";
+            ss << "rightArmLimp=" << (this->rightArmLimp() ? "true" : "false");
+            ss << ", ";
+            ss << "power=" << static_cast<unsigned>(this->power());
+            ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             ss << ", ";
             ss << "bend=" << static_cast<unsigned>(this->bend());
@@ -188,6 +209,20 @@ namespace guWhiteboard {
             ss << static_cast<signed>(this->priority());
             ss << ", ";
             ss << (this->exactStepsRequested() ? "true" : "false");
+            ss << ", ";
+            ss << static_cast<unsigned>(this->speed());
+            ss << ", ";
+            ss << (this->isFast() ? "true" : "false");
+            ss << ", ";
+            ss << (this->kickWithLeftFoot() ? "true" : "false");
+            ss << ", ";
+            ss << (this->useShuffle() ? "true" : "false");
+            ss << ", ";
+            ss << (this->leftArmLimp() ? "true" : "false");
+            ss << ", ";
+            ss << (this->rightArmLimp() ? "true" : "false");
+            ss << ", ";
+            ss << static_cast<unsigned>(this->power());
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
             ss << ", ";
@@ -282,10 +317,24 @@ namespace guWhiteboard {
                         varIndex = 4;
                     } else if (0 == strcmp("exactStepsRequested", key)) {
                         varIndex = 5;
-                    } else if (0 == strcmp("odometryResetCounter", key)) {
+                    } else if (0 == strcmp("speed", key)) {
                         varIndex = 6;
-                    } else if (0 == strcmp("bend", key)) {
+                    } else if (0 == strcmp("isFast", key)) {
                         varIndex = 7;
+                    } else if (0 == strcmp("kickWithLeftFoot", key)) {
+                        varIndex = 8;
+                    } else if (0 == strcmp("useShuffle", key)) {
+                        varIndex = 9;
+                    } else if (0 == strcmp("leftArmLimp", key)) {
+                        varIndex = 10;
+                    } else if (0 == strcmp("rightArmLimp", key)) {
+                        varIndex = 11;
+                    } else if (0 == strcmp("power", key)) {
+                        varIndex = 12;
+                    } else if (0 == strcmp("odometryResetCounter", key)) {
+                        varIndex = 13;
+                    } else if (0 == strcmp("bend", key)) {
+                        varIndex = 14;
                     } else {
                         varIndex = -1;
                     }
@@ -324,10 +373,45 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        this->set_odometryResetCounter(static_cast<uint8_t>(atoi(var_str)));
+                        this->set_speed(static_cast<uint8_t>(atoi(var_str)));
                         break;
                     }
                     case 7:
+                    {
+                        this->set_isFast(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 8:
+                    {
+                        this->set_kickWithLeftFoot(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 9:
+                    {
+                        this->set_useShuffle(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 10:
+                    {
+                        this->set_leftArmLimp(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 11:
+                    {
+                        this->set_rightArmLimp(strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0);
+                        break;
+                    }
+                    case 12:
+                    {
+                        this->set_power(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 13:
+                    {
+                        this->set_odometryResetCounter(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 14:
                     {
                         this->set_bend(static_cast<uint8_t>(atoi(var_str)));
                         break;
@@ -378,6 +462,7 @@ namespace guWhiteboard {
          */
         static NaoSonarProtectedWalkCommand stop() {
             NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+            cmd.set_priority(1);
             cmd.set_walkEngineOn(true);
             cmd.set_forward(0);
             cmd.set_left(0);
@@ -393,6 +478,7 @@ namespace guWhiteboard {
         static NaoSonarProtectedWalkCommand standWithStiffness() {
             NaoSonarProtectedWalkCommand cmd = stop();
             cmd.set_walkEngineOn(true);
+            cmd.set_priority(1);
             cmd.set_bend(1);
             return cmd;
         }
@@ -405,6 +491,7 @@ namespace guWhiteboard {
          */
         static NaoSonarProtectedWalkCommand standWithMinimalStiffness() {
             NaoSonarProtectedWalkCommand cmd = stop();
+            cmd.set_priority(1);
             cmd.set_walkEngineOn(true);
             cmd.set_bend(0);
             return cmd;
@@ -416,6 +503,7 @@ namespace guWhiteboard {
          */
         static NaoSonarProtectedWalkCommand disconnectWalk() {
             NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+            cmd.set_priority(1);
             cmd.set_walkEngineOn(false);
             return cmd;
         }

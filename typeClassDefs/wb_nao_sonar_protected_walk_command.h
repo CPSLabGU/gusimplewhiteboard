@@ -87,11 +87,11 @@
 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED 
 #define NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT wb_nao_sonar_protected_walk_command 
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 8
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_NUMBER_OF_VARIABLES 15
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 137
-#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 51
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE 254
+#define NAO_SONAR_PROTECTED_WALK_COMMAND_TO_STRING_BUFFER_SIZE 96
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -131,6 +131,41 @@ struct wb_nao_sonar_protected_walk_command
      * No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
      */
     PROPERTY(bool, exactStepsRequested)
+
+    /**
+     * [0 - 100] modifier for forward etc.. when using exactStepsRequested = true
+     */
+    PROPERTY(uint8_t, speed)
+
+    /**
+     * for kicks. True results in a 'Jab'/rapid kick.
+     */
+    PROPERTY(bool, isFast)
+
+    /**
+     * which foot to use for kicking
+     */
+    PROPERTY(bool, kickWithLeftFoot)
+
+    /**
+     * limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obstacles that could trip the robot, if it tried to step onto it.
+     */
+    PROPERTY(bool, useShuffle)
+
+    /**
+     * lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+     */
+    PROPERTY(bool, leftArmLimp)
+
+    /**
+     * lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+     */
+    PROPERTY(bool, rightArmLimp)
+
+    /**
+     * [0 - 100] stiffness, auto set to minimum needed values. Advanced pararm! don't alter this without knowledge of exactly what it does.
+     */
+    PROPERTY(uint8_t, power)
 
     /**
      * Odometry will reset any time this is changed or incremented.

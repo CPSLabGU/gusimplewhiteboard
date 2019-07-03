@@ -39,6 +39,7 @@ static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t priority, int1
  */
 static NaoSonarProtectedWalkCommand stop() {
     NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+    cmd.set_priority(1);
     cmd.set_walkEngineOn(true);
     cmd.set_forward(0);
     cmd.set_left(0);
@@ -54,6 +55,7 @@ static NaoSonarProtectedWalkCommand stop() {
 static NaoSonarProtectedWalkCommand standWithStiffness() {
     NaoSonarProtectedWalkCommand cmd = stop();
     cmd.set_walkEngineOn(true);
+    cmd.set_priority(1);
     cmd.set_bend(1);
     return cmd;
 }
@@ -66,6 +68,7 @@ static NaoSonarProtectedWalkCommand standWithStiffness() {
  */
 static NaoSonarProtectedWalkCommand standWithMinimalStiffness() {
     NaoSonarProtectedWalkCommand cmd = stop();
+    cmd.set_priority(1);
     cmd.set_walkEngineOn(true);
     cmd.set_bend(0);
     return cmd;
@@ -77,6 +80,7 @@ static NaoSonarProtectedWalkCommand standWithMinimalStiffness() {
  */
 static NaoSonarProtectedWalkCommand disconnectWalk() {
     NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
+    cmd.set_priority(1);
     cmd.set_walkEngineOn(false);
     return cmd;
 }
@@ -94,9 +98,25 @@ int8_t priority = 1     // subsumption priority 1: unprotected walk, command unm
 
 bool exactStepsRequested = false //No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
 
+uint8_t speed = 100 //[0 - 100] modifier for forward etc.. when using exactStepsRequested = true
+
+bool isFast = false //for kicks. True results in a 'Jab'/rapid kick.
+
+bool kickWithLeftFoot = true //which foot to use for kicking
+
+bool useShuffle = true //limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obstacles that could trip the robot, if it tried to step onto it.
+
+bool leftArmLimp = false //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+
+bool rightArmLimp = false //lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
+
+uint8_t power = 0   //[0 - 100] stiffness, auto set to minimum needed values. Advanced pararm! don't alter this without knowledge of exactly what it does.
+
+
 uint8_t odometryResetCounter = 0 //Odometry will reset any time this is changed or incremented.
 
 uint8_t bend = 0   //[0 - 1] controls what the robot does when stopped, 0 == STAND and lower stiffness, 1 == stay in READY, crouched and ready to walk immediately.
+
 
 
 -comment
