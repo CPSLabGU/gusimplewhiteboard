@@ -91,7 +91,7 @@ extension wb_vision_control_status {
     /**
      * Create a new `wb_vision_control_status`.
      */
-    public init(_ cameraResolution: Resolutions = VGA, pipelineRunning: Bool = true, selectedCamera: VisionCamera = Top, saveImage: SaveFileType = None, saveClassifiedImage: Bool = false, pipeline: NamedPipeline = Soccer, chooseCamera: Int32 = 0, networkTop: NeuralNetworkType = v2, networkBottom: NeuralNetworkType = v2, streamingSource: StreamingType = Normal, imageInput: Bool = false, jpegStreamQuality: Int32 = 30, jpegStreamStride: Int32 = 4, frameRate: Int32 = 0, runPipelineOnce: Bool = false, frameNumber: UInt64 = 0, colourCalibration: String = "class", imageTime: timeval = {}) {
+    public init(_ cameraResolution: Resolutions = VGA, pipelineRunning: Bool = true, selectedCamera: VisionCamera = Top, saveImage: SaveFileType = None, saveClassifiedImage: Bool = false, pipeline: NamedPipeline = Soccer, chooseCamera: Int32 = 0, confidence: Float = 0.8, networkTop: NeuralNetworkType = v2, networkBottom: NeuralNetworkType = v2, streamingSource: StreamingType = Normal, imageInput: Bool = false, jpegStreamQuality: Int32 = 30, jpegStreamStride: Int32 = 4, frameRate: Int32 = 0, runPipelineOnce: Bool = false, frameNumber: UInt64 = 0, colourCalibration: String = "class", imageTime: timeval = {}) {
         self.init()
         self.cameraResolution = cameraResolution
         self.pipelineRunning = pipelineRunning
@@ -100,6 +100,7 @@ extension wb_vision_control_status {
         self.saveClassifiedImage = saveClassifiedImage
         self.pipeline = pipeline
         self.chooseCamera = chooseCamera
+        self.confidence = confidence
         self.networkTop = networkTop
         self.networkBottom = networkBottom
         self.streamingSource = streamingSource
@@ -126,6 +127,7 @@ extension wb_vision_control_status {
             let saveClassifiedImage = dictionary["saveClassifiedImage"] as? Bool,
             let pipeline = dictionary["pipeline"] as? NamedPipeline,
             let chooseCamera = dictionary["chooseCamera"] as? Int32,
+            let confidence = dictionary["confidence"] as? Float,
             let networkTop = dictionary["networkTop"] as? NeuralNetworkType,
             let networkBottom = dictionary["networkBottom"] as? NeuralNetworkType,
             let streamingSource = dictionary["streamingSource"] as? StreamingType,
@@ -147,6 +149,7 @@ extension wb_vision_control_status {
         self.saveClassifiedImage = saveClassifiedImage
         self.pipeline = pipeline
         self.chooseCamera = chooseCamera
+        self.confidence = confidence
         self.networkTop = networkTop
         self.networkBottom = networkBottom
         self.streamingSource = streamingSource
@@ -187,6 +190,8 @@ extension wb_vision_control_status: CustomStringConvertible {
         descString += ", "
         descString += "chooseCamera=\(self.chooseCamera)"
         descString += ", "
+        descString += "confidence=\(self.confidence)"
+        descString += ", "
         descString += "networkTop=\(self.networkTop.rawValue)"
         descString += ", "
         descString += "networkBottom=\(self.networkBottom.rawValue)"
@@ -221,6 +226,7 @@ public func == (lhs: wb_vision_control_status, rhs: wb_vision_control_status) ->
         && lhs.saveClassifiedImage == rhs.saveClassifiedImage
         && lhs.pipeline == rhs.pipeline
         && lhs.chooseCamera == rhs.chooseCamera
+        && lhs.confidence == rhs.confidence
         && lhs.networkTop == rhs.networkTop
         && lhs.networkBottom == rhs.networkBottom
         && lhs.streamingSource == rhs.streamingSource

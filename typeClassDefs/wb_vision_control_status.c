@@ -274,6 +274,14 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
     if (len >= bufferSize) {
         return descString;
     }
+    len += snprintf(descString + len, bufferSize - len, "confidence=%f", self->confidence);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
     switch (self->networkTop) {
         case BallOnly:
         {
@@ -564,6 +572,14 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
     if (len >= bufferSize) {
         return toString;
     }
+    len += snprintf(toString + len, bufferSize - len, "%f", self->confidence);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
     switch (self->networkTop) {
         case BallOnly:
         {
@@ -785,26 +801,28 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
                 varIndex = 5;
             } else if (0 == strcmp("chooseCamera", key)) {
                 varIndex = 6;
-            } else if (0 == strcmp("networkTop", key)) {
+            } else if (0 == strcmp("confidence", key)) {
                 varIndex = 7;
-            } else if (0 == strcmp("networkBottom", key)) {
+            } else if (0 == strcmp("networkTop", key)) {
                 varIndex = 8;
-            } else if (0 == strcmp("streamingSource", key)) {
+            } else if (0 == strcmp("networkBottom", key)) {
                 varIndex = 9;
-            } else if (0 == strcmp("imageInput", key)) {
+            } else if (0 == strcmp("streamingSource", key)) {
                 varIndex = 10;
-            } else if (0 == strcmp("jpegStreamQuality", key)) {
+            } else if (0 == strcmp("imageInput", key)) {
                 varIndex = 11;
-            } else if (0 == strcmp("jpegStreamStride", key)) {
+            } else if (0 == strcmp("jpegStreamQuality", key)) {
                 varIndex = 12;
-            } else if (0 == strcmp("frameRate", key)) {
+            } else if (0 == strcmp("jpegStreamStride", key)) {
                 varIndex = 13;
-            } else if (0 == strcmp("runPipelineOnce", key)) {
+            } else if (0 == strcmp("frameRate", key)) {
                 varIndex = 14;
-            } else if (0 == strcmp("frameNumber", key)) {
+            } else if (0 == strcmp("runPipelineOnce", key)) {
                 varIndex = 15;
-            } else if (0 == strcmp("colourCalibration", key)) {
+            } else if (0 == strcmp("frameNumber", key)) {
                 varIndex = 16;
+            } else if (0 == strcmp("colourCalibration", key)) {
+                varIndex = 17;
             } else {
                 varIndex = -1;
             }
@@ -890,6 +908,11 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             }
             case 7:
             {
+                self->confidence = ((float)atof(var_str));
+                break;
+            }
+            case 8:
+            {
                 if (strcmp("BallOnly", var_str) == 0) {
                     self->networkTop = BallOnly;
                 } else if (strcmp("VGANet", var_str) == 0) {
@@ -903,7 +926,7 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
                 }
                 break;
             }
-            case 8:
+            case 9:
             {
                 if (strcmp("BallOnly", var_str) == 0) {
                     self->networkBottom = BallOnly;
@@ -918,7 +941,7 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
                 }
                 break;
             }
-            case 9:
+            case 10:
             {
                 if (strcmp("Classified", var_str) == 0) {
                     self->streamingSource = Classified;
@@ -931,37 +954,37 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
                 }
                 break;
             }
-            case 10:
+            case 11:
             {
                 self->imageInput = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
                 break;
             }
-            case 11:
+            case 12:
             {
                 self->jpegStreamQuality = ((int)atoi(var_str));
                 break;
             }
-            case 12:
+            case 13:
             {
                 self->jpegStreamStride = ((int)atoi(var_str));
                 break;
             }
-            case 13:
+            case 14:
             {
                 self->frameRate = ((int)atoi(var_str));
                 break;
             }
-            case 14:
+            case 15:
             {
                 self->runPipelineOnce = strcmp(var_str, "true") == 0 || strcmp(var_str, "1") == 0;
                 break;
             }
-            case 15:
+            case 16:
             {
                 self->frameNumber = ((uint64_t)atoll(var_str));
                 break;
             }
-            case 16:
+            case 17:
             {
                 strncpy(self->colourCalibration, var_str, 10);
                 break;
@@ -1067,6 +1090,8 @@ size_t wb_vision_control_status_to_network_serialised(const struct wb_vision_con
       } while(false);
       }
     } while(false);
+
+    //The class generator does not support float types for network conversion.
 
     enum NeuralNetworkType networkTop_nbo = htonl(self->networkTop);
     do {
@@ -1311,6 +1336,8 @@ size_t wb_vision_control_status_from_network_serialised(const char *src, struct 
       }
     } while(false);
     dst->chooseCamera = ntohl(dst->chooseCamera);
+
+    //The class generator does not support float types for network conversion.
 
     do {
       int8_t b;
