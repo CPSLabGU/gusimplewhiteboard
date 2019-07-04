@@ -437,9 +437,11 @@ namespace guWhiteboard {
         static NaoSonarProtectedWalkCommand walkProtected(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
             NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
             cmd.set_priority(priority);
+           cmd.set_walkEngineOn(true);
             cmd.set_forward(forward);
             cmd.set_left(left);
             cmd.set_turn(turn);
+            cmd.set_bend(1);
             return cmd;
         }
 
