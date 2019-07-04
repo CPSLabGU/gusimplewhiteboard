@@ -319,8 +319,8 @@ namespace guWhiteboard {
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
         SimpleLine simpleLine() {
-        	GUPoint<short> left = GUPoint<short>(leftPoint().distance(), leftPoint().direction(), true);
-        	GUPoint<short> right = GUPoint<short>(rightPoint().distance(), rightPoint().direction(), true);
+        	GUPoint<short> left = GUPoint<short>(short(leftPoint().distance()), short(leftPoint().direction()), true);
+        	GUPoint<short> right = GUPoint<short>(short(rightPoint().distance()), short(rightPoint().direction()), true);
         	return SimpleLine(left, right);
         }
     };
