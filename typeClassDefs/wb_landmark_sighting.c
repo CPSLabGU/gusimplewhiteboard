@@ -203,6 +203,7 @@ const char* wb_landmark_sighting_description(const struct wb_landmark_sighting* 
         }
     }
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -290,6 +291,7 @@ const char* wb_landmark_sighting_to_string(const struct wb_landmark_sighting* se
         }
     }
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -390,29 +392,65 @@ struct wb_landmark_sighting* wb_landmark_sighting_from_string(struct wb_landmark
             case 2:
             {
                 if (strcmp("BallSightingType", var_str) == 0) {
-                    self->sightingType = BallSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = BallSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("CornerHorizonSightingType", var_str) == 0) {
-                    self->sightingType = CornerHorizonSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = CornerHorizonSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("CornerLineSightingType", var_str) == 0) {
-                    self->sightingType = CornerLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = CornerLineSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("CrossLineSightingType", var_str) == 0) {
-                    self->sightingType = CrossLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = CrossLineSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("GenericGoalPostSightingType", var_str) == 0) {
-                    self->sightingType = GenericGoalPostSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = GenericGoalPostSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("GoalLandmarkSightingType", var_str) == 0) {
-                    self->sightingType = GoalLandmarkSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = GoalLandmarkSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("LeftGoalPostSightingType", var_str) == 0) {
-                    self->sightingType = LeftGoalPostSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = LeftGoalPostSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("LineHorizonSightingType", var_str) == 0) {
-                    self->sightingType = LineHorizonSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = LineHorizonSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("RightGoalPostSightingType", var_str) == 0) {
-                    self->sightingType = RightGoalPostSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = RightGoalPostSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("StraightLineSightingType", var_str) == 0) {
-                    self->sightingType = StraightLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = StraightLineSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("TIntersectionLineSightingType", var_str) == 0) {
-                    self->sightingType = TIntersectionLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = TIntersectionLineSightingType;
+#pragma clang diagnostic pop
                 } else {
-                    self->sightingType = ((enum LandmarkSightingType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = ((enum LandmarkSightingType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

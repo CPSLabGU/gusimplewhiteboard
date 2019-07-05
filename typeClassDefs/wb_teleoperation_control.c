@@ -171,6 +171,7 @@ const char* wb_teleoperation_control_description(const struct wb_teleoperation_c
     }
     len += snprintf(descString + len, bufferSize - len, "sayString=%s", self->sayString);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -226,6 +227,7 @@ const char* wb_teleoperation_control_to_string(const struct wb_teleoperation_con
     }
     len += snprintf(toString + len, bufferSize - len, "%s", self->sayString);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

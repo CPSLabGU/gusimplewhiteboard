@@ -243,6 +243,7 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
     }
     len += snprintf(descString + len, bufferSize - len, "numCrosses=%u", self->numCrosses);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -370,6 +371,7 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->numCrosses);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

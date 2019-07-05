@@ -163,6 +163,7 @@ const char* wb_vision_detection_horizons_description(const struct wb_vision_dete
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +211,7 @@ const char* wb_vision_detection_horizons_to_string(const struct wb_vision_detect
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

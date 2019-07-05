@@ -287,11 +287,20 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("BallDetected", var_str) == 0) {
-                            this->set_sightingType(BallDetected);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(BallDetected);
+#pragma clang diagnostic pop
                         } else if (strcmp("NoBallDetected", var_str) == 0) {
-                            this->set_sightingType(NoBallDetected);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(NoBallDetected);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(static_cast<enum BallOptions>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

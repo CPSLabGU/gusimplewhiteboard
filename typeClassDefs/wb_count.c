@@ -131,6 +131,7 @@ const char* wb_count_description(const struct wb_count* self, char* descString, 
     }
     len += snprintf(descString + len, bufferSize - len, "count=%lld", self->count);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -146,6 +147,7 @@ const char* wb_count_to_string(const struct wb_count* self, char* toString, size
     }
     len += snprintf(toString + len, bufferSize - len, "%lld", self->count);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

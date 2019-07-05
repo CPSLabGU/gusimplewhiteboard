@@ -147,6 +147,7 @@ const char* wb_sensors_head_sensors_description(const struct wb_sensors_head_sen
     }
     len = gu_strlcat(descString, self->Head_Touch_Rear ? "Head_Touch_Rear=true" : "Head_Touch_Rear=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -178,6 +179,7 @@ const char* wb_sensors_head_sensors_to_string(const struct wb_sensors_head_senso
     }
     len = gu_strlcat(toString, self->Head_Touch_Rear ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

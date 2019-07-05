@@ -243,6 +243,7 @@ const char* wb_sensors_torsojointtemps_description(const struct wb_sensors_torso
     }
     len += snprintf(descString + len, bufferSize - len, "RElbowRoll=%f", self->RElbowRoll);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -370,6 +371,7 @@ const char* wb_sensors_torsojointtemps_to_string(const struct wb_sensors_torsojo
     }
     len += snprintf(toString + len, bufferSize - len, "%f", self->RElbowRoll);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

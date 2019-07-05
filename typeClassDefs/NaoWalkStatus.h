@@ -304,15 +304,30 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("wes_Disconnected", var_str) == 0) {
-                            this->set_walkEngineState(wes_Disconnected);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkEngineState(wes_Disconnected);
+#pragma clang diagnostic pop
                         } else if (strcmp("wes_StoppedReady", var_str) == 0) {
-                            this->set_walkEngineState(wes_StoppedReady);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkEngineState(wes_StoppedReady);
+#pragma clang diagnostic pop
                         } else if (strcmp("wes_StoppedStanding", var_str) == 0) {
-                            this->set_walkEngineState(wes_StoppedStanding);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkEngineState(wes_StoppedStanding);
+#pragma clang diagnostic pop
                         } else if (strcmp("wes_Walking", var_str) == 0) {
-                            this->set_walkEngineState(wes_Walking);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkEngineState(wes_Walking);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkEngineState(static_cast<enum WalkEngineState>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

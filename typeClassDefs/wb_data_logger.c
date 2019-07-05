@@ -179,6 +179,7 @@ const char* wb_data_logger_description(const struct wb_data_logger* self, char* 
     }
     len += snprintf(descString + len, bufferSize - len, "comment=%s", self->comment);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -242,6 +243,7 @@ const char* wb_data_logger_to_string(const struct wb_data_logger* self, char* to
     }
     len += snprintf(toString + len, bufferSize - len, "%s", self->comment);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

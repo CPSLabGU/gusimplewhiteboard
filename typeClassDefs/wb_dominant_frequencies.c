@@ -175,6 +175,7 @@ const char* wb_dominant_frequencies_description(const struct wb_dominant_frequen
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -233,6 +234,7 @@ const char* wb_dominant_frequencies_to_string(const struct wb_dominant_frequenci
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

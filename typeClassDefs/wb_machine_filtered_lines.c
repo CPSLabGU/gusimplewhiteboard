@@ -163,6 +163,7 @@ const char* wb_machine_filtered_lines_description(const struct wb_machine_filter
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +211,7 @@ const char* wb_machine_filtered_lines_to_string(const struct wb_machine_filtered
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

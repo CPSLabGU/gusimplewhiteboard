@@ -155,6 +155,7 @@ const char* wb_r_m_s_levels_description(const struct wb_r_m_s_levels* self, char
     }
     len += snprintf(descString + len, bufferSize - len, "front_right=%d", self->front_right);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -194,6 +195,7 @@ const char* wb_r_m_s_levels_to_string(const struct wb_r_m_s_levels* self, char* 
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->front_right);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

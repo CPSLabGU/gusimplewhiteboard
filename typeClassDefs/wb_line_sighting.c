@@ -180,6 +180,7 @@ const char* wb_line_sighting_description(const struct wb_line_sighting* self, ch
         }
     }
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -244,6 +245,7 @@ const char* wb_line_sighting_to_string(const struct wb_line_sighting* self, char
         }
     }
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -344,11 +346,20 @@ struct wb_line_sighting* wb_line_sighting_from_string(struct wb_line_sighting* s
             case 2:
             {
                 if (strcmp("FieldLineSightingType", var_str) == 0) {
-                    self->sightingType = FieldLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = FieldLineSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("HorizonLineSightingType", var_str) == 0) {
-                    self->sightingType = HorizonLineSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = HorizonLineSightingType;
+#pragma clang diagnostic pop
                 } else {
-                    self->sightingType = ((enum LineSightingType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = ((enum LineSightingType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

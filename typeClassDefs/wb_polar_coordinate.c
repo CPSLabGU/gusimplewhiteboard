@@ -139,6 +139,7 @@ const char* wb_polar_coordinate_description(const struct wb_polar_coordinate* se
     }
     len += snprintf(descString + len, bufferSize - len, "distance=%u", self->distance);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -162,6 +163,7 @@ const char* wb_polar_coordinate_to_string(const struct wb_polar_coordinate* self
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->distance);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

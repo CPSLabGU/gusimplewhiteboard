@@ -211,6 +211,7 @@ const char* wb_teleoperation_control_v_r_description(const struct wb_teleoperati
     }
     len += snprintf(descString + len, bufferSize - len, "timestamp=%d", self->timestamp);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -306,6 +307,7 @@ const char* wb_teleoperation_control_v_r_to_string(const struct wb_teleoperation
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->timestamp);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

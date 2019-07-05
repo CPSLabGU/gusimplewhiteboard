@@ -328,15 +328,30 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("CornerHorizon", var_str) == 0) {
-                            this->set_horizonType(CornerHorizon);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_horizonType(CornerHorizon);
+#pragma clang diagnostic pop
                         } else if (strcmp("HorizonFailed", var_str) == 0) {
-                            this->set_horizonType(HorizonFailed);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_horizonType(HorizonFailed);
+#pragma clang diagnostic pop
                         } else if (strcmp("OnlyField", var_str) == 0) {
-                            this->set_horizonType(OnlyField);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_horizonType(OnlyField);
+#pragma clang diagnostic pop
                         } else if (strcmp("SingleHorizon", var_str) == 0) {
-                            this->set_horizonType(SingleHorizon);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_horizonType(SingleHorizon);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_horizonType(static_cast<enum HorizonOptions>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

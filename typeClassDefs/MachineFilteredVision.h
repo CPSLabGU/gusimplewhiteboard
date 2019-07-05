@@ -358,15 +358,30 @@ namespace guWhiteboard {
                     case 6:
                     {
                         if (strcmp("GoalSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(GoalSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_goal_sightingType(GoalSightingType);
+#pragma clang diagnostic pop
                         } else if (strcmp("LeftPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(LeftPostSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_goal_sightingType(LeftPostSightingType);
+#pragma clang diagnostic pop
                         } else if (strcmp("NoSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(NoSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_goal_sightingType(NoSightingType);
+#pragma clang diagnostic pop
                         } else if (strcmp("RightPostSightingType", var_str) == 0) {
-                            this->set_goal_sightingType(RightPostSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_goal_sightingType(RightPostSightingType);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_goal_sightingType(static_cast<enum GoalSightingType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

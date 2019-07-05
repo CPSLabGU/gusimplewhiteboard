@@ -155,6 +155,7 @@ const char* wb_top_particles_description(const struct wb_top_particles* self, ch
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -194,6 +195,7 @@ const char* wb_top_particles_to_string(const struct wb_top_particles* self, char
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

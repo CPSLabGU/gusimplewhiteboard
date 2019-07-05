@@ -118,6 +118,8 @@ extern "C" {
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
+#pragma clang diagnostic ignored "-Wdouble-promotion"
+#pragma clang diagnostic ignored "-Wunused-parameter"
 
 static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling);
 
@@ -157,6 +159,9 @@ void rr_to_pixel_coord(double angle, double distance, enum VisionCamera camera, 
 #define PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE 0
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++-compat"
+
 /**
  * Contains a static method for converting from Nao vision format to a bearing and a dist
  */
@@ -164,6 +169,7 @@ struct wb_pixel_to_robot_relative_coord
 {
 
 };
+#pragma clang diagnostic pop
 
 #ifdef __cplusplus
 extern "C" {

@@ -116,6 +116,13 @@
 #endif
 #pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+#pragma clang diagnostic ignored "-Wc++-compat"
+#pragma clang diagnostic ignored "-Wdouble-promotion"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
+
 void pixel_to_rr_coord(int32_t sx, int32_t sy, enum VisionCamera camera, struct wb_vision_control_status *vs, struct wb_sensors_torsojointsensors *joints, double *distance, double *angle) {
     pixel_to_rr_coord_kneeling(sx, sy, camera, vs, joints, distance, angle, false);
 }
@@ -204,29 +211,21 @@ static double get_camera_height(enum VisionCamera camera, struct wb_sensors_tors
     return height + HEAD_BASE_HEIGHT;
 }
 
+#pragma clang diagnostic pop
 
 
-/**
- * Convert to a description string.
- */
+
 const char* wb_pixel_to_robot_relative_coord_description(const struct wb_pixel_to_robot_relative_coord* self, char* descString, size_t bufferSize)
 {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
-    size_t len = 0;
-
+    (void) self;
+    (void) bufferSize;
     return descString;
 }
 
-/**
- * Convert to a string.
- */
 const char* wb_pixel_to_robot_relative_coord_to_string(const struct wb_pixel_to_robot_relative_coord* self, char* toString, size_t bufferSize)
 {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
-    size_t len = 0;
-
+    (void) self;
+    (void) bufferSize;
     return toString;
 }
 

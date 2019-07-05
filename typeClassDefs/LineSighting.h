@@ -301,11 +301,20 @@ namespace guWhiteboard {
                     case 2:
                     {
                         if (strcmp("FieldLineSightingType", var_str) == 0) {
-                            this->set_sightingType(FieldLineSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(FieldLineSightingType);
+#pragma clang diagnostic pop
                         } else if (strcmp("HorizonLineSightingType", var_str) == 0) {
-                            this->set_sightingType(HorizonLineSightingType);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(HorizonLineSightingType);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_sightingType(static_cast<enum LineSightingType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(static_cast<enum LineSightingType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
