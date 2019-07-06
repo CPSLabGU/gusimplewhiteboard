@@ -1271,6 +1271,20 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MissionPriorityForObstacles_DEFINED
             }
+            case kWav_v:
+            {
+
+                class Wav_t m(wbd);
+                return msg ? m.get_from(msg) : m.get();
+
+            }
+            case kWavOutput_v:
+            {
+
+                class WavOutput_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

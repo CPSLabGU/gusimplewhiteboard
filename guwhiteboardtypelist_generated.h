@@ -1201,6 +1201,24 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: Wav_t @brief request to play a wav file */ 
+    class Wav_t: public generic_whiteboard_object<std::string > { 
+        public: 
+        /** Constructor: Wav_t */ 
+        Wav_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kWav_v, true) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Wav_t */ 
+Wav_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kWav_v, wbd, true) {} 
+    };
+
+    /** WB Ptr Class: WavOutput_t @brief toggle, treat request to play wav file as silent output unless this is turned on */ 
+    class WavOutput_t: public generic_whiteboard_object<bool > { 
+        public: 
+        /** Constructor: WavOutput_t */ 
+        WavOutput_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWavOutput_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavOutput_t */ 
+WavOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWavOutput_v, wbd, false) {} 
+    };
+
 
 }
 

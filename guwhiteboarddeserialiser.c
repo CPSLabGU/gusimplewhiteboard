@@ -1136,6 +1136,16 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
+            case kWav_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kWavOutput_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

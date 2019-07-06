@@ -1662,6 +1662,24 @@ v.from_string(message_content);
     return false;
 #endif //MissionPriorityForObstacles_DEFINED
 }
+case kWav_v:
+{
+
+    class Wav_t msg_ptr(wbd);
+    std::string v = message_content;
+    msg_ptr.post(v);
+    return true;
+
+}
+case kWavOutput_v:
+{
+
+    class WavOutput_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1819,6 +1837,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["NaoObstacleDirection"] = kNaoObstacleDirection_v;
     self["DominantFrequencies"] = kDominantFrequencies_v;
     self["MissionPriorityForObstacles"] = kMissionPriorityForObstacles_v;
+    self["Wav"] = kWav_v;
+    self["WavOutput"] = kWavOutput_v;
 
     (void) self;
 }
