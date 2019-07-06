@@ -195,6 +195,7 @@ const char* wb_filtered_vision_object_description(const struct wb_filtered_visio
     }
     len = gu_strlcat(descString, self->pad1 ? "pad1=true" : "pad1=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -274,6 +275,7 @@ const char* wb_filtered_vision_object_to_string(const struct wb_filtered_vision_
     }
     len = gu_strlcat(toString, self->pad1 ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

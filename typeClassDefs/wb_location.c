@@ -147,6 +147,7 @@ const char* wb_location_description(const struct wb_location* self, char* descSt
     }
     len += snprintf(descString + len, bufferSize - len, "confidence=%u", self->confidence);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -178,6 +179,7 @@ const char* wb_location_to_string(const struct wb_location* self, char* toString
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->confidence);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

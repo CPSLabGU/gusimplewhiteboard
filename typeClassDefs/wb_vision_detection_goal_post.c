@@ -235,6 +235,7 @@ const char* wb_vision_detection_goal_post_description(const struct wb_vision_det
     }
     len += snprintf(descString + len, bufferSize - len, "br_y=%d", self->br_y);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -354,6 +355,7 @@ const char* wb_vision_detection_goal_post_to_string(const struct wb_vision_detec
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->br_y);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -458,26 +460,50 @@ struct wb_vision_detection_goal_post* wb_vision_detection_goal_post_from_string(
             case 0:
             {
                 if (strcmp("FullPostSeen", var_str) == 0) {
-                    self->sightingType = FullPostSeen;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = FullPostSeen;
+#pragma clang diagnostic pop
                 } else if (strcmp("NoPostDetected", var_str) == 0) {
-                    self->sightingType = NoPostDetected;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = NoPostDetected;
+#pragma clang diagnostic pop
                 } else if (strcmp("PartialPostSeen", var_str) == 0) {
-                    self->sightingType = PartialPostSeen;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = PartialPostSeen;
+#pragma clang diagnostic pop
                 } else {
-                    self->sightingType = ((enum GoalPostOptions)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = ((enum GoalPostOptions)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
             case 1:
             {
                 if (strcmp("GenericPost", var_str) == 0) {
-                    self->orientation = GenericPost;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->orientation = GenericPost;
+#pragma clang diagnostic pop
                 } else if (strcmp("LeftPost", var_str) == 0) {
-                    self->orientation = LeftPost;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->orientation = LeftPost;
+#pragma clang diagnostic pop
                 } else if (strcmp("RightPost", var_str) == 0) {
-                    self->orientation = RightPost;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->orientation = RightPost;
+#pragma clang diagnostic pop
                 } else {
-                    self->orientation = ((enum GoalPostOrientation)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->orientation = ((enum GoalPostOrientation)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

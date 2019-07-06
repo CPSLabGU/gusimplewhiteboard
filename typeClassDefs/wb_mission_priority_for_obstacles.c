@@ -131,6 +131,7 @@ const char* wb_mission_priority_for_obstacles_description(const struct wb_missio
     }
     len = gu_strlcat(descString, self->ignore_obstacles ? "ignore_obstacles=true" : "ignore_obstacles=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -146,6 +147,7 @@ const char* wb_mission_priority_for_obstacles_to_string(const struct wb_mission_
     }
     len = gu_strlcat(toString, self->ignore_obstacles ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

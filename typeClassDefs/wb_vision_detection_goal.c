@@ -185,6 +185,7 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -254,6 +255,7 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -344,13 +346,25 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
             case 0:
             {
                 if (strcmp("DoublePostGoal", var_str) == 0) {
-                    self->sightingType = DoublePostGoal;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = DoublePostGoal;
+#pragma clang diagnostic pop
                 } else if (strcmp("NoGoalDetected", var_str) == 0) {
-                    self->sightingType = NoGoalDetected;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = NoGoalDetected;
+#pragma clang diagnostic pop
                 } else if (strcmp("SinglePostGoal", var_str) == 0) {
-                    self->sightingType = SinglePostGoal;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = SinglePostGoal;
+#pragma clang diagnostic pop
                 } else {
-                    self->sightingType = ((enum GoalOptions)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = ((enum GoalOptions)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

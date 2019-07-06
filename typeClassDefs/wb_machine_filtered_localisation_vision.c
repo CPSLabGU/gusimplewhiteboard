@@ -163,6 +163,7 @@ const char* wb_machine_filtered_localisation_vision_description(const struct wb_
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +211,7 @@ const char* wb_machine_filtered_localisation_vision_to_string(const struct wb_ma
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

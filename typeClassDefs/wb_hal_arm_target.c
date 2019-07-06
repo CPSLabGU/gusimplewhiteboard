@@ -492,6 +492,7 @@ const char* wb_hal_arm_target_description(const struct wb_hal_arm_target* self, 
     }
     len += snprintf(descString + len, bufferSize - len, "target_arm_stop=%u", self->target_arm_stop);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -683,6 +684,7 @@ const char* wb_hal_arm_target_to_string(const struct wb_hal_arm_target* self, ch
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->target_arm_stop);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

@@ -211,6 +211,7 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
     }
     len += snprintf(descString + len, bufferSize - len, "frameNumber=%llu", self->frameNumber);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -306,6 +307,7 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
     }
     len += snprintf(toString + len, bufferSize - len, "%llu", self->frameNumber);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

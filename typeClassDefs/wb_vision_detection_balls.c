@@ -163,6 +163,7 @@ const char* wb_vision_detection_balls_description(const struct wb_vision_detecti
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +211,7 @@ const char* wb_vision_detection_balls_to_string(const struct wb_vision_detection
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

@@ -148,11 +148,11 @@ enum NeuralNetworkType {
 
 #define VISION_CONTROL_STATUS_GENERATED 
 #define VISION_CONTROL_STATUS_C_STRUCT wb_vision_control_status 
-#define VISION_CONTROL_STATUS_NUMBER_OF_VARIABLES 18
+#define VISION_CONTROL_STATUS_NUMBER_OF_VARIABLES 19
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 4478
-#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 4225
+#define VISION_CONTROL_STATUS_DESC_BUFFER_SIZE 4555
+#define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 4291
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -195,6 +195,11 @@ struct wb_vision_control_status
      * Choose which camera to run on (0-Top, 1-Bottom, 2-Both)
      */
     PROPERTY(int, chooseCamera)
+
+    /**
+     * Confidence threshold for the neural net
+     */
+    PROPERTY(float, confidence)
 
     /**
      * neural network to run on top camera

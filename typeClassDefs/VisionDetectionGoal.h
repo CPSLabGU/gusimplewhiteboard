@@ -296,13 +296,25 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("DoublePostGoal", var_str) == 0) {
-                            this->set_sightingType(DoublePostGoal);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(DoublePostGoal);
+#pragma clang diagnostic pop
                         } else if (strcmp("NoGoalDetected", var_str) == 0) {
-                            this->set_sightingType(NoGoalDetected);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(NoGoalDetected);
+#pragma clang diagnostic pop
                         } else if (strcmp("SinglePostGoal", var_str) == 0) {
-                            this->set_sightingType(SinglePostGoal);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(SinglePostGoal);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(static_cast<enum GoalOptions>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

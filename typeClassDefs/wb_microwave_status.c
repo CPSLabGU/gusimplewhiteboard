@@ -147,6 +147,7 @@ const char* wb_microwave_status_description(const struct wb_microwave_status* se
     }
     len = gu_strlcat(descString, self->buttonPushed ? "buttonPushed=true" : "buttonPushed=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -178,6 +179,7 @@ const char* wb_microwave_status_to_string(const struct wb_microwave_status* self
     }
     len = gu_strlcat(toString, self->buttonPushed ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

@@ -519,18 +519,18 @@ namespace guWhiteboard {
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-        #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
                 /**
                  *  Description function which prints values only
                  *  (Spreadsheet friendly)
                  */
                 std::string valueDescription() {
-        #ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
+#ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
                     char buffer[HAL_ARM_TARGET_DESC_BUFFER_SIZE+22];
                     wb_hal_arm_target_value_description(this, buffer, sizeof(buffer));
                     std::string descr = buffer;
                     return descr;
-        #else
+#else
                         std::stringstream ss;
                         ss << static_cast<int>(target_shoulderpitch()) << " | "
                         << static_cast<int>(target_shoulderroll()) << " | "
@@ -556,8 +556,8 @@ namespace guWhiteboard {
                         << static_cast<int>(target_arm_stop());
                         return ss.str();
                     }
-        #endif /// USE_WB_HAL_ARM_TARGET_C_CONVERSION
-        #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+#endif /// USE_WB_HAL_ARM_TARGET_C_CONVERSION
+#endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
         //MARK: Arm - General
                     /**
