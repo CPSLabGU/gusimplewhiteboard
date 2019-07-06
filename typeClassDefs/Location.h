@@ -81,10 +81,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0) {
+        void init(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0, uint32_t distanceVariance = 0, uint32_t directionVariance = 0) {
             set_direction(direction);
             set_distance(distance);
             set_confidence(confidence);
+            set_distanceVariance(distanceVariance);
+            set_directionVariance(directionVariance);
         }
 
     public:
@@ -92,29 +94,29 @@ namespace guWhiteboard {
         /**
          * Create a new `Location`.
          */
-        Location(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0) {
-            this->init(direction, distance, confidence);
+        Location(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0, uint32_t distanceVariance = 0, uint32_t directionVariance = 0) {
+            this->init(direction, distance, confidence, distanceVariance, directionVariance);
         }
 
         /**
          * Copy Constructor.
          */
         Location(const Location &other): wb_location() {
-            this->init(other.direction(), other.distance(), other.confidence());
+            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
         }
 
         /**
          * Copy Constructor.
          */
         Location(const struct wb_location &other): wb_location() {
-            this->init(other.direction(), other.distance(), other.confidence());
+            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
         }
 
         /**
          * Copy Assignment Operator.
          */
         Location &operator = (const Location &other) {
-            this->init(other.direction(), other.distance(), other.confidence());
+            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
             return *this;
         }
 
@@ -122,7 +124,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         Location &operator = (const struct wb_location &other) {
-            this->init(other.direction(), other.distance(), other.confidence());
+            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
             return *this;
         }
 
@@ -148,6 +150,10 @@ namespace guWhiteboard {
             ss << "distance=" << static_cast<unsigned>(this->distance());
             ss << ", ";
             ss << "confidence=" << static_cast<unsigned>(this->confidence());
+            ss << ", ";
+            ss << "distanceVariance=" << static_cast<unsigned>(this->distanceVariance());
+            ss << ", ";
+            ss << "directionVariance=" << static_cast<unsigned>(this->directionVariance());
             return ss.str();
 #endif /// USE_WB_LOCATION_C_CONVERSION
         }
@@ -165,6 +171,10 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->distance());
             ss << ", ";
             ss << static_cast<unsigned>(this->confidence());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->distanceVariance());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->directionVariance());
             return ss.str();
 #endif /// USE_WB_LOCATION_C_CONVERSION
         }
@@ -182,7 +192,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[LOCATION_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[11];
+            char key_buffer[18];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -249,6 +259,10 @@ namespace guWhiteboard {
                         varIndex = 1;
                     } else if (0 == strcmp("confidence", key)) {
                         varIndex = 2;
+                    } else if (0 == strcmp("distanceVariance", key)) {
+                        varIndex = 3;
+                    } else if (0 == strcmp("directionVariance", key)) {
+                        varIndex = 4;
                     } else {
                         varIndex = -1;
                     }
@@ -268,6 +282,16 @@ namespace guWhiteboard {
                     case 2:
                     {
                         this->set_confidence(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 3:
+                    {
+                        this->set_distanceVariance(static_cast<uint32_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 4:
+                    {
+                        this->set_directionVariance(static_cast<uint32_t>(atoi(var_str)));
                         break;
                     }
                 }

@@ -89,11 +89,11 @@
 
 #define LOCATION_GENERATED 
 #define LOCATION_C_STRUCT wb_location 
-#define LOCATION_NUMBER_OF_VARIABLES 3
+#define LOCATION_NUMBER_OF_VARIABLES 5
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define LOCATION_DESC_BUFFER_SIZE 49
-#define LOCATION_TO_STRING_BUFFER_SIZE 19
+#define LOCATION_DESC_BUFFER_SIZE 108
+#define LOCATION_TO_STRING_BUFFER_SIZE 43
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -116,6 +116,16 @@ struct wb_location
      * The type of sighting.
      */
     PROPERTY(uint8_t, confidence)
+
+    /**
+     * The variance of the distance
+     */
+    PROPERTY(uint32_t, distanceVariance)
+
+    /**
+     * The variance of the direction
+     */
+    PROPERTY(uint32_t, directionVariance)
 
 };
 

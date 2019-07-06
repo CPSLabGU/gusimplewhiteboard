@@ -77,11 +77,13 @@ extension wb_location {
     /**
      * Create a new `wb_location`.
      */
-    public init(_ direction: Int16 = 0, distance: UInt16 = 0, confidence: UInt8 = 0) {
+    public init(_ direction: Int16 = 0, distance: UInt16 = 0, confidence: UInt8 = 0, distanceVariance: UInt32 = 0, directionVariance: UInt32 = 0) {
         self.init()
         self.direction = direction
         self.distance = distance
         self.confidence = confidence
+        self.distanceVariance = distanceVariance
+        self.directionVariance = directionVariance
     }
 
     /**
@@ -92,13 +94,17 @@ extension wb_location {
         guard
             let direction = dictionary["direction"] as? Int16,
             let distance = dictionary["distance"] as? UInt16,
-            let confidence = dictionary["confidence"] as? UInt8
+            let confidence = dictionary["confidence"] as? UInt8,
+            let distanceVariance = dictionary["distanceVariance"] as? UInt32,
+            let directionVariance = dictionary["directionVariance"] as? UInt32
         else {
             fatalError("Unable to convert \(dictionary) to wb_location.")
         }
         self.direction = direction
         self.distance = distance
         self.confidence = confidence
+        self.distanceVariance = distanceVariance
+        self.directionVariance = directionVariance
     }
 
 }
@@ -115,6 +121,10 @@ extension wb_location: CustomStringConvertible {
         descString += "distance=\(self.distance)"
         descString += ", "
         descString += "confidence=\(self.confidence)"
+        descString += ", "
+        descString += "distanceVariance=\(self.distanceVariance)"
+        descString += ", "
+        descString += "directionVariance=\(self.directionVariance)"
         return descString
     }
 
@@ -126,4 +136,6 @@ public func == (lhs: wb_location, rhs: wb_location) -> Bool {
     return lhs.direction == rhs.direction
         && lhs.distance == rhs.distance
         && lhs.confidence == rhs.confidence
+        && lhs.distanceVariance == rhs.distanceVariance
+        && lhs.directionVariance == rhs.directionVariance
 }

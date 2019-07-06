@@ -9,6 +9,8 @@
 int16_t direction = 0 // degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
 uint16_t distance = 0 // CM distance to the center point of the sighting.
 uint8_t confidence = 0 // The type of sighting.
+uint32_t distanceVariance = 0 // The variance of the distance
+uint32_t directionVariance = 0 // The variance of the direction
 
 -comment
 
