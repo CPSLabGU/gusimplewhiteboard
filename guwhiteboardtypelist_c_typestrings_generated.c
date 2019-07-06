@@ -157,8 +157,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "NaoObstacleDirection",
         "DominantFrequencies",
         "MissionPriorityForObstacles",
-        "Wav",
-        "WavOutput"
+        "WavLoad",
+        "WavPlay",
+        "ReproduceWavNotSilent"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -307,6 +308,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_dominant_frequencies",
         "wb_mission_priority_for_obstacles",
         "wb_std_string",
+        "wb_bool",
         "wb_bool"
 };
 

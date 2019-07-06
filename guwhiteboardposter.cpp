@@ -1662,19 +1662,28 @@ v.from_string(message_content);
     return false;
 #endif //MissionPriorityForObstacles_DEFINED
 }
-case kWav_v:
+case kWavLoad_v:
 {
 
-    class Wav_t msg_ptr(wbd);
+    class WavLoad_t msg_ptr(wbd);
     std::string v = message_content;
     msg_ptr.post(v);
     return true;
 
 }
-case kWavOutput_v:
+case kWavPlay_v:
 {
 
-    class WavOutput_t msg_ptr(wbd);
+    class WavPlay_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kReproduceWavNotSilent_v:
+{
+
+    class ReproduceWavNotSilent_t msg_ptr(wbd);
     bool v = static_cast<bool>(atoi(message_content.c_str()));
     msg_ptr.post(v);
     return true;
@@ -1837,8 +1846,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["NaoObstacleDirection"] = kNaoObstacleDirection_v;
     self["DominantFrequencies"] = kDominantFrequencies_v;
     self["MissionPriorityForObstacles"] = kMissionPriorityForObstacles_v;
-    self["Wav"] = kWav_v;
-    self["WavOutput"] = kWavOutput_v;
+    self["WavLoad"] = kWavLoad_v;
+    self["WavPlay"] = kWavPlay_v;
+    self["ReproduceWavNotSilent"] = kReproduceWavNotSilent_v;
 
     (void) self;
 }

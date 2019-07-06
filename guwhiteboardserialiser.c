@@ -1136,12 +1136,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
-            case kWav_v:
+            case kWavLoad_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWavOutput_v:
+            case kWavPlay_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kReproduceWavNotSilent_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;

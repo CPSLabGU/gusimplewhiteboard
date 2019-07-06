@@ -1271,17 +1271,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MissionPriorityForObstacles_DEFINED
             }
-            case kWav_v:
+            case kWavLoad_v:
             {
 
-                class Wav_t m(wbd);
+                class WavLoad_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kWavOutput_v:
+            case kWavPlay_v:
             {
 
-                class WavOutput_t m(wbd);
+                class WavPlay_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kReproduceWavNotSilent_v:
+            {
+
+                class ReproduceWavNotSilent_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }

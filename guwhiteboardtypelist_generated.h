@@ -1201,22 +1201,31 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
-    /** WB Ptr Class: Wav_t @brief request to play a wav file */ 
-    class Wav_t: public generic_whiteboard_object<std::string > { 
+    /** WB Ptr Class: WavLoad_t @brief request to load a wav file */ 
+    class WavLoad_t: public generic_whiteboard_object<std::string > { 
         public: 
-        /** Constructor: Wav_t */ 
-        Wav_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kWav_v, true) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Wav_t */ 
-Wav_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kWav_v, wbd, true) {} 
+        /** Constructor: WavLoad_t */ 
+        WavLoad_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kWavLoad_v, true) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavLoad_t */ 
+WavLoad_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kWavLoad_v, wbd, true) {} 
     };
 
-    /** WB Ptr Class: WavOutput_t @brief toggle, treat request to play wav file as silent output unless this is turned on */ 
-    class WavOutput_t: public generic_whiteboard_object<bool > { 
+    /** WB Ptr Class: WavPlay_t @brief forced, treat request to play wav file as forced output and sound will come out even if reproduce on is silent */ 
+    class WavPlay_t: public generic_whiteboard_object<bool > { 
         public: 
-        /** Constructor: WavOutput_t */ 
-        WavOutput_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWavOutput_v, false) {}
-        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavOutput_t */ 
-WavOutput_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWavOutput_v, wbd, false) {} 
+        /** Constructor: WavPlay_t */ 
+        WavPlay_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWavPlay_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavPlay_t */ 
+WavPlay_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWavPlay_v, wbd, false) {} 
+    };
+
+    /** WB Ptr Class: ReproduceWavNotSilent_t @brief toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay */ 
+    class ReproduceWavNotSilent_t: public generic_whiteboard_object<bool > { 
+        public: 
+        /** Constructor: ReproduceWavNotSilent_t */ 
+        ReproduceWavNotSilent_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kReproduceWavNotSilent_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: ReproduceWavNotSilent_t */ 
+ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kReproduceWavNotSilent_v, wbd, false) {} 
     };
 
 

@@ -3281,48 +3281,71 @@ public:
 #endif //MissionPriorityForObstacles_DEFINED
 
 
-/** WBFunctor definition for Wav_WBFunctor_T */ 
-template <typename Wav_WBFunctor_T >
-class Wav_WBFunctor: public WBFunctor<Wav_WBFunctor_T > {
+/** WBFunctor definition for WavLoad_WBFunctor_T */ 
+template <typename WavLoad_WBFunctor_T >
+class WavLoad_WBFunctor: public WBFunctor<WavLoad_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for Wav_WBFunctor_T */
-    Wav_WBFunctor(Wav_WBFunctor_T* obj, void (Wav_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Wav_WBFunctor_T >(obj, (void (Wav_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for WavLoad_WBFunctor_T */
+    WavLoad_WBFunctor(WavLoad_WBFunctor_T* obj, void (WavLoad_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<WavLoad_WBFunctor_T >(obj, (void (WavLoad_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class Wav_WBFunctor */
+    /** call method for callbacks, for class WavLoad_WBFunctor */
     void call(gu_simple_message *m) {
-        std::string result = guWhiteboard::Wav_t().get_from(m);
-        Wav_function_t funct((void (Wav_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Wav_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<Wav_WBFunctor_T >::fObject->*funct)(WBFunctor<Wav_WBFunctor_T >::type_enum, result);
+        std::string result = guWhiteboard::WavLoad_t().get_from(m);
+        WavLoad_function_t funct((void (WavLoad_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<WavLoad_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<WavLoad_WBFunctor_T >::fObject->*funct)(WBFunctor<WavLoad_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (Wav_WBFunctor_T::*Wav_function_t) (guWhiteboard::WBTypes, std::string &);
+    typedef void (WavLoad_WBFunctor_T::*WavLoad_function_t) (guWhiteboard::WBTypes, std::string &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(Wav_WBFunctor_T *obj, void (Wav_WBFunctor_T::*f)(guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t) { return new Wav_WBFunctor<Wav_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(WavLoad_WBFunctor_T *obj, void (WavLoad_WBFunctor_T::*f)(guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t) { return new WavLoad_WBFunctor<WavLoad_WBFunctor_T >(obj, f, t); }
 }; 
 
 
 
-/** WBFunctor definition for WavOutput_WBFunctor_T */ 
-template <typename WavOutput_WBFunctor_T >
-class WavOutput_WBFunctor: public WBFunctor<WavOutput_WBFunctor_T > {
+/** WBFunctor definition for WavPlay_WBFunctor_T */ 
+template <typename WavPlay_WBFunctor_T >
+class WavPlay_WBFunctor: public WBFunctor<WavPlay_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for WavOutput_WBFunctor_T */
-    WavOutput_WBFunctor(WavOutput_WBFunctor_T* obj, void (WavOutput_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WavOutput_WBFunctor_T >(obj, (void (WavOutput_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for WavPlay_WBFunctor_T */
+    WavPlay_WBFunctor(WavPlay_WBFunctor_T* obj, void (WavPlay_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WavPlay_WBFunctor_T >(obj, (void (WavPlay_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class WavOutput_WBFunctor */
+    /** call method for callbacks, for class WavPlay_WBFunctor */
     void call(gu_simple_message *m) {
-        bool result = guWhiteboard::WavOutput_t().get_from(m);
-        WavOutput_function_t funct((void (WavOutput_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WavOutput_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<WavOutput_WBFunctor_T >::fObject->*funct)(WBFunctor<WavOutput_WBFunctor_T >::type_enum, result);
+        bool result = guWhiteboard::WavPlay_t().get_from(m);
+        WavPlay_function_t funct((void (WavPlay_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WavPlay_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<WavPlay_WBFunctor_T >::fObject->*funct)(WBFunctor<WavPlay_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (WavOutput_WBFunctor_T::*WavOutput_function_t) (guWhiteboard::WBTypes, bool &);
+    typedef void (WavPlay_WBFunctor_T::*WavPlay_function_t) (guWhiteboard::WBTypes, bool &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(WavOutput_WBFunctor_T *obj, void (WavOutput_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new WavOutput_WBFunctor<WavOutput_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(WavPlay_WBFunctor_T *obj, void (WavPlay_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new WavPlay_WBFunctor<WavPlay_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for ReproduceWavNotSilent_WBFunctor_T */ 
+template <typename ReproduceWavNotSilent_WBFunctor_T >
+class ReproduceWavNotSilent_WBFunctor: public WBFunctor<ReproduceWavNotSilent_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for ReproduceWavNotSilent_WBFunctor_T */
+    ReproduceWavNotSilent_WBFunctor(ReproduceWavNotSilent_WBFunctor_T* obj, void (ReproduceWavNotSilent_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<ReproduceWavNotSilent_WBFunctor_T >(obj, (void (ReproduceWavNotSilent_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class ReproduceWavNotSilent_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::ReproduceWavNotSilent_t().get_from(m);
+        ReproduceWavNotSilent_function_t funct((void (ReproduceWavNotSilent_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::fObject->*funct)(WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (ReproduceWavNotSilent_WBFunctor_T::*ReproduceWavNotSilent_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(ReproduceWavNotSilent_WBFunctor_T *obj, void (ReproduceWavNotSilent_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new ReproduceWavNotSilent_WBFunctor<ReproduceWavNotSilent_WBFunctor_T >(obj, f, t); }
 }; 
 
 

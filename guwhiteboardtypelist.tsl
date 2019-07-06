@@ -140,5 +140,6 @@ type:nao_sonar_protected_walk_command, nonatomic, NaoSonarProtectedWalkCommand, 
 type:nao_obstacle_direction, nonatomic, NaoObstacleDirection, Send general direction if obstacle.
 type:dominant_frequencies, nonatomic, DominantFrequencies, Dominant frequencies and RMS levels for the four microphones
 type:mission_priority_for_obstacles, nonatomic, MissionPriorityForObstacles, notify trough the whiteboard the priority of the mission, high for chasing the ball, low for getting to a place in the field.
-std::string,    atomic, Wav,          request to play a wav file
-bool,           nonatomic, WavOutput, toggle, treat request to play wav file as silent output unless this is turned on
+std::string,    atomic, WavLoad,          request to load a wav file
+bool,           nonatomic, WavPlay, forced, treat request to play wav file as forced output and sound will come out even if reproduce on is silent
+bool,           nonatomic, ReproduceWavNotSilent, toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay
