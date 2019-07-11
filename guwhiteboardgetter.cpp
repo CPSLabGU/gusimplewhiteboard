@@ -1292,6 +1292,24 @@ namespace guWhiteboard
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
+            case kFrequencyControl_v:
+            {
+#ifdef FrequencyLimits_DEFINED
+                class FrequencyControl_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FrequencyLimits_DEFINED
+            }
+            case kFrequencyStatus_v:
+            {
+#ifdef FrequencyLimits_DEFINED
+                class FrequencyStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FrequencyLimits_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

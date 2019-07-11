@@ -1689,6 +1689,30 @@ case kReproduceWavNotSilent_v:
     return true;
 
 }
+case kFrequencyControl_v:
+{
+#ifdef FrequencyLimits_DEFINED
+    class FrequencyControl_t msg_ptr(wbd);
+    FrequencyLimits v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //FrequencyLimits_DEFINED
+}
+case kFrequencyStatus_v:
+{
+#ifdef FrequencyLimits_DEFINED
+    class FrequencyStatus_t msg_ptr(wbd);
+    FrequencyLimits v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //FrequencyLimits_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1849,6 +1873,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["WavLoad"] = kWavLoad_v;
     self["WavPlay"] = kWavPlay_v;
     self["ReproduceWavNotSilent"] = kReproduceWavNotSilent_v;
+    self["FrequencyControl"] = kFrequencyControl_v;
+    self["FrequencyStatus"] = kFrequencyStatus_v;
 
     (void) self;
 }

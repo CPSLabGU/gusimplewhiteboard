@@ -1228,6 +1228,22 @@ WavPlay_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_w
 ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kReproduceWavNotSilent_v, wbd, false) {} 
     };
 
+    /** WB Ptr Class: FrequencyControl_t @brief Frequency limits control message for FFT analysis */ 
+    class FrequencyControl_t: public generic_whiteboard_object<class FrequencyLimits > { 
+        public: 
+        /** Constructor: FrequencyControl_t */ 
+        FrequencyControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FrequencyLimits >(wbd, kFrequencyControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: FrequencyStatus_t @brief Current Frequency limits (status) for FFT analysis */ 
+    class FrequencyStatus_t: public generic_whiteboard_object<class FrequencyLimits > { 
+        public: 
+        /** Constructor: FrequencyStatus_t */ 
+        FrequencyStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FrequencyLimits >(wbd, kFrequencyStatus_v, false) {}
+        
+    };
+
 
 }
 

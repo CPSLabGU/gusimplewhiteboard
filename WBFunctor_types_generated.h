@@ -3349,6 +3349,52 @@ public:
 }; 
 
 
+#ifdef FrequencyLimits_DEFINED
+/** WBFunctor definition for FrequencyControl_WBFunctor_T */ 
+template <typename FrequencyControl_WBFunctor_T >
+class FrequencyControl_WBFunctor: public WBFunctor<FrequencyControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FrequencyControl_WBFunctor_T */
+    FrequencyControl_WBFunctor(FrequencyControl_WBFunctor_T* obj, void (FrequencyControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyControl_WBFunctor_T >(obj, (void (FrequencyControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FrequencyControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyControl_t().get_from(m);
+        FrequencyControl_function_t funct((void (FrequencyControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FrequencyControl_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FrequencyControl_WBFunctor_T::*FrequencyControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FrequencyControl_WBFunctor_T *obj, void (FrequencyControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t) { return new FrequencyControl_WBFunctor<FrequencyControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FrequencyLimits_DEFINED
+
+#ifdef FrequencyLimits_DEFINED
+/** WBFunctor definition for FrequencyStatus_WBFunctor_T */ 
+template <typename FrequencyStatus_WBFunctor_T >
+class FrequencyStatus_WBFunctor: public WBFunctor<FrequencyStatus_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FrequencyStatus_WBFunctor_T */
+    FrequencyStatus_WBFunctor(FrequencyStatus_WBFunctor_T* obj, void (FrequencyStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyStatus_WBFunctor_T >(obj, (void (FrequencyStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FrequencyStatus_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyStatus_t().get_from(m);
+        FrequencyStatus_function_t funct((void (FrequencyStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyStatus_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FrequencyStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyStatus_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FrequencyStatus_WBFunctor_T::*FrequencyStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FrequencyStatus_WBFunctor_T *obj, void (FrequencyStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t) { return new FrequencyStatus_WBFunctor<FrequencyStatus_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FrequencyLimits_DEFINED
+
 
 #pragma clang diagnostic pop
 

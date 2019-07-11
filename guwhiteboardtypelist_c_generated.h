@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 145
+#define GSW_NUM_TYPES_DEFINED 147
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -166,8 +166,10 @@ typedef enum wb_types
     kMissionPriorityForObstacles_v = 141, 		///< notify trough the whiteboard the priority of the mission, high for chasing the ball, low for getting to a place in the field.
     kWavLoad_v = 142, 		///< request to load a wav file
     kWavPlay_v = 143, 		///< forced, treat request to play wav file as forced output and sound will come out even if reproduce on is silent
+    kReproduceWavNotSilent_v = 144, 		///< toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay
+    kFrequencyControl_v = 145, 		///< Frequency limits control message for FFT analysis
 
-    kReproduceWavNotSilent_v = 144 		///< toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay
+    kFrequencyStatus_v = 146 		///< Current Frequency limits (status) for FFT analysis
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

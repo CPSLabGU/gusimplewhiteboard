@@ -159,7 +159,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "MissionPriorityForObstacles",
         "WavLoad",
         "WavPlay",
-        "ReproduceWavNotSilent"
+        "ReproduceWavNotSilent",
+        "FrequencyControl",
+        "FrequencyStatus"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -309,7 +311,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_mission_priority_for_obstacles",
         "wb_std_string",
         "wb_bool",
-        "wb_bool"
+        "wb_bool",
+        "wb_frequency_limits",
+        "wb_frequency_limits"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

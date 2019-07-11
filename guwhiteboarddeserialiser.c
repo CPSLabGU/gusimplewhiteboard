@@ -1151,6 +1151,24 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
+            case kFrequencyControl_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
+            case kFrequencyStatus_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
