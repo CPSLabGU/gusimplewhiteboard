@@ -57,9 +57,9 @@ test:
 .endif
 
 post-clean:
-	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
 
 whiteboard-wrapper:
-	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host && ./.build/release/WhiteboardWrapperGenerator
+	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host SWIFT_BUILD_CONFIG=release && ./.build/release/WhiteboardWrapperGenerator
+	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
 
 .include "../../mk/mipal.mk"		# comes last!
