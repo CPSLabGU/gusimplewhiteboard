@@ -26,7 +26,7 @@ GEN_FILES!=ls ${WB_TYPECLASSDEFS}/*.gen
 ## Use the classgenerator (must be installed) to regenerate the generated code from the .gen files.
 gen:
 .for gen in ${GEN_FILES}
-	-@cd ${WB_TYPECLASSDEFS} && classgenerator ${gen} ;
+	-@cd ${WB_TYPECLASSDEFS} && classgenerator -s ${gen} ;
 .endfor
 
 .include "../../../mk/mipal.mk"		# comes last!
