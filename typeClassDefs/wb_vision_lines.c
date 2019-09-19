@@ -458,7 +458,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_line topLines_0;
+                    struct wb_vision_line topLines_0 = {};
                     wb_vision_line_from_string(&topLines_0, var_str);
                     self->topLines[topLines_0_index] = topLines_0;;
                 }
@@ -520,7 +520,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_line bottomLines_0;
+                    struct wb_vision_line bottomLines_0 = {};
                     wb_vision_line_from_string(&bottomLines_0, var_str);
                     self->bottomLines[bottomLines_0_index] = bottomLines_0;;
                 }

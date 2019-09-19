@@ -361,7 +361,7 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_detection_goal goals_0;
+                    struct wb_vision_detection_goal goals_0 = {};
                     wb_vision_detection_goal_from_string(&goals_0, var_str);
                     self->goals[goals_0_index] = goals_0;;
                 }
