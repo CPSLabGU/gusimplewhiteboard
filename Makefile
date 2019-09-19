@@ -46,7 +46,7 @@ generate:
 	classgenerator -s --c-header typeClassDefs ${f}
 .endfor
 .for f in ${WB_MSG_OLD_GEN_FILES}
-	classgenerator --c-header typeClassDefs -b ${f}
+	classgenerator -s --c-header typeClassDefs -b ${f}
 .endfor
 
 test:
