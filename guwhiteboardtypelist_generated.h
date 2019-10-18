@@ -1244,6 +1244,14 @@ ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLP
         
     };
 
+    /** WB Ptr Class: HeadJointSensors_t @brief Status of the head sensors in degrees. */ 
+    class HeadJointSensors_t: public generic_whiteboard_object<class HeadJointSensors > { 
+        public: 
+        /** Constructor: HeadJointSensors_t */ 
+        HeadJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HeadJointSensors >(wbd, kHeadJointSensors_v, false) {}
+        
+    };
+
 
 }
 

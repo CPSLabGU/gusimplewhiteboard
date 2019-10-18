@@ -1169,6 +1169,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //FREQUENCY_LIMITS_GENERATED
                 break;
             }
+            case kHeadJointSensors_v:
+            {
+#ifdef HEAD_JOINT_SENSORS_GENERATED
+                return DESERIALISE(HEAD_JOINT_SENSORS_C_STRUCT, serialised_in, (struct HEAD_JOINT_SENSORS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //HEAD_JOINT_SENSORS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

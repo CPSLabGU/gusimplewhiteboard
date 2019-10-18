@@ -1713,6 +1713,18 @@ v.from_string(message_content);
     return false;
 #endif //FrequencyLimits_DEFINED
 }
+case kHeadJointSensors_v:
+{
+#ifdef HeadJointSensors_DEFINED
+    class HeadJointSensors_t msg_ptr(wbd);
+    HeadJointSensors v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //HeadJointSensors_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1875,6 +1887,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["ReproduceWavNotSilent"] = kReproduceWavNotSilent_v;
     self["FrequencyControl"] = kFrequencyControl_v;
     self["FrequencyStatus"] = kFrequencyStatus_v;
+    self["HeadJointSensors"] = kHeadJointSensors_v;
 
     (void) self;
 }
