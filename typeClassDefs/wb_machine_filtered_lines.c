@@ -361,7 +361,7 @@ struct wb_machine_filtered_lines* wb_machine_filtered_lines_from_string(struct w
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_line_sighting sightings_0;
+                    struct wb_line_sighting sightings_0 = {};
                     wb_line_sighting_from_string(&sightings_0, var_str);
                     self->sightings[sightings_0_index] = sightings_0;;
                 }

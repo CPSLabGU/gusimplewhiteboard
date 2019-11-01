@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 147
+#define GSW_NUM_TYPES_DEFINED 148
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -168,8 +168,9 @@ typedef enum wb_types
     kWavPlay_v = 143, 		///< forced, treat request to play wav file as forced output and sound will come out even if reproduce on is silent
     kReproduceWavNotSilent_v = 144, 		///< toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay
     kFrequencyControl_v = 145, 		///< Frequency limits control message for FFT analysis
+    kFrequencyStatus_v = 146, 		///< Current Frequency limits (status) for FFT analysis
 
-    kFrequencyStatus_v = 146 		///< Current Frequency limits (status) for FFT analysis
+    kHeadJointSensors_v = 147 		///< Status of the head sensors in degrees.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

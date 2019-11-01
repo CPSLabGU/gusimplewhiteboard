@@ -161,7 +161,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "WavPlay",
         "ReproduceWavNotSilent",
         "FrequencyControl",
-        "FrequencyStatus"
+        "FrequencyStatus",
+        "HeadJointSensors"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -313,7 +314,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_bool",
         "wb_frequency_limits",
-        "wb_frequency_limits"
+        "wb_frequency_limits",
+        "wb_head_joint_sensors"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

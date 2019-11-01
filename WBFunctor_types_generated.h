@@ -3395,6 +3395,29 @@ public:
 }; 
 #endif //FrequencyLimits_DEFINED
 
+#ifdef HeadJointSensors_DEFINED
+/** WBFunctor definition for HeadJointSensors_WBFunctor_T */ 
+template <typename HeadJointSensors_WBFunctor_T >
+class HeadJointSensors_WBFunctor: public WBFunctor<HeadJointSensors_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for HeadJointSensors_WBFunctor_T */
+    HeadJointSensors_WBFunctor(HeadJointSensors_WBFunctor_T* obj, void (HeadJointSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &), guWhiteboard::WBTypes t): WBFunctor<HeadJointSensors_WBFunctor_T >(obj, (void (HeadJointSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class HeadJointSensors_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::HeadJointSensors result = guWhiteboard::HeadJointSensors_t().get_from(m);
+        HeadJointSensors_function_t funct((void (HeadJointSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &))WBFunctor<HeadJointSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<HeadJointSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<HeadJointSensors_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (HeadJointSensors_WBFunctor_T::*HeadJointSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(HeadJointSensors_WBFunctor_T *obj, void (HeadJointSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &), guWhiteboard::WBTypes t) { return new HeadJointSensors_WBFunctor<HeadJointSensors_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //HeadJointSensors_DEFINED
+
 
 #pragma clang diagnostic pop
 

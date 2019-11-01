@@ -1310,6 +1310,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //FrequencyLimits_DEFINED
             }
+            case kHeadJointSensors_v:
+            {
+#ifdef HeadJointSensors_DEFINED
+                class HeadJointSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //HeadJointSensors_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

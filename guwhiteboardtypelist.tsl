@@ -145,3 +145,4 @@ bool,           nonatomic, WavPlay, forced, treat request to play wav file as fo
 bool,           nonatomic, ReproduceWavNotSilent, toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay
 type:frequency_limits, nonatomic, FrequencyControl, Frequency limits control message for FFT analysis
 type:frequency_limits, nonatomic, FrequencyStatus, Current Frequency limits (status) for FFT analysis
+type:head_joint_sensors, nonatomic, HeadJointSensors, Status of the head sensors in degrees.
