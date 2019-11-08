@@ -242,8 +242,7 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;
@@ -317,8 +316,7 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
                 endKey = -1;
                 bracecount = 0;
                 for (int horizons_0_index = 0; horizons_0_index < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_0_index++) {
-                    int i;
-                    for (i = index; i < length; i++) {
+                    for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;

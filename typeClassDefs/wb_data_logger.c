@@ -273,8 +273,7 @@ struct wb_data_logger* wb_data_logger_from_string(struct wb_data_logger* self, c
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

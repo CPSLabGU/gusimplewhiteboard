@@ -214,8 +214,7 @@ namespace guWhiteboard {
             startVar = index;
             startKey = startVar;
             do {
-                int i;
-                for (i = index; i < length; i++) {
+                for (int i = index; i < length; i++) {
                     index = i + 1;
                     if (bracecount == 0 && str_cstr[i] == '=') {
                         endKey = i - 1;
@@ -289,8 +288,7 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int sightings_0_index = 0; sightings_0_index < MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
-                            int i;
-                            for (i = index; i < length; i++) {
+                            for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;

@@ -210,8 +210,7 @@ namespace guWhiteboard {
             startVar = index;
             startKey = startVar;
             do {
-                int i;
-                for (i = index; i < length; i++) {
+                for (int i = index; i < length; i++) {
                     index = i + 1;
                     if (bracecount == 0 && str_cstr[i] == '=') {
                         endKey = i - 1;
@@ -278,8 +277,7 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int particles_0_index = 0; particles_0_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_0_index++) {
-                            int i;
-                            for (i = index; i < length; i++) {
+                            for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;

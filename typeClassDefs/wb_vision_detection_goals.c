@@ -242,8 +242,7 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;
@@ -317,8 +316,7 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                 endKey = -1;
                 bracecount = 0;
                 for (int goals_0_index = 0; goals_0_index < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_0_index++) {
-                    int i;
-                    for (i = index; i < length; i++) {
+                    for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;

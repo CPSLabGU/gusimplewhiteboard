@@ -193,8 +193,7 @@ struct wb_sensors_headjointsensors* wb_sensors_headjointsensors_from_string(stru
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

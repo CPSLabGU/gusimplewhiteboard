@@ -401,8 +401,7 @@ struct wb_sensors_torsojointtemps* wb_sensors_torsojointtemps_from_string(struct
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

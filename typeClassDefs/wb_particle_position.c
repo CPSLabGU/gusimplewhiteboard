@@ -231,8 +231,7 @@ struct wb_particle_position* wb_particle_position_from_string(struct wb_particle
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

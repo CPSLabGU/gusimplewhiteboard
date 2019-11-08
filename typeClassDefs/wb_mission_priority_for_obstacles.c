@@ -177,8 +177,7 @@ struct wb_mission_priority_for_obstacles* wb_mission_priority_for_obstacles_from
     startVar = index;
     startKey = startVar;
     do {
-        int i;
-        for (i = index; i < length; i++) {
+        for (int i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;
