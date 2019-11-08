@@ -247,7 +247,8 @@ namespace guWhiteboard {
             startVar = index;
             startKey = startVar;
             do {
-                for (int i = index; i < length; i++) {
+                int i;
+                for (i = index; i < length; i++) {
                     index = i + 1;
                     if (bracecount == 0 && str_cstr[i] == '=') {
                         endKey = i - 1;
@@ -322,7 +323,8 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int topLines_0_index = 0; topLines_0_index < VISION_LINES_TOPLINES_ARRAY_SIZE; topLines_0_index++) {
-                            for (int i = index; i < length; i++) {
+                            int i;
+                            for (i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;
@@ -385,7 +387,8 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int bottomLines_0_index = 0; bottomLines_0_index < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; bottomLines_0_index++) {
-                            for (int i = index; i < length; i++) {
+                            int i;
+                            for (i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;

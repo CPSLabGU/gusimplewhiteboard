@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -352,7 +353,8 @@ struct wb_sensors_legjointsensors* wb_sensors_legjointsensors_from_string(struct
     startVar = index;
     startKey = startVar;
     do {
-        for (int i = index; i < length; i++) {
+        int i;
+        for (i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

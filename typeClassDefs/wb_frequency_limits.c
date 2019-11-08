@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -192,7 +193,8 @@ struct wb_frequency_limits* wb_frequency_limits_from_string(struct wb_frequency_
     startVar = index;
     startKey = startVar;
     do {
-        for (int i = index; i < length; i++) {
+        int i;
+        for (i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

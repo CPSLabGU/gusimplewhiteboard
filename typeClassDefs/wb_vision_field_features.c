@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -401,7 +402,8 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
     startVar = index;
     startKey = startVar;
     do {
-        for (int i = index; i < length; i++) {
+        int i;
+        for (i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;
@@ -478,7 +480,8 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 endKey = -1;
                 bracecount = 0;
                 for (int fieldCorner_0_index = 0; fieldCorner_0_index < VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_0_index++) {
-                    for (int i = index; i < length; i++) {
+                    int i;
+                    for (i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;
@@ -540,7 +543,8 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 endKey = -1;
                 bracecount = 0;
                 for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < VISION_FIELDFEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_0_index++) {
-                    for (int i = index; i < length; i++) {
+                    int i;
+                    for (i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;
@@ -602,7 +606,8 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 endKey = -1;
                 bracecount = 0;
                 for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_0_index++) {
-                    for (int i = index; i < length; i++) {
+                    int i;
+                    for (i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;

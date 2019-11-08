@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -214,7 +215,8 @@ struct wb_vision_field_feature* wb_vision_field_feature_from_string(struct wb_vi
     startVar = index;
     startKey = startVar;
     do {
-        for (int i = index; i < length; i++) {
+        int i;
+        for (i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;

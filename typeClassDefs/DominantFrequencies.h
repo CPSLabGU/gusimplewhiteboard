@@ -216,7 +216,8 @@ namespace guWhiteboard {
             startVar = index;
             startKey = startVar;
             do {
-                for (int i = index; i < length; i++) {
+                int i;
+                for (i = index; i < length; i++) {
                     index = i + 1;
                     if (bracecount == 0 && str_cstr[i] == '=') {
                         endKey = i - 1;
@@ -292,7 +293,8 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int frequencies_0_index = 0; frequencies_0_index < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_0_index++) {
-                            for (int i = index; i < length; i++) {
+                            int i;
+                            for (i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;

@@ -208,7 +208,8 @@ namespace guWhiteboard {
             startVar = index;
             startKey = startVar;
             do {
-                for (int i = index; i < length; i++) {
+                int i;
+                for (i = index; i < length; i++) {
                     index = i + 1;
                     if (bracecount == 0 && str_cstr[i] == '=') {
                         endKey = i - 1;
@@ -275,7 +276,8 @@ namespace guWhiteboard {
                         endKey = -1;
                         bracecount = 0;
                         for (int objects_0_index = 0; objects_0_index < FILTERED_ARRAYBALLSIGHTINGS_OBJECTS_ARRAY_SIZE; objects_0_index++) {
-                            for (int i = index; i < length; i++) {
+                            int i;
+                            for (i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
                                     endKey = i - 1;

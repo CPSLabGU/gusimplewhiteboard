@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -241,7 +242,8 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
     startVar = index;
     startKey = startVar;
     do {
-        for (int i = index; i < length; i++) {
+        int i;
+        for (i = index; i < length; i++) {
             index = i + 1;
             if (bracecount == 0 && str[i] == '=') {
                 endKey = i - 1;
@@ -315,7 +317,8 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
                 endKey = -1;
                 bracecount = 0;
                 for (int sightings_0_index = 0; sightings_0_index < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
-                    for (int i = index; i < length; i++) {
+                    int i;
+                    for (i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
                             endKey = i - 1;
