@@ -44,5 +44,6 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_frequency_limits.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_frequency_limits.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_head_joint_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_adjust_position_confidence.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

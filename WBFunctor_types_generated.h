@@ -3418,6 +3418,29 @@ public:
 }; 
 #endif //HeadJointSensors_DEFINED
 
+#ifdef AdjustPositionConfidence_DEFINED
+/** WBFunctor definition for AdjustPositionConfidence_WBFunctor_T */ 
+template <typename AdjustPositionConfidence_WBFunctor_T >
+class AdjustPositionConfidence_WBFunctor: public WBFunctor<AdjustPositionConfidence_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for AdjustPositionConfidence_WBFunctor_T */
+    AdjustPositionConfidence_WBFunctor(AdjustPositionConfidence_WBFunctor_T* obj, void (AdjustPositionConfidence_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t): WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, (void (AdjustPositionConfidence_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class AdjustPositionConfidence_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::AdjustPositionConfidence result = guWhiteboard::AdjustPositionConfidence_t().get_from(m);
+        AdjustPositionConfidence_function_t funct((void (AdjustPositionConfidence_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &))WBFunctor<AdjustPositionConfidence_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<AdjustPositionConfidence_WBFunctor_T >::fObject->*funct)(WBFunctor<AdjustPositionConfidence_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (AdjustPositionConfidence_WBFunctor_T::*AdjustPositionConfidence_function_t) (guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(AdjustPositionConfidence_WBFunctor_T *obj, void (AdjustPositionConfidence_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t) { return new AdjustPositionConfidence_WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //AdjustPositionConfidence_DEFINED
+
 
 #pragma clang diagnostic pop
 

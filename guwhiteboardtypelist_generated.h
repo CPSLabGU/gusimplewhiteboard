@@ -1252,6 +1252,14 @@ ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLP
         
     };
 
+    /** WB Ptr Class: AdjustPositionConfidence_t @brief Changes the confidence of objects being tracked. */ 
+    class AdjustPositionConfidence_t: public generic_whiteboard_object<class AdjustPositionConfidence > { 
+        public: 
+        /** Constructor: AdjustPositionConfidence_t */ 
+        AdjustPositionConfidence_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class AdjustPositionConfidence >(wbd, kAdjustPositionConfidence_v, false) {}
+        
+    };
+
 
 }
 
