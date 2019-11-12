@@ -81,6 +81,8 @@ template <class object_type> class generic_whiteboard_object
         uint16_t type_offset;
         bool atomic;
         bool notify_subscribers;
+        u_int16_t last_count = 0;
+        bool isFirst = true;
 
 public:
         /**
@@ -209,6 +211,18 @@ public:
         void operator()(object_type value)
         {
                 set(value);
+        }
+
+        bool hasNewMessage() {
+            const u_int16_t newCount = this->_wbd->wb->event_counters[this->type_offset];
+            if (this->isFirst) {
+                this->isFirst = false;
+                this->last_count = newCount;
+                return true;
+            }
+            const bool isNew = newCount != this->last_count;
+            this->last_count = newCount;
+            return isNew;
         }
 };
 
