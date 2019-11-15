@@ -1178,6 +1178,15 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //HEAD_JOINT_SENSORS_GENERATED
                 break;
             }
+            case kAdjustPositionConfidence_v:
+            {
+#ifdef ADJUST_POSITION_CONFIDENCE_GENERATED
+                return SERIALISE(ADJUST_POSITION_CONFIDENCE_C_STRUCT, (struct ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //ADJUST_POSITION_CONFIDENCE_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

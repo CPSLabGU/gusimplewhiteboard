@@ -67,6 +67,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push

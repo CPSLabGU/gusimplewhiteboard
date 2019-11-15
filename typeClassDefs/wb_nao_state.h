@@ -21,6 +21,7 @@ enum Robot_Stance {
         Sitting,        //NYI
         Kneeling,       //NYI
         Knitting,       //NYI to be implemented by Rene
+        PickedUp,
         NUM_OF_STANCES
 };
 

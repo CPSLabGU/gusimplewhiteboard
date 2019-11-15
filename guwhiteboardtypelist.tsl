@@ -146,3 +146,4 @@ bool,           nonatomic, ReproduceWavNotSilent, toggle, treat request to play 
 type:frequency_limits, nonatomic, FrequencyControl, Frequency limits control message for FFT analysis
 type:frequency_limits, nonatomic, FrequencyStatus, Current Frequency limits (status) for FFT analysis
 type:head_joint_sensors, nonatomic, HeadJointSensors, Status of the head sensors in degrees.
+type:adjust_position_confidence, nonatomic, AdjustPositionConfidence, Changes the confidence of objects being tracked.

@@ -30,7 +30,8 @@ namespace guWhiteboard
                 "FallenRight",
                 "Sitting",      //NYI
                 "Kneeling",     //NYI
-                "Knitting"      //NYI to be implemented by Rene
+                "Knitting",     //NYI to be implemented by Rene
+                "PickedUp"
         };
 
 	/** String values for printing which type of walk engine is currently running */

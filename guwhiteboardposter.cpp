@@ -1725,6 +1725,18 @@ v.from_string(message_content);
     return false;
 #endif //HeadJointSensors_DEFINED
 }
+case kAdjustPositionConfidence_v:
+{
+#ifdef AdjustPositionConfidence_DEFINED
+    class AdjustPositionConfidence_t msg_ptr(wbd);
+    AdjustPositionConfidence v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //AdjustPositionConfidence_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1888,6 +1900,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["FrequencyControl"] = kFrequencyControl_v;
     self["FrequencyStatus"] = kFrequencyStatus_v;
     self["HeadJointSensors"] = kHeadJointSensors_v;
+    self["AdjustPositionConfidence"] = kAdjustPositionConfidence_v;
 
     (void) self;
 }

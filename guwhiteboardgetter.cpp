@@ -1319,6 +1319,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //HeadJointSensors_DEFINED
             }
+            case kAdjustPositionConfidence_v:
+            {
+#ifdef AdjustPositionConfidence_DEFINED
+                class AdjustPositionConfidence_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //AdjustPositionConfidence_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

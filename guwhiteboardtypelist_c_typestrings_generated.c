@@ -162,7 +162,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "ReproduceWavNotSilent",
         "FrequencyControl",
         "FrequencyStatus",
-        "HeadJointSensors"
+        "HeadJointSensors",
+        "AdjustPositionConfidence"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -315,7 +316,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_frequency_limits",
         "wb_frequency_limits",
-        "wb_head_joint_sensors"
+        "wb_head_joint_sensors",
+        "wb_adjust_position_confidence"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
