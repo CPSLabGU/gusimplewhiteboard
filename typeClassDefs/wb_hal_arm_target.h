@@ -301,6 +301,10 @@ struct wb_hal_arm_target* wb_hal_arm_target_from_string(struct wb_hal_arm_target
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* self, char* toString, size_t bufferSize);
+#endif
+
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
 /**

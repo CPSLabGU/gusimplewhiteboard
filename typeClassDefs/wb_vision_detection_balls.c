@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -163,6 +164,7 @@ const char* wb_vision_detection_balls_description(const struct wb_vision_detecti
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +212,7 @@ const char* wb_vision_detection_balls_to_string(const struct wb_vision_detection
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -359,7 +362,7 @@ struct wb_vision_detection_balls* wb_vision_detection_balls_from_string(struct w
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_detection_ball balls_0;
+                    struct wb_vision_detection_ball balls_0 = {};
                     wb_vision_detection_ball_from_string(&balls_0, var_str);
                     self->balls[balls_0_index] = balls_0;;
                 }

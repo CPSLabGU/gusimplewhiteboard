@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -200,6 +201,7 @@ const char* wb_machine_filtered_vision_description(const struct wb_machine_filte
         }
     }
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -284,6 +286,7 @@ const char* wb_machine_filtered_vision_to_string(const struct wb_machine_filtere
         }
     }
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -412,15 +415,30 @@ struct wb_machine_filtered_vision* wb_machine_filtered_vision_from_string(struct
             case 6:
             {
                 if (strcmp("GoalSightingType", var_str) == 0) {
-                    self->goal_sightingType = GoalSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->goal_sightingType = GoalSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("LeftPostSightingType", var_str) == 0) {
-                    self->goal_sightingType = LeftPostSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->goal_sightingType = LeftPostSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("NoSightingType", var_str) == 0) {
-                    self->goal_sightingType = NoSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->goal_sightingType = NoSightingType;
+#pragma clang diagnostic pop
                 } else if (strcmp("RightPostSightingType", var_str) == 0) {
-                    self->goal_sightingType = RightPostSightingType;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->goal_sightingType = RightPostSightingType;
+#pragma clang diagnostic pop
                 } else {
-                    self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->goal_sightingType = ((enum GoalSightingType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

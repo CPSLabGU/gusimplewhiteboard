@@ -3281,6 +3281,167 @@ public:
 #endif //MissionPriorityForObstacles_DEFINED
 
 
+/** WBFunctor definition for WavLoad_WBFunctor_T */ 
+template <typename WavLoad_WBFunctor_T >
+class WavLoad_WBFunctor: public WBFunctor<WavLoad_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for WavLoad_WBFunctor_T */
+    WavLoad_WBFunctor(WavLoad_WBFunctor_T* obj, void (WavLoad_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<WavLoad_WBFunctor_T >(obj, (void (WavLoad_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class WavLoad_WBFunctor */
+    void call(gu_simple_message *m) {
+        std::string result = guWhiteboard::WavLoad_t().get_from(m);
+        WavLoad_function_t funct((void (WavLoad_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<WavLoad_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<WavLoad_WBFunctor_T >::fObject->*funct)(WBFunctor<WavLoad_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (WavLoad_WBFunctor_T::*WavLoad_function_t) (guWhiteboard::WBTypes, std::string &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(WavLoad_WBFunctor_T *obj, void (WavLoad_WBFunctor_T::*f)(guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t) { return new WavLoad_WBFunctor<WavLoad_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for WavPlay_WBFunctor_T */ 
+template <typename WavPlay_WBFunctor_T >
+class WavPlay_WBFunctor: public WBFunctor<WavPlay_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for WavPlay_WBFunctor_T */
+    WavPlay_WBFunctor(WavPlay_WBFunctor_T* obj, void (WavPlay_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WavPlay_WBFunctor_T >(obj, (void (WavPlay_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class WavPlay_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::WavPlay_t().get_from(m);
+        WavPlay_function_t funct((void (WavPlay_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WavPlay_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<WavPlay_WBFunctor_T >::fObject->*funct)(WBFunctor<WavPlay_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (WavPlay_WBFunctor_T::*WavPlay_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(WavPlay_WBFunctor_T *obj, void (WavPlay_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new WavPlay_WBFunctor<WavPlay_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for ReproduceWavNotSilent_WBFunctor_T */ 
+template <typename ReproduceWavNotSilent_WBFunctor_T >
+class ReproduceWavNotSilent_WBFunctor: public WBFunctor<ReproduceWavNotSilent_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for ReproduceWavNotSilent_WBFunctor_T */
+    ReproduceWavNotSilent_WBFunctor(ReproduceWavNotSilent_WBFunctor_T* obj, void (ReproduceWavNotSilent_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<ReproduceWavNotSilent_WBFunctor_T >(obj, (void (ReproduceWavNotSilent_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class ReproduceWavNotSilent_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::ReproduceWavNotSilent_t().get_from(m);
+        ReproduceWavNotSilent_function_t funct((void (ReproduceWavNotSilent_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::fObject->*funct)(WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (ReproduceWavNotSilent_WBFunctor_T::*ReproduceWavNotSilent_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(ReproduceWavNotSilent_WBFunctor_T *obj, void (ReproduceWavNotSilent_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new ReproduceWavNotSilent_WBFunctor<ReproduceWavNotSilent_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+#ifdef FrequencyLimits_DEFINED
+/** WBFunctor definition for FrequencyControl_WBFunctor_T */ 
+template <typename FrequencyControl_WBFunctor_T >
+class FrequencyControl_WBFunctor: public WBFunctor<FrequencyControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FrequencyControl_WBFunctor_T */
+    FrequencyControl_WBFunctor(FrequencyControl_WBFunctor_T* obj, void (FrequencyControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyControl_WBFunctor_T >(obj, (void (FrequencyControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FrequencyControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyControl_t().get_from(m);
+        FrequencyControl_function_t funct((void (FrequencyControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FrequencyControl_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FrequencyControl_WBFunctor_T::*FrequencyControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FrequencyControl_WBFunctor_T *obj, void (FrequencyControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t) { return new FrequencyControl_WBFunctor<FrequencyControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FrequencyLimits_DEFINED
+
+#ifdef FrequencyLimits_DEFINED
+/** WBFunctor definition for FrequencyStatus_WBFunctor_T */ 
+template <typename FrequencyStatus_WBFunctor_T >
+class FrequencyStatus_WBFunctor: public WBFunctor<FrequencyStatus_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for FrequencyStatus_WBFunctor_T */
+    FrequencyStatus_WBFunctor(FrequencyStatus_WBFunctor_T* obj, void (FrequencyStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyStatus_WBFunctor_T >(obj, (void (FrequencyStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class FrequencyStatus_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyStatus_t().get_from(m);
+        FrequencyStatus_function_t funct((void (FrequencyStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyStatus_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<FrequencyStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyStatus_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (FrequencyStatus_WBFunctor_T::*FrequencyStatus_function_t) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(FrequencyStatus_WBFunctor_T *obj, void (FrequencyStatus_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t) { return new FrequencyStatus_WBFunctor<FrequencyStatus_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //FrequencyLimits_DEFINED
+
+#ifdef HeadJointSensors_DEFINED
+/** WBFunctor definition for HeadJointSensors_WBFunctor_T */ 
+template <typename HeadJointSensors_WBFunctor_T >
+class HeadJointSensors_WBFunctor: public WBFunctor<HeadJointSensors_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for HeadJointSensors_WBFunctor_T */
+    HeadJointSensors_WBFunctor(HeadJointSensors_WBFunctor_T* obj, void (HeadJointSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &), guWhiteboard::WBTypes t): WBFunctor<HeadJointSensors_WBFunctor_T >(obj, (void (HeadJointSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class HeadJointSensors_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::HeadJointSensors result = guWhiteboard::HeadJointSensors_t().get_from(m);
+        HeadJointSensors_function_t funct((void (HeadJointSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &))WBFunctor<HeadJointSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<HeadJointSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<HeadJointSensors_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (HeadJointSensors_WBFunctor_T::*HeadJointSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(HeadJointSensors_WBFunctor_T *obj, void (HeadJointSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &), guWhiteboard::WBTypes t) { return new HeadJointSensors_WBFunctor<HeadJointSensors_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //HeadJointSensors_DEFINED
+
+#ifdef AdjustPositionConfidence_DEFINED
+/** WBFunctor definition for AdjustPositionConfidence_WBFunctor_T */ 
+template <typename AdjustPositionConfidence_WBFunctor_T >
+class AdjustPositionConfidence_WBFunctor: public WBFunctor<AdjustPositionConfidence_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for AdjustPositionConfidence_WBFunctor_T */
+    AdjustPositionConfidence_WBFunctor(AdjustPositionConfidence_WBFunctor_T* obj, void (AdjustPositionConfidence_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t): WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, (void (AdjustPositionConfidence_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class AdjustPositionConfidence_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::AdjustPositionConfidence result = guWhiteboard::AdjustPositionConfidence_t().get_from(m);
+        AdjustPositionConfidence_function_t funct((void (AdjustPositionConfidence_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &))WBFunctor<AdjustPositionConfidence_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<AdjustPositionConfidence_WBFunctor_T >::fObject->*funct)(WBFunctor<AdjustPositionConfidence_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (AdjustPositionConfidence_WBFunctor_T::*AdjustPositionConfidence_function_t) (guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(AdjustPositionConfidence_WBFunctor_T *obj, void (AdjustPositionConfidence_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t) { return new AdjustPositionConfidence_WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //AdjustPositionConfidence_DEFINED
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -158,6 +159,7 @@ const char* wb_particle_position_description(const struct wb_particle_position* 
     }
     len += snprintf(descString + len, bufferSize - len, "confidence=%f", self->confidence);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -200,6 +202,7 @@ const char* wb_particle_position_to_string(const struct wb_particle_position* se
     }
     len += snprintf(toString + len, bufferSize - len, "%f", self->confidence);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

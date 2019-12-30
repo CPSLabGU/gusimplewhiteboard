@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -166,6 +167,7 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     }
     len += snprintf(descString + len, bufferSize - len, "r=%u", self->r);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -216,6 +218,7 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->r);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -308,11 +311,20 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
             case 0:
             {
                 if (strcmp("BallDetected", var_str) == 0) {
-                    self->sightingType = BallDetected;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = BallDetected;
+#pragma clang diagnostic pop
                 } else if (strcmp("NoBallDetected", var_str) == 0) {
-                    self->sightingType = NoBallDetected;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = NoBallDetected;
+#pragma clang diagnostic pop
                 } else {
-                    self->sightingType = ((enum BallOptions)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->sightingType = ((enum BallOptions)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

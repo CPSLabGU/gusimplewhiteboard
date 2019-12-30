@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -147,6 +148,7 @@ const char* wb_odometry_description(const struct wb_odometry* self, char* descSt
     }
     len += snprintf(descString + len, bufferSize - len, "turn=%f", self->turn);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -178,6 +180,7 @@ const char* wb_odometry_to_string(const struct wb_odometry* self, char* toString
     }
     len += snprintf(toString + len, bufferSize - len, "%f", self->turn);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

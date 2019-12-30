@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -155,6 +156,7 @@ const char* wb_microphone_frequencies_description(const struct wb_microphone_fre
     }
     len += snprintf(descString + len, bufferSize - len, "front_right=%d", self->front_right);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -194,6 +196,7 @@ const char* wb_microphone_frequencies_to_string(const struct wb_microphone_frequ
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->front_right);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

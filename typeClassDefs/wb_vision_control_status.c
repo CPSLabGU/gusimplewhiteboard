@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -414,6 +415,7 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
     }
     len += snprintf(descString + len, bufferSize - len, "colourCalibration=%s", self->colourCalibration);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -712,6 +714,7 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
     }
     len += snprintf(toString + len, bufferSize - len, "%s", self->colourCalibration);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -832,17 +835,35 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             case 0:
             {
                 if (strcmp("HD_4VGA", var_str) == 0) {
-                    self->cameraResolution = HD_4VGA;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = HD_4VGA;
+#pragma clang diagnostic pop
                 } else if (strcmp("QQVGA", var_str) == 0) {
-                    self->cameraResolution = QQVGA;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = QQVGA;
+#pragma clang diagnostic pop
                 } else if (strcmp("QVGA", var_str) == 0) {
-                    self->cameraResolution = QVGA;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = QVGA;
+#pragma clang diagnostic pop
                 } else if (strcmp("SVGA", var_str) == 0) {
-                    self->cameraResolution = SVGA;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = SVGA;
+#pragma clang diagnostic pop
                 } else if (strcmp("VGA", var_str) == 0) {
-                    self->cameraResolution = VGA;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = VGA;
+#pragma clang diagnostic pop
                 } else {
-                    self->cameraResolution = ((enum Resolutions)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->cameraResolution = ((enum Resolutions)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
@@ -854,26 +875,50 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             case 2:
             {
                 if (strcmp("Bottom", var_str) == 0) {
-                    self->selectedCamera = Bottom;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->selectedCamera = Bottom;
+#pragma clang diagnostic pop
                 } else if (strcmp("Top", var_str) == 0) {
-                    self->selectedCamera = Top;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->selectedCamera = Top;
+#pragma clang diagnostic pop
                 } else {
-                    self->selectedCamera = ((enum VisionCamera)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->selectedCamera = ((enum VisionCamera)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
             case 3:
             {
                 if (strcmp("AI2", var_str) == 0) {
-                    self->saveImage = AI2;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->saveImage = AI2;
+#pragma clang diagnostic pop
                 } else if (strcmp("AI3", var_str) == 0) {
-                    self->saveImage = AI3;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->saveImage = AI3;
+#pragma clang diagnostic pop
                 } else if (strcmp("JPG", var_str) == 0) {
-                    self->saveImage = JPG;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->saveImage = JPG;
+#pragma clang diagnostic pop
                 } else if (strcmp("None", var_str) == 0) {
-                    self->saveImage = None;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->saveImage = None;
+#pragma clang diagnostic pop
                 } else {
-                    self->saveImage = ((enum SaveFileType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->saveImage = ((enum SaveFileType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
@@ -885,19 +930,40 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             case 5:
             {
                 if (strcmp("HTWK", var_str) == 0) {
-                    self->pipeline = HTWK;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = HTWK;
+#pragma clang diagnostic pop
                 } else if (strcmp("Neural_Network", var_str) == 0) {
-                    self->pipeline = Neural_Network;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = Neural_Network;
+#pragma clang diagnostic pop
                 } else if (strcmp("OpenCVFaces", var_str) == 0) {
-                    self->pipeline = OpenCVFaces;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = OpenCVFaces;
+#pragma clang diagnostic pop
                 } else if (strcmp("OpenChallenge", var_str) == 0) {
-                    self->pipeline = OpenChallenge;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = OpenChallenge;
+#pragma clang diagnostic pop
                 } else if (strcmp("Soccer", var_str) == 0) {
-                    self->pipeline = Soccer;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = Soccer;
+#pragma clang diagnostic pop
                 } else if (strcmp("Streaming", var_str) == 0) {
-                    self->pipeline = Streaming;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = Streaming;
+#pragma clang diagnostic pop
                 } else {
-                    self->pipeline = ((enum NamedPipeline)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->pipeline = ((enum NamedPipeline)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
@@ -914,43 +980,85 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
             case 8:
             {
                 if (strcmp("BallOnly", var_str) == 0) {
-                    self->networkTop = BallOnly;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkTop = BallOnly;
+#pragma clang diagnostic pop
                 } else if (strcmp("VGANet", var_str) == 0) {
-                    self->networkTop = VGANet;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkTop = VGANet;
+#pragma clang diagnostic pop
                 } else if (strcmp("Vanilla", var_str) == 0) {
-                    self->networkTop = Vanilla;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkTop = Vanilla;
+#pragma clang diagnostic pop
                 } else if (strcmp("v2", var_str) == 0) {
-                    self->networkTop = v2;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkTop = v2;
+#pragma clang diagnostic pop
                 } else {
-                    self->networkTop = ((enum NeuralNetworkType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkTop = ((enum NeuralNetworkType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
             case 9:
             {
                 if (strcmp("BallOnly", var_str) == 0) {
-                    self->networkBottom = BallOnly;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkBottom = BallOnly;
+#pragma clang diagnostic pop
                 } else if (strcmp("VGANet", var_str) == 0) {
-                    self->networkBottom = VGANet;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkBottom = VGANet;
+#pragma clang diagnostic pop
                 } else if (strcmp("Vanilla", var_str) == 0) {
-                    self->networkBottom = Vanilla;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkBottom = Vanilla;
+#pragma clang diagnostic pop
                 } else if (strcmp("v2", var_str) == 0) {
-                    self->networkBottom = v2;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkBottom = v2;
+#pragma clang diagnostic pop
                 } else {
-                    self->networkBottom = ((enum NeuralNetworkType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->networkBottom = ((enum NeuralNetworkType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }
             case 10:
             {
                 if (strcmp("Classified", var_str) == 0) {
-                    self->streamingSource = Classified;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->streamingSource = Classified;
+#pragma clang diagnostic pop
                 } else if (strcmp("Normal", var_str) == 0) {
-                    self->streamingSource = Normal;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->streamingSource = Normal;
+#pragma clang diagnostic pop
                 } else if (strcmp("Recognized", var_str) == 0) {
-                    self->streamingSource = Recognized;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->streamingSource = Recognized;
+#pragma clang diagnostic pop
                 } else {
-                    self->streamingSource = ((enum StreamingType)atoi(var_str));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->streamingSource = ((enum StreamingType)atoi(var_str));
+#pragma clang diagnostic pop
                 }
                 break;
             }

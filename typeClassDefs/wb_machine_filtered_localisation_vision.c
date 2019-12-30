@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -163,6 +164,7 @@ const char* wb_machine_filtered_localisation_vision_description(const struct wb_
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -210,6 +212,7 @@ const char* wb_machine_filtered_localisation_vision_to_string(const struct wb_ma
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -359,7 +362,7 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_landmark_sighting sightings_0;
+                    struct wb_landmark_sighting sightings_0 = {};
                     wb_landmark_sighting_from_string(&sightings_0, var_str);
                     self->sightings[sightings_0_index] = sightings_0;;
                 }

@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -155,6 +156,7 @@ const char* wb_input3d_description(const struct wb_input3d* self, char* descStri
     }
     len += snprintf(descString + len, bufferSize - len, "power=%d", self->power);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -194,6 +196,7 @@ const char* wb_input3d_to_string(const struct wb_input3d* self, char* toString, 
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->power);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

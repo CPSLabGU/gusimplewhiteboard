@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -492,6 +493,7 @@ const char* wb_hal_leg_target_description(const struct wb_hal_leg_target* self, 
     }
     len += snprintf(descString + len, bufferSize - len, "target_leg_stop=%u", self->target_leg_stop);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -683,6 +685,7 @@ const char* wb_hal_leg_target_to_string(const struct wb_hal_leg_target* self, ch
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->target_leg_stop);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

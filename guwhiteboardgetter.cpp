@@ -1271,6 +1271,63 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MissionPriorityForObstacles_DEFINED
             }
+            case kWavLoad_v:
+            {
+
+                class WavLoad_t m(wbd);
+                return msg ? m.get_from(msg) : m.get();
+
+            }
+            case kWavPlay_v:
+            {
+
+                class WavPlay_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kReproduceWavNotSilent_v:
+            {
+
+                class ReproduceWavNotSilent_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kFrequencyControl_v:
+            {
+#ifdef FrequencyLimits_DEFINED
+                class FrequencyControl_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FrequencyLimits_DEFINED
+            }
+            case kFrequencyStatus_v:
+            {
+#ifdef FrequencyLimits_DEFINED
+                class FrequencyStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //FrequencyLimits_DEFINED
+            }
+            case kHeadJointSensors_v:
+            {
+#ifdef HeadJointSensors_DEFINED
+                class HeadJointSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //HeadJointSensors_DEFINED
+            }
+            case kAdjustPositionConfidence_v:
+            {
+#ifdef AdjustPositionConfidence_DEFINED
+                class AdjustPositionConfidence_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //AdjustPositionConfidence_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

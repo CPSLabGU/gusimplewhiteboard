@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -211,6 +212,7 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
     }
     len += snprintf(descString + len, bufferSize - len, "frameNumber=%llu", self->frameNumber);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -306,6 +308,7 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
     }
     len += snprintf(toString + len, bufferSize - len, "%llu", self->frameNumber);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -456,7 +459,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_line topLines_0;
+                    struct wb_vision_line topLines_0 = {};
                     wb_vision_line_from_string(&topLines_0, var_str);
                     self->topLines[topLines_0_index] = topLines_0;;
                 }
@@ -518,7 +521,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_line bottomLines_0;
+                    struct wb_vision_line bottomLines_0 = {};
                     wb_vision_line_from_string(&bottomLines_0, var_str);
                     self->bottomLines[bottomLines_0_index] = bottomLines_0;;
                 }

@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -155,6 +156,7 @@ const char* wb_filtered_arrayonedimobjects_description(const struct wb_filtered_
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -194,6 +196,7 @@ const char* wb_filtered_arrayonedimobjects_to_string(const struct wb_filtered_ar
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -336,7 +339,7 @@ struct wb_filtered_arrayonedimobjects* wb_filtered_arrayonedimobjects_from_strin
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_filtered_vision_object objects_0;
+                    struct wb_filtered_vision_object objects_0 = {};
                     wb_filtered_vision_object_from_string(&objects_0, var_str);
                     self->objects[objects_0_index] = objects_0;;
                 }

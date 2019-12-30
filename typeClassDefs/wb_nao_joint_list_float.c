@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -323,6 +324,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     }
     len += snprintf(descString + len, bufferSize - len, "RAnkleRoll=%f", self->RAnkleRoll);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -530,6 +532,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     }
     len += snprintf(toString + len, bufferSize - len, "%f", self->RAnkleRoll);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

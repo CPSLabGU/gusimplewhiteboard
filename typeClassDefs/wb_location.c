@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -146,7 +147,24 @@ const char* wb_location_description(const struct wb_location* self, char* descSt
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "confidence=%u", self->confidence);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "distanceVariance=%u", self->distanceVariance);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "directionVariance=%u", self->directionVariance);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -177,7 +195,24 @@ const char* wb_location_to_string(const struct wb_location* self, char* toString
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->confidence);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->distanceVariance);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->directionVariance);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -192,7 +227,7 @@ struct wb_location* wb_location_from_string(struct wb_location* self, const char
     }
     char var_str_buffer[LOCATION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[11];
+    char key_buffer[18];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -259,6 +294,10 @@ struct wb_location* wb_location_from_string(struct wb_location* self, const char
                 varIndex = 1;
             } else if (0 == strcmp("confidence", key)) {
                 varIndex = 2;
+            } else if (0 == strcmp("distanceVariance", key)) {
+                varIndex = 3;
+            } else if (0 == strcmp("directionVariance", key)) {
+                varIndex = 4;
             } else {
                 varIndex = -1;
             }
@@ -278,6 +317,16 @@ struct wb_location* wb_location_from_string(struct wb_location* self, const char
             case 2:
             {
                 self->confidence = ((uint8_t)atoi(var_str));
+                break;
+            }
+            case 3:
+            {
+                self->distanceVariance = ((uint32_t)atoi(var_str));
+                break;
+            }
+            case 4:
+            {
+                self->directionVariance = ((uint32_t)atoi(var_str));
                 break;
             }
         }
@@ -332,6 +381,34 @@ size_t wb_location_to_network_serialised(const struct wb_location *self, char *d
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((confidence_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint32_t distanceVariance_nbo = htonl(self->distanceVariance);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((distanceVariance_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint32_t directionVariance_nbo = htonl(self->directionVariance);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((directionVariance_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -393,6 +470,36 @@ size_t wb_location_from_network_serialised(const char *src, struct wb_location *
       }
     } while(false);
     dst->confidence = (dst->confidence);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->distanceVariance ^= (-bitValue ^ dst->distanceVariance) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->distanceVariance = ntohl(dst->distanceVariance);
+
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->directionVariance ^= (-bitValue ^ dst->directionVariance) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->directionVariance = ntohl(dst->directionVariance);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

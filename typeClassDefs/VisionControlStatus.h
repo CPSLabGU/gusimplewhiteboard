@@ -666,17 +666,35 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("HD_4VGA", var_str) == 0) {
-                            this->set_cameraResolution(HD_4VGA);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(HD_4VGA);
+#pragma clang diagnostic pop
                         } else if (strcmp("QQVGA", var_str) == 0) {
-                            this->set_cameraResolution(QQVGA);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(QQVGA);
+#pragma clang diagnostic pop
                         } else if (strcmp("QVGA", var_str) == 0) {
-                            this->set_cameraResolution(QVGA);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(QVGA);
+#pragma clang diagnostic pop
                         } else if (strcmp("SVGA", var_str) == 0) {
-                            this->set_cameraResolution(SVGA);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(SVGA);
+#pragma clang diagnostic pop
                         } else if (strcmp("VGA", var_str) == 0) {
-                            this->set_cameraResolution(VGA);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(VGA);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_cameraResolution(static_cast<enum Resolutions>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_cameraResolution(static_cast<enum Resolutions>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
@@ -688,26 +706,50 @@ namespace guWhiteboard {
                     case 2:
                     {
                         if (strcmp("Bottom", var_str) == 0) {
-                            this->set_selectedCamera(Bottom);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_selectedCamera(Bottom);
+#pragma clang diagnostic pop
                         } else if (strcmp("Top", var_str) == 0) {
-                            this->set_selectedCamera(Top);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_selectedCamera(Top);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_selectedCamera(static_cast<enum VisionCamera>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_selectedCamera(static_cast<enum VisionCamera>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
                     case 3:
                     {
                         if (strcmp("AI2", var_str) == 0) {
-                            this->set_saveImage(AI2);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_saveImage(AI2);
+#pragma clang diagnostic pop
                         } else if (strcmp("AI3", var_str) == 0) {
-                            this->set_saveImage(AI3);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_saveImage(AI3);
+#pragma clang diagnostic pop
                         } else if (strcmp("JPG", var_str) == 0) {
-                            this->set_saveImage(JPG);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_saveImage(JPG);
+#pragma clang diagnostic pop
                         } else if (strcmp("None", var_str) == 0) {
-                            this->set_saveImage(None);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_saveImage(None);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_saveImage(static_cast<enum SaveFileType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_saveImage(static_cast<enum SaveFileType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
@@ -719,19 +761,40 @@ namespace guWhiteboard {
                     case 5:
                     {
                         if (strcmp("HTWK", var_str) == 0) {
-                            this->set_pipeline(HTWK);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(HTWK);
+#pragma clang diagnostic pop
                         } else if (strcmp("Neural_Network", var_str) == 0) {
-                            this->set_pipeline(Neural_Network);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(Neural_Network);
+#pragma clang diagnostic pop
                         } else if (strcmp("OpenCVFaces", var_str) == 0) {
-                            this->set_pipeline(OpenCVFaces);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(OpenCVFaces);
+#pragma clang diagnostic pop
                         } else if (strcmp("OpenChallenge", var_str) == 0) {
-                            this->set_pipeline(OpenChallenge);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(OpenChallenge);
+#pragma clang diagnostic pop
                         } else if (strcmp("Soccer", var_str) == 0) {
-                            this->set_pipeline(Soccer);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(Soccer);
+#pragma clang diagnostic pop
                         } else if (strcmp("Streaming", var_str) == 0) {
-                            this->set_pipeline(Streaming);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(Streaming);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_pipeline(static_cast<enum NamedPipeline>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_pipeline(static_cast<enum NamedPipeline>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
@@ -748,43 +811,85 @@ namespace guWhiteboard {
                     case 8:
                     {
                         if (strcmp("BallOnly", var_str) == 0) {
-                            this->set_networkTop(BallOnly);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkTop(BallOnly);
+#pragma clang diagnostic pop
                         } else if (strcmp("VGANet", var_str) == 0) {
-                            this->set_networkTop(VGANet);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkTop(VGANet);
+#pragma clang diagnostic pop
                         } else if (strcmp("Vanilla", var_str) == 0) {
-                            this->set_networkTop(Vanilla);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkTop(Vanilla);
+#pragma clang diagnostic pop
                         } else if (strcmp("v2", var_str) == 0) {
-                            this->set_networkTop(v2);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkTop(v2);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_networkTop(static_cast<enum NeuralNetworkType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkTop(static_cast<enum NeuralNetworkType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
                     case 9:
                     {
                         if (strcmp("BallOnly", var_str) == 0) {
-                            this->set_networkBottom(BallOnly);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkBottom(BallOnly);
+#pragma clang diagnostic pop
                         } else if (strcmp("VGANet", var_str) == 0) {
-                            this->set_networkBottom(VGANet);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkBottom(VGANet);
+#pragma clang diagnostic pop
                         } else if (strcmp("Vanilla", var_str) == 0) {
-                            this->set_networkBottom(Vanilla);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkBottom(Vanilla);
+#pragma clang diagnostic pop
                         } else if (strcmp("v2", var_str) == 0) {
-                            this->set_networkBottom(v2);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkBottom(v2);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_networkBottom(static_cast<enum NeuralNetworkType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_networkBottom(static_cast<enum NeuralNetworkType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
                     case 10:
                     {
                         if (strcmp("Classified", var_str) == 0) {
-                            this->set_streamingSource(Classified);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_streamingSource(Classified);
+#pragma clang diagnostic pop
                         } else if (strcmp("Normal", var_str) == 0) {
-                            this->set_streamingSource(Normal);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_streamingSource(Normal);
+#pragma clang diagnostic pop
                         } else if (strcmp("Recognized", var_str) == 0) {
-                            this->set_streamingSource(Recognized);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_streamingSource(Recognized);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_streamingSource(static_cast<enum StreamingType>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_streamingSource(static_cast<enum StreamingType>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

@@ -1136,6 +1136,57 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
+            case kWavLoad_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kWavPlay_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kReproduceWavNotSilent_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kFrequencyControl_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return SERIALISE(FREQUENCY_LIMITS_C_STRUCT, (struct FREQUENCY_LIMITS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
+            case kFrequencyStatus_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return SERIALISE(FREQUENCY_LIMITS_C_STRUCT, (struct FREQUENCY_LIMITS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
+            case kHeadJointSensors_v:
+            {
+#ifdef HEAD_JOINT_SENSORS_GENERATED
+                return SERIALISE(HEAD_JOINT_SENSORS_C_STRUCT, (struct HEAD_JOINT_SENSORS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //HEAD_JOINT_SENSORS_GENERATED
+                break;
+            }
+            case kAdjustPositionConfidence_v:
+            {
+#ifdef ADJUST_POSITION_CONFIDENCE_GENERATED
+                return SERIALISE(ADJUST_POSITION_CONFIDENCE_C_STRUCT, (struct ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //ADJUST_POSITION_CONFIDENCE_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

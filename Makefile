@@ -43,10 +43,10 @@ all: all-real
 
 generate:
 .for f in ${WB_MSG_GEN_FILES}
-	classgenerator --c-header typeClassDefs ${f}
+	classgenerator -s --c-header typeClassDefs ${f}
 .endfor
 .for f in ${WB_MSG_OLD_GEN_FILES}
-	classgenerator --c-header typeClassDefs -b ${f}
+	classgenerator -s --c-header typeClassDefs -b ${f}
 .endfor
 
 test:
@@ -57,9 +57,9 @@ test:
 .endif
 
 post-clean:
-	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
 
 whiteboard-wrapper:
-	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host && ./.build/release/WhiteboardWrapperGenerator
+	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host SWIFT_BUILD_CONFIG=release && ./.build/release/WhiteboardWrapperGenerator
+	cd SimpleWhiteboardTest && ${MAKE} ${MAKEFLAGS} clean
 
 .include "../../mk/mipal.mk"		# comes last!

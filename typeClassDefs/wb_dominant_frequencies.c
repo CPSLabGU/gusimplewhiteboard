@@ -67,6 +67,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -175,6 +176,7 @@ const char* wb_dominant_frequencies_description(const struct wb_dominant_frequen
     }
     len = gu_strlcat(descString, "}", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -233,6 +235,7 @@ const char* wb_dominant_frequencies_to_string(const struct wb_dominant_frequenci
     }
     len = gu_strlcat(toString, "}", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -382,7 +385,7 @@ struct wb_dominant_frequencies* wb_dominant_frequencies_from_string(struct wb_do
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_microphone_frequencies frequencies_0;
+                    struct wb_microphone_frequencies frequencies_0 = {};
                     wb_microphone_frequencies_from_string(&frequencies_0, var_str);
                     self->frequencies[frequencies_0_index] = frequencies_0;;
                 }

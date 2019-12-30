@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -243,6 +244,7 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
     }
     len += snprintf(descString + len, bufferSize - len, "numCrosses=%u", self->numCrosses);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -370,6 +372,7 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->numCrosses);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -522,7 +525,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_field_feature fieldCorner_0;
+                    struct wb_vision_field_feature fieldCorner_0 = {};
                     wb_vision_field_feature_from_string(&fieldCorner_0, var_str);
                     self->fieldCorner[fieldCorner_0_index] = fieldCorner_0;;
                 }
@@ -584,7 +587,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_field_feature fieldIntersection_0;
+                    struct wb_vision_field_feature fieldIntersection_0 = {};
                     wb_vision_field_feature_from_string(&fieldIntersection_0, var_str);
                     self->fieldIntersection[fieldIntersection_0_index] = fieldIntersection_0;;
                 }
@@ -646,7 +649,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_field_feature fieldCrosses_0;
+                    struct wb_vision_field_feature fieldCrosses_0 = {};
                     wb_vision_field_feature_from_string(&fieldCrosses_0, var_str);
                     self->fieldCrosses[fieldCrosses_0_index] = fieldCrosses_0;;
                 }

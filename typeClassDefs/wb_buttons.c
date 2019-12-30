@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -139,6 +140,7 @@ const char* wb_buttons_description(const struct wb_buttons* self, char* descStri
     }
     len = gu_strlcat(descString, self->button2Pushed ? "button2Pushed=true" : "button2Pushed=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -162,6 +164,7 @@ const char* wb_buttons_to_string(const struct wb_buttons* self, char* toString, 
     }
     len = gu_strlcat(toString, self->button2Pushed ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

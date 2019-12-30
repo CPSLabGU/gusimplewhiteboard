@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -139,6 +140,7 @@ const char* wb_particle_output_map_description(const struct wb_particle_output_m
     }
     len += snprintf(descString + len, bufferSize - len, "filePath=%s", self->filePath);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -162,6 +164,7 @@ const char* wb_particle_output_map_to_string(const struct wb_particle_output_map
     }
     len += snprintf(toString + len, bufferSize - len, "%s", self->filePath);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

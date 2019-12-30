@@ -88,6 +88,12 @@
     bit       target_arm_at_goal            =  false       // Control Message: Not used. Status Message: Naoqiinterface reports that the goal location of all joints has been reached (within specified tolerance).
     bit       target_arm_stop               =  false       // Control Message: Stop the arm at its current location. Status Message: Indicates if the last control message issued a STOP command.
 
++c
+
+#ifdef WHITEBOARD_POSTER_STRING_CONVERSION
+const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* self, char* toString, size_t bufferSize);
+#endif
+
 %c
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 /**

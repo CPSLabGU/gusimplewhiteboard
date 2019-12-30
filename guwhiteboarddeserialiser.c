@@ -1136,6 +1136,57 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
+            case kWavLoad_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kWavPlay_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kReproduceWavNotSilent_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kFrequencyControl_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
+            case kFrequencyStatus_v:
+            {
+#ifdef FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //FREQUENCY_LIMITS_GENERATED
+                break;
+            }
+            case kHeadJointSensors_v:
+            {
+#ifdef HEAD_JOINT_SENSORS_GENERATED
+                return DESERIALISE(HEAD_JOINT_SENSORS_C_STRUCT, serialised_in, (struct HEAD_JOINT_SENSORS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //HEAD_JOINT_SENSORS_GENERATED
+                break;
+            }
+            case kAdjustPositionConfidence_v:
+            {
+#ifdef ADJUST_POSITION_CONFIDENCE_GENERATED
+                return DESERIALISE(ADJUST_POSITION_CONFIDENCE_C_STRUCT, serialised_in, (struct ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //ADJUST_POSITION_CONFIDENCE_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

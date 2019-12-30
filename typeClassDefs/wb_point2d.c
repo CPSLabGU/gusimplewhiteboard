@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -139,6 +140,7 @@ const char* wb_point2d_description(const struct wb_point2d* self, char* descStri
     }
     len += snprintf(descString + len, bufferSize - len, "y=%d", self->y);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -162,6 +164,7 @@ const char* wb_point2d_to_string(const struct wb_point2d* self, char* toString, 
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->y);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

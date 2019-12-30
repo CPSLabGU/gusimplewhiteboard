@@ -371,26 +371,50 @@ namespace guWhiteboard {
                     case 0:
                     {
                         if (strcmp("FullPostSeen", var_str) == 0) {
-                            this->set_sightingType(FullPostSeen);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(FullPostSeen);
+#pragma clang diagnostic pop
                         } else if (strcmp("NoPostDetected", var_str) == 0) {
-                            this->set_sightingType(NoPostDetected);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(NoPostDetected);
+#pragma clang diagnostic pop
                         } else if (strcmp("PartialPostSeen", var_str) == 0) {
-                            this->set_sightingType(PartialPostSeen);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(PartialPostSeen);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_sightingType(static_cast<enum GoalPostOptions>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }
                     case 1:
                     {
                         if (strcmp("GenericPost", var_str) == 0) {
-                            this->set_orientation(GenericPost);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_orientation(GenericPost);
+#pragma clang diagnostic pop
                         } else if (strcmp("LeftPost", var_str) == 0) {
-                            this->set_orientation(LeftPost);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_orientation(LeftPost);
+#pragma clang diagnostic pop
                         } else if (strcmp("RightPost", var_str) == 0) {
-                            this->set_orientation(RightPost);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_orientation(RightPost);
+#pragma clang diagnostic pop
                         } else {
-                            this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_orientation(static_cast<enum GoalPostOrientation>(atoi(var_str)));
+#pragma clang diagnostic pop
                         }
                         break;
                     }

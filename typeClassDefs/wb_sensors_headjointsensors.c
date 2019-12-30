@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -139,6 +140,7 @@ const char* wb_sensors_headjointsensors_description(const struct wb_sensors_head
     }
     len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -162,6 +164,7 @@ const char* wb_sensors_headjointsensors_to_string(const struct wb_sensors_headjo
     }
     len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

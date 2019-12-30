@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -131,6 +132,7 @@ const char* wb_teleoperation_status_description(const struct wb_teleoperation_st
     }
     len += snprintf(descString + len, bufferSize - len, "sayString=%s", self->sayString);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -146,6 +148,7 @@ const char* wb_teleoperation_status_to_string(const struct wb_teleoperation_stat
     }
     len += snprintf(toString + len, bufferSize - len, "%s", self->sayString);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

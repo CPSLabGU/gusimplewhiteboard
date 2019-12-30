@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -267,6 +268,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     }
     len = gu_strlcat(descString, self->RFoot_Bumper_Right ? "RFoot_Bumper_Right=true" : "RFoot_Bumper_Right=false", bufferSize);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -418,6 +420,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     }
     len = gu_strlcat(toString, self->RFoot_Bumper_Right ? "true" : "false", bufferSize);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

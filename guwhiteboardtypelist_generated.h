@@ -1201,6 +1201,65 @@ FFTControl_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generi
         
     };
 
+    /** WB Ptr Class: WavLoad_t @brief request to load a wav file */ 
+    class WavLoad_t: public generic_whiteboard_object<std::string > { 
+        public: 
+        /** Constructor: WavLoad_t */ 
+        WavLoad_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(wbd, kWavLoad_v, true) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavLoad_t */ 
+WavLoad_t(std::string value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<std::string >(value, kWavLoad_v, wbd, true) {} 
+    };
+
+    /** WB Ptr Class: WavPlay_t @brief forced, treat request to play wav file as forced output and sound will come out even if reproduce on is silent */ 
+    class WavPlay_t: public generic_whiteboard_object<bool > { 
+        public: 
+        /** Constructor: WavPlay_t */ 
+        WavPlay_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kWavPlay_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: WavPlay_t */ 
+WavPlay_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kWavPlay_v, wbd, false) {} 
+    };
+
+    /** WB Ptr Class: ReproduceWavNotSilent_t @brief toggle, treat request to play wav file as silent output unless this is turned on but can be overwritten by forced in WavPlay */ 
+    class ReproduceWavNotSilent_t: public generic_whiteboard_object<bool > { 
+        public: 
+        /** Constructor: ReproduceWavNotSilent_t */ 
+        ReproduceWavNotSilent_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(wbd, kReproduceWavNotSilent_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: ReproduceWavNotSilent_t */ 
+ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<bool >(value, kReproduceWavNotSilent_v, wbd, false) {} 
+    };
+
+    /** WB Ptr Class: FrequencyControl_t @brief Frequency limits control message for FFT analysis */ 
+    class FrequencyControl_t: public generic_whiteboard_object<class FrequencyLimits > { 
+        public: 
+        /** Constructor: FrequencyControl_t */ 
+        FrequencyControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FrequencyLimits >(wbd, kFrequencyControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: FrequencyStatus_t @brief Current Frequency limits (status) for FFT analysis */ 
+    class FrequencyStatus_t: public generic_whiteboard_object<class FrequencyLimits > { 
+        public: 
+        /** Constructor: FrequencyStatus_t */ 
+        FrequencyStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class FrequencyLimits >(wbd, kFrequencyStatus_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: HeadJointSensors_t @brief Status of the head sensors in degrees. */ 
+    class HeadJointSensors_t: public generic_whiteboard_object<class HeadJointSensors > { 
+        public: 
+        /** Constructor: HeadJointSensors_t */ 
+        HeadJointSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class HeadJointSensors >(wbd, kHeadJointSensors_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: AdjustPositionConfidence_t @brief Changes the confidence of objects being tracked. */ 
+    class AdjustPositionConfidence_t: public generic_whiteboard_object<class AdjustPositionConfidence > { 
+        public: 
+        /** Constructor: AdjustPositionConfidence_t */ 
+        AdjustPositionConfidence_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): generic_whiteboard_object<class AdjustPositionConfidence >(wbd, kAdjustPositionConfidence_v, false) {}
+        
+    };
+
 
 }
 

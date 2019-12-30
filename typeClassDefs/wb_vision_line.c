@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -177,6 +178,7 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     }
     len += snprintf(descString + len, bufferSize - len, "endThickness=%u", self->endThickness);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -238,6 +240,7 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->endThickness);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

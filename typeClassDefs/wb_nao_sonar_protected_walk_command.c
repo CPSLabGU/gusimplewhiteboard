@@ -66,6 +66,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
 
 /* Network byte order functions */
 #pragma clang diagnostic push
@@ -243,6 +244,7 @@ const char* wb_nao_sonar_protected_walk_command_description(const struct wb_nao_
     }
     len += snprintf(descString + len, bufferSize - len, "bend=%u", self->bend);
     return descString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -370,6 +372,7 @@ const char* wb_nao_sonar_protected_walk_command_to_string(const struct wb_nao_so
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->bend);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**

@@ -41,5 +41,9 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_nao_obstacle_direction.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_dominant_frequencies.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_mission_priority_for_obstacles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_frequency_limits.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_frequency_limits.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_head_joint_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_adjust_position_confidence.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
