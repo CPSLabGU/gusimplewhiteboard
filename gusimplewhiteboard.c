@@ -104,7 +104,6 @@
 #include <sys/sem.h>
 #include <gu_util.h>
 #include "gusimplewhiteboard.h"
-#include "guwhiteboardtypelist_c_generated.h"
 
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
@@ -199,15 +198,12 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         {
                 gsw_init_semaphores(wbd->sem);
 
-                for (int i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
-                        if(i < GSW_NUM_TYPES_DEFINED)
-                                gsw_register_message_type(wbd, WBTypes_stringValues[i]);
-                        else
-                        {
-                                char type_str[40];
-                                snprintf(type_str, sizeof(type_str), "not a type: %d", i);
-                                gsw_register_message_type(wbd, type_str);
-                        }
+                for (int i = 0; i < GSW_NUM_RESERVED; i++)
+                {
+                        char type_str[40];
+                        snprintf(type_str, sizeof(type_str), "static type: %d", i);
+                        gsw_register_message_type(wbd, type_str);
+                }
         }
 #ifdef WITHOUT_LIBDISPATCH
         wbd->callback_queue = NULL;
