@@ -177,14 +177,25 @@ gsw_sema_t gsw_setup_semaphores(int key)
 
 gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int n)
 {
-        int nmsgs = GSW_NUM_RESERVED;
-        if (nmsgs > GSW_NUM_TYPES_DEFINED)
+        int nmsgs = GSW_NUM_TYPES_DEFINED;
+        if (nmsgs > GSW_NUM_RESERVED)
         {
-                fprintf(stderr, "Warning: whiteboard '%s' tries to reserve %d messages, but only %d defined\n", name, nmsgs, GSW_NUM_TYPES_DEFINED);
-                nmsgs = GSW_NUM_TYPES_DEFINED;
+                fprintf(stderr, "Warning: whiteboard '%s' tries to define %d messages, but only %d reserved\n", name, nmsgs, GSW_NUM_TYPES_DEFINED);
+                nmsgs = GSW_NUM_RESERVED;
         }
 
-        return gsw_new_custom_whiteboard(name, WBTypes_stringValues, nmsgs, SEMAPHORE_MAGIC_KEY + n);
+        gu_simple_whiteboard_descriptor *wbd = gsw_new_custom_whiteboard(name, WBTypes_stringValues, nmsgs, SEMAPHORE_MAGIC_KEY + n);
+
+        if (wbd == NULL) return NULL;
+
+        char type_str[40];
+        while (nmsgs < GSW_NUM_RESERVED)
+        {
+                snprintf(type_str, sizeof(type_str), "not a type: %d", nmsgs++);
+                gsw_register_message_type(wbd, type_str);
+        }
+
+        return wbd;
 }
 
 
