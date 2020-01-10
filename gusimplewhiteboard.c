@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.c
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -177,6 +177,19 @@ gsw_sema_t gsw_setup_semaphores(int key)
 
 gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int n)
 {
+        int nmsgs = GSW_NUM_RESERVED;
+        if (nmsgs > GSW_NUM_TYPES_DEFINED)
+        {
+                fprintf(stderr, "Warning: whiteboard '%s' tries to reserve %d messages, but only %d defined\n", name, nmsgs, GSW_NUM_TYPES_DEFINED);
+                nmsgs = GSW_NUM_TYPES_DEFINED;
+        }
+
+        return gsw_new_custom_whiteboard(name, WBTypes_stringValues, nmsgs, SEMAPHORE_MAGIC_KEY + n);
+}
+
+
+gu_simple_whiteboard_descriptor *gsw_new_custom_whiteboard(const char *name, const char *message_names[], int num_messages, int semaphore_magic_key)
+{
         gu_simple_whiteboard_descriptor *wbd = calloc(sizeof(gu_simple_whiteboard_descriptor), 1);
         if (!wbd)
         {
@@ -184,30 +197,23 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
                 return NULL;
         }
 
-        wbd->sem = gsw_setup_semaphores(SEMAPHORE_MAGIC_KEY + n);
+        wbd->sem = gsw_setup_semaphores(semaphore_magic_key);
         if (wbd->sem == (gsw_sema_t) SEM_ERROR)
-                fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", SEMAPHORE_MAGIC_KEY + n, name, strerror(errno));
+                fprintf(stderr, "Warning; cannot get semaphore %d for whiteboard '%s': %s (proceeding without)\n", semaphore_magic_key, name, strerror(errno));
 
-        bool init = false;
-        wbd->wb = gsw_create(name, &wbd->fd, &init);
+        bool needs_init = false;
+        wbd->wb = gsw_create(name, &wbd->fd, &needs_init);
         if (!wbd->wb)
         {
                 gsw_free_whiteboard(wbd);
                 return NULL;
         }
-        if (init)
+        if (needs_init)
         {
                 gsw_init_semaphores(wbd->sem);
 
-                for (int i = 0; i < GSW_NUM_RESERVED; i++) //fix, GSW_NUM_RESERVED = 1/2 of types, fix GSW_NUM_TYPES_DEFINED
-                        if(i < GSW_NUM_TYPES_DEFINED)
-                                gsw_register_message_type(wbd, WBTypes_stringValues[i]);
-                        else
-                        {
-                                char type_str[40];
-                                snprintf(type_str, sizeof(type_str), "not a type: %d", i);
-                                gsw_register_message_type(wbd, type_str);
-                        }
+                for (int i = 0; i < num_messages; i++)
+                        gsw_register_message_type(wbd, message_names[i]);
         }
 #ifdef WITHOUT_LIBDISPATCH
         wbd->callback_queue = NULL;

@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -334,13 +334,22 @@ extern const char *gsw_global_whiteboard_name;
 extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
 
 /**
+ * Access a named, custom whiteboard.  This is the designated custom wb constructor for C programs
+ * @param name The name of the whiteboard to create/access
+ * @param message_names Array of `char *` containing the pre-defined (static) message names
+ * @param num_messages Number of messages in the `message_names` array
+ * @param semaphore_magic_key Semaphore magic key to use
+ */
+extern gu_simple_whiteboard_descriptor *gsw_new_custom_whiteboard(const char *name, const char *message_names[], int num_messages, int semaphore_magic_key);
+
+/**
  * access a remote named whiteboard: this is the designated constructore for C programs
  * @param i  machine id of the remote whiteboard
  */
 extern gu_simple_whiteboard_descriptor *gswr_new_whiteboard(int i);
 
 /**
- * access a named whiteboard: this is the designated constructore for C programs
+ * access a named whiteboard: this is the designated standard wb constructor for C programs
  * that want to assign a whiteboard number (uses a different semaphore than the default)
  * @param name  name of the whiteboard
  * @param num   whiteboard number (0 for local, default whiteboard)
