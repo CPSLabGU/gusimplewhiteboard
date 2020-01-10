@@ -371,7 +371,6 @@
 		C3B4EBC91CBCD2740061A970 /* FSM_Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSM_Control.h; sourceTree = "<group>"; };
 		C3B4EBCA1CBCD2740061A970 /* FSMControlStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMControlStatus.h; sourceTree = "<group>"; };
 		C3B4EBCB1CBCD2740061A970 /* GCGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGameState.h; sourceTree = "<group>"; };
-		C3B4EBCC1CBCD2740061A970 /* Giraff_MainSerialInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Giraff_MainSerialInterface.h; sourceTree = "<group>"; };
 		C3B4EBCD1CBCD2740061A970 /* GNUmakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
 		C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAL_HeadTarget.h; sourceTree = "<group>"; };
 		C3B4EBCF1CBCD2740061A970 /* Input3D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input3D.txt; sourceTree = "<group>"; };
@@ -388,7 +387,6 @@
 		C3B4EBDB1CBCD2740061A970 /* OculusPrimeInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OculusPrimeInterface.h; sourceTree = "<group>"; };
 		C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTICLE_TopPositions.h; sourceTree = "<group>"; };
 		C3B4EBDD1CBCD2740061A970 /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point2D.h; sourceTree = "<group>"; };
-		C3B4EBDE1CBCD2740061A970 /* Point2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Point2D.txt; sourceTree = "<group>"; };
 		C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLedsSensors.h; sourceTree = "<group>"; };
 		C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointSensors.h; sourceTree = "<group>"; };
 		C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENSORSLegJointTemps.h; sourceTree = "<group>"; };
@@ -535,6 +533,37 @@
 		F14C46B914A0659F006B6953 /* gusimplewhiteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gusimplewhiteboard.h; sourceTree = "<group>"; };
 		F14C46C314A07024006B6953 /* gusimplewhiteboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gusimplewhiteboard.c; sourceTree = "<group>"; };
 		F154FAA0196621C80081158B /* Makefile */ = {isa = PBXFileReference; indentWidth = 8; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; tabWidth = 8; usesTabs = 1; };
+		F157698823C91687004B1453 /* teleoperationControl.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = teleoperationControl.gen; sourceTree = "<group>"; };
+		F157698923C91688004B1453 /* sensors_hand_sensors.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensors_hand_sensors.gen; sourceTree = "<group>"; };
+		F157698A23C91688004B1453 /* vision_detection_goal.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_goal.gen; sourceTree = "<group>"; };
+		F157698B23C91688004B1453 /* teleoperationControlVR.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = teleoperationControlVR.gen; sourceTree = "<group>"; };
+		F157698C23C91688004B1453 /* vision_detection_horizon.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_horizon.gen; sourceTree = "<group>"; };
+		F157698D23C91688004B1453 /* vision_detection_goal_post.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_goal_post.gen; sourceTree = "<group>"; };
+		F157698E23C91688004B1453 /* landmark_sighting.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = landmark_sighting.gen; sourceTree = "<group>"; };
+		F157698F23C91688004B1453 /* teleoperationStatus.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = teleoperationStatus.gen; sourceTree = "<group>"; };
+		F157699023C91688004B1453 /* count.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = count.gen; sourceTree = "<group>"; };
+		F157699123C91688004B1453 /* data_logger.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = data_logger.gen; sourceTree = "<group>"; };
+		F157699223C91688004B1453 /* buttons.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttons.gen; sourceTree = "<group>"; };
+		F157699323C91689004B1453 /* vision_detection_goals.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_goals.gen; sourceTree = "<group>"; };
+		F157699423C91689004B1453 /* sensors_body_sensors.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensors_body_sensors.gen; sourceTree = "<group>"; };
+		F157699523C91689004B1453 /* TopParticles.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopParticles.gen; sourceTree = "<group>"; };
+		F157699623C91689004B1453 /* Vision_FieldFeature.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = Vision_FieldFeature.gen; sourceTree = "<group>"; };
+		F157699723C91689004B1453 /* sensors_head_sensors.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensors_head_sensors.gen; sourceTree = "<group>"; };
+		F157699823C91689004B1453 /* microwave_status.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = microwave_status.gen; sourceTree = "<group>"; };
+		F157699923C91689004B1453 /* head_joint_sensors.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = head_joint_sensors.gen; sourceTree = "<group>"; };
+		F157699A23C91689004B1453 /* vision_detection_balls.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_balls.gen; sourceTree = "<group>"; };
+		F157699B23C91689004B1453 /* vision_detection_ball.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_ball.gen; sourceTree = "<group>"; };
+		F157699C23C91689004B1453 /* naoWalkCommand.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = naoWalkCommand.gen; sourceTree = "<group>"; };
+		F157699D23C9168A004B1453 /* adjust_position_confidence.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = adjust_position_confidence.gen; sourceTree = "<group>"; };
+		F157699E23C9168A004B1453 /* vision_detection_horizons.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_detection_horizons.gen; sourceTree = "<group>"; };
+		F157699F23C9168A004B1453 /* nao_joint_list_float.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = nao_joint_list_float.gen; sourceTree = "<group>"; };
+		F15769A023C9168A004B1453 /* particle_output_map.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = particle_output_map.gen; sourceTree = "<group>"; };
+		F15769A123C9168A004B1453 /* Particle_Position.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = Particle_Position.gen; sourceTree = "<group>"; };
+		F15769A223C9168A004B1453 /* vision_line.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_line.gen; sourceTree = "<group>"; };
+		F15769A323C9168A004B1453 /* vision_lines.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = vision_lines.gen; sourceTree = "<group>"; };
+		F15769A423C9168A004B1453 /* point2D.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = point2D.gen; sourceTree = "<group>"; };
+		F15769A523C9168A004B1453 /* sensors_foot_sensors.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensors_foot_sensors.gen; sourceTree = "<group>"; };
+		F15769A623C9168A004B1453 /* machine_filtered_vision.gen */ = {isa = PBXFileReference; lastKnownFileType = text; path = machine_filtered_vision.gen; sourceTree = "<group>"; };
 		F15E631F1A11646F0082D467 /* NXT_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NXT_Interface.h; sourceTree = "<group>"; };
 		F186C380194B9B4D00F9273B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F191CBD21B71A1A40005C314 /* wb_io_pins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wb_io_pins.h; sourceTree = "<group>"; };
@@ -760,12 +789,10 @@
 		F5BC000A1F0DEF7900987168 /* FilteredVisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredVisionObject.h; sourceTree = "<group>"; };
 		F5BC000C1F0DEF9700987168 /* FilteredArrayBallSightings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredArrayBallSightings.h; sourceTree = "<group>"; };
 		F5C315931F11B30D00C517C2 /* Top_Particles.preamble */ = {isa = PBXFileReference; lastKnownFileType = text; path = Top_Particles.preamble; sourceTree = "<group>"; };
-		F5C315941F11B30D00C517C2 /* Top_Particles.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Top_Particles.txt; sourceTree = "<group>"; };
 		F5C315951F11B30D00C517C2 /* TopParticles-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TopParticles-Bridging-Header.h"; sourceTree = "<group>"; };
 		F5C315961F11B30D00C517C2 /* TopParticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopParticles.h; sourceTree = "<group>"; };
 		F5C315971F11B30E00C517C2 /* TopParticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopParticles.swift; sourceTree = "<group>"; };
 		F5C315981F11B32A00C517C2 /* Particle_Position.preamble */ = {isa = PBXFileReference; lastKnownFileType = text; path = Particle_Position.preamble; sourceTree = "<group>"; };
-		F5C315991F11B32A00C517C2 /* Particle_Position.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Particle_Position.txt; sourceTree = "<group>"; };
 		F5C3159A1F11B32A00C517C2 /* ParticlePosition-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParticlePosition-Bridging-Header.h"; sourceTree = "<group>"; };
 		F5C3159B1F11B32A00C517C2 /* ParticlePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticlePosition.h; sourceTree = "<group>"; };
 		F5C3159C1F11B32A00C517C2 /* ParticlePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlePosition.swift; sourceTree = "<group>"; };
@@ -1339,12 +1366,10 @@
 				F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */,
 				F1E5542D18EBD16D00639B1E /* PARTICLE_TopPositions.h */,
 				F5C315981F11B32A00C517C2 /* Particle_Position.preamble */,
-				F5C315991F11B32A00C517C2 /* Particle_Position.txt */,
 				F5C3159A1F11B32A00C517C2 /* ParticlePosition-Bridging-Header.h */,
 				F5C3159B1F11B32A00C517C2 /* ParticlePosition.h */,
 				F5C3159C1F11B32A00C517C2 /* ParticlePosition.swift */,
 				F5C315931F11B30D00C517C2 /* Top_Particles.preamble */,
-				F5C315941F11B30D00C517C2 /* Top_Particles.txt */,
 				F5C315951F11B30D00C517C2 /* TopParticles-Bridging-Header.h */,
 				F5C315961F11B30D00C517C2 /* TopParticles.h */,
 				F5C315971F11B30E00C517C2 /* TopParticles.swift */,
@@ -1376,7 +1401,6 @@
 				C3B4EBC91CBCD2740061A970 /* FSM_Control.h */,
 				C3B4EBCA1CBCD2740061A970 /* FSMControlStatus.h */,
 				C3B4EBCB1CBCD2740061A970 /* GCGameState.h */,
-				C3B4EBCC1CBCD2740061A970 /* Giraff_MainSerialInterface.h */,
 				C3B4EBCD1CBCD2740061A970 /* GNUmakefile */,
 				C3B4EBCE1CBCD2740061A970 /* HAL_HeadTarget.h */,
 				C3B4EBCF1CBCD2740061A970 /* Input3D.txt */,
@@ -1393,7 +1417,6 @@
 				C3B4EBDB1CBCD2740061A970 /* OculusPrimeInterface.h */,
 				C3B4EBDC1CBCD2740061A970 /* PARTICLE_TopPositions.h */,
 				C3B4EBDD1CBCD2740061A970 /* Point2D.h */,
-				C3B4EBDE1CBCD2740061A970 /* Point2D.txt */,
 				C3B4EBE21CBCD2740061A970 /* SENSORSLedsSensors.h */,
 				C3B4EBE31CBCD2740061A970 /* SENSORSLegJointSensors.h */,
 				C3B4EBE41CBCD2740061A970 /* SENSORSLegJointTemps.h */,
@@ -1406,9 +1429,7 @@
 				C3B4EBEC1CBCD2740061A970 /* Vision_Control.h */,
 				C3B4EBED1CBCD2740061A970 /* VisionBall.h */,
 				C3B4EBEE1CBCD2740061A970 /* VisionGoals.h */,
-				C3B4EBEF1CBCD2740061A970 /* VisionLines.h */,
 				EF203BD61F71E57B001582D8 /* VisionRobots.h */,
-				C3B4EBF21CBCD2740061A970 /* WalkData.h */,
 				C3B4EBF31CBCD2740061A970 /* wb_apm_interface.h */,
 				C3B4EBF51CBCD2740061A970 /* wb_arrayoffilteredsonarobjects.h */,
 				C3B4EBF71CBCD2740061A970 /* wb_ball.h */,
@@ -1451,11 +1472,45 @@
 				C3B4EC1A1CBCD2740061A970 /* wb_sensors_torso.h */,
 				C3B4EC1B1CBCD2740061A970 /* wb_sensors_torsotemps.h */,
 				C3B4EC1C1CBCD2740061A970 /* wb_sound.h */,
+				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
+				F1E5543F18EBD16D00639B1E /* WEBOTS_NXT_bridge.h */,
+				F1E5543E18EBD16D00639B1E /* WalkData.h */,
+				C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */,
 				C3B4EC1D1CBCD2740061A970 /* wb_switch_subsumption_traffic_lights.h */,
 				C3B4EC1E1CBCD2740061A970 /* wb_switch_subsumption.h */,
 				C3B4EC1F1CBCD2740061A970 /* wb_teleoperation.h */,
 				F5F25CA620A582150057B540 /* wb_vision_control_status.h */,
-				C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */,
+				F157699D23C9168A004B1453 /* adjust_position_confidence.gen */,
+				F157699223C91688004B1453 /* buttons.gen */,
+				F157699023C91688004B1453 /* count.gen */,
+				F157699123C91688004B1453 /* data_logger.gen */,
+				F157699923C91689004B1453 /* head_joint_sensors.gen */,
+				F157698E23C91688004B1453 /* landmark_sighting.gen */,
+				F15769A623C9168A004B1453 /* machine_filtered_vision.gen */,
+				F157699823C91689004B1453 /* microwave_status.gen */,
+				F157699F23C9168A004B1453 /* nao_joint_list_float.gen */,
+				F157699C23C91689004B1453 /* naoWalkCommand.gen */,
+				F15769A023C9168A004B1453 /* particle_output_map.gen */,
+				F15769A123C9168A004B1453 /* Particle_Position.gen */,
+				F15769A423C9168A004B1453 /* point2D.gen */,
+				F157699423C91689004B1453 /* sensors_body_sensors.gen */,
+				F15769A523C9168A004B1453 /* sensors_foot_sensors.gen */,
+				F157698923C91688004B1453 /* sensors_hand_sensors.gen */,
+				F157699723C91689004B1453 /* sensors_head_sensors.gen */,
+				F157698823C91687004B1453 /* teleoperationControl.gen */,
+				F157698B23C91688004B1453 /* teleoperationControlVR.gen */,
+				F157698F23C91688004B1453 /* teleoperationStatus.gen */,
+				F157699523C91689004B1453 /* TopParticles.gen */,
+				F157699B23C91689004B1453 /* vision_detection_ball.gen */,
+				F157699A23C91689004B1453 /* vision_detection_balls.gen */,
+				F157698D23C91688004B1453 /* vision_detection_goal_post.gen */,
+				F157698A23C91688004B1453 /* vision_detection_goal.gen */,
+				F157699323C91689004B1453 /* vision_detection_goals.gen */,
+				F157698C23C91688004B1453 /* vision_detection_horizon.gen */,
+				F157699E23C9168A004B1453 /* vision_detection_horizons.gen */,
+				F157699623C91689004B1453 /* Vision_FieldFeature.gen */,
+				F15769A223C9168A004B1453 /* vision_line.gen */,
+				F15769A323C9168A004B1453 /* vision_lines.gen */,
 				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
 				F1E5543E18EBD16D00639B1E /* WalkData.h */,
 				C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */,
@@ -2063,6 +2118,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = F14C46A414A064D8006B6953;
