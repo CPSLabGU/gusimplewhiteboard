@@ -2,9 +2,12 @@
  *  /file guwhiteboarddeserialiser.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 
 #ifndef GUWHITEBOARDDESERIALISER_C
 #define GUWHITEBOARDDESERIALISER_C
@@ -1196,3 +1199,5 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 }
 
 #endif //GUWHITEBOARDDESERIALISER_C
+
+#pragma clang diagnostic pop

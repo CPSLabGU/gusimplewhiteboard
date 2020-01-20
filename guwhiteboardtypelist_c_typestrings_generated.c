@@ -6,6 +6,9 @@
  *  All rights reserved.
  */
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+
 #ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 #define GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 
@@ -321,3 +324,5 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+
+#pragma clang diagnostic pop
