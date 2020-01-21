@@ -13,3 +13,4 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_hal_headtarget.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_sonar.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_pixel_to_robot_relative_coord.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_nao_state.h>
