@@ -2,9 +2,15 @@
  *  /file guwhiteboardserialiser.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wcast-qual"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wunreachable-code-break"
 
 #ifndef GUWHITEBOARDSERIALISER_C
 #define GUWHITEBOARDSERIALISER_C
@@ -1196,3 +1202,5 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 }
 
 #endif //GUWHITEBOARDSERIALISER_C
+
+#pragma clang diagnostic pop

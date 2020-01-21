@@ -264,6 +264,8 @@ static void create_singleton_whiteboard(void *context)
 {
     const char *name = GSW_DEFAULT_NAME;
 
+    (void)context;
+
 #ifndef GSW_IOS_DEVICE
     const char *env = getenv(GSW_DEFAULT_ENV);
     if (env && *env) name = env;
@@ -361,7 +363,7 @@ int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s)
         }
         return 0;
 #else
-        struct sembuf op = { s, -1, 0 };
+        struct sembuf op = { (unsigned short) s, -1, 0 };
         int rv;
         while ((rv = semop(sem, &op, 1)) == -1)
                if (errno != EAGAIN)
@@ -377,7 +379,7 @@ int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s)
         dispatch_semaphore_signal(sem[s]);
         return 0;
 #else
-        struct sembuf op = { s, 1, 0 };
+        struct sembuf op = { (unsigned short) s, 1, 0 };
         int rv;
         while ((rv = semop(sem, &op, 1)) == -1)
                 if (errno != EAGAIN)
@@ -601,6 +603,7 @@ static gsw_sig_t old_handler = SIG_DFL;
 static void sig_handler(int signum)
 {
         /* do nothing */
+    (void) signum;
 }
 
 void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd)
