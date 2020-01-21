@@ -2,14 +2,16 @@
  *  /file guwhiteboardtypelist_c_typestrings_generated.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
+
+/** Auto-generated, don't modify! */
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-macros"
 
-#ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+        #ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 #define GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 
 #include "gusimplewhiteboard.h"

@@ -6,6 +6,8 @@
  *  All rights reserved.
  */
 
+/** Auto-generated, don't modify! */
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-macros"
 #pragma clang diagnostic ignored "-Wcast-qual"
@@ -14,8 +16,6 @@
 
 #ifndef GUWHITEBOARDDESERIALISER_C
 #define GUWHITEBOARDDESERIALISER_C
-
-/** Auto-generated, don't modify! */
 
 #define WHITEBOARD_DESERIALISER
 
