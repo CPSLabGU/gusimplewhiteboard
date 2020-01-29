@@ -81,7 +81,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum VRControlMovementOptions movementOptions = Resting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
+        void init(enum VRControlMovementOptions movementOptions = VRResting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
             set_movementOptions(movementOptions);
             set_walkingOptions(walkingOptions);
         }
@@ -91,7 +91,7 @@ namespace guWhiteboard {
         /**
          * Create a new `GuVrTeleopVulkanControl`.
          */
-        GuVrTeleopVulkanControl(enum VRControlMovementOptions movementOptions = Resting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
+        GuVrTeleopVulkanControl(enum VRControlMovementOptions movementOptions = VRResting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
             this->init(movementOptions, walkingOptions);
         }
 

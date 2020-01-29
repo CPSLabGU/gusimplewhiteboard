@@ -19,7 +19,7 @@ enum VRControlWalkingOptions {
 };
 
 -properties
-enum VRControlMovementOptions movementOptions = Resting //controls the robots movement
+enum VRControlMovementOptions movementOptions = VRResting //controls the robots movement
 
 enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS //controls the direction of high-level walk commands
 
