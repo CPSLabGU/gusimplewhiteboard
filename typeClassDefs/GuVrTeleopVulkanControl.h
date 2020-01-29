@@ -143,57 +143,57 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->movementOptions()) {
-                case Resting:
+                case VRResting:
                 {
-                    ss << "movementOptions=" << "Resting";
+                    ss << "movementOptions=" << "VRResting";
                     break;
                 }
-                case Standing:
+                case VRStanding:
                 {
-                    ss << "movementOptions=" << "Standing";
+                    ss << "movementOptions=" << "VRStanding";
                     break;
                 }
-                case Walking:
+                case VRWalking:
                 {
-                    ss << "movementOptions=" << "Walking";
+                    ss << "movementOptions=" << "VRWalking";
                     break;
                 }
             }
             ss << ", ";
             switch (this->walkingOptions()) {
-                case Back:
-                {
-                    ss << "walkingOptions=" << "Back";
-                    break;
-                }
-                case Forward:
-                {
-                    ss << "walkingOptions=" << "Forward";
-                    break;
-                }
-                case Left:
-                {
-                    ss << "walkingOptions=" << "Left";
-                    break;
-                }
                 case NUM_VR_CONTROL_WALKING_OPTIONS:
                 {
                     ss << "walkingOptions=" << "NUM_VR_CONTROL_WALKING_OPTIONS";
                     break;
                 }
-                case Right:
+                case VRMovementBack:
                 {
-                    ss << "walkingOptions=" << "Right";
+                    ss << "walkingOptions=" << "VRMovementBack";
                     break;
                 }
-                case RotateLeft:
+                case VRMovementForward:
                 {
-                    ss << "walkingOptions=" << "RotateLeft";
+                    ss << "walkingOptions=" << "VRMovementForward";
                     break;
                 }
-                case RotateRight:
+                case VRMovementLeft:
                 {
-                    ss << "walkingOptions=" << "RotateRight";
+                    ss << "walkingOptions=" << "VRMovementLeft";
+                    break;
+                }
+                case VRMovementRight:
+                {
+                    ss << "walkingOptions=" << "VRMovementRight";
+                    break;
+                }
+                case VRMovementRotateLeft:
+                {
+                    ss << "walkingOptions=" << "VRMovementRotateLeft";
+                    break;
+                }
+                case VRMovementRotateRight:
+                {
+                    ss << "walkingOptions=" << "VRMovementRotateRight";
                     break;
                 }
             }
@@ -210,57 +210,57 @@ namespace guWhiteboard {
 #else
             std::ostringstream ss;
             switch (this->movementOptions()) {
-                case Resting:
+                case VRResting:
                 {
-                    ss << "Resting";
+                    ss << "VRResting";
                     break;
                 }
-                case Standing:
+                case VRStanding:
                 {
-                    ss << "Standing";
+                    ss << "VRStanding";
                     break;
                 }
-                case Walking:
+                case VRWalking:
                 {
-                    ss << "Walking";
+                    ss << "VRWalking";
                     break;
                 }
             }
             ss << ", ";
             switch (this->walkingOptions()) {
-                case Back:
-                {
-                    ss << "Back";
-                    break;
-                }
-                case Forward:
-                {
-                    ss << "Forward";
-                    break;
-                }
-                case Left:
-                {
-                    ss << "Left";
-                    break;
-                }
                 case NUM_VR_CONTROL_WALKING_OPTIONS:
                 {
                     ss << "NUM_VR_CONTROL_WALKING_OPTIONS";
                     break;
                 }
-                case Right:
+                case VRMovementBack:
                 {
-                    ss << "Right";
+                    ss << "VRMovementBack";
                     break;
                 }
-                case RotateLeft:
+                case VRMovementForward:
                 {
-                    ss << "RotateLeft";
+                    ss << "VRMovementForward";
                     break;
                 }
-                case RotateRight:
+                case VRMovementLeft:
                 {
-                    ss << "RotateRight";
+                    ss << "VRMovementLeft";
+                    break;
+                }
+                case VRMovementRight:
+                {
+                    ss << "VRMovementRight";
+                    break;
+                }
+                case VRMovementRotateLeft:
+                {
+                    ss << "VRMovementRotateLeft";
+                    break;
+                }
+                case VRMovementRotateRight:
+                {
+                    ss << "VRMovementRotateRight";
                     break;
                 }
             }
@@ -354,20 +354,20 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-                        if (strcmp("Resting", var_str) == 0) {
+                        if (strcmp("VRResting", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_movementOptions(Resting);
+                        this->set_movementOptions(VRResting);
 #pragma clang diagnostic pop
-                        } else if (strcmp("Standing", var_str) == 0) {
+                        } else if (strcmp("VRStanding", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_movementOptions(Standing);
+                        this->set_movementOptions(VRStanding);
 #pragma clang diagnostic pop
-                        } else if (strcmp("Walking", var_str) == 0) {
+                        } else if (strcmp("VRWalking", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_movementOptions(Walking);
+                        this->set_movementOptions(VRWalking);
 #pragma clang diagnostic pop
                         } else {
 #pragma clang diagnostic push
@@ -379,40 +379,40 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        if (strcmp("Back", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(Back);
-#pragma clang diagnostic pop
-                        } else if (strcmp("Forward", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(Forward);
-#pragma clang diagnostic pop
-                        } else if (strcmp("Left", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(Left);
-#pragma clang diagnostic pop
-                        } else if (strcmp("NUM_VR_CONTROL_WALKING_OPTIONS", var_str) == 0) {
+                        if (strcmp("NUM_VR_CONTROL_WALKING_OPTIONS", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
                         this->set_walkingOptions(NUM_VR_CONTROL_WALKING_OPTIONS);
 #pragma clang diagnostic pop
-                        } else if (strcmp("Right", var_str) == 0) {
+                        } else if (strcmp("VRMovementBack", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(Right);
+                        this->set_walkingOptions(VRMovementBack);
 #pragma clang diagnostic pop
-                        } else if (strcmp("RotateLeft", var_str) == 0) {
+                        } else if (strcmp("VRMovementForward", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(RotateLeft);
+                        this->set_walkingOptions(VRMovementForward);
 #pragma clang diagnostic pop
-                        } else if (strcmp("RotateRight", var_str) == 0) {
+                        } else if (strcmp("VRMovementLeft", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                        this->set_walkingOptions(RotateRight);
+                        this->set_walkingOptions(VRMovementLeft);
+#pragma clang diagnostic pop
+                        } else if (strcmp("VRMovementRight", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkingOptions(VRMovementRight);
+#pragma clang diagnostic pop
+                        } else if (strcmp("VRMovementRotateLeft", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkingOptions(VRMovementRotateLeft);
+#pragma clang diagnostic pop
+                        } else if (strcmp("VRMovementRotateRight", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_walkingOptions(VRMovementRotateRight);
 #pragma clang diagnostic pop
                         } else {
 #pragma clang diagnostic push

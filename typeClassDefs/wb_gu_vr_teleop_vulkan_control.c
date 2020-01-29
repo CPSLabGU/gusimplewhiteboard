@@ -131,19 +131,19 @@ const char* wb_gu_vr_teleop_vulkan_control_description(const struct wb_gu_vr_tel
         return descString;
     }
     switch (self->movementOptions) {
-        case Resting:
+        case VRResting:
         {
-            len += snprintf(descString + len, bufferSize - len, "movementOptions=Resting");
+            len += snprintf(descString + len, bufferSize - len, "movementOptions=VRResting");
             break;
         }
-        case Standing:
+        case VRStanding:
         {
-            len += snprintf(descString + len, bufferSize - len, "movementOptions=Standing");
+            len += snprintf(descString + len, bufferSize - len, "movementOptions=VRStanding");
             break;
         }
-        case Walking:
+        case VRWalking:
         {
-            len += snprintf(descString + len, bufferSize - len, "movementOptions=Walking");
+            len += snprintf(descString + len, bufferSize - len, "movementOptions=VRWalking");
             break;
         }
     }
@@ -155,39 +155,39 @@ const char* wb_gu_vr_teleop_vulkan_control_description(const struct wb_gu_vr_tel
         return descString;
     }
     switch (self->walkingOptions) {
-        case Back:
-        {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=Back");
-            break;
-        }
-        case Forward:
-        {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=Forward");
-            break;
-        }
-        case Left:
-        {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=Left");
-            break;
-        }
         case NUM_VR_CONTROL_WALKING_OPTIONS:
         {
             len += snprintf(descString + len, bufferSize - len, "walkingOptions=NUM_VR_CONTROL_WALKING_OPTIONS");
             break;
         }
-        case Right:
+        case VRMovementBack:
         {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=Right");
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementBack");
             break;
         }
-        case RotateLeft:
+        case VRMovementForward:
         {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=RotateLeft");
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementForward");
             break;
         }
-        case RotateRight:
+        case VRMovementLeft:
         {
-            len += snprintf(descString + len, bufferSize - len, "walkingOptions=RotateRight");
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementLeft");
+            break;
+        }
+        case VRMovementRight:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementRight");
+            break;
+        }
+        case VRMovementRotateLeft:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementRotateLeft");
+            break;
+        }
+        case VRMovementRotateRight:
+        {
+            len += snprintf(descString + len, bufferSize - len, "walkingOptions=VRMovementRotateRight");
             break;
         }
     }
@@ -207,19 +207,19 @@ const char* wb_gu_vr_teleop_vulkan_control_to_string(const struct wb_gu_vr_teleo
         return toString;
     }
     switch (self->movementOptions) {
-        case Resting:
+        case VRResting:
         {
-            len += snprintf(toString + len, bufferSize - len, "Resting");
+            len += snprintf(toString + len, bufferSize - len, "VRResting");
             break;
         }
-        case Standing:
+        case VRStanding:
         {
-            len += snprintf(toString + len, bufferSize - len, "Standing");
+            len += snprintf(toString + len, bufferSize - len, "VRStanding");
             break;
         }
-        case Walking:
+        case VRWalking:
         {
-            len += snprintf(toString + len, bufferSize - len, "Walking");
+            len += snprintf(toString + len, bufferSize - len, "VRWalking");
             break;
         }
     }
@@ -231,39 +231,39 @@ const char* wb_gu_vr_teleop_vulkan_control_to_string(const struct wb_gu_vr_teleo
         return toString;
     }
     switch (self->walkingOptions) {
-        case Back:
-        {
-            len += snprintf(toString + len, bufferSize - len, "Back");
-            break;
-        }
-        case Forward:
-        {
-            len += snprintf(toString + len, bufferSize - len, "Forward");
-            break;
-        }
-        case Left:
-        {
-            len += snprintf(toString + len, bufferSize - len, "Left");
-            break;
-        }
         case NUM_VR_CONTROL_WALKING_OPTIONS:
         {
             len += snprintf(toString + len, bufferSize - len, "NUM_VR_CONTROL_WALKING_OPTIONS");
             break;
         }
-        case Right:
+        case VRMovementBack:
         {
-            len += snprintf(toString + len, bufferSize - len, "Right");
+            len += snprintf(toString + len, bufferSize - len, "VRMovementBack");
             break;
         }
-        case RotateLeft:
+        case VRMovementForward:
         {
-            len += snprintf(toString + len, bufferSize - len, "RotateLeft");
+            len += snprintf(toString + len, bufferSize - len, "VRMovementForward");
             break;
         }
-        case RotateRight:
+        case VRMovementLeft:
         {
-            len += snprintf(toString + len, bufferSize - len, "RotateRight");
+            len += snprintf(toString + len, bufferSize - len, "VRMovementLeft");
+            break;
+        }
+        case VRMovementRight:
+        {
+            len += snprintf(toString + len, bufferSize - len, "VRMovementRight");
+            break;
+        }
+        case VRMovementRotateLeft:
+        {
+            len += snprintf(toString + len, bufferSize - len, "VRMovementRotateLeft");
+            break;
+        }
+        case VRMovementRotateRight:
+        {
+            len += snprintf(toString + len, bufferSize - len, "VRMovementRotateRight");
             break;
         }
     }
@@ -356,20 +356,20 @@ struct wb_gu_vr_teleop_vulkan_control* wb_gu_vr_teleop_vulkan_control_from_strin
             case -1: { break; }
             case 0:
             {
-                if (strcmp("Resting", var_str) == 0) {
+                if (strcmp("VRResting", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->movementOptions = Resting;
+                self->movementOptions = VRResting;
 #pragma clang diagnostic pop
-                } else if (strcmp("Standing", var_str) == 0) {
+                } else if (strcmp("VRStanding", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->movementOptions = Standing;
+                self->movementOptions = VRStanding;
 #pragma clang diagnostic pop
-                } else if (strcmp("Walking", var_str) == 0) {
+                } else if (strcmp("VRWalking", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->movementOptions = Walking;
+                self->movementOptions = VRWalking;
 #pragma clang diagnostic pop
                 } else {
 #pragma clang diagnostic push
@@ -381,40 +381,40 @@ struct wb_gu_vr_teleop_vulkan_control* wb_gu_vr_teleop_vulkan_control_from_strin
             }
             case 1:
             {
-                if (strcmp("Back", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = Back;
-#pragma clang diagnostic pop
-                } else if (strcmp("Forward", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = Forward;
-#pragma clang diagnostic pop
-                } else if (strcmp("Left", var_str) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = Left;
-#pragma clang diagnostic pop
-                } else if (strcmp("NUM_VR_CONTROL_WALKING_OPTIONS", var_str) == 0) {
+                if (strcmp("NUM_VR_CONTROL_WALKING_OPTIONS", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
                 self->walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS;
 #pragma clang diagnostic pop
-                } else if (strcmp("Right", var_str) == 0) {
+                } else if (strcmp("VRMovementBack", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = Right;
+                self->walkingOptions = VRMovementBack;
 #pragma clang diagnostic pop
-                } else if (strcmp("RotateLeft", var_str) == 0) {
+                } else if (strcmp("VRMovementForward", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = RotateLeft;
+                self->walkingOptions = VRMovementForward;
 #pragma clang diagnostic pop
-                } else if (strcmp("RotateRight", var_str) == 0) {
+                } else if (strcmp("VRMovementLeft", var_str) == 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
-                self->walkingOptions = RotateRight;
+                self->walkingOptions = VRMovementLeft;
+#pragma clang diagnostic pop
+                } else if (strcmp("VRMovementRight", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->walkingOptions = VRMovementRight;
+#pragma clang diagnostic pop
+                } else if (strcmp("VRMovementRotateLeft", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->walkingOptions = VRMovementRotateLeft;
+#pragma clang diagnostic pop
+                } else if (strcmp("VRMovementRotateRight", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->walkingOptions = VRMovementRotateRight;
 #pragma clang diagnostic pop
                 } else {
 #pragma clang diagnostic push

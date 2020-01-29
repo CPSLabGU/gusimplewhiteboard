@@ -3,18 +3,18 @@
 -c
 
 enum VRControlMovementOptions {
-	Resting = 0,
-	Standing,
-	Walking
+	VRResting = 0,
+	VRStanding,
+	VRWalking
 };
 
 enum VRControlWalkingOptions {
-	Forward = 0,
-	Back,
-    Left,
-    Right,
-    RotateLeft,
-    RotateRight,
+	VRMovementForward = 0,
+	VRMovementBack,
+    VRMovementLeft,
+    VRMovementRight,
+    VRMovementRotateLeft,
+    VRMovementRotateRight,
     NUM_VR_CONTROL_WALKING_OPTIONS
 };
 
