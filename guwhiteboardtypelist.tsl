@@ -147,3 +147,4 @@ type:frequency_limits, nonatomic, FrequencyControl, Frequency limits control mes
 type:frequency_limits, nonatomic, FrequencyStatus, Current Frequency limits (status) for FFT analysis
 type:head_joint_sensors, nonatomic, HeadJointSensors, Status of the head sensors in degrees.
 type:adjust_position_confidence, nonatomic, AdjustPositionConfidence, Changes the confidence of objects being tracked.
+type:gu_vr_teleop_vulkan_control, nonatomic, GuVrTeleopVulkanControl, Control message for commands from the Vulkan VR teleop app
