@@ -1,0 +1,28 @@
+-author Carl Lusty
+
+-c
+
+enum VRControlMovementOptions {
+	Resting = 0,
+	Standing,
+	Walking
+};
+
+enum VRControlWalkingOptions {
+	Forward = 0,
+	Back,
+    Left,
+    Right,
+    RotateLeft,
+    RotateRight,
+    NUM_VR_CONTROL_WALKING_OPTIONS
+};
+
+-properties
+enum VRControlMovementOptions movementOptions = Resting //controls the robots movement
+
+enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS //controls the direction of high-level walk commands
+
+-comment
+Control class for messages from the vulkan vr teleop application
+
