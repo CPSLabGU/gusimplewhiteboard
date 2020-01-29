@@ -168,7 +168,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "FrequencyControl",
         "FrequencyStatus",
         "HeadJointSensors",
-        "AdjustPositionConfidence"
+        "AdjustPositionConfidence",
+        "GuVrTeleopVulkanControl"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -322,7 +323,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_frequency_limits",
         "wb_frequency_limits",
         "wb_head_joint_sensors",
-        "wb_adjust_position_confidence"
+        "wb_adjust_position_confidence",
+        "wb_gu_vr_teleop_vulkan_control"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

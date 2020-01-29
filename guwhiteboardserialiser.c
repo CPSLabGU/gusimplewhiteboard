@@ -1194,6 +1194,15 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
+            case kGuVrTeleopVulkanControl_v:
+            {
+#ifdef GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                return SERIALISE(GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, (struct GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

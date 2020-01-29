@@ -1260,6 +1260,14 @@ ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLP
         
     };
 
+    /** WB Ptr Class: GuVrTeleopVulkanControl_t @brief Control message for commands from the Vulkan VR teleop app */ 
+    class GuVrTeleopVulkanControl_t: public guWhiteboard_generic_whiteboard_object<class GuVrTeleopVulkanControl > {
+        public: 
+        /** Constructor: GuVrTeleopVulkanControl_t */ 
+        GuVrTeleopVulkanControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class GuVrTeleopVulkanControl >(wbd, kGuVrTeleopVulkanControl_v, false) {}
+        
+    };
+
 
 }
 

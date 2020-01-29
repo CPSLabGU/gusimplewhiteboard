@@ -3441,6 +3441,29 @@ public:
 }; 
 #endif //AdjustPositionConfidence_DEFINED
 
+#ifdef GuVrTeleopVulkanControl_DEFINED
+/** WBFunctor definition for GuVrTeleopVulkanControl_WBFunctor_T */ 
+template <typename GuVrTeleopVulkanControl_WBFunctor_T >
+class GuVrTeleopVulkanControl_WBFunctor: public WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for GuVrTeleopVulkanControl_WBFunctor_T */
+    GuVrTeleopVulkanControl_WBFunctor(GuVrTeleopVulkanControl_WBFunctor_T* obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::WBTypes t): WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, (void (GuVrTeleopVulkanControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class GuVrTeleopVulkanControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::GuVrTeleopVulkanControl result = guWhiteboard::GuVrTeleopVulkanControl_t().get_from(m);
+        GuVrTeleopVulkanControl_function_t funct((void (GuVrTeleopVulkanControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &))WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::fObject->*funct)(WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (GuVrTeleopVulkanControl_WBFunctor_T::*GuVrTeleopVulkanControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(GuVrTeleopVulkanControl_WBFunctor_T *obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::WBTypes t) { return new GuVrTeleopVulkanControl_WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //GuVrTeleopVulkanControl_DEFINED
+
 
 #pragma clang diagnostic pop
 
