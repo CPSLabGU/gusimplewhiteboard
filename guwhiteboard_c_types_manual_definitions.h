@@ -5,6 +5,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_arrayonedimobjects.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_arrayballsightings.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_vision_object.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_foot_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torso.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filteredsonarobject.h>
