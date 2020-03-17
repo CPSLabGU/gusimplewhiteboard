@@ -433,4 +433,5 @@ namespace guWhiteboard {
     };
 
 } /// namespace guWhiteboard
+
 #endif /// GuVrTeleopVulkanControl_DEFINED
