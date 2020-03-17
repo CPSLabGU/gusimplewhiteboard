@@ -1749,6 +1749,30 @@ v.from_string(message_content);
     return false;
 #endif //GuVrTeleopVulkanControl_DEFINED
 }
+case kTemperatureSensors_v:
+{
+#ifdef TemperatureSensors_DEFINED
+    class TemperatureSensors_t msg_ptr(wbd);
+    TemperatureSensors v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //TemperatureSensors_DEFINED
+}
+case kOverheating_v:
+{
+#ifdef Overheating_DEFINED
+    class Overheating_t msg_ptr(wbd);
+    Overheating v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //Overheating_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1914,6 +1938,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["HeadJointSensors"] = kHeadJointSensors_v;
     self["AdjustPositionConfidence"] = kAdjustPositionConfidence_v;
     self["GuVrTeleopVulkanControl"] = kGuVrTeleopVulkanControl_v;
+    self["TemperatureSensors"] = kTemperatureSensors_v;
+    self["Overheating"] = kOverheating_v;
 
     (void) self;
 }

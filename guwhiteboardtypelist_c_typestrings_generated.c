@@ -169,7 +169,9 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "FrequencyStatus",
         "HeadJointSensors",
         "AdjustPositionConfidence",
-        "GuVrTeleopVulkanControl"
+        "GuVrTeleopVulkanControl",
+        "TemperatureSensors",
+        "Overheating"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -324,7 +326,9 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_frequency_limits",
         "wb_head_joint_sensors",
         "wb_adjust_position_confidence",
-        "wb_gu_vr_teleop_vulkan_control"
+        "wb_gu_vr_teleop_vulkan_control",
+        "wb_temperature_sensors",
+        "wb_overheating"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

@@ -1,0 +1,13 @@
+-author Morgan McColl
+
+-c
+
+#include <stdbool.h>
+
+-properties
+
+bool overheating = false // Is the leg sensors on the nao overheating?
+
+-comment
+
+Provides a common structure for the status of the temperature sensors on the nao legs.

@@ -1337,6 +1337,24 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //GuVrTeleopVulkanControl_DEFINED
             }
+            case kTemperatureSensors_v:
+            {
+#ifdef TemperatureSensors_DEFINED
+                class TemperatureSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //TemperatureSensors_DEFINED
+            }
+            case kOverheating_v:
+            {
+#ifdef Overheating_DEFINED
+                class Overheating_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Overheating_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

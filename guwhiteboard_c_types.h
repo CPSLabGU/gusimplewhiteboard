@@ -46,5 +46,7 @@
 #include <typeClassDefs/wb_head_joint_sensors.h>
 #include <typeClassDefs/wb_adjust_position_confidence.h>
 #include <typeClassDefs/wb_gu_vr_teleop_vulkan_control.h>
+#include <typeClassDefs/wb_temperature_sensors.h>
+#include <typeClassDefs/wb_overheating.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

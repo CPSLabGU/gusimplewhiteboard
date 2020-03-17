@@ -1,0 +1,19 @@
+-author Morgan McColl
+
+-c
+
+#include <stdbool.h>
+
+-properties
+
+bool LKneePitch = false // Is the left knee pitch overheating
+bool LAnklePitch = false // Is the left ankle pitch overheating
+bool LAnkleRoll = false // Is the left ankle roll overheating
+bool RKneePitch = false // Is the right knee pitch overheating
+bool RAnklePitch = false // Is the right ankle pitch overheating
+bool RAnkleRoll = false // Is the right ankle roll overheating
+
+-comment
+
+Provides a common interface for the temperature of the leg sensors.
+This is for a research paper only - NOT for actual use on the robot.

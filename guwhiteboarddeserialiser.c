@@ -1202,6 +1202,24 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
                 break;
             }
+            case kTemperatureSensors_v:
+            {
+#ifdef TEMPERATURE_SENSORS_GENERATED
+                return DESERIALISE(TEMPERATURE_SENSORS_C_STRUCT, serialised_in, (struct TEMPERATURE_SENSORS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //TEMPERATURE_SENSORS_GENERATED
+                break;
+            }
+            case kOverheating_v:
+            {
+#ifdef OVERHEATING_GENERATED
+                return DESERIALISE(OVERHEATING_C_STRUCT, serialised_in, (struct OVERHEATING_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //OVERHEATING_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

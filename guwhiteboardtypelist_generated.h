@@ -1268,6 +1268,22 @@ ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLP
         
     };
 
+    /** WB Ptr Class: TemperatureSensors_t @brief The fake status of the temperature sensors in the nao legs - FOR RESEARCH ONLY. */ 
+    class TemperatureSensors_t: public guWhiteboard_generic_whiteboard_object<class TemperatureSensors > {
+        public: 
+        /** Constructor: TemperatureSensors_t */ 
+        TemperatureSensors_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class TemperatureSensors >(wbd, kTemperatureSensors_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: Overheating_t @brief The fake combined status of the temperature sensors in the nao legs - FOR RESEARCH ONLY. */ 
+    class Overheating_t: public guWhiteboard_generic_whiteboard_object<class Overheating > {
+        public: 
+        /** Constructor: Overheating_t */ 
+        Overheating_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class Overheating >(wbd, kOverheating_v, false) {}
+        
+    };
+
 
 }
 
