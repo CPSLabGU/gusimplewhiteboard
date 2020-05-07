@@ -5,6 +5,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_arrayonedimobjects.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_arrayballsightings.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filtered_vision_object.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_foot_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torso.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_filteredsonarobject.h>
@@ -12,4 +13,5 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_hal_headtarget.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_sonar.h>
-
+#include <gusimplewhiteboard/typeClassDefs/wb_pixel_to_robot_relative_coord.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_nao_state.h>

@@ -2,11 +2,16 @@
  *  /file guwhiteboardtypelist_c_typestrings_generated.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
 
-#ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+/** Auto-generated, don't modify! */
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+
+        #ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 #define GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 
 #include "gusimplewhiteboard.h"
@@ -163,7 +168,10 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "FrequencyControl",
         "FrequencyStatus",
         "HeadJointSensors",
-        "AdjustPositionConfidence"
+        "AdjustPositionConfidence",
+        "GuVrTeleopVulkanControl",
+        "TemperatureSensors",
+        "Overheating"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -317,7 +325,12 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_frequency_limits",
         "wb_frequency_limits",
         "wb_head_joint_sensors",
-        "wb_adjust_position_confidence"
+        "wb_adjust_position_confidence",
+        "wb_gu_vr_teleop_vulkan_control",
+        "wb_temperature_sensors",
+        "wb_overheating"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+
+#pragma clang diagnostic pop

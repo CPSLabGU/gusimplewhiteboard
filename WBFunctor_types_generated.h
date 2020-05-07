@@ -2,7 +2,7 @@
  *  /file WBFunctor_types_generated.h
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
 
@@ -3440,6 +3440,75 @@ public:
     static WBFunctorBase *bind(AdjustPositionConfidence_WBFunctor_T *obj, void (AdjustPositionConfidence_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t) { return new AdjustPositionConfidence_WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //AdjustPositionConfidence_DEFINED
+
+#ifdef GuVrTeleopVulkanControl_DEFINED
+/** WBFunctor definition for GuVrTeleopVulkanControl_WBFunctor_T */ 
+template <typename GuVrTeleopVulkanControl_WBFunctor_T >
+class GuVrTeleopVulkanControl_WBFunctor: public WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for GuVrTeleopVulkanControl_WBFunctor_T */
+    GuVrTeleopVulkanControl_WBFunctor(GuVrTeleopVulkanControl_WBFunctor_T* obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::WBTypes t): WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, (void (GuVrTeleopVulkanControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class GuVrTeleopVulkanControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::GuVrTeleopVulkanControl result = guWhiteboard::GuVrTeleopVulkanControl_t().get_from(m);
+        GuVrTeleopVulkanControl_function_t funct((void (GuVrTeleopVulkanControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &))WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::fObject->*funct)(WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (GuVrTeleopVulkanControl_WBFunctor_T::*GuVrTeleopVulkanControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(GuVrTeleopVulkanControl_WBFunctor_T *obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::WBTypes t) { return new GuVrTeleopVulkanControl_WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //GuVrTeleopVulkanControl_DEFINED
+
+#ifdef TemperatureSensors_DEFINED
+/** WBFunctor definition for TemperatureSensors_WBFunctor_T */ 
+template <typename TemperatureSensors_WBFunctor_T >
+class TemperatureSensors_WBFunctor: public WBFunctor<TemperatureSensors_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for TemperatureSensors_WBFunctor_T */
+    TemperatureSensors_WBFunctor(TemperatureSensors_WBFunctor_T* obj, void (TemperatureSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &), guWhiteboard::WBTypes t): WBFunctor<TemperatureSensors_WBFunctor_T >(obj, (void (TemperatureSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class TemperatureSensors_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::TemperatureSensors result = guWhiteboard::TemperatureSensors_t().get_from(m);
+        TemperatureSensors_function_t funct((void (TemperatureSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &))WBFunctor<TemperatureSensors_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<TemperatureSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<TemperatureSensors_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (TemperatureSensors_WBFunctor_T::*TemperatureSensors_function_t) (guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(TemperatureSensors_WBFunctor_T *obj, void (TemperatureSensors_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &), guWhiteboard::WBTypes t) { return new TemperatureSensors_WBFunctor<TemperatureSensors_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //TemperatureSensors_DEFINED
+
+#ifdef Overheating_DEFINED
+/** WBFunctor definition for Overheating_WBFunctor_T */ 
+template <typename Overheating_WBFunctor_T >
+class Overheating_WBFunctor: public WBFunctor<Overheating_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Overheating_WBFunctor_T */
+    Overheating_WBFunctor(Overheating_WBFunctor_T* obj, void (Overheating_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Overheating &), guWhiteboard::WBTypes t): WBFunctor<Overheating_WBFunctor_T >(obj, (void (Overheating_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Overheating_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Overheating result = guWhiteboard::Overheating_t().get_from(m);
+        Overheating_function_t funct((void (Overheating_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Overheating &))WBFunctor<Overheating_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Overheating_WBFunctor_T >::fObject->*funct)(WBFunctor<Overheating_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Overheating_WBFunctor_T::*Overheating_function_t) (guWhiteboard::WBTypes, guWhiteboard::Overheating &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Overheating_WBFunctor_T *obj, void (Overheating_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Overheating &), guWhiteboard::WBTypes t) { return new Overheating_WBFunctor<Overheating_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Overheating_DEFINED
 
 
 #pragma clang diagnostic pop

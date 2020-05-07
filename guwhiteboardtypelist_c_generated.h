@@ -2,7 +2,7 @@
  *  /file guwhiteboardtypelist_c_generated.h
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
 
@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 149
+#define GSW_NUM_TYPES_DEFINED 152
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -170,8 +170,11 @@ typedef enum wb_types
     kFrequencyControl_v = 145, 		///< Frequency limits control message for FFT analysis
     kFrequencyStatus_v = 146, 		///< Current Frequency limits (status) for FFT analysis
     kHeadJointSensors_v = 147, 		///< Status of the head sensors in degrees.
+    kAdjustPositionConfidence_v = 148, 		///< Changes the confidence of objects being tracked.
+    kGuVrTeleopVulkanControl_v = 149, 		///< Control message for commands from the Vulkan VR teleop app
+    kTemperatureSensors_v = 150, 		///< The fake status of the temperature sensors in the nao legs - FOR RESEARCH ONLY.
 
-    kAdjustPositionConfidence_v = 148 		///< Changes the confidence of objects being tracked.
+    kOverheating_v = 151 		///< The fake combined status of the temperature sensors in the nao legs - FOR RESEARCH ONLY.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

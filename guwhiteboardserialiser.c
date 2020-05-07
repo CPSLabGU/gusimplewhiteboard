@@ -2,14 +2,21 @@
  *  /file guwhiteboardserialiser.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
+
+/** Auto-generated, don't modify! */
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wcast-qual"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wunreachable-code-break"
 
 #ifndef GUWHITEBOARDSERIALISER_C
 #define GUWHITEBOARDSERIALISER_C
 
-/** Auto-generated, don't modify! */
 
 #define WHITEBOARD_SERIALISER
 
@@ -1187,6 +1194,33 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
+            case kGuVrTeleopVulkanControl_v:
+            {
+#ifdef GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                return SERIALISE(GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, (struct GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                break;
+            }
+            case kTemperatureSensors_v:
+            {
+#ifdef TEMPERATURE_SENSORS_GENERATED
+                return SERIALISE(TEMPERATURE_SENSORS_C_STRUCT, (struct TEMPERATURE_SENSORS_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //TEMPERATURE_SENSORS_GENERATED
+                break;
+            }
+            case kOverheating_v:
+            {
+#ifdef OVERHEATING_GENERATED
+                return SERIALISE(OVERHEATING_C_STRUCT, (struct OVERHEATING_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //OVERHEATING_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1196,3 +1230,5 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 }
 
 #endif //GUWHITEBOARDSERIALISER_C
+
+#pragma clang diagnostic pop

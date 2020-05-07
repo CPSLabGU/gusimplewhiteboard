@@ -2,7 +2,7 @@
  *  /file guwhiteboardgetter.cpp
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
 
@@ -1327,6 +1327,33 @@ namespace guWhiteboard
 #else
                 return "##unsupported##";
 #endif //AdjustPositionConfidence_DEFINED
+            }
+            case kGuVrTeleopVulkanControl_v:
+            {
+#ifdef GuVrTeleopVulkanControl_DEFINED
+                class GuVrTeleopVulkanControl_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //GuVrTeleopVulkanControl_DEFINED
+            }
+            case kTemperatureSensors_v:
+            {
+#ifdef TemperatureSensors_DEFINED
+                class TemperatureSensors_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //TemperatureSensors_DEFINED
+            }
+            case kOverheating_v:
+            {
+#ifdef Overheating_DEFINED
+                class Overheating_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //Overheating_DEFINED
             }
         }
 #pragma clang diagnostic push

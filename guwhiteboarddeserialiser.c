@@ -2,14 +2,20 @@
  *  /file guwhiteboarddeserialiser.c
  *
  *  Created by Carl Lusty in 2018.
- *  Copyright (c) 2013-2018 Carl Lusty and Rene Hexel
+ *  Copyright (c) 2013-2020 Carl Lusty and Rene Hexel
  *  All rights reserved.
  */
 
+/** Auto-generated, don't modify! */
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
+#pragma clang diagnostic ignored "-Wcast-qual"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wunreachable-code-break"
+
 #ifndef GUWHITEBOARDDESERIALISER_C
 #define GUWHITEBOARDDESERIALISER_C
-
-/** Auto-generated, don't modify! */
 
 #define WHITEBOARD_DESERIALISER
 
@@ -1187,6 +1193,33 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
+            case kGuVrTeleopVulkanControl_v:
+            {
+#ifdef GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                return DESERIALISE(GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, serialised_in, (struct GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                break;
+            }
+            case kTemperatureSensors_v:
+            {
+#ifdef TEMPERATURE_SENSORS_GENERATED
+                return DESERIALISE(TEMPERATURE_SENSORS_C_STRUCT, serialised_in, (struct TEMPERATURE_SENSORS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //TEMPERATURE_SENSORS_GENERATED
+                break;
+            }
+            case kOverheating_v:
+            {
+#ifdef OVERHEATING_GENERATED
+                return DESERIALISE(OVERHEATING_C_STRUCT, serialised_in, (struct OVERHEATING_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //OVERHEATING_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1196,3 +1229,5 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 }
 
 #endif //GUWHITEBOARDDESERIALISER_C
+
+#pragma clang diagnostic pop
