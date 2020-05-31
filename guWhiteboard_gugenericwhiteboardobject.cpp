@@ -19,6 +19,11 @@ static void create_guWhiteboard_singleton_whiteboard(void *)
 {
     const char *name = "guWhiteboard";
 
+#ifndef GSW_IOS_DEVICE
+    const char *env = getenv(GSW_DEFAULT_ENV);
+    if (env && *env) name = env;
+#endif
+
     guWhiteboard_whiteboard_descriptor = gsw_new_whiteboard(name);
 }
 
