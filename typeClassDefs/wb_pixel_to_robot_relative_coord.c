@@ -175,7 +175,6 @@ void pixel_to_rr_coord_kneeling_conv(int32_t sx, int32_t sy, enum VisionCamera c
 	
 	*distance = frontDistance/cos(imageAngleX);
     if (angleY > M_PI_2) {
-        fprintf(stderr, "You are looking into infinity...\n");
         *distance = INFINITY;
     }
 
