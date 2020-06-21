@@ -121,7 +121,7 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wdouble-promotion"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling);
+double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling);
 
 // x: image X coord
 // y: image Y coord
