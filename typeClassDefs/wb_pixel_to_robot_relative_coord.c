@@ -204,7 +204,7 @@ void rr_to_pixel_coord(double angle, double distance, enum VisionCamera camera, 
     *sy = (int)(image_height-(imageAngleY*image_height/CAMERA_VFOV));
 }
 
-static double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling) {
+double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojointsensors *joints, bool kneeling) {
     double dx = (camera?BOTTOM_CAMERA_OFFSET_X:TOP_CAMERA_OFFSET_X);
     double dz = (camera?BOTTOM_CAMERA_OFFSET_Z:TOP_CAMERA_OFFSET_Z);
 
