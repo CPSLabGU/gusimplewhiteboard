@@ -3511,6 +3511,144 @@ public:
 #endif //Overheating_DEFINED
 
 
+/** WBFunctor definition for buttonPushed_WBFunctor_T */ 
+template <typename buttonPushed_WBFunctor_T >
+class buttonPushed_WBFunctor: public WBFunctor<buttonPushed_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for buttonPushed_WBFunctor_T */
+    buttonPushed_WBFunctor(buttonPushed_WBFunctor_T* obj, void (buttonPushed_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<buttonPushed_WBFunctor_T >(obj, (void (buttonPushed_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class buttonPushed_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::buttonPushed_t().get_from(m);
+        buttonPushed_function_t funct((void (buttonPushed_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<buttonPushed_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<buttonPushed_WBFunctor_T >::fObject->*funct)(WBFunctor<buttonPushed_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (buttonPushed_WBFunctor_T::*buttonPushed_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(buttonPushed_WBFunctor_T *obj, void (buttonPushed_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new buttonPushed_WBFunctor<buttonPushed_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for doorOpen_WBFunctor_T */ 
+template <typename doorOpen_WBFunctor_T >
+class doorOpen_WBFunctor: public WBFunctor<doorOpen_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for doorOpen_WBFunctor_T */
+    doorOpen_WBFunctor(doorOpen_WBFunctor_T* obj, void (doorOpen_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<doorOpen_WBFunctor_T >(obj, (void (doorOpen_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class doorOpen_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::doorOpen_t().get_from(m);
+        doorOpen_function_t funct((void (doorOpen_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<doorOpen_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<doorOpen_WBFunctor_T >::fObject->*funct)(WBFunctor<doorOpen_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (doorOpen_WBFunctor_T::*doorOpen_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(doorOpen_WBFunctor_T *obj, void (doorOpen_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new doorOpen_WBFunctor<doorOpen_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for timeLeft_WBFunctor_T */ 
+template <typename timeLeft_WBFunctor_T >
+class timeLeft_WBFunctor: public WBFunctor<timeLeft_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for timeLeft_WBFunctor_T */
+    timeLeft_WBFunctor(timeLeft_WBFunctor_T* obj, void (timeLeft_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<timeLeft_WBFunctor_T >(obj, (void (timeLeft_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class timeLeft_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::timeLeft_t().get_from(m);
+        timeLeft_function_t funct((void (timeLeft_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<timeLeft_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<timeLeft_WBFunctor_T >::fObject->*funct)(WBFunctor<timeLeft_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (timeLeft_WBFunctor_T::*timeLeft_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(timeLeft_WBFunctor_T *obj, void (timeLeft_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new timeLeft_WBFunctor<timeLeft_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for motor_WBFunctor_T */ 
+template <typename motor_WBFunctor_T >
+class motor_WBFunctor: public WBFunctor<motor_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for motor_WBFunctor_T */
+    motor_WBFunctor(motor_WBFunctor_T* obj, void (motor_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<motor_WBFunctor_T >(obj, (void (motor_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class motor_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::motor_t().get_from(m);
+        motor_function_t funct((void (motor_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<motor_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<motor_WBFunctor_T >::fObject->*funct)(WBFunctor<motor_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (motor_WBFunctor_T::*motor_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(motor_WBFunctor_T *obj, void (motor_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new motor_WBFunctor<motor_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for sound_WBFunctor_T */ 
+template <typename sound_WBFunctor_T >
+class sound_WBFunctor: public WBFunctor<sound_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for sound_WBFunctor_T */
+    sound_WBFunctor(sound_WBFunctor_T* obj, void (sound_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<sound_WBFunctor_T >(obj, (void (sound_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class sound_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::sound_t().get_from(m);
+        sound_function_t funct((void (sound_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<sound_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<sound_WBFunctor_T >::fObject->*funct)(WBFunctor<sound_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (sound_WBFunctor_T::*sound_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(sound_WBFunctor_T *obj, void (sound_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new sound_WBFunctor<sound_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for light_WBFunctor_T */ 
+template <typename light_WBFunctor_T >
+class light_WBFunctor: public WBFunctor<light_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for light_WBFunctor_T */
+    light_WBFunctor(light_WBFunctor_T* obj, void (light_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<light_WBFunctor_T >(obj, (void (light_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class light_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::light_t().get_from(m);
+        light_function_t funct((void (light_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<light_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<light_WBFunctor_T >::fObject->*funct)(WBFunctor<light_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (light_WBFunctor_T::*light_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(light_WBFunctor_T *obj, void (light_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new light_WBFunctor<light_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

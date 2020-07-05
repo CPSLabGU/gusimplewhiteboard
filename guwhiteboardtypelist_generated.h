@@ -1284,6 +1284,60 @@ ReproduceWavNotSilent_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLP
         
     };
 
+    /** WB Ptr Class: buttonPushed_t @brief The time remaining in the microwave - swiftfsm. */ 
+    class buttonPushed_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: buttonPushed_t */ 
+        buttonPushed_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kbuttonPushed_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: buttonPushed_t */ 
+buttonPushed_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kbuttonPushed_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: doorOpen_t @brief The time remaining in the microwave - swiftfsm. */ 
+    class doorOpen_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: doorOpen_t */ 
+        doorOpen_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kdoorOpen_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: doorOpen_t */ 
+doorOpen_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kdoorOpen_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: timeLeft_t @brief The time remaining in the microwave - swiftfsm. */ 
+    class timeLeft_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: timeLeft_t */ 
+        timeLeft_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, ktimeLeft_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: timeLeft_t */ 
+timeLeft_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, ktimeLeft_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: motor_t @brief The motor actuator for the microwave - swiftfsm. */ 
+    class motor_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: motor_t */ 
+        motor_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kmotor_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: motor_t */ 
+motor_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kmotor_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: sound_t @brief The alarm actuator for the microwave - swiftfsm. */ 
+    class sound_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: sound_t */ 
+        sound_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, ksound_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: sound_t */ 
+sound_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, ksound_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: light_t @brief The light actuator for the microwave - swiftfsm. */ 
+    class light_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: light_t */ 
+        light_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, klight_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: light_t */ 
+light_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, klight_v, wbd, false) {}
+    };
+
 
 }
 

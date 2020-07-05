@@ -1221,6 +1221,36 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //OVERHEATING_GENERATED
                 break;
             }
+            case kbuttonPushed_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kdoorOpen_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case ktimeLeft_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kmotor_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case ksound_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case klight_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 152
+#define GSW_NUM_TYPES_DEFINED 158
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -173,8 +173,14 @@ typedef enum wb_types
     kAdjustPositionConfidence_v = 148, 		///< Changes the confidence of objects being tracked.
     kGuVrTeleopVulkanControl_v = 149, 		///< Control message for commands from the Vulkan VR teleop app
     kTemperatureSensors_v = 150, 		///< The fake status of the temperature sensors in the nao legs - FOR RESEARCH ONLY.
+    kOverheating_v = 151, 		///< The fake combined status of the temperature sensors in the nao legs - FOR RESEARCH ONLY.
+    kbuttonPushed_v = 152, 		///< The time remaining in the microwave - swiftfsm.
+    kdoorOpen_v = 153, 		///< The time remaining in the microwave - swiftfsm.
+    ktimeLeft_v = 154, 		///< The time remaining in the microwave - swiftfsm.
+    kmotor_v = 155, 		///< The motor actuator for the microwave - swiftfsm.
+    ksound_v = 156, 		///< The alarm actuator for the microwave - swiftfsm.
 
-    kOverheating_v = 151 		///< The fake combined status of the temperature sensors in the nao legs - FOR RESEARCH ONLY.
+    klight_v = 157 		///< The light actuator for the microwave - swiftfsm.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

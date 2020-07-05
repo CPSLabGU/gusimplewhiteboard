@@ -1355,6 +1355,48 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //Overheating_DEFINED
             }
+            case kbuttonPushed_v:
+            {
+
+                class buttonPushed_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kdoorOpen_v:
+            {
+
+                class doorOpen_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case ktimeLeft_v:
+            {
+
+                class timeLeft_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kmotor_v:
+            {
+
+                class motor_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case ksound_v:
+            {
+
+                class sound_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case klight_v:
+            {
+
+                class light_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

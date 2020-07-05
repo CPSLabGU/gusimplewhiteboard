@@ -1773,6 +1773,60 @@ v.from_string(message_content);
     return false;
 #endif //Overheating_DEFINED
 }
+case kbuttonPushed_v:
+{
+
+    class buttonPushed_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kdoorOpen_v:
+{
+
+    class doorOpen_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case ktimeLeft_v:
+{
+
+    class timeLeft_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kmotor_v:
+{
+
+    class motor_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case ksound_v:
+{
+
+    class sound_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case klight_v:
+{
+
+    class light_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -1940,6 +1994,12 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["GuVrTeleopVulkanControl"] = kGuVrTeleopVulkanControl_v;
     self["TemperatureSensors"] = kTemperatureSensors_v;
     self["Overheating"] = kOverheating_v;
+    self["buttonPushed"] = kbuttonPushed_v;
+    self["doorOpen"] = kdoorOpen_v;
+    self["timeLeft"] = ktimeLeft_v;
+    self["motor"] = kmotor_v;
+    self["sound"] = ksound_v;
+    self["light"] = klight_v;
 
     (void) self;
 }
