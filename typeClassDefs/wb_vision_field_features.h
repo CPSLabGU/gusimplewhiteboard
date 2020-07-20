@@ -90,11 +90,11 @@
 
 #define VISION_FIELDFEATURES_GENERATED 
 #define VISION_FIELDFEATURES_C_STRUCT wb_vision_field_features 
-#define VISION_FIELDFEATURES_NUMBER_OF_VARIABLES 6
+#define VISION_FIELDFEATURES_NUMBER_OF_VARIABLES 8
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_FIELDFEATURES_DESC_BUFFER_SIZE 1638
-#define VISION_FIELDFEATURES_TO_STRING_BUFFER_SIZE 1556
+#define VISION_FIELDFEATURES_DESC_BUFFER_SIZE 1673
+#define VISION_FIELDFEATURES_TO_STRING_BUFFER_SIZE 1570
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE 8
@@ -102,7 +102,7 @@
 #define VISION_FIELDFEATURES_FIELDCROSSES_ARRAY_SIZE 3
 
 /**
- * @brief Posting by Vision of the field corners, T-Intersections and crosses that have been seen
+ * @brief Posting by Vision of the field corners, T-Intersections and crosses that have been seen 
  */
 struct wb_vision_field_features
 {
@@ -136,6 +136,16 @@ struct wb_vision_field_features
      * Numer of Crosses in this message.
      */
     PROPERTY(uint8_t, numCrosses)
+
+    /**
+     * The resolution width.
+     */
+    PROPERTY(uint16_t, res_width)
+
+    /**
+     * The resolution height.
+     */
+    PROPERTY(uint16_t, res_height)
 
 };
 

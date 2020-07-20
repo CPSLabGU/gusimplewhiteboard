@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0) {
+        void init(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
             if (fieldCorner != NULLPTR) {
                 std::memcpy(this->_fieldCorner, fieldCorner, VISION_FIELDFEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
@@ -105,6 +105,8 @@ namespace guWhiteboard {
             set_numCorners(numCorners);
             set_numIntersections(numIntersections);
             set_numCrosses(numCrosses);
+            set_res_width(res_width);
+            set_res_height(res_height);
         }
 
     public:
@@ -112,29 +114,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionFieldFeatures`.
          */
-        VisionFieldFeatures(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0) {
-            this->init(fieldCorner, fieldIntersection, fieldCrosses, numCorners, numIntersections, numCrosses);
+        VisionFieldFeatures(const struct wb_vision_field_feature fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature fieldCrosses[3] = NULLPTR, uint8_t numCorners = 0, uint8_t numIntersections = 0, uint8_t numCrosses = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
+            this->init(fieldCorner, fieldIntersection, fieldCrosses, numCorners, numIntersections, numCrosses, res_width, res_height);
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const VisionFieldFeatures &other): wb_vision_field_features() {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
         VisionFieldFeatures(const struct wb_vision_field_features &other): wb_vision_field_features() {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const VisionFieldFeatures &other) {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -142,7 +144,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionFieldFeatures &operator = (const struct wb_vision_field_features &other) {
-            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses());
+            this->init(other.fieldCorner(), other.fieldIntersection(), other.fieldCrosses(), other.numCorners(), other.numIntersections(), other.numCrosses(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -195,6 +197,10 @@ namespace guWhiteboard {
             ss << "numIntersections=" << static_cast<unsigned>(this->numIntersections());
             ss << ", ";
             ss << "numCrosses=" << static_cast<unsigned>(this->numCrosses());
+            ss << ", ";
+            ss << "res_width=" << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << "res_height=" << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
         }
@@ -239,6 +245,10 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->numIntersections());
             ss << ", ";
             ss << static_cast<unsigned>(this->numCrosses());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
         }
@@ -333,6 +343,10 @@ namespace guWhiteboard {
                         varIndex = 4;
                     } else if (0 == strcmp("numCrosses", key)) {
                         varIndex = 5;
+                    } else if (0 == strcmp("res_width", key)) {
+                        varIndex = 6;
+                    } else if (0 == strcmp("res_height", key)) {
+                        varIndex = 7;
                     } else {
                         varIndex = -1;
                     }
@@ -541,6 +555,16 @@ namespace guWhiteboard {
                     case 5:
                     {
                         this->set_numCrosses(static_cast<uint8_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 6:
+                    {
+                        this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 7:
+                    {
+                        this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }

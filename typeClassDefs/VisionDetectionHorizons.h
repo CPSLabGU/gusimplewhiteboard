@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR) {
+        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
             set_frameNumber(frameNumber);
             if (horizons != NULLPTR) {
                 std::memcpy(this->_horizons, horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
@@ -91,6 +91,8 @@ namespace guWhiteboard {
                 struct wb_vision_detection_horizon horizons_temp[VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE] = {wb_vision_detection_horizon(), wb_vision_detection_horizon()};
                 std::memcpy(this->_horizons, horizons_temp, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
             }
+            set_res_width(res_width);
+            set_res_height(res_height);
         }
 
     public:
@@ -98,29 +100,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionHorizons`.
          */
-        VisionDetectionHorizons(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR) {
-            this->init(frameNumber, horizons);
+        VisionDetectionHorizons(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
+            this->init(frameNumber, horizons, res_width, res_height);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizons(const VisionDetectionHorizons &other): wb_vision_detection_horizons() {
-            this->init(other.frameNumber(), other.horizons());
+            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizons(const struct wb_vision_detection_horizons &other): wb_vision_detection_horizons() {
-            this->init(other.frameNumber(), other.horizons());
+            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionHorizons &operator = (const VisionDetectionHorizons &other) {
-            this->init(other.frameNumber(), other.horizons());
+            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -128,7 +130,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionHorizons &operator = (const struct wb_vision_detection_horizons &other) {
-            this->init(other.frameNumber(), other.horizons());
+            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -159,6 +161,10 @@ namespace guWhiteboard {
                 horizons_first = false;
             }
             ss << "}";
+            ss << ", ";
+            ss << "res_width=" << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << "res_height=" << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZONS_C_CONVERSION
         }
@@ -181,6 +187,10 @@ namespace guWhiteboard {
                 horizons_first = false;
             }
             ss << "}";
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZONS_C_CONVERSION
         }
@@ -267,6 +277,10 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("horizons", key)) {
                         varIndex = 1;
+                    } else if (0 == strcmp("res_width", key)) {
+                        varIndex = 2;
+                    } else if (0 == strcmp("res_height", key)) {
+                        varIndex = 3;
                     } else {
                         varIndex = -1;
                     }
@@ -339,6 +353,16 @@ namespace guWhiteboard {
                             this->set_horizons(horizons_0, horizons_0_index);;
                         }
                         index = restartIndex;
+                        break;
+                    }
+                    case 2:
+                    {
+                        this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 3:
+                    {
+                        this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }

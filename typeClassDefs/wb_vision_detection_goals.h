@@ -89,11 +89,11 @@
 
 #define VISION_DETECTION_GOALS_GENERATED 
 #define VISION_DETECTION_GOALS_C_STRUCT wb_vision_detection_goals 
-#define VISION_DETECTION_GOALS_NUMBER_OF_VARIABLES 2
+#define VISION_DETECTION_GOALS_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_GOALS_DESC_BUFFER_SIZE 553
-#define VISION_DETECTION_GOALS_TO_STRING_BUFFER_SIZE 535
+#define VISION_DETECTION_GOALS_DESC_BUFFER_SIZE 588
+#define VISION_DETECTION_GOALS_TO_STRING_BUFFER_SIZE 549
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE 2
@@ -113,6 +113,16 @@ struct wb_vision_detection_goals
      * goal objects
      */
     ARRAY_PROPERTY(struct wb_vision_detection_goal, goals, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE)
+
+    /**
+     * The resolution width.
+     */
+    PROPERTY(uint16_t, res_width)
+
+    /**
+     * The resolution height.
+     */
+    PROPERTY(uint16_t, res_height)
 
 };
 

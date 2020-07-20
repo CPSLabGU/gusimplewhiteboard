@@ -89,11 +89,11 @@
 
 #define VISION_DETECTION_HORIZONS_GENERATED 
 #define VISION_DETECTION_HORIZONS_C_STRUCT wb_vision_detection_horizons 
-#define VISION_DETECTION_HORIZONS_NUMBER_OF_VARIABLES 2
+#define VISION_DETECTION_HORIZONS_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE 556
-#define VISION_DETECTION_HORIZONS_TO_STRING_BUFFER_SIZE 535
+#define VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE 591
+#define VISION_DETECTION_HORIZONS_TO_STRING_BUFFER_SIZE 549
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE 2
@@ -113,6 +113,16 @@ struct wb_vision_detection_horizons
      * horizon objects
      */
     ARRAY_PROPERTY(struct wb_vision_detection_horizon, horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE)
+
+    /**
+     * The resolution width.
+     */
+    PROPERTY(uint16_t, res_width)
+
+    /**
+     * The resolution height.
+     */
+    PROPERTY(uint16_t, res_height)
 
 };
 

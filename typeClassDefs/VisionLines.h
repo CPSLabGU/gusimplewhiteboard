@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
+        void init(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
             if (topLines != NULLPTR) {
                 std::memcpy(this->_topLines, topLines, VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
@@ -99,6 +99,8 @@ namespace guWhiteboard {
             set_numTopLines(numTopLines);
             set_numBottomLines(numBottomLines);
             set_frameNumber(frameNumber);
+            set_res_width(res_width);
+            set_res_height(res_height);
         }
 
     public:
@@ -106,29 +108,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionLines`.
          */
-        VisionLines(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0) {
-            this->init(topLines, bottomLines, numTopLines, numBottomLines, frameNumber);
+        VisionLines(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
+            this->init(topLines, bottomLines, numTopLines, numBottomLines, frameNumber, res_width, res_height);
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const VisionLines &other): wb_vision_lines() {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const struct wb_vision_lines &other): wb_vision_lines() {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const VisionLines &other) {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -136,7 +138,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const struct wb_vision_lines &other) {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber());
+            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -180,6 +182,10 @@ namespace guWhiteboard {
             ss << "numBottomLines=" << static_cast<unsigned>(this->numBottomLines());
             ss << ", ";
             ss << "frameNumber=" << this->frameNumber();
+            ss << ", ";
+            ss << "res_width=" << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << "res_height=" << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_LINES_C_CONVERSION
         }
@@ -215,6 +221,10 @@ namespace guWhiteboard {
             ss << static_cast<unsigned>(this->numBottomLines());
             ss << ", ";
             ss << this->frameNumber();
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_LINES_C_CONVERSION
         }
@@ -307,6 +317,10 @@ namespace guWhiteboard {
                         varIndex = 3;
                     } else if (0 == strcmp("frameNumber", key)) {
                         varIndex = 4;
+                    } else if (0 == strcmp("res_width", key)) {
+                        varIndex = 5;
+                    } else if (0 == strcmp("res_height", key)) {
+                        varIndex = 6;
                     } else {
                         varIndex = -1;
                     }
@@ -452,6 +466,16 @@ namespace guWhiteboard {
                     case 4:
                     {
                         this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
+                        break;
+                    }
+                    case 5:
+                    {
+                        this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 6:
+                    {
+                        this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }

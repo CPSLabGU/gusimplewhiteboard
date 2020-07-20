@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR) {
+        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
             set_frameNumber(frameNumber);
             if (balls != NULLPTR) {
                 std::memcpy(this->_balls, balls, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
@@ -91,6 +91,8 @@ namespace guWhiteboard {
                 struct wb_vision_detection_ball balls_temp[VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE] = {wb_vision_detection_ball(), wb_vision_detection_ball()};
                 std::memcpy(this->_balls, balls_temp, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
             }
+            set_res_width(res_width);
+            set_res_height(res_height);
         }
 
     public:
@@ -98,29 +100,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionBalls`.
          */
-        VisionDetectionBalls(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR) {
-            this->init(frameNumber, balls);
+        VisionDetectionBalls(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
+            this->init(frameNumber, balls, res_width, res_height);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBalls(const VisionDetectionBalls &other): wb_vision_detection_balls() {
-            this->init(other.frameNumber(), other.balls());
+            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBalls(const struct wb_vision_detection_balls &other): wb_vision_detection_balls() {
-            this->init(other.frameNumber(), other.balls());
+            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionBalls &operator = (const VisionDetectionBalls &other) {
-            this->init(other.frameNumber(), other.balls());
+            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -128,7 +130,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionBalls &operator = (const struct wb_vision_detection_balls &other) {
-            this->init(other.frameNumber(), other.balls());
+            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -159,6 +161,10 @@ namespace guWhiteboard {
                 balls_first = false;
             }
             ss << "}";
+            ss << ", ";
+            ss << "res_width=" << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << "res_height=" << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_BALLS_C_CONVERSION
         }
@@ -181,6 +187,10 @@ namespace guWhiteboard {
                 balls_first = false;
             }
             ss << "}";
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_width());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_BALLS_C_CONVERSION
         }
@@ -267,6 +277,10 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("balls", key)) {
                         varIndex = 1;
+                    } else if (0 == strcmp("res_width", key)) {
+                        varIndex = 2;
+                    } else if (0 == strcmp("res_height", key)) {
+                        varIndex = 3;
                     } else {
                         varIndex = -1;
                     }
@@ -339,6 +353,16 @@ namespace guWhiteboard {
                             this->set_balls(balls_0, balls_0_index);;
                         }
                         index = restartIndex;
+                        break;
+                    }
+                    case 2:
+                    {
+                        this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
+                        break;
+                    }
+                    case 3:
+                    {
+                        this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }

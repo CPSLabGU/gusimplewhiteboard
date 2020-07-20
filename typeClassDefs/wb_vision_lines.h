@@ -89,11 +89,11 @@
 
 #define VISION_LINES_GENERATED 
 #define VISION_LINES_C_STRUCT wb_vision_lines 
-#define VISION_LINES_NUMBER_OF_VARIABLES 5
+#define VISION_LINES_NUMBER_OF_VARIABLES 7
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_LINES_DESC_BUFFER_SIZE 1119
-#define VISION_LINES_TO_STRING_BUFFER_SIZE 1059
+#define VISION_LINES_DESC_BUFFER_SIZE 1154
+#define VISION_LINES_TO_STRING_BUFFER_SIZE 1073
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_LINES_TOPLINES_ARRAY_SIZE 5
@@ -129,6 +129,16 @@ struct wb_vision_lines
      * The frame number that these lines were seen in
      */
     PROPERTY(uint64_t, frameNumber)
+
+    /**
+     * The resolution width.
+     */
+    PROPERTY(uint16_t, res_width)
+
+    /**
+     * The resolution height.
+     */
+    PROPERTY(uint16_t, res_height)
 
 };
 

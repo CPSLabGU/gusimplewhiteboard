@@ -243,6 +243,22 @@ const char* wb_vision_field_features_description(const struct wb_vision_field_fe
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "numCrosses=%u", self->numCrosses);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "res_width=%u", self->res_width);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "res_height=%u", self->res_height);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -371,6 +387,22 @@ const char* wb_vision_field_features_to_string(const struct wb_vision_field_feat
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%u", self->numCrosses);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->res_width);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->res_height);
     return toString;
 #pragma clang diagnostic pop
 }
@@ -464,6 +496,10 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 varIndex = 4;
             } else if (0 == strcmp("numCrosses", key)) {
                 varIndex = 5;
+            } else if (0 == strcmp("res_width", key)) {
+                varIndex = 6;
+            } else if (0 == strcmp("res_height", key)) {
+                varIndex = 7;
             } else {
                 varIndex = -1;
             }
@@ -671,6 +707,16 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                 self->numCrosses = ((uint8_t)atoi(var_str));
                 break;
             }
+            case 6:
+            {
+                self->res_width = ((uint16_t)atoi(var_str));
+                break;
+            }
+            case 7:
+            {
+                self->res_height = ((uint16_t)atoi(var_str));
+                break;
+            }
         }
         if (varIndex >= 0) {
             varIndex++;
@@ -786,6 +832,34 @@ size_t wb_vision_field_features_to_network_serialised(const struct wb_vision_fie
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((numCrosses_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint16_t res_width_nbo = htons(self->res_width);
+    do {
+      int8_t b;
+      for (b = (16 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((res_width_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint16_t res_height_nbo = htons(self->res_height);
+    do {
+      int8_t b;
+      for (b = (16 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((res_height_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -919,6 +993,36 @@ size_t wb_vision_field_features_from_network_serialised(const char *src, struct 
       }
     } while(false);
     dst->numCrosses = (dst->numCrosses);
+
+    do {
+      int8_t b;
+      for (b = (16 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->res_width ^= (-bitValue ^ dst->res_width) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->res_width = ntohs(dst->res_width);
+
+    do {
+      int8_t b;
+      for (b = (16 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->res_height ^= (-bitValue ^ dst->res_height) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->res_height = ntohs(dst->res_height);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;
