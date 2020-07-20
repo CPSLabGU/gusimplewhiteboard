@@ -43,10 +43,10 @@ all: all-real
 
 generate:
 .for f in ${WB_MSG_GEN_FILES}
-	classgenerator -s --c-header typeClassDefs ${f}
+	classgenerator -s -G typeClassDefs --c-header typeClassDefs ${f}
 .endfor
 .for f in ${WB_MSG_OLD_GEN_FILES}
-	classgenerator -s --c-header typeClassDefs -b ${f}
+	classgenerator -s -G typeClassDefs --c-header typeClassDefs -b ${f}
 .endfor
 
 test:

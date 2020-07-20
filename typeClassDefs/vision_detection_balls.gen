@@ -26,3 +26,5 @@ The enum in vision_control_status has
 Top
 Bottom
 as IDs for the camera
+
+@include resolution_container()

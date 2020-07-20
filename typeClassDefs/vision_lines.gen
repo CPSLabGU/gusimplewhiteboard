@@ -1,6 +1,8 @@
 -author Eugene Gilmore 
+
 -c
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_line.h>
+
 -c++
 #include <gusimplewhiteboard/typeClassDefs/VisionLine.h>
 
@@ -13,3 +15,5 @@ uint64_t frameNumber = 0 //The frame number that these lines were seen in
 
 -comment
 Class use to represent lines detected by vision and posted to the whiteboard
+
+@include resolution_container()

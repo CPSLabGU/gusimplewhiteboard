@@ -1,0 +1,6 @@
+@mixin()
+
+-properties
+
+uint16_t res_width = 0 // The resolution width.
+uint16_t res_height = 0 // The resolution height.
