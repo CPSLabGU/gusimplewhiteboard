@@ -96,14 +96,14 @@
 
 /**
  *  Contains the current values of sensors located in the robots chest (designed for Nao) 
- * 
+ *
  * Examples
- * 
+ *
  * Get the state of the Chest Button
- * 
+ *
  *     SensorsBodySensors s = SensorsBodySensors_t.get(); //get from the whiteboard
  *     bool button_state = s.ChestBoard_Button(); //pull the variable out of the class
- * 
+ *
  * Notes:
  * 1)  InertialSensor_GyrRef does not exist in Naoqi 2.1.4.13, thus removed.
  * 2)  doc/family/nao_dcm/actuator_sensor_names.html states "There are other deprecated values still returned."

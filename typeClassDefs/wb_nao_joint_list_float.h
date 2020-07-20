@@ -96,149 +96,149 @@
 
 /**
  * This class consolidates all the joints into a single wb class of floats [128 bytes/(4 bytes/float) = 32 float values].
- * 
+ *
  * Uses for this class are:
  *     Electric Current flowing through joints (expressed in Amps)
  * Possible uses:
  *     Joint Position status
  *     Joint Temperature (Degree C)
  *     Joint Temperature Status (Naoqi Status condition 0-3)
- * 
+ *
  * Could replace:
  *     SENSORS_HeadJointSensors.txt
  *     SENSORS_LegJointSensors.txt
  *     SENSORS_TorsoJointSensors.txt
- * 
+ *
  *     SENSORS_LegJointTemps.txt
  *     SENSORS_TorsoJointTemps.txt
- * 
+ *
  *     SENSORS_ArmJointSensors.txt (not used in the WB)
  */
 struct wb_nao_joint_list_float
 {
 
     /**
-     * 
+     *
      */
     PROPERTY(float, HeadYaw)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, HeadPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LShoulderPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LShoulderRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LElbowYaw)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LElbowRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LWristYaw)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LHand)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RShoulderPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RShoulderRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RElbowYaw)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RElbowRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RWristYaw)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RHand)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LHipYawPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LHipRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LHipPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LKneePitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LAnklePitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, LAnkleRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RHipRoll)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RHipPitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RKneePitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RAnklePitch)
 
     /**
-     * 
+     *
      */
     PROPERTY(float, RAnkleRoll)
 

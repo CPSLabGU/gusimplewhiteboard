@@ -96,7 +96,7 @@
 
 /**
  * @brief Body sensors c struct
- * 
+ *
  * Note:
  *     TotalWeight (per foot) included as a Foot Sensor
  */

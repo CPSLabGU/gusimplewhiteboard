@@ -96,14 +96,14 @@
 
 /**
  *  Contains the current values of sensors located on the robots hands (designed for Nao H25 only)
- * 
+ *
  * Examples
- * 
+ *
  * Get the state of the LHand_Touch_Left sensor
- * 
+ *
  *     SensorsArmSensors s = SensorsArmSensors_t.get(); //get from the whiteboard
  *     bool button_state = s.LHand_Touch_Left(); //pull the variable out of the class
- * 
+ *
  * Notes:
  * Only the H25 model has capacitive sensors in the hands.  Our V5's are H25 models.
  */

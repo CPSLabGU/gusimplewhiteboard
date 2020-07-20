@@ -107,7 +107,7 @@ enum HorizonOptions {
  * This class is for Vision to report the edge of the SPL soccer field.
  * It does not report the field Bounds, that needs white line detection.
  * This is for the edge of green. 
- * 
+ *
  * Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
  * You can check the vision status message for resolution and FOV information.
  * Coords:
@@ -118,7 +118,7 @@ enum HorizonOptions {
  * Plus y Up
  * Minus y Down
  * Center near 0,0
- * 
+ *
  * It will attempt to report the projected horizon to the far left X position and the far right position.
  * In the event that the projected position is outside the image bounds. It will project the horizon only as far as the image bound.
  */

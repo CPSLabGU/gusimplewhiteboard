@@ -114,7 +114,7 @@ enum BallOptions {
  * Plus y Up-Most Position of the image : MaxValue
  * Minus y Down-most position of the image: MinValue
  * Center near 0,0
- * 
+ *
  * Radius is relative to width. A radius is always positive. A radius of 0 pixels in
  * a width of resolution 640 posts 0, a radius of 640 pixels post MaxValue,
  * a radius of 64 pixels posts MaxValue/10
