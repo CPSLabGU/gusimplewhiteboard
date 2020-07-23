@@ -344,3 +344,8 @@ size_t wb_vision_field_feature_from_network_serialised(const char *src, struct w
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+gu_pixel_coordinate wb_vision_field_feature_coordinate_px_coord(const struct wb_vision_field_feature self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.coordinate, resWidth, resHeight);
+}

@@ -95,6 +95,9 @@ enum BallOptions {
 #endif
 #include "wb_pixel_coordinate.h"
 
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
 #define VISION_DETECTION_BALL_GENERATED 
 #define VISION_DETECTION_BALL_C_STRUCT wb_vision_detection_ball 
 #define VISION_DETECTION_BALL_NUMBER_OF_VARIABLES 4
@@ -156,6 +159,8 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
 struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_vision_detection_ball* self, const char* str);
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+gu_pixel_coordinate wb_vision_detection_ball_coordinate_px_coord(const struct wb_vision_detection_ball self, const uint16_t resWidth, const uint16_t resHeight);
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

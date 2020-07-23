@@ -70,8 +70,17 @@
 #include "wb_vision_detection_horizon.h"
 
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
 namespace guWhiteboard {
 
@@ -373,6 +382,19 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        GU::PixelCoordinate leftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(leftCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
+        GU::PixelCoordinate centerCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(centerCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
+        GU::PixelCoordinate rightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(rightCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
     };
 
 } /// namespace guWhiteboard

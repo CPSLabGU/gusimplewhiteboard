@@ -86,9 +86,21 @@
 #include <stdint.h>
 
 #include "wb_pixel_coordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "wb_pixel_coordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "wb_pixel_coordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "wb_pixel_coordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
 #define VISION_LINE_GENERATED 
 #define VISION_LINE_C_STRUCT wb_vision_line 
@@ -153,6 +165,11 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
 struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, const char* str);
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+gu_pixel_coordinate wb_vision_line_topLeftCoordinate_px_coord(const struct wb_vision_line self, const uint16_t resWidth, const uint16_t resHeight);
+gu_pixel_coordinate wb_vision_line_topRightCoordinate_px_coord(const struct wb_vision_line self, const uint16_t resWidth, const uint16_t resHeight);
+gu_pixel_coordinate wb_vision_line_bottomLeftCoordinate_px_coord(const struct wb_vision_line self, const uint16_t resWidth, const uint16_t resHeight);
+gu_pixel_coordinate wb_vision_line_bottomRightCoordinate_px_coord(const struct wb_vision_line self, const uint16_t resWidth, const uint16_t resHeight);
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

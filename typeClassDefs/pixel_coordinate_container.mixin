@@ -1,13 +1,37 @@
 @mixin(label = coordinate, comment = The pixel coordinate.)
 
+-properties
+
+gen pixel_coordinate {{label}} // {{comment}}
+
 -c
 
 #include "wb_pixel_coordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
++c
+
+gu_pixel_coordinate {{structName}}_{{label}}_px_coord(const struct {{structName}} self, const uint16_t resWidth, const uint16_t resHeight);
+
+#c
+
+gu_pixel_coordinate {{structName}}_{{label}}_px_coord(const struct {{structName}} self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.{{label}}, resWidth, resHeight);
+}
 
 -c++
 
 #include "PixelCoordinate.h"
 
--properties
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
-gen pixel_coordinate {{label}} // {{comment}}
+%c++
+
+GU::PixelCoordinate {{label}}PixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+{
+    return PixelCoordinate({{label}}()).pixelCoordinate(resWidth, resHeight)
+}

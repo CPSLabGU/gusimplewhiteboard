@@ -70,9 +70,21 @@
 #include "wb_vision_detection_goal_post.h"
 
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 #include "PixelCoordinate.h"
+
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
 namespace guWhiteboard {
 
@@ -439,6 +451,23 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        GU::PixelCoordinate topLeftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(topLeftCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
+        GU::PixelCoordinate topRightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(topRightCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
+        GU::PixelCoordinate bottomLeftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(bottomLeftCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
+        GU::PixelCoordinate bottomRightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(bottomRightCoordinate()).pixelCoordinate(resWidth, resHeight)
+        }
     };
 
 } /// namespace guWhiteboard

@@ -71,6 +71,9 @@
 
 #include "PixelCoordinate.h"
 
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
 namespace guWhiteboard {
 
     /**
@@ -272,6 +275,11 @@ namespace guWhiteboard {
 #endif /// USE_WB_VISION_FIELD_FEATURE_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        GU::PixelCoordinate coordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return PixelCoordinate(coordinate()).pixelCoordinate(resWidth, resHeight)
+        }
     };
 
 } /// namespace guWhiteboard

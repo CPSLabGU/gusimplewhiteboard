@@ -501,3 +501,16 @@ size_t wb_vision_detection_horizon_from_network_serialised(const char *src, stru
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+gu_pixel_coordinate wb_vision_detection_horizon_leftCoordinate_px_coord(const struct wb_vision_detection_horizon self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.leftCoordinate, resWidth, resHeight);
+}
+gu_pixel_coordinate wb_vision_detection_horizon_centerCoordinate_px_coord(const struct wb_vision_detection_horizon self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.centerCoordinate, resWidth, resHeight);
+}
+gu_pixel_coordinate wb_vision_detection_horizon_rightCoordinate_px_coord(const struct wb_vision_detection_horizon self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.rightCoordinate, resWidth, resHeight);
+}

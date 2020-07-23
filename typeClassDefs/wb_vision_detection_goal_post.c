@@ -635,3 +635,20 @@ size_t wb_vision_detection_goal_post_from_network_serialised(const char *src, st
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+gu_pixel_coordinate wb_vision_detection_goal_post_topLeftCoordinate_px_coord(const struct wb_vision_detection_goal_post self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.topLeftCoordinate, resWidth, resHeight);
+}
+gu_pixel_coordinate wb_vision_detection_goal_post_topRightCoordinate_px_coord(const struct wb_vision_detection_goal_post self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.topRightCoordinate, resWidth, resHeight);
+}
+gu_pixel_coordinate wb_vision_detection_goal_post_bottomLeftCoordinate_px_coord(const struct wb_vision_detection_goal_post self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.bottomLeftCoordinate, resWidth, resHeight);
+}
+gu_pixel_coordinate wb_vision_detection_goal_post_bottomRightCoordinate_px_coord(const struct wb_vision_detection_goal_post self, const uint16_t resWidth, const uint16_t resHeight)
+{
+    return wb_px_coord_to_px_coord(self.bottomRightCoordinate, resWidth, resHeight);
+}
