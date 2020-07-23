@@ -95,14 +95,14 @@
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
- *  Contains the current values of sensors located on top of the robot's head (designed for Nao H25 & H21 only)
+ * Contains the current values of sensors located on top of the robot's head (designed for Nao H25 & H21 only)
  *
  * Examples
  *
  * Get the state of the Head_Touch_Front sensor
  *
- *     SensorsHeadSensors s = SensorsHeadSensors_t.get(); //get from the whiteboard
- *     bool button_state = s.Head_Touch_Frontt(); //pull the variable out of the class
+ *    SensorsHeadSensors s = SensorsHeadSensors_t.get(); //get from the whiteboard
+ *    bool button_state = s.Head_Touch_Frontt(); //pull the variable out of the class
  *
  * Notes:
  * Only the H25 and H21 models have capacitive sensors in the head, indicated by the blue leds on top of the head.

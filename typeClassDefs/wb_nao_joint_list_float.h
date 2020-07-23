@@ -98,21 +98,21 @@
  * This class consolidates all the joints into a single wb class of floats [128 bytes/(4 bytes/float) = 32 float values].
  *
  * Uses for this class are:
- *     Electric Current flowing through joints (expressed in Amps)
+ *    Electric Current flowing through joints (expressed in Amps)
  * Possible uses:
- *     Joint Position status
- *     Joint Temperature (Degree C)
- *     Joint Temperature Status (Naoqi Status condition 0-3)
+ *    Joint Position status
+ *    Joint Temperature (Degree C)
+ *    Joint Temperature Status (Naoqi Status condition 0-3)
  *
  * Could replace:
- *     SENSORS_HeadJointSensors.txt
- *     SENSORS_LegJointSensors.txt
- *     SENSORS_TorsoJointSensors.txt
+ *    SENSORS_HeadJointSensors.txt
+ *    SENSORS_LegJointSensors.txt
+ *    SENSORS_TorsoJointSensors.txt
  *
- *     SENSORS_LegJointTemps.txt
- *     SENSORS_TorsoJointTemps.txt
+ *    SENSORS_LegJointTemps.txt
+ *    SENSORS_TorsoJointTemps.txt
  *
- *     SENSORS_ArmJointSensors.txt (not used in the WB)
+ *    SENSORS_ArmJointSensors.txt (not used in the WB)
  */
 struct wb_nao_joint_list_float
 {

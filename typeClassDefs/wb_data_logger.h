@@ -99,12 +99,12 @@
  * Whilst the comments above refer to monitoring running machines, the DataLogger can be used to record the robot's sensors in any appropriate situation.
  *
  * The current implementation of the DataLogger captures (see 'nao/utilities/datalogger/datalog.h'):
- *       currentState,
- *       currentSection,
- *       relative DCM Time (expressed as an uint32_t),
- *       Joint positions,
- *       Inertial sensors within the torso, and
- *       Pressure sensors on feet.
+ *      currentState,
+ *      currentSection,
+ *      relative DCM Time (expressed as an uint32_t),
+ *      Joint positions,
+ *      Inertial sensors within the torso, and
+ *      Pressure sensors on feet.
  *
  * The DataLogger does not record sonar returns nor button presses.
  * The DataLogger does not record joint temperatures, nor the current flowing through them.
@@ -124,7 +124,7 @@
  *
  * Output File:
  * The output file is written to /tmp using the following naming convention:
- *    (MachineName)-(DCM-TimeStampAtStartOfLogRun).csv
+ *   (MachineName)-(DCM-TimeStampAtStartOfLogRun).csv
  * Since the output file's name is set when commencing to write the data to disk, the output file is named after the machineName string contained in the most recent DataLogger WB message.
  * The output file is a CSV file (delimited using semi-colons)  where the 1st line represents the headers for each data column, and succeeding lines represent the data collected at each sample.  Succeeding lines always begin with a sample number (starting with zero (0)) that increments by one for each sample. There are no trailing semi-colons at the end of each line.
  *
@@ -139,8 +139,8 @@
  * The DataLogger, when running, in addition to the above, records one sample every 10mSec.
  *
  * Observation of DataLogger resource usage while running TOP indicates that when the Datalogger is:
- *   idle/collecting data    :  1% of CPU and 0.2% of memory are used,
- *   saving the data to file :  about 20% of the CPU is used.
+ *  idle/collecting data    :  1% of CPU and 0.2% of memory are used,
+ *  saving the data to file :  about 20% of the CPU is used.
  *
  * Running/Exiting:
  * The DataLogger is controlled entirely through the DataLogger WB message.

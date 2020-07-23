@@ -98,7 +98,7 @@
  * @brief Body sensors c struct
  *
  * Note:
- *     TotalWeight (per foot) included as a Foot Sensor
+ *    TotalWeight (per foot) included as a Foot Sensor
  */
 struct wb_sensors_foot_sensors
 {
