@@ -669,10 +669,22 @@ v.from_string(message_content);
     return false;
 #endif //WEBOTS_NXT_vector_bridge_DEFINED
 }
-case kVisionLines_v:
+case kTopVisionLines_v:
 {
 #ifdef VisionLines_DEFINED
-    class VisionLines_t msg_ptr(wbd);
+    class TopVisionLines_t msg_ptr(wbd);
+    VisionLines v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //VisionLines_DEFINED
+}
+case kBottomVisionLines_v:
+{
+#ifdef VisionLines_DEFINED
+    class BottomVisionLines_t msg_ptr(wbd);
     VisionLines v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
@@ -1894,7 +1906,8 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["UDPWBNumber"] = kUDPWBNumber_v;
     self["WEBOTS_NXT_bumper"] = kWEBOTS_NXT_bumper_v;
     self["WEBOTS_NXT_vector_bridge"] = kWEBOTS_NXT_vector_bridge_v;
-    self["VisionLines"] = kVisionLines_v;
+    self["TopVisionLines"] = kTopVisionLines_v;
+    self["BottomVisionLines"] = kBottomVisionLines_v;
     self["DifferentialRobotStatus"] = kDifferentialRobotStatus_v;
     self["DifferentialRobotControl"] = kDifferentialRobotControl_v;
     self["XEyesPos"] = kXEyesPos_v;

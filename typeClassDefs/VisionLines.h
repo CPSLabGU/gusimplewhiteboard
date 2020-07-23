@@ -83,21 +83,14 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
-            if (topLines != NULLPTR) {
-                std::memcpy(this->_topLines, topLines, VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+        void init(const struct wb_vision_line lines[7] = NULLPTR, uint8_t numLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
+            if (lines != NULLPTR) {
+                std::memcpy(this->_lines, lines, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
-                struct wb_vision_line topLines_temp[VISION_LINES_TOPLINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
-                std::memcpy(this->_topLines, topLines_temp, VISION_LINES_TOPLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+                struct wb_vision_line lines_temp[VISION_LINES_LINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
+                std::memcpy(this->_lines, lines_temp, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             }
-            if (bottomLines != NULLPTR) {
-                std::memcpy(this->_bottomLines, bottomLines, VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            } else {
-                struct wb_vision_line bottomLines_temp[VISION_LINES_BOTTOMLINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
-                std::memcpy(this->_bottomLines, bottomLines_temp, VISION_LINES_BOTTOMLINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
-            }
-            set_numTopLines(numTopLines);
-            set_numBottomLines(numBottomLines);
+            set_numLines(numLines);
             set_frameNumber(frameNumber);
             set_res_width(res_width);
             set_res_height(res_height);
@@ -108,29 +101,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionLines`.
          */
-        VisionLines(const struct wb_vision_line topLines[5] = NULLPTR, const struct wb_vision_line bottomLines[5] = NULLPTR, uint8_t numTopLines = 0, uint8_t numBottomLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
-            this->init(topLines, bottomLines, numTopLines, numBottomLines, frameNumber, res_width, res_height);
+        VisionLines(const struct wb_vision_line lines[7] = NULLPTR, uint8_t numLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
+            this->init(lines, numLines, frameNumber, res_width, res_height);
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const VisionLines &other): wb_vision_lines() {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
+            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLines(const struct wb_vision_lines &other): wb_vision_lines() {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
+            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const VisionLines &other) {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
+            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -138,7 +131,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLines &operator = (const struct wb_vision_lines &other) {
-            this->init(other.topLines(), other.bottomLines(), other.numTopLines(), other.numBottomLines(), other.frameNumber(), other.res_width(), other.res_height());
+            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
             return *this;
         }
 
@@ -159,27 +152,16 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            bool topLines_first = true;
-            ss << "topLines={";
-            for (int i = 0; i < VISION_LINES_TOPLINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * topLines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->topLines(i)));
-                ss << (topLines_first ? "" : ", ") << "{" << topLines_cast->description() << "}";
-                topLines_first = false;
+            bool lines_first = true;
+            ss << "lines={";
+            for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
+                guWhiteboard::VisionLine * lines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->lines(i)));
+                ss << (lines_first ? "" : ", ") << "{" << lines_cast->description() << "}";
+                lines_first = false;
             }
             ss << "}";
             ss << ", ";
-            bool bottomLines_first = true;
-            ss << "bottomLines={";
-            for (int i = 0; i < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * bottomLines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->bottomLines(i)));
-                ss << (bottomLines_first ? "" : ", ") << "{" << bottomLines_cast->description() << "}";
-                bottomLines_first = false;
-            }
-            ss << "}";
-            ss << ", ";
-            ss << "numTopLines=" << static_cast<unsigned>(this->numTopLines());
-            ss << ", ";
-            ss << "numBottomLines=" << static_cast<unsigned>(this->numBottomLines());
+            ss << "numLines=" << static_cast<unsigned>(this->numLines());
             ss << ", ";
             ss << "frameNumber=" << this->frameNumber();
             ss << ", ";
@@ -198,27 +180,16 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            bool topLines_first = true;
+            bool lines_first = true;
             ss << "{";
-            for (int i = 0; i < VISION_LINES_TOPLINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * topLines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->topLines(i)));
-                ss << (topLines_first ? "" : ", ") << "{" << topLines_cast->to_string() << "}";
-                topLines_first = false;
+            for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
+                guWhiteboard::VisionLine * lines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->lines(i)));
+                ss << (lines_first ? "" : ", ") << "{" << lines_cast->to_string() << "}";
+                lines_first = false;
             }
             ss << "}";
             ss << ", ";
-            bool bottomLines_first = true;
-            ss << "{";
-            for (int i = 0; i < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * bottomLines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->bottomLines(i)));
-                ss << (bottomLines_first ? "" : ", ") << "{" << bottomLines_cast->to_string() << "}";
-                bottomLines_first = false;
-            }
-            ss << "}";
-            ss << ", ";
-            ss << static_cast<unsigned>(this->numTopLines());
-            ss << ", ";
-            ss << static_cast<unsigned>(this->numBottomLines());
+            ss << static_cast<unsigned>(this->numLines());
             ss << ", ";
             ss << this->frameNumber();
             ss << ", ";
@@ -242,7 +213,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[VISION_LINES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[15];
+            char key_buffer[12];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int lastBrace = -1;
@@ -307,20 +278,16 @@ namespace guWhiteboard {
                 startKey = startVar;
                 endKey = -1;
                 if (strlen(key) > 0) {
-                    if (0 == strcmp("topLines", key)) {
+                    if (0 == strcmp("lines", key)) {
                         varIndex = 0;
-                    } else if (0 == strcmp("bottomLines", key)) {
+                    } else if (0 == strcmp("numLines", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("numTopLines", key)) {
-                        varIndex = 2;
-                    } else if (0 == strcmp("numBottomLines", key)) {
-                        varIndex = 3;
                     } else if (0 == strcmp("frameNumber", key)) {
-                        varIndex = 4;
+                        varIndex = 2;
                     } else if (0 == strcmp("res_width", key)) {
-                        varIndex = 5;
+                        varIndex = 3;
                     } else if (0 == strcmp("res_height", key)) {
-                        varIndex = 6;
+                        varIndex = 4;
                     } else {
                         varIndex = -1;
                     }
@@ -335,7 +302,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int topLines_0_index = 0; topLines_0_index < VISION_LINES_TOPLINES_ARRAY_SIZE; topLines_0_index++) {
+                        for (int lines_0_index = 0; lines_0_index < VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
@@ -382,98 +349,30 @@ namespace guWhiteboard {
                             startVar = index;
                             startKey = startVar;
                             endKey = -1;
-                            VisionLine topLines_0_temp = VisionLine();
-                            topLines_0_temp.from_string(var_str);
-                            struct wb_vision_line topLines_0 = topLines_0_temp;
-                            this->set_topLines(topLines_0, topLines_0_index);;
+                            VisionLine lines_0_temp = VisionLine();
+                            lines_0_temp.from_string(var_str);
+                            struct wb_vision_line lines_0 = lines_0_temp;
+                            this->set_lines(lines_0, lines_0_index);;
                         }
                         index = restartIndex;
                         break;
                     }
                     case 1:
                     {
-                        int restartIndex = index;
-                        index = lastBrace + 1;
-                        startVar = index;
-                        startKey = startVar;
-                        endKey = -1;
-                        bracecount = 0;
-                        for (int bottomLines_0_index = 0; bottomLines_0_index < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; bottomLines_0_index++) {
-                            for (int i = index; i < length; i++) {
-                                index = i + 1;
-                                if (bracecount == 0 && str_cstr[i] == '=') {
-                                    endKey = i - 1;
-                                    startVar = index;
-                                    continue;
-                                }
-                                if (bracecount == 0 && isspace(str_cstr[i])) {
-                                    startVar = index;
-                                    if (endKey == -1) {
-                                        startKey = index;
-                                    }
-                                    continue;
-                                }
-                                if (bracecount == 0 && str_cstr[i] == ',') {
-                                    index = i - 1;
-                                    break;
-                                }
-                                if (str_cstr[i] == '{') {
-                                    bracecount++;
-                                    continue;
-                                }
-                                if (str_cstr[i] == '}') {
-                                    bracecount--;
-                                    if (bracecount < 0) {
-                                        index = i - 1;
-                                        break;
-                                    }
-                                }
-                                if (i == length - 1) {
-                                    index = i;
-                                }
-                            }
-                            if (endKey >= startKey && endKey - startKey < length) {
-                                strncpy(key, str_cstr + startKey, static_cast<size_t>((endKey - startKey) + 1));
-                                key[(endKey - startKey) + 1] = 0;
-                            } else {
-                                key[0] = 0;
-                            }
-                            strncpy(var_str, str_cstr + startVar, static_cast<size_t>((index - startVar) + 1));
-                            var_str[(index - startVar) + 1] = 0;
-                            bracecount = 0;
-                            index += 2;
-                            startVar = index;
-                            startKey = startVar;
-                            endKey = -1;
-                            VisionLine bottomLines_0_temp = VisionLine();
-                            bottomLines_0_temp.from_string(var_str);
-                            struct wb_vision_line bottomLines_0 = bottomLines_0_temp;
-                            this->set_bottomLines(bottomLines_0, bottomLines_0_index);;
-                        }
-                        index = restartIndex;
+                        this->set_numLines(static_cast<uint8_t>(atoi(var_str)));
                         break;
                     }
                     case 2:
                     {
-                        this->set_numTopLines(static_cast<uint8_t>(atoi(var_str)));
+                        this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
                         break;
                     }
                     case 3:
                     {
-                        this->set_numBottomLines(static_cast<uint8_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 4:
-                    {
-                        this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
-                        break;
-                    }
-                    case 5:
-                    {
                         this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
-                    case 6:
+                    case 4:
                     {
                         this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;

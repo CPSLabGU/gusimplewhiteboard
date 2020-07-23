@@ -159,7 +159,18 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "lhp_x=%d", self->lhp_x);
+    len = gu_strlcat(descString, "leftCoordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char leftCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* leftCoordinate_p = leftCoordinate_buffer;
+    const char* leftCoordinate_description = wb_pixel_coordinate_description(&self->leftCoordinate, leftCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, leftCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -167,7 +178,18 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "lhp_y=%d", self->lhp_y);
+    len = gu_strlcat(descString, "centerCoordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char centerCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* centerCoordinate_p = centerCoordinate_buffer;
+    const char* centerCoordinate_description = wb_pixel_coordinate_description(&self->centerCoordinate, centerCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, centerCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -175,31 +197,18 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "rhp_x=%d", self->rhp_x);
+    len = gu_strlcat(descString, "rightCoordinate={", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
-    len = gu_strlcat(descString, ", ", bufferSize);
+    char rightCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* rightCoordinate_p = rightCoordinate_buffer;
+    const char* rightCoordinate_description = wb_pixel_coordinate_description(&self->rightCoordinate, rightCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, rightCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "rhp_y=%d", self->rhp_y);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len += snprintf(descString + len, bufferSize - len, "chp_x=%d", self->chp_x);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len += snprintf(descString + len, bufferSize - len, "chp_y=%d", self->chp_y);
+    len = gu_strlcat(descString, "}", bufferSize);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -244,7 +253,18 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->lhp_x);
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char leftCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* leftCoordinate_p = leftCoordinate_buffer;
+    const char* leftCoordinate_to_string = wb_pixel_coordinate_to_string(&self->leftCoordinate, leftCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, leftCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -252,7 +272,18 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->lhp_y);
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char centerCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* centerCoordinate_p = centerCoordinate_buffer;
+    const char* centerCoordinate_to_string = wb_pixel_coordinate_to_string(&self->centerCoordinate, centerCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, centerCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -260,31 +291,18 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->rhp_x);
+    len = gu_strlcat(toString, "{", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
-    len = gu_strlcat(toString, ", ", bufferSize);
+    char rightCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* rightCoordinate_p = rightCoordinate_buffer;
+    const char* rightCoordinate_to_string = wb_pixel_coordinate_to_string(&self->rightCoordinate, rightCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, rightCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->rhp_y);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->chp_x);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->chp_y);
+    len = gu_strlcat(toString, "}", bufferSize);
     return toString;
 #pragma clang diagnostic pop
 }
@@ -301,7 +319,7 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
     }
     char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[12];
+    char key_buffer[17];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -364,18 +382,12 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
         if (strlen(key) > 0) {
             if (0 == strcmp("horizonType", key)) {
                 varIndex = 0;
-            } else if (0 == strcmp("lhp_x", key)) {
+            } else if (0 == strcmp("leftCoordinate", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("lhp_y", key)) {
+            } else if (0 == strcmp("centerCoordinate", key)) {
                 varIndex = 2;
-            } else if (0 == strcmp("rhp_x", key)) {
+            } else if (0 == strcmp("rightCoordinate", key)) {
                 varIndex = 3;
-            } else if (0 == strcmp("rhp_y", key)) {
-                varIndex = 4;
-            } else if (0 == strcmp("chp_x", key)) {
-                varIndex = 5;
-            } else if (0 == strcmp("chp_y", key)) {
-                varIndex = 6;
             } else {
                 varIndex = -1;
             }
@@ -414,32 +426,17 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
             }
             case 1:
             {
-                self->lhp_x = ((int16_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->leftCoordinate, var_str);
                 break;
             }
             case 2:
             {
-                self->lhp_y = ((int16_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->centerCoordinate, var_str);
                 break;
             }
             case 3:
             {
-                self->rhp_x = ((int16_t)atoi(var_str));
-                break;
-            }
-            case 4:
-            {
-                self->rhp_y = ((int16_t)atoi(var_str));
-                break;
-            }
-            case 5:
-            {
-                self->chp_x = ((int16_t)atoi(var_str));
-                break;
-            }
-            case 6:
-            {
-                self->chp_y = ((int16_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->rightCoordinate, var_str);
                 break;
             }
         }
@@ -471,90 +468,6 @@ size_t wb_vision_detection_horizon_to_network_serialised(const struct wb_vision_
       } while(false);
       }
     } while(false);
-
-    int16_t lhp_x_nbo = htons(self->lhp_x);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((lhp_x_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    int16_t lhp_y_nbo = htons(self->lhp_y);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((lhp_y_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    int16_t rhp_x_nbo = htons(self->rhp_x);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((rhp_x_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    int16_t rhp_y_nbo = htons(self->rhp_y);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((rhp_y_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    int16_t chp_x_nbo = htons(self->chp_x);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((chp_x_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    int16_t chp_y_nbo = htons(self->chp_y);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((chp_y_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)self;
     (void)dst;
@@ -581,96 +494,6 @@ size_t wb_vision_detection_horizon_from_network_serialised(const char *src, stru
       }
     } while(false);
     dst->horizonType = ntohl(dst->horizonType);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->lhp_x ^= (-bitValue ^ dst->lhp_x) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->lhp_x = ntohs(dst->lhp_x);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->lhp_y ^= (-bitValue ^ dst->lhp_y) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->lhp_y = ntohs(dst->lhp_y);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->rhp_x ^= (-bitValue ^ dst->rhp_x) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->rhp_x = ntohs(dst->rhp_x);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->rhp_y ^= (-bitValue ^ dst->rhp_y) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->rhp_y = ntohs(dst->rhp_y);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->chp_x ^= (-bitValue ^ dst->chp_x) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->chp_x = ntohs(dst->chp_x);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->chp_y ^= (-bitValue ^ dst->chp_y) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->chp_y = ntohs(dst->chp_y);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

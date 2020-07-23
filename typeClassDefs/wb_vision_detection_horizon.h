@@ -93,14 +93,17 @@ enum HorizonOptions {
 	CornerHorizon,
 	HorizonFailed
 };
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
 
 #define VISION_DETECTION_HORIZON_GENERATED 
 #define VISION_DETECTION_HORIZON_C_STRUCT wb_vision_detection_horizon 
-#define VISION_DETECTION_HORIZON_NUMBER_OF_VARIABLES 7
+#define VISION_DETECTION_HORIZON_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE 609
-#define VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE 561
+#define VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE 2115
+#define VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE 2055
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -108,19 +111,11 @@ enum HorizonOptions {
  * It does not report the field Bounds, that needs white line detection.
  * This is for the edge of green. 
  *
- * Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
- * You can check the vision status message for resolution and FOV information.
- * Coords:
- *     x, Int16.MinValue <-> Int16.MaxValue
- *     y, Int16.MinValue <-> Int16.MaxValue
- * Minus x Left
- * Plus x Right
- * Plus y Up
- * Minus y Down
- * Center near 0,0
+ * Results are in centered pixel coordinate of the image utilised, at whatever the resolution happen to be.
+ * You can check the vision_detection_horizons message for resolution information.
  *
  * It will attempt to report the projected horizon to the far left X position and the far right position.
- * In the event that the projected position is outside the image bounds. It will project the horizon only as far as the image bound.
+ * In the event that the projected position is outside the image bounds. It will project the horizon only as far as the image bound. 
  */
 struct wb_vision_detection_horizon
 {
@@ -131,34 +126,19 @@ struct wb_vision_detection_horizon
     PROPERTY(enum HorizonOptions, horizonType)
 
     /**
-     * Left Horizon Point X
+     * Left horizon point pixel coordinate.
      */
-    PROPERTY(int16_t, lhp_x)
+    PROPERTY(struct wb_pixel_coordinate, leftCoordinate)
 
     /**
-     * Left Horizon Point Y
+     * Center horizon point pixel coordinate.
      */
-    PROPERTY(int16_t, lhp_y)
+    PROPERTY(struct wb_pixel_coordinate, centerCoordinate)
 
     /**
-     * Right Horizon Point X
+     * Right horizon point pixel coordinate.
      */
-    PROPERTY(int16_t, rhp_x)
-
-    /**
-     * Right Horizon Point Y
-     */
-    PROPERTY(int16_t, rhp_y)
-
-    /**
-     * Center Horizon Point X
-     */
-    PROPERTY(int16_t, chp_x)
-
-    /**
-     * Center Horizon Point Y
-     */
-    PROPERTY(int16_t, chp_y)
+    PROPERTY(struct wb_pixel_coordinate, rightCoordinate)
 
 };
 

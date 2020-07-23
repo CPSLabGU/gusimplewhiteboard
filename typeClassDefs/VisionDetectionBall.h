@@ -69,6 +69,8 @@
 #include <gu_util.h>
 #include "wb_vision_detection_ball.h"
 
+#include "PixelCoordinate.h"
+
 namespace guWhiteboard {
 
     /**
@@ -81,11 +83,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
+        void init(enum BallOptions sightingType = NoBallDetected, struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint16_t verticalRadius = 0, uint16_t horizontalRadius = 0) {
             set_sightingType(sightingType);
-            set_x(x);
-            set_y(y);
-            set_r(r);
+            set_coordinate(coordinate);
+            set_verticalRadius(verticalRadius);
+            set_horizontalRadius(horizontalRadius);
         }
 
     public:
@@ -93,29 +95,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionBall`.
          */
-        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, int16_t x = 0, int16_t y = 0, uint16_t r = 0) {
-            this->init(sightingType, x, y, r);
+        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint16_t verticalRadius = 0, uint16_t horizontalRadius = 0) {
+            this->init(sightingType, coordinate, verticalRadius, horizontalRadius);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const VisionDetectionBall &other): wb_vision_detection_ball() {
-            this->init(other.sightingType(), other.x(), other.y(), other.r());
+            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionBall(const struct wb_vision_detection_ball &other): wb_vision_detection_ball() {
-            this->init(other.sightingType(), other.x(), other.y(), other.r());
+            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const VisionDetectionBall &other) {
-            this->init(other.sightingType(), other.x(), other.y(), other.r());
+            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
             return *this;
         }
 
@@ -123,7 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionBall &operator = (const struct wb_vision_detection_ball &other) {
-            this->init(other.sightingType(), other.x(), other.y(), other.r());
+            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
             return *this;
         }
 
@@ -157,11 +159,12 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << "x=" << static_cast<signed>(this->x());
+            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
+            ss << "coordinate=" << "{" << coordinate_cast->description() << "}";
             ss << ", ";
-            ss << "y=" << static_cast<signed>(this->y());
+            ss << "verticalRadius=" << static_cast<unsigned>(this->verticalRadius());
             ss << ", ";
-            ss << "r=" << static_cast<unsigned>(this->r());
+            ss << "horizontalRadius=" << static_cast<unsigned>(this->horizontalRadius());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_BALL_C_CONVERSION
         }
@@ -187,11 +190,12 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << static_cast<signed>(this->x());
+            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
+            ss << "{" << coordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->y());
+            ss << static_cast<unsigned>(this->verticalRadius());
             ss << ", ";
-            ss << static_cast<unsigned>(this->r());
+            ss << static_cast<unsigned>(this->horizontalRadius());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_BALL_C_CONVERSION
         }
@@ -209,7 +213,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[13];
+            char key_buffer[17];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -272,11 +276,11 @@ namespace guWhiteboard {
                 if (strlen(key) > 0) {
                     if (0 == strcmp("sightingType", key)) {
                         varIndex = 0;
-                    } else if (0 == strcmp("x", key)) {
+                    } else if (0 == strcmp("coordinate", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("y", key)) {
+                    } else if (0 == strcmp("verticalRadius", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("r", key)) {
+                    } else if (0 == strcmp("horizontalRadius", key)) {
                         varIndex = 3;
                     } else {
                         varIndex = -1;
@@ -306,17 +310,19 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        this->set_x(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate coordinate_temp = PixelCoordinate();
+                        coordinate_temp.from_string(var_str);
+                        this->set_coordinate(coordinate_temp);
                         break;
                     }
                     case 2:
                     {
-                        this->set_y(static_cast<int16_t>(atoi(var_str)));
+                        this->set_verticalRadius(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                     case 3:
                     {
-                        this->set_r(static_cast<uint16_t>(atoi(var_str)));
+                        this->set_horizontalRadius(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }
@@ -330,7 +336,7 @@ namespace guWhiteboard {
 
         bool operator==(const VisionDetectionBall &other) const {
             return this->sightingType() == other.sightingType() &&
-                this->x() == other.x() && this->y() == other.y() && this->r() == other.r();
+                PixelCoordinate(this->coordinate()) == PixelCoordinate(other.coordinate());
         }
 
         bool operator!=(const VisionDetectionBall &other) const {

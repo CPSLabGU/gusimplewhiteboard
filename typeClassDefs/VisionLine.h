@@ -69,7 +69,10 @@
 #include <gu_util.h>
 #include "wb_vision_line.h"
 
-#include <gusimplewhiteboard/typeClassDefs/Point2D.h>
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
 
 namespace guWhiteboard {
 
@@ -83,11 +86,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
-            set_lineStart(lineStart);
-            set_lineEnd(lineEnd);
-            set_startThickness(startThickness);
-            set_endThickness(endThickness);
+        void init(struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
+            set_topLeftCoordinate(topLeftCoordinate);
+            set_topRightCoordinate(topRightCoordinate);
+            set_bottomLeftCoordinate(bottomLeftCoordinate);
+            set_bottomRightCoordinate(bottomRightCoordinate);
         }
 
     public:
@@ -95,29 +98,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionLine`.
          */
-        VisionLine(struct wb_point2d lineStart = wb_point2d(), struct wb_point2d lineEnd = wb_point2d(), uint8_t startThickness = 0, uint8_t endThickness = 0) {
-            this->init(lineStart, lineEnd, startThickness, endThickness);
+        VisionLine(struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
+            this->init(topLeftCoordinate, topRightCoordinate, bottomLeftCoordinate, bottomRightCoordinate);
         }
 
         /**
          * Copy Constructor.
          */
         VisionLine(const VisionLine &other): wb_vision_line() {
-            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
+            this->init(other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
         }
 
         /**
          * Copy Constructor.
          */
         VisionLine(const struct wb_vision_line &other): wb_vision_line() {
-            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
+            this->init(other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const VisionLine &other) {
-            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
+            this->init(other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
             return *this;
         }
 
@@ -125,7 +128,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionLine &operator = (const struct wb_vision_line &other) {
-            this->init(other.lineStart(), other.lineEnd(), other.startThickness(), other.endThickness());
+            this->init(other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
             return *this;
         }
 
@@ -146,15 +149,17 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::Point2D * lineStart_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->lineStart()));
-            ss << "lineStart=" << "{" << lineStart_cast->description() << "}";
+            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
+            ss << "topLeftCoordinate=" << "{" << topLeftCoordinate_cast->description() << "}";
             ss << ", ";
-            guWhiteboard::Point2D * lineEnd_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->lineEnd()));
-            ss << "lineEnd=" << "{" << lineEnd_cast->description() << "}";
+            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
+            ss << "topRightCoordinate=" << "{" << topRightCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "startThickness=" << static_cast<unsigned>(this->startThickness());
+            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
+            ss << "bottomLeftCoordinate=" << "{" << bottomLeftCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "endThickness=" << static_cast<unsigned>(this->endThickness());
+            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
+            ss << "bottomRightCoordinate=" << "{" << bottomRightCoordinate_cast->description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_LINE_C_CONVERSION
         }
@@ -167,15 +172,17 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::Point2D * lineStart_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->lineStart()));
-            ss << "{" << lineStart_cast->to_string() << "}";
+            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
+            ss << "{" << topLeftCoordinate_cast->to_string() << "}";
             ss << ", ";
-            guWhiteboard::Point2D * lineEnd_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->lineEnd()));
-            ss << "{" << lineEnd_cast->to_string() << "}";
+            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
+            ss << "{" << topRightCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<unsigned>(this->startThickness());
+            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
+            ss << "{" << bottomLeftCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<unsigned>(this->endThickness());
+            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
+            ss << "{" << bottomRightCoordinate_cast->to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_LINE_C_CONVERSION
         }
@@ -193,7 +200,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[VISION_LINE_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[15];
+            char key_buffer[22];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -254,13 +261,13 @@ namespace guWhiteboard {
                 startKey = startVar;
                 endKey = -1;
                 if (strlen(key) > 0) {
-                    if (0 == strcmp("lineStart", key)) {
+                    if (0 == strcmp("topLeftCoordinate", key)) {
                         varIndex = 0;
-                    } else if (0 == strcmp("lineEnd", key)) {
+                    } else if (0 == strcmp("topRightCoordinate", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("startThickness", key)) {
+                    } else if (0 == strcmp("bottomLeftCoordinate", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("endThickness", key)) {
+                    } else if (0 == strcmp("bottomRightCoordinate", key)) {
                         varIndex = 3;
                     } else {
                         varIndex = -1;
@@ -270,26 +277,30 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-                        Point2D lineStart_temp = Point2D();
-                        lineStart_temp.from_string(var_str);
-                        this->set_lineStart(lineStart_temp);
+                        PixelCoordinate topLeftCoordinate_temp = PixelCoordinate();
+                        topLeftCoordinate_temp.from_string(var_str);
+                        this->set_topLeftCoordinate(topLeftCoordinate_temp);
                         break;
                     }
                     case 1:
                     {
-                        Point2D lineEnd_temp = Point2D();
-                        lineEnd_temp.from_string(var_str);
-                        this->set_lineEnd(lineEnd_temp);
+                        PixelCoordinate topRightCoordinate_temp = PixelCoordinate();
+                        topRightCoordinate_temp.from_string(var_str);
+                        this->set_topRightCoordinate(topRightCoordinate_temp);
                         break;
                     }
                     case 2:
                     {
-                        this->set_startThickness(static_cast<uint8_t>(atoi(var_str)));
+                        PixelCoordinate bottomLeftCoordinate_temp = PixelCoordinate();
+                        bottomLeftCoordinate_temp.from_string(var_str);
+                        this->set_bottomLeftCoordinate(bottomLeftCoordinate_temp);
                         break;
                     }
                     case 3:
                     {
-                        this->set_endThickness(static_cast<uint8_t>(atoi(var_str)));
+                        PixelCoordinate bottomRightCoordinate_temp = PixelCoordinate();
+                        bottomRightCoordinate_temp.from_string(var_str);
+                        this->set_bottomRightCoordinate(bottomRightCoordinate_temp);
                         break;
                     }
                 }

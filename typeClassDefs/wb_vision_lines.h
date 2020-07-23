@@ -89,44 +89,34 @@
 
 #define VISION_LINES_GENERATED 
 #define VISION_LINES_C_STRUCT wb_vision_lines 
-#define VISION_LINES_NUMBER_OF_VARIABLES 7
+#define VISION_LINES_NUMBER_OF_VARIABLES 5
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_LINES_DESC_BUFFER_SIZE 1154
-#define VISION_LINES_TO_STRING_BUFFER_SIZE 1073
+#define VISION_LINES_DESC_BUFFER_SIZE 602
+#define VISION_LINES_TO_STRING_BUFFER_SIZE 554
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define VISION_LINES_TOPLINES_ARRAY_SIZE 5
-#define VISION_LINES_BOTTOMLINES_ARRAY_SIZE 5
+#define VISION_LINES_LINES_ARRAY_SIZE 7
 
 /**
- * Class use to represent lines detected by vision and posted to the whiteboard
+ * Class use to represent lines detected by vision for a single camera and posted
+ * to the whiteboard
  */
 struct wb_vision_lines
 {
 
     /**
-     * Lines reported from the top camera
+     * Lines reported from the camera.
      */
-    ARRAY_PROPERTY(struct wb_vision_line, topLines, VISION_LINES_TOPLINES_ARRAY_SIZE)
+    ARRAY_PROPERTY(struct wb_vision_line, lines, VISION_LINES_LINES_ARRAY_SIZE)
 
     /**
-     * Lines reported from the bottom camera
+     * The number of lines reported on the camera.
      */
-    ARRAY_PROPERTY(struct wb_vision_line, bottomLines, VISION_LINES_BOTTOMLINES_ARRAY_SIZE)
+    PROPERTY(uint8_t, numLines)
 
     /**
-     * The number of lines reported on the top camera
-     */
-    PROPERTY(uint8_t, numTopLines)
-
-    /**
-     * The number of lines reported on the bottom camera
-     */
-    PROPERTY(uint8_t, numBottomLines)
-
-    /**
-     * The frame number that these lines were seen in
+     * The frame number that these lines were seen in.
      */
     PROPERTY(uint64_t, frameNumber)
 

@@ -86,38 +86,28 @@
 #include <stdint.h>
 
 #include <stdint.h>
-
+#ifndef BALL_OPTIONS_ENUM
+#define BALL_OPTIONS_ENUM
 enum BallOptions {
 	NoBallDetected = 0, ///< No Ball Found
 	BallDetected        ///< Ball Found
 };
+#endif
+#include "wb_pixel_coordinate.h"
 
 #define VISION_DETECTION_BALL_GENERATED 
 #define VISION_DETECTION_BALL_C_STRUCT wb_vision_detection_ball 
 #define VISION_DETECTION_BALL_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_BALL_DESC_BUFFER_SIZE 555
-#define VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE 536
+#define VISION_DETECTION_BALL_DESC_BUFFER_SIZE 1097
+#define VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE 1041
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Results for the Ball Ray Tracer (guvision). 
- * Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
- * You can check the vision status message for resolution and FOV information.
- * Coords:
- *     x, Int16.MinValue <-> Int16.MaxValue
- *     y, Int16.MinValue <-> Int16.MaxValue
- *     r, 0 <-> UInt16.MaxValue
- * Minus x Left-Most Position in the image : MinValue
- * Plus x Right-Most Position of the image :MaxValue
- * Plus y Up-Most Position of the image : MaxValue
- * Minus y Down-most position of the image: MinValue
- * Center near 0,0
- *
- * Radius is relative to width. A radius is always positive. A radius of 0 pixels in
- * a width of resolution 640 posts 0, a radius of 640 pixels post MaxValue,
- * a radius of 64 pixels posts MaxValue/10
+ * Results are in pixels of the image utilised, at whatever the resolution happen to be.
+ * You can check the vision_detection_balls message for resolution information.
  */
 struct wb_vision_detection_ball
 {
@@ -128,19 +118,19 @@ struct wb_vision_detection_ball
     PROPERTY(enum BallOptions, sightingType)
 
     /**
-     * X position measured from the left position of the image, growing positive to the right
+     * The pixel coordinate.
      */
-    PROPERTY(int16_t, x)
+    PROPERTY(struct wb_pixel_coordinate, coordinate)
 
     /**
-     * Y position measured from the bottom of the image, growing positive up
+     * The vertical radius in pixels.
      */
-    PROPERTY(int16_t, y)
+    PROPERTY(uint16_t, verticalRadius)
 
     /**
-     * Radius
+     * The horizontal radius in pixels.
      */
-    PROPERTY(uint16_t, r)
+    PROPERTY(uint16_t, horizontalRadius)
 
 };
 

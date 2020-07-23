@@ -85,42 +85,49 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
 
 #define VISION_LINE_GENERATED 
 #define VISION_LINE_C_STRUCT wb_vision_line 
 #define VISION_LINE_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_LINE_DESC_BUFFER_SIZE 1083
-#define VISION_LINE_TO_STRING_BUFFER_SIZE 1037
+#define VISION_LINE_DESC_BUFFER_SIZE 2135
+#define VISION_LINE_TO_STRING_BUFFER_SIZE 2055
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
- * Class use to represent a single line that is posted to the whiteboard from vision
+ * Class use to represent a single line that is posted to the whiteboard from vision.
+ *
+ * The line is represented by four pixels within the image bound by the
+ * resolution forming a trapezoid. You can query vision_lines for resolution
+ * information.
  */
 struct wb_vision_line
 {
 
     /**
-     * The start of the line
+     * The top left pixel coordinate of the line.
      */
-    PROPERTY(struct wb_point2d, lineStart)
+    PROPERTY(struct wb_pixel_coordinate, topLeftCoordinate)
 
     /**
-     * The end of the line
+     * The top right pixel coordinate of the line.
      */
-    PROPERTY(struct wb_point2d, lineEnd)
+    PROPERTY(struct wb_pixel_coordinate, topRightCoordinate)
 
     /**
-     * The thickness of the line at the line start point
+     * The bottom left pixel coordinate of the line.
      */
-    PROPERTY(uint8_t, startThickness)
+    PROPERTY(struct wb_pixel_coordinate, bottomLeftCoordinate)
 
     /**
-     * The thickness of the line at the line end point
+     * The bottom right pixel coordinate of the line.
      */
-    PROPERTY(uint8_t, endThickness)
+    PROPERTY(struct wb_pixel_coordinate, bottomRightCoordinate)
 
 };
 

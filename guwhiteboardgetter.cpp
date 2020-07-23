@@ -519,10 +519,19 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //WEBOTS_NXT_vector_bridge_DEFINED
             }
-            case kVisionLines_v:
+            case kTopVisionLines_v:
             {
 #ifdef VisionLines_DEFINED
-                class VisionLines_t m(wbd);
+                class TopVisionLines_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //VisionLines_DEFINED
+            }
+            case kBottomVisionLines_v:
+            {
+#ifdef VisionLines_DEFINED
+                class BottomVisionLines_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";

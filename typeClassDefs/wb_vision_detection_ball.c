@@ -149,7 +149,18 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "x=%d", self->x);
+    len = gu_strlcat(descString, "coordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char coordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* coordinate_p = coordinate_buffer;
+    const char* coordinate_description = wb_pixel_coordinate_description(&self->coordinate, coordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, coordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -157,7 +168,7 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "y=%d", self->y);
+    len += snprintf(descString + len, bufferSize - len, "verticalRadius=%u", self->verticalRadius);
     if (len >= bufferSize) {
         return descString;
     }
@@ -165,7 +176,7 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "r=%u", self->r);
+    len += snprintf(descString + len, bufferSize - len, "horizontalRadius=%u", self->horizontalRadius);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -200,7 +211,18 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->x);
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char coordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* coordinate_p = coordinate_buffer;
+    const char* coordinate_to_string = wb_pixel_coordinate_to_string(&self->coordinate, coordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, coordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -208,7 +230,7 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->y);
+    len += snprintf(toString + len, bufferSize - len, "%u", self->verticalRadius);
     if (len >= bufferSize) {
         return toString;
     }
@@ -216,7 +238,7 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%u", self->r);
+    len += snprintf(toString + len, bufferSize - len, "%u", self->horizontalRadius);
     return toString;
 #pragma clang diagnostic pop
 }
@@ -233,7 +255,7 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
     }
     char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[13];
+    char key_buffer[17];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -296,11 +318,11 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
         if (strlen(key) > 0) {
             if (0 == strcmp("sightingType", key)) {
                 varIndex = 0;
-            } else if (0 == strcmp("x", key)) {
+            } else if (0 == strcmp("coordinate", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("y", key)) {
+            } else if (0 == strcmp("verticalRadius", key)) {
                 varIndex = 2;
-            } else if (0 == strcmp("r", key)) {
+            } else if (0 == strcmp("horizontalRadius", key)) {
                 varIndex = 3;
             } else {
                 varIndex = -1;
@@ -330,17 +352,17 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
             }
             case 1:
             {
-                self->x = ((int16_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->coordinate, var_str);
                 break;
             }
             case 2:
             {
-                self->y = ((int16_t)atoi(var_str));
+                self->verticalRadius = ((uint16_t)atoi(var_str));
                 break;
             }
             case 3:
             {
-                self->r = ((uint16_t)atoi(var_str));
+                self->horizontalRadius = ((uint16_t)atoi(var_str));
                 break;
             }
         }
@@ -373,42 +395,28 @@ size_t wb_vision_detection_ball_to_network_serialised(const struct wb_vision_det
       }
     } while(false);
 
-    int16_t x_nbo = htons(self->x);
+    uint16_t verticalRadius_nbo = htons(self->verticalRadius);
     do {
       int8_t b;
       for (b = (16 - 1); b >= 0; b--) {
           do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((x_nbo >> b) & 1U);
+        unsigned long newbit = !!((verticalRadius_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
       }
     } while(false);
 
-    int16_t y_nbo = htons(self->y);
+    uint16_t horizontalRadius_nbo = htons(self->horizontalRadius);
     do {
       int8_t b;
       for (b = (16 - 1); b >= 0; b--) {
           do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((y_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    uint16_t r_nbo = htons(self->r);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((r_nbo >> b) & 1U);
+        unsigned long newbit = !!((horizontalRadius_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -449,12 +457,12 @@ size_t wb_vision_detection_ball_from_network_serialised(const char *src, struct 
         uint16_t bit = 7 - (bit_offset % 8);
         char dataByte = src[byte];
         unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->x ^= (-bitValue ^ dst->x) & (1UL << b);
+        dst->verticalRadius ^= (-bitValue ^ dst->verticalRadius) & (1UL << b);
         bit_offset = bit_offset + 1;
       } while(false);
       }
     } while(false);
-    dst->x = ntohs(dst->x);
+    dst->verticalRadius = ntohs(dst->verticalRadius);
 
     do {
       int8_t b;
@@ -464,27 +472,12 @@ size_t wb_vision_detection_ball_from_network_serialised(const char *src, struct 
         uint16_t bit = 7 - (bit_offset % 8);
         char dataByte = src[byte];
         unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->y ^= (-bitValue ^ dst->y) & (1UL << b);
+        dst->horizontalRadius ^= (-bitValue ^ dst->horizontalRadius) & (1UL << b);
         bit_offset = bit_offset + 1;
       } while(false);
       }
     } while(false);
-    dst->y = ntohs(dst->y);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->r ^= (-bitValue ^ dst->r) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->r = ntohs(dst->r);
+    dst->horizontalRadius = ntohs(dst->horizontalRadius);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

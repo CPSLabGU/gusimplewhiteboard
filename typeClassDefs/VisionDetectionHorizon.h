@@ -69,6 +69,10 @@
 #include <gu_util.h>
 #include "wb_vision_detection_horizon.h"
 
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+
 namespace guWhiteboard {
 
     /**
@@ -81,14 +85,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum HorizonOptions horizonType = HorizonFailed, int16_t lhp_x = 0, int16_t lhp_y = 0, int16_t rhp_x = 0, int16_t rhp_y = 0, int16_t chp_x = 0, int16_t chp_y = 0) {
+        void init(enum HorizonOptions horizonType = HorizonFailed, struct wb_pixel_coordinate leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate rightCoordinate = wb_pixel_coordinate()) {
             set_horizonType(horizonType);
-            set_lhp_x(lhp_x);
-            set_lhp_y(lhp_y);
-            set_rhp_x(rhp_x);
-            set_rhp_y(rhp_y);
-            set_chp_x(chp_x);
-            set_chp_y(chp_y);
+            set_leftCoordinate(leftCoordinate);
+            set_centerCoordinate(centerCoordinate);
+            set_rightCoordinate(rightCoordinate);
         }
 
     public:
@@ -96,29 +97,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionHorizon`.
          */
-        VisionDetectionHorizon(enum HorizonOptions horizonType = HorizonFailed, int16_t lhp_x = 0, int16_t lhp_y = 0, int16_t rhp_x = 0, int16_t rhp_y = 0, int16_t chp_x = 0, int16_t chp_y = 0) {
-            this->init(horizonType, lhp_x, lhp_y, rhp_x, rhp_y, chp_x, chp_y);
+        VisionDetectionHorizon(enum HorizonOptions horizonType = HorizonFailed, struct wb_pixel_coordinate leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate rightCoordinate = wb_pixel_coordinate()) {
+            this->init(horizonType, leftCoordinate, centerCoordinate, rightCoordinate);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizon(const VisionDetectionHorizon &other): wb_vision_detection_horizon() {
-            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
+            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionHorizon(const struct wb_vision_detection_horizon &other): wb_vision_detection_horizon() {
-            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
+            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionHorizon &operator = (const VisionDetectionHorizon &other) {
-            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
+            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
             return *this;
         }
 
@@ -126,7 +127,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionHorizon &operator = (const struct wb_vision_detection_horizon &other) {
-            this->init(other.horizonType(), other.lhp_x(), other.lhp_y(), other.rhp_x(), other.rhp_y(), other.chp_x(), other.chp_y());
+            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
             return *this;
         }
 
@@ -170,17 +171,14 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << "lhp_x=" << static_cast<signed>(this->lhp_x());
+            guWhiteboard::PixelCoordinate * leftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->leftCoordinate()));
+            ss << "leftCoordinate=" << "{" << leftCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "lhp_y=" << static_cast<signed>(this->lhp_y());
+            guWhiteboard::PixelCoordinate * centerCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->centerCoordinate()));
+            ss << "centerCoordinate=" << "{" << centerCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "rhp_x=" << static_cast<signed>(this->rhp_x());
-            ss << ", ";
-            ss << "rhp_y=" << static_cast<signed>(this->rhp_y());
-            ss << ", ";
-            ss << "chp_x=" << static_cast<signed>(this->chp_x());
-            ss << ", ";
-            ss << "chp_y=" << static_cast<signed>(this->chp_y());
+            guWhiteboard::PixelCoordinate * rightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->rightCoordinate()));
+            ss << "rightCoordinate=" << "{" << rightCoordinate_cast->description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }
@@ -216,17 +214,14 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << static_cast<signed>(this->lhp_x());
+            guWhiteboard::PixelCoordinate * leftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->leftCoordinate()));
+            ss << "{" << leftCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->lhp_y());
+            guWhiteboard::PixelCoordinate * centerCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->centerCoordinate()));
+            ss << "{" << centerCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->rhp_x());
-            ss << ", ";
-            ss << static_cast<signed>(this->rhp_y());
-            ss << ", ";
-            ss << static_cast<signed>(this->chp_x());
-            ss << ", ";
-            ss << static_cast<signed>(this->chp_y());
+            guWhiteboard::PixelCoordinate * rightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->rightCoordinate()));
+            ss << "{" << rightCoordinate_cast->to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }
@@ -244,7 +239,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[12];
+            char key_buffer[17];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -307,18 +302,12 @@ namespace guWhiteboard {
                 if (strlen(key) > 0) {
                     if (0 == strcmp("horizonType", key)) {
                         varIndex = 0;
-                    } else if (0 == strcmp("lhp_x", key)) {
+                    } else if (0 == strcmp("leftCoordinate", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("lhp_y", key)) {
+                    } else if (0 == strcmp("centerCoordinate", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("rhp_x", key)) {
+                    } else if (0 == strcmp("rightCoordinate", key)) {
                         varIndex = 3;
-                    } else if (0 == strcmp("rhp_y", key)) {
-                        varIndex = 4;
-                    } else if (0 == strcmp("chp_x", key)) {
-                        varIndex = 5;
-                    } else if (0 == strcmp("chp_y", key)) {
-                        varIndex = 6;
                     } else {
                         varIndex = -1;
                     }
@@ -357,32 +346,23 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        this->set_lhp_x(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate leftCoordinate_temp = PixelCoordinate();
+                        leftCoordinate_temp.from_string(var_str);
+                        this->set_leftCoordinate(leftCoordinate_temp);
                         break;
                     }
                     case 2:
                     {
-                        this->set_lhp_y(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate centerCoordinate_temp = PixelCoordinate();
+                        centerCoordinate_temp.from_string(var_str);
+                        this->set_centerCoordinate(centerCoordinate_temp);
                         break;
                     }
                     case 3:
                     {
-                        this->set_rhp_x(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 4:
-                    {
-                        this->set_rhp_y(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 5:
-                    {
-                        this->set_chp_x(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 6:
-                    {
-                        this->set_chp_y(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate rightCoordinate_temp = PixelCoordinate();
+                        rightCoordinate_temp.from_string(var_str);
+                        this->set_rightCoordinate(rightCoordinate_temp);
                         break;
                     }
                 }

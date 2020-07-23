@@ -69,6 +69,11 @@
 #include <gu_util.h>
 #include "wb_vision_detection_goal_post.h"
 
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+#include "PixelCoordinate.h"
+
 namespace guWhiteboard {
 
     /**
@@ -81,17 +86,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
+        void init(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
             set_sightingType(sightingType);
             set_orientation(orientation);
-            set_tl_x(tl_x);
-            set_tl_y(tl_y);
-            set_tr_x(tr_x);
-            set_tr_y(tr_y);
-            set_bl_x(bl_x);
-            set_bl_y(bl_y);
-            set_br_x(br_x);
-            set_br_y(br_y);
+            set_topLeftCoordinate(topLeftCoordinate);
+            set_topRightCoordinate(topRightCoordinate);
+            set_bottomLeftCoordinate(bottomLeftCoordinate);
+            set_bottomRightCoordinate(bottomRightCoordinate);
         }
 
     public:
@@ -99,29 +100,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionGoalPost`.
          */
-        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, int16_t tl_x = 0, int16_t tl_y = 0, int16_t tr_x = 0, int16_t tr_y = 0, int16_t bl_x = 0, int16_t bl_y = 0, int16_t br_x = 0, int16_t br_y = 0) {
-            this->init(sightingType, orientation, tl_x, tl_y, tr_x, tr_y, bl_x, bl_y, br_x, br_y);
+        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
+            this->init(sightingType, orientation, topLeftCoordinate, topRightCoordinate, bottomLeftCoordinate, bottomRightCoordinate);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const VisionDetectionGoalPost &other): wb_vision_detection_goal_post() {
-            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionGoalPost(const struct wb_vision_detection_goal_post &other): wb_vision_detection_goal_post() {
-            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const VisionDetectionGoalPost &other) {
-            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
             return *this;
         }
 
@@ -129,7 +130,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionGoalPost &operator = (const struct wb_vision_detection_goal_post &other) {
-            this->init(other.sightingType(), other.orientation(), other.tl_x(), other.tl_y(), other.tr_x(), other.tr_y(), other.bl_x(), other.bl_y(), other.br_x(), other.br_y());
+            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
             return *this;
         }
 
@@ -186,21 +187,17 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << "tl_x=" << static_cast<signed>(this->tl_x());
+            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
+            ss << "topLeftCoordinate=" << "{" << topLeftCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "tl_y=" << static_cast<signed>(this->tl_y());
+            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
+            ss << "topRightCoordinate=" << "{" << topRightCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "tr_x=" << static_cast<signed>(this->tr_x());
+            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
+            ss << "bottomLeftCoordinate=" << "{" << bottomLeftCoordinate_cast->description() << "}";
             ss << ", ";
-            ss << "tr_y=" << static_cast<signed>(this->tr_y());
-            ss << ", ";
-            ss << "bl_x=" << static_cast<signed>(this->bl_x());
-            ss << ", ";
-            ss << "bl_y=" << static_cast<signed>(this->bl_y());
-            ss << ", ";
-            ss << "br_x=" << static_cast<signed>(this->br_x());
-            ss << ", ";
-            ss << "br_y=" << static_cast<signed>(this->br_y());
+            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
+            ss << "bottomRightCoordinate=" << "{" << bottomRightCoordinate_cast->description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }
@@ -249,21 +246,17 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            ss << static_cast<signed>(this->tl_x());
+            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
+            ss << "{" << topLeftCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->tl_y());
+            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
+            ss << "{" << topRightCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->tr_x());
+            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
+            ss << "{" << bottomLeftCoordinate_cast->to_string() << "}";
             ss << ", ";
-            ss << static_cast<signed>(this->tr_y());
-            ss << ", ";
-            ss << static_cast<signed>(this->bl_x());
-            ss << ", ";
-            ss << static_cast<signed>(this->bl_y());
-            ss << ", ";
-            ss << static_cast<signed>(this->br_x());
-            ss << ", ";
-            ss << static_cast<signed>(this->br_y());
+            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
+            ss << "{" << bottomRightCoordinate_cast->to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }
@@ -281,7 +274,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[13];
+            char key_buffer[22];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -346,22 +339,14 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("orientation", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("tl_x", key)) {
+                    } else if (0 == strcmp("topLeftCoordinate", key)) {
                         varIndex = 2;
-                    } else if (0 == strcmp("tl_y", key)) {
+                    } else if (0 == strcmp("topRightCoordinate", key)) {
                         varIndex = 3;
-                    } else if (0 == strcmp("tr_x", key)) {
+                    } else if (0 == strcmp("bottomLeftCoordinate", key)) {
                         varIndex = 4;
-                    } else if (0 == strcmp("tr_y", key)) {
+                    } else if (0 == strcmp("bottomRightCoordinate", key)) {
                         varIndex = 5;
-                    } else if (0 == strcmp("bl_x", key)) {
-                        varIndex = 6;
-                    } else if (0 == strcmp("bl_y", key)) {
-                        varIndex = 7;
-                    } else if (0 == strcmp("br_x", key)) {
-                        varIndex = 8;
-                    } else if (0 == strcmp("br_y", key)) {
-                        varIndex = 9;
                     } else {
                         varIndex = -1;
                     }
@@ -420,42 +405,30 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        this->set_tl_x(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate topLeftCoordinate_temp = PixelCoordinate();
+                        topLeftCoordinate_temp.from_string(var_str);
+                        this->set_topLeftCoordinate(topLeftCoordinate_temp);
                         break;
                     }
                     case 3:
                     {
-                        this->set_tl_y(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate topRightCoordinate_temp = PixelCoordinate();
+                        topRightCoordinate_temp.from_string(var_str);
+                        this->set_topRightCoordinate(topRightCoordinate_temp);
                         break;
                     }
                     case 4:
                     {
-                        this->set_tr_x(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate bottomLeftCoordinate_temp = PixelCoordinate();
+                        bottomLeftCoordinate_temp.from_string(var_str);
+                        this->set_bottomLeftCoordinate(bottomLeftCoordinate_temp);
                         break;
                     }
                     case 5:
                     {
-                        this->set_tr_y(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 6:
-                    {
-                        this->set_bl_x(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 7:
-                    {
-                        this->set_bl_y(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 8:
-                    {
-                        this->set_br_x(static_cast<int16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 9:
-                    {
-                        this->set_br_y(static_cast<int16_t>(atoi(var_str)));
+                        PixelCoordinate bottomRightCoordinate_temp = PixelCoordinate();
+                        bottomRightCoordinate_temp.from_string(var_str);
+                        this->set_bottomRightCoordinate(bottomRightCoordinate_temp);
                         break;
                     }
                 }

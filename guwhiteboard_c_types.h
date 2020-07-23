@@ -16,6 +16,7 @@
 #include <typeClassDefs/wb_vision_control_status.h>
 #include <typeClassDefs/wb_top_particles.h>
 #include <typeClassDefs/wb_vision_lines.h>
+#include <typeClassDefs/wb_vision_lines.h>
 #include <typeClassDefs/wb_point2d.h>
 #include <typeClassDefs/wb_count.h>
 #include <typeClassDefs/wb_vision_field_features.h>

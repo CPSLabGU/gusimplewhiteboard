@@ -50,7 +50,8 @@ int8_t, nonatomic, TeleoperationConnection, Integer indication which remote whit
 int8_t, nonatomic, UDPWBNumber, ID number being used to broadcast udp whiteboard
 class:WEBOTS_NXT_bumper, nonatomic, WEBOTS_NXT_bumper, Class that contains data from 2 rouch sensors in an NXT bumper by the bridge
 class:WEBOTS_NXT_vector_bridge, nonatomic, WEBOTS_NXT_vector_bridge, Class that will define actuators for the Diferential motor bridge
-type:vision_lines, nonatomic, VisionLines, Class that reports the lines that vision sees.
+type:vision_lines, nonatomic, TopVisionLines, Class that reports the lines that vision sees in the top camera.
+type:vision_lines, nonatomic, BottomVisionLines, Class that reports the lines that vision sees in the bottom camera.
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotStatus, Class that reads differential robot status
 class:DifferentialRobotControlStatus, nonatomic, DifferentialRobotControl, Class that sends commands to the robot from the whiteboard
 type:point2D,    atomic, XEyesPos,          Just a hook for an xeyes interface
@@ -104,7 +105,7 @@ class:HalArmTarget, nonatomic, HAL_LArmTarget_Tolr, Used to set the joing angle 
 class:HalArmTarget, nonatomic, HAL_RArmTarget_Ctrl, Used to control the right arm via DCM
 class:HalArmTarget, nonatomic, HAL_RArmTarget_Stat, Used to report DCM status of the right arm
 class:HalArmTarget, nonatomic, HAL_RArmTarget_Tolr, Used to set the joing angle tolerance for motion completion detection.
-type:Vision_FieldFeatures, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
+type:vision_field_features, nonatomic, VisionFieldFeatures, Posts information from vision about field corners and intersections
 bool,                nonatomic, WhistleBlown, Whistle blown flag
 uint8_t, nonatomic, VolumeControl, Variable used by SMVolumeController to control the volume via pulse audio commands
 class:VisionRobots, nonatomic, VisionRobots, Class that reports the robots that vision sees.

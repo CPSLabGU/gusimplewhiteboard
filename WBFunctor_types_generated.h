@@ -1211,25 +1211,48 @@ public:
 #endif //WEBOTS_NXT_vector_bridge_DEFINED
 
 #ifdef VisionLines_DEFINED
-/** WBFunctor definition for VisionLines_WBFunctor_T */ 
-template <typename VisionLines_WBFunctor_T >
-class VisionLines_WBFunctor: public WBFunctor<VisionLines_WBFunctor_T > {
+/** WBFunctor definition for TopVisionLines_WBFunctor_T */ 
+template <typename TopVisionLines_WBFunctor_T >
+class TopVisionLines_WBFunctor: public WBFunctor<TopVisionLines_WBFunctor_T > {
 public:
-    /** WBFunctor constructor for VisionLines_WBFunctor_T */
-    VisionLines_WBFunctor(VisionLines_WBFunctor_T* obj, void (VisionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t): WBFunctor<VisionLines_WBFunctor_T >(obj, (void (VisionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+    /** WBFunctor constructor for TopVisionLines_WBFunctor_T */
+    TopVisionLines_WBFunctor(TopVisionLines_WBFunctor_T* obj, void (TopVisionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t): WBFunctor<TopVisionLines_WBFunctor_T >(obj, (void (TopVisionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
-    /** call method for callbacks, for class VisionLines_WBFunctor */
+    /** call method for callbacks, for class TopVisionLines_WBFunctor */
     void call(gu_simple_message *m) {
-        guWhiteboard::VisionLines result = guWhiteboard::VisionLines_t().get_from(m);
-        VisionLines_function_t funct((void (VisionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &))WBFunctor<VisionLines_WBFunctor_T >::get_s_func_ptr());
-        (WBFunctor<VisionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionLines_WBFunctor_T >::type_enum, result);
+        guWhiteboard::VisionLines result = guWhiteboard::TopVisionLines_t().get_from(m);
+        TopVisionLines_function_t funct((void (TopVisionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &))WBFunctor<TopVisionLines_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<TopVisionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<TopVisionLines_WBFunctor_T >::type_enum, result);
     }
 
     /** define callback signature */
-    typedef void (VisionLines_WBFunctor_T::*VisionLines_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &);
+    typedef void (TopVisionLines_WBFunctor_T::*TopVisionLines_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &);
 
     /** internal method of linking classes */
-    static WBFunctorBase *bind(VisionLines_WBFunctor_T *obj, void (VisionLines_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t) { return new VisionLines_WBFunctor<VisionLines_WBFunctor_T >(obj, f, t); }
+    static WBFunctorBase *bind(TopVisionLines_WBFunctor_T *obj, void (TopVisionLines_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t) { return new TopVisionLines_WBFunctor<TopVisionLines_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //VisionLines_DEFINED
+
+#ifdef VisionLines_DEFINED
+/** WBFunctor definition for BottomVisionLines_WBFunctor_T */ 
+template <typename BottomVisionLines_WBFunctor_T >
+class BottomVisionLines_WBFunctor: public WBFunctor<BottomVisionLines_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for BottomVisionLines_WBFunctor_T */
+    BottomVisionLines_WBFunctor(BottomVisionLines_WBFunctor_T* obj, void (BottomVisionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t): WBFunctor<BottomVisionLines_WBFunctor_T >(obj, (void (BottomVisionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class BottomVisionLines_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::VisionLines result = guWhiteboard::BottomVisionLines_t().get_from(m);
+        BottomVisionLines_function_t funct((void (BottomVisionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &))WBFunctor<BottomVisionLines_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<BottomVisionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<BottomVisionLines_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (BottomVisionLines_WBFunctor_T::*BottomVisionLines_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(BottomVisionLines_WBFunctor_T *obj, void (BottomVisionLines_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t) { return new BottomVisionLines_WBFunctor<BottomVisionLines_WBFunctor_T >(obj, f, t); }
 }; 
 #endif //VisionLines_DEFINED
 

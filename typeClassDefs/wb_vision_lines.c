@@ -130,22 +130,22 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
     if (len >= bufferSize) {
         return descString;
     }
-    len = gu_strlcat(descString, "topLines={", bufferSize);
-    for (int topLines_index = 0; topLines_index < VISION_LINES_TOPLINES_ARRAY_SIZE; topLines_index++) {
+    len = gu_strlcat(descString, "lines={", bufferSize);
+    for (int lines_index = 0; lines_index < VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
         if (len >= bufferSize) {
             return descString;
         }
-        if (topLines_index > 0) {
+        if (lines_index > 0) {
             len = gu_strlcat(descString, ", ", bufferSize);
         }
         len = gu_strlcat(descString, "{", bufferSize);
         if (len >= bufferSize) {
             return descString;
         }
-        char topLines_1_buffer[VISION_LINE_DESC_BUFFER_SIZE];
-        char* topLines_1_p = topLines_1_buffer;
-        const char* topLines_1_description = wb_vision_line_description(&self->topLines[topLines_index], topLines_1_p, VISION_LINE_DESC_BUFFER_SIZE);
-        len = gu_strlcat(descString, topLines_1_p, bufferSize);
+        char lines_1_buffer[VISION_LINE_DESC_BUFFER_SIZE];
+        char* lines_1_p = lines_1_buffer;
+        const char* lines_1_description = wb_vision_line_description(&self->lines[lines_index], lines_1_p, VISION_LINE_DESC_BUFFER_SIZE);
+        len = gu_strlcat(descString, lines_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
         }
@@ -162,47 +162,7 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
     if (len >= bufferSize) {
         return descString;
     }
-    len = gu_strlcat(descString, "bottomLines={", bufferSize);
-    for (int bottomLines_index = 0; bottomLines_index < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; bottomLines_index++) {
-        if (len >= bufferSize) {
-            return descString;
-        }
-        if (bottomLines_index > 0) {
-            len = gu_strlcat(descString, ", ", bufferSize);
-        }
-        len = gu_strlcat(descString, "{", bufferSize);
-        if (len >= bufferSize) {
-            return descString;
-        }
-        char bottomLines_1_buffer[VISION_LINE_DESC_BUFFER_SIZE];
-        char* bottomLines_1_p = bottomLines_1_buffer;
-        const char* bottomLines_1_description = wb_vision_line_description(&self->bottomLines[bottomLines_index], bottomLines_1_p, VISION_LINE_DESC_BUFFER_SIZE);
-        len = gu_strlcat(descString, bottomLines_1_p, bufferSize);
-        if (len >= bufferSize) {
-            return descString;
-        }
-        len = gu_strlcat(descString, "}", bufferSize);
-    }
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, "}", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len += snprintf(descString + len, bufferSize - len, "numTopLines=%u", self->numTopLines);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len += snprintf(descString + len, bufferSize - len, "numBottomLines=%u", self->numBottomLines);
+    len += snprintf(descString + len, bufferSize - len, "numLines=%u", self->numLines);
     if (len >= bufferSize) {
         return descString;
     }
@@ -243,21 +203,21 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int topLines_index = 0; topLines_index < VISION_LINES_TOPLINES_ARRAY_SIZE; topLines_index++) {
+    for (int lines_index = 0; lines_index < VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
         if (len >= bufferSize) {
             return toString;
         }
-        if (topLines_index > 0) {
+        if (lines_index > 0) {
             len = gu_strlcat(toString, ", ", bufferSize);
         }
         len = gu_strlcat(toString, "{", bufferSize);
         if (len >= bufferSize) {
             return toString;
         }
-        char topLines_1_buffer[VISION_LINE_TO_STRING_BUFFER_SIZE];
-        char* topLines_1_p = topLines_1_buffer;
-        const char* topLines_1_to_string = wb_vision_line_to_string(&self->topLines[topLines_index], topLines_1_p, VISION_LINE_TO_STRING_BUFFER_SIZE);
-        len = gu_strlcat(toString, topLines_1_p, bufferSize);
+        char lines_1_buffer[VISION_LINE_TO_STRING_BUFFER_SIZE];
+        char* lines_1_p = lines_1_buffer;
+        const char* lines_1_to_string = wb_vision_line_to_string(&self->lines[lines_index], lines_1_p, VISION_LINE_TO_STRING_BUFFER_SIZE);
+        len = gu_strlcat(toString, lines_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
         }
@@ -274,47 +234,7 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
     if (len >= bufferSize) {
         return toString;
     }
-    len = gu_strlcat(toString, "{", bufferSize);
-    for (int bottomLines_index = 0; bottomLines_index < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; bottomLines_index++) {
-        if (len >= bufferSize) {
-            return toString;
-        }
-        if (bottomLines_index > 0) {
-            len = gu_strlcat(toString, ", ", bufferSize);
-        }
-        len = gu_strlcat(toString, "{", bufferSize);
-        if (len >= bufferSize) {
-            return toString;
-        }
-        char bottomLines_1_buffer[VISION_LINE_TO_STRING_BUFFER_SIZE];
-        char* bottomLines_1_p = bottomLines_1_buffer;
-        const char* bottomLines_1_to_string = wb_vision_line_to_string(&self->bottomLines[bottomLines_index], bottomLines_1_p, VISION_LINE_TO_STRING_BUFFER_SIZE);
-        len = gu_strlcat(toString, bottomLines_1_p, bufferSize);
-        if (len >= bufferSize) {
-            return toString;
-        }
-        len = gu_strlcat(toString, "}", bufferSize);
-    }
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, "}", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len += snprintf(toString + len, bufferSize - len, "%u", self->numTopLines);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len += snprintf(toString + len, bufferSize - len, "%u", self->numBottomLines);
+    len += snprintf(toString + len, bufferSize - len, "%u", self->numLines);
     if (len >= bufferSize) {
         return toString;
     }
@@ -355,7 +275,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
     }
     char var_str_buffer[VISION_LINES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[15];
+    char key_buffer[12];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int lastBrace = -1;
@@ -420,20 +340,16 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
         startKey = startVar;
         endKey = -1;
         if (strlen(key) > 0) {
-            if (0 == strcmp("topLines", key)) {
+            if (0 == strcmp("lines", key)) {
                 varIndex = 0;
-            } else if (0 == strcmp("bottomLines", key)) {
+            } else if (0 == strcmp("numLines", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("numTopLines", key)) {
-                varIndex = 2;
-            } else if (0 == strcmp("numBottomLines", key)) {
-                varIndex = 3;
             } else if (0 == strcmp("frameNumber", key)) {
-                varIndex = 4;
+                varIndex = 2;
             } else if (0 == strcmp("res_width", key)) {
-                varIndex = 5;
+                varIndex = 3;
             } else if (0 == strcmp("res_height", key)) {
-                varIndex = 6;
+                varIndex = 4;
             } else {
                 varIndex = -1;
             }
@@ -448,7 +364,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int topLines_0_index = 0; topLines_0_index < VISION_LINES_TOPLINES_ARRAY_SIZE; topLines_0_index++) {
+                for (int lines_0_index = 0; lines_0_index < VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {
@@ -495,96 +411,29 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     startVar = index;
                     startKey = startVar;
                     endKey = -1;
-                    struct wb_vision_line topLines_0 = {};
-                    wb_vision_line_from_string(&topLines_0, var_str);
-                    self->topLines[topLines_0_index] = topLines_0;;
+                    struct wb_vision_line lines_0 = {};
+                    wb_vision_line_from_string(&lines_0, var_str);
+                    self->lines[lines_0_index] = lines_0;;
                 }
                 index = restartIndex;
                 break;
             }
             case 1:
             {
-                int restartIndex = index;
-                index = lastBrace + 1;
-                startVar = index;
-                startKey = startVar;
-                endKey = -1;
-                bracecount = 0;
-                for (int bottomLines_0_index = 0; bottomLines_0_index < VISION_LINES_BOTTOMLINES_ARRAY_SIZE; bottomLines_0_index++) {
-                    for (int i = index; i < length; i++) {
-                        index = i + 1;
-                        if (bracecount == 0 && str[i] == '=') {
-                            endKey = i - 1;
-                            startVar = index;
-                            continue;
-                        }
-                        if (bracecount == 0 && isspace(str[i])) {
-                            startVar = index;
-                            if (endKey == -1) {
-                                startKey = index;
-                            }
-                            continue;
-                        }
-                        if (bracecount == 0 && str[i] == ',') {
-                            index = i - 1;
-                            break;
-                        }
-                        if (str[i] == '{') {
-                            bracecount++;
-                            continue;
-                        }
-                        if (str[i] == '}') {
-                            bracecount--;
-                            if (bracecount < 0) {
-                                index = i - 1;
-                                break;
-                            }
-                        }
-                        if (i == length - 1) {
-                            index = i;
-                        }
-                    }
-                    if (endKey >= startKey && endKey - startKey < length) {
-                        strncpy(key, str + startKey, ((size_t)(endKey - startKey) + 1));
-                        key[(endKey - startKey) + 1] = 0;
-                    } else {
-                        key[0] = 0;
-                    }
-                    strncpy(var_str, str + startVar, ((size_t)(index - startVar) + 1));
-                    var_str[(index - startVar) + 1] = 0;
-                    bracecount = 0;
-                    index += 2;
-                    startVar = index;
-                    startKey = startVar;
-                    endKey = -1;
-                    struct wb_vision_line bottomLines_0 = {};
-                    wb_vision_line_from_string(&bottomLines_0, var_str);
-                    self->bottomLines[bottomLines_0_index] = bottomLines_0;;
-                }
-                index = restartIndex;
+                self->numLines = ((uint8_t)atoi(var_str));
                 break;
             }
             case 2:
             {
-                self->numTopLines = ((uint8_t)atoi(var_str));
+                self->frameNumber = ((uint64_t)atoll(var_str));
                 break;
             }
             case 3:
             {
-                self->numBottomLines = ((uint8_t)atoi(var_str));
-                break;
-            }
-            case 4:
-            {
-                self->frameNumber = ((uint64_t)atoll(var_str));
-                break;
-            }
-            case 5:
-            {
                 self->res_width = ((uint16_t)atoi(var_str));
                 break;
             }
-            case 6:
+            case 4:
             {
                 self->res_height = ((uint16_t)atoi(var_str));
                 break;
@@ -608,9 +457,9 @@ size_t wb_vision_lines_to_network_serialised(const struct wb_vision_lines *self,
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 5;
+          uint32_t len = 7;
           uint32_t bytes = len * sizeof(struct wb_vision_line);
-          const char *buf = (const char *)&self->topLines[0];
+          const char *buf = (const char *)&self->lines[0];
           uint32_t c;
           int8_t b;
           for (c = 0; c < bytes; c++) {
@@ -626,49 +475,14 @@ size_t wb_vision_lines_to_network_serialised(const struct wb_vision_lines *self,
           }
         } while(false);
 
-        //Class generator does not support array network compression.
-        //Copying into the buffer, uncompressed
-        do { //limit declaration scope
-          uint32_t len = 5;
-          uint32_t bytes = len * sizeof(struct wb_vision_line);
-          const char *buf = (const char *)&self->bottomLines[0];
-          uint32_t c;
-          int8_t b;
-          for (c = 0; c < bytes; c++) {
-            for (b = 7; b >= 0; b--) {
-                do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((buf[c] >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-            }
-          }
-        } while(false);
-
-    uint8_t numTopLines_nbo = (self->numTopLines);
+    uint8_t numLines_nbo = (self->numLines);
     do {
       int8_t b;
       for (b = (8 - 1); b >= 0; b--) {
           do {
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((numTopLines_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
-    uint8_t numBottomLines_nbo = (self->numBottomLines);
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((numBottomLines_nbo >> b) & 1U);
+        unsigned long newbit = !!((numLines_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -731,7 +545,7 @@ size_t wb_vision_lines_from_network_serialised(const char *src, struct wb_vision
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 5;
+          uint32_t len = 7;
           uint32_t bytes = len * sizeof(struct wb_vision_line);
           char *buf = (char *)malloc(bytes);
           uint32_t c;
@@ -748,31 +562,7 @@ size_t wb_vision_lines_from_network_serialised(const char *src, struct wb_vision
       } while(false);
             }
           }
-          memcpy(&dst->topLines[0], &buf[0], bytes);
-          free(buf);
-        } while(false);
-
-        //Class generator does not support array network compression.
-        //Copying into the buffer, uncompressed
-        do { //limit declaration scope
-          uint32_t len = 5;
-          uint32_t bytes = len * sizeof(struct wb_vision_line);
-          char *buf = (char *)malloc(bytes);
-          uint32_t c;
-          int8_t b;
-          for (c = 0; c < bytes; c++) {
-            for (b = 7; b >= 0; b--) {
-                do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        buf[c] ^= (-bitValue ^ buf[c]) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-            }
-          }
-          memcpy(&dst->bottomLines[0], &buf[0], bytes);
+          memcpy(&dst->lines[0], &buf[0], bytes);
           free(buf);
         } while(false);
 
@@ -784,27 +574,12 @@ size_t wb_vision_lines_from_network_serialised(const char *src, struct wb_vision
         uint16_t bit = 7 - (bit_offset % 8);
         char dataByte = src[byte];
         unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->numTopLines ^= (-bitValue ^ dst->numTopLines) & (1UL << b);
+        dst->numLines ^= (-bitValue ^ dst->numLines) & (1UL << b);
         bit_offset = bit_offset + 1;
       } while(false);
       }
     } while(false);
-    dst->numTopLines = (dst->numTopLines);
-
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->numBottomLines ^= (-bitValue ^ dst->numBottomLines) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->numBottomLines = (dst->numBottomLines);
+    dst->numLines = (dst->numLines);
 
     do {
       int8_t b;

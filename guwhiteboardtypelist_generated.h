@@ -452,11 +452,19 @@ UDPWBNumber_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guW
         
     };
 
-    /** WB Ptr Class: VisionLines_t @brief Class that reports the lines that vision sees. */ 
-    class VisionLines_t: public guWhiteboard_generic_whiteboard_object<class VisionLines > {
+    /** WB Ptr Class: TopVisionLines_t @brief Class that reports the lines that vision sees in the top camera. */ 
+    class TopVisionLines_t: public guWhiteboard_generic_whiteboard_object<class VisionLines > {
         public: 
-        /** Constructor: VisionLines_t */ 
-        VisionLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class VisionLines >(wbd, kVisionLines_v, false) {}
+        /** Constructor: TopVisionLines_t */ 
+        TopVisionLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class VisionLines >(wbd, kTopVisionLines_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: BottomVisionLines_t @brief Class that reports the lines that vision sees in the bottom camera. */ 
+    class BottomVisionLines_t: public guWhiteboard_generic_whiteboard_object<class VisionLines > {
+        public: 
+        /** Constructor: BottomVisionLines_t */ 
+        BottomVisionLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class VisionLines >(wbd, kBottomVisionLines_v, false) {}
         
     };
 

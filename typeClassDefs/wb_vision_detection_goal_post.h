@@ -98,28 +98,24 @@ enum GoalPostOrientation {
 	LeftPost,       ///< This is the left post of a goal.
 	RightPost       ///< This is the right post of a goal.
 };
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
+#include "wb_pixel_coordinate.h"
 
 #define VISION_DETECTION_GOAL_POST_GENERATED 
 #define VISION_DETECTION_GOAL_POST_C_STRUCT wb_vision_detection_goal_post 
-#define VISION_DETECTION_GOAL_POST_NUMBER_OF_VARIABLES 10
+#define VISION_DETECTION_GOAL_POST_NUMBER_OF_VARIABLES 6
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE 1156
-#define VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE 1091
+#define VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE 3188
+#define VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE 3083
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
  * Results for the Goal Ray Tracer (guvision). 
  * Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
- * You can check the vision status message for resolution and FOV information.
- * Coords:
- *     x, Int16.MinValue <-> Int16.MaxValue
- *     y, Int16.MinValue <-> Int16.MaxValue
- * Minus x Left
- * Plus x Right
- * Plus y Up
- * Minus y Down
- * Center near 0,0
+ * You can check the vision_detection_goals message for resolution information.
  */
 struct wb_vision_detection_goal_post
 {
@@ -135,44 +131,24 @@ struct wb_vision_detection_goal_post
     PROPERTY(enum GoalPostOrientation, orientation)
 
     /**
-     * Top Left X coord.
+     * The top left pixel coordinate.
      */
-    PROPERTY(int16_t, tl_x)
+    PROPERTY(struct wb_pixel_coordinate, topLeftCoordinate)
 
     /**
-     * Top Left Y coord.
+     * The top right pixel coordinate.
      */
-    PROPERTY(int16_t, tl_y)
+    PROPERTY(struct wb_pixel_coordinate, topRightCoordinate)
 
     /**
-     * Top Right X coord.
+     * The bottom left pixel coordinate.
      */
-    PROPERTY(int16_t, tr_x)
+    PROPERTY(struct wb_pixel_coordinate, bottomLeftCoordinate)
 
     /**
-     * Top Right Y coord.
+     * The bottom right pixel coordinate.
      */
-    PROPERTY(int16_t, tr_y)
-
-    /**
-     * Bottom Left X coord.
-     */
-    PROPERTY(int16_t, bl_x)
-
-    /**
-     * Bottom Left Y coord.
-     */
-    PROPERTY(int16_t, bl_y)
-
-    /**
-     * Bottom Right X coord.
-     */
-    PROPERTY(int16_t, br_x)
-
-    /**
-     * Bottom Right Y coord.
-     */
-    PROPERTY(int16_t, br_y)
+    PROPERTY(struct wb_pixel_coordinate, bottomRightCoordinate)
 
 };
 

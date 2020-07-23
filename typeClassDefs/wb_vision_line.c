@@ -130,33 +130,14 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     if (len >= bufferSize) {
         return descString;
     }
-    len = gu_strlcat(descString, "lineStart={", bufferSize);
+    len = gu_strlcat(descString, "topLeftCoordinate={", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
-    char lineStart_buffer[POINT2D_DESC_BUFFER_SIZE];
-    char* lineStart_p = lineStart_buffer;
-    const char* lineStart_description = wb_point2d_description(&self->lineStart, lineStart_p, POINT2D_DESC_BUFFER_SIZE);
-    len = gu_strlcat(descString, lineStart_p, bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, "}", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, "lineEnd={", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    char lineEnd_buffer[POINT2D_DESC_BUFFER_SIZE];
-    char* lineEnd_p = lineEnd_buffer;
-    const char* lineEnd_description = wb_point2d_description(&self->lineEnd, lineEnd_p, POINT2D_DESC_BUFFER_SIZE);
-    len = gu_strlcat(descString, lineEnd_p, bufferSize);
+    char topLeftCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* topLeftCoordinate_p = topLeftCoordinate_buffer;
+    const char* topLeftCoordinate_description = wb_pixel_coordinate_description(&self->topLeftCoordinate, topLeftCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, topLeftCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -168,7 +149,18 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "startThickness=%u", self->startThickness);
+    len = gu_strlcat(descString, "topRightCoordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char topRightCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* topRightCoordinate_p = topRightCoordinate_buffer;
+    const char* topRightCoordinate_description = wb_pixel_coordinate_description(&self->topRightCoordinate, topRightCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, topRightCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
     if (len >= bufferSize) {
         return descString;
     }
@@ -176,7 +168,37 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "endThickness=%u", self->endThickness);
+    len = gu_strlcat(descString, "bottomLeftCoordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char bottomLeftCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* bottomLeftCoordinate_p = bottomLeftCoordinate_buffer;
+    const char* bottomLeftCoordinate_description = wb_pixel_coordinate_description(&self->bottomLeftCoordinate, bottomLeftCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, bottomLeftCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "bottomRightCoordinate={", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    char bottomRightCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char* bottomRightCoordinate_p = bottomRightCoordinate_buffer;
+    const char* bottomRightCoordinate_description = wb_pixel_coordinate_description(&self->bottomRightCoordinate, bottomRightCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    len = gu_strlcat(descString, bottomRightCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, "}", bufferSize);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -196,10 +218,10 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    char lineStart_buffer[POINT2D_TO_STRING_BUFFER_SIZE];
-    char* lineStart_p = lineStart_buffer;
-    const char* lineStart_to_string = wb_point2d_to_string(&self->lineStart, lineStart_p, POINT2D_TO_STRING_BUFFER_SIZE);
-    len = gu_strlcat(toString, lineStart_p, bufferSize);
+    char topLeftCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* topLeftCoordinate_p = topLeftCoordinate_buffer;
+    const char* topLeftCoordinate_to_string = wb_pixel_coordinate_to_string(&self->topLeftCoordinate, topLeftCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, topLeftCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -215,10 +237,10 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    char lineEnd_buffer[POINT2D_TO_STRING_BUFFER_SIZE];
-    char* lineEnd_p = lineEnd_buffer;
-    const char* lineEnd_to_string = wb_point2d_to_string(&self->lineEnd, lineEnd_p, POINT2D_TO_STRING_BUFFER_SIZE);
-    len = gu_strlcat(toString, lineEnd_p, bufferSize);
+    char topRightCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* topRightCoordinate_p = topRightCoordinate_buffer;
+    const char* topRightCoordinate_to_string = wb_pixel_coordinate_to_string(&self->topRightCoordinate, topRightCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, topRightCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -230,7 +252,18 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%u", self->startThickness);
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char bottomLeftCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* bottomLeftCoordinate_p = bottomLeftCoordinate_buffer;
+    const char* bottomLeftCoordinate_to_string = wb_pixel_coordinate_to_string(&self->bottomLeftCoordinate, bottomLeftCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, bottomLeftCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
     if (len >= bufferSize) {
         return toString;
     }
@@ -238,7 +271,18 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%u", self->endThickness);
+    len = gu_strlcat(toString, "{", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    char bottomRightCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char* bottomRightCoordinate_p = bottomRightCoordinate_buffer;
+    const char* bottomRightCoordinate_to_string = wb_pixel_coordinate_to_string(&self->bottomRightCoordinate, bottomRightCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    len = gu_strlcat(toString, bottomRightCoordinate_p, bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, "}", bufferSize);
     return toString;
 #pragma clang diagnostic pop
 }
@@ -255,7 +299,7 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
     }
     char var_str_buffer[VISION_LINE_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[15];
+    char key_buffer[22];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -316,13 +360,13 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
         startKey = startVar;
         endKey = -1;
         if (strlen(key) > 0) {
-            if (0 == strcmp("lineStart", key)) {
+            if (0 == strcmp("topLeftCoordinate", key)) {
                 varIndex = 0;
-            } else if (0 == strcmp("lineEnd", key)) {
+            } else if (0 == strcmp("topRightCoordinate", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("startThickness", key)) {
+            } else if (0 == strcmp("bottomLeftCoordinate", key)) {
                 varIndex = 2;
-            } else if (0 == strcmp("endThickness", key)) {
+            } else if (0 == strcmp("bottomRightCoordinate", key)) {
                 varIndex = 3;
             } else {
                 varIndex = -1;
@@ -332,22 +376,22 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
             case -1: { break; }
             case 0:
             {
-                wb_point2d_from_string(&self->lineStart, var_str);
+                wb_pixel_coordinate_from_string(&self->topLeftCoordinate, var_str);
                 break;
             }
             case 1:
             {
-                wb_point2d_from_string(&self->lineEnd, var_str);
+                wb_pixel_coordinate_from_string(&self->topRightCoordinate, var_str);
                 break;
             }
             case 2:
             {
-                self->startThickness = ((uint8_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->bottomLeftCoordinate, var_str);
                 break;
             }
             case 3:
             {
-                self->endThickness = ((uint8_t)atoi(var_str));
+                wb_pixel_coordinate_from_string(&self->bottomRightCoordinate, var_str);
                 break;
             }
         }
@@ -366,33 +410,7 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
 size_t wb_vision_line_to_network_serialised(const struct wb_vision_line *self, char *dst)
 {
     uint16_t bit_offset = 0;
-    uint8_t startThickness_nbo = (self->startThickness);
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((startThickness_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
 
-    uint8_t endThickness_nbo = (self->endThickness);
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((endThickness_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)self;
     (void)dst;
@@ -405,35 +423,7 @@ size_t wb_vision_line_to_network_serialised(const struct wb_vision_line *self, c
 size_t wb_vision_line_from_network_serialised(const char *src, struct wb_vision_line *dst)
 {
     uint16_t bit_offset = 0;
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->startThickness ^= (-bitValue ^ dst->startThickness) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->startThickness = (dst->startThickness);
 
-    do {
-      int8_t b;
-      for (b = (8 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->endThickness ^= (-bitValue ^ dst->endThickness) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->endThickness = (dst->endThickness);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

@@ -448,7 +448,16 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionLines_v:
+            case kTopVisionLines_v:
+            {
+#ifdef VISION_LINES_GENERATED
+                return DESERIALISE(VISION_LINES_C_STRUCT, serialised_in, (struct VISION_LINES_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //VISION_LINES_GENERATED
+                break;
+            }
+            case kBottomVisionLines_v:
             {
 #ifdef VISION_LINES_GENERATED
                 return DESERIALISE(VISION_LINES_C_STRUCT, serialised_in, (struct VISION_LINES_C_STRUCT *)message_out)
@@ -840,11 +849,11 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
             }
             case kVisionFieldFeatures_v:
             {
-#ifdef VISION_FIELDFEATURES_GENERATED
-                return DESERIALISE(VISION_FIELDFEATURES_C_STRUCT, serialised_in, (struct VISION_FIELDFEATURES_C_STRUCT *)message_out)
+#ifdef VISION_FIELD_FEATURES_GENERATED
+                return DESERIALISE(VISION_FIELD_FEATURES_C_STRUCT, serialised_in, (struct VISION_FIELD_FEATURES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_FIELDFEATURES_GENERATED
+#endif //VISION_FIELD_FEATURES_GENERATED
                 break;
             }
             case kWhistleBlown_v:
