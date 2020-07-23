@@ -85,6 +85,9 @@
 #include <gu_util.h>
 #include <stdint.h>
 
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
 #define PIXEL_COORDINATE_GENERATED 
 #define PIXEL_COORDINATE_C_STRUCT wb_pixel_coordinate 
 #define PIXEL_COORDINATE_NUMBER_OF_VARIABLES 2
@@ -230,6 +233,10 @@ const char* wb_pixel_coordinate_to_string(const struct wb_pixel_coordinate* self
 struct wb_pixel_coordinate* wb_pixel_coordinate_from_string(struct wb_pixel_coordinate* self, const char* str);
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+struct wb_pixel_coordinate px_coord_to_wb_px_coord(const gu_pixel_coordinate coord);
+
+gu_pixel_coordinate wb_px_coord_to_px_coord(const struct wb_pixel_coordinate coord, const uint16_t resWidth, const uint16_t resHeight);
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

@@ -22,6 +22,8 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 WB_MSG_C_FILES!= cd typeClassDefs && ls *.c
 WBMSG_C_SRCS?=${WB_MSG_C_FILES}
 
+SPECIFIC_LIBS=-lguunits -lgucoordinates
+
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
 

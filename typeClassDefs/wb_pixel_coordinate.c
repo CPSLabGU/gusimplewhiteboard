@@ -351,3 +351,15 @@ size_t wb_pixel_coordinate_from_network_serialised(const char *src, struct wb_pi
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+struct wb_pixel_coordinate px_coord_to_wb_px_coord(const gu_pixel_coordinate coord)
+{
+    const struct wb_pixel_coordinate temp = { px_t_to_i16(coord.x), px_t_to_i16(coord.y) };
+    return temp;
+}
+
+gu_pixel_coordinate wb_px_coord_to_px_coord(const struct wb_pixel_coordinate coord, const uint16_t resWidth, const uint16_t resHeight)
+{
+    const gu_pixel_coordinate temp = { i16_to_px_t(coord.x), i16_to_px_t(coord.y), u16_to_px_u(resWidth), u16_to_px_u(resHeight) };
+    return temp;
+}

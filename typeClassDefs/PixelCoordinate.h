@@ -69,6 +69,9 @@
 #include <gu_util.h>
 #include "wb_pixel_coordinate.h"
 
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
 namespace guWhiteboard {
 
     /**
@@ -266,6 +269,19 @@ namespace guWhiteboard {
 #endif /// USE_WB_PIXEL_COORDINATE_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        PixelCoordinate(const GU::PixelCoordinate &other) {
+            this->init(px_t_to_i16(other.x()), px_t_to_i16(other.y()));
+        }
+
+        PixelCoordinate(const ::gu_pixel_coordinate &other) {
+            this->init(px_t_to_i16(other.x), px_t_to_i16(other.y));
+        }
+
+        GU::PixelCoordinate pixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
+        {
+            return GU::PixelCoordinate(wb_px_coord_to_px_coord(*this, resWidth, resHeight));
+        }
 
         bool operator==(const PixelCoordinate &other) const {
             return this->x() == other.x() && this->y() == other.y();
