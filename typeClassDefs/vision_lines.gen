@@ -7,13 +7,13 @@
 #include <gusimplewhiteboard/typeClassDefs/VisionLine.h>
 
 -properties
-gen vision_line topLines[5] //Lines reported from the top camera
-gen vision_line bottomLines[5] //Lines reported from the bottom camera
-uint8_t numTopLines = 0//The number of lines reported on the top camera
-uint8_t numBottomLines = 0//The number of lines reported on the bottom camera
-uint64_t frameNumber = 0 //The frame number that these lines were seen in
+
+gen vision_line lines[7] // Lines reported from the camera.
+uint8_t numLines = 0 // The number of lines reported on the camera.
+uint64_t frameNumber = 0 // The frame number that these lines were seen in.
 
 -comment
-Class use to represent lines detected by vision and posted to the whiteboard
+Class use to represent lines detected by vision for a single camera and posted
+to the whiteboard
 
 @include resolution_container()

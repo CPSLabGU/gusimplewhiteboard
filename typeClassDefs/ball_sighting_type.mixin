@@ -1,0 +1,15 @@
+@mixin
+
+-c
+
+#ifndef BALL_OPTIONS_ENUM
+#define BALL_OPTIONS_ENUM
+enum BallOptions {
+	NoBallDetected = 0, ///< No Ball Found
+	BallDetected        ///< Ball Found
+};
+#endif
+
+-properties
+
+enum BallOptions sightingType = NoBallDetected // Ball detection details.

@@ -16,32 +16,16 @@ enum GoalPostOrientation {
 };
 
 -properties
+
 enum GoalPostOptions sightingType = NoPostDetected // Goal post details.
-
 enum GoalPostOrientation orientation = GenericPost // Goal post orientation.
-
-int16_t tl_x = 0 // Top Left X coord.
-int16_t tl_y = 0 // Top Left Y coord.
-
-int16_t tr_x = 0 // Top Right X coord.
-int16_t tr_y = 0 // Top Right Y coord.
-
-int16_t bl_x = 0 // Bottom Left X coord.
-int16_t bl_y = 0 // Bottom Left Y coord.
-
-int16_t br_x = 0 // Bottom Right X coord.
-int16_t br_y = 0 // Bottom Right Y coord.
 
 -comment
 Results for the Goal Ray Tracer (guvision). 
 Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
-You can check the vision status message for resolution and FOV information.
-Coords:
-    x, Int16.MinValue <-> Int16.MaxValue
-    y, Int16.MinValue <-> Int16.MaxValue
-Minus x Left
-Plus x Right
-Plus y Up
-Minus y Down
-Center near 0,0
+You can check the vision_detection_goals message for resolution information.
 
+@include pixel_coordinate_container(label: topLeftCoordinate, comment: The top left pixel coordinate.)
+@include pixel_coordinate_container(label: topRightCoordinate, comment: The top right pixel coordinate.)
+@include pixel_coordinate_container(label: bottomLeftCoordinate, comment: The bottom left pixel coordinate.)
+@include pixel_coordinate_container(label: bottomRightCoordinate, comment: The bottom right pixel coordinate.)

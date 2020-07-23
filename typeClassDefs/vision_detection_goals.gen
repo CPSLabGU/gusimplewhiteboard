@@ -2,6 +2,7 @@
 
 -c
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
+
 -c++
 #include <gusimplewhiteboard/typeClassDefs/VisionDetectionGoal.h>
 

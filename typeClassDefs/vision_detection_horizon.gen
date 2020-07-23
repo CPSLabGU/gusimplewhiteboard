@@ -13,31 +13,17 @@ enum HorizonOptions {
 -properties
 enum HorizonOptions horizonType = HorizonFailed // Type of Horizon 
 
-int16_t lhp_x = 0 // Left Horizon Point X
-int16_t lhp_y = 0 // Left Horizon Point Y
-
-int16_t rhp_x = 0 // Right Horizon Point X
-int16_t rhp_y = 0 // Right Horizon Point Y
-
-int16_t chp_x = 0 // Center Horizon Point X
-int16_t chp_y = 0 // Center Horizon Point Y
-
 -comment
 This class is for Vision to report the edge of the SPL soccer field.
 It does not report the field Bounds, that needs white line detection.
 This is for the edge of green. 
 
-Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
-You can check the vision status message for resolution and FOV information.
-Coords:
-    x, Int16.MinValue <-> Int16.MaxValue
-    y, Int16.MinValue <-> Int16.MaxValue
-Minus x Left
-Plus x Right
-Plus y Up
-Minus y Down
-Center near 0,0
+Results are in centered pixel coordinate of the image utilised, at whatever the resolution happen to be.
+You can check the vision_detection_horizons message for resolution information.
 
 It will attempt to report the projected horizon to the far left X position and the far right position.
 In the event that the projected position is outside the image bounds. It will project the horizon only as far as the image bound. 
 
+@include pixel_coordinate_container(label: leftCoordinate, comment: Left horizon point pixel coordinate.)
+@include pixel_coordinate_container(label: centerCoordinate, comment: Center horizon point pixel coordinate.)
+@include pixel_coordinate_container(label: rightCoordinate, comment: Right horizon point pixel coordinate.)

@@ -1,15 +1,13 @@
 -author Eugene Gilmore 
 
--c
-#include <gusimplewhiteboard/typeClassDefs/wb_point2d.h>
--c++
-#include <gusimplewhiteboard/typeClassDefs/Point2D.h>
-
--properties
-gen point2D lineStart //The start of the line
-gen point2D lineEnd //The end of the line
-uint8_t startThickness //The thickness of the line at the line start point
-uint8_t endThickness //The thickness of the line at the line end point
+@include pixel_coordinate_container(label: topLeftCoordinate, comment: The top left pixel coordinate of the line.)
+@include pixel_coordinate_container(label: topRightCoordinate, comment: The top right pixel coordinate of the line.)
+@include pixel_coordinate_container(label: bottomLeftCoordinate, comment: The bottom left pixel coordinate of the line.)
+@include pixel_coordinate_container(label: bottomRightCoordinate, comment: The bottom right pixel coordinate of the line.)
 
 -comment
-Class use to represent a single line that is posted to the whiteboard from vision
+Class use to represent a single line that is posted to the whiteboard from vision.
+
+The line is represented by four pixels within the image bound by the
+resolution forming a trapezoid. You can query vision_lines for resolution
+information.

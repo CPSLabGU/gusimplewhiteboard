@@ -1,0 +1,13 @@
+@mixin(label = coordinate, comment = The pixel coordinate.)
+
+-c
+
+#include "wb_pixel_coordinate.h"
+
+-c++
+
+#include "PixelCoordinate.h"
+
+-properties
+
+gen pixel_coordinate {{label}} // {{comment}}
