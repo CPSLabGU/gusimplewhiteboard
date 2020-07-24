@@ -135,7 +135,7 @@ class FilteredOneDimSonar:  public wb_filteredsonarobject
                 
                 if ( isVisible())
                 { ss<<"ISvisible"<< SEPARATOR_IS_COMMA << distance() <<  SEPARATOR_IS_COMMA; }
-                  else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;;
+                  else ss << "NOTvisible"<< SEPARATOR_IS_COMMA <<  SEPARATOR_IS_COMMA;
                 
                 ss << "FRAME" << SEPARATOR_IS_COLON << frameCounter() <<  SEPARATOR_IS_COMMA;
                 return ss.str();

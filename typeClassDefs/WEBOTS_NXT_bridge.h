@@ -339,7 +339,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                                         break;
                                 case NUMBER_WEBOTS_NXT_bridge_MESSAGES:
                                         break;
-                        };
+                        }
 	        }
         };
 
@@ -470,7 +470,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
                                                 break;
                                         case NUMBER_WEBOTS_NXT_bridge_MESSAGES:
                                                 break;
-                                };
+                                }
                         }
                         return ss.str();
                 }
@@ -1271,7 +1271,7 @@ static const char* Commands[] = {"MOVE_MOTORS", "ONE_MOTOR_SETTING", "PLAY_SOUND
 		                case COMPLETED :
                                         ss << "COMPLETED" << FIELD_SERPARATOR << _howMany << FIELD_SERPARATOR;
                                         break;
-		        };
+		        }
                         return ss.str();
                 }
 

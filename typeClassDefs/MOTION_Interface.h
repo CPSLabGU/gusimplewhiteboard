@@ -188,17 +188,17 @@ namespace guWhiteboard
                         static std::map<action, Action_Transition> create_actions() //each action may only have one stance
                         {
                                 std::map<action, Action_Transition> v;
-                                MAP_ACTION_ENTRY(Kneeling_wave,         Kneeling_stance, 550); //cost should be time to perform the action
-                                MAP_ACTION_ENTRY(Kneeling_quickwave,    Kneeling_stance, 450); //cost should be time to perform the action
+                                MAP_ACTION_ENTRY(Kneeling_wave,         Kneeling_stance, 550) //cost should be time to perform the action
+                                MAP_ACTION_ENTRY(Kneeling_quickwave,    Kneeling_stance, 450) //cost should be time to perform the action
                                 // Jeremy's Flag Wave Action. 
-                                MAP_ACTION_ENTRY(Kneeling_flagwave,     Kneeling_stance, 465);
-                                MAP_ACTION_ENTRY(Kneeling_raiseright,     Kneeling_stance, 505);
-                                MAP_ACTION_ENTRY(Kneeling_signal,     Kneeling_stance, 950);
-                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443);
-                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443);
-                                MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1);
-                                MAP_ACTION_ENTRY(Standing_rightpass,    Standing_stance, 1);
-                                MAP_ACTION_ENTRY(Standing_wave,         Standing_stance, 1);
+                                MAP_ACTION_ENTRY(Kneeling_flagwave,     Kneeling_stance, 465)
+                                MAP_ACTION_ENTRY(Kneeling_raiseright,     Kneeling_stance, 505)
+                                MAP_ACTION_ENTRY(Kneeling_signal,     Kneeling_stance, 950)
+                                MAP_ACTION_ENTRY(Standing_leftkick,     Standing_stance, 443)
+                                MAP_ACTION_ENTRY(Standing_rightkick,    Standing_stance, 443)
+                                MAP_ACTION_ENTRY(Standing_leftpass,     Standing_stance, 1)
+                                MAP_ACTION_ENTRY(Standing_rightpass,    Standing_stance, 1)
+                                MAP_ACTION_ENTRY(Standing_wave,         Standing_stance, 1)
 
                                 return v;
                         }
