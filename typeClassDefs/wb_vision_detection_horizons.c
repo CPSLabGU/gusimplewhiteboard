@@ -130,7 +130,11 @@ const char* wb_vision_detection_horizons_description(const struct wb_vision_dete
     if (len >= bufferSize) {
         return descString;
     }
+#ifdef __APPLE__
     len += snprintf(descString + len, bufferSize - len, "frameNumber=%llu", self->frameNumber);
+#else
+    len += snprintf(descString + len, bufferSize - len, "frameNumber=%lu", self->frameNumber);
+#endif
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +198,11 @@ const char* wb_vision_detection_horizons_to_string(const struct wb_vision_detect
     if (len >= bufferSize) {
         return toString;
     }
+#ifdef __APPLE__
     len += snprintf(toString + len, bufferSize - len, "%llu", self->frameNumber);
+#else
+    len += snprintf(toString + len, bufferSize - len, "%lu", self->frameNumber);
+#endif
     if (len >= bufferSize) {
         return toString;
     }
@@ -340,7 +348,11 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
             case -1: { break; }
             case 0:
             {
+#ifdef __APPLE__
                 self->frameNumber = ((uint64_t)atoll(var_str));
+#else
+                self->frameNumber = ((uint64_t)atol(var_str));
+#endif
                 break;
             }
             case 1:

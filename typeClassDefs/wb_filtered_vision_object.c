@@ -130,7 +130,11 @@ const char* wb_filtered_vision_object_description(const struct wb_filtered_visio
     if (len >= bufferSize) {
         return descString;
     }
+#ifdef __APPLE__
     len += snprintf(descString + len, bufferSize - len, "visibilityHistory=%llu", self->visibilityHistory);
+#else
+    len += snprintf(descString + len, bufferSize - len, "visibilityHistory=%lu", self->visibilityHistory);
+#endif
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +214,11 @@ const char* wb_filtered_vision_object_to_string(const struct wb_filtered_vision_
     if (len >= bufferSize) {
         return toString;
     }
+#ifdef __APPLE__
     len += snprintf(toString + len, bufferSize - len, "%llu", self->visibilityHistory);
+#else
+    len += snprintf(toString + len, bufferSize - len, "%lu", self->visibilityHistory);
+#endif
     if (len >= bufferSize) {
         return toString;
     }
@@ -378,7 +386,11 @@ struct wb_filtered_vision_object* wb_filtered_vision_object_from_string(struct w
             case -1: { break; }
             case 0:
             {
+#ifdef __APPLE__
                 self->visibilityHistory = ((uint64_t)atoll(var_str));
+#else
+                self->visibilityHistory = ((uint64_t)atol(var_str));
+#endif
                 break;
             }
             case 1:

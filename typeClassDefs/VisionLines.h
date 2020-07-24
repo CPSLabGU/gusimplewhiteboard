@@ -364,7 +364,11 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
+#ifdef __APPLE__
                         this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
+#else
+                        this->set_frameNumber(static_cast<uint64_t>(atol(var_str)));
+#endif
                         break;
                     }
                     case 3:
