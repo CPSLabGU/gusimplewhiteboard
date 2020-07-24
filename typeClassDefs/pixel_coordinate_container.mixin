@@ -33,5 +33,5 @@ gu_pixel_coordinate {{structName}}_{{label}}_px_coord(const struct {{structName}
 
 GU::PixelCoordinate {{label}}PixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
 {
-    return PixelCoordinate({{label}}()).pixelCoordinate(resWidth, resHeight)
+    return PixelCoordinate({{label}}()).pixelCoordinate(resWidth, resHeight);
 }

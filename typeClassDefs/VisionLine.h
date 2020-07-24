@@ -326,19 +326,19 @@ namespace guWhiteboard {
 
         GU::PixelCoordinate topLeftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(topLeftCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(topLeftCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
         GU::PixelCoordinate topRightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(topRightCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(topRightCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
         GU::PixelCoordinate bottomLeftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(bottomLeftCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(bottomLeftCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
         GU::PixelCoordinate bottomRightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(bottomRightCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(bottomRightCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
     };
 

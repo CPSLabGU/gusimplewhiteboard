@@ -339,7 +339,7 @@ namespace guWhiteboard {
 
         GU::PixelCoordinate coordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(coordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(coordinate()).pixelCoordinate(resWidth, resHeight);
         }
         bool operator==(const VisionDetectionBall &other) const {
             return this->sightingType() == other.sightingType() &&

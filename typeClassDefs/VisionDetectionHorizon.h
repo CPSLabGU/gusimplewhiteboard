@@ -385,15 +385,15 @@ namespace guWhiteboard {
 
         GU::PixelCoordinate leftCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(leftCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(leftCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
         GU::PixelCoordinate centerCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(centerCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(centerCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
         GU::PixelCoordinate rightCoordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
-            return PixelCoordinate(rightCoordinate()).pixelCoordinate(resWidth, resHeight)
+            return PixelCoordinate(rightCoordinate()).pixelCoordinate(resWidth, resHeight);
         }
     };
 
