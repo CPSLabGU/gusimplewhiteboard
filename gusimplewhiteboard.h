@@ -138,7 +138,7 @@ extern "C"
 #define GSW_IOS                                         ///< IOS device or simulator
 #endif
 
-#define GU_SIMPLE_WHITEBOARD_VERSION            5       ///< version
+#define GU_SIMPLE_WHITEBOARD_VERSION            6       ///< version
 #ifndef GU_SIMPLE_WHITEBOARD_GENERATIONS
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
 #endif
