@@ -324,7 +324,7 @@ namespace guWhiteboard {
                             FilteredVisionObject objects_0_temp = FilteredVisionObject();
                             objects_0_temp.from_string(var_str);
                             struct wb_filtered_vision_object objects_0 = objects_0_temp;
-                            this->set_objects(objects_0, objects_0_index);;
+                            this->set_objects(objects_0, objects_0_index);
                         }
                         index = restartIndex;
                         break;

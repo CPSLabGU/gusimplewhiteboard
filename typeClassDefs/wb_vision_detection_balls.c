@@ -412,7 +412,7 @@ struct wb_vision_detection_balls* wb_vision_detection_balls_from_string(struct w
                     endKey = -1;
                     struct wb_vision_detection_ball balls_0 = {};
                     wb_vision_detection_ball_from_string(&balls_0, var_str);
-                    self->balls[balls_0_index] = balls_0;;
+                    self->balls[balls_0_index] = balls_0;
                 }
                 index = restartIndex;
                 break;

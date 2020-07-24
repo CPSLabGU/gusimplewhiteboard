@@ -354,7 +354,7 @@ namespace guWhiteboard {
                             VisionDetectionHorizon horizons_0_temp = VisionDetectionHorizon();
                             horizons_0_temp.from_string(var_str);
                             struct wb_vision_detection_horizon horizons_0 = horizons_0_temp;
-                            this->set_horizons(horizons_0, horizons_0_index);;
+                            this->set_horizons(horizons_0, horizons_0_index);
                         }
                         index = restartIndex;
                         break;

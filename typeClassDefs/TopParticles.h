@@ -326,7 +326,7 @@ namespace guWhiteboard {
                             ParticlePosition particles_0_temp = ParticlePosition();
                             particles_0_temp.from_string(var_str);
                             struct wb_particle_position particles_0 = particles_0_temp;
-                            this->set_particles(particles_0, particles_0_index);;
+                            this->set_particles(particles_0, particles_0_index);
                         }
                         index = restartIndex;
                         break;

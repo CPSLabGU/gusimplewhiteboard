@@ -354,7 +354,7 @@ namespace guWhiteboard {
                             VisionDetectionGoal goals_0_temp = VisionDetectionGoal();
                             goals_0_temp.from_string(var_str);
                             struct wb_vision_detection_goal goals_0 = goals_0_temp;
-                            this->set_goals(goals_0, goals_0_index);;
+                            this->set_goals(goals_0, goals_0_index);
                         }
                         index = restartIndex;
                         break;

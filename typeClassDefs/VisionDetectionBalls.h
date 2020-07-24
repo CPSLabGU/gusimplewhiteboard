@@ -354,7 +354,7 @@ namespace guWhiteboard {
                             VisionDetectionBall balls_0_temp = VisionDetectionBall();
                             balls_0_temp.from_string(var_str);
                             struct wb_vision_detection_ball balls_0 = balls_0_temp;
-                            this->set_balls(balls_0, balls_0_index);;
+                            this->set_balls(balls_0, balls_0_index);
                         }
                         index = restartIndex;
                         break;

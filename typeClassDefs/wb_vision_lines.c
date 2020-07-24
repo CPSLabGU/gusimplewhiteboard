@@ -421,7 +421,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     endKey = -1;
                     struct wb_vision_line lines_0 = {};
                     wb_vision_line_from_string(&lines_0, var_str);
-                    self->lines[lines_0_index] = lines_0;;
+                    self->lines[lines_0_index] = lines_0;
                 }
                 index = restartIndex;
                 break;

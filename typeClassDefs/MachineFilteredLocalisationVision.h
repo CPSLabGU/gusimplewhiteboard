@@ -336,7 +336,7 @@ namespace guWhiteboard {
                             LandmarkSighting sightings_0_temp = LandmarkSighting();
                             sightings_0_temp.from_string(var_str);
                             struct wb_landmark_sighting sightings_0 = sightings_0_temp;
-                            this->set_sightings(sightings_0, sightings_0_index);;
+                            this->set_sightings(sightings_0, sightings_0_index);
                         }
                         index = restartIndex;
                         break;

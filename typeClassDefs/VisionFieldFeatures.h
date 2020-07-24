@@ -411,7 +411,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldCorner_0_temp = VisionFieldFeature();
                             fieldCorner_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldCorner_0 = fieldCorner_0_temp;
-                            this->set_fieldCorner(fieldCorner_0, fieldCorner_0_index);;
+                            this->set_fieldCorner(fieldCorner_0, fieldCorner_0_index);
                         }
                         index = restartIndex;
                         break;
@@ -474,7 +474,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldIntersection_0_temp = VisionFieldFeature();
                             fieldIntersection_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldIntersection_0 = fieldIntersection_0_temp;
-                            this->set_fieldIntersection(fieldIntersection_0, fieldIntersection_0_index);;
+                            this->set_fieldIntersection(fieldIntersection_0, fieldIntersection_0_index);
                         }
                         index = restartIndex;
                         break;
@@ -537,7 +537,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldCrosses_0_temp = VisionFieldFeature();
                             fieldCrosses_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldCrosses_0 = fieldCrosses_0_temp;
-                            this->set_fieldCrosses(fieldCrosses_0, fieldCrosses_0_index);;
+                            this->set_fieldCrosses(fieldCrosses_0, fieldCrosses_0_index);
                         }
                         index = restartIndex;
                         break;

@@ -412,7 +412,7 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
                     endKey = -1;
                     struct wb_vision_detection_horizon horizons_0 = {};
                     wb_vision_detection_horizon_from_string(&horizons_0, var_str);
-                    self->horizons[horizons_0_index] = horizons_0;;
+                    self->horizons[horizons_0_index] = horizons_0;
                 }
                 index = restartIndex;
                 break;

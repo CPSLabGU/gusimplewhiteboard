@@ -352,7 +352,7 @@ namespace guWhiteboard {
                             VisionLine lines_0_temp = VisionLine();
                             lines_0_temp.from_string(var_str);
                             struct wb_vision_line lines_0 = lines_0_temp;
-                            this->set_lines(lines_0, lines_0_index);;
+                            this->set_lines(lines_0, lines_0_index);
                         }
                         index = restartIndex;
                         break;
