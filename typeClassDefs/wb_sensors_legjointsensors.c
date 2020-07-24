@@ -130,7 +130,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LKneePitch=%f", self->LKneePitch);
+    len += snprintf(descString + len, bufferSize - len, "LKneePitch=%lf", (double) self->LKneePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LAnklePitch=%f", self->LAnklePitch);
+    len += snprintf(descString + len, bufferSize - len, "LAnklePitch=%lf", (double) self->LAnklePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LAnkleRoll=%f", self->LAnkleRoll);
+    len += snprintf(descString + len, bufferSize - len, "LAnkleRoll=%lf", (double) self->LAnkleRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RKneePitch=%f", self->RKneePitch);
+    len += snprintf(descString + len, bufferSize - len, "RKneePitch=%lf", (double) self->RKneePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -162,7 +162,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RAnklePitch=%f", self->RAnklePitch);
+    len += snprintf(descString + len, bufferSize - len, "RAnklePitch=%lf", (double) self->RAnklePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -170,7 +170,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RAnkleRoll=%f", self->RAnkleRoll);
+    len += snprintf(descString + len, bufferSize - len, "RAnkleRoll=%lf", (double) self->RAnkleRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -178,7 +178,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipYawPitch=%f", self->LHipYawPitch);
+    len += snprintf(descString + len, bufferSize - len, "LHipYawPitch=%lf", (double) self->LHipYawPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -186,7 +186,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipRoll=%f", self->LHipRoll);
+    len += snprintf(descString + len, bufferSize - len, "LHipRoll=%lf", (double) self->LHipRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +194,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipPitch=%f", self->LHipPitch);
+    len += snprintf(descString + len, bufferSize - len, "LHipPitch=%lf", (double) self->LHipPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -202,7 +202,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHipYawPitch=%f", self->RHipYawPitch);
+    len += snprintf(descString + len, bufferSize - len, "RHipYawPitch=%lf", (double) self->RHipYawPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +210,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHipRoll=%f", self->RHipRoll);
+    len += snprintf(descString + len, bufferSize - len, "RHipRoll=%lf", (double) self->RHipRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -218,7 +218,7 @@ const char* wb_sensors_legjointsensors_description(const struct wb_sensors_legjo
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHipPitch=%f", self->RHipPitch);
+    len += snprintf(descString + len, bufferSize - len, "RHipPitch=%lf", (double) self->RHipPitch);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -234,7 +234,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LKneePitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LKneePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -242,7 +242,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LAnklePitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LAnklePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -250,7 +250,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LAnkleRoll);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LAnkleRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -258,7 +258,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RKneePitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RKneePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -266,7 +266,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RAnklePitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RAnklePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -274,7 +274,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RAnkleRoll);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RAnkleRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -282,7 +282,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipYawPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipYawPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -290,7 +290,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipRoll);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -298,7 +298,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -306,7 +306,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RHipYawPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHipYawPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -314,7 +314,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RHipRoll);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHipRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -322,7 +322,7 @@ const char* wb_sensors_legjointsensors_to_string(const struct wb_sensors_legjoin
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RHipPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHipPitch);
     return toString;
 #pragma clang diagnostic pop
 }

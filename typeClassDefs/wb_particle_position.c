@@ -157,7 +157,7 @@ const char* wb_particle_position_description(const struct wb_particle_position* 
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "confidence=%f", self->confidence);
+    len += snprintf(descString + len, bufferSize - len, "confidence=%lf", (double) self->confidence);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -200,7 +200,7 @@ const char* wb_particle_position_to_string(const struct wb_particle_position* se
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->confidence);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->confidence);
     return toString;
 #pragma clang diagnostic pop
 }

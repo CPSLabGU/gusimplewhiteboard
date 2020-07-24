@@ -130,7 +130,7 @@ const char* wb_odometry_description(const struct wb_odometry* self, char* descSt
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "forward=%f", self->forward);
+    len += snprintf(descString + len, bufferSize - len, "forward=%lf", (double) self->forward);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_odometry_description(const struct wb_odometry* self, char* descSt
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "left=%f", self->left);
+    len += snprintf(descString + len, bufferSize - len, "left=%lf", (double) self->left);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_odometry_description(const struct wb_odometry* self, char* descSt
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "turn=%f", self->turn);
+    len += snprintf(descString + len, bufferSize - len, "turn=%lf", (double) self->turn);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -162,7 +162,7 @@ const char* wb_odometry_to_string(const struct wb_odometry* self, char* toString
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->forward);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->forward);
     if (len >= bufferSize) {
         return toString;
     }
@@ -170,7 +170,7 @@ const char* wb_odometry_to_string(const struct wb_odometry* self, char* toString
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->left);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->left);
     if (len >= bufferSize) {
         return toString;
     }
@@ -178,7 +178,7 @@ const char* wb_odometry_to_string(const struct wb_odometry* self, char* toString
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->turn);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->turn);
     return toString;
 #pragma clang diagnostic pop
 }

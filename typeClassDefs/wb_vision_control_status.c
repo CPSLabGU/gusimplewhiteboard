@@ -275,7 +275,7 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "confidence=%f", self->confidence);
+    len += snprintf(descString + len, bufferSize - len, "confidence=%lf", (double) self->confidence);
     if (len >= bufferSize) {
         return descString;
     }
@@ -578,7 +578,7 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->confidence);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->confidence);
     if (len >= bufferSize) {
         return toString;
     }
