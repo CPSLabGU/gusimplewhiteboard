@@ -133,6 +133,34 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const MachineFilteredLines &other) const
+        {
+            if (!(numberOfSightings() == other.numberOfSightings()))
+            {
+                return false;
+            }
+            for (int sightings_0_index = 0; sightings_0_index < 8; sightings_0_index++)
+            {
+                if (!(LineSighting(_sightings[sightings_0_index]) == LineSighting(other._sightings[sightings_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const MachineFilteredLines &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_machine_filtered_lines &other) const
+        {
+            return *this == MachineFilteredLines(other);
+        }
+
+        bool operator !=(const wb_machine_filtered_lines &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

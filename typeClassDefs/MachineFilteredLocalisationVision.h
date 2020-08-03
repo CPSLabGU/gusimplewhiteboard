@@ -132,6 +132,34 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const MachineFilteredLocalisationVision &other) const
+        {
+            if (!(numberOfSightings() == other.numberOfSightings()))
+            {
+                return false;
+            }
+            for (int sightings_0_index = 0; sightings_0_index < 12; sightings_0_index++)
+            {
+                if (!(LandmarkSighting(_sightings[sightings_0_index]) == LandmarkSighting(other._sightings[sightings_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const MachineFilteredLocalisationVision &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_machine_filtered_localisation_vision &other) const
+        {
+            return *this == MachineFilteredLocalisationVision(other);
+        }
+
+        bool operator !=(const wb_machine_filtered_localisation_vision &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

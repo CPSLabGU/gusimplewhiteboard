@@ -146,6 +146,48 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const HalLegTarget &other) const
+        {
+            return target_movement_time() == other.target_movement_time()
+                && target_hipyawpitch() == other.target_hipyawpitch()
+                && target_hiproll() == other.target_hiproll()
+                && target_hippitch() == other.target_hippitch()
+                && target_kneepitch() == other.target_kneepitch()
+                && target_anklepitch() == other.target_anklepitch()
+                && target_ankleroll() == other.target_ankleroll()
+                && target_leg() == other.target_leg()
+                && target_hipyawpitchstiffness() == other.target_hipyawpitchstiffness()
+                && target_hiprollstiffness() == other.target_hiprollstiffness()
+                && target_hippitchstiffness() == other.target_hippitchstiffness()
+                && target_kneepitchstiffness() == other.target_kneepitchstiffness()
+                && target_anklepitchstiffness() == other.target_anklepitchstiffness()
+                && target_anklerollstiffness() == other.target_anklerollstiffness()
+                && target_pliability() == other.target_pliability()
+                && target_hipyawpitch_active() == other.target_hipyawpitch_active()
+                && target_hiproll_active() == other.target_hiproll_active()
+                && target_hippitch_active() == other.target_hippitch_active()
+                && target_kneepitch_active() == other.target_kneepitch_active()
+                && target_anklepitch_active() == other.target_anklepitch_active()
+                && target_ankleroll_active() == other.target_ankleroll_active()
+                && target_leg_at_goal() == other.target_leg_at_goal()
+                && target_leg_stop() == other.target_leg_stop();
+        }
+
+        bool operator !=(const HalLegTarget &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_hal_leg_target &other) const
+        {
+            return *this == HalLegTarget(other);
+        }
+
+        bool operator !=(const wb_hal_leg_target &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

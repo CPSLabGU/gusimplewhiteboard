@@ -130,6 +130,32 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const DataLogger &other) const
+        {
+            return 0 == strncmp(_machineName, other._machineName, 40)
+                && currentState() == other.currentState()
+                && currentSection() == other.currentSection()
+                && dataSet() == other.dataSet()
+                && loggerRunning() == other.loggerRunning()
+                && shouldExit() == other.shouldExit()
+                && 0 == strncmp(_comment, other._comment, 30);
+        }
+
+        bool operator !=(const DataLogger &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_data_logger &other) const
+        {
+            return *this == DataLogger(other);
+        }
+
+        bool operator !=(const wb_data_logger &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

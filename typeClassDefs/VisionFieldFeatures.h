@@ -148,6 +148,46 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionFieldFeatures &other) const
+        {
+            if (!(numCorners() == other.numCorners()
+                && numIntersections() == other.numIntersections()
+                && numCrosses() == other.numCrosses()
+                && res_width() == other.res_width()
+                && res_height() == other.res_height()))
+            {
+                return false;
+            }
+            for (int fieldCorner_0_index = 0; fieldCorner_0_index < 8; fieldCorner_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldCorner[fieldCorner_0_index]) == VisionFieldFeature(other._fieldCorner[fieldCorner_0_index]))) return false;
+            }
+            for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < 8; fieldIntersection_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldIntersection[fieldIntersection_0_index]) == VisionFieldFeature(other._fieldIntersection[fieldIntersection_0_index]))) return false;
+            }
+            for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < 3; fieldCrosses_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldCrosses[fieldCrosses_0_index]) == VisionFieldFeature(other._fieldCrosses[fieldCrosses_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const VisionFieldFeatures &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_field_features &other) const
+        {
+            return *this == VisionFieldFeatures(other);
+        }
+
+        bool operator !=(const wb_vision_field_features &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

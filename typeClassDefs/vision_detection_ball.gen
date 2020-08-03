@@ -11,16 +11,6 @@
 uint16_t verticalRadius = 0  // The vertical radius in pixels.
 uint16_t horizontalRadius = 0  // The horizontal radius in pixels.
 
-%c++
-bool operator==(const VisionDetectionBall &other) const {
-    return this->sightingType() == other.sightingType() &&
-        PixelCoordinate(this->coordinate()) == PixelCoordinate(other.coordinate());
-}
-
-bool operator!=(const VisionDetectionBall &other) const {
-    return !this->operator==(other);
-}
-
 -comment
 Results for the Ball Ray Tracer (guvision). 
 Results are in pixels of the image utilised, at whatever the resolution happen to be.

@@ -135,6 +135,37 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const SENSORSLegJointSensors &other) const
+        {
+            return fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
+                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
+                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
+                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
+                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
+                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON
+                && fabsf(LHipYawPitch() - other.LHipYawPitch()) < FLT_EPSILON
+                && fabsf(LHipRoll() - other.LHipRoll()) < FLT_EPSILON
+                && fabsf(LHipPitch() - other.LHipPitch()) < FLT_EPSILON
+                && fabsf(RHipYawPitch() - other.RHipYawPitch()) < FLT_EPSILON
+                && fabsf(RHipRoll() - other.RHipRoll()) < FLT_EPSILON
+                && fabsf(RHipPitch() - other.RHipPitch()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const SENSORSLegJointSensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_legjointsensors &other) const
+        {
+            return *this == SENSORSLegJointSensors(other);
+        }
+
+        bool operator !=(const wb_sensors_legjointsensors &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

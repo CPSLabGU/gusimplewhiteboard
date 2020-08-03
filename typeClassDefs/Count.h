@@ -124,6 +124,26 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const Count &other) const
+        {
+            return count() == other.count();
+        }
+
+        bool operator !=(const Count &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_count &other) const
+        {
+            return *this == Count(other);
+        }
+
+        bool operator !=(const wb_count &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

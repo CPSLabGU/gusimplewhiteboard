@@ -125,6 +125,27 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const SENSORSHeadJointSensors &other) const
+        {
+            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const SENSORSHeadJointSensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_headjointsensors &other) const
+        {
+            return *this == SENSORSHeadJointSensors(other);
+        }
+
+        bool operator !=(const wb_sensors_headjointsensors &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

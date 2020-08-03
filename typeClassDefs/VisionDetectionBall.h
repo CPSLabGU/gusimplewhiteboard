@@ -132,6 +132,29 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionDetectionBall &other) const
+        {
+            return sightingType() == other.sightingType()
+                && PixelCoordinate(_coordinate) == PixelCoordinate(other._coordinate)
+                && verticalRadius() == other.verticalRadius()
+                && horizontalRadius() == other.horizontalRadius();
+        }
+
+        bool operator !=(const VisionDetectionBall &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_detection_ball &other) const
+        {
+            return *this == VisionDetectionBall(other);
+        }
+
+        bool operator !=(const wb_vision_detection_ball &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -340,14 +363,6 @@ namespace guWhiteboard {
         GU::PixelCoordinate coordinatePixelCoordinate(const uint16_t resWidth, const uint16_t resHeight)
         {
             return PixelCoordinate(coordinate()).pixelCoordinate(resWidth, resHeight);
-        }
-        bool operator==(const VisionDetectionBall &other) const {
-            return this->sightingType() == other.sightingType() &&
-                PixelCoordinate(this->coordinate()) == PixelCoordinate(other.coordinate());
-        }
-
-        bool operator!=(const VisionDetectionBall &other) const {
-            return !this->operator==(other);
         }
     };
 

@@ -129,6 +129,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const LineSighting &other) const
+        {
+            return PolarCoordinate(_leftPoint) == PolarCoordinate(other._leftPoint)
+                && PolarCoordinate(_rightPoint) == PolarCoordinate(other._rightPoint)
+                && sightingType() == other.sightingType();
+        }
+
+        bool operator !=(const LineSighting &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_line_sighting &other) const
+        {
+            return *this == LineSighting(other);
+        }
+
+        bool operator !=(const wb_line_sighting &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

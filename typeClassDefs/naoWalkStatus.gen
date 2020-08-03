@@ -4,21 +4,6 @@
 
 #include "Odometry.h"
 
-%c++
-/** comparison operator **/
-bool operator== (const NaoWalkStatus &other) const {
-//    const struct wb_odometry thisOdometry = walkEngineOdometry();
-//    const struct wb_odometry otherOdometry = other.walkEngineOdometry();
-//    bool odometryEqual = static_cast<Odometry>(thisOdometry) == static_cast<Odometry>(otherOdometry);
-    return walkEngineState() == other.walkEngineState() &&
-           odometryResetCounter() == other.odometryResetCounter() &&
-           static_cast<Odometry>(odometry()) == static_cast<Odometry>(other.odometry());
-//           odometryEqual;
-}
-
-/** comparison operator **/
-bool operator != (const NaoWalkStatus &s) { return !(*this == s); }
-
 -c
 
 #include "wb_odometry.h"

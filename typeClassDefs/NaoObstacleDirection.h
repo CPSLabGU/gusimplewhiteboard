@@ -128,6 +128,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const NaoObstacleDirection &other) const
+        {
+            return left() == other.left()
+                && right() == other.right()
+                && front() == other.front();
+        }
+
+        bool operator !=(const NaoObstacleDirection &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_nao_obstacle_direction &other) const
+        {
+            return *this == NaoObstacleDirection(other);
+        }
+
+        bool operator !=(const wb_nao_obstacle_direction &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

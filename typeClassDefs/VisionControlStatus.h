@@ -142,6 +142,43 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionControlStatus &other) const
+        {
+            return cameraResolution() == other.cameraResolution()
+                && pipelineRunning() == other.pipelineRunning()
+                && selectedCamera() == other.selectedCamera()
+                && saveImage() == other.saveImage()
+                && saveClassifiedImage() == other.saveClassifiedImage()
+                && pipeline() == other.pipeline()
+                && chooseCamera() == other.chooseCamera()
+                && fabsf(confidence() - other.confidence()) < FLT_EPSILON
+                && networkTop() == other.networkTop()
+                && networkBottom() == other.networkBottom()
+                && streamingSource() == other.streamingSource()
+                && imageInput() == other.imageInput()
+                && jpegStreamQuality() == other.jpegStreamQuality()
+                && jpegStreamStride() == other.jpegStreamStride()
+                && frameRate() == other.frameRate()
+                && runPipelineOnce() == other.runPipelineOnce()
+                && frameNumber() == other.frameNumber()
+                && 0 == strncmp(_colourCalibration, other._colourCalibration, 10);
+        }
+
+        bool operator !=(const VisionControlStatus &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_control_status &other) const
+        {
+            return *this == VisionControlStatus(other);
+        }
+
+        bool operator !=(const wb_vision_control_status &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

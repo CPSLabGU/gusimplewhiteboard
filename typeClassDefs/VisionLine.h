@@ -144,6 +144,29 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionLine &other) const
+        {
+            return PixelCoordinate(_topLeftCoordinate) == PixelCoordinate(other._topLeftCoordinate)
+                && PixelCoordinate(_topRightCoordinate) == PixelCoordinate(other._topRightCoordinate)
+                && PixelCoordinate(_bottomLeftCoordinate) == PixelCoordinate(other._bottomLeftCoordinate)
+                && PixelCoordinate(_bottomRightCoordinate) == PixelCoordinate(other._bottomRightCoordinate);
+        }
+
+        bool operator !=(const VisionLine &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_line &other) const
+        {
+            return *this == VisionLine(other);
+        }
+
+        bool operator !=(const wb_vision_line &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

@@ -134,6 +134,36 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionDetectionHorizons &other) const
+        {
+            if (!(frameNumber() == other.frameNumber()
+                && res_width() == other.res_width()
+                && res_height() == other.res_height()))
+            {
+                return false;
+            }
+            for (int horizons_0_index = 0; horizons_0_index < 2; horizons_0_index++)
+            {
+                if (!(VisionDetectionHorizon(_horizons[horizons_0_index]) == VisionDetectionHorizon(other._horizons[horizons_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const VisionDetectionHorizons &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_detection_horizons &other) const
+        {
+            return *this == VisionDetectionHorizons(other);
+        }
+
+        bool operator !=(const wb_vision_detection_horizons &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

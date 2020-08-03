@@ -134,6 +134,36 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const TeleoperationControlVR &other) const
+        {
+            return ip() == other.ip()
+                && action() == other.action()
+                && fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
+                && stance() == other.stance()
+                && streamType() == other.streamType()
+                && selectedCamera() == other.selectedCamera()
+                && 0 == strncmp(_sayString, other._sayString, 30)
+                && walk() == other.walk()
+                && turn() == other.turn()
+                && timestamp() == other.timestamp();
+        }
+
+        bool operator !=(const TeleoperationControlVR &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_teleoperation_control_v_r &other) const
+        {
+            return *this == TeleoperationControlVR(other);
+        }
+
+        bool operator !=(const wb_teleoperation_control_v_r &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

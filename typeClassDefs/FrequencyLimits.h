@@ -125,6 +125,27 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const FrequencyLimits &other) const
+        {
+            return lo_freq() == other.lo_freq()
+                && hi_freq() == other.hi_freq();
+        }
+
+        bool operator !=(const FrequencyLimits &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_frequency_limits &other) const
+        {
+            return *this == FrequencyLimits(other);
+        }
+
+        bool operator !=(const wb_frequency_limits &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

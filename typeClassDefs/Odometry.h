@@ -126,6 +126,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const Odometry &other) const
+        {
+            return fabsf(forward() - other.forward()) < FLT_EPSILON
+                && fabsf(left() - other.left()) < FLT_EPSILON
+                && fabsf(turn() - other.turn()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const Odometry &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_odometry &other) const
+        {
+            return *this == Odometry(other);
+        }
+
+        bool operator !=(const wb_odometry &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -284,16 +306,6 @@ namespace guWhiteboard {
           set_left(0.0f);
           set_turn(0.0f);
         }
-
-        /** Comparison operator for Odometry objects */
-        inline bool operator== (const Odometry& a) const {
-          return (fabs(static_cast<double>(forward() - a.forward())) < DBL_EPSILON &&
-                  fabs(static_cast<double>(left() - a.left())) < DBL_EPSILON &&
-                  fabs(static_cast<double>(turn() - a.turn())) < DBL_EPSILON);
-        }
-
-        /** comparison operator **/
-        bool operator != (const Odometry &s) { return !(*this == s); }
 
         inline Odometry operator+(const Odometry& a) const {
           Odometry c;

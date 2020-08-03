@@ -128,6 +128,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const NaoWalkStatus &other) const
+        {
+            return walkEngineState() == other.walkEngineState()
+                && Odometry(_odometry) == Odometry(other._odometry)
+                && odometryResetCounter() == other.odometryResetCounter();
+        }
+
+        bool operator !=(const NaoWalkStatus &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_nao_walk_status &other) const
+        {
+            return *this == NaoWalkStatus(other);
+        }
+
+        bool operator !=(const wb_nao_walk_status &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -351,20 +373,6 @@ namespace guWhiteboard {
 #endif /// USE_WB_NAOWALKSTATUS_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
-
-        /** comparison operator **/
-        bool operator== (const NaoWalkStatus &other) const {
-        //    const struct wb_odometry thisOdometry = walkEngineOdometry();
-        //    const struct wb_odometry otherOdometry = other.walkEngineOdometry();
-        //    bool odometryEqual = static_cast<Odometry>(thisOdometry) == static_cast<Odometry>(otherOdometry);
-            return walkEngineState() == other.walkEngineState() &&
-                   odometryResetCounter() == other.odometryResetCounter() &&
-                   static_cast<Odometry>(odometry()) == static_cast<Odometry>(other.odometry());
-        //           odometryEqual;
-        }
-
-        /** comparison operator **/
-        bool operator != (const NaoWalkStatus &s) { return !(*this == s); }
     };
 
 } /// namespace guWhiteboard

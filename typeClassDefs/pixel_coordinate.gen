@@ -156,11 +156,3 @@ GU::PixelCoordinate pixelCoordinate(const uint16_t resWidth, const uint16_t resH
 {
     return GU::PixelCoordinate(wb_px_coord_to_px_coord(*this, resWidth, resHeight));
 }
-
-bool operator==(const PixelCoordinate &other) const {
-    return this->x() == other.x() && this->y() == other.y();
-}
-
-bool operator!=(const PixelCoordinate &other) const {
-    return !this->operator==(other);
-}

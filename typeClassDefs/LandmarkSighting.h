@@ -126,6 +126,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const LandmarkSighting &other) const
+        {
+            return direction() == other.direction()
+                && distance() == other.distance()
+                && sightingType() == other.sightingType();
+        }
+
+        bool operator !=(const LandmarkSighting &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_landmark_sighting &other) const
+        {
+            return *this == LandmarkSighting(other);
+        }
+
+        bool operator !=(const wb_landmark_sighting &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

@@ -8,16 +8,6 @@ inline void clear() {
   set_turn(0.0f);
 }
 
-/** Comparison operator for Odometry objects */
-inline bool operator== (const Odometry& a) const {
-  return (fabs(static_cast<double>(forward() - a.forward())) < DBL_EPSILON &&
-          fabs(static_cast<double>(left() - a.left())) < DBL_EPSILON &&
-          fabs(static_cast<double>(turn() - a.turn())) < DBL_EPSILON);
-}
-
-/** comparison operator **/
-bool operator != (const Odometry &s) { return !(*this == s); }
-
 inline Odometry operator+(const Odometry& a) const {
   Odometry c;
   c.set_forward(forward() + a.forward());
