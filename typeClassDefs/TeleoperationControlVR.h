@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_teleoperation_control_v_r.h"
+#include <float.h>
 
 namespace guWhiteboard {
 

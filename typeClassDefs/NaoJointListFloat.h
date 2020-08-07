@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_nao_joint_list_float.h"
+#include <float.h>
 
 namespace guWhiteboard {
 

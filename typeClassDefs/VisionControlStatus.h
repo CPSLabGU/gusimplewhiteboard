@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_vision_control_status.h"
+#include <float.h>
 
 namespace guWhiteboard {
 

@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_particle_position.h"
+#include <float.h>
 
 #include "Point2D.h"
 

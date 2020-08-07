@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_sensors_body_sensors.h"
+#include <float.h>
 
 namespace guWhiteboard {
 

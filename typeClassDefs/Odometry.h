@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_odometry.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
