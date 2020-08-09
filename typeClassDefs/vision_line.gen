@@ -1,5 +1,9 @@
 -author Carl Lusty
 
+-comment
+
+Line class.
+
 -c
 #include <gusimplewhiteboard/typeClassDefs/wb_pixel_coordinate_line.h>
 
@@ -10,4 +14,5 @@
 
 gen pixel_coordinate_line lineEdgeTop //line object representing the top edge of an SPL line.
 gen pixel_coordinate_line lineEdgeBottom //line object representing the bottom edge of an SPL line.
+
 
