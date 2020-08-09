@@ -1,0 +1,8 @@
+-author Carl Lusty
+
+@include pixel_coordinate_container(label: start, comment: Start point of the line.)
+@include pixel_coordinate_container(label: end, comment: End point of the line.)
+
+-comment
+Class use to represent a single line.
+

@@ -1,13 +1,13 @@
--author Eugene Gilmore 
+-author Carl Lusty
 
-@include pixel_coordinate_container(label: topLeftCoordinate, comment: The top left pixel coordinate of the line.)
-@include pixel_coordinate_container(label: topRightCoordinate, comment: The top right pixel coordinate of the line.)
-@include pixel_coordinate_container(label: bottomLeftCoordinate, comment: The bottom left pixel coordinate of the line.)
-@include pixel_coordinate_container(label: bottomRightCoordinate, comment: The bottom right pixel coordinate of the line.)
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_pixel_coordinate_line.h>
 
--comment
-Class use to represent a single line that is posted to the whiteboard from vision.
+-c++
+#include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
 
-The line is represented by four pixels within the image bound by the
-resolution forming a trapezoid. You can query vision_lines for resolution
-information.
+-properties
+
+gen pixel_coordinate_line lineEdgeTop //line object representing the top edge of an SPL line.
+gen pixel_coordinate_line lineEdgeBottom //line object representing the bottom edge of an SPL line.
+
