@@ -126,26 +126,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const MissionPriorityForObstacles &other) const
-        {
-            return ignore_obstacles() == other.ignore_obstacles();
-        }
-
-        bool operator !=(const MissionPriorityForObstacles &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_mission_priority_for_obstacles &other) const
-        {
-            return *this == MissionPriorityForObstacles(other);
-        }
-
-        bool operator !=(const wb_mission_priority_for_obstacles &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

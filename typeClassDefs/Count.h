@@ -124,26 +124,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const Count &other) const
-        {
-            return count() == other.count();
-        }
-
-        bool operator !=(const Count &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_count &other) const
-        {
-            return *this == Count(other);
-        }
-
-        bool operator !=(const wb_count &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -263,11 +243,7 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-#ifdef __APPLE__
                         this->set_count(static_cast<int64_t>(atoll(var_str)));
-#else
-                        this->set_count(static_cast<int64_t>(atol(var_str)));
-#endif
                         break;
                     }
                 }

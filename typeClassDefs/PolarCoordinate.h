@@ -125,27 +125,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const PolarCoordinate &other) const
-        {
-            return direction() == other.direction()
-                && distance() == other.distance();
-        }
-
-        bool operator !=(const PolarCoordinate &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_polar_coordinate &other) const
-        {
-            return *this == PolarCoordinate(other);
-        }
-
-        bool operator !=(const wb_polar_coordinate &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

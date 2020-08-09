@@ -140,29 +140,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const VisionDetectionHorizon &other) const
-        {
-            return horizonType() == other.horizonType()
-                && PixelCoordinate(_leftCoordinate) == PixelCoordinate(other._leftCoordinate)
-                && PixelCoordinate(_centerCoordinate) == PixelCoordinate(other._centerCoordinate)
-                && PixelCoordinate(_rightCoordinate) == PixelCoordinate(other._rightCoordinate);
-        }
-
-        bool operator !=(const VisionDetectionHorizon &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_vision_detection_horizon &other) const
-        {
-            return *this == VisionDetectionHorizon(other);
-        }
-
-        bool operator !=(const wb_vision_detection_horizon &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

@@ -133,30 +133,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const TopParticles &other) const
-        {
-            for (int particles_0_index = 0; particles_0_index < 4; particles_0_index++)
-            {
-                if (!(ParticlePosition(_particles[particles_0_index]) == ParticlePosition(other._particles[particles_0_index]))) return false;
-            }
-            return true;
-        }
-
-        bool operator !=(const TopParticles &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_top_particles &other) const
-        {
-            return *this == TopParticles(other);
-        }
-
-        bool operator !=(const wb_top_particles &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -350,7 +326,7 @@ namespace guWhiteboard {
                             ParticlePosition particles_0_temp = ParticlePosition();
                             particles_0_temp.from_string(var_str);
                             struct wb_particle_position particles_0 = particles_0_temp;
-                            this->set_particles(particles_0, particles_0_index);
+                            this->set_particles(particles_0, particles_0_index);;
                         }
                         index = restartIndex;
                         break;

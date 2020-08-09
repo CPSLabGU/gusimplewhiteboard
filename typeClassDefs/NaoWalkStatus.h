@@ -128,28 +128,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const NaoWalkStatus &other) const
-        {
-            return walkEngineState() == other.walkEngineState()
-                && Odometry(_odometry) == Odometry(other._odometry)
-                && odometryResetCounter() == other.odometryResetCounter();
-        }
-
-        bool operator !=(const NaoWalkStatus &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_nao_walk_status &other) const
-        {
-            return *this == NaoWalkStatus(other);
-        }
-
-        bool operator !=(const wb_nao_walk_status &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

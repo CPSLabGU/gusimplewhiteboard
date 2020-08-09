@@ -128,30 +128,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const Location &other) const
-        {
-            return direction() == other.direction()
-                && distance() == other.distance()
-                && confidence() == other.confidence()
-                && distanceVariance() == other.distanceVariance()
-                && directionVariance() == other.directionVariance();
-        }
-
-        bool operator !=(const Location &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_location &other) const
-        {
-            return *this == Location(other);
-        }
-
-        bool operator !=(const wb_location &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

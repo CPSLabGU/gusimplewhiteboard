@@ -130,11 +130,7 @@ const char* wb_count_description(const struct wb_count* self, char* descString, 
     if (len >= bufferSize) {
         return descString;
     }
-#ifdef __APPLE__
     len += snprintf(descString + len, bufferSize - len, "count=%lld", self->count);
-#else
-    len += snprintf(descString + len, bufferSize - len, "count=%ld", self->count);
-#endif
     return descString;
 #pragma clang diagnostic pop
 }
@@ -150,11 +146,7 @@ const char* wb_count_to_string(const struct wb_count* self, char* toString, size
     if (len >= bufferSize) {
         return toString;
     }
-#ifdef __APPLE__
     len += snprintf(toString + len, bufferSize - len, "%lld", self->count);
-#else
-    len += snprintf(toString + len, bufferSize - len, "%ld", self->count);
-#endif
     return toString;
 #pragma clang diagnostic pop
 }
@@ -242,11 +234,7 @@ struct wb_count* wb_count_from_string(struct wb_count* self, const char* str)
             case -1: { break; }
             case 0:
             {
-#ifdef __APPLE__
                 self->count = ((int64_t)atoll(var_str));
-#else
-                self->count = ((int64_t)atol(var_str));
-#endif
                 break;
             }
         }

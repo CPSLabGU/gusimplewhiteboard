@@ -68,7 +68,6 @@
 
 #include <gu_util.h>
 #include "wb_vision_control_status.h"
-#include <float.h>
 
 namespace guWhiteboard {
 
@@ -141,43 +140,6 @@ namespace guWhiteboard {
         VisionControlStatus &operator = (const struct wb_vision_control_status &other) {
             this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.confidence(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration(), other.imageTime());
             return *this;
-        }
-
-        bool operator ==(const VisionControlStatus &other) const
-        {
-            return cameraResolution() == other.cameraResolution()
-                && pipelineRunning() == other.pipelineRunning()
-                && selectedCamera() == other.selectedCamera()
-                && saveImage() == other.saveImage()
-                && saveClassifiedImage() == other.saveClassifiedImage()
-                && pipeline() == other.pipeline()
-                && chooseCamera() == other.chooseCamera()
-                && fabsf(confidence() - other.confidence()) < FLT_EPSILON
-                && networkTop() == other.networkTop()
-                && networkBottom() == other.networkBottom()
-                && streamingSource() == other.streamingSource()
-                && imageInput() == other.imageInput()
-                && jpegStreamQuality() == other.jpegStreamQuality()
-                && jpegStreamStride() == other.jpegStreamStride()
-                && frameRate() == other.frameRate()
-                && runPipelineOnce() == other.runPipelineOnce()
-                && frameNumber() == other.frameNumber()
-                && 0 == strncmp(_colourCalibration, other._colourCalibration, 10);
-        }
-
-        bool operator !=(const VisionControlStatus &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_vision_control_status &other) const
-        {
-            return *this == VisionControlStatus(other);
-        }
-
-        bool operator !=(const wb_vision_control_status &other) const
-        {
-            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
@@ -958,11 +920,7 @@ namespace guWhiteboard {
                     }
                     case 16:
                     {
-#ifdef __APPLE__
                         this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
-#else
-                        this->set_frameNumber(static_cast<uint64_t>(atol(var_str)));
-#endif
                         break;
                     }
                     case 17:

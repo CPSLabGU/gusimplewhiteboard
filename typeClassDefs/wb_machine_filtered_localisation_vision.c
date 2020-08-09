@@ -364,7 +364,7 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
                     endKey = -1;
                     struct wb_landmark_sighting sightings_0 = {};
                     wb_landmark_sighting_from_string(&sightings_0, var_str);
-                    self->sightings[sightings_0_index] = sightings_0;
+                    self->sightings[sightings_0_index] = sightings_0;;
                 }
                 index = restartIndex;
                 break;

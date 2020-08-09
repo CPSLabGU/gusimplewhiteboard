@@ -130,27 +130,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const VisionFieldFeature &other) const
-        {
-            return PixelCoordinate(_coordinate) == PixelCoordinate(other._coordinate)
-                && camera() == other.camera();
-        }
-
-        bool operator !=(const VisionFieldFeature &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_vision_field_feature &other) const
-        {
-            return *this == VisionFieldFeature(other);
-        }
-
-        bool operator !=(const wb_vision_field_feature &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

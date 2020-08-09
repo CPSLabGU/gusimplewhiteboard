@@ -68,7 +68,6 @@
 
 #include <gu_util.h>
 #include "wb_sensors_legjointtemps.h"
-#include <float.h>
 
 namespace guWhiteboard {
 
@@ -128,31 +127,6 @@ namespace guWhiteboard {
         SENSORSLegJointTemps &operator = (const struct wb_sensors_legjointtemps &other) {
             this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
             return *this;
-        }
-
-        bool operator ==(const SENSORSLegJointTemps &other) const
-        {
-            return fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
-                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
-                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
-                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
-                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
-                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON;
-        }
-
-        bool operator !=(const SENSORSLegJointTemps &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_sensors_legjointtemps &other) const
-        {
-            return *this == SENSORSLegJointTemps(other);
-        }
-
-        bool operator !=(const wb_sensors_legjointtemps &other) const
-        {
-            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

@@ -132,34 +132,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const FilteredVisionObject &other) const
-        {
-            return visibilityHistory() == other.visibilityHistory()
-                && frameCounter() == other.frameCounter()
-                && distance() == other.distance()
-                && x() == other.x()
-                && y() == other.y()
-                && yaw() == other.yaw()
-                && ray_angle() == other.ray_angle()
-                && isVisible() == other.isVisible()
-                && pad1() == other.pad1();
-        }
-
-        bool operator !=(const FilteredVisionObject &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_filtered_vision_object &other) const
-        {
-            return *this == FilteredVisionObject(other);
-        }
-
-        bool operator !=(const wb_filtered_vision_object &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -327,11 +299,7 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-#ifdef __APPLE__
                         this->set_visibilityHistory(static_cast<uint64_t>(atoll(var_str)));
-#else
-                        this->set_visibilityHistory(static_cast<uint64_t>(atol(var_str)));
-#endif
                         break;
                     }
                     case 1:

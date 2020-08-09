@@ -128,28 +128,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const VisionDetectionGoal &other) const
-        {
-            return sightingType() == other.sightingType()
-                && VisionDetectionGoalPost(_post1) == VisionDetectionGoalPost(other._post1)
-                && VisionDetectionGoalPost(_post2) == VisionDetectionGoalPost(other._post2);
-        }
-
-        bool operator !=(const VisionDetectionGoal &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_vision_detection_goal &other) const
-        {
-            return *this == VisionDetectionGoal(other);
-        }
-
-        bool operator !=(const wb_vision_detection_goal &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

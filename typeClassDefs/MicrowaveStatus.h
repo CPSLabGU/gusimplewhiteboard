@@ -126,28 +126,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const MicrowaveStatus &other) const
-        {
-            return timeLeft() == other.timeLeft()
-                && doorOpen() == other.doorOpen()
-                && buttonPushed() == other.buttonPushed();
-        }
-
-        bool operator !=(const MicrowaveStatus &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_microwave_status &other) const
-        {
-            return *this == MicrowaveStatus(other);
-        }
-
-        bool operator !=(const wb_microwave_status &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

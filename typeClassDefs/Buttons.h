@@ -125,27 +125,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const Buttons &other) const
-        {
-            return button1Pushed() == other.button1Pushed()
-                && button2Pushed() == other.button2Pushed();
-        }
-
-        bool operator !=(const Buttons &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_buttons &other) const
-        {
-            return *this == Buttons(other);
-        }
-
-        bool operator !=(const wb_buttons &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

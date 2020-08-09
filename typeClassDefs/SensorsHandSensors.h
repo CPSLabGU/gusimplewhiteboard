@@ -129,31 +129,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const SensorsHandSensors &other) const
-        {
-            return LHand_Touch_Left() == other.LHand_Touch_Left()
-                && LHand_Touch_Back() == other.LHand_Touch_Back()
-                && LHand_Touch_Right() == other.LHand_Touch_Right()
-                && RHand_Touch_Left() == other.RHand_Touch_Left()
-                && RHand_Touch_Back() == other.RHand_Touch_Back()
-                && RHand_Touch_Right() == other.RHand_Touch_Right();
-        }
-
-        bool operator !=(const SensorsHandSensors &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_sensors_hand_sensors &other) const
-        {
-            return *this == SensorsHandSensors(other);
-        }
-
-        bool operator !=(const wb_sensors_hand_sensors &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

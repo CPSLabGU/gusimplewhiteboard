@@ -130,7 +130,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%lf", (double) self->HeadYaw);
+    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%f", self->HeadYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%lf", (double) self->HeadPitch);
+    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LShoulderPitch=%lf", (double) self->LShoulderPitch);
+    len += snprintf(descString + len, bufferSize - len, "LShoulderPitch=%f", self->LShoulderPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LShoulderRoll=%lf", (double) self->LShoulderRoll);
+    len += snprintf(descString + len, bufferSize - len, "LShoulderRoll=%f", self->LShoulderRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -162,7 +162,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LElbowYaw=%lf", (double) self->LElbowYaw);
+    len += snprintf(descString + len, bufferSize - len, "LElbowYaw=%f", self->LElbowYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -170,7 +170,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LElbowRoll=%lf", (double) self->LElbowRoll);
+    len += snprintf(descString + len, bufferSize - len, "LElbowRoll=%f", self->LElbowRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -178,7 +178,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LWristYaw=%lf", (double) self->LWristYaw);
+    len += snprintf(descString + len, bufferSize - len, "LWristYaw=%f", self->LWristYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -186,7 +186,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHand=%lf", (double) self->LHand);
+    len += snprintf(descString + len, bufferSize - len, "LHand=%f", self->LHand);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +194,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RShoulderPitch=%lf", (double) self->RShoulderPitch);
+    len += snprintf(descString + len, bufferSize - len, "RShoulderPitch=%f", self->RShoulderPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -202,7 +202,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RShoulderRoll=%lf", (double) self->RShoulderRoll);
+    len += snprintf(descString + len, bufferSize - len, "RShoulderRoll=%f", self->RShoulderRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +210,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RElbowYaw=%lf", (double) self->RElbowYaw);
+    len += snprintf(descString + len, bufferSize - len, "RElbowYaw=%f", self->RElbowYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -218,7 +218,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RElbowRoll=%lf", (double) self->RElbowRoll);
+    len += snprintf(descString + len, bufferSize - len, "RElbowRoll=%f", self->RElbowRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -226,7 +226,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RWristYaw=%lf", (double) self->RWristYaw);
+    len += snprintf(descString + len, bufferSize - len, "RWristYaw=%f", self->RWristYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -234,7 +234,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHand=%lf", (double) self->RHand);
+    len += snprintf(descString + len, bufferSize - len, "RHand=%f", self->RHand);
     if (len >= bufferSize) {
         return descString;
     }
@@ -242,7 +242,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipYawPitch=%lf", (double) self->LHipYawPitch);
+    len += snprintf(descString + len, bufferSize - len, "LHipYawPitch=%f", self->LHipYawPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -250,7 +250,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipRoll=%lf", (double) self->LHipRoll);
+    len += snprintf(descString + len, bufferSize - len, "LHipRoll=%f", self->LHipRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -258,7 +258,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LHipPitch=%lf", (double) self->LHipPitch);
+    len += snprintf(descString + len, bufferSize - len, "LHipPitch=%f", self->LHipPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -266,7 +266,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LKneePitch=%lf", (double) self->LKneePitch);
+    len += snprintf(descString + len, bufferSize - len, "LKneePitch=%f", self->LKneePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -274,7 +274,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LAnklePitch=%lf", (double) self->LAnklePitch);
+    len += snprintf(descString + len, bufferSize - len, "LAnklePitch=%f", self->LAnklePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -282,7 +282,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LAnkleRoll=%lf", (double) self->LAnkleRoll);
+    len += snprintf(descString + len, bufferSize - len, "LAnkleRoll=%f", self->LAnkleRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -290,7 +290,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHipRoll=%lf", (double) self->RHipRoll);
+    len += snprintf(descString + len, bufferSize - len, "RHipRoll=%f", self->RHipRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -298,7 +298,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RHipPitch=%lf", (double) self->RHipPitch);
+    len += snprintf(descString + len, bufferSize - len, "RHipPitch=%f", self->RHipPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -306,7 +306,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RKneePitch=%lf", (double) self->RKneePitch);
+    len += snprintf(descString + len, bufferSize - len, "RKneePitch=%f", self->RKneePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -314,7 +314,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RAnklePitch=%lf", (double) self->RAnklePitch);
+    len += snprintf(descString + len, bufferSize - len, "RAnklePitch=%f", self->RAnklePitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -322,7 +322,7 @@ const char* wb_nao_joint_list_float_description(const struct wb_nao_joint_list_f
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RAnkleRoll=%lf", (double) self->RAnkleRoll);
+    len += snprintf(descString + len, bufferSize - len, "RAnkleRoll=%f", self->RAnkleRoll);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -338,7 +338,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -346,7 +346,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -354,7 +354,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LShoulderPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LShoulderPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -362,7 +362,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LShoulderRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LShoulderRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -370,7 +370,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LElbowYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LElbowYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -378,7 +378,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LElbowRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LElbowRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -386,7 +386,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LWristYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LWristYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -394,7 +394,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHand);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LHand);
     if (len >= bufferSize) {
         return toString;
     }
@@ -402,7 +402,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RShoulderPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RShoulderPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -410,7 +410,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RShoulderRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RShoulderRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -418,7 +418,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RElbowYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RElbowYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -426,7 +426,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RElbowRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RElbowRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -434,7 +434,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RWristYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RWristYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -442,7 +442,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHand);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RHand);
     if (len >= bufferSize) {
         return toString;
     }
@@ -450,7 +450,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipYawPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipYawPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -458,7 +458,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -466,7 +466,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LHipPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LHipPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -474,7 +474,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LKneePitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LKneePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -482,7 +482,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LAnklePitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LAnklePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -490,7 +490,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LAnkleRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LAnkleRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -498,7 +498,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHipRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RHipRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -506,7 +506,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RHipPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RHipPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -514,7 +514,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RKneePitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RKneePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -522,7 +522,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RAnklePitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RAnklePitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -530,7 +530,7 @@ const char* wb_nao_joint_list_float_to_string(const struct wb_nao_joint_list_flo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RAnkleRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RAnkleRoll);
     return toString;
 #pragma clang diagnostic pop
 }

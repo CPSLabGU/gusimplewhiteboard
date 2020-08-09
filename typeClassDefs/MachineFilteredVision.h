@@ -130,32 +130,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const MachineFilteredVision &other) const
-        {
-            return ball_direction() == other.ball_direction()
-                && ball_distance() == other.ball_distance()
-                && ball_visible() == other.ball_visible()
-                && goal_direction() == other.goal_direction()
-                && goal_distance() == other.goal_distance()
-                && goal_visible() == other.goal_visible()
-                && goal_sightingType() == other.goal_sightingType();
-        }
-
-        bool operator !=(const MachineFilteredVision &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_machine_filtered_vision &other) const
-        {
-            return *this == MachineFilteredVision(other);
-        }
-
-        bool operator !=(const wb_machine_filtered_vision &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

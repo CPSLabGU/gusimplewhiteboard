@@ -130,7 +130,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%lf", (double) self->HeadYaw);
+    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%f", self->HeadYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%lf", (double) self->HeadPitch);
+    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LShoulderPitch=%lf", (double) self->LShoulderPitch);
+    len += snprintf(descString + len, bufferSize - len, "LShoulderPitch=%f", self->LShoulderPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LShoulderRoll=%lf", (double) self->LShoulderRoll);
+    len += snprintf(descString + len, bufferSize - len, "LShoulderRoll=%f", self->LShoulderRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -162,7 +162,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LElbowYaw=%lf", (double) self->LElbowYaw);
+    len += snprintf(descString + len, bufferSize - len, "LElbowYaw=%f", self->LElbowYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -170,7 +170,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LElbowRoll=%lf", (double) self->LElbowRoll);
+    len += snprintf(descString + len, bufferSize - len, "LElbowRoll=%f", self->LElbowRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -178,7 +178,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RShoulderPitch=%lf", (double) self->RShoulderPitch);
+    len += snprintf(descString + len, bufferSize - len, "RShoulderPitch=%f", self->RShoulderPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -186,7 +186,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RShoulderRoll=%lf", (double) self->RShoulderRoll);
+    len += snprintf(descString + len, bufferSize - len, "RShoulderRoll=%f", self->RShoulderRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +194,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RElbowYaw=%lf", (double) self->RElbowYaw);
+    len += snprintf(descString + len, bufferSize - len, "RElbowYaw=%f", self->RElbowYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -202,7 +202,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RElbowRoll=%lf", (double) self->RElbowRoll);
+    len += snprintf(descString + len, bufferSize - len, "RElbowRoll=%f", self->RElbowRoll);
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +210,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LWristYaw=%lf", (double) self->LWristYaw);
+    len += snprintf(descString + len, bufferSize - len, "LWristYaw=%f", self->LWristYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -218,7 +218,7 @@ const char* wb_sensors_torsojointsensors_description(const struct wb_sensors_tor
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RWristYaw=%lf", (double) self->RWristYaw);
+    len += snprintf(descString + len, bufferSize - len, "RWristYaw=%f", self->RWristYaw);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -234,7 +234,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -242,7 +242,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -250,7 +250,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LShoulderPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LShoulderPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -258,7 +258,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LShoulderRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LShoulderRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -266,7 +266,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LElbowYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LElbowYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -274,7 +274,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LElbowRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LElbowRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -282,7 +282,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RShoulderPitch);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RShoulderPitch);
     if (len >= bufferSize) {
         return toString;
     }
@@ -290,7 +290,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RShoulderRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RShoulderRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -298,7 +298,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RElbowYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RElbowYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -306,7 +306,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RElbowRoll);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RElbowRoll);
     if (len >= bufferSize) {
         return toString;
     }
@@ -314,7 +314,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LWristYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->LWristYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -322,7 +322,7 @@ const char* wb_sensors_torsojointsensors_to_string(const struct wb_sensors_torso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RWristYaw);
+    len += snprintf(toString + len, bufferSize - len, "%f", self->RWristYaw);
     return toString;
 #pragma clang diagnostic pop
 }

@@ -125,27 +125,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const ParticleOutputMap &other) const
-        {
-            return fileId() == other.fileId()
-                && 0 == strncmp(_filePath, other._filePath, 64);
-        }
-
-        bool operator !=(const ParticleOutputMap &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_particle_output_map &other) const
-        {
-            return *this == ParticleOutputMap(other);
-        }
-
-        bool operator !=(const wb_particle_output_map &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

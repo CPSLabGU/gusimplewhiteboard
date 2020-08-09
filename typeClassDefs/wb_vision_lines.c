@@ -170,11 +170,7 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
     if (len >= bufferSize) {
         return descString;
     }
-#ifdef __APPLE__
     len += snprintf(descString + len, bufferSize - len, "frameNumber=%llu", self->frameNumber);
-#else
-    len += snprintf(descString + len, bufferSize - len, "frameNumber=%lu", self->frameNumber);
-#endif
     if (len >= bufferSize) {
         return descString;
     }
@@ -246,11 +242,7 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
     if (len >= bufferSize) {
         return toString;
     }
-#ifdef __APPLE__
     len += snprintf(toString + len, bufferSize - len, "%llu", self->frameNumber);
-#else
-    len += snprintf(toString + len, bufferSize - len, "%lu", self->frameNumber);
-#endif
     if (len >= bufferSize) {
         return toString;
     }
@@ -421,7 +413,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                     endKey = -1;
                     struct wb_vision_line lines_0 = {};
                     wb_vision_line_from_string(&lines_0, var_str);
-                    self->lines[lines_0_index] = lines_0;
+                    self->lines[lines_0_index] = lines_0;;
                 }
                 index = restartIndex;
                 break;
@@ -433,11 +425,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
             }
             case 2:
             {
-#ifdef __APPLE__
                 self->frameNumber = ((uint64_t)atoll(var_str));
-#else
-                self->frameNumber = ((uint64_t)atol(var_str));
-#endif
                 break;
             }
             case 3:

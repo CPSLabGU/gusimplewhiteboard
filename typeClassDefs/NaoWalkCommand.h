@@ -137,39 +137,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const NaoWalkCommand &other) const
-        {
-            return walkEngineOn() == other.walkEngineOn()
-                && forward() == other.forward()
-                && left() == other.left()
-                && turn() == other.turn()
-                && exactStepsRequested() == other.exactStepsRequested()
-                && speed() == other.speed()
-                && odometryResetCounter() == other.odometryResetCounter()
-                && isFast() == other.isFast()
-                && kickWithLeftFoot() == other.kickWithLeftFoot()
-                && useShuffle() == other.useShuffle()
-                && leftArmLimp() == other.leftArmLimp()
-                && rightArmLimp() == other.rightArmLimp()
-                && power() == other.power()
-                && bend() == other.bend();
-        }
-
-        bool operator !=(const NaoWalkCommand &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_nao_walk_command &other) const
-        {
-            return *this == NaoWalkCommand(other);
-        }
-
-        bool operator !=(const wb_nao_walk_command &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

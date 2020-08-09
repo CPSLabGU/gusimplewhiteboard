@@ -125,27 +125,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const GuVrTeleopVulkanControl &other) const
-        {
-            return movementOptions() == other.movementOptions()
-                && walkingOptions() == other.walkingOptions();
-        }
-
-        bool operator !=(const GuVrTeleopVulkanControl &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_gu_vr_teleop_vulkan_control &other) const
-        {
-            return *this == GuVrTeleopVulkanControl(other);
-        }
-
-        bool operator !=(const wb_gu_vr_teleop_vulkan_control &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

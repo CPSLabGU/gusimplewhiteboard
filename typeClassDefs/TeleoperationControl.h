@@ -129,31 +129,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const TeleoperationControl &other) const
-        {
-            return ip() == other.ip()
-                && action() == other.action()
-                && stance() == other.stance()
-                && streamType() == other.streamType()
-                && selectedCamera() == other.selectedCamera()
-                && 0 == strncmp(_sayString, other._sayString, 30);
-        }
-
-        bool operator !=(const TeleoperationControl &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_teleoperation_control &other) const
-        {
-            return *this == TeleoperationControl(other);
-        }
-
-        bool operator !=(const wb_teleoperation_control &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

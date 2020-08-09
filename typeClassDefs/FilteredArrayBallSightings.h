@@ -131,30 +131,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const FilteredArrayBallSightings &other) const
-        {
-            for (int objects_0_index = 0; objects_0_index < 2; objects_0_index++)
-            {
-                if (!(FilteredVisionObject(_objects[objects_0_index]) == FilteredVisionObject(other._objects[objects_0_index]))) return false;
-            }
-            return true;
-        }
-
-        bool operator !=(const FilteredArrayBallSightings &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_filtered_arrayballsightings &other) const
-        {
-            return *this == FilteredArrayBallSightings(other);
-        }
-
-        bool operator !=(const wb_filtered_arrayballsightings &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -348,7 +324,7 @@ namespace guWhiteboard {
                             FilteredVisionObject objects_0_temp = FilteredVisionObject();
                             objects_0_temp.from_string(var_str);
                             struct wb_filtered_vision_object objects_0 = objects_0_temp;
-                            this->set_objects(objects_0, objects_0_index);
+                            this->set_objects(objects_0, objects_0_index);;
                         }
                         index = restartIndex;
                         break;

@@ -133,34 +133,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const DominantFrequencies &other) const
-        {
-            if (!(RMSLevels(_rms) == RMSLevels(other._rms)))
-            {
-                return false;
-            }
-            for (int frequencies_0_index = 0; frequencies_0_index < DOMINANT_NUMFREQi; frequencies_0_index++)
-            {
-                if (!(MicrophoneFrequencies(_frequencies[frequencies_0_index]) == MicrophoneFrequencies(other._frequencies[frequencies_0_index]))) return false;
-            }
-            return true;
-        }
-
-        bool operator !=(const DominantFrequencies &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_dominant_frequencies &other) const
-        {
-            return *this == DominantFrequencies(other);
-        }
-
-        bool operator !=(const wb_dominant_frequencies &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -369,7 +341,7 @@ namespace guWhiteboard {
                             MicrophoneFrequencies frequencies_0_temp = MicrophoneFrequencies();
                             frequencies_0_temp.from_string(var_str);
                             struct wb_microphone_frequencies frequencies_0 = frequencies_0_temp;
-                            this->set_frequencies(frequencies_0, frequencies_0_index);
+                            this->set_frequencies(frequencies_0, frequencies_0_index);;
                         }
                         index = restartIndex;
                         break;

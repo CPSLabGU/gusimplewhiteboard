@@ -563,7 +563,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     endKey = -1;
                     struct wb_vision_field_feature fieldCorner_0 = {};
                     wb_vision_field_feature_from_string(&fieldCorner_0, var_str);
-                    self->fieldCorner[fieldCorner_0_index] = fieldCorner_0;
+                    self->fieldCorner[fieldCorner_0_index] = fieldCorner_0;;
                 }
                 index = restartIndex;
                 break;
@@ -625,7 +625,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     endKey = -1;
                     struct wb_vision_field_feature fieldIntersection_0 = {};
                     wb_vision_field_feature_from_string(&fieldIntersection_0, var_str);
-                    self->fieldIntersection[fieldIntersection_0_index] = fieldIntersection_0;
+                    self->fieldIntersection[fieldIntersection_0_index] = fieldIntersection_0;;
                 }
                 index = restartIndex;
                 break;
@@ -687,7 +687,7 @@ struct wb_vision_field_features* wb_vision_field_features_from_string(struct wb_
                     endKey = -1;
                     struct wb_vision_field_feature fieldCrosses_0 = {};
                     wb_vision_field_feature_from_string(&fieldCrosses_0, var_str);
-                    self->fieldCrosses[fieldCrosses_0_index] = fieldCrosses_0;
+                    self->fieldCrosses[fieldCrosses_0_index] = fieldCrosses_0;;
                 }
                 index = restartIndex;
                 break;

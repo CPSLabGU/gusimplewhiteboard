@@ -129,31 +129,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const TemperatureSensors &other) const
-        {
-            return LKneePitch() == other.LKneePitch()
-                && LAnklePitch() == other.LAnklePitch()
-                && LAnkleRoll() == other.LAnkleRoll()
-                && RKneePitch() == other.RKneePitch()
-                && RAnklePitch() == other.RAnklePitch()
-                && RAnkleRoll() == other.RAnkleRoll();
-        }
-
-        bool operator !=(const TemperatureSensors &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_temperature_sensors &other) const
-        {
-            return *this == TemperatureSensors(other);
-        }
-
-        bool operator !=(const wb_temperature_sensors &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

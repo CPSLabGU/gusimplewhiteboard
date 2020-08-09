@@ -146,48 +146,6 @@ namespace guWhiteboard {
             return *this;
         }
 
-        bool operator ==(const HalArmTarget &other) const
-        {
-            return target_movement_time() == other.target_movement_time()
-                && target_shoulderpitch() == other.target_shoulderpitch()
-                && target_shoulderroll() == other.target_shoulderroll()
-                && target_elbowroll() == other.target_elbowroll()
-                && target_elbowyaw() == other.target_elbowyaw()
-                && target_wristyaw() == other.target_wristyaw()
-                && target_arm() == other.target_arm()
-                && target_hand() == other.target_hand()
-                && target_shoulderpitchstiffness() == other.target_shoulderpitchstiffness()
-                && target_shoulderrollstiffness() == other.target_shoulderrollstiffness()
-                && target_elbowrollstiffness() == other.target_elbowrollstiffness()
-                && target_elbowyawstiffness() == other.target_elbowyawstiffness()
-                && target_wristyawstiffness() == other.target_wristyawstiffness()
-                && target_handstiffness() == other.target_handstiffness()
-                && target_pliability() == other.target_pliability()
-                && target_shoulderpitch_active() == other.target_shoulderpitch_active()
-                && target_shoulderroll_active() == other.target_shoulderroll_active()
-                && target_elbowroll_active() == other.target_elbowroll_active()
-                && target_elbowyaw_active() == other.target_elbowyaw_active()
-                && target_wrist_active() == other.target_wrist_active()
-                && target_hand_active() == other.target_hand_active()
-                && target_arm_at_goal() == other.target_arm_at_goal()
-                && target_arm_stop() == other.target_arm_stop();
-        }
-
-        bool operator !=(const HalArmTarget &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_hal_arm_target &other) const
-        {
-            return *this == HalArmTarget(other);
-        }
-
-        bool operator !=(const wb_hal_arm_target &other) const
-        {
-            return !(*this == other);
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

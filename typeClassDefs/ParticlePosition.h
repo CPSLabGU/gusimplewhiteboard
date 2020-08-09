@@ -68,7 +68,6 @@
 
 #include <gu_util.h>
 #include "wb_particle_position.h"
-#include <float.h>
 
 #include "Point2D.h"
 
@@ -127,28 +126,6 @@ namespace guWhiteboard {
         ParticlePosition &operator = (const struct wb_particle_position &other) {
             this->init(other.position(), other.headingInDegrees(), other.confidence());
             return *this;
-        }
-
-        bool operator ==(const ParticlePosition &other) const
-        {
-            return Point2D(_position) == Point2D(other._position)
-                && headingInDegrees() == other.headingInDegrees()
-                && fabsf(confidence() - other.confidence()) < FLT_EPSILON;
-        }
-
-        bool operator !=(const ParticlePosition &other) const
-        {
-            return !(*this == other);
-        }
-
-        bool operator ==(const wb_particle_position &other) const
-        {
-            return *this == ParticlePosition(other);
-        }
-
-        bool operator !=(const wb_particle_position &other) const
-        {
-            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
