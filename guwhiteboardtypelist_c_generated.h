@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 159
+#define GSW_NUM_TYPES_DEFINED 175
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -180,8 +180,24 @@ typedef enum wb_types
     ktimeLeft_v = 155, 		///< The time remaining in the microwave - swiftfsm.
     kmotor_v = 156, 		///< The motor actuator for the microwave - swiftfsm.
     ksound_v = 157, 		///< The alarm actuator for the microwave - swiftfsm.
+    klight_v = 158, 		///< The light actuator for the microwave - swiftfsm.
+    kArduino2Pin_v = 159, 		///< The status of the 2 pin for the arduino.
+    kArduino2PinValue_v = 160, 		///< The value of the 2 pin for the arduino.
+    kArduino3Pin_v = 161, 		///< The status of the 3 pin for the arduino.
+    kArduino3PinValue_v = 162, 		///< The value of the 3 pin for the arduino.
+    kArduino4Pin_v = 163, 		///< The status of the 4 pin for the arduino.
+    kArduino4PinValue_v = 164, 		///< The value of the 4 pin for the arduino.
+    kArduino5Pin_v = 165, 		///< The status of the 5 pin for the arduino.
+    kArduino5PinValue_v = 166, 		///< The value of the 5 pin for the arduino.
+    kArduino6Pin_v = 167, 		///< The status of the 6 pin for the arduino.
+    kArduino6PinValue_v = 168, 		///< The value of the 6 pin for the arduino.
+    kArduino7Pin_v = 169, 		///< The status of the 7 pin for the arduino.
+    kArduino7PinValue_v = 170, 		///< The value of the 7 pin for the arduino.
+    kArduino8Pin_v = 171, 		///< The status of the 8 pin for the arduino.
+    kArduino8PinValue_v = 172, 		///< The value of the 8 pin for the arduino.
+    kArduino9Pin_v = 173, 		///< The status of the 9 pin for the arduino.
 
-    klight_v = 158 		///< The light actuator for the microwave - swiftfsm.
+    kArduino9PinValue_v = 174 		///< The value of the 9 pin for the arduino.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

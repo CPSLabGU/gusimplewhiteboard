@@ -1346,6 +1346,150 @@ sound_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboar
 light_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, klight_v, wbd, false) {}
     };
 
+    /** WB Ptr Class: Arduino2Pin_t @brief The status of the 2 pin for the arduino. */ 
+    class Arduino2Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino2Pin_t */ 
+        Arduino2Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino2Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino2Pin_t */ 
+Arduino2Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino2Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino2PinValue_t @brief The value of the 2 pin for the arduino. */ 
+    class Arduino2PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino2PinValue_t */ 
+        Arduino2PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino2PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino2PinValue_t */ 
+Arduino2PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino2PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino3Pin_t @brief The status of the 3 pin for the arduino. */ 
+    class Arduino3Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino3Pin_t */ 
+        Arduino3Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino3Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino3Pin_t */ 
+Arduino3Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino3Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino3PinValue_t @brief The value of the 3 pin for the arduino. */ 
+    class Arduino3PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino3PinValue_t */ 
+        Arduino3PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino3PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino3PinValue_t */ 
+Arduino3PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino3PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino4Pin_t @brief The status of the 4 pin for the arduino. */ 
+    class Arduino4Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino4Pin_t */ 
+        Arduino4Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino4Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino4Pin_t */ 
+Arduino4Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino4Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino4PinValue_t @brief The value of the 4 pin for the arduino. */ 
+    class Arduino4PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino4PinValue_t */ 
+        Arduino4PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino4PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino4PinValue_t */ 
+Arduino4PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino4PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino5Pin_t @brief The status of the 5 pin for the arduino. */ 
+    class Arduino5Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino5Pin_t */ 
+        Arduino5Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino5Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino5Pin_t */ 
+Arduino5Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino5Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino5PinValue_t @brief The value of the 5 pin for the arduino. */ 
+    class Arduino5PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino5PinValue_t */ 
+        Arduino5PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino5PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino5PinValue_t */ 
+Arduino5PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino5PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino6Pin_t @brief The status of the 6 pin for the arduino. */ 
+    class Arduino6Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino6Pin_t */ 
+        Arduino6Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino6Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino6Pin_t */ 
+Arduino6Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino6Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino6PinValue_t @brief The value of the 6 pin for the arduino. */ 
+    class Arduino6PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino6PinValue_t */ 
+        Arduino6PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino6PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino6PinValue_t */ 
+Arduino6PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino6PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino7Pin_t @brief The status of the 7 pin for the arduino. */ 
+    class Arduino7Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino7Pin_t */ 
+        Arduino7Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino7Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino7Pin_t */ 
+Arduino7Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino7Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino7PinValue_t @brief The value of the 7 pin for the arduino. */ 
+    class Arduino7PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino7PinValue_t */ 
+        Arduino7PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino7PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino7PinValue_t */ 
+Arduino7PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino7PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino8Pin_t @brief The status of the 8 pin for the arduino. */ 
+    class Arduino8Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino8Pin_t */ 
+        Arduino8Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino8Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino8Pin_t */ 
+Arduino8Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino8Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino8PinValue_t @brief The value of the 8 pin for the arduino. */ 
+    class Arduino8PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino8PinValue_t */ 
+        Arduino8PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino8PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino8PinValue_t */ 
+Arduino8PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino8PinValue_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino9Pin_t @brief The status of the 9 pin for the arduino. */ 
+    class Arduino9Pin_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino9Pin_t */ 
+        Arduino9Pin_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino9Pin_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino9Pin_t */ 
+Arduino9Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino9Pin_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: Arduino9PinValue_t @brief The value of the 9 pin for the arduino. */ 
+    class Arduino9PinValue_t: public guWhiteboard_generic_whiteboard_object<bool > {
+        public: 
+        /** Constructor: Arduino9PinValue_t */ 
+        Arduino9PinValue_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(wbd, kArduino9PinValue_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: Arduino9PinValue_t */ 
+Arduino9PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino9PinValue_v, wbd, false) {}
+    };
+
 
 }
 

@@ -1839,6 +1839,150 @@ case klight_v:
     return true;
 
 }
+case kArduino2Pin_v:
+{
+
+    class Arduino2Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino2PinValue_v:
+{
+
+    class Arduino2PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino3Pin_v:
+{
+
+    class Arduino3Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino3PinValue_v:
+{
+
+    class Arduino3PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino4Pin_v:
+{
+
+    class Arduino4Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino4PinValue_v:
+{
+
+    class Arduino4PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino5Pin_v:
+{
+
+    class Arduino5Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino5PinValue_v:
+{
+
+    class Arduino5PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino6Pin_v:
+{
+
+    class Arduino6Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino6PinValue_v:
+{
+
+    class Arduino6PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino7Pin_v:
+{
+
+    class Arduino7Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino7PinValue_v:
+{
+
+    class Arduino7PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino8Pin_v:
+{
+
+    class Arduino8Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino8PinValue_v:
+{
+
+    class Arduino8PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino9Pin_v:
+{
+
+    class Arduino9Pin_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kArduino9PinValue_v:
+{
+
+    class Arduino9PinValue_t msg_ptr(wbd);
+    bool v = static_cast<bool>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -2013,6 +2157,22 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["motor"] = kmotor_v;
     self["sound"] = ksound_v;
     self["light"] = klight_v;
+    self["Arduino2Pin"] = kArduino2Pin_v;
+    self["Arduino2PinValue"] = kArduino2PinValue_v;
+    self["Arduino3Pin"] = kArduino3Pin_v;
+    self["Arduino3PinValue"] = kArduino3PinValue_v;
+    self["Arduino4Pin"] = kArduino4Pin_v;
+    self["Arduino4PinValue"] = kArduino4PinValue_v;
+    self["Arduino5Pin"] = kArduino5Pin_v;
+    self["Arduino5PinValue"] = kArduino5PinValue_v;
+    self["Arduino6Pin"] = kArduino6Pin_v;
+    self["Arduino6PinValue"] = kArduino6PinValue_v;
+    self["Arduino7Pin"] = kArduino7Pin_v;
+    self["Arduino7PinValue"] = kArduino7PinValue_v;
+    self["Arduino8Pin"] = kArduino8Pin_v;
+    self["Arduino8PinValue"] = kArduino8PinValue_v;
+    self["Arduino9Pin"] = kArduino9Pin_v;
+    self["Arduino9PinValue"] = kArduino9PinValue_v;
 
     (void) self;
 }

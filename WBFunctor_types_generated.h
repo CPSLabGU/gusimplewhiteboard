@@ -3672,6 +3672,374 @@ public:
 
 
 
+/** WBFunctor definition for Arduino2Pin_WBFunctor_T */ 
+template <typename Arduino2Pin_WBFunctor_T >
+class Arduino2Pin_WBFunctor: public WBFunctor<Arduino2Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino2Pin_WBFunctor_T */
+    Arduino2Pin_WBFunctor(Arduino2Pin_WBFunctor_T* obj, void (Arduino2Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino2Pin_WBFunctor_T >(obj, (void (Arduino2Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino2Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino2Pin_t().get_from(m);
+        Arduino2Pin_function_t funct((void (Arduino2Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino2Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino2Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino2Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino2Pin_WBFunctor_T::*Arduino2Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino2Pin_WBFunctor_T *obj, void (Arduino2Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino2Pin_WBFunctor<Arduino2Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino2PinValue_WBFunctor_T */ 
+template <typename Arduino2PinValue_WBFunctor_T >
+class Arduino2PinValue_WBFunctor: public WBFunctor<Arduino2PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino2PinValue_WBFunctor_T */
+    Arduino2PinValue_WBFunctor(Arduino2PinValue_WBFunctor_T* obj, void (Arduino2PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino2PinValue_WBFunctor_T >(obj, (void (Arduino2PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino2PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino2PinValue_t().get_from(m);
+        Arduino2PinValue_function_t funct((void (Arduino2PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino2PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino2PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino2PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino2PinValue_WBFunctor_T::*Arduino2PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino2PinValue_WBFunctor_T *obj, void (Arduino2PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino2PinValue_WBFunctor<Arduino2PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino3Pin_WBFunctor_T */ 
+template <typename Arduino3Pin_WBFunctor_T >
+class Arduino3Pin_WBFunctor: public WBFunctor<Arduino3Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino3Pin_WBFunctor_T */
+    Arduino3Pin_WBFunctor(Arduino3Pin_WBFunctor_T* obj, void (Arduino3Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino3Pin_WBFunctor_T >(obj, (void (Arduino3Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino3Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino3Pin_t().get_from(m);
+        Arduino3Pin_function_t funct((void (Arduino3Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino3Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino3Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino3Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino3Pin_WBFunctor_T::*Arduino3Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino3Pin_WBFunctor_T *obj, void (Arduino3Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino3Pin_WBFunctor<Arduino3Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino3PinValue_WBFunctor_T */ 
+template <typename Arduino3PinValue_WBFunctor_T >
+class Arduino3PinValue_WBFunctor: public WBFunctor<Arduino3PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino3PinValue_WBFunctor_T */
+    Arduino3PinValue_WBFunctor(Arduino3PinValue_WBFunctor_T* obj, void (Arduino3PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino3PinValue_WBFunctor_T >(obj, (void (Arduino3PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino3PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino3PinValue_t().get_from(m);
+        Arduino3PinValue_function_t funct((void (Arduino3PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino3PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino3PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino3PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino3PinValue_WBFunctor_T::*Arduino3PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino3PinValue_WBFunctor_T *obj, void (Arduino3PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino3PinValue_WBFunctor<Arduino3PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino4Pin_WBFunctor_T */ 
+template <typename Arduino4Pin_WBFunctor_T >
+class Arduino4Pin_WBFunctor: public WBFunctor<Arduino4Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino4Pin_WBFunctor_T */
+    Arduino4Pin_WBFunctor(Arduino4Pin_WBFunctor_T* obj, void (Arduino4Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino4Pin_WBFunctor_T >(obj, (void (Arduino4Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino4Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino4Pin_t().get_from(m);
+        Arduino4Pin_function_t funct((void (Arduino4Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino4Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino4Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino4Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino4Pin_WBFunctor_T::*Arduino4Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino4Pin_WBFunctor_T *obj, void (Arduino4Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino4Pin_WBFunctor<Arduino4Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino4PinValue_WBFunctor_T */ 
+template <typename Arduino4PinValue_WBFunctor_T >
+class Arduino4PinValue_WBFunctor: public WBFunctor<Arduino4PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino4PinValue_WBFunctor_T */
+    Arduino4PinValue_WBFunctor(Arduino4PinValue_WBFunctor_T* obj, void (Arduino4PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino4PinValue_WBFunctor_T >(obj, (void (Arduino4PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino4PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino4PinValue_t().get_from(m);
+        Arduino4PinValue_function_t funct((void (Arduino4PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino4PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino4PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino4PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino4PinValue_WBFunctor_T::*Arduino4PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino4PinValue_WBFunctor_T *obj, void (Arduino4PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino4PinValue_WBFunctor<Arduino4PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino5Pin_WBFunctor_T */ 
+template <typename Arduino5Pin_WBFunctor_T >
+class Arduino5Pin_WBFunctor: public WBFunctor<Arduino5Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino5Pin_WBFunctor_T */
+    Arduino5Pin_WBFunctor(Arduino5Pin_WBFunctor_T* obj, void (Arduino5Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino5Pin_WBFunctor_T >(obj, (void (Arduino5Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino5Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino5Pin_t().get_from(m);
+        Arduino5Pin_function_t funct((void (Arduino5Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino5Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino5Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino5Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino5Pin_WBFunctor_T::*Arduino5Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino5Pin_WBFunctor_T *obj, void (Arduino5Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino5Pin_WBFunctor<Arduino5Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino5PinValue_WBFunctor_T */ 
+template <typename Arduino5PinValue_WBFunctor_T >
+class Arduino5PinValue_WBFunctor: public WBFunctor<Arduino5PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino5PinValue_WBFunctor_T */
+    Arduino5PinValue_WBFunctor(Arduino5PinValue_WBFunctor_T* obj, void (Arduino5PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino5PinValue_WBFunctor_T >(obj, (void (Arduino5PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino5PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino5PinValue_t().get_from(m);
+        Arduino5PinValue_function_t funct((void (Arduino5PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino5PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino5PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino5PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino5PinValue_WBFunctor_T::*Arduino5PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino5PinValue_WBFunctor_T *obj, void (Arduino5PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino5PinValue_WBFunctor<Arduino5PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino6Pin_WBFunctor_T */ 
+template <typename Arduino6Pin_WBFunctor_T >
+class Arduino6Pin_WBFunctor: public WBFunctor<Arduino6Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino6Pin_WBFunctor_T */
+    Arduino6Pin_WBFunctor(Arduino6Pin_WBFunctor_T* obj, void (Arduino6Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino6Pin_WBFunctor_T >(obj, (void (Arduino6Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino6Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino6Pin_t().get_from(m);
+        Arduino6Pin_function_t funct((void (Arduino6Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino6Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino6Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino6Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino6Pin_WBFunctor_T::*Arduino6Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino6Pin_WBFunctor_T *obj, void (Arduino6Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino6Pin_WBFunctor<Arduino6Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino6PinValue_WBFunctor_T */ 
+template <typename Arduino6PinValue_WBFunctor_T >
+class Arduino6PinValue_WBFunctor: public WBFunctor<Arduino6PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino6PinValue_WBFunctor_T */
+    Arduino6PinValue_WBFunctor(Arduino6PinValue_WBFunctor_T* obj, void (Arduino6PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino6PinValue_WBFunctor_T >(obj, (void (Arduino6PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino6PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino6PinValue_t().get_from(m);
+        Arduino6PinValue_function_t funct((void (Arduino6PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino6PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino6PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino6PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino6PinValue_WBFunctor_T::*Arduino6PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino6PinValue_WBFunctor_T *obj, void (Arduino6PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino6PinValue_WBFunctor<Arduino6PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino7Pin_WBFunctor_T */ 
+template <typename Arduino7Pin_WBFunctor_T >
+class Arduino7Pin_WBFunctor: public WBFunctor<Arduino7Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino7Pin_WBFunctor_T */
+    Arduino7Pin_WBFunctor(Arduino7Pin_WBFunctor_T* obj, void (Arduino7Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino7Pin_WBFunctor_T >(obj, (void (Arduino7Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino7Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino7Pin_t().get_from(m);
+        Arduino7Pin_function_t funct((void (Arduino7Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino7Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino7Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino7Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino7Pin_WBFunctor_T::*Arduino7Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino7Pin_WBFunctor_T *obj, void (Arduino7Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino7Pin_WBFunctor<Arduino7Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino7PinValue_WBFunctor_T */ 
+template <typename Arduino7PinValue_WBFunctor_T >
+class Arduino7PinValue_WBFunctor: public WBFunctor<Arduino7PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino7PinValue_WBFunctor_T */
+    Arduino7PinValue_WBFunctor(Arduino7PinValue_WBFunctor_T* obj, void (Arduino7PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino7PinValue_WBFunctor_T >(obj, (void (Arduino7PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino7PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino7PinValue_t().get_from(m);
+        Arduino7PinValue_function_t funct((void (Arduino7PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino7PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino7PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino7PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino7PinValue_WBFunctor_T::*Arduino7PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino7PinValue_WBFunctor_T *obj, void (Arduino7PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino7PinValue_WBFunctor<Arduino7PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino8Pin_WBFunctor_T */ 
+template <typename Arduino8Pin_WBFunctor_T >
+class Arduino8Pin_WBFunctor: public WBFunctor<Arduino8Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino8Pin_WBFunctor_T */
+    Arduino8Pin_WBFunctor(Arduino8Pin_WBFunctor_T* obj, void (Arduino8Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino8Pin_WBFunctor_T >(obj, (void (Arduino8Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino8Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino8Pin_t().get_from(m);
+        Arduino8Pin_function_t funct((void (Arduino8Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino8Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino8Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino8Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino8Pin_WBFunctor_T::*Arduino8Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino8Pin_WBFunctor_T *obj, void (Arduino8Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino8Pin_WBFunctor<Arduino8Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino8PinValue_WBFunctor_T */ 
+template <typename Arduino8PinValue_WBFunctor_T >
+class Arduino8PinValue_WBFunctor: public WBFunctor<Arduino8PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino8PinValue_WBFunctor_T */
+    Arduino8PinValue_WBFunctor(Arduino8PinValue_WBFunctor_T* obj, void (Arduino8PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino8PinValue_WBFunctor_T >(obj, (void (Arduino8PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino8PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino8PinValue_t().get_from(m);
+        Arduino8PinValue_function_t funct((void (Arduino8PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino8PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino8PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino8PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino8PinValue_WBFunctor_T::*Arduino8PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino8PinValue_WBFunctor_T *obj, void (Arduino8PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino8PinValue_WBFunctor<Arduino8PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino9Pin_WBFunctor_T */ 
+template <typename Arduino9Pin_WBFunctor_T >
+class Arduino9Pin_WBFunctor: public WBFunctor<Arduino9Pin_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino9Pin_WBFunctor_T */
+    Arduino9Pin_WBFunctor(Arduino9Pin_WBFunctor_T* obj, void (Arduino9Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino9Pin_WBFunctor_T >(obj, (void (Arduino9Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino9Pin_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino9Pin_t().get_from(m);
+        Arduino9Pin_function_t funct((void (Arduino9Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino9Pin_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino9Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino9Pin_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino9Pin_WBFunctor_T::*Arduino9Pin_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino9Pin_WBFunctor_T *obj, void (Arduino9Pin_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino9Pin_WBFunctor<Arduino9Pin_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for Arduino9PinValue_WBFunctor_T */ 
+template <typename Arduino9PinValue_WBFunctor_T >
+class Arduino9PinValue_WBFunctor: public WBFunctor<Arduino9PinValue_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for Arduino9PinValue_WBFunctor_T */
+    Arduino9PinValue_WBFunctor(Arduino9PinValue_WBFunctor_T* obj, void (Arduino9PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino9PinValue_WBFunctor_T >(obj, (void (Arduino9PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class Arduino9PinValue_WBFunctor */
+    void call(gu_simple_message *m) {
+        bool result = guWhiteboard::Arduino9PinValue_t().get_from(m);
+        Arduino9PinValue_function_t funct((void (Arduino9PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino9PinValue_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<Arduino9PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino9PinValue_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (Arduino9PinValue_WBFunctor_T::*Arduino9PinValue_function_t) (guWhiteboard::WBTypes, bool &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(Arduino9PinValue_WBFunctor_T *obj, void (Arduino9PinValue_WBFunctor_T::*f)(guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t) { return new Arduino9PinValue_WBFunctor<Arduino9PinValue_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

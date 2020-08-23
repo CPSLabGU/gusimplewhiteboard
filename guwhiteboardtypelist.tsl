@@ -157,3 +157,19 @@ bool, nonatomic, timeLeft, The time remaining in the microwave - swiftfsm.
 bool, nonatomic, motor, The motor actuator for the microwave - swiftfsm.
 bool, nonatomic, sound, The alarm actuator for the microwave - swiftfsm.
 bool, nonatomic, light, The light actuator for the microwave - swiftfsm.
+bool, nonatomic, Arduino2Pin, The status of the 2 pin for the arduino.
+bool, nonatomic, Arduino2PinValue, The value of the 2 pin for the arduino.
+bool, nonatomic, Arduino3Pin, The status of the 3 pin for the arduino.
+bool, nonatomic, Arduino3PinValue, The value of the 3 pin for the arduino.
+bool, nonatomic, Arduino4Pin, The status of the 4 pin for the arduino.
+bool, nonatomic, Arduino4PinValue, The value of the 4 pin for the arduino.
+bool, nonatomic, Arduino5Pin, The status of the 5 pin for the arduino.
+bool, nonatomic, Arduino5PinValue, The value of the 5 pin for the arduino.
+bool, nonatomic, Arduino6Pin, The status of the 6 pin for the arduino.
+bool, nonatomic, Arduino6PinValue, The value of the 6 pin for the arduino.
+bool, nonatomic, Arduino7Pin, The status of the 7 pin for the arduino.
+bool, nonatomic, Arduino7PinValue, The value of the 7 pin for the arduino.
+bool, nonatomic, Arduino8Pin, The status of the 8 pin for the arduino.
+bool, nonatomic, Arduino8PinValue, The value of the 8 pin for the arduino.
+bool, nonatomic, Arduino9Pin, The status of the 9 pin for the arduino.
+bool, nonatomic, Arduino9PinValue, The value of the 9 pin for the arduino.

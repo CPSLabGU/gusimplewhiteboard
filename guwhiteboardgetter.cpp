@@ -1406,6 +1406,118 @@ namespace guWhiteboard
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
+            case kArduino2Pin_v:
+            {
+
+                class Arduino2Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino2PinValue_v:
+            {
+
+                class Arduino2PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino3Pin_v:
+            {
+
+                class Arduino3Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino3PinValue_v:
+            {
+
+                class Arduino3PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino4Pin_v:
+            {
+
+                class Arduino4Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino4PinValue_v:
+            {
+
+                class Arduino4PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino5Pin_v:
+            {
+
+                class Arduino5Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino5PinValue_v:
+            {
+
+                class Arduino5PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino6Pin_v:
+            {
+
+                class Arduino6Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino6PinValue_v:
+            {
+
+                class Arduino6PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino7Pin_v:
+            {
+
+                class Arduino7Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino7PinValue_v:
+            {
+
+                class Arduino7PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino8Pin_v:
+            {
+
+                class Arduino8Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino8PinValue_v:
+            {
+
+                class Arduino8PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino9Pin_v:
+            {
+
+                class Arduino9Pin_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
+            case kArduino9PinValue_v:
+            {
+
+                class Arduino9PinValue_t m(wbd);
+                return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
+
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

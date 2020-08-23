@@ -1260,6 +1260,86 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
+            case kArduino2Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino2PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino3Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino3PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino4Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino4PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino5Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino5PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino6Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino6PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino7Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino7PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino8Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino8PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino9Pin_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kArduino9PinValue_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
