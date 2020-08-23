@@ -134,6 +134,27 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const PixelCoordinateLine &other) const
+        {
+            return PixelCoordinate(_start) == PixelCoordinate(other._start)
+                && PixelCoordinate(_end) == PixelCoordinate(other._end);
+        }
+
+        bool operator !=(const PixelCoordinateLine &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_pixel_coordinate_line &other) const
+        {
+            return *this == PixelCoordinateLine(other);
+        }
+
+        bool operator !=(const wb_pixel_coordinate_line &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

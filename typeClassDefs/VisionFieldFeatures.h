@@ -148,6 +148,46 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionFieldFeatures &other) const
+        {
+            if (!(numCorners() == other.numCorners()
+                && numIntersections() == other.numIntersections()
+                && numCrosses() == other.numCrosses()
+                && res_width() == other.res_width()
+                && res_height() == other.res_height()))
+            {
+                return false;
+            }
+            for (int fieldCorner_0_index = 0; fieldCorner_0_index < 8; fieldCorner_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldCorner[fieldCorner_0_index]) == VisionFieldFeature(other._fieldCorner[fieldCorner_0_index]))) return false;
+            }
+            for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < 8; fieldIntersection_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldIntersection[fieldIntersection_0_index]) == VisionFieldFeature(other._fieldIntersection[fieldIntersection_0_index]))) return false;
+            }
+            for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < 3; fieldCrosses_0_index++)
+            {
+                if (!(VisionFieldFeature(_fieldCrosses[fieldCrosses_0_index]) == VisionFieldFeature(other._fieldCrosses[fieldCrosses_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const VisionFieldFeatures &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_field_features &other) const
+        {
+            return *this == VisionFieldFeatures(other);
+        }
+
+        bool operator !=(const wb_vision_field_features &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -411,7 +451,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldCorner_0_temp = VisionFieldFeature();
                             fieldCorner_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldCorner_0 = fieldCorner_0_temp;
-                            this->set_fieldCorner(fieldCorner_0, fieldCorner_0_index);;
+                            this->set_fieldCorner(fieldCorner_0, fieldCorner_0_index);
                         }
                         index = restartIndex;
                         break;
@@ -474,7 +514,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldIntersection_0_temp = VisionFieldFeature();
                             fieldIntersection_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldIntersection_0 = fieldIntersection_0_temp;
-                            this->set_fieldIntersection(fieldIntersection_0, fieldIntersection_0_index);;
+                            this->set_fieldIntersection(fieldIntersection_0, fieldIntersection_0_index);
                         }
                         index = restartIndex;
                         break;
@@ -537,7 +577,7 @@ namespace guWhiteboard {
                             VisionFieldFeature fieldCrosses_0_temp = VisionFieldFeature();
                             fieldCrosses_0_temp.from_string(var_str);
                             struct wb_vision_field_feature fieldCrosses_0 = fieldCrosses_0_temp;
-                            this->set_fieldCrosses(fieldCrosses_0, fieldCrosses_0_index);;
+                            this->set_fieldCrosses(fieldCrosses_0, fieldCrosses_0_index);
                         }
                         index = restartIndex;
                         break;

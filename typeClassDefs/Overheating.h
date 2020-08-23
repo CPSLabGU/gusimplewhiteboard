@@ -124,6 +124,26 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const Overheating &other) const
+        {
+            return overheating() == other.overheating();
+        }
+
+        bool operator !=(const Overheating &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_overheating &other) const
+        {
+            return *this == Overheating(other);
+        }
+
+        bool operator !=(const wb_overheating &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

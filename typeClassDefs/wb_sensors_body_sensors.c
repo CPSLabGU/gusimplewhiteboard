@@ -138,7 +138,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccX=%f", self->InertialSensor_AccX);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccX=%lf", (double) self->InertialSensor_AccX);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccY=%f", self->InertialSensor_AccY);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccY=%lf", (double) self->InertialSensor_AccY);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccZ=%f", self->InertialSensor_AccZ);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccZ=%lf", (double) self->InertialSensor_AccZ);
     if (len >= bufferSize) {
         return descString;
     }
@@ -162,7 +162,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrX=%f", self->InertialSensor_GyrX);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrX=%lf", (double) self->InertialSensor_GyrX);
     if (len >= bufferSize) {
         return descString;
     }
@@ -170,7 +170,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrY=%f", self->InertialSensor_GyrY);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrY=%lf", (double) self->InertialSensor_GyrY);
     if (len >= bufferSize) {
         return descString;
     }
@@ -178,7 +178,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrZ=%f", self->InertialSensor_GyrZ);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyrZ=%lf", (double) self->InertialSensor_GyrZ);
     if (len >= bufferSize) {
         return descString;
     }
@@ -186,7 +186,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleX=%f", self->InertialSensor_AngleX);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleX=%lf", (double) self->InertialSensor_AngleX);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +194,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleY=%f", self->InertialSensor_AngleY);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleY=%lf", (double) self->InertialSensor_AngleY);
     if (len >= bufferSize) {
         return descString;
     }
@@ -202,7 +202,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleZ=%f", self->InertialSensor_AngleZ);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AngleZ=%lf", (double) self->InertialSensor_AngleZ);
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +210,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerX=%f", self->InertialSensor_AccelerometerX);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerX=%lf", (double) self->InertialSensor_AccelerometerX);
     if (len >= bufferSize) {
         return descString;
     }
@@ -218,7 +218,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerY=%f", self->InertialSensor_AccelerometerY);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerY=%lf", (double) self->InertialSensor_AccelerometerY);
     if (len >= bufferSize) {
         return descString;
     }
@@ -226,7 +226,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerZ=%f", self->InertialSensor_AccelerometerZ);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_AccelerometerZ=%lf", (double) self->InertialSensor_AccelerometerZ);
     if (len >= bufferSize) {
         return descString;
     }
@@ -234,7 +234,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeX=%f", self->InertialSensor_GyroscopeX);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeX=%lf", (double) self->InertialSensor_GyroscopeX);
     if (len >= bufferSize) {
         return descString;
     }
@@ -242,7 +242,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeY=%f", self->InertialSensor_GyroscopeY);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeY=%lf", (double) self->InertialSensor_GyroscopeY);
     if (len >= bufferSize) {
         return descString;
     }
@@ -250,7 +250,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeZ=%f", self->InertialSensor_GyroscopeZ);
+    len += snprintf(descString + len, bufferSize - len, "InertialSensor_GyroscopeZ=%lf", (double) self->InertialSensor_GyroscopeZ);
     if (len >= bufferSize) {
         return descString;
     }
@@ -274,7 +274,7 @@ const char* wb_sensors_body_sensors_description(const struct wb_sensors_body_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "US=%f", self->US);
+    len += snprintf(descString + len, bufferSize - len, "US=%lf", (double) self->US);
     if (len >= bufferSize) {
         return descString;
     }
@@ -306,7 +306,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccX);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccX);
     if (len >= bufferSize) {
         return toString;
     }
@@ -314,7 +314,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccY);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccY);
     if (len >= bufferSize) {
         return toString;
     }
@@ -322,7 +322,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccZ);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccZ);
     if (len >= bufferSize) {
         return toString;
     }
@@ -330,7 +330,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyrX);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyrX);
     if (len >= bufferSize) {
         return toString;
     }
@@ -338,7 +338,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyrY);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyrY);
     if (len >= bufferSize) {
         return toString;
     }
@@ -346,7 +346,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyrZ);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyrZ);
     if (len >= bufferSize) {
         return toString;
     }
@@ -354,7 +354,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AngleX);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AngleX);
     if (len >= bufferSize) {
         return toString;
     }
@@ -362,7 +362,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AngleY);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AngleY);
     if (len >= bufferSize) {
         return toString;
     }
@@ -370,7 +370,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AngleZ);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AngleZ);
     if (len >= bufferSize) {
         return toString;
     }
@@ -378,7 +378,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccelerometerX);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccelerometerX);
     if (len >= bufferSize) {
         return toString;
     }
@@ -386,7 +386,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccelerometerY);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccelerometerY);
     if (len >= bufferSize) {
         return toString;
     }
@@ -394,7 +394,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_AccelerometerZ);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_AccelerometerZ);
     if (len >= bufferSize) {
         return toString;
     }
@@ -402,7 +402,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyroscopeX);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyroscopeX);
     if (len >= bufferSize) {
         return toString;
     }
@@ -410,7 +410,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyroscopeY);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyroscopeY);
     if (len >= bufferSize) {
         return toString;
     }
@@ -418,7 +418,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->InertialSensor_GyroscopeZ);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->InertialSensor_GyroscopeZ);
     if (len >= bufferSize) {
         return toString;
     }
@@ -442,7 +442,7 @@ const char* wb_sensors_body_sensors_to_string(const struct wb_sensors_body_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->US);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->US);
     if (len >= bufferSize) {
         return toString;
     }

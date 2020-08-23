@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_nao_joint_list_float.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -146,6 +147,50 @@ namespace guWhiteboard {
         NaoJointListFloat &operator = (const struct wb_nao_joint_list_float &other) {
             this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LWristYaw(), other.LHand(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.RWristYaw(), other.RHand(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RHipRoll(), other.RHipPitch(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
             return *this;
+        }
+
+        bool operator ==(const NaoJointListFloat &other) const
+        {
+            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
+                && fabsf(LShoulderPitch() - other.LShoulderPitch()) < FLT_EPSILON
+                && fabsf(LShoulderRoll() - other.LShoulderRoll()) < FLT_EPSILON
+                && fabsf(LElbowYaw() - other.LElbowYaw()) < FLT_EPSILON
+                && fabsf(LElbowRoll() - other.LElbowRoll()) < FLT_EPSILON
+                && fabsf(LWristYaw() - other.LWristYaw()) < FLT_EPSILON
+                && fabsf(LHand() - other.LHand()) < FLT_EPSILON
+                && fabsf(RShoulderPitch() - other.RShoulderPitch()) < FLT_EPSILON
+                && fabsf(RShoulderRoll() - other.RShoulderRoll()) < FLT_EPSILON
+                && fabsf(RElbowYaw() - other.RElbowYaw()) < FLT_EPSILON
+                && fabsf(RElbowRoll() - other.RElbowRoll()) < FLT_EPSILON
+                && fabsf(RWristYaw() - other.RWristYaw()) < FLT_EPSILON
+                && fabsf(RHand() - other.RHand()) < FLT_EPSILON
+                && fabsf(LHipYawPitch() - other.LHipYawPitch()) < FLT_EPSILON
+                && fabsf(LHipRoll() - other.LHipRoll()) < FLT_EPSILON
+                && fabsf(LHipPitch() - other.LHipPitch()) < FLT_EPSILON
+                && fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
+                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
+                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
+                && fabsf(RHipRoll() - other.RHipRoll()) < FLT_EPSILON
+                && fabsf(RHipPitch() - other.RHipPitch()) < FLT_EPSILON
+                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
+                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
+                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const NaoJointListFloat &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_nao_joint_list_float &other) const
+        {
+            return *this == NaoJointListFloat(other);
+        }
+
+        bool operator !=(const wb_nao_joint_list_float &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

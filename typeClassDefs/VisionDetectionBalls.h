@@ -134,6 +134,36 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const VisionDetectionBalls &other) const
+        {
+            if (!(frameNumber() == other.frameNumber()
+                && res_width() == other.res_width()
+                && res_height() == other.res_height()))
+            {
+                return false;
+            }
+            for (int balls_0_index = 0; balls_0_index < 2; balls_0_index++)
+            {
+                if (!(VisionDetectionBall(_balls[balls_0_index]) == VisionDetectionBall(other._balls[balls_0_index]))) return false;
+            }
+            return true;
+        }
+
+        bool operator !=(const VisionDetectionBalls &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_vision_detection_balls &other) const
+        {
+            return *this == VisionDetectionBalls(other);
+        }
+
+        bool operator !=(const wb_vision_detection_balls &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -289,7 +319,11 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
+#ifdef __APPLE__
                         this->set_frameNumber(static_cast<uint64_t>(atoll(var_str)));
+#else
+                        this->set_frameNumber(static_cast<uint64_t>(atol(var_str)));
+#endif
                         break;
                     }
                     case 1:
@@ -350,7 +384,7 @@ namespace guWhiteboard {
                             VisionDetectionBall balls_0_temp = VisionDetectionBall();
                             balls_0_temp.from_string(var_str);
                             struct wb_vision_detection_ball balls_0 = balls_0_temp;
-                            this->set_balls(balls_0, balls_0_index);;
+                            this->set_balls(balls_0, balls_0_index);
                         }
                         index = restartIndex;
                         break;

@@ -124,6 +124,26 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const PixelToRobotRelativeCoord &other) const
+        {
+            return true;
+        }
+
+        bool operator !=(const PixelToRobotRelativeCoord &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_pixel_to_robot_relative_coord &other) const
+        {
+            return *this == PixelToRobotRelativeCoord(other);
+        }
+
+        bool operator !=(const wb_pixel_to_robot_relative_coord &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

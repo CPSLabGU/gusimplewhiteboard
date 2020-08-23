@@ -130,7 +130,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_FrontLeft=%f", self->LFoot_FSR_FrontLeft);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_FrontLeft=%lf", (double) self->LFoot_FSR_FrontLeft);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_FrontRight=%f", self->LFoot_FSR_FrontRight);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_FrontRight=%lf", (double) self->LFoot_FSR_FrontRight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -146,7 +146,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_RearLeft=%f", self->LFoot_FSR_RearLeft);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_RearLeft=%lf", (double) self->LFoot_FSR_RearLeft);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_RearRight=%f", self->LFoot_FSR_RearRight);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_RearRight=%lf", (double) self->LFoot_FSR_RearRight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -162,7 +162,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_CenterOfPressure_X=%f", self->LFoot_FSR_CenterOfPressure_X);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_CenterOfPressure_X=%lf", (double) self->LFoot_FSR_CenterOfPressure_X);
     if (len >= bufferSize) {
         return descString;
     }
@@ -170,7 +170,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_CenterOfPressure_Y=%f", self->LFoot_FSR_CenterOfPressure_Y);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_CenterOfPressure_Y=%lf", (double) self->LFoot_FSR_CenterOfPressure_Y);
     if (len >= bufferSize) {
         return descString;
     }
@@ -178,7 +178,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_TotalWeight=%f", self->LFoot_FSR_TotalWeight);
+    len += snprintf(descString + len, bufferSize - len, "LFoot_FSR_TotalWeight=%lf", (double) self->LFoot_FSR_TotalWeight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -186,7 +186,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_FrontLeft=%f", self->RFoot_FSR_FrontLeft);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_FrontLeft=%lf", (double) self->RFoot_FSR_FrontLeft);
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +194,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_FrontRight=%f", self->RFoot_FSR_FrontRight);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_FrontRight=%lf", (double) self->RFoot_FSR_FrontRight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -202,7 +202,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_RearLeft=%f", self->RFoot_FSR_RearLeft);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_RearLeft=%lf", (double) self->RFoot_FSR_RearLeft);
     if (len >= bufferSize) {
         return descString;
     }
@@ -210,7 +210,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_RearRight=%f", self->RFoot_FSR_RearRight);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_RearRight=%lf", (double) self->RFoot_FSR_RearRight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -218,7 +218,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_CenterOfPressure_X=%f", self->RFoot_FSR_CenterOfPressure_X);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_CenterOfPressure_X=%lf", (double) self->RFoot_FSR_CenterOfPressure_X);
     if (len >= bufferSize) {
         return descString;
     }
@@ -226,7 +226,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_CenterOfPressure_Y=%f", self->RFoot_FSR_CenterOfPressure_Y);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_CenterOfPressure_Y=%lf", (double) self->RFoot_FSR_CenterOfPressure_Y);
     if (len >= bufferSize) {
         return descString;
     }
@@ -234,7 +234,7 @@ const char* wb_sensors_foot_sensors_description(const struct wb_sensors_foot_sen
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_TotalWeight=%f", self->RFoot_FSR_TotalWeight);
+    len += snprintf(descString + len, bufferSize - len, "RFoot_FSR_TotalWeight=%lf", (double) self->RFoot_FSR_TotalWeight);
     if (len >= bufferSize) {
         return descString;
     }
@@ -282,7 +282,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_FrontLeft);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_FrontLeft);
     if (len >= bufferSize) {
         return toString;
     }
@@ -290,7 +290,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_FrontRight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_FrontRight);
     if (len >= bufferSize) {
         return toString;
     }
@@ -298,7 +298,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_RearLeft);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_RearLeft);
     if (len >= bufferSize) {
         return toString;
     }
@@ -306,7 +306,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_RearRight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_RearRight);
     if (len >= bufferSize) {
         return toString;
     }
@@ -314,7 +314,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_CenterOfPressure_X);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_CenterOfPressure_X);
     if (len >= bufferSize) {
         return toString;
     }
@@ -322,7 +322,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_CenterOfPressure_Y);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_CenterOfPressure_Y);
     if (len >= bufferSize) {
         return toString;
     }
@@ -330,7 +330,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->LFoot_FSR_TotalWeight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->LFoot_FSR_TotalWeight);
     if (len >= bufferSize) {
         return toString;
     }
@@ -338,7 +338,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_FrontLeft);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_FrontLeft);
     if (len >= bufferSize) {
         return toString;
     }
@@ -346,7 +346,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_FrontRight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_FrontRight);
     if (len >= bufferSize) {
         return toString;
     }
@@ -354,7 +354,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_RearLeft);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_RearLeft);
     if (len >= bufferSize) {
         return toString;
     }
@@ -362,7 +362,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_RearRight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_RearRight);
     if (len >= bufferSize) {
         return toString;
     }
@@ -370,7 +370,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_CenterOfPressure_X);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_CenterOfPressure_X);
     if (len >= bufferSize) {
         return toString;
     }
@@ -378,7 +378,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_CenterOfPressure_Y);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_CenterOfPressure_Y);
     if (len >= bufferSize) {
         return toString;
     }
@@ -386,7 +386,7 @@ const char* wb_sensors_foot_sensors_to_string(const struct wb_sensors_foot_senso
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->RFoot_FSR_TotalWeight);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->RFoot_FSR_TotalWeight);
     if (len >= bufferSize) {
         return toString;
     }

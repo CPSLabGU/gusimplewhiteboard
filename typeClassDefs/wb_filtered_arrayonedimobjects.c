@@ -341,7 +341,7 @@ struct wb_filtered_arrayonedimobjects* wb_filtered_arrayonedimobjects_from_strin
                     endKey = -1;
                     struct wb_filtered_vision_object objects_0 = {};
                     wb_filtered_vision_object_from_string(&objects_0, var_str);
-                    self->objects[objects_0_index] = objects_0;;
+                    self->objects[objects_0_index] = objects_0;
                 }
                 index = restartIndex;
                 break;

@@ -126,6 +126,28 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const SensorsHeadSensors &other) const
+        {
+            return Head_Touch_Front() == other.Head_Touch_Front()
+                && Head_Touch_Middle() == other.Head_Touch_Middle()
+                && Head_Touch_Rear() == other.Head_Touch_Rear();
+        }
+
+        bool operator !=(const SensorsHeadSensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_head_sensors &other) const
+        {
+            return *this == SensorsHeadSensors(other);
+        }
+
+        bool operator !=(const wb_sensors_head_sensors &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

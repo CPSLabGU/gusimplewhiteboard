@@ -341,7 +341,7 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
                     endKey = -1;
                     struct wb_particle_position particles_0 = {};
                     wb_particle_position_from_string(&particles_0, var_str);
-                    self->particles[particles_0_index] = particles_0;;
+                    self->particles[particles_0_index] = particles_0;
                 }
                 index = restartIndex;
                 break;

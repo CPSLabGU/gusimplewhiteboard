@@ -146,7 +146,7 @@ const char* wb_teleoperation_control_v_r_description(const struct wb_teleoperati
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%f", self->HeadYaw);
+    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%lf", (double) self->HeadYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -154,7 +154,7 @@ const char* wb_teleoperation_control_v_r_description(const struct wb_teleoperati
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
+    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%lf", (double) self->HeadPitch);
     if (len >= bufferSize) {
         return descString;
     }
@@ -242,7 +242,7 @@ const char* wb_teleoperation_control_v_r_to_string(const struct wb_teleoperation
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadYaw);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -250,7 +250,7 @@ const char* wb_teleoperation_control_v_r_to_string(const struct wb_teleoperation
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadPitch);
     if (len >= bufferSize) {
         return toString;
     }

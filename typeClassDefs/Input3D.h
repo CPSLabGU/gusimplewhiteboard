@@ -127,6 +127,29 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const Input3D &other) const
+        {
+            return yaw() == other.yaw()
+                && pitch() == other.pitch()
+                && roll() == other.roll()
+                && power() == other.power();
+        }
+
+        bool operator !=(const Input3D &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_input3d &other) const
+        {
+            return *this == Input3D(other);
+        }
+
+        bool operator !=(const wb_input3d &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

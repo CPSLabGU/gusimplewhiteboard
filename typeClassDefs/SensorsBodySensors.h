@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_sensors_body_sensors.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -141,6 +142,45 @@ namespace guWhiteboard {
         SensorsBodySensors &operator = (const struct wb_sensors_body_sensors &other) {
             this->init(other.DCM_Time(), other.InertialSensor_AccX(), other.InertialSensor_AccY(), other.InertialSensor_AccZ(), other.InertialSensor_GyrX(), other.InertialSensor_GyrY(), other.InertialSensor_GyrZ(), other.InertialSensor_AngleX(), other.InertialSensor_AngleY(), other.InertialSensor_AngleZ(), other.InertialSensor_AccelerometerX(), other.InertialSensor_AccelerometerY(), other.InertialSensor_AccelerometerZ(), other.InertialSensor_GyroscopeX(), other.InertialSensor_GyroscopeY(), other.InertialSensor_GyroscopeZ(), other.Battery_Charge(), other.Battery_Current(), other.US(), other.ChestBoard_Button());
             return *this;
+        }
+
+        bool operator ==(const SensorsBodySensors &other) const
+        {
+            return DCM_Time() == other.DCM_Time()
+                && fabsf(InertialSensor_AccX() - other.InertialSensor_AccX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccY() - other.InertialSensor_AccY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccZ() - other.InertialSensor_AccZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrX() - other.InertialSensor_GyrX()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrY() - other.InertialSensor_GyrY()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrZ() - other.InertialSensor_GyrZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleX() - other.InertialSensor_AngleX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleY() - other.InertialSensor_AngleY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleZ() - other.InertialSensor_AngleZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerX() - other.InertialSensor_AccelerometerX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerY() - other.InertialSensor_AccelerometerY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerZ() - other.InertialSensor_AccelerometerZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeX() - other.InertialSensor_GyroscopeX()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeY() - other.InertialSensor_GyroscopeY()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeZ() - other.InertialSensor_GyroscopeZ()) < FLT_EPSILON
+                && Battery_Charge() == other.Battery_Charge()
+                && Battery_Current() == other.Battery_Current()
+                && fabsf(US() - other.US()) < FLT_EPSILON
+                && ChestBoard_Button() == other.ChestBoard_Button();
+        }
+
+        bool operator !=(const SensorsBodySensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_body_sensors &other) const
+        {
+            return *this == SensorsBodySensors(other);
+        }
+
+        bool operator !=(const wb_sensors_body_sensors &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

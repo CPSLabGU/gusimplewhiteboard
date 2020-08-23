@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_sensors_torsojointsensors.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -133,6 +134,37 @@ namespace guWhiteboard {
         SENSORSTorsoJointSensors &operator = (const struct wb_sensors_torsojointsensors &other) {
             this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.LWristYaw(), other.RWristYaw());
             return *this;
+        }
+
+        bool operator ==(const SENSORSTorsoJointSensors &other) const
+        {
+            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
+                && fabsf(LShoulderPitch() - other.LShoulderPitch()) < FLT_EPSILON
+                && fabsf(LShoulderRoll() - other.LShoulderRoll()) < FLT_EPSILON
+                && fabsf(LElbowYaw() - other.LElbowYaw()) < FLT_EPSILON
+                && fabsf(LElbowRoll() - other.LElbowRoll()) < FLT_EPSILON
+                && fabsf(RShoulderPitch() - other.RShoulderPitch()) < FLT_EPSILON
+                && fabsf(RShoulderRoll() - other.RShoulderRoll()) < FLT_EPSILON
+                && fabsf(RElbowYaw() - other.RElbowYaw()) < FLT_EPSILON
+                && fabsf(RElbowRoll() - other.RElbowRoll()) < FLT_EPSILON
+                && fabsf(LWristYaw() - other.LWristYaw()) < FLT_EPSILON
+                && fabsf(RWristYaw() - other.RWristYaw()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const SENSORSTorsoJointSensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_torsojointsensors &other) const
+        {
+            return *this == SENSORSTorsoJointSensors(other);
+        }
+
+        bool operator !=(const wb_sensors_torsojointsensors &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

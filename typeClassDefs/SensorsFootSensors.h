@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_sensors_foot_sensors.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -139,6 +140,43 @@ namespace guWhiteboard {
         SensorsFootSensors &operator = (const struct wb_sensors_foot_sensors &other) {
             this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
             return *this;
+        }
+
+        bool operator ==(const SensorsFootSensors &other) const
+        {
+            return fabsf(LFoot_FSR_FrontLeft() - other.LFoot_FSR_FrontLeft()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_FrontRight() - other.LFoot_FSR_FrontRight()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_RearLeft() - other.LFoot_FSR_RearLeft()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_RearRight() - other.LFoot_FSR_RearRight()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_CenterOfPressure_X() - other.LFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_CenterOfPressure_Y() - other.LFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_TotalWeight() - other.LFoot_FSR_TotalWeight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_FrontLeft() - other.RFoot_FSR_FrontLeft()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_FrontRight() - other.RFoot_FSR_FrontRight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_RearLeft() - other.RFoot_FSR_RearLeft()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_RearRight() - other.RFoot_FSR_RearRight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_CenterOfPressure_X() - other.RFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_CenterOfPressure_Y() - other.RFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_TotalWeight() - other.RFoot_FSR_TotalWeight()) < FLT_EPSILON
+                && LFoot_Bumper_Left() == other.LFoot_Bumper_Left()
+                && LFoot_Bumper_Right() == other.LFoot_Bumper_Right()
+                && RFoot_Bumper_Left() == other.RFoot_Bumper_Left()
+                && RFoot_Bumper_Right() == other.RFoot_Bumper_Right();
+        }
+
+        bool operator !=(const SensorsFootSensors &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_foot_sensors &other) const
+        {
+            return *this == SensorsFootSensors(other);
+        }
+
+        bool operator !=(const wb_sensors_foot_sensors &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

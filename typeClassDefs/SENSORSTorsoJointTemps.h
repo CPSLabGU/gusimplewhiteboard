@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_sensors_torsojointtemps.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -136,6 +137,40 @@ namespace guWhiteboard {
         SENSORSTorsoJointTemps &operator = (const struct wb_sensors_torsojointtemps &other) {
             this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipRoll(), other.RHipPitch(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll());
             return *this;
+        }
+
+        bool operator ==(const SENSORSTorsoJointTemps &other) const
+        {
+            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
+                && fabsf(LShoulderPitch() - other.LShoulderPitch()) < FLT_EPSILON
+                && fabsf(LShoulderRoll() - other.LShoulderRoll()) < FLT_EPSILON
+                && fabsf(LElbowYaw() - other.LElbowYaw()) < FLT_EPSILON
+                && fabsf(LElbowRoll() - other.LElbowRoll()) < FLT_EPSILON
+                && fabsf(LHipYawPitch() - other.LHipYawPitch()) < FLT_EPSILON
+                && fabsf(LHipRoll() - other.LHipRoll()) < FLT_EPSILON
+                && fabsf(LHipPitch() - other.LHipPitch()) < FLT_EPSILON
+                && fabsf(RHipRoll() - other.RHipRoll()) < FLT_EPSILON
+                && fabsf(RHipPitch() - other.RHipPitch()) < FLT_EPSILON
+                && fabsf(RShoulderPitch() - other.RShoulderPitch()) < FLT_EPSILON
+                && fabsf(RShoulderRoll() - other.RShoulderRoll()) < FLT_EPSILON
+                && fabsf(RElbowYaw() - other.RElbowYaw()) < FLT_EPSILON
+                && fabsf(RElbowRoll() - other.RElbowRoll()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const SENSORSTorsoJointTemps &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_sensors_torsojointtemps &other) const
+        {
+            return *this == SENSORSTorsoJointTemps(other);
+        }
+
+        bool operator !=(const wb_sensors_torsojointtemps &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

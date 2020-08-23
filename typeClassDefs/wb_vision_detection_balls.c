@@ -130,7 +130,11 @@ const char* wb_vision_detection_balls_description(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return descString;
     }
+#ifdef __APPLE__
     len += snprintf(descString + len, bufferSize - len, "frameNumber=%llu", self->frameNumber);
+#else
+    len += snprintf(descString + len, bufferSize - len, "frameNumber=%lu", self->frameNumber);
+#endif
     if (len >= bufferSize) {
         return descString;
     }
@@ -194,7 +198,11 @@ const char* wb_vision_detection_balls_to_string(const struct wb_vision_detection
     if (len >= bufferSize) {
         return toString;
     }
+#ifdef __APPLE__
     len += snprintf(toString + len, bufferSize - len, "%llu", self->frameNumber);
+#else
+    len += snprintf(toString + len, bufferSize - len, "%lu", self->frameNumber);
+#endif
     if (len >= bufferSize) {
         return toString;
     }
@@ -340,7 +348,11 @@ struct wb_vision_detection_balls* wb_vision_detection_balls_from_string(struct w
             case -1: { break; }
             case 0:
             {
+#ifdef __APPLE__
                 self->frameNumber = ((uint64_t)atoll(var_str));
+#else
+                self->frameNumber = ((uint64_t)atol(var_str));
+#endif
                 break;
             }
             case 1:
@@ -400,7 +412,7 @@ struct wb_vision_detection_balls* wb_vision_detection_balls_from_string(struct w
                     endKey = -1;
                     struct wb_vision_detection_ball balls_0 = {};
                     wb_vision_detection_ball_from_string(&balls_0, var_str);
-                    self->balls[balls_0_index] = balls_0;;
+                    self->balls[balls_0_index] = balls_0;
                 }
                 index = restartIndex;
                 break;

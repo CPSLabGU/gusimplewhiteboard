@@ -124,6 +124,26 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const AdjustPositionConfidence &other) const
+        {
+            return adjustment() == other.adjustment();
+        }
+
+        bool operator !=(const AdjustPositionConfidence &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_adjust_position_confidence &other) const
+        {
+            return *this == AdjustPositionConfidence(other);
+        }
+
+        bool operator !=(const wb_adjust_position_confidence &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

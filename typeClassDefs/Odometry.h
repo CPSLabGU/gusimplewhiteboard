@@ -68,6 +68,7 @@
 
 #include <gu_util.h>
 #include "wb_odometry.h"
+#include <float.h>
 
 namespace guWhiteboard {
 
@@ -124,6 +125,28 @@ namespace guWhiteboard {
         Odometry &operator = (const struct wb_odometry &other) {
             this->init(other.forward(), other.left(), other.turn());
             return *this;
+        }
+
+        bool operator ==(const Odometry &other) const
+        {
+            return fabsf(forward() - other.forward()) < FLT_EPSILON
+                && fabsf(left() - other.left()) < FLT_EPSILON
+                && fabsf(turn() - other.turn()) < FLT_EPSILON;
+        }
+
+        bool operator !=(const Odometry &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_odometry &other) const
+        {
+            return *this == Odometry(other);
+        }
+
+        bool operator !=(const wb_odometry &other) const
+        {
+            return !(*this == other);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION

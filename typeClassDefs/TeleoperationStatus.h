@@ -124,6 +124,26 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const TeleoperationStatus &other) const
+        {
+            return 0 == strncmp(_sayString, other._sayString, 30);
+        }
+
+        bool operator !=(const TeleoperationStatus &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_teleoperation_status &other) const
+        {
+            return *this == TeleoperationStatus(other);
+        }
+
+        bool operator !=(const wb_teleoperation_status &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

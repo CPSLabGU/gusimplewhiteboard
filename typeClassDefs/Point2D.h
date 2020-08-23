@@ -125,6 +125,27 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const Point2D &other) const
+        {
+            return x() == other.x()
+                && y() == other.y();
+        }
+
+        bool operator !=(const Point2D &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_point2d &other) const
+        {
+            return *this == Point2D(other);
+        }
+
+        bool operator !=(const wb_point2d &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

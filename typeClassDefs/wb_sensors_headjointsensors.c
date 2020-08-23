@@ -130,7 +130,7 @@ const char* wb_sensors_headjointsensors_description(const struct wb_sensors_head
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%f", self->HeadYaw);
+    len += snprintf(descString + len, bufferSize - len, "HeadYaw=%lf", (double) self->HeadYaw);
     if (len >= bufferSize) {
         return descString;
     }
@@ -138,7 +138,7 @@ const char* wb_sensors_headjointsensors_description(const struct wb_sensors_head
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%f", self->HeadPitch);
+    len += snprintf(descString + len, bufferSize - len, "HeadPitch=%lf", (double) self->HeadPitch);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -154,7 +154,7 @@ const char* wb_sensors_headjointsensors_to_string(const struct wb_sensors_headjo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadYaw);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadYaw);
     if (len >= bufferSize) {
         return toString;
     }
@@ -162,7 +162,7 @@ const char* wb_sensors_headjointsensors_to_string(const struct wb_sensors_headjo
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%f", self->HeadPitch);
+    len += snprintf(toString + len, bufferSize - len, "%lf", (double) self->HeadPitch);
     return toString;
 #pragma clang diagnostic pop
 }

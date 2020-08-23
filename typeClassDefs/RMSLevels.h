@@ -127,6 +127,29 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const RMSLevels &other) const
+        {
+            return rear_left() == other.rear_left()
+                && rear_right() == other.rear_right()
+                && front_left() == other.front_left()
+                && front_right() == other.front_right();
+        }
+
+        bool operator !=(const RMSLevels &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_r_m_s_levels &other) const
+        {
+            return *this == RMSLevels(other);
+        }
+
+        bool operator !=(const wb_r_m_s_levels &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.

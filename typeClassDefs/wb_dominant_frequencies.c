@@ -387,7 +387,7 @@ struct wb_dominant_frequencies* wb_dominant_frequencies_from_string(struct wb_do
                     endKey = -1;
                     struct wb_microphone_frequencies frequencies_0 = {};
                     wb_microphone_frequencies_from_string(&frequencies_0, var_str);
-                    self->frequencies[frequencies_0_index] = frequencies_0;;
+                    self->frequencies[frequencies_0_index] = frequencies_0;
                 }
                 index = restartIndex;
                 break;

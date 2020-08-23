@@ -127,6 +127,29 @@ namespace guWhiteboard {
             return *this;
         }
 
+        bool operator ==(const MicrophoneFrequencies &other) const
+        {
+            return rear_left() == other.rear_left()
+                && rear_right() == other.rear_right()
+                && front_left() == other.front_left()
+                && front_right() == other.front_right();
+        }
+
+        bool operator !=(const MicrophoneFrequencies &other) const
+        {
+            return !(*this == other);
+        }
+
+        bool operator ==(const wb_microphone_frequencies &other) const
+        {
+            return *this == MicrophoneFrequencies(other);
+        }
+
+        bool operator !=(const wb_microphone_frequencies &other) const
+        {
+            return !(*this == other);
+        }
+
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
