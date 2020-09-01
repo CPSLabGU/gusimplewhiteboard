@@ -86,6 +86,8 @@
 #include <stdint.h>
 
 #include <stdint.h>
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
 #define LOCATION_GENERATED 
 #define LOCATION_C_STRUCT wb_location 
@@ -151,6 +153,53 @@ const char* wb_location_to_string(const struct wb_location* self, char* toString
 struct wb_location* wb_location_from_string(struct wb_location* self, const char* str);
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+/**
+ *  \brief Converts a gu_relative_coordinate to a wb_location.
+ *
+ *  \param[in] coord The gu_relative_coordinate which is being converted.
+ *
+ *  \param[in] confidence The confidence value for the new location.
+ *
+ *  \param[in] distanceVariance The distanceVariance value for the new location.
+ *
+ *  \param[in] directionVariance The directionVariance value for the new location.
+ *
+ *  \returns A wb_location containing the values of coord having performed the
+ *  necessary conversions.
+ */
+struct wb_location rr_coord_to_wb_location(const gu_relative_coordinate coord, const uint8_t confidence, const uint32_t distanceVariance, const uint32_t directionVariance);
+
+/**
+ *  \brief Converts a wb_location to a gu_relative_coordinate.
+ *
+ *  \param[in] location The wb_location which is being converted.
+ *
+ *  \returns A gu_relative_coordinate containing the values of coord having
+ *  performed the necessary conversions.
+ *
+ *  \attention The confidence of the location is discarded since
+ *  gu_relative_coordinate has no notion of a confidence.
+ */
+struct gu_relative_coordinate wb_location_to_rr_coord(const struct wb_location location);
+
+/**
+ *  \brief Converts a wb_location to a gu_optional_relative_coordinate.
+ *
+ *  \param[in] location The wb_location which is being converted.
+ *
+ *  \param[in] confidence The minimum confidence value that location needs to be
+ *  in order for the returning gu_optional_relative_coordinate to contain a
+ *  value. If the locations confidence is less than this value then this
+ *  function returns a gu_optional_realtive_coordinate where
+ *  gu_optional_relative_coordinate::has_value is false.
+ *
+ *  \returns A gu_optional_relative_coordinate containing the values of coord
+ *  having performed the necessary conversions. If locations confidence value
+ *  is less than confidence then the gu_optional_realtive_coordinate::has_value
+ *  is false;
+ */
+struct gu_optional_relative_coordinate wb_location_to_opt_rr_coord(const struct wb_location location, const uint8_t confidence);
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

@@ -69,6 +69,13 @@
 #include <gu_util.h>
 #include "wb_location.h"
 
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+
+#if __cplusplus >= 201703L
+#include <optional>
+#endif
+
 namespace guWhiteboard {
 
     /**
@@ -326,6 +333,115 @@ namespace guWhiteboard {
 #endif /// USE_WB_LOCATION_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        /**
+         *  \brief Create a new Location by converting the values from a
+         *  GU::RelativeCoordinate.
+         *
+         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *
+         *  \warning Since a confidence, distanceVariance and directionVariance are not
+         *  provided, the default values will be used.
+         */
+        Location(const GU::RelativeCoordinate &other)
+        {
+            this->init(
+                deg_d_to_i16(other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(other.distance()))
+            );
+        }
+
+        /**
+         *  \brief Create a new Location by converting the values from a
+         *  GU::RelativeCoordinate.
+         *
+         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *
+         *  \param[in] confidence The percentage of certainty of the location.
+         *
+         *  \warning Since a distanceVariance and directionVariance are not
+         *  provided, the default values will be used.
+         */
+        Location(const GU::RelativeCoordinate &other, const uint8_t confidence)
+        {
+            this->init(
+                deg_d_to_i16(other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(other.distance())),
+                confidence
+            );
+        }
+
+        /**
+         *  \brief Create a new Location by converting the values from a
+         *  GU::RelativeCoordinate.
+         *
+         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *
+         *  \param[in] confidence The percentage of certainty of the location.
+         *
+         *  \param[in] distanceVariance The variance of the distance.
+         *
+         *  \param[in] directionVariance The variance of the direction.
+         */
+        Location(const GU::RelativeCoordinate &other, const uint8_t confidence, const uint32_t distanceVariance, uint32_t directionVariance)
+        {
+            this->init(
+                deg_d_to_i16(other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(other.distance())),
+                confidence,
+                distanceVariance,
+                directionVariance
+            );
+        }
+
+        /**
+         *  \brief Convert this location to a GU::RelativeCoordinate.
+         *
+         *  \returns A new GU::RelativeCoordinate converted from this location.
+         */
+        GU::RelativeCoordinate relativeCoordinate() const
+        {
+            return GU::RelativeCoordinate(wb_location_to_rr_coord(*this));
+        }
+
+        /**
+         *  \brief Convert this location to a GU::RelativeCoordinate only if the
+         *  confidence of the location is greater than or equal to the specified
+         *  minimum confidence.
+         *
+         *  \param[in] minimumConfidence The minimim confidence value the confidence()
+         *  has to be in order for GU::OptionalRelativeCoordinate::has_value to be
+         *  true.
+         *
+         *  \returns A new GU::OptionalRelativeCoordinate converted from this location
+         *  where GU::OptionalRelativeCoordinate::has_value is only true when
+         *  confidence() >= minimumConfidence.
+         */
+        GU::OptionalRelativeCoordinate optionalRelativeCoordinate(const uint8_t minimumConfidence) const
+        {
+            return GU::OptionalRelativeCoordinate(wb_location_to_opt_rr_coord(*this, minimumConfidence));
+        }
+
+#if __cplusplus >= 201703L
+        /**
+         *  \brief Convert this location to a GU::RelativeCoordinate only if the
+         *  confidence of the location is greater than or equal to the specified
+         *  minimum confidence.
+         *
+         *  \param[in] minimumConfidence The minimim confidence value the confidence()
+         *  has to be in order for std::optional<GU::RelativeCoordinate>::has_value to
+         *  be true.
+         *
+         *  \returns A new std::optional<GU::RelativeCoordinate> converted from this
+         *  location where std::optional<GU::RelativeCoordinate>::has_value is only
+         *  true when confidence() >= minimumConfidence.
+         */
+        std::optional<GU::RelativeCoordinate> relativeCoordinate(const uint8_t minimumConfidence) const
+        {
+            if (confidence() < minimumConfidence) return std::nullopt;
+            return std::optional<GU::RelativeCoordinate>(relativeCoordinate());
+        }
+#endif
     };
 
 } /// namespace guWhiteboard

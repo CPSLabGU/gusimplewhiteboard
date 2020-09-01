@@ -507,3 +507,33 @@ size_t wb_location_from_network_serialised(const char *src, struct wb_location *
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+struct wb_location rr_coord_to_wb_location(const gu_relative_coordinate coord, const uint8_t confidence, const uint32_t distanceVariance, const uint32_t directionVariance)
+{
+    const struct wb_location out = {
+        deg_d_to_i16(coord.direction),
+        cm_u_to_u16(mm_u_to_cm_u(coord.distance)),
+        confidence,
+        distanceVariance,
+        directionVariance
+    };
+    return out;
+}
+
+struct gu_relative_coordinate wb_location_to_rr_coord(const struct wb_location location)
+{
+    const gu_relative_coordinate out = {
+        i16_to_deg_d(location.direction),
+        cm_u_to_mm_u(u16_to_cm_u(location.distance))
+    };
+    return out;
+}
+
+struct gu_optional_relative_coordinate wb_location_to_opt_rr_coord(const struct wb_location location, const uint8_t confidence)
+{
+    const gu_optional_relative_coordinate out = {
+        location.confidence >= confidence,
+        wb_location_to_rr_coord(location)
+    };
+    return out;
+}
