@@ -4039,6 +4039,29 @@ public:
 }; 
 
 
+#ifdef BallPosition_DEFINED
+/** WBFunctor definition for BallPosition_WBFunctor_T */ 
+template <typename BallPosition_WBFunctor_T >
+class BallPosition_WBFunctor: public WBFunctor<BallPosition_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for BallPosition_WBFunctor_T */
+    BallPosition_WBFunctor(BallPosition_WBFunctor_T* obj, void (BallPosition_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::BallPosition &), guWhiteboard::WBTypes t): WBFunctor<BallPosition_WBFunctor_T >(obj, (void (BallPosition_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class BallPosition_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::BallPosition result = guWhiteboard::BallPosition_t().get_from(m);
+        BallPosition_function_t funct((void (BallPosition_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::BallPosition &))WBFunctor<BallPosition_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<BallPosition_WBFunctor_T >::fObject->*funct)(WBFunctor<BallPosition_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (BallPosition_WBFunctor_T::*BallPosition_function_t) (guWhiteboard::WBTypes, guWhiteboard::BallPosition &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(BallPosition_WBFunctor_T *obj, void (BallPosition_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::BallPosition &), guWhiteboard::WBTypes t) { return new BallPosition_WBFunctor<BallPosition_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //BallPosition_DEFINED
+
 
 #pragma clang diagnostic pop
 

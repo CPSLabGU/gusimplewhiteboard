@@ -1340,6 +1340,15 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
+            case kBallPosition_v:
+            {
+#ifdef BALL_POSITION_GENERATED
+                return SERIALISE(BALL_POSITION_C_STRUCT, (struct BALL_POSITION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //BALL_POSITION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

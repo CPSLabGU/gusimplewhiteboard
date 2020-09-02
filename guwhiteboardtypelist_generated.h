@@ -1490,6 +1490,14 @@ Arduino9Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhi
 Arduino9PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino9PinValue_v, wbd, false) {}
     };
 
+    /** WB Ptr Class: BallPosition_t @brief The position and orientation of the ball on the soccer field. */ 
+    class BallPosition_t: public guWhiteboard_generic_whiteboard_object<class BallPosition > {
+        public: 
+        /** Constructor: BallPosition_t */ 
+        BallPosition_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class BallPosition >(wbd, kBallPosition_v, false) {}
+        
+    };
+
 
 }
 
