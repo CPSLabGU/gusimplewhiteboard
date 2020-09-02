@@ -146,14 +146,6 @@ const char* wb_ball_position_description(const struct wb_ball_position* self, ch
     if (len >= bufferSize) {
         return descString;
     }
-    len += snprintf(descString + len, bufferSize - len, "headingInDegrees=%d", self->headingInDegrees);
-    if (len >= bufferSize) {
-        return descString;
-    }
-    len = gu_strlcat(descString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return descString;
-    }
     len += snprintf(descString + len, bufferSize - len, "pitchInDegrees=%d", self->pitchInDegrees);
     if (len >= bufferSize) {
         return descString;
@@ -171,6 +163,14 @@ const char* wb_ball_position_description(const struct wb_ball_position* self, ch
         return descString;
     }
     len += snprintf(descString + len, bufferSize - len, "rollInDegrees=%d", self->rollInDegrees);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len = gu_strlcat(descString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "confidence=%u", self->confidence);
     return descString;
 #pragma clang diagnostic pop
 }
@@ -202,14 +202,6 @@ const char* wb_ball_position_to_string(const struct wb_ball_position* self, char
     if (len >= bufferSize) {
         return toString;
     }
-    len += snprintf(toString + len, bufferSize - len, "%d", self->headingInDegrees);
-    if (len >= bufferSize) {
-        return toString;
-    }
-    len = gu_strlcat(toString, ", ", bufferSize);
-    if (len >= bufferSize) {
-        return toString;
-    }
     len += snprintf(toString + len, bufferSize - len, "%d", self->pitchInDegrees);
     if (len >= bufferSize) {
         return toString;
@@ -227,6 +219,14 @@ const char* wb_ball_position_to_string(const struct wb_ball_position* self, char
         return toString;
     }
     len += snprintf(toString + len, bufferSize - len, "%d", self->rollInDegrees);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len = gu_strlcat(toString, ", ", bufferSize);
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%u", self->confidence);
     return toString;
 #pragma clang diagnostic pop
 }
@@ -243,7 +243,7 @@ struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* s
     }
     char var_str_buffer[BALL_POSITION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[17];
+    char key_buffer[15];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -308,13 +308,13 @@ struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* s
                 varIndex = 0;
             } else if (0 == strcmp("y", key)) {
                 varIndex = 1;
-            } else if (0 == strcmp("headingInDegrees", key)) {
-                varIndex = 2;
             } else if (0 == strcmp("pitchInDegrees", key)) {
-                varIndex = 3;
+                varIndex = 2;
             } else if (0 == strcmp("yawInDegrees", key)) {
-                varIndex = 4;
+                varIndex = 3;
             } else if (0 == strcmp("rollInDegrees", key)) {
+                varIndex = 4;
+            } else if (0 == strcmp("confidence", key)) {
                 varIndex = 5;
             } else {
                 varIndex = -1;
@@ -334,22 +334,22 @@ struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* s
             }
             case 2:
             {
-                self->headingInDegrees = ((int16_t)atoi(var_str));
+                self->pitchInDegrees = ((int16_t)atoi(var_str));
                 break;
             }
             case 3:
             {
-                self->pitchInDegrees = ((int16_t)atoi(var_str));
+                self->yawInDegrees = ((int16_t)atoi(var_str));
                 break;
             }
             case 4:
             {
-                self->yawInDegrees = ((int16_t)atoi(var_str));
+                self->rollInDegrees = ((int16_t)atoi(var_str));
                 break;
             }
             case 5:
             {
-                self->rollInDegrees = ((int16_t)atoi(var_str));
+                self->confidence = ((uint8_t)atoi(var_str));
                 break;
             }
         }
@@ -396,20 +396,6 @@ size_t wb_ball_position_to_network_serialised(const struct wb_ball_position *sel
       }
     } while(false);
 
-    int16_t headingInDegrees_nbo = htons(self->headingInDegrees);
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        unsigned long newbit = !!((headingInDegrees_nbo >> b) & 1U);
-        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-
     int16_t pitchInDegrees_nbo = htons(self->pitchInDegrees);
     do {
       int8_t b;
@@ -446,6 +432,20 @@ size_t wb_ball_position_to_network_serialised(const struct wb_ball_position *sel
         uint16_t byte = bit_offset / 8;
         uint16_t bit = 7 - (bit_offset % 8);
         unsigned long newbit = !!((rollInDegrees_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+
+    uint8_t confidence_nbo = (self->confidence);
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((confidence_nbo >> b) & 1U);
         dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -501,21 +501,6 @@ size_t wb_ball_position_from_network_serialised(const char *src, struct wb_ball_
         uint16_t bit = 7 - (bit_offset % 8);
         char dataByte = src[byte];
         unsigned char bitValue = (dataByte >> bit) & 1U;
-        dst->headingInDegrees ^= (-bitValue ^ dst->headingInDegrees) & (1UL << b);
-        bit_offset = bit_offset + 1;
-      } while(false);
-      }
-    } while(false);
-    dst->headingInDegrees = ntohs(dst->headingInDegrees);
-
-    do {
-      int8_t b;
-      for (b = (16 - 1); b >= 0; b--) {
-          do {
-        uint16_t byte = bit_offset / 8;
-        uint16_t bit = 7 - (bit_offset % 8);
-        char dataByte = src[byte];
-        unsigned char bitValue = (dataByte >> bit) & 1U;
         dst->pitchInDegrees ^= (-bitValue ^ dst->pitchInDegrees) & (1UL << b);
         bit_offset = bit_offset + 1;
       } while(false);
@@ -552,6 +537,21 @@ size_t wb_ball_position_from_network_serialised(const char *src, struct wb_ball_
       }
     } while(false);
     dst->rollInDegrees = ntohs(dst->rollInDegrees);
+
+    do {
+      int8_t b;
+      for (b = (8 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->confidence ^= (-bitValue ^ dst->confidence) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->confidence = (dst->confidence);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;
@@ -559,3 +559,8 @@ size_t wb_ball_position_from_network_serialised(const char *src, struct wb_ball_
 }
 
 /*#endif // WHITEBOARD_SERIALISATION*/
+
+double wb_ball_position_confidence_percent(const struct wb_ball_position strct)
+{
+    return (255.0 - 0.0) / (((double) strct.confidence) - 0.0);
+}

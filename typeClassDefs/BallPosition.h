@@ -81,13 +81,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t x = 0, int16_t y = 0, int16_t headingInDegrees = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0) {
+        void init(int16_t x = 0, int16_t y = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0, uint8_t confidence = 0) {
             set_x(x);
             set_y(y);
-            set_headingInDegrees(headingInDegrees);
             set_pitchInDegrees(pitchInDegrees);
             set_yawInDegrees(yawInDegrees);
             set_rollInDegrees(rollInDegrees);
+            set_confidence(confidence);
         }
 
     public:
@@ -95,29 +95,29 @@ namespace guWhiteboard {
         /**
          * Create a new `BallPosition`.
          */
-        BallPosition(int16_t x = 0, int16_t y = 0, int16_t headingInDegrees = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0) {
-            this->init(x, y, headingInDegrees, pitchInDegrees, yawInDegrees, rollInDegrees);
+        BallPosition(int16_t x = 0, int16_t y = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0, uint8_t confidence = 0) {
+            this->init(x, y, pitchInDegrees, yawInDegrees, rollInDegrees, confidence);
         }
 
         /**
          * Copy Constructor.
          */
         BallPosition(const BallPosition &other): wb_ball_position() {
-            this->init(other.x(), other.y(), other.headingInDegrees(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees());
+            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
         }
 
         /**
          * Copy Constructor.
          */
         BallPosition(const struct wb_ball_position &other): wb_ball_position() {
-            this->init(other.x(), other.y(), other.headingInDegrees(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees());
+            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
         }
 
         /**
          * Copy Assignment Operator.
          */
         BallPosition &operator = (const BallPosition &other) {
-            this->init(other.x(), other.y(), other.headingInDegrees(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees());
+            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
             return *this;
         }
 
@@ -125,7 +125,7 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         BallPosition &operator = (const struct wb_ball_position &other) {
-            this->init(other.x(), other.y(), other.headingInDegrees(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees());
+            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
             return *this;
         }
 
@@ -133,10 +133,10 @@ namespace guWhiteboard {
         {
             return x() == other.x()
                 && y() == other.y()
-                && headingInDegrees() == other.headingInDegrees()
                 && pitchInDegrees() == other.pitchInDegrees()
                 && yawInDegrees() == other.yawInDegrees()
-                && rollInDegrees() == other.rollInDegrees();
+                && rollInDegrees() == other.rollInDegrees()
+                && confidence() == other.confidence();
         }
 
         bool operator !=(const BallPosition &other) const
@@ -175,13 +175,13 @@ namespace guWhiteboard {
             ss << ", ";
             ss << "y=" << static_cast<signed>(this->y());
             ss << ", ";
-            ss << "headingInDegrees=" << static_cast<signed>(this->headingInDegrees());
-            ss << ", ";
             ss << "pitchInDegrees=" << static_cast<signed>(this->pitchInDegrees());
             ss << ", ";
             ss << "yawInDegrees=" << static_cast<signed>(this->yawInDegrees());
             ss << ", ";
             ss << "rollInDegrees=" << static_cast<signed>(this->rollInDegrees());
+            ss << ", ";
+            ss << "confidence=" << static_cast<unsigned>(this->confidence());
             return ss.str();
 #endif /// USE_WB_BALL_POSITION_C_CONVERSION
         }
@@ -198,13 +198,13 @@ namespace guWhiteboard {
             ss << ", ";
             ss << static_cast<signed>(this->y());
             ss << ", ";
-            ss << static_cast<signed>(this->headingInDegrees());
-            ss << ", ";
             ss << static_cast<signed>(this->pitchInDegrees());
             ss << ", ";
             ss << static_cast<signed>(this->yawInDegrees());
             ss << ", ";
             ss << static_cast<signed>(this->rollInDegrees());
+            ss << ", ";
+            ss << static_cast<unsigned>(this->confidence());
             return ss.str();
 #endif /// USE_WB_BALL_POSITION_C_CONVERSION
         }
@@ -222,7 +222,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[BALL_POSITION_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[17];
+            char key_buffer[15];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -287,13 +287,13 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("y", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("headingInDegrees", key)) {
-                        varIndex = 2;
                     } else if (0 == strcmp("pitchInDegrees", key)) {
-                        varIndex = 3;
+                        varIndex = 2;
                     } else if (0 == strcmp("yawInDegrees", key)) {
-                        varIndex = 4;
+                        varIndex = 3;
                     } else if (0 == strcmp("rollInDegrees", key)) {
+                        varIndex = 4;
+                    } else if (0 == strcmp("confidence", key)) {
                         varIndex = 5;
                     } else {
                         varIndex = -1;
@@ -313,22 +313,22 @@ namespace guWhiteboard {
                     }
                     case 2:
                     {
-                        this->set_headingInDegrees(static_cast<int16_t>(atoi(var_str)));
+                        this->set_pitchInDegrees(static_cast<int16_t>(atoi(var_str)));
                         break;
                     }
                     case 3:
                     {
-                        this->set_pitchInDegrees(static_cast<int16_t>(atoi(var_str)));
+                        this->set_yawInDegrees(static_cast<int16_t>(atoi(var_str)));
                         break;
                     }
                     case 4:
                     {
-                        this->set_yawInDegrees(static_cast<int16_t>(atoi(var_str)));
+                        this->set_rollInDegrees(static_cast<int16_t>(atoi(var_str)));
                         break;
                     }
                     case 5:
                     {
-                        this->set_rollInDegrees(static_cast<int16_t>(atoi(var_str)));
+                        this->set_confidence(static_cast<uint8_t>(atoi(var_str)));
                         break;
                     }
                 }
@@ -339,6 +339,11 @@ namespace guWhiteboard {
 #endif /// USE_WB_BALL_POSITION_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+        double confidencePercent() const
+        {
+            return (255.0 - 0.0) / (static_cast<double>(strct.confidence) - 0.0);
+        }
     };
 
 } /// namespace guWhiteboard

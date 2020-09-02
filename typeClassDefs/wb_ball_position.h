@@ -90,8 +90,8 @@
 #define BALL_POSITION_NUMBER_OF_VARIABLES 6
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define BALL_POSITION_DESC_BUFFER_SIZE 110
-#define BALL_POSITION_TO_STRING_BUFFER_SIZE 47
+#define BALL_POSITION_DESC_BUFFER_SIZE 101
+#define BALL_POSITION_TO_STRING_BUFFER_SIZE 44
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 /**
@@ -111,11 +111,6 @@ struct wb_ball_position
     PROPERTY(int16_t, y)
 
     /**
-     * The heading.
-     */
-    PROPERTY(int16_t, headingInDegrees)
-
-    /**
      * The pitch orientation.
      */
     PROPERTY(int16_t, pitchInDegrees)
@@ -129,6 +124,11 @@ struct wb_ball_position
      * The roll orientation.
      */
     PROPERTY(int16_t, rollInDegrees)
+
+    /**
+     * The confidence that the ball is at this position. This value represents a percentage value where the 0 percent is equal to 0.0 and 100 percent is equal to 255.0.
+     */
+    PROPERTY(uint8_t, confidence)
 
 };
 
@@ -154,6 +154,8 @@ const char* wb_ball_position_to_string(const struct wb_ball_position* self, char
 struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* self, const char* str);
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
+
+double wb_ball_position_confidence_percent(const struct wb_ball_position strct) __attribute__((const));
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
 

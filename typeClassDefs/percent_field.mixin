@@ -1,0 +1,23 @@
+@mixin(type = uint8_t, label, defaultValue = 0, comment, min = 0.0, max = 255.0)
+
+-properties
+
+{{type}} {{label}} = {{defaultValue}} // {{comment}} This value represents a percentage value where the 0 percent is equal to {{min}} and 100 percent is equal to {{max}}.
+
++c
+
+double {{structName}}_{{label}}_percent(const struct {{structName}} strct) __attribute__((const));
+
+#c
+
+double {{structName}}_{{label}}_percent(const struct {{structName}} strct)
+{
+    return ({{max}} - {{min}}) / (((double) strct.{{label}}) - {{min}});
+}
+
+%c++
+
+double {{label}}Percent() const
+{
+    return ({{max}} - {{min}}) / (static_cast<double>(strct.{{label}}) - {{min}});
+}
