@@ -1,0 +1,7 @@
+@mixin(xType = int16_t, xLabel = x, xDefault = 0, xComment = The x coordinate, yType = int16_t, yLabel = y, yDefault = 0, yComment = The y coordinate., headingType = int16_t, headingLabel = headingInDegrees, headingDefault = 0, headingComment = The heading.)
+
+@include 2DPoint(xType: {{xType}}, xLabel: {{xLabel}}, xDefault: {{xDefault}}, xComment: {{xComment}}, yType: {{yType}}, yLabel: {{yLabel}}, yDefault: {{yDefault}}, yComment: {{yComment}})
+
+-properties
+
+{{headingType}} {{headingLabel}} = {{headingDefault}} // {{headingComment}}
