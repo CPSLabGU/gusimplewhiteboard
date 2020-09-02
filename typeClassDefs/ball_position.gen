@@ -1,0 +1,13 @@
+-author Callum McColl
+
+-comment
+
+A type providing position and orientation of the ball on the soccer field.
+
+@include field_position()
+
+-properties
+
+int16_t pitchInDegrees = 0 // The pitch orientation.
+int16_t yawInDegrees = 0 // The yaw orientation.
+int16_t rollInDegrees = 0 // The roll orientation.
