@@ -344,6 +344,11 @@ namespace guWhiteboard {
         {
             return (255.0 - 0.0) / (static_cast<double>(strct.confidence) - 0.0);
         }
+
+        void set_confidencePercent(const double newValue)
+        {
+            set_confidence(static_cast<uint8_t>(round(newValue * (255.0 - 0.0) + 0.0)));
+        }
     };
 
 } /// namespace guWhiteboard

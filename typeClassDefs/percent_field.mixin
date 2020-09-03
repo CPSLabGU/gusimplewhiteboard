@@ -8,6 +8,8 @@
 
 double {{structName}}_{{label}}_percent(const struct {{structName}} strct) __attribute__((const));
 
+void {{structName}}_set_{{label}}_percent(struct {{structName}} *strct, const double newValue) __attribute__((nonnull));
+
 #c
 
 double {{structName}}_{{label}}_percent(const struct {{structName}} strct)
@@ -15,9 +17,19 @@ double {{structName}}_{{label}}_percent(const struct {{structName}} strct)
     return ({{max}} - {{min}}) / (((double) strct.{{label}}) - {{min}});
 }
 
+void {{structName}}_set_{{label}}_percent(struct {{structName}} *strct, const double newValue)
+{
+    strct->{{label}} = ({{type}}) (round(newValue * ({{max}} - {{min}}) + {{min}}));
+}
+
 %c++
 
 double {{label}}Percent() const
 {
     return ({{max}} - {{min}}) / (static_cast<double>(strct.{{label}}) - {{min}});
+}
+
+void set_{{label}}Percent(const double newValue)
+{
+    set_{{label}}(static_cast<{{type}}>(round(newValue * ({{max}} - {{min}}) + {{min}})));
 }

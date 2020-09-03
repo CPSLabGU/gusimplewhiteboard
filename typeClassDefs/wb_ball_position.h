@@ -157,6 +157,8 @@ struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* s
 
 double wb_ball_position_confidence_percent(const struct wb_ball_position strct) __attribute__((const));
 
+void wb_ball_position_set_confidence_percent(struct wb_ball_position *strct, const double newValue) __attribute__((nonnull));
+
 /*#ifdef WHITEBOARD_SERIALISATION*/
 
 /**

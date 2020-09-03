@@ -564,3 +564,8 @@ double wb_ball_position_confidence_percent(const struct wb_ball_position strct)
 {
     return (255.0 - 0.0) / (((double) strct.confidence) - 0.0);
 }
+
+void wb_ball_position_set_confidence_percent(struct wb_ball_position *strct, const double newValue)
+{
+    strct->confidence = (uint8_t) (round(newValue * (255.0 - 0.0) + 0.0));
+}
