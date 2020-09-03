@@ -560,12 +560,33 @@ size_t wb_ball_position_from_network_serialised(const char *src, struct wb_ball_
 
 /*#endif // WHITEBOARD_SERIALISATION*/
 
+/**
+ *  \brief Converts wb_ball_position.confidence to its corresponding floating point
+ *  percentage representation.
+ *
+ *  \param[in] strct The wb_ball_position containing the confidence property
+ *  being converted.
+ *
+ *  \returns A double representing wb_ball_position.confidence as a percentage
+ *  where 0 represents 0.0 and 255 represents 1.0.
+ */
 double wb_ball_position_confidence_percent(const struct wb_ball_position strct)
 {
-    return (255.0 - 0.0) / (((double) strct.confidence) - 0.0);
+    return ((double) (strct.confidence - 0)) / ((double) (255 - 0));
 }
 
+/**
+ *  \brief Converts and stores a percentage floating point value in
+ *  wb_ball_position.confidence.
+ *
+ *  \param[in,out] strct A pointer to awb_ball_position containing the confidence
+ *  property which will be set.
+ *
+ *  \param[in] newValue The floating point percentage value which will be
+ *  converted to the integer representations such that 0.0 equals 0 and
+ *  1.0 equals 255.
+ */
 void wb_ball_position_set_confidence_percent(struct wb_ball_position *strct, const double newValue)
 {
-    strct->confidence = (uint8_t) (round(newValue * (255.0 - 0.0) + 0.0));
+    strct->confidence = ((uint8_t) (round(newValue * ((double) (255 - 0))))) + 0;
 }

@@ -340,14 +340,29 @@ namespace guWhiteboard {
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+        /**
+         *  \brief Converts BallPosition.confidence() to its corresponding floating point
+         *  percentage representation.
+         *
+         *  \returns A double representing BallPosition.confidence() as a percentage
+         *  where 0 represents 0.0 and 255 represents 1.0.
+         */
         double confidencePercent() const
         {
-            return (255.0 - 0.0) / (static_cast<double>(strct.confidence) - 0.0);
+            return static_cast<double>(strct.confidence - 0) / static_cast<double>(255 - 0);
         }
 
+        /**
+         *  \brief Converts and stores a percentage floating point value in
+         *  BallPosition.confidence.
+         *
+         *  \param[in] newValue The floating point percentage value which will be
+         *  converted to the integer representations such that 0.0 equals 0 and
+         *  1.0 equals 255.
+         */
         void set_confidencePercent(const double newValue)
         {
-            set_confidence(static_cast<uint8_t>(round(newValue * (255.0 - 0.0) + 0.0)));
+            set_confidence(static_cast<uint8_t>(round(newValue * static_cast<double>(255 - 0)) + 0));
         }
     };
 

@@ -126,7 +126,7 @@ struct wb_ball_position
     PROPERTY(int16_t, rollInDegrees)
 
     /**
-     * The confidence that the ball is at this position. This value represents a percentage value where the 0 percent is equal to 0.0 and 100 percent is equal to 255.0.
+     * The confidence that the ball is at this position. This value represents a percentage value where the 0 percent is equal to 0 and 100 percent is equal to 255.
      */
     PROPERTY(uint8_t, confidence)
 
@@ -155,8 +155,29 @@ struct wb_ball_position* wb_ball_position_from_string(struct wb_ball_position* s
 
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+/**
+ *  \brief Converts wb_ball_position.confidence to its corresponding floating point
+ *  percentage representation.
+ *
+ *  \param[in] strct The wb_ball_position containing the confidence property
+ *  being converted.
+ *
+ *  \returns A double representing wb_ball_position.confidence as a percentage
+ *  where 0 represents 0.0 and 255 represents 1.0.
+ */
 double wb_ball_position_confidence_percent(const struct wb_ball_position strct) __attribute__((const));
 
+/**
+ *  \brief Converts and stores a percentage floating point value in
+ *  wb_ball_position.confidence.
+ *
+ *  \param[in,out] strct A pointer to awb_ball_position containing the confidence
+ *  property which will be set.
+ *
+ *  \param[in] newValue The floating point percentage value which will be
+ *  converted to the integer representations such that 0.0 equals 0 and
+ *  1.0 equals 255.
+ */
 void wb_ball_position_set_confidence_percent(struct wb_ball_position *strct, const double newValue) __attribute__((nonnull));
 
 /*#ifdef WHITEBOARD_SERIALISATION*/
