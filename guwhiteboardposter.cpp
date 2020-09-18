@@ -1983,6 +1983,18 @@ case kArduino9PinValue_v:
     return true;
 
 }
+case kBallPosition_v:
+{
+#ifdef BallPosition_DEFINED
+    class BallPosition_t msg_ptr(wbd);
+    BallPosition v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //BallPosition_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -2173,6 +2185,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["Arduino8PinValue"] = kArduino8PinValue_v;
     self["Arduino9Pin"] = kArduino9Pin_v;
     self["Arduino9PinValue"] = kArduino9PinValue_v;
+    self["BallPosition"] = kBallPosition_v;
 
     (void) self;
 }

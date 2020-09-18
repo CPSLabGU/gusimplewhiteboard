@@ -1518,6 +1518,15 @@ namespace guWhiteboard
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
+            case kBallPosition_v:
+            {
+#ifdef BallPosition_DEFINED
+                class BallPosition_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //BallPosition_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
