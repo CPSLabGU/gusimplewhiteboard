@@ -50,5 +50,6 @@
 #include <typeClassDefs/wb_temperature_sensors.h>
 #include <typeClassDefs/wb_overheating.h>
 #include <typeClassDefs/wb_ball_position.h>
+#include <typeClassDefs/wb_resolution.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

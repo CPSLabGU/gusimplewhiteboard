@@ -195,7 +195,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "Arduino8PinValue",
         "Arduino9Pin",
         "Arduino9PinValue",
-        "BallPosition"
+        "BallPosition",
+        "MemoryImageControl"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -376,7 +377,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_bool",
         "wb_bool",
-        "wb_ball_position"
+        "wb_ball_position",
+        "wb_resolution"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

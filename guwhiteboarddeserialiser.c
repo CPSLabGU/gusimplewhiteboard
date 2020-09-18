@@ -1348,6 +1348,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //BALL_POSITION_GENERATED
                 break;
             }
+            case kMemoryImageControl_v:
+            {
+#ifdef RESOLUTION_GENERATED
+                return DESERIALISE(RESOLUTION_C_STRUCT, serialised_in, (struct RESOLUTION_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //RESOLUTION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

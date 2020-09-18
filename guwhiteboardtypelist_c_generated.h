@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 176
+#define GSW_NUM_TYPES_DEFINED 177
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -197,8 +197,9 @@ typedef enum wb_types
     kArduino8PinValue_v = 172, 		///< The value of the 8 pin for the arduino.
     kArduino9Pin_v = 173, 		///< The status of the 9 pin for the arduino.
     kArduino9PinValue_v = 174, 		///< The value of the 9 pin for the arduino.
+    kBallPosition_v = 175, 		///< The position and orientation of the ball on the soccer field.
 
-    kBallPosition_v = 175 		///< The position and orientation of the ball on the soccer field.
+    kMemoryImageControl_v = 176 		///< Control at what resolution memory images need to be posted as.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

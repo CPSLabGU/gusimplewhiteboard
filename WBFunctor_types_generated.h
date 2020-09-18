@@ -4062,6 +4062,29 @@ public:
 }; 
 #endif //BallPosition_DEFINED
 
+#ifdef Resolution_DEFINED
+/** WBFunctor definition for MemoryImageControl_WBFunctor_T */ 
+template <typename MemoryImageControl_WBFunctor_T >
+class MemoryImageControl_WBFunctor: public WBFunctor<MemoryImageControl_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MemoryImageControl_WBFunctor_T */
+    MemoryImageControl_WBFunctor(MemoryImageControl_WBFunctor_T* obj, void (MemoryImageControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Resolution &), guWhiteboard::WBTypes t): WBFunctor<MemoryImageControl_WBFunctor_T >(obj, (void (MemoryImageControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MemoryImageControl_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::Resolution result = guWhiteboard::MemoryImageControl_t().get_from(m);
+        MemoryImageControl_function_t funct((void (MemoryImageControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Resolution &))WBFunctor<MemoryImageControl_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MemoryImageControl_WBFunctor_T >::fObject->*funct)(WBFunctor<MemoryImageControl_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MemoryImageControl_WBFunctor_T::*MemoryImageControl_function_t) (guWhiteboard::WBTypes, guWhiteboard::Resolution &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MemoryImageControl_WBFunctor_T *obj, void (MemoryImageControl_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::Resolution &), guWhiteboard::WBTypes t) { return new MemoryImageControl_WBFunctor<MemoryImageControl_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //Resolution_DEFINED
+
 
 #pragma clang diagnostic pop
 
