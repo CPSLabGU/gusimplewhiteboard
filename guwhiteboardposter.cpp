@@ -2007,6 +2007,18 @@ v.from_string(message_content);
     return false;
 #endif //MemoryImageControlStatus_DEFINED
 }
+case kMemoryImageStatus_v:
+{
+#ifdef MemoryImageControlStatus_DEFINED
+    class MemoryImageStatus_t msg_ptr(wbd);
+    MemoryImageControlStatus v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MemoryImageControlStatus_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -2199,6 +2211,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["Arduino9PinValue"] = kArduino9PinValue_v;
     self["BallPosition"] = kBallPosition_v;
     self["MemoryImageControl"] = kMemoryImageControl_v;
+    self["MemoryImageStatus"] = kMemoryImageStatus_v;
 
     (void) self;
 }

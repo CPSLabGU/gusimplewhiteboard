@@ -174,4 +174,5 @@ bool, nonatomic, Arduino8PinValue, The value of the 8 pin for the arduino.
 bool, nonatomic, Arduino9Pin, The status of the 9 pin for the arduino.
 bool, nonatomic, Arduino9PinValue, The value of the 9 pin for the arduino.
 type:ball_position, nonatomic, BallPosition, The position and orientation of the ball on the soccer field.
-type:memory_image_control_status, nonatomic, MemoryImageControl, Control at what resolution memory images need to be posted as.
+type:memory_image_control_status, nonatomic, MemoryImageControl, Control at what resolution and format memory images need to be posted as.
+type:memory_image_control_status, nonatomic, MemoryImageStatus, Status of what resolution and format memory images are being posted as.

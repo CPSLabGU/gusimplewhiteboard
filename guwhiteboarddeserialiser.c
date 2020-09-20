@@ -1357,6 +1357,15 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
+            case kMemoryImageStatus_v:
+            {
+#ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+                return DESERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
+#else
+                return -1;
+#endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

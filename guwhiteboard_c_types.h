@@ -51,5 +51,6 @@
 #include <typeClassDefs/wb_overheating.h>
 #include <typeClassDefs/wb_ball_position.h>
 #include <typeClassDefs/wb_memory_image_control_status.h>
+#include <typeClassDefs/wb_memory_image_control_status.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

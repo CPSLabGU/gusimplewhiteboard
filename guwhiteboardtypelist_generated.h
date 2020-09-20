@@ -1498,11 +1498,19 @@ Arduino9PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
-    /** WB Ptr Class: MemoryImageControl_t @brief Control at what resolution memory images need to be posted as. */ 
+    /** WB Ptr Class: MemoryImageControl_t @brief Control at what resolution and format memory images need to be posted as. */ 
     class MemoryImageControl_t: public guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus > {
         public: 
         /** Constructor: MemoryImageControl_t */ 
         MemoryImageControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus >(wbd, kMemoryImageControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: MemoryImageStatus_t @brief Status of what resolution and format memory images are being posted as. */ 
+    class MemoryImageStatus_t: public guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus > {
+        public: 
+        /** Constructor: MemoryImageStatus_t */ 
+        MemoryImageStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus >(wbd, kMemoryImageStatus_v, false) {}
         
     };
 

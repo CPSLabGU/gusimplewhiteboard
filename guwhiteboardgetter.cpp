@@ -1536,6 +1536,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //MemoryImageControlStatus_DEFINED
             }
+            case kMemoryImageStatus_v:
+            {
+#ifdef MemoryImageControlStatus_DEFINED
+                class MemoryImageStatus_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //MemoryImageControlStatus_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
