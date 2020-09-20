@@ -1997,15 +1997,15 @@ v.from_string(message_content);
 }
 case kMemoryImageControl_v:
 {
-#ifdef Resolution_DEFINED
+#ifdef MemoryImageControlStatus_DEFINED
     class MemoryImageControl_t msg_ptr(wbd);
-    Resolution v = msg_ptr.get();
+    MemoryImageControlStatus v = msg_ptr.get();
 v.from_string(message_content);
     msg_ptr.post(v);
     return true;
 #else
     return false;
-#endif //Resolution_DEFINED
+#endif //MemoryImageControlStatus_DEFINED
 }
 
 #pragma clang diagnostic push

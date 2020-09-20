@@ -378,7 +378,7 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_bool",
         "wb_bool",
         "wb_ball_position",
-        "wb_resolution"
+        "wb_memory_image_control_status"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

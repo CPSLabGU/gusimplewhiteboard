@@ -1,7 +1,0 @@
--author Callum McColl
-
-@include resolution_container()
-
--comment
-
-A container for a resolution of an image.

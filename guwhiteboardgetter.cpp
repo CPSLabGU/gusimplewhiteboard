@@ -1529,12 +1529,12 @@ namespace guWhiteboard
             }
             case kMemoryImageControl_v:
             {
-#ifdef Resolution_DEFINED
+#ifdef MemoryImageControlStatus_DEFINED
                 class MemoryImageControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Resolution_DEFINED
+#endif //MemoryImageControlStatus_DEFINED
             }
         }
 #pragma clang diagnostic push

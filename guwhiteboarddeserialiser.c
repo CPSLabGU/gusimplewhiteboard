@@ -1350,11 +1350,11 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
             }
             case kMemoryImageControl_v:
             {
-#ifdef RESOLUTION_GENERATED
-                return DESERIALISE(RESOLUTION_C_STRUCT, serialised_in, (struct RESOLUTION_C_STRUCT *)message_out)
+#ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+                return DESERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //RESOLUTION_GENERATED
+#endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
     }
