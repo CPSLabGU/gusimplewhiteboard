@@ -1,0 +1,20 @@
+-author Callum McColl
+
+-comment
+This message is used to post the status of the memory images, including what
+pixel format and resolution are being posted; as well as the control messages,
+allowing you to change these settings.
+
+-c
+
+enum MemoryImagePixelFormat {
+    MI_RGBA,
+    MI_BGRA,
+    MI_UYV422
+};
+
+@include resolution_container()
+
+-properties
+
+enum MemoryImagePixelFormat pixelFormat = MI_RGBA; // The pixel format of the images.
