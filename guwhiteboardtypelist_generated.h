@@ -1490,6 +1490,30 @@ Arduino9Pin_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhi
 Arduino9PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<bool >(value, kArduino9PinValue_v, wbd, false) {}
     };
 
+    /** WB Ptr Class: BallPosition_t @brief The position and orientation of the ball on the soccer field. */ 
+    class BallPosition_t: public guWhiteboard_generic_whiteboard_object<class BallPosition > {
+        public: 
+        /** Constructor: BallPosition_t */ 
+        BallPosition_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class BallPosition >(wbd, kBallPosition_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: MemoryImageControl_t @brief Control at what resolution and format memory images need to be posted as. */ 
+    class MemoryImageControl_t: public guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus > {
+        public: 
+        /** Constructor: MemoryImageControl_t */ 
+        MemoryImageControl_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus >(wbd, kMemoryImageControl_v, false) {}
+        
+    };
+
+    /** WB Ptr Class: MemoryImageStatus_t @brief Status of what resolution and format memory images are being posted as. */ 
+    class MemoryImageStatus_t: public guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus > {
+        public: 
+        /** Constructor: MemoryImageStatus_t */ 
+        MemoryImageStatus_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MemoryImageControlStatus >(wbd, kMemoryImageStatus_v, false) {}
+        
+    };
+
 
 }
 

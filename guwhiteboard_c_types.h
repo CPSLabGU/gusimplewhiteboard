@@ -49,5 +49,8 @@
 #include <typeClassDefs/wb_gu_vr_teleop_vulkan_control.h>
 #include <typeClassDefs/wb_temperature_sensors.h>
 #include <typeClassDefs/wb_overheating.h>
+#include <typeClassDefs/wb_ball_position.h>
+#include <typeClassDefs/wb_memory_image_control_status.h>
+#include <typeClassDefs/wb_memory_image_control_status.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H
