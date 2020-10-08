@@ -1366,6 +1366,16 @@ int32_t deserialisemsg(WBTypes message_index, const void *serialised_in, void *m
 #endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
+            case kLHandGripper_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kRHandGripper_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
