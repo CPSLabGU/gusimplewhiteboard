@@ -61,3 +61,29 @@ void GoToWithTime_rad(float yaw, float pitch, int time = 1000000)
     set_head_stopped(false);
     set_head_cmd_mask(true);
 }
+
+-swift
+import GUUnits
+
+%swift
+
+public func stop() {
+    head_stopped = true
+    cmd_mask = true
+}
+
+public mutating func goToWithTime(yaw: Angle, pitch: Angle, time: Time = .microseconds(1000000)) {
+    target_pitchAngle = Float(pitch.radians_f)
+    target_yawAngle = Float(yaw.radians_f)
+    target_movement_time = Int32(time.microseconds_t)
+    head_stopped = false
+    head_cmd_mask = true
+}
+
+
+
+
+
+
+
+
