@@ -1,0 +1,63 @@
+-author Morgan McColl
+
+-comment
+
+Gen file for preexisting HAL_HeadTarget.h file. Provides commands to move the robots head.
+
+-properties
+
+float target_pitchAngle = 0.0f|0.0 // target pitch angle in radians
+float target_yawAngle = 0.0f|0.0 // target yaw angle in radians
+int target_movement_time = 1000000 // How long until the head should be at the target angles, stored in microseconds
+bit head_stopped = true // Should the head be stopped (if setting) or is the head stopped (if a status message)
+bit head_cmd_mask = false // Should the command be processed again by the motion module. When changes are made this bit is set to true. Motion sets this back to false when the command has been processed.
+
+-c
+
+#include <gu_util.h>
+
+#define YAW_LIMIT_POS 90
+#define YAW_LIMIT_NEG -YAW_LIMIT_POS
+#define PITCH_LIMIT_POS 28
+#define PITCH_LIMIT_NEG -20
+
+-c++
+
+#include <sstream>
+
+%c++
+
+/**
+* Set stopping vars 
+*/       
+void Stop()
+{
+    set_head_stopped(true);
+    set_head_cmd_mask(true);
+}
+
+/**
+* move to position in degrees over a given time 
+* @param yaw horiz in abs degrees, see specific robot for limits 
+* @param pitch vert in abs degrees, see specific robot for limits 
+* @param time time in micro seconds for the motion to take
+*/       
+void GoToWithTime(float yaw, float pitch, int time = 1000000)
+{
+    GoToWithTime_rad(static_cast<float>(DEG2RAD(yaw)), static_cast<float>(DEG2RAD(pitch)), time);
+}
+            
+/**
+* move to position in radians over a given time 
+* @param yaw horiz in abs degrees, see specific robot for limits 
+* @param pitch vert in abs degrees, see specific robot for limits 
+* @param time time in micro seconds for the motion to take
+*/
+void GoToWithTime_rad(float yaw, float pitch, int time = 1000000)
+{
+    set_target_pitchAngle(pitch);
+    set_target_yawAngle(yaw);
+    set_target_movement_time(time);
+    set_head_stopped(false);
+    set_head_cmd_mask(true);
+}
