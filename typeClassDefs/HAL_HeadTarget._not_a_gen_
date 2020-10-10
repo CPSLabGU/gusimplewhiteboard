@@ -67,9 +67,9 @@ import GUUnits
 
 %swift
 
-public func stop() {
+public mutating func stop() {
     head_stopped = true
-    cmd_mask = true
+    head_cmd_mask = true
 }
 
 public mutating func goToWithTime(yaw: Angle, pitch: Angle, time: Time = .microseconds(1000000)) {
