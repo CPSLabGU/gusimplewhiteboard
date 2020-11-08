@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 180
+#define GSW_NUM_TYPES_DEFINED 181
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -201,8 +201,9 @@ typedef enum wb_types
     kMemoryImageControl_v = 176, 		///< Control at what resolution and format memory images need to be posted as.
     kMemoryImageStatus_v = 177, 		///< Status of what resolution and format memory images are being posted as.
     kLHandGripper_v = 178, 		///< 0 is closed 100 is fully open (left hand).
+    kRHandGripper_v = 179, 		///< 0 is closed 100 is fully open (right hand).
 
-    kRHandGripper_v = 179 		///< 0 is closed 100 is fully open (right hand).
+    kMyPosition_v = 180 		///< Location of the robot relative to where it started.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

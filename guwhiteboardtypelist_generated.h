@@ -1532,6 +1532,14 @@ LHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): gu
 RHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<int8_t >(value, kRHandGripper_v, wbd, false) {}
     };
 
+    /** WB Ptr Class: MyPosition_t @brief Location of the robot relative to where it started. */ 
+    class MyPosition_t: public guWhiteboard_generic_whiteboard_object<class MyPosition > {
+        public: 
+        /** Constructor: MyPosition_t */ 
+        MyPosition_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MyPosition >(wbd, kMyPosition_v, false) {}
+        
+    };
+
 
 }
 
