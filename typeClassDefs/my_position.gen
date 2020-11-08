@@ -11,3 +11,13 @@ int16_t heading = 0 // degrees
 Provides a class for the current position of the robot in its frame of reference.
 The 0 point is where the robot started (wherever that is). This message is not related to the particle filter
 at all.
+
+-swift
+
+import GUCoordinates
+
+%swift
+
+public func fieldCoordinate() -> FieldCoordinate {
+    return FieldCoordinate(position: CartesianCoordinate(x: Millimetres_t(x), y: Millimetres_t(y)), heading: .degrees(heading))
+}
