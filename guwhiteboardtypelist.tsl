@@ -178,4 +178,4 @@ type:memory_image_control_status, nonatomic, MemoryImageControl, Control at what
 type:memory_image_control_status, nonatomic, MemoryImageStatus, Status of what resolution and format memory images are being posted as.
 int8_t,          nonatomic, LHandGripper, 0 is closed 100 is fully open (left hand).
 int8_t,          nonatomic, RHandGripper, 0 is closed 100 is fully open (right hand). 
-
+type:my_position, nonatomic, MyPosition, Location of the robot relative to where it started.
