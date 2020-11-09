@@ -80,6 +80,68 @@ int crossLine()
     return this->firstSighting(CrossLineSightingType);
 }
 
+%swift
+
+private func firstSighting(sightingType: LandmarkSightingType) -> LandmarkSighting? {
+    for sighting in sightings {
+        if sighting.sightingType == sightingType {
+            return sighting
+        }
+    }
+    return nil
+}
+
+public var ball: LandmarkSighting? {
+    return firstSighting(sightingType: BallSightingType)
+}
+
+public var firstGenericGoalPost: LandmarkSighting? {
+    return firstSighting(sightingType: GenericGoalPostSightingType)
+}
+
+public var leftGoalPost: LandmarkSighting? {
+    return firstSighting(sightingType: LeftGoalPostSightingType)
+}
+
+public var rightGoalPost: LandmarkSighting? {
+    return firstSighting(sightingType: RightGoalPostSightingType)
+}
+
+public var goal: LandmarkSighting? {
+    return firstSighting(sightingType: GoalLandmarkSightingType)
+}
+
+public var lineHorizon: LandmarkSighting? {
+    return firstSighting(sightingType: LineHorizonSightingType)
+}
+
+public var cornerHorizon: LandmarkSighting? {
+    return firstSighting(sightingType: CornerHorizonSightingType)
+}
+
+public var horizon: LandmarkSighting? {
+    guard let lineSighting = lineHorizon else {
+        return cornerHorizon
+    }
+    return lineSighting
+}
+
+public var line: LandmarkSighting? {
+    return firstSighting(sightingType: StraightLineSightingType)
+}
+
+public var cornerLine: LandmarkSighting? {
+    return firstSighting(sightingType: CornerLineSightingType)
+}
+
+public var tLine: LandmarkSighting? {
+    return firstSighting(sightingType: TIntersectionLineSightingType)
+}
+
+public var crossLine: LandmarkSighting? {
+    return firstSighting(sightingType: CrossLineSightingType)
+}
+
 -properties
 
 uint8_t numberOfSightings = 0 // The number of sightings in `sightings`.

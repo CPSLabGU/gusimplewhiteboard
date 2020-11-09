@@ -1367,6 +1367,25 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
+            case kLHandGripper_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kRHandGripper_v:
+            {
+                return -1; /*TODO, add support for POD types.*/
+                break;
+            }
+            case kMyPosition_v:
+            {
+#ifdef MY_POSITION_GENERATED
+                return SERIALISE(MY_POSITION_C_STRUCT, (struct MY_POSITION_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //MY_POSITION_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

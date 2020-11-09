@@ -156,3 +156,26 @@ GU::PixelCoordinate pixelCoordinate(const uint16_t resWidth, const uint16_t resH
 {
     return GU::PixelCoordinate(wb_px_coord_to_px_coord(*this, resWidth, resHeight));
 }
+
+-swift
+
+#if canImport(GUCoordinates)
+import GUCoordinates
+#endif
+
+%swift
+
+#if canImport(GUCoordinates)
+public init(_ other: GUCoordinates.PixelCoordinate) {
+    self.init(x: Int16(other.x), y: Int16(other.y))
+}
+
+public init(_ other: gu_pixel_coordinate) {
+    self.init(x: px_t_to_i16(other.x), y: px_t_to_i16(other.y))
+}
+
+public func pixelCoordinate(resWidth: UInt16, resHeight: UInt16) -> GUCoordinates.PixelCoordinate {
+    return GUCoordinates.PixelCoordinate(x: Pixels_t(self.x), y: Pixels_t(self.y), resWidth: Pixels_u(resWidth), resHeight: Pixels_u(resHeight))
+}
+#endif
+

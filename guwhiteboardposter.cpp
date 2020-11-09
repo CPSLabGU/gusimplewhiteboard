@@ -2019,6 +2019,36 @@ v.from_string(message_content);
     return false;
 #endif //MemoryImageControlStatus_DEFINED
 }
+case kLHandGripper_v:
+{
+
+    class LHandGripper_t msg_ptr(wbd);
+    int8_t v = static_cast<int8_t>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kRHandGripper_v:
+{
+
+    class RHandGripper_t msg_ptr(wbd);
+    int8_t v = static_cast<int8_t>(atoi(message_content.c_str()));
+    msg_ptr.post(v);
+    return true;
+
+}
+case kMyPosition_v:
+{
+#ifdef MyPosition_DEFINED
+    class MyPosition_t msg_ptr(wbd);
+    MyPosition v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //MyPosition_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -2212,6 +2242,9 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["BallPosition"] = kBallPosition_v;
     self["MemoryImageControl"] = kMemoryImageControl_v;
     self["MemoryImageStatus"] = kMemoryImageStatus_v;
+    self["LHandGripper"] = kLHandGripper_v;
+    self["RHandGripper"] = kRHandGripper_v;
+    self["MyPosition"] = kMyPosition_v;
 
     (void) self;
 }

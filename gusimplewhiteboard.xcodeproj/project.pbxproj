@@ -195,6 +195,10 @@
 		F1FE50FF1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */; };
 		F1FE51001B71A08500C90F96 /* OculusPrimeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */; };
 		F1FF77861A0364D7009E269F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D2BE1B1A0358C400700948 /* libc++.dylib */; };
+		F26D02332534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = F26D02322534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h */; };
+		F26D02342534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h in Headers */ = {isa = PBXBuildFile; fileRef = F26D02322534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h */; };
+		F26D02502534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F26D024F2534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp */; };
+		F26D02512534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F26D024F2534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp */; };
 		F5BC000B1F0DEF7900987168 /* FilteredVisionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BC000A1F0DEF7900987168 /* FilteredVisionObject.h */; };
 		F5BC000D1F0DEF9700987168 /* FilteredArrayBallSightings.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BC000C1F0DEF9700987168 /* FilteredArrayBallSightings.h */; };
 		F5F25CA720A582150057B540 /* wb_vision_control_status.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F25CA620A582150057B540 /* wb_vision_control_status.h */; };
@@ -776,6 +780,8 @@
 		F1F8AB551A27EFEE0008DAC2 /* wb_fsm_state_status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_fsm_state_status.h; sourceTree = "<group>"; };
 		F1FE50FD1B71A08500C90F96 /* Oculus_PrimeSerialInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oculus_PrimeSerialInterface.h; sourceTree = "<group>"; };
 		F1FE50FE1B71A08500C90F96 /* OculusPrimeInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OculusPrimeInterface.h; sourceTree = "<group>"; };
+		F26D02322534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guWhiteboard_gugenericwhiteboardobject.h; sourceTree = "<group>"; };
+		F26D024F2534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guWhiteboard_gugenericwhiteboardobject.cpp; sourceTree = "<group>"; };
 		F5119EB01951092E009C87F6 /* wb_filteredsonarobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_filteredsonarobject.h; sourceTree = "<group>"; };
 		F5119EB119510B1D009C87F6 /* wb_filteredvisionobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_filteredvisionobject.h; sourceTree = "<group>"; };
 		F5119EB419510FBD009C87F6 /* wb_arrayoffilteredsonarobjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wb_arrayoffilteredsonarobjects.h; sourceTree = "<group>"; };
@@ -1057,6 +1063,8 @@
 				F12167321EADF4B70007E421 /* wb_hal_armtarget.h */,
 				F1C94D871555CD0500B717DF /* Foundation.framework */,
 				F154FAA0196621C80081158B /* Makefile */,
+				F26D02322534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h */,
+				F26D024F2534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp */,
 				C3EC3C5716A67DBC002FF8D4 /* gugenericwhiteboardobject.h */,
 				C3DE479716D5FD950098F502 /* gugenericwhiteboardobject.cpp */,
 				F1F0A2871729F81900194F59 /* guwhiteboardposter.h */,
@@ -1083,6 +1091,7 @@
 				F19F05201B3A7EBD00F34B4D /* swift_wb */,
 				F1D925F114A13BAA00BDAEED /* Frameworks */,
 				F14C46B014A064D8006B6953 /* Products */,
+				F26D017F2533FF9300E1830D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1472,10 +1481,6 @@
 				C3B4EC1A1CBCD2740061A970 /* wb_sensors_torso.h */,
 				C3B4EC1B1CBCD2740061A970 /* wb_sensors_torsotemps.h */,
 				C3B4EC1C1CBCD2740061A970 /* wb_sound.h */,
-				F1E5543C18EBD16D00639B1E /* VisionLines.h */,
-				F1E5543F18EBD16D00639B1E /* WEBOTS_NXT_bridge.h */,
-				F1E5543E18EBD16D00639B1E /* WalkData.h */,
-				C33CA73C19FDDD8E0063636F /* Giraff_MainSerialInterface.h */,
 				C3B4EC1D1CBCD2740061A970 /* wb_switch_subsumption_traffic_lights.h */,
 				C3B4EC1E1CBCD2740061A970 /* wb_switch_subsumption.h */,
 				C3B4EC1F1CBCD2740061A970 /* wb_teleoperation.h */,
@@ -1703,6 +1708,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F26D017F2533FF9300E1830D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C3B4EBF21CBCD2740061A970 /* WalkData.h */,
+				C3B4EBEF1CBCD2740061A970 /* VisionLines.h */,
+				C3B4EC221CBCD2740061A970 /* WEBOTS_NXT_bridge.h */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1735,6 +1750,7 @@
 				C3B4EC711CBCD2740061A970 /* wb_lights.h in Headers */,
 				C3B4EC3D1CBCD2740061A970 /* NAO_State.h in Headers */,
 				C3B4EC681CBCD2740061A970 /* wb_filteredvisionobject.h in Headers */,
+				F26D02332534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h in Headers */,
 				C3B4EC5A1CBCD2740061A970 /* WalkData.h in Headers */,
 				C3B4EC341CBCD2740061A970 /* HAL_HeadTarget.h in Headers */,
 				C3B4EC661CBCD2740061A970 /* wb_fft_frequencies.h in Headers */,
@@ -1811,6 +1827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1F0A2881729F81900194F59 /* guwhiteboardposter.h in Headers */,
+				F26D02342534014A00E1830D /* guWhiteboard_gugenericwhiteboardobject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2263,6 +2280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3DE479A16D604C00098F502 /* gu_util.cpp in Sources */,
+				F26D02502534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp in Sources */,
 				C3B4EC781CBCD2740061A970 /* wb_point2d.c in Sources */,
 				F1B49A8F19F453B4009A10A1 /* guwhiteboardposter.cpp in Sources */,
 				F14C46C414A07024006B6953 /* gusimplewhiteboard.c in Sources */,
@@ -2287,6 +2305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F26D02512534015F00E1830D /* guWhiteboard_gugenericwhiteboardobject.cpp in Sources */,
 				C31EE6B4155BA83B00D55934 /* gu_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

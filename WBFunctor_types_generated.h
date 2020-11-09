@@ -4109,6 +4109,75 @@ public:
 #endif //MemoryImageControlStatus_DEFINED
 
 
+/** WBFunctor definition for LHandGripper_WBFunctor_T */ 
+template <typename LHandGripper_WBFunctor_T >
+class LHandGripper_WBFunctor: public WBFunctor<LHandGripper_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for LHandGripper_WBFunctor_T */
+    LHandGripper_WBFunctor(LHandGripper_WBFunctor_T* obj, void (LHandGripper_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<LHandGripper_WBFunctor_T >(obj, (void (LHandGripper_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class LHandGripper_WBFunctor */
+    void call(gu_simple_message *m) {
+        int8_t result = guWhiteboard::LHandGripper_t().get_from(m);
+        LHandGripper_function_t funct((void (LHandGripper_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<LHandGripper_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<LHandGripper_WBFunctor_T >::fObject->*funct)(WBFunctor<LHandGripper_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (LHandGripper_WBFunctor_T::*LHandGripper_function_t) (guWhiteboard::WBTypes, int8_t &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(LHandGripper_WBFunctor_T *obj, void (LHandGripper_WBFunctor_T::*f)(guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t) { return new LHandGripper_WBFunctor<LHandGripper_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+
+/** WBFunctor definition for RHandGripper_WBFunctor_T */ 
+template <typename RHandGripper_WBFunctor_T >
+class RHandGripper_WBFunctor: public WBFunctor<RHandGripper_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for RHandGripper_WBFunctor_T */
+    RHandGripper_WBFunctor(RHandGripper_WBFunctor_T* obj, void (RHandGripper_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<RHandGripper_WBFunctor_T >(obj, (void (RHandGripper_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class RHandGripper_WBFunctor */
+    void call(gu_simple_message *m) {
+        int8_t result = guWhiteboard::RHandGripper_t().get_from(m);
+        RHandGripper_function_t funct((void (RHandGripper_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<RHandGripper_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<RHandGripper_WBFunctor_T >::fObject->*funct)(WBFunctor<RHandGripper_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (RHandGripper_WBFunctor_T::*RHandGripper_function_t) (guWhiteboard::WBTypes, int8_t &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(RHandGripper_WBFunctor_T *obj, void (RHandGripper_WBFunctor_T::*f)(guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t) { return new RHandGripper_WBFunctor<RHandGripper_WBFunctor_T >(obj, f, t); }
+}; 
+
+
+#ifdef MyPosition_DEFINED
+/** WBFunctor definition for MyPosition_WBFunctor_T */ 
+template <typename MyPosition_WBFunctor_T >
+class MyPosition_WBFunctor: public WBFunctor<MyPosition_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for MyPosition_WBFunctor_T */
+    MyPosition_WBFunctor(MyPosition_WBFunctor_T* obj, void (MyPosition_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MyPosition &), guWhiteboard::WBTypes t): WBFunctor<MyPosition_WBFunctor_T >(obj, (void (MyPosition_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class MyPosition_WBFunctor */
+    void call(gu_simple_message *m) {
+        guWhiteboard::MyPosition result = guWhiteboard::MyPosition_t().get_from(m);
+        MyPosition_function_t funct((void (MyPosition_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MyPosition &))WBFunctor<MyPosition_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<MyPosition_WBFunctor_T >::fObject->*funct)(WBFunctor<MyPosition_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (MyPosition_WBFunctor_T::*MyPosition_function_t) (guWhiteboard::WBTypes, guWhiteboard::MyPosition &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(MyPosition_WBFunctor_T *obj, void (MyPosition_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::MyPosition &), guWhiteboard::WBTypes t) { return new MyPosition_WBFunctor<MyPosition_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //MyPosition_DEFINED
+
+
 #pragma clang diagnostic pop
 
 #endif //WBFUNCTOR_TYPES_GENERATED_H

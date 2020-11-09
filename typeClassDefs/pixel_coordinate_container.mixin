@@ -35,3 +35,18 @@ GU::PixelCoordinate {{label}}PixelCoordinate(const uint16_t resWidth, const uint
 {
     return PixelCoordinate({{label}}()).pixelCoordinate(resWidth, resHeight);
 }
+
+-swift
+
+#if canImport(GUCoordinates)
+import GUCoordinates
+#endif
+
+%swift
+
+#if canImport(GUCoordinates)
+public func {{label}}PixelCoordinate(resWidth: UInt16, resHeight: UInt16) -> GUCoordinates.PixelCoordinate {
+    return {{label}}.pixelCoordinate(resWidth: resWidth, resHeight: resHeight)
+}
+#endif
+

@@ -218,3 +218,14 @@ std::optional<GU::RelativeCoordinate> relativeCoordinate(const uint8_t minimumCo
     return std::optional<GU::RelativeCoordinate>(relativeCoordinate());
 }
 #endif
+
+-swift
+
+import GUCoordinates
+
+%swift
+
+public var relativeCoordinate: RelativeCoordinate {
+    RelativeCoordinate(direction: Angle(degrees: direction), distance: Distance(centimetres: distance))
+}
+

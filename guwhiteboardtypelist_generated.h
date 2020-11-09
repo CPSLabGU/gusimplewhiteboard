@@ -1514,6 +1514,32 @@ Arduino9PinValue_t(bool value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): 
         
     };
 
+    /** WB Ptr Class: LHandGripper_t @brief 0 is closed 100 is fully open (left hand). */ 
+    class LHandGripper_t: public guWhiteboard_generic_whiteboard_object<int8_t > {
+        public: 
+        /** Constructor: LHandGripper_t */ 
+        LHandGripper_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<int8_t >(wbd, kLHandGripper_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: LHandGripper_t */ 
+LHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<int8_t >(value, kLHandGripper_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: RHandGripper_t @brief 0 is closed 100 is fully open (right hand). */ 
+    class RHandGripper_t: public guWhiteboard_generic_whiteboard_object<int8_t > {
+        public: 
+        /** Constructor: RHandGripper_t */ 
+        RHandGripper_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<int8_t >(wbd, kRHandGripper_v, false) {}
+        /** Convenience constructor for non-class types. Pass a value and it'll be set in the Whiteboard: RHandGripper_t */ 
+RHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<int8_t >(value, kRHandGripper_v, wbd, false) {}
+    };
+
+    /** WB Ptr Class: MyPosition_t @brief Location of the robot relative to where it started. */ 
+    class MyPosition_t: public guWhiteboard_generic_whiteboard_object<class MyPosition > {
+        public: 
+        /** Constructor: MyPosition_t */ 
+        MyPosition_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class MyPosition >(wbd, kMyPosition_v, false) {}
+        
+    };
+
 
 }
 
