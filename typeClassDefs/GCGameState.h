@@ -426,6 +426,7 @@ namespace guWhiteboard
           ss << _theGCGameState << ",";
       }
       for (int i=0; i< SPL_NUM_PLAYERS; i++)
+      {
         switch (_RobotGCPenaltyState[_homeaway][i].penalty ) {
           case NoPenalty :
             ss << kGSNoPenalty << ", - ," ;
@@ -478,6 +479,7 @@ namespace guWhiteboard
             ss << kGSManualPenalty << ", - ," ;
             break;
         }
+      }
         ss << getScoreHome() << "," <<  getScoreAway() << ",";
         return ss.str();
       }
