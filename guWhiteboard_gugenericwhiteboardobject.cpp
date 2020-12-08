@@ -10,6 +10,7 @@
 /** Auto-generated, don't modify! */
 
 #include "guWhiteboard_gugenericwhiteboardobject.h"
+#include <stdlib.h>
 
 static void create_guWhiteboard_singleton_whiteboard(void *);
 

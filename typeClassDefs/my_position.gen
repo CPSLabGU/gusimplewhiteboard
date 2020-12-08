@@ -14,6 +14,7 @@ at all.
 
 -swift
 
+import GUUnits
 import GUCoordinates
 
 %swift

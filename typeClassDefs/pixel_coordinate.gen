@@ -159,13 +159,14 @@ GU::PixelCoordinate pixelCoordinate(const uint16_t resWidth, const uint16_t resH
 
 -swift
 
-#if canImport(GUCoordinates)
+#if canImport(GUUnits) && canImport(GUCoordinates)
+import GUUnits
 import GUCoordinates
 #endif
 
 %swift
 
-#if canImport(GUCoordinates)
+#if canImport(GUUnits) && canImport(GUCoordinates)
 public init(_ other: GUCoordinates.PixelCoordinate) {
     self.init(x: Int16(other.x), y: Int16(other.y))
 }
