@@ -721,12 +721,12 @@ const char* wb_hal_leg_target_value_description(const struct wb_hal_leg_target* 
              */
             void copyStiffness(const HalLegTarget &other)
             {
-                target_hipyawpitchstiffness() = other.target_hipyawpitchstiffness();
-                target_hiprollstiffness() = other.target_hiprollstiffness();
-                target_hippitchstiffness() = other.target_hippitchstiffness();
-                target_kneepitchstiffness() = other.target_kneepitchstiffness();
-                target_anklepitchstiffness() = other.target_anklepitchstiffness();
-                target_anklerollstiffness() = other.target_anklerollstiffness();
+                set_target_hipyawpitchstiffness(other.target_hipyawpitchstiffness());
+                set_target_hiprollstiffness(other.target_hiprollstiffness());
+                set_target_hippitchstiffness(other.target_hippitchstiffness());
+                set_target_kneepitchstiffness(other.target_kneepitchstiffness());
+                set_target_anklepitchstiffness(other.target_anklepitchstiffness());
+                set_target_anklerollstiffness(other.target_anklerollstiffness());
             }
 
 

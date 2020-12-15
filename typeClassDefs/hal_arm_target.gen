@@ -716,12 +716,12 @@ const char* wb_hal_arm_target_value_description(const struct wb_hal_arm_target* 
              */
             void copyStiffness(const HalArmTarget &other)
             {
-                target_shoulderpitchstiffness() = other.target_shoulderpitchstiffness();
-                target_shoulderrollstiffness() = other.target_shoulderrollstiffness();
-                target_elbowrollstiffness() = other.target_elbowrollstiffness();
-                target_elbowyawstiffness() = other.target_elbowyawstiffness();
-                target_wristyawstiffness() = other.target_wristyawstiffness();
-                target_handstiffness() = other.target_handstiffness();
+                set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+                set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+                set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+                set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+                set_target_wristyawstiffness(other.target_wristyawstiffness());
+                set_target_handstiffness(other.target_handstiffness());
             }
 
 

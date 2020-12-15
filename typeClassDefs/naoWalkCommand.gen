@@ -44,30 +44,30 @@ public:
 
 /**
  * Convenience function to make the nao walk.
- * @param forward see struct documentation.
- * @param left see struct documentation.
- * @param turn see struct documentation.
+ * @param t_forward see struct documentation.
+ * @param t_left see struct documentation.
+ * @param t_turn see struct documentation.
  * @return A NaoWalkCommand instance
  */
-static NaoWalkCommand walk(int16_t forward, int16_t left, int8_t turn) {
+static NaoWalkCommand walk(int16_t t_forward, int16_t t_left, int8_t t_turn) {
     NaoWalkCommand cmd = NaoWalkCommand();
     cmd.set_walkEngineOn(true);
-    cmd.set_forward(forward);
-    cmd.set_left(left);
-    cmd.set_turn(turn);
+    cmd.set_forward(t_forward);
+    cmd.set_left(t_left);
+    cmd.set_turn(t_turn);
     cmd.set_bend(1);
     return cmd;
 }
 
 /**
  * Convenience function to make the nao walk, with precise step distances. There is no speed buildup with this method, it uses a consistent step size and speed. This is good for small accurate movements, like lining up a kick.
- * @param forward see struct documentation.
- * @param left see struct documentation.
- * @param turn see struct documentation.
+ * @param t_forward see struct documentation.
+ * @param t_left see struct documentation.
+ * @param t_turn see struct documentation.
  * @return A NaoWalkCommand instance
  */
-static NaoWalkCommand walkPrecisely(int16_t forward, int16_t left, int8_t turn) {
-    NaoWalkCommand cmd = walk(forward, left, turn);
+static NaoWalkCommand walkPrecisely(int16_t t_forward, int16_t t_left, int8_t t_turn) {
+    NaoWalkCommand cmd = walk(t_forward, t_left, t_turn);
     cmd.set_exactStepsRequested(true);
     return cmd;
 }

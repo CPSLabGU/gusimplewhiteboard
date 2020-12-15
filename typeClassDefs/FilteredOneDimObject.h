@@ -79,14 +79,14 @@ class FilteredOneDimObject:  public FilteredVisionObject
 {
 public:
         /** designated constructor */
-        FilteredOneDimObject(int32_t frameCounter=0,
-                             int16_t distance =0,
-                             int16_t x=0,
-                             int16_t y=0,
-                             int16_t yaw=0,
-                                                       bool isVisible= false,
-                             uint64_t visibilityHistory=0
-                            ): FilteredVisionObject(visibilityHistory, frameCounter,distance,x,y,yaw,isVisible,0,0)
+        FilteredOneDimObject(int32_t t_frameCounter=0,
+                             int16_t t_distance =0,
+                             int16_t t_x=0,
+                             int16_t t_y=0,
+                             int16_t t_yaw=0,
+                             bool t_isVisible= false,
+                             uint64_t t_visibilityHistory=0
+                            ): FilteredVisionObject(t_visibilityHistory, t_frameCounter, t_distance, t_x, t_y, t_yaw, t_isVisible, 0, 0)
         { /*  */ }
         
         /** copy constructor */
@@ -96,15 +96,15 @@ public:
     
          /** BASECONSTRUCTOR: INTERESTING !!!! */
          FilteredOneDimObject (const wb_filtered_vision_object &other)
-       {    set_isVisible ( other.isVisible() );
+       {    set_isVisible ( other.isVisible );
         
-        set_frameCounter ( other.frameCounter() );
-           set_distance ( other.distance() );
-            set_x ( other.x() );
-            set_y ( other.y() );
-             set_yaw ( other.yaw() );
-           set_isVisible ( other.isVisible() );
-               set_visibilityHistory ( other.visibilityHistory() );
+        set_frameCounter ( other.frameCounter );
+           set_distance ( other.distance );
+            set_x ( other.x );
+            set_y ( other.y );
+             set_yaw ( other.yaw );
+           set_isVisible ( other.isVisible );
+               set_visibilityHistory ( other.visibilityHistory );
 
         
     }
@@ -127,13 +127,13 @@ public:
     /**  INTERESTING !!!! */
     FilteredOneDimObject &operator=(const wb_filtered_vision_object &other)
     {
-        set_frameCounter ( other.frameCounter() );
-        set_distance ( other.distance() );
-        set_x ( other.x() );
-        set_y ( other.y() );
-        set_yaw ( other.yaw() );
-        set_isVisible ( other.isVisible() );
-        set_visibilityHistory ( other.visibilityHistory() );
+        set_frameCounter ( other.frameCounter );
+        set_distance ( other.distance );
+        set_x ( other.x );
+        set_y ( other.y );
+        set_yaw ( other.yaw );
+        set_isVisible ( other.isVisible );
+        set_visibilityHistory ( other.visibilityHistory );
         
         return *this;
     }

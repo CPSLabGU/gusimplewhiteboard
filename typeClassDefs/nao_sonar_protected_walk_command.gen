@@ -6,31 +6,31 @@ public:
 
 /**
  * Convenience function to make the nao walk.
- * @param forward see struct documentation.
- * @param left see struct documentation.
- * @param turn see struct documentation.
+ * @param t_forward see struct documentation.
+ * @param t_left see struct documentation.
+ * @param t_turn see struct documentation.
  * @return A NaoSonarProtectedWalkCommand instance
  */
-static NaoSonarProtectedWalkCommand walkProtected(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
+static NaoSonarProtectedWalkCommand walkProtected(int8_t t_priority, int16_t t_forward, int16_t t_left, int8_t t_turn) {
     NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
-    cmd.set_priority(priority);
-   cmd.set_walkEngineOn(true);
-    cmd.set_forward(forward);
-    cmd.set_left(left);
-    cmd.set_turn(turn);
+    cmd.set_priority(t_priority);
+    cmd.set_walkEngineOn(true);
+    cmd.set_forward(t_forward);
+    cmd.set_left(t_left);
+    cmd.set_turn(t_turn);
     cmd.set_bend(1);
     return cmd;
 }
 
 /**
  * Convenience function to make the nao walk, with precise step distances. There is no speed buildup with this method, it uses a consistent step size and speed. This is good for small accurate movements, like lining up a kick.
- * @param forward see struct documentation.
- * @param left see struct documentation.
- * @param turn see struct documentation.
+ * @param t_forward see struct documentation.
+ * @param t_left see struct documentation.
+ * @param t_turn see struct documentation.
  * @return A NaoSonarProtectedWalkCommand instance
  */
-static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
-    NaoSonarProtectedWalkCommand cmd = walkProtected(priority,forward, left, turn);
+static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t t_priority, int16_t t_forward, int16_t t_left, int8_t t_turn) {
+    NaoSonarProtectedWalkCommand cmd = walkProtected(t_priority, t_forward, t_left, t_turn);
     cmd.set_exactStepsRequested(true);
     return cmd;
 }
