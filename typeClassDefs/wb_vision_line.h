@@ -96,6 +96,10 @@
 #define VISION_LINE_TO_STRING_BUFFER_SIZE 1027
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Line class.
  */
@@ -105,18 +109,14 @@ struct wb_vision_line
     /**
      * line object representing the top edge of an SPL line.
      */
-    PROPERTY(struct wb_pixel_coordinate_line, lineEdgeTop)
+    struct wb_pixel_coordinate_line lineEdgeTop;
 
     /**
      * line object representing the bottom edge of an SPL line.
      */
-    PROPERTY(struct wb_pixel_coordinate_line, lineEdgeBottom)
+    struct wb_pixel_coordinate_line lineEdgeBottom;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

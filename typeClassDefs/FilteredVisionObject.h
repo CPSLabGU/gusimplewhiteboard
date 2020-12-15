@@ -81,16 +81,16 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t visibilityHistory = 0, int32_t frameCounter = 0, int16_t distance = 0, int16_t x = 0, int16_t y = 0, int16_t yaw = 0, int16_t ray_angle = 0, bool isVisible = true, bool pad1 = true) {
-            set_visibilityHistory(visibilityHistory);
-            set_frameCounter(frameCounter);
-            set_distance(distance);
-            set_x(x);
-            set_y(y);
-            set_yaw(yaw);
-            set_ray_angle(ray_angle);
-            set_isVisible(isVisible);
-            set_pad1(pad1);
+        void init(uint64_t t_visibilityHistory = 0, int32_t t_frameCounter = 0, int16_t t_distance = 0, int16_t t_x = 0, int16_t t_y = 0, int16_t t_yaw = 0, int16_t t_ray_angle = 0, bool t_isVisible = true, bool t_pad1 = true) {
+            set_visibilityHistory(t_visibilityHistory);
+            set_frameCounter(t_frameCounter);
+            set_distance(t_distance);
+            set_x(t_x);
+            set_y(t_y);
+            set_yaw(t_yaw);
+            set_ray_angle(t_ray_angle);
+            set_isVisible(t_isVisible);
+            set_pad1(t_pad1);
         }
 
     public:
@@ -98,75 +98,165 @@ namespace guWhiteboard {
         /**
          * Create a new `FilteredVisionObject`.
          */
-        FilteredVisionObject(uint64_t visibilityHistory = 0, int32_t frameCounter = 0, int16_t distance = 0, int16_t x = 0, int16_t y = 0, int16_t yaw = 0, int16_t ray_angle = 0, bool isVisible = true, bool pad1 = true) {
-            this->init(visibilityHistory, frameCounter, distance, x, y, yaw, ray_angle, isVisible, pad1);
+        FilteredVisionObject(uint64_t t_visibilityHistory = 0, int32_t t_frameCounter = 0, int16_t t_distance = 0, int16_t t_x = 0, int16_t t_y = 0, int16_t t_yaw = 0, int16_t t_ray_angle = 0, bool t_isVisible = true, bool t_pad1 = true) {
+            this->init(t_visibilityHistory, t_frameCounter, t_distance, t_x, t_y, t_yaw, t_ray_angle, t_isVisible, t_pad1);
         }
 
         /**
          * Copy Constructor.
          */
-        FilteredVisionObject(const FilteredVisionObject &other): wb_filtered_vision_object() {
-            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
+        FilteredVisionObject(const FilteredVisionObject &t_other): wb_filtered_vision_object() {
+            this->init(t_other.visibilityHistory(), t_other.frameCounter(), t_other.distance(), t_other.x(), t_other.y(), t_other.yaw(), t_other.ray_angle(), t_other.isVisible(), t_other.pad1());
         }
 
         /**
          * Copy Constructor.
          */
-        FilteredVisionObject(const struct wb_filtered_vision_object &other): wb_filtered_vision_object() {
-            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
+        FilteredVisionObject(const struct wb_filtered_vision_object &t_other): wb_filtered_vision_object() {
+            this->init(t_other.visibilityHistory, t_other.frameCounter, t_other.distance, t_other.x, t_other.y, t_other.yaw, t_other.ray_angle, t_other.isVisible, t_other.pad1);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FilteredVisionObject &operator = (const FilteredVisionObject &other) {
-            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
+        FilteredVisionObject &operator = (const FilteredVisionObject &t_other) {
+            this->init(t_other.visibilityHistory(), t_other.frameCounter(), t_other.distance(), t_other.x(), t_other.y(), t_other.yaw(), t_other.ray_angle(), t_other.isVisible(), t_other.pad1());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FilteredVisionObject &operator = (const struct wb_filtered_vision_object &other) {
-            this->init(other.visibilityHistory(), other.frameCounter(), other.distance(), other.x(), other.y(), other.yaw(), other.ray_angle(), other.isVisible(), other.pad1());
+        FilteredVisionObject &operator = (const struct wb_filtered_vision_object &t_other) {
+            this->init(t_other.visibilityHistory, t_other.frameCounter, t_other.distance, t_other.x, t_other.y, t_other.yaw, t_other.ray_angle, t_other.isVisible, t_other.pad1);
             return *this;
         }
 
-        bool operator ==(const FilteredVisionObject &other) const
+        bool operator ==(const FilteredVisionObject &t_other) const
         {
-            return visibilityHistory() == other.visibilityHistory()
-                && frameCounter() == other.frameCounter()
-                && distance() == other.distance()
-                && x() == other.x()
-                && y() == other.y()
-                && yaw() == other.yaw()
-                && ray_angle() == other.ray_angle()
-                && isVisible() == other.isVisible()
-                && pad1() == other.pad1();
+            return visibilityHistory() == t_other.visibilityHistory()
+                && frameCounter() == t_other.frameCounter()
+                && distance() == t_other.distance()
+                && x() == t_other.x()
+                && y() == t_other.y()
+                && yaw() == t_other.yaw()
+                && ray_angle() == t_other.ray_angle()
+                && isVisible() == t_other.isVisible()
+                && pad1() == t_other.pad1();
         }
 
-        bool operator !=(const FilteredVisionObject &other) const
+        bool operator !=(const FilteredVisionObject &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_filtered_vision_object &other) const
+        bool operator ==(const wb_filtered_vision_object &t_other) const
         {
-            return *this == FilteredVisionObject(other);
+            return *this == FilteredVisionObject(t_other);
         }
 
-        bool operator !=(const wb_filtered_vision_object &other) const
+        bool operator !=(const wb_filtered_vision_object &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint64_t visibilityHistory() const
+        {
+            return wb_filtered_vision_object::visibilityHistory;
+        }
+
+        void set_visibilityHistory(const uint64_t &t_newValue)
+        {
+            wb_filtered_vision_object::visibilityHistory = t_newValue;
+        }
+
+        int32_t frameCounter() const
+        {
+            return wb_filtered_vision_object::frameCounter;
+        }
+
+        void set_frameCounter(const int32_t &t_newValue)
+        {
+            wb_filtered_vision_object::frameCounter = t_newValue;
+        }
+
+        int16_t distance() const
+        {
+            return wb_filtered_vision_object::distance;
+        }
+
+        void set_distance(const int16_t &t_newValue)
+        {
+            wb_filtered_vision_object::distance = t_newValue;
+        }
+
+        int16_t x() const
+        {
+            return wb_filtered_vision_object::x;
+        }
+
+        void set_x(const int16_t &t_newValue)
+        {
+            wb_filtered_vision_object::x = t_newValue;
+        }
+
+        int16_t y() const
+        {
+            return wb_filtered_vision_object::y;
+        }
+
+        void set_y(const int16_t &t_newValue)
+        {
+            wb_filtered_vision_object::y = t_newValue;
+        }
+
+        int16_t yaw() const
+        {
+            return wb_filtered_vision_object::yaw;
+        }
+
+        void set_yaw(const int16_t &t_newValue)
+        {
+            wb_filtered_vision_object::yaw = t_newValue;
+        }
+
+        int16_t ray_angle() const
+        {
+            return wb_filtered_vision_object::ray_angle;
+        }
+
+        void set_ray_angle(const int16_t &t_newValue)
+        {
+            wb_filtered_vision_object::ray_angle = t_newValue;
+        }
+
+        bool isVisible() const
+        {
+            return wb_filtered_vision_object::isVisible;
+        }
+
+        void set_isVisible(const bool &t_newValue)
+        {
+            wb_filtered_vision_object::isVisible = t_newValue;
+        }
+
+        bool pad1() const
+        {
+            return wb_filtered_vision_object::pad1;
+        }
+
+        void set_pad1(const bool &t_newValue)
+        {
+            wb_filtered_vision_object::pad1 = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        FilteredVisionObject(const std::string &str) {
+        FilteredVisionObject(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -228,11 +318,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_FILTERED_VISION_OBJECT_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_filtered_vision_object_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_filtered_vision_object_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE) {

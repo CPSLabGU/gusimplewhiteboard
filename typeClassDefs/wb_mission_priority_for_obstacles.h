@@ -94,6 +94,10 @@
 #define MISSION_PRIORITY_FOR_OBSTACLES_TO_STRING_BUFFER_SIZE 6
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This message should be posted when a machine calls sub-machines with knowledge of the priority of the mission. High priority
  * mission like chasing the soccer ball should ignore obstacles when walking because getting to the ball is very important and
@@ -107,13 +111,9 @@ struct wb_mission_priority_for_obstacles
     /**
      * walk ahead with high priority on target so do not deviate because of obstacles detected by sonar.
      */
-    PROPERTY(bool, ignore_obstacles)
+    bool ignore_obstacles;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

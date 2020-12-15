@@ -82,13 +82,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
-            set_LKneePitch(LKneePitch);
-            set_LAnklePitch(LAnklePitch);
-            set_LAnkleRoll(LAnkleRoll);
-            set_RKneePitch(RKneePitch);
-            set_RAnklePitch(RAnklePitch);
-            set_RAnkleRoll(RAnkleRoll);
+        void init(float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f) {
+            set_LKneePitch(t_LKneePitch);
+            set_LAnklePitch(t_LAnklePitch);
+            set_LAnkleRoll(t_LAnkleRoll);
+            set_RKneePitch(t_RKneePitch);
+            set_RAnklePitch(t_RAnklePitch);
+            set_RAnkleRoll(t_RAnkleRoll);
         }
 
     public:
@@ -96,72 +96,132 @@ namespace guWhiteboard {
         /**
          * Create a new `SENSORSLegJointTemps`.
          */
-        SENSORSLegJointTemps(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
-            this->init(LKneePitch, LAnklePitch, LAnkleRoll, RKneePitch, RAnklePitch, RAnkleRoll);
+        SENSORSLegJointTemps(float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f) {
+            this->init(t_LKneePitch, t_LAnklePitch, t_LAnkleRoll, t_RKneePitch, t_RAnklePitch, t_RAnkleRoll);
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSLegJointTemps(const SENSORSLegJointTemps &other): wb_sensors_legjointtemps() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        SENSORSLegJointTemps(const SENSORSLegJointTemps &t_other): wb_sensors_legjointtemps() {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSLegJointTemps(const struct wb_sensors_legjointtemps &other): wb_sensors_legjointtemps() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        SENSORSLegJointTemps(const struct wb_sensors_legjointtemps &t_other): wb_sensors_legjointtemps() {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSLegJointTemps &operator = (const SENSORSLegJointTemps &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        SENSORSLegJointTemps &operator = (const SENSORSLegJointTemps &t_other) {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSLegJointTemps &operator = (const struct wb_sensors_legjointtemps &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        SENSORSLegJointTemps &operator = (const struct wb_sensors_legjointtemps &t_other) {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
             return *this;
         }
 
-        bool operator ==(const SENSORSLegJointTemps &other) const
+        bool operator ==(const SENSORSLegJointTemps &t_other) const
         {
-            return fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
-                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
-                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
-                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
-                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
-                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON;
+            return fabsf(LKneePitch() - t_other.LKneePitch()) < FLT_EPSILON
+                && fabsf(LAnklePitch() - t_other.LAnklePitch()) < FLT_EPSILON
+                && fabsf(LAnkleRoll() - t_other.LAnkleRoll()) < FLT_EPSILON
+                && fabsf(RKneePitch() - t_other.RKneePitch()) < FLT_EPSILON
+                && fabsf(RAnklePitch() - t_other.RAnklePitch()) < FLT_EPSILON
+                && fabsf(RAnkleRoll() - t_other.RAnkleRoll()) < FLT_EPSILON;
         }
 
-        bool operator !=(const SENSORSLegJointTemps &other) const
+        bool operator !=(const SENSORSLegJointTemps &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_legjointtemps &other) const
+        bool operator ==(const wb_sensors_legjointtemps &t_other) const
         {
-            return *this == SENSORSLegJointTemps(other);
+            return *this == SENSORSLegJointTemps(t_other);
         }
 
-        bool operator !=(const wb_sensors_legjointtemps &other) const
+        bool operator !=(const wb_sensors_legjointtemps &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float LKneePitch() const
+        {
+            return wb_sensors_legjointtemps::LKneePitch;
+        }
+
+        void set_LKneePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::LKneePitch = t_newValue;
+        }
+
+        float LAnklePitch() const
+        {
+            return wb_sensors_legjointtemps::LAnklePitch;
+        }
+
+        void set_LAnklePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::LAnklePitch = t_newValue;
+        }
+
+        float LAnkleRoll() const
+        {
+            return wb_sensors_legjointtemps::LAnkleRoll;
+        }
+
+        void set_LAnkleRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::LAnkleRoll = t_newValue;
+        }
+
+        float RKneePitch() const
+        {
+            return wb_sensors_legjointtemps::RKneePitch;
+        }
+
+        void set_RKneePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::RKneePitch = t_newValue;
+        }
+
+        float RAnklePitch() const
+        {
+            return wb_sensors_legjointtemps::RAnklePitch;
+        }
+
+        void set_RAnklePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::RAnklePitch = t_newValue;
+        }
+
+        float RAnkleRoll() const
+        {
+            return wb_sensors_legjointtemps::RAnkleRoll;
+        }
+
+        void set_RAnkleRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointtemps::RAnkleRoll = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SENSORSLegJointTemps(const std::string &str) {
+        SENSORSLegJointTemps(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -211,11 +271,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_LEGJOINTTEMPS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_legjointtemps_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_legjointtemps_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_LEGJOINTTEMPS_DESC_BUFFER_SIZE) {

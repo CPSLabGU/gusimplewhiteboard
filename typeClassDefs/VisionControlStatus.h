@@ -82,26 +82,26 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, float confidence = 0.8f, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", struct timeval imageTime = {}) {
-            set_cameraResolution(cameraResolution);
-            set_pipelineRunning(pipelineRunning);
-            set_selectedCamera(selectedCamera);
-            set_saveImage(saveImage);
-            set_saveClassifiedImage(saveClassifiedImage);
-            set_pipeline(pipeline);
-            set_chooseCamera(chooseCamera);
-            set_confidence(confidence);
-            set_networkTop(networkTop);
-            set_networkBottom(networkBottom);
-            set_streamingSource(streamingSource);
-            set_imageInput(imageInput);
-            set_jpegStreamQuality(jpegStreamQuality);
-            set_jpegStreamStride(jpegStreamStride);
-            set_frameRate(frameRate);
-            set_runPipelineOnce(runPipelineOnce);
-            set_frameNumber(frameNumber);
-            gu_strlcpy(const_cast<char *>(this->colourCalibration()), colourCalibration.c_str(), 10);
-            set_imageTime(imageTime);
+        void init(enum Resolutions t_cameraResolution = VGA, bool t_pipelineRunning = true, enum VisionCamera t_selectedCamera = Top, enum SaveFileType t_saveImage = None, bool t_saveClassifiedImage = false, enum NamedPipeline t_pipeline = Soccer, int t_chooseCamera = 0, float t_confidence = 0.8f, enum NeuralNetworkType t_networkTop = v2, enum NeuralNetworkType t_networkBottom = v2, enum StreamingType t_streamingSource = Normal, bool t_imageInput = false, int t_jpegStreamQuality = 30, int t_jpegStreamStride = 4, int t_frameRate = 0, bool t_runPipelineOnce = false, uint64_t t_frameNumber = 0, std::string t_colourCalibration = "class", struct timeval t_imageTime = {}) {
+            set_cameraResolution(t_cameraResolution);
+            set_pipelineRunning(t_pipelineRunning);
+            set_selectedCamera(t_selectedCamera);
+            set_saveImage(t_saveImage);
+            set_saveClassifiedImage(t_saveClassifiedImage);
+            set_pipeline(t_pipeline);
+            set_chooseCamera(t_chooseCamera);
+            set_confidence(t_confidence);
+            set_networkTop(t_networkTop);
+            set_networkBottom(t_networkBottom);
+            set_streamingSource(t_streamingSource);
+            set_imageInput(t_imageInput);
+            set_jpegStreamQuality(t_jpegStreamQuality);
+            set_jpegStreamStride(t_jpegStreamStride);
+            set_frameRate(t_frameRate);
+            set_runPipelineOnce(t_runPipelineOnce);
+            set_frameNumber(t_frameNumber);
+            gu_strlcpy(const_cast<char *>(this->colourCalibration()), t_colourCalibration.c_str(), 10);
+            set_imageTime(t_imageTime);
         }
 
     public:
@@ -109,84 +109,274 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionControlStatus`.
          */
-        VisionControlStatus(enum Resolutions cameraResolution = VGA, bool pipelineRunning = true, enum VisionCamera selectedCamera = Top, enum SaveFileType saveImage = None, bool saveClassifiedImage = false, enum NamedPipeline pipeline = Soccer, int chooseCamera = 0, float confidence = 0.8f, enum NeuralNetworkType networkTop = v2, enum NeuralNetworkType networkBottom = v2, enum StreamingType streamingSource = Normal, bool imageInput = false, int jpegStreamQuality = 30, int jpegStreamStride = 4, int frameRate = 0, bool runPipelineOnce = false, uint64_t frameNumber = 0, std::string colourCalibration = "class", struct timeval imageTime = {}) {
-            this->init(cameraResolution, pipelineRunning, selectedCamera, saveImage, saveClassifiedImage, pipeline, chooseCamera, confidence, networkTop, networkBottom, streamingSource, imageInput, jpegStreamQuality, jpegStreamStride, frameRate, runPipelineOnce, frameNumber, colourCalibration, imageTime);
+        VisionControlStatus(enum Resolutions t_cameraResolution = VGA, bool t_pipelineRunning = true, enum VisionCamera t_selectedCamera = Top, enum SaveFileType t_saveImage = None, bool t_saveClassifiedImage = false, enum NamedPipeline t_pipeline = Soccer, int t_chooseCamera = 0, float t_confidence = 0.8f, enum NeuralNetworkType t_networkTop = v2, enum NeuralNetworkType t_networkBottom = v2, enum StreamingType t_streamingSource = Normal, bool t_imageInput = false, int t_jpegStreamQuality = 30, int t_jpegStreamStride = 4, int t_frameRate = 0, bool t_runPipelineOnce = false, uint64_t t_frameNumber = 0, std::string t_colourCalibration = "class", struct timeval t_imageTime = {}) {
+            this->init(t_cameraResolution, t_pipelineRunning, t_selectedCamera, t_saveImage, t_saveClassifiedImage, t_pipeline, t_chooseCamera, t_confidence, t_networkTop, t_networkBottom, t_streamingSource, t_imageInput, t_jpegStreamQuality, t_jpegStreamStride, t_frameRate, t_runPipelineOnce, t_frameNumber, t_colourCalibration, t_imageTime);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionControlStatus(const VisionControlStatus &other): wb_vision_control_status() {
-            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.confidence(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration(), other.imageTime());
+        VisionControlStatus(const VisionControlStatus &t_other): wb_vision_control_status() {
+            this->init(t_other.cameraResolution(), t_other.pipelineRunning(), t_other.selectedCamera(), t_other.saveImage(), t_other.saveClassifiedImage(), t_other.pipeline(), t_other.chooseCamera(), t_other.confidence(), t_other.networkTop(), t_other.networkBottom(), t_other.streamingSource(), t_other.imageInput(), t_other.jpegStreamQuality(), t_other.jpegStreamStride(), t_other.frameRate(), t_other.runPipelineOnce(), t_other.frameNumber(), t_other.colourCalibration(), t_other.imageTime());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionControlStatus(const struct wb_vision_control_status &other): wb_vision_control_status() {
-            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.confidence(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration(), other.imageTime());
+        VisionControlStatus(const struct wb_vision_control_status &t_other): wb_vision_control_status() {
+            this->init(t_other.cameraResolution, t_other.pipelineRunning, t_other.selectedCamera, t_other.saveImage, t_other.saveClassifiedImage, t_other.pipeline, t_other.chooseCamera, t_other.confidence, t_other.networkTop, t_other.networkBottom, t_other.streamingSource, t_other.imageInput, t_other.jpegStreamQuality, t_other.jpegStreamStride, t_other.frameRate, t_other.runPipelineOnce, t_other.frameNumber, t_other.colourCalibration, t_other.imageTime);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionControlStatus &operator = (const VisionControlStatus &other) {
-            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.confidence(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration(), other.imageTime());
+        VisionControlStatus &operator = (const VisionControlStatus &t_other) {
+            this->init(t_other.cameraResolution(), t_other.pipelineRunning(), t_other.selectedCamera(), t_other.saveImage(), t_other.saveClassifiedImage(), t_other.pipeline(), t_other.chooseCamera(), t_other.confidence(), t_other.networkTop(), t_other.networkBottom(), t_other.streamingSource(), t_other.imageInput(), t_other.jpegStreamQuality(), t_other.jpegStreamStride(), t_other.frameRate(), t_other.runPipelineOnce(), t_other.frameNumber(), t_other.colourCalibration(), t_other.imageTime());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionControlStatus &operator = (const struct wb_vision_control_status &other) {
-            this->init(other.cameraResolution(), other.pipelineRunning(), other.selectedCamera(), other.saveImage(), other.saveClassifiedImage(), other.pipeline(), other.chooseCamera(), other.confidence(), other.networkTop(), other.networkBottom(), other.streamingSource(), other.imageInput(), other.jpegStreamQuality(), other.jpegStreamStride(), other.frameRate(), other.runPipelineOnce(), other.frameNumber(), other.colourCalibration(), other.imageTime());
+        VisionControlStatus &operator = (const struct wb_vision_control_status &t_other) {
+            this->init(t_other.cameraResolution, t_other.pipelineRunning, t_other.selectedCamera, t_other.saveImage, t_other.saveClassifiedImage, t_other.pipeline, t_other.chooseCamera, t_other.confidence, t_other.networkTop, t_other.networkBottom, t_other.streamingSource, t_other.imageInput, t_other.jpegStreamQuality, t_other.jpegStreamStride, t_other.frameRate, t_other.runPipelineOnce, t_other.frameNumber, t_other.colourCalibration, t_other.imageTime);
             return *this;
         }
 
-        bool operator ==(const VisionControlStatus &other) const
+        bool operator ==(const VisionControlStatus &t_other) const
         {
-            return cameraResolution() == other.cameraResolution()
-                && pipelineRunning() == other.pipelineRunning()
-                && selectedCamera() == other.selectedCamera()
-                && saveImage() == other.saveImage()
-                && saveClassifiedImage() == other.saveClassifiedImage()
-                && pipeline() == other.pipeline()
-                && chooseCamera() == other.chooseCamera()
-                && fabsf(confidence() - other.confidence()) < FLT_EPSILON
-                && networkTop() == other.networkTop()
-                && networkBottom() == other.networkBottom()
-                && streamingSource() == other.streamingSource()
-                && imageInput() == other.imageInput()
-                && jpegStreamQuality() == other.jpegStreamQuality()
-                && jpegStreamStride() == other.jpegStreamStride()
-                && frameRate() == other.frameRate()
-                && runPipelineOnce() == other.runPipelineOnce()
-                && frameNumber() == other.frameNumber()
-                && 0 == strncmp(_colourCalibration, other._colourCalibration, 10);
+            return cameraResolution() == t_other.cameraResolution()
+                && pipelineRunning() == t_other.pipelineRunning()
+                && selectedCamera() == t_other.selectedCamera()
+                && saveImage() == t_other.saveImage()
+                && saveClassifiedImage() == t_other.saveClassifiedImage()
+                && pipeline() == t_other.pipeline()
+                && chooseCamera() == t_other.chooseCamera()
+                && fabsf(confidence() - t_other.confidence()) < FLT_EPSILON
+                && networkTop() == t_other.networkTop()
+                && networkBottom() == t_other.networkBottom()
+                && streamingSource() == t_other.streamingSource()
+                && imageInput() == t_other.imageInput()
+                && jpegStreamQuality() == t_other.jpegStreamQuality()
+                && jpegStreamStride() == t_other.jpegStreamStride()
+                && frameRate() == t_other.frameRate()
+                && runPipelineOnce() == t_other.runPipelineOnce()
+                && frameNumber() == t_other.frameNumber()
+                && 0 == strncmp(colourCalibration(), t_other.colourCalibration(), 10);
         }
 
-        bool operator !=(const VisionControlStatus &other) const
+        bool operator !=(const VisionControlStatus &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_control_status &other) const
+        bool operator ==(const wb_vision_control_status &t_other) const
         {
-            return *this == VisionControlStatus(other);
+            return *this == VisionControlStatus(t_other);
         }
 
-        bool operator !=(const wb_vision_control_status &other) const
+        bool operator !=(const wb_vision_control_status &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum Resolutions cameraResolution() const
+        {
+            return wb_vision_control_status::cameraResolution;
+        }
+
+        void set_cameraResolution(const enum Resolutions &t_newValue)
+        {
+            wb_vision_control_status::cameraResolution = t_newValue;
+        }
+
+        bool pipelineRunning() const
+        {
+            return wb_vision_control_status::pipelineRunning;
+        }
+
+        void set_pipelineRunning(const bool &t_newValue)
+        {
+            wb_vision_control_status::pipelineRunning = t_newValue;
+        }
+
+        enum VisionCamera selectedCamera() const
+        {
+            return wb_vision_control_status::selectedCamera;
+        }
+
+        void set_selectedCamera(const enum VisionCamera &t_newValue)
+        {
+            wb_vision_control_status::selectedCamera = t_newValue;
+        }
+
+        enum SaveFileType saveImage() const
+        {
+            return wb_vision_control_status::saveImage;
+        }
+
+        void set_saveImage(const enum SaveFileType &t_newValue)
+        {
+            wb_vision_control_status::saveImage = t_newValue;
+        }
+
+        bool saveClassifiedImage() const
+        {
+            return wb_vision_control_status::saveClassifiedImage;
+        }
+
+        void set_saveClassifiedImage(const bool &t_newValue)
+        {
+            wb_vision_control_status::saveClassifiedImage = t_newValue;
+        }
+
+        enum NamedPipeline pipeline() const
+        {
+            return wb_vision_control_status::pipeline;
+        }
+
+        void set_pipeline(const enum NamedPipeline &t_newValue)
+        {
+            wb_vision_control_status::pipeline = t_newValue;
+        }
+
+        int chooseCamera() const
+        {
+            return wb_vision_control_status::chooseCamera;
+        }
+
+        void set_chooseCamera(const int &t_newValue)
+        {
+            wb_vision_control_status::chooseCamera = t_newValue;
+        }
+
+        float confidence() const
+        {
+            return wb_vision_control_status::confidence;
+        }
+
+        void set_confidence(const float &t_newValue)
+        {
+            wb_vision_control_status::confidence = t_newValue;
+        }
+
+        enum NeuralNetworkType networkTop() const
+        {
+            return wb_vision_control_status::networkTop;
+        }
+
+        void set_networkTop(const enum NeuralNetworkType &t_newValue)
+        {
+            wb_vision_control_status::networkTop = t_newValue;
+        }
+
+        enum NeuralNetworkType networkBottom() const
+        {
+            return wb_vision_control_status::networkBottom;
+        }
+
+        void set_networkBottom(const enum NeuralNetworkType &t_newValue)
+        {
+            wb_vision_control_status::networkBottom = t_newValue;
+        }
+
+        enum StreamingType streamingSource() const
+        {
+            return wb_vision_control_status::streamingSource;
+        }
+
+        void set_streamingSource(const enum StreamingType &t_newValue)
+        {
+            wb_vision_control_status::streamingSource = t_newValue;
+        }
+
+        bool imageInput() const
+        {
+            return wb_vision_control_status::imageInput;
+        }
+
+        void set_imageInput(const bool &t_newValue)
+        {
+            wb_vision_control_status::imageInput = t_newValue;
+        }
+
+        int jpegStreamQuality() const
+        {
+            return wb_vision_control_status::jpegStreamQuality;
+        }
+
+        void set_jpegStreamQuality(const int &t_newValue)
+        {
+            wb_vision_control_status::jpegStreamQuality = t_newValue;
+        }
+
+        int jpegStreamStride() const
+        {
+            return wb_vision_control_status::jpegStreamStride;
+        }
+
+        void set_jpegStreamStride(const int &t_newValue)
+        {
+            wb_vision_control_status::jpegStreamStride = t_newValue;
+        }
+
+        int frameRate() const
+        {
+            return wb_vision_control_status::frameRate;
+        }
+
+        void set_frameRate(const int &t_newValue)
+        {
+            wb_vision_control_status::frameRate = t_newValue;
+        }
+
+        bool runPipelineOnce() const
+        {
+            return wb_vision_control_status::runPipelineOnce;
+        }
+
+        void set_runPipelineOnce(const bool &t_newValue)
+        {
+            wb_vision_control_status::runPipelineOnce = t_newValue;
+        }
+
+        uint64_t frameNumber() const
+        {
+            return wb_vision_control_status::frameNumber;
+        }
+
+        void set_frameNumber(const uint64_t &t_newValue)
+        {
+            wb_vision_control_status::frameNumber = t_newValue;
+        }
+
+        const char *colourCalibration() const
+        {
+            return &(wb_vision_control_status::colourCalibration[0]);
+        }
+
+        void set_colourCalibration(const char *t_newValue)
+        {
+            strncpy(wb_vision_control_status::colourCalibration, t_newValue, 10);
+        }
+
+        struct timeval imageTime() const
+        {
+            return wb_vision_control_status::imageTime;
+        }
+
+        void set_imageTime(const struct timeval &t_newValue)
+        {
+            wb_vision_control_status::imageTime = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionControlStatus(const std::string &str) {
+        VisionControlStatus(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -586,11 +776,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_CONTROL_STATUS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_control_status_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_control_status_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_CONTROL_STATUS_DESC_BUFFER_SIZE) {
@@ -967,7 +1157,7 @@ namespace guWhiteboard {
                     }
                     case 17:
                     {
-                        strncpy(this->colourCalibration(), var_str, 10);
+                        strncpy(wb_vision_control_status::colourCalibration, var_str, 10);
                         break;
                     }
                 }

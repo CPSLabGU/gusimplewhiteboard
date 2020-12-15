@@ -98,6 +98,10 @@
 
 #define MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE 12
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results of the FSM (and sub machines) "SMFilterVision".
  * This machine applies some basic filtering to vision output messages.
@@ -109,18 +113,14 @@ struct wb_machine_filtered_localisation_vision
     /**
      * The number of sightings in `sightings`.
      */
-    PROPERTY(uint8_t, numberOfSightings)
+    uint8_t numberOfSightings;
 
     /**
      * All sightings.
      */
-    ARRAY_PROPERTY(struct wb_landmark_sighting, sightings, MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE)
+    struct wb_landmark_sighting sightings[MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -99,6 +99,10 @@
 
 #define FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE 4
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * The class of landmarks filtered regarding goal sightings
  */
@@ -108,13 +112,9 @@ struct wb_filtered_arrayonedimobjects
     /**
      * the array containing various filtered parts of the goals reported by vision FVO_NUM_OBJECTS =4
      */
-    ARRAY_PROPERTY(struct wb_filtered_vision_object, objects, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE)
+    struct wb_filtered_vision_object objects[FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

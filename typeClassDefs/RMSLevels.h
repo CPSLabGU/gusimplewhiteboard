@@ -81,11 +81,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t rear_left = 0, int16_t rear_right = 0, int16_t front_left = 0, int16_t front_right = 0) {
-            set_rear_left(rear_left);
-            set_rear_right(rear_right);
-            set_front_left(front_left);
-            set_front_right(front_right);
+        void init(int16_t t_rear_left = 0, int16_t t_rear_right = 0, int16_t t_front_left = 0, int16_t t_front_right = 0) {
+            set_rear_left(t_rear_left);
+            set_rear_right(t_rear_right);
+            set_front_left(t_front_left);
+            set_front_right(t_front_right);
         }
 
     public:
@@ -93,70 +93,110 @@ namespace guWhiteboard {
         /**
          * Create a new `RMSLevels`.
          */
-        RMSLevels(int16_t rear_left = 0, int16_t rear_right = 0, int16_t front_left = 0, int16_t front_right = 0) {
-            this->init(rear_left, rear_right, front_left, front_right);
+        RMSLevels(int16_t t_rear_left = 0, int16_t t_rear_right = 0, int16_t t_front_left = 0, int16_t t_front_right = 0) {
+            this->init(t_rear_left, t_rear_right, t_front_left, t_front_right);
         }
 
         /**
          * Copy Constructor.
          */
-        RMSLevels(const RMSLevels &other): wb_r_m_s_levels() {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        RMSLevels(const RMSLevels &t_other): wb_r_m_s_levels() {
+            this->init(t_other.rear_left(), t_other.rear_right(), t_other.front_left(), t_other.front_right());
         }
 
         /**
          * Copy Constructor.
          */
-        RMSLevels(const struct wb_r_m_s_levels &other): wb_r_m_s_levels() {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        RMSLevels(const struct wb_r_m_s_levels &t_other): wb_r_m_s_levels() {
+            this->init(t_other.rear_left, t_other.rear_right, t_other.front_left, t_other.front_right);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        RMSLevels &operator = (const RMSLevels &other) {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        RMSLevels &operator = (const RMSLevels &t_other) {
+            this->init(t_other.rear_left(), t_other.rear_right(), t_other.front_left(), t_other.front_right());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        RMSLevels &operator = (const struct wb_r_m_s_levels &other) {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        RMSLevels &operator = (const struct wb_r_m_s_levels &t_other) {
+            this->init(t_other.rear_left, t_other.rear_right, t_other.front_left, t_other.front_right);
             return *this;
         }
 
-        bool operator ==(const RMSLevels &other) const
+        bool operator ==(const RMSLevels &t_other) const
         {
-            return rear_left() == other.rear_left()
-                && rear_right() == other.rear_right()
-                && front_left() == other.front_left()
-                && front_right() == other.front_right();
+            return rear_left() == t_other.rear_left()
+                && rear_right() == t_other.rear_right()
+                && front_left() == t_other.front_left()
+                && front_right() == t_other.front_right();
         }
 
-        bool operator !=(const RMSLevels &other) const
+        bool operator !=(const RMSLevels &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_r_m_s_levels &other) const
+        bool operator ==(const wb_r_m_s_levels &t_other) const
         {
-            return *this == RMSLevels(other);
+            return *this == RMSLevels(t_other);
         }
 
-        bool operator !=(const wb_r_m_s_levels &other) const
+        bool operator !=(const wb_r_m_s_levels &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t rear_left() const
+        {
+            return wb_r_m_s_levels::rear_left;
+        }
+
+        void set_rear_left(const int16_t &t_newValue)
+        {
+            wb_r_m_s_levels::rear_left = t_newValue;
+        }
+
+        int16_t rear_right() const
+        {
+            return wb_r_m_s_levels::rear_right;
+        }
+
+        void set_rear_right(const int16_t &t_newValue)
+        {
+            wb_r_m_s_levels::rear_right = t_newValue;
+        }
+
+        int16_t front_left() const
+        {
+            return wb_r_m_s_levels::front_left;
+        }
+
+        void set_front_left(const int16_t &t_newValue)
+        {
+            wb_r_m_s_levels::front_left = t_newValue;
+        }
+
+        int16_t front_right() const
+        {
+            return wb_r_m_s_levels::front_right;
+        }
+
+        void set_front_right(const int16_t &t_newValue)
+        {
+            wb_r_m_s_levels::front_right = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        RMSLevels(const std::string &str) {
+        RMSLevels(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -198,11 +238,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_RMS_LEVELS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_r_m_s_levels_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_r_m_s_levels_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > RMS_LEVELS_DESC_BUFFER_SIZE) {

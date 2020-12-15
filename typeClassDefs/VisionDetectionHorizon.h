@@ -94,11 +94,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum HorizonOptions horizonType = HorizonFailed, struct wb_pixel_coordinate leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate rightCoordinate = wb_pixel_coordinate()) {
-            set_horizonType(horizonType);
-            set_leftCoordinate(leftCoordinate);
-            set_centerCoordinate(centerCoordinate);
-            set_rightCoordinate(rightCoordinate);
+        void init(enum HorizonOptions t_horizonType = HorizonFailed, struct wb_pixel_coordinate t_leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_rightCoordinate = wb_pixel_coordinate()) {
+            set_horizonType(t_horizonType);
+            set_leftCoordinate(t_leftCoordinate);
+            set_centerCoordinate(t_centerCoordinate);
+            set_rightCoordinate(t_rightCoordinate);
         }
 
     public:
@@ -106,70 +106,110 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionHorizon`.
          */
-        VisionDetectionHorizon(enum HorizonOptions horizonType = HorizonFailed, struct wb_pixel_coordinate leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate rightCoordinate = wb_pixel_coordinate()) {
-            this->init(horizonType, leftCoordinate, centerCoordinate, rightCoordinate);
+        VisionDetectionHorizon(enum HorizonOptions t_horizonType = HorizonFailed, struct wb_pixel_coordinate t_leftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_centerCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_rightCoordinate = wb_pixel_coordinate()) {
+            this->init(t_horizonType, t_leftCoordinate, t_centerCoordinate, t_rightCoordinate);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionHorizon(const VisionDetectionHorizon &other): wb_vision_detection_horizon() {
-            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
+        VisionDetectionHorizon(const VisionDetectionHorizon &t_other): wb_vision_detection_horizon() {
+            this->init(t_other.horizonType(), t_other.leftCoordinate(), t_other.centerCoordinate(), t_other.rightCoordinate());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionHorizon(const struct wb_vision_detection_horizon &other): wb_vision_detection_horizon() {
-            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
+        VisionDetectionHorizon(const struct wb_vision_detection_horizon &t_other): wb_vision_detection_horizon() {
+            this->init(t_other.horizonType, t_other.leftCoordinate, t_other.centerCoordinate, t_other.rightCoordinate);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionHorizon &operator = (const VisionDetectionHorizon &other) {
-            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
+        VisionDetectionHorizon &operator = (const VisionDetectionHorizon &t_other) {
+            this->init(t_other.horizonType(), t_other.leftCoordinate(), t_other.centerCoordinate(), t_other.rightCoordinate());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionHorizon &operator = (const struct wb_vision_detection_horizon &other) {
-            this->init(other.horizonType(), other.leftCoordinate(), other.centerCoordinate(), other.rightCoordinate());
+        VisionDetectionHorizon &operator = (const struct wb_vision_detection_horizon &t_other) {
+            this->init(t_other.horizonType, t_other.leftCoordinate, t_other.centerCoordinate, t_other.rightCoordinate);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionHorizon &other) const
+        bool operator ==(const VisionDetectionHorizon &t_other) const
         {
-            return horizonType() == other.horizonType()
-                && PixelCoordinate(_leftCoordinate) == PixelCoordinate(other._leftCoordinate)
-                && PixelCoordinate(_centerCoordinate) == PixelCoordinate(other._centerCoordinate)
-                && PixelCoordinate(_rightCoordinate) == PixelCoordinate(other._rightCoordinate);
+            return horizonType() == t_other.horizonType()
+                && PixelCoordinate(leftCoordinate()) == PixelCoordinate(t_other.leftCoordinate())
+                && PixelCoordinate(centerCoordinate()) == PixelCoordinate(t_other.centerCoordinate())
+                && PixelCoordinate(rightCoordinate()) == PixelCoordinate(t_other.rightCoordinate());
         }
 
-        bool operator !=(const VisionDetectionHorizon &other) const
+        bool operator !=(const VisionDetectionHorizon &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_horizon &other) const
+        bool operator ==(const wb_vision_detection_horizon &t_other) const
         {
-            return *this == VisionDetectionHorizon(other);
+            return *this == VisionDetectionHorizon(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_horizon &other) const
+        bool operator !=(const wb_vision_detection_horizon &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum HorizonOptions horizonType() const
+        {
+            return wb_vision_detection_horizon::horizonType;
+        }
+
+        void set_horizonType(const enum HorizonOptions &t_newValue)
+        {
+            wb_vision_detection_horizon::horizonType = t_newValue;
+        }
+
+        const PixelCoordinate leftCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_horizon::leftCoordinate);
+        }
+
+        void set_leftCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_horizon::leftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate centerCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_horizon::centerCoordinate);
+        }
+
+        void set_centerCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_horizon::centerCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate rightCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_horizon::rightCoordinate);
+        }
+
+        void set_rightCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_horizon::rightCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionHorizon(const std::string &str) {
+        VisionDetectionHorizon(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -203,14 +243,11 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * leftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->leftCoordinate()));
-            ss << "leftCoordinate=" << "{" << leftCoordinate_cast->description() << "}";
+            ss << "leftCoordinate=" << "{" << PixelCoordinate(this->leftCoordinate()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * centerCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->centerCoordinate()));
-            ss << "centerCoordinate=" << "{" << centerCoordinate_cast->description() << "}";
+            ss << "centerCoordinate=" << "{" << PixelCoordinate(this->centerCoordinate()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * rightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->rightCoordinate()));
-            ss << "rightCoordinate=" << "{" << rightCoordinate_cast->description() << "}";
+            ss << "rightCoordinate=" << "{" << PixelCoordinate(this->rightCoordinate()).description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }
@@ -246,24 +283,21 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * leftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->leftCoordinate()));
-            ss << "{" << leftCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->leftCoordinate()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * centerCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->centerCoordinate()));
-            ss << "{" << centerCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->centerCoordinate()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * rightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->rightCoordinate()));
-            ss << "{" << rightCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->rightCoordinate()).to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
         }
 
 #ifdef USE_WB_VISION_DETECTION_HORIZON_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_horizon_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_horizon_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {

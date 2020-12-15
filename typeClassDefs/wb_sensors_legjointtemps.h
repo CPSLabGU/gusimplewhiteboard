@@ -94,6 +94,10 @@
 #define SENSORS_LEGJOINTTEMPS_TO_STRING_BUFFER_SIZE 395
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief leg temps
  */
@@ -103,38 +107,34 @@ struct wb_sensors_legjointtemps
     /**
      * left knee pitch temp
      */
-    PROPERTY(float, LKneePitch)
+    float LKneePitch;
 
     /**
      * left ankle pitch temp
      */
-    PROPERTY(float, LAnklePitch)
+    float LAnklePitch;
 
     /**
      * left ankle roll temp
      */
-    PROPERTY(float, LAnkleRoll)
+    float LAnkleRoll;
 
     /**
      * right knee pitch temp
      */
-    PROPERTY(float, RKneePitch)
+    float RKneePitch;
 
     /**
      * right ankle pitch temp
      */
-    PROPERTY(float, RAnklePitch)
+    float RAnklePitch;
 
     /**
      * right ankle roll temp
      */
-    PROPERTY(float, RAnkleRoll)
+    float RAnkleRoll;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

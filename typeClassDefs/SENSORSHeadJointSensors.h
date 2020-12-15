@@ -82,9 +82,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float HeadYaw = 0.0f, float HeadPitch = 0.0f) {
-            set_HeadYaw(HeadYaw);
-            set_HeadPitch(HeadPitch);
+        void init(float t_HeadYaw = 0.0f, float t_HeadPitch = 0.0f) {
+            set_HeadYaw(t_HeadYaw);
+            set_HeadPitch(t_HeadPitch);
         }
 
     public:
@@ -92,68 +92,88 @@ namespace guWhiteboard {
         /**
          * Create a new `SENSORSHeadJointSensors`.
          */
-        SENSORSHeadJointSensors(float HeadYaw = 0.0f, float HeadPitch = 0.0f) {
-            this->init(HeadYaw, HeadPitch);
+        SENSORSHeadJointSensors(float t_HeadYaw = 0.0f, float t_HeadPitch = 0.0f) {
+            this->init(t_HeadYaw, t_HeadPitch);
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSHeadJointSensors(const SENSORSHeadJointSensors &other): wb_sensors_headjointsensors() {
-            this->init(other.HeadYaw(), other.HeadPitch());
+        SENSORSHeadJointSensors(const SENSORSHeadJointSensors &t_other): wb_sensors_headjointsensors() {
+            this->init(t_other.HeadYaw(), t_other.HeadPitch());
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSHeadJointSensors(const struct wb_sensors_headjointsensors &other): wb_sensors_headjointsensors() {
-            this->init(other.HeadYaw(), other.HeadPitch());
+        SENSORSHeadJointSensors(const struct wb_sensors_headjointsensors &t_other): wb_sensors_headjointsensors() {
+            this->init(t_other.HeadYaw, t_other.HeadPitch);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSHeadJointSensors &operator = (const SENSORSHeadJointSensors &other) {
-            this->init(other.HeadYaw(), other.HeadPitch());
+        SENSORSHeadJointSensors &operator = (const SENSORSHeadJointSensors &t_other) {
+            this->init(t_other.HeadYaw(), t_other.HeadPitch());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSHeadJointSensors &operator = (const struct wb_sensors_headjointsensors &other) {
-            this->init(other.HeadYaw(), other.HeadPitch());
+        SENSORSHeadJointSensors &operator = (const struct wb_sensors_headjointsensors &t_other) {
+            this->init(t_other.HeadYaw, t_other.HeadPitch);
             return *this;
         }
 
-        bool operator ==(const SENSORSHeadJointSensors &other) const
+        bool operator ==(const SENSORSHeadJointSensors &t_other) const
         {
-            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
-                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON;
+            return fabsf(HeadYaw() - t_other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - t_other.HeadPitch()) < FLT_EPSILON;
         }
 
-        bool operator !=(const SENSORSHeadJointSensors &other) const
+        bool operator !=(const SENSORSHeadJointSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_headjointsensors &other) const
+        bool operator ==(const wb_sensors_headjointsensors &t_other) const
         {
-            return *this == SENSORSHeadJointSensors(other);
+            return *this == SENSORSHeadJointSensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_headjointsensors &other) const
+        bool operator !=(const wb_sensors_headjointsensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float HeadYaw() const
+        {
+            return wb_sensors_headjointsensors::HeadYaw;
+        }
+
+        void set_HeadYaw(const float &t_newValue)
+        {
+            wb_sensors_headjointsensors::HeadYaw = t_newValue;
+        }
+
+        float HeadPitch() const
+        {
+            return wb_sensors_headjointsensors::HeadPitch;
+        }
+
+        void set_HeadPitch(const float &t_newValue)
+        {
+            wb_sensors_headjointsensors::HeadPitch = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SENSORSHeadJointSensors(const std::string &str) {
+        SENSORSHeadJointSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -187,11 +207,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_HEADJOINTSENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_headjointsensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_headjointsensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_HEADJOINTSENSORS_DESC_BUFFER_SIZE) {

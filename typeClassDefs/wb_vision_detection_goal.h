@@ -103,6 +103,10 @@ enum GoalOptions {
 #define VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE 1541
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results for the Goal Ray Tracer (guvision). 
  * If two posts are found, then post1 is the left post and post2 is the right.
@@ -113,23 +117,19 @@ struct wb_vision_detection_goal
     /**
      * Goal detection details.
      */
-    PROPERTY(enum GoalOptions, sightingType)
+    enum GoalOptions sightingType;
 
     /**
      * First post found
      */
-    PROPERTY(struct wb_vision_detection_goal_post, post1)
+    struct wb_vision_detection_goal_post post1;
 
     /**
      * Second post found
      */
-    PROPERTY(struct wb_vision_detection_goal_post, post2)
+    struct wb_vision_detection_goal_post post2;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

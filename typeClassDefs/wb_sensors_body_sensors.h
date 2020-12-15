@@ -94,6 +94,10 @@
 #define SENSORS_BODY_SENSORS_TO_STRING_BUFFER_SIZE 1085
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains the current values of sensors located in the robots chest (designed for Nao) 
  *
@@ -118,108 +122,104 @@ struct wb_sensors_body_sensors
     /**
      * Absolute time used for all timed commands in the DCM, an integer (signed), with 1 ms precision. Be careful: it can roll-over (doc/naoqi/sensors/dcm-api.html).
      */
-    PROPERTY(signed int, DCM_Time)
+    signed int DCM_Time;
 
     /**
      * accelerometer X value
      */
-    PROPERTY(float, InertialSensor_AccX)
+    float InertialSensor_AccX;
 
     /**
      * accelerometer Y value
      */
-    PROPERTY(float, InertialSensor_AccY)
+    float InertialSensor_AccY;
 
     /**
      * accelerometer Z value
      */
-    PROPERTY(float, InertialSensor_AccZ)
+    float InertialSensor_AccZ;
 
     /**
      * gyro X value
      */
-    PROPERTY(float, InertialSensor_GyrX)
+    float InertialSensor_GyrX;
 
     /**
      * gyro Y value
      */
-    PROPERTY(float, InertialSensor_GyrY)
+    float InertialSensor_GyrY;
 
     /**
      * gyro Z value (Nao V5 have a Z axis)
      */
-    PROPERTY(float, InertialSensor_GyrZ)
+    float InertialSensor_GyrZ;
 
     /**
      * new acc values: AL_Docs 'Theses are direct acceleration values in m.s-2 (one g is approximately 9.81 m.s-2)'
      */
-    PROPERTY(float, InertialSensor_AngleX)
+    float InertialSensor_AngleX;
 
     /**
      * new acc values: AL_Docs 'Theses are direct acceleration values in m.s-2 (one g is approximately 9.81 m.s-2)'
      */
-    PROPERTY(float, InertialSensor_AngleY)
+    float InertialSensor_AngleY;
 
     /**
      * new acc values: AL_Docs 'Theses are direct acceleration values in m.s-2 (one g is approximately 9.81 m.s-2)'
      */
-    PROPERTY(float, InertialSensor_AngleZ)
+    float InertialSensor_AngleZ;
 
     /**
      * new Accelerometer X value
      */
-    PROPERTY(float, InertialSensor_AccelerometerX)
+    float InertialSensor_AccelerometerX;
 
     /**
      * new Accelerometer Y value
      */
-    PROPERTY(float, InertialSensor_AccelerometerY)
+    float InertialSensor_AccelerometerY;
 
     /**
      * new Accelerometer Z value
      */
-    PROPERTY(float, InertialSensor_AccelerometerZ)
+    float InertialSensor_AccelerometerZ;
 
     /**
      * new Gyro X value
      */
-    PROPERTY(float, InertialSensor_GyroscopeX)
+    float InertialSensor_GyroscopeX;
 
     /**
      * new Gyro Y value
      */
-    PROPERTY(float, InertialSensor_GyroscopeY)
+    float InertialSensor_GyroscopeY;
 
     /**
      * new Gyro Z value
      */
-    PROPERTY(float, InertialSensor_GyroscopeZ)
+    float InertialSensor_GyroscopeZ;
 
     /**
      * % of charge
      */
-    PROPERTY(uint8_t, Battery_Charge)
+    uint8_t Battery_Charge;
 
     /**
      * Amps
      */
-    PROPERTY(uint8_t, Battery_Current)
+    uint8_t Battery_Current;
 
     /**
      * unsure, check naoqi docs! Not sure about this type, might only be 1 byte
      */
-    PROPERTY(float, US)
+    float US;
 
     /**
      * state of the chest button, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, ChestBoard_Button)
+    bool ChestBoard_Button;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

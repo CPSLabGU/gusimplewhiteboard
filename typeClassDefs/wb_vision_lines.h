@@ -98,6 +98,10 @@
 
 #define VISION_LINES_LINES_ARRAY_SIZE 7
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Class use to represent lines detected by vision for a single camera and posted
  * to the whiteboard
@@ -108,33 +112,29 @@ struct wb_vision_lines
     /**
      * Lines reported from the camera.
      */
-    ARRAY_PROPERTY(struct wb_vision_line, lines, VISION_LINES_LINES_ARRAY_SIZE)
+    struct wb_vision_line lines[VISION_LINES_LINES_ARRAY_SIZE];
 
     /**
      * The number of lines reported on the camera.
      */
-    PROPERTY(uint8_t, numLines)
+    uint8_t numLines;
 
     /**
      * The frame number that these lines were seen in.
      */
-    PROPERTY(uint64_t, frameNumber)
+    uint64_t frameNumber;
 
     /**
      * The resolution width.
      */
-    PROPERTY(uint16_t, res_width)
+    uint16_t res_width;
 
     /**
      * The resolution height.
      */
-    PROPERTY(uint16_t, res_height)
+    uint16_t res_height;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

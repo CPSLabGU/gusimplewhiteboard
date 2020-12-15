@@ -84,10 +84,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
-            set_position(position);
-            set_headingInDegrees(headingInDegrees);
-            set_confidence(confidence);
+        void init(struct wb_point2d t_position = wb_point2d(), int16_t t_headingInDegrees = 0, float t_confidence = 0.0f) {
+            set_position(t_position);
+            set_headingInDegrees(t_headingInDegrees);
+            set_confidence(t_confidence);
         }
 
     public:
@@ -95,69 +95,99 @@ namespace guWhiteboard {
         /**
          * Create a new `ParticlePosition`.
          */
-        ParticlePosition(struct wb_point2d position = wb_point2d(), int16_t headingInDegrees = 0, float confidence = 0.0f) {
-            this->init(position, headingInDegrees, confidence);
+        ParticlePosition(struct wb_point2d t_position = wb_point2d(), int16_t t_headingInDegrees = 0, float t_confidence = 0.0f) {
+            this->init(t_position, t_headingInDegrees, t_confidence);
         }
 
         /**
          * Copy Constructor.
          */
-        ParticlePosition(const ParticlePosition &other): wb_particle_position() {
-            this->init(other.position(), other.headingInDegrees(), other.confidence());
+        ParticlePosition(const ParticlePosition &t_other): wb_particle_position() {
+            this->init(t_other.position(), t_other.headingInDegrees(), t_other.confidence());
         }
 
         /**
          * Copy Constructor.
          */
-        ParticlePosition(const struct wb_particle_position &other): wb_particle_position() {
-            this->init(other.position(), other.headingInDegrees(), other.confidence());
+        ParticlePosition(const struct wb_particle_position &t_other): wb_particle_position() {
+            this->init(t_other.position, t_other.headingInDegrees, t_other.confidence);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        ParticlePosition &operator = (const ParticlePosition &other) {
-            this->init(other.position(), other.headingInDegrees(), other.confidence());
+        ParticlePosition &operator = (const ParticlePosition &t_other) {
+            this->init(t_other.position(), t_other.headingInDegrees(), t_other.confidence());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        ParticlePosition &operator = (const struct wb_particle_position &other) {
-            this->init(other.position(), other.headingInDegrees(), other.confidence());
+        ParticlePosition &operator = (const struct wb_particle_position &t_other) {
+            this->init(t_other.position, t_other.headingInDegrees, t_other.confidence);
             return *this;
         }
 
-        bool operator ==(const ParticlePosition &other) const
+        bool operator ==(const ParticlePosition &t_other) const
         {
-            return Point2D(_position) == Point2D(other._position)
-                && headingInDegrees() == other.headingInDegrees()
-                && fabsf(confidence() - other.confidence()) < FLT_EPSILON;
+            return Point2D(position()) == Point2D(t_other.position())
+                && headingInDegrees() == t_other.headingInDegrees()
+                && fabsf(confidence() - t_other.confidence()) < FLT_EPSILON;
         }
 
-        bool operator !=(const ParticlePosition &other) const
+        bool operator !=(const ParticlePosition &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_particle_position &other) const
+        bool operator ==(const wb_particle_position &t_other) const
         {
-            return *this == ParticlePosition(other);
+            return *this == ParticlePosition(t_other);
         }
 
-        bool operator !=(const wb_particle_position &other) const
+        bool operator !=(const wb_particle_position &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const Point2D position() const
+        {
+            return Point2D(wb_particle_position::position);
+        }
+
+        void set_position(const Point2D &t_newValue)
+        {
+            wb_particle_position::position = static_cast<wb_point2d>(t_newValue);
+        }
+
+        int16_t headingInDegrees() const
+        {
+            return wb_particle_position::headingInDegrees;
+        }
+
+        void set_headingInDegrees(const int16_t &t_newValue)
+        {
+            wb_particle_position::headingInDegrees = t_newValue;
+        }
+
+        float confidence() const
+        {
+            return wb_particle_position::confidence;
+        }
+
+        void set_confidence(const float &t_newValue)
+        {
+            wb_particle_position::confidence = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        ParticlePosition(const std::string &str) {
+        ParticlePosition(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -168,8 +198,7 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::Point2D * position_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->position()));
-            ss << "position=" << "{" << position_cast->description() << "}";
+            ss << "position=" << "{" << Point2D(this->position()).description() << "}";
             ss << ", ";
             ss << "headingInDegrees=" << static_cast<signed>(this->headingInDegrees());
             ss << ", ";
@@ -186,8 +215,7 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::Point2D * position_cast = const_cast<guWhiteboard::Point2D *>(static_cast<const guWhiteboard::Point2D *>(&this->position()));
-            ss << "{" << position_cast->to_string() << "}";
+            ss << "{" << Point2D(this->position()).to_string() << "}";
             ss << ", ";
             ss << static_cast<signed>(this->headingInDegrees());
             ss << ", ";
@@ -197,11 +225,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_PARTICLE_POSITION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_particle_position_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_particle_position_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > PARTICLE_POSITION_DESC_BUFFER_SIZE) {

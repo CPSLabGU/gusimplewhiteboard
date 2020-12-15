@@ -86,11 +86,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum BallOptions sightingType = NoBallDetected, struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint16_t verticalRadius = 0, uint16_t horizontalRadius = 0) {
-            set_sightingType(sightingType);
-            set_coordinate(coordinate);
-            set_verticalRadius(verticalRadius);
-            set_horizontalRadius(horizontalRadius);
+        void init(enum BallOptions t_sightingType = NoBallDetected, struct wb_pixel_coordinate t_coordinate = wb_pixel_coordinate(), uint16_t t_verticalRadius = 0, uint16_t t_horizontalRadius = 0) {
+            set_sightingType(t_sightingType);
+            set_coordinate(t_coordinate);
+            set_verticalRadius(t_verticalRadius);
+            set_horizontalRadius(t_horizontalRadius);
         }
 
     public:
@@ -98,70 +98,110 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionBall`.
          */
-        VisionDetectionBall(enum BallOptions sightingType = NoBallDetected, struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint16_t verticalRadius = 0, uint16_t horizontalRadius = 0) {
-            this->init(sightingType, coordinate, verticalRadius, horizontalRadius);
+        VisionDetectionBall(enum BallOptions t_sightingType = NoBallDetected, struct wb_pixel_coordinate t_coordinate = wb_pixel_coordinate(), uint16_t t_verticalRadius = 0, uint16_t t_horizontalRadius = 0) {
+            this->init(t_sightingType, t_coordinate, t_verticalRadius, t_horizontalRadius);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionBall(const VisionDetectionBall &other): wb_vision_detection_ball() {
-            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
+        VisionDetectionBall(const VisionDetectionBall &t_other): wb_vision_detection_ball() {
+            this->init(t_other.sightingType(), t_other.coordinate(), t_other.verticalRadius(), t_other.horizontalRadius());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionBall(const struct wb_vision_detection_ball &other): wb_vision_detection_ball() {
-            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
+        VisionDetectionBall(const struct wb_vision_detection_ball &t_other): wb_vision_detection_ball() {
+            this->init(t_other.sightingType, t_other.coordinate, t_other.verticalRadius, t_other.horizontalRadius);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionBall &operator = (const VisionDetectionBall &other) {
-            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
+        VisionDetectionBall &operator = (const VisionDetectionBall &t_other) {
+            this->init(t_other.sightingType(), t_other.coordinate(), t_other.verticalRadius(), t_other.horizontalRadius());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionBall &operator = (const struct wb_vision_detection_ball &other) {
-            this->init(other.sightingType(), other.coordinate(), other.verticalRadius(), other.horizontalRadius());
+        VisionDetectionBall &operator = (const struct wb_vision_detection_ball &t_other) {
+            this->init(t_other.sightingType, t_other.coordinate, t_other.verticalRadius, t_other.horizontalRadius);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionBall &other) const
+        bool operator ==(const VisionDetectionBall &t_other) const
         {
-            return sightingType() == other.sightingType()
-                && PixelCoordinate(_coordinate) == PixelCoordinate(other._coordinate)
-                && verticalRadius() == other.verticalRadius()
-                && horizontalRadius() == other.horizontalRadius();
+            return sightingType() == t_other.sightingType()
+                && PixelCoordinate(coordinate()) == PixelCoordinate(t_other.coordinate())
+                && verticalRadius() == t_other.verticalRadius()
+                && horizontalRadius() == t_other.horizontalRadius();
         }
 
-        bool operator !=(const VisionDetectionBall &other) const
+        bool operator !=(const VisionDetectionBall &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_ball &other) const
+        bool operator ==(const wb_vision_detection_ball &t_other) const
         {
-            return *this == VisionDetectionBall(other);
+            return *this == VisionDetectionBall(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_ball &other) const
+        bool operator !=(const wb_vision_detection_ball &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum BallOptions sightingType() const
+        {
+            return wb_vision_detection_ball::sightingType;
+        }
+
+        void set_sightingType(const enum BallOptions &t_newValue)
+        {
+            wb_vision_detection_ball::sightingType = t_newValue;
+        }
+
+        const PixelCoordinate coordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_ball::coordinate);
+        }
+
+        void set_coordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_ball::coordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        uint16_t verticalRadius() const
+        {
+            return wb_vision_detection_ball::verticalRadius;
+        }
+
+        void set_verticalRadius(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_ball::verticalRadius = t_newValue;
+        }
+
+        uint16_t horizontalRadius() const
+        {
+            return wb_vision_detection_ball::horizontalRadius;
+        }
+
+        void set_horizontalRadius(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_ball::horizontalRadius = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionBall(const std::string &str) {
+        VisionDetectionBall(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -185,8 +225,7 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
-            ss << "coordinate=" << "{" << coordinate_cast->description() << "}";
+            ss << "coordinate=" << "{" << PixelCoordinate(this->coordinate()).description() << "}";
             ss << ", ";
             ss << "verticalRadius=" << static_cast<unsigned>(this->verticalRadius());
             ss << ", ";
@@ -216,8 +255,7 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
-            ss << "{" << coordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->coordinate()).to_string() << "}";
             ss << ", ";
             ss << static_cast<unsigned>(this->verticalRadius());
             ss << ", ";
@@ -227,11 +265,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_ball_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_ball_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {

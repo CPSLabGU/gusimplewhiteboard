@@ -84,10 +84,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_polar_coordinate leftPoint = wb_polar_coordinate(), struct wb_polar_coordinate rightPoint = wb_polar_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
-            set_leftPoint(leftPoint);
-            set_rightPoint(rightPoint);
-            set_sightingType(sightingType);
+        void init(struct wb_polar_coordinate t_leftPoint = wb_polar_coordinate(), struct wb_polar_coordinate t_rightPoint = wb_polar_coordinate(), enum LineSightingType t_sightingType = static_cast<enum LineSightingType>(0)) {
+            set_leftPoint(t_leftPoint);
+            set_rightPoint(t_rightPoint);
+            set_sightingType(t_sightingType);
         }
 
     public:
@@ -95,69 +95,99 @@ namespace guWhiteboard {
         /**
          * Create a new `LineSighting`.
          */
-        LineSighting(struct wb_polar_coordinate leftPoint = wb_polar_coordinate(), struct wb_polar_coordinate rightPoint = wb_polar_coordinate(), enum LineSightingType sightingType = static_cast<enum LineSightingType>(0)) {
-            this->init(leftPoint, rightPoint, sightingType);
+        LineSighting(struct wb_polar_coordinate t_leftPoint = wb_polar_coordinate(), struct wb_polar_coordinate t_rightPoint = wb_polar_coordinate(), enum LineSightingType t_sightingType = static_cast<enum LineSightingType>(0)) {
+            this->init(t_leftPoint, t_rightPoint, t_sightingType);
         }
 
         /**
          * Copy Constructor.
          */
-        LineSighting(const LineSighting &other): wb_line_sighting() {
-            this->init(other.leftPoint(), other.rightPoint(), other.sightingType());
+        LineSighting(const LineSighting &t_other): wb_line_sighting() {
+            this->init(t_other.leftPoint(), t_other.rightPoint(), t_other.sightingType());
         }
 
         /**
          * Copy Constructor.
          */
-        LineSighting(const struct wb_line_sighting &other): wb_line_sighting() {
-            this->init(other.leftPoint(), other.rightPoint(), other.sightingType());
+        LineSighting(const struct wb_line_sighting &t_other): wb_line_sighting() {
+            this->init(t_other.leftPoint, t_other.rightPoint, t_other.sightingType);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        LineSighting &operator = (const LineSighting &other) {
-            this->init(other.leftPoint(), other.rightPoint(), other.sightingType());
+        LineSighting &operator = (const LineSighting &t_other) {
+            this->init(t_other.leftPoint(), t_other.rightPoint(), t_other.sightingType());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        LineSighting &operator = (const struct wb_line_sighting &other) {
-            this->init(other.leftPoint(), other.rightPoint(), other.sightingType());
+        LineSighting &operator = (const struct wb_line_sighting &t_other) {
+            this->init(t_other.leftPoint, t_other.rightPoint, t_other.sightingType);
             return *this;
         }
 
-        bool operator ==(const LineSighting &other) const
+        bool operator ==(const LineSighting &t_other) const
         {
-            return PolarCoordinate(_leftPoint) == PolarCoordinate(other._leftPoint)
-                && PolarCoordinate(_rightPoint) == PolarCoordinate(other._rightPoint)
-                && sightingType() == other.sightingType();
+            return PolarCoordinate(leftPoint()) == PolarCoordinate(t_other.leftPoint())
+                && PolarCoordinate(rightPoint()) == PolarCoordinate(t_other.rightPoint())
+                && sightingType() == t_other.sightingType();
         }
 
-        bool operator !=(const LineSighting &other) const
+        bool operator !=(const LineSighting &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_line_sighting &other) const
+        bool operator ==(const wb_line_sighting &t_other) const
         {
-            return *this == LineSighting(other);
+            return *this == LineSighting(t_other);
         }
 
-        bool operator !=(const wb_line_sighting &other) const
+        bool operator !=(const wb_line_sighting &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const PolarCoordinate leftPoint() const
+        {
+            return PolarCoordinate(wb_line_sighting::leftPoint);
+        }
+
+        void set_leftPoint(const PolarCoordinate &t_newValue)
+        {
+            wb_line_sighting::leftPoint = static_cast<wb_polar_coordinate>(t_newValue);
+        }
+
+        const PolarCoordinate rightPoint() const
+        {
+            return PolarCoordinate(wb_line_sighting::rightPoint);
+        }
+
+        void set_rightPoint(const PolarCoordinate &t_newValue)
+        {
+            wb_line_sighting::rightPoint = static_cast<wb_polar_coordinate>(t_newValue);
+        }
+
+        enum LineSightingType sightingType() const
+        {
+            return wb_line_sighting::sightingType;
+        }
+
+        void set_sightingType(const enum LineSightingType &t_newValue)
+        {
+            wb_line_sighting::sightingType = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        LineSighting(const std::string &str) {
+        LineSighting(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -168,11 +198,9 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::PolarCoordinate * leftPoint_cast = const_cast<guWhiteboard::PolarCoordinate *>(static_cast<const guWhiteboard::PolarCoordinate *>(&this->leftPoint()));
-            ss << "leftPoint=" << "{" << leftPoint_cast->description() << "}";
+            ss << "leftPoint=" << "{" << PolarCoordinate(this->leftPoint()).description() << "}";
             ss << ", ";
-            guWhiteboard::PolarCoordinate * rightPoint_cast = const_cast<guWhiteboard::PolarCoordinate *>(static_cast<const guWhiteboard::PolarCoordinate *>(&this->rightPoint()));
-            ss << "rightPoint=" << "{" << rightPoint_cast->description() << "}";
+            ss << "rightPoint=" << "{" << PolarCoordinate(this->rightPoint()).description() << "}";
             ss << ", ";
             switch (this->sightingType()) {
                 case FieldLineSightingType:
@@ -198,11 +226,9 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::PolarCoordinate * leftPoint_cast = const_cast<guWhiteboard::PolarCoordinate *>(static_cast<const guWhiteboard::PolarCoordinate *>(&this->leftPoint()));
-            ss << "{" << leftPoint_cast->to_string() << "}";
+            ss << "{" << PolarCoordinate(this->leftPoint()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PolarCoordinate * rightPoint_cast = const_cast<guWhiteboard::PolarCoordinate *>(static_cast<const guWhiteboard::PolarCoordinate *>(&this->rightPoint()));
-            ss << "{" << rightPoint_cast->to_string() << "}";
+            ss << "{" << PolarCoordinate(this->rightPoint()).to_string() << "}";
             ss << ", ";
             switch (this->sightingType()) {
                 case FieldLineSightingType:
@@ -221,11 +247,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_LINE_SIGHTING_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_line_sighting_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_line_sighting_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > LINE_SIGHTING_DESC_BUFFER_SIZE) {

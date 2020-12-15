@@ -83,17 +83,17 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_vision_line lines[7] = NULLPTR, uint8_t numLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
-            if (lines != NULLPTR) {
-                std::memcpy(this->_lines, lines, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+        void init(const struct wb_vision_line t_lines[7] = NULLPTR, uint8_t t_numLines = 0, uint64_t t_frameNumber = 0, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            if (t_lines != NULLPTR) {
+                std::memcpy(wb_vision_lines::lines, t_lines, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
                 struct wb_vision_line lines_temp[VISION_LINES_LINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
-                std::memcpy(this->_lines, lines_temp, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+                std::memcpy(wb_vision_lines::lines, lines_temp, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             }
-            set_numLines(numLines);
-            set_frameNumber(frameNumber);
-            set_res_width(res_width);
-            set_res_height(res_height);
+            set_numLines(t_numLines);
+            set_frameNumber(t_frameNumber);
+            set_res_width(t_res_width);
+            set_res_height(t_res_height);
         }
 
     public:
@@ -101,78 +101,138 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionLines`.
          */
-        VisionLines(const struct wb_vision_line lines[7] = NULLPTR, uint8_t numLines = 0, uint64_t frameNumber = 0, uint16_t res_width = 0, uint16_t res_height = 0) {
-            this->init(lines, numLines, frameNumber, res_width, res_height);
+        VisionLines(const struct wb_vision_line t_lines[7] = NULLPTR, uint8_t t_numLines = 0, uint64_t t_frameNumber = 0, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            this->init(t_lines, t_numLines, t_frameNumber, t_res_width, t_res_height);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionLines(const VisionLines &other): wb_vision_lines() {
-            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
+        VisionLines(const VisionLines &t_other): wb_vision_lines() {
+            this->init(t_other.lines(), t_other.numLines(), t_other.frameNumber(), t_other.res_width(), t_other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionLines(const struct wb_vision_lines &other): wb_vision_lines() {
-            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
+        VisionLines(const struct wb_vision_lines &t_other): wb_vision_lines() {
+            this->init(t_other.lines, t_other.numLines, t_other.frameNumber, t_other.res_width, t_other.res_height);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionLines &operator = (const VisionLines &other) {
-            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
+        VisionLines &operator = (const VisionLines &t_other) {
+            this->init(t_other.lines(), t_other.numLines(), t_other.frameNumber(), t_other.res_width(), t_other.res_height());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionLines &operator = (const struct wb_vision_lines &other) {
-            this->init(other.lines(), other.numLines(), other.frameNumber(), other.res_width(), other.res_height());
+        VisionLines &operator = (const struct wb_vision_lines &t_other) {
+            this->init(t_other.lines, t_other.numLines, t_other.frameNumber, t_other.res_width, t_other.res_height);
             return *this;
         }
 
-        bool operator ==(const VisionLines &other) const
+        bool operator ==(const VisionLines &t_other) const
         {
-            if (!(numLines() == other.numLines()
-                && frameNumber() == other.frameNumber()
-                && res_width() == other.res_width()
-                && res_height() == other.res_height()))
+            if (!(numLines() == t_other.numLines()
+                && frameNumber() == t_other.frameNumber()
+                && res_width() == t_other.res_width()
+                && res_height() == t_other.res_height()))
             {
                 return false;
             }
             for (int lines_0_index = 0; lines_0_index < 7; lines_0_index++)
             {
-                if (!(VisionLine(_lines[lines_0_index]) == VisionLine(other._lines[lines_0_index]))) return false;
+                if (!(VisionLine(lines(lines_0_index)) == VisionLine(t_other.lines(lines_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const VisionLines &other) const
+        bool operator !=(const VisionLines &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_lines &other) const
+        bool operator ==(const wb_vision_lines &t_other) const
         {
-            return *this == VisionLines(other);
+            return *this == VisionLines(t_other);
         }
 
-        bool operator !=(const wb_vision_lines &other) const
+        bool operator !=(const wb_vision_lines &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const VisionLine *lines() const
+        {
+            return static_cast<const VisionLine *>(wb_vision_lines::lines);
+        }
+
+        VisionLine lines(int t_i) const
+        {
+            return VisionLine(wb_vision_lines::lines[t_i]);
+        }
+
+        void set_lines(const VisionLine *t_newValue)
+        {
+            memcpy(wb_vision_lines::lines, static_cast<const struct wb_vision_line *>(t_newValue), VISION_LINES_LINES_ARRAY_SIZE * (sizeof (struct wb_vision_line)));
+        }
+
+        void set_lines(const VisionLine &t_newValue, int t_i)
+        {
+            wb_vision_lines::lines[t_i] = static_cast<wb_vision_line>(t_newValue);
+        }
+
+        uint8_t numLines() const
+        {
+            return wb_vision_lines::numLines;
+        }
+
+        void set_numLines(const uint8_t &t_newValue)
+        {
+            wb_vision_lines::numLines = t_newValue;
+        }
+
+        uint64_t frameNumber() const
+        {
+            return wb_vision_lines::frameNumber;
+        }
+
+        void set_frameNumber(const uint64_t &t_newValue)
+        {
+            wb_vision_lines::frameNumber = t_newValue;
+        }
+
+        uint16_t res_width() const
+        {
+            return wb_vision_lines::res_width;
+        }
+
+        void set_res_width(const uint16_t &t_newValue)
+        {
+            wb_vision_lines::res_width = t_newValue;
+        }
+
+        uint16_t res_height() const
+        {
+            return wb_vision_lines::res_height;
+        }
+
+        void set_res_height(const uint16_t &t_newValue)
+        {
+            wb_vision_lines::res_height = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionLines(const std::string &str) {
+        VisionLines(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,8 +246,7 @@ namespace guWhiteboard {
             bool lines_first = true;
             ss << "lines={";
             for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * lines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->lines(i)));
-                ss << (lines_first ? "" : ", ") << "{" << lines_cast->description() << "}";
+                ss << (lines_first ? "" : ", ") << "{" << VisionLine(this->lines(i)).description() << "}";
                 lines_first = false;
             }
             ss << "}";
@@ -214,8 +273,7 @@ namespace guWhiteboard {
             bool lines_first = true;
             ss << "{";
             for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionLine * lines_cast = const_cast<guWhiteboard::VisionLine *>(static_cast<const guWhiteboard::VisionLine *>(&this->lines(i)));
-                ss << (lines_first ? "" : ", ") << "{" << lines_cast->to_string() << "}";
+                ss << (lines_first ? "" : ", ") << "{" << VisionLine(this->lines(i)).to_string() << "}";
                 lines_first = false;
             }
             ss << "}";
@@ -232,11 +290,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_LINES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_lines_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_lines_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_LINES_DESC_BUFFER_SIZE) {

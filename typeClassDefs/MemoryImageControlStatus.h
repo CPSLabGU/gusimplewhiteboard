@@ -81,10 +81,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint16_t res_width = 0, uint16_t res_height = 0, enum MemoryImagePixelFormat pixelFormat = MI_RGBA;) {
-            set_res_width(res_width);
-            set_res_height(res_height);
-            set_pixelFormat(pixelFormat);
+        void init(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA;) {
+            set_res_width(t_res_width);
+            set_res_height(t_res_height);
+            set_pixelFormat(t_pixelFormat);
         }
 
     public:
@@ -92,69 +92,99 @@ namespace guWhiteboard {
         /**
          * Create a new `MemoryImageControlStatus`.
          */
-        MemoryImageControlStatus(uint16_t res_width = 0, uint16_t res_height = 0, enum MemoryImagePixelFormat pixelFormat = MI_RGBA;) {
-            this->init(res_width, res_height, pixelFormat);
+        MemoryImageControlStatus(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA;) {
+            this->init(t_res_width, t_res_height, t_pixelFormat);
         }
 
         /**
          * Copy Constructor.
          */
-        MemoryImageControlStatus(const MemoryImageControlStatus &other): wb_memory_image_control_status() {
-            this->init(other.res_width(), other.res_height(), other.pixelFormat());
+        MemoryImageControlStatus(const MemoryImageControlStatus &t_other): wb_memory_image_control_status() {
+            this->init(t_other.res_width(), t_other.res_height(), t_other.pixelFormat());
         }
 
         /**
          * Copy Constructor.
          */
-        MemoryImageControlStatus(const struct wb_memory_image_control_status &other): wb_memory_image_control_status() {
-            this->init(other.res_width(), other.res_height(), other.pixelFormat());
+        MemoryImageControlStatus(const struct wb_memory_image_control_status &t_other): wb_memory_image_control_status() {
+            this->init(t_other.res_width, t_other.res_height, t_other.pixelFormat);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MemoryImageControlStatus &operator = (const MemoryImageControlStatus &other) {
-            this->init(other.res_width(), other.res_height(), other.pixelFormat());
+        MemoryImageControlStatus &operator = (const MemoryImageControlStatus &t_other) {
+            this->init(t_other.res_width(), t_other.res_height(), t_other.pixelFormat());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MemoryImageControlStatus &operator = (const struct wb_memory_image_control_status &other) {
-            this->init(other.res_width(), other.res_height(), other.pixelFormat());
+        MemoryImageControlStatus &operator = (const struct wb_memory_image_control_status &t_other) {
+            this->init(t_other.res_width, t_other.res_height, t_other.pixelFormat);
             return *this;
         }
 
-        bool operator ==(const MemoryImageControlStatus &other) const
+        bool operator ==(const MemoryImageControlStatus &t_other) const
         {
-            return res_width() == other.res_width()
-                && res_height() == other.res_height()
-                && pixelFormat() == other.pixelFormat();
+            return res_width() == t_other.res_width()
+                && res_height() == t_other.res_height()
+                && pixelFormat() == t_other.pixelFormat();
         }
 
-        bool operator !=(const MemoryImageControlStatus &other) const
+        bool operator !=(const MemoryImageControlStatus &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_memory_image_control_status &other) const
+        bool operator ==(const wb_memory_image_control_status &t_other) const
         {
-            return *this == MemoryImageControlStatus(other);
+            return *this == MemoryImageControlStatus(t_other);
         }
 
-        bool operator !=(const wb_memory_image_control_status &other) const
+        bool operator !=(const wb_memory_image_control_status &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint16_t res_width() const
+        {
+            return wb_memory_image_control_status::res_width;
+        }
+
+        void set_res_width(const uint16_t &t_newValue)
+        {
+            wb_memory_image_control_status::res_width = t_newValue;
+        }
+
+        uint16_t res_height() const
+        {
+            return wb_memory_image_control_status::res_height;
+        }
+
+        void set_res_height(const uint16_t &t_newValue)
+        {
+            wb_memory_image_control_status::res_height = t_newValue;
+        }
+
+        enum MemoryImagePixelFormat pixelFormat() const
+        {
+            return wb_memory_image_control_status::pixelFormat;
+        }
+
+        void set_pixelFormat(const enum MemoryImagePixelFormat &t_newValue)
+        {
+            wb_memory_image_control_status::pixelFormat = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MemoryImageControlStatus(const std::string &str) {
+        MemoryImageControlStatus(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -224,11 +254,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MEMORY_IMAGE_CONTROL_STATUS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_memory_image_control_status_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_memory_image_control_status_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MEMORY_IMAGE_CONTROL_STATUS_DESC_BUFFER_SIZE) {

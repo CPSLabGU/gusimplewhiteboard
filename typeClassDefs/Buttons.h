@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool button1Pushed = false, bool button2Pushed = false) {
-            set_button1Pushed(button1Pushed);
-            set_button2Pushed(button2Pushed);
+        void init(bool t_button1Pushed = false, bool t_button2Pushed = false) {
+            set_button1Pushed(t_button1Pushed);
+            set_button2Pushed(t_button2Pushed);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `Buttons`.
          */
-        Buttons(bool button1Pushed = false, bool button2Pushed = false) {
-            this->init(button1Pushed, button2Pushed);
+        Buttons(bool t_button1Pushed = false, bool t_button2Pushed = false) {
+            this->init(t_button1Pushed, t_button2Pushed);
         }
 
         /**
          * Copy Constructor.
          */
-        Buttons(const Buttons &other): wb_buttons() {
-            this->init(other.button1Pushed(), other.button2Pushed());
+        Buttons(const Buttons &t_other): wb_buttons() {
+            this->init(t_other.button1Pushed(), t_other.button2Pushed());
         }
 
         /**
          * Copy Constructor.
          */
-        Buttons(const struct wb_buttons &other): wb_buttons() {
-            this->init(other.button1Pushed(), other.button2Pushed());
+        Buttons(const struct wb_buttons &t_other): wb_buttons() {
+            this->init(t_other.button1Pushed, t_other.button2Pushed);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Buttons &operator = (const Buttons &other) {
-            this->init(other.button1Pushed(), other.button2Pushed());
+        Buttons &operator = (const Buttons &t_other) {
+            this->init(t_other.button1Pushed(), t_other.button2Pushed());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Buttons &operator = (const struct wb_buttons &other) {
-            this->init(other.button1Pushed(), other.button2Pushed());
+        Buttons &operator = (const struct wb_buttons &t_other) {
+            this->init(t_other.button1Pushed, t_other.button2Pushed);
             return *this;
         }
 
-        bool operator ==(const Buttons &other) const
+        bool operator ==(const Buttons &t_other) const
         {
-            return button1Pushed() == other.button1Pushed()
-                && button2Pushed() == other.button2Pushed();
+            return button1Pushed() == t_other.button1Pushed()
+                && button2Pushed() == t_other.button2Pushed();
         }
 
-        bool operator !=(const Buttons &other) const
+        bool operator !=(const Buttons &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_buttons &other) const
+        bool operator ==(const wb_buttons &t_other) const
         {
-            return *this == Buttons(other);
+            return *this == Buttons(t_other);
         }
 
-        bool operator !=(const wb_buttons &other) const
+        bool operator !=(const wb_buttons &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool button1Pushed() const
+        {
+            return wb_buttons::button1Pushed;
+        }
+
+        void set_button1Pushed(const bool &t_newValue)
+        {
+            wb_buttons::button1Pushed = t_newValue;
+        }
+
+        bool button2Pushed() const
+        {
+            return wb_buttons::button2Pushed;
+        }
+
+        void set_button2Pushed(const bool &t_newValue)
+        {
+            wb_buttons::button2Pushed = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Buttons(const std::string &str) {
+        Buttons(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,11 +206,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_BUTTONS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_buttons_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_buttons_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > BUTTONS_DESC_BUFFER_SIZE) {

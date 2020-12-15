@@ -81,11 +81,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t rear_left = 0, int16_t rear_right = 0, int16_t front_left = 0, int16_t front_right = 0) {
-            set_rear_left(rear_left);
-            set_rear_right(rear_right);
-            set_front_left(front_left);
-            set_front_right(front_right);
+        void init(int16_t t_rear_left = 0, int16_t t_rear_right = 0, int16_t t_front_left = 0, int16_t t_front_right = 0) {
+            set_rear_left(t_rear_left);
+            set_rear_right(t_rear_right);
+            set_front_left(t_front_left);
+            set_front_right(t_front_right);
         }
 
     public:
@@ -93,70 +93,110 @@ namespace guWhiteboard {
         /**
          * Create a new `MicrophoneFrequencies`.
          */
-        MicrophoneFrequencies(int16_t rear_left = 0, int16_t rear_right = 0, int16_t front_left = 0, int16_t front_right = 0) {
-            this->init(rear_left, rear_right, front_left, front_right);
+        MicrophoneFrequencies(int16_t t_rear_left = 0, int16_t t_rear_right = 0, int16_t t_front_left = 0, int16_t t_front_right = 0) {
+            this->init(t_rear_left, t_rear_right, t_front_left, t_front_right);
         }
 
         /**
          * Copy Constructor.
          */
-        MicrophoneFrequencies(const MicrophoneFrequencies &other): wb_microphone_frequencies() {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        MicrophoneFrequencies(const MicrophoneFrequencies &t_other): wb_microphone_frequencies() {
+            this->init(t_other.rear_left(), t_other.rear_right(), t_other.front_left(), t_other.front_right());
         }
 
         /**
          * Copy Constructor.
          */
-        MicrophoneFrequencies(const struct wb_microphone_frequencies &other): wb_microphone_frequencies() {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        MicrophoneFrequencies(const struct wb_microphone_frequencies &t_other): wb_microphone_frequencies() {
+            this->init(t_other.rear_left, t_other.rear_right, t_other.front_left, t_other.front_right);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MicrophoneFrequencies &operator = (const MicrophoneFrequencies &other) {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        MicrophoneFrequencies &operator = (const MicrophoneFrequencies &t_other) {
+            this->init(t_other.rear_left(), t_other.rear_right(), t_other.front_left(), t_other.front_right());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MicrophoneFrequencies &operator = (const struct wb_microphone_frequencies &other) {
-            this->init(other.rear_left(), other.rear_right(), other.front_left(), other.front_right());
+        MicrophoneFrequencies &operator = (const struct wb_microphone_frequencies &t_other) {
+            this->init(t_other.rear_left, t_other.rear_right, t_other.front_left, t_other.front_right);
             return *this;
         }
 
-        bool operator ==(const MicrophoneFrequencies &other) const
+        bool operator ==(const MicrophoneFrequencies &t_other) const
         {
-            return rear_left() == other.rear_left()
-                && rear_right() == other.rear_right()
-                && front_left() == other.front_left()
-                && front_right() == other.front_right();
+            return rear_left() == t_other.rear_left()
+                && rear_right() == t_other.rear_right()
+                && front_left() == t_other.front_left()
+                && front_right() == t_other.front_right();
         }
 
-        bool operator !=(const MicrophoneFrequencies &other) const
+        bool operator !=(const MicrophoneFrequencies &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_microphone_frequencies &other) const
+        bool operator ==(const wb_microphone_frequencies &t_other) const
         {
-            return *this == MicrophoneFrequencies(other);
+            return *this == MicrophoneFrequencies(t_other);
         }
 
-        bool operator !=(const wb_microphone_frequencies &other) const
+        bool operator !=(const wb_microphone_frequencies &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t rear_left() const
+        {
+            return wb_microphone_frequencies::rear_left;
+        }
+
+        void set_rear_left(const int16_t &t_newValue)
+        {
+            wb_microphone_frequencies::rear_left = t_newValue;
+        }
+
+        int16_t rear_right() const
+        {
+            return wb_microphone_frequencies::rear_right;
+        }
+
+        void set_rear_right(const int16_t &t_newValue)
+        {
+            wb_microphone_frequencies::rear_right = t_newValue;
+        }
+
+        int16_t front_left() const
+        {
+            return wb_microphone_frequencies::front_left;
+        }
+
+        void set_front_left(const int16_t &t_newValue)
+        {
+            wb_microphone_frequencies::front_left = t_newValue;
+        }
+
+        int16_t front_right() const
+        {
+            return wb_microphone_frequencies::front_right;
+        }
+
+        void set_front_right(const int16_t &t_newValue)
+        {
+            wb_microphone_frequencies::front_right = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MicrophoneFrequencies(const std::string &str) {
+        MicrophoneFrequencies(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -198,11 +238,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MICROPHONE_FREQUENCIES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_microphone_frequencies_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_microphone_frequencies_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE) {

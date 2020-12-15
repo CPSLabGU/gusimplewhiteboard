@@ -81,30 +81,30 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int32_t target_movement_time = INT_MAX, int16_t target_shoulderpitch = 0, int16_t target_shoulderroll = 0, int16_t target_elbowroll = 0, int16_t target_elbowyaw = 0, int16_t target_wristyaw = 0, uint8_t target_arm = LEFT_ARM, uint8_t target_hand = 0, uint8_t target_shoulderpitchstiffness = 0, uint8_t target_shoulderrollstiffness = 0, uint8_t target_elbowrollstiffness = 0, uint8_t target_elbowyawstiffness = 0, uint8_t target_wristyawstiffness = 0, uint8_t target_handstiffness = 0, uint8_t target_pliability = 0, unsigned int target_shoulderpitch_active = true, unsigned int target_shoulderroll_active = true, unsigned int target_elbowroll_active = true, unsigned int target_elbowyaw_active = true, unsigned int target_wrist_active = true, unsigned int target_hand_active = true, unsigned int target_arm_at_goal = false, unsigned int target_arm_stop = false) {
-            set_target_movement_time(target_movement_time);
-            set_target_shoulderpitch(target_shoulderpitch);
-            set_target_shoulderroll(target_shoulderroll);
-            set_target_elbowroll(target_elbowroll);
-            set_target_elbowyaw(target_elbowyaw);
-            set_target_wristyaw(target_wristyaw);
-            set_target_arm(target_arm);
-            set_target_hand(target_hand);
-            set_target_shoulderpitchstiffness(target_shoulderpitchstiffness);
-            set_target_shoulderrollstiffness(target_shoulderrollstiffness);
-            set_target_elbowrollstiffness(target_elbowrollstiffness);
-            set_target_elbowyawstiffness(target_elbowyawstiffness);
-            set_target_wristyawstiffness(target_wristyawstiffness);
-            set_target_handstiffness(target_handstiffness);
-            set_target_pliability(target_pliability);
-            set_target_shoulderpitch_active(target_shoulderpitch_active);
-            set_target_shoulderroll_active(target_shoulderroll_active);
-            set_target_elbowroll_active(target_elbowroll_active);
-            set_target_elbowyaw_active(target_elbowyaw_active);
-            set_target_wrist_active(target_wrist_active);
-            set_target_hand_active(target_hand_active);
-            set_target_arm_at_goal(target_arm_at_goal);
-            set_target_arm_stop(target_arm_stop);
+        void init(int32_t t_target_movement_time = INT_MAX, int16_t t_target_shoulderpitch = 0, int16_t t_target_shoulderroll = 0, int16_t t_target_elbowroll = 0, int16_t t_target_elbowyaw = 0, int16_t t_target_wristyaw = 0, uint8_t t_target_arm = LEFT_ARM, uint8_t t_target_hand = 0, uint8_t t_target_shoulderpitchstiffness = 0, uint8_t t_target_shoulderrollstiffness = 0, uint8_t t_target_elbowrollstiffness = 0, uint8_t t_target_elbowyawstiffness = 0, uint8_t t_target_wristyawstiffness = 0, uint8_t t_target_handstiffness = 0, uint8_t t_target_pliability = 0, unsigned int t_target_shoulderpitch_active = true, unsigned int t_target_shoulderroll_active = true, unsigned int t_target_elbowroll_active = true, unsigned int t_target_elbowyaw_active = true, unsigned int t_target_wrist_active = true, unsigned int t_target_hand_active = true, unsigned int t_target_arm_at_goal = false, unsigned int t_target_arm_stop = false) {
+            set_target_movement_time(t_target_movement_time);
+            set_target_shoulderpitch(t_target_shoulderpitch);
+            set_target_shoulderroll(t_target_shoulderroll);
+            set_target_elbowroll(t_target_elbowroll);
+            set_target_elbowyaw(t_target_elbowyaw);
+            set_target_wristyaw(t_target_wristyaw);
+            set_target_arm(t_target_arm);
+            set_target_hand(t_target_hand);
+            set_target_shoulderpitchstiffness(t_target_shoulderpitchstiffness);
+            set_target_shoulderrollstiffness(t_target_shoulderrollstiffness);
+            set_target_elbowrollstiffness(t_target_elbowrollstiffness);
+            set_target_elbowyawstiffness(t_target_elbowyawstiffness);
+            set_target_wristyawstiffness(t_target_wristyawstiffness);
+            set_target_handstiffness(t_target_handstiffness);
+            set_target_pliability(t_target_pliability);
+            set_target_shoulderpitch_active(t_target_shoulderpitch_active);
+            set_target_shoulderroll_active(t_target_shoulderroll_active);
+            set_target_elbowroll_active(t_target_elbowroll_active);
+            set_target_elbowyaw_active(t_target_elbowyaw_active);
+            set_target_wrist_active(t_target_wrist_active);
+            set_target_hand_active(t_target_hand_active);
+            set_target_arm_at_goal(t_target_arm_at_goal);
+            set_target_arm_stop(t_target_arm_stop);
         }
 
     public:
@@ -112,89 +112,319 @@ namespace guWhiteboard {
         /**
          * Create a new `HalArmTarget`.
          */
-        HalArmTarget(int32_t target_movement_time = INT_MAX, int16_t target_shoulderpitch = 0, int16_t target_shoulderroll = 0, int16_t target_elbowroll = 0, int16_t target_elbowyaw = 0, int16_t target_wristyaw = 0, uint8_t target_arm = LEFT_ARM, uint8_t target_hand = 0, uint8_t target_shoulderpitchstiffness = 0, uint8_t target_shoulderrollstiffness = 0, uint8_t target_elbowrollstiffness = 0, uint8_t target_elbowyawstiffness = 0, uint8_t target_wristyawstiffness = 0, uint8_t target_handstiffness = 0, uint8_t target_pliability = 0, unsigned int target_shoulderpitch_active = true, unsigned int target_shoulderroll_active = true, unsigned int target_elbowroll_active = true, unsigned int target_elbowyaw_active = true, unsigned int target_wrist_active = true, unsigned int target_hand_active = true, unsigned int target_arm_at_goal = false, unsigned int target_arm_stop = false) {
-            this->init(target_movement_time, target_shoulderpitch, target_shoulderroll, target_elbowroll, target_elbowyaw, target_wristyaw, target_arm, target_hand, target_shoulderpitchstiffness, target_shoulderrollstiffness, target_elbowrollstiffness, target_elbowyawstiffness, target_wristyawstiffness, target_handstiffness, target_pliability, target_shoulderpitch_active, target_shoulderroll_active, target_elbowroll_active, target_elbowyaw_active, target_wrist_active, target_hand_active, target_arm_at_goal, target_arm_stop);
+        HalArmTarget(int32_t t_target_movement_time = INT_MAX, int16_t t_target_shoulderpitch = 0, int16_t t_target_shoulderroll = 0, int16_t t_target_elbowroll = 0, int16_t t_target_elbowyaw = 0, int16_t t_target_wristyaw = 0, uint8_t t_target_arm = LEFT_ARM, uint8_t t_target_hand = 0, uint8_t t_target_shoulderpitchstiffness = 0, uint8_t t_target_shoulderrollstiffness = 0, uint8_t t_target_elbowrollstiffness = 0, uint8_t t_target_elbowyawstiffness = 0, uint8_t t_target_wristyawstiffness = 0, uint8_t t_target_handstiffness = 0, uint8_t t_target_pliability = 0, unsigned int t_target_shoulderpitch_active = true, unsigned int t_target_shoulderroll_active = true, unsigned int t_target_elbowroll_active = true, unsigned int t_target_elbowyaw_active = true, unsigned int t_target_wrist_active = true, unsigned int t_target_hand_active = true, unsigned int t_target_arm_at_goal = false, unsigned int t_target_arm_stop = false) {
+            this->init(t_target_movement_time, t_target_shoulderpitch, t_target_shoulderroll, t_target_elbowroll, t_target_elbowyaw, t_target_wristyaw, t_target_arm, t_target_hand, t_target_shoulderpitchstiffness, t_target_shoulderrollstiffness, t_target_elbowrollstiffness, t_target_elbowyawstiffness, t_target_wristyawstiffness, t_target_handstiffness, t_target_pliability, t_target_shoulderpitch_active, t_target_shoulderroll_active, t_target_elbowroll_active, t_target_elbowyaw_active, t_target_wrist_active, t_target_hand_active, t_target_arm_at_goal, t_target_arm_stop);
         }
 
         /**
          * Copy Constructor.
          */
-        HalArmTarget(const HalArmTarget &other): wb_hal_arm_target() {
-            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
+        HalArmTarget(const HalArmTarget &t_other): wb_hal_arm_target() {
+            this->init(t_other.target_movement_time(), t_other.target_shoulderpitch(), t_other.target_shoulderroll(), t_other.target_elbowroll(), t_other.target_elbowyaw(), t_other.target_wristyaw(), t_other.target_arm(), t_other.target_hand(), t_other.target_shoulderpitchstiffness(), t_other.target_shoulderrollstiffness(), t_other.target_elbowrollstiffness(), t_other.target_elbowyawstiffness(), t_other.target_wristyawstiffness(), t_other.target_handstiffness(), t_other.target_pliability(), t_other.target_shoulderpitch_active(), t_other.target_shoulderroll_active(), t_other.target_elbowroll_active(), t_other.target_elbowyaw_active(), t_other.target_wrist_active(), t_other.target_hand_active(), t_other.target_arm_at_goal(), t_other.target_arm_stop());
         }
 
         /**
          * Copy Constructor.
          */
-        HalArmTarget(const struct wb_hal_arm_target &other): wb_hal_arm_target() {
-            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
+        HalArmTarget(const struct wb_hal_arm_target &t_other): wb_hal_arm_target() {
+            this->init(t_other.target_movement_time, t_other.target_shoulderpitch, t_other.target_shoulderroll, t_other.target_elbowroll, t_other.target_elbowyaw, t_other.target_wristyaw, t_other.target_arm, t_other.target_hand, t_other.target_shoulderpitchstiffness, t_other.target_shoulderrollstiffness, t_other.target_elbowrollstiffness, t_other.target_elbowyawstiffness, t_other.target_wristyawstiffness, t_other.target_handstiffness, t_other.target_pliability, t_other.target_shoulderpitch_active, t_other.target_shoulderroll_active, t_other.target_elbowroll_active, t_other.target_elbowyaw_active, t_other.target_wrist_active, t_other.target_hand_active, t_other.target_arm_at_goal, t_other.target_arm_stop);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        HalArmTarget &operator = (const HalArmTarget &other) {
-            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
+        HalArmTarget &operator = (const HalArmTarget &t_other) {
+            this->init(t_other.target_movement_time(), t_other.target_shoulderpitch(), t_other.target_shoulderroll(), t_other.target_elbowroll(), t_other.target_elbowyaw(), t_other.target_wristyaw(), t_other.target_arm(), t_other.target_hand(), t_other.target_shoulderpitchstiffness(), t_other.target_shoulderrollstiffness(), t_other.target_elbowrollstiffness(), t_other.target_elbowyawstiffness(), t_other.target_wristyawstiffness(), t_other.target_handstiffness(), t_other.target_pliability(), t_other.target_shoulderpitch_active(), t_other.target_shoulderroll_active(), t_other.target_elbowroll_active(), t_other.target_elbowyaw_active(), t_other.target_wrist_active(), t_other.target_hand_active(), t_other.target_arm_at_goal(), t_other.target_arm_stop());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        HalArmTarget &operator = (const struct wb_hal_arm_target &other) {
-            this->init(other.target_movement_time(), other.target_shoulderpitch(), other.target_shoulderroll(), other.target_elbowroll(), other.target_elbowyaw(), other.target_wristyaw(), other.target_arm(), other.target_hand(), other.target_shoulderpitchstiffness(), other.target_shoulderrollstiffness(), other.target_elbowrollstiffness(), other.target_elbowyawstiffness(), other.target_wristyawstiffness(), other.target_handstiffness(), other.target_pliability(), other.target_shoulderpitch_active(), other.target_shoulderroll_active(), other.target_elbowroll_active(), other.target_elbowyaw_active(), other.target_wrist_active(), other.target_hand_active(), other.target_arm_at_goal(), other.target_arm_stop());
+        HalArmTarget &operator = (const struct wb_hal_arm_target &t_other) {
+            this->init(t_other.target_movement_time, t_other.target_shoulderpitch, t_other.target_shoulderroll, t_other.target_elbowroll, t_other.target_elbowyaw, t_other.target_wristyaw, t_other.target_arm, t_other.target_hand, t_other.target_shoulderpitchstiffness, t_other.target_shoulderrollstiffness, t_other.target_elbowrollstiffness, t_other.target_elbowyawstiffness, t_other.target_wristyawstiffness, t_other.target_handstiffness, t_other.target_pliability, t_other.target_shoulderpitch_active, t_other.target_shoulderroll_active, t_other.target_elbowroll_active, t_other.target_elbowyaw_active, t_other.target_wrist_active, t_other.target_hand_active, t_other.target_arm_at_goal, t_other.target_arm_stop);
             return *this;
         }
 
-        bool operator ==(const HalArmTarget &other) const
+        bool operator ==(const HalArmTarget &t_other) const
         {
-            return target_movement_time() == other.target_movement_time()
-                && target_shoulderpitch() == other.target_shoulderpitch()
-                && target_shoulderroll() == other.target_shoulderroll()
-                && target_elbowroll() == other.target_elbowroll()
-                && target_elbowyaw() == other.target_elbowyaw()
-                && target_wristyaw() == other.target_wristyaw()
-                && target_arm() == other.target_arm()
-                && target_hand() == other.target_hand()
-                && target_shoulderpitchstiffness() == other.target_shoulderpitchstiffness()
-                && target_shoulderrollstiffness() == other.target_shoulderrollstiffness()
-                && target_elbowrollstiffness() == other.target_elbowrollstiffness()
-                && target_elbowyawstiffness() == other.target_elbowyawstiffness()
-                && target_wristyawstiffness() == other.target_wristyawstiffness()
-                && target_handstiffness() == other.target_handstiffness()
-                && target_pliability() == other.target_pliability()
-                && target_shoulderpitch_active() == other.target_shoulderpitch_active()
-                && target_shoulderroll_active() == other.target_shoulderroll_active()
-                && target_elbowroll_active() == other.target_elbowroll_active()
-                && target_elbowyaw_active() == other.target_elbowyaw_active()
-                && target_wrist_active() == other.target_wrist_active()
-                && target_hand_active() == other.target_hand_active()
-                && target_arm_at_goal() == other.target_arm_at_goal()
-                && target_arm_stop() == other.target_arm_stop();
+            return target_movement_time() == t_other.target_movement_time()
+                && target_shoulderpitch() == t_other.target_shoulderpitch()
+                && target_shoulderroll() == t_other.target_shoulderroll()
+                && target_elbowroll() == t_other.target_elbowroll()
+                && target_elbowyaw() == t_other.target_elbowyaw()
+                && target_wristyaw() == t_other.target_wristyaw()
+                && target_arm() == t_other.target_arm()
+                && target_hand() == t_other.target_hand()
+                && target_shoulderpitchstiffness() == t_other.target_shoulderpitchstiffness()
+                && target_shoulderrollstiffness() == t_other.target_shoulderrollstiffness()
+                && target_elbowrollstiffness() == t_other.target_elbowrollstiffness()
+                && target_elbowyawstiffness() == t_other.target_elbowyawstiffness()
+                && target_wristyawstiffness() == t_other.target_wristyawstiffness()
+                && target_handstiffness() == t_other.target_handstiffness()
+                && target_pliability() == t_other.target_pliability()
+                && target_shoulderpitch_active() == t_other.target_shoulderpitch_active()
+                && target_shoulderroll_active() == t_other.target_shoulderroll_active()
+                && target_elbowroll_active() == t_other.target_elbowroll_active()
+                && target_elbowyaw_active() == t_other.target_elbowyaw_active()
+                && target_wrist_active() == t_other.target_wrist_active()
+                && target_hand_active() == t_other.target_hand_active()
+                && target_arm_at_goal() == t_other.target_arm_at_goal()
+                && target_arm_stop() == t_other.target_arm_stop();
         }
 
-        bool operator !=(const HalArmTarget &other) const
+        bool operator !=(const HalArmTarget &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_hal_arm_target &other) const
+        bool operator ==(const wb_hal_arm_target &t_other) const
         {
-            return *this == HalArmTarget(other);
+            return *this == HalArmTarget(t_other);
         }
 
-        bool operator !=(const wb_hal_arm_target &other) const
+        bool operator !=(const wb_hal_arm_target &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int32_t target_movement_time() const
+        {
+            return wb_hal_arm_target::target_movement_time;
+        }
+
+        void set_target_movement_time(const int32_t &t_newValue)
+        {
+            wb_hal_arm_target::target_movement_time = t_newValue;
+        }
+
+        int16_t target_shoulderpitch() const
+        {
+            return wb_hal_arm_target::target_shoulderpitch;
+        }
+
+        void set_target_shoulderpitch(const int16_t &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderpitch = t_newValue;
+        }
+
+        int16_t target_shoulderroll() const
+        {
+            return wb_hal_arm_target::target_shoulderroll;
+        }
+
+        void set_target_shoulderroll(const int16_t &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderroll = t_newValue;
+        }
+
+        int16_t target_elbowroll() const
+        {
+            return wb_hal_arm_target::target_elbowroll;
+        }
+
+        void set_target_elbowroll(const int16_t &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowroll = t_newValue;
+        }
+
+        int16_t target_elbowyaw() const
+        {
+            return wb_hal_arm_target::target_elbowyaw;
+        }
+
+        void set_target_elbowyaw(const int16_t &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowyaw = t_newValue;
+        }
+
+        int16_t target_wristyaw() const
+        {
+            return wb_hal_arm_target::target_wristyaw;
+        }
+
+        void set_target_wristyaw(const int16_t &t_newValue)
+        {
+            wb_hal_arm_target::target_wristyaw = t_newValue;
+        }
+
+        uint8_t target_arm() const
+        {
+            return wb_hal_arm_target::target_arm;
+        }
+
+        void set_target_arm(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_arm = t_newValue;
+        }
+
+        uint8_t target_hand() const
+        {
+            return wb_hal_arm_target::target_hand;
+        }
+
+        void set_target_hand(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_hand = t_newValue;
+        }
+
+        uint8_t target_shoulderpitchstiffness() const
+        {
+            return wb_hal_arm_target::target_shoulderpitchstiffness;
+        }
+
+        void set_target_shoulderpitchstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderpitchstiffness = t_newValue;
+        }
+
+        uint8_t target_shoulderrollstiffness() const
+        {
+            return wb_hal_arm_target::target_shoulderrollstiffness;
+        }
+
+        void set_target_shoulderrollstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderrollstiffness = t_newValue;
+        }
+
+        uint8_t target_elbowrollstiffness() const
+        {
+            return wb_hal_arm_target::target_elbowrollstiffness;
+        }
+
+        void set_target_elbowrollstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowrollstiffness = t_newValue;
+        }
+
+        uint8_t target_elbowyawstiffness() const
+        {
+            return wb_hal_arm_target::target_elbowyawstiffness;
+        }
+
+        void set_target_elbowyawstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowyawstiffness = t_newValue;
+        }
+
+        uint8_t target_wristyawstiffness() const
+        {
+            return wb_hal_arm_target::target_wristyawstiffness;
+        }
+
+        void set_target_wristyawstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_wristyawstiffness = t_newValue;
+        }
+
+        uint8_t target_handstiffness() const
+        {
+            return wb_hal_arm_target::target_handstiffness;
+        }
+
+        void set_target_handstiffness(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_handstiffness = t_newValue;
+        }
+
+        uint8_t target_pliability() const
+        {
+            return wb_hal_arm_target::target_pliability;
+        }
+
+        void set_target_pliability(const uint8_t &t_newValue)
+        {
+            wb_hal_arm_target::target_pliability = t_newValue;
+        }
+
+        unsigned int target_shoulderpitch_active() const
+        {
+            return wb_hal_arm_target::target_shoulderpitch_active;
+        }
+
+        void set_target_shoulderpitch_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderpitch_active = t_newValue;
+        }
+
+        unsigned int target_shoulderroll_active() const
+        {
+            return wb_hal_arm_target::target_shoulderroll_active;
+        }
+
+        void set_target_shoulderroll_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_shoulderroll_active = t_newValue;
+        }
+
+        unsigned int target_elbowroll_active() const
+        {
+            return wb_hal_arm_target::target_elbowroll_active;
+        }
+
+        void set_target_elbowroll_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowroll_active = t_newValue;
+        }
+
+        unsigned int target_elbowyaw_active() const
+        {
+            return wb_hal_arm_target::target_elbowyaw_active;
+        }
+
+        void set_target_elbowyaw_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_elbowyaw_active = t_newValue;
+        }
+
+        unsigned int target_wrist_active() const
+        {
+            return wb_hal_arm_target::target_wrist_active;
+        }
+
+        void set_target_wrist_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_wrist_active = t_newValue;
+        }
+
+        unsigned int target_hand_active() const
+        {
+            return wb_hal_arm_target::target_hand_active;
+        }
+
+        void set_target_hand_active(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_hand_active = t_newValue;
+        }
+
+        unsigned int target_arm_at_goal() const
+        {
+            return wb_hal_arm_target::target_arm_at_goal;
+        }
+
+        void set_target_arm_at_goal(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_arm_at_goal = t_newValue;
+        }
+
+        unsigned int target_arm_stop() const
+        {
+            return wb_hal_arm_target::target_arm_stop;
+        }
+
+        void set_target_arm_stop(const unsigned int &t_newValue)
+        {
+            wb_hal_arm_target::target_arm_stop = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        HalArmTarget(const std::string &str) {
+        HalArmTarget(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -312,11 +542,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_HAL_ARM_TARGET_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_hal_arm_target_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_hal_arm_target_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > HAL_ARM_TARGET_DESC_BUFFER_SIZE) {
@@ -995,12 +1225,12 @@ namespace guWhiteboard {
                      */
                     void copyStiffness(const HalArmTarget &other)
                     {
-                        target_shoulderpitchstiffness() = other.target_shoulderpitchstiffness();
-                        target_shoulderrollstiffness() = other.target_shoulderrollstiffness();
-                        target_elbowrollstiffness() = other.target_elbowrollstiffness();
-                        target_elbowyawstiffness() = other.target_elbowyawstiffness();
-                        target_wristyawstiffness() = other.target_wristyawstiffness();
-                        target_handstiffness() = other.target_handstiffness();
+                        set_target_shoulderpitchstiffness(other.target_shoulderpitchstiffness());
+                        set_target_shoulderrollstiffness(other.target_shoulderrollstiffness());
+                        set_target_elbowrollstiffness(other.target_elbowrollstiffness());
+                        set_target_elbowyawstiffness(other.target_elbowyawstiffness());
+                        set_target_wristyawstiffness(other.target_wristyawstiffness());
+                        set_target_handstiffness(other.target_handstiffness());
                     }
 
 

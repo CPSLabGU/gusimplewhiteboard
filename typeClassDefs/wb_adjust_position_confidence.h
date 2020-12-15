@@ -96,6 +96,10 @@
 #define ADJUST_POSITION_CONFIDENCE_TO_STRING_BUFFER_SIZE 5
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Changes the confidence of object positions (increase or decrease)
  */
@@ -105,13 +109,9 @@ struct wb_adjust_position_confidence
     /**
      * Change the confidence as a signed percentage (-100% -> 100%)
      */
-    PROPERTY(int8_t, adjustment)
+    int8_t adjustment;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

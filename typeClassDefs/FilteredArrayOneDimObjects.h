@@ -83,12 +83,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_filtered_vision_object objects[4] = NULLPTR) {
-            if (objects != NULLPTR) {
-                std::memcpy(this->_objects, objects, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
+        void init(const struct wb_filtered_vision_object t_objects[4] = NULLPTR) {
+            if (t_objects != NULLPTR) {
+                std::memcpy(wb_filtered_arrayonedimobjects::objects, t_objects, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
             } else {
                 struct wb_filtered_vision_object objects_temp[FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE] = {wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object()};
-                std::memcpy(this->_objects, objects_temp, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
+                std::memcpy(wb_filtered_arrayonedimobjects::objects, objects_temp, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
             }
         }
 
@@ -97,71 +97,91 @@ namespace guWhiteboard {
         /**
          * Create a new `FilteredArrayOneDimObjects`.
          */
-        FilteredArrayOneDimObjects(const struct wb_filtered_vision_object objects[4] = NULLPTR) {
-            this->init(objects);
+        FilteredArrayOneDimObjects(const struct wb_filtered_vision_object t_objects[4] = NULLPTR) {
+            this->init(t_objects);
         }
 
         /**
          * Copy Constructor.
          */
-        FilteredArrayOneDimObjects(const FilteredArrayOneDimObjects &other): wb_filtered_arrayonedimobjects() {
-            this->init(other.objects());
+        FilteredArrayOneDimObjects(const FilteredArrayOneDimObjects &t_other): wb_filtered_arrayonedimobjects() {
+            this->init(t_other.objects());
         }
 
         /**
          * Copy Constructor.
          */
-        FilteredArrayOneDimObjects(const struct wb_filtered_arrayonedimobjects &other): wb_filtered_arrayonedimobjects() {
-            this->init(other.objects());
+        FilteredArrayOneDimObjects(const struct wb_filtered_arrayonedimobjects &t_other): wb_filtered_arrayonedimobjects() {
+            this->init(t_other.objects);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FilteredArrayOneDimObjects &operator = (const FilteredArrayOneDimObjects &other) {
-            this->init(other.objects());
+        FilteredArrayOneDimObjects &operator = (const FilteredArrayOneDimObjects &t_other) {
+            this->init(t_other.objects());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FilteredArrayOneDimObjects &operator = (const struct wb_filtered_arrayonedimobjects &other) {
-            this->init(other.objects());
+        FilteredArrayOneDimObjects &operator = (const struct wb_filtered_arrayonedimobjects &t_other) {
+            this->init(t_other.objects);
             return *this;
         }
 
-        bool operator ==(const FilteredArrayOneDimObjects &other) const
+        bool operator ==(const FilteredArrayOneDimObjects &t_other) const
         {
             for (int objects_0_index = 0; objects_0_index < 4; objects_0_index++)
             {
-                if (!(FilteredVisionObject(_objects[objects_0_index]) == FilteredVisionObject(other._objects[objects_0_index]))) return false;
+                if (!(FilteredVisionObject(objects(objects_0_index)) == FilteredVisionObject(t_other.objects(objects_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const FilteredArrayOneDimObjects &other) const
+        bool operator !=(const FilteredArrayOneDimObjects &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_filtered_arrayonedimobjects &other) const
+        bool operator ==(const wb_filtered_arrayonedimobjects &t_other) const
         {
-            return *this == FilteredArrayOneDimObjects(other);
+            return *this == FilteredArrayOneDimObjects(t_other);
         }
 
-        bool operator !=(const wb_filtered_arrayonedimobjects &other) const
+        bool operator !=(const wb_filtered_arrayonedimobjects &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const FilteredVisionObject *objects() const
+        {
+            return static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects);
+        }
+
+        FilteredVisionObject objects(int t_i) const
+        {
+            return FilteredVisionObject(wb_filtered_arrayonedimobjects::objects[t_i]);
+        }
+
+        void set_objects(const FilteredVisionObject *t_newValue)
+        {
+            memcpy(wb_filtered_arrayonedimobjects::objects, static_cast<const struct wb_filtered_vision_object *>(t_newValue), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * (sizeof (struct wb_filtered_vision_object)));
+        }
+
+        void set_objects(const FilteredVisionObject &t_newValue, int t_i)
+        {
+            wb_filtered_arrayonedimobjects::objects[t_i] = static_cast<wb_filtered_vision_object>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        FilteredArrayOneDimObjects(const std::string &str) {
+        FilteredArrayOneDimObjects(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -175,8 +195,7 @@ namespace guWhiteboard {
             bool objects_first = true;
             ss << "objects={";
             for (int i = 0; i < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
-                guWhiteboard::FilteredVisionObject * objects_cast = const_cast<guWhiteboard::FilteredVisionObject *>(static_cast<const guWhiteboard::FilteredVisionObject *>(&this->objects(i)));
-                ss << (objects_first ? "" : ", ") << "{" << objects_cast->description() << "}";
+                ss << (objects_first ? "" : ", ") << "{" << FilteredVisionObject(this->objects(i)).description() << "}";
                 objects_first = false;
             }
             ss << "}";
@@ -195,8 +214,7 @@ namespace guWhiteboard {
             bool objects_first = true;
             ss << "{";
             for (int i = 0; i < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
-                guWhiteboard::FilteredVisionObject * objects_cast = const_cast<guWhiteboard::FilteredVisionObject *>(static_cast<const guWhiteboard::FilteredVisionObject *>(&this->objects(i)));
-                ss << (objects_first ? "" : ", ") << "{" << objects_cast->to_string() << "}";
+                ss << (objects_first ? "" : ", ") << "{" << FilteredVisionObject(this->objects(i)).to_string() << "}";
                 objects_first = false;
             }
             ss << "}";
@@ -205,11 +223,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_FILTERED_ARRAYONEDIMOBJECTS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_filtered_arrayonedimobjects_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_filtered_arrayonedimobjects_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE) {

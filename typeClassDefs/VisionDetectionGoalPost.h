@@ -98,13 +98,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
-            set_sightingType(sightingType);
-            set_orientation(orientation);
-            set_topLeftCoordinate(topLeftCoordinate);
-            set_topRightCoordinate(topRightCoordinate);
-            set_bottomLeftCoordinate(bottomLeftCoordinate);
-            set_bottomRightCoordinate(bottomRightCoordinate);
+        void init(enum GoalPostOptions t_sightingType = NoPostDetected, enum GoalPostOrientation t_orientation = GenericPost, struct wb_pixel_coordinate t_topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_bottomRightCoordinate = wb_pixel_coordinate()) {
+            set_sightingType(t_sightingType);
+            set_orientation(t_orientation);
+            set_topLeftCoordinate(t_topLeftCoordinate);
+            set_topRightCoordinate(t_topRightCoordinate);
+            set_bottomLeftCoordinate(t_bottomLeftCoordinate);
+            set_bottomRightCoordinate(t_bottomRightCoordinate);
         }
 
     public:
@@ -112,72 +112,132 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionGoalPost`.
          */
-        VisionDetectionGoalPost(enum GoalPostOptions sightingType = NoPostDetected, enum GoalPostOrientation orientation = GenericPost, struct wb_pixel_coordinate topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate bottomRightCoordinate = wb_pixel_coordinate()) {
-            this->init(sightingType, orientation, topLeftCoordinate, topRightCoordinate, bottomLeftCoordinate, bottomRightCoordinate);
+        VisionDetectionGoalPost(enum GoalPostOptions t_sightingType = NoPostDetected, enum GoalPostOrientation t_orientation = GenericPost, struct wb_pixel_coordinate t_topLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_topRightCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_bottomLeftCoordinate = wb_pixel_coordinate(), struct wb_pixel_coordinate t_bottomRightCoordinate = wb_pixel_coordinate()) {
+            this->init(t_sightingType, t_orientation, t_topLeftCoordinate, t_topRightCoordinate, t_bottomLeftCoordinate, t_bottomRightCoordinate);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoalPost(const VisionDetectionGoalPost &other): wb_vision_detection_goal_post() {
-            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
+        VisionDetectionGoalPost(const VisionDetectionGoalPost &t_other): wb_vision_detection_goal_post() {
+            this->init(t_other.sightingType(), t_other.orientation(), t_other.topLeftCoordinate(), t_other.topRightCoordinate(), t_other.bottomLeftCoordinate(), t_other.bottomRightCoordinate());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoalPost(const struct wb_vision_detection_goal_post &other): wb_vision_detection_goal_post() {
-            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
+        VisionDetectionGoalPost(const struct wb_vision_detection_goal_post &t_other): wb_vision_detection_goal_post() {
+            this->init(t_other.sightingType, t_other.orientation, t_other.topLeftCoordinate, t_other.topRightCoordinate, t_other.bottomLeftCoordinate, t_other.bottomRightCoordinate);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoalPost &operator = (const VisionDetectionGoalPost &other) {
-            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
+        VisionDetectionGoalPost &operator = (const VisionDetectionGoalPost &t_other) {
+            this->init(t_other.sightingType(), t_other.orientation(), t_other.topLeftCoordinate(), t_other.topRightCoordinate(), t_other.bottomLeftCoordinate(), t_other.bottomRightCoordinate());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoalPost &operator = (const struct wb_vision_detection_goal_post &other) {
-            this->init(other.sightingType(), other.orientation(), other.topLeftCoordinate(), other.topRightCoordinate(), other.bottomLeftCoordinate(), other.bottomRightCoordinate());
+        VisionDetectionGoalPost &operator = (const struct wb_vision_detection_goal_post &t_other) {
+            this->init(t_other.sightingType, t_other.orientation, t_other.topLeftCoordinate, t_other.topRightCoordinate, t_other.bottomLeftCoordinate, t_other.bottomRightCoordinate);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionGoalPost &other) const
+        bool operator ==(const VisionDetectionGoalPost &t_other) const
         {
-            return sightingType() == other.sightingType()
-                && orientation() == other.orientation()
-                && PixelCoordinate(_topLeftCoordinate) == PixelCoordinate(other._topLeftCoordinate)
-                && PixelCoordinate(_topRightCoordinate) == PixelCoordinate(other._topRightCoordinate)
-                && PixelCoordinate(_bottomLeftCoordinate) == PixelCoordinate(other._bottomLeftCoordinate)
-                && PixelCoordinate(_bottomRightCoordinate) == PixelCoordinate(other._bottomRightCoordinate);
+            return sightingType() == t_other.sightingType()
+                && orientation() == t_other.orientation()
+                && PixelCoordinate(topLeftCoordinate()) == PixelCoordinate(t_other.topLeftCoordinate())
+                && PixelCoordinate(topRightCoordinate()) == PixelCoordinate(t_other.topRightCoordinate())
+                && PixelCoordinate(bottomLeftCoordinate()) == PixelCoordinate(t_other.bottomLeftCoordinate())
+                && PixelCoordinate(bottomRightCoordinate()) == PixelCoordinate(t_other.bottomRightCoordinate());
         }
 
-        bool operator !=(const VisionDetectionGoalPost &other) const
+        bool operator !=(const VisionDetectionGoalPost &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_goal_post &other) const
+        bool operator ==(const wb_vision_detection_goal_post &t_other) const
         {
-            return *this == VisionDetectionGoalPost(other);
+            return *this == VisionDetectionGoalPost(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_goal_post &other) const
+        bool operator !=(const wb_vision_detection_goal_post &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum GoalPostOptions sightingType() const
+        {
+            return wb_vision_detection_goal_post::sightingType;
+        }
+
+        void set_sightingType(const enum GoalPostOptions &t_newValue)
+        {
+            wb_vision_detection_goal_post::sightingType = t_newValue;
+        }
+
+        enum GoalPostOrientation orientation() const
+        {
+            return wb_vision_detection_goal_post::orientation;
+        }
+
+        void set_orientation(const enum GoalPostOrientation &t_newValue)
+        {
+            wb_vision_detection_goal_post::orientation = t_newValue;
+        }
+
+        const PixelCoordinate topLeftCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_goal_post::topLeftCoordinate);
+        }
+
+        void set_topLeftCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_goal_post::topLeftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate topRightCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_goal_post::topRightCoordinate);
+        }
+
+        void set_topRightCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_goal_post::topRightCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate bottomLeftCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_goal_post::bottomLeftCoordinate);
+        }
+
+        void set_bottomLeftCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_goal_post::bottomLeftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate bottomRightCoordinate() const
+        {
+            return PixelCoordinate(wb_vision_detection_goal_post::bottomRightCoordinate);
+        }
+
+        void set_bottomRightCoordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_detection_goal_post::bottomRightCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionGoalPost(const std::string &str) {
+        VisionDetectionGoalPost(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -224,17 +284,13 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
-            ss << "topLeftCoordinate=" << "{" << topLeftCoordinate_cast->description() << "}";
+            ss << "topLeftCoordinate=" << "{" << PixelCoordinate(this->topLeftCoordinate()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
-            ss << "topRightCoordinate=" << "{" << topRightCoordinate_cast->description() << "}";
+            ss << "topRightCoordinate=" << "{" << PixelCoordinate(this->topRightCoordinate()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
-            ss << "bottomLeftCoordinate=" << "{" << bottomLeftCoordinate_cast->description() << "}";
+            ss << "bottomLeftCoordinate=" << "{" << PixelCoordinate(this->bottomLeftCoordinate()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
-            ss << "bottomRightCoordinate=" << "{" << bottomRightCoordinate_cast->description() << "}";
+            ss << "bottomRightCoordinate=" << "{" << PixelCoordinate(this->bottomRightCoordinate()).description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }
@@ -283,27 +339,23 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::PixelCoordinate * topLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topLeftCoordinate()));
-            ss << "{" << topLeftCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->topLeftCoordinate()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * topRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->topRightCoordinate()));
-            ss << "{" << topRightCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->topRightCoordinate()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * bottomLeftCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomLeftCoordinate()));
-            ss << "{" << bottomLeftCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->bottomLeftCoordinate()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * bottomRightCoordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->bottomRightCoordinate()));
-            ss << "{" << bottomRightCoordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->bottomRightCoordinate()).to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
         }
 
 #ifdef USE_WB_VISION_DETECTION_GOAL_POST_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_goal_post_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_goal_post_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE) {

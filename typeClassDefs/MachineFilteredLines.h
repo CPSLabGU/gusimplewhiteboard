@@ -84,13 +84,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[8] = NULLPTR) {
-            set_numberOfSightings(numberOfSightings);
-            if (sightings != NULLPTR) {
-                std::memcpy(this->_sightings, sightings, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
+        void init(uint8_t t_numberOfSightings = 0, const struct wb_line_sighting t_sightings[8] = NULLPTR) {
+            set_numberOfSightings(t_numberOfSightings);
+            if (t_sightings != NULLPTR) {
+                std::memcpy(wb_machine_filtered_lines::sightings, t_sightings, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
             } else {
                 struct wb_line_sighting sightings_temp[MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE] = {wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting(), wb_line_sighting()};
-                std::memcpy(this->_sightings, sightings_temp, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
+                std::memcpy(wb_machine_filtered_lines::sightings, sightings_temp, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_line_sighting));
             }
         }
 
@@ -99,75 +99,105 @@ namespace guWhiteboard {
         /**
          * Create a new `MachineFilteredLines`.
          */
-        MachineFilteredLines(uint8_t numberOfSightings = 0, const struct wb_line_sighting sightings[8] = NULLPTR) {
-            this->init(numberOfSightings, sightings);
+        MachineFilteredLines(uint8_t t_numberOfSightings = 0, const struct wb_line_sighting t_sightings[8] = NULLPTR) {
+            this->init(t_numberOfSightings, t_sightings);
         }
 
         /**
          * Copy Constructor.
          */
-        MachineFilteredLines(const MachineFilteredLines &other): wb_machine_filtered_lines() {
-            this->init(other.numberOfSightings(), other.sightings());
+        MachineFilteredLines(const MachineFilteredLines &t_other): wb_machine_filtered_lines() {
+            this->init(t_other.numberOfSightings(), t_other.sightings());
         }
 
         /**
          * Copy Constructor.
          */
-        MachineFilteredLines(const struct wb_machine_filtered_lines &other): wb_machine_filtered_lines() {
-            this->init(other.numberOfSightings(), other.sightings());
+        MachineFilteredLines(const struct wb_machine_filtered_lines &t_other): wb_machine_filtered_lines() {
+            this->init(t_other.numberOfSightings, t_other.sightings);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MachineFilteredLines &operator = (const MachineFilteredLines &other) {
-            this->init(other.numberOfSightings(), other.sightings());
+        MachineFilteredLines &operator = (const MachineFilteredLines &t_other) {
+            this->init(t_other.numberOfSightings(), t_other.sightings());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MachineFilteredLines &operator = (const struct wb_machine_filtered_lines &other) {
-            this->init(other.numberOfSightings(), other.sightings());
+        MachineFilteredLines &operator = (const struct wb_machine_filtered_lines &t_other) {
+            this->init(t_other.numberOfSightings, t_other.sightings);
             return *this;
         }
 
-        bool operator ==(const MachineFilteredLines &other) const
+        bool operator ==(const MachineFilteredLines &t_other) const
         {
-            if (!(numberOfSightings() == other.numberOfSightings()))
+            if (!(numberOfSightings() == t_other.numberOfSightings()))
             {
                 return false;
             }
             for (int sightings_0_index = 0; sightings_0_index < 8; sightings_0_index++)
             {
-                if (!(LineSighting(_sightings[sightings_0_index]) == LineSighting(other._sightings[sightings_0_index]))) return false;
+                if (!(LineSighting(sightings(sightings_0_index)) == LineSighting(t_other.sightings(sightings_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const MachineFilteredLines &other) const
+        bool operator !=(const MachineFilteredLines &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_machine_filtered_lines &other) const
+        bool operator ==(const wb_machine_filtered_lines &t_other) const
         {
-            return *this == MachineFilteredLines(other);
+            return *this == MachineFilteredLines(t_other);
         }
 
-        bool operator !=(const wb_machine_filtered_lines &other) const
+        bool operator !=(const wb_machine_filtered_lines &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint8_t numberOfSightings() const
+        {
+            return wb_machine_filtered_lines::numberOfSightings;
+        }
+
+        void set_numberOfSightings(const uint8_t &t_newValue)
+        {
+            wb_machine_filtered_lines::numberOfSightings = t_newValue;
+        }
+
+        const LineSighting *sightings() const
+        {
+            return static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings);
+        }
+
+        LineSighting sightings(int t_i) const
+        {
+            return LineSighting(wb_machine_filtered_lines::sightings[t_i]);
+        }
+
+        void set_sightings(const LineSighting *t_newValue)
+        {
+            memcpy(wb_machine_filtered_lines::sightings, static_cast<const struct wb_line_sighting *>(t_newValue), MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE * (sizeof (struct wb_line_sighting)));
+        }
+
+        void set_sightings(const LineSighting &t_newValue, int t_i)
+        {
+            wb_machine_filtered_lines::sightings[t_i] = static_cast<wb_line_sighting>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MachineFilteredLines(const std::string &str) {
+        MachineFilteredLines(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -183,8 +213,7 @@ namespace guWhiteboard {
             bool sightings_first = true;
             ss << "sightings={";
             for (int i = 0; i < MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE; i++) {
-                guWhiteboard::LineSighting * sightings_cast = const_cast<guWhiteboard::LineSighting *>(static_cast<const guWhiteboard::LineSighting *>(&this->sightings(i)));
-                ss << (sightings_first ? "" : ", ") << "{" << sightings_cast->description() << "}";
+                ss << (sightings_first ? "" : ", ") << "{" << LineSighting(this->sightings(i)).description() << "}";
                 sightings_first = false;
             }
             ss << "}";
@@ -205,8 +234,7 @@ namespace guWhiteboard {
             bool sightings_first = true;
             ss << "{";
             for (int i = 0; i < MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE; i++) {
-                guWhiteboard::LineSighting * sightings_cast = const_cast<guWhiteboard::LineSighting *>(static_cast<const guWhiteboard::LineSighting *>(&this->sightings(i)));
-                ss << (sightings_first ? "" : ", ") << "{" << sightings_cast->to_string() << "}";
+                ss << (sightings_first ? "" : ", ") << "{" << LineSighting(this->sightings(i)).to_string() << "}";
                 sightings_first = false;
             }
             ss << "}";
@@ -215,11 +243,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MACHINE_FILTERED_LINES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_machine_filtered_lines_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_machine_filtered_lines_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MACHINE_FILTERED_LINES_DESC_BUFFER_SIZE) {

@@ -99,6 +99,10 @@
 
 #define FILTERED_ARRAYBALLSIGHTINGS_OBJECTS_ARRAY_SIZE 2
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * The class of landmarks filtered regarding goal sightings
  */
@@ -108,13 +112,9 @@ struct wb_filtered_arrayballsightings
     /**
      * the array containing filtered balls on separate cameras reported by vision FVO_NUM_CAMERAS =2
      */
-    ARRAY_PROPERTY(struct wb_filtered_vision_object, objects, FILTERED_ARRAYBALLSIGHTINGS_OBJECTS_ARRAY_SIZE)
+    struct wb_filtered_vision_object objects[FILTERED_ARRAYBALLSIGHTINGS_OBJECTS_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -94,6 +94,10 @@
 #define COUNT_TO_STRING_BUFFER_SIZE 21
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains a simple counter.
  */
@@ -103,13 +107,9 @@ struct wb_count
     /**
      * The count.
      */
-    PROPERTY(int64_t, count)
+    int64_t count;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

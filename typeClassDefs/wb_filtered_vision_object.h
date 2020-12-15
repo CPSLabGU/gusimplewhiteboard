@@ -94,6 +94,10 @@
 #define FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE 88
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Posting by Kalman filter on object sighting
  */
@@ -103,53 +107,49 @@ struct wb_filtered_vision_object
     /**
      * a 64-bit history of whether vision said visible 1 or not visible 0. visibilityHistory&0X1 is the most recent frame
      */
-    PROPERTY(uint64_t, visibilityHistory)
+    uint64_t visibilityHistory;
 
     /**
      * incremented every time we do not see the object.
      */
-    PROPERTY(int32_t, frameCounter)
+    int32_t frameCounter;
 
     /**
      * distance to landmark in cm
      */
-    PROPERTY(int16_t, distance)
+    int16_t distance;
 
     /**
      * centre x-coordinate in image  (0,0) is the centre of the image, positive is to the right
      */
-    PROPERTY(int16_t, x)
+    int16_t x;
 
     /**
      * centre  y-coordinate in image, positive is upwards
      */
-    PROPERTY(int16_t, y)
+    int16_t y;
 
     /**
      * the Yaw in Degrees when the object was last used to generated filtered values.
      */
-    PROPERTY(int16_t, yaw)
+    int16_t yaw;
 
     /**
      * In degrees, position of the object, positive is left, negative is right, with distance polar position of object in frame of reference of robot. The sign is consistent with the yaw, but not with the fact that x positive is to the right
      */
-    PROPERTY(int16_t, ray_angle)
+    int16_t ray_angle;
 
     /**
      * is this a credible sighting.
      */
-    PROPERTY(bool, isVisible)
+    bool isVisible;
 
     /**
      * 16 bit padding .
      */
-    PROPERTY(bool, pad1)
+    bool pad1;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

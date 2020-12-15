@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t lo_freq = 0, int16_t hi_freq = 0) {
-            set_lo_freq(lo_freq);
-            set_hi_freq(hi_freq);
+        void init(int16_t t_lo_freq = 0, int16_t t_hi_freq = 0) {
+            set_lo_freq(t_lo_freq);
+            set_hi_freq(t_hi_freq);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `FrequencyLimits`.
          */
-        FrequencyLimits(int16_t lo_freq = 0, int16_t hi_freq = 0) {
-            this->init(lo_freq, hi_freq);
+        FrequencyLimits(int16_t t_lo_freq = 0, int16_t t_hi_freq = 0) {
+            this->init(t_lo_freq, t_hi_freq);
         }
 
         /**
          * Copy Constructor.
          */
-        FrequencyLimits(const FrequencyLimits &other): wb_frequency_limits() {
-            this->init(other.lo_freq(), other.hi_freq());
+        FrequencyLimits(const FrequencyLimits &t_other): wb_frequency_limits() {
+            this->init(t_other.lo_freq(), t_other.hi_freq());
         }
 
         /**
          * Copy Constructor.
          */
-        FrequencyLimits(const struct wb_frequency_limits &other): wb_frequency_limits() {
-            this->init(other.lo_freq(), other.hi_freq());
+        FrequencyLimits(const struct wb_frequency_limits &t_other): wb_frequency_limits() {
+            this->init(t_other.lo_freq, t_other.hi_freq);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FrequencyLimits &operator = (const FrequencyLimits &other) {
-            this->init(other.lo_freq(), other.hi_freq());
+        FrequencyLimits &operator = (const FrequencyLimits &t_other) {
+            this->init(t_other.lo_freq(), t_other.hi_freq());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        FrequencyLimits &operator = (const struct wb_frequency_limits &other) {
-            this->init(other.lo_freq(), other.hi_freq());
+        FrequencyLimits &operator = (const struct wb_frequency_limits &t_other) {
+            this->init(t_other.lo_freq, t_other.hi_freq);
             return *this;
         }
 
-        bool operator ==(const FrequencyLimits &other) const
+        bool operator ==(const FrequencyLimits &t_other) const
         {
-            return lo_freq() == other.lo_freq()
-                && hi_freq() == other.hi_freq();
+            return lo_freq() == t_other.lo_freq()
+                && hi_freq() == t_other.hi_freq();
         }
 
-        bool operator !=(const FrequencyLimits &other) const
+        bool operator !=(const FrequencyLimits &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_frequency_limits &other) const
+        bool operator ==(const wb_frequency_limits &t_other) const
         {
-            return *this == FrequencyLimits(other);
+            return *this == FrequencyLimits(t_other);
         }
 
-        bool operator !=(const wb_frequency_limits &other) const
+        bool operator !=(const wb_frequency_limits &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t lo_freq() const
+        {
+            return wb_frequency_limits::lo_freq;
+        }
+
+        void set_lo_freq(const int16_t &t_newValue)
+        {
+            wb_frequency_limits::lo_freq = t_newValue;
+        }
+
+        int16_t hi_freq() const
+        {
+            return wb_frequency_limits::hi_freq;
+        }
+
+        void set_hi_freq(const int16_t &t_newValue)
+        {
+            wb_frequency_limits::hi_freq = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        FrequencyLimits(const std::string &str) {
+        FrequencyLimits(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,11 +206,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_FREQUENCY_LIMITS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_frequency_limits_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_frequency_limits_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > FREQUENCY_LIMITS_DESC_BUFFER_SIZE) {

@@ -94,6 +94,10 @@
 #define MICROWAVE_STATUS_TO_STRING_BUFFER_SIZE 20
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains properties of the one minute microwave.
  */
@@ -103,23 +107,19 @@ struct wb_microwave_status
     /**
      * Is the timer at zero?
      */
-    PROPERTY(bool, timeLeft)
+    bool timeLeft;
 
     /**
      * Is the door open?
      */
-    PROPERTY(bool, doorOpen)
+    bool doorOpen;
 
     /**
      * Has the button been pushed?
      */
-    PROPERTY(bool, buttonPushed)
+    bool buttonPushed;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

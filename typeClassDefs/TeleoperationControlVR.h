@@ -82,18 +82,18 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t ip = 0, int32_t action = 0, float HeadYaw = 0, float HeadPitch = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
-            set_ip(ip);
-            set_action(action);
-            set_HeadYaw(HeadYaw);
-            set_HeadPitch(HeadPitch);
-            set_stance(stance);
-            set_streamType(streamType);
-            set_selectedCamera(selectedCamera);
-            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
-            set_walk(walk);
-            set_turn(turn);
-            set_timestamp(timestamp);
+        void init(uint8_t t_ip = 0, int32_t t_action = 0, float t_HeadYaw = 0, float t_HeadPitch = 0, int32_t t_stance = 0, int32_t t_streamType = 0, int32_t t_selectedCamera = 0, std::string t_sayString = "", int32_t t_walk = 0, int32_t t_turn = 0, int32_t t_timestamp = 0) {
+            set_ip(t_ip);
+            set_action(t_action);
+            set_HeadYaw(t_HeadYaw);
+            set_HeadPitch(t_HeadPitch);
+            set_stance(t_stance);
+            set_streamType(t_streamType);
+            set_selectedCamera(t_selectedCamera);
+            gu_strlcpy(const_cast<char *>(this->sayString()), t_sayString.c_str(), 30);
+            set_walk(t_walk);
+            set_turn(t_turn);
+            set_timestamp(t_timestamp);
         }
 
     public:
@@ -101,77 +101,187 @@ namespace guWhiteboard {
         /**
          * Create a new `TeleoperationControlVR`.
          */
-        TeleoperationControlVR(uint8_t ip = 0, int32_t action = 0, float HeadYaw = 0, float HeadPitch = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "", int32_t walk = 0, int32_t turn = 0, int32_t timestamp = 0) {
-            this->init(ip, action, HeadYaw, HeadPitch, stance, streamType, selectedCamera, sayString, walk, turn, timestamp);
+        TeleoperationControlVR(uint8_t t_ip = 0, int32_t t_action = 0, float t_HeadYaw = 0, float t_HeadPitch = 0, int32_t t_stance = 0, int32_t t_streamType = 0, int32_t t_selectedCamera = 0, std::string t_sayString = "", int32_t t_walk = 0, int32_t t_turn = 0, int32_t t_timestamp = 0) {
+            this->init(t_ip, t_action, t_HeadYaw, t_HeadPitch, t_stance, t_streamType, t_selectedCamera, t_sayString, t_walk, t_turn, t_timestamp);
         }
 
         /**
          * Copy Constructor.
          */
-        TeleoperationControlVR(const TeleoperationControlVR &other): wb_teleoperation_control_v_r() {
-            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+        TeleoperationControlVR(const TeleoperationControlVR &t_other): wb_teleoperation_control_v_r() {
+            this->init(t_other.ip(), t_other.action(), t_other.HeadYaw(), t_other.HeadPitch(), t_other.stance(), t_other.streamType(), t_other.selectedCamera(), t_other.sayString(), t_other.walk(), t_other.turn(), t_other.timestamp());
         }
 
         /**
          * Copy Constructor.
          */
-        TeleoperationControlVR(const struct wb_teleoperation_control_v_r &other): wb_teleoperation_control_v_r() {
-            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+        TeleoperationControlVR(const struct wb_teleoperation_control_v_r &t_other): wb_teleoperation_control_v_r() {
+            this->init(t_other.ip, t_other.action, t_other.HeadYaw, t_other.HeadPitch, t_other.stance, t_other.streamType, t_other.selectedCamera, t_other.sayString, t_other.walk, t_other.turn, t_other.timestamp);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TeleoperationControlVR &operator = (const TeleoperationControlVR &other) {
-            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+        TeleoperationControlVR &operator = (const TeleoperationControlVR &t_other) {
+            this->init(t_other.ip(), t_other.action(), t_other.HeadYaw(), t_other.HeadPitch(), t_other.stance(), t_other.streamType(), t_other.selectedCamera(), t_other.sayString(), t_other.walk(), t_other.turn(), t_other.timestamp());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TeleoperationControlVR &operator = (const struct wb_teleoperation_control_v_r &other) {
-            this->init(other.ip(), other.action(), other.HeadYaw(), other.HeadPitch(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString(), other.walk(), other.turn(), other.timestamp());
+        TeleoperationControlVR &operator = (const struct wb_teleoperation_control_v_r &t_other) {
+            this->init(t_other.ip, t_other.action, t_other.HeadYaw, t_other.HeadPitch, t_other.stance, t_other.streamType, t_other.selectedCamera, t_other.sayString, t_other.walk, t_other.turn, t_other.timestamp);
             return *this;
         }
 
-        bool operator ==(const TeleoperationControlVR &other) const
+        bool operator ==(const TeleoperationControlVR &t_other) const
         {
-            return ip() == other.ip()
-                && action() == other.action()
-                && fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
-                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
-                && stance() == other.stance()
-                && streamType() == other.streamType()
-                && selectedCamera() == other.selectedCamera()
-                && 0 == strncmp(_sayString, other._sayString, 30)
-                && walk() == other.walk()
-                && turn() == other.turn()
-                && timestamp() == other.timestamp();
+            return ip() == t_other.ip()
+                && action() == t_other.action()
+                && fabsf(HeadYaw() - t_other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - t_other.HeadPitch()) < FLT_EPSILON
+                && stance() == t_other.stance()
+                && streamType() == t_other.streamType()
+                && selectedCamera() == t_other.selectedCamera()
+                && 0 == strncmp(sayString(), t_other.sayString(), 30)
+                && walk() == t_other.walk()
+                && turn() == t_other.turn()
+                && timestamp() == t_other.timestamp();
         }
 
-        bool operator !=(const TeleoperationControlVR &other) const
+        bool operator !=(const TeleoperationControlVR &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_teleoperation_control_v_r &other) const
+        bool operator ==(const wb_teleoperation_control_v_r &t_other) const
         {
-            return *this == TeleoperationControlVR(other);
+            return *this == TeleoperationControlVR(t_other);
         }
 
-        bool operator !=(const wb_teleoperation_control_v_r &other) const
+        bool operator !=(const wb_teleoperation_control_v_r &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint8_t ip() const
+        {
+            return wb_teleoperation_control_v_r::ip;
+        }
+
+        void set_ip(const uint8_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::ip = t_newValue;
+        }
+
+        int32_t action() const
+        {
+            return wb_teleoperation_control_v_r::action;
+        }
+
+        void set_action(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::action = t_newValue;
+        }
+
+        float HeadYaw() const
+        {
+            return wb_teleoperation_control_v_r::HeadYaw;
+        }
+
+        void set_HeadYaw(const float &t_newValue)
+        {
+            wb_teleoperation_control_v_r::HeadYaw = t_newValue;
+        }
+
+        float HeadPitch() const
+        {
+            return wb_teleoperation_control_v_r::HeadPitch;
+        }
+
+        void set_HeadPitch(const float &t_newValue)
+        {
+            wb_teleoperation_control_v_r::HeadPitch = t_newValue;
+        }
+
+        int32_t stance() const
+        {
+            return wb_teleoperation_control_v_r::stance;
+        }
+
+        void set_stance(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::stance = t_newValue;
+        }
+
+        int32_t streamType() const
+        {
+            return wb_teleoperation_control_v_r::streamType;
+        }
+
+        void set_streamType(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::streamType = t_newValue;
+        }
+
+        int32_t selectedCamera() const
+        {
+            return wb_teleoperation_control_v_r::selectedCamera;
+        }
+
+        void set_selectedCamera(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::selectedCamera = t_newValue;
+        }
+
+        const char *sayString() const
+        {
+            return &(wb_teleoperation_control_v_r::sayString[0]);
+        }
+
+        void set_sayString(const char *t_newValue)
+        {
+            strncpy(wb_teleoperation_control_v_r::sayString, t_newValue, 30);
+        }
+
+        int32_t walk() const
+        {
+            return wb_teleoperation_control_v_r::walk;
+        }
+
+        void set_walk(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::walk = t_newValue;
+        }
+
+        int32_t turn() const
+        {
+            return wb_teleoperation_control_v_r::turn;
+        }
+
+        void set_turn(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::turn = t_newValue;
+        }
+
+        int32_t timestamp() const
+        {
+            return wb_teleoperation_control_v_r::timestamp;
+        }
+
+        void set_timestamp(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control_v_r::timestamp = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        TeleoperationControlVR(const std::string &str) {
+        TeleoperationControlVR(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -249,11 +359,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_TELEOPERATIONCONTROLVR_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_teleoperation_control_v_r_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_teleoperation_control_v_r_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > TELEOPERATIONCONTROLVR_DESC_BUFFER_SIZE) {
@@ -387,7 +497,7 @@ namespace guWhiteboard {
                     }
                     case 7:
                     {
-                        strncpy(this->sayString(), var_str, 30);
+                        strncpy(wb_teleoperation_control_v_r::sayString, var_str, 30);
                         break;
                     }
                     case 8:

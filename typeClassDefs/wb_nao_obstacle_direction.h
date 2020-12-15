@@ -94,6 +94,10 @@
 #define NAO_OBSTACLE_DIRECTION_TO_STRING_BUFFER_SIZE 20
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This message should tell you the postings of the SMSubsumption machine which says whether there is an obstacle
  * in the general left area or in front, or the general right area.
@@ -104,23 +108,19 @@ struct wb_nao_obstacle_direction
     /**
      * Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
      */
-    PROPERTY(bool, left)
+    bool left;
 
     /**
      * Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
      */
-    PROPERTY(bool, right)
+    bool right;
 
     /**
      * Do I have an obstacle 40 cm to my left (check SMSubsumption machine methods)
      */
-    PROPERTY(bool, front)
+    bool front;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

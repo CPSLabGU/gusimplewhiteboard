@@ -97,21 +97,21 @@ namespace guWhiteboard {
         /**
          * Copy Constructor.
          */
-        PixelToRobotRelativeCoord(const PixelToRobotRelativeCoord &other): wb_pixel_to_robot_relative_coord() {
+        PixelToRobotRelativeCoord(const PixelToRobotRelativeCoord &t_other): wb_pixel_to_robot_relative_coord() {
             this->init();
         }
 
         /**
          * Copy Constructor.
          */
-        PixelToRobotRelativeCoord(const struct wb_pixel_to_robot_relative_coord &other): wb_pixel_to_robot_relative_coord() {
+        PixelToRobotRelativeCoord(const struct wb_pixel_to_robot_relative_coord &t_other): wb_pixel_to_robot_relative_coord() {
             this->init();
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PixelToRobotRelativeCoord &operator = (const PixelToRobotRelativeCoord &other) {
+        PixelToRobotRelativeCoord &operator = (const PixelToRobotRelativeCoord &t_other) {
             this->init();
             return *this;
         }
@@ -119,38 +119,40 @@ namespace guWhiteboard {
         /**
          * Copy Assignment Operator.
          */
-        PixelToRobotRelativeCoord &operator = (const struct wb_pixel_to_robot_relative_coord &other) {
+        PixelToRobotRelativeCoord &operator = (const struct wb_pixel_to_robot_relative_coord &t_other) {
             this->init();
             return *this;
         }
 
-        bool operator ==(const PixelToRobotRelativeCoord &other) const
+        bool operator ==(const PixelToRobotRelativeCoord &t_other) const
         {
             return true;
         }
 
-        bool operator !=(const PixelToRobotRelativeCoord &other) const
+        bool operator !=(const PixelToRobotRelativeCoord &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_pixel_to_robot_relative_coord &other) const
+        bool operator ==(const wb_pixel_to_robot_relative_coord &t_other) const
         {
-            return *this == PixelToRobotRelativeCoord(other);
+            return *this == PixelToRobotRelativeCoord(t_other);
         }
 
-        bool operator !=(const wb_pixel_to_robot_relative_coord &other) const
+        bool operator !=(const wb_pixel_to_robot_relative_coord &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
+
+
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        PixelToRobotRelativeCoord(const std::string &str) {
+        PixelToRobotRelativeCoord(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -180,11 +182,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_pixel_to_robot_relative_coord_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_pixel_to_robot_relative_coord_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE) {

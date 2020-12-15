@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t x = 0, int16_t y = 0) {
-            set_x(x);
-            set_y(y);
+        void init(int16_t t_x = 0, int16_t t_y = 0) {
+            set_x(t_x);
+            set_y(t_y);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `Point2D`.
          */
-        Point2D(int16_t x = 0, int16_t y = 0) {
-            this->init(x, y);
+        Point2D(int16_t t_x = 0, int16_t t_y = 0) {
+            this->init(t_x, t_y);
         }
 
         /**
          * Copy Constructor.
          */
-        Point2D(const Point2D &other): wb_point2d() {
-            this->init(other.x(), other.y());
+        Point2D(const Point2D &t_other): wb_point2d() {
+            this->init(t_other.x(), t_other.y());
         }
 
         /**
          * Copy Constructor.
          */
-        Point2D(const struct wb_point2d &other): wb_point2d() {
-            this->init(other.x(), other.y());
+        Point2D(const struct wb_point2d &t_other): wb_point2d() {
+            this->init(t_other.x, t_other.y);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Point2D &operator = (const Point2D &other) {
-            this->init(other.x(), other.y());
+        Point2D &operator = (const Point2D &t_other) {
+            this->init(t_other.x(), t_other.y());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Point2D &operator = (const struct wb_point2d &other) {
-            this->init(other.x(), other.y());
+        Point2D &operator = (const struct wb_point2d &t_other) {
+            this->init(t_other.x, t_other.y);
             return *this;
         }
 
-        bool operator ==(const Point2D &other) const
+        bool operator ==(const Point2D &t_other) const
         {
-            return x() == other.x()
-                && y() == other.y();
+            return x() == t_other.x()
+                && y() == t_other.y();
         }
 
-        bool operator !=(const Point2D &other) const
+        bool operator !=(const Point2D &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_point2d &other) const
+        bool operator ==(const wb_point2d &t_other) const
         {
-            return *this == Point2D(other);
+            return *this == Point2D(t_other);
         }
 
-        bool operator !=(const wb_point2d &other) const
+        bool operator !=(const wb_point2d &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t x() const
+        {
+            return wb_point2d::x;
+        }
+
+        void set_x(const int16_t &t_newValue)
+        {
+            wb_point2d::x = t_newValue;
+        }
+
+        int16_t y() const
+        {
+            return wb_point2d::y;
+        }
+
+        void set_y(const int16_t &t_newValue)
+        {
+            wb_point2d::y = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Point2D(const std::string &str) {
+        Point2D(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,11 +206,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_POINT2D_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_point2d_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_point2d_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > POINT2D_DESC_BUFFER_SIZE) {

@@ -98,6 +98,10 @@
 
 #define VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE 2
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Array of fieldHorizons, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao.
  */
@@ -107,28 +111,24 @@ struct wb_vision_detection_horizons
     /**
      * visionFrameNumber
      */
-    PROPERTY(uint64_t, frameNumber)
+    uint64_t frameNumber;
 
     /**
      * horizon objects
      */
-    ARRAY_PROPERTY(struct wb_vision_detection_horizon, horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE)
+    struct wb_vision_detection_horizon horizons[VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE];
 
     /**
      * The resolution width.
      */
-    PROPERTY(uint16_t, res_width)
+    uint16_t res_width;
 
     /**
      * The resolution height.
      */
-    PROPERTY(uint16_t, res_height)
+    uint16_t res_height;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

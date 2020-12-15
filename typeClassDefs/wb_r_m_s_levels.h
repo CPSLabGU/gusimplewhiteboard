@@ -96,6 +96,10 @@
 #define RMS_LEVELS_TO_STRING_BUFFER_SIZE 31
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * RMS quadruples for rear and front stereo channels
  */
@@ -105,28 +109,24 @@ struct wb_r_m_s_levels
     /**
      * rear left RMS level
      */
-    PROPERTY(int16_t, rear_left)
+    int16_t rear_left;
 
     /**
      * rear right RMS level
      */
-    PROPERTY(int16_t, rear_right)
+    int16_t rear_right;
 
     /**
      * front left RMS level
      */
-    PROPERTY(int16_t, front_left)
+    int16_t front_left;
 
     /**
      * front left RMS level
      */
-    PROPERTY(int16_t, front_right)
+    int16_t front_right;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

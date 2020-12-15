@@ -101,6 +101,10 @@ enum LineSightingType {
 #define LINE_SIGHTING_TO_STRING_BUFFER_SIZE 1541
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a common structure for sightings of lines.
  */
@@ -110,23 +114,19 @@ struct wb_line_sighting
     /**
      * The left/bottom point of the line.
      */
-    PROPERTY(struct wb_polar_coordinate, leftPoint)
+    struct wb_polar_coordinate leftPoint;
 
     /**
      * The right/top point of the line.
      */
-    PROPERTY(struct wb_polar_coordinate, rightPoint)
+    struct wb_polar_coordinate rightPoint;
 
     /**
      * The type of sighting.
      */
-    PROPERTY(enum LineSightingType, sightingType)
+    enum LineSightingType sightingType;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

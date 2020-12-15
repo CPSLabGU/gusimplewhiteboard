@@ -86,9 +86,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint8_t camera = 1) {
-            set_coordinate(coordinate);
-            set_camera(camera);
+        void init(struct wb_pixel_coordinate t_coordinate = wb_pixel_coordinate(), uint8_t t_camera = 1) {
+            set_coordinate(t_coordinate);
+            set_camera(t_camera);
         }
 
     public:
@@ -96,68 +96,88 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionFieldFeature`.
          */
-        VisionFieldFeature(struct wb_pixel_coordinate coordinate = wb_pixel_coordinate(), uint8_t camera = 1) {
-            this->init(coordinate, camera);
+        VisionFieldFeature(struct wb_pixel_coordinate t_coordinate = wb_pixel_coordinate(), uint8_t t_camera = 1) {
+            this->init(t_coordinate, t_camera);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionFieldFeature(const VisionFieldFeature &other): wb_vision_field_feature() {
-            this->init(other.coordinate(), other.camera());
+        VisionFieldFeature(const VisionFieldFeature &t_other): wb_vision_field_feature() {
+            this->init(t_other.coordinate(), t_other.camera());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionFieldFeature(const struct wb_vision_field_feature &other): wb_vision_field_feature() {
-            this->init(other.coordinate(), other.camera());
+        VisionFieldFeature(const struct wb_vision_field_feature &t_other): wb_vision_field_feature() {
+            this->init(t_other.coordinate, t_other.camera);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionFieldFeature &operator = (const VisionFieldFeature &other) {
-            this->init(other.coordinate(), other.camera());
+        VisionFieldFeature &operator = (const VisionFieldFeature &t_other) {
+            this->init(t_other.coordinate(), t_other.camera());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionFieldFeature &operator = (const struct wb_vision_field_feature &other) {
-            this->init(other.coordinate(), other.camera());
+        VisionFieldFeature &operator = (const struct wb_vision_field_feature &t_other) {
+            this->init(t_other.coordinate, t_other.camera);
             return *this;
         }
 
-        bool operator ==(const VisionFieldFeature &other) const
+        bool operator ==(const VisionFieldFeature &t_other) const
         {
-            return PixelCoordinate(_coordinate) == PixelCoordinate(other._coordinate)
-                && camera() == other.camera();
+            return PixelCoordinate(coordinate()) == PixelCoordinate(t_other.coordinate())
+                && camera() == t_other.camera();
         }
 
-        bool operator !=(const VisionFieldFeature &other) const
+        bool operator !=(const VisionFieldFeature &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_field_feature &other) const
+        bool operator ==(const wb_vision_field_feature &t_other) const
         {
-            return *this == VisionFieldFeature(other);
+            return *this == VisionFieldFeature(t_other);
         }
 
-        bool operator !=(const wb_vision_field_feature &other) const
+        bool operator !=(const wb_vision_field_feature &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const PixelCoordinate coordinate() const
+        {
+            return PixelCoordinate(wb_vision_field_feature::coordinate);
+        }
+
+        void set_coordinate(const PixelCoordinate &t_newValue)
+        {
+            wb_vision_field_feature::coordinate = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        uint8_t camera() const
+        {
+            return wb_vision_field_feature::camera;
+        }
+
+        void set_camera(const uint8_t &t_newValue)
+        {
+            wb_vision_field_feature::camera = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionFieldFeature(const std::string &str) {
+        VisionFieldFeature(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -168,8 +188,7 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
-            ss << "coordinate=" << "{" << coordinate_cast->description() << "}";
+            ss << "coordinate=" << "{" << PixelCoordinate(this->coordinate()).description() << "}";
             ss << ", ";
             ss << "camera=" << static_cast<unsigned>(this->camera());
             return ss.str();
@@ -184,8 +203,7 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinate * coordinate_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->coordinate()));
-            ss << "{" << coordinate_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->coordinate()).to_string() << "}";
             ss << ", ";
             ss << static_cast<unsigned>(this->camera());
             return ss.str();
@@ -193,11 +211,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_FIELD_FEATURE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_field_feature_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_field_feature_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_FIELD_FEATURE_DESC_BUFFER_SIZE) {

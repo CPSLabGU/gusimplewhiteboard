@@ -83,8 +83,8 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool ignore_obstacles = true) {
-            set_ignore_obstacles(ignore_obstacles);
+        void init(bool t_ignore_obstacles = true) {
+            set_ignore_obstacles(t_ignore_obstacles);
         }
 
     public:
@@ -92,67 +92,77 @@ namespace guWhiteboard {
         /**
          * Create a new `MissionPriorityForObstacles`.
          */
-        MissionPriorityForObstacles(bool ignore_obstacles = true) {
-            this->init(ignore_obstacles);
+        MissionPriorityForObstacles(bool t_ignore_obstacles = true) {
+            this->init(t_ignore_obstacles);
         }
 
         /**
          * Copy Constructor.
          */
-        MissionPriorityForObstacles(const MissionPriorityForObstacles &other): wb_mission_priority_for_obstacles() {
-            this->init(other.ignore_obstacles());
+        MissionPriorityForObstacles(const MissionPriorityForObstacles &t_other): wb_mission_priority_for_obstacles() {
+            this->init(t_other.ignore_obstacles());
         }
 
         /**
          * Copy Constructor.
          */
-        MissionPriorityForObstacles(const struct wb_mission_priority_for_obstacles &other): wb_mission_priority_for_obstacles() {
-            this->init(other.ignore_obstacles());
+        MissionPriorityForObstacles(const struct wb_mission_priority_for_obstacles &t_other): wb_mission_priority_for_obstacles() {
+            this->init(t_other.ignore_obstacles);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MissionPriorityForObstacles &operator = (const MissionPriorityForObstacles &other) {
-            this->init(other.ignore_obstacles());
+        MissionPriorityForObstacles &operator = (const MissionPriorityForObstacles &t_other) {
+            this->init(t_other.ignore_obstacles());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MissionPriorityForObstacles &operator = (const struct wb_mission_priority_for_obstacles &other) {
-            this->init(other.ignore_obstacles());
+        MissionPriorityForObstacles &operator = (const struct wb_mission_priority_for_obstacles &t_other) {
+            this->init(t_other.ignore_obstacles);
             return *this;
         }
 
-        bool operator ==(const MissionPriorityForObstacles &other) const
+        bool operator ==(const MissionPriorityForObstacles &t_other) const
         {
-            return ignore_obstacles() == other.ignore_obstacles();
+            return ignore_obstacles() == t_other.ignore_obstacles();
         }
 
-        bool operator !=(const MissionPriorityForObstacles &other) const
+        bool operator !=(const MissionPriorityForObstacles &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_mission_priority_for_obstacles &other) const
+        bool operator ==(const wb_mission_priority_for_obstacles &t_other) const
         {
-            return *this == MissionPriorityForObstacles(other);
+            return *this == MissionPriorityForObstacles(t_other);
         }
 
-        bool operator !=(const wb_mission_priority_for_obstacles &other) const
+        bool operator !=(const wb_mission_priority_for_obstacles &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool ignore_obstacles() const
+        {
+            return wb_mission_priority_for_obstacles::ignore_obstacles;
+        }
+
+        void set_ignore_obstacles(const bool &t_newValue)
+        {
+            wb_mission_priority_for_obstacles::ignore_obstacles = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MissionPriorityForObstacles(const std::string &str) {
+        MissionPriorityForObstacles(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -182,11 +192,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MISSION_PRIORITY_FOR_OBSTACLES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_mission_priority_for_obstacles_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_mission_priority_for_obstacles_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MISSION_PRIORITY_FOR_OBSTACLES_DESC_BUFFER_SIZE) {

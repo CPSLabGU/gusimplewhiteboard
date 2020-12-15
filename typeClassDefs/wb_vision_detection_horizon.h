@@ -115,6 +115,10 @@ enum HorizonOptions {
 #define VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE 2055
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This class is for Vision to report the edge of the SPL soccer field.
  * It does not report the field Bounds, that needs white line detection.
@@ -132,28 +136,24 @@ struct wb_vision_detection_horizon
     /**
      * Type of Horizon
      */
-    PROPERTY(enum HorizonOptions, horizonType)
+    enum HorizonOptions horizonType;
 
     /**
      * Left horizon point pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, leftCoordinate)
+    struct wb_pixel_coordinate leftCoordinate;
 
     /**
      * Center horizon point pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, centerCoordinate)
+    struct wb_pixel_coordinate centerCoordinate;
 
     /**
      * Right horizon point pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, rightCoordinate)
+    struct wb_pixel_coordinate rightCoordinate;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

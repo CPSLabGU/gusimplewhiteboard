@@ -94,6 +94,10 @@
 #define SENSORS_TORSOJOINTTEMPS_TO_STRING_BUFFER_SIZE 989
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Temp class for various joints
  * From Nao Docs: There are two different Devices that return a temperature: the MotorBoard, and the Battery. For both, the temperature returned in “Value” is in deg Celsius. The motor temperature is a simulated one, using electric current value of the motor. Even when the robot just starts, the temperature is quite high (50°C).The simulation starts at this value mainly due to the internal temperature value. The motor board implements a temperature limitation: as long as the simulated temperature reaches 75°C, the current limitation is decreased to stay under 85°C.
@@ -104,83 +108,79 @@ struct wb_sensors_torsojointtemps
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, HeadYaw)
+    float HeadYaw;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, HeadPitch)
+    float HeadPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LShoulderPitch)
+    float LShoulderPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LShoulderRoll)
+    float LShoulderRoll;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LElbowYaw)
+    float LElbowYaw;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LElbowRoll)
+    float LElbowRoll;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LHipYawPitch)
+    float LHipYawPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LHipRoll)
+    float LHipRoll;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, LHipPitch)
+    float LHipPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RHipRoll)
+    float RHipRoll;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RHipPitch)
+    float RHipPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RShoulderPitch)
+    float RShoulderPitch;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RShoulderRoll)
+    float RShoulderRoll;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RElbowYaw)
+    float RElbowYaw;
 
     /**
      * Deg Celsius.
      */
-    PROPERTY(float, RElbowRoll)
+    float RElbowRoll;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

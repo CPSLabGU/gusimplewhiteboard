@@ -101,6 +101,10 @@
 #define VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE 8
 #define VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE 3
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Posting by Vision of the field corners, T-Intersections and crosses that have been seen 
  */
@@ -110,48 +114,44 @@ struct wb_vision_field_features
     /**
      * Location of corners on the field.
      */
-    ARRAY_PROPERTY(struct wb_vision_field_feature, fieldCorner, VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE)
+    struct wb_vision_field_feature fieldCorner[VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE];
 
     /**
      * Location of T-Intersections on the field.
      */
-    ARRAY_PROPERTY(struct wb_vision_field_feature, fieldIntersection, VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE)
+    struct wb_vision_field_feature fieldIntersection[VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE];
 
     /**
      * Location of T-Intersections on the field.
      */
-    ARRAY_PROPERTY(struct wb_vision_field_feature, fieldCrosses, VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE)
+    struct wb_vision_field_feature fieldCrosses[VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE];
 
     /**
      * Number of corners in this message.
      */
-    PROPERTY(uint8_t, numCorners)
+    uint8_t numCorners;
 
     /**
      * Number of T-Intersections in this message.
      */
-    PROPERTY(uint8_t, numIntersections)
+    uint8_t numIntersections;
 
     /**
      * Numer of Crosses in this message.
      */
-    PROPERTY(uint8_t, numCrosses)
+    uint8_t numCrosses;
 
     /**
      * The resolution width.
      */
-    PROPERTY(uint16_t, res_width)
+    uint16_t res_width;
 
     /**
      * The resolution height.
      */
-    PROPERTY(uint16_t, res_height)
+    uint16_t res_height;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t fileId = 0, std::string filePath = "") {
-            set_fileId(fileId);
-            gu_strlcpy(const_cast<char *>(this->filePath()), filePath.c_str(), 64);
+        void init(uint8_t t_fileId = 0, std::string t_filePath = "") {
+            set_fileId(t_fileId);
+            gu_strlcpy(const_cast<char *>(this->filePath()), t_filePath.c_str(), 64);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `ParticleOutputMap`.
          */
-        ParticleOutputMap(uint8_t fileId = 0, std::string filePath = "") {
-            this->init(fileId, filePath);
+        ParticleOutputMap(uint8_t t_fileId = 0, std::string t_filePath = "") {
+            this->init(t_fileId, t_filePath);
         }
 
         /**
          * Copy Constructor.
          */
-        ParticleOutputMap(const ParticleOutputMap &other): wb_particle_output_map() {
-            this->init(other.fileId(), other.filePath());
+        ParticleOutputMap(const ParticleOutputMap &t_other): wb_particle_output_map() {
+            this->init(t_other.fileId(), t_other.filePath());
         }
 
         /**
          * Copy Constructor.
          */
-        ParticleOutputMap(const struct wb_particle_output_map &other): wb_particle_output_map() {
-            this->init(other.fileId(), other.filePath());
+        ParticleOutputMap(const struct wb_particle_output_map &t_other): wb_particle_output_map() {
+            this->init(t_other.fileId, t_other.filePath);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        ParticleOutputMap &operator = (const ParticleOutputMap &other) {
-            this->init(other.fileId(), other.filePath());
+        ParticleOutputMap &operator = (const ParticleOutputMap &t_other) {
+            this->init(t_other.fileId(), t_other.filePath());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        ParticleOutputMap &operator = (const struct wb_particle_output_map &other) {
-            this->init(other.fileId(), other.filePath());
+        ParticleOutputMap &operator = (const struct wb_particle_output_map &t_other) {
+            this->init(t_other.fileId, t_other.filePath);
             return *this;
         }
 
-        bool operator ==(const ParticleOutputMap &other) const
+        bool operator ==(const ParticleOutputMap &t_other) const
         {
-            return fileId() == other.fileId()
-                && 0 == strncmp(_filePath, other._filePath, 64);
+            return fileId() == t_other.fileId()
+                && 0 == strncmp(filePath(), t_other.filePath(), 64);
         }
 
-        bool operator !=(const ParticleOutputMap &other) const
+        bool operator !=(const ParticleOutputMap &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_particle_output_map &other) const
+        bool operator ==(const wb_particle_output_map &t_other) const
         {
-            return *this == ParticleOutputMap(other);
+            return *this == ParticleOutputMap(t_other);
         }
 
-        bool operator !=(const wb_particle_output_map &other) const
+        bool operator !=(const wb_particle_output_map &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint8_t fileId() const
+        {
+            return wb_particle_output_map::fileId;
+        }
+
+        void set_fileId(const uint8_t &t_newValue)
+        {
+            wb_particle_output_map::fileId = t_newValue;
+        }
+
+        const char *filePath() const
+        {
+            return &(wb_particle_output_map::filePath[0]);
+        }
+
+        void set_filePath(const char *t_newValue)
+        {
+            strncpy(wb_particle_output_map::filePath, t_newValue, 64);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        ParticleOutputMap(const std::string &str) {
+        ParticleOutputMap(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -194,11 +214,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_PARTICLE_OUTPUT_MAP_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_particle_output_map_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_particle_output_map_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE) {
@@ -284,7 +304,7 @@ namespace guWhiteboard {
                     }
                     case 1:
                     {
-                        strncpy(this->filePath(), var_str, 64);
+                        strncpy(wb_particle_output_map::filePath, var_str, 64);
                         break;
                     }
                 }

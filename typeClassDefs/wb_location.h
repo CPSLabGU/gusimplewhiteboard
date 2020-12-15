@@ -98,6 +98,10 @@
 #define LOCATION_TO_STRING_BUFFER_SIZE 43
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a common structure for the location of landmarks.
  */
@@ -107,33 +111,29 @@ struct wb_location
     /**
      * degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
      */
-    PROPERTY(int16_t, direction)
+    int16_t direction;
 
     /**
      * CM distance to the center point of the sighting.
      */
-    PROPERTY(uint16_t, distance)
+    uint16_t distance;
 
     /**
      * The type of sighting.
      */
-    PROPERTY(uint8_t, confidence)
+    uint8_t confidence;
 
     /**
      * The variance of the distance
      */
-    PROPERTY(uint32_t, distanceVariance)
+    uint32_t distanceVariance;
 
     /**
      * The variance of the direction
      */
-    PROPERTY(uint32_t, directionVariance)
+    uint32_t directionVariance;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

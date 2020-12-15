@@ -103,6 +103,10 @@
 #define PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE 1027
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Class use to represent a single line.
  */
@@ -112,18 +116,14 @@ struct wb_pixel_coordinate_line
     /**
      * Start point of the line.
      */
-    PROPERTY(struct wb_pixel_coordinate, start)
+    struct wb_pixel_coordinate start;
 
     /**
      * End point of the line.
      */
-    PROPERTY(struct wb_pixel_coordinate, end)
+    struct wb_pixel_coordinate end;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

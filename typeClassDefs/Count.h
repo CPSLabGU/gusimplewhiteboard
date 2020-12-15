@@ -81,8 +81,8 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int64_t count = 0) {
-            set_count(count);
+        void init(int64_t t_count = 0) {
+            set_count(t_count);
         }
 
     public:
@@ -90,67 +90,77 @@ namespace guWhiteboard {
         /**
          * Create a new `Count`.
          */
-        Count(int64_t count = 0) {
-            this->init(count);
+        Count(int64_t t_count = 0) {
+            this->init(t_count);
         }
 
         /**
          * Copy Constructor.
          */
-        Count(const Count &other): wb_count() {
-            this->init(other.count());
+        Count(const Count &t_other): wb_count() {
+            this->init(t_other.count());
         }
 
         /**
          * Copy Constructor.
          */
-        Count(const struct wb_count &other): wb_count() {
-            this->init(other.count());
+        Count(const struct wb_count &t_other): wb_count() {
+            this->init(t_other.count);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Count &operator = (const Count &other) {
-            this->init(other.count());
+        Count &operator = (const Count &t_other) {
+            this->init(t_other.count());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Count &operator = (const struct wb_count &other) {
-            this->init(other.count());
+        Count &operator = (const struct wb_count &t_other) {
+            this->init(t_other.count);
             return *this;
         }
 
-        bool operator ==(const Count &other) const
+        bool operator ==(const Count &t_other) const
         {
-            return count() == other.count();
+            return count() == t_other.count();
         }
 
-        bool operator !=(const Count &other) const
+        bool operator !=(const Count &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_count &other) const
+        bool operator ==(const wb_count &t_other) const
         {
-            return *this == Count(other);
+            return *this == Count(t_other);
         }
 
-        bool operator !=(const wb_count &other) const
+        bool operator !=(const wb_count &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int64_t count() const
+        {
+            return wb_count::count;
+        }
+
+        void set_count(const int64_t &t_newValue)
+        {
+            wb_count::count = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Count(const std::string &str) {
+        Count(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -180,11 +190,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_COUNT_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_count_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_count_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > COUNT_DESC_BUFFER_SIZE) {

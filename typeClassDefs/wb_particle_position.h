@@ -96,6 +96,10 @@
 #define PARTICLE_POSITION_TO_STRING_BUFFER_SIZE 587
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Posting by Particle Filter and Localization simulator to create localization based amchines behavior
  */
@@ -105,23 +109,19 @@ struct wb_particle_position
     /**
      * position in the soccer field, The origin (0,0) us the center of the soccer field, larger Y is along the soccer field towards the oponetns goaa, smaller Y is back towards our on goal. Positive X is to the right of our goall keeper Measuremtns are CM CENTIMETERS
      */
-    PROPERTY(struct wb_point2d, position)
+    struct wb_point2d position;
 
     /**
      * 90 degrees is looking ahead into the oponetns goal. Zero degrees is our goalie looking rigth, 180 is lookign left. It allows negative values, so -45 is looking rigth but also back. But 235 is allowed looking back and left.
      */
-    PROPERTY(int16_t, headingInDegrees)
+    int16_t headingInDegrees;
 
     /**
      * degre of certaintity that this a reliable locaiton where the robot is, should be between 0 and 1
      */
-    PROPERTY(float, confidence)
+    float confidence;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

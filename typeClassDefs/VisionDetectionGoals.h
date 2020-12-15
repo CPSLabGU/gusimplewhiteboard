@@ -83,16 +83,16 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_goal goals[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            set_frameNumber(frameNumber);
-            if (goals != NULLPTR) {
-                std::memcpy(this->_goals, goals, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
+        void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_goal t_goals[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            set_frameNumber(t_frameNumber);
+            if (t_goals != NULLPTR) {
+                std::memcpy(wb_vision_detection_goals::goals, t_goals, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
             } else {
                 struct wb_vision_detection_goal goals_temp[VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE] = {wb_vision_detection_goal(), wb_vision_detection_goal()};
-                std::memcpy(this->_goals, goals_temp, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
+                std::memcpy(wb_vision_detection_goals::goals, goals_temp, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * sizeof (struct wb_vision_detection_goal));
             }
-            set_res_width(res_width);
-            set_res_height(res_height);
+            set_res_width(t_res_width);
+            set_res_height(t_res_height);
         }
 
     public:
@@ -100,77 +100,127 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionGoals`.
          */
-        VisionDetectionGoals(uint64_t frameNumber = 0, const struct wb_vision_detection_goal goals[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            this->init(frameNumber, goals, res_width, res_height);
+        VisionDetectionGoals(uint64_t t_frameNumber = 0, const struct wb_vision_detection_goal t_goals[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            this->init(t_frameNumber, t_goals, t_res_width, t_res_height);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoals(const VisionDetectionGoals &other): wb_vision_detection_goals() {
-            this->init(other.frameNumber(), other.goals(), other.res_width(), other.res_height());
+        VisionDetectionGoals(const VisionDetectionGoals &t_other): wb_vision_detection_goals() {
+            this->init(t_other.frameNumber(), t_other.goals(), t_other.res_width(), t_other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoals(const struct wb_vision_detection_goals &other): wb_vision_detection_goals() {
-            this->init(other.frameNumber(), other.goals(), other.res_width(), other.res_height());
+        VisionDetectionGoals(const struct wb_vision_detection_goals &t_other): wb_vision_detection_goals() {
+            this->init(t_other.frameNumber, t_other.goals, t_other.res_width, t_other.res_height);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoals &operator = (const VisionDetectionGoals &other) {
-            this->init(other.frameNumber(), other.goals(), other.res_width(), other.res_height());
+        VisionDetectionGoals &operator = (const VisionDetectionGoals &t_other) {
+            this->init(t_other.frameNumber(), t_other.goals(), t_other.res_width(), t_other.res_height());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoals &operator = (const struct wb_vision_detection_goals &other) {
-            this->init(other.frameNumber(), other.goals(), other.res_width(), other.res_height());
+        VisionDetectionGoals &operator = (const struct wb_vision_detection_goals &t_other) {
+            this->init(t_other.frameNumber, t_other.goals, t_other.res_width, t_other.res_height);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionGoals &other) const
+        bool operator ==(const VisionDetectionGoals &t_other) const
         {
-            if (!(frameNumber() == other.frameNumber()
-                && res_width() == other.res_width()
-                && res_height() == other.res_height()))
+            if (!(frameNumber() == t_other.frameNumber()
+                && res_width() == t_other.res_width()
+                && res_height() == t_other.res_height()))
             {
                 return false;
             }
             for (int goals_0_index = 0; goals_0_index < 2; goals_0_index++)
             {
-                if (!(VisionDetectionGoal(_goals[goals_0_index]) == VisionDetectionGoal(other._goals[goals_0_index]))) return false;
+                if (!(VisionDetectionGoal(goals(goals_0_index)) == VisionDetectionGoal(t_other.goals(goals_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const VisionDetectionGoals &other) const
+        bool operator !=(const VisionDetectionGoals &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_goals &other) const
+        bool operator ==(const wb_vision_detection_goals &t_other) const
         {
-            return *this == VisionDetectionGoals(other);
+            return *this == VisionDetectionGoals(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_goals &other) const
+        bool operator !=(const wb_vision_detection_goals &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint64_t frameNumber() const
+        {
+            return wb_vision_detection_goals::frameNumber;
+        }
+
+        void set_frameNumber(const uint64_t &t_newValue)
+        {
+            wb_vision_detection_goals::frameNumber = t_newValue;
+        }
+
+        const VisionDetectionGoal *goals() const
+        {
+            return static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals);
+        }
+
+        VisionDetectionGoal goals(int t_i) const
+        {
+            return VisionDetectionGoal(wb_vision_detection_goals::goals[t_i]);
+        }
+
+        void set_goals(const VisionDetectionGoal *t_newValue)
+        {
+            memcpy(wb_vision_detection_goals::goals, static_cast<const struct wb_vision_detection_goal *>(t_newValue), VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE * (sizeof (struct wb_vision_detection_goal)));
+        }
+
+        void set_goals(const VisionDetectionGoal &t_newValue, int t_i)
+        {
+            wb_vision_detection_goals::goals[t_i] = static_cast<wb_vision_detection_goal>(t_newValue);
+        }
+
+        uint16_t res_width() const
+        {
+            return wb_vision_detection_goals::res_width;
+        }
+
+        void set_res_width(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_goals::res_width = t_newValue;
+        }
+
+        uint16_t res_height() const
+        {
+            return wb_vision_detection_goals::res_height;
+        }
+
+        void set_res_height(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_goals::res_height = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionGoals(const std::string &str) {
+        VisionDetectionGoals(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,8 +236,7 @@ namespace guWhiteboard {
             bool goals_first = true;
             ss << "goals={";
             for (int i = 0; i < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionGoal * goals_cast = const_cast<guWhiteboard::VisionDetectionGoal *>(static_cast<const guWhiteboard::VisionDetectionGoal *>(&this->goals(i)));
-                ss << (goals_first ? "" : ", ") << "{" << goals_cast->description() << "}";
+                ss << (goals_first ? "" : ", ") << "{" << VisionDetectionGoal(this->goals(i)).description() << "}";
                 goals_first = false;
             }
             ss << "}";
@@ -212,8 +261,7 @@ namespace guWhiteboard {
             bool goals_first = true;
             ss << "{";
             for (int i = 0; i < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionGoal * goals_cast = const_cast<guWhiteboard::VisionDetectionGoal *>(static_cast<const guWhiteboard::VisionDetectionGoal *>(&this->goals(i)));
-                ss << (goals_first ? "" : ", ") << "{" << goals_cast->to_string() << "}";
+                ss << (goals_first ? "" : ", ") << "{" << VisionDetectionGoal(this->goals(i)).to_string() << "}";
                 goals_first = false;
             }
             ss << "}";
@@ -226,11 +274,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_DETECTION_GOALS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_goals_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_goals_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_GOALS_DESC_BUFFER_SIZE) {

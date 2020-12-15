@@ -159,6 +159,10 @@ void rr_to_pixel_coord(double angle, double distance, enum VisionCamera camera, 
 #define PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE 0
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wc++-compat"
 
@@ -170,10 +174,6 @@ struct wb_pixel_to_robot_relative_coord
 
 };
 #pragma clang diagnostic pop
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

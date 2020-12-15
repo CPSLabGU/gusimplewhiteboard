@@ -94,6 +94,10 @@
 #define NAO_JOINT_LIST_FLOAT_TO_STRING_BUFFER_SIZE 1649
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This class consolidates all the joints into a single wb class of floats [128 bytes/(4 bytes/float) = 32 float values].
  *
@@ -120,133 +124,129 @@ struct wb_nao_joint_list_float
     /**
      *
      */
-    PROPERTY(float, HeadYaw)
+    float HeadYaw;
 
     /**
      *
      */
-    PROPERTY(float, HeadPitch)
+    float HeadPitch;
 
     /**
      *
      */
-    PROPERTY(float, LShoulderPitch)
+    float LShoulderPitch;
 
     /**
      *
      */
-    PROPERTY(float, LShoulderRoll)
+    float LShoulderRoll;
 
     /**
      *
      */
-    PROPERTY(float, LElbowYaw)
+    float LElbowYaw;
 
     /**
      *
      */
-    PROPERTY(float, LElbowRoll)
+    float LElbowRoll;
 
     /**
      *
      */
-    PROPERTY(float, LWristYaw)
+    float LWristYaw;
 
     /**
      *
      */
-    PROPERTY(float, LHand)
+    float LHand;
 
     /**
      *
      */
-    PROPERTY(float, RShoulderPitch)
+    float RShoulderPitch;
 
     /**
      *
      */
-    PROPERTY(float, RShoulderRoll)
+    float RShoulderRoll;
 
     /**
      *
      */
-    PROPERTY(float, RElbowYaw)
+    float RElbowYaw;
 
     /**
      *
      */
-    PROPERTY(float, RElbowRoll)
+    float RElbowRoll;
 
     /**
      *
      */
-    PROPERTY(float, RWristYaw)
+    float RWristYaw;
 
     /**
      *
      */
-    PROPERTY(float, RHand)
+    float RHand;
 
     /**
      *
      */
-    PROPERTY(float, LHipYawPitch)
+    float LHipYawPitch;
 
     /**
      *
      */
-    PROPERTY(float, LHipRoll)
+    float LHipRoll;
 
     /**
      *
      */
-    PROPERTY(float, LHipPitch)
+    float LHipPitch;
 
     /**
      *
      */
-    PROPERTY(float, LKneePitch)
+    float LKneePitch;
 
     /**
      *
      */
-    PROPERTY(float, LAnklePitch)
+    float LAnklePitch;
 
     /**
      *
      */
-    PROPERTY(float, LAnkleRoll)
+    float LAnkleRoll;
 
     /**
      *
      */
-    PROPERTY(float, RHipRoll)
+    float RHipRoll;
 
     /**
      *
      */
-    PROPERTY(float, RHipPitch)
+    float RHipPitch;
 
     /**
      *
      */
-    PROPERTY(float, RKneePitch)
+    float RKneePitch;
 
     /**
      *
      */
-    PROPERTY(float, RAnklePitch)
+    float RAnklePitch;
 
     /**
      *
      */
-    PROPERTY(float, RAnkleRoll)
+    float RAnkleRoll;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -83,16 +83,16 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            set_frameNumber(frameNumber);
-            if (balls != NULLPTR) {
-                std::memcpy(this->_balls, balls, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
+        void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_ball t_balls[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            set_frameNumber(t_frameNumber);
+            if (t_balls != NULLPTR) {
+                std::memcpy(wb_vision_detection_balls::balls, t_balls, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
             } else {
                 struct wb_vision_detection_ball balls_temp[VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE] = {wb_vision_detection_ball(), wb_vision_detection_ball()};
-                std::memcpy(this->_balls, balls_temp, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
+                std::memcpy(wb_vision_detection_balls::balls, balls_temp, VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * sizeof (struct wb_vision_detection_ball));
             }
-            set_res_width(res_width);
-            set_res_height(res_height);
+            set_res_width(t_res_width);
+            set_res_height(t_res_height);
         }
 
     public:
@@ -100,77 +100,127 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionBalls`.
          */
-        VisionDetectionBalls(uint64_t frameNumber = 0, const struct wb_vision_detection_ball balls[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            this->init(frameNumber, balls, res_width, res_height);
+        VisionDetectionBalls(uint64_t t_frameNumber = 0, const struct wb_vision_detection_ball t_balls[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            this->init(t_frameNumber, t_balls, t_res_width, t_res_height);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionBalls(const VisionDetectionBalls &other): wb_vision_detection_balls() {
-            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
+        VisionDetectionBalls(const VisionDetectionBalls &t_other): wb_vision_detection_balls() {
+            this->init(t_other.frameNumber(), t_other.balls(), t_other.res_width(), t_other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionBalls(const struct wb_vision_detection_balls &other): wb_vision_detection_balls() {
-            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
+        VisionDetectionBalls(const struct wb_vision_detection_balls &t_other): wb_vision_detection_balls() {
+            this->init(t_other.frameNumber, t_other.balls, t_other.res_width, t_other.res_height);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionBalls &operator = (const VisionDetectionBalls &other) {
-            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
+        VisionDetectionBalls &operator = (const VisionDetectionBalls &t_other) {
+            this->init(t_other.frameNumber(), t_other.balls(), t_other.res_width(), t_other.res_height());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionBalls &operator = (const struct wb_vision_detection_balls &other) {
-            this->init(other.frameNumber(), other.balls(), other.res_width(), other.res_height());
+        VisionDetectionBalls &operator = (const struct wb_vision_detection_balls &t_other) {
+            this->init(t_other.frameNumber, t_other.balls, t_other.res_width, t_other.res_height);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionBalls &other) const
+        bool operator ==(const VisionDetectionBalls &t_other) const
         {
-            if (!(frameNumber() == other.frameNumber()
-                && res_width() == other.res_width()
-                && res_height() == other.res_height()))
+            if (!(frameNumber() == t_other.frameNumber()
+                && res_width() == t_other.res_width()
+                && res_height() == t_other.res_height()))
             {
                 return false;
             }
             for (int balls_0_index = 0; balls_0_index < 2; balls_0_index++)
             {
-                if (!(VisionDetectionBall(_balls[balls_0_index]) == VisionDetectionBall(other._balls[balls_0_index]))) return false;
+                if (!(VisionDetectionBall(balls(balls_0_index)) == VisionDetectionBall(t_other.balls(balls_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const VisionDetectionBalls &other) const
+        bool operator !=(const VisionDetectionBalls &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_balls &other) const
+        bool operator ==(const wb_vision_detection_balls &t_other) const
         {
-            return *this == VisionDetectionBalls(other);
+            return *this == VisionDetectionBalls(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_balls &other) const
+        bool operator !=(const wb_vision_detection_balls &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint64_t frameNumber() const
+        {
+            return wb_vision_detection_balls::frameNumber;
+        }
+
+        void set_frameNumber(const uint64_t &t_newValue)
+        {
+            wb_vision_detection_balls::frameNumber = t_newValue;
+        }
+
+        const VisionDetectionBall *balls() const
+        {
+            return static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls);
+        }
+
+        VisionDetectionBall balls(int t_i) const
+        {
+            return VisionDetectionBall(wb_vision_detection_balls::balls[t_i]);
+        }
+
+        void set_balls(const VisionDetectionBall *t_newValue)
+        {
+            memcpy(wb_vision_detection_balls::balls, static_cast<const struct wb_vision_detection_ball *>(t_newValue), VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE * (sizeof (struct wb_vision_detection_ball)));
+        }
+
+        void set_balls(const VisionDetectionBall &t_newValue, int t_i)
+        {
+            wb_vision_detection_balls::balls[t_i] = static_cast<wb_vision_detection_ball>(t_newValue);
+        }
+
+        uint16_t res_width() const
+        {
+            return wb_vision_detection_balls::res_width;
+        }
+
+        void set_res_width(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_balls::res_width = t_newValue;
+        }
+
+        uint16_t res_height() const
+        {
+            return wb_vision_detection_balls::res_height;
+        }
+
+        void set_res_height(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_balls::res_height = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionBalls(const std::string &str) {
+        VisionDetectionBalls(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,8 +236,7 @@ namespace guWhiteboard {
             bool balls_first = true;
             ss << "balls={";
             for (int i = 0; i < VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionBall * balls_cast = const_cast<guWhiteboard::VisionDetectionBall *>(static_cast<const guWhiteboard::VisionDetectionBall *>(&this->balls(i)));
-                ss << (balls_first ? "" : ", ") << "{" << balls_cast->description() << "}";
+                ss << (balls_first ? "" : ", ") << "{" << VisionDetectionBall(this->balls(i)).description() << "}";
                 balls_first = false;
             }
             ss << "}";
@@ -212,8 +261,7 @@ namespace guWhiteboard {
             bool balls_first = true;
             ss << "{";
             for (int i = 0; i < VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionBall * balls_cast = const_cast<guWhiteboard::VisionDetectionBall *>(static_cast<const guWhiteboard::VisionDetectionBall *>(&this->balls(i)));
-                ss << (balls_first ? "" : ", ") << "{" << balls_cast->to_string() << "}";
+                ss << (balls_first ? "" : ", ") << "{" << VisionDetectionBall(this->balls(i)).to_string() << "}";
                 balls_first = false;
             }
             ss << "}";
@@ -226,11 +274,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_DETECTION_BALLS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_balls_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_balls_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_BALLS_DESC_BUFFER_SIZE) {

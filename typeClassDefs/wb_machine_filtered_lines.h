@@ -98,6 +98,10 @@
 
 #define MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE 8
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results of the KalmanFilter machines for lines.
  */
@@ -107,18 +111,14 @@ struct wb_machine_filtered_lines
     /**
      * The number of sightings in `sightings`.
      */
-    PROPERTY(uint8_t, numberOfSightings)
+    uint8_t numberOfSightings;
 
     /**
      * All sightings.
      */
-    ARRAY_PROPERTY(struct wb_line_sighting, sightings, MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE)
+    struct wb_line_sighting sightings[MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

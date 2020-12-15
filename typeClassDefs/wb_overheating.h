@@ -96,6 +96,10 @@
 #define OVERHEATING_TO_STRING_BUFFER_SIZE 6
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a common structure for the status of the temperature sensors on the nao legs.
  */
@@ -105,13 +109,9 @@ struct wb_overheating
     /**
      * Is the leg sensors on the nao overheating?
      */
-    PROPERTY(bool, overheating)
+    bool overheating;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

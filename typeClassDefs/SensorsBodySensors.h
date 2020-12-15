@@ -82,27 +82,27 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(signed int DCM_Time = 0, float InertialSensor_AccX = 0.0f, float InertialSensor_AccY = 0.0f, float InertialSensor_AccZ = 0.0f, float InertialSensor_GyrX = 0.0f, float InertialSensor_GyrY = 0.0f, float InertialSensor_GyrZ = 0.0f, float InertialSensor_AngleX = 0.0f, float InertialSensor_AngleY = 0.0f, float InertialSensor_AngleZ = 0.0f, float InertialSensor_AccelerometerX = 0.0f, float InertialSensor_AccelerometerY = 0.0f, float InertialSensor_AccelerometerZ = 0.0f, float InertialSensor_GyroscopeX = 0.0f, float InertialSensor_GyroscopeY = 0.0f, float InertialSensor_GyroscopeZ = 0.0f, uint8_t Battery_Charge = 0, uint8_t Battery_Current = 0, float US = 0.0f, bool ChestBoard_Button = true) {
-            set_DCM_Time(DCM_Time);
-            set_InertialSensor_AccX(InertialSensor_AccX);
-            set_InertialSensor_AccY(InertialSensor_AccY);
-            set_InertialSensor_AccZ(InertialSensor_AccZ);
-            set_InertialSensor_GyrX(InertialSensor_GyrX);
-            set_InertialSensor_GyrY(InertialSensor_GyrY);
-            set_InertialSensor_GyrZ(InertialSensor_GyrZ);
-            set_InertialSensor_AngleX(InertialSensor_AngleX);
-            set_InertialSensor_AngleY(InertialSensor_AngleY);
-            set_InertialSensor_AngleZ(InertialSensor_AngleZ);
-            set_InertialSensor_AccelerometerX(InertialSensor_AccelerometerX);
-            set_InertialSensor_AccelerometerY(InertialSensor_AccelerometerY);
-            set_InertialSensor_AccelerometerZ(InertialSensor_AccelerometerZ);
-            set_InertialSensor_GyroscopeX(InertialSensor_GyroscopeX);
-            set_InertialSensor_GyroscopeY(InertialSensor_GyroscopeY);
-            set_InertialSensor_GyroscopeZ(InertialSensor_GyroscopeZ);
-            set_Battery_Charge(Battery_Charge);
-            set_Battery_Current(Battery_Current);
-            set_US(US);
-            set_ChestBoard_Button(ChestBoard_Button);
+        void init(signed int t_DCM_Time = 0, float t_InertialSensor_AccX = 0.0f, float t_InertialSensor_AccY = 0.0f, float t_InertialSensor_AccZ = 0.0f, float t_InertialSensor_GyrX = 0.0f, float t_InertialSensor_GyrY = 0.0f, float t_InertialSensor_GyrZ = 0.0f, float t_InertialSensor_AngleX = 0.0f, float t_InertialSensor_AngleY = 0.0f, float t_InertialSensor_AngleZ = 0.0f, float t_InertialSensor_AccelerometerX = 0.0f, float t_InertialSensor_AccelerometerY = 0.0f, float t_InertialSensor_AccelerometerZ = 0.0f, float t_InertialSensor_GyroscopeX = 0.0f, float t_InertialSensor_GyroscopeY = 0.0f, float t_InertialSensor_GyroscopeZ = 0.0f, uint8_t t_Battery_Charge = 0, uint8_t t_Battery_Current = 0, float t_US = 0.0f, bool t_ChestBoard_Button = true) {
+            set_DCM_Time(t_DCM_Time);
+            set_InertialSensor_AccX(t_InertialSensor_AccX);
+            set_InertialSensor_AccY(t_InertialSensor_AccY);
+            set_InertialSensor_AccZ(t_InertialSensor_AccZ);
+            set_InertialSensor_GyrX(t_InertialSensor_GyrX);
+            set_InertialSensor_GyrY(t_InertialSensor_GyrY);
+            set_InertialSensor_GyrZ(t_InertialSensor_GyrZ);
+            set_InertialSensor_AngleX(t_InertialSensor_AngleX);
+            set_InertialSensor_AngleY(t_InertialSensor_AngleY);
+            set_InertialSensor_AngleZ(t_InertialSensor_AngleZ);
+            set_InertialSensor_AccelerometerX(t_InertialSensor_AccelerometerX);
+            set_InertialSensor_AccelerometerY(t_InertialSensor_AccelerometerY);
+            set_InertialSensor_AccelerometerZ(t_InertialSensor_AccelerometerZ);
+            set_InertialSensor_GyroscopeX(t_InertialSensor_GyroscopeX);
+            set_InertialSensor_GyroscopeY(t_InertialSensor_GyroscopeY);
+            set_InertialSensor_GyroscopeZ(t_InertialSensor_GyroscopeZ);
+            set_Battery_Charge(t_Battery_Charge);
+            set_Battery_Current(t_Battery_Current);
+            set_US(t_US);
+            set_ChestBoard_Button(t_ChestBoard_Button);
         }
 
     public:
@@ -110,86 +110,286 @@ namespace guWhiteboard {
         /**
          * Create a new `SensorsBodySensors`.
          */
-        SensorsBodySensors(signed int DCM_Time = 0, float InertialSensor_AccX = 0.0f, float InertialSensor_AccY = 0.0f, float InertialSensor_AccZ = 0.0f, float InertialSensor_GyrX = 0.0f, float InertialSensor_GyrY = 0.0f, float InertialSensor_GyrZ = 0.0f, float InertialSensor_AngleX = 0.0f, float InertialSensor_AngleY = 0.0f, float InertialSensor_AngleZ = 0.0f, float InertialSensor_AccelerometerX = 0.0f, float InertialSensor_AccelerometerY = 0.0f, float InertialSensor_AccelerometerZ = 0.0f, float InertialSensor_GyroscopeX = 0.0f, float InertialSensor_GyroscopeY = 0.0f, float InertialSensor_GyroscopeZ = 0.0f, uint8_t Battery_Charge = 0, uint8_t Battery_Current = 0, float US = 0.0f, bool ChestBoard_Button = true) {
-            this->init(DCM_Time, InertialSensor_AccX, InertialSensor_AccY, InertialSensor_AccZ, InertialSensor_GyrX, InertialSensor_GyrY, InertialSensor_GyrZ, InertialSensor_AngleX, InertialSensor_AngleY, InertialSensor_AngleZ, InertialSensor_AccelerometerX, InertialSensor_AccelerometerY, InertialSensor_AccelerometerZ, InertialSensor_GyroscopeX, InertialSensor_GyroscopeY, InertialSensor_GyroscopeZ, Battery_Charge, Battery_Current, US, ChestBoard_Button);
+        SensorsBodySensors(signed int t_DCM_Time = 0, float t_InertialSensor_AccX = 0.0f, float t_InertialSensor_AccY = 0.0f, float t_InertialSensor_AccZ = 0.0f, float t_InertialSensor_GyrX = 0.0f, float t_InertialSensor_GyrY = 0.0f, float t_InertialSensor_GyrZ = 0.0f, float t_InertialSensor_AngleX = 0.0f, float t_InertialSensor_AngleY = 0.0f, float t_InertialSensor_AngleZ = 0.0f, float t_InertialSensor_AccelerometerX = 0.0f, float t_InertialSensor_AccelerometerY = 0.0f, float t_InertialSensor_AccelerometerZ = 0.0f, float t_InertialSensor_GyroscopeX = 0.0f, float t_InertialSensor_GyroscopeY = 0.0f, float t_InertialSensor_GyroscopeZ = 0.0f, uint8_t t_Battery_Charge = 0, uint8_t t_Battery_Current = 0, float t_US = 0.0f, bool t_ChestBoard_Button = true) {
+            this->init(t_DCM_Time, t_InertialSensor_AccX, t_InertialSensor_AccY, t_InertialSensor_AccZ, t_InertialSensor_GyrX, t_InertialSensor_GyrY, t_InertialSensor_GyrZ, t_InertialSensor_AngleX, t_InertialSensor_AngleY, t_InertialSensor_AngleZ, t_InertialSensor_AccelerometerX, t_InertialSensor_AccelerometerY, t_InertialSensor_AccelerometerZ, t_InertialSensor_GyroscopeX, t_InertialSensor_GyroscopeY, t_InertialSensor_GyroscopeZ, t_Battery_Charge, t_Battery_Current, t_US, t_ChestBoard_Button);
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsBodySensors(const SensorsBodySensors &other): wb_sensors_body_sensors() {
-            this->init(other.DCM_Time(), other.InertialSensor_AccX(), other.InertialSensor_AccY(), other.InertialSensor_AccZ(), other.InertialSensor_GyrX(), other.InertialSensor_GyrY(), other.InertialSensor_GyrZ(), other.InertialSensor_AngleX(), other.InertialSensor_AngleY(), other.InertialSensor_AngleZ(), other.InertialSensor_AccelerometerX(), other.InertialSensor_AccelerometerY(), other.InertialSensor_AccelerometerZ(), other.InertialSensor_GyroscopeX(), other.InertialSensor_GyroscopeY(), other.InertialSensor_GyroscopeZ(), other.Battery_Charge(), other.Battery_Current(), other.US(), other.ChestBoard_Button());
+        SensorsBodySensors(const SensorsBodySensors &t_other): wb_sensors_body_sensors() {
+            this->init(t_other.DCM_Time(), t_other.InertialSensor_AccX(), t_other.InertialSensor_AccY(), t_other.InertialSensor_AccZ(), t_other.InertialSensor_GyrX(), t_other.InertialSensor_GyrY(), t_other.InertialSensor_GyrZ(), t_other.InertialSensor_AngleX(), t_other.InertialSensor_AngleY(), t_other.InertialSensor_AngleZ(), t_other.InertialSensor_AccelerometerX(), t_other.InertialSensor_AccelerometerY(), t_other.InertialSensor_AccelerometerZ(), t_other.InertialSensor_GyroscopeX(), t_other.InertialSensor_GyroscopeY(), t_other.InertialSensor_GyroscopeZ(), t_other.Battery_Charge(), t_other.Battery_Current(), t_other.US(), t_other.ChestBoard_Button());
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsBodySensors(const struct wb_sensors_body_sensors &other): wb_sensors_body_sensors() {
-            this->init(other.DCM_Time(), other.InertialSensor_AccX(), other.InertialSensor_AccY(), other.InertialSensor_AccZ(), other.InertialSensor_GyrX(), other.InertialSensor_GyrY(), other.InertialSensor_GyrZ(), other.InertialSensor_AngleX(), other.InertialSensor_AngleY(), other.InertialSensor_AngleZ(), other.InertialSensor_AccelerometerX(), other.InertialSensor_AccelerometerY(), other.InertialSensor_AccelerometerZ(), other.InertialSensor_GyroscopeX(), other.InertialSensor_GyroscopeY(), other.InertialSensor_GyroscopeZ(), other.Battery_Charge(), other.Battery_Current(), other.US(), other.ChestBoard_Button());
+        SensorsBodySensors(const struct wb_sensors_body_sensors &t_other): wb_sensors_body_sensors() {
+            this->init(t_other.DCM_Time, t_other.InertialSensor_AccX, t_other.InertialSensor_AccY, t_other.InertialSensor_AccZ, t_other.InertialSensor_GyrX, t_other.InertialSensor_GyrY, t_other.InertialSensor_GyrZ, t_other.InertialSensor_AngleX, t_other.InertialSensor_AngleY, t_other.InertialSensor_AngleZ, t_other.InertialSensor_AccelerometerX, t_other.InertialSensor_AccelerometerY, t_other.InertialSensor_AccelerometerZ, t_other.InertialSensor_GyroscopeX, t_other.InertialSensor_GyroscopeY, t_other.InertialSensor_GyroscopeZ, t_other.Battery_Charge, t_other.Battery_Current, t_other.US, t_other.ChestBoard_Button);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsBodySensors &operator = (const SensorsBodySensors &other) {
-            this->init(other.DCM_Time(), other.InertialSensor_AccX(), other.InertialSensor_AccY(), other.InertialSensor_AccZ(), other.InertialSensor_GyrX(), other.InertialSensor_GyrY(), other.InertialSensor_GyrZ(), other.InertialSensor_AngleX(), other.InertialSensor_AngleY(), other.InertialSensor_AngleZ(), other.InertialSensor_AccelerometerX(), other.InertialSensor_AccelerometerY(), other.InertialSensor_AccelerometerZ(), other.InertialSensor_GyroscopeX(), other.InertialSensor_GyroscopeY(), other.InertialSensor_GyroscopeZ(), other.Battery_Charge(), other.Battery_Current(), other.US(), other.ChestBoard_Button());
+        SensorsBodySensors &operator = (const SensorsBodySensors &t_other) {
+            this->init(t_other.DCM_Time(), t_other.InertialSensor_AccX(), t_other.InertialSensor_AccY(), t_other.InertialSensor_AccZ(), t_other.InertialSensor_GyrX(), t_other.InertialSensor_GyrY(), t_other.InertialSensor_GyrZ(), t_other.InertialSensor_AngleX(), t_other.InertialSensor_AngleY(), t_other.InertialSensor_AngleZ(), t_other.InertialSensor_AccelerometerX(), t_other.InertialSensor_AccelerometerY(), t_other.InertialSensor_AccelerometerZ(), t_other.InertialSensor_GyroscopeX(), t_other.InertialSensor_GyroscopeY(), t_other.InertialSensor_GyroscopeZ(), t_other.Battery_Charge(), t_other.Battery_Current(), t_other.US(), t_other.ChestBoard_Button());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsBodySensors &operator = (const struct wb_sensors_body_sensors &other) {
-            this->init(other.DCM_Time(), other.InertialSensor_AccX(), other.InertialSensor_AccY(), other.InertialSensor_AccZ(), other.InertialSensor_GyrX(), other.InertialSensor_GyrY(), other.InertialSensor_GyrZ(), other.InertialSensor_AngleX(), other.InertialSensor_AngleY(), other.InertialSensor_AngleZ(), other.InertialSensor_AccelerometerX(), other.InertialSensor_AccelerometerY(), other.InertialSensor_AccelerometerZ(), other.InertialSensor_GyroscopeX(), other.InertialSensor_GyroscopeY(), other.InertialSensor_GyroscopeZ(), other.Battery_Charge(), other.Battery_Current(), other.US(), other.ChestBoard_Button());
+        SensorsBodySensors &operator = (const struct wb_sensors_body_sensors &t_other) {
+            this->init(t_other.DCM_Time, t_other.InertialSensor_AccX, t_other.InertialSensor_AccY, t_other.InertialSensor_AccZ, t_other.InertialSensor_GyrX, t_other.InertialSensor_GyrY, t_other.InertialSensor_GyrZ, t_other.InertialSensor_AngleX, t_other.InertialSensor_AngleY, t_other.InertialSensor_AngleZ, t_other.InertialSensor_AccelerometerX, t_other.InertialSensor_AccelerometerY, t_other.InertialSensor_AccelerometerZ, t_other.InertialSensor_GyroscopeX, t_other.InertialSensor_GyroscopeY, t_other.InertialSensor_GyroscopeZ, t_other.Battery_Charge, t_other.Battery_Current, t_other.US, t_other.ChestBoard_Button);
             return *this;
         }
 
-        bool operator ==(const SensorsBodySensors &other) const
+        bool operator ==(const SensorsBodySensors &t_other) const
         {
-            return DCM_Time() == other.DCM_Time()
-                && fabsf(InertialSensor_AccX() - other.InertialSensor_AccX()) < FLT_EPSILON
-                && fabsf(InertialSensor_AccY() - other.InertialSensor_AccY()) < FLT_EPSILON
-                && fabsf(InertialSensor_AccZ() - other.InertialSensor_AccZ()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyrX() - other.InertialSensor_GyrX()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyrY() - other.InertialSensor_GyrY()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyrZ() - other.InertialSensor_GyrZ()) < FLT_EPSILON
-                && fabsf(InertialSensor_AngleX() - other.InertialSensor_AngleX()) < FLT_EPSILON
-                && fabsf(InertialSensor_AngleY() - other.InertialSensor_AngleY()) < FLT_EPSILON
-                && fabsf(InertialSensor_AngleZ() - other.InertialSensor_AngleZ()) < FLT_EPSILON
-                && fabsf(InertialSensor_AccelerometerX() - other.InertialSensor_AccelerometerX()) < FLT_EPSILON
-                && fabsf(InertialSensor_AccelerometerY() - other.InertialSensor_AccelerometerY()) < FLT_EPSILON
-                && fabsf(InertialSensor_AccelerometerZ() - other.InertialSensor_AccelerometerZ()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyroscopeX() - other.InertialSensor_GyroscopeX()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyroscopeY() - other.InertialSensor_GyroscopeY()) < FLT_EPSILON
-                && fabsf(InertialSensor_GyroscopeZ() - other.InertialSensor_GyroscopeZ()) < FLT_EPSILON
-                && Battery_Charge() == other.Battery_Charge()
-                && Battery_Current() == other.Battery_Current()
-                && fabsf(US() - other.US()) < FLT_EPSILON
-                && ChestBoard_Button() == other.ChestBoard_Button();
+            return DCM_Time() == t_other.DCM_Time()
+                && fabsf(InertialSensor_AccX() - t_other.InertialSensor_AccX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccY() - t_other.InertialSensor_AccY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccZ() - t_other.InertialSensor_AccZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrX() - t_other.InertialSensor_GyrX()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrY() - t_other.InertialSensor_GyrY()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyrZ() - t_other.InertialSensor_GyrZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleX() - t_other.InertialSensor_AngleX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleY() - t_other.InertialSensor_AngleY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AngleZ() - t_other.InertialSensor_AngleZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerX() - t_other.InertialSensor_AccelerometerX()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerY() - t_other.InertialSensor_AccelerometerY()) < FLT_EPSILON
+                && fabsf(InertialSensor_AccelerometerZ() - t_other.InertialSensor_AccelerometerZ()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeX() - t_other.InertialSensor_GyroscopeX()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeY() - t_other.InertialSensor_GyroscopeY()) < FLT_EPSILON
+                && fabsf(InertialSensor_GyroscopeZ() - t_other.InertialSensor_GyroscopeZ()) < FLT_EPSILON
+                && Battery_Charge() == t_other.Battery_Charge()
+                && Battery_Current() == t_other.Battery_Current()
+                && fabsf(US() - t_other.US()) < FLT_EPSILON
+                && ChestBoard_Button() == t_other.ChestBoard_Button();
         }
 
-        bool operator !=(const SensorsBodySensors &other) const
+        bool operator !=(const SensorsBodySensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_body_sensors &other) const
+        bool operator ==(const wb_sensors_body_sensors &t_other) const
         {
-            return *this == SensorsBodySensors(other);
+            return *this == SensorsBodySensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_body_sensors &other) const
+        bool operator !=(const wb_sensors_body_sensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        signed int DCM_Time() const
+        {
+            return wb_sensors_body_sensors::DCM_Time;
+        }
+
+        void set_DCM_Time(const signed int &t_newValue)
+        {
+            wb_sensors_body_sensors::DCM_Time = t_newValue;
+        }
+
+        float InertialSensor_AccX() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccX;
+        }
+
+        void set_InertialSensor_AccX(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccX = t_newValue;
+        }
+
+        float InertialSensor_AccY() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccY;
+        }
+
+        void set_InertialSensor_AccY(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccY = t_newValue;
+        }
+
+        float InertialSensor_AccZ() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccZ;
+        }
+
+        void set_InertialSensor_AccZ(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccZ = t_newValue;
+        }
+
+        float InertialSensor_GyrX() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrX;
+        }
+
+        void set_InertialSensor_GyrX(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyrX = t_newValue;
+        }
+
+        float InertialSensor_GyrY() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrY;
+        }
+
+        void set_InertialSensor_GyrY(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyrY = t_newValue;
+        }
+
+        float InertialSensor_GyrZ() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrZ;
+        }
+
+        void set_InertialSensor_GyrZ(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyrZ = t_newValue;
+        }
+
+        float InertialSensor_AngleX() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleX;
+        }
+
+        void set_InertialSensor_AngleX(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AngleX = t_newValue;
+        }
+
+        float InertialSensor_AngleY() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleY;
+        }
+
+        void set_InertialSensor_AngleY(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AngleY = t_newValue;
+        }
+
+        float InertialSensor_AngleZ() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleZ;
+        }
+
+        void set_InertialSensor_AngleZ(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AngleZ = t_newValue;
+        }
+
+        float InertialSensor_AccelerometerX() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerX;
+        }
+
+        void set_InertialSensor_AccelerometerX(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccelerometerX = t_newValue;
+        }
+
+        float InertialSensor_AccelerometerY() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerY;
+        }
+
+        void set_InertialSensor_AccelerometerY(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccelerometerY = t_newValue;
+        }
+
+        float InertialSensor_AccelerometerZ() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerZ;
+        }
+
+        void set_InertialSensor_AccelerometerZ(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_AccelerometerZ = t_newValue;
+        }
+
+        float InertialSensor_GyroscopeX() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeX;
+        }
+
+        void set_InertialSensor_GyroscopeX(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyroscopeX = t_newValue;
+        }
+
+        float InertialSensor_GyroscopeY() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeY;
+        }
+
+        void set_InertialSensor_GyroscopeY(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyroscopeY = t_newValue;
+        }
+
+        float InertialSensor_GyroscopeZ() const
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeZ;
+        }
+
+        void set_InertialSensor_GyroscopeZ(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::InertialSensor_GyroscopeZ = t_newValue;
+        }
+
+        uint8_t Battery_Charge() const
+        {
+            return wb_sensors_body_sensors::Battery_Charge;
+        }
+
+        void set_Battery_Charge(const uint8_t &t_newValue)
+        {
+            wb_sensors_body_sensors::Battery_Charge = t_newValue;
+        }
+
+        uint8_t Battery_Current() const
+        {
+            return wb_sensors_body_sensors::Battery_Current;
+        }
+
+        void set_Battery_Current(const uint8_t &t_newValue)
+        {
+            wb_sensors_body_sensors::Battery_Current = t_newValue;
+        }
+
+        float US() const
+        {
+            return wb_sensors_body_sensors::US;
+        }
+
+        void set_US(const float &t_newValue)
+        {
+            wb_sensors_body_sensors::US = t_newValue;
+        }
+
+        bool ChestBoard_Button() const
+        {
+            return wb_sensors_body_sensors::ChestBoard_Button;
+        }
+
+        void set_ChestBoard_Button(const bool &t_newValue)
+        {
+            wb_sensors_body_sensors::ChestBoard_Button = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SensorsBodySensors(const std::string &str) {
+        SensorsBodySensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -295,11 +495,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_BODY_SENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_body_sensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_body_sensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_BODY_SENSORS_DESC_BUFFER_SIZE) {

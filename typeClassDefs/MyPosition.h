@@ -81,10 +81,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t x = 0, int16_t y = 0, int16_t heading = 0) {
-            set_x(x);
-            set_y(y);
-            set_heading(heading);
+        void init(int16_t t_x = 0, int16_t t_y = 0, int16_t t_heading = 0) {
+            set_x(t_x);
+            set_y(t_y);
+            set_heading(t_heading);
         }
 
     public:
@@ -92,69 +92,99 @@ namespace guWhiteboard {
         /**
          * Create a new `MyPosition`.
          */
-        MyPosition(int16_t x = 0, int16_t y = 0, int16_t heading = 0) {
-            this->init(x, y, heading);
+        MyPosition(int16_t t_x = 0, int16_t t_y = 0, int16_t t_heading = 0) {
+            this->init(t_x, t_y, t_heading);
         }
 
         /**
          * Copy Constructor.
          */
-        MyPosition(const MyPosition &other): wb_my_position() {
-            this->init(other.x(), other.y(), other.heading());
+        MyPosition(const MyPosition &t_other): wb_my_position() {
+            this->init(t_other.x(), t_other.y(), t_other.heading());
         }
 
         /**
          * Copy Constructor.
          */
-        MyPosition(const struct wb_my_position &other): wb_my_position() {
-            this->init(other.x(), other.y(), other.heading());
+        MyPosition(const struct wb_my_position &t_other): wb_my_position() {
+            this->init(t_other.x, t_other.y, t_other.heading);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MyPosition &operator = (const MyPosition &other) {
-            this->init(other.x(), other.y(), other.heading());
+        MyPosition &operator = (const MyPosition &t_other) {
+            this->init(t_other.x(), t_other.y(), t_other.heading());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MyPosition &operator = (const struct wb_my_position &other) {
-            this->init(other.x(), other.y(), other.heading());
+        MyPosition &operator = (const struct wb_my_position &t_other) {
+            this->init(t_other.x, t_other.y, t_other.heading);
             return *this;
         }
 
-        bool operator ==(const MyPosition &other) const
+        bool operator ==(const MyPosition &t_other) const
         {
-            return x() == other.x()
-                && y() == other.y()
-                && heading() == other.heading();
+            return x() == t_other.x()
+                && y() == t_other.y()
+                && heading() == t_other.heading();
         }
 
-        bool operator !=(const MyPosition &other) const
+        bool operator !=(const MyPosition &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_my_position &other) const
+        bool operator ==(const wb_my_position &t_other) const
         {
-            return *this == MyPosition(other);
+            return *this == MyPosition(t_other);
         }
 
-        bool operator !=(const wb_my_position &other) const
+        bool operator !=(const wb_my_position &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t x() const
+        {
+            return wb_my_position::x;
+        }
+
+        void set_x(const int16_t &t_newValue)
+        {
+            wb_my_position::x = t_newValue;
+        }
+
+        int16_t y() const
+        {
+            return wb_my_position::y;
+        }
+
+        void set_y(const int16_t &t_newValue)
+        {
+            wb_my_position::y = t_newValue;
+        }
+
+        int16_t heading() const
+        {
+            return wb_my_position::heading;
+        }
+
+        void set_heading(const int16_t &t_newValue)
+        {
+            wb_my_position::heading = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MyPosition(const std::string &str) {
+        MyPosition(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -192,11 +222,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MY_POSITION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_my_position_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_my_position_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MY_POSITION_DESC_BUFFER_SIZE) {

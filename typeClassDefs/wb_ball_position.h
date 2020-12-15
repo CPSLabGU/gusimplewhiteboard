@@ -94,6 +94,10 @@
 #define BALL_POSITION_TO_STRING_BUFFER_SIZE 44
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * A type providing position and orientation of the ball on the soccer field.
  */
@@ -103,38 +107,34 @@ struct wb_ball_position
     /**
      * The x coordinate
      */
-    PROPERTY(int16_t, x)
+    int16_t x;
 
     /**
      * The y coordinate.
      */
-    PROPERTY(int16_t, y)
+    int16_t y;
 
     /**
      * The pitch orientation.
      */
-    PROPERTY(int16_t, pitchInDegrees)
+    int16_t pitchInDegrees;
 
     /**
      * The yaw orientation.
      */
-    PROPERTY(int16_t, yawInDegrees)
+    int16_t yawInDegrees;
 
     /**
      * The roll orientation.
      */
-    PROPERTY(int16_t, rollInDegrees)
+    int16_t rollInDegrees;
 
     /**
      * The confidence that the ball is at this position. This value represents a percentage value where the 0 percent is equal to 0 and 100 percent is equal to 255.
      */
-    PROPERTY(uint8_t, confidence)
+    uint8_t confidence;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

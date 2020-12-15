@@ -96,6 +96,10 @@
 #define TEMPERATURE_SENSORS_TO_STRING_BUFFER_SIZE 41
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a common interface for the temperature of the leg sensors.
  * This is for a research paper only - NOT for actual use on the robot.
@@ -106,38 +110,34 @@ struct wb_temperature_sensors
     /**
      * Is the left knee pitch overheating
      */
-    PROPERTY(bool, LKneePitch)
+    bool LKneePitch;
 
     /**
      * Is the left ankle pitch overheating
      */
-    PROPERTY(bool, LAnklePitch)
+    bool LAnklePitch;
 
     /**
      * Is the left ankle roll overheating
      */
-    PROPERTY(bool, LAnkleRoll)
+    bool LAnkleRoll;
 
     /**
      * Is the right knee pitch overheating
      */
-    PROPERTY(bool, RKneePitch)
+    bool RKneePitch;
 
     /**
      * Is the right ankle pitch overheating
      */
-    PROPERTY(bool, RAnklePitch)
+    bool RAnklePitch;
 
     /**
      * Is the right ankle roll overheating
      */
-    PROPERTY(bool, RAnkleRoll)
+    bool RAnkleRoll;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

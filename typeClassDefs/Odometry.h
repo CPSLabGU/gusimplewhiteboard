@@ -82,10 +82,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float forward = 0.0f, float left = 0.0f, float turn = 0.0f) {
-            set_forward(forward);
-            set_left(left);
-            set_turn(turn);
+        void init(float t_forward = 0.0f, float t_left = 0.0f, float t_turn = 0.0f) {
+            set_forward(t_forward);
+            set_left(t_left);
+            set_turn(t_turn);
         }
 
     public:
@@ -93,69 +93,99 @@ namespace guWhiteboard {
         /**
          * Create a new `Odometry`.
          */
-        Odometry(float forward = 0.0f, float left = 0.0f, float turn = 0.0f) {
-            this->init(forward, left, turn);
+        Odometry(float t_forward = 0.0f, float t_left = 0.0f, float t_turn = 0.0f) {
+            this->init(t_forward, t_left, t_turn);
         }
 
         /**
          * Copy Constructor.
          */
-        Odometry(const Odometry &other): wb_odometry() {
-            this->init(other.forward(), other.left(), other.turn());
+        Odometry(const Odometry &t_other): wb_odometry() {
+            this->init(t_other.forward(), t_other.left(), t_other.turn());
         }
 
         /**
          * Copy Constructor.
          */
-        Odometry(const struct wb_odometry &other): wb_odometry() {
-            this->init(other.forward(), other.left(), other.turn());
+        Odometry(const struct wb_odometry &t_other): wb_odometry() {
+            this->init(t_other.forward, t_other.left, t_other.turn);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Odometry &operator = (const Odometry &other) {
-            this->init(other.forward(), other.left(), other.turn());
+        Odometry &operator = (const Odometry &t_other) {
+            this->init(t_other.forward(), t_other.left(), t_other.turn());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Odometry &operator = (const struct wb_odometry &other) {
-            this->init(other.forward(), other.left(), other.turn());
+        Odometry &operator = (const struct wb_odometry &t_other) {
+            this->init(t_other.forward, t_other.left, t_other.turn);
             return *this;
         }
 
-        bool operator ==(const Odometry &other) const
+        bool operator ==(const Odometry &t_other) const
         {
-            return fabsf(forward() - other.forward()) < FLT_EPSILON
-                && fabsf(left() - other.left()) < FLT_EPSILON
-                && fabsf(turn() - other.turn()) < FLT_EPSILON;
+            return fabsf(forward() - t_other.forward()) < FLT_EPSILON
+                && fabsf(left() - t_other.left()) < FLT_EPSILON
+                && fabsf(turn() - t_other.turn()) < FLT_EPSILON;
         }
 
-        bool operator !=(const Odometry &other) const
+        bool operator !=(const Odometry &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_odometry &other) const
+        bool operator ==(const wb_odometry &t_other) const
         {
-            return *this == Odometry(other);
+            return *this == Odometry(t_other);
         }
 
-        bool operator !=(const wb_odometry &other) const
+        bool operator !=(const wb_odometry &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float forward() const
+        {
+            return wb_odometry::forward;
+        }
+
+        void set_forward(const float &t_newValue)
+        {
+            wb_odometry::forward = t_newValue;
+        }
+
+        float left() const
+        {
+            return wb_odometry::left;
+        }
+
+        void set_left(const float &t_newValue)
+        {
+            wb_odometry::left = t_newValue;
+        }
+
+        float turn() const
+        {
+            return wb_odometry::turn;
+        }
+
+        void set_turn(const float &t_newValue)
+        {
+            wb_odometry::turn = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Odometry(const std::string &str) {
+        Odometry(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -193,11 +223,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_ODOMETRY_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_odometry_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_odometry_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > ODOMETRY_DESC_BUFFER_SIZE) {

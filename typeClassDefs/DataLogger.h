@@ -81,14 +81,14 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(std::string machineName = "", uint32_t currentState = 0, uint32_t currentSection = 0, uint8_t dataSet = 0, bool loggerRunning = false, bool shouldExit = false, std::string comment = "") {
-            gu_strlcpy(const_cast<char *>(this->machineName()), machineName.c_str(), 40);
-            set_currentState(currentState);
-            set_currentSection(currentSection);
-            set_dataSet(dataSet);
-            set_loggerRunning(loggerRunning);
-            set_shouldExit(shouldExit);
-            gu_strlcpy(const_cast<char *>(this->comment()), comment.c_str(), 30);
+        void init(std::string t_machineName = "", uint32_t t_currentState = 0, uint32_t t_currentSection = 0, uint8_t t_dataSet = 0, bool t_loggerRunning = false, bool t_shouldExit = false, std::string t_comment = "") {
+            gu_strlcpy(const_cast<char *>(this->machineName()), t_machineName.c_str(), 40);
+            set_currentState(t_currentState);
+            set_currentSection(t_currentSection);
+            set_dataSet(t_dataSet);
+            set_loggerRunning(t_loggerRunning);
+            set_shouldExit(t_shouldExit);
+            gu_strlcpy(const_cast<char *>(this->comment()), t_comment.c_str(), 30);
         }
 
     public:
@@ -96,73 +96,143 @@ namespace guWhiteboard {
         /**
          * Create a new `DataLogger`.
          */
-        DataLogger(std::string machineName = "", uint32_t currentState = 0, uint32_t currentSection = 0, uint8_t dataSet = 0, bool loggerRunning = false, bool shouldExit = false, std::string comment = "") {
-            this->init(machineName, currentState, currentSection, dataSet, loggerRunning, shouldExit, comment);
+        DataLogger(std::string t_machineName = "", uint32_t t_currentState = 0, uint32_t t_currentSection = 0, uint8_t t_dataSet = 0, bool t_loggerRunning = false, bool t_shouldExit = false, std::string t_comment = "") {
+            this->init(t_machineName, t_currentState, t_currentSection, t_dataSet, t_loggerRunning, t_shouldExit, t_comment);
         }
 
         /**
          * Copy Constructor.
          */
-        DataLogger(const DataLogger &other): wb_data_logger() {
-            this->init(other.machineName(), other.currentState(), other.currentSection(), other.dataSet(), other.loggerRunning(), other.shouldExit(), other.comment());
+        DataLogger(const DataLogger &t_other): wb_data_logger() {
+            this->init(t_other.machineName(), t_other.currentState(), t_other.currentSection(), t_other.dataSet(), t_other.loggerRunning(), t_other.shouldExit(), t_other.comment());
         }
 
         /**
          * Copy Constructor.
          */
-        DataLogger(const struct wb_data_logger &other): wb_data_logger() {
-            this->init(other.machineName(), other.currentState(), other.currentSection(), other.dataSet(), other.loggerRunning(), other.shouldExit(), other.comment());
+        DataLogger(const struct wb_data_logger &t_other): wb_data_logger() {
+            this->init(t_other.machineName, t_other.currentState, t_other.currentSection, t_other.dataSet, t_other.loggerRunning, t_other.shouldExit, t_other.comment);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        DataLogger &operator = (const DataLogger &other) {
-            this->init(other.machineName(), other.currentState(), other.currentSection(), other.dataSet(), other.loggerRunning(), other.shouldExit(), other.comment());
+        DataLogger &operator = (const DataLogger &t_other) {
+            this->init(t_other.machineName(), t_other.currentState(), t_other.currentSection(), t_other.dataSet(), t_other.loggerRunning(), t_other.shouldExit(), t_other.comment());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        DataLogger &operator = (const struct wb_data_logger &other) {
-            this->init(other.machineName(), other.currentState(), other.currentSection(), other.dataSet(), other.loggerRunning(), other.shouldExit(), other.comment());
+        DataLogger &operator = (const struct wb_data_logger &t_other) {
+            this->init(t_other.machineName, t_other.currentState, t_other.currentSection, t_other.dataSet, t_other.loggerRunning, t_other.shouldExit, t_other.comment);
             return *this;
         }
 
-        bool operator ==(const DataLogger &other) const
+        bool operator ==(const DataLogger &t_other) const
         {
-            return 0 == strncmp(_machineName, other._machineName, 40)
-                && currentState() == other.currentState()
-                && currentSection() == other.currentSection()
-                && dataSet() == other.dataSet()
-                && loggerRunning() == other.loggerRunning()
-                && shouldExit() == other.shouldExit()
-                && 0 == strncmp(_comment, other._comment, 30);
+            return 0 == strncmp(machineName(), t_other.machineName(), 40)
+                && currentState() == t_other.currentState()
+                && currentSection() == t_other.currentSection()
+                && dataSet() == t_other.dataSet()
+                && loggerRunning() == t_other.loggerRunning()
+                && shouldExit() == t_other.shouldExit()
+                && 0 == strncmp(comment(), t_other.comment(), 30);
         }
 
-        bool operator !=(const DataLogger &other) const
+        bool operator !=(const DataLogger &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_data_logger &other) const
+        bool operator ==(const wb_data_logger &t_other) const
         {
-            return *this == DataLogger(other);
+            return *this == DataLogger(t_other);
         }
 
-        bool operator !=(const wb_data_logger &other) const
+        bool operator !=(const wb_data_logger &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const char *machineName() const
+        {
+            return &(wb_data_logger::machineName[0]);
+        }
+
+        void set_machineName(const char *t_newValue)
+        {
+            strncpy(wb_data_logger::machineName, t_newValue, 40);
+        }
+
+        uint32_t currentState() const
+        {
+            return wb_data_logger::currentState;
+        }
+
+        void set_currentState(const uint32_t &t_newValue)
+        {
+            wb_data_logger::currentState = t_newValue;
+        }
+
+        uint32_t currentSection() const
+        {
+            return wb_data_logger::currentSection;
+        }
+
+        void set_currentSection(const uint32_t &t_newValue)
+        {
+            wb_data_logger::currentSection = t_newValue;
+        }
+
+        uint8_t dataSet() const
+        {
+            return wb_data_logger::dataSet;
+        }
+
+        void set_dataSet(const uint8_t &t_newValue)
+        {
+            wb_data_logger::dataSet = t_newValue;
+        }
+
+        bool loggerRunning() const
+        {
+            return wb_data_logger::loggerRunning;
+        }
+
+        void set_loggerRunning(const bool &t_newValue)
+        {
+            wb_data_logger::loggerRunning = t_newValue;
+        }
+
+        bool shouldExit() const
+        {
+            return wb_data_logger::shouldExit;
+        }
+
+        void set_shouldExit(const bool &t_newValue)
+        {
+            wb_data_logger::shouldExit = t_newValue;
+        }
+
+        const char *comment() const
+        {
+            return &(wb_data_logger::comment[0]);
+        }
+
+        void set_comment(const char *t_newValue)
+        {
+            strncpy(wb_data_logger::comment, t_newValue, 30);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        DataLogger(const std::string &str) {
+        DataLogger(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -232,11 +302,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_DATA_LOGGER_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_data_logger_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_data_logger_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > DATA_LOGGER_DESC_BUFFER_SIZE) {
@@ -327,7 +397,7 @@ namespace guWhiteboard {
                     case -1: { break; }
                     case 0:
                     {
-                        strncpy(this->machineName(), var_str, 40);
+                        strncpy(wb_data_logger::machineName, var_str, 40);
                         break;
                     }
                     case 1:
@@ -357,7 +427,7 @@ namespace guWhiteboard {
                     }
                     case 6:
                     {
-                        strncpy(this->comment(), var_str, 30);
+                        strncpy(wb_data_logger::comment, var_str, 30);
                         break;
                     }
                 }

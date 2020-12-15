@@ -81,13 +81,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool LHand_Touch_Left = true, bool LHand_Touch_Back = true, bool LHand_Touch_Right = true, bool RHand_Touch_Left = true, bool RHand_Touch_Back = true, bool RHand_Touch_Right = true) {
-            set_LHand_Touch_Left(LHand_Touch_Left);
-            set_LHand_Touch_Back(LHand_Touch_Back);
-            set_LHand_Touch_Right(LHand_Touch_Right);
-            set_RHand_Touch_Left(RHand_Touch_Left);
-            set_RHand_Touch_Back(RHand_Touch_Back);
-            set_RHand_Touch_Right(RHand_Touch_Right);
+        void init(bool t_LHand_Touch_Left = true, bool t_LHand_Touch_Back = true, bool t_LHand_Touch_Right = true, bool t_RHand_Touch_Left = true, bool t_RHand_Touch_Back = true, bool t_RHand_Touch_Right = true) {
+            set_LHand_Touch_Left(t_LHand_Touch_Left);
+            set_LHand_Touch_Back(t_LHand_Touch_Back);
+            set_LHand_Touch_Right(t_LHand_Touch_Right);
+            set_RHand_Touch_Left(t_RHand_Touch_Left);
+            set_RHand_Touch_Back(t_RHand_Touch_Back);
+            set_RHand_Touch_Right(t_RHand_Touch_Right);
         }
 
     public:
@@ -95,72 +95,132 @@ namespace guWhiteboard {
         /**
          * Create a new `SensorsHandSensors`.
          */
-        SensorsHandSensors(bool LHand_Touch_Left = true, bool LHand_Touch_Back = true, bool LHand_Touch_Right = true, bool RHand_Touch_Left = true, bool RHand_Touch_Back = true, bool RHand_Touch_Right = true) {
-            this->init(LHand_Touch_Left, LHand_Touch_Back, LHand_Touch_Right, RHand_Touch_Left, RHand_Touch_Back, RHand_Touch_Right);
+        SensorsHandSensors(bool t_LHand_Touch_Left = true, bool t_LHand_Touch_Back = true, bool t_LHand_Touch_Right = true, bool t_RHand_Touch_Left = true, bool t_RHand_Touch_Back = true, bool t_RHand_Touch_Right = true) {
+            this->init(t_LHand_Touch_Left, t_LHand_Touch_Back, t_LHand_Touch_Right, t_RHand_Touch_Left, t_RHand_Touch_Back, t_RHand_Touch_Right);
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsHandSensors(const SensorsHandSensors &other): wb_sensors_hand_sensors() {
-            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
+        SensorsHandSensors(const SensorsHandSensors &t_other): wb_sensors_hand_sensors() {
+            this->init(t_other.LHand_Touch_Left(), t_other.LHand_Touch_Back(), t_other.LHand_Touch_Right(), t_other.RHand_Touch_Left(), t_other.RHand_Touch_Back(), t_other.RHand_Touch_Right());
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsHandSensors(const struct wb_sensors_hand_sensors &other): wb_sensors_hand_sensors() {
-            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
+        SensorsHandSensors(const struct wb_sensors_hand_sensors &t_other): wb_sensors_hand_sensors() {
+            this->init(t_other.LHand_Touch_Left, t_other.LHand_Touch_Back, t_other.LHand_Touch_Right, t_other.RHand_Touch_Left, t_other.RHand_Touch_Back, t_other.RHand_Touch_Right);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsHandSensors &operator = (const SensorsHandSensors &other) {
-            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
+        SensorsHandSensors &operator = (const SensorsHandSensors &t_other) {
+            this->init(t_other.LHand_Touch_Left(), t_other.LHand_Touch_Back(), t_other.LHand_Touch_Right(), t_other.RHand_Touch_Left(), t_other.RHand_Touch_Back(), t_other.RHand_Touch_Right());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsHandSensors &operator = (const struct wb_sensors_hand_sensors &other) {
-            this->init(other.LHand_Touch_Left(), other.LHand_Touch_Back(), other.LHand_Touch_Right(), other.RHand_Touch_Left(), other.RHand_Touch_Back(), other.RHand_Touch_Right());
+        SensorsHandSensors &operator = (const struct wb_sensors_hand_sensors &t_other) {
+            this->init(t_other.LHand_Touch_Left, t_other.LHand_Touch_Back, t_other.LHand_Touch_Right, t_other.RHand_Touch_Left, t_other.RHand_Touch_Back, t_other.RHand_Touch_Right);
             return *this;
         }
 
-        bool operator ==(const SensorsHandSensors &other) const
+        bool operator ==(const SensorsHandSensors &t_other) const
         {
-            return LHand_Touch_Left() == other.LHand_Touch_Left()
-                && LHand_Touch_Back() == other.LHand_Touch_Back()
-                && LHand_Touch_Right() == other.LHand_Touch_Right()
-                && RHand_Touch_Left() == other.RHand_Touch_Left()
-                && RHand_Touch_Back() == other.RHand_Touch_Back()
-                && RHand_Touch_Right() == other.RHand_Touch_Right();
+            return LHand_Touch_Left() == t_other.LHand_Touch_Left()
+                && LHand_Touch_Back() == t_other.LHand_Touch_Back()
+                && LHand_Touch_Right() == t_other.LHand_Touch_Right()
+                && RHand_Touch_Left() == t_other.RHand_Touch_Left()
+                && RHand_Touch_Back() == t_other.RHand_Touch_Back()
+                && RHand_Touch_Right() == t_other.RHand_Touch_Right();
         }
 
-        bool operator !=(const SensorsHandSensors &other) const
+        bool operator !=(const SensorsHandSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_hand_sensors &other) const
+        bool operator ==(const wb_sensors_hand_sensors &t_other) const
         {
-            return *this == SensorsHandSensors(other);
+            return *this == SensorsHandSensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_hand_sensors &other) const
+        bool operator !=(const wb_sensors_hand_sensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool LHand_Touch_Left() const
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Left;
+        }
+
+        void set_LHand_Touch_Left(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::LHand_Touch_Left = t_newValue;
+        }
+
+        bool LHand_Touch_Back() const
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Back;
+        }
+
+        void set_LHand_Touch_Back(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::LHand_Touch_Back = t_newValue;
+        }
+
+        bool LHand_Touch_Right() const
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Right;
+        }
+
+        void set_LHand_Touch_Right(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::LHand_Touch_Right = t_newValue;
+        }
+
+        bool RHand_Touch_Left() const
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Left;
+        }
+
+        void set_RHand_Touch_Left(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::RHand_Touch_Left = t_newValue;
+        }
+
+        bool RHand_Touch_Back() const
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Back;
+        }
+
+        void set_RHand_Touch_Back(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::RHand_Touch_Back = t_newValue;
+        }
+
+        bool RHand_Touch_Right() const
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Right;
+        }
+
+        void set_RHand_Touch_Right(const bool &t_newValue)
+        {
+            wb_sensors_hand_sensors::RHand_Touch_Right = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SensorsHandSensors(const std::string &str) {
+        SensorsHandSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -210,11 +270,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_HAND_SENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_hand_sensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_hand_sensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_HAND_SENSORS_DESC_BUFFER_SIZE) {

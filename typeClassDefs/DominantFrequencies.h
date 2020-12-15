@@ -84,13 +84,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_r_m_s_levels rms = wb_r_m_s_levels(), const struct wb_microphone_frequencies frequencies[DOMINANT_NUMFREQi] = NULLPTR) {
-            set_rms(rms);
-            if (frequencies != NULLPTR) {
-                std::memcpy(this->_frequencies, frequencies, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
+        void init(struct wb_r_m_s_levels t_rms = wb_r_m_s_levels(), const struct wb_microphone_frequencies t_frequencies[DOMINANT_NUMFREQi] = NULLPTR) {
+            set_rms(t_rms);
+            if (t_frequencies != NULLPTR) {
+                std::memcpy(wb_dominant_frequencies::frequencies, t_frequencies, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
             } else {
                 struct wb_microphone_frequencies frequencies_temp[DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE] = {};
-                std::memcpy(this->_frequencies, frequencies_temp, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
+                std::memcpy(wb_dominant_frequencies::frequencies, frequencies_temp, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
             }
         }
 
@@ -99,75 +99,105 @@ namespace guWhiteboard {
         /**
          * Create a new `DominantFrequencies`.
          */
-        DominantFrequencies(struct wb_r_m_s_levels rms = wb_r_m_s_levels(), const struct wb_microphone_frequencies frequencies[DOMINANT_NUMFREQi] = NULLPTR) {
-            this->init(rms, frequencies);
+        DominantFrequencies(struct wb_r_m_s_levels t_rms = wb_r_m_s_levels(), const struct wb_microphone_frequencies t_frequencies[DOMINANT_NUMFREQi] = NULLPTR) {
+            this->init(t_rms, t_frequencies);
         }
 
         /**
          * Copy Constructor.
          */
-        DominantFrequencies(const DominantFrequencies &other): wb_dominant_frequencies() {
-            this->init(other.rms(), other.frequencies());
+        DominantFrequencies(const DominantFrequencies &t_other): wb_dominant_frequencies() {
+            this->init(t_other.rms(), t_other.frequencies());
         }
 
         /**
          * Copy Constructor.
          */
-        DominantFrequencies(const struct wb_dominant_frequencies &other): wb_dominant_frequencies() {
-            this->init(other.rms(), other.frequencies());
+        DominantFrequencies(const struct wb_dominant_frequencies &t_other): wb_dominant_frequencies() {
+            this->init(t_other.rms, t_other.frequencies);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        DominantFrequencies &operator = (const DominantFrequencies &other) {
-            this->init(other.rms(), other.frequencies());
+        DominantFrequencies &operator = (const DominantFrequencies &t_other) {
+            this->init(t_other.rms(), t_other.frequencies());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        DominantFrequencies &operator = (const struct wb_dominant_frequencies &other) {
-            this->init(other.rms(), other.frequencies());
+        DominantFrequencies &operator = (const struct wb_dominant_frequencies &t_other) {
+            this->init(t_other.rms, t_other.frequencies);
             return *this;
         }
 
-        bool operator ==(const DominantFrequencies &other) const
+        bool operator ==(const DominantFrequencies &t_other) const
         {
-            if (!(RMSLevels(_rms) == RMSLevels(other._rms)))
+            if (!(RMSLevels(rms()) == RMSLevels(t_other.rms())))
             {
                 return false;
             }
             for (int frequencies_0_index = 0; frequencies_0_index < DOMINANT_NUMFREQi; frequencies_0_index++)
             {
-                if (!(MicrophoneFrequencies(_frequencies[frequencies_0_index]) == MicrophoneFrequencies(other._frequencies[frequencies_0_index]))) return false;
+                if (!(MicrophoneFrequencies(frequencies(frequencies_0_index)) == MicrophoneFrequencies(t_other.frequencies(frequencies_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const DominantFrequencies &other) const
+        bool operator !=(const DominantFrequencies &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_dominant_frequencies &other) const
+        bool operator ==(const wb_dominant_frequencies &t_other) const
         {
-            return *this == DominantFrequencies(other);
+            return *this == DominantFrequencies(t_other);
         }
 
-        bool operator !=(const wb_dominant_frequencies &other) const
+        bool operator !=(const wb_dominant_frequencies &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const RMSLevels rms() const
+        {
+            return RMSLevels(wb_dominant_frequencies::rms);
+        }
+
+        void set_rms(const RMSLevels &t_newValue)
+        {
+            wb_dominant_frequencies::rms = static_cast<wb_r_m_s_levels>(t_newValue);
+        }
+
+        const MicrophoneFrequencies *frequencies() const
+        {
+            return static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies);
+        }
+
+        MicrophoneFrequencies frequencies(int t_i) const
+        {
+            return MicrophoneFrequencies(wb_dominant_frequencies::frequencies[t_i]);
+        }
+
+        void set_frequencies(const MicrophoneFrequencies *t_newValue)
+        {
+            memcpy(wb_dominant_frequencies::frequencies, static_cast<const struct wb_microphone_frequencies *>(t_newValue), DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * (sizeof (struct wb_microphone_frequencies)));
+        }
+
+        void set_frequencies(const MicrophoneFrequencies &t_newValue, int t_i)
+        {
+            wb_dominant_frequencies::frequencies[t_i] = static_cast<wb_microphone_frequencies>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        DominantFrequencies(const std::string &str) {
+        DominantFrequencies(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -178,14 +208,12 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::RMSLevels * rms_cast = const_cast<guWhiteboard::RMSLevels *>(static_cast<const guWhiteboard::RMSLevels *>(&this->rms()));
-            ss << "rms=" << "{" << rms_cast->description() << "}";
+            ss << "rms=" << "{" << RMSLevels(this->rms()).description() << "}";
             ss << ", ";
             bool frequencies_first = true;
             ss << "frequencies={";
             for (int i = 0; i < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
-                guWhiteboard::MicrophoneFrequencies * frequencies_cast = const_cast<guWhiteboard::MicrophoneFrequencies *>(static_cast<const guWhiteboard::MicrophoneFrequencies *>(&this->frequencies(i)));
-                ss << (frequencies_first ? "" : ", ") << "{" << frequencies_cast->description() << "}";
+                ss << (frequencies_first ? "" : ", ") << "{" << MicrophoneFrequencies(this->frequencies(i)).description() << "}";
                 frequencies_first = false;
             }
             ss << "}";
@@ -201,14 +229,12 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::RMSLevels * rms_cast = const_cast<guWhiteboard::RMSLevels *>(static_cast<const guWhiteboard::RMSLevels *>(&this->rms()));
-            ss << "{" << rms_cast->to_string() << "}";
+            ss << "{" << RMSLevels(this->rms()).to_string() << "}";
             ss << ", ";
             bool frequencies_first = true;
             ss << "{";
             for (int i = 0; i < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
-                guWhiteboard::MicrophoneFrequencies * frequencies_cast = const_cast<guWhiteboard::MicrophoneFrequencies *>(static_cast<const guWhiteboard::MicrophoneFrequencies *>(&this->frequencies(i)));
-                ss << (frequencies_first ? "" : ", ") << "{" << frequencies_cast->to_string() << "}";
+                ss << (frequencies_first ? "" : ", ") << "{" << MicrophoneFrequencies(this->frequencies(i)).to_string() << "}";
                 frequencies_first = false;
             }
             ss << "}";
@@ -217,11 +243,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_DOMINANT_FREQUENCIES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_dominant_frequencies_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_dominant_frequencies_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE) {

@@ -94,6 +94,10 @@
 #define POINT2D_TO_STRING_BUFFER_SIZE 15
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * 2D point class.
  */
@@ -103,18 +107,14 @@ struct wb_point2d
     /**
      * x
      */
-    PROPERTY(int16_t, x)
+    int16_t x;
 
     /**
      * y
      */
-    PROPERTY(int16_t, y)
+    int16_t y;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

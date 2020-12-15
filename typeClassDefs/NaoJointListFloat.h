@@ -82,32 +82,32 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float LWristYaw = 0.0f, float LHand = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f, float RWristYaw = 0.0f, float RHand = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
-            set_HeadYaw(HeadYaw);
-            set_HeadPitch(HeadPitch);
-            set_LShoulderPitch(LShoulderPitch);
-            set_LShoulderRoll(LShoulderRoll);
-            set_LElbowYaw(LElbowYaw);
-            set_LElbowRoll(LElbowRoll);
-            set_LWristYaw(LWristYaw);
-            set_LHand(LHand);
-            set_RShoulderPitch(RShoulderPitch);
-            set_RShoulderRoll(RShoulderRoll);
-            set_RElbowYaw(RElbowYaw);
-            set_RElbowRoll(RElbowRoll);
-            set_RWristYaw(RWristYaw);
-            set_RHand(RHand);
-            set_LHipYawPitch(LHipYawPitch);
-            set_LHipRoll(LHipRoll);
-            set_LHipPitch(LHipPitch);
-            set_LKneePitch(LKneePitch);
-            set_LAnklePitch(LAnklePitch);
-            set_LAnkleRoll(LAnkleRoll);
-            set_RHipRoll(RHipRoll);
-            set_RHipPitch(RHipPitch);
-            set_RKneePitch(RKneePitch);
-            set_RAnklePitch(RAnklePitch);
-            set_RAnkleRoll(RAnkleRoll);
+        void init(float t_HeadYaw = 0.0f, float t_HeadPitch = 0.0f, float t_LShoulderPitch = 0.0f, float t_LShoulderRoll = 0.0f, float t_LElbowYaw = 0.0f, float t_LElbowRoll = 0.0f, float t_LWristYaw = 0.0f, float t_LHand = 0.0f, float t_RShoulderPitch = 0.0f, float t_RShoulderRoll = 0.0f, float t_RElbowYaw = 0.0f, float t_RElbowRoll = 0.0f, float t_RWristYaw = 0.0f, float t_RHand = 0.0f, float t_LHipYawPitch = 0.0f, float t_LHipRoll = 0.0f, float t_LHipPitch = 0.0f, float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RHipRoll = 0.0f, float t_RHipPitch = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f) {
+            set_HeadYaw(t_HeadYaw);
+            set_HeadPitch(t_HeadPitch);
+            set_LShoulderPitch(t_LShoulderPitch);
+            set_LShoulderRoll(t_LShoulderRoll);
+            set_LElbowYaw(t_LElbowYaw);
+            set_LElbowRoll(t_LElbowRoll);
+            set_LWristYaw(t_LWristYaw);
+            set_LHand(t_LHand);
+            set_RShoulderPitch(t_RShoulderPitch);
+            set_RShoulderRoll(t_RShoulderRoll);
+            set_RElbowYaw(t_RElbowYaw);
+            set_RElbowRoll(t_RElbowRoll);
+            set_RWristYaw(t_RWristYaw);
+            set_RHand(t_RHand);
+            set_LHipYawPitch(t_LHipYawPitch);
+            set_LHipRoll(t_LHipRoll);
+            set_LHipPitch(t_LHipPitch);
+            set_LKneePitch(t_LKneePitch);
+            set_LAnklePitch(t_LAnklePitch);
+            set_LAnkleRoll(t_LAnkleRoll);
+            set_RHipRoll(t_RHipRoll);
+            set_RHipPitch(t_RHipPitch);
+            set_RKneePitch(t_RKneePitch);
+            set_RAnklePitch(t_RAnklePitch);
+            set_RAnkleRoll(t_RAnkleRoll);
         }
 
     public:
@@ -115,91 +115,341 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoJointListFloat`.
          */
-        NaoJointListFloat(float HeadYaw = 0.0f, float HeadPitch = 0.0f, float LShoulderPitch = 0.0f, float LShoulderRoll = 0.0f, float LElbowYaw = 0.0f, float LElbowRoll = 0.0f, float LWristYaw = 0.0f, float LHand = 0.0f, float RShoulderPitch = 0.0f, float RShoulderRoll = 0.0f, float RElbowYaw = 0.0f, float RElbowRoll = 0.0f, float RWristYaw = 0.0f, float RHand = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f) {
-            this->init(HeadYaw, HeadPitch, LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll, LWristYaw, LHand, RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll, RWristYaw, RHand, LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll);
+        NaoJointListFloat(float t_HeadYaw = 0.0f, float t_HeadPitch = 0.0f, float t_LShoulderPitch = 0.0f, float t_LShoulderRoll = 0.0f, float t_LElbowYaw = 0.0f, float t_LElbowRoll = 0.0f, float t_LWristYaw = 0.0f, float t_LHand = 0.0f, float t_RShoulderPitch = 0.0f, float t_RShoulderRoll = 0.0f, float t_RElbowYaw = 0.0f, float t_RElbowRoll = 0.0f, float t_RWristYaw = 0.0f, float t_RHand = 0.0f, float t_LHipYawPitch = 0.0f, float t_LHipRoll = 0.0f, float t_LHipPitch = 0.0f, float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RHipRoll = 0.0f, float t_RHipPitch = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f) {
+            this->init(t_HeadYaw, t_HeadPitch, t_LShoulderPitch, t_LShoulderRoll, t_LElbowYaw, t_LElbowRoll, t_LWristYaw, t_LHand, t_RShoulderPitch, t_RShoulderRoll, t_RElbowYaw, t_RElbowRoll, t_RWristYaw, t_RHand, t_LHipYawPitch, t_LHipRoll, t_LHipPitch, t_LKneePitch, t_LAnklePitch, t_LAnkleRoll, t_RHipRoll, t_RHipPitch, t_RKneePitch, t_RAnklePitch, t_RAnkleRoll);
         }
 
         /**
          * Copy Constructor.
          */
-        NaoJointListFloat(const NaoJointListFloat &other): wb_nao_joint_list_float() {
-            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LWristYaw(), other.LHand(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.RWristYaw(), other.RHand(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RHipRoll(), other.RHipPitch(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        NaoJointListFloat(const NaoJointListFloat &t_other): wb_nao_joint_list_float() {
+            this->init(t_other.HeadYaw(), t_other.HeadPitch(), t_other.LShoulderPitch(), t_other.LShoulderRoll(), t_other.LElbowYaw(), t_other.LElbowRoll(), t_other.LWristYaw(), t_other.LHand(), t_other.RShoulderPitch(), t_other.RShoulderRoll(), t_other.RElbowYaw(), t_other.RElbowRoll(), t_other.RWristYaw(), t_other.RHand(), t_other.LHipYawPitch(), t_other.LHipRoll(), t_other.LHipPitch(), t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RHipRoll(), t_other.RHipPitch(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
         }
 
         /**
          * Copy Constructor.
          */
-        NaoJointListFloat(const struct wb_nao_joint_list_float &other): wb_nao_joint_list_float() {
-            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LWristYaw(), other.LHand(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.RWristYaw(), other.RHand(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RHipRoll(), other.RHipPitch(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        NaoJointListFloat(const struct wb_nao_joint_list_float &t_other): wb_nao_joint_list_float() {
+            this->init(t_other.HeadYaw, t_other.HeadPitch, t_other.LShoulderPitch, t_other.LShoulderRoll, t_other.LElbowYaw, t_other.LElbowRoll, t_other.LWristYaw, t_other.LHand, t_other.RShoulderPitch, t_other.RShoulderRoll, t_other.RElbowYaw, t_other.RElbowRoll, t_other.RWristYaw, t_other.RHand, t_other.LHipYawPitch, t_other.LHipRoll, t_other.LHipPitch, t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RHipRoll, t_other.RHipPitch, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoJointListFloat &operator = (const NaoJointListFloat &other) {
-            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LWristYaw(), other.LHand(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.RWristYaw(), other.RHand(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RHipRoll(), other.RHipPitch(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        NaoJointListFloat &operator = (const NaoJointListFloat &t_other) {
+            this->init(t_other.HeadYaw(), t_other.HeadPitch(), t_other.LShoulderPitch(), t_other.LShoulderRoll(), t_other.LElbowYaw(), t_other.LElbowRoll(), t_other.LWristYaw(), t_other.LHand(), t_other.RShoulderPitch(), t_other.RShoulderRoll(), t_other.RElbowYaw(), t_other.RElbowRoll(), t_other.RWristYaw(), t_other.RHand(), t_other.LHipYawPitch(), t_other.LHipRoll(), t_other.LHipPitch(), t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RHipRoll(), t_other.RHipPitch(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoJointListFloat &operator = (const struct wb_nao_joint_list_float &other) {
-            this->init(other.HeadYaw(), other.HeadPitch(), other.LShoulderPitch(), other.LShoulderRoll(), other.LElbowYaw(), other.LElbowRoll(), other.LWristYaw(), other.LHand(), other.RShoulderPitch(), other.RShoulderRoll(), other.RElbowYaw(), other.RElbowRoll(), other.RWristYaw(), other.RHand(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RHipRoll(), other.RHipPitch(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        NaoJointListFloat &operator = (const struct wb_nao_joint_list_float &t_other) {
+            this->init(t_other.HeadYaw, t_other.HeadPitch, t_other.LShoulderPitch, t_other.LShoulderRoll, t_other.LElbowYaw, t_other.LElbowRoll, t_other.LWristYaw, t_other.LHand, t_other.RShoulderPitch, t_other.RShoulderRoll, t_other.RElbowYaw, t_other.RElbowRoll, t_other.RWristYaw, t_other.RHand, t_other.LHipYawPitch, t_other.LHipRoll, t_other.LHipPitch, t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RHipRoll, t_other.RHipPitch, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
             return *this;
         }
 
-        bool operator ==(const NaoJointListFloat &other) const
+        bool operator ==(const NaoJointListFloat &t_other) const
         {
-            return fabsf(HeadYaw() - other.HeadYaw()) < FLT_EPSILON
-                && fabsf(HeadPitch() - other.HeadPitch()) < FLT_EPSILON
-                && fabsf(LShoulderPitch() - other.LShoulderPitch()) < FLT_EPSILON
-                && fabsf(LShoulderRoll() - other.LShoulderRoll()) < FLT_EPSILON
-                && fabsf(LElbowYaw() - other.LElbowYaw()) < FLT_EPSILON
-                && fabsf(LElbowRoll() - other.LElbowRoll()) < FLT_EPSILON
-                && fabsf(LWristYaw() - other.LWristYaw()) < FLT_EPSILON
-                && fabsf(LHand() - other.LHand()) < FLT_EPSILON
-                && fabsf(RShoulderPitch() - other.RShoulderPitch()) < FLT_EPSILON
-                && fabsf(RShoulderRoll() - other.RShoulderRoll()) < FLT_EPSILON
-                && fabsf(RElbowYaw() - other.RElbowYaw()) < FLT_EPSILON
-                && fabsf(RElbowRoll() - other.RElbowRoll()) < FLT_EPSILON
-                && fabsf(RWristYaw() - other.RWristYaw()) < FLT_EPSILON
-                && fabsf(RHand() - other.RHand()) < FLT_EPSILON
-                && fabsf(LHipYawPitch() - other.LHipYawPitch()) < FLT_EPSILON
-                && fabsf(LHipRoll() - other.LHipRoll()) < FLT_EPSILON
-                && fabsf(LHipPitch() - other.LHipPitch()) < FLT_EPSILON
-                && fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
-                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
-                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
-                && fabsf(RHipRoll() - other.RHipRoll()) < FLT_EPSILON
-                && fabsf(RHipPitch() - other.RHipPitch()) < FLT_EPSILON
-                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
-                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
-                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON;
+            return fabsf(HeadYaw() - t_other.HeadYaw()) < FLT_EPSILON
+                && fabsf(HeadPitch() - t_other.HeadPitch()) < FLT_EPSILON
+                && fabsf(LShoulderPitch() - t_other.LShoulderPitch()) < FLT_EPSILON
+                && fabsf(LShoulderRoll() - t_other.LShoulderRoll()) < FLT_EPSILON
+                && fabsf(LElbowYaw() - t_other.LElbowYaw()) < FLT_EPSILON
+                && fabsf(LElbowRoll() - t_other.LElbowRoll()) < FLT_EPSILON
+                && fabsf(LWristYaw() - t_other.LWristYaw()) < FLT_EPSILON
+                && fabsf(LHand() - t_other.LHand()) < FLT_EPSILON
+                && fabsf(RShoulderPitch() - t_other.RShoulderPitch()) < FLT_EPSILON
+                && fabsf(RShoulderRoll() - t_other.RShoulderRoll()) < FLT_EPSILON
+                && fabsf(RElbowYaw() - t_other.RElbowYaw()) < FLT_EPSILON
+                && fabsf(RElbowRoll() - t_other.RElbowRoll()) < FLT_EPSILON
+                && fabsf(RWristYaw() - t_other.RWristYaw()) < FLT_EPSILON
+                && fabsf(RHand() - t_other.RHand()) < FLT_EPSILON
+                && fabsf(LHipYawPitch() - t_other.LHipYawPitch()) < FLT_EPSILON
+                && fabsf(LHipRoll() - t_other.LHipRoll()) < FLT_EPSILON
+                && fabsf(LHipPitch() - t_other.LHipPitch()) < FLT_EPSILON
+                && fabsf(LKneePitch() - t_other.LKneePitch()) < FLT_EPSILON
+                && fabsf(LAnklePitch() - t_other.LAnklePitch()) < FLT_EPSILON
+                && fabsf(LAnkleRoll() - t_other.LAnkleRoll()) < FLT_EPSILON
+                && fabsf(RHipRoll() - t_other.RHipRoll()) < FLT_EPSILON
+                && fabsf(RHipPitch() - t_other.RHipPitch()) < FLT_EPSILON
+                && fabsf(RKneePitch() - t_other.RKneePitch()) < FLT_EPSILON
+                && fabsf(RAnklePitch() - t_other.RAnklePitch()) < FLT_EPSILON
+                && fabsf(RAnkleRoll() - t_other.RAnkleRoll()) < FLT_EPSILON;
         }
 
-        bool operator !=(const NaoJointListFloat &other) const
+        bool operator !=(const NaoJointListFloat &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_nao_joint_list_float &other) const
+        bool operator ==(const wb_nao_joint_list_float &t_other) const
         {
-            return *this == NaoJointListFloat(other);
+            return *this == NaoJointListFloat(t_other);
         }
 
-        bool operator !=(const wb_nao_joint_list_float &other) const
+        bool operator !=(const wb_nao_joint_list_float &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float HeadYaw() const
+        {
+            return wb_nao_joint_list_float::HeadYaw;
+        }
+
+        void set_HeadYaw(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::HeadYaw = t_newValue;
+        }
+
+        float HeadPitch() const
+        {
+            return wb_nao_joint_list_float::HeadPitch;
+        }
+
+        void set_HeadPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::HeadPitch = t_newValue;
+        }
+
+        float LShoulderPitch() const
+        {
+            return wb_nao_joint_list_float::LShoulderPitch;
+        }
+
+        void set_LShoulderPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LShoulderPitch = t_newValue;
+        }
+
+        float LShoulderRoll() const
+        {
+            return wb_nao_joint_list_float::LShoulderRoll;
+        }
+
+        void set_LShoulderRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LShoulderRoll = t_newValue;
+        }
+
+        float LElbowYaw() const
+        {
+            return wb_nao_joint_list_float::LElbowYaw;
+        }
+
+        void set_LElbowYaw(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LElbowYaw = t_newValue;
+        }
+
+        float LElbowRoll() const
+        {
+            return wb_nao_joint_list_float::LElbowRoll;
+        }
+
+        void set_LElbowRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LElbowRoll = t_newValue;
+        }
+
+        float LWristYaw() const
+        {
+            return wb_nao_joint_list_float::LWristYaw;
+        }
+
+        void set_LWristYaw(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LWristYaw = t_newValue;
+        }
+
+        float LHand() const
+        {
+            return wb_nao_joint_list_float::LHand;
+        }
+
+        void set_LHand(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LHand = t_newValue;
+        }
+
+        float RShoulderPitch() const
+        {
+            return wb_nao_joint_list_float::RShoulderPitch;
+        }
+
+        void set_RShoulderPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RShoulderPitch = t_newValue;
+        }
+
+        float RShoulderRoll() const
+        {
+            return wb_nao_joint_list_float::RShoulderRoll;
+        }
+
+        void set_RShoulderRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RShoulderRoll = t_newValue;
+        }
+
+        float RElbowYaw() const
+        {
+            return wb_nao_joint_list_float::RElbowYaw;
+        }
+
+        void set_RElbowYaw(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RElbowYaw = t_newValue;
+        }
+
+        float RElbowRoll() const
+        {
+            return wb_nao_joint_list_float::RElbowRoll;
+        }
+
+        void set_RElbowRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RElbowRoll = t_newValue;
+        }
+
+        float RWristYaw() const
+        {
+            return wb_nao_joint_list_float::RWristYaw;
+        }
+
+        void set_RWristYaw(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RWristYaw = t_newValue;
+        }
+
+        float RHand() const
+        {
+            return wb_nao_joint_list_float::RHand;
+        }
+
+        void set_RHand(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RHand = t_newValue;
+        }
+
+        float LHipYawPitch() const
+        {
+            return wb_nao_joint_list_float::LHipYawPitch;
+        }
+
+        void set_LHipYawPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LHipYawPitch = t_newValue;
+        }
+
+        float LHipRoll() const
+        {
+            return wb_nao_joint_list_float::LHipRoll;
+        }
+
+        void set_LHipRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LHipRoll = t_newValue;
+        }
+
+        float LHipPitch() const
+        {
+            return wb_nao_joint_list_float::LHipPitch;
+        }
+
+        void set_LHipPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LHipPitch = t_newValue;
+        }
+
+        float LKneePitch() const
+        {
+            return wb_nao_joint_list_float::LKneePitch;
+        }
+
+        void set_LKneePitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LKneePitch = t_newValue;
+        }
+
+        float LAnklePitch() const
+        {
+            return wb_nao_joint_list_float::LAnklePitch;
+        }
+
+        void set_LAnklePitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LAnklePitch = t_newValue;
+        }
+
+        float LAnkleRoll() const
+        {
+            return wb_nao_joint_list_float::LAnkleRoll;
+        }
+
+        void set_LAnkleRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::LAnkleRoll = t_newValue;
+        }
+
+        float RHipRoll() const
+        {
+            return wb_nao_joint_list_float::RHipRoll;
+        }
+
+        void set_RHipRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RHipRoll = t_newValue;
+        }
+
+        float RHipPitch() const
+        {
+            return wb_nao_joint_list_float::RHipPitch;
+        }
+
+        void set_RHipPitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RHipPitch = t_newValue;
+        }
+
+        float RKneePitch() const
+        {
+            return wb_nao_joint_list_float::RKneePitch;
+        }
+
+        void set_RKneePitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RKneePitch = t_newValue;
+        }
+
+        float RAnklePitch() const
+        {
+            return wb_nao_joint_list_float::RAnklePitch;
+        }
+
+        void set_RAnklePitch(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RAnklePitch = t_newValue;
+        }
+
+        float RAnkleRoll() const
+        {
+            return wb_nao_joint_list_float::RAnkleRoll;
+        }
+
+        void set_RAnkleRoll(const float &t_newValue)
+        {
+            wb_nao_joint_list_float::RAnkleRoll = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        NaoJointListFloat(const std::string &str) {
+        NaoJointListFloat(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -325,11 +575,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_NAO_JOINT_LIST_FLOAT_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_nao_joint_list_float_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_nao_joint_list_float_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE) {

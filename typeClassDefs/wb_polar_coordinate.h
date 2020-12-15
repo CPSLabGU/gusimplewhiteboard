@@ -96,6 +96,10 @@
 #define POLAR_COORDINATE_TO_STRING_BUFFER_SIZE 14
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a common structure for coordinates relative to the robot.
  */
@@ -105,18 +109,14 @@ struct wb_polar_coordinate
     /**
      * degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
      */
-    PROPERTY(int16_t, direction)
+    int16_t direction;
 
     /**
      * CM distance to the center point of the sighting.
      */
-    PROPERTY(uint16_t, distance)
+    uint16_t distance;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

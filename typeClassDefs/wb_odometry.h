@@ -98,6 +98,10 @@
 #define ODOMETRY_TO_STRING_BUFFER_SIZE 197
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Needs to mimic UNSW odometry!
  */
@@ -107,23 +111,19 @@ struct wb_odometry
     /**
      * /< forward, mm/s
      */
-    PROPERTY(float, forward)
+    float forward;
 
     /**
      * /< sideways, mm/s
      */
-    PROPERTY(float, left)
+    float left;
 
     /**
      * /< rotation, deg/s
      */
-    PROPERTY(float, turn)
+    float turn;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

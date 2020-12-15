@@ -96,6 +96,10 @@
 #define MICROPHONE_FREQUENCIES_TO_STRING_BUFFER_SIZE 31
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Frequency quadruple for rear and front stereo channels
  */
@@ -105,28 +109,24 @@ struct wb_microphone_frequencies
     /**
      * rear left frequency
      */
-    PROPERTY(int16_t, rear_left)
+    int16_t rear_left;
 
     /**
      * rear right frequency
      */
-    PROPERTY(int16_t, rear_right)
+    int16_t rear_right;
 
     /**
      * front left frequency
      */
-    PROPERTY(int16_t, front_left)
+    int16_t front_left;
 
     /**
      * front left frequency
      */
-    PROPERTY(int16_t, front_right)
+    int16_t front_right;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -90,9 +90,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_pixel_coordinate start = wb_pixel_coordinate(), struct wb_pixel_coordinate end = wb_pixel_coordinate()) {
-            set_start(start);
-            set_end(end);
+        void init(struct wb_pixel_coordinate t_start = wb_pixel_coordinate(), struct wb_pixel_coordinate t_end = wb_pixel_coordinate()) {
+            set_start(t_start);
+            set_end(t_end);
         }
 
     public:
@@ -100,68 +100,88 @@ namespace guWhiteboard {
         /**
          * Create a new `PixelCoordinateLine`.
          */
-        PixelCoordinateLine(struct wb_pixel_coordinate start = wb_pixel_coordinate(), struct wb_pixel_coordinate end = wb_pixel_coordinate()) {
-            this->init(start, end);
+        PixelCoordinateLine(struct wb_pixel_coordinate t_start = wb_pixel_coordinate(), struct wb_pixel_coordinate t_end = wb_pixel_coordinate()) {
+            this->init(t_start, t_end);
         }
 
         /**
          * Copy Constructor.
          */
-        PixelCoordinateLine(const PixelCoordinateLine &other): wb_pixel_coordinate_line() {
-            this->init(other.start(), other.end());
+        PixelCoordinateLine(const PixelCoordinateLine &t_other): wb_pixel_coordinate_line() {
+            this->init(t_other.start(), t_other.end());
         }
 
         /**
          * Copy Constructor.
          */
-        PixelCoordinateLine(const struct wb_pixel_coordinate_line &other): wb_pixel_coordinate_line() {
-            this->init(other.start(), other.end());
+        PixelCoordinateLine(const struct wb_pixel_coordinate_line &t_other): wb_pixel_coordinate_line() {
+            this->init(t_other.start, t_other.end);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PixelCoordinateLine &operator = (const PixelCoordinateLine &other) {
-            this->init(other.start(), other.end());
+        PixelCoordinateLine &operator = (const PixelCoordinateLine &t_other) {
+            this->init(t_other.start(), t_other.end());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PixelCoordinateLine &operator = (const struct wb_pixel_coordinate_line &other) {
-            this->init(other.start(), other.end());
+        PixelCoordinateLine &operator = (const struct wb_pixel_coordinate_line &t_other) {
+            this->init(t_other.start, t_other.end);
             return *this;
         }
 
-        bool operator ==(const PixelCoordinateLine &other) const
+        bool operator ==(const PixelCoordinateLine &t_other) const
         {
-            return PixelCoordinate(_start) == PixelCoordinate(other._start)
-                && PixelCoordinate(_end) == PixelCoordinate(other._end);
+            return PixelCoordinate(start()) == PixelCoordinate(t_other.start())
+                && PixelCoordinate(end()) == PixelCoordinate(t_other.end());
         }
 
-        bool operator !=(const PixelCoordinateLine &other) const
+        bool operator !=(const PixelCoordinateLine &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_pixel_coordinate_line &other) const
+        bool operator ==(const wb_pixel_coordinate_line &t_other) const
         {
-            return *this == PixelCoordinateLine(other);
+            return *this == PixelCoordinateLine(t_other);
         }
 
-        bool operator !=(const wb_pixel_coordinate_line &other) const
+        bool operator !=(const wb_pixel_coordinate_line &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const PixelCoordinate start() const
+        {
+            return PixelCoordinate(wb_pixel_coordinate_line::start);
+        }
+
+        void set_start(const PixelCoordinate &t_newValue)
+        {
+            wb_pixel_coordinate_line::start = static_cast<wb_pixel_coordinate>(t_newValue);
+        }
+
+        const PixelCoordinate end() const
+        {
+            return PixelCoordinate(wb_pixel_coordinate_line::end);
+        }
+
+        void set_end(const PixelCoordinate &t_newValue)
+        {
+            wb_pixel_coordinate_line::end = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        PixelCoordinateLine(const std::string &str) {
+        PixelCoordinateLine(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -172,11 +192,9 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinate * start_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->start()));
-            ss << "start=" << "{" << start_cast->description() << "}";
+            ss << "start=" << "{" << PixelCoordinate(this->start()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * end_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->end()));
-            ss << "end=" << "{" << end_cast->description() << "}";
+            ss << "end=" << "{" << PixelCoordinate(this->end()).description() << "}";
             return ss.str();
 #endif /// USE_WB_PIXEL_COORDINATE_LINE_C_CONVERSION
         }
@@ -189,21 +207,19 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinate * start_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->start()));
-            ss << "{" << start_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->start()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinate * end_cast = const_cast<guWhiteboard::PixelCoordinate *>(static_cast<const guWhiteboard::PixelCoordinate *>(&this->end()));
-            ss << "{" << end_cast->to_string() << "}";
+            ss << "{" << PixelCoordinate(this->end()).to_string() << "}";
             return ss.str();
 #endif /// USE_WB_PIXEL_COORDINATE_LINE_C_CONVERSION
         }
 
 #ifdef USE_WB_PIXEL_COORDINATE_LINE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_pixel_coordinate_line_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_pixel_coordinate_line_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE) {

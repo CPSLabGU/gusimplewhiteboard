@@ -94,6 +94,10 @@
 #define SENSORS_TORSOJOINTSENSORS_TO_STRING_BUFFER_SIZE 791
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Head and Arm joint positions c struct
  * (Gripper and stiffness not included yet.)
@@ -104,68 +108,64 @@ struct wb_sensors_torsojointsensors
     /**
      * Head pos in RAD
      */
-    PROPERTY(float, HeadYaw)
+    float HeadYaw;
 
     /**
      * Head pos in RAD
      */
-    PROPERTY(float, HeadPitch)
+    float HeadPitch;
 
     /**
      * pitch of the shoulder joint (left) RAD
      */
-    PROPERTY(float, LShoulderPitch)
+    float LShoulderPitch;
 
     /**
      * roll of the shoulder joint (left) RAD
      */
-    PROPERTY(float, LShoulderRoll)
+    float LShoulderRoll;
 
     /**
      * yaw of the elbow joint (left) RAD
      */
-    PROPERTY(float, LElbowYaw)
+    float LElbowYaw;
 
     /**
      * roll of the elbow joint (left) RAD
      */
-    PROPERTY(float, LElbowRoll)
+    float LElbowRoll;
 
     /**
      * pitch of the shoulder joint (right) RAD
      */
-    PROPERTY(float, RShoulderPitch)
+    float RShoulderPitch;
 
     /**
      * roll of the shoulder joint (right) RAD
      */
-    PROPERTY(float, RShoulderRoll)
+    float RShoulderRoll;
 
     /**
      * yaw of the elbow joint (right) RAD
      */
-    PROPERTY(float, RElbowYaw)
+    float RElbowYaw;
 
     /**
      * roll of the elbow joint (right) RAD
      */
-    PROPERTY(float, RElbowRoll)
+    float RElbowRoll;
 
     /**
      * yaw of the wrist joint (left)
      */
-    PROPERTY(float, LWristYaw)
+    float LWristYaw;
 
     /**
      * yaw of the wrist joint (right)
      */
-    PROPERTY(float, RWristYaw)
+    float RWristYaw;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

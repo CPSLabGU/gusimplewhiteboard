@@ -103,6 +103,10 @@ enum WalkEngineState {
 #define NAOWALKSTATUS_TO_STRING_BUFFER_SIZE 1032
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Status message for the walk engine created by UNSW.
  * LICENSE:
@@ -118,23 +122,19 @@ struct wb_nao_walk_status
     /**
      * The current state of the walk engine, see enum documentation.
      */
-    PROPERTY(enum WalkEngineState, walkEngineState)
+    enum WalkEngineState walkEngineState;
 
     /**
      * Current odometry object
      */
-    PROPERTY(struct wb_odometry, odometry)
+    struct wb_odometry odometry;
 
     /**
      * A counter used to reset the odometry object, change this value and send it via NaoWalkCommand to trigger an odometry reset.
      */
-    PROPERTY(uint8_t, odometryResetCounter)
+    uint8_t odometryResetCounter;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

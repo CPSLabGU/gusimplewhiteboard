@@ -81,10 +81,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
-            set_timeLeft(timeLeft);
-            set_doorOpen(doorOpen);
-            set_buttonPushed(buttonPushed);
+        void init(bool t_timeLeft = true, bool t_doorOpen = true, bool t_buttonPushed = true) {
+            set_timeLeft(t_timeLeft);
+            set_doorOpen(t_doorOpen);
+            set_buttonPushed(t_buttonPushed);
         }
 
     public:
@@ -92,69 +92,99 @@ namespace guWhiteboard {
         /**
          * Create a new `MicrowaveStatus`.
          */
-        MicrowaveStatus(bool timeLeft = true, bool doorOpen = true, bool buttonPushed = true) {
-            this->init(timeLeft, doorOpen, buttonPushed);
+        MicrowaveStatus(bool t_timeLeft = true, bool t_doorOpen = true, bool t_buttonPushed = true) {
+            this->init(t_timeLeft, t_doorOpen, t_buttonPushed);
         }
 
         /**
          * Copy Constructor.
          */
-        MicrowaveStatus(const MicrowaveStatus &other): wb_microwave_status() {
-            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
+        MicrowaveStatus(const MicrowaveStatus &t_other): wb_microwave_status() {
+            this->init(t_other.timeLeft(), t_other.doorOpen(), t_other.buttonPushed());
         }
 
         /**
          * Copy Constructor.
          */
-        MicrowaveStatus(const struct wb_microwave_status &other): wb_microwave_status() {
-            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
+        MicrowaveStatus(const struct wb_microwave_status &t_other): wb_microwave_status() {
+            this->init(t_other.timeLeft, t_other.doorOpen, t_other.buttonPushed);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MicrowaveStatus &operator = (const MicrowaveStatus &other) {
-            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
+        MicrowaveStatus &operator = (const MicrowaveStatus &t_other) {
+            this->init(t_other.timeLeft(), t_other.doorOpen(), t_other.buttonPushed());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MicrowaveStatus &operator = (const struct wb_microwave_status &other) {
-            this->init(other.timeLeft(), other.doorOpen(), other.buttonPushed());
+        MicrowaveStatus &operator = (const struct wb_microwave_status &t_other) {
+            this->init(t_other.timeLeft, t_other.doorOpen, t_other.buttonPushed);
             return *this;
         }
 
-        bool operator ==(const MicrowaveStatus &other) const
+        bool operator ==(const MicrowaveStatus &t_other) const
         {
-            return timeLeft() == other.timeLeft()
-                && doorOpen() == other.doorOpen()
-                && buttonPushed() == other.buttonPushed();
+            return timeLeft() == t_other.timeLeft()
+                && doorOpen() == t_other.doorOpen()
+                && buttonPushed() == t_other.buttonPushed();
         }
 
-        bool operator !=(const MicrowaveStatus &other) const
+        bool operator !=(const MicrowaveStatus &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_microwave_status &other) const
+        bool operator ==(const wb_microwave_status &t_other) const
         {
-            return *this == MicrowaveStatus(other);
+            return *this == MicrowaveStatus(t_other);
         }
 
-        bool operator !=(const wb_microwave_status &other) const
+        bool operator !=(const wb_microwave_status &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool timeLeft() const
+        {
+            return wb_microwave_status::timeLeft;
+        }
+
+        void set_timeLeft(const bool &t_newValue)
+        {
+            wb_microwave_status::timeLeft = t_newValue;
+        }
+
+        bool doorOpen() const
+        {
+            return wb_microwave_status::doorOpen;
+        }
+
+        void set_doorOpen(const bool &t_newValue)
+        {
+            wb_microwave_status::doorOpen = t_newValue;
+        }
+
+        bool buttonPushed() const
+        {
+            return wb_microwave_status::buttonPushed;
+        }
+
+        void set_buttonPushed(const bool &t_newValue)
+        {
+            wb_microwave_status::buttonPushed = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MicrowaveStatus(const std::string &str) {
+        MicrowaveStatus(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -192,11 +222,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MICROWAVE_STATUS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_microwave_status_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_microwave_status_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MICROWAVE_STATUS_DESC_BUFFER_SIZE) {

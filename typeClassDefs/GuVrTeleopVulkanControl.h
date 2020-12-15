@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum VRControlMovementOptions movementOptions = VRResting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
-            set_movementOptions(movementOptions);
-            set_walkingOptions(walkingOptions);
+        void init(enum VRControlMovementOptions t_movementOptions = VRResting, enum VRControlWalkingOptions t_walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
+            set_movementOptions(t_movementOptions);
+            set_walkingOptions(t_walkingOptions);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `GuVrTeleopVulkanControl`.
          */
-        GuVrTeleopVulkanControl(enum VRControlMovementOptions movementOptions = VRResting, enum VRControlWalkingOptions walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
-            this->init(movementOptions, walkingOptions);
+        GuVrTeleopVulkanControl(enum VRControlMovementOptions t_movementOptions = VRResting, enum VRControlWalkingOptions t_walkingOptions = NUM_VR_CONTROL_WALKING_OPTIONS) {
+            this->init(t_movementOptions, t_walkingOptions);
         }
 
         /**
          * Copy Constructor.
          */
-        GuVrTeleopVulkanControl(const GuVrTeleopVulkanControl &other): wb_gu_vr_teleop_vulkan_control() {
-            this->init(other.movementOptions(), other.walkingOptions());
+        GuVrTeleopVulkanControl(const GuVrTeleopVulkanControl &t_other): wb_gu_vr_teleop_vulkan_control() {
+            this->init(t_other.movementOptions(), t_other.walkingOptions());
         }
 
         /**
          * Copy Constructor.
          */
-        GuVrTeleopVulkanControl(const struct wb_gu_vr_teleop_vulkan_control &other): wb_gu_vr_teleop_vulkan_control() {
-            this->init(other.movementOptions(), other.walkingOptions());
+        GuVrTeleopVulkanControl(const struct wb_gu_vr_teleop_vulkan_control &t_other): wb_gu_vr_teleop_vulkan_control() {
+            this->init(t_other.movementOptions, t_other.walkingOptions);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        GuVrTeleopVulkanControl &operator = (const GuVrTeleopVulkanControl &other) {
-            this->init(other.movementOptions(), other.walkingOptions());
+        GuVrTeleopVulkanControl &operator = (const GuVrTeleopVulkanControl &t_other) {
+            this->init(t_other.movementOptions(), t_other.walkingOptions());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        GuVrTeleopVulkanControl &operator = (const struct wb_gu_vr_teleop_vulkan_control &other) {
-            this->init(other.movementOptions(), other.walkingOptions());
+        GuVrTeleopVulkanControl &operator = (const struct wb_gu_vr_teleop_vulkan_control &t_other) {
+            this->init(t_other.movementOptions, t_other.walkingOptions);
             return *this;
         }
 
-        bool operator ==(const GuVrTeleopVulkanControl &other) const
+        bool operator ==(const GuVrTeleopVulkanControl &t_other) const
         {
-            return movementOptions() == other.movementOptions()
-                && walkingOptions() == other.walkingOptions();
+            return movementOptions() == t_other.movementOptions()
+                && walkingOptions() == t_other.walkingOptions();
         }
 
-        bool operator !=(const GuVrTeleopVulkanControl &other) const
+        bool operator !=(const GuVrTeleopVulkanControl &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_gu_vr_teleop_vulkan_control &other) const
+        bool operator ==(const wb_gu_vr_teleop_vulkan_control &t_other) const
         {
-            return *this == GuVrTeleopVulkanControl(other);
+            return *this == GuVrTeleopVulkanControl(t_other);
         }
 
-        bool operator !=(const wb_gu_vr_teleop_vulkan_control &other) const
+        bool operator !=(const wb_gu_vr_teleop_vulkan_control &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum VRControlMovementOptions movementOptions() const
+        {
+            return wb_gu_vr_teleop_vulkan_control::movementOptions;
+        }
+
+        void set_movementOptions(const enum VRControlMovementOptions &t_newValue)
+        {
+            wb_gu_vr_teleop_vulkan_control::movementOptions = t_newValue;
+        }
+
+        enum VRControlWalkingOptions walkingOptions() const
+        {
+            return wb_gu_vr_teleop_vulkan_control::walkingOptions;
+        }
+
+        void set_walkingOptions(const enum VRControlWalkingOptions &t_newValue)
+        {
+            wb_gu_vr_teleop_vulkan_control::walkingOptions = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        GuVrTeleopVulkanControl(const std::string &str) {
+        GuVrTeleopVulkanControl(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -290,11 +310,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_GU_VR_TELEOP_VULKAN_CONTROL_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_gu_vr_teleop_vulkan_control_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_gu_vr_teleop_vulkan_control_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE) {

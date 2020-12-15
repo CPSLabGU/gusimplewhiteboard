@@ -94,6 +94,10 @@
 #define HEAD_JOINT_SENSORS_TO_STRING_BUFFER_SIZE 15
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Body joint positions c struct
  */
@@ -103,18 +107,14 @@ struct wb_head_joint_sensors
     /**
      * Head pos in degrees.
      */
-    PROPERTY(int16_t, headYaw)
+    int16_t headYaw;
 
     /**
      * Head pos in degrees.
      */
-    PROPERTY(int16_t, headPitch)
+    int16_t headPitch;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -94,6 +94,10 @@
 #define SENSORS_LEGJOINTSENSORS_TO_STRING_BUFFER_SIZE 791
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Leg joints
  */
@@ -103,68 +107,64 @@ struct wb_sensors_legjointsensors
     /**
      * pitch of the knee joint (left)
      */
-    PROPERTY(float, LKneePitch)
+    float LKneePitch;
 
     /**
      * pitch of the ankle joint (left)
      */
-    PROPERTY(float, LAnklePitch)
+    float LAnklePitch;
 
     /**
      * roll of the ankle joint (left)
      */
-    PROPERTY(float, LAnkleRoll)
+    float LAnkleRoll;
 
     /**
      * pitch of the knee joint (right)
      */
-    PROPERTY(float, RKneePitch)
+    float RKneePitch;
 
     /**
      * pitch of the ankle joint (right)
      */
-    PROPERTY(float, RAnklePitch)
+    float RAnklePitch;
 
     /**
      * roll of the ankle joint (right)
      */
-    PROPERTY(float, RAnkleRoll)
+    float RAnkleRoll;
 
     /**
      * 'yaw/pitch' of the hip. LHipYawPitch and RHipYawPitch are the same on the Nao robots, it is a fused joint with a single motor for control.
      */
-    PROPERTY(float, LHipYawPitch)
+    float LHipYawPitch;
 
     /**
      * roll of the hip (left)
      */
-    PROPERTY(float, LHipRoll)
+    float LHipRoll;
 
     /**
      * pitch of the hip (left)
      */
-    PROPERTY(float, LHipPitch)
+    float LHipPitch;
 
     /**
      * 'yaw/pitch' of the hip. LHipYawPitch and RHipYawPitch are the same on the Nao robots, it is a fused joint with a single motor for control.
      */
-    PROPERTY(float, RHipYawPitch)
+    float RHipYawPitch;
 
     /**
      * roll of the hip (right)
      */
-    PROPERTY(float, RHipRoll)
+    float RHipRoll;
 
     /**
      * pitch of the hip (right)
      */
-    PROPERTY(float, RHipPitch)
+    float RHipPitch;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

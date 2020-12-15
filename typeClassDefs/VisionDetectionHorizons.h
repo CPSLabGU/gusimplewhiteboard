@@ -83,16 +83,16 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            set_frameNumber(frameNumber);
-            if (horizons != NULLPTR) {
-                std::memcpy(this->_horizons, horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
+        void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_horizon t_horizons[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            set_frameNumber(t_frameNumber);
+            if (t_horizons != NULLPTR) {
+                std::memcpy(wb_vision_detection_horizons::horizons, t_horizons, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
             } else {
                 struct wb_vision_detection_horizon horizons_temp[VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE] = {wb_vision_detection_horizon(), wb_vision_detection_horizon()};
-                std::memcpy(this->_horizons, horizons_temp, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
+                std::memcpy(wb_vision_detection_horizons::horizons, horizons_temp, VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * sizeof (struct wb_vision_detection_horizon));
             }
-            set_res_width(res_width);
-            set_res_height(res_height);
+            set_res_width(t_res_width);
+            set_res_height(t_res_height);
         }
 
     public:
@@ -100,77 +100,127 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionHorizons`.
          */
-        VisionDetectionHorizons(uint64_t frameNumber = 0, const struct wb_vision_detection_horizon horizons[2] = NULLPTR, uint16_t res_width = 0, uint16_t res_height = 0) {
-            this->init(frameNumber, horizons, res_width, res_height);
+        VisionDetectionHorizons(uint64_t t_frameNumber = 0, const struct wb_vision_detection_horizon t_horizons[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+            this->init(t_frameNumber, t_horizons, t_res_width, t_res_height);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionHorizons(const VisionDetectionHorizons &other): wb_vision_detection_horizons() {
-            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
+        VisionDetectionHorizons(const VisionDetectionHorizons &t_other): wb_vision_detection_horizons() {
+            this->init(t_other.frameNumber(), t_other.horizons(), t_other.res_width(), t_other.res_height());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionHorizons(const struct wb_vision_detection_horizons &other): wb_vision_detection_horizons() {
-            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
+        VisionDetectionHorizons(const struct wb_vision_detection_horizons &t_other): wb_vision_detection_horizons() {
+            this->init(t_other.frameNumber, t_other.horizons, t_other.res_width, t_other.res_height);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionHorizons &operator = (const VisionDetectionHorizons &other) {
-            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
+        VisionDetectionHorizons &operator = (const VisionDetectionHorizons &t_other) {
+            this->init(t_other.frameNumber(), t_other.horizons(), t_other.res_width(), t_other.res_height());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionHorizons &operator = (const struct wb_vision_detection_horizons &other) {
-            this->init(other.frameNumber(), other.horizons(), other.res_width(), other.res_height());
+        VisionDetectionHorizons &operator = (const struct wb_vision_detection_horizons &t_other) {
+            this->init(t_other.frameNumber, t_other.horizons, t_other.res_width, t_other.res_height);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionHorizons &other) const
+        bool operator ==(const VisionDetectionHorizons &t_other) const
         {
-            if (!(frameNumber() == other.frameNumber()
-                && res_width() == other.res_width()
-                && res_height() == other.res_height()))
+            if (!(frameNumber() == t_other.frameNumber()
+                && res_width() == t_other.res_width()
+                && res_height() == t_other.res_height()))
             {
                 return false;
             }
             for (int horizons_0_index = 0; horizons_0_index < 2; horizons_0_index++)
             {
-                if (!(VisionDetectionHorizon(_horizons[horizons_0_index]) == VisionDetectionHorizon(other._horizons[horizons_0_index]))) return false;
+                if (!(VisionDetectionHorizon(horizons(horizons_0_index)) == VisionDetectionHorizon(t_other.horizons(horizons_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const VisionDetectionHorizons &other) const
+        bool operator !=(const VisionDetectionHorizons &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_horizons &other) const
+        bool operator ==(const wb_vision_detection_horizons &t_other) const
         {
-            return *this == VisionDetectionHorizons(other);
+            return *this == VisionDetectionHorizons(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_horizons &other) const
+        bool operator !=(const wb_vision_detection_horizons &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint64_t frameNumber() const
+        {
+            return wb_vision_detection_horizons::frameNumber;
+        }
+
+        void set_frameNumber(const uint64_t &t_newValue)
+        {
+            wb_vision_detection_horizons::frameNumber = t_newValue;
+        }
+
+        const VisionDetectionHorizon *horizons() const
+        {
+            return static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons);
+        }
+
+        VisionDetectionHorizon horizons(int t_i) const
+        {
+            return VisionDetectionHorizon(wb_vision_detection_horizons::horizons[t_i]);
+        }
+
+        void set_horizons(const VisionDetectionHorizon *t_newValue)
+        {
+            memcpy(wb_vision_detection_horizons::horizons, static_cast<const struct wb_vision_detection_horizon *>(t_newValue), VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE * (sizeof (struct wb_vision_detection_horizon)));
+        }
+
+        void set_horizons(const VisionDetectionHorizon &t_newValue, int t_i)
+        {
+            wb_vision_detection_horizons::horizons[t_i] = static_cast<wb_vision_detection_horizon>(t_newValue);
+        }
+
+        uint16_t res_width() const
+        {
+            return wb_vision_detection_horizons::res_width;
+        }
+
+        void set_res_width(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_horizons::res_width = t_newValue;
+        }
+
+        uint16_t res_height() const
+        {
+            return wb_vision_detection_horizons::res_height;
+        }
+
+        void set_res_height(const uint16_t &t_newValue)
+        {
+            wb_vision_detection_horizons::res_height = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionHorizons(const std::string &str) {
+        VisionDetectionHorizons(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,8 +236,7 @@ namespace guWhiteboard {
             bool horizons_first = true;
             ss << "horizons={";
             for (int i = 0; i < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionHorizon * horizons_cast = const_cast<guWhiteboard::VisionDetectionHorizon *>(static_cast<const guWhiteboard::VisionDetectionHorizon *>(&this->horizons(i)));
-                ss << (horizons_first ? "" : ", ") << "{" << horizons_cast->description() << "}";
+                ss << (horizons_first ? "" : ", ") << "{" << VisionDetectionHorizon(this->horizons(i)).description() << "}";
                 horizons_first = false;
             }
             ss << "}";
@@ -212,8 +261,7 @@ namespace guWhiteboard {
             bool horizons_first = true;
             ss << "{";
             for (int i = 0; i < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; i++) {
-                guWhiteboard::VisionDetectionHorizon * horizons_cast = const_cast<guWhiteboard::VisionDetectionHorizon *>(static_cast<const guWhiteboard::VisionDetectionHorizon *>(&this->horizons(i)));
-                ss << (horizons_first ? "" : ", ") << "{" << horizons_cast->to_string() << "}";
+                ss << (horizons_first ? "" : ", ") << "{" << VisionDetectionHorizon(this->horizons(i)).to_string() << "}";
                 horizons_first = false;
             }
             ss << "}";
@@ -226,11 +274,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_VISION_DETECTION_HORIZONS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_horizons_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_horizons_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE) {

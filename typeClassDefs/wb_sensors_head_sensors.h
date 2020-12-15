@@ -94,6 +94,10 @@
 #define SENSORS_HEAD_SENSORS_TO_STRING_BUFFER_SIZE 20
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains the current values of sensors located on top of the robot's head (designed for Nao H25 & H21 only)
  *
@@ -113,23 +117,19 @@ struct wb_sensors_head_sensors
     /**
      * state of the front capacitive sensor located on top of the head, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, Head_Touch_Front)
+    bool Head_Touch_Front;
 
     /**
      * state of the middle capacitive sensor located on top of the head, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, Head_Touch_Middle)
+    bool Head_Touch_Middle;
 
     /**
      * state of the back capacitive sensor located on top of the head, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, Head_Touch_Rear)
+    bool Head_Touch_Rear;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

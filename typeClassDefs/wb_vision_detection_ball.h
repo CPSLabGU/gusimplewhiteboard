@@ -107,6 +107,10 @@ enum BallOptions {
 #define VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE 1041
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results for the Ball Ray Tracer (guvision). 
  * Results are in pixels of the image utilised, at whatever the resolution happen to be.
@@ -118,28 +122,24 @@ struct wb_vision_detection_ball
     /**
      * Ball detection details.
      */
-    PROPERTY(enum BallOptions, sightingType)
+    enum BallOptions sightingType;
 
     /**
      * The pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, coordinate)
+    struct wb_pixel_coordinate coordinate;
 
     /**
      * The vertical radius in pixels.
      */
-    PROPERTY(uint16_t, verticalRadius)
+    uint16_t verticalRadius;
 
     /**
      * The horizontal radius in pixels.
      */
-    PROPERTY(uint16_t, horizontalRadius)
+    uint16_t horizontalRadius;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

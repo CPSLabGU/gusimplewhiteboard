@@ -81,13 +81,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t x = 0, int16_t y = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0, uint8_t confidence = 0) {
-            set_x(x);
-            set_y(y);
-            set_pitchInDegrees(pitchInDegrees);
-            set_yawInDegrees(yawInDegrees);
-            set_rollInDegrees(rollInDegrees);
-            set_confidence(confidence);
+        void init(int16_t t_x = 0, int16_t t_y = 0, int16_t t_pitchInDegrees = 0, int16_t t_yawInDegrees = 0, int16_t t_rollInDegrees = 0, uint8_t t_confidence = 0) {
+            set_x(t_x);
+            set_y(t_y);
+            set_pitchInDegrees(t_pitchInDegrees);
+            set_yawInDegrees(t_yawInDegrees);
+            set_rollInDegrees(t_rollInDegrees);
+            set_confidence(t_confidence);
         }
 
     public:
@@ -95,72 +95,132 @@ namespace guWhiteboard {
         /**
          * Create a new `BallPosition`.
          */
-        BallPosition(int16_t x = 0, int16_t y = 0, int16_t pitchInDegrees = 0, int16_t yawInDegrees = 0, int16_t rollInDegrees = 0, uint8_t confidence = 0) {
-            this->init(x, y, pitchInDegrees, yawInDegrees, rollInDegrees, confidence);
+        BallPosition(int16_t t_x = 0, int16_t t_y = 0, int16_t t_pitchInDegrees = 0, int16_t t_yawInDegrees = 0, int16_t t_rollInDegrees = 0, uint8_t t_confidence = 0) {
+            this->init(t_x, t_y, t_pitchInDegrees, t_yawInDegrees, t_rollInDegrees, t_confidence);
         }
 
         /**
          * Copy Constructor.
          */
-        BallPosition(const BallPosition &other): wb_ball_position() {
-            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
+        BallPosition(const BallPosition &t_other): wb_ball_position() {
+            this->init(t_other.x(), t_other.y(), t_other.pitchInDegrees(), t_other.yawInDegrees(), t_other.rollInDegrees(), t_other.confidence());
         }
 
         /**
          * Copy Constructor.
          */
-        BallPosition(const struct wb_ball_position &other): wb_ball_position() {
-            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
+        BallPosition(const struct wb_ball_position &t_other): wb_ball_position() {
+            this->init(t_other.x, t_other.y, t_other.pitchInDegrees, t_other.yawInDegrees, t_other.rollInDegrees, t_other.confidence);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        BallPosition &operator = (const BallPosition &other) {
-            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
+        BallPosition &operator = (const BallPosition &t_other) {
+            this->init(t_other.x(), t_other.y(), t_other.pitchInDegrees(), t_other.yawInDegrees(), t_other.rollInDegrees(), t_other.confidence());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        BallPosition &operator = (const struct wb_ball_position &other) {
-            this->init(other.x(), other.y(), other.pitchInDegrees(), other.yawInDegrees(), other.rollInDegrees(), other.confidence());
+        BallPosition &operator = (const struct wb_ball_position &t_other) {
+            this->init(t_other.x, t_other.y, t_other.pitchInDegrees, t_other.yawInDegrees, t_other.rollInDegrees, t_other.confidence);
             return *this;
         }
 
-        bool operator ==(const BallPosition &other) const
+        bool operator ==(const BallPosition &t_other) const
         {
-            return x() == other.x()
-                && y() == other.y()
-                && pitchInDegrees() == other.pitchInDegrees()
-                && yawInDegrees() == other.yawInDegrees()
-                && rollInDegrees() == other.rollInDegrees()
-                && confidence() == other.confidence();
+            return x() == t_other.x()
+                && y() == t_other.y()
+                && pitchInDegrees() == t_other.pitchInDegrees()
+                && yawInDegrees() == t_other.yawInDegrees()
+                && rollInDegrees() == t_other.rollInDegrees()
+                && confidence() == t_other.confidence();
         }
 
-        bool operator !=(const BallPosition &other) const
+        bool operator !=(const BallPosition &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_ball_position &other) const
+        bool operator ==(const wb_ball_position &t_other) const
         {
-            return *this == BallPosition(other);
+            return *this == BallPosition(t_other);
         }
 
-        bool operator !=(const wb_ball_position &other) const
+        bool operator !=(const wb_ball_position &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t x() const
+        {
+            return wb_ball_position::x;
+        }
+
+        void set_x(const int16_t &t_newValue)
+        {
+            wb_ball_position::x = t_newValue;
+        }
+
+        int16_t y() const
+        {
+            return wb_ball_position::y;
+        }
+
+        void set_y(const int16_t &t_newValue)
+        {
+            wb_ball_position::y = t_newValue;
+        }
+
+        int16_t pitchInDegrees() const
+        {
+            return wb_ball_position::pitchInDegrees;
+        }
+
+        void set_pitchInDegrees(const int16_t &t_newValue)
+        {
+            wb_ball_position::pitchInDegrees = t_newValue;
+        }
+
+        int16_t yawInDegrees() const
+        {
+            return wb_ball_position::yawInDegrees;
+        }
+
+        void set_yawInDegrees(const int16_t &t_newValue)
+        {
+            wb_ball_position::yawInDegrees = t_newValue;
+        }
+
+        int16_t rollInDegrees() const
+        {
+            return wb_ball_position::rollInDegrees;
+        }
+
+        void set_rollInDegrees(const int16_t &t_newValue)
+        {
+            wb_ball_position::rollInDegrees = t_newValue;
+        }
+
+        uint8_t confidence() const
+        {
+            return wb_ball_position::confidence;
+        }
+
+        void set_confidence(const uint8_t &t_newValue)
+        {
+            wb_ball_position::confidence = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        BallPosition(const std::string &str) {
+        BallPosition(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -210,11 +270,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_BALL_POSITION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_ball_position_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_ball_position_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > BALL_POSITION_DESC_BUFFER_SIZE) {

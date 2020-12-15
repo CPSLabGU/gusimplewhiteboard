@@ -84,9 +84,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t x = 0, int16_t y = 0) {
-            set_x(x);
-            set_y(y);
+        void init(int16_t t_x = 0, int16_t t_y = 0) {
+            set_x(t_x);
+            set_y(t_y);
         }
 
     public:
@@ -94,68 +94,88 @@ namespace guWhiteboard {
         /**
          * Create a new `PixelCoordinate`.
          */
-        PixelCoordinate(int16_t x = 0, int16_t y = 0) {
-            this->init(x, y);
+        PixelCoordinate(int16_t t_x = 0, int16_t t_y = 0) {
+            this->init(t_x, t_y);
         }
 
         /**
          * Copy Constructor.
          */
-        PixelCoordinate(const PixelCoordinate &other): wb_pixel_coordinate() {
-            this->init(other.x(), other.y());
+        PixelCoordinate(const PixelCoordinate &t_other): wb_pixel_coordinate() {
+            this->init(t_other.x(), t_other.y());
         }
 
         /**
          * Copy Constructor.
          */
-        PixelCoordinate(const struct wb_pixel_coordinate &other): wb_pixel_coordinate() {
-            this->init(other.x(), other.y());
+        PixelCoordinate(const struct wb_pixel_coordinate &t_other): wb_pixel_coordinate() {
+            this->init(t_other.x, t_other.y);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PixelCoordinate &operator = (const PixelCoordinate &other) {
-            this->init(other.x(), other.y());
+        PixelCoordinate &operator = (const PixelCoordinate &t_other) {
+            this->init(t_other.x(), t_other.y());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PixelCoordinate &operator = (const struct wb_pixel_coordinate &other) {
-            this->init(other.x(), other.y());
+        PixelCoordinate &operator = (const struct wb_pixel_coordinate &t_other) {
+            this->init(t_other.x, t_other.y);
             return *this;
         }
 
-        bool operator ==(const PixelCoordinate &other) const
+        bool operator ==(const PixelCoordinate &t_other) const
         {
-            return x() == other.x()
-                && y() == other.y();
+            return x() == t_other.x()
+                && y() == t_other.y();
         }
 
-        bool operator !=(const PixelCoordinate &other) const
+        bool operator !=(const PixelCoordinate &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_pixel_coordinate &other) const
+        bool operator ==(const wb_pixel_coordinate &t_other) const
         {
-            return *this == PixelCoordinate(other);
+            return *this == PixelCoordinate(t_other);
         }
 
-        bool operator !=(const wb_pixel_coordinate &other) const
+        bool operator !=(const wb_pixel_coordinate &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t x() const
+        {
+            return wb_pixel_coordinate::x;
+        }
+
+        void set_x(const int16_t &t_newValue)
+        {
+            wb_pixel_coordinate::x = t_newValue;
+        }
+
+        int16_t y() const
+        {
+            return wb_pixel_coordinate::y;
+        }
+
+        void set_y(const int16_t &t_newValue)
+        {
+            wb_pixel_coordinate::y = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        PixelCoordinate(const std::string &str) {
+        PixelCoordinate(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -189,11 +209,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_PIXEL_COORDINATE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_pixel_coordinate_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_pixel_coordinate_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > PIXEL_COORDINATE_DESC_BUFFER_SIZE) {

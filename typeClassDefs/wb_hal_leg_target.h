@@ -161,6 +161,10 @@
 #define HAL_LEG_TARGET_TO_STRING_BUFFER_SIZE 204
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Classgenerator version
  */
@@ -170,123 +174,119 @@ struct wb_hal_leg_target
     /**
      * Control Message: The elapsed time, in mSec, in which the movement should be completed. Status Message: Absolute time when the current action will complete. (Thus this is an int32_t.)
      */
-    PROPERTY(int32_t, target_movement_time)
+    int32_t target_movement_time;
 
     /**
      * target hip yaw pitch angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_hipyawpitch)
+    int16_t target_hipyawpitch;
 
     /**
      * target hip roll angle angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_hiproll)
+    int16_t target_hiproll;
 
     /**
      * target hip pitch angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_hippitch)
+    int16_t target_hippitch;
 
     /**
      * target knee pitch angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_kneepitch)
+    int16_t target_kneepitch;
 
     /**
      * target ankle pitch angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_anklepitch)
+    int16_t target_anklepitch;
 
     /**
      * target ankle roll angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_ankleroll)
+    int16_t target_ankleroll;
 
     /**
      * target leg number; This property is used strictly for accounting purposes when the struct is stored within an array and the robot has numerous legs.
      */
-    PROPERTY(uint8_t, target_leg)
+    uint8_t target_leg;
 
     /**
      * target hip yaw pitch stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_hipyawpitchstiffness)
+    uint8_t target_hipyawpitchstiffness;
 
     /**
      * target hip roll stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_hiprollstiffness)
+    uint8_t target_hiprollstiffness;
 
     /**
      * target hip pitch stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_hippitchstiffness)
+    uint8_t target_hippitchstiffness;
 
     /**
      * target knee pitch stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_kneepitchstiffness)
+    uint8_t target_kneepitchstiffness;
 
     /**
      * target ankle pitch stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_anklepitchstiffness)
+    uint8_t target_anklepitchstiffness;
 
     /**
      * target ankle roll stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_anklerollstiffness)
+    uint8_t target_anklerollstiffness;
 
     /**
      * target leg's pliability when in Passive Mode; When the leg is passive, this value reduces the update frequency, thus making the leg more resistant to external forces. Use of values from 0 to 10 is recommended. A value of zero (0), allows the quickest reponse to external forces (e.g. gravity). Higher values stiffen the leg and reduce responsiveness, the movement will become stepped. HOWEVER, the robot will fall under its own weight unless active mode is re-engaged.
      */
-    PROPERTY(uint8_t, target_pliability)
+    uint8_t target_pliability;
 
     /**
      * Is the hipyawpitch Active (true[DEFAULT]) or Passive (false). Active :  The robot's DCM will prevent movement of the hip from the requested pose in accordance to the joint stiffness. (This is the normal behaviour of the robot.) Passive:  Once the requested pose is achieved, the DCM will automatically update the requested pose according to deviations in the joints. The effect of this is that the robot's legs will be susceptible to gravity (and will fall slowly over time) as well as to externally applied forces (allowing it to be manipulated).
      */
-    BIT_PROPERTY(target_hipyawpitch_active)
+    unsigned int target_hipyawpitch_active : 1;
 
     /**
      * Is the hip roll Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_hiproll_active)
+    unsigned int target_hiproll_active : 1;
 
     /**
      * Is the hip pitch Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_hippitch_active)
+    unsigned int target_hippitch_active : 1;
 
     /**
      * Is the knee pitch Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_kneepitch_active)
+    unsigned int target_kneepitch_active : 1;
 
     /**
      * Is the ankle pitch Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_anklepitch_active)
+    unsigned int target_anklepitch_active : 1;
 
     /**
      * Is the ankle roll Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_ankleroll_active)
+    unsigned int target_ankleroll_active : 1;
 
     /**
      * Control Message: Not used. Status Message: Naoqiinterface reports that the goal location of all joints have been reached (within specified tolerance).
      */
-    BIT_PROPERTY(target_leg_at_goal)
+    unsigned int target_leg_at_goal : 1;
 
     /**
      * Control Message: Stop the leg at its current location. Status Message: Indicates if the last control message issued a STOP command.
      */
-    BIT_PROPERTY(target_leg_stop)
+    unsigned int target_leg_stop : 1;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

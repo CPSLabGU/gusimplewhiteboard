@@ -94,6 +94,10 @@
 #define SENSORS_HAND_SENSORS_TO_STRING_BUFFER_SIZE 41
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains the current values of sensors located on the robots hands (designed for Nao H25 only)
  *
@@ -113,38 +117,34 @@ struct wb_sensors_hand_sensors
     /**
      * state of the hand capacitive sensor on the Left side of Left Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, LHand_Touch_Left)
+    bool LHand_Touch_Left;
 
     /**
      * state of the hand capacitive sensor on the Back of Left Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, LHand_Touch_Back)
+    bool LHand_Touch_Back;
 
     /**
      * state of the hand capacitive sensor on the Right side of Left Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, LHand_Touch_Right)
+    bool LHand_Touch_Right;
 
     /**
      * state of the hand capacitive sensor on the Left side of Right Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, RHand_Touch_Left)
+    bool RHand_Touch_Left;
 
     /**
      * state of the hand capacitive sensor on the Back of Right Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, RHand_Touch_Back)
+    bool RHand_Touch_Back;
 
     /**
      * state of the hand capacitive sensor on the Right side of Right Hand, on / off. could use a 1 bit var here
      */
-    PROPERTY(bool, RHand_Touch_Right)
+    bool RHand_Touch_Right;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

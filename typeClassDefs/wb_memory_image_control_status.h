@@ -100,6 +100,10 @@ enum MemoryImagePixelFormat {
 #define MEMORY_IMAGE_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 527
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This message is used to post the status of the memory images, including what
  * pixel format and resolution are being posted; as well as the control messages,
@@ -111,23 +115,19 @@ struct wb_memory_image_control_status
     /**
      * The resolution width.
      */
-    PROPERTY(uint16_t, res_width)
+    uint16_t res_width;
 
     /**
      * The resolution height.
      */
-    PROPERTY(uint16_t, res_height)
+    uint16_t res_height;
 
     /**
      * The pixel format of the images.
      */
-    PROPERTY(enum MemoryImagePixelFormat, pixelFormat)
+    enum MemoryImagePixelFormat pixelFormat;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -101,6 +101,10 @@ enum GoalSightingType {
 #define MACHINE_FILTERED_VISION_TO_STRING_BUFFER_SIZE 553
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results of the FSM (and sub machines) "SMFilterVision".
  * This machine applies some basic filtering to vision output messages.
@@ -112,43 +116,39 @@ struct wb_machine_filtered_vision
     /**
      * degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right.
      */
-    PROPERTY(int8_t, ball_direction)
+    int8_t ball_direction;
 
     /**
      * CM distance to the ball.
      */
-    PROPERTY(uint16_t, ball_distance)
+    uint16_t ball_distance;
 
     /**
      * has the ball been seen enough by vision to be considered actually 'visible'.
      */
-    PROPERTY(bool, ball_visible)
+    bool ball_visible;
 
     /**
      * degrees, relative to the center of the nao torso. + == left, 0 == straight, - == right. NYI
      */
-    PROPERTY(int8_t, goal_direction)
+    int8_t goal_direction;
 
     /**
      * CM distance to the ball. NYI
      */
-    PROPERTY(uint16_t, goal_distance)
+    uint16_t goal_distance;
 
     /**
      * has the ball been seen enough by vision to be considered actually 'visible'. NYI
      */
-    PROPERTY(bool, goal_visible)
+    bool goal_visible;
 
     /**
      * The type of the goal sighting.
      */
-    PROPERTY(enum GoalSightingType, goal_sightingType)
+    enum GoalSightingType goal_sightingType;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

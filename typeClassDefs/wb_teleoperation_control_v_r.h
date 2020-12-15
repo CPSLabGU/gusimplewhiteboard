@@ -96,6 +96,10 @@
 #define TELEOPERATIONCONTROLVR_TO_STRING_BUFFER_SIZE 259
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Control class used by the VR TeleOp App
  */
@@ -105,63 +109,59 @@ struct wb_teleoperation_control_v_r
     /**
      * Last octet of IP address. Lets the robot work out if this message if for itself.
      */
-    PROPERTY(uint8_t, ip)
+    uint8_t ip;
 
     /**
      * Use guWhiteboard::Motions::action enum values!
      */
-    PROPERTY(int32_t, action)
+    int32_t action;
 
     /**
      * Head pos in RAD
      */
-    PROPERTY(float, HeadYaw)
+    float HeadYaw;
 
     /**
      * Head pos in RAD
      */
-    PROPERTY(float, HeadPitch)
+    float HeadPitch;
 
     /**
      * guWhiteboard::Motions::stance
      */
-    PROPERTY(int32_t, stance)
+    int32_t stance;
 
     /**
      * Use enum StreamingType (Vision_Control.h)
      */
-    PROPERTY(int32_t, streamType)
+    int32_t streamType;
 
     /**
      * VisionCamera
      */
-    PROPERTY(int32_t, selectedCamera)
+    int32_t selectedCamera;
 
     /**
      * String passed to Say_t
      */
-    STRING_PROPERTY(sayString, 30)
+    char sayString[30];
 
     /**
      * Walk value
      */
-    PROPERTY(int32_t, walk)
+    int32_t walk;
 
     /**
      * Turn value
      */
-    PROPERTY(int32_t, turn)
+    int32_t turn;
 
     /**
      * Timestamp for task distinguishing
      */
-    PROPERTY(int32_t, timestamp)
+    int32_t timestamp;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

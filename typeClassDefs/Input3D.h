@@ -81,11 +81,11 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0) {
-            set_yaw(yaw);
-            set_pitch(pitch);
-            set_roll(roll);
-            set_power(power);
+        void init(int16_t t_yaw = 0, int16_t t_pitch = 0, int16_t t_roll = 0, int16_t t_power = 0) {
+            set_yaw(t_yaw);
+            set_pitch(t_pitch);
+            set_roll(t_roll);
+            set_power(t_power);
         }
 
     public:
@@ -93,70 +93,110 @@ namespace guWhiteboard {
         /**
          * Create a new `Input3D`.
          */
-        Input3D(int16_t yaw = 0, int16_t pitch = 0, int16_t roll = 0, int16_t power = 0) {
-            this->init(yaw, pitch, roll, power);
+        Input3D(int16_t t_yaw = 0, int16_t t_pitch = 0, int16_t t_roll = 0, int16_t t_power = 0) {
+            this->init(t_yaw, t_pitch, t_roll, t_power);
         }
 
         /**
          * Copy Constructor.
          */
-        Input3D(const Input3D &other): wb_input3d() {
-            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
+        Input3D(const Input3D &t_other): wb_input3d() {
+            this->init(t_other.yaw(), t_other.pitch(), t_other.roll(), t_other.power());
         }
 
         /**
          * Copy Constructor.
          */
-        Input3D(const struct wb_input3d &other): wb_input3d() {
-            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
+        Input3D(const struct wb_input3d &t_other): wb_input3d() {
+            this->init(t_other.yaw, t_other.pitch, t_other.roll, t_other.power);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Input3D &operator = (const Input3D &other) {
-            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
+        Input3D &operator = (const Input3D &t_other) {
+            this->init(t_other.yaw(), t_other.pitch(), t_other.roll(), t_other.power());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Input3D &operator = (const struct wb_input3d &other) {
-            this->init(other.yaw(), other.pitch(), other.roll(), other.power());
+        Input3D &operator = (const struct wb_input3d &t_other) {
+            this->init(t_other.yaw, t_other.pitch, t_other.roll, t_other.power);
             return *this;
         }
 
-        bool operator ==(const Input3D &other) const
+        bool operator ==(const Input3D &t_other) const
         {
-            return yaw() == other.yaw()
-                && pitch() == other.pitch()
-                && roll() == other.roll()
-                && power() == other.power();
+            return yaw() == t_other.yaw()
+                && pitch() == t_other.pitch()
+                && roll() == t_other.roll()
+                && power() == t_other.power();
         }
 
-        bool operator !=(const Input3D &other) const
+        bool operator !=(const Input3D &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_input3d &other) const
+        bool operator ==(const wb_input3d &t_other) const
         {
-            return *this == Input3D(other);
+            return *this == Input3D(t_other);
         }
 
-        bool operator !=(const wb_input3d &other) const
+        bool operator !=(const wb_input3d &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t yaw() const
+        {
+            return wb_input3d::yaw;
+        }
+
+        void set_yaw(const int16_t &t_newValue)
+        {
+            wb_input3d::yaw = t_newValue;
+        }
+
+        int16_t pitch() const
+        {
+            return wb_input3d::pitch;
+        }
+
+        void set_pitch(const int16_t &t_newValue)
+        {
+            wb_input3d::pitch = t_newValue;
+        }
+
+        int16_t roll() const
+        {
+            return wb_input3d::roll;
+        }
+
+        void set_roll(const int16_t &t_newValue)
+        {
+            wb_input3d::roll = t_newValue;
+        }
+
+        int16_t power() const
+        {
+            return wb_input3d::power;
+        }
+
+        void set_power(const int16_t &t_newValue)
+        {
+            wb_input3d::power = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Input3D(const std::string &str) {
+        Input3D(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -198,11 +238,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_INPUT3D_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_input3d_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_input3d_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > INPUT3D_DESC_BUFFER_SIZE) {

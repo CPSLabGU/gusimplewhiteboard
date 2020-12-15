@@ -155,6 +155,10 @@ enum NeuralNetworkType {
 #define VISION_CONTROL_STATUS_TO_STRING_BUFFER_SIZE 4291
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * The control status message used by guvision, guvision will post the current state of the pipeline once a frame with the message, various properties can also be set by post a vision_controll message with this type
  */
@@ -164,103 +168,99 @@ struct wb_vision_control_status
     /**
      * Resolution that the camera should caputre images at
      */
-    PROPERTY(enum Resolutions, cameraResolution)
+    enum Resolutions cameraResolution;
 
     /**
      * Whether the pipeline is running or not
      */
-    PROPERTY(bool, pipelineRunning)
+    bool pipelineRunning;
 
     /**
      * Which camera to use
      */
-    PROPERTY(enum VisionCamera, selectedCamera)
+    enum VisionCamera selectedCamera;
 
     /**
      * Whether to save the image used in the next iteration of the pipeline to file
      */
-    PROPERTY(enum SaveFileType, saveImage)
+    enum SaveFileType saveImage;
 
     /**
      * Whether to save the classified version of the image used in the next iteration of the pipeline to file
      */
-    PROPERTY(bool, saveClassifiedImage)
+    bool saveClassifiedImage;
 
     /**
      * vision pipeline to be run
      */
-    PROPERTY(enum NamedPipeline, pipeline)
+    enum NamedPipeline pipeline;
 
     /**
      * Choose which camera to run on (0-Top, 1-Bottom, 2-Both)
      */
-    PROPERTY(int, chooseCamera)
+    int chooseCamera;
 
     /**
      * Confidence threshold for the neural net
      */
-    PROPERTY(float, confidence)
+    float confidence;
 
     /**
      * neural network to run on top camera
      */
-    PROPERTY(enum NeuralNetworkType, networkTop)
+    enum NeuralNetworkType networkTop;
 
     /**
      * neural network to run on bottom camera
      */
-    PROPERTY(enum NeuralNetworkType, networkBottom)
+    enum NeuralNetworkType networkBottom;
 
     /**
      * The type of streaming to be used
      */
-    PROPERTY(enum StreamingType, streamingSource)
+    enum StreamingType streamingSource;
 
     /**
      * Use /tmp/test.ai2 as pipeline image rather then camera if true
      */
-    PROPERTY(bool, imageInput)
+    bool imageInput;
 
     /**
      * The quality to compress jpeg images at for streaming can be between 0 and 100
      */
-    PROPERTY(int, jpegStreamQuality)
+    int jpegStreamQuality;
 
     /**
      * The stride to use when streaming jpeg images
      */
-    PROPERTY(int, jpegStreamStride)
+    int jpegStreamStride;
 
     /**
      * The current framerate that the pipeline is running at
      */
-    PROPERTY(int, frameRate)
+    int frameRate;
 
     /**
      * run the pipeline one time only if true
      */
-    PROPERTY(bool, runPipelineOnce)
+    bool runPipelineOnce;
 
     /**
      * The current frame number reported by guvison
      */
-    PROPERTY(uint64_t, frameNumber)
+    uint64_t frameNumber;
 
     /**
      * the DLC file to use for segmentation, searched in $HOME/data/ with the .dlc extension
      */
-    STRING_PROPERTY(colourCalibration, 10)
+    char colourCalibration[10];
 
     /**
      * the time that the image was taken that this status message refers to
      */
-    PROPERTY(struct timeval, imageTime)
+    struct timeval imageTime;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

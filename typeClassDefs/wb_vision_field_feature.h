@@ -100,6 +100,10 @@
 #define VISION_FIELD_FEATURE_TO_STRING_BUFFER_SIZE 518
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief A corner or T-Intersection that vision has seen
  */
@@ -109,18 +113,14 @@ struct wb_vision_field_feature
     /**
      * The pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, coordinate)
+    struct wb_pixel_coordinate coordinate;
 
     /**
      * camera it was seen on
      */
-    PROPERTY(uint8_t, camera)
+    uint8_t camera;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

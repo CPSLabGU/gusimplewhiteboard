@@ -83,10 +83,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool left = false, bool right = false, bool front = false) {
-            set_left(left);
-            set_right(right);
-            set_front(front);
+        void init(bool t_left = false, bool t_right = false, bool t_front = false) {
+            set_left(t_left);
+            set_right(t_right);
+            set_front(t_front);
         }
 
     public:
@@ -94,69 +94,99 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoObstacleDirection`.
          */
-        NaoObstacleDirection(bool left = false, bool right = false, bool front = false) {
-            this->init(left, right, front);
+        NaoObstacleDirection(bool t_left = false, bool t_right = false, bool t_front = false) {
+            this->init(t_left, t_right, t_front);
         }
 
         /**
          * Copy Constructor.
          */
-        NaoObstacleDirection(const NaoObstacleDirection &other): wb_nao_obstacle_direction() {
-            this->init(other.left(), other.right(), other.front());
+        NaoObstacleDirection(const NaoObstacleDirection &t_other): wb_nao_obstacle_direction() {
+            this->init(t_other.left(), t_other.right(), t_other.front());
         }
 
         /**
          * Copy Constructor.
          */
-        NaoObstacleDirection(const struct wb_nao_obstacle_direction &other): wb_nao_obstacle_direction() {
-            this->init(other.left(), other.right(), other.front());
+        NaoObstacleDirection(const struct wb_nao_obstacle_direction &t_other): wb_nao_obstacle_direction() {
+            this->init(t_other.left, t_other.right, t_other.front);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoObstacleDirection &operator = (const NaoObstacleDirection &other) {
-            this->init(other.left(), other.right(), other.front());
+        NaoObstacleDirection &operator = (const NaoObstacleDirection &t_other) {
+            this->init(t_other.left(), t_other.right(), t_other.front());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoObstacleDirection &operator = (const struct wb_nao_obstacle_direction &other) {
-            this->init(other.left(), other.right(), other.front());
+        NaoObstacleDirection &operator = (const struct wb_nao_obstacle_direction &t_other) {
+            this->init(t_other.left, t_other.right, t_other.front);
             return *this;
         }
 
-        bool operator ==(const NaoObstacleDirection &other) const
+        bool operator ==(const NaoObstacleDirection &t_other) const
         {
-            return left() == other.left()
-                && right() == other.right()
-                && front() == other.front();
+            return left() == t_other.left()
+                && right() == t_other.right()
+                && front() == t_other.front();
         }
 
-        bool operator !=(const NaoObstacleDirection &other) const
+        bool operator !=(const NaoObstacleDirection &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_nao_obstacle_direction &other) const
+        bool operator ==(const wb_nao_obstacle_direction &t_other) const
         {
-            return *this == NaoObstacleDirection(other);
+            return *this == NaoObstacleDirection(t_other);
         }
 
-        bool operator !=(const wb_nao_obstacle_direction &other) const
+        bool operator !=(const wb_nao_obstacle_direction &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool left() const
+        {
+            return wb_nao_obstacle_direction::left;
+        }
+
+        void set_left(const bool &t_newValue)
+        {
+            wb_nao_obstacle_direction::left = t_newValue;
+        }
+
+        bool right() const
+        {
+            return wb_nao_obstacle_direction::right;
+        }
+
+        void set_right(const bool &t_newValue)
+        {
+            wb_nao_obstacle_direction::right = t_newValue;
+        }
+
+        bool front() const
+        {
+            return wb_nao_obstacle_direction::front;
+        }
+
+        void set_front(const bool &t_newValue)
+        {
+            wb_nao_obstacle_direction::front = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        NaoObstacleDirection(const std::string &str) {
+        NaoObstacleDirection(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -194,11 +224,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_NAO_OBSTACLE_DIRECTION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_nao_obstacle_direction_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_nao_obstacle_direction_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > NAO_OBSTACLE_DIRECTION_DESC_BUFFER_SIZE) {

@@ -81,13 +81,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "") {
-            set_ip(ip);
-            set_action(action);
-            set_stance(stance);
-            set_streamType(streamType);
-            set_selectedCamera(selectedCamera);
-            gu_strlcpy(const_cast<char *>(this->sayString()), sayString.c_str(), 30);
+        void init(uint8_t t_ip = 0, int32_t t_action = 0, int32_t t_stance = 0, int32_t t_streamType = 0, int32_t t_selectedCamera = 0, std::string t_sayString = "") {
+            set_ip(t_ip);
+            set_action(t_action);
+            set_stance(t_stance);
+            set_streamType(t_streamType);
+            set_selectedCamera(t_selectedCamera);
+            gu_strlcpy(const_cast<char *>(this->sayString()), t_sayString.c_str(), 30);
         }
 
     public:
@@ -95,72 +95,132 @@ namespace guWhiteboard {
         /**
          * Create a new `TeleoperationControl`.
          */
-        TeleoperationControl(uint8_t ip = 0, int32_t action = 0, int32_t stance = 0, int32_t streamType = 0, int32_t selectedCamera = 0, std::string sayString = "") {
-            this->init(ip, action, stance, streamType, selectedCamera, sayString);
+        TeleoperationControl(uint8_t t_ip = 0, int32_t t_action = 0, int32_t t_stance = 0, int32_t t_streamType = 0, int32_t t_selectedCamera = 0, std::string t_sayString = "") {
+            this->init(t_ip, t_action, t_stance, t_streamType, t_selectedCamera, t_sayString);
         }
 
         /**
          * Copy Constructor.
          */
-        TeleoperationControl(const TeleoperationControl &other): wb_teleoperation_control() {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
+        TeleoperationControl(const TeleoperationControl &t_other): wb_teleoperation_control() {
+            this->init(t_other.ip(), t_other.action(), t_other.stance(), t_other.streamType(), t_other.selectedCamera(), t_other.sayString());
         }
 
         /**
          * Copy Constructor.
          */
-        TeleoperationControl(const struct wb_teleoperation_control &other): wb_teleoperation_control() {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
+        TeleoperationControl(const struct wb_teleoperation_control &t_other): wb_teleoperation_control() {
+            this->init(t_other.ip, t_other.action, t_other.stance, t_other.streamType, t_other.selectedCamera, t_other.sayString);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TeleoperationControl &operator = (const TeleoperationControl &other) {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
+        TeleoperationControl &operator = (const TeleoperationControl &t_other) {
+            this->init(t_other.ip(), t_other.action(), t_other.stance(), t_other.streamType(), t_other.selectedCamera(), t_other.sayString());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TeleoperationControl &operator = (const struct wb_teleoperation_control &other) {
-            this->init(other.ip(), other.action(), other.stance(), other.streamType(), other.selectedCamera(), other.sayString());
+        TeleoperationControl &operator = (const struct wb_teleoperation_control &t_other) {
+            this->init(t_other.ip, t_other.action, t_other.stance, t_other.streamType, t_other.selectedCamera, t_other.sayString);
             return *this;
         }
 
-        bool operator ==(const TeleoperationControl &other) const
+        bool operator ==(const TeleoperationControl &t_other) const
         {
-            return ip() == other.ip()
-                && action() == other.action()
-                && stance() == other.stance()
-                && streamType() == other.streamType()
-                && selectedCamera() == other.selectedCamera()
-                && 0 == strncmp(_sayString, other._sayString, 30);
+            return ip() == t_other.ip()
+                && action() == t_other.action()
+                && stance() == t_other.stance()
+                && streamType() == t_other.streamType()
+                && selectedCamera() == t_other.selectedCamera()
+                && 0 == strncmp(sayString(), t_other.sayString(), 30);
         }
 
-        bool operator !=(const TeleoperationControl &other) const
+        bool operator !=(const TeleoperationControl &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_teleoperation_control &other) const
+        bool operator ==(const wb_teleoperation_control &t_other) const
         {
-            return *this == TeleoperationControl(other);
+            return *this == TeleoperationControl(t_other);
         }
 
-        bool operator !=(const wb_teleoperation_control &other) const
+        bool operator !=(const wb_teleoperation_control &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        uint8_t ip() const
+        {
+            return wb_teleoperation_control::ip;
+        }
+
+        void set_ip(const uint8_t &t_newValue)
+        {
+            wb_teleoperation_control::ip = t_newValue;
+        }
+
+        int32_t action() const
+        {
+            return wb_teleoperation_control::action;
+        }
+
+        void set_action(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control::action = t_newValue;
+        }
+
+        int32_t stance() const
+        {
+            return wb_teleoperation_control::stance;
+        }
+
+        void set_stance(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control::stance = t_newValue;
+        }
+
+        int32_t streamType() const
+        {
+            return wb_teleoperation_control::streamType;
+        }
+
+        void set_streamType(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control::streamType = t_newValue;
+        }
+
+        int32_t selectedCamera() const
+        {
+            return wb_teleoperation_control::selectedCamera;
+        }
+
+        void set_selectedCamera(const int32_t &t_newValue)
+        {
+            wb_teleoperation_control::selectedCamera = t_newValue;
+        }
+
+        const char *sayString() const
+        {
+            return &(wb_teleoperation_control::sayString[0]);
+        }
+
+        void set_sayString(const char *t_newValue)
+        {
+            strncpy(wb_teleoperation_control::sayString, t_newValue, 30);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        TeleoperationControl(const std::string &str) {
+        TeleoperationControl(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -218,11 +278,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_TELEOPERATIONCONTROL_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_teleoperation_control_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_teleoperation_control_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > TELEOPERATIONCONTROL_DESC_BUFFER_SIZE) {
@@ -336,7 +396,7 @@ namespace guWhiteboard {
                     }
                     case 5:
                     {
-                        strncpy(this->sayString(), var_str, 30);
+                        strncpy(wb_teleoperation_control::sayString, var_str, 30);
                         break;
                     }
                 }

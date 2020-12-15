@@ -94,6 +94,10 @@
 #define INPUT3D_TO_STRING_BUFFER_SIZE 31
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Simple 3 dimensional input class
  */
@@ -103,28 +107,24 @@ struct wb_input3d
     /**
      * yaw
      */
-    PROPERTY(int16_t, yaw)
+    int16_t yaw;
 
     /**
      * pitch
      */
-    PROPERTY(int16_t, pitch)
+    int16_t pitch;
 
     /**
      * roll
      */
-    PROPERTY(int16_t, roll)
+    int16_t roll;
 
     /**
      * power value, ie. high of leap hand or thrust of flight simulator
      */
-    PROPERTY(int16_t, power)
+    int16_t power;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

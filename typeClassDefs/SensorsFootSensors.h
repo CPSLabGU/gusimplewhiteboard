@@ -82,25 +82,25 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float LFoot_FSR_FrontLeft = 0.0f, float LFoot_FSR_FrontRight = 0.0f, float LFoot_FSR_RearLeft = 0.0f, float LFoot_FSR_RearRight = 0.0f, float LFoot_FSR_CenterOfPressure_X = 0.0f, float LFoot_FSR_CenterOfPressure_Y = 0.0f, float LFoot_FSR_TotalWeight = 0.0f, float RFoot_FSR_FrontLeft = 0.0f, float RFoot_FSR_FrontRight = 0.0f, float RFoot_FSR_RearLeft = 0.0f, float RFoot_FSR_RearRight = 0.0f, float RFoot_FSR_CenterOfPressure_X = 0.0f, float RFoot_FSR_CenterOfPressure_Y = 0.0f, float RFoot_FSR_TotalWeight = 0.0f, bool LFoot_Bumper_Left = true, bool LFoot_Bumper_Right = true, bool RFoot_Bumper_Left = true, bool RFoot_Bumper_Right = true) {
-            set_LFoot_FSR_FrontLeft(LFoot_FSR_FrontLeft);
-            set_LFoot_FSR_FrontRight(LFoot_FSR_FrontRight);
-            set_LFoot_FSR_RearLeft(LFoot_FSR_RearLeft);
-            set_LFoot_FSR_RearRight(LFoot_FSR_RearRight);
-            set_LFoot_FSR_CenterOfPressure_X(LFoot_FSR_CenterOfPressure_X);
-            set_LFoot_FSR_CenterOfPressure_Y(LFoot_FSR_CenterOfPressure_Y);
-            set_LFoot_FSR_TotalWeight(LFoot_FSR_TotalWeight);
-            set_RFoot_FSR_FrontLeft(RFoot_FSR_FrontLeft);
-            set_RFoot_FSR_FrontRight(RFoot_FSR_FrontRight);
-            set_RFoot_FSR_RearLeft(RFoot_FSR_RearLeft);
-            set_RFoot_FSR_RearRight(RFoot_FSR_RearRight);
-            set_RFoot_FSR_CenterOfPressure_X(RFoot_FSR_CenterOfPressure_X);
-            set_RFoot_FSR_CenterOfPressure_Y(RFoot_FSR_CenterOfPressure_Y);
-            set_RFoot_FSR_TotalWeight(RFoot_FSR_TotalWeight);
-            set_LFoot_Bumper_Left(LFoot_Bumper_Left);
-            set_LFoot_Bumper_Right(LFoot_Bumper_Right);
-            set_RFoot_Bumper_Left(RFoot_Bumper_Left);
-            set_RFoot_Bumper_Right(RFoot_Bumper_Right);
+        void init(float t_LFoot_FSR_FrontLeft = 0.0f, float t_LFoot_FSR_FrontRight = 0.0f, float t_LFoot_FSR_RearLeft = 0.0f, float t_LFoot_FSR_RearRight = 0.0f, float t_LFoot_FSR_CenterOfPressure_X = 0.0f, float t_LFoot_FSR_CenterOfPressure_Y = 0.0f, float t_LFoot_FSR_TotalWeight = 0.0f, float t_RFoot_FSR_FrontLeft = 0.0f, float t_RFoot_FSR_FrontRight = 0.0f, float t_RFoot_FSR_RearLeft = 0.0f, float t_RFoot_FSR_RearRight = 0.0f, float t_RFoot_FSR_CenterOfPressure_X = 0.0f, float t_RFoot_FSR_CenterOfPressure_Y = 0.0f, float t_RFoot_FSR_TotalWeight = 0.0f, bool t_LFoot_Bumper_Left = true, bool t_LFoot_Bumper_Right = true, bool t_RFoot_Bumper_Left = true, bool t_RFoot_Bumper_Right = true) {
+            set_LFoot_FSR_FrontLeft(t_LFoot_FSR_FrontLeft);
+            set_LFoot_FSR_FrontRight(t_LFoot_FSR_FrontRight);
+            set_LFoot_FSR_RearLeft(t_LFoot_FSR_RearLeft);
+            set_LFoot_FSR_RearRight(t_LFoot_FSR_RearRight);
+            set_LFoot_FSR_CenterOfPressure_X(t_LFoot_FSR_CenterOfPressure_X);
+            set_LFoot_FSR_CenterOfPressure_Y(t_LFoot_FSR_CenterOfPressure_Y);
+            set_LFoot_FSR_TotalWeight(t_LFoot_FSR_TotalWeight);
+            set_RFoot_FSR_FrontLeft(t_RFoot_FSR_FrontLeft);
+            set_RFoot_FSR_FrontRight(t_RFoot_FSR_FrontRight);
+            set_RFoot_FSR_RearLeft(t_RFoot_FSR_RearLeft);
+            set_RFoot_FSR_RearRight(t_RFoot_FSR_RearRight);
+            set_RFoot_FSR_CenterOfPressure_X(t_RFoot_FSR_CenterOfPressure_X);
+            set_RFoot_FSR_CenterOfPressure_Y(t_RFoot_FSR_CenterOfPressure_Y);
+            set_RFoot_FSR_TotalWeight(t_RFoot_FSR_TotalWeight);
+            set_LFoot_Bumper_Left(t_LFoot_Bumper_Left);
+            set_LFoot_Bumper_Right(t_LFoot_Bumper_Right);
+            set_RFoot_Bumper_Left(t_RFoot_Bumper_Left);
+            set_RFoot_Bumper_Right(t_RFoot_Bumper_Right);
         }
 
     public:
@@ -108,84 +108,264 @@ namespace guWhiteboard {
         /**
          * Create a new `SensorsFootSensors`.
          */
-        SensorsFootSensors(float LFoot_FSR_FrontLeft = 0.0f, float LFoot_FSR_FrontRight = 0.0f, float LFoot_FSR_RearLeft = 0.0f, float LFoot_FSR_RearRight = 0.0f, float LFoot_FSR_CenterOfPressure_X = 0.0f, float LFoot_FSR_CenterOfPressure_Y = 0.0f, float LFoot_FSR_TotalWeight = 0.0f, float RFoot_FSR_FrontLeft = 0.0f, float RFoot_FSR_FrontRight = 0.0f, float RFoot_FSR_RearLeft = 0.0f, float RFoot_FSR_RearRight = 0.0f, float RFoot_FSR_CenterOfPressure_X = 0.0f, float RFoot_FSR_CenterOfPressure_Y = 0.0f, float RFoot_FSR_TotalWeight = 0.0f, bool LFoot_Bumper_Left = true, bool LFoot_Bumper_Right = true, bool RFoot_Bumper_Left = true, bool RFoot_Bumper_Right = true) {
-            this->init(LFoot_FSR_FrontLeft, LFoot_FSR_FrontRight, LFoot_FSR_RearLeft, LFoot_FSR_RearRight, LFoot_FSR_CenterOfPressure_X, LFoot_FSR_CenterOfPressure_Y, LFoot_FSR_TotalWeight, RFoot_FSR_FrontLeft, RFoot_FSR_FrontRight, RFoot_FSR_RearLeft, RFoot_FSR_RearRight, RFoot_FSR_CenterOfPressure_X, RFoot_FSR_CenterOfPressure_Y, RFoot_FSR_TotalWeight, LFoot_Bumper_Left, LFoot_Bumper_Right, RFoot_Bumper_Left, RFoot_Bumper_Right);
+        SensorsFootSensors(float t_LFoot_FSR_FrontLeft = 0.0f, float t_LFoot_FSR_FrontRight = 0.0f, float t_LFoot_FSR_RearLeft = 0.0f, float t_LFoot_FSR_RearRight = 0.0f, float t_LFoot_FSR_CenterOfPressure_X = 0.0f, float t_LFoot_FSR_CenterOfPressure_Y = 0.0f, float t_LFoot_FSR_TotalWeight = 0.0f, float t_RFoot_FSR_FrontLeft = 0.0f, float t_RFoot_FSR_FrontRight = 0.0f, float t_RFoot_FSR_RearLeft = 0.0f, float t_RFoot_FSR_RearRight = 0.0f, float t_RFoot_FSR_CenterOfPressure_X = 0.0f, float t_RFoot_FSR_CenterOfPressure_Y = 0.0f, float t_RFoot_FSR_TotalWeight = 0.0f, bool t_LFoot_Bumper_Left = true, bool t_LFoot_Bumper_Right = true, bool t_RFoot_Bumper_Left = true, bool t_RFoot_Bumper_Right = true) {
+            this->init(t_LFoot_FSR_FrontLeft, t_LFoot_FSR_FrontRight, t_LFoot_FSR_RearLeft, t_LFoot_FSR_RearRight, t_LFoot_FSR_CenterOfPressure_X, t_LFoot_FSR_CenterOfPressure_Y, t_LFoot_FSR_TotalWeight, t_RFoot_FSR_FrontLeft, t_RFoot_FSR_FrontRight, t_RFoot_FSR_RearLeft, t_RFoot_FSR_RearRight, t_RFoot_FSR_CenterOfPressure_X, t_RFoot_FSR_CenterOfPressure_Y, t_RFoot_FSR_TotalWeight, t_LFoot_Bumper_Left, t_LFoot_Bumper_Right, t_RFoot_Bumper_Left, t_RFoot_Bumper_Right);
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsFootSensors(const SensorsFootSensors &other): wb_sensors_foot_sensors() {
-            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
+        SensorsFootSensors(const SensorsFootSensors &t_other): wb_sensors_foot_sensors() {
+            this->init(t_other.LFoot_FSR_FrontLeft(), t_other.LFoot_FSR_FrontRight(), t_other.LFoot_FSR_RearLeft(), t_other.LFoot_FSR_RearRight(), t_other.LFoot_FSR_CenterOfPressure_X(), t_other.LFoot_FSR_CenterOfPressure_Y(), t_other.LFoot_FSR_TotalWeight(), t_other.RFoot_FSR_FrontLeft(), t_other.RFoot_FSR_FrontRight(), t_other.RFoot_FSR_RearLeft(), t_other.RFoot_FSR_RearRight(), t_other.RFoot_FSR_CenterOfPressure_X(), t_other.RFoot_FSR_CenterOfPressure_Y(), t_other.RFoot_FSR_TotalWeight(), t_other.LFoot_Bumper_Left(), t_other.LFoot_Bumper_Right(), t_other.RFoot_Bumper_Left(), t_other.RFoot_Bumper_Right());
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsFootSensors(const struct wb_sensors_foot_sensors &other): wb_sensors_foot_sensors() {
-            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
+        SensorsFootSensors(const struct wb_sensors_foot_sensors &t_other): wb_sensors_foot_sensors() {
+            this->init(t_other.LFoot_FSR_FrontLeft, t_other.LFoot_FSR_FrontRight, t_other.LFoot_FSR_RearLeft, t_other.LFoot_FSR_RearRight, t_other.LFoot_FSR_CenterOfPressure_X, t_other.LFoot_FSR_CenterOfPressure_Y, t_other.LFoot_FSR_TotalWeight, t_other.RFoot_FSR_FrontLeft, t_other.RFoot_FSR_FrontRight, t_other.RFoot_FSR_RearLeft, t_other.RFoot_FSR_RearRight, t_other.RFoot_FSR_CenterOfPressure_X, t_other.RFoot_FSR_CenterOfPressure_Y, t_other.RFoot_FSR_TotalWeight, t_other.LFoot_Bumper_Left, t_other.LFoot_Bumper_Right, t_other.RFoot_Bumper_Left, t_other.RFoot_Bumper_Right);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsFootSensors &operator = (const SensorsFootSensors &other) {
-            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
+        SensorsFootSensors &operator = (const SensorsFootSensors &t_other) {
+            this->init(t_other.LFoot_FSR_FrontLeft(), t_other.LFoot_FSR_FrontRight(), t_other.LFoot_FSR_RearLeft(), t_other.LFoot_FSR_RearRight(), t_other.LFoot_FSR_CenterOfPressure_X(), t_other.LFoot_FSR_CenterOfPressure_Y(), t_other.LFoot_FSR_TotalWeight(), t_other.RFoot_FSR_FrontLeft(), t_other.RFoot_FSR_FrontRight(), t_other.RFoot_FSR_RearLeft(), t_other.RFoot_FSR_RearRight(), t_other.RFoot_FSR_CenterOfPressure_X(), t_other.RFoot_FSR_CenterOfPressure_Y(), t_other.RFoot_FSR_TotalWeight(), t_other.LFoot_Bumper_Left(), t_other.LFoot_Bumper_Right(), t_other.RFoot_Bumper_Left(), t_other.RFoot_Bumper_Right());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsFootSensors &operator = (const struct wb_sensors_foot_sensors &other) {
-            this->init(other.LFoot_FSR_FrontLeft(), other.LFoot_FSR_FrontRight(), other.LFoot_FSR_RearLeft(), other.LFoot_FSR_RearRight(), other.LFoot_FSR_CenterOfPressure_X(), other.LFoot_FSR_CenterOfPressure_Y(), other.LFoot_FSR_TotalWeight(), other.RFoot_FSR_FrontLeft(), other.RFoot_FSR_FrontRight(), other.RFoot_FSR_RearLeft(), other.RFoot_FSR_RearRight(), other.RFoot_FSR_CenterOfPressure_X(), other.RFoot_FSR_CenterOfPressure_Y(), other.RFoot_FSR_TotalWeight(), other.LFoot_Bumper_Left(), other.LFoot_Bumper_Right(), other.RFoot_Bumper_Left(), other.RFoot_Bumper_Right());
+        SensorsFootSensors &operator = (const struct wb_sensors_foot_sensors &t_other) {
+            this->init(t_other.LFoot_FSR_FrontLeft, t_other.LFoot_FSR_FrontRight, t_other.LFoot_FSR_RearLeft, t_other.LFoot_FSR_RearRight, t_other.LFoot_FSR_CenterOfPressure_X, t_other.LFoot_FSR_CenterOfPressure_Y, t_other.LFoot_FSR_TotalWeight, t_other.RFoot_FSR_FrontLeft, t_other.RFoot_FSR_FrontRight, t_other.RFoot_FSR_RearLeft, t_other.RFoot_FSR_RearRight, t_other.RFoot_FSR_CenterOfPressure_X, t_other.RFoot_FSR_CenterOfPressure_Y, t_other.RFoot_FSR_TotalWeight, t_other.LFoot_Bumper_Left, t_other.LFoot_Bumper_Right, t_other.RFoot_Bumper_Left, t_other.RFoot_Bumper_Right);
             return *this;
         }
 
-        bool operator ==(const SensorsFootSensors &other) const
+        bool operator ==(const SensorsFootSensors &t_other) const
         {
-            return fabsf(LFoot_FSR_FrontLeft() - other.LFoot_FSR_FrontLeft()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_FrontRight() - other.LFoot_FSR_FrontRight()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_RearLeft() - other.LFoot_FSR_RearLeft()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_RearRight() - other.LFoot_FSR_RearRight()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_CenterOfPressure_X() - other.LFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_CenterOfPressure_Y() - other.LFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
-                && fabsf(LFoot_FSR_TotalWeight() - other.LFoot_FSR_TotalWeight()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_FrontLeft() - other.RFoot_FSR_FrontLeft()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_FrontRight() - other.RFoot_FSR_FrontRight()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_RearLeft() - other.RFoot_FSR_RearLeft()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_RearRight() - other.RFoot_FSR_RearRight()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_CenterOfPressure_X() - other.RFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_CenterOfPressure_Y() - other.RFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
-                && fabsf(RFoot_FSR_TotalWeight() - other.RFoot_FSR_TotalWeight()) < FLT_EPSILON
-                && LFoot_Bumper_Left() == other.LFoot_Bumper_Left()
-                && LFoot_Bumper_Right() == other.LFoot_Bumper_Right()
-                && RFoot_Bumper_Left() == other.RFoot_Bumper_Left()
-                && RFoot_Bumper_Right() == other.RFoot_Bumper_Right();
+            return fabsf(LFoot_FSR_FrontLeft() - t_other.LFoot_FSR_FrontLeft()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_FrontRight() - t_other.LFoot_FSR_FrontRight()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_RearLeft() - t_other.LFoot_FSR_RearLeft()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_RearRight() - t_other.LFoot_FSR_RearRight()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_CenterOfPressure_X() - t_other.LFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_CenterOfPressure_Y() - t_other.LFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
+                && fabsf(LFoot_FSR_TotalWeight() - t_other.LFoot_FSR_TotalWeight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_FrontLeft() - t_other.RFoot_FSR_FrontLeft()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_FrontRight() - t_other.RFoot_FSR_FrontRight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_RearLeft() - t_other.RFoot_FSR_RearLeft()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_RearRight() - t_other.RFoot_FSR_RearRight()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_CenterOfPressure_X() - t_other.RFoot_FSR_CenterOfPressure_X()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_CenterOfPressure_Y() - t_other.RFoot_FSR_CenterOfPressure_Y()) < FLT_EPSILON
+                && fabsf(RFoot_FSR_TotalWeight() - t_other.RFoot_FSR_TotalWeight()) < FLT_EPSILON
+                && LFoot_Bumper_Left() == t_other.LFoot_Bumper_Left()
+                && LFoot_Bumper_Right() == t_other.LFoot_Bumper_Right()
+                && RFoot_Bumper_Left() == t_other.RFoot_Bumper_Left()
+                && RFoot_Bumper_Right() == t_other.RFoot_Bumper_Right();
         }
 
-        bool operator !=(const SensorsFootSensors &other) const
+        bool operator !=(const SensorsFootSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_foot_sensors &other) const
+        bool operator ==(const wb_sensors_foot_sensors &t_other) const
         {
-            return *this == SensorsFootSensors(other);
+            return *this == SensorsFootSensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_foot_sensors &other) const
+        bool operator !=(const wb_sensors_foot_sensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float LFoot_FSR_FrontLeft() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_FrontLeft;
+        }
+
+        void set_LFoot_FSR_FrontLeft(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_FrontLeft = t_newValue;
+        }
+
+        float LFoot_FSR_FrontRight() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_FrontRight;
+        }
+
+        void set_LFoot_FSR_FrontRight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_FrontRight = t_newValue;
+        }
+
+        float LFoot_FSR_RearLeft() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_RearLeft;
+        }
+
+        void set_LFoot_FSR_RearLeft(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_RearLeft = t_newValue;
+        }
+
+        float LFoot_FSR_RearRight() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_RearRight;
+        }
+
+        void set_LFoot_FSR_RearRight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_RearRight = t_newValue;
+        }
+
+        float LFoot_FSR_CenterOfPressure_X() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_X;
+        }
+
+        void set_LFoot_FSR_CenterOfPressure_X(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_X = t_newValue;
+        }
+
+        float LFoot_FSR_CenterOfPressure_Y() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_Y;
+        }
+
+        void set_LFoot_FSR_CenterOfPressure_Y(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_Y = t_newValue;
+        }
+
+        float LFoot_FSR_TotalWeight() const
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_TotalWeight;
+        }
+
+        void set_LFoot_FSR_TotalWeight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_FSR_TotalWeight = t_newValue;
+        }
+
+        float RFoot_FSR_FrontLeft() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_FrontLeft;
+        }
+
+        void set_RFoot_FSR_FrontLeft(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_FrontLeft = t_newValue;
+        }
+
+        float RFoot_FSR_FrontRight() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_FrontRight;
+        }
+
+        void set_RFoot_FSR_FrontRight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_FrontRight = t_newValue;
+        }
+
+        float RFoot_FSR_RearLeft() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_RearLeft;
+        }
+
+        void set_RFoot_FSR_RearLeft(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_RearLeft = t_newValue;
+        }
+
+        float RFoot_FSR_RearRight() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_RearRight;
+        }
+
+        void set_RFoot_FSR_RearRight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_RearRight = t_newValue;
+        }
+
+        float RFoot_FSR_CenterOfPressure_X() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_X;
+        }
+
+        void set_RFoot_FSR_CenterOfPressure_X(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_X = t_newValue;
+        }
+
+        float RFoot_FSR_CenterOfPressure_Y() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_Y;
+        }
+
+        void set_RFoot_FSR_CenterOfPressure_Y(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_Y = t_newValue;
+        }
+
+        float RFoot_FSR_TotalWeight() const
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_TotalWeight;
+        }
+
+        void set_RFoot_FSR_TotalWeight(const float &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_FSR_TotalWeight = t_newValue;
+        }
+
+        bool LFoot_Bumper_Left() const
+        {
+            return wb_sensors_foot_sensors::LFoot_Bumper_Left;
+        }
+
+        void set_LFoot_Bumper_Left(const bool &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_Bumper_Left = t_newValue;
+        }
+
+        bool LFoot_Bumper_Right() const
+        {
+            return wb_sensors_foot_sensors::LFoot_Bumper_Right;
+        }
+
+        void set_LFoot_Bumper_Right(const bool &t_newValue)
+        {
+            wb_sensors_foot_sensors::LFoot_Bumper_Right = t_newValue;
+        }
+
+        bool RFoot_Bumper_Left() const
+        {
+            return wb_sensors_foot_sensors::RFoot_Bumper_Left;
+        }
+
+        void set_RFoot_Bumper_Left(const bool &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_Bumper_Left = t_newValue;
+        }
+
+        bool RFoot_Bumper_Right() const
+        {
+            return wb_sensors_foot_sensors::RFoot_Bumper_Right;
+        }
+
+        void set_RFoot_Bumper_Right(const bool &t_newValue)
+        {
+            wb_sensors_foot_sensors::RFoot_Bumper_Right = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SensorsFootSensors(const std::string &str) {
+        SensorsFootSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -283,11 +463,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_FOOT_SENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_foot_sensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_foot_sensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_FOOT_SENSORS_DESC_BUFFER_SIZE) {

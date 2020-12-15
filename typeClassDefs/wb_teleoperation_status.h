@@ -96,6 +96,10 @@
 #define TELEOPERATIONSTATUS_TO_STRING_BUFFER_SIZE 31
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Status class used by the VR TeleOp App
  */
@@ -105,13 +109,9 @@ struct wb_teleoperation_status
     /**
      * String passed to Say_t
      */
-    STRING_PROPERTY(sayString, 30)
+    char sayString[30];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -108,6 +108,10 @@
 
 #define DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE DOMINANT_NUMFREQi
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Frequency quadruple for rear and front stereo channels
  */
@@ -117,18 +121,14 @@ struct wb_dominant_frequencies
     /**
      * RMS levels of dominant frequency
      */
-    PROPERTY(struct wb_r_m_s_levels, rms)
+    struct wb_r_m_s_levels rms;
 
     /**
      * dominant frequencies
      */
-    ARRAY_PROPERTY(struct wb_microphone_frequencies, frequencies, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE)
+    struct wb_microphone_frequencies frequencies[DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

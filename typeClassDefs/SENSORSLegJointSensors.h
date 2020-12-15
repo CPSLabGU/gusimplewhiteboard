@@ -82,19 +82,19 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipYawPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f) {
-            set_LKneePitch(LKneePitch);
-            set_LAnklePitch(LAnklePitch);
-            set_LAnkleRoll(LAnkleRoll);
-            set_RKneePitch(RKneePitch);
-            set_RAnklePitch(RAnklePitch);
-            set_RAnkleRoll(RAnkleRoll);
-            set_LHipYawPitch(LHipYawPitch);
-            set_LHipRoll(LHipRoll);
-            set_LHipPitch(LHipPitch);
-            set_RHipYawPitch(RHipYawPitch);
-            set_RHipRoll(RHipRoll);
-            set_RHipPitch(RHipPitch);
+        void init(float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f, float t_LHipYawPitch = 0.0f, float t_LHipRoll = 0.0f, float t_LHipPitch = 0.0f, float t_RHipYawPitch = 0.0f, float t_RHipRoll = 0.0f, float t_RHipPitch = 0.0f) {
+            set_LKneePitch(t_LKneePitch);
+            set_LAnklePitch(t_LAnklePitch);
+            set_LAnkleRoll(t_LAnkleRoll);
+            set_RKneePitch(t_RKneePitch);
+            set_RAnklePitch(t_RAnklePitch);
+            set_RAnkleRoll(t_RAnkleRoll);
+            set_LHipYawPitch(t_LHipYawPitch);
+            set_LHipRoll(t_LHipRoll);
+            set_LHipPitch(t_LHipPitch);
+            set_RHipYawPitch(t_RHipYawPitch);
+            set_RHipRoll(t_RHipRoll);
+            set_RHipPitch(t_RHipPitch);
         }
 
     public:
@@ -102,78 +102,198 @@ namespace guWhiteboard {
         /**
          * Create a new `SENSORSLegJointSensors`.
          */
-        SENSORSLegJointSensors(float LKneePitch = 0.0f, float LAnklePitch = 0.0f, float LAnkleRoll = 0.0f, float RKneePitch = 0.0f, float RAnklePitch = 0.0f, float RAnkleRoll = 0.0f, float LHipYawPitch = 0.0f, float LHipRoll = 0.0f, float LHipPitch = 0.0f, float RHipYawPitch = 0.0f, float RHipRoll = 0.0f, float RHipPitch = 0.0f) {
-            this->init(LKneePitch, LAnklePitch, LAnkleRoll, RKneePitch, RAnklePitch, RAnkleRoll, LHipYawPitch, LHipRoll, LHipPitch, RHipYawPitch, RHipRoll, RHipPitch);
+        SENSORSLegJointSensors(float t_LKneePitch = 0.0f, float t_LAnklePitch = 0.0f, float t_LAnkleRoll = 0.0f, float t_RKneePitch = 0.0f, float t_RAnklePitch = 0.0f, float t_RAnkleRoll = 0.0f, float t_LHipYawPitch = 0.0f, float t_LHipRoll = 0.0f, float t_LHipPitch = 0.0f, float t_RHipYawPitch = 0.0f, float t_RHipRoll = 0.0f, float t_RHipPitch = 0.0f) {
+            this->init(t_LKneePitch, t_LAnklePitch, t_LAnkleRoll, t_RKneePitch, t_RAnklePitch, t_RAnkleRoll, t_LHipYawPitch, t_LHipRoll, t_LHipPitch, t_RHipYawPitch, t_RHipRoll, t_RHipPitch);
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSLegJointSensors(const SENSORSLegJointSensors &other): wb_sensors_legjointsensors() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
+        SENSORSLegJointSensors(const SENSORSLegJointSensors &t_other): wb_sensors_legjointsensors() {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll(), t_other.LHipYawPitch(), t_other.LHipRoll(), t_other.LHipPitch(), t_other.RHipYawPitch(), t_other.RHipRoll(), t_other.RHipPitch());
         }
 
         /**
          * Copy Constructor.
          */
-        SENSORSLegJointSensors(const struct wb_sensors_legjointsensors &other): wb_sensors_legjointsensors() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
+        SENSORSLegJointSensors(const struct wb_sensors_legjointsensors &t_other): wb_sensors_legjointsensors() {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll, t_other.LHipYawPitch, t_other.LHipRoll, t_other.LHipPitch, t_other.RHipYawPitch, t_other.RHipRoll, t_other.RHipPitch);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSLegJointSensors &operator = (const SENSORSLegJointSensors &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
+        SENSORSLegJointSensors &operator = (const SENSORSLegJointSensors &t_other) {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll(), t_other.LHipYawPitch(), t_other.LHipRoll(), t_other.LHipPitch(), t_other.RHipYawPitch(), t_other.RHipRoll(), t_other.RHipPitch());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SENSORSLegJointSensors &operator = (const struct wb_sensors_legjointsensors &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll(), other.LHipYawPitch(), other.LHipRoll(), other.LHipPitch(), other.RHipYawPitch(), other.RHipRoll(), other.RHipPitch());
+        SENSORSLegJointSensors &operator = (const struct wb_sensors_legjointsensors &t_other) {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll, t_other.LHipYawPitch, t_other.LHipRoll, t_other.LHipPitch, t_other.RHipYawPitch, t_other.RHipRoll, t_other.RHipPitch);
             return *this;
         }
 
-        bool operator ==(const SENSORSLegJointSensors &other) const
+        bool operator ==(const SENSORSLegJointSensors &t_other) const
         {
-            return fabsf(LKneePitch() - other.LKneePitch()) < FLT_EPSILON
-                && fabsf(LAnklePitch() - other.LAnklePitch()) < FLT_EPSILON
-                && fabsf(LAnkleRoll() - other.LAnkleRoll()) < FLT_EPSILON
-                && fabsf(RKneePitch() - other.RKneePitch()) < FLT_EPSILON
-                && fabsf(RAnklePitch() - other.RAnklePitch()) < FLT_EPSILON
-                && fabsf(RAnkleRoll() - other.RAnkleRoll()) < FLT_EPSILON
-                && fabsf(LHipYawPitch() - other.LHipYawPitch()) < FLT_EPSILON
-                && fabsf(LHipRoll() - other.LHipRoll()) < FLT_EPSILON
-                && fabsf(LHipPitch() - other.LHipPitch()) < FLT_EPSILON
-                && fabsf(RHipYawPitch() - other.RHipYawPitch()) < FLT_EPSILON
-                && fabsf(RHipRoll() - other.RHipRoll()) < FLT_EPSILON
-                && fabsf(RHipPitch() - other.RHipPitch()) < FLT_EPSILON;
+            return fabsf(LKneePitch() - t_other.LKneePitch()) < FLT_EPSILON
+                && fabsf(LAnklePitch() - t_other.LAnklePitch()) < FLT_EPSILON
+                && fabsf(LAnkleRoll() - t_other.LAnkleRoll()) < FLT_EPSILON
+                && fabsf(RKneePitch() - t_other.RKneePitch()) < FLT_EPSILON
+                && fabsf(RAnklePitch() - t_other.RAnklePitch()) < FLT_EPSILON
+                && fabsf(RAnkleRoll() - t_other.RAnkleRoll()) < FLT_EPSILON
+                && fabsf(LHipYawPitch() - t_other.LHipYawPitch()) < FLT_EPSILON
+                && fabsf(LHipRoll() - t_other.LHipRoll()) < FLT_EPSILON
+                && fabsf(LHipPitch() - t_other.LHipPitch()) < FLT_EPSILON
+                && fabsf(RHipYawPitch() - t_other.RHipYawPitch()) < FLT_EPSILON
+                && fabsf(RHipRoll() - t_other.RHipRoll()) < FLT_EPSILON
+                && fabsf(RHipPitch() - t_other.RHipPitch()) < FLT_EPSILON;
         }
 
-        bool operator !=(const SENSORSLegJointSensors &other) const
+        bool operator !=(const SENSORSLegJointSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_legjointsensors &other) const
+        bool operator ==(const wb_sensors_legjointsensors &t_other) const
         {
-            return *this == SENSORSLegJointSensors(other);
+            return *this == SENSORSLegJointSensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_legjointsensors &other) const
+        bool operator !=(const wb_sensors_legjointsensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        float LKneePitch() const
+        {
+            return wb_sensors_legjointsensors::LKneePitch;
+        }
+
+        void set_LKneePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LKneePitch = t_newValue;
+        }
+
+        float LAnklePitch() const
+        {
+            return wb_sensors_legjointsensors::LAnklePitch;
+        }
+
+        void set_LAnklePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LAnklePitch = t_newValue;
+        }
+
+        float LAnkleRoll() const
+        {
+            return wb_sensors_legjointsensors::LAnkleRoll;
+        }
+
+        void set_LAnkleRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LAnkleRoll = t_newValue;
+        }
+
+        float RKneePitch() const
+        {
+            return wb_sensors_legjointsensors::RKneePitch;
+        }
+
+        void set_RKneePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RKneePitch = t_newValue;
+        }
+
+        float RAnklePitch() const
+        {
+            return wb_sensors_legjointsensors::RAnklePitch;
+        }
+
+        void set_RAnklePitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RAnklePitch = t_newValue;
+        }
+
+        float RAnkleRoll() const
+        {
+            return wb_sensors_legjointsensors::RAnkleRoll;
+        }
+
+        void set_RAnkleRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RAnkleRoll = t_newValue;
+        }
+
+        float LHipYawPitch() const
+        {
+            return wb_sensors_legjointsensors::LHipYawPitch;
+        }
+
+        void set_LHipYawPitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LHipYawPitch = t_newValue;
+        }
+
+        float LHipRoll() const
+        {
+            return wb_sensors_legjointsensors::LHipRoll;
+        }
+
+        void set_LHipRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LHipRoll = t_newValue;
+        }
+
+        float LHipPitch() const
+        {
+            return wb_sensors_legjointsensors::LHipPitch;
+        }
+
+        void set_LHipPitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::LHipPitch = t_newValue;
+        }
+
+        float RHipYawPitch() const
+        {
+            return wb_sensors_legjointsensors::RHipYawPitch;
+        }
+
+        void set_RHipYawPitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RHipYawPitch = t_newValue;
+        }
+
+        float RHipRoll() const
+        {
+            return wb_sensors_legjointsensors::RHipRoll;
+        }
+
+        void set_RHipRoll(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RHipRoll = t_newValue;
+        }
+
+        float RHipPitch() const
+        {
+            return wb_sensors_legjointsensors::RHipPitch;
+        }
+
+        void set_RHipPitch(const float &t_newValue)
+        {
+            wb_sensors_legjointsensors::RHipPitch = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SENSORSLegJointSensors(const std::string &str) {
+        SENSORSLegJointSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -247,11 +367,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_LEGJOINTSENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_legjointsensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_legjointsensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_LEGJOINTSENSORS_DESC_BUFFER_SIZE) {

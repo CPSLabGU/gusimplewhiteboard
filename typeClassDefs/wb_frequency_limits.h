@@ -96,6 +96,10 @@
 #define FREQUENCY_LIMITS_TO_STRING_BUFFER_SIZE 15
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Low and high frequency limits for dominant frequency analysis
  */
@@ -105,18 +109,14 @@ struct wb_frequency_limits
     /**
      * low frequency bound in Hz
      */
-    PROPERTY(int16_t, lo_freq)
+    int16_t lo_freq;
 
     /**
      * high frequency bound in Hz
      */
-    PROPERTY(int16_t, hi_freq)
+    int16_t hi_freq;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

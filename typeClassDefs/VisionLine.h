@@ -83,9 +83,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(struct wb_pixel_coordinate_line lineEdgeTop = wb_pixel_coordinate_line(), struct wb_pixel_coordinate_line lineEdgeBottom = wb_pixel_coordinate_line()) {
-            set_lineEdgeTop(lineEdgeTop);
-            set_lineEdgeBottom(lineEdgeBottom);
+        void init(struct wb_pixel_coordinate_line t_lineEdgeTop = wb_pixel_coordinate_line(), struct wb_pixel_coordinate_line t_lineEdgeBottom = wb_pixel_coordinate_line()) {
+            set_lineEdgeTop(t_lineEdgeTop);
+            set_lineEdgeBottom(t_lineEdgeBottom);
         }
 
     public:
@@ -93,68 +93,88 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionLine`.
          */
-        VisionLine(struct wb_pixel_coordinate_line lineEdgeTop = wb_pixel_coordinate_line(), struct wb_pixel_coordinate_line lineEdgeBottom = wb_pixel_coordinate_line()) {
-            this->init(lineEdgeTop, lineEdgeBottom);
+        VisionLine(struct wb_pixel_coordinate_line t_lineEdgeTop = wb_pixel_coordinate_line(), struct wb_pixel_coordinate_line t_lineEdgeBottom = wb_pixel_coordinate_line()) {
+            this->init(t_lineEdgeTop, t_lineEdgeBottom);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionLine(const VisionLine &other): wb_vision_line() {
-            this->init(other.lineEdgeTop(), other.lineEdgeBottom());
+        VisionLine(const VisionLine &t_other): wb_vision_line() {
+            this->init(t_other.lineEdgeTop(), t_other.lineEdgeBottom());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionLine(const struct wb_vision_line &other): wb_vision_line() {
-            this->init(other.lineEdgeTop(), other.lineEdgeBottom());
+        VisionLine(const struct wb_vision_line &t_other): wb_vision_line() {
+            this->init(t_other.lineEdgeTop, t_other.lineEdgeBottom);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionLine &operator = (const VisionLine &other) {
-            this->init(other.lineEdgeTop(), other.lineEdgeBottom());
+        VisionLine &operator = (const VisionLine &t_other) {
+            this->init(t_other.lineEdgeTop(), t_other.lineEdgeBottom());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionLine &operator = (const struct wb_vision_line &other) {
-            this->init(other.lineEdgeTop(), other.lineEdgeBottom());
+        VisionLine &operator = (const struct wb_vision_line &t_other) {
+            this->init(t_other.lineEdgeTop, t_other.lineEdgeBottom);
             return *this;
         }
 
-        bool operator ==(const VisionLine &other) const
+        bool operator ==(const VisionLine &t_other) const
         {
-            return PixelCoordinateLine(_lineEdgeTop) == PixelCoordinateLine(other._lineEdgeTop)
-                && PixelCoordinateLine(_lineEdgeBottom) == PixelCoordinateLine(other._lineEdgeBottom);
+            return PixelCoordinateLine(lineEdgeTop()) == PixelCoordinateLine(t_other.lineEdgeTop())
+                && PixelCoordinateLine(lineEdgeBottom()) == PixelCoordinateLine(t_other.lineEdgeBottom());
         }
 
-        bool operator !=(const VisionLine &other) const
+        bool operator !=(const VisionLine &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_line &other) const
+        bool operator ==(const wb_vision_line &t_other) const
         {
-            return *this == VisionLine(other);
+            return *this == VisionLine(t_other);
         }
 
-        bool operator !=(const wb_vision_line &other) const
+        bool operator !=(const wb_vision_line &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const PixelCoordinateLine lineEdgeTop() const
+        {
+            return PixelCoordinateLine(wb_vision_line::lineEdgeTop);
+        }
+
+        void set_lineEdgeTop(const PixelCoordinateLine &t_newValue)
+        {
+            wb_vision_line::lineEdgeTop = static_cast<wb_pixel_coordinate_line>(t_newValue);
+        }
+
+        const PixelCoordinateLine lineEdgeBottom() const
+        {
+            return PixelCoordinateLine(wb_vision_line::lineEdgeBottom);
+        }
+
+        void set_lineEdgeBottom(const PixelCoordinateLine &t_newValue)
+        {
+            wb_vision_line::lineEdgeBottom = static_cast<wb_pixel_coordinate_line>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionLine(const std::string &str) {
+        VisionLine(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -165,11 +185,9 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinateLine * lineEdgeTop_cast = const_cast<guWhiteboard::PixelCoordinateLine *>(static_cast<const guWhiteboard::PixelCoordinateLine *>(&this->lineEdgeTop()));
-            ss << "lineEdgeTop=" << "{" << lineEdgeTop_cast->description() << "}";
+            ss << "lineEdgeTop=" << "{" << PixelCoordinateLine(this->lineEdgeTop()).description() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinateLine * lineEdgeBottom_cast = const_cast<guWhiteboard::PixelCoordinateLine *>(static_cast<const guWhiteboard::PixelCoordinateLine *>(&this->lineEdgeBottom()));
-            ss << "lineEdgeBottom=" << "{" << lineEdgeBottom_cast->description() << "}";
+            ss << "lineEdgeBottom=" << "{" << PixelCoordinateLine(this->lineEdgeBottom()).description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_LINE_C_CONVERSION
         }
@@ -182,21 +200,19 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-            guWhiteboard::PixelCoordinateLine * lineEdgeTop_cast = const_cast<guWhiteboard::PixelCoordinateLine *>(static_cast<const guWhiteboard::PixelCoordinateLine *>(&this->lineEdgeTop()));
-            ss << "{" << lineEdgeTop_cast->to_string() << "}";
+            ss << "{" << PixelCoordinateLine(this->lineEdgeTop()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::PixelCoordinateLine * lineEdgeBottom_cast = const_cast<guWhiteboard::PixelCoordinateLine *>(static_cast<const guWhiteboard::PixelCoordinateLine *>(&this->lineEdgeBottom()));
-            ss << "{" << lineEdgeBottom_cast->to_string() << "}";
+            ss << "{" << PixelCoordinateLine(this->lineEdgeBottom()).to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_LINE_C_CONVERSION
         }
 
 #ifdef USE_WB_VISION_LINE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_line_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_line_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_LINE_DESC_BUFFER_SIZE) {

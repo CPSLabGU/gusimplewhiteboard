@@ -83,22 +83,22 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t speed = 100, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
-            set_walkEngineOn(walkEngineOn);
-            set_forward(forward);
-            set_left(left);
-            set_turn(turn);
-            set_priority(priority);
-            set_exactStepsRequested(exactStepsRequested);
-            set_speed(speed);
-            set_isFast(isFast);
-            set_kickWithLeftFoot(kickWithLeftFoot);
-            set_useShuffle(useShuffle);
-            set_leftArmLimp(leftArmLimp);
-            set_rightArmLimp(rightArmLimp);
-            set_power(power);
-            set_odometryResetCounter(odometryResetCounter);
-            set_bend(bend);
+        void init(bool t_walkEngineOn = false, int16_t t_forward = 0, int16_t t_left = 0, int8_t t_turn = 0, int8_t t_priority = 1, bool t_exactStepsRequested = false, uint8_t t_speed = 100, bool t_isFast = false, bool t_kickWithLeftFoot = true, bool t_useShuffle = true, bool t_leftArmLimp = false, bool t_rightArmLimp = false, uint8_t t_power = 0, uint8_t t_odometryResetCounter = 0, uint8_t t_bend = 0) {
+            set_walkEngineOn(t_walkEngineOn);
+            set_forward(t_forward);
+            set_left(t_left);
+            set_turn(t_turn);
+            set_priority(t_priority);
+            set_exactStepsRequested(t_exactStepsRequested);
+            set_speed(t_speed);
+            set_isFast(t_isFast);
+            set_kickWithLeftFoot(t_kickWithLeftFoot);
+            set_useShuffle(t_useShuffle);
+            set_leftArmLimp(t_leftArmLimp);
+            set_rightArmLimp(t_rightArmLimp);
+            set_power(t_power);
+            set_odometryResetCounter(t_odometryResetCounter);
+            set_bend(t_bend);
         }
 
     public:
@@ -106,81 +106,231 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoSonarProtectedWalkCommand`.
          */
-        NaoSonarProtectedWalkCommand(bool walkEngineOn = false, int16_t forward = 0, int16_t left = 0, int8_t turn = 0, int8_t priority = 1, bool exactStepsRequested = false, uint8_t speed = 100, bool isFast = false, bool kickWithLeftFoot = true, bool useShuffle = true, bool leftArmLimp = false, bool rightArmLimp = false, uint8_t power = 0, uint8_t odometryResetCounter = 0, uint8_t bend = 0) {
-            this->init(walkEngineOn, forward, left, turn, priority, exactStepsRequested, speed, isFast, kickWithLeftFoot, useShuffle, leftArmLimp, rightArmLimp, power, odometryResetCounter, bend);
+        NaoSonarProtectedWalkCommand(bool t_walkEngineOn = false, int16_t t_forward = 0, int16_t t_left = 0, int8_t t_turn = 0, int8_t t_priority = 1, bool t_exactStepsRequested = false, uint8_t t_speed = 100, bool t_isFast = false, bool t_kickWithLeftFoot = true, bool t_useShuffle = true, bool t_leftArmLimp = false, bool t_rightArmLimp = false, uint8_t t_power = 0, uint8_t t_odometryResetCounter = 0, uint8_t t_bend = 0) {
+            this->init(t_walkEngineOn, t_forward, t_left, t_turn, t_priority, t_exactStepsRequested, t_speed, t_isFast, t_kickWithLeftFoot, t_useShuffle, t_leftArmLimp, t_rightArmLimp, t_power, t_odometryResetCounter, t_bend);
         }
 
         /**
          * Copy Constructor.
          */
-        NaoSonarProtectedWalkCommand(const NaoSonarProtectedWalkCommand &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
+        NaoSonarProtectedWalkCommand(const NaoSonarProtectedWalkCommand &t_other): wb_nao_sonar_protected_walk_command() {
+            this->init(t_other.walkEngineOn(), t_other.forward(), t_other.left(), t_other.turn(), t_other.priority(), t_other.exactStepsRequested(), t_other.speed(), t_other.isFast(), t_other.kickWithLeftFoot(), t_other.useShuffle(), t_other.leftArmLimp(), t_other.rightArmLimp(), t_other.power(), t_other.odometryResetCounter(), t_other.bend());
         }
 
         /**
          * Copy Constructor.
          */
-        NaoSonarProtectedWalkCommand(const struct wb_nao_sonar_protected_walk_command &other): wb_nao_sonar_protected_walk_command() {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
+        NaoSonarProtectedWalkCommand(const struct wb_nao_sonar_protected_walk_command &t_other): wb_nao_sonar_protected_walk_command() {
+            this->init(t_other.walkEngineOn, t_other.forward, t_other.left, t_other.turn, t_other.priority, t_other.exactStepsRequested, t_other.speed, t_other.isFast, t_other.kickWithLeftFoot, t_other.useShuffle, t_other.leftArmLimp, t_other.rightArmLimp, t_other.power, t_other.odometryResetCounter, t_other.bend);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoSonarProtectedWalkCommand &operator = (const NaoSonarProtectedWalkCommand &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
+        NaoSonarProtectedWalkCommand &operator = (const NaoSonarProtectedWalkCommand &t_other) {
+            this->init(t_other.walkEngineOn(), t_other.forward(), t_other.left(), t_other.turn(), t_other.priority(), t_other.exactStepsRequested(), t_other.speed(), t_other.isFast(), t_other.kickWithLeftFoot(), t_other.useShuffle(), t_other.leftArmLimp(), t_other.rightArmLimp(), t_other.power(), t_other.odometryResetCounter(), t_other.bend());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoSonarProtectedWalkCommand &operator = (const struct wb_nao_sonar_protected_walk_command &other) {
-            this->init(other.walkEngineOn(), other.forward(), other.left(), other.turn(), other.priority(), other.exactStepsRequested(), other.speed(), other.isFast(), other.kickWithLeftFoot(), other.useShuffle(), other.leftArmLimp(), other.rightArmLimp(), other.power(), other.odometryResetCounter(), other.bend());
+        NaoSonarProtectedWalkCommand &operator = (const struct wb_nao_sonar_protected_walk_command &t_other) {
+            this->init(t_other.walkEngineOn, t_other.forward, t_other.left, t_other.turn, t_other.priority, t_other.exactStepsRequested, t_other.speed, t_other.isFast, t_other.kickWithLeftFoot, t_other.useShuffle, t_other.leftArmLimp, t_other.rightArmLimp, t_other.power, t_other.odometryResetCounter, t_other.bend);
             return *this;
         }
 
-        bool operator ==(const NaoSonarProtectedWalkCommand &other) const
+        bool operator ==(const NaoSonarProtectedWalkCommand &t_other) const
         {
-            return walkEngineOn() == other.walkEngineOn()
-                && forward() == other.forward()
-                && left() == other.left()
-                && turn() == other.turn()
-                && priority() == other.priority()
-                && exactStepsRequested() == other.exactStepsRequested()
-                && speed() == other.speed()
-                && isFast() == other.isFast()
-                && kickWithLeftFoot() == other.kickWithLeftFoot()
-                && useShuffle() == other.useShuffle()
-                && leftArmLimp() == other.leftArmLimp()
-                && rightArmLimp() == other.rightArmLimp()
-                && power() == other.power()
-                && odometryResetCounter() == other.odometryResetCounter()
-                && bend() == other.bend();
+            return walkEngineOn() == t_other.walkEngineOn()
+                && forward() == t_other.forward()
+                && left() == t_other.left()
+                && turn() == t_other.turn()
+                && priority() == t_other.priority()
+                && exactStepsRequested() == t_other.exactStepsRequested()
+                && speed() == t_other.speed()
+                && isFast() == t_other.isFast()
+                && kickWithLeftFoot() == t_other.kickWithLeftFoot()
+                && useShuffle() == t_other.useShuffle()
+                && leftArmLimp() == t_other.leftArmLimp()
+                && rightArmLimp() == t_other.rightArmLimp()
+                && power() == t_other.power()
+                && odometryResetCounter() == t_other.odometryResetCounter()
+                && bend() == t_other.bend();
         }
 
-        bool operator !=(const NaoSonarProtectedWalkCommand &other) const
+        bool operator !=(const NaoSonarProtectedWalkCommand &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_nao_sonar_protected_walk_command &other) const
+        bool operator ==(const wb_nao_sonar_protected_walk_command &t_other) const
         {
-            return *this == NaoSonarProtectedWalkCommand(other);
+            return *this == NaoSonarProtectedWalkCommand(t_other);
         }
 
-        bool operator !=(const wb_nao_sonar_protected_walk_command &other) const
+        bool operator !=(const wb_nao_sonar_protected_walk_command &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool walkEngineOn() const
+        {
+            return wb_nao_sonar_protected_walk_command::walkEngineOn;
+        }
+
+        void set_walkEngineOn(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::walkEngineOn = t_newValue;
+        }
+
+        int16_t forward() const
+        {
+            return wb_nao_sonar_protected_walk_command::forward;
+        }
+
+        void set_forward(const int16_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::forward = t_newValue;
+        }
+
+        int16_t left() const
+        {
+            return wb_nao_sonar_protected_walk_command::left;
+        }
+
+        void set_left(const int16_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::left = t_newValue;
+        }
+
+        int8_t turn() const
+        {
+            return wb_nao_sonar_protected_walk_command::turn;
+        }
+
+        void set_turn(const int8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::turn = t_newValue;
+        }
+
+        int8_t priority() const
+        {
+            return wb_nao_sonar_protected_walk_command::priority;
+        }
+
+        void set_priority(const int8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::priority = t_newValue;
+        }
+
+        bool exactStepsRequested() const
+        {
+            return wb_nao_sonar_protected_walk_command::exactStepsRequested;
+        }
+
+        void set_exactStepsRequested(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::exactStepsRequested = t_newValue;
+        }
+
+        uint8_t speed() const
+        {
+            return wb_nao_sonar_protected_walk_command::speed;
+        }
+
+        void set_speed(const uint8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::speed = t_newValue;
+        }
+
+        bool isFast() const
+        {
+            return wb_nao_sonar_protected_walk_command::isFast;
+        }
+
+        void set_isFast(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::isFast = t_newValue;
+        }
+
+        bool kickWithLeftFoot() const
+        {
+            return wb_nao_sonar_protected_walk_command::kickWithLeftFoot;
+        }
+
+        void set_kickWithLeftFoot(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::kickWithLeftFoot = t_newValue;
+        }
+
+        bool useShuffle() const
+        {
+            return wb_nao_sonar_protected_walk_command::useShuffle;
+        }
+
+        void set_useShuffle(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::useShuffle = t_newValue;
+        }
+
+        bool leftArmLimp() const
+        {
+            return wb_nao_sonar_protected_walk_command::leftArmLimp;
+        }
+
+        void set_leftArmLimp(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::leftArmLimp = t_newValue;
+        }
+
+        bool rightArmLimp() const
+        {
+            return wb_nao_sonar_protected_walk_command::rightArmLimp;
+        }
+
+        void set_rightArmLimp(const bool &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::rightArmLimp = t_newValue;
+        }
+
+        uint8_t power() const
+        {
+            return wb_nao_sonar_protected_walk_command::power;
+        }
+
+        void set_power(const uint8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::power = t_newValue;
+        }
+
+        uint8_t odometryResetCounter() const
+        {
+            return wb_nao_sonar_protected_walk_command::odometryResetCounter;
+        }
+
+        void set_odometryResetCounter(const uint8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::odometryResetCounter = t_newValue;
+        }
+
+        uint8_t bend() const
+        {
+            return wb_nao_sonar_protected_walk_command::bend;
+        }
+
+        void set_bend(const uint8_t &t_newValue)
+        {
+            wb_nao_sonar_protected_walk_command::bend = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        NaoSonarProtectedWalkCommand(const std::string &str) {
+        NaoSonarProtectedWalkCommand(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -266,11 +416,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_nao_sonar_protected_walk_command_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_nao_sonar_protected_walk_command_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > NAO_SONAR_PROTECTED_WALK_COMMAND_DESC_BUFFER_SIZE) {
@@ -463,31 +613,31 @@ namespace guWhiteboard {
 
         /**
          * Convenience function to make the nao walk.
-         * @param forward see struct documentation.
-         * @param left see struct documentation.
-         * @param turn see struct documentation.
+         * @param t_forward see struct documentation.
+         * @param t_left see struct documentation.
+         * @param t_turn see struct documentation.
          * @return A NaoSonarProtectedWalkCommand instance
          */
-        static NaoSonarProtectedWalkCommand walkProtected(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
+        static NaoSonarProtectedWalkCommand walkProtected(int8_t t_priority, int16_t t_forward, int16_t t_left, int8_t t_turn) {
             NaoSonarProtectedWalkCommand cmd = NaoSonarProtectedWalkCommand();
-            cmd.set_priority(priority);
-           cmd.set_walkEngineOn(true);
-            cmd.set_forward(forward);
-            cmd.set_left(left);
-            cmd.set_turn(turn);
+            cmd.set_priority(t_priority);
+            cmd.set_walkEngineOn(true);
+            cmd.set_forward(t_forward);
+            cmd.set_left(t_left);
+            cmd.set_turn(t_turn);
             cmd.set_bend(1);
             return cmd;
         }
 
         /**
          * Convenience function to make the nao walk, with precise step distances. There is no speed buildup with this method, it uses a consistent step size and speed. This is good for small accurate movements, like lining up a kick.
-         * @param forward see struct documentation.
-         * @param left see struct documentation.
-         * @param turn see struct documentation.
+         * @param t_forward see struct documentation.
+         * @param t_left see struct documentation.
+         * @param t_turn see struct documentation.
          * @return A NaoSonarProtectedWalkCommand instance
          */
-        static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t priority, int16_t forward, int16_t left, int8_t turn) {
-            NaoSonarProtectedWalkCommand cmd = walkProtected(priority,forward, left, turn);
+        static NaoSonarProtectedWalkCommand walkProtectedPrecisely(int8_t t_priority, int16_t t_forward, int16_t t_left, int8_t t_turn) {
+            NaoSonarProtectedWalkCommand cmd = walkProtected(t_priority, t_forward, t_left, t_turn);
             cmd.set_exactStepsRequested(true);
             return cmd;
         }

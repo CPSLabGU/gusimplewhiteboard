@@ -81,9 +81,9 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t direction = 0, uint16_t distance = 0) {
-            set_direction(direction);
-            set_distance(distance);
+        void init(int16_t t_direction = 0, uint16_t t_distance = 0) {
+            set_direction(t_direction);
+            set_distance(t_distance);
         }
 
     public:
@@ -91,68 +91,88 @@ namespace guWhiteboard {
         /**
          * Create a new `PolarCoordinate`.
          */
-        PolarCoordinate(int16_t direction = 0, uint16_t distance = 0) {
-            this->init(direction, distance);
+        PolarCoordinate(int16_t t_direction = 0, uint16_t t_distance = 0) {
+            this->init(t_direction, t_distance);
         }
 
         /**
          * Copy Constructor.
          */
-        PolarCoordinate(const PolarCoordinate &other): wb_polar_coordinate() {
-            this->init(other.direction(), other.distance());
+        PolarCoordinate(const PolarCoordinate &t_other): wb_polar_coordinate() {
+            this->init(t_other.direction(), t_other.distance());
         }
 
         /**
          * Copy Constructor.
          */
-        PolarCoordinate(const struct wb_polar_coordinate &other): wb_polar_coordinate() {
-            this->init(other.direction(), other.distance());
+        PolarCoordinate(const struct wb_polar_coordinate &t_other): wb_polar_coordinate() {
+            this->init(t_other.direction, t_other.distance);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PolarCoordinate &operator = (const PolarCoordinate &other) {
-            this->init(other.direction(), other.distance());
+        PolarCoordinate &operator = (const PolarCoordinate &t_other) {
+            this->init(t_other.direction(), t_other.distance());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        PolarCoordinate &operator = (const struct wb_polar_coordinate &other) {
-            this->init(other.direction(), other.distance());
+        PolarCoordinate &operator = (const struct wb_polar_coordinate &t_other) {
+            this->init(t_other.direction, t_other.distance);
             return *this;
         }
 
-        bool operator ==(const PolarCoordinate &other) const
+        bool operator ==(const PolarCoordinate &t_other) const
         {
-            return direction() == other.direction()
-                && distance() == other.distance();
+            return direction() == t_other.direction()
+                && distance() == t_other.distance();
         }
 
-        bool operator !=(const PolarCoordinate &other) const
+        bool operator !=(const PolarCoordinate &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_polar_coordinate &other) const
+        bool operator ==(const wb_polar_coordinate &t_other) const
         {
-            return *this == PolarCoordinate(other);
+            return *this == PolarCoordinate(t_other);
         }
 
-        bool operator !=(const wb_polar_coordinate &other) const
+        bool operator !=(const wb_polar_coordinate &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t direction() const
+        {
+            return wb_polar_coordinate::direction;
+        }
+
+        void set_direction(const int16_t &t_newValue)
+        {
+            wb_polar_coordinate::direction = t_newValue;
+        }
+
+        uint16_t distance() const
+        {
+            return wb_polar_coordinate::distance;
+        }
+
+        void set_distance(const uint16_t &t_newValue)
+        {
+            wb_polar_coordinate::distance = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        PolarCoordinate(const std::string &str) {
+        PolarCoordinate(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -186,11 +206,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_POLAR_COORDINATE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_polar_coordinate_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_polar_coordinate_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > POLAR_COORDINATE_DESC_BUFFER_SIZE) {

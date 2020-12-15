@@ -97,6 +97,10 @@
 #define PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE 15
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * A `pixel_coordinate` is the whiteboard representation for the position of a
  * pixel in an image in centered pixel coordinate. The centered pixel coordinate
@@ -175,7 +179,7 @@ struct wb_pixel_coordinate
      *                            -floor((resHeight - 1) / 2)
      *  ```
      */
-    PROPERTY(int16_t, x)
+    int16_t x;
 
     /**
      *  The y coordinate.
@@ -207,13 +211,9 @@ struct wb_pixel_coordinate
      *                            -floor((resHeight - 1) / 2)
      *  ```
      */
-    PROPERTY(int16_t, y)
+    int16_t y;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

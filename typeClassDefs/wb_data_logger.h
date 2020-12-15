@@ -94,6 +94,10 @@
 #define DATA_LOGGER_TO_STRING_BUFFER_SIZE 116
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * General purpose data logger controller:
  * Whilst the comments above refer to monitoring running machines, the DataLogger can be used to record the robot's sensors in any appropriate situation.
@@ -154,43 +158,39 @@ struct wb_data_logger
     /**
      * Name of the machine being monitored, but could be anything.  This string is used to name the output file, and if its an empty string, the filename defaults to "NoName".
      */
-    STRING_PROPERTY(machineName, 40)
+    char machineName[40];
 
     /**
      * The machine's currently executing state (use integer rather than the state's name)
      */
-    PROPERTY(uint32_t, currentState)
+    uint32_t currentState;
 
     /**
      * Section within the state (e.g. 0 = onEntry, 1 = onExit, 2 = Internal).  See comments below.
      */
-    PROPERTY(uint32_t, currentSection)
+    uint32_t currentSection;
 
     /**
      * Enables selection of a data set to be logged (default = 0, joints and sensors)  (NYI)
      */
-    PROPERTY(uint8_t, dataSet)
+    uint8_t dataSet;
 
     /**
      * Starts/Stops logging
      */
-    PROPERTY(bool, loggerRunning)
+    bool loggerRunning;
 
     /**
      * Switch to cause DataLogger to exit.  DataLogger resets this bit back to false while exiting.
      */
-    PROPERTY(bool, shouldExit)
+    bool shouldExit;
 
     /**
      * Comment to be attached to the logged data  (NYI)
      */
-    STRING_PROPERTY(comment, 30)
+    char comment[30];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

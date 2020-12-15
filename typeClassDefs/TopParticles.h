@@ -85,12 +85,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(const struct wb_particle_position particles[4] = NULLPTR) {
-            if (particles != NULLPTR) {
-                std::memcpy(this->_particles, particles, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
+        void init(const struct wb_particle_position t_particles[4] = NULLPTR) {
+            if (t_particles != NULLPTR) {
+                std::memcpy(wb_top_particles::particles, t_particles, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             } else {
                 struct wb_particle_position particles_temp[TOPPARTICLES_PARTICLES_ARRAY_SIZE] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()};
-                std::memcpy(this->_particles, particles_temp, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
+                std::memcpy(wb_top_particles::particles, particles_temp, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             }
         }
 
@@ -99,71 +99,91 @@ namespace guWhiteboard {
         /**
          * Create a new `TopParticles`.
          */
-        TopParticles(const struct wb_particle_position particles[4] = NULLPTR) {
-            this->init(particles);
+        TopParticles(const struct wb_particle_position t_particles[4] = NULLPTR) {
+            this->init(t_particles);
         }
 
         /**
          * Copy Constructor.
          */
-        TopParticles(const TopParticles &other): wb_top_particles() {
-            this->init(other.particles());
+        TopParticles(const TopParticles &t_other): wb_top_particles() {
+            this->init(t_other.particles());
         }
 
         /**
          * Copy Constructor.
          */
-        TopParticles(const struct wb_top_particles &other): wb_top_particles() {
-            this->init(other.particles());
+        TopParticles(const struct wb_top_particles &t_other): wb_top_particles() {
+            this->init(t_other.particles);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TopParticles &operator = (const TopParticles &other) {
-            this->init(other.particles());
+        TopParticles &operator = (const TopParticles &t_other) {
+            this->init(t_other.particles());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TopParticles &operator = (const struct wb_top_particles &other) {
-            this->init(other.particles());
+        TopParticles &operator = (const struct wb_top_particles &t_other) {
+            this->init(t_other.particles);
             return *this;
         }
 
-        bool operator ==(const TopParticles &other) const
+        bool operator ==(const TopParticles &t_other) const
         {
             for (int particles_0_index = 0; particles_0_index < 4; particles_0_index++)
             {
-                if (!(ParticlePosition(_particles[particles_0_index]) == ParticlePosition(other._particles[particles_0_index]))) return false;
+                if (!(ParticlePosition(particles(particles_0_index)) == ParticlePosition(t_other.particles(particles_0_index)))) return false;
             }
             return true;
         }
 
-        bool operator !=(const TopParticles &other) const
+        bool operator !=(const TopParticles &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_top_particles &other) const
+        bool operator ==(const wb_top_particles &t_other) const
         {
-            return *this == TopParticles(other);
+            return *this == TopParticles(t_other);
         }
 
-        bool operator !=(const wb_top_particles &other) const
+        bool operator !=(const wb_top_particles &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        const ParticlePosition *particles() const
+        {
+            return static_cast<const ParticlePosition *>(wb_top_particles::particles);
+        }
+
+        ParticlePosition particles(int t_i) const
+        {
+            return ParticlePosition(wb_top_particles::particles[t_i]);
+        }
+
+        void set_particles(const ParticlePosition *t_newValue)
+        {
+            memcpy(wb_top_particles::particles, static_cast<const struct wb_particle_position *>(t_newValue), TOPPARTICLES_PARTICLES_ARRAY_SIZE * (sizeof (struct wb_particle_position)));
+        }
+
+        void set_particles(const ParticlePosition &t_newValue, int t_i)
+        {
+            wb_top_particles::particles[t_i] = static_cast<wb_particle_position>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        TopParticles(const std::string &str) {
+        TopParticles(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -177,8 +197,7 @@ namespace guWhiteboard {
             bool particles_first = true;
             ss << "particles={";
             for (int i = 0; i < TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
-                guWhiteboard::ParticlePosition * particles_cast = const_cast<guWhiteboard::ParticlePosition *>(static_cast<const guWhiteboard::ParticlePosition *>(&this->particles(i)));
-                ss << (particles_first ? "" : ", ") << "{" << particles_cast->description() << "}";
+                ss << (particles_first ? "" : ", ") << "{" << ParticlePosition(this->particles(i)).description() << "}";
                 particles_first = false;
             }
             ss << "}";
@@ -197,8 +216,7 @@ namespace guWhiteboard {
             bool particles_first = true;
             ss << "{";
             for (int i = 0; i < TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
-                guWhiteboard::ParticlePosition * particles_cast = const_cast<guWhiteboard::ParticlePosition *>(static_cast<const guWhiteboard::ParticlePosition *>(&this->particles(i)));
-                ss << (particles_first ? "" : ", ") << "{" << particles_cast->to_string() << "}";
+                ss << (particles_first ? "" : ", ") << "{" << ParticlePosition(this->particles(i)).to_string() << "}";
                 particles_first = false;
             }
             ss << "}";
@@ -207,11 +225,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_TOPPARTICLES_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_top_particles_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_top_particles_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > TOPPARTICLES_DESC_BUFFER_SIZE) {

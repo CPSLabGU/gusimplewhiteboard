@@ -94,6 +94,10 @@
 #define SENSORS_FOOT_SENSORS_TO_STRING_BUFFER_SIZE 951
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Body sensors c struct
  *
@@ -106,98 +110,94 @@ struct wb_sensors_foot_sensors
     /**
      * front left force sensor on the left foot
      */
-    PROPERTY(float, LFoot_FSR_FrontLeft)
+    float LFoot_FSR_FrontLeft;
 
     /**
      * front right force sensor on the left foot
      */
-    PROPERTY(float, LFoot_FSR_FrontRight)
+    float LFoot_FSR_FrontRight;
 
     /**
      * rear left force sensor on the left foot
      */
-    PROPERTY(float, LFoot_FSR_RearLeft)
+    float LFoot_FSR_RearLeft;
 
     /**
      * rear right force sensor on the left foot
      */
-    PROPERTY(float, LFoot_FSR_RearRight)
+    float LFoot_FSR_RearRight;
 
     /**
      * left foot center of pressure X
      */
-    PROPERTY(float, LFoot_FSR_CenterOfPressure_X)
+    float LFoot_FSR_CenterOfPressure_X;
 
     /**
      * left foot center of pressure Y
      */
-    PROPERTY(float, LFoot_FSR_CenterOfPressure_Y)
+    float LFoot_FSR_CenterOfPressure_Y;
 
     /**
      * Total weight on left foot (kg)
      */
-    PROPERTY(float, LFoot_FSR_TotalWeight)
+    float LFoot_FSR_TotalWeight;
 
     /**
      * front left force sensor on the right foot
      */
-    PROPERTY(float, RFoot_FSR_FrontLeft)
+    float RFoot_FSR_FrontLeft;
 
     /**
      * front right force sensor on the right foot
      */
-    PROPERTY(float, RFoot_FSR_FrontRight)
+    float RFoot_FSR_FrontRight;
 
     /**
      * rear left force sensor on the right foot
      */
-    PROPERTY(float, RFoot_FSR_RearLeft)
+    float RFoot_FSR_RearLeft;
 
     /**
      * rear right force sensor on the right foot
      */
-    PROPERTY(float, RFoot_FSR_RearRight)
+    float RFoot_FSR_RearRight;
 
     /**
      * right foot center of pressure X
      */
-    PROPERTY(float, RFoot_FSR_CenterOfPressure_X)
+    float RFoot_FSR_CenterOfPressure_X;
 
     /**
      * right foot center of pressure Y
      */
-    PROPERTY(float, RFoot_FSR_CenterOfPressure_Y)
+    float RFoot_FSR_CenterOfPressure_Y;
 
     /**
      * Total weight right foot (kg)
      */
-    PROPERTY(float, RFoot_FSR_TotalWeight)
+    float RFoot_FSR_TotalWeight;
 
     /**
      * left bumper on the left foot (on / off)
      */
-    PROPERTY(bool, LFoot_Bumper_Left)
+    bool LFoot_Bumper_Left;
 
     /**
      * right bumper on the left foot (on / off)
      */
-    PROPERTY(bool, LFoot_Bumper_Right)
+    bool LFoot_Bumper_Right;
 
     /**
      * left bumper on the right foot (on / off)
      */
-    PROPERTY(bool, RFoot_Bumper_Left)
+    bool RFoot_Bumper_Left;
 
     /**
      * right bumper on the right foot (on / off)
      */
-    PROPERTY(bool, RFoot_Bumper_Right)
+    bool RFoot_Bumper_Right;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

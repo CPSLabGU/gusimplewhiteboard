@@ -83,10 +83,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum WalkEngineState walkEngineState = wes_Disconnected, struct wb_odometry odometry = wb_odometry(), uint8_t odometryResetCounter = 0) {
-            set_walkEngineState(walkEngineState);
-            set_odometry(odometry);
-            set_odometryResetCounter(odometryResetCounter);
+        void init(enum WalkEngineState t_walkEngineState = wes_Disconnected, struct wb_odometry t_odometry = wb_odometry(), uint8_t t_odometryResetCounter = 0) {
+            set_walkEngineState(t_walkEngineState);
+            set_odometry(t_odometry);
+            set_odometryResetCounter(t_odometryResetCounter);
         }
 
     public:
@@ -94,69 +94,99 @@ namespace guWhiteboard {
         /**
          * Create a new `NaoWalkStatus`.
          */
-        NaoWalkStatus(enum WalkEngineState walkEngineState = wes_Disconnected, struct wb_odometry odometry = wb_odometry(), uint8_t odometryResetCounter = 0) {
-            this->init(walkEngineState, odometry, odometryResetCounter);
+        NaoWalkStatus(enum WalkEngineState t_walkEngineState = wes_Disconnected, struct wb_odometry t_odometry = wb_odometry(), uint8_t t_odometryResetCounter = 0) {
+            this->init(t_walkEngineState, t_odometry, t_odometryResetCounter);
         }
 
         /**
          * Copy Constructor.
          */
-        NaoWalkStatus(const NaoWalkStatus &other): wb_nao_walk_status() {
-            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
+        NaoWalkStatus(const NaoWalkStatus &t_other): wb_nao_walk_status() {
+            this->init(t_other.walkEngineState(), t_other.odometry(), t_other.odometryResetCounter());
         }
 
         /**
          * Copy Constructor.
          */
-        NaoWalkStatus(const struct wb_nao_walk_status &other): wb_nao_walk_status() {
-            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
+        NaoWalkStatus(const struct wb_nao_walk_status &t_other): wb_nao_walk_status() {
+            this->init(t_other.walkEngineState, t_other.odometry, t_other.odometryResetCounter);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoWalkStatus &operator = (const NaoWalkStatus &other) {
-            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
+        NaoWalkStatus &operator = (const NaoWalkStatus &t_other) {
+            this->init(t_other.walkEngineState(), t_other.odometry(), t_other.odometryResetCounter());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        NaoWalkStatus &operator = (const struct wb_nao_walk_status &other) {
-            this->init(other.walkEngineState(), other.odometry(), other.odometryResetCounter());
+        NaoWalkStatus &operator = (const struct wb_nao_walk_status &t_other) {
+            this->init(t_other.walkEngineState, t_other.odometry, t_other.odometryResetCounter);
             return *this;
         }
 
-        bool operator ==(const NaoWalkStatus &other) const
+        bool operator ==(const NaoWalkStatus &t_other) const
         {
-            return walkEngineState() == other.walkEngineState()
-                && Odometry(_odometry) == Odometry(other._odometry)
-                && odometryResetCounter() == other.odometryResetCounter();
+            return walkEngineState() == t_other.walkEngineState()
+                && Odometry(odometry()) == Odometry(t_other.odometry())
+                && odometryResetCounter() == t_other.odometryResetCounter();
         }
 
-        bool operator !=(const NaoWalkStatus &other) const
+        bool operator !=(const NaoWalkStatus &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_nao_walk_status &other) const
+        bool operator ==(const wb_nao_walk_status &t_other) const
         {
-            return *this == NaoWalkStatus(other);
+            return *this == NaoWalkStatus(t_other);
         }
 
-        bool operator !=(const wb_nao_walk_status &other) const
+        bool operator !=(const wb_nao_walk_status &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum WalkEngineState walkEngineState() const
+        {
+            return wb_nao_walk_status::walkEngineState;
+        }
+
+        void set_walkEngineState(const enum WalkEngineState &t_newValue)
+        {
+            wb_nao_walk_status::walkEngineState = t_newValue;
+        }
+
+        const Odometry odometry() const
+        {
+            return Odometry(wb_nao_walk_status::odometry);
+        }
+
+        void set_odometry(const Odometry &t_newValue)
+        {
+            wb_nao_walk_status::odometry = static_cast<wb_odometry>(t_newValue);
+        }
+
+        uint8_t odometryResetCounter() const
+        {
+            return wb_nao_walk_status::odometryResetCounter;
+        }
+
+        void set_odometryResetCounter(const uint8_t &t_newValue)
+        {
+            wb_nao_walk_status::odometryResetCounter = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        NaoWalkStatus(const std::string &str) {
+        NaoWalkStatus(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -190,8 +220,7 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::Odometry * odometry_cast = const_cast<guWhiteboard::Odometry *>(static_cast<const guWhiteboard::Odometry *>(&this->odometry()));
-            ss << "odometry=" << "{" << odometry_cast->description() << "}";
+            ss << "odometry=" << "{" << Odometry(this->odometry()).description() << "}";
             ss << ", ";
             ss << "odometryResetCounter=" << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -229,8 +258,7 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::Odometry * odometry_cast = const_cast<guWhiteboard::Odometry *>(static_cast<const guWhiteboard::Odometry *>(&this->odometry()));
-            ss << "{" << odometry_cast->to_string() << "}";
+            ss << "{" << Odometry(this->odometry()).to_string() << "}";
             ss << ", ";
             ss << static_cast<unsigned>(this->odometryResetCounter());
             return ss.str();
@@ -238,11 +266,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_NAOWALKSTATUS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_nao_walk_status_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_nao_walk_status_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > NAOWALKSTATUS_DESC_BUFFER_SIZE) {

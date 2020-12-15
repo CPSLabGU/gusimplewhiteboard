@@ -83,10 +83,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
-            set_sightingType(sightingType);
-            set_post1(post1);
-            set_post2(post2);
+        void init(enum GoalOptions t_sightingType = NoGoalDetected, struct wb_vision_detection_goal_post t_post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post t_post2 = wb_vision_detection_goal_post()) {
+            set_sightingType(t_sightingType);
+            set_post1(t_post1);
+            set_post2(t_post2);
         }
 
     public:
@@ -94,69 +94,99 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionGoal`.
          */
-        VisionDetectionGoal(enum GoalOptions sightingType = NoGoalDetected, struct wb_vision_detection_goal_post post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post post2 = wb_vision_detection_goal_post()) {
-            this->init(sightingType, post1, post2);
+        VisionDetectionGoal(enum GoalOptions t_sightingType = NoGoalDetected, struct wb_vision_detection_goal_post t_post1 = wb_vision_detection_goal_post(), struct wb_vision_detection_goal_post t_post2 = wb_vision_detection_goal_post()) {
+            this->init(t_sightingType, t_post1, t_post2);
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoal(const VisionDetectionGoal &other): wb_vision_detection_goal() {
-            this->init(other.sightingType(), other.post1(), other.post2());
+        VisionDetectionGoal(const VisionDetectionGoal &t_other): wb_vision_detection_goal() {
+            this->init(t_other.sightingType(), t_other.post1(), t_other.post2());
         }
 
         /**
          * Copy Constructor.
          */
-        VisionDetectionGoal(const struct wb_vision_detection_goal &other): wb_vision_detection_goal() {
-            this->init(other.sightingType(), other.post1(), other.post2());
+        VisionDetectionGoal(const struct wb_vision_detection_goal &t_other): wb_vision_detection_goal() {
+            this->init(t_other.sightingType, t_other.post1, t_other.post2);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoal &operator = (const VisionDetectionGoal &other) {
-            this->init(other.sightingType(), other.post1(), other.post2());
+        VisionDetectionGoal &operator = (const VisionDetectionGoal &t_other) {
+            this->init(t_other.sightingType(), t_other.post1(), t_other.post2());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        VisionDetectionGoal &operator = (const struct wb_vision_detection_goal &other) {
-            this->init(other.sightingType(), other.post1(), other.post2());
+        VisionDetectionGoal &operator = (const struct wb_vision_detection_goal &t_other) {
+            this->init(t_other.sightingType, t_other.post1, t_other.post2);
             return *this;
         }
 
-        bool operator ==(const VisionDetectionGoal &other) const
+        bool operator ==(const VisionDetectionGoal &t_other) const
         {
-            return sightingType() == other.sightingType()
-                && VisionDetectionGoalPost(_post1) == VisionDetectionGoalPost(other._post1)
-                && VisionDetectionGoalPost(_post2) == VisionDetectionGoalPost(other._post2);
+            return sightingType() == t_other.sightingType()
+                && VisionDetectionGoalPost(post1()) == VisionDetectionGoalPost(t_other.post1())
+                && VisionDetectionGoalPost(post2()) == VisionDetectionGoalPost(t_other.post2());
         }
 
-        bool operator !=(const VisionDetectionGoal &other) const
+        bool operator !=(const VisionDetectionGoal &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_vision_detection_goal &other) const
+        bool operator ==(const wb_vision_detection_goal &t_other) const
         {
-            return *this == VisionDetectionGoal(other);
+            return *this == VisionDetectionGoal(t_other);
         }
 
-        bool operator !=(const wb_vision_detection_goal &other) const
+        bool operator !=(const wb_vision_detection_goal &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        enum GoalOptions sightingType() const
+        {
+            return wb_vision_detection_goal::sightingType;
+        }
+
+        void set_sightingType(const enum GoalOptions &t_newValue)
+        {
+            wb_vision_detection_goal::sightingType = t_newValue;
+        }
+
+        const VisionDetectionGoalPost post1() const
+        {
+            return VisionDetectionGoalPost(wb_vision_detection_goal::post1);
+        }
+
+        void set_post1(const VisionDetectionGoalPost &t_newValue)
+        {
+            wb_vision_detection_goal::post1 = static_cast<wb_vision_detection_goal_post>(t_newValue);
+        }
+
+        const VisionDetectionGoalPost post2() const
+        {
+            return VisionDetectionGoalPost(wb_vision_detection_goal::post2);
+        }
+
+        void set_post2(const VisionDetectionGoalPost &t_newValue)
+        {
+            wb_vision_detection_goal::post2 = static_cast<wb_vision_detection_goal_post>(t_newValue);
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        VisionDetectionGoal(const std::string &str) {
+        VisionDetectionGoal(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -185,11 +215,9 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
-            ss << "post1=" << "{" << post1_cast->description() << "}";
+            ss << "post1=" << "{" << VisionDetectionGoalPost(this->post1()).description() << "}";
             ss << ", ";
-            guWhiteboard::VisionDetectionGoalPost * post2_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post2()));
-            ss << "post2=" << "{" << post2_cast->description() << "}";
+            ss << "post2=" << "{" << VisionDetectionGoalPost(this->post2()).description() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
         }
@@ -220,21 +248,19 @@ namespace guWhiteboard {
                 }
             }
             ss << ", ";
-            guWhiteboard::VisionDetectionGoalPost * post1_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post1()));
-            ss << "{" << post1_cast->to_string() << "}";
+            ss << "{" << VisionDetectionGoalPost(this->post1()).to_string() << "}";
             ss << ", ";
-            guWhiteboard::VisionDetectionGoalPost * post2_cast = const_cast<guWhiteboard::VisionDetectionGoalPost *>(static_cast<const guWhiteboard::VisionDetectionGoalPost *>(&this->post2()));
-            ss << "{" << post2_cast->to_string() << "}";
+            ss << "{" << VisionDetectionGoalPost(this->post2()).to_string() << "}";
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
         }
 
 #ifdef USE_WB_VISION_DETECTION_GOAL_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_vision_detection_goal_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_vision_detection_goal_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {

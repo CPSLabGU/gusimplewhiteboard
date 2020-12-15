@@ -124,6 +124,10 @@ enum GoalPostOrientation {
 #define VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE 3083
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Results for the Goal Ray Tracer (guvision). 
  * Results are a percentage of the image utilised, at whatever the resolution and FOV happen to be.
@@ -135,38 +139,34 @@ struct wb_vision_detection_goal_post
     /**
      * Goal post details.
      */
-    PROPERTY(enum GoalPostOptions, sightingType)
+    enum GoalPostOptions sightingType;
 
     /**
      * Goal post orientation.
      */
-    PROPERTY(enum GoalPostOrientation, orientation)
+    enum GoalPostOrientation orientation;
 
     /**
      * The top left pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, topLeftCoordinate)
+    struct wb_pixel_coordinate topLeftCoordinate;
 
     /**
      * The top right pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, topRightCoordinate)
+    struct wb_pixel_coordinate topRightCoordinate;
 
     /**
      * The bottom left pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, bottomLeftCoordinate)
+    struct wb_pixel_coordinate bottomLeftCoordinate;
 
     /**
      * The bottom right pixel coordinate.
      */
-    PROPERTY(struct wb_pixel_coordinate, bottomRightCoordinate)
+    struct wb_pixel_coordinate bottomRightCoordinate;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

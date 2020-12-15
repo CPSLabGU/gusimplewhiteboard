@@ -98,6 +98,10 @@
 
 #define VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE 2
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Array of fieldGoals, one instance reported by each camera. Using the guvision camera ordering for top and bottom, on the Nao. Reported by the GoalRayTracer.
  */
@@ -107,28 +111,24 @@ struct wb_vision_detection_goals
     /**
      * visionFrameNumber
      */
-    PROPERTY(uint64_t, frameNumber)
+    uint64_t frameNumber;
 
     /**
      * goal objects
      */
-    ARRAY_PROPERTY(struct wb_vision_detection_goal, goals, VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE)
+    struct wb_vision_detection_goal goals[VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE];
 
     /**
      * The resolution width.
      */
-    PROPERTY(uint16_t, res_width)
+    uint16_t res_width;
 
     /**
      * The resolution height.
      */
-    PROPERTY(uint16_t, res_height)
+    uint16_t res_height;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -110,6 +110,10 @@ enum VRControlWalkingOptions {
 #define GU_VR_TELEOP_VULKAN_CONTROL_TO_STRING_BUFFER_SIZE 1027
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Control class for messages from the vulkan vr teleop application
  */
@@ -119,18 +123,14 @@ struct wb_gu_vr_teleop_vulkan_control
     /**
      * controls the robots movement
      */
-    PROPERTY(enum VRControlMovementOptions, movementOptions)
+    enum VRControlMovementOptions movementOptions;
 
     /**
      * controls the direction of high-level walk commands
      */
-    PROPERTY(enum VRControlWalkingOptions, walkingOptions)
+    enum VRControlWalkingOptions walkingOptions;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

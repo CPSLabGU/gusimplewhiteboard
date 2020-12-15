@@ -94,6 +94,10 @@
 #define MY_POSITION_TO_STRING_BUFFER_SIZE 23
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Provides a class for the current position of the robot in its frame of reference.
  * The 0 point is where the robot started (wherever that is). This message is not related to the particle filter
@@ -105,23 +109,19 @@ struct wb_my_position
     /**
      * mm
      */
-    PROPERTY(int16_t, x)
+    int16_t x;
 
     /**
      * mm
      */
-    PROPERTY(int16_t, y)
+    int16_t y;
 
     /**
      * degrees
      */
-    PROPERTY(int16_t, heading)
+    int16_t heading;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

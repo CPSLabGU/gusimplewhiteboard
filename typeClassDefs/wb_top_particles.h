@@ -111,6 +111,10 @@
 
 #define TOPPARTICLES_PARTICLES_ARRAY_SIZE 4
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * The class of the top particles in a Localization Filter
  */
@@ -120,13 +124,9 @@ struct wb_top_particles
     /**
      * these 4 should be the constant NUM_TOP_PARTICLES
      */
-    ARRAY_PROPERTY(struct wb_particle_position, particles, TOPPARTICLES_PARTICLES_ARRAY_SIZE)
+    struct wb_particle_position particles[TOPPARTICLES_PARTICLES_ARRAY_SIZE];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

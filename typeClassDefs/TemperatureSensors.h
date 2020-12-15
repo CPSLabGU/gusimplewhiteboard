@@ -81,13 +81,13 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool LKneePitch = false, bool LAnklePitch = false, bool LAnkleRoll = false, bool RKneePitch = false, bool RAnklePitch = false, bool RAnkleRoll = false) {
-            set_LKneePitch(LKneePitch);
-            set_LAnklePitch(LAnklePitch);
-            set_LAnkleRoll(LAnkleRoll);
-            set_RKneePitch(RKneePitch);
-            set_RAnklePitch(RAnklePitch);
-            set_RAnkleRoll(RAnkleRoll);
+        void init(bool t_LKneePitch = false, bool t_LAnklePitch = false, bool t_LAnkleRoll = false, bool t_RKneePitch = false, bool t_RAnklePitch = false, bool t_RAnkleRoll = false) {
+            set_LKneePitch(t_LKneePitch);
+            set_LAnklePitch(t_LAnklePitch);
+            set_LAnkleRoll(t_LAnkleRoll);
+            set_RKneePitch(t_RKneePitch);
+            set_RAnklePitch(t_RAnklePitch);
+            set_RAnkleRoll(t_RAnkleRoll);
         }
 
     public:
@@ -95,72 +95,132 @@ namespace guWhiteboard {
         /**
          * Create a new `TemperatureSensors`.
          */
-        TemperatureSensors(bool LKneePitch = false, bool LAnklePitch = false, bool LAnkleRoll = false, bool RKneePitch = false, bool RAnklePitch = false, bool RAnkleRoll = false) {
-            this->init(LKneePitch, LAnklePitch, LAnkleRoll, RKneePitch, RAnklePitch, RAnkleRoll);
+        TemperatureSensors(bool t_LKneePitch = false, bool t_LAnklePitch = false, bool t_LAnkleRoll = false, bool t_RKneePitch = false, bool t_RAnklePitch = false, bool t_RAnkleRoll = false) {
+            this->init(t_LKneePitch, t_LAnklePitch, t_LAnkleRoll, t_RKneePitch, t_RAnklePitch, t_RAnkleRoll);
         }
 
         /**
          * Copy Constructor.
          */
-        TemperatureSensors(const TemperatureSensors &other): wb_temperature_sensors() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        TemperatureSensors(const TemperatureSensors &t_other): wb_temperature_sensors() {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
         }
 
         /**
          * Copy Constructor.
          */
-        TemperatureSensors(const struct wb_temperature_sensors &other): wb_temperature_sensors() {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        TemperatureSensors(const struct wb_temperature_sensors &t_other): wb_temperature_sensors() {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TemperatureSensors &operator = (const TemperatureSensors &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        TemperatureSensors &operator = (const TemperatureSensors &t_other) {
+            this->init(t_other.LKneePitch(), t_other.LAnklePitch(), t_other.LAnkleRoll(), t_other.RKneePitch(), t_other.RAnklePitch(), t_other.RAnkleRoll());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        TemperatureSensors &operator = (const struct wb_temperature_sensors &other) {
-            this->init(other.LKneePitch(), other.LAnklePitch(), other.LAnkleRoll(), other.RKneePitch(), other.RAnklePitch(), other.RAnkleRoll());
+        TemperatureSensors &operator = (const struct wb_temperature_sensors &t_other) {
+            this->init(t_other.LKneePitch, t_other.LAnklePitch, t_other.LAnkleRoll, t_other.RKneePitch, t_other.RAnklePitch, t_other.RAnkleRoll);
             return *this;
         }
 
-        bool operator ==(const TemperatureSensors &other) const
+        bool operator ==(const TemperatureSensors &t_other) const
         {
-            return LKneePitch() == other.LKneePitch()
-                && LAnklePitch() == other.LAnklePitch()
-                && LAnkleRoll() == other.LAnkleRoll()
-                && RKneePitch() == other.RKneePitch()
-                && RAnklePitch() == other.RAnklePitch()
-                && RAnkleRoll() == other.RAnkleRoll();
+            return LKneePitch() == t_other.LKneePitch()
+                && LAnklePitch() == t_other.LAnklePitch()
+                && LAnkleRoll() == t_other.LAnkleRoll()
+                && RKneePitch() == t_other.RKneePitch()
+                && RAnklePitch() == t_other.RAnklePitch()
+                && RAnkleRoll() == t_other.RAnkleRoll();
         }
 
-        bool operator !=(const TemperatureSensors &other) const
+        bool operator !=(const TemperatureSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_temperature_sensors &other) const
+        bool operator ==(const wb_temperature_sensors &t_other) const
         {
-            return *this == TemperatureSensors(other);
+            return *this == TemperatureSensors(t_other);
         }
 
-        bool operator !=(const wb_temperature_sensors &other) const
+        bool operator !=(const wb_temperature_sensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool LKneePitch() const
+        {
+            return wb_temperature_sensors::LKneePitch;
+        }
+
+        void set_LKneePitch(const bool &t_newValue)
+        {
+            wb_temperature_sensors::LKneePitch = t_newValue;
+        }
+
+        bool LAnklePitch() const
+        {
+            return wb_temperature_sensors::LAnklePitch;
+        }
+
+        void set_LAnklePitch(const bool &t_newValue)
+        {
+            wb_temperature_sensors::LAnklePitch = t_newValue;
+        }
+
+        bool LAnkleRoll() const
+        {
+            return wb_temperature_sensors::LAnkleRoll;
+        }
+
+        void set_LAnkleRoll(const bool &t_newValue)
+        {
+            wb_temperature_sensors::LAnkleRoll = t_newValue;
+        }
+
+        bool RKneePitch() const
+        {
+            return wb_temperature_sensors::RKneePitch;
+        }
+
+        void set_RKneePitch(const bool &t_newValue)
+        {
+            wb_temperature_sensors::RKneePitch = t_newValue;
+        }
+
+        bool RAnklePitch() const
+        {
+            return wb_temperature_sensors::RAnklePitch;
+        }
+
+        void set_RAnklePitch(const bool &t_newValue)
+        {
+            wb_temperature_sensors::RAnklePitch = t_newValue;
+        }
+
+        bool RAnkleRoll() const
+        {
+            return wb_temperature_sensors::RAnkleRoll;
+        }
+
+        void set_RAnkleRoll(const bool &t_newValue)
+        {
+            wb_temperature_sensors::RAnkleRoll = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        TemperatureSensors(const std::string &str) {
+        TemperatureSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -210,11 +270,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_TEMPERATURE_SENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_temperature_sensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_temperature_sensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > TEMPERATURE_SENSORS_DESC_BUFFER_SIZE) {

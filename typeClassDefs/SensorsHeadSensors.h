@@ -81,10 +81,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
-            set_Head_Touch_Front(Head_Touch_Front);
-            set_Head_Touch_Middle(Head_Touch_Middle);
-            set_Head_Touch_Rear(Head_Touch_Rear);
+        void init(bool t_Head_Touch_Front = true, bool t_Head_Touch_Middle = true, bool t_Head_Touch_Rear = true) {
+            set_Head_Touch_Front(t_Head_Touch_Front);
+            set_Head_Touch_Middle(t_Head_Touch_Middle);
+            set_Head_Touch_Rear(t_Head_Touch_Rear);
         }
 
     public:
@@ -92,69 +92,99 @@ namespace guWhiteboard {
         /**
          * Create a new `SensorsHeadSensors`.
          */
-        SensorsHeadSensors(bool Head_Touch_Front = true, bool Head_Touch_Middle = true, bool Head_Touch_Rear = true) {
-            this->init(Head_Touch_Front, Head_Touch_Middle, Head_Touch_Rear);
+        SensorsHeadSensors(bool t_Head_Touch_Front = true, bool t_Head_Touch_Middle = true, bool t_Head_Touch_Rear = true) {
+            this->init(t_Head_Touch_Front, t_Head_Touch_Middle, t_Head_Touch_Rear);
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsHeadSensors(const SensorsHeadSensors &other): wb_sensors_head_sensors() {
-            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
+        SensorsHeadSensors(const SensorsHeadSensors &t_other): wb_sensors_head_sensors() {
+            this->init(t_other.Head_Touch_Front(), t_other.Head_Touch_Middle(), t_other.Head_Touch_Rear());
         }
 
         /**
          * Copy Constructor.
          */
-        SensorsHeadSensors(const struct wb_sensors_head_sensors &other): wb_sensors_head_sensors() {
-            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
+        SensorsHeadSensors(const struct wb_sensors_head_sensors &t_other): wb_sensors_head_sensors() {
+            this->init(t_other.Head_Touch_Front, t_other.Head_Touch_Middle, t_other.Head_Touch_Rear);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsHeadSensors &operator = (const SensorsHeadSensors &other) {
-            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
+        SensorsHeadSensors &operator = (const SensorsHeadSensors &t_other) {
+            this->init(t_other.Head_Touch_Front(), t_other.Head_Touch_Middle(), t_other.Head_Touch_Rear());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        SensorsHeadSensors &operator = (const struct wb_sensors_head_sensors &other) {
-            this->init(other.Head_Touch_Front(), other.Head_Touch_Middle(), other.Head_Touch_Rear());
+        SensorsHeadSensors &operator = (const struct wb_sensors_head_sensors &t_other) {
+            this->init(t_other.Head_Touch_Front, t_other.Head_Touch_Middle, t_other.Head_Touch_Rear);
             return *this;
         }
 
-        bool operator ==(const SensorsHeadSensors &other) const
+        bool operator ==(const SensorsHeadSensors &t_other) const
         {
-            return Head_Touch_Front() == other.Head_Touch_Front()
-                && Head_Touch_Middle() == other.Head_Touch_Middle()
-                && Head_Touch_Rear() == other.Head_Touch_Rear();
+            return Head_Touch_Front() == t_other.Head_Touch_Front()
+                && Head_Touch_Middle() == t_other.Head_Touch_Middle()
+                && Head_Touch_Rear() == t_other.Head_Touch_Rear();
         }
 
-        bool operator !=(const SensorsHeadSensors &other) const
+        bool operator !=(const SensorsHeadSensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_sensors_head_sensors &other) const
+        bool operator ==(const wb_sensors_head_sensors &t_other) const
         {
-            return *this == SensorsHeadSensors(other);
+            return *this == SensorsHeadSensors(t_other);
         }
 
-        bool operator !=(const wb_sensors_head_sensors &other) const
+        bool operator !=(const wb_sensors_head_sensors &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool Head_Touch_Front() const
+        {
+            return wb_sensors_head_sensors::Head_Touch_Front;
+        }
+
+        void set_Head_Touch_Front(const bool &t_newValue)
+        {
+            wb_sensors_head_sensors::Head_Touch_Front = t_newValue;
+        }
+
+        bool Head_Touch_Middle() const
+        {
+            return wb_sensors_head_sensors::Head_Touch_Middle;
+        }
+
+        void set_Head_Touch_Middle(const bool &t_newValue)
+        {
+            wb_sensors_head_sensors::Head_Touch_Middle = t_newValue;
+        }
+
+        bool Head_Touch_Rear() const
+        {
+            return wb_sensors_head_sensors::Head_Touch_Rear;
+        }
+
+        void set_Head_Touch_Rear(const bool &t_newValue)
+        {
+            wb_sensors_head_sensors::Head_Touch_Rear = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        SensorsHeadSensors(const std::string &str) {
+        SensorsHeadSensors(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -192,11 +222,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_SENSORS_HEAD_SENSORS_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_sensors_head_sensors_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_sensors_head_sensors_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > SENSORS_HEAD_SENSORS_DESC_BUFFER_SIZE) {

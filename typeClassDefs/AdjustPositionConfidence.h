@@ -81,8 +81,8 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int8_t adjustment = 0) {
-            set_adjustment(adjustment);
+        void init(int8_t t_adjustment = 0) {
+            set_adjustment(t_adjustment);
         }
 
     public:
@@ -90,67 +90,77 @@ namespace guWhiteboard {
         /**
          * Create a new `AdjustPositionConfidence`.
          */
-        AdjustPositionConfidence(int8_t adjustment = 0) {
-            this->init(adjustment);
+        AdjustPositionConfidence(int8_t t_adjustment = 0) {
+            this->init(t_adjustment);
         }
 
         /**
          * Copy Constructor.
          */
-        AdjustPositionConfidence(const AdjustPositionConfidence &other): wb_adjust_position_confidence() {
-            this->init(other.adjustment());
+        AdjustPositionConfidence(const AdjustPositionConfidence &t_other): wb_adjust_position_confidence() {
+            this->init(t_other.adjustment());
         }
 
         /**
          * Copy Constructor.
          */
-        AdjustPositionConfidence(const struct wb_adjust_position_confidence &other): wb_adjust_position_confidence() {
-            this->init(other.adjustment());
+        AdjustPositionConfidence(const struct wb_adjust_position_confidence &t_other): wb_adjust_position_confidence() {
+            this->init(t_other.adjustment);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        AdjustPositionConfidence &operator = (const AdjustPositionConfidence &other) {
-            this->init(other.adjustment());
+        AdjustPositionConfidence &operator = (const AdjustPositionConfidence &t_other) {
+            this->init(t_other.adjustment());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        AdjustPositionConfidence &operator = (const struct wb_adjust_position_confidence &other) {
-            this->init(other.adjustment());
+        AdjustPositionConfidence &operator = (const struct wb_adjust_position_confidence &t_other) {
+            this->init(t_other.adjustment);
             return *this;
         }
 
-        bool operator ==(const AdjustPositionConfidence &other) const
+        bool operator ==(const AdjustPositionConfidence &t_other) const
         {
-            return adjustment() == other.adjustment();
+            return adjustment() == t_other.adjustment();
         }
 
-        bool operator !=(const AdjustPositionConfidence &other) const
+        bool operator !=(const AdjustPositionConfidence &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_adjust_position_confidence &other) const
+        bool operator ==(const wb_adjust_position_confidence &t_other) const
         {
-            return *this == AdjustPositionConfidence(other);
+            return *this == AdjustPositionConfidence(t_other);
         }
 
-        bool operator !=(const wb_adjust_position_confidence &other) const
+        bool operator !=(const wb_adjust_position_confidence &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int8_t adjustment() const
+        {
+            return wb_adjust_position_confidence::adjustment;
+        }
+
+        void set_adjustment(const int8_t &t_newValue)
+        {
+            wb_adjust_position_confidence::adjustment = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        AdjustPositionConfidence(const std::string &str) {
+        AdjustPositionConfidence(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -180,11 +190,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_ADJUST_POSITION_CONFIDENCE_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_adjust_position_confidence_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_adjust_position_confidence_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > ADJUST_POSITION_CONFIDENCE_DESC_BUFFER_SIZE) {

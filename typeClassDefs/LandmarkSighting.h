@@ -81,10 +81,10 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
-            set_direction(direction);
-            set_distance(distance);
-            set_sightingType(sightingType);
+        void init(int16_t t_direction = 0, uint16_t t_distance = 0, enum LandmarkSightingType t_sightingType = static_cast<enum LandmarkSightingType>(0)) {
+            set_direction(t_direction);
+            set_distance(t_distance);
+            set_sightingType(t_sightingType);
         }
 
     public:
@@ -92,69 +92,99 @@ namespace guWhiteboard {
         /**
          * Create a new `LandmarkSighting`.
          */
-        LandmarkSighting(int16_t direction = 0, uint16_t distance = 0, enum LandmarkSightingType sightingType = static_cast<enum LandmarkSightingType>(0)) {
-            this->init(direction, distance, sightingType);
+        LandmarkSighting(int16_t t_direction = 0, uint16_t t_distance = 0, enum LandmarkSightingType t_sightingType = static_cast<enum LandmarkSightingType>(0)) {
+            this->init(t_direction, t_distance, t_sightingType);
         }
 
         /**
          * Copy Constructor.
          */
-        LandmarkSighting(const LandmarkSighting &other): wb_landmark_sighting() {
-            this->init(other.direction(), other.distance(), other.sightingType());
+        LandmarkSighting(const LandmarkSighting &t_other): wb_landmark_sighting() {
+            this->init(t_other.direction(), t_other.distance(), t_other.sightingType());
         }
 
         /**
          * Copy Constructor.
          */
-        LandmarkSighting(const struct wb_landmark_sighting &other): wb_landmark_sighting() {
-            this->init(other.direction(), other.distance(), other.sightingType());
+        LandmarkSighting(const struct wb_landmark_sighting &t_other): wb_landmark_sighting() {
+            this->init(t_other.direction, t_other.distance, t_other.sightingType);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        LandmarkSighting &operator = (const LandmarkSighting &other) {
-            this->init(other.direction(), other.distance(), other.sightingType());
+        LandmarkSighting &operator = (const LandmarkSighting &t_other) {
+            this->init(t_other.direction(), t_other.distance(), t_other.sightingType());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        LandmarkSighting &operator = (const struct wb_landmark_sighting &other) {
-            this->init(other.direction(), other.distance(), other.sightingType());
+        LandmarkSighting &operator = (const struct wb_landmark_sighting &t_other) {
+            this->init(t_other.direction, t_other.distance, t_other.sightingType);
             return *this;
         }
 
-        bool operator ==(const LandmarkSighting &other) const
+        bool operator ==(const LandmarkSighting &t_other) const
         {
-            return direction() == other.direction()
-                && distance() == other.distance()
-                && sightingType() == other.sightingType();
+            return direction() == t_other.direction()
+                && distance() == t_other.distance()
+                && sightingType() == t_other.sightingType();
         }
 
-        bool operator !=(const LandmarkSighting &other) const
+        bool operator !=(const LandmarkSighting &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_landmark_sighting &other) const
+        bool operator ==(const wb_landmark_sighting &t_other) const
         {
-            return *this == LandmarkSighting(other);
+            return *this == LandmarkSighting(t_other);
         }
 
-        bool operator !=(const wb_landmark_sighting &other) const
+        bool operator !=(const wb_landmark_sighting &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t direction() const
+        {
+            return wb_landmark_sighting::direction;
+        }
+
+        void set_direction(const int16_t &t_newValue)
+        {
+            wb_landmark_sighting::direction = t_newValue;
+        }
+
+        uint16_t distance() const
+        {
+            return wb_landmark_sighting::distance;
+        }
+
+        void set_distance(const uint16_t &t_newValue)
+        {
+            wb_landmark_sighting::distance = t_newValue;
+        }
+
+        enum LandmarkSightingType sightingType() const
+        {
+            return wb_landmark_sighting::sightingType;
+        }
+
+        void set_sightingType(const enum LandmarkSightingType &t_newValue)
+        {
+            wb_landmark_sighting::sightingType = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        LandmarkSighting(const std::string &str) {
+        LandmarkSighting(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -304,11 +334,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_LANDMARK_SIGHTING_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_landmark_sighting_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_landmark_sighting_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > LANDMARK_SIGHTING_DESC_BUFFER_SIZE) {

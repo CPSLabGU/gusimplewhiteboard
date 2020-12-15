@@ -94,6 +94,10 @@
 #define NAOWALKCOMMAND_TO_STRING_BUFFER_SIZE 90
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Control message for sending commands to the walk engine created by UNSW.
  * LICENSE:
@@ -109,78 +113,74 @@ struct wb_nao_walk_command
     /**
      * connects the dcm callbacks. Essentially turning the walk on. When enabled, the walk engine controls all joint values except the head pitch and yaw.
      */
-    PROPERTY(bool, walkEngineOn)
+    bool walkEngineOn;
 
     /**
      * [-300 - 300] step-size(mm) per second, limited to +/- 300mm/step
      */
-    PROPERTY(int16_t, forward)
+    int16_t forward;
 
     /**
      * [-200 - 200] step-size(mm) per second, limited to +/- 200mm/step
      */
-    PROPERTY(int16_t, left)
+    int16_t left;
 
     /**
      * [-85 - 85] step-size(mm) per second, limited to +/- 85deg/step
      */
-    PROPERTY(int8_t, turn)
+    int8_t turn;
 
     /**
      * No ratcheting, no speed 'buildup', just full step sizes. This is good for exact movements, like walk 23cm forward for a kick.
      */
-    PROPERTY(bool, exactStepsRequested)
+    bool exactStepsRequested;
 
     /**
      * [0 - 100] modifier for forward etc.. when using exactStepsRequested = true
      */
-    PROPERTY(uint8_t, speed)
+    uint8_t speed;
 
     /**
      * Odometry will reset any time this is changed or incremented.
      */
-    PROPERTY(uint8_t, odometryResetCounter)
+    uint8_t odometryResetCounter;
 
     /**
      * for kicks. True results in a 'Jab'/rapid kick.
      */
-    PROPERTY(bool, isFast)
+    bool isFast;
 
     /**
      * which foot to use for kicking
      */
-    PROPERTY(bool, kickWithLeftFoot)
+    bool kickWithLeftFoot;
 
     /**
      * limits the step height so the robot 'shuffles' instead of taking larger steps. Good for walking near other robots or small obstacles that could trip the robot, if it tried to step onto it.
      */
-    PROPERTY(bool, useShuffle)
+    bool useShuffle;
 
     /**
      * lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
      */
-    PROPERTY(bool, leftArmLimp)
+    bool leftArmLimp;
 
     /**
      * lower stiffness in the arms when walking, allows the arm to move a little more. This is for robot collisions to allow the arm to absorb some of the collision instead of rigidly transferring the force to the whole body.
      */
-    PROPERTY(bool, rightArmLimp)
+    bool rightArmLimp;
 
     /**
      * [0 - 100] stiffness, auto set to minimum needed values. Advanced pararm! don't alter this without knowledge of exactly what it does.
      */
-    PROPERTY(uint8_t, power)
+    uint8_t power;
 
     /**
      * [0 - 1] controls what the robot does when stopped, 0 == STAND and lower stiffness, 1 == stay in READY, crouched and ready to walk immediately.
      */
-    PROPERTY(uint8_t, bend)
+    uint8_t bend;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

@@ -81,8 +81,8 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(bool overheating = false) {
-            set_overheating(overheating);
+        void init(bool t_overheating = false) {
+            set_overheating(t_overheating);
         }
 
     public:
@@ -90,67 +90,77 @@ namespace guWhiteboard {
         /**
          * Create a new `Overheating`.
          */
-        Overheating(bool overheating = false) {
-            this->init(overheating);
+        Overheating(bool t_overheating = false) {
+            this->init(t_overheating);
         }
 
         /**
          * Copy Constructor.
          */
-        Overheating(const Overheating &other): wb_overheating() {
-            this->init(other.overheating());
+        Overheating(const Overheating &t_other): wb_overheating() {
+            this->init(t_other.overheating());
         }
 
         /**
          * Copy Constructor.
          */
-        Overheating(const struct wb_overheating &other): wb_overheating() {
-            this->init(other.overheating());
+        Overheating(const struct wb_overheating &t_other): wb_overheating() {
+            this->init(t_other.overheating);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Overheating &operator = (const Overheating &other) {
-            this->init(other.overheating());
+        Overheating &operator = (const Overheating &t_other) {
+            this->init(t_other.overheating());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Overheating &operator = (const struct wb_overheating &other) {
-            this->init(other.overheating());
+        Overheating &operator = (const struct wb_overheating &t_other) {
+            this->init(t_other.overheating);
             return *this;
         }
 
-        bool operator ==(const Overheating &other) const
+        bool operator ==(const Overheating &t_other) const
         {
-            return overheating() == other.overheating();
+            return overheating() == t_other.overheating();
         }
 
-        bool operator !=(const Overheating &other) const
+        bool operator !=(const Overheating &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_overheating &other) const
+        bool operator ==(const wb_overheating &t_other) const
         {
-            return *this == Overheating(other);
+            return *this == Overheating(t_other);
         }
 
-        bool operator !=(const wb_overheating &other) const
+        bool operator !=(const wb_overheating &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        bool overheating() const
+        {
+            return wb_overheating::overheating;
+        }
+
+        void set_overheating(const bool &t_newValue)
+        {
+            wb_overheating::overheating = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Overheating(const std::string &str) {
+        Overheating(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -180,11 +190,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_OVERHEATING_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_overheating_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_overheating_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > OVERHEATING_DESC_BUFFER_SIZE) {

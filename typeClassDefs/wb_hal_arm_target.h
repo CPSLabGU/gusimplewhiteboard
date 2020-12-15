@@ -155,6 +155,10 @@
 #define HAL_ARM_TARGET_TO_STRING_BUFFER_SIZE 201
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Classgenerator version
  */
@@ -164,123 +168,119 @@ struct wb_hal_arm_target
     /**
      * The elapsed time, in mSec, in which the movement should be completed. Status Message: Absolute time when the current action will complete. (Thus this is an int32_t.)
      */
-    PROPERTY(int32_t, target_movement_time)
+    int32_t target_movement_time;
 
     /**
      * target shoulder pitch angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_shoulderpitch)
+    int16_t target_shoulderpitch;
 
     /**
      * target shoulder roll angle angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_shoulderroll)
+    int16_t target_shoulderroll;
 
     /**
      * target elbow roll angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_elbowroll)
+    int16_t target_elbowroll;
 
     /**
      * target elbow yaw angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_elbowyaw)
+    int16_t target_elbowyaw;
 
     /**
      * target wrist yaw angle in 10ths of degrees
      */
-    PROPERTY(int16_t, target_wristyaw)
+    int16_t target_wristyaw;
 
     /**
      * target arm number: This property is used strictly for accounting purposes when the struct is stored within an array and the robot has numerous  arms.
      */
-    PROPERTY(uint8_t, target_arm)
+    uint8_t target_arm;
 
     /**
      * target hand grasper opening as a percentage: 0   gripper will be clasped shut, 100 gripper will be fully openned
      */
-    PROPERTY(uint8_t, target_hand)
+    uint8_t target_hand;
 
     /**
      * target shoulder pitch stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_shoulderpitchstiffness)
+    uint8_t target_shoulderpitchstiffness;
 
     /**
      * target shoulder roll stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_shoulderrollstiffness)
+    uint8_t target_shoulderrollstiffness;
 
     /**
      * target elbow roll stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_elbowrollstiffness)
+    uint8_t target_elbowrollstiffness;
 
     /**
      * target elbow yaw stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_elbowyawstiffness)
+    uint8_t target_elbowyawstiffness;
 
     /**
      * target wrist yaw stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_wristyawstiffness)
+    uint8_t target_wristyawstiffness;
 
     /**
      * target hand grasper stiffness as a percentage
      */
-    PROPERTY(uint8_t, target_handstiffness)
+    uint8_t target_handstiffness;
 
     /**
      * target arm's pliability when in Passive Mode. When the arm is passive, this value reduces the update frequency, thus making the arm more resistant to external forces. Use of values from 0 to 10 is recommended. When set to zero (0), the Arm, when fully extended out, will fall under its own weight. Higher values stiffen the arm and reduce responsiveness, the movement will become stepped.
      */
-    PROPERTY(uint8_t, target_pliability)
+    uint8_t target_pliability;
 
     /**
      * Is the shoulderpitch Active (true[DEFAULT]) or Passive (false). Active :  The robot's DCM will prevent movement of the arm from the requested pose in accordance to the joint stiffness. (This is the normal behaviour of the robot.)  Passive:  Once the requested pose is achieved, the DCM will automatically update the requested pose according to deviations in the joints. The effect of this is that the robot's arm will be susceptible to gravity (and will fall slowly over time) as well as to externally applied forces (allowing it to be manipulated).
      */
-    BIT_PROPERTY(target_shoulderpitch_active)
+    unsigned int target_shoulderpitch_active : 1;
 
     /**
      * Is the shoulderroll Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_shoulderroll_active)
+    unsigned int target_shoulderroll_active : 1;
 
     /**
      * Is the elbowroll Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_elbowroll_active)
+    unsigned int target_elbowroll_active : 1;
 
     /**
      * Is the elbowyaw Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_elbowyaw_active)
+    unsigned int target_elbowyaw_active : 1;
 
     /**
      * Is the wrist Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_wrist_active)
+    unsigned int target_wrist_active : 1;
 
     /**
      * Is the hand Active (true[DEFAULT]) or Passive (false)
      */
-    BIT_PROPERTY(target_hand_active)
+    unsigned int target_hand_active : 1;
 
     /**
      * Control Message: Not used. Status Message: Naoqiinterface reports that the goal location of all joints has been reached (within specified tolerance).
      */
-    BIT_PROPERTY(target_arm_at_goal)
+    unsigned int target_arm_at_goal : 1;
 
     /**
      * Control Message: Stop the arm at its current location. Status Message: Indicates if the last control message issued a STOP command.
      */
-    BIT_PROPERTY(target_arm_stop)
+    unsigned int target_arm_stop : 1;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

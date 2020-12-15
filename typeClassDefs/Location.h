@@ -88,12 +88,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0, uint32_t distanceVariance = 0, uint32_t directionVariance = 0) {
-            set_direction(direction);
-            set_distance(distance);
-            set_confidence(confidence);
-            set_distanceVariance(distanceVariance);
-            set_directionVariance(directionVariance);
+        void init(int16_t t_direction = 0, uint16_t t_distance = 0, uint8_t t_confidence = 0, uint32_t t_distanceVariance = 0, uint32_t t_directionVariance = 0) {
+            set_direction(t_direction);
+            set_distance(t_distance);
+            set_confidence(t_confidence);
+            set_distanceVariance(t_distanceVariance);
+            set_directionVariance(t_directionVariance);
         }
 
     public:
@@ -101,71 +101,121 @@ namespace guWhiteboard {
         /**
          * Create a new `Location`.
          */
-        Location(int16_t direction = 0, uint16_t distance = 0, uint8_t confidence = 0, uint32_t distanceVariance = 0, uint32_t directionVariance = 0) {
-            this->init(direction, distance, confidence, distanceVariance, directionVariance);
+        Location(int16_t t_direction = 0, uint16_t t_distance = 0, uint8_t t_confidence = 0, uint32_t t_distanceVariance = 0, uint32_t t_directionVariance = 0) {
+            this->init(t_direction, t_distance, t_confidence, t_distanceVariance, t_directionVariance);
         }
 
         /**
          * Copy Constructor.
          */
-        Location(const Location &other): wb_location() {
-            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
+        Location(const Location &t_other): wb_location() {
+            this->init(t_other.direction(), t_other.distance(), t_other.confidence(), t_other.distanceVariance(), t_other.directionVariance());
         }
 
         /**
          * Copy Constructor.
          */
-        Location(const struct wb_location &other): wb_location() {
-            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
+        Location(const struct wb_location &t_other): wb_location() {
+            this->init(t_other.direction, t_other.distance, t_other.confidence, t_other.distanceVariance, t_other.directionVariance);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Location &operator = (const Location &other) {
-            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
+        Location &operator = (const Location &t_other) {
+            this->init(t_other.direction(), t_other.distance(), t_other.confidence(), t_other.distanceVariance(), t_other.directionVariance());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        Location &operator = (const struct wb_location &other) {
-            this->init(other.direction(), other.distance(), other.confidence(), other.distanceVariance(), other.directionVariance());
+        Location &operator = (const struct wb_location &t_other) {
+            this->init(t_other.direction, t_other.distance, t_other.confidence, t_other.distanceVariance, t_other.directionVariance);
             return *this;
         }
 
-        bool operator ==(const Location &other) const
+        bool operator ==(const Location &t_other) const
         {
-            return direction() == other.direction()
-                && distance() == other.distance()
-                && confidence() == other.confidence()
-                && distanceVariance() == other.distanceVariance()
-                && directionVariance() == other.directionVariance();
+            return direction() == t_other.direction()
+                && distance() == t_other.distance()
+                && confidence() == t_other.confidence()
+                && distanceVariance() == t_other.distanceVariance()
+                && directionVariance() == t_other.directionVariance();
         }
 
-        bool operator !=(const Location &other) const
+        bool operator !=(const Location &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_location &other) const
+        bool operator ==(const wb_location &t_other) const
         {
-            return *this == Location(other);
+            return *this == Location(t_other);
         }
 
-        bool operator !=(const wb_location &other) const
+        bool operator !=(const wb_location &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int16_t direction() const
+        {
+            return wb_location::direction;
+        }
+
+        void set_direction(const int16_t &t_newValue)
+        {
+            wb_location::direction = t_newValue;
+        }
+
+        uint16_t distance() const
+        {
+            return wb_location::distance;
+        }
+
+        void set_distance(const uint16_t &t_newValue)
+        {
+            wb_location::distance = t_newValue;
+        }
+
+        uint8_t confidence() const
+        {
+            return wb_location::confidence;
+        }
+
+        void set_confidence(const uint8_t &t_newValue)
+        {
+            wb_location::confidence = t_newValue;
+        }
+
+        uint32_t distanceVariance() const
+        {
+            return wb_location::distanceVariance;
+        }
+
+        void set_distanceVariance(const uint32_t &t_newValue)
+        {
+            wb_location::distanceVariance = t_newValue;
+        }
+
+        uint32_t directionVariance() const
+        {
+            return wb_location::directionVariance;
+        }
+
+        void set_directionVariance(const uint32_t &t_newValue)
+        {
+            wb_location::directionVariance = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        Location(const std::string &str) {
+        Location(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -211,11 +261,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_LOCATION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_location_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_location_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > LOCATION_DESC_BUFFER_SIZE) {
@@ -338,16 +388,16 @@ namespace guWhiteboard {
          *  \brief Create a new Location by converting the values from a
          *  GU::RelativeCoordinate.
          *
-         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *  \param[in] t_other The GU::RelativeCoordinate which is being converted.
          *
          *  \warning Since a confidence, distanceVariance and directionVariance are not
          *  provided, the default values will be used.
          */
-        Location(const GU::RelativeCoordinate &other)
+        Location(const GU::RelativeCoordinate &t_other)
         {
             this->init(
-                deg_d_to_i16(other.direction()),
-                cm_u_to_u16(mm_u_to_cm_u(other.distance()))
+                deg_d_to_i16(t_other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(t_other.distance()))
             );
         }
 
@@ -355,19 +405,19 @@ namespace guWhiteboard {
          *  \brief Create a new Location by converting the values from a
          *  GU::RelativeCoordinate.
          *
-         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *  \param[in] t_other The GU::RelativeCoordinate which is being converted.
          *
-         *  \param[in] confidence The percentage of certainty of the location.
+         *  \param[in] t_confidence The percentage of certainty of the location.
          *
          *  \warning Since a distanceVariance and directionVariance are not
          *  provided, the default values will be used.
          */
-        Location(const GU::RelativeCoordinate &other, const uint8_t confidence)
+        Location(const GU::RelativeCoordinate &t_other, const uint8_t t_confidence)
         {
             this->init(
-                deg_d_to_i16(other.direction()),
-                cm_u_to_u16(mm_u_to_cm_u(other.distance())),
-                confidence
+                deg_d_to_i16(t_other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(t_other.distance())),
+                t_confidence
             );
         }
 
@@ -375,22 +425,22 @@ namespace guWhiteboard {
          *  \brief Create a new Location by converting the values from a
          *  GU::RelativeCoordinate.
          *
-         *  \param[in] other The GU::RelativeCoordinate which is being converted.
+         *  \param[in] t_other The GU::RelativeCoordinate which is being converted.
          *
-         *  \param[in] confidence The percentage of certainty of the location.
+         *  \param[in] t_confidence The percentage of certainty of the location.
          *
-         *  \param[in] distanceVariance The variance of the distance.
+         *  \param[in] t_distanceVariance The variance of the distance.
          *
-         *  \param[in] directionVariance The variance of the direction.
+         *  \param[in] t_directionVariance The variance of the direction.
          */
-        Location(const GU::RelativeCoordinate &other, const uint8_t confidence, const uint32_t distanceVariance, uint32_t directionVariance)
+        Location(const GU::RelativeCoordinate &t_other, const uint8_t t_confidence, const uint32_t t_distanceVariance, uint32_t t_directionVariance)
         {
             this->init(
-                deg_d_to_i16(other.direction()),
-                cm_u_to_u16(mm_u_to_cm_u(other.distance())),
-                confidence,
-                distanceVariance,
-                directionVariance
+                deg_d_to_i16(t_other.direction()),
+                cm_u_to_u16(mm_u_to_cm_u(t_other.distance())),
+                t_confidence,
+                t_distanceVariance,
+                t_directionVariance
             );
         }
 

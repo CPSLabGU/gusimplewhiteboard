@@ -94,6 +94,10 @@
 #define PARTICLE_OUTPUT_MAP_TO_STRING_BUFFER_SIZE 70
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * This class is responsible for notifying when a particle map has been written
  * by the particle filter.
@@ -104,18 +108,14 @@ struct wb_particle_output_map
     /**
      * The id of the file.
      */
-    PROPERTY(uint8_t, fileId)
+    uint8_t fileId;
 
     /**
      * The path to the file containing the list of particles.
      */
-    STRING_PROPERTY(filePath, 64)
+    char filePath[64];
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

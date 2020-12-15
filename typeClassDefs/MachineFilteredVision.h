@@ -81,14 +81,14 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(int8_t ball_direction = 0, uint16_t ball_distance = 0, bool ball_visible = 0, int8_t goal_direction = 0, uint16_t goal_distance = 0, bool goal_visible = 0, enum GoalSightingType goal_sightingType = NoSightingType) {
-            set_ball_direction(ball_direction);
-            set_ball_distance(ball_distance);
-            set_ball_visible(ball_visible);
-            set_goal_direction(goal_direction);
-            set_goal_distance(goal_distance);
-            set_goal_visible(goal_visible);
-            set_goal_sightingType(goal_sightingType);
+        void init(int8_t t_ball_direction = 0, uint16_t t_ball_distance = 0, bool t_ball_visible = 0, int8_t t_goal_direction = 0, uint16_t t_goal_distance = 0, bool t_goal_visible = 0, enum GoalSightingType t_goal_sightingType = NoSightingType) {
+            set_ball_direction(t_ball_direction);
+            set_ball_distance(t_ball_distance);
+            set_ball_visible(t_ball_visible);
+            set_goal_direction(t_goal_direction);
+            set_goal_distance(t_goal_distance);
+            set_goal_visible(t_goal_visible);
+            set_goal_sightingType(t_goal_sightingType);
         }
 
     public:
@@ -96,73 +96,143 @@ namespace guWhiteboard {
         /**
          * Create a new `MachineFilteredVision`.
          */
-        MachineFilteredVision(int8_t ball_direction = 0, uint16_t ball_distance = 0, bool ball_visible = 0, int8_t goal_direction = 0, uint16_t goal_distance = 0, bool goal_visible = 0, enum GoalSightingType goal_sightingType = NoSightingType) {
-            this->init(ball_direction, ball_distance, ball_visible, goal_direction, goal_distance, goal_visible, goal_sightingType);
+        MachineFilteredVision(int8_t t_ball_direction = 0, uint16_t t_ball_distance = 0, bool t_ball_visible = 0, int8_t t_goal_direction = 0, uint16_t t_goal_distance = 0, bool t_goal_visible = 0, enum GoalSightingType t_goal_sightingType = NoSightingType) {
+            this->init(t_ball_direction, t_ball_distance, t_ball_visible, t_goal_direction, t_goal_distance, t_goal_visible, t_goal_sightingType);
         }
 
         /**
          * Copy Constructor.
          */
-        MachineFilteredVision(const MachineFilteredVision &other): wb_machine_filtered_vision() {
-            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
+        MachineFilteredVision(const MachineFilteredVision &t_other): wb_machine_filtered_vision() {
+            this->init(t_other.ball_direction(), t_other.ball_distance(), t_other.ball_visible(), t_other.goal_direction(), t_other.goal_distance(), t_other.goal_visible(), t_other.goal_sightingType());
         }
 
         /**
          * Copy Constructor.
          */
-        MachineFilteredVision(const struct wb_machine_filtered_vision &other): wb_machine_filtered_vision() {
-            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
+        MachineFilteredVision(const struct wb_machine_filtered_vision &t_other): wb_machine_filtered_vision() {
+            this->init(t_other.ball_direction, t_other.ball_distance, t_other.ball_visible, t_other.goal_direction, t_other.goal_distance, t_other.goal_visible, t_other.goal_sightingType);
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MachineFilteredVision &operator = (const MachineFilteredVision &other) {
-            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
+        MachineFilteredVision &operator = (const MachineFilteredVision &t_other) {
+            this->init(t_other.ball_direction(), t_other.ball_distance(), t_other.ball_visible(), t_other.goal_direction(), t_other.goal_distance(), t_other.goal_visible(), t_other.goal_sightingType());
             return *this;
         }
 
         /**
          * Copy Assignment Operator.
          */
-        MachineFilteredVision &operator = (const struct wb_machine_filtered_vision &other) {
-            this->init(other.ball_direction(), other.ball_distance(), other.ball_visible(), other.goal_direction(), other.goal_distance(), other.goal_visible(), other.goal_sightingType());
+        MachineFilteredVision &operator = (const struct wb_machine_filtered_vision &t_other) {
+            this->init(t_other.ball_direction, t_other.ball_distance, t_other.ball_visible, t_other.goal_direction, t_other.goal_distance, t_other.goal_visible, t_other.goal_sightingType);
             return *this;
         }
 
-        bool operator ==(const MachineFilteredVision &other) const
+        bool operator ==(const MachineFilteredVision &t_other) const
         {
-            return ball_direction() == other.ball_direction()
-                && ball_distance() == other.ball_distance()
-                && ball_visible() == other.ball_visible()
-                && goal_direction() == other.goal_direction()
-                && goal_distance() == other.goal_distance()
-                && goal_visible() == other.goal_visible()
-                && goal_sightingType() == other.goal_sightingType();
+            return ball_direction() == t_other.ball_direction()
+                && ball_distance() == t_other.ball_distance()
+                && ball_visible() == t_other.ball_visible()
+                && goal_direction() == t_other.goal_direction()
+                && goal_distance() == t_other.goal_distance()
+                && goal_visible() == t_other.goal_visible()
+                && goal_sightingType() == t_other.goal_sightingType();
         }
 
-        bool operator !=(const MachineFilteredVision &other) const
+        bool operator !=(const MachineFilteredVision &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
         }
 
-        bool operator ==(const wb_machine_filtered_vision &other) const
+        bool operator ==(const wb_machine_filtered_vision &t_other) const
         {
-            return *this == MachineFilteredVision(other);
+            return *this == MachineFilteredVision(t_other);
         }
 
-        bool operator !=(const wb_machine_filtered_vision &other) const
+        bool operator !=(const wb_machine_filtered_vision &t_other) const
         {
-            return !(*this == other);
+            return !(*this == t_other);
+        }
+
+        int8_t ball_direction() const
+        {
+            return wb_machine_filtered_vision::ball_direction;
+        }
+
+        void set_ball_direction(const int8_t &t_newValue)
+        {
+            wb_machine_filtered_vision::ball_direction = t_newValue;
+        }
+
+        uint16_t ball_distance() const
+        {
+            return wb_machine_filtered_vision::ball_distance;
+        }
+
+        void set_ball_distance(const uint16_t &t_newValue)
+        {
+            wb_machine_filtered_vision::ball_distance = t_newValue;
+        }
+
+        bool ball_visible() const
+        {
+            return wb_machine_filtered_vision::ball_visible;
+        }
+
+        void set_ball_visible(const bool &t_newValue)
+        {
+            wb_machine_filtered_vision::ball_visible = t_newValue;
+        }
+
+        int8_t goal_direction() const
+        {
+            return wb_machine_filtered_vision::goal_direction;
+        }
+
+        void set_goal_direction(const int8_t &t_newValue)
+        {
+            wb_machine_filtered_vision::goal_direction = t_newValue;
+        }
+
+        uint16_t goal_distance() const
+        {
+            return wb_machine_filtered_vision::goal_distance;
+        }
+
+        void set_goal_distance(const uint16_t &t_newValue)
+        {
+            wb_machine_filtered_vision::goal_distance = t_newValue;
+        }
+
+        bool goal_visible() const
+        {
+            return wb_machine_filtered_vision::goal_visible;
+        }
+
+        void set_goal_visible(const bool &t_newValue)
+        {
+            wb_machine_filtered_vision::goal_visible = t_newValue;
+        }
+
+        enum GoalSightingType goal_sightingType() const
+        {
+            return wb_machine_filtered_vision::goal_sightingType;
+        }
+
+        void set_goal_sightingType(const enum GoalSightingType &t_newValue)
+        {
+            wb_machine_filtered_vision::goal_sightingType = t_newValue;
         }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
          */
-        MachineFilteredVision(const std::string &str) {
+        MachineFilteredVision(const std::string &t_str) {
             this->init();
-            this->from_string(str);
+            this->from_string(t_str);
         }
 
         std::string description() {
@@ -258,11 +328,11 @@ namespace guWhiteboard {
         }
 
 #ifdef USE_WB_MACHINE_FILTERED_VISION_C_CONVERSION
-        void from_string(const std::string &str) {
-            wb_machine_filtered_vision_from_string(this, str.c_str());
+        void from_string(const std::string &t_str) {
+            wb_machine_filtered_vision_from_string(this, t_str.c_str());
 #else
-        void from_string(const std::string &str) {
-            char * str_cstr = const_cast<char *>(str.c_str());
+        void from_string(const std::string &t_str) {
+            char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
             if (length < 1 || length > MACHINE_FILTERED_VISION_DESC_BUFFER_SIZE) {

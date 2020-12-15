@@ -94,6 +94,10 @@
 #define BUTTONS_TO_STRING_BUFFER_SIZE 13
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Contains the status of two buttons.
  */
@@ -103,18 +107,14 @@ struct wb_buttons
     /**
      * The first button.
      */
-    PROPERTY(bool, button1Pushed)
+    bool button1Pushed;
 
     /**
      * The second button.
      */
-    PROPERTY(bool, button2Pushed)
+    bool button2Pushed;
 
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 
