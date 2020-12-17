@@ -154,7 +154,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t x() const
+        int16_t & x()
+        {
+            return wb_ball_position::x;
+        }
+
+        const int16_t & x() const
         {
             return wb_ball_position::x;
         }
@@ -164,7 +169,12 @@ namespace guWhiteboard {
             wb_ball_position::x = t_newValue;
         }
 
-        int16_t y() const
+        int16_t & y()
+        {
+            return wb_ball_position::y;
+        }
+
+        const int16_t & y() const
         {
             return wb_ball_position::y;
         }
@@ -174,7 +184,12 @@ namespace guWhiteboard {
             wb_ball_position::y = t_newValue;
         }
 
-        int16_t pitchInDegrees() const
+        int16_t & pitchInDegrees()
+        {
+            return wb_ball_position::pitchInDegrees;
+        }
+
+        const int16_t & pitchInDegrees() const
         {
             return wb_ball_position::pitchInDegrees;
         }
@@ -184,7 +199,12 @@ namespace guWhiteboard {
             wb_ball_position::pitchInDegrees = t_newValue;
         }
 
-        int16_t yawInDegrees() const
+        int16_t & yawInDegrees()
+        {
+            return wb_ball_position::yawInDegrees;
+        }
+
+        const int16_t & yawInDegrees() const
         {
             return wb_ball_position::yawInDegrees;
         }
@@ -194,7 +214,12 @@ namespace guWhiteboard {
             wb_ball_position::yawInDegrees = t_newValue;
         }
 
-        int16_t rollInDegrees() const
+        int16_t & rollInDegrees()
+        {
+            return wb_ball_position::rollInDegrees;
+        }
+
+        const int16_t & rollInDegrees() const
         {
             return wb_ball_position::rollInDegrees;
         }
@@ -204,7 +229,12 @@ namespace guWhiteboard {
             wb_ball_position::rollInDegrees = t_newValue;
         }
 
-        uint8_t confidence() const
+        uint8_t & confidence()
+        {
+            return wb_ball_position::confidence;
+        }
+
+        const uint8_t & confidence() const
         {
             return wb_ball_position::confidence;
         }

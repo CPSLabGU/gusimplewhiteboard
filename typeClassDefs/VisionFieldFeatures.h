@@ -188,14 +188,24 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const VisionFieldFeature *fieldCorner() const
+        VisionFieldFeature * fieldCorner()
+        {
+            return const_cast<VisionFieldFeature *>(static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCorner));
+        }
+
+        const VisionFieldFeature * fieldCorner() const
         {
             return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCorner);
         }
 
-        VisionFieldFeature fieldCorner(int t_i) const
+        VisionFieldFeature & fieldCorner(int t_i)
         {
-            return VisionFieldFeature(wb_vision_field_features::fieldCorner[t_i]);
+            return const_cast<VisionFieldFeature &>(static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldCorner[t_i]));
+        }
+
+        const VisionFieldFeature & fieldCorner(int t_i) const
+        {
+            return static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldCorner[t_i]);
         }
 
         void set_fieldCorner(const VisionFieldFeature *t_newValue)
@@ -208,14 +218,24 @@ namespace guWhiteboard {
             wb_vision_field_features::fieldCorner[t_i] = static_cast<wb_vision_field_feature>(t_newValue);
         }
 
-        const VisionFieldFeature *fieldIntersection() const
+        VisionFieldFeature * fieldIntersection()
+        {
+            return const_cast<VisionFieldFeature *>(static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldIntersection));
+        }
+
+        const VisionFieldFeature * fieldIntersection() const
         {
             return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldIntersection);
         }
 
-        VisionFieldFeature fieldIntersection(int t_i) const
+        VisionFieldFeature & fieldIntersection(int t_i)
         {
-            return VisionFieldFeature(wb_vision_field_features::fieldIntersection[t_i]);
+            return const_cast<VisionFieldFeature &>(static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldIntersection[t_i]));
+        }
+
+        const VisionFieldFeature & fieldIntersection(int t_i) const
+        {
+            return static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldIntersection[t_i]);
         }
 
         void set_fieldIntersection(const VisionFieldFeature *t_newValue)
@@ -228,14 +248,24 @@ namespace guWhiteboard {
             wb_vision_field_features::fieldIntersection[t_i] = static_cast<wb_vision_field_feature>(t_newValue);
         }
 
-        const VisionFieldFeature *fieldCrosses() const
+        VisionFieldFeature * fieldCrosses()
+        {
+            return const_cast<VisionFieldFeature *>(static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCrosses));
+        }
+
+        const VisionFieldFeature * fieldCrosses() const
         {
             return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCrosses);
         }
 
-        VisionFieldFeature fieldCrosses(int t_i) const
+        VisionFieldFeature & fieldCrosses(int t_i)
         {
-            return VisionFieldFeature(wb_vision_field_features::fieldCrosses[t_i]);
+            return const_cast<VisionFieldFeature &>(static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldCrosses[t_i]));
+        }
+
+        const VisionFieldFeature & fieldCrosses(int t_i) const
+        {
+            return static_cast<const VisionFieldFeature &>(wb_vision_field_features::fieldCrosses[t_i]);
         }
 
         void set_fieldCrosses(const VisionFieldFeature *t_newValue)
@@ -248,7 +278,12 @@ namespace guWhiteboard {
             wb_vision_field_features::fieldCrosses[t_i] = static_cast<wb_vision_field_feature>(t_newValue);
         }
 
-        uint8_t numCorners() const
+        uint8_t & numCorners()
+        {
+            return wb_vision_field_features::numCorners;
+        }
+
+        const uint8_t & numCorners() const
         {
             return wb_vision_field_features::numCorners;
         }
@@ -258,7 +293,12 @@ namespace guWhiteboard {
             wb_vision_field_features::numCorners = t_newValue;
         }
 
-        uint8_t numIntersections() const
+        uint8_t & numIntersections()
+        {
+            return wb_vision_field_features::numIntersections;
+        }
+
+        const uint8_t & numIntersections() const
         {
             return wb_vision_field_features::numIntersections;
         }
@@ -268,7 +308,12 @@ namespace guWhiteboard {
             wb_vision_field_features::numIntersections = t_newValue;
         }
 
-        uint8_t numCrosses() const
+        uint8_t & numCrosses()
+        {
+            return wb_vision_field_features::numCrosses;
+        }
+
+        const uint8_t & numCrosses() const
         {
             return wb_vision_field_features::numCrosses;
         }
@@ -278,7 +323,12 @@ namespace guWhiteboard {
             wb_vision_field_features::numCrosses = t_newValue;
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_vision_field_features::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_vision_field_features::res_width;
         }
@@ -288,7 +338,12 @@ namespace guWhiteboard {
             wb_vision_field_features::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_vision_field_features::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_vision_field_features::res_height;
         }

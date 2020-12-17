@@ -148,7 +148,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_memory_image_control_status::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_memory_image_control_status::res_width;
         }
@@ -158,7 +163,12 @@ namespace guWhiteboard {
             wb_memory_image_control_status::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_memory_image_control_status::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_memory_image_control_status::res_height;
         }
@@ -168,7 +178,12 @@ namespace guWhiteboard {
             wb_memory_image_control_status::res_height = t_newValue;
         }
 
-        enum MemoryImagePixelFormat pixelFormat() const
+        enum MemoryImagePixelFormat & pixelFormat()
+        {
+            return wb_memory_image_control_status::pixelFormat;
+        }
+
+        const enum MemoryImagePixelFormat & pixelFormat() const
         {
             return wb_memory_image_control_status::pixelFormat;
         }

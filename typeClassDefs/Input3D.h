@@ -150,7 +150,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t yaw() const
+        int16_t & yaw()
+        {
+            return wb_input3d::yaw;
+        }
+
+        const int16_t & yaw() const
         {
             return wb_input3d::yaw;
         }
@@ -160,7 +165,12 @@ namespace guWhiteboard {
             wb_input3d::yaw = t_newValue;
         }
 
-        int16_t pitch() const
+        int16_t & pitch()
+        {
+            return wb_input3d::pitch;
+        }
+
+        const int16_t & pitch() const
         {
             return wb_input3d::pitch;
         }
@@ -170,7 +180,12 @@ namespace guWhiteboard {
             wb_input3d::pitch = t_newValue;
         }
 
-        int16_t roll() const
+        int16_t & roll()
+        {
+            return wb_input3d::roll;
+        }
+
+        const int16_t & roll() const
         {
             return wb_input3d::roll;
         }
@@ -180,7 +195,12 @@ namespace guWhiteboard {
             wb_input3d::roll = t_newValue;
         }
 
-        int16_t power() const
+        int16_t & power()
+        {
+            return wb_input3d::power;
+        }
+
+        const int16_t & power() const
         {
             return wb_input3d::power;
         }

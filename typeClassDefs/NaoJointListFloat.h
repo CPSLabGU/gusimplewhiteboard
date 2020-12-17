@@ -193,7 +193,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float HeadYaw() const
+        float & HeadYaw()
+        {
+            return wb_nao_joint_list_float::HeadYaw;
+        }
+
+        const float & HeadYaw() const
         {
             return wb_nao_joint_list_float::HeadYaw;
         }
@@ -203,7 +208,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::HeadYaw = t_newValue;
         }
 
-        float HeadPitch() const
+        float & HeadPitch()
+        {
+            return wb_nao_joint_list_float::HeadPitch;
+        }
+
+        const float & HeadPitch() const
         {
             return wb_nao_joint_list_float::HeadPitch;
         }
@@ -213,7 +223,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::HeadPitch = t_newValue;
         }
 
-        float LShoulderPitch() const
+        float & LShoulderPitch()
+        {
+            return wb_nao_joint_list_float::LShoulderPitch;
+        }
+
+        const float & LShoulderPitch() const
         {
             return wb_nao_joint_list_float::LShoulderPitch;
         }
@@ -223,7 +238,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LShoulderPitch = t_newValue;
         }
 
-        float LShoulderRoll() const
+        float & LShoulderRoll()
+        {
+            return wb_nao_joint_list_float::LShoulderRoll;
+        }
+
+        const float & LShoulderRoll() const
         {
             return wb_nao_joint_list_float::LShoulderRoll;
         }
@@ -233,7 +253,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LShoulderRoll = t_newValue;
         }
 
-        float LElbowYaw() const
+        float & LElbowYaw()
+        {
+            return wb_nao_joint_list_float::LElbowYaw;
+        }
+
+        const float & LElbowYaw() const
         {
             return wb_nao_joint_list_float::LElbowYaw;
         }
@@ -243,7 +268,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LElbowYaw = t_newValue;
         }
 
-        float LElbowRoll() const
+        float & LElbowRoll()
+        {
+            return wb_nao_joint_list_float::LElbowRoll;
+        }
+
+        const float & LElbowRoll() const
         {
             return wb_nao_joint_list_float::LElbowRoll;
         }
@@ -253,7 +283,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LElbowRoll = t_newValue;
         }
 
-        float LWristYaw() const
+        float & LWristYaw()
+        {
+            return wb_nao_joint_list_float::LWristYaw;
+        }
+
+        const float & LWristYaw() const
         {
             return wb_nao_joint_list_float::LWristYaw;
         }
@@ -263,7 +298,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LWristYaw = t_newValue;
         }
 
-        float LHand() const
+        float & LHand()
+        {
+            return wb_nao_joint_list_float::LHand;
+        }
+
+        const float & LHand() const
         {
             return wb_nao_joint_list_float::LHand;
         }
@@ -273,7 +313,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LHand = t_newValue;
         }
 
-        float RShoulderPitch() const
+        float & RShoulderPitch()
+        {
+            return wb_nao_joint_list_float::RShoulderPitch;
+        }
+
+        const float & RShoulderPitch() const
         {
             return wb_nao_joint_list_float::RShoulderPitch;
         }
@@ -283,7 +328,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RShoulderPitch = t_newValue;
         }
 
-        float RShoulderRoll() const
+        float & RShoulderRoll()
+        {
+            return wb_nao_joint_list_float::RShoulderRoll;
+        }
+
+        const float & RShoulderRoll() const
         {
             return wb_nao_joint_list_float::RShoulderRoll;
         }
@@ -293,7 +343,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RShoulderRoll = t_newValue;
         }
 
-        float RElbowYaw() const
+        float & RElbowYaw()
+        {
+            return wb_nao_joint_list_float::RElbowYaw;
+        }
+
+        const float & RElbowYaw() const
         {
             return wb_nao_joint_list_float::RElbowYaw;
         }
@@ -303,7 +358,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RElbowYaw = t_newValue;
         }
 
-        float RElbowRoll() const
+        float & RElbowRoll()
+        {
+            return wb_nao_joint_list_float::RElbowRoll;
+        }
+
+        const float & RElbowRoll() const
         {
             return wb_nao_joint_list_float::RElbowRoll;
         }
@@ -313,7 +373,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RElbowRoll = t_newValue;
         }
 
-        float RWristYaw() const
+        float & RWristYaw()
+        {
+            return wb_nao_joint_list_float::RWristYaw;
+        }
+
+        const float & RWristYaw() const
         {
             return wb_nao_joint_list_float::RWristYaw;
         }
@@ -323,7 +388,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RWristYaw = t_newValue;
         }
 
-        float RHand() const
+        float & RHand()
+        {
+            return wb_nao_joint_list_float::RHand;
+        }
+
+        const float & RHand() const
         {
             return wb_nao_joint_list_float::RHand;
         }
@@ -333,7 +403,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RHand = t_newValue;
         }
 
-        float LHipYawPitch() const
+        float & LHipYawPitch()
+        {
+            return wb_nao_joint_list_float::LHipYawPitch;
+        }
+
+        const float & LHipYawPitch() const
         {
             return wb_nao_joint_list_float::LHipYawPitch;
         }
@@ -343,7 +418,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LHipYawPitch = t_newValue;
         }
 
-        float LHipRoll() const
+        float & LHipRoll()
+        {
+            return wb_nao_joint_list_float::LHipRoll;
+        }
+
+        const float & LHipRoll() const
         {
             return wb_nao_joint_list_float::LHipRoll;
         }
@@ -353,7 +433,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LHipRoll = t_newValue;
         }
 
-        float LHipPitch() const
+        float & LHipPitch()
+        {
+            return wb_nao_joint_list_float::LHipPitch;
+        }
+
+        const float & LHipPitch() const
         {
             return wb_nao_joint_list_float::LHipPitch;
         }
@@ -363,7 +448,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LHipPitch = t_newValue;
         }
 
-        float LKneePitch() const
+        float & LKneePitch()
+        {
+            return wb_nao_joint_list_float::LKneePitch;
+        }
+
+        const float & LKneePitch() const
         {
             return wb_nao_joint_list_float::LKneePitch;
         }
@@ -373,7 +463,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LKneePitch = t_newValue;
         }
 
-        float LAnklePitch() const
+        float & LAnklePitch()
+        {
+            return wb_nao_joint_list_float::LAnklePitch;
+        }
+
+        const float & LAnklePitch() const
         {
             return wb_nao_joint_list_float::LAnklePitch;
         }
@@ -383,7 +478,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LAnklePitch = t_newValue;
         }
 
-        float LAnkleRoll() const
+        float & LAnkleRoll()
+        {
+            return wb_nao_joint_list_float::LAnkleRoll;
+        }
+
+        const float & LAnkleRoll() const
         {
             return wb_nao_joint_list_float::LAnkleRoll;
         }
@@ -393,7 +493,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::LAnkleRoll = t_newValue;
         }
 
-        float RHipRoll() const
+        float & RHipRoll()
+        {
+            return wb_nao_joint_list_float::RHipRoll;
+        }
+
+        const float & RHipRoll() const
         {
             return wb_nao_joint_list_float::RHipRoll;
         }
@@ -403,7 +508,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RHipRoll = t_newValue;
         }
 
-        float RHipPitch() const
+        float & RHipPitch()
+        {
+            return wb_nao_joint_list_float::RHipPitch;
+        }
+
+        const float & RHipPitch() const
         {
             return wb_nao_joint_list_float::RHipPitch;
         }
@@ -413,7 +523,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RHipPitch = t_newValue;
         }
 
-        float RKneePitch() const
+        float & RKneePitch()
+        {
+            return wb_nao_joint_list_float::RKneePitch;
+        }
+
+        const float & RKneePitch() const
         {
             return wb_nao_joint_list_float::RKneePitch;
         }
@@ -423,7 +538,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RKneePitch = t_newValue;
         }
 
-        float RAnklePitch() const
+        float & RAnklePitch()
+        {
+            return wb_nao_joint_list_float::RAnklePitch;
+        }
+
+        const float & RAnklePitch() const
         {
             return wb_nao_joint_list_float::RAnklePitch;
         }
@@ -433,7 +553,12 @@ namespace guWhiteboard {
             wb_nao_joint_list_float::RAnklePitch = t_newValue;
         }
 
-        float RAnkleRoll() const
+        float & RAnkleRoll()
+        {
+            return wb_nao_joint_list_float::RAnkleRoll;
+        }
+
+        const float & RAnkleRoll() const
         {
             return wb_nao_joint_list_float::RAnkleRoll;
         }

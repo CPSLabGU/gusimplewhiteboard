@@ -166,14 +166,24 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const VisionLine *lines() const
+        VisionLine * lines()
+        {
+            return const_cast<VisionLine *>(static_cast<const VisionLine *>(wb_vision_lines::lines));
+        }
+
+        const VisionLine * lines() const
         {
             return static_cast<const VisionLine *>(wb_vision_lines::lines);
         }
 
-        VisionLine lines(int t_i) const
+        VisionLine & lines(int t_i)
         {
-            return VisionLine(wb_vision_lines::lines[t_i]);
+            return const_cast<VisionLine &>(static_cast<const VisionLine &>(wb_vision_lines::lines[t_i]));
+        }
+
+        const VisionLine & lines(int t_i) const
+        {
+            return static_cast<const VisionLine &>(wb_vision_lines::lines[t_i]);
         }
 
         void set_lines(const VisionLine *t_newValue)
@@ -186,7 +196,12 @@ namespace guWhiteboard {
             wb_vision_lines::lines[t_i] = static_cast<wb_vision_line>(t_newValue);
         }
 
-        uint8_t numLines() const
+        uint8_t & numLines()
+        {
+            return wb_vision_lines::numLines;
+        }
+
+        const uint8_t & numLines() const
         {
             return wb_vision_lines::numLines;
         }
@@ -196,7 +211,12 @@ namespace guWhiteboard {
             wb_vision_lines::numLines = t_newValue;
         }
 
-        uint64_t frameNumber() const
+        uint64_t & frameNumber()
+        {
+            return wb_vision_lines::frameNumber;
+        }
+
+        const uint64_t & frameNumber() const
         {
             return wb_vision_lines::frameNumber;
         }
@@ -206,7 +226,12 @@ namespace guWhiteboard {
             wb_vision_lines::frameNumber = t_newValue;
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_vision_lines::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_vision_lines::res_width;
         }
@@ -216,7 +241,12 @@ namespace guWhiteboard {
             wb_vision_lines::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_vision_lines::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_vision_lines::res_height;
         }

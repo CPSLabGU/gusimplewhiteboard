@@ -150,7 +150,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t rear_left() const
+        int16_t & rear_left()
+        {
+            return wb_r_m_s_levels::rear_left;
+        }
+
+        const int16_t & rear_left() const
         {
             return wb_r_m_s_levels::rear_left;
         }
@@ -160,7 +165,12 @@ namespace guWhiteboard {
             wb_r_m_s_levels::rear_left = t_newValue;
         }
 
-        int16_t rear_right() const
+        int16_t & rear_right()
+        {
+            return wb_r_m_s_levels::rear_right;
+        }
+
+        const int16_t & rear_right() const
         {
             return wb_r_m_s_levels::rear_right;
         }
@@ -170,7 +180,12 @@ namespace guWhiteboard {
             wb_r_m_s_levels::rear_right = t_newValue;
         }
 
-        int16_t front_left() const
+        int16_t & front_left()
+        {
+            return wb_r_m_s_levels::front_left;
+        }
+
+        const int16_t & front_left() const
         {
             return wb_r_m_s_levels::front_left;
         }
@@ -180,7 +195,12 @@ namespace guWhiteboard {
             wb_r_m_s_levels::front_left = t_newValue;
         }
 
-        int16_t front_right() const
+        int16_t & front_right()
+        {
+            return wb_r_m_s_levels::front_right;
+        }
+
+        const int16_t & front_right() const
         {
             return wb_r_m_s_levels::front_right;
         }

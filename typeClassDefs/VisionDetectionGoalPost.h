@@ -171,7 +171,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum GoalPostOptions sightingType() const
+        enum GoalPostOptions & sightingType()
+        {
+            return wb_vision_detection_goal_post::sightingType;
+        }
+
+        const enum GoalPostOptions & sightingType() const
         {
             return wb_vision_detection_goal_post::sightingType;
         }
@@ -181,7 +186,12 @@ namespace guWhiteboard {
             wb_vision_detection_goal_post::sightingType = t_newValue;
         }
 
-        enum GoalPostOrientation orientation() const
+        enum GoalPostOrientation & orientation()
+        {
+            return wb_vision_detection_goal_post::orientation;
+        }
+
+        const enum GoalPostOrientation & orientation() const
         {
             return wb_vision_detection_goal_post::orientation;
         }
@@ -191,9 +201,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal_post::orientation = t_newValue;
         }
 
-        const PixelCoordinate topLeftCoordinate() const
+        PixelCoordinate & topLeftCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_goal_post::topLeftCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::topLeftCoordinate));
+        }
+
+        const PixelCoordinate & topLeftCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::topLeftCoordinate);
         }
 
         void set_topLeftCoordinate(const PixelCoordinate &t_newValue)
@@ -201,9 +216,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal_post::topLeftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate topRightCoordinate() const
+        PixelCoordinate & topRightCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_goal_post::topRightCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::topRightCoordinate));
+        }
+
+        const PixelCoordinate & topRightCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::topRightCoordinate);
         }
 
         void set_topRightCoordinate(const PixelCoordinate &t_newValue)
@@ -211,9 +231,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal_post::topRightCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate bottomLeftCoordinate() const
+        PixelCoordinate & bottomLeftCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_goal_post::bottomLeftCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::bottomLeftCoordinate));
+        }
+
+        const PixelCoordinate & bottomLeftCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::bottomLeftCoordinate);
         }
 
         void set_bottomLeftCoordinate(const PixelCoordinate &t_newValue)
@@ -221,9 +246,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal_post::bottomLeftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate bottomRightCoordinate() const
+        PixelCoordinate & bottomRightCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_goal_post::bottomRightCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::bottomRightCoordinate));
+        }
+
+        const PixelCoordinate & bottomRightCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_goal_post::bottomRightCoordinate);
         }
 
         void set_bottomRightCoordinate(const PixelCoordinate &t_newValue)

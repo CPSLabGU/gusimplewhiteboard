@@ -144,7 +144,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int8_t adjustment() const
+        int8_t & adjustment()
+        {
+            return wb_adjust_position_confidence::adjustment;
+        }
+
+        const int8_t & adjustment() const
         {
             return wb_adjust_position_confidence::adjustment;
         }

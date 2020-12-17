@@ -148,7 +148,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t x() const
+        int16_t & x()
+        {
+            return wb_my_position::x;
+        }
+
+        const int16_t & x() const
         {
             return wb_my_position::x;
         }
@@ -158,7 +163,12 @@ namespace guWhiteboard {
             wb_my_position::x = t_newValue;
         }
 
-        int16_t y() const
+        int16_t & y()
+        {
+            return wb_my_position::y;
+        }
+
+        const int16_t & y() const
         {
             return wb_my_position::y;
         }
@@ -168,7 +178,12 @@ namespace guWhiteboard {
             wb_my_position::y = t_newValue;
         }
 
-        int16_t heading() const
+        int16_t & heading()
+        {
+            return wb_my_position::heading;
+        }
+
+        const int16_t & heading() const
         {
             return wb_my_position::heading;
         }

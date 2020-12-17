@@ -188,7 +188,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int32_t target_movement_time() const
+        int32_t & target_movement_time()
+        {
+            return wb_hal_arm_target::target_movement_time;
+        }
+
+        const int32_t & target_movement_time() const
         {
             return wb_hal_arm_target::target_movement_time;
         }
@@ -198,7 +203,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_movement_time = t_newValue;
         }
 
-        int16_t target_shoulderpitch() const
+        int16_t & target_shoulderpitch()
+        {
+            return wb_hal_arm_target::target_shoulderpitch;
+        }
+
+        const int16_t & target_shoulderpitch() const
         {
             return wb_hal_arm_target::target_shoulderpitch;
         }
@@ -208,7 +218,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_shoulderpitch = t_newValue;
         }
 
-        int16_t target_shoulderroll() const
+        int16_t & target_shoulderroll()
+        {
+            return wb_hal_arm_target::target_shoulderroll;
+        }
+
+        const int16_t & target_shoulderroll() const
         {
             return wb_hal_arm_target::target_shoulderroll;
         }
@@ -218,7 +233,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_shoulderroll = t_newValue;
         }
 
-        int16_t target_elbowroll() const
+        int16_t & target_elbowroll()
+        {
+            return wb_hal_arm_target::target_elbowroll;
+        }
+
+        const int16_t & target_elbowroll() const
         {
             return wb_hal_arm_target::target_elbowroll;
         }
@@ -228,7 +248,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_elbowroll = t_newValue;
         }
 
-        int16_t target_elbowyaw() const
+        int16_t & target_elbowyaw()
+        {
+            return wb_hal_arm_target::target_elbowyaw;
+        }
+
+        const int16_t & target_elbowyaw() const
         {
             return wb_hal_arm_target::target_elbowyaw;
         }
@@ -238,7 +263,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_elbowyaw = t_newValue;
         }
 
-        int16_t target_wristyaw() const
+        int16_t & target_wristyaw()
+        {
+            return wb_hal_arm_target::target_wristyaw;
+        }
+
+        const int16_t & target_wristyaw() const
         {
             return wb_hal_arm_target::target_wristyaw;
         }
@@ -248,7 +278,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_wristyaw = t_newValue;
         }
 
-        uint8_t target_arm() const
+        uint8_t & target_arm()
+        {
+            return wb_hal_arm_target::target_arm;
+        }
+
+        const uint8_t & target_arm() const
         {
             return wb_hal_arm_target::target_arm;
         }
@@ -258,7 +293,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_arm = t_newValue;
         }
 
-        uint8_t target_hand() const
+        uint8_t & target_hand()
+        {
+            return wb_hal_arm_target::target_hand;
+        }
+
+        const uint8_t & target_hand() const
         {
             return wb_hal_arm_target::target_hand;
         }
@@ -268,7 +308,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_hand = t_newValue;
         }
 
-        uint8_t target_shoulderpitchstiffness() const
+        uint8_t & target_shoulderpitchstiffness()
+        {
+            return wb_hal_arm_target::target_shoulderpitchstiffness;
+        }
+
+        const uint8_t & target_shoulderpitchstiffness() const
         {
             return wb_hal_arm_target::target_shoulderpitchstiffness;
         }
@@ -278,7 +323,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_shoulderpitchstiffness = t_newValue;
         }
 
-        uint8_t target_shoulderrollstiffness() const
+        uint8_t & target_shoulderrollstiffness()
+        {
+            return wb_hal_arm_target::target_shoulderrollstiffness;
+        }
+
+        const uint8_t & target_shoulderrollstiffness() const
         {
             return wb_hal_arm_target::target_shoulderrollstiffness;
         }
@@ -288,7 +338,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_shoulderrollstiffness = t_newValue;
         }
 
-        uint8_t target_elbowrollstiffness() const
+        uint8_t & target_elbowrollstiffness()
+        {
+            return wb_hal_arm_target::target_elbowrollstiffness;
+        }
+
+        const uint8_t & target_elbowrollstiffness() const
         {
             return wb_hal_arm_target::target_elbowrollstiffness;
         }
@@ -298,7 +353,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_elbowrollstiffness = t_newValue;
         }
 
-        uint8_t target_elbowyawstiffness() const
+        uint8_t & target_elbowyawstiffness()
+        {
+            return wb_hal_arm_target::target_elbowyawstiffness;
+        }
+
+        const uint8_t & target_elbowyawstiffness() const
         {
             return wb_hal_arm_target::target_elbowyawstiffness;
         }
@@ -308,7 +368,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_elbowyawstiffness = t_newValue;
         }
 
-        uint8_t target_wristyawstiffness() const
+        uint8_t & target_wristyawstiffness()
+        {
+            return wb_hal_arm_target::target_wristyawstiffness;
+        }
+
+        const uint8_t & target_wristyawstiffness() const
         {
             return wb_hal_arm_target::target_wristyawstiffness;
         }
@@ -318,7 +383,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_wristyawstiffness = t_newValue;
         }
 
-        uint8_t target_handstiffness() const
+        uint8_t & target_handstiffness()
+        {
+            return wb_hal_arm_target::target_handstiffness;
+        }
+
+        const uint8_t & target_handstiffness() const
         {
             return wb_hal_arm_target::target_handstiffness;
         }
@@ -328,7 +398,12 @@ namespace guWhiteboard {
             wb_hal_arm_target::target_handstiffness = t_newValue;
         }
 
-        uint8_t target_pliability() const
+        uint8_t & target_pliability()
+        {
+            return wb_hal_arm_target::target_pliability;
+        }
+
+        const uint8_t & target_pliability() const
         {
             return wb_hal_arm_target::target_pliability;
         }

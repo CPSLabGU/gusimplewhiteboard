@@ -149,7 +149,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t x() const
+        int16_t & x()
+        {
+            return wb_pixel_coordinate::x;
+        }
+
+        const int16_t & x() const
         {
             return wb_pixel_coordinate::x;
         }
@@ -159,7 +164,12 @@ namespace guWhiteboard {
             wb_pixel_coordinate::x = t_newValue;
         }
 
-        int16_t y() const
+        int16_t & y()
+        {
+            return wb_pixel_coordinate::y;
+        }
+
+        const int16_t & y() const
         {
             return wb_pixel_coordinate::y;
         }

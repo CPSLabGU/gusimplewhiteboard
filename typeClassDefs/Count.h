@@ -144,7 +144,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int64_t count() const
+        int64_t & count()
+        {
+            return wb_count::count;
+        }
+
+        const int64_t & count() const
         {
             return wb_count::count;
         }

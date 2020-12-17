@@ -165,7 +165,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint8_t ip() const
+        uint8_t & ip()
+        {
+            return wb_teleoperation_control_v_r::ip;
+        }
+
+        const uint8_t & ip() const
         {
             return wb_teleoperation_control_v_r::ip;
         }
@@ -175,7 +180,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::ip = t_newValue;
         }
 
-        int32_t action() const
+        int32_t & action()
+        {
+            return wb_teleoperation_control_v_r::action;
+        }
+
+        const int32_t & action() const
         {
             return wb_teleoperation_control_v_r::action;
         }
@@ -185,7 +195,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::action = t_newValue;
         }
 
-        float HeadYaw() const
+        float & HeadYaw()
+        {
+            return wb_teleoperation_control_v_r::HeadYaw;
+        }
+
+        const float & HeadYaw() const
         {
             return wb_teleoperation_control_v_r::HeadYaw;
         }
@@ -195,7 +210,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::HeadYaw = t_newValue;
         }
 
-        float HeadPitch() const
+        float & HeadPitch()
+        {
+            return wb_teleoperation_control_v_r::HeadPitch;
+        }
+
+        const float & HeadPitch() const
         {
             return wb_teleoperation_control_v_r::HeadPitch;
         }
@@ -205,7 +225,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::HeadPitch = t_newValue;
         }
 
-        int32_t stance() const
+        int32_t & stance()
+        {
+            return wb_teleoperation_control_v_r::stance;
+        }
+
+        const int32_t & stance() const
         {
             return wb_teleoperation_control_v_r::stance;
         }
@@ -215,7 +240,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::stance = t_newValue;
         }
 
-        int32_t streamType() const
+        int32_t & streamType()
+        {
+            return wb_teleoperation_control_v_r::streamType;
+        }
+
+        const int32_t & streamType() const
         {
             return wb_teleoperation_control_v_r::streamType;
         }
@@ -225,7 +255,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::streamType = t_newValue;
         }
 
-        int32_t selectedCamera() const
+        int32_t & selectedCamera()
+        {
+            return wb_teleoperation_control_v_r::selectedCamera;
+        }
+
+        const int32_t & selectedCamera() const
         {
             return wb_teleoperation_control_v_r::selectedCamera;
         }
@@ -235,7 +270,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::selectedCamera = t_newValue;
         }
 
-        const char *sayString() const
+        char * sayString()
+        {
+            return &(wb_teleoperation_control_v_r::sayString[0]);
+        }
+
+        const char * sayString() const
         {
             return &(wb_teleoperation_control_v_r::sayString[0]);
         }
@@ -245,7 +285,12 @@ namespace guWhiteboard {
             strncpy(wb_teleoperation_control_v_r::sayString, t_newValue, 30);
         }
 
-        int32_t walk() const
+        int32_t & walk()
+        {
+            return wb_teleoperation_control_v_r::walk;
+        }
+
+        const int32_t & walk() const
         {
             return wb_teleoperation_control_v_r::walk;
         }
@@ -255,7 +300,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::walk = t_newValue;
         }
 
-        int32_t turn() const
+        int32_t & turn()
+        {
+            return wb_teleoperation_control_v_r::turn;
+        }
+
+        const int32_t & turn() const
         {
             return wb_teleoperation_control_v_r::turn;
         }
@@ -265,7 +315,12 @@ namespace guWhiteboard {
             wb_teleoperation_control_v_r::turn = t_newValue;
         }
 
-        int32_t timestamp() const
+        int32_t & timestamp()
+        {
+            return wb_teleoperation_control_v_r::timestamp;
+        }
+
+        const int32_t & timestamp() const
         {
             return wb_teleoperation_control_v_r::timestamp;
         }

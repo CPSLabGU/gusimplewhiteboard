@@ -154,7 +154,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool LHand_Touch_Left() const
+        bool & LHand_Touch_Left()
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Left;
+        }
+
+        const bool & LHand_Touch_Left() const
         {
             return wb_sensors_hand_sensors::LHand_Touch_Left;
         }
@@ -164,7 +169,12 @@ namespace guWhiteboard {
             wb_sensors_hand_sensors::LHand_Touch_Left = t_newValue;
         }
 
-        bool LHand_Touch_Back() const
+        bool & LHand_Touch_Back()
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Back;
+        }
+
+        const bool & LHand_Touch_Back() const
         {
             return wb_sensors_hand_sensors::LHand_Touch_Back;
         }
@@ -174,7 +184,12 @@ namespace guWhiteboard {
             wb_sensors_hand_sensors::LHand_Touch_Back = t_newValue;
         }
 
-        bool LHand_Touch_Right() const
+        bool & LHand_Touch_Right()
+        {
+            return wb_sensors_hand_sensors::LHand_Touch_Right;
+        }
+
+        const bool & LHand_Touch_Right() const
         {
             return wb_sensors_hand_sensors::LHand_Touch_Right;
         }
@@ -184,7 +199,12 @@ namespace guWhiteboard {
             wb_sensors_hand_sensors::LHand_Touch_Right = t_newValue;
         }
 
-        bool RHand_Touch_Left() const
+        bool & RHand_Touch_Left()
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Left;
+        }
+
+        const bool & RHand_Touch_Left() const
         {
             return wb_sensors_hand_sensors::RHand_Touch_Left;
         }
@@ -194,7 +214,12 @@ namespace guWhiteboard {
             wb_sensors_hand_sensors::RHand_Touch_Left = t_newValue;
         }
 
-        bool RHand_Touch_Back() const
+        bool & RHand_Touch_Back()
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Back;
+        }
+
+        const bool & RHand_Touch_Back() const
         {
             return wb_sensors_hand_sensors::RHand_Touch_Back;
         }
@@ -204,7 +229,12 @@ namespace guWhiteboard {
             wb_sensors_hand_sensors::RHand_Touch_Back = t_newValue;
         }
 
-        bool RHand_Touch_Right() const
+        bool & RHand_Touch_Right()
+        {
+            return wb_sensors_hand_sensors::RHand_Touch_Right;
+        }
+
+        const bool & RHand_Touch_Right() const
         {
             return wb_sensors_hand_sensors::RHand_Touch_Right;
         }

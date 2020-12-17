@@ -151,9 +151,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const PolarCoordinate leftPoint() const
+        PolarCoordinate & leftPoint()
         {
-            return PolarCoordinate(wb_line_sighting::leftPoint);
+            return const_cast<PolarCoordinate &>(static_cast<const PolarCoordinate &>(wb_line_sighting::leftPoint));
+        }
+
+        const PolarCoordinate & leftPoint() const
+        {
+            return static_cast<const PolarCoordinate &>(wb_line_sighting::leftPoint);
         }
 
         void set_leftPoint(const PolarCoordinate &t_newValue)
@@ -161,9 +166,14 @@ namespace guWhiteboard {
             wb_line_sighting::leftPoint = static_cast<wb_polar_coordinate>(t_newValue);
         }
 
-        const PolarCoordinate rightPoint() const
+        PolarCoordinate & rightPoint()
         {
-            return PolarCoordinate(wb_line_sighting::rightPoint);
+            return const_cast<PolarCoordinate &>(static_cast<const PolarCoordinate &>(wb_line_sighting::rightPoint));
+        }
+
+        const PolarCoordinate & rightPoint() const
+        {
+            return static_cast<const PolarCoordinate &>(wb_line_sighting::rightPoint);
         }
 
         void set_rightPoint(const PolarCoordinate &t_newValue)
@@ -171,7 +181,12 @@ namespace guWhiteboard {
             wb_line_sighting::rightPoint = static_cast<wb_polar_coordinate>(t_newValue);
         }
 
-        enum LineSightingType sightingType() const
+        enum LineSightingType & sightingType()
+        {
+            return wb_line_sighting::sightingType;
+        }
+
+        const enum LineSightingType & sightingType() const
         {
             return wb_line_sighting::sightingType;
         }

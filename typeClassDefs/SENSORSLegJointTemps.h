@@ -155,7 +155,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float LKneePitch() const
+        float & LKneePitch()
+        {
+            return wb_sensors_legjointtemps::LKneePitch;
+        }
+
+        const float & LKneePitch() const
         {
             return wb_sensors_legjointtemps::LKneePitch;
         }
@@ -165,7 +170,12 @@ namespace guWhiteboard {
             wb_sensors_legjointtemps::LKneePitch = t_newValue;
         }
 
-        float LAnklePitch() const
+        float & LAnklePitch()
+        {
+            return wb_sensors_legjointtemps::LAnklePitch;
+        }
+
+        const float & LAnklePitch() const
         {
             return wb_sensors_legjointtemps::LAnklePitch;
         }
@@ -175,7 +185,12 @@ namespace guWhiteboard {
             wb_sensors_legjointtemps::LAnklePitch = t_newValue;
         }
 
-        float LAnkleRoll() const
+        float & LAnkleRoll()
+        {
+            return wb_sensors_legjointtemps::LAnkleRoll;
+        }
+
+        const float & LAnkleRoll() const
         {
             return wb_sensors_legjointtemps::LAnkleRoll;
         }
@@ -185,7 +200,12 @@ namespace guWhiteboard {
             wb_sensors_legjointtemps::LAnkleRoll = t_newValue;
         }
 
-        float RKneePitch() const
+        float & RKneePitch()
+        {
+            return wb_sensors_legjointtemps::RKneePitch;
+        }
+
+        const float & RKneePitch() const
         {
             return wb_sensors_legjointtemps::RKneePitch;
         }
@@ -195,7 +215,12 @@ namespace guWhiteboard {
             wb_sensors_legjointtemps::RKneePitch = t_newValue;
         }
 
-        float RAnklePitch() const
+        float & RAnklePitch()
+        {
+            return wb_sensors_legjointtemps::RAnklePitch;
+        }
+
+        const float & RAnklePitch() const
         {
             return wb_sensors_legjointtemps::RAnklePitch;
         }
@@ -205,7 +230,12 @@ namespace guWhiteboard {
             wb_sensors_legjointtemps::RAnklePitch = t_newValue;
         }
 
-        float RAnkleRoll() const
+        float & RAnkleRoll()
+        {
+            return wb_sensors_legjointtemps::RAnkleRoll;
+        }
+
+        const float & RAnkleRoll() const
         {
             return wb_sensors_legjointtemps::RAnkleRoll;
         }

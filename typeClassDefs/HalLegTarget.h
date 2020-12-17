@@ -188,7 +188,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int32_t target_movement_time() const
+        int32_t & target_movement_time()
+        {
+            return wb_hal_leg_target::target_movement_time;
+        }
+
+        const int32_t & target_movement_time() const
         {
             return wb_hal_leg_target::target_movement_time;
         }
@@ -198,7 +203,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_movement_time = t_newValue;
         }
 
-        int16_t target_hipyawpitch() const
+        int16_t & target_hipyawpitch()
+        {
+            return wb_hal_leg_target::target_hipyawpitch;
+        }
+
+        const int16_t & target_hipyawpitch() const
         {
             return wb_hal_leg_target::target_hipyawpitch;
         }
@@ -208,7 +218,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hipyawpitch = t_newValue;
         }
 
-        int16_t target_hiproll() const
+        int16_t & target_hiproll()
+        {
+            return wb_hal_leg_target::target_hiproll;
+        }
+
+        const int16_t & target_hiproll() const
         {
             return wb_hal_leg_target::target_hiproll;
         }
@@ -218,7 +233,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hiproll = t_newValue;
         }
 
-        int16_t target_hippitch() const
+        int16_t & target_hippitch()
+        {
+            return wb_hal_leg_target::target_hippitch;
+        }
+
+        const int16_t & target_hippitch() const
         {
             return wb_hal_leg_target::target_hippitch;
         }
@@ -228,7 +248,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hippitch = t_newValue;
         }
 
-        int16_t target_kneepitch() const
+        int16_t & target_kneepitch()
+        {
+            return wb_hal_leg_target::target_kneepitch;
+        }
+
+        const int16_t & target_kneepitch() const
         {
             return wb_hal_leg_target::target_kneepitch;
         }
@@ -238,7 +263,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_kneepitch = t_newValue;
         }
 
-        int16_t target_anklepitch() const
+        int16_t & target_anklepitch()
+        {
+            return wb_hal_leg_target::target_anklepitch;
+        }
+
+        const int16_t & target_anklepitch() const
         {
             return wb_hal_leg_target::target_anklepitch;
         }
@@ -248,7 +278,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_anklepitch = t_newValue;
         }
 
-        int16_t target_ankleroll() const
+        int16_t & target_ankleroll()
+        {
+            return wb_hal_leg_target::target_ankleroll;
+        }
+
+        const int16_t & target_ankleroll() const
         {
             return wb_hal_leg_target::target_ankleroll;
         }
@@ -258,7 +293,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_ankleroll = t_newValue;
         }
 
-        uint8_t target_leg() const
+        uint8_t & target_leg()
+        {
+            return wb_hal_leg_target::target_leg;
+        }
+
+        const uint8_t & target_leg() const
         {
             return wb_hal_leg_target::target_leg;
         }
@@ -268,7 +308,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_leg = t_newValue;
         }
 
-        uint8_t target_hipyawpitchstiffness() const
+        uint8_t & target_hipyawpitchstiffness()
+        {
+            return wb_hal_leg_target::target_hipyawpitchstiffness;
+        }
+
+        const uint8_t & target_hipyawpitchstiffness() const
         {
             return wb_hal_leg_target::target_hipyawpitchstiffness;
         }
@@ -278,7 +323,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hipyawpitchstiffness = t_newValue;
         }
 
-        uint8_t target_hiprollstiffness() const
+        uint8_t & target_hiprollstiffness()
+        {
+            return wb_hal_leg_target::target_hiprollstiffness;
+        }
+
+        const uint8_t & target_hiprollstiffness() const
         {
             return wb_hal_leg_target::target_hiprollstiffness;
         }
@@ -288,7 +338,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hiprollstiffness = t_newValue;
         }
 
-        uint8_t target_hippitchstiffness() const
+        uint8_t & target_hippitchstiffness()
+        {
+            return wb_hal_leg_target::target_hippitchstiffness;
+        }
+
+        const uint8_t & target_hippitchstiffness() const
         {
             return wb_hal_leg_target::target_hippitchstiffness;
         }
@@ -298,7 +353,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_hippitchstiffness = t_newValue;
         }
 
-        uint8_t target_kneepitchstiffness() const
+        uint8_t & target_kneepitchstiffness()
+        {
+            return wb_hal_leg_target::target_kneepitchstiffness;
+        }
+
+        const uint8_t & target_kneepitchstiffness() const
         {
             return wb_hal_leg_target::target_kneepitchstiffness;
         }
@@ -308,7 +368,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_kneepitchstiffness = t_newValue;
         }
 
-        uint8_t target_anklepitchstiffness() const
+        uint8_t & target_anklepitchstiffness()
+        {
+            return wb_hal_leg_target::target_anklepitchstiffness;
+        }
+
+        const uint8_t & target_anklepitchstiffness() const
         {
             return wb_hal_leg_target::target_anklepitchstiffness;
         }
@@ -318,7 +383,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_anklepitchstiffness = t_newValue;
         }
 
-        uint8_t target_anklerollstiffness() const
+        uint8_t & target_anklerollstiffness()
+        {
+            return wb_hal_leg_target::target_anklerollstiffness;
+        }
+
+        const uint8_t & target_anklerollstiffness() const
         {
             return wb_hal_leg_target::target_anklerollstiffness;
         }
@@ -328,7 +398,12 @@ namespace guWhiteboard {
             wb_hal_leg_target::target_anklerollstiffness = t_newValue;
         }
 
-        uint8_t target_pliability() const
+        uint8_t & target_pliability()
+        {
+            return wb_hal_leg_target::target_pliability;
+        }
+
+        const uint8_t & target_pliability() const
         {
             return wb_hal_leg_target::target_pliability;
         }

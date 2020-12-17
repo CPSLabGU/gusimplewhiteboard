@@ -183,7 +183,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        signed int DCM_Time() const
+        signed int & DCM_Time()
+        {
+            return wb_sensors_body_sensors::DCM_Time;
+        }
+
+        const signed int & DCM_Time() const
         {
             return wb_sensors_body_sensors::DCM_Time;
         }
@@ -193,7 +198,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::DCM_Time = t_newValue;
         }
 
-        float InertialSensor_AccX() const
+        float & InertialSensor_AccX()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccX;
+        }
+
+        const float & InertialSensor_AccX() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccX;
         }
@@ -203,7 +213,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccX = t_newValue;
         }
 
-        float InertialSensor_AccY() const
+        float & InertialSensor_AccY()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccY;
+        }
+
+        const float & InertialSensor_AccY() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccY;
         }
@@ -213,7 +228,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccY = t_newValue;
         }
 
-        float InertialSensor_AccZ() const
+        float & InertialSensor_AccZ()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccZ;
+        }
+
+        const float & InertialSensor_AccZ() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccZ;
         }
@@ -223,7 +243,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccZ = t_newValue;
         }
 
-        float InertialSensor_GyrX() const
+        float & InertialSensor_GyrX()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrX;
+        }
+
+        const float & InertialSensor_GyrX() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyrX;
         }
@@ -233,7 +258,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyrX = t_newValue;
         }
 
-        float InertialSensor_GyrY() const
+        float & InertialSensor_GyrY()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrY;
+        }
+
+        const float & InertialSensor_GyrY() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyrY;
         }
@@ -243,7 +273,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyrY = t_newValue;
         }
 
-        float InertialSensor_GyrZ() const
+        float & InertialSensor_GyrZ()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyrZ;
+        }
+
+        const float & InertialSensor_GyrZ() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyrZ;
         }
@@ -253,7 +288,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyrZ = t_newValue;
         }
 
-        float InertialSensor_AngleX() const
+        float & InertialSensor_AngleX()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleX;
+        }
+
+        const float & InertialSensor_AngleX() const
         {
             return wb_sensors_body_sensors::InertialSensor_AngleX;
         }
@@ -263,7 +303,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AngleX = t_newValue;
         }
 
-        float InertialSensor_AngleY() const
+        float & InertialSensor_AngleY()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleY;
+        }
+
+        const float & InertialSensor_AngleY() const
         {
             return wb_sensors_body_sensors::InertialSensor_AngleY;
         }
@@ -273,7 +318,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AngleY = t_newValue;
         }
 
-        float InertialSensor_AngleZ() const
+        float & InertialSensor_AngleZ()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AngleZ;
+        }
+
+        const float & InertialSensor_AngleZ() const
         {
             return wb_sensors_body_sensors::InertialSensor_AngleZ;
         }
@@ -283,7 +333,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AngleZ = t_newValue;
         }
 
-        float InertialSensor_AccelerometerX() const
+        float & InertialSensor_AccelerometerX()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerX;
+        }
+
+        const float & InertialSensor_AccelerometerX() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccelerometerX;
         }
@@ -293,7 +348,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccelerometerX = t_newValue;
         }
 
-        float InertialSensor_AccelerometerY() const
+        float & InertialSensor_AccelerometerY()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerY;
+        }
+
+        const float & InertialSensor_AccelerometerY() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccelerometerY;
         }
@@ -303,7 +363,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccelerometerY = t_newValue;
         }
 
-        float InertialSensor_AccelerometerZ() const
+        float & InertialSensor_AccelerometerZ()
+        {
+            return wb_sensors_body_sensors::InertialSensor_AccelerometerZ;
+        }
+
+        const float & InertialSensor_AccelerometerZ() const
         {
             return wb_sensors_body_sensors::InertialSensor_AccelerometerZ;
         }
@@ -313,7 +378,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_AccelerometerZ = t_newValue;
         }
 
-        float InertialSensor_GyroscopeX() const
+        float & InertialSensor_GyroscopeX()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeX;
+        }
+
+        const float & InertialSensor_GyroscopeX() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyroscopeX;
         }
@@ -323,7 +393,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyroscopeX = t_newValue;
         }
 
-        float InertialSensor_GyroscopeY() const
+        float & InertialSensor_GyroscopeY()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeY;
+        }
+
+        const float & InertialSensor_GyroscopeY() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyroscopeY;
         }
@@ -333,7 +408,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyroscopeY = t_newValue;
         }
 
-        float InertialSensor_GyroscopeZ() const
+        float & InertialSensor_GyroscopeZ()
+        {
+            return wb_sensors_body_sensors::InertialSensor_GyroscopeZ;
+        }
+
+        const float & InertialSensor_GyroscopeZ() const
         {
             return wb_sensors_body_sensors::InertialSensor_GyroscopeZ;
         }
@@ -343,7 +423,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::InertialSensor_GyroscopeZ = t_newValue;
         }
 
-        uint8_t Battery_Charge() const
+        uint8_t & Battery_Charge()
+        {
+            return wb_sensors_body_sensors::Battery_Charge;
+        }
+
+        const uint8_t & Battery_Charge() const
         {
             return wb_sensors_body_sensors::Battery_Charge;
         }
@@ -353,7 +438,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::Battery_Charge = t_newValue;
         }
 
-        uint8_t Battery_Current() const
+        uint8_t & Battery_Current()
+        {
+            return wb_sensors_body_sensors::Battery_Current;
+        }
+
+        const uint8_t & Battery_Current() const
         {
             return wb_sensors_body_sensors::Battery_Current;
         }
@@ -363,7 +453,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::Battery_Current = t_newValue;
         }
 
-        float US() const
+        float & US()
+        {
+            return wb_sensors_body_sensors::US;
+        }
+
+        const float & US() const
         {
             return wb_sensors_body_sensors::US;
         }
@@ -373,7 +468,12 @@ namespace guWhiteboard {
             wb_sensors_body_sensors::US = t_newValue;
         }
 
-        bool ChestBoard_Button() const
+        bool & ChestBoard_Button()
+        {
+            return wb_sensors_body_sensors::ChestBoard_Button;
+        }
+
+        const bool & ChestBoard_Button() const
         {
             return wb_sensors_body_sensors::ChestBoard_Button;
         }

@@ -170,7 +170,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool walkEngineOn() const
+        bool & walkEngineOn()
+        {
+            return wb_nao_walk_command::walkEngineOn;
+        }
+
+        const bool & walkEngineOn() const
         {
             return wb_nao_walk_command::walkEngineOn;
         }
@@ -180,7 +185,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::walkEngineOn = t_newValue;
         }
 
-        int16_t forward() const
+        int16_t & forward()
+        {
+            return wb_nao_walk_command::forward;
+        }
+
+        const int16_t & forward() const
         {
             return wb_nao_walk_command::forward;
         }
@@ -190,7 +200,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::forward = t_newValue;
         }
 
-        int16_t left() const
+        int16_t & left()
+        {
+            return wb_nao_walk_command::left;
+        }
+
+        const int16_t & left() const
         {
             return wb_nao_walk_command::left;
         }
@@ -200,7 +215,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::left = t_newValue;
         }
 
-        int8_t turn() const
+        int8_t & turn()
+        {
+            return wb_nao_walk_command::turn;
+        }
+
+        const int8_t & turn() const
         {
             return wb_nao_walk_command::turn;
         }
@@ -210,7 +230,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::turn = t_newValue;
         }
 
-        bool exactStepsRequested() const
+        bool & exactStepsRequested()
+        {
+            return wb_nao_walk_command::exactStepsRequested;
+        }
+
+        const bool & exactStepsRequested() const
         {
             return wb_nao_walk_command::exactStepsRequested;
         }
@@ -220,7 +245,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::exactStepsRequested = t_newValue;
         }
 
-        uint8_t speed() const
+        uint8_t & speed()
+        {
+            return wb_nao_walk_command::speed;
+        }
+
+        const uint8_t & speed() const
         {
             return wb_nao_walk_command::speed;
         }
@@ -230,7 +260,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::speed = t_newValue;
         }
 
-        uint8_t odometryResetCounter() const
+        uint8_t & odometryResetCounter()
+        {
+            return wb_nao_walk_command::odometryResetCounter;
+        }
+
+        const uint8_t & odometryResetCounter() const
         {
             return wb_nao_walk_command::odometryResetCounter;
         }
@@ -240,7 +275,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::odometryResetCounter = t_newValue;
         }
 
-        bool isFast() const
+        bool & isFast()
+        {
+            return wb_nao_walk_command::isFast;
+        }
+
+        const bool & isFast() const
         {
             return wb_nao_walk_command::isFast;
         }
@@ -250,7 +290,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::isFast = t_newValue;
         }
 
-        bool kickWithLeftFoot() const
+        bool & kickWithLeftFoot()
+        {
+            return wb_nao_walk_command::kickWithLeftFoot;
+        }
+
+        const bool & kickWithLeftFoot() const
         {
             return wb_nao_walk_command::kickWithLeftFoot;
         }
@@ -260,7 +305,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::kickWithLeftFoot = t_newValue;
         }
 
-        bool useShuffle() const
+        bool & useShuffle()
+        {
+            return wb_nao_walk_command::useShuffle;
+        }
+
+        const bool & useShuffle() const
         {
             return wb_nao_walk_command::useShuffle;
         }
@@ -270,7 +320,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::useShuffle = t_newValue;
         }
 
-        bool leftArmLimp() const
+        bool & leftArmLimp()
+        {
+            return wb_nao_walk_command::leftArmLimp;
+        }
+
+        const bool & leftArmLimp() const
         {
             return wb_nao_walk_command::leftArmLimp;
         }
@@ -280,7 +335,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::leftArmLimp = t_newValue;
         }
 
-        bool rightArmLimp() const
+        bool & rightArmLimp()
+        {
+            return wb_nao_walk_command::rightArmLimp;
+        }
+
+        const bool & rightArmLimp() const
         {
             return wb_nao_walk_command::rightArmLimp;
         }
@@ -290,7 +350,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::rightArmLimp = t_newValue;
         }
 
-        uint8_t power() const
+        uint8_t & power()
+        {
+            return wb_nao_walk_command::power;
+        }
+
+        const uint8_t & power() const
         {
             return wb_nao_walk_command::power;
         }
@@ -300,7 +365,12 @@ namespace guWhiteboard {
             wb_nao_walk_command::power = t_newValue;
         }
 
-        uint8_t bend() const
+        uint8_t & bend()
+        {
+            return wb_nao_walk_command::bend;
+        }
+
+        const uint8_t & bend() const
         {
             return wb_nao_walk_command::bend;
         }

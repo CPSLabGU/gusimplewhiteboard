@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t direction() const
+        int16_t & direction()
+        {
+            return wb_polar_coordinate::direction;
+        }
+
+        const int16_t & direction() const
         {
             return wb_polar_coordinate::direction;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_polar_coordinate::direction = t_newValue;
         }
 
-        uint16_t distance() const
+        uint16_t & distance()
+        {
+            return wb_polar_coordinate::distance;
+        }
+
+        const uint16_t & distance() const
         {
             return wb_polar_coordinate::distance;
         }

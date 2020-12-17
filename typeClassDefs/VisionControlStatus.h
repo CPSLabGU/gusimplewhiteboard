@@ -180,7 +180,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum Resolutions cameraResolution() const
+        enum Resolutions & cameraResolution()
+        {
+            return wb_vision_control_status::cameraResolution;
+        }
+
+        const enum Resolutions & cameraResolution() const
         {
             return wb_vision_control_status::cameraResolution;
         }
@@ -190,7 +195,12 @@ namespace guWhiteboard {
             wb_vision_control_status::cameraResolution = t_newValue;
         }
 
-        bool pipelineRunning() const
+        bool & pipelineRunning()
+        {
+            return wb_vision_control_status::pipelineRunning;
+        }
+
+        const bool & pipelineRunning() const
         {
             return wb_vision_control_status::pipelineRunning;
         }
@@ -200,7 +210,12 @@ namespace guWhiteboard {
             wb_vision_control_status::pipelineRunning = t_newValue;
         }
 
-        enum VisionCamera selectedCamera() const
+        enum VisionCamera & selectedCamera()
+        {
+            return wb_vision_control_status::selectedCamera;
+        }
+
+        const enum VisionCamera & selectedCamera() const
         {
             return wb_vision_control_status::selectedCamera;
         }
@@ -210,7 +225,12 @@ namespace guWhiteboard {
             wb_vision_control_status::selectedCamera = t_newValue;
         }
 
-        enum SaveFileType saveImage() const
+        enum SaveFileType & saveImage()
+        {
+            return wb_vision_control_status::saveImage;
+        }
+
+        const enum SaveFileType & saveImage() const
         {
             return wb_vision_control_status::saveImage;
         }
@@ -220,7 +240,12 @@ namespace guWhiteboard {
             wb_vision_control_status::saveImage = t_newValue;
         }
 
-        bool saveClassifiedImage() const
+        bool & saveClassifiedImage()
+        {
+            return wb_vision_control_status::saveClassifiedImage;
+        }
+
+        const bool & saveClassifiedImage() const
         {
             return wb_vision_control_status::saveClassifiedImage;
         }
@@ -230,7 +255,12 @@ namespace guWhiteboard {
             wb_vision_control_status::saveClassifiedImage = t_newValue;
         }
 
-        enum NamedPipeline pipeline() const
+        enum NamedPipeline & pipeline()
+        {
+            return wb_vision_control_status::pipeline;
+        }
+
+        const enum NamedPipeline & pipeline() const
         {
             return wb_vision_control_status::pipeline;
         }
@@ -240,7 +270,12 @@ namespace guWhiteboard {
             wb_vision_control_status::pipeline = t_newValue;
         }
 
-        int chooseCamera() const
+        int & chooseCamera()
+        {
+            return wb_vision_control_status::chooseCamera;
+        }
+
+        const int & chooseCamera() const
         {
             return wb_vision_control_status::chooseCamera;
         }
@@ -250,7 +285,12 @@ namespace guWhiteboard {
             wb_vision_control_status::chooseCamera = t_newValue;
         }
 
-        float confidence() const
+        float & confidence()
+        {
+            return wb_vision_control_status::confidence;
+        }
+
+        const float & confidence() const
         {
             return wb_vision_control_status::confidence;
         }
@@ -260,7 +300,12 @@ namespace guWhiteboard {
             wb_vision_control_status::confidence = t_newValue;
         }
 
-        enum NeuralNetworkType networkTop() const
+        enum NeuralNetworkType & networkTop()
+        {
+            return wb_vision_control_status::networkTop;
+        }
+
+        const enum NeuralNetworkType & networkTop() const
         {
             return wb_vision_control_status::networkTop;
         }
@@ -270,7 +315,12 @@ namespace guWhiteboard {
             wb_vision_control_status::networkTop = t_newValue;
         }
 
-        enum NeuralNetworkType networkBottom() const
+        enum NeuralNetworkType & networkBottom()
+        {
+            return wb_vision_control_status::networkBottom;
+        }
+
+        const enum NeuralNetworkType & networkBottom() const
         {
             return wb_vision_control_status::networkBottom;
         }
@@ -280,7 +330,12 @@ namespace guWhiteboard {
             wb_vision_control_status::networkBottom = t_newValue;
         }
 
-        enum StreamingType streamingSource() const
+        enum StreamingType & streamingSource()
+        {
+            return wb_vision_control_status::streamingSource;
+        }
+
+        const enum StreamingType & streamingSource() const
         {
             return wb_vision_control_status::streamingSource;
         }
@@ -290,7 +345,12 @@ namespace guWhiteboard {
             wb_vision_control_status::streamingSource = t_newValue;
         }
 
-        bool imageInput() const
+        bool & imageInput()
+        {
+            return wb_vision_control_status::imageInput;
+        }
+
+        const bool & imageInput() const
         {
             return wb_vision_control_status::imageInput;
         }
@@ -300,7 +360,12 @@ namespace guWhiteboard {
             wb_vision_control_status::imageInput = t_newValue;
         }
 
-        int jpegStreamQuality() const
+        int & jpegStreamQuality()
+        {
+            return wb_vision_control_status::jpegStreamQuality;
+        }
+
+        const int & jpegStreamQuality() const
         {
             return wb_vision_control_status::jpegStreamQuality;
         }
@@ -310,7 +375,12 @@ namespace guWhiteboard {
             wb_vision_control_status::jpegStreamQuality = t_newValue;
         }
 
-        int jpegStreamStride() const
+        int & jpegStreamStride()
+        {
+            return wb_vision_control_status::jpegStreamStride;
+        }
+
+        const int & jpegStreamStride() const
         {
             return wb_vision_control_status::jpegStreamStride;
         }
@@ -320,7 +390,12 @@ namespace guWhiteboard {
             wb_vision_control_status::jpegStreamStride = t_newValue;
         }
 
-        int frameRate() const
+        int & frameRate()
+        {
+            return wb_vision_control_status::frameRate;
+        }
+
+        const int & frameRate() const
         {
             return wb_vision_control_status::frameRate;
         }
@@ -330,7 +405,12 @@ namespace guWhiteboard {
             wb_vision_control_status::frameRate = t_newValue;
         }
 
-        bool runPipelineOnce() const
+        bool & runPipelineOnce()
+        {
+            return wb_vision_control_status::runPipelineOnce;
+        }
+
+        const bool & runPipelineOnce() const
         {
             return wb_vision_control_status::runPipelineOnce;
         }
@@ -340,7 +420,12 @@ namespace guWhiteboard {
             wb_vision_control_status::runPipelineOnce = t_newValue;
         }
 
-        uint64_t frameNumber() const
+        uint64_t & frameNumber()
+        {
+            return wb_vision_control_status::frameNumber;
+        }
+
+        const uint64_t & frameNumber() const
         {
             return wb_vision_control_status::frameNumber;
         }
@@ -350,7 +435,12 @@ namespace guWhiteboard {
             wb_vision_control_status::frameNumber = t_newValue;
         }
 
-        const char *colourCalibration() const
+        char * colourCalibration()
+        {
+            return &(wb_vision_control_status::colourCalibration[0]);
+        }
+
+        const char * colourCalibration() const
         {
             return &(wb_vision_control_status::colourCalibration[0]);
         }
@@ -360,7 +450,12 @@ namespace guWhiteboard {
             strncpy(wb_vision_control_status::colourCalibration, t_newValue, 10);
         }
 
-        struct timeval imageTime() const
+        struct timeval & imageTime()
+        {
+            return wb_vision_control_status::imageTime;
+        }
+
+        const struct timeval & imageTime() const
         {
             return wb_vision_control_status::imageTime;
         }

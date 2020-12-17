@@ -148,7 +148,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool Head_Touch_Front() const
+        bool & Head_Touch_Front()
+        {
+            return wb_sensors_head_sensors::Head_Touch_Front;
+        }
+
+        const bool & Head_Touch_Front() const
         {
             return wb_sensors_head_sensors::Head_Touch_Front;
         }
@@ -158,7 +163,12 @@ namespace guWhiteboard {
             wb_sensors_head_sensors::Head_Touch_Front = t_newValue;
         }
 
-        bool Head_Touch_Middle() const
+        bool & Head_Touch_Middle()
+        {
+            return wb_sensors_head_sensors::Head_Touch_Middle;
+        }
+
+        const bool & Head_Touch_Middle() const
         {
             return wb_sensors_head_sensors::Head_Touch_Middle;
         }
@@ -168,7 +178,12 @@ namespace guWhiteboard {
             wb_sensors_head_sensors::Head_Touch_Middle = t_newValue;
         }
 
-        bool Head_Touch_Rear() const
+        bool & Head_Touch_Rear()
+        {
+            return wb_sensors_head_sensors::Head_Touch_Rear;
+        }
+
+        const bool & Head_Touch_Rear() const
         {
             return wb_sensors_head_sensors::Head_Touch_Rear;
         }

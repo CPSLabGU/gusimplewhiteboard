@@ -163,7 +163,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum HorizonOptions horizonType() const
+        enum HorizonOptions & horizonType()
+        {
+            return wb_vision_detection_horizon::horizonType;
+        }
+
+        const enum HorizonOptions & horizonType() const
         {
             return wb_vision_detection_horizon::horizonType;
         }
@@ -173,9 +178,14 @@ namespace guWhiteboard {
             wb_vision_detection_horizon::horizonType = t_newValue;
         }
 
-        const PixelCoordinate leftCoordinate() const
+        PixelCoordinate & leftCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_horizon::leftCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::leftCoordinate));
+        }
+
+        const PixelCoordinate & leftCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::leftCoordinate);
         }
 
         void set_leftCoordinate(const PixelCoordinate &t_newValue)
@@ -183,9 +193,14 @@ namespace guWhiteboard {
             wb_vision_detection_horizon::leftCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate centerCoordinate() const
+        PixelCoordinate & centerCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_horizon::centerCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::centerCoordinate));
+        }
+
+        const PixelCoordinate & centerCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::centerCoordinate);
         }
 
         void set_centerCoordinate(const PixelCoordinate &t_newValue)
@@ -193,9 +208,14 @@ namespace guWhiteboard {
             wb_vision_detection_horizon::centerCoordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate rightCoordinate() const
+        PixelCoordinate & rightCoordinate()
         {
-            return PixelCoordinate(wb_vision_detection_horizon::rightCoordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::rightCoordinate));
+        }
+
+        const PixelCoordinate & rightCoordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_horizon::rightCoordinate);
         }
 
         void set_rightCoordinate(const PixelCoordinate &t_newValue)

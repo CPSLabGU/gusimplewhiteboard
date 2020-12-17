@@ -148,9 +148,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const PixelCoordinateLine lineEdgeTop() const
+        PixelCoordinateLine & lineEdgeTop()
         {
-            return PixelCoordinateLine(wb_vision_line::lineEdgeTop);
+            return const_cast<PixelCoordinateLine &>(static_cast<const PixelCoordinateLine &>(wb_vision_line::lineEdgeTop));
+        }
+
+        const PixelCoordinateLine & lineEdgeTop() const
+        {
+            return static_cast<const PixelCoordinateLine &>(wb_vision_line::lineEdgeTop);
         }
 
         void set_lineEdgeTop(const PixelCoordinateLine &t_newValue)
@@ -158,9 +163,14 @@ namespace guWhiteboard {
             wb_vision_line::lineEdgeTop = static_cast<wb_pixel_coordinate_line>(t_newValue);
         }
 
-        const PixelCoordinateLine lineEdgeBottom() const
+        PixelCoordinateLine & lineEdgeBottom()
         {
-            return PixelCoordinateLine(wb_vision_line::lineEdgeBottom);
+            return const_cast<PixelCoordinateLine &>(static_cast<const PixelCoordinateLine &>(wb_vision_line::lineEdgeBottom));
+        }
+
+        const PixelCoordinateLine & lineEdgeBottom() const
+        {
+            return static_cast<const PixelCoordinateLine &>(wb_vision_line::lineEdgeBottom);
         }
 
         void set_lineEdgeBottom(const PixelCoordinateLine &t_newValue)

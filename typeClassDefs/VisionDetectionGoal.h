@@ -150,7 +150,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum GoalOptions sightingType() const
+        enum GoalOptions & sightingType()
+        {
+            return wb_vision_detection_goal::sightingType;
+        }
+
+        const enum GoalOptions & sightingType() const
         {
             return wb_vision_detection_goal::sightingType;
         }
@@ -160,9 +165,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal::sightingType = t_newValue;
         }
 
-        const VisionDetectionGoalPost post1() const
+        VisionDetectionGoalPost & post1()
         {
-            return VisionDetectionGoalPost(wb_vision_detection_goal::post1);
+            return const_cast<VisionDetectionGoalPost &>(static_cast<const VisionDetectionGoalPost &>(wb_vision_detection_goal::post1));
+        }
+
+        const VisionDetectionGoalPost & post1() const
+        {
+            return static_cast<const VisionDetectionGoalPost &>(wb_vision_detection_goal::post1);
         }
 
         void set_post1(const VisionDetectionGoalPost &t_newValue)
@@ -170,9 +180,14 @@ namespace guWhiteboard {
             wb_vision_detection_goal::post1 = static_cast<wb_vision_detection_goal_post>(t_newValue);
         }
 
-        const VisionDetectionGoalPost post2() const
+        VisionDetectionGoalPost & post2()
         {
-            return VisionDetectionGoalPost(wb_vision_detection_goal::post2);
+            return const_cast<VisionDetectionGoalPost &>(static_cast<const VisionDetectionGoalPost &>(wb_vision_detection_goal::post2));
+        }
+
+        const VisionDetectionGoalPost & post2() const
+        {
+            return static_cast<const VisionDetectionGoalPost &>(wb_vision_detection_goal::post2);
         }
 
         void set_post2(const VisionDetectionGoalPost &t_newValue)

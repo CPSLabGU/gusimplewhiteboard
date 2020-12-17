@@ -156,7 +156,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const char *machineName() const
+        char * machineName()
+        {
+            return &(wb_data_logger::machineName[0]);
+        }
+
+        const char * machineName() const
         {
             return &(wb_data_logger::machineName[0]);
         }
@@ -166,7 +171,12 @@ namespace guWhiteboard {
             strncpy(wb_data_logger::machineName, t_newValue, 40);
         }
 
-        uint32_t currentState() const
+        uint32_t & currentState()
+        {
+            return wb_data_logger::currentState;
+        }
+
+        const uint32_t & currentState() const
         {
             return wb_data_logger::currentState;
         }
@@ -176,7 +186,12 @@ namespace guWhiteboard {
             wb_data_logger::currentState = t_newValue;
         }
 
-        uint32_t currentSection() const
+        uint32_t & currentSection()
+        {
+            return wb_data_logger::currentSection;
+        }
+
+        const uint32_t & currentSection() const
         {
             return wb_data_logger::currentSection;
         }
@@ -186,7 +201,12 @@ namespace guWhiteboard {
             wb_data_logger::currentSection = t_newValue;
         }
 
-        uint8_t dataSet() const
+        uint8_t & dataSet()
+        {
+            return wb_data_logger::dataSet;
+        }
+
+        const uint8_t & dataSet() const
         {
             return wb_data_logger::dataSet;
         }
@@ -196,7 +216,12 @@ namespace guWhiteboard {
             wb_data_logger::dataSet = t_newValue;
         }
 
-        bool loggerRunning() const
+        bool & loggerRunning()
+        {
+            return wb_data_logger::loggerRunning;
+        }
+
+        const bool & loggerRunning() const
         {
             return wb_data_logger::loggerRunning;
         }
@@ -206,7 +231,12 @@ namespace guWhiteboard {
             wb_data_logger::loggerRunning = t_newValue;
         }
 
-        bool shouldExit() const
+        bool & shouldExit()
+        {
+            return wb_data_logger::shouldExit;
+        }
+
+        const bool & shouldExit() const
         {
             return wb_data_logger::shouldExit;
         }
@@ -216,7 +246,12 @@ namespace guWhiteboard {
             wb_data_logger::shouldExit = t_newValue;
         }
 
-        const char *comment() const
+        char * comment()
+        {
+            return &(wb_data_logger::comment[0]);
+        }
+
+        const char * comment() const
         {
             return &(wb_data_logger::comment[0]);
         }

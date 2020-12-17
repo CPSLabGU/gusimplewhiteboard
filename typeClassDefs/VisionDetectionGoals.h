@@ -164,7 +164,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint64_t frameNumber() const
+        uint64_t & frameNumber()
+        {
+            return wb_vision_detection_goals::frameNumber;
+        }
+
+        const uint64_t & frameNumber() const
         {
             return wb_vision_detection_goals::frameNumber;
         }
@@ -174,14 +179,24 @@ namespace guWhiteboard {
             wb_vision_detection_goals::frameNumber = t_newValue;
         }
 
-        const VisionDetectionGoal *goals() const
+        VisionDetectionGoal * goals()
+        {
+            return const_cast<VisionDetectionGoal *>(static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals));
+        }
+
+        const VisionDetectionGoal * goals() const
         {
             return static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals);
         }
 
-        VisionDetectionGoal goals(int t_i) const
+        VisionDetectionGoal & goals(int t_i)
         {
-            return VisionDetectionGoal(wb_vision_detection_goals::goals[t_i]);
+            return const_cast<VisionDetectionGoal &>(static_cast<const VisionDetectionGoal &>(wb_vision_detection_goals::goals[t_i]));
+        }
+
+        const VisionDetectionGoal & goals(int t_i) const
+        {
+            return static_cast<const VisionDetectionGoal &>(wb_vision_detection_goals::goals[t_i]);
         }
 
         void set_goals(const VisionDetectionGoal *t_newValue)
@@ -194,7 +209,12 @@ namespace guWhiteboard {
             wb_vision_detection_goals::goals[t_i] = static_cast<wb_vision_detection_goal>(t_newValue);
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_vision_detection_goals::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_vision_detection_goals::res_width;
         }
@@ -204,7 +224,12 @@ namespace guWhiteboard {
             wb_vision_detection_goals::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_vision_detection_goals::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_vision_detection_goals::res_height;
         }

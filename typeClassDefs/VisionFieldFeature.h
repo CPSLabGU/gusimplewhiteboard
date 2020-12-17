@@ -151,9 +151,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const PixelCoordinate coordinate() const
+        PixelCoordinate & coordinate()
         {
-            return PixelCoordinate(wb_vision_field_feature::coordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_field_feature::coordinate));
+        }
+
+        const PixelCoordinate & coordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_field_feature::coordinate);
         }
 
         void set_coordinate(const PixelCoordinate &t_newValue)
@@ -161,7 +166,12 @@ namespace guWhiteboard {
             wb_vision_field_feature::coordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        uint8_t camera() const
+        uint8_t & camera()
+        {
+            return wb_vision_field_feature::camera;
+        }
+
+        const uint8_t & camera() const
         {
             return wb_vision_field_feature::camera;
         }

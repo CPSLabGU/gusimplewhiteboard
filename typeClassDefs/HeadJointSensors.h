@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t headYaw() const
+        int16_t & headYaw()
+        {
+            return wb_head_joint_sensors::headYaw;
+        }
+
+        const int16_t & headYaw() const
         {
             return wb_head_joint_sensors::headYaw;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_head_joint_sensors::headYaw = t_newValue;
         }
 
-        int16_t headPitch() const
+        int16_t & headPitch()
+        {
+            return wb_head_joint_sensors::headPitch;
+        }
+
+        const int16_t & headPitch() const
         {
             return wb_head_joint_sensors::headPitch;
         }

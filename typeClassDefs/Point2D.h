@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t x() const
+        int16_t & x()
+        {
+            return wb_point2d::x;
+        }
+
+        const int16_t & x() const
         {
             return wb_point2d::x;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_point2d::x = t_newValue;
         }
 
-        int16_t y() const
+        int16_t & y()
+        {
+            return wb_point2d::y;
+        }
+
+        const int16_t & y() const
         {
             return wb_point2d::y;
         }

@@ -147,7 +147,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float HeadYaw() const
+        float & HeadYaw()
+        {
+            return wb_sensors_headjointsensors::HeadYaw;
+        }
+
+        const float & HeadYaw() const
         {
             return wb_sensors_headjointsensors::HeadYaw;
         }
@@ -157,7 +162,12 @@ namespace guWhiteboard {
             wb_sensors_headjointsensors::HeadYaw = t_newValue;
         }
 
-        float HeadPitch() const
+        float & HeadPitch()
+        {
+            return wb_sensors_headjointsensors::HeadPitch;
+        }
+
+        const float & HeadPitch() const
         {
             return wb_sensors_headjointsensors::HeadPitch;
         }

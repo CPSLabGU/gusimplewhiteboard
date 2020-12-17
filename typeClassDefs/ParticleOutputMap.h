@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint8_t fileId() const
+        uint8_t & fileId()
+        {
+            return wb_particle_output_map::fileId;
+        }
+
+        const uint8_t & fileId() const
         {
             return wb_particle_output_map::fileId;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_particle_output_map::fileId = t_newValue;
         }
 
-        const char *filePath() const
+        char * filePath()
+        {
+            return &(wb_particle_output_map::filePath[0]);
+        }
+
+        const char * filePath() const
         {
             return &(wb_particle_output_map::filePath[0]);
         }

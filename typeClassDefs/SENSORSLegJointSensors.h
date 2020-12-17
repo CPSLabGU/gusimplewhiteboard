@@ -167,7 +167,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float LKneePitch() const
+        float & LKneePitch()
+        {
+            return wb_sensors_legjointsensors::LKneePitch;
+        }
+
+        const float & LKneePitch() const
         {
             return wb_sensors_legjointsensors::LKneePitch;
         }
@@ -177,7 +182,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LKneePitch = t_newValue;
         }
 
-        float LAnklePitch() const
+        float & LAnklePitch()
+        {
+            return wb_sensors_legjointsensors::LAnklePitch;
+        }
+
+        const float & LAnklePitch() const
         {
             return wb_sensors_legjointsensors::LAnklePitch;
         }
@@ -187,7 +197,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LAnklePitch = t_newValue;
         }
 
-        float LAnkleRoll() const
+        float & LAnkleRoll()
+        {
+            return wb_sensors_legjointsensors::LAnkleRoll;
+        }
+
+        const float & LAnkleRoll() const
         {
             return wb_sensors_legjointsensors::LAnkleRoll;
         }
@@ -197,7 +212,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LAnkleRoll = t_newValue;
         }
 
-        float RKneePitch() const
+        float & RKneePitch()
+        {
+            return wb_sensors_legjointsensors::RKneePitch;
+        }
+
+        const float & RKneePitch() const
         {
             return wb_sensors_legjointsensors::RKneePitch;
         }
@@ -207,7 +227,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::RKneePitch = t_newValue;
         }
 
-        float RAnklePitch() const
+        float & RAnklePitch()
+        {
+            return wb_sensors_legjointsensors::RAnklePitch;
+        }
+
+        const float & RAnklePitch() const
         {
             return wb_sensors_legjointsensors::RAnklePitch;
         }
@@ -217,7 +242,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::RAnklePitch = t_newValue;
         }
 
-        float RAnkleRoll() const
+        float & RAnkleRoll()
+        {
+            return wb_sensors_legjointsensors::RAnkleRoll;
+        }
+
+        const float & RAnkleRoll() const
         {
             return wb_sensors_legjointsensors::RAnkleRoll;
         }
@@ -227,7 +257,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::RAnkleRoll = t_newValue;
         }
 
-        float LHipYawPitch() const
+        float & LHipYawPitch()
+        {
+            return wb_sensors_legjointsensors::LHipYawPitch;
+        }
+
+        const float & LHipYawPitch() const
         {
             return wb_sensors_legjointsensors::LHipYawPitch;
         }
@@ -237,7 +272,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LHipYawPitch = t_newValue;
         }
 
-        float LHipRoll() const
+        float & LHipRoll()
+        {
+            return wb_sensors_legjointsensors::LHipRoll;
+        }
+
+        const float & LHipRoll() const
         {
             return wb_sensors_legjointsensors::LHipRoll;
         }
@@ -247,7 +287,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LHipRoll = t_newValue;
         }
 
-        float LHipPitch() const
+        float & LHipPitch()
+        {
+            return wb_sensors_legjointsensors::LHipPitch;
+        }
+
+        const float & LHipPitch() const
         {
             return wb_sensors_legjointsensors::LHipPitch;
         }
@@ -257,7 +302,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::LHipPitch = t_newValue;
         }
 
-        float RHipYawPitch() const
+        float & RHipYawPitch()
+        {
+            return wb_sensors_legjointsensors::RHipYawPitch;
+        }
+
+        const float & RHipYawPitch() const
         {
             return wb_sensors_legjointsensors::RHipYawPitch;
         }
@@ -267,7 +317,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::RHipYawPitch = t_newValue;
         }
 
-        float RHipRoll() const
+        float & RHipRoll()
+        {
+            return wb_sensors_legjointsensors::RHipRoll;
+        }
+
+        const float & RHipRoll() const
         {
             return wb_sensors_legjointsensors::RHipRoll;
         }
@@ -277,7 +332,12 @@ namespace guWhiteboard {
             wb_sensors_legjointsensors::RHipRoll = t_newValue;
         }
 
-        float RHipPitch() const
+        float & RHipPitch()
+        {
+            return wb_sensors_legjointsensors::RHipPitch;
+        }
+
+        const float & RHipPitch() const
         {
             return wb_sensors_legjointsensors::RHipPitch;
         }

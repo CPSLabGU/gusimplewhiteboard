@@ -148,7 +148,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool timeLeft() const
+        bool & timeLeft()
+        {
+            return wb_microwave_status::timeLeft;
+        }
+
+        const bool & timeLeft() const
         {
             return wb_microwave_status::timeLeft;
         }
@@ -158,7 +163,12 @@ namespace guWhiteboard {
             wb_microwave_status::timeLeft = t_newValue;
         }
 
-        bool doorOpen() const
+        bool & doorOpen()
+        {
+            return wb_microwave_status::doorOpen;
+        }
+
+        const bool & doorOpen() const
         {
             return wb_microwave_status::doorOpen;
         }
@@ -168,7 +178,12 @@ namespace guWhiteboard {
             wb_microwave_status::doorOpen = t_newValue;
         }
 
-        bool buttonPushed() const
+        bool & buttonPushed()
+        {
+            return wb_microwave_status::buttonPushed;
+        }
+
+        const bool & buttonPushed() const
         {
             return wb_microwave_status::buttonPushed;
         }

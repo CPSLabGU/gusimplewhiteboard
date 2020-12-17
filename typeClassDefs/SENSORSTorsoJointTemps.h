@@ -173,7 +173,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float HeadYaw() const
+        float & HeadYaw()
+        {
+            return wb_sensors_torsojointtemps::HeadYaw;
+        }
+
+        const float & HeadYaw() const
         {
             return wb_sensors_torsojointtemps::HeadYaw;
         }
@@ -183,7 +188,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::HeadYaw = t_newValue;
         }
 
-        float HeadPitch() const
+        float & HeadPitch()
+        {
+            return wb_sensors_torsojointtemps::HeadPitch;
+        }
+
+        const float & HeadPitch() const
         {
             return wb_sensors_torsojointtemps::HeadPitch;
         }
@@ -193,7 +203,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::HeadPitch = t_newValue;
         }
 
-        float LShoulderPitch() const
+        float & LShoulderPitch()
+        {
+            return wb_sensors_torsojointtemps::LShoulderPitch;
+        }
+
+        const float & LShoulderPitch() const
         {
             return wb_sensors_torsojointtemps::LShoulderPitch;
         }
@@ -203,7 +218,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LShoulderPitch = t_newValue;
         }
 
-        float LShoulderRoll() const
+        float & LShoulderRoll()
+        {
+            return wb_sensors_torsojointtemps::LShoulderRoll;
+        }
+
+        const float & LShoulderRoll() const
         {
             return wb_sensors_torsojointtemps::LShoulderRoll;
         }
@@ -213,7 +233,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LShoulderRoll = t_newValue;
         }
 
-        float LElbowYaw() const
+        float & LElbowYaw()
+        {
+            return wb_sensors_torsojointtemps::LElbowYaw;
+        }
+
+        const float & LElbowYaw() const
         {
             return wb_sensors_torsojointtemps::LElbowYaw;
         }
@@ -223,7 +248,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LElbowYaw = t_newValue;
         }
 
-        float LElbowRoll() const
+        float & LElbowRoll()
+        {
+            return wb_sensors_torsojointtemps::LElbowRoll;
+        }
+
+        const float & LElbowRoll() const
         {
             return wb_sensors_torsojointtemps::LElbowRoll;
         }
@@ -233,7 +263,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LElbowRoll = t_newValue;
         }
 
-        float LHipYawPitch() const
+        float & LHipYawPitch()
+        {
+            return wb_sensors_torsojointtemps::LHipYawPitch;
+        }
+
+        const float & LHipYawPitch() const
         {
             return wb_sensors_torsojointtemps::LHipYawPitch;
         }
@@ -243,7 +278,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LHipYawPitch = t_newValue;
         }
 
-        float LHipRoll() const
+        float & LHipRoll()
+        {
+            return wb_sensors_torsojointtemps::LHipRoll;
+        }
+
+        const float & LHipRoll() const
         {
             return wb_sensors_torsojointtemps::LHipRoll;
         }
@@ -253,7 +293,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LHipRoll = t_newValue;
         }
 
-        float LHipPitch() const
+        float & LHipPitch()
+        {
+            return wb_sensors_torsojointtemps::LHipPitch;
+        }
+
+        const float & LHipPitch() const
         {
             return wb_sensors_torsojointtemps::LHipPitch;
         }
@@ -263,7 +308,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::LHipPitch = t_newValue;
         }
 
-        float RHipRoll() const
+        float & RHipRoll()
+        {
+            return wb_sensors_torsojointtemps::RHipRoll;
+        }
+
+        const float & RHipRoll() const
         {
             return wb_sensors_torsojointtemps::RHipRoll;
         }
@@ -273,7 +323,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::RHipRoll = t_newValue;
         }
 
-        float RHipPitch() const
+        float & RHipPitch()
+        {
+            return wb_sensors_torsojointtemps::RHipPitch;
+        }
+
+        const float & RHipPitch() const
         {
             return wb_sensors_torsojointtemps::RHipPitch;
         }
@@ -283,7 +338,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::RHipPitch = t_newValue;
         }
 
-        float RShoulderPitch() const
+        float & RShoulderPitch()
+        {
+            return wb_sensors_torsojointtemps::RShoulderPitch;
+        }
+
+        const float & RShoulderPitch() const
         {
             return wb_sensors_torsojointtemps::RShoulderPitch;
         }
@@ -293,7 +353,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::RShoulderPitch = t_newValue;
         }
 
-        float RShoulderRoll() const
+        float & RShoulderRoll()
+        {
+            return wb_sensors_torsojointtemps::RShoulderRoll;
+        }
+
+        const float & RShoulderRoll() const
         {
             return wb_sensors_torsojointtemps::RShoulderRoll;
         }
@@ -303,7 +368,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::RShoulderRoll = t_newValue;
         }
 
-        float RElbowYaw() const
+        float & RElbowYaw()
+        {
+            return wb_sensors_torsojointtemps::RElbowYaw;
+        }
+
+        const float & RElbowYaw() const
         {
             return wb_sensors_torsojointtemps::RElbowYaw;
         }
@@ -313,7 +383,12 @@ namespace guWhiteboard {
             wb_sensors_torsojointtemps::RElbowYaw = t_newValue;
         }
 
-        float RElbowRoll() const
+        float & RElbowRoll()
+        {
+            return wb_sensors_torsojointtemps::RElbowRoll;
+        }
+
+        const float & RElbowRoll() const
         {
             return wb_sensors_torsojointtemps::RElbowRoll;
         }

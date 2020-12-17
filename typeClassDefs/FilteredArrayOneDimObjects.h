@@ -155,14 +155,24 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const FilteredVisionObject *objects() const
+        FilteredVisionObject * objects()
+        {
+            return const_cast<FilteredVisionObject *>(static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects));
+        }
+
+        const FilteredVisionObject * objects() const
         {
             return static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects);
         }
 
-        FilteredVisionObject objects(int t_i) const
+        FilteredVisionObject & objects(int t_i)
         {
-            return FilteredVisionObject(wb_filtered_arrayonedimobjects::objects[t_i]);
+            return const_cast<FilteredVisionObject &>(static_cast<const FilteredVisionObject &>(wb_filtered_arrayonedimobjects::objects[t_i]));
+        }
+
+        const FilteredVisionObject & objects(int t_i) const
+        {
+            return static_cast<const FilteredVisionObject &>(wb_filtered_arrayonedimobjects::objects[t_i]);
         }
 
         void set_objects(const FilteredVisionObject *t_newValue)

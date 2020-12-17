@@ -179,7 +179,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float LFoot_FSR_FrontLeft() const
+        float & LFoot_FSR_FrontLeft()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_FrontLeft;
+        }
+
+        const float & LFoot_FSR_FrontLeft() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_FrontLeft;
         }
@@ -189,7 +194,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_FrontLeft = t_newValue;
         }
 
-        float LFoot_FSR_FrontRight() const
+        float & LFoot_FSR_FrontRight()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_FrontRight;
+        }
+
+        const float & LFoot_FSR_FrontRight() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_FrontRight;
         }
@@ -199,7 +209,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_FrontRight = t_newValue;
         }
 
-        float LFoot_FSR_RearLeft() const
+        float & LFoot_FSR_RearLeft()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_RearLeft;
+        }
+
+        const float & LFoot_FSR_RearLeft() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_RearLeft;
         }
@@ -209,7 +224,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_RearLeft = t_newValue;
         }
 
-        float LFoot_FSR_RearRight() const
+        float & LFoot_FSR_RearRight()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_RearRight;
+        }
+
+        const float & LFoot_FSR_RearRight() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_RearRight;
         }
@@ -219,7 +239,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_RearRight = t_newValue;
         }
 
-        float LFoot_FSR_CenterOfPressure_X() const
+        float & LFoot_FSR_CenterOfPressure_X()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_X;
+        }
+
+        const float & LFoot_FSR_CenterOfPressure_X() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_X;
         }
@@ -229,7 +254,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_X = t_newValue;
         }
 
-        float LFoot_FSR_CenterOfPressure_Y() const
+        float & LFoot_FSR_CenterOfPressure_Y()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_Y;
+        }
+
+        const float & LFoot_FSR_CenterOfPressure_Y() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_Y;
         }
@@ -239,7 +269,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_CenterOfPressure_Y = t_newValue;
         }
 
-        float LFoot_FSR_TotalWeight() const
+        float & LFoot_FSR_TotalWeight()
+        {
+            return wb_sensors_foot_sensors::LFoot_FSR_TotalWeight;
+        }
+
+        const float & LFoot_FSR_TotalWeight() const
         {
             return wb_sensors_foot_sensors::LFoot_FSR_TotalWeight;
         }
@@ -249,7 +284,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_FSR_TotalWeight = t_newValue;
         }
 
-        float RFoot_FSR_FrontLeft() const
+        float & RFoot_FSR_FrontLeft()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_FrontLeft;
+        }
+
+        const float & RFoot_FSR_FrontLeft() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_FrontLeft;
         }
@@ -259,7 +299,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_FrontLeft = t_newValue;
         }
 
-        float RFoot_FSR_FrontRight() const
+        float & RFoot_FSR_FrontRight()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_FrontRight;
+        }
+
+        const float & RFoot_FSR_FrontRight() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_FrontRight;
         }
@@ -269,7 +314,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_FrontRight = t_newValue;
         }
 
-        float RFoot_FSR_RearLeft() const
+        float & RFoot_FSR_RearLeft()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_RearLeft;
+        }
+
+        const float & RFoot_FSR_RearLeft() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_RearLeft;
         }
@@ -279,7 +329,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_RearLeft = t_newValue;
         }
 
-        float RFoot_FSR_RearRight() const
+        float & RFoot_FSR_RearRight()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_RearRight;
+        }
+
+        const float & RFoot_FSR_RearRight() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_RearRight;
         }
@@ -289,7 +344,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_RearRight = t_newValue;
         }
 
-        float RFoot_FSR_CenterOfPressure_X() const
+        float & RFoot_FSR_CenterOfPressure_X()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_X;
+        }
+
+        const float & RFoot_FSR_CenterOfPressure_X() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_X;
         }
@@ -299,7 +359,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_X = t_newValue;
         }
 
-        float RFoot_FSR_CenterOfPressure_Y() const
+        float & RFoot_FSR_CenterOfPressure_Y()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_Y;
+        }
+
+        const float & RFoot_FSR_CenterOfPressure_Y() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_Y;
         }
@@ -309,7 +374,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_CenterOfPressure_Y = t_newValue;
         }
 
-        float RFoot_FSR_TotalWeight() const
+        float & RFoot_FSR_TotalWeight()
+        {
+            return wb_sensors_foot_sensors::RFoot_FSR_TotalWeight;
+        }
+
+        const float & RFoot_FSR_TotalWeight() const
         {
             return wb_sensors_foot_sensors::RFoot_FSR_TotalWeight;
         }
@@ -319,7 +389,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_FSR_TotalWeight = t_newValue;
         }
 
-        bool LFoot_Bumper_Left() const
+        bool & LFoot_Bumper_Left()
+        {
+            return wb_sensors_foot_sensors::LFoot_Bumper_Left;
+        }
+
+        const bool & LFoot_Bumper_Left() const
         {
             return wb_sensors_foot_sensors::LFoot_Bumper_Left;
         }
@@ -329,7 +404,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_Bumper_Left = t_newValue;
         }
 
-        bool LFoot_Bumper_Right() const
+        bool & LFoot_Bumper_Right()
+        {
+            return wb_sensors_foot_sensors::LFoot_Bumper_Right;
+        }
+
+        const bool & LFoot_Bumper_Right() const
         {
             return wb_sensors_foot_sensors::LFoot_Bumper_Right;
         }
@@ -339,7 +419,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::LFoot_Bumper_Right = t_newValue;
         }
 
-        bool RFoot_Bumper_Left() const
+        bool & RFoot_Bumper_Left()
+        {
+            return wb_sensors_foot_sensors::RFoot_Bumper_Left;
+        }
+
+        const bool & RFoot_Bumper_Left() const
         {
             return wb_sensors_foot_sensors::RFoot_Bumper_Left;
         }
@@ -349,7 +434,12 @@ namespace guWhiteboard {
             wb_sensors_foot_sensors::RFoot_Bumper_Left = t_newValue;
         }
 
-        bool RFoot_Bumper_Right() const
+        bool & RFoot_Bumper_Right()
+        {
+            return wb_sensors_foot_sensors::RFoot_Bumper_Right;
+        }
+
+        const bool & RFoot_Bumper_Right() const
         {
             return wb_sensors_foot_sensors::RFoot_Bumper_Right;
         }

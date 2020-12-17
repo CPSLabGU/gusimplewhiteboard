@@ -151,9 +151,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const Point2D position() const
+        Point2D & position()
         {
-            return Point2D(wb_particle_position::position);
+            return const_cast<Point2D &>(static_cast<const Point2D &>(wb_particle_position::position));
+        }
+
+        const Point2D & position() const
+        {
+            return static_cast<const Point2D &>(wb_particle_position::position);
         }
 
         void set_position(const Point2D &t_newValue)
@@ -161,7 +166,12 @@ namespace guWhiteboard {
             wb_particle_position::position = static_cast<wb_point2d>(t_newValue);
         }
 
-        int16_t headingInDegrees() const
+        int16_t & headingInDegrees()
+        {
+            return wb_particle_position::headingInDegrees;
+        }
+
+        const int16_t & headingInDegrees() const
         {
             return wb_particle_position::headingInDegrees;
         }
@@ -171,7 +181,12 @@ namespace guWhiteboard {
             wb_particle_position::headingInDegrees = t_newValue;
         }
 
-        float confidence() const
+        float & confidence()
+        {
+            return wb_particle_position::confidence;
+        }
+
+        const float & confidence() const
         {
             return wb_particle_position::confidence;
         }

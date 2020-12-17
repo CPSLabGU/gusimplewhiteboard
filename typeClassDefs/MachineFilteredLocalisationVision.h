@@ -160,7 +160,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint8_t numberOfSightings() const
+        uint8_t & numberOfSightings()
+        {
+            return wb_machine_filtered_localisation_vision::numberOfSightings;
+        }
+
+        const uint8_t & numberOfSightings() const
         {
             return wb_machine_filtered_localisation_vision::numberOfSightings;
         }
@@ -170,14 +175,24 @@ namespace guWhiteboard {
             wb_machine_filtered_localisation_vision::numberOfSightings = t_newValue;
         }
 
-        const LandmarkSighting *sightings() const
+        LandmarkSighting * sightings()
+        {
+            return const_cast<LandmarkSighting *>(static_cast<const LandmarkSighting *>(wb_machine_filtered_localisation_vision::sightings));
+        }
+
+        const LandmarkSighting * sightings() const
         {
             return static_cast<const LandmarkSighting *>(wb_machine_filtered_localisation_vision::sightings);
         }
 
-        LandmarkSighting sightings(int t_i) const
+        LandmarkSighting & sightings(int t_i)
         {
-            return LandmarkSighting(wb_machine_filtered_localisation_vision::sightings[t_i]);
+            return const_cast<LandmarkSighting &>(static_cast<const LandmarkSighting &>(wb_machine_filtered_localisation_vision::sightings[t_i]));
+        }
+
+        const LandmarkSighting & sightings(int t_i) const
+        {
+            return static_cast<const LandmarkSighting &>(wb_machine_filtered_localisation_vision::sightings[t_i]);
         }
 
         void set_sightings(const LandmarkSighting *t_newValue)

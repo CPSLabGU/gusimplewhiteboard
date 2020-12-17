@@ -144,7 +144,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const char *sayString() const
+        char * sayString()
+        {
+            return &(wb_teleoperation_status::sayString[0]);
+        }
+
+        const char * sayString() const
         {
             return &(wb_teleoperation_status::sayString[0]);
         }

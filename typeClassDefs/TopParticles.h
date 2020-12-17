@@ -157,14 +157,24 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const ParticlePosition *particles() const
+        ParticlePosition * particles()
+        {
+            return const_cast<ParticlePosition *>(static_cast<const ParticlePosition *>(wb_top_particles::particles));
+        }
+
+        const ParticlePosition * particles() const
         {
             return static_cast<const ParticlePosition *>(wb_top_particles::particles);
         }
 
-        ParticlePosition particles(int t_i) const
+        ParticlePosition & particles(int t_i)
         {
-            return ParticlePosition(wb_top_particles::particles[t_i]);
+            return const_cast<ParticlePosition &>(static_cast<const ParticlePosition &>(wb_top_particles::particles[t_i]));
+        }
+
+        const ParticlePosition & particles(int t_i) const
+        {
+            return static_cast<const ParticlePosition &>(wb_top_particles::particles[t_i]);
         }
 
         void set_particles(const ParticlePosition *t_newValue)

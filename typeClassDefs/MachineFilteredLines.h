@@ -161,7 +161,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint8_t numberOfSightings() const
+        uint8_t & numberOfSightings()
+        {
+            return wb_machine_filtered_lines::numberOfSightings;
+        }
+
+        const uint8_t & numberOfSightings() const
         {
             return wb_machine_filtered_lines::numberOfSightings;
         }
@@ -171,14 +176,24 @@ namespace guWhiteboard {
             wb_machine_filtered_lines::numberOfSightings = t_newValue;
         }
 
-        const LineSighting *sightings() const
+        LineSighting * sightings()
+        {
+            return const_cast<LineSighting *>(static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings));
+        }
+
+        const LineSighting * sightings() const
         {
             return static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings);
         }
 
-        LineSighting sightings(int t_i) const
+        LineSighting & sightings(int t_i)
         {
-            return LineSighting(wb_machine_filtered_lines::sightings[t_i]);
+            return const_cast<LineSighting &>(static_cast<const LineSighting &>(wb_machine_filtered_lines::sightings[t_i]));
+        }
+
+        const LineSighting & sightings(int t_i) const
+        {
+            return static_cast<const LineSighting &>(wb_machine_filtered_lines::sightings[t_i]);
         }
 
         void set_sightings(const LineSighting *t_newValue)

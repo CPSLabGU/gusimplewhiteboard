@@ -150,7 +150,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool left() const
+        bool & left()
+        {
+            return wb_nao_obstacle_direction::left;
+        }
+
+        const bool & left() const
         {
             return wb_nao_obstacle_direction::left;
         }
@@ -160,7 +165,12 @@ namespace guWhiteboard {
             wb_nao_obstacle_direction::left = t_newValue;
         }
 
-        bool right() const
+        bool & right()
+        {
+            return wb_nao_obstacle_direction::right;
+        }
+
+        const bool & right() const
         {
             return wb_nao_obstacle_direction::right;
         }
@@ -170,7 +180,12 @@ namespace guWhiteboard {
             wb_nao_obstacle_direction::right = t_newValue;
         }
 
-        bool front() const
+        bool & front()
+        {
+            return wb_nao_obstacle_direction::front;
+        }
+
+        const bool & front() const
         {
             return wb_nao_obstacle_direction::front;
         }

@@ -149,7 +149,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        float forward() const
+        float & forward()
+        {
+            return wb_odometry::forward;
+        }
+
+        const float & forward() const
         {
             return wb_odometry::forward;
         }
@@ -159,7 +164,12 @@ namespace guWhiteboard {
             wb_odometry::forward = t_newValue;
         }
 
-        float left() const
+        float & left()
+        {
+            return wb_odometry::left;
+        }
+
+        const float & left() const
         {
             return wb_odometry::left;
         }
@@ -169,7 +179,12 @@ namespace guWhiteboard {
             wb_odometry::left = t_newValue;
         }
 
-        float turn() const
+        float & turn()
+        {
+            return wb_odometry::turn;
+        }
+
+        const float & turn() const
         {
             return wb_odometry::turn;
         }

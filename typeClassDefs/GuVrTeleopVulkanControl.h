@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum VRControlMovementOptions movementOptions() const
+        enum VRControlMovementOptions & movementOptions()
+        {
+            return wb_gu_vr_teleop_vulkan_control::movementOptions;
+        }
+
+        const enum VRControlMovementOptions & movementOptions() const
         {
             return wb_gu_vr_teleop_vulkan_control::movementOptions;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_gu_vr_teleop_vulkan_control::movementOptions = t_newValue;
         }
 
-        enum VRControlWalkingOptions walkingOptions() const
+        enum VRControlWalkingOptions & walkingOptions()
+        {
+            return wb_gu_vr_teleop_vulkan_control::walkingOptions;
+        }
+
+        const enum VRControlWalkingOptions & walkingOptions() const
         {
             return wb_gu_vr_teleop_vulkan_control::walkingOptions;
         }

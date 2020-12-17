@@ -164,7 +164,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint64_t frameNumber() const
+        uint64_t & frameNumber()
+        {
+            return wb_vision_detection_balls::frameNumber;
+        }
+
+        const uint64_t & frameNumber() const
         {
             return wb_vision_detection_balls::frameNumber;
         }
@@ -174,14 +179,24 @@ namespace guWhiteboard {
             wb_vision_detection_balls::frameNumber = t_newValue;
         }
 
-        const VisionDetectionBall *balls() const
+        VisionDetectionBall * balls()
+        {
+            return const_cast<VisionDetectionBall *>(static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls));
+        }
+
+        const VisionDetectionBall * balls() const
         {
             return static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls);
         }
 
-        VisionDetectionBall balls(int t_i) const
+        VisionDetectionBall & balls(int t_i)
         {
-            return VisionDetectionBall(wb_vision_detection_balls::balls[t_i]);
+            return const_cast<VisionDetectionBall &>(static_cast<const VisionDetectionBall &>(wb_vision_detection_balls::balls[t_i]));
+        }
+
+        const VisionDetectionBall & balls(int t_i) const
+        {
+            return static_cast<const VisionDetectionBall &>(wb_vision_detection_balls::balls[t_i]);
         }
 
         void set_balls(const VisionDetectionBall *t_newValue)
@@ -194,7 +209,12 @@ namespace guWhiteboard {
             wb_vision_detection_balls::balls[t_i] = static_cast<wb_vision_detection_ball>(t_newValue);
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_vision_detection_balls::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_vision_detection_balls::res_width;
         }
@@ -204,7 +224,12 @@ namespace guWhiteboard {
             wb_vision_detection_balls::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_vision_detection_balls::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_vision_detection_balls::res_height;
         }

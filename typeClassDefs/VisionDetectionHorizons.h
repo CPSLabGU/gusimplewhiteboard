@@ -164,7 +164,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint64_t frameNumber() const
+        uint64_t & frameNumber()
+        {
+            return wb_vision_detection_horizons::frameNumber;
+        }
+
+        const uint64_t & frameNumber() const
         {
             return wb_vision_detection_horizons::frameNumber;
         }
@@ -174,14 +179,24 @@ namespace guWhiteboard {
             wb_vision_detection_horizons::frameNumber = t_newValue;
         }
 
-        const VisionDetectionHorizon *horizons() const
+        VisionDetectionHorizon * horizons()
+        {
+            return const_cast<VisionDetectionHorizon *>(static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons));
+        }
+
+        const VisionDetectionHorizon * horizons() const
         {
             return static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons);
         }
 
-        VisionDetectionHorizon horizons(int t_i) const
+        VisionDetectionHorizon & horizons(int t_i)
         {
-            return VisionDetectionHorizon(wb_vision_detection_horizons::horizons[t_i]);
+            return const_cast<VisionDetectionHorizon &>(static_cast<const VisionDetectionHorizon &>(wb_vision_detection_horizons::horizons[t_i]));
+        }
+
+        const VisionDetectionHorizon & horizons(int t_i) const
+        {
+            return static_cast<const VisionDetectionHorizon &>(wb_vision_detection_horizons::horizons[t_i]);
         }
 
         void set_horizons(const VisionDetectionHorizon *t_newValue)
@@ -194,7 +209,12 @@ namespace guWhiteboard {
             wb_vision_detection_horizons::horizons[t_i] = static_cast<wb_vision_detection_horizon>(t_newValue);
         }
 
-        uint16_t res_width() const
+        uint16_t & res_width()
+        {
+            return wb_vision_detection_horizons::res_width;
+        }
+
+        const uint16_t & res_width() const
         {
             return wb_vision_detection_horizons::res_width;
         }
@@ -204,7 +224,12 @@ namespace guWhiteboard {
             wb_vision_detection_horizons::res_width = t_newValue;
         }
 
-        uint16_t res_height() const
+        uint16_t & res_height()
+        {
+            return wb_vision_detection_horizons::res_height;
+        }
+
+        const uint16_t & res_height() const
         {
             return wb_vision_detection_horizons::res_height;
         }

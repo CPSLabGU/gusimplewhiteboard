@@ -159,7 +159,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t direction() const
+        int16_t & direction()
+        {
+            return wb_location::direction;
+        }
+
+        const int16_t & direction() const
         {
             return wb_location::direction;
         }
@@ -169,7 +174,12 @@ namespace guWhiteboard {
             wb_location::direction = t_newValue;
         }
 
-        uint16_t distance() const
+        uint16_t & distance()
+        {
+            return wb_location::distance;
+        }
+
+        const uint16_t & distance() const
         {
             return wb_location::distance;
         }
@@ -179,7 +189,12 @@ namespace guWhiteboard {
             wb_location::distance = t_newValue;
         }
 
-        uint8_t confidence() const
+        uint8_t & confidence()
+        {
+            return wb_location::confidence;
+        }
+
+        const uint8_t & confidence() const
         {
             return wb_location::confidence;
         }
@@ -189,7 +204,12 @@ namespace guWhiteboard {
             wb_location::confidence = t_newValue;
         }
 
-        uint32_t distanceVariance() const
+        uint32_t & distanceVariance()
+        {
+            return wb_location::distanceVariance;
+        }
+
+        const uint32_t & distanceVariance() const
         {
             return wb_location::distanceVariance;
         }
@@ -199,7 +219,12 @@ namespace guWhiteboard {
             wb_location::distanceVariance = t_newValue;
         }
 
-        uint32_t directionVariance() const
+        uint32_t & directionVariance()
+        {
+            return wb_location::directionVariance;
+        }
+
+        const uint32_t & directionVariance() const
         {
             return wb_location::directionVariance;
         }

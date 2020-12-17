@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool button1Pushed() const
+        bool & button1Pushed()
+        {
+            return wb_buttons::button1Pushed;
+        }
+
+        const bool & button1Pushed() const
         {
             return wb_buttons::button1Pushed;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_buttons::button1Pushed = t_newValue;
         }
 
-        bool button2Pushed() const
+        bool & button2Pushed()
+        {
+            return wb_buttons::button2Pushed;
+        }
+
+        const bool & button2Pushed() const
         {
             return wb_buttons::button2Pushed;
         }

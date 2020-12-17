@@ -154,7 +154,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint8_t ip() const
+        uint8_t & ip()
+        {
+            return wb_teleoperation_control::ip;
+        }
+
+        const uint8_t & ip() const
         {
             return wb_teleoperation_control::ip;
         }
@@ -164,7 +169,12 @@ namespace guWhiteboard {
             wb_teleoperation_control::ip = t_newValue;
         }
 
-        int32_t action() const
+        int32_t & action()
+        {
+            return wb_teleoperation_control::action;
+        }
+
+        const int32_t & action() const
         {
             return wb_teleoperation_control::action;
         }
@@ -174,7 +184,12 @@ namespace guWhiteboard {
             wb_teleoperation_control::action = t_newValue;
         }
 
-        int32_t stance() const
+        int32_t & stance()
+        {
+            return wb_teleoperation_control::stance;
+        }
+
+        const int32_t & stance() const
         {
             return wb_teleoperation_control::stance;
         }
@@ -184,7 +199,12 @@ namespace guWhiteboard {
             wb_teleoperation_control::stance = t_newValue;
         }
 
-        int32_t streamType() const
+        int32_t & streamType()
+        {
+            return wb_teleoperation_control::streamType;
+        }
+
+        const int32_t & streamType() const
         {
             return wb_teleoperation_control::streamType;
         }
@@ -194,7 +214,12 @@ namespace guWhiteboard {
             wb_teleoperation_control::streamType = t_newValue;
         }
 
-        int32_t selectedCamera() const
+        int32_t & selectedCamera()
+        {
+            return wb_teleoperation_control::selectedCamera;
+        }
+
+        const int32_t & selectedCamera() const
         {
             return wb_teleoperation_control::selectedCamera;
         }
@@ -204,7 +229,12 @@ namespace guWhiteboard {
             wb_teleoperation_control::selectedCamera = t_newValue;
         }
 
-        const char *sayString() const
+        char * sayString()
+        {
+            return &(wb_teleoperation_control::sayString[0]);
+        }
+
+        const char * sayString() const
         {
             return &(wb_teleoperation_control::sayString[0]);
         }

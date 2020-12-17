@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool ignore_obstacles() const
+        bool & ignore_obstacles()
+        {
+            return wb_mission_priority_for_obstacles::ignore_obstacles;
+        }
+
+        const bool & ignore_obstacles() const
         {
             return wb_mission_priority_for_obstacles::ignore_obstacles;
         }

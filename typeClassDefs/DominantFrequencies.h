@@ -161,9 +161,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const RMSLevels rms() const
+        RMSLevels & rms()
         {
-            return RMSLevels(wb_dominant_frequencies::rms);
+            return const_cast<RMSLevels &>(static_cast<const RMSLevels &>(wb_dominant_frequencies::rms));
+        }
+
+        const RMSLevels & rms() const
+        {
+            return static_cast<const RMSLevels &>(wb_dominant_frequencies::rms);
         }
 
         void set_rms(const RMSLevels &t_newValue)
@@ -171,14 +176,24 @@ namespace guWhiteboard {
             wb_dominant_frequencies::rms = static_cast<wb_r_m_s_levels>(t_newValue);
         }
 
-        const MicrophoneFrequencies *frequencies() const
+        MicrophoneFrequencies * frequencies()
+        {
+            return const_cast<MicrophoneFrequencies *>(static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies));
+        }
+
+        const MicrophoneFrequencies * frequencies() const
         {
             return static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies);
         }
 
-        MicrophoneFrequencies frequencies(int t_i) const
+        MicrophoneFrequencies & frequencies(int t_i)
         {
-            return MicrophoneFrequencies(wb_dominant_frequencies::frequencies[t_i]);
+            return const_cast<MicrophoneFrequencies &>(static_cast<const MicrophoneFrequencies &>(wb_dominant_frequencies::frequencies[t_i]));
+        }
+
+        const MicrophoneFrequencies & frequencies(int t_i) const
+        {
+            return static_cast<const MicrophoneFrequencies &>(wb_dominant_frequencies::frequencies[t_i]);
         }
 
         void set_frequencies(const MicrophoneFrequencies *t_newValue)

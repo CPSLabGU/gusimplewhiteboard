@@ -155,9 +155,14 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        const PixelCoordinate start() const
+        PixelCoordinate & start()
         {
-            return PixelCoordinate(wb_pixel_coordinate_line::start);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_pixel_coordinate_line::start));
+        }
+
+        const PixelCoordinate & start() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_pixel_coordinate_line::start);
         }
 
         void set_start(const PixelCoordinate &t_newValue)
@@ -165,9 +170,14 @@ namespace guWhiteboard {
             wb_pixel_coordinate_line::start = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        const PixelCoordinate end() const
+        PixelCoordinate & end()
         {
-            return PixelCoordinate(wb_pixel_coordinate_line::end);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_pixel_coordinate_line::end));
+        }
+
+        const PixelCoordinate & end() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_pixel_coordinate_line::end);
         }
 
         void set_end(const PixelCoordinate &t_newValue)

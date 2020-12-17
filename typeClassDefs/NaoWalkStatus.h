@@ -150,7 +150,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum WalkEngineState walkEngineState() const
+        enum WalkEngineState & walkEngineState()
+        {
+            return wb_nao_walk_status::walkEngineState;
+        }
+
+        const enum WalkEngineState & walkEngineState() const
         {
             return wb_nao_walk_status::walkEngineState;
         }
@@ -160,9 +165,14 @@ namespace guWhiteboard {
             wb_nao_walk_status::walkEngineState = t_newValue;
         }
 
-        const Odometry odometry() const
+        Odometry & odometry()
         {
-            return Odometry(wb_nao_walk_status::odometry);
+            return const_cast<Odometry &>(static_cast<const Odometry &>(wb_nao_walk_status::odometry));
+        }
+
+        const Odometry & odometry() const
+        {
+            return static_cast<const Odometry &>(wb_nao_walk_status::odometry);
         }
 
         void set_odometry(const Odometry &t_newValue)
@@ -170,7 +180,12 @@ namespace guWhiteboard {
             wb_nao_walk_status::odometry = static_cast<wb_odometry>(t_newValue);
         }
 
-        uint8_t odometryResetCounter() const
+        uint8_t & odometryResetCounter()
+        {
+            return wb_nao_walk_status::odometryResetCounter;
+        }
+
+        const uint8_t & odometryResetCounter() const
         {
             return wb_nao_walk_status::odometryResetCounter;
         }

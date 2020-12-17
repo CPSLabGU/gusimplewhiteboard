@@ -144,7 +144,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool overheating() const
+        bool & overheating()
+        {
+            return wb_overheating::overheating;
+        }
+
+        const bool & overheating() const
         {
             return wb_overheating::overheating;
         }

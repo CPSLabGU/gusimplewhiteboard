@@ -155,7 +155,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        enum BallOptions sightingType() const
+        enum BallOptions & sightingType()
+        {
+            return wb_vision_detection_ball::sightingType;
+        }
+
+        const enum BallOptions & sightingType() const
         {
             return wb_vision_detection_ball::sightingType;
         }
@@ -165,9 +170,14 @@ namespace guWhiteboard {
             wb_vision_detection_ball::sightingType = t_newValue;
         }
 
-        const PixelCoordinate coordinate() const
+        PixelCoordinate & coordinate()
         {
-            return PixelCoordinate(wb_vision_detection_ball::coordinate);
+            return const_cast<PixelCoordinate &>(static_cast<const PixelCoordinate &>(wb_vision_detection_ball::coordinate));
+        }
+
+        const PixelCoordinate & coordinate() const
+        {
+            return static_cast<const PixelCoordinate &>(wb_vision_detection_ball::coordinate);
         }
 
         void set_coordinate(const PixelCoordinate &t_newValue)
@@ -175,7 +185,12 @@ namespace guWhiteboard {
             wb_vision_detection_ball::coordinate = static_cast<wb_pixel_coordinate>(t_newValue);
         }
 
-        uint16_t verticalRadius() const
+        uint16_t & verticalRadius()
+        {
+            return wb_vision_detection_ball::verticalRadius;
+        }
+
+        const uint16_t & verticalRadius() const
         {
             return wb_vision_detection_ball::verticalRadius;
         }
@@ -185,7 +200,12 @@ namespace guWhiteboard {
             wb_vision_detection_ball::verticalRadius = t_newValue;
         }
 
-        uint16_t horizontalRadius() const
+        uint16_t & horizontalRadius()
+        {
+            return wb_vision_detection_ball::horizontalRadius;
+        }
+
+        const uint16_t & horizontalRadius() const
         {
             return wb_vision_detection_ball::horizontalRadius;
         }

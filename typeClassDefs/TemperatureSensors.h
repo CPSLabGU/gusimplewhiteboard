@@ -154,7 +154,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        bool LKneePitch() const
+        bool & LKneePitch()
+        {
+            return wb_temperature_sensors::LKneePitch;
+        }
+
+        const bool & LKneePitch() const
         {
             return wb_temperature_sensors::LKneePitch;
         }
@@ -164,7 +169,12 @@ namespace guWhiteboard {
             wb_temperature_sensors::LKneePitch = t_newValue;
         }
 
-        bool LAnklePitch() const
+        bool & LAnklePitch()
+        {
+            return wb_temperature_sensors::LAnklePitch;
+        }
+
+        const bool & LAnklePitch() const
         {
             return wb_temperature_sensors::LAnklePitch;
         }
@@ -174,7 +184,12 @@ namespace guWhiteboard {
             wb_temperature_sensors::LAnklePitch = t_newValue;
         }
 
-        bool LAnkleRoll() const
+        bool & LAnkleRoll()
+        {
+            return wb_temperature_sensors::LAnkleRoll;
+        }
+
+        const bool & LAnkleRoll() const
         {
             return wb_temperature_sensors::LAnkleRoll;
         }
@@ -184,7 +199,12 @@ namespace guWhiteboard {
             wb_temperature_sensors::LAnkleRoll = t_newValue;
         }
 
-        bool RKneePitch() const
+        bool & RKneePitch()
+        {
+            return wb_temperature_sensors::RKneePitch;
+        }
+
+        const bool & RKneePitch() const
         {
             return wb_temperature_sensors::RKneePitch;
         }
@@ -194,7 +214,12 @@ namespace guWhiteboard {
             wb_temperature_sensors::RKneePitch = t_newValue;
         }
 
-        bool RAnklePitch() const
+        bool & RAnklePitch()
+        {
+            return wb_temperature_sensors::RAnklePitch;
+        }
+
+        const bool & RAnklePitch() const
         {
             return wb_temperature_sensors::RAnklePitch;
         }
@@ -204,7 +229,12 @@ namespace guWhiteboard {
             wb_temperature_sensors::RAnklePitch = t_newValue;
         }
 
-        bool RAnkleRoll() const
+        bool & RAnkleRoll()
+        {
+            return wb_temperature_sensors::RAnkleRoll;
+        }
+
+        const bool & RAnkleRoll() const
         {
             return wb_temperature_sensors::RAnkleRoll;
         }

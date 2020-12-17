@@ -156,7 +156,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int8_t ball_direction() const
+        int8_t & ball_direction()
+        {
+            return wb_machine_filtered_vision::ball_direction;
+        }
+
+        const int8_t & ball_direction() const
         {
             return wb_machine_filtered_vision::ball_direction;
         }
@@ -166,7 +171,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::ball_direction = t_newValue;
         }
 
-        uint16_t ball_distance() const
+        uint16_t & ball_distance()
+        {
+            return wb_machine_filtered_vision::ball_distance;
+        }
+
+        const uint16_t & ball_distance() const
         {
             return wb_machine_filtered_vision::ball_distance;
         }
@@ -176,7 +186,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::ball_distance = t_newValue;
         }
 
-        bool ball_visible() const
+        bool & ball_visible()
+        {
+            return wb_machine_filtered_vision::ball_visible;
+        }
+
+        const bool & ball_visible() const
         {
             return wb_machine_filtered_vision::ball_visible;
         }
@@ -186,7 +201,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::ball_visible = t_newValue;
         }
 
-        int8_t goal_direction() const
+        int8_t & goal_direction()
+        {
+            return wb_machine_filtered_vision::goal_direction;
+        }
+
+        const int8_t & goal_direction() const
         {
             return wb_machine_filtered_vision::goal_direction;
         }
@@ -196,7 +216,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::goal_direction = t_newValue;
         }
 
-        uint16_t goal_distance() const
+        uint16_t & goal_distance()
+        {
+            return wb_machine_filtered_vision::goal_distance;
+        }
+
+        const uint16_t & goal_distance() const
         {
             return wb_machine_filtered_vision::goal_distance;
         }
@@ -206,7 +231,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::goal_distance = t_newValue;
         }
 
-        bool goal_visible() const
+        bool & goal_visible()
+        {
+            return wb_machine_filtered_vision::goal_visible;
+        }
+
+        const bool & goal_visible() const
         {
             return wb_machine_filtered_vision::goal_visible;
         }
@@ -216,7 +246,12 @@ namespace guWhiteboard {
             wb_machine_filtered_vision::goal_visible = t_newValue;
         }
 
-        enum GoalSightingType goal_sightingType() const
+        enum GoalSightingType & goal_sightingType()
+        {
+            return wb_machine_filtered_vision::goal_sightingType;
+        }
+
+        const enum GoalSightingType & goal_sightingType() const
         {
             return wb_machine_filtered_vision::goal_sightingType;
         }

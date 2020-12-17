@@ -148,7 +148,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t direction() const
+        int16_t & direction()
+        {
+            return wb_landmark_sighting::direction;
+        }
+
+        const int16_t & direction() const
         {
             return wb_landmark_sighting::direction;
         }
@@ -158,7 +163,12 @@ namespace guWhiteboard {
             wb_landmark_sighting::direction = t_newValue;
         }
 
-        uint16_t distance() const
+        uint16_t & distance()
+        {
+            return wb_landmark_sighting::distance;
+        }
+
+        const uint16_t & distance() const
         {
             return wb_landmark_sighting::distance;
         }
@@ -168,7 +178,12 @@ namespace guWhiteboard {
             wb_landmark_sighting::distance = t_newValue;
         }
 
-        enum LandmarkSightingType sightingType() const
+        enum LandmarkSightingType & sightingType()
+        {
+            return wb_landmark_sighting::sightingType;
+        }
+
+        const enum LandmarkSightingType & sightingType() const
         {
             return wb_landmark_sighting::sightingType;
         }

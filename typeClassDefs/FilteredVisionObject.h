@@ -160,7 +160,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        uint64_t visibilityHistory() const
+        uint64_t & visibilityHistory()
+        {
+            return wb_filtered_vision_object::visibilityHistory;
+        }
+
+        const uint64_t & visibilityHistory() const
         {
             return wb_filtered_vision_object::visibilityHistory;
         }
@@ -170,7 +175,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::visibilityHistory = t_newValue;
         }
 
-        int32_t frameCounter() const
+        int32_t & frameCounter()
+        {
+            return wb_filtered_vision_object::frameCounter;
+        }
+
+        const int32_t & frameCounter() const
         {
             return wb_filtered_vision_object::frameCounter;
         }
@@ -180,7 +190,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::frameCounter = t_newValue;
         }
 
-        int16_t distance() const
+        int16_t & distance()
+        {
+            return wb_filtered_vision_object::distance;
+        }
+
+        const int16_t & distance() const
         {
             return wb_filtered_vision_object::distance;
         }
@@ -190,7 +205,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::distance = t_newValue;
         }
 
-        int16_t x() const
+        int16_t & x()
+        {
+            return wb_filtered_vision_object::x;
+        }
+
+        const int16_t & x() const
         {
             return wb_filtered_vision_object::x;
         }
@@ -200,7 +220,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::x = t_newValue;
         }
 
-        int16_t y() const
+        int16_t & y()
+        {
+            return wb_filtered_vision_object::y;
+        }
+
+        const int16_t & y() const
         {
             return wb_filtered_vision_object::y;
         }
@@ -210,7 +235,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::y = t_newValue;
         }
 
-        int16_t yaw() const
+        int16_t & yaw()
+        {
+            return wb_filtered_vision_object::yaw;
+        }
+
+        const int16_t & yaw() const
         {
             return wb_filtered_vision_object::yaw;
         }
@@ -220,7 +250,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::yaw = t_newValue;
         }
 
-        int16_t ray_angle() const
+        int16_t & ray_angle()
+        {
+            return wb_filtered_vision_object::ray_angle;
+        }
+
+        const int16_t & ray_angle() const
         {
             return wb_filtered_vision_object::ray_angle;
         }
@@ -230,7 +265,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::ray_angle = t_newValue;
         }
 
-        bool isVisible() const
+        bool & isVisible()
+        {
+            return wb_filtered_vision_object::isVisible;
+        }
+
+        const bool & isVisible() const
         {
             return wb_filtered_vision_object::isVisible;
         }
@@ -240,7 +280,12 @@ namespace guWhiteboard {
             wb_filtered_vision_object::isVisible = t_newValue;
         }
 
-        bool pad1() const
+        bool & pad1()
+        {
+            return wb_filtered_vision_object::pad1;
+        }
+
+        const bool & pad1() const
         {
             return wb_filtered_vision_object::pad1;
         }

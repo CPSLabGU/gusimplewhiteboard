@@ -146,7 +146,12 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        int16_t lo_freq() const
+        int16_t & lo_freq()
+        {
+            return wb_frequency_limits::lo_freq;
+        }
+
+        const int16_t & lo_freq() const
         {
             return wb_frequency_limits::lo_freq;
         }
@@ -156,7 +161,12 @@ namespace guWhiteboard {
             wb_frequency_limits::lo_freq = t_newValue;
         }
 
-        int16_t hi_freq() const
+        int16_t & hi_freq()
+        {
+            return wb_frequency_limits::hi_freq;
+        }
+
+        const int16_t & hi_freq() const
         {
             return wb_frequency_limits::hi_freq;
         }
