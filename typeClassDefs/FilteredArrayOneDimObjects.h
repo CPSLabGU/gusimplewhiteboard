@@ -165,6 +165,11 @@ namespace guWhiteboard {
             return static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects);
         }
 
+        size_t objects_size() const
+        {
+            return FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE;
+        }
+
         FilteredVisionObject & objects(int t_i)
         {
             return const_cast<FilteredVisionObject &>(static_cast<const FilteredVisionObject &>(wb_filtered_arrayonedimobjects::objects[t_i]));

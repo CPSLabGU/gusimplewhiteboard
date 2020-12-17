@@ -186,6 +186,11 @@ namespace guWhiteboard {
             return static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies);
         }
 
+        size_t frequencies_size() const
+        {
+            return DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE;
+        }
+
         MicrophoneFrequencies & frequencies(int t_i)
         {
             return const_cast<MicrophoneFrequencies &>(static_cast<const MicrophoneFrequencies &>(wb_dominant_frequencies::frequencies[t_i]));

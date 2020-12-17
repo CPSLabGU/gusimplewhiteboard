@@ -189,6 +189,11 @@ namespace guWhiteboard {
             return static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons);
         }
 
+        size_t horizons_size() const
+        {
+            return VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE;
+        }
+
         VisionDetectionHorizon & horizons(int t_i)
         {
             return const_cast<VisionDetectionHorizon &>(static_cast<const VisionDetectionHorizon &>(wb_vision_detection_horizons::horizons[t_i]));

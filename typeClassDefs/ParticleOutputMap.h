@@ -171,6 +171,11 @@ namespace guWhiteboard {
             return wb_particle_output_map::filePath;
         }
 
+        size_t filePath_size() const
+        {
+            return 64;
+        }
+
         char & filePath(int t_i)
         {
             return wb_particle_output_map::filePath[t_i];

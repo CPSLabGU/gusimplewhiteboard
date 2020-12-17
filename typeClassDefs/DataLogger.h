@@ -166,6 +166,11 @@ namespace guWhiteboard {
             return wb_data_logger::machineName;
         }
 
+        size_t machineName_size() const
+        {
+            return 40;
+        }
+
         char & machineName(int t_i)
         {
             return wb_data_logger::machineName[t_i];
@@ -264,6 +269,11 @@ namespace guWhiteboard {
         const char * comment() const
         {
             return wb_data_logger::comment;
+        }
+
+        size_t comment_size() const
+        {
+            return 30;
         }
 
         char & comment(int t_i)

@@ -239,6 +239,11 @@ namespace guWhiteboard {
             return wb_teleoperation_control::sayString;
         }
 
+        size_t sayString_size() const
+        {
+            return 30;
+        }
+
         char & sayString(int t_i)
         {
             return wb_teleoperation_control::sayString[t_i];

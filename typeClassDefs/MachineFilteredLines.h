@@ -186,6 +186,11 @@ namespace guWhiteboard {
             return static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings);
         }
 
+        size_t sightings_size() const
+        {
+            return MACHINE_FILTERED_LINES_SIGHTINGS_ARRAY_SIZE;
+        }
+
         LineSighting & sightings(int t_i)
         {
             return const_cast<LineSighting &>(static_cast<const LineSighting &>(wb_machine_filtered_lines::sightings[t_i]));

@@ -167,6 +167,11 @@ namespace guWhiteboard {
             return static_cast<const ParticlePosition *>(wb_top_particles::particles);
         }
 
+        size_t particles_size() const
+        {
+            return TOPPARTICLES_PARTICLES_ARRAY_SIZE;
+        }
+
         ParticlePosition & particles(int t_i)
         {
             return const_cast<ParticlePosition &>(static_cast<const ParticlePosition &>(wb_top_particles::particles[t_i]));

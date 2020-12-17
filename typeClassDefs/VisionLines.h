@@ -176,6 +176,11 @@ namespace guWhiteboard {
             return static_cast<const VisionLine *>(wb_vision_lines::lines);
         }
 
+        size_t lines_size() const
+        {
+            return VISION_LINES_LINES_ARRAY_SIZE;
+        }
+
         VisionLine & lines(int t_i)
         {
             return const_cast<VisionLine &>(static_cast<const VisionLine &>(wb_vision_lines::lines[t_i]));
