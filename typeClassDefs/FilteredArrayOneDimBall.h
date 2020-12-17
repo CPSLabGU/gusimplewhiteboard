@@ -89,7 +89,7 @@ public:
     FilteredArrayOneDimBall(const class FilteredOneDimObject &obj, enum FilteredVisionObjectType landmarkType  = FVOBallTop)
     {
 	const FilteredVisionObject *fvo = dynamic_cast<const FilteredVisionObject *>(&obj);
-        _objects[landmarkType]=*fvo;
+        FilteredArrayBallSightings::set_objects(*fvo, landmarkType);
     }
     
 
@@ -116,11 +116,11 @@ public:
     
     
     /** property setter 
-     * @param objects setter object
+     * @param t_objects setter object
      */
-    void set_objects(const class FilteredArrayOneDimBall *objects)
+    void set_objects(const class FilteredArrayOneDimBall *t_objects)
     {
-        memcpy(_objects, objects, sizeof(_objects));
+        memcpy(wb_filtered_arrayballsightings::objects, t_objects, sizeof(this->objects()));
     }
     
     /** single vision object setter */
