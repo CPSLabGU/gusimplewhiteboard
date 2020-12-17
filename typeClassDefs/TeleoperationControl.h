@@ -231,12 +231,22 @@ namespace guWhiteboard {
 
         char * sayString()
         {
-            return &(wb_teleoperation_control::sayString[0]);
+            return const_cast<char *>(wb_teleoperation_control::sayString);
         }
 
         const char * sayString() const
         {
-            return &(wb_teleoperation_control::sayString[0]);
+            return wb_teleoperation_control::sayString;
+        }
+
+        char & sayString(int t_i)
+        {
+            return wb_teleoperation_control::sayString[t_i];
+        }
+
+        const char & sayString(int t_i) const
+        {
+            return wb_teleoperation_control::sayString[t_i];
         }
 
         void set_sayString(const char *t_newValue)

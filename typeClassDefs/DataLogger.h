@@ -158,12 +158,22 @@ namespace guWhiteboard {
 
         char * machineName()
         {
-            return &(wb_data_logger::machineName[0]);
+            return const_cast<char *>(wb_data_logger::machineName);
         }
 
         const char * machineName() const
         {
-            return &(wb_data_logger::machineName[0]);
+            return wb_data_logger::machineName;
+        }
+
+        char & machineName(int t_i)
+        {
+            return wb_data_logger::machineName[t_i];
+        }
+
+        const char & machineName(int t_i) const
+        {
+            return wb_data_logger::machineName[t_i];
         }
 
         void set_machineName(const char *t_newValue)
@@ -248,12 +258,22 @@ namespace guWhiteboard {
 
         char * comment()
         {
-            return &(wb_data_logger::comment[0]);
+            return const_cast<char *>(wb_data_logger::comment);
         }
 
         const char * comment() const
         {
-            return &(wb_data_logger::comment[0]);
+            return wb_data_logger::comment;
+        }
+
+        char & comment(int t_i)
+        {
+            return wb_data_logger::comment[t_i];
+        }
+
+        const char & comment(int t_i) const
+        {
+            return wb_data_logger::comment[t_i];
         }
 
         void set_comment(const char *t_newValue)

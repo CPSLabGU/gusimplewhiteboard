@@ -437,12 +437,22 @@ namespace guWhiteboard {
 
         char * colourCalibration()
         {
-            return &(wb_vision_control_status::colourCalibration[0]);
+            return const_cast<char *>(wb_vision_control_status::colourCalibration);
         }
 
         const char * colourCalibration() const
         {
-            return &(wb_vision_control_status::colourCalibration[0]);
+            return wb_vision_control_status::colourCalibration;
+        }
+
+        char & colourCalibration(int t_i)
+        {
+            return wb_vision_control_status::colourCalibration[t_i];
+        }
+
+        const char & colourCalibration(int t_i) const
+        {
+            return wb_vision_control_status::colourCalibration[t_i];
         }
 
         void set_colourCalibration(const char *t_newValue)
