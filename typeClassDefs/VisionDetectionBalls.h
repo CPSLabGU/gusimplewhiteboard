@@ -179,11 +179,6 @@ namespace guWhiteboard {
             wb_vision_detection_balls::frameNumber = t_newValue;
         }
 
-        VisionDetectionBall * balls()
-        {
-            return const_cast<VisionDetectionBall *>(static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls));
-        }
-
         const VisionDetectionBall * balls() const
         {
             return static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls);

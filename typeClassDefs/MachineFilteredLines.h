@@ -176,11 +176,6 @@ namespace guWhiteboard {
             wb_machine_filtered_lines::numberOfSightings = t_newValue;
         }
 
-        LineSighting * sightings()
-        {
-            return const_cast<LineSighting *>(static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings));
-        }
-
         const LineSighting * sightings() const
         {
             return static_cast<const LineSighting *>(wb_machine_filtered_lines::sightings);

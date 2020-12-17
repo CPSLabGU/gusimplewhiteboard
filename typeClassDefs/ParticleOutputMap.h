@@ -161,11 +161,6 @@ namespace guWhiteboard {
             wb_particle_output_map::fileId = t_newValue;
         }
 
-        char * filePath()
-        {
-            return const_cast<char *>(wb_particle_output_map::filePath);
-        }
-
         const char * filePath() const
         {
             return wb_particle_output_map::filePath;

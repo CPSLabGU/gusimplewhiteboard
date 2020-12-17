@@ -155,11 +155,6 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        FilteredVisionObject * objects()
-        {
-            return const_cast<FilteredVisionObject *>(static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects));
-        }
-
         const FilteredVisionObject * objects() const
         {
             return static_cast<const FilteredVisionObject *>(wb_filtered_arrayonedimobjects::objects);

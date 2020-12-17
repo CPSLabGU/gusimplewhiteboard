@@ -156,11 +156,6 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        char * machineName()
-        {
-            return const_cast<char *>(wb_data_logger::machineName);
-        }
-
         const char * machineName() const
         {
             return wb_data_logger::machineName;
@@ -259,11 +254,6 @@ namespace guWhiteboard {
         void set_shouldExit(const bool &t_newValue)
         {
             wb_data_logger::shouldExit = t_newValue;
-        }
-
-        char * comment()
-        {
-            return const_cast<char *>(wb_data_logger::comment);
         }
 
         const char * comment() const

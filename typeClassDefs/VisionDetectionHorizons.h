@@ -179,11 +179,6 @@ namespace guWhiteboard {
             wb_vision_detection_horizons::frameNumber = t_newValue;
         }
 
-        VisionDetectionHorizon * horizons()
-        {
-            return const_cast<VisionDetectionHorizon *>(static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons));
-        }
-
         const VisionDetectionHorizon * horizons() const
         {
             return static_cast<const VisionDetectionHorizon *>(wb_vision_detection_horizons::horizons);

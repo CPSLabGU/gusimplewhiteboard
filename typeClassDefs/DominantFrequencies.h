@@ -176,11 +176,6 @@ namespace guWhiteboard {
             wb_dominant_frequencies::rms = static_cast<wb_r_m_s_levels>(t_newValue);
         }
 
-        MicrophoneFrequencies * frequencies()
-        {
-            return const_cast<MicrophoneFrequencies *>(static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies));
-        }
-
         const MicrophoneFrequencies * frequencies() const
         {
             return static_cast<const MicrophoneFrequencies *>(wb_dominant_frequencies::frequencies);

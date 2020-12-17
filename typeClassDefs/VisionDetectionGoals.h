@@ -179,11 +179,6 @@ namespace guWhiteboard {
             wb_vision_detection_goals::frameNumber = t_newValue;
         }
 
-        VisionDetectionGoal * goals()
-        {
-            return const_cast<VisionDetectionGoal *>(static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals));
-        }
-
         const VisionDetectionGoal * goals() const
         {
             return static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals);

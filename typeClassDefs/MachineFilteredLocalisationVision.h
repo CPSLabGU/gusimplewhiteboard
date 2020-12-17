@@ -175,11 +175,6 @@ namespace guWhiteboard {
             wb_machine_filtered_localisation_vision::numberOfSightings = t_newValue;
         }
 
-        LandmarkSighting * sightings()
-        {
-            return const_cast<LandmarkSighting *>(static_cast<const LandmarkSighting *>(wb_machine_filtered_localisation_vision::sightings));
-        }
-
         const LandmarkSighting * sightings() const
         {
             return static_cast<const LandmarkSighting *>(wb_machine_filtered_localisation_vision::sightings);

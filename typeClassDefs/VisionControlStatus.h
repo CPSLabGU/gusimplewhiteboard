@@ -435,11 +435,6 @@ namespace guWhiteboard {
             wb_vision_control_status::frameNumber = t_newValue;
         }
 
-        char * colourCalibration()
-        {
-            return const_cast<char *>(wb_vision_control_status::colourCalibration);
-        }
-
         const char * colourCalibration() const
         {
             return wb_vision_control_status::colourCalibration;

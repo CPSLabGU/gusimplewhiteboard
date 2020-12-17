@@ -229,11 +229,6 @@ namespace guWhiteboard {
             wb_teleoperation_control::selectedCamera = t_newValue;
         }
 
-        char * sayString()
-        {
-            return const_cast<char *>(wb_teleoperation_control::sayString);
-        }
-
         const char * sayString() const
         {
             return wb_teleoperation_control::sayString;

@@ -166,11 +166,6 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
-        VisionLine * lines()
-        {
-            return const_cast<VisionLine *>(static_cast<const VisionLine *>(wb_vision_lines::lines));
-        }
-
         const VisionLine * lines() const
         {
             return static_cast<const VisionLine *>(wb_vision_lines::lines);
