@@ -168,7 +168,7 @@ namespace guWhiteboard {
 
         const VisionLine * lines() const
         {
-            return static_cast<const VisionLine *>(wb_vision_lines::lines);
+            return static_cast<const VisionLine *>(&(wb_vision_lines::lines[0]));
         }
 
         size_t lines_size() const

@@ -158,7 +158,7 @@ namespace guWhiteboard {
 
         const char * machineName() const
         {
-            return wb_data_logger::machineName;
+            return &(wb_data_logger::machineName[0]);
         }
 
         size_t machineName_size() const
@@ -258,7 +258,7 @@ namespace guWhiteboard {
 
         const char * comment() const
         {
-            return wb_data_logger::comment;
+            return &(wb_data_logger::comment[0]);
         }
 
         size_t comment_size() const

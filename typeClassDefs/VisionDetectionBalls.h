@@ -181,7 +181,7 @@ namespace guWhiteboard {
 
         const VisionDetectionBall * balls() const
         {
-            return static_cast<const VisionDetectionBall *>(wb_vision_detection_balls::balls);
+            return static_cast<const VisionDetectionBall *>(&(wb_vision_detection_balls::balls[0]));
         }
 
         size_t balls_size() const

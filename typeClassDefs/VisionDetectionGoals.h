@@ -181,7 +181,7 @@ namespace guWhiteboard {
 
         const VisionDetectionGoal * goals() const
         {
-            return static_cast<const VisionDetectionGoal *>(wb_vision_detection_goals::goals);
+            return static_cast<const VisionDetectionGoal *>(&(wb_vision_detection_goals::goals[0]));
         }
 
         size_t goals_size() const

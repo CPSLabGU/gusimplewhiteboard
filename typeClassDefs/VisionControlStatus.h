@@ -437,7 +437,7 @@ namespace guWhiteboard {
 
         const char * colourCalibration() const
         {
-            return wb_vision_control_status::colourCalibration;
+            return &(wb_vision_control_status::colourCalibration[0]);
         }
 
         size_t colourCalibration_size() const

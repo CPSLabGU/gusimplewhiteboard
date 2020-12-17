@@ -190,7 +190,7 @@ namespace guWhiteboard {
 
         const VisionFieldFeature * fieldCorner() const
         {
-            return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCorner);
+            return static_cast<const VisionFieldFeature *>(&(wb_vision_field_features::fieldCorner[0]));
         }
 
         size_t fieldCorner_size() const
@@ -220,7 +220,7 @@ namespace guWhiteboard {
 
         const VisionFieldFeature * fieldIntersection() const
         {
-            return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldIntersection);
+            return static_cast<const VisionFieldFeature *>(&(wb_vision_field_features::fieldIntersection[0]));
         }
 
         size_t fieldIntersection_size() const
@@ -250,7 +250,7 @@ namespace guWhiteboard {
 
         const VisionFieldFeature * fieldCrosses() const
         {
-            return static_cast<const VisionFieldFeature *>(wb_vision_field_features::fieldCrosses);
+            return static_cast<const VisionFieldFeature *>(&(wb_vision_field_features::fieldCrosses[0]));
         }
 
         size_t fieldCrosses_size() const

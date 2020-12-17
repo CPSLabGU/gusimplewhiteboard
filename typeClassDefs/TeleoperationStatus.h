@@ -146,7 +146,7 @@ namespace guWhiteboard {
 
         const char * sayString() const
         {
-            return wb_teleoperation_status::sayString;
+            return &(wb_teleoperation_status::sayString[0]);
         }
 
         size_t sayString_size() const
