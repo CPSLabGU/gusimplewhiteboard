@@ -219,18 +219,36 @@ double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojoints
 
 
 
+/**
+ * Convert to a description string.
+ */
 const char* wb_pixel_to_robot_relative_coord_description(const struct wb_pixel_to_robot_relative_coord* self, char* descString, size_t bufferSize)
 {
-    (void) self;
-    (void) bufferSize;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+    size_t len = 0;
+    if (len >= bufferSize) {
+        return descString;
+    }
+    len += snprintf(descString + len, bufferSize - len, "i=%d", self->i);
     return descString;
+#pragma clang diagnostic pop
 }
 
+/**
+ * Convert to a string.
+ */
 const char* wb_pixel_to_robot_relative_coord_to_string(const struct wb_pixel_to_robot_relative_coord* self, char* toString, size_t bufferSize)
 {
-    (void) self;
-    (void) bufferSize;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+    size_t len = 0;
+    if (len >= bufferSize) {
+        return toString;
+    }
+    len += snprintf(toString + len, bufferSize - len, "%d", self->i);
     return toString;
+#pragma clang diagnostic pop
 }
 
 /**
@@ -245,7 +263,7 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
     }
     char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
-    char key_buffer[0];
+    char key_buffer[2];
     char* key = &key_buffer[0];
     int bracecount = 0;
     int startVar = 0;
@@ -306,11 +324,19 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
         startKey = startVar;
         endKey = -1;
         if (strlen(key) > 0) {
-            varIndex = -1;
+            if (0 == strcmp("i", key)) {
+                varIndex = 0;
+            } else {
+                varIndex = -1;
+            }
         }
         switch (varIndex) {
             case -1: { break; }
-
+            case 0:
+            {
+                self->i = ((int)atoi(var_str));
+                break;
+            }
         }
         if (varIndex >= 0) {
             varIndex++;
@@ -327,7 +353,19 @@ struct wb_pixel_to_robot_relative_coord* wb_pixel_to_robot_relative_coord_from_s
 size_t wb_pixel_to_robot_relative_coord_to_network_serialised(const struct wb_pixel_to_robot_relative_coord *self, char *dst)
 {
     uint16_t bit_offset = 0;
-
+    int i_nbo = htonl(self->i);
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        unsigned long newbit = !!((i_nbo >> b) & 1U);
+        dst[byte] ^= (-newbit ^ dst[byte]) & (1UL << bit);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)self;
     (void)dst;
@@ -340,7 +378,20 @@ size_t wb_pixel_to_robot_relative_coord_to_network_serialised(const struct wb_pi
 size_t wb_pixel_to_robot_relative_coord_from_network_serialised(const char *src, struct wb_pixel_to_robot_relative_coord *dst)
 {
     uint16_t bit_offset = 0;
-
+    do {
+      int8_t b;
+      for (b = (32 - 1); b >= 0; b--) {
+          do {
+        uint16_t byte = bit_offset / 8;
+        uint16_t bit = 7 - (bit_offset % 8);
+        char dataByte = src[byte];
+        unsigned char bitValue = (dataByte >> bit) & 1U;
+        dst->i ^= (-bitValue ^ dst->i) & (1UL << b);
+        bit_offset = bit_offset + 1;
+      } while(false);
+      }
+    } while(false);
+    dst->i = ntohl(dst->i);
     //avoid unused variable warnings when you try to use an empty gen file or a gen file with no supported serialisation types.
     (void)src;
     (void)dst;

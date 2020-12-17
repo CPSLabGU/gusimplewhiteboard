@@ -169,6 +169,7 @@ double get_camera_height(enum VisionCamera camera, struct wb_sensors_torsojoints
 #pragma clang diagnostic pop
 
 -properties
+int i // Nothing
 
 -comment
 Contains a static method for converting from Nao vision format to a bearing and a dist

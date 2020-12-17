@@ -152,19 +152,16 @@ void rr_to_pixel_coord(double angle, double distance, enum VisionCamera camera, 
 
 #define PIXEL_TO_ROBOT_RELATIVE_COORD_GENERATED 
 #define PIXEL_TO_ROBOT_RELATIVE_COORD_C_STRUCT wb_pixel_to_robot_relative_coord 
-#define PIXEL_TO_ROBOT_RELATIVE_COORD_NUMBER_OF_VARIABLES 0
+#define PIXEL_TO_ROBOT_RELATIVE_COORD_NUMBER_OF_VARIABLES 1
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE 0
-#define PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE 0
+#define PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE 14
+#define PIXEL_TO_ROBOT_RELATIVE_COORD_TO_STRING_BUFFER_SIZE 12
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wc++-compat"
 
 /**
  * Contains a static method for converting from Nao vision format to a bearing and a dist
@@ -172,8 +169,12 @@ extern "C" {
 struct wb_pixel_to_robot_relative_coord
 {
 
+    /**
+     * Nothing
+     */
+    int i;
+
 };
-#pragma clang diagnostic pop
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 

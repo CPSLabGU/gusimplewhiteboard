@@ -81,8 +81,8 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init() {
-
+        void init(int t_i = 0) {
+            set_i(t_i);
         }
 
     public:
@@ -90,29 +90,29 @@ namespace guWhiteboard {
         /**
          * Create a new `PixelToRobotRelativeCoord`.
          */
-        PixelToRobotRelativeCoord() {
-            this->init();
+        PixelToRobotRelativeCoord(int t_i = 0) {
+            this->init(t_i);
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const PixelToRobotRelativeCoord &t_other): wb_pixel_to_robot_relative_coord() {
-            this->init();
+            this->init(t_other.i());
         }
 
         /**
          * Copy Constructor.
          */
         PixelToRobotRelativeCoord(const struct wb_pixel_to_robot_relative_coord &t_other): wb_pixel_to_robot_relative_coord() {
-            this->init();
+            this->init(t_other.i);
         }
 
         /**
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const PixelToRobotRelativeCoord &t_other) {
-            this->init();
+            this->init(t_other.i());
             return *this;
         }
 
@@ -120,13 +120,13 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         PixelToRobotRelativeCoord &operator = (const struct wb_pixel_to_robot_relative_coord &t_other) {
-            this->init();
+            this->init(t_other.i);
             return *this;
         }
 
         bool operator ==(const PixelToRobotRelativeCoord &t_other) const
         {
-            return true;
+            return i() == t_other.i();
         }
 
         bool operator !=(const PixelToRobotRelativeCoord &t_other) const
@@ -144,7 +144,20 @@ namespace guWhiteboard {
             return !(*this == t_other);
         }
 
+        int & i()
+        {
+            return wb_pixel_to_robot_relative_coord::i;
+        }
 
+        const int & i() const
+        {
+            return wb_pixel_to_robot_relative_coord::i;
+        }
+
+        void set_i(const int &t_newValue)
+        {
+            wb_pixel_to_robot_relative_coord::i = t_newValue;
+        }
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
@@ -163,7 +176,7 @@ namespace guWhiteboard {
             return descr;
 #else
             std::ostringstream ss;
-
+            ss << "i=" << static_cast<signed>(this->i());
             return ss.str();
 #endif /// USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
         }
@@ -176,7 +189,7 @@ namespace guWhiteboard {
             return toString;
 #else
             std::ostringstream ss;
-
+            ss << static_cast<signed>(this->i());
             return ss.str();
 #endif /// USE_WB_PIXEL_TO_ROBOT_RELATIVE_COORD_C_CONVERSION
         }
@@ -194,7 +207,7 @@ namespace guWhiteboard {
             }
             char var_str_buffer[PIXEL_TO_ROBOT_RELATIVE_COORD_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
-            char key_buffer[0];
+            char key_buffer[2];
             char* key = &key_buffer[0];
             int bracecount = 0;
             int startVar = 0;
@@ -255,11 +268,19 @@ namespace guWhiteboard {
                 startKey = startVar;
                 endKey = -1;
                 if (strlen(key) > 0) {
-                    varIndex = -1;
+                    if (0 == strcmp("i", key)) {
+                        varIndex = 0;
+                    } else {
+                        varIndex = -1;
+                    }
                 }
                 switch (varIndex) {
                     case -1: { break; }
-
+                    case 0:
+                    {
+                        this->set_i(static_cast<int>(atoi(var_str)));
+                        break;
+                    }
                 }
                 if (varIndex >= 0) {
                     varIndex++;
