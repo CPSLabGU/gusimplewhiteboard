@@ -9,6 +9,8 @@
 #ifndef WBFUNCTOR_TYPES_GENERATED_H
 #define WBFUNCTOR_TYPES_GENERATED_H
 
+#include <gu_util.h>
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wold-style-cast"
