@@ -22,6 +22,7 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #pragma clang diagnostic ignored "-Wpadded"
 
 #include <string>
+#include <gu_util.h>
 
 #include "WBMsg.h"
 #include "guwhiteboardtypelist_generated.h" //for type enum
