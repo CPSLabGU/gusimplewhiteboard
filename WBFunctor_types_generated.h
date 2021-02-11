@@ -23,7 +23,7 @@ public:
     wb_reserved_SubscribeToAllTypes_WBFunctor(wb_reserved_SubscribeToAllTypes_WBFunctor_T* obj, void (wb_reserved_SubscribeToAllTypes_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<wb_reserved_SubscribeToAllTypes_WBFunctor_T >(obj, (void (wb_reserved_SubscribeToAllTypes_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class wb_reserved_SubscribeToAllTypes_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::wb_reserved_SubscribeToAllTypes_t().get_from(m);
         wb_reserved_SubscribeToAllTypes_function_t funct((void (wb_reserved_SubscribeToAllTypes_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<wb_reserved_SubscribeToAllTypes_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<wb_reserved_SubscribeToAllTypes_WBFunctor_T >::fObject->*funct)(WBFunctor<wb_reserved_SubscribeToAllTypes_WBFunctor_T >::type_enum, result);
@@ -46,7 +46,7 @@ public:
     Print_WBFunctor(Print_WBFunctor_T* obj, void (Print_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Print_WBFunctor_T >(obj, (void (Print_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Print_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::Print_t().get_from(m);
         Print_function_t funct((void (Print_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Print_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Print_WBFunctor_T >::fObject->*funct)(WBFunctor<Print_WBFunctor_T >::type_enum, result);
@@ -69,7 +69,7 @@ public:
     Say_WBFunctor(Say_WBFunctor_T* obj, void (Say_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Say_WBFunctor_T >(obj, (void (Say_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Say_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::Say_t().get_from(m);
         Say_function_t funct((void (Say_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Say_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Say_WBFunctor_T >::fObject->*funct)(WBFunctor<Say_WBFunctor_T >::type_enum, result);
@@ -92,7 +92,7 @@ public:
     Speech_WBFunctor(Speech_WBFunctor_T* obj, void (Speech_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Speech_WBFunctor_T >(obj, (void (Speech_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Speech_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::Speech_t().get_from(m);
         Speech_function_t funct((void (Speech_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Speech_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Speech_WBFunctor_T >::fObject->*funct)(WBFunctor<Speech_WBFunctor_T >::type_enum, result);
@@ -115,7 +115,7 @@ public:
     QSay_WBFunctor(QSay_WBFunctor_T* obj, void (QSay_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<QSay_WBFunctor_T >(obj, (void (QSay_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class QSay_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::QSay_t().get_from(m);
         QSay_function_t funct((void (QSay_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<QSay_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<QSay_WBFunctor_T >::fObject->*funct)(WBFunctor<QSay_WBFunctor_T >::type_enum, result);
@@ -138,7 +138,7 @@ public:
     QSpeech_WBFunctor(QSpeech_WBFunctor_T* obj, void (QSpeech_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<QSpeech_WBFunctor_T >(obj, (void (QSpeech_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class QSpeech_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::QSpeech_t().get_from(m);
         QSpeech_function_t funct((void (QSpeech_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<QSpeech_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<QSpeech_WBFunctor_T >::fObject->*funct)(WBFunctor<QSpeech_WBFunctor_T >::type_enum, result);
@@ -161,7 +161,7 @@ public:
     SpeechOutput_WBFunctor(SpeechOutput_WBFunctor_T* obj, void (SpeechOutput_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<SpeechOutput_WBFunctor_T >(obj, (void (SpeechOutput_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SpeechOutput_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::SpeechOutput_t().get_from(m);
         SpeechOutput_function_t funct((void (SpeechOutput_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<SpeechOutput_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SpeechOutput_WBFunctor_T >::fObject->*funct)(WBFunctor<SpeechOutput_WBFunctor_T >::type_enum, result);
@@ -184,7 +184,7 @@ public:
     GCGameState_WBFunctor(GCGameState_WBFunctor_T* obj, void (GCGameState_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::GCGameState &), guWhiteboard::WBTypes t): WBFunctor<GCGameState_WBFunctor_T >(obj, (void (GCGameState_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class GCGameState_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::GCGameState result = guWhiteboard::GCGameState_t().get_from(m);
         GCGameState_function_t funct((void (GCGameState_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::GCGameState &))WBFunctor<GCGameState_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<GCGameState_WBFunctor_T >::fObject->*funct)(WBFunctor<GCGameState_WBFunctor_T >::type_enum, result);
@@ -207,7 +207,7 @@ public:
     SensorsHandSensors_WBFunctor(SensorsHandSensors_WBFunctor_T* obj, void (SensorsHandSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsHandSensors_WBFunctor_T >(obj, (void (SensorsHandSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SensorsHandSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SensorsHandSensors result = guWhiteboard::SensorsHandSensors_t().get_from(m);
         SensorsHandSensors_function_t funct((void (SensorsHandSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsHandSensors &))WBFunctor<SensorsHandSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SensorsHandSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsHandSensors_WBFunctor_T >::type_enum, result);
@@ -230,7 +230,7 @@ public:
     SensorsHeadSensors_WBFunctor(SensorsHeadSensors_WBFunctor_T* obj, void (SensorsHeadSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsHeadSensors_WBFunctor_T >(obj, (void (SensorsHeadSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SensorsHeadSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SensorsHeadSensors result = guWhiteboard::SensorsHeadSensors_t().get_from(m);
         SensorsHeadSensors_function_t funct((void (SensorsHeadSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsHeadSensors &))WBFunctor<SensorsHeadSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SensorsHeadSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsHeadSensors_WBFunctor_T >::type_enum, result);
@@ -253,7 +253,7 @@ public:
     MOTION_Commands_WBFunctor(MOTION_Commands_WBFunctor_T* obj, void (MOTION_Commands_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MOTION_Commands &), guWhiteboard::WBTypes t): WBFunctor<MOTION_Commands_WBFunctor_T >(obj, (void (MOTION_Commands_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MOTION_Commands_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MOTION_Commands result = guWhiteboard::MOTION_Commands_t().get_from(m);
         MOTION_Commands_function_t funct((void (MOTION_Commands_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MOTION_Commands &))WBFunctor<MOTION_Commands_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MOTION_Commands_WBFunctor_T >::fObject->*funct)(WBFunctor<MOTION_Commands_WBFunctor_T >::type_enum, result);
@@ -276,7 +276,7 @@ public:
     MOTION_Status_WBFunctor(MOTION_Status_WBFunctor_T* obj, void (MOTION_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MOTION_Status &), guWhiteboard::WBTypes t): WBFunctor<MOTION_Status_WBFunctor_T >(obj, (void (MOTION_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MOTION_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MOTION_Status result = guWhiteboard::MOTION_Status_t().get_from(m);
         MOTION_Status_function_t funct((void (MOTION_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MOTION_Status &))WBFunctor<MOTION_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MOTION_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<MOTION_Status_WBFunctor_T >::type_enum, result);
@@ -299,7 +299,7 @@ public:
     HAL_HeadTarget_WBFunctor(HAL_HeadTarget_WBFunctor_T* obj, void (HAL_HeadTarget_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HAL_HeadTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_HeadTarget_WBFunctor_T >(obj, (void (HAL_HeadTarget_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_HeadTarget_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HAL_HeadTarget result = guWhiteboard::HAL_HeadTarget_t().get_from(m);
         HAL_HeadTarget_function_t funct((void (HAL_HeadTarget_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HAL_HeadTarget &))WBFunctor<HAL_HeadTarget_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_HeadTarget_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_HeadTarget_WBFunctor_T >::type_enum, result);
@@ -322,7 +322,7 @@ public:
     SensorsFootSensors_WBFunctor(SensorsFootSensors_WBFunctor_T* obj, void (SensorsFootSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsFootSensors_WBFunctor_T >(obj, (void (SensorsFootSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SensorsFootSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SensorsFootSensors result = guWhiteboard::SensorsFootSensors_t().get_from(m);
         SensorsFootSensors_function_t funct((void (SensorsFootSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsFootSensors &))WBFunctor<SensorsFootSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SensorsFootSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsFootSensors_WBFunctor_T >::type_enum, result);
@@ -345,7 +345,7 @@ public:
     SensorsBodySensors_WBFunctor(SensorsBodySensors_WBFunctor_T* obj, void (SensorsBodySensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &), guWhiteboard::WBTypes t): WBFunctor<SensorsBodySensors_WBFunctor_T >(obj, (void (SensorsBodySensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SensorsBodySensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SensorsBodySensors result = guWhiteboard::SensorsBodySensors_t().get_from(m);
         SensorsBodySensors_function_t funct((void (SensorsBodySensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SensorsBodySensors &))WBFunctor<SensorsBodySensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SensorsBodySensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsBodySensors_WBFunctor_T >::type_enum, result);
@@ -368,7 +368,7 @@ public:
     SENSORSLedsSensors_WBFunctor(SENSORSLedsSensors_WBFunctor_T* obj, void (SENSORSLedsSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSLedsSensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSLedsSensors_WBFunctor_T >(obj, (void (SENSORSLedsSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSLedsSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSLedsSensors result = guWhiteboard::SENSORSLedsSensors_t().get_from(m);
         SENSORSLedsSensors_function_t funct((void (SENSORSLedsSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSLedsSensors &))WBFunctor<SENSORSLedsSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSLedsSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSLedsSensors_WBFunctor_T >::type_enum, result);
@@ -391,7 +391,7 @@ public:
     SENSORSLegJointTemps_WBFunctor(SENSORSLegJointTemps_WBFunctor_T* obj, void (SENSORSLegJointTemps_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSLegJointTemps &), guWhiteboard::WBTypes t): WBFunctor<SENSORSLegJointTemps_WBFunctor_T >(obj, (void (SENSORSLegJointTemps_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSLegJointTemps_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSLegJointTemps result = guWhiteboard::SENSORSLegJointTemps_t().get_from(m);
         SENSORSLegJointTemps_function_t funct((void (SENSORSLegJointTemps_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSLegJointTemps &))WBFunctor<SENSORSLegJointTemps_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSLegJointTemps_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSLegJointTemps_WBFunctor_T >::type_enum, result);
@@ -414,7 +414,7 @@ public:
     SENSORSTorsoJointTemps_WBFunctor(SENSORSTorsoJointTemps_WBFunctor_T* obj, void (SENSORSTorsoJointTemps_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSTorsoJointTemps &), guWhiteboard::WBTypes t): WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T >(obj, (void (SENSORSTorsoJointTemps_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSTorsoJointTemps_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSTorsoJointTemps result = guWhiteboard::SENSORSTorsoJointTemps_t().get_from(m);
         SENSORSTorsoJointTemps_function_t funct((void (SENSORSTorsoJointTemps_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSTorsoJointTemps &))WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T >::type_enum, result);
@@ -437,7 +437,7 @@ public:
     SENSORSLegJointSensors_WBFunctor(SENSORSLegJointSensors_WBFunctor_T* obj, void (SENSORSLegJointSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSLegJointSensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSLegJointSensors_WBFunctor_T >(obj, (void (SENSORSLegJointSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSLegJointSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSLegJointSensors result = guWhiteboard::SENSORSLegJointSensors_t().get_from(m);
         SENSORSLegJointSensors_function_t funct((void (SENSORSLegJointSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSLegJointSensors &))WBFunctor<SENSORSLegJointSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSLegJointSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSLegJointSensors_WBFunctor_T >::type_enum, result);
@@ -460,7 +460,7 @@ public:
     SENSORSTorsoJointSensors_WBFunctor(SENSORSTorsoJointSensors_WBFunctor_T* obj, void (SENSORSTorsoJointSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSTorsoJointSensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T >(obj, (void (SENSORSTorsoJointSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSTorsoJointSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSTorsoJointSensors result = guWhiteboard::SENSORSTorsoJointSensors_t().get_from(m);
         SENSORSTorsoJointSensors_function_t funct((void (SENSORSTorsoJointSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSTorsoJointSensors &))WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T >::type_enum, result);
@@ -483,7 +483,7 @@ public:
     SENSORSSonarSensors_WBFunctor(SENSORSSonarSensors_WBFunctor_T* obj, void (SENSORSSonarSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SENSORSSonarSensors &), guWhiteboard::WBTypes t): WBFunctor<SENSORSSonarSensors_WBFunctor_T >(obj, (void (SENSORSSonarSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SENSORSSonarSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SENSORSSonarSensors result = guWhiteboard::SENSORSSonarSensors_t().get_from(m);
         SENSORSSonarSensors_function_t funct((void (SENSORSSonarSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SENSORSSonarSensors &))WBFunctor<SENSORSSonarSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SENSORSSonarSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<SENSORSSonarSensors_WBFunctor_T >::type_enum, result);
@@ -529,7 +529,7 @@ public:
     FSM_Status_WBFunctor(FSM_Status_WBFunctor_T* obj, void (FSM_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FSMControlStatus &), guWhiteboard::WBTypes t): WBFunctor<FSM_Status_WBFunctor_T >(obj, (void (FSM_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FSM_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FSMControlStatus result = guWhiteboard::FSM_Status_t().get_from(m);
         FSM_Status_function_t funct((void (FSM_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FSMControlStatus &))WBFunctor<FSM_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FSM_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<FSM_Status_WBFunctor_T >::type_enum, result);
@@ -575,7 +575,7 @@ public:
     SoloTypeExample_WBFunctor(SoloTypeExample_WBFunctor_T* obj, void (SoloTypeExample_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<SoloTypeExample_WBFunctor_T >(obj, (void (SoloTypeExample_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SoloTypeExample_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::SoloTypeExample_t().get_from(m);
         SoloTypeExample_function_t funct((void (SoloTypeExample_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<SoloTypeExample_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SoloTypeExample_WBFunctor_T >::fObject->*funct)(WBFunctor<SoloTypeExample_WBFunctor_T >::type_enum, result);
@@ -598,7 +598,7 @@ public:
     FilteredGoalSighting_WBFunctor(FilteredGoalSighting_WBFunctor_T* obj, void (FilteredGoalSighting_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FilteredArrayOneDimObjects &), guWhiteboard::WBTypes t): WBFunctor<FilteredGoalSighting_WBFunctor_T >(obj, (void (FilteredGoalSighting_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FilteredGoalSighting_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FilteredArrayOneDimObjects result = guWhiteboard::FilteredGoalSighting_t().get_from(m);
         FilteredGoalSighting_function_t funct((void (FilteredGoalSighting_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FilteredArrayOneDimObjects &))WBFunctor<FilteredGoalSighting_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FilteredGoalSighting_WBFunctor_T >::fObject->*funct)(WBFunctor<FilteredGoalSighting_WBFunctor_T >::type_enum, result);
@@ -621,7 +621,7 @@ public:
     NAO_State_WBFunctor(NAO_State_WBFunctor_T* obj, void (NAO_State_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NAO_State &), guWhiteboard::WBTypes t): WBFunctor<NAO_State_WBFunctor_T >(obj, (void (NAO_State_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NAO_State_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NAO_State result = guWhiteboard::NAO_State_t().get_from(m);
         NAO_State_function_t funct((void (NAO_State_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NAO_State &))WBFunctor<NAO_State_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NAO_State_WBFunctor_T >::fObject->*funct)(WBFunctor<NAO_State_WBFunctor_T >::type_enum, result);
@@ -644,7 +644,7 @@ public:
     UDPRN_WBFunctor(UDPRN_WBFunctor_T* obj, void (UDPRN_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::GCGameState &), guWhiteboard::WBTypes t): WBFunctor<UDPRN_WBFunctor_T >(obj, (void (UDPRN_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class UDPRN_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::GCGameState result = guWhiteboard::UDPRN_t().get_from(m);
         UDPRN_function_t funct((void (UDPRN_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::GCGameState &))WBFunctor<UDPRN_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<UDPRN_WBFunctor_T >::fObject->*funct)(WBFunctor<UDPRN_WBFunctor_T >::type_enum, result);
@@ -667,7 +667,7 @@ public:
     PlayerNumber_WBFunctor(PlayerNumber_WBFunctor_T* obj, void (PlayerNumber_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<PlayerNumber_WBFunctor_T >(obj, (void (PlayerNumber_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class PlayerNumber_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::PlayerNumber_t().get_from(m);
         PlayerNumber_function_t funct((void (PlayerNumber_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<PlayerNumber_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<PlayerNumber_WBFunctor_T >::fObject->*funct)(WBFunctor<PlayerNumber_WBFunctor_T >::type_enum, result);
@@ -690,7 +690,7 @@ public:
     ManuallyPenalized_WBFunctor(ManuallyPenalized_WBFunctor_T* obj, void (ManuallyPenalized_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<ManuallyPenalized_WBFunctor_T >(obj, (void (ManuallyPenalized_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class ManuallyPenalized_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::ManuallyPenalized_t().get_from(m);
         ManuallyPenalized_function_t funct((void (ManuallyPenalized_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<ManuallyPenalized_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<ManuallyPenalized_WBFunctor_T >::fObject->*funct)(WBFunctor<ManuallyPenalized_WBFunctor_T >::type_enum, result);
@@ -713,7 +713,7 @@ public:
     VisionControl_WBFunctor(VisionControl_WBFunctor_T* obj, void (VisionControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<VisionControl_WBFunctor_T >(obj, (void (VisionControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionControlStatus result = guWhiteboard::VisionControl_t().get_from(m);
         VisionControl_function_t funct((void (VisionControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<VisionControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionControl_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionControl_WBFunctor_T >::type_enum, result);
@@ -736,7 +736,7 @@ public:
     VisionStatus_WBFunctor(VisionStatus_WBFunctor_T* obj, void (VisionStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &), guWhiteboard::WBTypes t): WBFunctor<VisionStatus_WBFunctor_T >(obj, (void (VisionStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionControlStatus result = guWhiteboard::VisionStatus_t().get_from(m);
         VisionStatus_function_t funct((void (VisionStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionControlStatus &))WBFunctor<VisionStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionStatus_WBFunctor_T >::type_enum, result);
@@ -759,7 +759,7 @@ public:
     FFTStatus_WBFunctor(FFTStatus_WBFunctor_T* obj, void (FFTStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FFTStatus &), guWhiteboard::WBTypes t): WBFunctor<FFTStatus_WBFunctor_T >(obj, (void (FFTStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FFTStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FFTStatus result = guWhiteboard::FFTStatus_t().get_from(m);
         FFTStatus_function_t funct((void (FFTStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FFTStatus &))WBFunctor<FFTStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FFTStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<FFTStatus_WBFunctor_T >::type_enum, result);
@@ -782,7 +782,7 @@ public:
     FSOsighting_WBFunctor(FSOsighting_WBFunctor_T* obj, void (FSOsighting_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FilteredArrayOneDimSonar &), guWhiteboard::WBTypes t): WBFunctor<FSOsighting_WBFunctor_T >(obj, (void (FSOsighting_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FSOsighting_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FilteredArrayOneDimSonar result = guWhiteboard::FSOsighting_t().get_from(m);
         FSOsighting_function_t funct((void (FSOsighting_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FilteredArrayOneDimSonar &))WBFunctor<FSOsighting_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FSOsighting_WBFunctor_T >::fObject->*funct)(WBFunctor<FSOsighting_WBFunctor_T >::type_enum, result);
@@ -805,7 +805,7 @@ public:
     TopParticles_WBFunctor(TopParticles_WBFunctor_T* obj, void (TopParticles_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TopParticles &), guWhiteboard::WBTypes t): WBFunctor<TopParticles_WBFunctor_T >(obj, (void (TopParticles_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TopParticles_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TopParticles result = guWhiteboard::TopParticles_t().get_from(m);
         TopParticles_function_t funct((void (TopParticles_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TopParticles &))WBFunctor<TopParticles_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TopParticles_WBFunctor_T >::fObject->*funct)(WBFunctor<TopParticles_WBFunctor_T >::type_enum, result);
@@ -828,7 +828,7 @@ public:
     FilteredBallSighting_WBFunctor(FilteredBallSighting_WBFunctor_T* obj, void (FilteredBallSighting_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FilteredArrayBallSightings &), guWhiteboard::WBTypes t): WBFunctor<FilteredBallSighting_WBFunctor_T >(obj, (void (FilteredBallSighting_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FilteredBallSighting_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FilteredArrayBallSightings result = guWhiteboard::FilteredBallSighting_t().get_from(m);
         FilteredBallSighting_function_t funct((void (FilteredBallSighting_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FilteredArrayBallSightings &))WBFunctor<FilteredBallSighting_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FilteredBallSighting_WBFunctor_T >::fObject->*funct)(WBFunctor<FilteredBallSighting_WBFunctor_T >::type_enum, result);
@@ -851,7 +851,7 @@ public:
     PF_ControlStatus_Modes_WBFunctor(PF_ControlStatus_Modes_WBFunctor_T* obj, void (PF_ControlStatus_Modes_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int32_t &), guWhiteboard::WBTypes t): WBFunctor<PF_ControlStatus_Modes_WBFunctor_T >(obj, (void (PF_ControlStatus_Modes_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class PF_ControlStatus_Modes_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int32_t result = guWhiteboard::PF_ControlStatus_Modes_t().get_from(m);
         PF_ControlStatus_Modes_function_t funct((void (PF_ControlStatus_Modes_WBFunctor_T::*)(guWhiteboard::WBTypes, int32_t &))WBFunctor<PF_ControlStatus_Modes_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<PF_ControlStatus_Modes_WBFunctor_T >::fObject->*funct)(WBFunctor<PF_ControlStatus_Modes_WBFunctor_T >::type_enum, result);
@@ -874,7 +874,7 @@ public:
     WEBOTS_NXT_bridge_WBFunctor(WEBOTS_NXT_bridge_WBFunctor_T* obj, void (WEBOTS_NXT_bridge_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_bridge &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T >(obj, (void (WEBOTS_NXT_bridge_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_bridge_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_bridge result = guWhiteboard::WEBOTS_NXT_bridge_t().get_from(m);
         WEBOTS_NXT_bridge_function_t funct((void (WEBOTS_NXT_bridge_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_bridge &))WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T >::type_enum, result);
@@ -897,7 +897,7 @@ public:
     WEBOTS_NXT_encoders_WBFunctor(WEBOTS_NXT_encoders_WBFunctor_T* obj, void (WEBOTS_NXT_encoders_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_encoders &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T >(obj, (void (WEBOTS_NXT_encoders_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_encoders_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_encoders result = guWhiteboard::WEBOTS_NXT_encoders_t().get_from(m);
         WEBOTS_NXT_encoders_function_t funct((void (WEBOTS_NXT_encoders_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_encoders &))WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T >::type_enum, result);
@@ -920,7 +920,7 @@ public:
     WEBOTS_NXT_camera_WBFunctor(WEBOTS_NXT_camera_WBFunctor_T* obj, void (WEBOTS_NXT_camera_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_camera &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_camera_WBFunctor_T >(obj, (void (WEBOTS_NXT_camera_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_camera_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_camera result = guWhiteboard::WEBOTS_NXT_camera_t().get_from(m);
         WEBOTS_NXT_camera_function_t funct((void (WEBOTS_NXT_camera_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_camera &))WBFunctor<WEBOTS_NXT_camera_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_camera_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_camera_WBFunctor_T >::type_enum, result);
@@ -943,7 +943,7 @@ public:
     WEBOTS_NXT_walk_isRunning_WBFunctor(WEBOTS_NXT_walk_isRunning_WBFunctor_T* obj, void (WEBOTS_NXT_walk_isRunning_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_walk_isRunning &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T >(obj, (void (WEBOTS_NXT_walk_isRunning_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_walk_isRunning_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_walk_isRunning result = guWhiteboard::WEBOTS_NXT_walk_isRunning_t().get_from(m);
         WEBOTS_NXT_walk_isRunning_function_t funct((void (WEBOTS_NXT_walk_isRunning_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_walk_isRunning &))WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T >::type_enum, result);
@@ -966,7 +966,7 @@ public:
     WEBOTS_NXT_deadReakoning_walk_WBFunctor(WEBOTS_NXT_deadReakoning_walk_WBFunctor_T* obj, void (WEBOTS_NXT_deadReakoning_walk_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_deadReakoning_walk &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >(obj, (void (WEBOTS_NXT_deadReakoning_walk_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_deadReakoning_walk_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_deadReakoning_walk result = guWhiteboard::WEBOTS_NXT_deadReakoning_walk_t().get_from(m);
         WEBOTS_NXT_deadReakoning_walk_function_t funct((void (WEBOTS_NXT_deadReakoning_walk_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_deadReakoning_walk &))WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >::type_enum, result);
@@ -989,7 +989,7 @@ public:
     WEBOTS_NXT_colorLine_walk_WBFunctor(WEBOTS_NXT_colorLine_walk_WBFunctor_T* obj, void (WEBOTS_NXT_colorLine_walk_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_colorLine_walk &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T >(obj, (void (WEBOTS_NXT_colorLine_walk_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_colorLine_walk_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_colorLine_walk result = guWhiteboard::WEBOTS_NXT_colorLine_walk_t().get_from(m);
         WEBOTS_NXT_colorLine_walk_function_t funct((void (WEBOTS_NXT_colorLine_walk_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_colorLine_walk &))WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T >::type_enum, result);
@@ -1012,7 +1012,7 @@ public:
     WEBOTS_NXT_gridMotions_WBFunctor(WEBOTS_NXT_gridMotions_WBFunctor_T* obj, void (WEBOTS_NXT_gridMotions_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_gridMotions &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T >(obj, (void (WEBOTS_NXT_gridMotions_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_gridMotions_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_gridMotions result = guWhiteboard::WEBOTS_NXT_gridMotions_t().get_from(m);
         WEBOTS_NXT_gridMotions_function_t funct((void (WEBOTS_NXT_gridMotions_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_gridMotions &))WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T >::type_enum, result);
@@ -1035,7 +1035,7 @@ public:
     VisionBall_WBFunctor(VisionBall_WBFunctor_T* obj, void (VisionBall_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionBall &), guWhiteboard::WBTypes t): WBFunctor<VisionBall_WBFunctor_T >(obj, (void (VisionBall_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionBall_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionBall result = guWhiteboard::VisionBall_t().get_from(m);
         VisionBall_function_t funct((void (VisionBall_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionBall &))WBFunctor<VisionBall_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionBall_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionBall_WBFunctor_T >::type_enum, result);
@@ -1058,7 +1058,7 @@ public:
     VisionGoals_WBFunctor(VisionGoals_WBFunctor_T* obj, void (VisionGoals_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionGoals &), guWhiteboard::WBTypes t): WBFunctor<VisionGoals_WBFunctor_T >(obj, (void (VisionGoals_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionGoals_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionGoals result = guWhiteboard::VisionGoals_t().get_from(m);
         VisionGoals_function_t funct((void (VisionGoals_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionGoals &))WBFunctor<VisionGoals_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionGoals_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionGoals_WBFunctor_T >::type_enum, result);
@@ -1081,7 +1081,7 @@ public:
     WalkData_WBFunctor(WalkData_WBFunctor_T* obj, void (WalkData_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WalkData &), guWhiteboard::WBTypes t): WBFunctor<WalkData_WBFunctor_T >(obj, (void (WalkData_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WalkData_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WalkData result = guWhiteboard::WalkData_t().get_from(m);
         WalkData_function_t funct((void (WalkData_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WalkData &))WBFunctor<WalkData_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WalkData_WBFunctor_T >::fObject->*funct)(WBFunctor<WalkData_WBFunctor_T >::type_enum, result);
@@ -1104,7 +1104,7 @@ public:
     TeleoperationControlStatus_WBFunctor(TeleoperationControlStatus_WBFunctor_T* obj, void (TeleoperationControlStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlStatus &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationControlStatus_WBFunctor_T >(obj, (void (TeleoperationControlStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TeleoperationControlStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TeleoperationControlStatus result = guWhiteboard::TeleoperationControlStatus_t().get_from(m);
         TeleoperationControlStatus_function_t funct((void (TeleoperationControlStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlStatus &))WBFunctor<TeleoperationControlStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TeleoperationControlStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationControlStatus_WBFunctor_T >::type_enum, result);
@@ -1127,7 +1127,7 @@ public:
     TeleoperationConnection_WBFunctor(TeleoperationConnection_WBFunctor_T* obj, void (TeleoperationConnection_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationConnection_WBFunctor_T >(obj, (void (TeleoperationConnection_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TeleoperationConnection_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::TeleoperationConnection_t().get_from(m);
         TeleoperationConnection_function_t funct((void (TeleoperationConnection_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<TeleoperationConnection_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TeleoperationConnection_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationConnection_WBFunctor_T >::type_enum, result);
@@ -1150,7 +1150,7 @@ public:
     UDPWBNumber_WBFunctor(UDPWBNumber_WBFunctor_T* obj, void (UDPWBNumber_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<UDPWBNumber_WBFunctor_T >(obj, (void (UDPWBNumber_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class UDPWBNumber_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::UDPWBNumber_t().get_from(m);
         UDPWBNumber_function_t funct((void (UDPWBNumber_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<UDPWBNumber_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<UDPWBNumber_WBFunctor_T >::fObject->*funct)(WBFunctor<UDPWBNumber_WBFunctor_T >::type_enum, result);
@@ -1173,7 +1173,7 @@ public:
     WEBOTS_NXT_bumper_WBFunctor(WEBOTS_NXT_bumper_WBFunctor_T* obj, void (WEBOTS_NXT_bumper_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_bumper &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T >(obj, (void (WEBOTS_NXT_bumper_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_bumper_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_bumper result = guWhiteboard::WEBOTS_NXT_bumper_t().get_from(m);
         WEBOTS_NXT_bumper_function_t funct((void (WEBOTS_NXT_bumper_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_bumper &))WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T >::type_enum, result);
@@ -1196,7 +1196,7 @@ public:
     WEBOTS_NXT_vector_bridge_WBFunctor(WEBOTS_NXT_vector_bridge_WBFunctor_T* obj, void (WEBOTS_NXT_vector_bridge_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_vector_bridge &), guWhiteboard::WBTypes t): WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T >(obj, (void (WEBOTS_NXT_vector_bridge_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WEBOTS_NXT_vector_bridge_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::WEBOTS_NXT_vector_bridge result = guWhiteboard::WEBOTS_NXT_vector_bridge_t().get_from(m);
         WEBOTS_NXT_vector_bridge_function_t funct((void (WEBOTS_NXT_vector_bridge_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::WEBOTS_NXT_vector_bridge &))WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T >::fObject->*funct)(WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T >::type_enum, result);
@@ -1219,7 +1219,7 @@ public:
     TopVisionLines_WBFunctor(TopVisionLines_WBFunctor_T* obj, void (TopVisionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t): WBFunctor<TopVisionLines_WBFunctor_T >(obj, (void (TopVisionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TopVisionLines_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionLines result = guWhiteboard::TopVisionLines_t().get_from(m);
         TopVisionLines_function_t funct((void (TopVisionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &))WBFunctor<TopVisionLines_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TopVisionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<TopVisionLines_WBFunctor_T >::type_enum, result);
@@ -1242,7 +1242,7 @@ public:
     BottomVisionLines_WBFunctor(BottomVisionLines_WBFunctor_T* obj, void (BottomVisionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionLines &), guWhiteboard::WBTypes t): WBFunctor<BottomVisionLines_WBFunctor_T >(obj, (void (BottomVisionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class BottomVisionLines_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionLines result = guWhiteboard::BottomVisionLines_t().get_from(m);
         BottomVisionLines_function_t funct((void (BottomVisionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionLines &))WBFunctor<BottomVisionLines_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<BottomVisionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<BottomVisionLines_WBFunctor_T >::type_enum, result);
@@ -1265,7 +1265,7 @@ public:
     DifferentialRobotStatus_WBFunctor(DifferentialRobotStatus_WBFunctor_T* obj, void (DifferentialRobotStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DifferentialRobotControlStatus &), guWhiteboard::WBTypes t): WBFunctor<DifferentialRobotStatus_WBFunctor_T >(obj, (void (DifferentialRobotStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class DifferentialRobotStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::DifferentialRobotControlStatus result = guWhiteboard::DifferentialRobotStatus_t().get_from(m);
         DifferentialRobotStatus_function_t funct((void (DifferentialRobotStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DifferentialRobotControlStatus &))WBFunctor<DifferentialRobotStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<DifferentialRobotStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<DifferentialRobotStatus_WBFunctor_T >::type_enum, result);
@@ -1288,7 +1288,7 @@ public:
     DifferentialRobotControl_WBFunctor(DifferentialRobotControl_WBFunctor_T* obj, void (DifferentialRobotControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DifferentialRobotControlStatus &), guWhiteboard::WBTypes t): WBFunctor<DifferentialRobotControl_WBFunctor_T >(obj, (void (DifferentialRobotControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class DifferentialRobotControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::DifferentialRobotControlStatus result = guWhiteboard::DifferentialRobotControl_t().get_from(m);
         DifferentialRobotControl_function_t funct((void (DifferentialRobotControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DifferentialRobotControlStatus &))WBFunctor<DifferentialRobotControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<DifferentialRobotControl_WBFunctor_T >::fObject->*funct)(WBFunctor<DifferentialRobotControl_WBFunctor_T >::type_enum, result);
@@ -1311,7 +1311,7 @@ public:
     XEyesPos_WBFunctor(XEyesPos_WBFunctor_T* obj, void (XEyesPos_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Point2D &), guWhiteboard::WBTypes t): WBFunctor<XEyesPos_WBFunctor_T >(obj, (void (XEyesPos_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class XEyesPos_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Point2D result = guWhiteboard::XEyesPos_t().get_from(m);
         XEyesPos_function_t funct((void (XEyesPos_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Point2D &))WBFunctor<XEyesPos_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<XEyesPos_WBFunctor_T >::fObject->*funct)(WBFunctor<XEyesPos_WBFunctor_T >::type_enum, result);
@@ -1334,7 +1334,7 @@ public:
     VisionFace_WBFunctor(VisionFace_WBFunctor_T* obj, void (VisionFace_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::vector<int> &), guWhiteboard::WBTypes t): WBFunctor<VisionFace_WBFunctor_T >(obj, (void (VisionFace_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionFace_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::vector<int> result = guWhiteboard::VisionFace_t().get_from(m);
         VisionFace_function_t funct((void (VisionFace_WBFunctor_T::*)(guWhiteboard::WBTypes, std::vector<int> &))WBFunctor<VisionFace_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionFace_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionFace_WBFunctor_T >::type_enum, result);
@@ -1357,7 +1357,7 @@ public:
     Draw_WBFunctor(Draw_WBFunctor_T* obj, void (Draw_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Draw_WBFunctor_T >(obj, (void (Draw_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Draw_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::Draw_t().get_from(m);
         Draw_function_t funct((void (Draw_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Draw_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Draw_WBFunctor_T >::fObject->*funct)(WBFunctor<Draw_WBFunctor_T >::type_enum, result);
@@ -1380,7 +1380,7 @@ public:
     FSM_States_WBFunctor(FSM_States_WBFunctor_T* obj, void (FSM_States_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FSMState &), guWhiteboard::WBTypes t): WBFunctor<FSM_States_WBFunctor_T >(obj, (void (FSM_States_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FSM_States_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FSMState result = guWhiteboard::FSM_States_t().get_from(m);
         FSM_States_function_t funct((void (FSM_States_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FSMState &))WBFunctor<FSM_States_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FSM_States_WBFunctor_T >::fObject->*funct)(WBFunctor<FSM_States_WBFunctor_T >::type_enum, result);
@@ -1403,7 +1403,7 @@ public:
     Giraff_Interface_Status_WBFunctor(Giraff_Interface_Status_WBFunctor_T* obj, void (Giraff_Interface_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Giraff_MainSerialInterface &), guWhiteboard::WBTypes t): WBFunctor<Giraff_Interface_Status_WBFunctor_T >(obj, (void (Giraff_Interface_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Giraff_Interface_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Giraff_MainSerialInterface result = guWhiteboard::Giraff_Interface_Status_t().get_from(m);
         Giraff_Interface_Status_function_t funct((void (Giraff_Interface_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Giraff_MainSerialInterface &))WBFunctor<Giraff_Interface_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Giraff_Interface_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<Giraff_Interface_Status_WBFunctor_T >::type_enum, result);
@@ -1426,7 +1426,7 @@ public:
     Giraff_Interface_Command_WBFunctor(Giraff_Interface_Command_WBFunctor_T* obj, void (Giraff_Interface_Command_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Giraff_MainSerialInterface &), guWhiteboard::WBTypes t): WBFunctor<Giraff_Interface_Command_WBFunctor_T >(obj, (void (Giraff_Interface_Command_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Giraff_Interface_Command_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Giraff_MainSerialInterface result = guWhiteboard::Giraff_Interface_Command_t().get_from(m);
         Giraff_Interface_Command_function_t funct((void (Giraff_Interface_Command_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Giraff_MainSerialInterface &))WBFunctor<Giraff_Interface_Command_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Giraff_Interface_Command_WBFunctor_T >::fObject->*funct)(WBFunctor<Giraff_Interface_Command_WBFunctor_T >::type_enum, result);
@@ -1449,7 +1449,7 @@ public:
     NXT_Status_WBFunctor(NXT_Status_WBFunctor_T* obj, void (NXT_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NXT_Interface &), guWhiteboard::WBTypes t): WBFunctor<NXT_Status_WBFunctor_T >(obj, (void (NXT_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NXT_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NXT_Interface result = guWhiteboard::NXT_Status_t().get_from(m);
         NXT_Status_function_t funct((void (NXT_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NXT_Interface &))WBFunctor<NXT_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NXT_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<NXT_Status_WBFunctor_T >::type_enum, result);
@@ -1472,7 +1472,7 @@ public:
     NXT_Command_WBFunctor(NXT_Command_WBFunctor_T* obj, void (NXT_Command_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NXT_Interface &), guWhiteboard::WBTypes t): WBFunctor<NXT_Command_WBFunctor_T >(obj, (void (NXT_Command_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NXT_Command_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NXT_Interface result = guWhiteboard::NXT_Command_t().get_from(m);
         NXT_Command_function_t funct((void (NXT_Command_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NXT_Interface &))WBFunctor<NXT_Command_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NXT_Command_WBFunctor_T >::fObject->*funct)(WBFunctor<NXT_Command_WBFunctor_T >::type_enum, result);
@@ -1495,7 +1495,7 @@ public:
     APM_Status_WBFunctor(APM_Status_WBFunctor_T* obj, void (APM_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::APM_Interface &), guWhiteboard::WBTypes t): WBFunctor<APM_Status_WBFunctor_T >(obj, (void (APM_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class APM_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::APM_Interface result = guWhiteboard::APM_Status_t().get_from(m);
         APM_Status_function_t funct((void (APM_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::APM_Interface &))WBFunctor<APM_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<APM_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<APM_Status_WBFunctor_T >::type_enum, result);
@@ -1518,7 +1518,7 @@ public:
     APM_Command_WBFunctor(APM_Command_WBFunctor_T* obj, void (APM_Command_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::APM_Interface &), guWhiteboard::WBTypes t): WBFunctor<APM_Command_WBFunctor_T >(obj, (void (APM_Command_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class APM_Command_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::APM_Interface result = guWhiteboard::APM_Command_t().get_from(m);
         APM_Command_function_t funct((void (APM_Command_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::APM_Interface &))WBFunctor<APM_Command_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<APM_Command_WBFunctor_T >::fObject->*funct)(WBFunctor<APM_Command_WBFunctor_T >::type_enum, result);
@@ -1541,7 +1541,7 @@ public:
     REMOVED3_WBFunctor(REMOVED3_WBFunctor_T* obj, void (REMOVED3_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<REMOVED3_WBFunctor_T >(obj, (void (REMOVED3_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class REMOVED3_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::REMOVED3_t().get_from(m);
         REMOVED3_function_t funct((void (REMOVED3_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<REMOVED3_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<REMOVED3_WBFunctor_T >::fObject->*funct)(WBFunctor<REMOVED3_WBFunctor_T >::type_enum, result);
@@ -1564,7 +1564,7 @@ public:
     REMOVED4_WBFunctor(REMOVED4_WBFunctor_T* obj, void (REMOVED4_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<REMOVED4_WBFunctor_T >(obj, (void (REMOVED4_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class REMOVED4_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::REMOVED4_t().get_from(m);
         REMOVED4_function_t funct((void (REMOVED4_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<REMOVED4_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<REMOVED4_WBFunctor_T >::fObject->*funct)(WBFunctor<REMOVED4_WBFunctor_T >::type_enum, result);
@@ -1587,7 +1587,7 @@ public:
     CBall_WBFunctor(CBall_WBFunctor_T* obj, void (CBall_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<CBall_WBFunctor_T >(obj, (void (CBall_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class CBall_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::CBall_t().get_from(m);
         CBall_function_t funct((void (CBall_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<CBall_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<CBall_WBFunctor_T >::fObject->*funct)(WBFunctor<CBall_WBFunctor_T >::type_enum, result);
@@ -1610,7 +1610,7 @@ public:
     OculusPrime_Command_WBFunctor(OculusPrime_Command_WBFunctor_T* obj, void (OculusPrime_Command_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::OculusPrimeInterface &), guWhiteboard::WBTypes t): WBFunctor<OculusPrime_Command_WBFunctor_T >(obj, (void (OculusPrime_Command_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class OculusPrime_Command_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::OculusPrimeInterface result = guWhiteboard::OculusPrime_Command_t().get_from(m);
         OculusPrime_Command_function_t funct((void (OculusPrime_Command_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::OculusPrimeInterface &))WBFunctor<OculusPrime_Command_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<OculusPrime_Command_WBFunctor_T >::fObject->*funct)(WBFunctor<OculusPrime_Command_WBFunctor_T >::type_enum, result);
@@ -1633,7 +1633,7 @@ public:
     Input3D_WBFunctor(Input3D_WBFunctor_T* obj, void (Input3D_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Input3D &), guWhiteboard::WBTypes t): WBFunctor<Input3D_WBFunctor_T >(obj, (void (Input3D_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Input3D_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Input3D result = guWhiteboard::Input3D_t().get_from(m);
         Input3D_function_t funct((void (Input3D_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Input3D &))WBFunctor<Input3D_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Input3D_WBFunctor_T >::fObject->*funct)(WBFunctor<Input3D_WBFunctor_T >::type_enum, result);
@@ -1656,7 +1656,7 @@ public:
     Oculus_Prime_Command_WBFunctor(Oculus_Prime_Command_WBFunctor_T* obj, void (Oculus_Prime_Command_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Oculus_PrimeSerialInterface &), guWhiteboard::WBTypes t): WBFunctor<Oculus_Prime_Command_WBFunctor_T >(obj, (void (Oculus_Prime_Command_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Oculus_Prime_Command_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Oculus_PrimeSerialInterface result = guWhiteboard::Oculus_Prime_Command_t().get_from(m);
         Oculus_Prime_Command_function_t funct((void (Oculus_Prime_Command_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Oculus_PrimeSerialInterface &))WBFunctor<Oculus_Prime_Command_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Oculus_Prime_Command_WBFunctor_T >::fObject->*funct)(WBFunctor<Oculus_Prime_Command_WBFunctor_T >::type_enum, result);
@@ -1679,7 +1679,7 @@ public:
     IOPins_WBFunctor(IOPins_WBFunctor_T* obj, void (IOPins_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::IOPins &), guWhiteboard::WBTypes t): WBFunctor<IOPins_WBFunctor_T >(obj, (void (IOPins_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class IOPins_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::IOPins result = guWhiteboard::IOPins_t().get_from(m);
         IOPins_function_t funct((void (IOPins_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::IOPins &))WBFunctor<IOPins_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<IOPins_WBFunctor_T >::fObject->*funct)(WBFunctor<IOPins_WBFunctor_T >::type_enum, result);
@@ -1702,7 +1702,7 @@ public:
     NXT_Two_Touch_Status_WBFunctor(NXT_Two_Touch_Status_WBFunctor_T* obj, void (NXT_Two_Touch_Status_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NXT_Two_Touch_Status &), guWhiteboard::WBTypes t): WBFunctor<NXT_Two_Touch_Status_WBFunctor_T >(obj, (void (NXT_Two_Touch_Status_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NXT_Two_Touch_Status_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NXT_Two_Touch_Status result = guWhiteboard::NXT_Two_Touch_Status_t().get_from(m);
         NXT_Two_Touch_Status_function_t funct((void (NXT_Two_Touch_Status_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NXT_Two_Touch_Status &))WBFunctor<NXT_Two_Touch_Status_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NXT_Two_Touch_Status_WBFunctor_T >::fObject->*funct)(WBFunctor<NXT_Two_Touch_Status_WBFunctor_T >::type_enum, result);
@@ -1725,7 +1725,7 @@ public:
     NXT_Sound_Control_WBFunctor(NXT_Sound_Control_WBFunctor_T* obj, void (NXT_Sound_Control_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NXT_Sound_Control &), guWhiteboard::WBTypes t): WBFunctor<NXT_Sound_Control_WBFunctor_T >(obj, (void (NXT_Sound_Control_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NXT_Sound_Control_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NXT_Sound_Control result = guWhiteboard::NXT_Sound_Control_t().get_from(m);
         NXT_Sound_Control_function_t funct((void (NXT_Sound_Control_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NXT_Sound_Control &))WBFunctor<NXT_Sound_Control_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NXT_Sound_Control_WBFunctor_T >::fObject->*funct)(WBFunctor<NXT_Sound_Control_WBFunctor_T >::type_enum, result);
@@ -1748,7 +1748,7 @@ public:
     NXT_Lights_Control_WBFunctor(NXT_Lights_Control_WBFunctor_T* obj, void (NXT_Lights_Control_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NXT_Lights_Control &), guWhiteboard::WBTypes t): WBFunctor<NXT_Lights_Control_WBFunctor_T >(obj, (void (NXT_Lights_Control_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NXT_Lights_Control_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NXT_Lights_Control result = guWhiteboard::NXT_Lights_Control_t().get_from(m);
         NXT_Lights_Control_function_t funct((void (NXT_Lights_Control_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NXT_Lights_Control &))WBFunctor<NXT_Lights_Control_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NXT_Lights_Control_WBFunctor_T >::fObject->*funct)(WBFunctor<NXT_Lights_Control_WBFunctor_T >::type_enum, result);
@@ -1771,7 +1771,7 @@ public:
     Clocks_WBFunctor(Clocks_WBFunctor_T* obj, void (Clocks_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Clocks &), guWhiteboard::WBTypes t): WBFunctor<Clocks_WBFunctor_T >(obj, (void (Clocks_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Clocks_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Clocks result = guWhiteboard::Clocks_t().get_from(m);
         Clocks_function_t funct((void (Clocks_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Clocks &))WBFunctor<Clocks_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Clocks_WBFunctor_T >::fObject->*funct)(WBFunctor<Clocks_WBFunctor_T >::type_enum, result);
@@ -1794,7 +1794,7 @@ public:
     Channels_WBFunctor(Channels_WBFunctor_T* obj, void (Channels_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Channels &), guWhiteboard::WBTypes t): WBFunctor<Channels_WBFunctor_T >(obj, (void (Channels_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Channels_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Channels result = guWhiteboard::Channels_t().get_from(m);
         Channels_function_t funct((void (Channels_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Channels &))WBFunctor<Channels_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Channels_WBFunctor_T >::fObject->*funct)(WBFunctor<Channels_WBFunctor_T >::type_enum, result);
@@ -1817,7 +1817,7 @@ public:
     SwitchSubsumption_WBFunctor(SwitchSubsumption_WBFunctor_T* obj, void (SwitchSubsumption_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SwitchSubsumption &), guWhiteboard::WBTypes t): WBFunctor<SwitchSubsumption_WBFunctor_T >(obj, (void (SwitchSubsumption_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SwitchSubsumption_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SwitchSubsumption result = guWhiteboard::SwitchSubsumption_t().get_from(m);
         SwitchSubsumption_function_t funct((void (SwitchSubsumption_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SwitchSubsumption &))WBFunctor<SwitchSubsumption_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SwitchSubsumption_WBFunctor_T >::fObject->*funct)(WBFunctor<SwitchSubsumption_WBFunctor_T >::type_enum, result);
@@ -1840,7 +1840,7 @@ public:
     TotoDoingMotion_WBFunctor(TotoDoingMotion_WBFunctor_T* obj, void (TotoDoingMotion_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TotoDoingMotion &), guWhiteboard::WBTypes t): WBFunctor<TotoDoingMotion_WBFunctor_T >(obj, (void (TotoDoingMotion_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TotoDoingMotion_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TotoDoingMotion result = guWhiteboard::TotoDoingMotion_t().get_from(m);
         TotoDoingMotion_function_t funct((void (TotoDoingMotion_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TotoDoingMotion &))WBFunctor<TotoDoingMotion_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TotoDoingMotion_WBFunctor_T >::fObject->*funct)(WBFunctor<TotoDoingMotion_WBFunctor_T >::type_enum, result);
@@ -1863,7 +1863,7 @@ public:
     Count_WBFunctor(Count_WBFunctor_T* obj, void (Count_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Count &), guWhiteboard::WBTypes t): WBFunctor<Count_WBFunctor_T >(obj, (void (Count_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Count_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Count result = guWhiteboard::Count_t().get_from(m);
         Count_function_t funct((void (Count_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Count &))WBFunctor<Count_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Count_WBFunctor_T >::fObject->*funct)(WBFunctor<Count_WBFunctor_T >::type_enum, result);
@@ -1886,7 +1886,7 @@ public:
     GreenEWon_WBFunctor(GreenEWon_WBFunctor_T* obj, void (GreenEWon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<GreenEWon_WBFunctor_T >(obj, (void (GreenEWon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class GreenEWon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::GreenEWon_t().get_from(m);
         GreenEWon_function_t funct((void (GreenEWon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<GreenEWon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<GreenEWon_WBFunctor_T >::fObject->*funct)(WBFunctor<GreenEWon_WBFunctor_T >::type_enum, result);
@@ -1909,7 +1909,7 @@ public:
     WarnEW_WBFunctor(WarnEW_WBFunctor_T* obj, void (WarnEW_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WarnEW_WBFunctor_T >(obj, (void (WarnEW_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WarnEW_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::WarnEW_t().get_from(m);
         WarnEW_function_t funct((void (WarnEW_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WarnEW_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WarnEW_WBFunctor_T >::fObject->*funct)(WBFunctor<WarnEW_WBFunctor_T >::type_enum, result);
@@ -1932,7 +1932,7 @@ public:
     TimeGTthirty_WBFunctor(TimeGTthirty_WBFunctor_T* obj, void (TimeGTthirty_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<TimeGTthirty_WBFunctor_T >(obj, (void (TimeGTthirty_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TimeGTthirty_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::TimeGTthirty_t().get_from(m);
         TimeGTthirty_function_t funct((void (TimeGTthirty_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<TimeGTthirty_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TimeGTthirty_WBFunctor_T >::fObject->*funct)(WBFunctor<TimeGTthirty_WBFunctor_T >::type_enum, result);
@@ -1955,7 +1955,7 @@ public:
     AmberEWon_WBFunctor(AmberEWon_WBFunctor_T* obj, void (AmberEWon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<AmberEWon_WBFunctor_T >(obj, (void (AmberEWon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class AmberEWon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::AmberEWon_t().get_from(m);
         AmberEWon_function_t funct((void (AmberEWon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<AmberEWon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<AmberEWon_WBFunctor_T >::fObject->*funct)(WBFunctor<AmberEWon_WBFunctor_T >::type_enum, result);
@@ -1978,7 +1978,7 @@ public:
     TurnRedEW_WBFunctor(TurnRedEW_WBFunctor_T* obj, void (TurnRedEW_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<TurnRedEW_WBFunctor_T >(obj, (void (TurnRedEW_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TurnRedEW_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::TurnRedEW_t().get_from(m);
         TurnRedEW_function_t funct((void (TurnRedEW_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<TurnRedEW_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TurnRedEW_WBFunctor_T >::fObject->*funct)(WBFunctor<TurnRedEW_WBFunctor_T >::type_enum, result);
@@ -2001,7 +2001,7 @@ public:
     TimeGTfive_WBFunctor(TimeGTfive_WBFunctor_T* obj, void (TimeGTfive_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<TimeGTfive_WBFunctor_T >(obj, (void (TimeGTfive_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TimeGTfive_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::TimeGTfive_t().get_from(m);
         TimeGTfive_function_t funct((void (TimeGTfive_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<TimeGTfive_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TimeGTfive_WBFunctor_T >::fObject->*funct)(WBFunctor<TimeGTfive_WBFunctor_T >::type_enum, result);
@@ -2024,7 +2024,7 @@ public:
     RedEWon_WBFunctor(RedEWon_WBFunctor_T* obj, void (RedEWon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<RedEWon_WBFunctor_T >(obj, (void (RedEWon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class RedEWon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::RedEWon_t().get_from(m);
         RedEWon_function_t funct((void (RedEWon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<RedEWon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<RedEWon_WBFunctor_T >::fObject->*funct)(WBFunctor<RedEWon_WBFunctor_T >::type_enum, result);
@@ -2047,7 +2047,7 @@ public:
     GreenNSon_WBFunctor(GreenNSon_WBFunctor_T* obj, void (GreenNSon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<GreenNSon_WBFunctor_T >(obj, (void (GreenNSon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class GreenNSon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::GreenNSon_t().get_from(m);
         GreenNSon_function_t funct((void (GreenNSon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<GreenNSon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<GreenNSon_WBFunctor_T >::fObject->*funct)(WBFunctor<GreenNSon_WBFunctor_T >::type_enum, result);
@@ -2070,7 +2070,7 @@ public:
     WarnNS_WBFunctor(WarnNS_WBFunctor_T* obj, void (WarnNS_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WarnNS_WBFunctor_T >(obj, (void (WarnNS_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WarnNS_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::WarnNS_t().get_from(m);
         WarnNS_function_t funct((void (WarnNS_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WarnNS_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WarnNS_WBFunctor_T >::fObject->*funct)(WBFunctor<WarnNS_WBFunctor_T >::type_enum, result);
@@ -2093,7 +2093,7 @@ public:
     AmberNSon_WBFunctor(AmberNSon_WBFunctor_T* obj, void (AmberNSon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<AmberNSon_WBFunctor_T >(obj, (void (AmberNSon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class AmberNSon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::AmberNSon_t().get_from(m);
         AmberNSon_function_t funct((void (AmberNSon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<AmberNSon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<AmberNSon_WBFunctor_T >::fObject->*funct)(WBFunctor<AmberNSon_WBFunctor_T >::type_enum, result);
@@ -2116,7 +2116,7 @@ public:
     TurnRedNS_WBFunctor(TurnRedNS_WBFunctor_T* obj, void (TurnRedNS_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<TurnRedNS_WBFunctor_T >(obj, (void (TurnRedNS_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TurnRedNS_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::TurnRedNS_t().get_from(m);
         TurnRedNS_function_t funct((void (TurnRedNS_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<TurnRedNS_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TurnRedNS_WBFunctor_T >::fObject->*funct)(WBFunctor<TurnRedNS_WBFunctor_T >::type_enum, result);
@@ -2139,7 +2139,7 @@ public:
     RedNSon_WBFunctor(RedNSon_WBFunctor_T* obj, void (RedNSon_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<RedNSon_WBFunctor_T >(obj, (void (RedNSon_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class RedNSon_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::RedNSon_t().get_from(m);
         RedNSon_function_t funct((void (RedNSon_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<RedNSon_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<RedNSon_WBFunctor_T >::fObject->*funct)(WBFunctor<RedNSon_WBFunctor_T >::type_enum, result);
@@ -2162,7 +2162,7 @@ public:
     TimerReset_WBFunctor(TimerReset_WBFunctor_T* obj, void (TimerReset_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<TimerReset_WBFunctor_T >(obj, (void (TimerReset_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TimerReset_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::TimerReset_t().get_from(m);
         TimerReset_function_t funct((void (TimerReset_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<TimerReset_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TimerReset_WBFunctor_T >::fObject->*funct)(WBFunctor<TimerReset_WBFunctor_T >::type_enum, result);
@@ -2185,7 +2185,7 @@ public:
     SLOT_UNUSED_WBFunctor(SLOT_UNUSED_WBFunctor_T* obj, void (SLOT_UNUSED_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<SLOT_UNUSED_WBFunctor_T >(obj, (void (SLOT_UNUSED_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SLOT_UNUSED_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::SLOT_UNUSED_t().get_from(m);
         SLOT_UNUSED_function_t funct((void (SLOT_UNUSED_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<SLOT_UNUSED_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SLOT_UNUSED_WBFunctor_T >::fObject->*funct)(WBFunctor<SLOT_UNUSED_WBFunctor_T >::type_enum, result);
@@ -2208,7 +2208,7 @@ public:
     CarSensorPressed_WBFunctor(CarSensorPressed_WBFunctor_T* obj, void (CarSensorPressed_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<CarSensorPressed_WBFunctor_T >(obj, (void (CarSensorPressed_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class CarSensorPressed_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::CarSensorPressed_t().get_from(m);
         CarSensorPressed_function_t funct((void (CarSensorPressed_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<CarSensorPressed_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<CarSensorPressed_WBFunctor_T >::fObject->*funct)(WBFunctor<CarSensorPressed_WBFunctor_T >::type_enum, result);
@@ -2231,7 +2231,7 @@ public:
     SwitchSubsumptionTrafficLights_WBFunctor(SwitchSubsumptionTrafficLights_WBFunctor_T* obj, void (SwitchSubsumptionTrafficLights_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::SwitchSubsumptionTrafficLights &), guWhiteboard::WBTypes t): WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T >(obj, (void (SwitchSubsumptionTrafficLights_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SwitchSubsumptionTrafficLights_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::SwitchSubsumptionTrafficLights result = guWhiteboard::SwitchSubsumptionTrafficLights_t().get_from(m);
         SwitchSubsumptionTrafficLights_function_t funct((void (SwitchSubsumptionTrafficLights_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::SwitchSubsumptionTrafficLights &))WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T >::fObject->*funct)(WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T >::type_enum, result);
@@ -2254,7 +2254,7 @@ public:
     Ball_Found_WBFunctor(Ball_Found_WBFunctor_T* obj, void (Ball_Found_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Ball_Found_WBFunctor_T >(obj, (void (Ball_Found_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Ball_Found_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Ball_Found_t().get_from(m);
         Ball_Found_function_t funct((void (Ball_Found_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Ball_Found_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Ball_Found_WBFunctor_T >::fObject->*funct)(WBFunctor<Ball_Found_WBFunctor_T >::type_enum, result);
@@ -2277,7 +2277,7 @@ public:
     Ball_Calibration_File_WBFunctor(Ball_Calibration_File_WBFunctor_T* obj, void (Ball_Calibration_File_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<Ball_Calibration_File_WBFunctor_T >(obj, (void (Ball_Calibration_File_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Ball_Calibration_File_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::Ball_Calibration_File_t().get_from(m);
         Ball_Calibration_File_function_t funct((void (Ball_Calibration_File_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<Ball_Calibration_File_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Ball_Calibration_File_WBFunctor_T >::fObject->*funct)(WBFunctor<Ball_Calibration_File_WBFunctor_T >::type_enum, result);
@@ -2300,7 +2300,7 @@ public:
     Ball_Calibration_Num_WBFunctor(Ball_Calibration_Num_WBFunctor_T* obj, void (Ball_Calibration_Num_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int32_t &), guWhiteboard::WBTypes t): WBFunctor<Ball_Calibration_Num_WBFunctor_T >(obj, (void (Ball_Calibration_Num_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Ball_Calibration_Num_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int32_t result = guWhiteboard::Ball_Calibration_Num_t().get_from(m);
         Ball_Calibration_Num_function_t funct((void (Ball_Calibration_Num_WBFunctor_T::*)(guWhiteboard::WBTypes, int32_t &))WBFunctor<Ball_Calibration_Num_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Ball_Calibration_Num_WBFunctor_T >::fObject->*funct)(WBFunctor<Ball_Calibration_Num_WBFunctor_T >::type_enum, result);
@@ -2323,7 +2323,7 @@ public:
     Ball_Color_Num_WBFunctor(Ball_Color_Num_WBFunctor_T* obj, void (Ball_Color_Num_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int32_t &), guWhiteboard::WBTypes t): WBFunctor<Ball_Color_Num_WBFunctor_T >(obj, (void (Ball_Color_Num_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Ball_Color_Num_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int32_t result = guWhiteboard::Ball_Color_Num_t().get_from(m);
         Ball_Color_Num_function_t funct((void (Ball_Color_Num_WBFunctor_T::*)(guWhiteboard::WBTypes, int32_t &))WBFunctor<Ball_Color_Num_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Ball_Color_Num_WBFunctor_T >::fObject->*funct)(WBFunctor<Ball_Color_Num_WBFunctor_T >::type_enum, result);
@@ -2346,7 +2346,7 @@ public:
     HAL_LArmTarget_Ctrl_WBFunctor(HAL_LArmTarget_Ctrl_WBFunctor_T* obj, void (HAL_LArmTarget_Ctrl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T >(obj, (void (HAL_LArmTarget_Ctrl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LArmTarget_Ctrl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_LArmTarget_Ctrl_t().get_from(m);
         HAL_LArmTarget_Ctrl_function_t funct((void (HAL_LArmTarget_Ctrl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T >::type_enum, result);
@@ -2369,7 +2369,7 @@ public:
     HAL_LArmTarget_Stat_WBFunctor(HAL_LArmTarget_Stat_WBFunctor_T* obj, void (HAL_LArmTarget_Stat_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T >(obj, (void (HAL_LArmTarget_Stat_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LArmTarget_Stat_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_LArmTarget_Stat_t().get_from(m);
         HAL_LArmTarget_Stat_function_t funct((void (HAL_LArmTarget_Stat_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T >::type_enum, result);
@@ -2392,7 +2392,7 @@ public:
     HAL_LArmTarget_Tolr_WBFunctor(HAL_LArmTarget_Tolr_WBFunctor_T* obj, void (HAL_LArmTarget_Tolr_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T >(obj, (void (HAL_LArmTarget_Tolr_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LArmTarget_Tolr_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_LArmTarget_Tolr_t().get_from(m);
         HAL_LArmTarget_Tolr_function_t funct((void (HAL_LArmTarget_Tolr_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T >::type_enum, result);
@@ -2415,7 +2415,7 @@ public:
     HAL_RArmTarget_Ctrl_WBFunctor(HAL_RArmTarget_Ctrl_WBFunctor_T* obj, void (HAL_RArmTarget_Ctrl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T >(obj, (void (HAL_RArmTarget_Ctrl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RArmTarget_Ctrl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_RArmTarget_Ctrl_t().get_from(m);
         HAL_RArmTarget_Ctrl_function_t funct((void (HAL_RArmTarget_Ctrl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T >::type_enum, result);
@@ -2438,7 +2438,7 @@ public:
     HAL_RArmTarget_Stat_WBFunctor(HAL_RArmTarget_Stat_WBFunctor_T* obj, void (HAL_RArmTarget_Stat_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T >(obj, (void (HAL_RArmTarget_Stat_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RArmTarget_Stat_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_RArmTarget_Stat_t().get_from(m);
         HAL_RArmTarget_Stat_function_t funct((void (HAL_RArmTarget_Stat_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T >::type_enum, result);
@@ -2461,7 +2461,7 @@ public:
     HAL_RArmTarget_Tolr_WBFunctor(HAL_RArmTarget_Tolr_WBFunctor_T* obj, void (HAL_RArmTarget_Tolr_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T >(obj, (void (HAL_RArmTarget_Tolr_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RArmTarget_Tolr_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalArmTarget result = guWhiteboard::HAL_RArmTarget_Tolr_t().get_from(m);
         HAL_RArmTarget_Tolr_function_t funct((void (HAL_RArmTarget_Tolr_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalArmTarget &))WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T >::type_enum, result);
@@ -2484,7 +2484,7 @@ public:
     VisionFieldFeatures_WBFunctor(VisionFieldFeatures_WBFunctor_T* obj, void (VisionFieldFeatures_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionFieldFeatures &), guWhiteboard::WBTypes t): WBFunctor<VisionFieldFeatures_WBFunctor_T >(obj, (void (VisionFieldFeatures_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionFieldFeatures_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionFieldFeatures result = guWhiteboard::VisionFieldFeatures_t().get_from(m);
         VisionFieldFeatures_function_t funct((void (VisionFieldFeatures_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionFieldFeatures &))WBFunctor<VisionFieldFeatures_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionFieldFeatures_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionFieldFeatures_WBFunctor_T >::type_enum, result);
@@ -2507,7 +2507,7 @@ public:
     WhistleBlown_WBFunctor(WhistleBlown_WBFunctor_T* obj, void (WhistleBlown_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WhistleBlown_WBFunctor_T >(obj, (void (WhistleBlown_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WhistleBlown_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::WhistleBlown_t().get_from(m);
         WhistleBlown_function_t funct((void (WhistleBlown_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WhistleBlown_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WhistleBlown_WBFunctor_T >::fObject->*funct)(WBFunctor<WhistleBlown_WBFunctor_T >::type_enum, result);
@@ -2530,7 +2530,7 @@ public:
     VolumeControl_WBFunctor(VolumeControl_WBFunctor_T* obj, void (VolumeControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, uint8_t &), guWhiteboard::WBTypes t): WBFunctor<VolumeControl_WBFunctor_T >(obj, (void (VolumeControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VolumeControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         uint8_t result = guWhiteboard::VolumeControl_t().get_from(m);
         VolumeControl_function_t funct((void (VolumeControl_WBFunctor_T::*)(guWhiteboard::WBTypes, uint8_t &))WBFunctor<VolumeControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VolumeControl_WBFunctor_T >::fObject->*funct)(WBFunctor<VolumeControl_WBFunctor_T >::type_enum, result);
@@ -2553,7 +2553,7 @@ public:
     VisionRobots_WBFunctor(VisionRobots_WBFunctor_T* obj, void (VisionRobots_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionRobots &), guWhiteboard::WBTypes t): WBFunctor<VisionRobots_WBFunctor_T >(obj, (void (VisionRobots_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionRobots_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionRobots result = guWhiteboard::VisionRobots_t().get_from(m);
         VisionRobots_function_t funct((void (VisionRobots_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionRobots &))WBFunctor<VisionRobots_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionRobots_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionRobots_WBFunctor_T >::type_enum, result);
@@ -2576,7 +2576,7 @@ public:
     VisionDetectionHorizons_WBFunctor(VisionDetectionHorizons_WBFunctor_T* obj, void (VisionDetectionHorizons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &), guWhiteboard::WBTypes t): WBFunctor<VisionDetectionHorizons_WBFunctor_T >(obj, (void (VisionDetectionHorizons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionDetectionHorizons_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionDetectionHorizons result = guWhiteboard::VisionDetectionHorizons_t().get_from(m);
         VisionDetectionHorizons_function_t funct((void (VisionDetectionHorizons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionHorizons &))WBFunctor<VisionDetectionHorizons_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionDetectionHorizons_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionDetectionHorizons_WBFunctor_T >::type_enum, result);
@@ -2599,7 +2599,7 @@ public:
     NaoWalkCommand_WBFunctor(NaoWalkCommand_WBFunctor_T* obj, void (NaoWalkCommand_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoWalkCommand &), guWhiteboard::WBTypes t): WBFunctor<NaoWalkCommand_WBFunctor_T >(obj, (void (NaoWalkCommand_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NaoWalkCommand_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NaoWalkCommand result = guWhiteboard::NaoWalkCommand_t().get_from(m);
         NaoWalkCommand_function_t funct((void (NaoWalkCommand_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoWalkCommand &))WBFunctor<NaoWalkCommand_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NaoWalkCommand_WBFunctor_T >::fObject->*funct)(WBFunctor<NaoWalkCommand_WBFunctor_T >::type_enum, result);
@@ -2622,7 +2622,7 @@ public:
     NaoWalkStatus_WBFunctor(NaoWalkStatus_WBFunctor_T* obj, void (NaoWalkStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoWalkStatus &), guWhiteboard::WBTypes t): WBFunctor<NaoWalkStatus_WBFunctor_T >(obj, (void (NaoWalkStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NaoWalkStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NaoWalkStatus result = guWhiteboard::NaoWalkStatus_t().get_from(m);
         NaoWalkStatus_function_t funct((void (NaoWalkStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoWalkStatus &))WBFunctor<NaoWalkStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NaoWalkStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<NaoWalkStatus_WBFunctor_T >::type_enum, result);
@@ -2645,7 +2645,7 @@ public:
     HAL_LLegTarget_Ctrl_WBFunctor(HAL_LLegTarget_Ctrl_WBFunctor_T* obj, void (HAL_LLegTarget_Ctrl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T >(obj, (void (HAL_LLegTarget_Ctrl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LLegTarget_Ctrl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_LLegTarget_Ctrl_t().get_from(m);
         HAL_LLegTarget_Ctrl_function_t funct((void (HAL_LLegTarget_Ctrl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T >::type_enum, result);
@@ -2668,7 +2668,7 @@ public:
     HAL_LLegTarget_Stat_WBFunctor(HAL_LLegTarget_Stat_WBFunctor_T* obj, void (HAL_LLegTarget_Stat_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T >(obj, (void (HAL_LLegTarget_Stat_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LLegTarget_Stat_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_LLegTarget_Stat_t().get_from(m);
         HAL_LLegTarget_Stat_function_t funct((void (HAL_LLegTarget_Stat_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T >::type_enum, result);
@@ -2691,7 +2691,7 @@ public:
     HAL_LLegTarget_Tolr_WBFunctor(HAL_LLegTarget_Tolr_WBFunctor_T* obj, void (HAL_LLegTarget_Tolr_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T >(obj, (void (HAL_LLegTarget_Tolr_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_LLegTarget_Tolr_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_LLegTarget_Tolr_t().get_from(m);
         HAL_LLegTarget_Tolr_function_t funct((void (HAL_LLegTarget_Tolr_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T >::type_enum, result);
@@ -2714,7 +2714,7 @@ public:
     HAL_RLegTarget_Ctrl_WBFunctor(HAL_RLegTarget_Ctrl_WBFunctor_T* obj, void (HAL_RLegTarget_Ctrl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T >(obj, (void (HAL_RLegTarget_Ctrl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RLegTarget_Ctrl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_RLegTarget_Ctrl_t().get_from(m);
         HAL_RLegTarget_Ctrl_function_t funct((void (HAL_RLegTarget_Ctrl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T >::type_enum, result);
@@ -2737,7 +2737,7 @@ public:
     HAL_RLegTarget_Stat_WBFunctor(HAL_RLegTarget_Stat_WBFunctor_T* obj, void (HAL_RLegTarget_Stat_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T >(obj, (void (HAL_RLegTarget_Stat_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RLegTarget_Stat_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_RLegTarget_Stat_t().get_from(m);
         HAL_RLegTarget_Stat_function_t funct((void (HAL_RLegTarget_Stat_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T >::type_enum, result);
@@ -2760,7 +2760,7 @@ public:
     HAL_RLegTarget_Tolr_WBFunctor(HAL_RLegTarget_Tolr_WBFunctor_T* obj, void (HAL_RLegTarget_Tolr_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &), guWhiteboard::WBTypes t): WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T >(obj, (void (HAL_RLegTarget_Tolr_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HAL_RLegTarget_Tolr_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HalLegTarget result = guWhiteboard::HAL_RLegTarget_Tolr_t().get_from(m);
         HAL_RLegTarget_Tolr_function_t funct((void (HAL_RLegTarget_Tolr_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HalLegTarget &))WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T >::fObject->*funct)(WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T >::type_enum, result);
@@ -2783,7 +2783,7 @@ public:
     VisionDetectionGoals_WBFunctor(VisionDetectionGoals_WBFunctor_T* obj, void (VisionDetectionGoals_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &), guWhiteboard::WBTypes t): WBFunctor<VisionDetectionGoals_WBFunctor_T >(obj, (void (VisionDetectionGoals_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionDetectionGoals_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionDetectionGoals result = guWhiteboard::VisionDetectionGoals_t().get_from(m);
         VisionDetectionGoals_function_t funct((void (VisionDetectionGoals_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionGoals &))WBFunctor<VisionDetectionGoals_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionDetectionGoals_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionDetectionGoals_WBFunctor_T >::type_enum, result);
@@ -2806,7 +2806,7 @@ public:
     TeleoperationControl_WBFunctor(TeleoperationControl_WBFunctor_T* obj, void (TeleoperationControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationControl_WBFunctor_T >(obj, (void (TeleoperationControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TeleoperationControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TeleoperationControl result = guWhiteboard::TeleoperationControl_t().get_from(m);
         TeleoperationControl_function_t funct((void (TeleoperationControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControl &))WBFunctor<TeleoperationControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TeleoperationControl_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationControl_WBFunctor_T >::type_enum, result);
@@ -2829,7 +2829,7 @@ public:
     TeleoperationStatus_WBFunctor(TeleoperationStatus_WBFunctor_T* obj, void (TeleoperationStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationStatus_WBFunctor_T >(obj, (void (TeleoperationStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TeleoperationStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TeleoperationStatus result = guWhiteboard::TeleoperationStatus_t().get_from(m);
         TeleoperationStatus_function_t funct((void (TeleoperationStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationStatus &))WBFunctor<TeleoperationStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TeleoperationStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationStatus_WBFunctor_T >::type_enum, result);
@@ -2852,7 +2852,7 @@ public:
     VisionDetectionBalls_WBFunctor(VisionDetectionBalls_WBFunctor_T* obj, void (VisionDetectionBalls_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &), guWhiteboard::WBTypes t): WBFunctor<VisionDetectionBalls_WBFunctor_T >(obj, (void (VisionDetectionBalls_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class VisionDetectionBalls_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::VisionDetectionBalls result = guWhiteboard::VisionDetectionBalls_t().get_from(m);
         VisionDetectionBalls_function_t funct((void (VisionDetectionBalls_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionBalls &))WBFunctor<VisionDetectionBalls_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<VisionDetectionBalls_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionDetectionBalls_WBFunctor_T >::type_enum, result);
@@ -2875,7 +2875,7 @@ public:
     TeleoperationControlVR_WBFunctor(TeleoperationControlVR_WBFunctor_T* obj, void (TeleoperationControlVR_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &), guWhiteboard::WBTypes t): WBFunctor<TeleoperationControlVR_WBFunctor_T >(obj, (void (TeleoperationControlVR_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TeleoperationControlVR_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TeleoperationControlVR result = guWhiteboard::TeleoperationControlVR_t().get_from(m);
         TeleoperationControlVR_function_t funct((void (TeleoperationControlVR_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TeleoperationControlVR &))WBFunctor<TeleoperationControlVR_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TeleoperationControlVR_WBFunctor_T >::fObject->*funct)(WBFunctor<TeleoperationControlVR_WBFunctor_T >::type_enum, result);
@@ -2898,7 +2898,7 @@ public:
     ParticleOutputMap_WBFunctor(ParticleOutputMap_WBFunctor_T* obj, void (ParticleOutputMap_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, uint64_t &), guWhiteboard::WBTypes t): WBFunctor<ParticleOutputMap_WBFunctor_T >(obj, (void (ParticleOutputMap_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class ParticleOutputMap_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         uint64_t result = guWhiteboard::ParticleOutputMap_t().get_from(m);
         ParticleOutputMap_function_t funct((void (ParticleOutputMap_WBFunctor_T::*)(guWhiteboard::WBTypes, uint64_t &))WBFunctor<ParticleOutputMap_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<ParticleOutputMap_WBFunctor_T >::fObject->*funct)(WBFunctor<ParticleOutputMap_WBFunctor_T >::type_enum, result);
@@ -2921,7 +2921,7 @@ public:
     ParticleOutputMapControl_WBFunctor(ParticleOutputMapControl_WBFunctor_T* obj, void (ParticleOutputMapControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<ParticleOutputMapControl_WBFunctor_T >(obj, (void (ParticleOutputMapControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class ParticleOutputMapControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::ParticleOutputMapControl_t().get_from(m);
         ParticleOutputMapControl_function_t funct((void (ParticleOutputMapControl_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<ParticleOutputMapControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<ParticleOutputMapControl_WBFunctor_T >::fObject->*funct)(WBFunctor<ParticleOutputMapControl_WBFunctor_T >::type_enum, result);
@@ -2944,7 +2944,7 @@ public:
     FFTControl_WBFunctor(FFTControl_WBFunctor_T* obj, void (FFTControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<FFTControl_WBFunctor_T >(obj, (void (FFTControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FFTControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::FFTControl_t().get_from(m);
         FFTControl_function_t funct((void (FFTControl_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<FFTControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FFTControl_WBFunctor_T >::fObject->*funct)(WBFunctor<FFTControl_WBFunctor_T >::type_enum, result);
@@ -2967,7 +2967,7 @@ public:
     MachineFilteredNaoVision_WBFunctor(MachineFilteredNaoVision_WBFunctor_T* obj, void (MachineFilteredNaoVision_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredNaoVision_WBFunctor_T >(obj, (void (MachineFilteredNaoVision_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MachineFilteredNaoVision_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MachineFilteredVision result = guWhiteboard::MachineFilteredNaoVision_t().get_from(m);
         MachineFilteredNaoVision_function_t funct((void (MachineFilteredNaoVision_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredVision &))WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredNaoVision_WBFunctor_T >::type_enum, result);
@@ -2990,7 +2990,7 @@ public:
     MicrowaveStatus_WBFunctor(MicrowaveStatus_WBFunctor_T* obj, void (MicrowaveStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &), guWhiteboard::WBTypes t): WBFunctor<MicrowaveStatus_WBFunctor_T >(obj, (void (MicrowaveStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MicrowaveStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MicrowaveStatus result = guWhiteboard::MicrowaveStatus_t().get_from(m);
         MicrowaveStatus_function_t funct((void (MicrowaveStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MicrowaveStatus &))WBFunctor<MicrowaveStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MicrowaveStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<MicrowaveStatus_WBFunctor_T >::type_enum, result);
@@ -3013,7 +3013,7 @@ public:
     Buttons_WBFunctor(Buttons_WBFunctor_T* obj, void (Buttons_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Buttons &), guWhiteboard::WBTypes t): WBFunctor<Buttons_WBFunctor_T >(obj, (void (Buttons_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Buttons_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Buttons result = guWhiteboard::Buttons_t().get_from(m);
         Buttons_function_t funct((void (Buttons_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Buttons &))WBFunctor<Buttons_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Buttons_WBFunctor_T >::fObject->*funct)(WBFunctor<Buttons_WBFunctor_T >::type_enum, result);
@@ -3036,7 +3036,7 @@ public:
     MachineFilteredLocalisationVision_WBFunctor(MachineFilteredLocalisationVision_WBFunctor_T* obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, (void (MachineFilteredLocalisationVision_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MachineFilteredLocalisationVision_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MachineFilteredLocalisationVision result = guWhiteboard::MachineFilteredLocalisationVision_t().get_from(m);
         MachineFilteredLocalisationVision_function_t funct((void (MachineFilteredLocalisationVision_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLocalisationVision &))WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >::type_enum, result);
@@ -3059,7 +3059,7 @@ public:
     SensorsJointCurrent_WBFunctor(SensorsJointCurrent_WBFunctor_T* obj, void (SensorsJointCurrent_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &), guWhiteboard::WBTypes t): WBFunctor<SensorsJointCurrent_WBFunctor_T >(obj, (void (SensorsJointCurrent_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class SensorsJointCurrent_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NaoJointListFloat result = guWhiteboard::SensorsJointCurrent_t().get_from(m);
         SensorsJointCurrent_function_t funct((void (SensorsJointCurrent_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoJointListFloat &))WBFunctor<SensorsJointCurrent_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<SensorsJointCurrent_WBFunctor_T >::fObject->*funct)(WBFunctor<SensorsJointCurrent_WBFunctor_T >::type_enum, result);
@@ -3082,7 +3082,7 @@ public:
     DataLogger_WBFunctor(DataLogger_WBFunctor_T* obj, void (DataLogger_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DataLogger &), guWhiteboard::WBTypes t): WBFunctor<DataLogger_WBFunctor_T >(obj, (void (DataLogger_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class DataLogger_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::DataLogger result = guWhiteboard::DataLogger_t().get_from(m);
         DataLogger_function_t funct((void (DataLogger_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DataLogger &))WBFunctor<DataLogger_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<DataLogger_WBFunctor_T >::fObject->*funct)(WBFunctor<DataLogger_WBFunctor_T >::type_enum, result);
@@ -3105,7 +3105,7 @@ public:
     MachineFilteredLines_WBFunctor(MachineFilteredLines_WBFunctor_T* obj, void (MachineFilteredLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &), guWhiteboard::WBTypes t): WBFunctor<MachineFilteredLines_WBFunctor_T >(obj, (void (MachineFilteredLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MachineFilteredLines_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MachineFilteredLines result = guWhiteboard::MachineFilteredLines_t().get_from(m);
         MachineFilteredLines_function_t funct((void (MachineFilteredLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MachineFilteredLines &))WBFunctor<MachineFilteredLines_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MachineFilteredLines_WBFunctor_T >::fObject->*funct)(WBFunctor<MachineFilteredLines_WBFunctor_T >::type_enum, result);
@@ -3128,7 +3128,7 @@ public:
     BallLocation_WBFunctor(BallLocation_WBFunctor_T* obj, void (BallLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<BallLocation_WBFunctor_T >(obj, (void (BallLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class BallLocation_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Location result = guWhiteboard::BallLocation_t().get_from(m);
         BallLocation_function_t funct((void (BallLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<BallLocation_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<BallLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<BallLocation_WBFunctor_T >::type_enum, result);
@@ -3151,7 +3151,7 @@ public:
     LeftGoalPostLocation_WBFunctor(LeftGoalPostLocation_WBFunctor_T* obj, void (LeftGoalPostLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<LeftGoalPostLocation_WBFunctor_T >(obj, (void (LeftGoalPostLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class LeftGoalPostLocation_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Location result = guWhiteboard::LeftGoalPostLocation_t().get_from(m);
         LeftGoalPostLocation_function_t funct((void (LeftGoalPostLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<LeftGoalPostLocation_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<LeftGoalPostLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<LeftGoalPostLocation_WBFunctor_T >::type_enum, result);
@@ -3174,7 +3174,7 @@ public:
     RightGoalPostLocation_WBFunctor(RightGoalPostLocation_WBFunctor_T* obj, void (RightGoalPostLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<RightGoalPostLocation_WBFunctor_T >(obj, (void (RightGoalPostLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class RightGoalPostLocation_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Location result = guWhiteboard::RightGoalPostLocation_t().get_from(m);
         RightGoalPostLocation_function_t funct((void (RightGoalPostLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<RightGoalPostLocation_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<RightGoalPostLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<RightGoalPostLocation_WBFunctor_T >::type_enum, result);
@@ -3197,7 +3197,7 @@ public:
     GoalLocation_WBFunctor(GoalLocation_WBFunctor_T* obj, void (GoalLocation_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Location &), guWhiteboard::WBTypes t): WBFunctor<GoalLocation_WBFunctor_T >(obj, (void (GoalLocation_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class GoalLocation_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Location result = guWhiteboard::GoalLocation_t().get_from(m);
         GoalLocation_function_t funct((void (GoalLocation_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Location &))WBFunctor<GoalLocation_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<GoalLocation_WBFunctor_T >::fObject->*funct)(WBFunctor<GoalLocation_WBFunctor_T >::type_enum, result);
@@ -3220,7 +3220,7 @@ public:
     NaoSonarProtectedWalkCommand_WBFunctor(NaoSonarProtectedWalkCommand_WBFunctor_T* obj, void (NaoSonarProtectedWalkCommand_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoSonarProtectedWalkCommand &), guWhiteboard::WBTypes t): WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T >(obj, (void (NaoSonarProtectedWalkCommand_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NaoSonarProtectedWalkCommand_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NaoSonarProtectedWalkCommand result = guWhiteboard::NaoSonarProtectedWalkCommand_t().get_from(m);
         NaoSonarProtectedWalkCommand_function_t funct((void (NaoSonarProtectedWalkCommand_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoSonarProtectedWalkCommand &))WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T >::fObject->*funct)(WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T >::type_enum, result);
@@ -3243,7 +3243,7 @@ public:
     NaoObstacleDirection_WBFunctor(NaoObstacleDirection_WBFunctor_T* obj, void (NaoObstacleDirection_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &), guWhiteboard::WBTypes t): WBFunctor<NaoObstacleDirection_WBFunctor_T >(obj, (void (NaoObstacleDirection_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class NaoObstacleDirection_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::NaoObstacleDirection result = guWhiteboard::NaoObstacleDirection_t().get_from(m);
         NaoObstacleDirection_function_t funct((void (NaoObstacleDirection_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::NaoObstacleDirection &))WBFunctor<NaoObstacleDirection_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<NaoObstacleDirection_WBFunctor_T >::fObject->*funct)(WBFunctor<NaoObstacleDirection_WBFunctor_T >::type_enum, result);
@@ -3266,7 +3266,7 @@ public:
     DominantFrequencies_WBFunctor(DominantFrequencies_WBFunctor_T* obj, void (DominantFrequencies_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &), guWhiteboard::WBTypes t): WBFunctor<DominantFrequencies_WBFunctor_T >(obj, (void (DominantFrequencies_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class DominantFrequencies_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::DominantFrequencies result = guWhiteboard::DominantFrequencies_t().get_from(m);
         DominantFrequencies_function_t funct((void (DominantFrequencies_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::DominantFrequencies &))WBFunctor<DominantFrequencies_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<DominantFrequencies_WBFunctor_T >::fObject->*funct)(WBFunctor<DominantFrequencies_WBFunctor_T >::type_enum, result);
@@ -3289,7 +3289,7 @@ public:
     MissionPriorityForObstacles_WBFunctor(MissionPriorityForObstacles_WBFunctor_T* obj, void (MissionPriorityForObstacles_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &), guWhiteboard::WBTypes t): WBFunctor<MissionPriorityForObstacles_WBFunctor_T >(obj, (void (MissionPriorityForObstacles_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MissionPriorityForObstacles_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MissionPriorityForObstacles result = guWhiteboard::MissionPriorityForObstacles_t().get_from(m);
         MissionPriorityForObstacles_function_t funct((void (MissionPriorityForObstacles_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MissionPriorityForObstacles &))WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::fObject->*funct)(WBFunctor<MissionPriorityForObstacles_WBFunctor_T >::type_enum, result);
@@ -3312,7 +3312,7 @@ public:
     WavLoad_WBFunctor(WavLoad_WBFunctor_T* obj, void (WavLoad_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, std::string &), guWhiteboard::WBTypes t): WBFunctor<WavLoad_WBFunctor_T >(obj, (void (WavLoad_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WavLoad_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         std::string result = guWhiteboard::WavLoad_t().get_from(m);
         WavLoad_function_t funct((void (WavLoad_WBFunctor_T::*)(guWhiteboard::WBTypes, std::string &))WBFunctor<WavLoad_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WavLoad_WBFunctor_T >::fObject->*funct)(WBFunctor<WavLoad_WBFunctor_T >::type_enum, result);
@@ -3335,7 +3335,7 @@ public:
     WavPlay_WBFunctor(WavPlay_WBFunctor_T* obj, void (WavPlay_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<WavPlay_WBFunctor_T >(obj, (void (WavPlay_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class WavPlay_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::WavPlay_t().get_from(m);
         WavPlay_function_t funct((void (WavPlay_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<WavPlay_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<WavPlay_WBFunctor_T >::fObject->*funct)(WBFunctor<WavPlay_WBFunctor_T >::type_enum, result);
@@ -3358,7 +3358,7 @@ public:
     ReproduceWavNotSilent_WBFunctor(ReproduceWavNotSilent_WBFunctor_T* obj, void (ReproduceWavNotSilent_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<ReproduceWavNotSilent_WBFunctor_T >(obj, (void (ReproduceWavNotSilent_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class ReproduceWavNotSilent_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::ReproduceWavNotSilent_t().get_from(m);
         ReproduceWavNotSilent_function_t funct((void (ReproduceWavNotSilent_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::fObject->*funct)(WBFunctor<ReproduceWavNotSilent_WBFunctor_T >::type_enum, result);
@@ -3381,7 +3381,7 @@ public:
     FrequencyControl_WBFunctor(FrequencyControl_WBFunctor_T* obj, void (FrequencyControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyControl_WBFunctor_T >(obj, (void (FrequencyControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FrequencyControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyControl_t().get_from(m);
         FrequencyControl_function_t funct((void (FrequencyControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FrequencyControl_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyControl_WBFunctor_T >::type_enum, result);
@@ -3404,7 +3404,7 @@ public:
     FrequencyStatus_WBFunctor(FrequencyStatus_WBFunctor_T* obj, void (FrequencyStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &), guWhiteboard::WBTypes t): WBFunctor<FrequencyStatus_WBFunctor_T >(obj, (void (FrequencyStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FrequencyStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FrequencyLimits result = guWhiteboard::FrequencyStatus_t().get_from(m);
         FrequencyStatus_function_t funct((void (FrequencyStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FrequencyLimits &))WBFunctor<FrequencyStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FrequencyStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<FrequencyStatus_WBFunctor_T >::type_enum, result);
@@ -3427,7 +3427,7 @@ public:
     HeadJointSensors_WBFunctor(HeadJointSensors_WBFunctor_T* obj, void (HeadJointSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &), guWhiteboard::WBTypes t): WBFunctor<HeadJointSensors_WBFunctor_T >(obj, (void (HeadJointSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class HeadJointSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::HeadJointSensors result = guWhiteboard::HeadJointSensors_t().get_from(m);
         HeadJointSensors_function_t funct((void (HeadJointSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::HeadJointSensors &))WBFunctor<HeadJointSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<HeadJointSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<HeadJointSensors_WBFunctor_T >::type_enum, result);
@@ -3450,7 +3450,7 @@ public:
     AdjustPositionConfidence_WBFunctor(AdjustPositionConfidence_WBFunctor_T* obj, void (AdjustPositionConfidence_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::WBTypes t): WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, (void (AdjustPositionConfidence_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class AdjustPositionConfidence_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::AdjustPositionConfidence result = guWhiteboard::AdjustPositionConfidence_t().get_from(m);
         AdjustPositionConfidence_function_t funct((void (AdjustPositionConfidence_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::AdjustPositionConfidence &))WBFunctor<AdjustPositionConfidence_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<AdjustPositionConfidence_WBFunctor_T >::fObject->*funct)(WBFunctor<AdjustPositionConfidence_WBFunctor_T >::type_enum, result);
@@ -3473,7 +3473,7 @@ public:
     GuVrTeleopVulkanControl_WBFunctor(GuVrTeleopVulkanControl_WBFunctor_T* obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::WBTypes t): WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, (void (GuVrTeleopVulkanControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class GuVrTeleopVulkanControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::GuVrTeleopVulkanControl result = guWhiteboard::GuVrTeleopVulkanControl_t().get_from(m);
         GuVrTeleopVulkanControl_function_t funct((void (GuVrTeleopVulkanControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::GuVrTeleopVulkanControl &))WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::fObject->*funct)(WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >::type_enum, result);
@@ -3496,7 +3496,7 @@ public:
     TemperatureSensors_WBFunctor(TemperatureSensors_WBFunctor_T* obj, void (TemperatureSensors_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &), guWhiteboard::WBTypes t): WBFunctor<TemperatureSensors_WBFunctor_T >(obj, (void (TemperatureSensors_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class TemperatureSensors_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::TemperatureSensors result = guWhiteboard::TemperatureSensors_t().get_from(m);
         TemperatureSensors_function_t funct((void (TemperatureSensors_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::TemperatureSensors &))WBFunctor<TemperatureSensors_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<TemperatureSensors_WBFunctor_T >::fObject->*funct)(WBFunctor<TemperatureSensors_WBFunctor_T >::type_enum, result);
@@ -3519,7 +3519,7 @@ public:
     Overheating_WBFunctor(Overheating_WBFunctor_T* obj, void (Overheating_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::Overheating &), guWhiteboard::WBTypes t): WBFunctor<Overheating_WBFunctor_T >(obj, (void (Overheating_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Overheating_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::Overheating result = guWhiteboard::Overheating_t().get_from(m);
         Overheating_function_t funct((void (Overheating_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::Overheating &))WBFunctor<Overheating_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Overheating_WBFunctor_T >::fObject->*funct)(WBFunctor<Overheating_WBFunctor_T >::type_enum, result);
@@ -3542,7 +3542,7 @@ public:
     buttonPushed_WBFunctor(buttonPushed_WBFunctor_T* obj, void (buttonPushed_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<buttonPushed_WBFunctor_T >(obj, (void (buttonPushed_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class buttonPushed_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::buttonPushed_t().get_from(m);
         buttonPushed_function_t funct((void (buttonPushed_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<buttonPushed_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<buttonPushed_WBFunctor_T >::fObject->*funct)(WBFunctor<buttonPushed_WBFunctor_T >::type_enum, result);
@@ -3565,7 +3565,7 @@ public:
     doorOpen_WBFunctor(doorOpen_WBFunctor_T* obj, void (doorOpen_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<doorOpen_WBFunctor_T >(obj, (void (doorOpen_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class doorOpen_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::doorOpen_t().get_from(m);
         doorOpen_function_t funct((void (doorOpen_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<doorOpen_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<doorOpen_WBFunctor_T >::fObject->*funct)(WBFunctor<doorOpen_WBFunctor_T >::type_enum, result);
@@ -3588,7 +3588,7 @@ public:
     timeLeft_WBFunctor(timeLeft_WBFunctor_T* obj, void (timeLeft_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<timeLeft_WBFunctor_T >(obj, (void (timeLeft_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class timeLeft_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::timeLeft_t().get_from(m);
         timeLeft_function_t funct((void (timeLeft_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<timeLeft_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<timeLeft_WBFunctor_T >::fObject->*funct)(WBFunctor<timeLeft_WBFunctor_T >::type_enum, result);
@@ -3611,7 +3611,7 @@ public:
     motor_WBFunctor(motor_WBFunctor_T* obj, void (motor_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<motor_WBFunctor_T >(obj, (void (motor_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class motor_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::motor_t().get_from(m);
         motor_function_t funct((void (motor_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<motor_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<motor_WBFunctor_T >::fObject->*funct)(WBFunctor<motor_WBFunctor_T >::type_enum, result);
@@ -3634,7 +3634,7 @@ public:
     sound_WBFunctor(sound_WBFunctor_T* obj, void (sound_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<sound_WBFunctor_T >(obj, (void (sound_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class sound_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::sound_t().get_from(m);
         sound_function_t funct((void (sound_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<sound_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<sound_WBFunctor_T >::fObject->*funct)(WBFunctor<sound_WBFunctor_T >::type_enum, result);
@@ -3657,7 +3657,7 @@ public:
     light_WBFunctor(light_WBFunctor_T* obj, void (light_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<light_WBFunctor_T >(obj, (void (light_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class light_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::light_t().get_from(m);
         light_function_t funct((void (light_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<light_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<light_WBFunctor_T >::fObject->*funct)(WBFunctor<light_WBFunctor_T >::type_enum, result);
@@ -3680,7 +3680,7 @@ public:
     Arduino2Pin_WBFunctor(Arduino2Pin_WBFunctor_T* obj, void (Arduino2Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino2Pin_WBFunctor_T >(obj, (void (Arduino2Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino2Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino2Pin_t().get_from(m);
         Arduino2Pin_function_t funct((void (Arduino2Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino2Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino2Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino2Pin_WBFunctor_T >::type_enum, result);
@@ -3703,7 +3703,7 @@ public:
     Arduino2PinValue_WBFunctor(Arduino2PinValue_WBFunctor_T* obj, void (Arduino2PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino2PinValue_WBFunctor_T >(obj, (void (Arduino2PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino2PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino2PinValue_t().get_from(m);
         Arduino2PinValue_function_t funct((void (Arduino2PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino2PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino2PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino2PinValue_WBFunctor_T >::type_enum, result);
@@ -3726,7 +3726,7 @@ public:
     Arduino3Pin_WBFunctor(Arduino3Pin_WBFunctor_T* obj, void (Arduino3Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino3Pin_WBFunctor_T >(obj, (void (Arduino3Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino3Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino3Pin_t().get_from(m);
         Arduino3Pin_function_t funct((void (Arduino3Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino3Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino3Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino3Pin_WBFunctor_T >::type_enum, result);
@@ -3749,7 +3749,7 @@ public:
     Arduino3PinValue_WBFunctor(Arduino3PinValue_WBFunctor_T* obj, void (Arduino3PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino3PinValue_WBFunctor_T >(obj, (void (Arduino3PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino3PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino3PinValue_t().get_from(m);
         Arduino3PinValue_function_t funct((void (Arduino3PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino3PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino3PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino3PinValue_WBFunctor_T >::type_enum, result);
@@ -3772,7 +3772,7 @@ public:
     Arduino4Pin_WBFunctor(Arduino4Pin_WBFunctor_T* obj, void (Arduino4Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino4Pin_WBFunctor_T >(obj, (void (Arduino4Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino4Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino4Pin_t().get_from(m);
         Arduino4Pin_function_t funct((void (Arduino4Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino4Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino4Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino4Pin_WBFunctor_T >::type_enum, result);
@@ -3795,7 +3795,7 @@ public:
     Arduino4PinValue_WBFunctor(Arduino4PinValue_WBFunctor_T* obj, void (Arduino4PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino4PinValue_WBFunctor_T >(obj, (void (Arduino4PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino4PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino4PinValue_t().get_from(m);
         Arduino4PinValue_function_t funct((void (Arduino4PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino4PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino4PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino4PinValue_WBFunctor_T >::type_enum, result);
@@ -3818,7 +3818,7 @@ public:
     Arduino5Pin_WBFunctor(Arduino5Pin_WBFunctor_T* obj, void (Arduino5Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino5Pin_WBFunctor_T >(obj, (void (Arduino5Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino5Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino5Pin_t().get_from(m);
         Arduino5Pin_function_t funct((void (Arduino5Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino5Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino5Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino5Pin_WBFunctor_T >::type_enum, result);
@@ -3841,7 +3841,7 @@ public:
     Arduino5PinValue_WBFunctor(Arduino5PinValue_WBFunctor_T* obj, void (Arduino5PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino5PinValue_WBFunctor_T >(obj, (void (Arduino5PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino5PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino5PinValue_t().get_from(m);
         Arduino5PinValue_function_t funct((void (Arduino5PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino5PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino5PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino5PinValue_WBFunctor_T >::type_enum, result);
@@ -3864,7 +3864,7 @@ public:
     Arduino6Pin_WBFunctor(Arduino6Pin_WBFunctor_T* obj, void (Arduino6Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino6Pin_WBFunctor_T >(obj, (void (Arduino6Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino6Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino6Pin_t().get_from(m);
         Arduino6Pin_function_t funct((void (Arduino6Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino6Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino6Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino6Pin_WBFunctor_T >::type_enum, result);
@@ -3887,7 +3887,7 @@ public:
     Arduino6PinValue_WBFunctor(Arduino6PinValue_WBFunctor_T* obj, void (Arduino6PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino6PinValue_WBFunctor_T >(obj, (void (Arduino6PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino6PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino6PinValue_t().get_from(m);
         Arduino6PinValue_function_t funct((void (Arduino6PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino6PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino6PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino6PinValue_WBFunctor_T >::type_enum, result);
@@ -3910,7 +3910,7 @@ public:
     Arduino7Pin_WBFunctor(Arduino7Pin_WBFunctor_T* obj, void (Arduino7Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino7Pin_WBFunctor_T >(obj, (void (Arduino7Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino7Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino7Pin_t().get_from(m);
         Arduino7Pin_function_t funct((void (Arduino7Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino7Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino7Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino7Pin_WBFunctor_T >::type_enum, result);
@@ -3933,7 +3933,7 @@ public:
     Arduino7PinValue_WBFunctor(Arduino7PinValue_WBFunctor_T* obj, void (Arduino7PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino7PinValue_WBFunctor_T >(obj, (void (Arduino7PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino7PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino7PinValue_t().get_from(m);
         Arduino7PinValue_function_t funct((void (Arduino7PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino7PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino7PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino7PinValue_WBFunctor_T >::type_enum, result);
@@ -3956,7 +3956,7 @@ public:
     Arduino8Pin_WBFunctor(Arduino8Pin_WBFunctor_T* obj, void (Arduino8Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino8Pin_WBFunctor_T >(obj, (void (Arduino8Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino8Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino8Pin_t().get_from(m);
         Arduino8Pin_function_t funct((void (Arduino8Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino8Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino8Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino8Pin_WBFunctor_T >::type_enum, result);
@@ -3979,7 +3979,7 @@ public:
     Arduino8PinValue_WBFunctor(Arduino8PinValue_WBFunctor_T* obj, void (Arduino8PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino8PinValue_WBFunctor_T >(obj, (void (Arduino8PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino8PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino8PinValue_t().get_from(m);
         Arduino8PinValue_function_t funct((void (Arduino8PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino8PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino8PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino8PinValue_WBFunctor_T >::type_enum, result);
@@ -4002,7 +4002,7 @@ public:
     Arduino9Pin_WBFunctor(Arduino9Pin_WBFunctor_T* obj, void (Arduino9Pin_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino9Pin_WBFunctor_T >(obj, (void (Arduino9Pin_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino9Pin_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino9Pin_t().get_from(m);
         Arduino9Pin_function_t funct((void (Arduino9Pin_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino9Pin_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino9Pin_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino9Pin_WBFunctor_T >::type_enum, result);
@@ -4025,7 +4025,7 @@ public:
     Arduino9PinValue_WBFunctor(Arduino9PinValue_WBFunctor_T* obj, void (Arduino9PinValue_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, bool &), guWhiteboard::WBTypes t): WBFunctor<Arduino9PinValue_WBFunctor_T >(obj, (void (Arduino9PinValue_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class Arduino9PinValue_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         bool result = guWhiteboard::Arduino9PinValue_t().get_from(m);
         Arduino9PinValue_function_t funct((void (Arduino9PinValue_WBFunctor_T::*)(guWhiteboard::WBTypes, bool &))WBFunctor<Arduino9PinValue_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<Arduino9PinValue_WBFunctor_T >::fObject->*funct)(WBFunctor<Arduino9PinValue_WBFunctor_T >::type_enum, result);
@@ -4048,7 +4048,7 @@ public:
     BallPosition_WBFunctor(BallPosition_WBFunctor_T* obj, void (BallPosition_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::BallPosition &), guWhiteboard::WBTypes t): WBFunctor<BallPosition_WBFunctor_T >(obj, (void (BallPosition_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class BallPosition_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::BallPosition result = guWhiteboard::BallPosition_t().get_from(m);
         BallPosition_function_t funct((void (BallPosition_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::BallPosition &))WBFunctor<BallPosition_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<BallPosition_WBFunctor_T >::fObject->*funct)(WBFunctor<BallPosition_WBFunctor_T >::type_enum, result);
@@ -4071,7 +4071,7 @@ public:
     MemoryImageControl_WBFunctor(MemoryImageControl_WBFunctor_T* obj, void (MemoryImageControl_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MemoryImageControlStatus &), guWhiteboard::WBTypes t): WBFunctor<MemoryImageControl_WBFunctor_T >(obj, (void (MemoryImageControl_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MemoryImageControl_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MemoryImageControlStatus result = guWhiteboard::MemoryImageControl_t().get_from(m);
         MemoryImageControl_function_t funct((void (MemoryImageControl_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MemoryImageControlStatus &))WBFunctor<MemoryImageControl_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MemoryImageControl_WBFunctor_T >::fObject->*funct)(WBFunctor<MemoryImageControl_WBFunctor_T >::type_enum, result);
@@ -4094,7 +4094,7 @@ public:
     MemoryImageStatus_WBFunctor(MemoryImageStatus_WBFunctor_T* obj, void (MemoryImageStatus_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MemoryImageControlStatus &), guWhiteboard::WBTypes t): WBFunctor<MemoryImageStatus_WBFunctor_T >(obj, (void (MemoryImageStatus_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MemoryImageStatus_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MemoryImageControlStatus result = guWhiteboard::MemoryImageStatus_t().get_from(m);
         MemoryImageStatus_function_t funct((void (MemoryImageStatus_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MemoryImageControlStatus &))WBFunctor<MemoryImageStatus_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MemoryImageStatus_WBFunctor_T >::fObject->*funct)(WBFunctor<MemoryImageStatus_WBFunctor_T >::type_enum, result);
@@ -4117,7 +4117,7 @@ public:
     LHandGripper_WBFunctor(LHandGripper_WBFunctor_T* obj, void (LHandGripper_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<LHandGripper_WBFunctor_T >(obj, (void (LHandGripper_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class LHandGripper_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::LHandGripper_t().get_from(m);
         LHandGripper_function_t funct((void (LHandGripper_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<LHandGripper_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<LHandGripper_WBFunctor_T >::fObject->*funct)(WBFunctor<LHandGripper_WBFunctor_T >::type_enum, result);
@@ -4140,7 +4140,7 @@ public:
     RHandGripper_WBFunctor(RHandGripper_WBFunctor_T* obj, void (RHandGripper_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, int8_t &), guWhiteboard::WBTypes t): WBFunctor<RHandGripper_WBFunctor_T >(obj, (void (RHandGripper_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class RHandGripper_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         int8_t result = guWhiteboard::RHandGripper_t().get_from(m);
         RHandGripper_function_t funct((void (RHandGripper_WBFunctor_T::*)(guWhiteboard::WBTypes, int8_t &))WBFunctor<RHandGripper_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<RHandGripper_WBFunctor_T >::fObject->*funct)(WBFunctor<RHandGripper_WBFunctor_T >::type_enum, result);
@@ -4163,7 +4163,7 @@ public:
     MyPosition_WBFunctor(MyPosition_WBFunctor_T* obj, void (MyPosition_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::MyPosition &), guWhiteboard::WBTypes t): WBFunctor<MyPosition_WBFunctor_T >(obj, (void (MyPosition_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class MyPosition_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::MyPosition result = guWhiteboard::MyPosition_t().get_from(m);
         MyPosition_function_t funct((void (MyPosition_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::MyPosition &))WBFunctor<MyPosition_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<MyPosition_WBFunctor_T >::fObject->*funct)(WBFunctor<MyPosition_WBFunctor_T >::type_enum, result);
