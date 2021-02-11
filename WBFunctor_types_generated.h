@@ -506,7 +506,7 @@ public:
     FSM_Control_WBFunctor(FSM_Control_WBFunctor_T* obj, void (FSM_Control_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FSMControlStatus &), guWhiteboard::WBTypes t): WBFunctor<FSM_Control_WBFunctor_T >(obj, (void (FSM_Control_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FSM_Control_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FSMControlStatus result = guWhiteboard::FSM_Control_t().get_from(m);
         FSM_Control_function_t funct((void (FSM_Control_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FSMControlStatus &))WBFunctor<FSM_Control_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FSM_Control_WBFunctor_T >::fObject->*funct)(WBFunctor<FSM_Control_WBFunctor_T >::type_enum, result);
@@ -552,7 +552,7 @@ public:
     FSM_Names_WBFunctor(FSM_Names_WBFunctor_T* obj, void (FSM_Names_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::FSMNames &), guWhiteboard::WBTypes t): WBFunctor<FSM_Names_WBFunctor_T >(obj, (void (FSM_Names_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
 
     /** call method for callbacks, for class FSM_Names_WBFunctor */
-    void call(gu_simple_message *m) {
+    void call(gu_simple_message *m) OVERRIDE {
         guWhiteboard::FSMNames result = guWhiteboard::FSM_Names_t().get_from(m);
         FSM_Names_function_t funct((void (FSM_Names_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::FSMNames &))WBFunctor<FSM_Names_WBFunctor_T >::get_s_func_ptr());
         (WBFunctor<FSM_Names_WBFunctor_T >::fObject->*funct)(WBFunctor<FSM_Names_WBFunctor_T >::type_enum, result);
