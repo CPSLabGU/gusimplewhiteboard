@@ -22,6 +22,7 @@ Purpose: Provides a more generic mechanism for function callbacks.
 #pragma clang diagnostic ignored "-Wpadded"
 
 #include <string>
+#include <gu_util.h>
 
 #include "WBMsg.h"
 #include "guwhiteboardtypelist_generated.h" //for type enum
@@ -103,7 +104,7 @@ public:
 	* @param s type string value
 	* @param m WBMsg data value
 	*/
-	void call(std::string s, WBMsg* m)
+	void call(std::string s, WBMsg* m) OVERRIDE
 	{
 		(fObject->*fFunction)(s,m);
 	}
@@ -112,7 +113,7 @@ public:
  	* Call method for the 'simple' whiteboard aka 'typed whiteboard' callbacks that passes data around in a union
 	* @param m data value
 	*/
-	void call(gu_simple_message* m)
+	void call(gu_simple_message* m) OVERRIDE
 	{
 		(fObject->*s_fFunction)(type_enum, m);
 	}
@@ -122,25 +123,25 @@ public:
 	* @param t whiteboard 'type' 
 	* @param m data value
 	*/
-	void call(guWhiteboard::WBTypes t, gu_simple_message* m)
+	void call(guWhiteboard::WBTypes t, gu_simple_message* m) OVERRIDE
 	{
 		(fObject->*s_fFunction)(t, m);
 	}
 
 	/** getter for the WB type */
-	guWhiteboard::WBTypes type() { return type_enum; }
+	guWhiteboard::WBTypes type() OVERRIDE { return type_enum; }
 
 	/** getter for the WB event counter */
-	uint16_t get_event_count() { return event_count; }
+	uint16_t get_event_count() OVERRIDE { return event_count; }
 
 	/** 
 	* setter for the WB event counter 
 	* @param e new event counter value
 	*/
-	void set_event_count(uint16_t e) { event_count = e; }
+	void set_event_count(uint16_t e) OVERRIDE { event_count = e; }
 
 	/** is this being used by the 'simple whiteboard' or the OLD whiteboard (which is now Deprecated) */
-	bool is_simple_wb_version() { return simple_wb_version; }
+	bool is_simple_wb_version() OVERRIDE { return simple_wb_version; }
 
 	/** function prototype for the new 'simple whiteboard' callbacks */
 	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation
