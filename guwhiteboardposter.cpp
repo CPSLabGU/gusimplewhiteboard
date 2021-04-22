@@ -2049,6 +2049,18 @@ v.from_string(message_content);
     return false;
 #endif //MyPosition_DEFINED
 }
+case kVisionDetectionLines_v:
+{
+#ifdef VisionDetectionLines_DEFINED
+    class VisionDetectionLines_t msg_ptr(wbd);
+    VisionDetectionLines v = msg_ptr.get();
+v.from_string(message_content);
+    msg_ptr.post(v);
+    return true;
+#else
+    return false;
+#endif //VisionDetectionLines_DEFINED
+}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -2245,6 +2257,7 @@ whiteboard_types_map::whiteboard_types_map(): map<string, WBTypes>()
     self["LHandGripper"] = kLHandGripper_v;
     self["RHandGripper"] = kRHandGripper_v;
     self["MyPosition"] = kMyPosition_v;
+    self["VisionDetectionLines"] = kVisionDetectionLines_v;
 
     (void) self;
 }

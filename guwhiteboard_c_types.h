@@ -53,5 +53,6 @@
 #include <typeClassDefs/wb_memory_image_control_status.h>
 #include <typeClassDefs/wb_memory_image_control_status.h>
 #include <typeClassDefs/wb_my_position.h>
+#include <typeClassDefs/wb_vision_detection_lines.h>
 
 #endif //GUWHITEBOARD_C_TYPES_H

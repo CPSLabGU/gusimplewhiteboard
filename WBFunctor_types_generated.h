@@ -4179,6 +4179,29 @@ public:
 }; 
 #endif //MyPosition_DEFINED
 
+#ifdef VisionDetectionLines_DEFINED
+/** WBFunctor definition for VisionDetectionLines_WBFunctor_T */ 
+template <typename VisionDetectionLines_WBFunctor_T >
+class VisionDetectionLines_WBFunctor: public WBFunctor<VisionDetectionLines_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for VisionDetectionLines_WBFunctor_T */
+    VisionDetectionLines_WBFunctor(VisionDetectionLines_WBFunctor_T* obj, void (VisionDetectionLines_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionLines &), guWhiteboard::WBTypes t): WBFunctor<VisionDetectionLines_WBFunctor_T >(obj, (void (VisionDetectionLines_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class VisionDetectionLines_WBFunctor */
+    void call(gu_simple_message *m) OVERRIDE {
+        guWhiteboard::VisionDetectionLines result = guWhiteboard::VisionDetectionLines_t().get_from(m);
+        VisionDetectionLines_function_t funct((void (VisionDetectionLines_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionLines &))WBFunctor<VisionDetectionLines_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<VisionDetectionLines_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionDetectionLines_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (VisionDetectionLines_WBFunctor_T::*VisionDetectionLines_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionLines &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(VisionDetectionLines_WBFunctor_T *obj, void (VisionDetectionLines_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionLines &), guWhiteboard::WBTypes t) { return new VisionDetectionLines_WBFunctor<VisionDetectionLines_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //VisionDetectionLines_DEFINED
+
 
 #pragma clang diagnostic pop
 

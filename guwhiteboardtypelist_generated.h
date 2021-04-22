@@ -1540,6 +1540,14 @@ RHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): gu
         
     };
 
+    /** WB Ptr Class: VisionDetectionLines_t @brief Reports robocup field lines found with guvision and LineRayTracer. */ 
+    class VisionDetectionLines_t: public guWhiteboard_generic_whiteboard_object<class VisionDetectionLines > {
+        public: 
+        /** Constructor: VisionDetectionLines_t */ 
+        VisionDetectionLines_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class VisionDetectionLines >(wbd, kVisionDetectionLines_v, false) {}
+        
+    };
+
 
 }
 
