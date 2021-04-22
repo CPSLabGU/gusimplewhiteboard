@@ -179,3 +179,4 @@ type:memory_image_control_status, nonatomic, MemoryImageStatus, Status of what r
 int8_t,          nonatomic, LHandGripper, 0 is closed 100 is fully open (left hand).
 int8_t,          nonatomic, RHandGripper, 0 is closed 100 is fully open (right hand). 
 type:my_position, nonatomic, MyPosition, Location of the robot relative to where it started.
+type:vision_detection_lines, nonatomic, VisionDetectionLines, Reports robocup field lines found with guvision and LineRayTracer.
