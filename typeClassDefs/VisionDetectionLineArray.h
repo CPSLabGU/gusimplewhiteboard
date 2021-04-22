@@ -69,7 +69,7 @@
 #include <gu_util.h>
 #include "wb_vision_detection_line_array.h"
 
-#include <gusimplewhiteboard/typeClassDefs/PixelCoordintateLine.h>
+#include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
 
 namespace guWhiteboard {
 
