@@ -101,8 +101,9 @@ enum Resolutions {
  * @brief Enum of available camera's that can be used by vision
  */
 enum VisionCamera {
-	Top, ///< Top Camera on the nao
-	Bottom ///< Bottom Camera on the nao
+	Top = 0, ///< Top Camera on the nao
+	Bottom, ///< Bottom Camera on the nao
+    NUM_VISION_CAMERAS ///< Number of cameras used in vision
 };
 
 /**

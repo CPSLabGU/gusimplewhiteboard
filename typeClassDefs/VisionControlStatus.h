@@ -528,6 +528,11 @@ namespace guWhiteboard {
                     ss << "selectedCamera=" << "Bottom";
                     break;
                 }
+                case NUM_VISION_CAMERAS:
+                {
+                    ss << "selectedCamera=" << "NUM_VISION_CAMERAS";
+                    break;
+                }
                 case Top:
                 {
                     ss << "selectedCamera=" << "Top";
@@ -724,6 +729,11 @@ namespace guWhiteboard {
                 case Bottom:
                 {
                     ss << "Bottom";
+                    break;
+                }
+                case NUM_VISION_CAMERAS:
+                {
+                    ss << "NUM_VISION_CAMERAS";
                     break;
                 }
                 case Top:
@@ -1042,6 +1052,11 @@ namespace guWhiteboard {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
                         this->set_selectedCamera(Bottom);
+#pragma clang diagnostic pop
+                        } else if (strcmp("NUM_VISION_CAMERAS", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                        this->set_selectedCamera(NUM_VISION_CAMERAS);
 #pragma clang diagnostic pop
                         } else if (strcmp("Top", var_str) == 0) {
 #pragma clang diagnostic push

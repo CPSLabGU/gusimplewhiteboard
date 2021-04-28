@@ -178,6 +178,11 @@ const char* wb_vision_control_status_description(const struct wb_vision_control_
             len += snprintf(descString + len, bufferSize - len, "selectedCamera=Bottom");
             break;
         }
+        case NUM_VISION_CAMERAS:
+        {
+            len += snprintf(descString + len, bufferSize - len, "selectedCamera=NUM_VISION_CAMERAS");
+            break;
+        }
         case Top:
         {
             len += snprintf(descString + len, bufferSize - len, "selectedCamera=Top");
@@ -479,6 +484,11 @@ const char* wb_vision_control_status_to_string(const struct wb_vision_control_st
         case Bottom:
         {
             len += snprintf(toString + len, bufferSize - len, "Bottom");
+            break;
+        }
+        case NUM_VISION_CAMERAS:
+        {
+            len += snprintf(toString + len, bufferSize - len, "NUM_VISION_CAMERAS");
             break;
         }
         case Top:
@@ -886,6 +896,11 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wbad-function-cast"
                 self->selectedCamera = Bottom;
+#pragma clang diagnostic pop
+                } else if (strcmp("NUM_VISION_CAMERAS", var_str) == 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wbad-function-cast"
+                self->selectedCamera = NUM_VISION_CAMERAS;
 #pragma clang diagnostic pop
                 } else if (strcmp("Top", var_str) == 0) {
 #pragma clang diagnostic push
