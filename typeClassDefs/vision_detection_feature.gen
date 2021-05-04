@@ -1,0 +1,23 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_polar_coordinate.h>
+#include <stdint.h>
+
+enum FeatureTypes {
+	FeatureTypeT = 0,
+	FeatureTypeL,
+	FeatureTypeX,
+	FeatureTypeCircle,
+	NUMBER_OF_FEATURE_TYPES
+};
+
+-c++
+#include <gusimplewhiteboard/typeClassDefs/PolarCoordinate.h>
+
+-properties
+enum FeatureTypes featureType = NUMBER_OF_FEATURE_TYPES // Type of the Feature
+gen polar_coordinate coordinate // Where the feature is
+
+-comment
+Results for the Feature Detector (guvision). 

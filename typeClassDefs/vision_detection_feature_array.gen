@@ -1,0 +1,15 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionFeature.h>
+
+-properties
+uint8_t numFeatures = 0 // The number of features reported on the camera.
+gen vision_detection_feature features[7] // Features reported from the camera.
+
+-comment
+Results for the Feature Detector (guvision). 
+Class use to represent features detected by vision for a single camera and posted to the whiteboard.
+

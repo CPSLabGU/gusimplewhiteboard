@@ -1,0 +1,15 @@
+-author Carl Lusty
+
+-c
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature_array.h>
+-c++
+#include <gusimplewhiteboard/typeClassDefs/VisionDetectionFeatureArray.h>
+
+-properties
+uint64_t frameNumber = 0 // The frame number that these lines were seen in.
+gen vision_detection_feature_array features[2] // Features reported for each camera.
+
+-comment
+Results for the Feature Detector (guvision). 
+
+@include resolution_container()
