@@ -122,6 +122,7 @@
 #include "VisionDetectionBalls.h"
 #include "VisionDetectionBall.h"
 #include "VisionDetectionLines.h"
+#include "VisionDetectionFeatures.h"
 #include "VisionDetectionLineArray.h"
 #include "TeleoperationControlStatus.h"
 #include "TeleoperationControl.h"
