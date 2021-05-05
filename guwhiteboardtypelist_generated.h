@@ -1548,6 +1548,14 @@ RHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): gu
         
     };
 
+    /** WB Ptr Class: VisionDetectionFeatures_t @brief Reports robocup field features found with guvision and FeatureDetector. */ 
+    class VisionDetectionFeatures_t: public guWhiteboard_generic_whiteboard_object<class VisionDetectionFeatures > {
+        public: 
+        /** Constructor: VisionDetectionFeatures_t */ 
+        VisionDetectionFeatures_t(gu_simple_whiteboard_descriptor *wbd = NULLPTR): guWhiteboard_generic_whiteboard_object<class VisionDetectionFeatures >(wbd, kVisionDetectionFeatures_v, false) {}
+        
+    };
+
 
 }
 

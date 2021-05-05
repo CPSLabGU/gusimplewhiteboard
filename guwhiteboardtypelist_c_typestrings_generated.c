@@ -201,7 +201,8 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "LHandGripper",
         "RHandGripper",
         "MyPosition",
-        "VisionDetectionLines"
+        "VisionDetectionLines",
+        "VisionDetectionFeatures"
 };
 
 const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
@@ -388,7 +389,8 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_int8_t",
         "wb_int8_t",
         "wb_my_position",
-        "wb_vision_detection_lines"
+        "wb_vision_detection_lines",
+        "wb_vision_detection_features"
 };
 
 #endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C

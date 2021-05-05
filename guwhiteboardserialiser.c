@@ -1395,6 +1395,15 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_DETECTION_LINES_GENERATED
                 break;
             }
+            case kVisionDetectionFeatures_v:
+            {
+#ifdef VISION_DETECTION_FEATURES_GENERATED
+                return SERIALISE(VISION_DETECTION_FEATURES_C_STRUCT, (struct VISION_DETECTION_FEATURES_C_STRUCT *)message_in, serialised_out)
+#else
+                return -1;
+#endif //VISION_DETECTION_FEATURES_GENERATED
+                break;
+            }
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

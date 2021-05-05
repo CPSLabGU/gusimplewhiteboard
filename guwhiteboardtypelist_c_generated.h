@@ -13,7 +13,7 @@
 
 #include "gusimplewhiteboard.h" //GSW_NUM_RESERVED
 
-#define GSW_NUM_TYPES_DEFINED 182
+#define GSW_NUM_TYPES_DEFINED 183
 
 #if GSW_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
@@ -203,8 +203,9 @@ typedef enum wb_types
     kLHandGripper_v = 178, 		///< 0 is closed 100 is fully open (left hand).
     kRHandGripper_v = 179, 		///< 0 is closed 100 is fully open (right hand).
     kMyPosition_v = 180, 		///< Location of the robot relative to where it started.
+    kVisionDetectionLines_v = 181, 		///< Reports robocup field lines found with guvision and LineRayTracer.
 
-    kVisionDetectionLines_v = 181 		///< Reports robocup field lines found with guvision and LineRayTracer.
+    kVisionDetectionFeatures_v = 182 		///< Reports robocup field features found with guvision and FeatureDetector.
 
 
 } WBTypes; ///< All the message 'types' for the class based whiteboard 

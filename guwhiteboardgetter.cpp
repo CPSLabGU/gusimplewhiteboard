@@ -1577,6 +1577,15 @@ namespace guWhiteboard
                 return "##unsupported##";
 #endif //VisionDetectionLines_DEFINED
             }
+            case kVisionDetectionFeatures_v:
+            {
+#ifdef VisionDetectionFeatures_DEFINED
+                class VisionDetectionFeatures_t m(wbd);
+                return msg ? m.get_from(msg).description() : m.get().description();
+#else
+                return "##unsupported##";
+#endif //VisionDetectionFeatures_DEFINED
+            }
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"

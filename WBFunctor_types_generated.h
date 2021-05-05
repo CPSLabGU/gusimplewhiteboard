@@ -4202,6 +4202,29 @@ public:
 }; 
 #endif //VisionDetectionLines_DEFINED
 
+#ifdef VisionDetectionFeatures_DEFINED
+/** WBFunctor definition for VisionDetectionFeatures_WBFunctor_T */ 
+template <typename VisionDetectionFeatures_WBFunctor_T >
+class VisionDetectionFeatures_WBFunctor: public WBFunctor<VisionDetectionFeatures_WBFunctor_T > {
+public:
+    /** WBFunctor constructor for VisionDetectionFeatures_WBFunctor_T */
+    VisionDetectionFeatures_WBFunctor(VisionDetectionFeatures_WBFunctor_T* obj, void (VisionDetectionFeatures_WBFunctor_T::*pFunc) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionFeatures &), guWhiteboard::WBTypes t): WBFunctor<VisionDetectionFeatures_WBFunctor_T >(obj, (void (VisionDetectionFeatures_WBFunctor_T::*) (guWhiteboard::WBTypes, gu_simple_message*))pFunc, t) { }
+
+    /** call method for callbacks, for class VisionDetectionFeatures_WBFunctor */
+    void call(gu_simple_message *m) OVERRIDE {
+        guWhiteboard::VisionDetectionFeatures result = guWhiteboard::VisionDetectionFeatures_t().get_from(m);
+        VisionDetectionFeatures_function_t funct((void (VisionDetectionFeatures_WBFunctor_T::*)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionFeatures &))WBFunctor<VisionDetectionFeatures_WBFunctor_T >::get_s_func_ptr());
+        (WBFunctor<VisionDetectionFeatures_WBFunctor_T >::fObject->*funct)(WBFunctor<VisionDetectionFeatures_WBFunctor_T >::type_enum, result);
+    }
+
+    /** define callback signature */
+    typedef void (VisionDetectionFeatures_WBFunctor_T::*VisionDetectionFeatures_function_t) (guWhiteboard::WBTypes, guWhiteboard::VisionDetectionFeatures &);
+
+    /** internal method of linking classes */
+    static WBFunctorBase *bind(VisionDetectionFeatures_WBFunctor_T *obj, void (VisionDetectionFeatures_WBFunctor_T::*f)(guWhiteboard::WBTypes, guWhiteboard::VisionDetectionFeatures &), guWhiteboard::WBTypes t) { return new VisionDetectionFeatures_WBFunctor<VisionDetectionFeatures_WBFunctor_T >(obj, f, t); }
+}; 
+#endif //VisionDetectionFeatures_DEFINED
+
 
 #pragma clang diagnostic pop
 
