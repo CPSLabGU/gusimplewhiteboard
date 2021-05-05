@@ -7,7 +7,7 @@
 
 -properties
 uint8_t numFeatures = 0 // The number of features reported on the camera.
-gen vision_detection_feature features[6] // Features reported from the camera.
+gen vision_detection_feature features[7] // Features reported from the camera.
 
 -comment
 Results for the Feature Detector (guvision). 
