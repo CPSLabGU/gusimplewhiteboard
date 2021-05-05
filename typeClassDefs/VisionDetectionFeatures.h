@@ -83,7 +83,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_feature_array t_features[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
+        void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_feature_array t_features[2] = NULLPTR) {
             set_frameNumber(t_frameNumber);
             if (t_features != NULLPTR) {
                 std::memcpy(wb_vision_detection_features::features, t_features, VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature_array));
@@ -91,8 +91,6 @@ namespace guWhiteboard {
                 struct wb_vision_detection_feature_array features_temp[VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE] = {wb_vision_detection_feature_array(), wb_vision_detection_feature_array()};
                 std::memcpy(wb_vision_detection_features::features, features_temp, VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature_array));
             }
-            set_res_width(t_res_width);
-            set_res_height(t_res_height);
         }
 
     public:
@@ -100,29 +98,29 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionFeatures`.
          */
-        VisionDetectionFeatures(uint64_t t_frameNumber = 0, const struct wb_vision_detection_feature_array t_features[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
-            this->init(t_frameNumber, t_features, t_res_width, t_res_height);
+        VisionDetectionFeatures(uint64_t t_frameNumber = 0, const struct wb_vision_detection_feature_array t_features[2] = NULLPTR) {
+            this->init(t_frameNumber, t_features);
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionFeatures(const VisionDetectionFeatures &t_other): wb_vision_detection_features() {
-            this->init(t_other.frameNumber(), t_other.features(), t_other.res_width(), t_other.res_height());
+            this->init(t_other.frameNumber(), t_other.features());
         }
 
         /**
          * Copy Constructor.
          */
         VisionDetectionFeatures(const struct wb_vision_detection_features &t_other): wb_vision_detection_features() {
-            this->init(t_other.frameNumber, t_other.features, t_other.res_width, t_other.res_height);
+            this->init(t_other.frameNumber, t_other.features);
         }
 
         /**
          * Copy Assignment Operator.
          */
         VisionDetectionFeatures &operator = (const VisionDetectionFeatures &t_other) {
-            this->init(t_other.frameNumber(), t_other.features(), t_other.res_width(), t_other.res_height());
+            this->init(t_other.frameNumber(), t_other.features());
             return *this;
         }
 
@@ -130,15 +128,13 @@ namespace guWhiteboard {
          * Copy Assignment Operator.
          */
         VisionDetectionFeatures &operator = (const struct wb_vision_detection_features &t_other) {
-            this->init(t_other.frameNumber, t_other.features, t_other.res_width, t_other.res_height);
+            this->init(t_other.frameNumber, t_other.features);
             return *this;
         }
 
         bool operator ==(const VisionDetectionFeatures &t_other) const
         {
-            if (!(frameNumber() == t_other.frameNumber()
-                && res_width() == t_other.res_width()
-                && res_height() == t_other.res_height()))
+            if (!(frameNumber() == t_other.frameNumber()))
             {
                 return false;
             }
@@ -209,36 +205,6 @@ namespace guWhiteboard {
             wb_vision_detection_features::features[t_i] = static_cast<wb_vision_detection_feature_array>(t_newValue);
         }
 
-        uint16_t & res_width()
-        {
-            return wb_vision_detection_features::res_width;
-        }
-
-        const uint16_t & res_width() const
-        {
-            return wb_vision_detection_features::res_width;
-        }
-
-        void set_res_width(const uint16_t &t_newValue)
-        {
-            wb_vision_detection_features::res_width = t_newValue;
-        }
-
-        uint16_t & res_height()
-        {
-            return wb_vision_detection_features::res_height;
-        }
-
-        const uint16_t & res_height() const
-        {
-            return wb_vision_detection_features::res_height;
-        }
-
-        void set_res_height(const uint16_t &t_newValue)
-        {
-            wb_vision_detection_features::res_height = t_newValue;
-        }
-
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
         /**
          * String Constructor.
@@ -265,10 +231,6 @@ namespace guWhiteboard {
                 features_first = false;
             }
             ss << "}";
-            ss << ", ";
-            ss << "res_width=" << static_cast<unsigned>(this->res_width());
-            ss << ", ";
-            ss << "res_height=" << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_FEATURES_C_CONVERSION
         }
@@ -290,10 +252,6 @@ namespace guWhiteboard {
                 features_first = false;
             }
             ss << "}";
-            ss << ", ";
-            ss << static_cast<unsigned>(this->res_width());
-            ss << ", ";
-            ss << static_cast<unsigned>(this->res_height());
             return ss.str();
 #endif /// USE_WB_VISION_DETECTION_FEATURES_C_CONVERSION
         }
@@ -380,10 +338,6 @@ namespace guWhiteboard {
                         varIndex = 0;
                     } else if (0 == strcmp("features", key)) {
                         varIndex = 1;
-                    } else if (0 == strcmp("res_width", key)) {
-                        varIndex = 2;
-                    } else if (0 == strcmp("res_height", key)) {
-                        varIndex = 3;
                     } else {
                         varIndex = -1;
                     }
@@ -460,16 +414,6 @@ namespace guWhiteboard {
                             this->set_features(features_0, features_0_index);
                         }
                         index = restartIndex;
-                        break;
-                    }
-                    case 2:
-                    {
-                        this->set_res_width(static_cast<uint16_t>(atoi(var_str)));
-                        break;
-                    }
-                    case 3:
-                    {
-                        this->set_res_height(static_cast<uint16_t>(atoi(var_str)));
                         break;
                     }
                 }

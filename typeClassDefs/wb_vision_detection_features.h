@@ -89,11 +89,11 @@
 
 #define VISION_DETECTION_FEATURES_GENERATED 
 #define VISION_DETECTION_FEATURES_C_STRUCT wb_vision_detection_features 
-#define VISION_DETECTION_FEATURES_NUMBER_OF_VARIABLES 4
+#define VISION_DETECTION_FEATURES_NUMBER_OF_VARIABLES 2
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE 591
-#define VISION_DETECTION_FEATURES_TO_STRING_BUFFER_SIZE 549
+#define VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE 556
+#define VISION_DETECTION_FEATURES_TO_STRING_BUFFER_SIZE 535
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #define VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE 2
@@ -103,7 +103,7 @@ extern "C" {
 #endif
 
 /**
- * Results for the Feature Detector (guvision). 
+ * Results for the Feature Detector (guvision).
  */
 struct wb_vision_detection_features
 {
@@ -117,16 +117,6 @@ struct wb_vision_detection_features
      * Features reported for each camera.
      */
     struct wb_vision_detection_feature_array features[VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE];
-
-    /**
-     * The resolution width.
-     */
-    uint16_t res_width;
-
-    /**
-     * The resolution height.
-     */
-    uint16_t res_height;
 
 };
 
