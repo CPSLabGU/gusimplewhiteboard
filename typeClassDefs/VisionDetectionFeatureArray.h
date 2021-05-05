@@ -83,12 +83,12 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint8_t t_numFeatures = 0, const struct wb_vision_detection_feature t_features[6] = NULLPTR) {
+        void init(uint8_t t_numFeatures = 0, const struct wb_vision_detection_feature t_features[7] = NULLPTR) {
             set_numFeatures(t_numFeatures);
             if (t_features != NULLPTR) {
                 std::memcpy(wb_vision_detection_feature_array::features, t_features, VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
             } else {
-                struct wb_vision_detection_feature features_temp[VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE] = {wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature()};
+                struct wb_vision_detection_feature features_temp[VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE] = {wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature()};
                 std::memcpy(wb_vision_detection_feature_array::features, features_temp, VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
             }
         }
@@ -98,7 +98,7 @@ namespace guWhiteboard {
         /**
          * Create a new `VisionDetectionFeatureArray`.
          */
-        VisionDetectionFeatureArray(uint8_t t_numFeatures = 0, const struct wb_vision_detection_feature t_features[6] = NULLPTR) {
+        VisionDetectionFeatureArray(uint8_t t_numFeatures = 0, const struct wb_vision_detection_feature t_features[7] = NULLPTR) {
             this->init(t_numFeatures, t_features);
         }
 
@@ -138,7 +138,7 @@ namespace guWhiteboard {
             {
                 return false;
             }
-            for (int features_0_index = 0; features_0_index < 6; features_0_index++)
+            for (int features_0_index = 0; features_0_index < 7; features_0_index++)
             {
                 if (!(VisionDetectionFeature(features(features_0_index)) == VisionDetectionFeature(t_other.features(features_0_index)))) return false;
             }
