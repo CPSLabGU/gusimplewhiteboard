@@ -12,4 +12,3 @@ gen vision_detection_feature_array features[2] // Features reported for each cam
 -comment
 Results for the Feature Detector (guvision). 
 
-@include resolution_container()
