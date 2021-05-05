@@ -180,3 +180,4 @@ int8_t,          nonatomic, LHandGripper, 0 is closed 100 is fully open (left ha
 int8_t,          nonatomic, RHandGripper, 0 is closed 100 is fully open (right hand). 
 type:my_position, nonatomic, MyPosition, Location of the robot relative to where it started.
 type:vision_detection_lines, nonatomic, VisionDetectionLines, Reports robocup field lines found with guvision and LineRayTracer.
+type:vision_detection_features, nonatomic, VisionDetectionFeatures, Reports robocup field features found with guvision and FeatureDetector.
