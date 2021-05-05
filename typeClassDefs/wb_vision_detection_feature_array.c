@@ -402,7 +402,7 @@ size_t wb_vision_detection_feature_array_to_network_serialised(const struct wb_v
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 7;
+          uint32_t len = 6;
           uint32_t bytes = len * sizeof(struct wb_vision_detection_feature);
           const char *buf = (const char *)&self->features[0];
           uint32_t c;
@@ -449,7 +449,7 @@ size_t wb_vision_detection_feature_array_from_network_serialised(const char *src
         //Class generator does not support array network compression.
         //Copying into the buffer, uncompressed
         do { //limit declaration scope
-          uint32_t len = 7;
+          uint32_t len = 6;
           uint32_t bytes = len * sizeof(struct wb_vision_detection_feature);
           char *buf = (char *)malloc(bytes);
           uint32_t c;
