@@ -46,10 +46,10 @@ all: all-real
 
 generate:
 .for f in ${WB_MSG_GEN_FILES}
-	classgenerator -s -G typeClassDefs --c-header typeClassDefs ${f}
+	classgenerator -s -G typeClassDefs --c-header typeClassDefs -n wb:guWhiteboard --squash-defines ${f}
 .endfor
 .for f in ${WB_MSG_OLD_GEN_FILES}
-	classgenerator -s -G typeClassDefs --c-header typeClassDefs -b ${f}
+	classgenerator -s -G typeClassDefs --c-header typeClassDefs -n wb:guWhiteboard --squash-defines -b ${f}
 .endfor
 
 test:
