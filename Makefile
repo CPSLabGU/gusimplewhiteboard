@@ -13,6 +13,7 @@ CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 COMPILE_WHITEBOARD_SERIALISATION=yes # add serialisation API
 
+BUILD_WB_LIBRARY=yes
 ALL_TARGETS=host-local atom-local analyse test xc whiteboard-wrapper
 
 CATKIN_COMPILE_UTIL=YES
@@ -59,6 +60,25 @@ test:
 .endif
 
 post-clean:
+
+whiteboard-wrapper-defaults: whiteboard-wrapper
+	$Ecd ${WB_DIR} && ( \
+    sed \
+        -e 's/WB_NUM_TYPES_DEFINED/WB_NUM_TYPES_DEFINED_DEFAULT/g' \
+        -e 's/wb_types/wb_types_default/g' \
+        -e 's/wb_types_default_stringValues/wb_types_stringValues_default/g' \
+        -e 's/wb_types_default_typeValues/wb_types_typeValues_default/g' \
+    	< guwhiteboardtypelist_c_generated.h > guwhiteboardtypelist_c_generated_default.h && \
+    sed \
+        -e 's/guwhiteboardtypelist_c_generated.h/guwhiteboardtypelist_c_generated_default.h/g' \
+        -e 's/WB_NUM_TYPES_DEFINED/WB_NUM_TYPES_DEFINED_DEFAULT/g' \
+        -e 's/wb_types/wb_types_default/g' \
+        -e 's/wb_types_default_stringValues/wb_types_stringValues_default/g' \
+        -e 's/wb_types_default_typeValues/wb_types_typeValues_default/g' \
+    	< guwhiteboardtypelist_c_typestrings_generated.c > guwhiteboardtypelist_c_typestrings_generated_default.c \
+    )
+    
+ 
 
 whiteboard-wrapper:
 	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host SWIFT_BUILD_CONFIG=release && ./.build/release/WhiteboardWrapperGenerator
