@@ -10,6 +10,8 @@
 /** Auto-generated, don't modify! */
 
 #include "guWhiteboard_gugenericwhiteboardobject.h"
+#include "guwhiteboardtypelist_c_generated.h"
+
 #include <stdlib.h>
 
 static void create_guWhiteboard_singleton_whiteboard(void *);
@@ -25,7 +27,15 @@ static void create_guWhiteboard_singleton_whiteboard(void *)
     if (env && *env) name = env;
 #endif
 
-    guWhiteboard_whiteboard_descriptor = gsw_new_whiteboard(name);
+//taken from gusimplewhiteboard.c, should we make this from a hash of the whiteboard name?
+#define SEMAPHORE_MAGIC_KEY     4242
+
+    guWhiteboard_whiteboard_descriptor = gsw_new_custom_whiteboard(
+        name, 
+        wb_types_stringValues,
+        WB_NUM_TYPES_DEFINED,
+        SEMAPHORE_MAGIC_KEY
+    );
 }
 
 gu_simple_whiteboard_descriptor *get_guWhiteboard_singleton_whiteboard(void)
