@@ -104,7 +104,12 @@
 #include <sys/sem.h>
 #include <gu_util.h>
 #include "gusimplewhiteboard.h"
+
+#ifdef BUILD_WB_LIBRARY
+#include "guwhiteboardtypelist_c_generated_default.h"
+#else
 #include "guwhiteboardtypelist_c_generated.h"
+#endif
 
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
 #define SEMAPHORE_MAGIC_KEY     4242
@@ -174,13 +179,17 @@ gsw_sema_t gsw_setup_semaphores(int key)
         return s;
 }
 
+//.c
+int num_types_defined = WB_NUM_TYPES_DEFINED_DEFAULT;
+const char **WBTypes_stringValues = wb_types_stringValues_default;
 
 gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int n)
 {
-        int nmsgs = GSW_NUM_TYPES_DEFINED;
+
+        int nmsgs = NUM_TYPES_DEFINED;
         if (nmsgs > GSW_NUM_RESERVED)
         {
-                fprintf(stderr, "Warning: whiteboard '%s' tries to define %d messages, but only %d reserved\n", name, nmsgs, GSW_NUM_TYPES_DEFINED);
+                fprintf(stderr, "Warning: whiteboard '%s' tries to define %d messages, but only %d reserved\n", name, nmsgs, NUM_TYPES_DEFINED);
                 nmsgs = GSW_NUM_RESERVED;
         }
 

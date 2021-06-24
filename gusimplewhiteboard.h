@@ -327,6 +327,16 @@ typedef struct gsw_whiteboard_s
  */
 extern const char *gsw_global_whiteboard_name;
 
+#ifdef BUILD_WB_LIBRARY
+#define NUM_TYPES_DEFINED num_types_defined
+#endif
+
+extern int num_types_defined;
+
+extern const char **WBTypes_stringValues;
+
+
+
 /**
  * access a named whiteboard: this is the designated constructore for C programs
  * @param name  name of the whiteboard
