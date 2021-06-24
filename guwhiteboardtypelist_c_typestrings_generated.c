@@ -11,13 +11,13 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-macros"
 
-        #ifndef GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
-#define GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+        #ifndef WB_GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+#define WB_GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 
 #include "gusimplewhiteboard.h"
 #include "guwhiteboardtypelist_c_generated.h"
 
-const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] = 
+const char *wb_types_stringValues[WB_NUM_TYPES_DEFINED] = 
 {
 
         "wb_reserved_SubscribeToAllTypes",
@@ -205,7 +205,7 @@ const char *WBTypes_stringValues[GSW_NUM_TYPES_DEFINED] =
         "VisionDetectionFeatures"
 };
 
-const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] = 
+const char *wb_types_typeValues[WB_NUM_TYPES_DEFINED] = 
 {
 
         "wb_bool",
@@ -393,6 +393,6 @@ const char *WBTypes_typeValues[GSW_NUM_TYPES_DEFINED] =
         "wb_vision_detection_features"
 };
 
-#endif //GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
+#endif //WB_GUWHITEBOARDTYPELIST_C_TYPESTRINGS_GENERATED_C
 
 #pragma clang diagnostic pop

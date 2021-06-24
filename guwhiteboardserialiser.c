@@ -14,8 +14,8 @@
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #pragma clang diagnostic ignored "-Wunreachable-code-break"
 
-#ifndef GUWHITEBOARDSERIALISER_C
-#define GUWHITEBOARDSERIALISER_C
+#ifndef WB_GUWHITEBOARDSERIALISER_C
+#define WB_GUWHITEBOARDSERIALISER_C
 
 
 #define WHITEBOARD_SERIALISER
@@ -28,47 +28,47 @@
 #include "guwhiteboardserialisation.h"
 #include "guwhiteboard_c_types.h"
 
-int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serialised_out)
+int32_t serialisemsg(wb_types message_index, const void *message_in, void *serialised_out)
 {
     switch (message_index)
     {
 
-            case kwb_reserved_SubscribeToAllTypes_v:
+            case kwb_wb_reserved_SubscribeToAllTypes_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kPrint_v:
+            case kwb_Print_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSay_v:
+            case kwb_Say_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSpeech_v:
+            case kwb_Speech_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kQSay_v:
+            case kwb_QSay_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kQSpeech_v:
+            case kwb_QSpeech_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSpeechOutput_v:
+            case kwb_SpeechOutput_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kGCGameState_v:
+            case kwb_GCGameState_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -77,7 +77,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsHandSensors_v:
+            case kwb_SensorsHandSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -86,7 +86,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsHeadSensors_v:
+            case kwb_SensorsHeadSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -95,7 +95,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kMOTION_Commands_v:
+            case kwb_MOTION_Commands_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -104,7 +104,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kMOTION_Status_v:
+            case kwb_MOTION_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -113,7 +113,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_HeadTarget_v:
+            case kwb_HAL_HeadTarget_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -122,7 +122,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsFootSensors_v:
+            case kwb_SensorsFootSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -131,7 +131,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsBodySensors_v:
+            case kwb_SensorsBodySensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -140,7 +140,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLedsSensors_v:
+            case kwb_SENSORSLedsSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -149,7 +149,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLegJointTemps_v:
+            case kwb_SENSORSLegJointTemps_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -158,7 +158,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSTorsoJointTemps_v:
+            case kwb_SENSORSTorsoJointTemps_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -167,7 +167,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLegJointSensors_v:
+            case kwb_SENSORSLegJointSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -176,7 +176,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSTorsoJointSensors_v:
+            case kwb_SENSORSTorsoJointSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -185,7 +185,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSSonarSensors_v:
+            case kwb_SENSORSSonarSensors_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -194,7 +194,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Control_v:
+            case kwb_FSM_Control_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -203,7 +203,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Status_v:
+            case kwb_FSM_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -212,7 +212,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Names_v:
+            case kwb_FSM_Names_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -221,12 +221,12 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSoloTypeExample_v:
+            case kwb_SoloTypeExample_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFilteredGoalSighting_v:
+            case kwb_FilteredGoalSighting_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -235,7 +235,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNAO_State_v:
+            case kwb_NAO_State_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -244,7 +244,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kUDPRN_v:
+            case kwb_UDPRN_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -253,17 +253,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kPlayerNumber_v:
+            case kwb_PlayerNumber_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kManuallyPenalized_v:
+            case kwb_ManuallyPenalized_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVisionControl_v:
+            case kwb_VisionControl_v:
             {
 #ifdef VISION_CONTROL_STATUS_GENERATED
                 return SERIALISE(VISION_CONTROL_STATUS_C_STRUCT, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
@@ -272,7 +272,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kVisionStatus_v:
+            case kwb_VisionStatus_v:
             {
 #ifdef VISION_CONTROL_STATUS_GENERATED
                 return SERIALISE(VISION_CONTROL_STATUS_C_STRUCT, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
@@ -281,7 +281,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kFFTStatus_v:
+            case kwb_FFTStatus_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -290,7 +290,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSOsighting_v:
+            case kwb_FSOsighting_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -299,7 +299,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTopParticles_v:
+            case kwb_TopParticles_v:
             {
 #ifdef TOPPARTICLES_GENERATED
                 return SERIALISE(TOPPARTICLES_C_STRUCT, (struct TOPPARTICLES_C_STRUCT *)message_in, serialised_out)
@@ -308,7 +308,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //TOPPARTICLES_GENERATED
                 break;
             }
-            case kFilteredBallSighting_v:
+            case kwb_FilteredBallSighting_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -317,12 +317,12 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kPF_ControlStatus_Modes_v:
+            case kwb_PF_ControlStatus_Modes_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWEBOTS_NXT_bridge_v:
+            case kwb_WEBOTS_NXT_bridge_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -331,7 +331,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_encoders_v:
+            case kwb_WEBOTS_NXT_encoders_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -340,7 +340,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_camera_v:
+            case kwb_WEBOTS_NXT_camera_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -349,7 +349,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_walk_isRunning_v:
+            case kwb_WEBOTS_NXT_walk_isRunning_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -358,7 +358,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_deadReakoning_walk_v:
+            case kwb_WEBOTS_NXT_deadReakoning_walk_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -367,7 +367,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_colorLine_walk_v:
+            case kwb_WEBOTS_NXT_colorLine_walk_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -376,7 +376,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_gridMotions_v:
+            case kwb_WEBOTS_NXT_gridMotions_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -385,7 +385,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionBall_v:
+            case kwb_VisionBall_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -394,7 +394,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionGoals_v:
+            case kwb_VisionGoals_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -403,7 +403,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWalkData_v:
+            case kwb_WalkData_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -412,7 +412,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTeleoperationControlStatus_v:
+            case kwb_TeleoperationControlStatus_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -421,17 +421,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTeleoperationConnection_v:
+            case kwb_TeleoperationConnection_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kUDPWBNumber_v:
+            case kwb_UDPWBNumber_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWEBOTS_NXT_bumper_v:
+            case kwb_WEBOTS_NXT_bumper_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -440,7 +440,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_vector_bridge_v:
+            case kwb_WEBOTS_NXT_vector_bridge_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -449,7 +449,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTopVisionLines_v:
+            case kwb_TopVisionLines_v:
             {
 #ifdef VISION_LINES_GENERATED
                 return SERIALISE(VISION_LINES_C_STRUCT, (struct VISION_LINES_C_STRUCT *)message_in, serialised_out)
@@ -458,7 +458,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_LINES_GENERATED
                 break;
             }
-            case kBottomVisionLines_v:
+            case kwb_BottomVisionLines_v:
             {
 #ifdef VISION_LINES_GENERATED
                 return SERIALISE(VISION_LINES_C_STRUCT, (struct VISION_LINES_C_STRUCT *)message_in, serialised_out)
@@ -467,7 +467,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_LINES_GENERATED
                 break;
             }
-            case kDifferentialRobotStatus_v:
+            case kwb_DifferentialRobotStatus_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -476,7 +476,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kDifferentialRobotControl_v:
+            case kwb_DifferentialRobotControl_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -485,7 +485,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kXEyesPos_v:
+            case kwb_XEyesPos_v:
             {
 #ifdef POINT2D_GENERATED
                 return SERIALISE(POINT2D_C_STRUCT, (struct POINT2D_C_STRUCT *)message_in, serialised_out)
@@ -494,17 +494,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //POINT2D_GENERATED
                 break;
             }
-            case kVisionFace_v:
+            case kwb_VisionFace_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kDraw_v:
+            case kwb_Draw_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFSM_States_v:
+            case kwb_FSM_States_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -513,7 +513,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kGiraff_Interface_Status_v:
+            case kwb_Giraff_Interface_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -522,7 +522,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kGiraff_Interface_Command_v:
+            case kwb_Giraff_Interface_Command_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -531,7 +531,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Status_v:
+            case kwb_NXT_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -540,7 +540,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Command_v:
+            case kwb_NXT_Command_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -549,7 +549,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kAPM_Status_v:
+            case kwb_APM_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -558,7 +558,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kAPM_Command_v:
+            case kwb_APM_Command_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -567,22 +567,22 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED3_v:
+            case kwb_REMOVED3_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kREMOVED4_v:
+            case kwb_REMOVED4_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kCBall_v:
+            case kwb_CBall_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kOculusPrime_Command_v:
+            case kwb_OculusPrime_Command_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -591,7 +591,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kInput3D_v:
+            case kwb_Input3D_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -600,7 +600,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kOculus_Prime_Command_v:
+            case kwb_Oculus_Prime_Command_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -609,7 +609,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kIOPins_v:
+            case kwb_IOPins_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -618,7 +618,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Two_Touch_Status_v:
+            case kwb_NXT_Two_Touch_Status_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -627,7 +627,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Sound_Control_v:
+            case kwb_NXT_Sound_Control_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -636,7 +636,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Lights_Control_v:
+            case kwb_NXT_Lights_Control_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -645,7 +645,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kClocks_v:
+            case kwb_Clocks_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -654,7 +654,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kChannels_v:
+            case kwb_Channels_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -663,7 +663,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSwitchSubsumption_v:
+            case kwb_SwitchSubsumption_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -672,7 +672,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTotoDoingMotion_v:
+            case kwb_TotoDoingMotion_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -681,7 +681,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kCount_v:
+            case kwb_Count_v:
             {
 #ifdef COUNT_GENERATED
                 return SERIALISE(COUNT_C_STRUCT, (struct COUNT_C_STRUCT *)message_in, serialised_out)
@@ -690,82 +690,82 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //COUNT_GENERATED
                 break;
             }
-            case kGreenEWon_v:
+            case kwb_GreenEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWarnEW_v:
+            case kwb_WarnEW_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimeGTthirty_v:
+            case kwb_TimeGTthirty_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kAmberEWon_v:
+            case kwb_AmberEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTurnRedEW_v:
+            case kwb_TurnRedEW_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimeGTfive_v:
+            case kwb_TimeGTfive_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRedEWon_v:
+            case kwb_RedEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kGreenNSon_v:
+            case kwb_GreenNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWarnNS_v:
+            case kwb_WarnNS_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kAmberNSon_v:
+            case kwb_AmberNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTurnRedNS_v:
+            case kwb_TurnRedNS_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRedNSon_v:
+            case kwb_RedNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimerReset_v:
+            case kwb_TimerReset_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSLOT_UNUSED_v:
+            case kwb_SLOT_UNUSED_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kCarSensorPressed_v:
+            case kwb_CarSensorPressed_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSwitchSubsumptionTrafficLights_v:
+            case kwb_SwitchSubsumptionTrafficLights_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -774,27 +774,27 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kBall_Found_v:
+            case kwb_Ball_Found_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Calibration_File_v:
+            case kwb_Ball_Calibration_File_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Calibration_Num_v:
+            case kwb_Ball_Calibration_Num_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Color_Num_v:
+            case kwb_Ball_Color_Num_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kHAL_LArmTarget_Ctrl_v:
+            case kwb_HAL_LArmTarget_Ctrl_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -803,7 +803,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LArmTarget_Stat_v:
+            case kwb_HAL_LArmTarget_Stat_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -812,7 +812,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LArmTarget_Tolr_v:
+            case kwb_HAL_LArmTarget_Tolr_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -821,7 +821,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Ctrl_v:
+            case kwb_HAL_RArmTarget_Ctrl_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -830,7 +830,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Stat_v:
+            case kwb_HAL_RArmTarget_Stat_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -839,7 +839,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Tolr_v:
+            case kwb_HAL_RArmTarget_Tolr_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -848,7 +848,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionFieldFeatures_v:
+            case kwb_VisionFieldFeatures_v:
             {
 #ifdef VISION_FIELD_FEATURES_GENERATED
                 return SERIALISE(VISION_FIELD_FEATURES_C_STRUCT, (struct VISION_FIELD_FEATURES_C_STRUCT *)message_in, serialised_out)
@@ -857,17 +857,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_FIELD_FEATURES_GENERATED
                 break;
             }
-            case kWhistleBlown_v:
+            case kwb_WhistleBlown_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVolumeControl_v:
+            case kwb_VolumeControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVisionRobots_v:
+            case kwb_VisionRobots_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -876,7 +876,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionDetectionHorizons_v:
+            case kwb_VisionDetectionHorizons_v:
             {
 #ifdef VISION_DETECTION_HORIZONS_GENERATED
                 return SERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_in, serialised_out)
@@ -885,7 +885,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
-            case kNaoWalkCommand_v:
+            case kwb_NaoWalkCommand_v:
             {
 #ifdef NAOWALKCOMMAND_GENERATED
                 return SERIALISE(NAOWALKCOMMAND_C_STRUCT, (struct NAOWALKCOMMAND_C_STRUCT *)message_in, serialised_out)
@@ -894,7 +894,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //NAOWALKCOMMAND_GENERATED
                 break;
             }
-            case kNaoWalkStatus_v:
+            case kwb_NaoWalkStatus_v:
             {
 #ifdef NAOWALKSTATUS_GENERATED
                 return SERIALISE(NAOWALKSTATUS_C_STRUCT, (struct NAOWALKSTATUS_C_STRUCT *)message_in, serialised_out)
@@ -903,7 +903,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //NAOWALKSTATUS_GENERATED
                 break;
             }
-            case kHAL_LLegTarget_Ctrl_v:
+            case kwb_HAL_LLegTarget_Ctrl_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -912,7 +912,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LLegTarget_Stat_v:
+            case kwb_HAL_LLegTarget_Stat_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -921,7 +921,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LLegTarget_Tolr_v:
+            case kwb_HAL_LLegTarget_Tolr_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -930,7 +930,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Ctrl_v:
+            case kwb_HAL_RLegTarget_Ctrl_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -939,7 +939,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Stat_v:
+            case kwb_HAL_RLegTarget_Stat_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -948,7 +948,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Tolr_v:
+            case kwb_HAL_RLegTarget_Tolr_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -957,7 +957,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionDetectionGoals_v:
+            case kwb_VisionDetectionGoals_v:
             {
 #ifdef VISION_DETECTION_GOALS_GENERATED
                 return SERIALISE(VISION_DETECTION_GOALS_C_STRUCT, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_in, serialised_out)
@@ -966,7 +966,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_DETECTION_GOALS_GENERATED
                 break;
             }
-            case kTeleoperationControl_v:
+            case kwb_TeleoperationControl_v:
             {
 #ifdef TELEOPERATIONCONTROL_GENERATED
                 return SERIALISE(TELEOPERATIONCONTROL_C_STRUCT, (struct TELEOPERATIONCONTROL_C_STRUCT *)message_in, serialised_out)
@@ -975,7 +975,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //TELEOPERATIONCONTROL_GENERATED
                 break;
             }
-            case kTeleoperationStatus_v:
+            case kwb_TeleoperationStatus_v:
             {
 #ifdef TELEOPERATIONSTATUS_GENERATED
                 return SERIALISE(TELEOPERATIONSTATUS_C_STRUCT, (struct TELEOPERATIONSTATUS_C_STRUCT *)message_in, serialised_out)
@@ -984,7 +984,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //TELEOPERATIONSTATUS_GENERATED
                 break;
             }
-            case kVisionDetectionBalls_v:
+            case kwb_VisionDetectionBalls_v:
             {
 #ifdef VISION_DETECTION_BALLS_GENERATED
                 return SERIALISE(VISION_DETECTION_BALLS_C_STRUCT, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_in, serialised_out)
@@ -993,7 +993,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_DETECTION_BALLS_GENERATED
                 break;
             }
-            case kTeleoperationControlVR_v:
+            case kwb_TeleoperationControlVR_v:
             {
 #ifdef TELEOPERATIONCONTROLVR_GENERATED
                 return SERIALISE(TELEOPERATIONCONTROLVR_C_STRUCT, (struct TELEOPERATIONCONTROLVR_C_STRUCT *)message_in, serialised_out)
@@ -1002,22 +1002,22 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //TELEOPERATIONCONTROLVR_GENERATED
                 break;
             }
-            case kParticleOutputMap_v:
+            case kwb_ParticleOutputMap_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kParticleOutputMapControl_v:
+            case kwb_ParticleOutputMapControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFFTControl_v:
+            case kwb_FFTControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kMachineFilteredNaoVision_v:
+            case kwb_MachineFilteredNaoVision_v:
             {
 #ifdef MACHINE_FILTERED_VISION_GENERATED
                 return SERIALISE(MACHINE_FILTERED_VISION_C_STRUCT, (struct MACHINE_FILTERED_VISION_C_STRUCT *)message_in, serialised_out)
@@ -1026,7 +1026,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MACHINE_FILTERED_VISION_GENERATED
                 break;
             }
-            case kMicrowaveStatus_v:
+            case kwb_MicrowaveStatus_v:
             {
 #ifdef MICROWAVE_STATUS_GENERATED
                 return SERIALISE(MICROWAVE_STATUS_C_STRUCT, (struct MICROWAVE_STATUS_C_STRUCT *)message_in, serialised_out)
@@ -1035,7 +1035,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MICROWAVE_STATUS_GENERATED
                 break;
             }
-            case kButtons_v:
+            case kwb_Buttons_v:
             {
 #ifdef BUTTONS_GENERATED
                 return SERIALISE(BUTTONS_C_STRUCT, (struct BUTTONS_C_STRUCT *)message_in, serialised_out)
@@ -1044,7 +1044,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //BUTTONS_GENERATED
                 break;
             }
-            case kMachineFilteredLocalisationVision_v:
+            case kwb_MachineFilteredLocalisationVision_v:
             {
 #ifdef MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 return SERIALISE(MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, (struct MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_in, serialised_out)
@@ -1053,7 +1053,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
-            case kSensorsJointCurrent_v:
+            case kwb_SensorsJointCurrent_v:
             {
 #ifdef SerialisationNotSupportedWithLegacyNaming
                 return SERIALISE(NotSupportedWithLegacyNaming, (struct NotSupportedWithLegacyNaming *)message_in, serialised_out)
@@ -1062,7 +1062,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kDataLogger_v:
+            case kwb_DataLogger_v:
             {
 #ifdef DATA_LOGGER_GENERATED
                 return SERIALISE(DATA_LOGGER_C_STRUCT, (struct DATA_LOGGER_C_STRUCT *)message_in, serialised_out)
@@ -1071,7 +1071,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //DATA_LOGGER_GENERATED
                 break;
             }
-            case kMachineFilteredLines_v:
+            case kwb_MachineFilteredLines_v:
             {
 #ifdef MACHINE_FILTERED_LINES_GENERATED
                 return SERIALISE(MACHINE_FILTERED_LINES_C_STRUCT, (struct MACHINE_FILTERED_LINES_C_STRUCT *)message_in, serialised_out)
@@ -1080,7 +1080,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MACHINE_FILTERED_LINES_GENERATED
                 break;
             }
-            case kBallLocation_v:
+            case kwb_BallLocation_v:
             {
 #ifdef LOCATION_GENERATED
                 return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
@@ -1089,7 +1089,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //LOCATION_GENERATED
                 break;
             }
-            case kLeftGoalPostLocation_v:
+            case kwb_LeftGoalPostLocation_v:
             {
 #ifdef LOCATION_GENERATED
                 return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
@@ -1098,7 +1098,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //LOCATION_GENERATED
                 break;
             }
-            case kRightGoalPostLocation_v:
+            case kwb_RightGoalPostLocation_v:
             {
 #ifdef LOCATION_GENERATED
                 return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
@@ -1107,7 +1107,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //LOCATION_GENERATED
                 break;
             }
-            case kGoalLocation_v:
+            case kwb_GoalLocation_v:
             {
 #ifdef LOCATION_GENERATED
                 return SERIALISE(LOCATION_C_STRUCT, (struct LOCATION_C_STRUCT *)message_in, serialised_out)
@@ -1116,7 +1116,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //LOCATION_GENERATED
                 break;
             }
-            case kNaoSonarProtectedWalkCommand_v:
+            case kwb_NaoSonarProtectedWalkCommand_v:
             {
 #ifdef NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
                 return SERIALISE(NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT, (struct NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT *)message_in, serialised_out)
@@ -1125,7 +1125,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
                 break;
             }
-            case kNaoObstacleDirection_v:
+            case kwb_NaoObstacleDirection_v:
             {
 #ifdef NAO_OBSTACLE_DIRECTION_GENERATED
                 return SERIALISE(NAO_OBSTACLE_DIRECTION_C_STRUCT, (struct NAO_OBSTACLE_DIRECTION_C_STRUCT *)message_in, serialised_out)
@@ -1134,7 +1134,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //NAO_OBSTACLE_DIRECTION_GENERATED
                 break;
             }
-            case kDominantFrequencies_v:
+            case kwb_DominantFrequencies_v:
             {
 #ifdef DOMINANT_FREQUENCIES_GENERATED
                 return SERIALISE(DOMINANT_FREQUENCIES_C_STRUCT, (struct DOMINANT_FREQUENCIES_C_STRUCT *)message_in, serialised_out)
@@ -1143,7 +1143,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //DOMINANT_FREQUENCIES_GENERATED
                 break;
             }
-            case kMissionPriorityForObstacles_v:
+            case kwb_MissionPriorityForObstacles_v:
             {
 #ifdef MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 return SERIALISE(MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT, (struct MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT *)message_in, serialised_out)
@@ -1152,22 +1152,22 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
-            case kWavLoad_v:
+            case kwb_WavLoad_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWavPlay_v:
+            case kwb_WavPlay_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kReproduceWavNotSilent_v:
+            case kwb_ReproduceWavNotSilent_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFrequencyControl_v:
+            case kwb_FrequencyControl_v:
             {
 #ifdef FREQUENCY_LIMITS_GENERATED
                 return SERIALISE(FREQUENCY_LIMITS_C_STRUCT, (struct FREQUENCY_LIMITS_C_STRUCT *)message_in, serialised_out)
@@ -1176,7 +1176,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //FREQUENCY_LIMITS_GENERATED
                 break;
             }
-            case kFrequencyStatus_v:
+            case kwb_FrequencyStatus_v:
             {
 #ifdef FREQUENCY_LIMITS_GENERATED
                 return SERIALISE(FREQUENCY_LIMITS_C_STRUCT, (struct FREQUENCY_LIMITS_C_STRUCT *)message_in, serialised_out)
@@ -1185,7 +1185,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //FREQUENCY_LIMITS_GENERATED
                 break;
             }
-            case kHeadJointSensors_v:
+            case kwb_HeadJointSensors_v:
             {
 #ifdef HEAD_JOINT_SENSORS_GENERATED
                 return SERIALISE(HEAD_JOINT_SENSORS_C_STRUCT, (struct HEAD_JOINT_SENSORS_C_STRUCT *)message_in, serialised_out)
@@ -1194,7 +1194,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //HEAD_JOINT_SENSORS_GENERATED
                 break;
             }
-            case kAdjustPositionConfidence_v:
+            case kwb_AdjustPositionConfidence_v:
             {
 #ifdef ADJUST_POSITION_CONFIDENCE_GENERATED
                 return SERIALISE(ADJUST_POSITION_CONFIDENCE_C_STRUCT, (struct ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_in, serialised_out)
@@ -1203,7 +1203,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
-            case kGuVrTeleopVulkanControl_v:
+            case kwb_GuVrTeleopVulkanControl_v:
             {
 #ifdef GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
                 return SERIALISE(GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, (struct GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_in, serialised_out)
@@ -1212,7 +1212,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
                 break;
             }
-            case kTemperatureSensors_v:
+            case kwb_TemperatureSensors_v:
             {
 #ifdef TEMPERATURE_SENSORS_GENERATED
                 return SERIALISE(TEMPERATURE_SENSORS_C_STRUCT, (struct TEMPERATURE_SENSORS_C_STRUCT *)message_in, serialised_out)
@@ -1221,7 +1221,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //TEMPERATURE_SENSORS_GENERATED
                 break;
             }
-            case kOverheating_v:
+            case kwb_Overheating_v:
             {
 #ifdef OVERHEATING_GENERATED
                 return SERIALISE(OVERHEATING_C_STRUCT, (struct OVERHEATING_C_STRUCT *)message_in, serialised_out)
@@ -1230,117 +1230,117 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //OVERHEATING_GENERATED
                 break;
             }
-            case kbuttonPushed_v:
+            case kwb_buttonPushed_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kdoorOpen_v:
+            case kwb_doorOpen_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case ktimeLeft_v:
+            case kwb_timeLeft_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kmotor_v:
+            case kwb_motor_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case ksound_v:
+            case kwb_sound_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case klight_v:
+            case kwb_light_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino2Pin_v:
+            case kwb_Arduino2Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino2PinValue_v:
+            case kwb_Arduino2PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino3Pin_v:
+            case kwb_Arduino3Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino3PinValue_v:
+            case kwb_Arduino3PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino4Pin_v:
+            case kwb_Arduino4Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino4PinValue_v:
+            case kwb_Arduino4PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino5Pin_v:
+            case kwb_Arduino5Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino5PinValue_v:
+            case kwb_Arduino5PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino6Pin_v:
+            case kwb_Arduino6Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino6PinValue_v:
+            case kwb_Arduino6PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino7Pin_v:
+            case kwb_Arduino7Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino7PinValue_v:
+            case kwb_Arduino7PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino8Pin_v:
+            case kwb_Arduino8Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino8PinValue_v:
+            case kwb_Arduino8PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino9Pin_v:
+            case kwb_Arduino9Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino9PinValue_v:
+            case kwb_Arduino9PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBallPosition_v:
+            case kwb_BallPosition_v:
             {
 #ifdef BALL_POSITION_GENERATED
                 return SERIALISE(BALL_POSITION_C_STRUCT, (struct BALL_POSITION_C_STRUCT *)message_in, serialised_out)
@@ -1349,7 +1349,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //BALL_POSITION_GENERATED
                 break;
             }
-            case kMemoryImageControl_v:
+            case kwb_MemoryImageControl_v:
             {
 #ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 return SERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
@@ -1358,7 +1358,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kMemoryImageStatus_v:
+            case kwb_MemoryImageStatus_v:
             {
 #ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 return SERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_in, serialised_out)
@@ -1367,17 +1367,17 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kLHandGripper_v:
+            case kwb_LHandGripper_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRHandGripper_v:
+            case kwb_RHandGripper_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kMyPosition_v:
+            case kwb_MyPosition_v:
             {
 #ifdef MY_POSITION_GENERATED
                 return SERIALISE(MY_POSITION_C_STRUCT, (struct MY_POSITION_C_STRUCT *)message_in, serialised_out)
@@ -1386,7 +1386,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //MY_POSITION_GENERATED
                 break;
             }
-            case kVisionDetectionLines_v:
+            case kwb_VisionDetectionLines_v:
             {
 #ifdef VISION_DETECTION_LINES_GENERATED
                 return SERIALISE(VISION_DETECTION_LINES_C_STRUCT, (struct VISION_DETECTION_LINES_C_STRUCT *)message_in, serialised_out)
@@ -1395,7 +1395,7 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #endif //VISION_DETECTION_LINES_GENERATED
                 break;
             }
-            case kVisionDetectionFeatures_v:
+            case kwb_VisionDetectionFeatures_v:
             {
 #ifdef VISION_DETECTION_FEATURES_GENERATED
                 return SERIALISE(VISION_DETECTION_FEATURES_C_STRUCT, (struct VISION_DETECTION_FEATURES_C_STRUCT *)message_in, serialised_out)
@@ -1412,6 +1412,6 @@ int32_t serialisemsg(WBTypes message_index, const void *message_in, void *serial
 #pragma clang diagnostic pop
 }
 
-#endif //GUWHITEBOARDSERIALISER_C
+#endif //WB_GUWHITEBOARDSERIALISER_C
 
 #pragma clang diagnostic pop

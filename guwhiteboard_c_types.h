@@ -6,8 +6,8 @@
  *  All rights reserved.
  */
 
-#ifndef GUWHITEBOARD_C_TYPES_H
-#define GUWHITEBOARD_C_TYPES_H
+#ifndef WB_GUWHITEBOARD_C_TYPES_H
+#define WB_GUWHITEBOARD_C_TYPES_H
 
 #include <gusimplewhiteboard/guwhiteboard_c_types_manual_definitions.h>
 
@@ -56,4 +56,4 @@
 #include <typeClassDefs/wb_vision_detection_lines.h>
 #include <typeClassDefs/wb_vision_detection_features.h>
 
-#endif //GUWHITEBOARD_C_TYPES_H
+#endif //WB_GUWHITEBOARD_C_TYPES_H

@@ -210,6 +210,11 @@ typedef enum wb_types_default
 
 
 } wb_types_default; ///< All the message 'types' for the class based whiteboard 
+#ifndef WBTypes_DEFINED
+#define WBTypes_DEFINED
+typedef wb_types_default WBTypes;
+#endif
+
 extern const char *wb_types_stringValues_default[WB_NUM_TYPES_DEFINED_DEFAULT];
 extern const char *wb_types_typeValues_default[WB_NUM_TYPES_DEFINED_DEFAULT];
 

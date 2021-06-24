@@ -9,17 +9,22 @@
 /** Auto-generated, don't modify! */
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <cstdlib>
 #include <gu_util.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-macros"
 #define WHITEBOARD_POSTER_STRING_CONVERSION
+#pragma clang diagnostic pop
 
 #include "guwhiteboardtypelist_generated.h"
 #include "guwhiteboardgetter.h"
 
 using namespace std;
 using namespace guWhiteboard;
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -37,12 +42,12 @@ extern "C"
 
     char *whiteboard_getmsg(int message_index, gu_simple_message *msg)
     {
-        return gu_strdup(getmsg(WBTypes(message_index), msg).c_str());
+        return gu_strdup(getmsg(wb_types(message_index), msg).c_str());
     }
 
     char *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_index)
     {
-        return gu_strdup(getmsg(WBTypes(message_index), NULLPTR, wbd).c_str());
+        return gu_strdup(getmsg(wb_types(message_index), NULLPTR, wbd).c_str());
     }
 } // extern C
 
@@ -72,1519 +77,1519 @@ namespace guWhiteboard
         return getmsg(types_map[message_type], msg, wbd);
     }
 
-    string getmsg(WBTypes message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
+    string getmsg(wb_types message_index, gu_simple_message *msg, gu_simple_whiteboard_descriptor *wbd)
     {
         switch (message_index)
         {
 
-            case kwb_reserved_SubscribeToAllTypes_v:
+            case kwb_wb_reserved_SubscribeToAllTypes_v:
             {
 
                 class wb_reserved_SubscribeToAllTypes_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kPrint_v:
+            case kwb_Print_v:
             {
 
                 class Print_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kSay_v:
+            case kwb_Say_v:
             {
 
                 class Say_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kSpeech_v:
+            case kwb_Speech_v:
             {
 
                 class Speech_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kQSay_v:
+            case kwb_QSay_v:
             {
 
                 class QSay_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kQSpeech_v:
+            case kwb_QSpeech_v:
             {
 
                 class QSpeech_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kSpeechOutput_v:
+            case kwb_SpeechOutput_v:
             {
 
                 class SpeechOutput_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kGCGameState_v:
+            case kwb_GCGameState_v:
             {
-#ifdef GCGameState_DEFINED
+#ifdef GCGAMESTATE_DEFINED
                 class GCGameState_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //GCGameState_DEFINED
+#endif //GCGAMESTATE_DEFINED
             }
-            case kSensorsHandSensors_v:
+            case kwb_SensorsHandSensors_v:
             {
-#ifdef SensorsHandSensors_DEFINED
+#ifdef SENSORSHANDSENSORS_DEFINED
                 class SensorsHandSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SensorsHandSensors_DEFINED
+#endif //SENSORSHANDSENSORS_DEFINED
             }
-            case kSensorsHeadSensors_v:
+            case kwb_SensorsHeadSensors_v:
             {
-#ifdef SensorsHeadSensors_DEFINED
+#ifdef SENSORSHEADSENSORS_DEFINED
                 class SensorsHeadSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SensorsHeadSensors_DEFINED
+#endif //SENSORSHEADSENSORS_DEFINED
             }
-            case kMOTION_Commands_v:
+            case kwb_MOTION_Commands_v:
             {
-#ifdef MOTION_Commands_DEFINED
+#ifdef MOTION_COMMANDS_DEFINED
                 class MOTION_Commands_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MOTION_Commands_DEFINED
+#endif //MOTION_COMMANDS_DEFINED
             }
-            case kMOTION_Status_v:
+            case kwb_MOTION_Status_v:
             {
-#ifdef MOTION_Status_DEFINED
+#ifdef MOTION_STATUS_DEFINED
                 class MOTION_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MOTION_Status_DEFINED
+#endif //MOTION_STATUS_DEFINED
             }
-            case kHAL_HeadTarget_v:
+            case kwb_HAL_HeadTarget_v:
             {
-#ifdef HAL_HeadTarget_DEFINED
+#ifdef HAL_HEADTARGET_DEFINED
                 class HAL_HeadTarget_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HAL_HeadTarget_DEFINED
+#endif //HAL_HEADTARGET_DEFINED
             }
-            case kSensorsFootSensors_v:
+            case kwb_SensorsFootSensors_v:
             {
-#ifdef SensorsFootSensors_DEFINED
+#ifdef SENSORSFOOTSENSORS_DEFINED
                 class SensorsFootSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SensorsFootSensors_DEFINED
+#endif //SENSORSFOOTSENSORS_DEFINED
             }
-            case kSensorsBodySensors_v:
+            case kwb_SensorsBodySensors_v:
             {
-#ifdef SensorsBodySensors_DEFINED
+#ifdef SENSORSBODYSENSORS_DEFINED
                 class SensorsBodySensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SensorsBodySensors_DEFINED
+#endif //SENSORSBODYSENSORS_DEFINED
             }
-            case kSENSORSLedsSensors_v:
+            case kwb_SENSORSLedsSensors_v:
             {
-#ifdef SENSORSLedsSensors_DEFINED
+#ifdef SENSORSLEDSSENSORS_DEFINED
                 class SENSORSLedsSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSLedsSensors_DEFINED
+#endif //SENSORSLEDSSENSORS_DEFINED
             }
-            case kSENSORSLegJointTemps_v:
+            case kwb_SENSORSLegJointTemps_v:
             {
-#ifdef SENSORSLegJointTemps_DEFINED
+#ifdef SENSORSLEGJOINTTEMPS_DEFINED
                 class SENSORSLegJointTemps_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSLegJointTemps_DEFINED
+#endif //SENSORSLEGJOINTTEMPS_DEFINED
             }
-            case kSENSORSTorsoJointTemps_v:
+            case kwb_SENSORSTorsoJointTemps_v:
             {
-#ifdef SENSORSTorsoJointTemps_DEFINED
+#ifdef SENSORSTORSOJOINTTEMPS_DEFINED
                 class SENSORSTorsoJointTemps_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSTorsoJointTemps_DEFINED
+#endif //SENSORSTORSOJOINTTEMPS_DEFINED
             }
-            case kSENSORSLegJointSensors_v:
+            case kwb_SENSORSLegJointSensors_v:
             {
-#ifdef SENSORSLegJointSensors_DEFINED
+#ifdef SENSORSLEGJOINTSENSORS_DEFINED
                 class SENSORSLegJointSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSLegJointSensors_DEFINED
+#endif //SENSORSLEGJOINTSENSORS_DEFINED
             }
-            case kSENSORSTorsoJointSensors_v:
+            case kwb_SENSORSTorsoJointSensors_v:
             {
-#ifdef SENSORSTorsoJointSensors_DEFINED
+#ifdef SENSORSTORSOJOINTSENSORS_DEFINED
                 class SENSORSTorsoJointSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSTorsoJointSensors_DEFINED
+#endif //SENSORSTORSOJOINTSENSORS_DEFINED
             }
-            case kSENSORSSonarSensors_v:
+            case kwb_SENSORSSonarSensors_v:
             {
-#ifdef SENSORSSonarSensors_DEFINED
+#ifdef SENSORSSONARSENSORS_DEFINED
                 class SENSORSSonarSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SENSORSSonarSensors_DEFINED
+#endif //SENSORSSONARSENSORS_DEFINED
             }
-            case kFSM_Control_v:
+            case kwb_FSM_Control_v:
             {
-#ifdef FSMControlStatus_DEFINED
+#ifdef FSMCONTROLSTATUS_DEFINED
                 class FSM_Control_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FSMControlStatus_DEFINED
+#endif //FSMCONTROLSTATUS_DEFINED
             }
-            case kFSM_Status_v:
+            case kwb_FSM_Status_v:
             {
-#ifdef FSMControlStatus_DEFINED
+#ifdef FSMCONTROLSTATUS_DEFINED
                 class FSM_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FSMControlStatus_DEFINED
+#endif //FSMCONTROLSTATUS_DEFINED
             }
-            case kFSM_Names_v:
+            case kwb_FSM_Names_v:
             {
-#ifdef FSMNames_DEFINED
+#ifdef FSMNAMES_DEFINED
                 class FSM_Names_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FSMNames_DEFINED
+#endif //FSMNAMES_DEFINED
             }
-            case kSoloTypeExample_v:
+            case kwb_SoloTypeExample_v:
             {
 
                 class SoloTypeExample_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kFilteredGoalSighting_v:
+            case kwb_FilteredGoalSighting_v:
             {
-#ifdef FilteredArrayOneDimObjects_DEFINED
+#ifdef FILTEREDARRAYONEDIMOBJECTS_DEFINED
                 class FilteredGoalSighting_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FilteredArrayOneDimObjects_DEFINED
+#endif //FILTEREDARRAYONEDIMOBJECTS_DEFINED
             }
-            case kNAO_State_v:
+            case kwb_NAO_State_v:
             {
-#ifdef NAO_State_DEFINED
+#ifdef NAO_STATE_DEFINED
                 class NAO_State_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NAO_State_DEFINED
+#endif //NAO_STATE_DEFINED
             }
-            case kUDPRN_v:
+            case kwb_UDPRN_v:
             {
-#ifdef GCGameState_DEFINED
+#ifdef GCGAMESTATE_DEFINED
                 class UDPRN_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //GCGameState_DEFINED
+#endif //GCGAMESTATE_DEFINED
             }
-            case kPlayerNumber_v:
+            case kwb_PlayerNumber_v:
             {
 
                 class PlayerNumber_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kManuallyPenalized_v:
+            case kwb_ManuallyPenalized_v:
             {
 
                 class ManuallyPenalized_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kVisionControl_v:
+            case kwb_VisionControl_v:
             {
-#ifdef VisionControlStatus_DEFINED
+#ifdef VISIONCONTROLSTATUS_DEFINED
                 class VisionControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionControlStatus_DEFINED
+#endif //VISIONCONTROLSTATUS_DEFINED
             }
-            case kVisionStatus_v:
+            case kwb_VisionStatus_v:
             {
-#ifdef VisionControlStatus_DEFINED
+#ifdef VISIONCONTROLSTATUS_DEFINED
                 class VisionStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionControlStatus_DEFINED
+#endif //VISIONCONTROLSTATUS_DEFINED
             }
-            case kFFTStatus_v:
+            case kwb_FFTStatus_v:
             {
-#ifdef FFTStatus_DEFINED
+#ifdef FFTSTATUS_DEFINED
                 class FFTStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FFTStatus_DEFINED
+#endif //FFTSTATUS_DEFINED
             }
-            case kFSOsighting_v:
+            case kwb_FSOsighting_v:
             {
-#ifdef FilteredArrayOneDimSonar_DEFINED
+#ifdef FILTEREDARRAYONEDIMSONAR_DEFINED
                 class FSOsighting_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FilteredArrayOneDimSonar_DEFINED
+#endif //FILTEREDARRAYONEDIMSONAR_DEFINED
             }
-            case kTopParticles_v:
+            case kwb_TopParticles_v:
             {
-#ifdef TopParticles_DEFINED
+#ifdef TOPPARTICLES_DEFINED
                 class TopParticles_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TopParticles_DEFINED
+#endif //TOPPARTICLES_DEFINED
             }
-            case kFilteredBallSighting_v:
+            case kwb_FilteredBallSighting_v:
             {
-#ifdef FilteredArrayBallSightings_DEFINED
+#ifdef FILTEREDARRAYBALLSIGHTINGS_DEFINED
                 class FilteredBallSighting_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FilteredArrayBallSightings_DEFINED
+#endif //FILTEREDARRAYBALLSIGHTINGS_DEFINED
             }
-            case kPF_ControlStatus_Modes_v:
+            case kwb_PF_ControlStatus_Modes_v:
             {
 
                 class PF_ControlStatus_Modes_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kWEBOTS_NXT_bridge_v:
+            case kwb_WEBOTS_NXT_bridge_v:
             {
-#ifdef WEBOTS_NXT_bridge_DEFINED
+#ifdef WEBOTS_NXT_BRIDGE_DEFINED
                 class WEBOTS_NXT_bridge_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_bridge_DEFINED
+#endif //WEBOTS_NXT_BRIDGE_DEFINED
             }
-            case kWEBOTS_NXT_encoders_v:
+            case kwb_WEBOTS_NXT_encoders_v:
             {
-#ifdef WEBOTS_NXT_encoders_DEFINED
+#ifdef WEBOTS_NXT_ENCODERS_DEFINED
                 class WEBOTS_NXT_encoders_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_encoders_DEFINED
+#endif //WEBOTS_NXT_ENCODERS_DEFINED
             }
-            case kWEBOTS_NXT_camera_v:
+            case kwb_WEBOTS_NXT_camera_v:
             {
-#ifdef WEBOTS_NXT_camera_DEFINED
+#ifdef WEBOTS_NXT_CAMERA_DEFINED
                 class WEBOTS_NXT_camera_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_camera_DEFINED
+#endif //WEBOTS_NXT_CAMERA_DEFINED
             }
-            case kWEBOTS_NXT_walk_isRunning_v:
+            case kwb_WEBOTS_NXT_walk_isRunning_v:
             {
-#ifdef WEBOTS_NXT_walk_isRunning_DEFINED
+#ifdef WEBOTS_NXT_WALK_ISRUNNING_DEFINED
                 class WEBOTS_NXT_walk_isRunning_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_walk_isRunning_DEFINED
+#endif //WEBOTS_NXT_WALK_ISRUNNING_DEFINED
             }
-            case kWEBOTS_NXT_deadReakoning_walk_v:
+            case kwb_WEBOTS_NXT_deadReakoning_walk_v:
             {
-#ifdef WEBOTS_NXT_deadReakoning_walk_DEFINED
+#ifdef WEBOTS_NXT_DEADREAKONING_WALK_DEFINED
                 class WEBOTS_NXT_deadReakoning_walk_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_deadReakoning_walk_DEFINED
+#endif //WEBOTS_NXT_DEADREAKONING_WALK_DEFINED
             }
-            case kWEBOTS_NXT_colorLine_walk_v:
+            case kwb_WEBOTS_NXT_colorLine_walk_v:
             {
-#ifdef WEBOTS_NXT_colorLine_walk_DEFINED
+#ifdef WEBOTS_NXT_COLORLINE_WALK_DEFINED
                 class WEBOTS_NXT_colorLine_walk_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_colorLine_walk_DEFINED
+#endif //WEBOTS_NXT_COLORLINE_WALK_DEFINED
             }
-            case kWEBOTS_NXT_gridMotions_v:
+            case kwb_WEBOTS_NXT_gridMotions_v:
             {
-#ifdef WEBOTS_NXT_gridMotions_DEFINED
+#ifdef WEBOTS_NXT_GRIDMOTIONS_DEFINED
                 class WEBOTS_NXT_gridMotions_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_gridMotions_DEFINED
+#endif //WEBOTS_NXT_GRIDMOTIONS_DEFINED
             }
-            case kVisionBall_v:
+            case kwb_VisionBall_v:
             {
-#ifdef VisionBall_DEFINED
+#ifdef VISIONBALL_DEFINED
                 class VisionBall_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionBall_DEFINED
+#endif //VISIONBALL_DEFINED
             }
-            case kVisionGoals_v:
+            case kwb_VisionGoals_v:
             {
-#ifdef VisionGoals_DEFINED
+#ifdef VISIONGOALS_DEFINED
                 class VisionGoals_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionGoals_DEFINED
+#endif //VISIONGOALS_DEFINED
             }
-            case kWalkData_v:
+            case kwb_WalkData_v:
             {
-#ifdef WalkData_DEFINED
+#ifdef WALKDATA_DEFINED
                 class WalkData_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WalkData_DEFINED
+#endif //WALKDATA_DEFINED
             }
-            case kTeleoperationControlStatus_v:
+            case kwb_TeleoperationControlStatus_v:
             {
-#ifdef TeleoperationControlStatus_DEFINED
+#ifdef TELEOPERATIONCONTROLSTATUS_DEFINED
                 class TeleoperationControlStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TeleoperationControlStatus_DEFINED
+#endif //TELEOPERATIONCONTROLSTATUS_DEFINED
             }
-            case kTeleoperationConnection_v:
+            case kwb_TeleoperationConnection_v:
             {
 
                 class TeleoperationConnection_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kUDPWBNumber_v:
+            case kwb_UDPWBNumber_v:
             {
 
                 class UDPWBNumber_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kWEBOTS_NXT_bumper_v:
+            case kwb_WEBOTS_NXT_bumper_v:
             {
-#ifdef WEBOTS_NXT_bumper_DEFINED
+#ifdef WEBOTS_NXT_BUMPER_DEFINED
                 class WEBOTS_NXT_bumper_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_bumper_DEFINED
+#endif //WEBOTS_NXT_BUMPER_DEFINED
             }
-            case kWEBOTS_NXT_vector_bridge_v:
+            case kwb_WEBOTS_NXT_vector_bridge_v:
             {
-#ifdef WEBOTS_NXT_vector_bridge_DEFINED
+#ifdef WEBOTS_NXT_VECTOR_BRIDGE_DEFINED
                 class WEBOTS_NXT_vector_bridge_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //WEBOTS_NXT_vector_bridge_DEFINED
+#endif //WEBOTS_NXT_VECTOR_BRIDGE_DEFINED
             }
-            case kTopVisionLines_v:
+            case kwb_TopVisionLines_v:
             {
-#ifdef VisionLines_DEFINED
+#ifdef VISIONLINES_DEFINED
                 class TopVisionLines_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionLines_DEFINED
+#endif //VISIONLINES_DEFINED
             }
-            case kBottomVisionLines_v:
+            case kwb_BottomVisionLines_v:
             {
-#ifdef VisionLines_DEFINED
+#ifdef VISIONLINES_DEFINED
                 class BottomVisionLines_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionLines_DEFINED
+#endif //VISIONLINES_DEFINED
             }
-            case kDifferentialRobotStatus_v:
+            case kwb_DifferentialRobotStatus_v:
             {
-#ifdef DifferentialRobotControlStatus_DEFINED
+#ifdef DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
                 class DifferentialRobotStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //DifferentialRobotControlStatus_DEFINED
+#endif //DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
             }
-            case kDifferentialRobotControl_v:
+            case kwb_DifferentialRobotControl_v:
             {
-#ifdef DifferentialRobotControlStatus_DEFINED
+#ifdef DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
                 class DifferentialRobotControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //DifferentialRobotControlStatus_DEFINED
+#endif //DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
             }
-            case kXEyesPos_v:
+            case kwb_XEyesPos_v:
             {
-#ifdef Point2D_DEFINED
+#ifdef POINT2D_DEFINED
                 class XEyesPos_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Point2D_DEFINED
+#endif //POINT2D_DEFINED
             }
-            case kVisionFace_v:
+            case kwb_VisionFace_v:
             {
 
                 class VisionFace_t m(wbd);
                 return msg ? intvectostring(m.get_from(msg)) : intvectostring(m.get());
 
             }
-            case kDraw_v:
+            case kwb_Draw_v:
             {
 
                 class Draw_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kFSM_States_v:
+            case kwb_FSM_States_v:
             {
-#ifdef FSMState_DEFINED
+#ifdef FSMSTATE_DEFINED
                 class FSM_States_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FSMState_DEFINED
+#endif //FSMSTATE_DEFINED
             }
-            case kGiraff_Interface_Status_v:
+            case kwb_Giraff_Interface_Status_v:
             {
-#ifdef Giraff_MainSerialInterface_DEFINED
+#ifdef GIRAFF_MAINSERIALINTERFACE_DEFINED
                 class Giraff_Interface_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Giraff_MainSerialInterface_DEFINED
+#endif //GIRAFF_MAINSERIALINTERFACE_DEFINED
             }
-            case kGiraff_Interface_Command_v:
+            case kwb_Giraff_Interface_Command_v:
             {
-#ifdef Giraff_MainSerialInterface_DEFINED
+#ifdef GIRAFF_MAINSERIALINTERFACE_DEFINED
                 class Giraff_Interface_Command_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Giraff_MainSerialInterface_DEFINED
+#endif //GIRAFF_MAINSERIALINTERFACE_DEFINED
             }
-            case kNXT_Status_v:
+            case kwb_NXT_Status_v:
             {
-#ifdef NXT_Interface_DEFINED
+#ifdef NXT_INTERFACE_DEFINED
                 class NXT_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NXT_Interface_DEFINED
+#endif //NXT_INTERFACE_DEFINED
             }
-            case kNXT_Command_v:
+            case kwb_NXT_Command_v:
             {
-#ifdef NXT_Interface_DEFINED
+#ifdef NXT_INTERFACE_DEFINED
                 class NXT_Command_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NXT_Interface_DEFINED
+#endif //NXT_INTERFACE_DEFINED
             }
-            case kAPM_Status_v:
+            case kwb_APM_Status_v:
             {
-#ifdef APM_Interface_DEFINED
+#ifdef APM_INTERFACE_DEFINED
                 class APM_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //APM_Interface_DEFINED
+#endif //APM_INTERFACE_DEFINED
             }
-            case kAPM_Command_v:
+            case kwb_APM_Command_v:
             {
-#ifdef APM_Interface_DEFINED
+#ifdef APM_INTERFACE_DEFINED
                 class APM_Command_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //APM_Interface_DEFINED
+#endif //APM_INTERFACE_DEFINED
             }
-            case kREMOVED3_v:
+            case kwb_REMOVED3_v:
             {
 
                 class REMOVED3_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kREMOVED4_v:
+            case kwb_REMOVED4_v:
             {
 
                 class REMOVED4_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kCBall_v:
+            case kwb_CBall_v:
             {
 
                 class CBall_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kOculusPrime_Command_v:
+            case kwb_OculusPrime_Command_v:
             {
-#ifdef OculusPrimeInterface_DEFINED
+#ifdef OCULUSPRIMEINTERFACE_DEFINED
                 class OculusPrime_Command_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //OculusPrimeInterface_DEFINED
+#endif //OCULUSPRIMEINTERFACE_DEFINED
             }
-            case kInput3D_v:
+            case kwb_Input3D_v:
             {
-#ifdef Input3D_DEFINED
+#ifdef INPUT3D_DEFINED
                 class Input3D_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Input3D_DEFINED
+#endif //INPUT3D_DEFINED
             }
-            case kOculus_Prime_Command_v:
+            case kwb_Oculus_Prime_Command_v:
             {
-#ifdef Oculus_PrimeSerialInterface_DEFINED
+#ifdef OCULUS_PRIMESERIALINTERFACE_DEFINED
                 class Oculus_Prime_Command_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Oculus_PrimeSerialInterface_DEFINED
+#endif //OCULUS_PRIMESERIALINTERFACE_DEFINED
             }
-            case kIOPins_v:
+            case kwb_IOPins_v:
             {
-#ifdef IOPins_DEFINED
+#ifdef IOPINS_DEFINED
                 class IOPins_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //IOPins_DEFINED
+#endif //IOPINS_DEFINED
             }
-            case kNXT_Two_Touch_Status_v:
+            case kwb_NXT_Two_Touch_Status_v:
             {
-#ifdef NXT_Two_Touch_Status_DEFINED
+#ifdef NXT_TWO_TOUCH_STATUS_DEFINED
                 class NXT_Two_Touch_Status_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NXT_Two_Touch_Status_DEFINED
+#endif //NXT_TWO_TOUCH_STATUS_DEFINED
             }
-            case kNXT_Sound_Control_v:
+            case kwb_NXT_Sound_Control_v:
             {
-#ifdef NXT_Sound_Control_DEFINED
+#ifdef NXT_SOUND_CONTROL_DEFINED
                 class NXT_Sound_Control_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NXT_Sound_Control_DEFINED
+#endif //NXT_SOUND_CONTROL_DEFINED
             }
-            case kNXT_Lights_Control_v:
+            case kwb_NXT_Lights_Control_v:
             {
-#ifdef NXT_Lights_Control_DEFINED
+#ifdef NXT_LIGHTS_CONTROL_DEFINED
                 class NXT_Lights_Control_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NXT_Lights_Control_DEFINED
+#endif //NXT_LIGHTS_CONTROL_DEFINED
             }
-            case kClocks_v:
+            case kwb_Clocks_v:
             {
-#ifdef Clocks_DEFINED
+#ifdef CLOCKS_DEFINED
                 class Clocks_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Clocks_DEFINED
+#endif //CLOCKS_DEFINED
             }
-            case kChannels_v:
+            case kwb_Channels_v:
             {
-#ifdef Channels_DEFINED
+#ifdef CHANNELS_DEFINED
                 class Channels_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Channels_DEFINED
+#endif //CHANNELS_DEFINED
             }
-            case kSwitchSubsumption_v:
+            case kwb_SwitchSubsumption_v:
             {
-#ifdef SwitchSubsumption_DEFINED
+#ifdef SWITCHSUBSUMPTION_DEFINED
                 class SwitchSubsumption_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SwitchSubsumption_DEFINED
+#endif //SWITCHSUBSUMPTION_DEFINED
             }
-            case kTotoDoingMotion_v:
+            case kwb_TotoDoingMotion_v:
             {
-#ifdef TotoDoingMotion_DEFINED
+#ifdef TOTODOINGMOTION_DEFINED
                 class TotoDoingMotion_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TotoDoingMotion_DEFINED
+#endif //TOTODOINGMOTION_DEFINED
             }
-            case kCount_v:
+            case kwb_Count_v:
             {
-#ifdef Count_DEFINED
+#ifdef COUNT_DEFINED
                 class Count_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Count_DEFINED
+#endif //COUNT_DEFINED
             }
-            case kGreenEWon_v:
+            case kwb_GreenEWon_v:
             {
 
                 class GreenEWon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kWarnEW_v:
+            case kwb_WarnEW_v:
             {
 
                 class WarnEW_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kTimeGTthirty_v:
+            case kwb_TimeGTthirty_v:
             {
 
                 class TimeGTthirty_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kAmberEWon_v:
+            case kwb_AmberEWon_v:
             {
 
                 class AmberEWon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kTurnRedEW_v:
+            case kwb_TurnRedEW_v:
             {
 
                 class TurnRedEW_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kTimeGTfive_v:
+            case kwb_TimeGTfive_v:
             {
 
                 class TimeGTfive_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kRedEWon_v:
+            case kwb_RedEWon_v:
             {
 
                 class RedEWon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kGreenNSon_v:
+            case kwb_GreenNSon_v:
             {
 
                 class GreenNSon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kWarnNS_v:
+            case kwb_WarnNS_v:
             {
 
                 class WarnNS_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kAmberNSon_v:
+            case kwb_AmberNSon_v:
             {
 
                 class AmberNSon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kTurnRedNS_v:
+            case kwb_TurnRedNS_v:
             {
 
                 class TurnRedNS_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kRedNSon_v:
+            case kwb_RedNSon_v:
             {
 
                 class RedNSon_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kTimerReset_v:
+            case kwb_TimerReset_v:
             {
 
                 class TimerReset_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kSLOT_UNUSED_v:
+            case kwb_SLOT_UNUSED_v:
             {
 
                 class SLOT_UNUSED_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kCarSensorPressed_v:
+            case kwb_CarSensorPressed_v:
             {
 
                 class CarSensorPressed_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kSwitchSubsumptionTrafficLights_v:
+            case kwb_SwitchSubsumptionTrafficLights_v:
             {
-#ifdef SwitchSubsumptionTrafficLights_DEFINED
+#ifdef SWITCHSUBSUMPTIONTRAFFICLIGHTS_DEFINED
                 class SwitchSubsumptionTrafficLights_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //SwitchSubsumptionTrafficLights_DEFINED
+#endif //SWITCHSUBSUMPTIONTRAFFICLIGHTS_DEFINED
             }
-            case kBall_Found_v:
+            case kwb_Ball_Found_v:
             {
 
                 class Ball_Found_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kBall_Calibration_File_v:
+            case kwb_Ball_Calibration_File_v:
             {
 
                 class Ball_Calibration_File_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kBall_Calibration_Num_v:
+            case kwb_Ball_Calibration_Num_v:
             {
 
                 class Ball_Calibration_Num_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kBall_Color_Num_v:
+            case kwb_Ball_Color_Num_v:
             {
 
                 class Ball_Color_Num_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kHAL_LArmTarget_Ctrl_v:
+            case kwb_HAL_LArmTarget_Ctrl_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_LArmTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kHAL_LArmTarget_Stat_v:
+            case kwb_HAL_LArmTarget_Stat_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_LArmTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kHAL_LArmTarget_Tolr_v:
+            case kwb_HAL_LArmTarget_Tolr_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_LArmTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kHAL_RArmTarget_Ctrl_v:
+            case kwb_HAL_RArmTarget_Ctrl_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_RArmTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kHAL_RArmTarget_Stat_v:
+            case kwb_HAL_RArmTarget_Stat_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_RArmTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kHAL_RArmTarget_Tolr_v:
+            case kwb_HAL_RArmTarget_Tolr_v:
             {
-#ifdef HalArmTarget_DEFINED
+#ifdef HALARMTARGET_DEFINED
                 class HAL_RArmTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalArmTarget_DEFINED
+#endif //HALARMTARGET_DEFINED
             }
-            case kVisionFieldFeatures_v:
+            case kwb_VisionFieldFeatures_v:
             {
-#ifdef VisionFieldFeatures_DEFINED
+#ifdef VISIONFIELDFEATURES_DEFINED
                 class VisionFieldFeatures_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionFieldFeatures_DEFINED
+#endif //VISIONFIELDFEATURES_DEFINED
             }
-            case kWhistleBlown_v:
+            case kwb_WhistleBlown_v:
             {
 
                 class WhistleBlown_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kVolumeControl_v:
+            case kwb_VolumeControl_v:
             {
 
                 class VolumeControl_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kVisionRobots_v:
+            case kwb_VisionRobots_v:
             {
-#ifdef VisionRobots_DEFINED
+#ifdef VISIONROBOTS_DEFINED
                 class VisionRobots_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionRobots_DEFINED
+#endif //VISIONROBOTS_DEFINED
             }
-            case kVisionDetectionHorizons_v:
+            case kwb_VisionDetectionHorizons_v:
             {
-#ifdef VisionDetectionHorizons_DEFINED
+#ifdef VISIONDETECTIONHORIZONS_DEFINED
                 class VisionDetectionHorizons_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionDetectionHorizons_DEFINED
+#endif //VISIONDETECTIONHORIZONS_DEFINED
             }
-            case kNaoWalkCommand_v:
+            case kwb_NaoWalkCommand_v:
             {
-#ifdef NaoWalkCommand_DEFINED
+#ifdef NAOWALKCOMMAND_DEFINED
                 class NaoWalkCommand_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NaoWalkCommand_DEFINED
+#endif //NAOWALKCOMMAND_DEFINED
             }
-            case kNaoWalkStatus_v:
+            case kwb_NaoWalkStatus_v:
             {
-#ifdef NaoWalkStatus_DEFINED
+#ifdef NAOWALKSTATUS_DEFINED
                 class NaoWalkStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NaoWalkStatus_DEFINED
+#endif //NAOWALKSTATUS_DEFINED
             }
-            case kHAL_LLegTarget_Ctrl_v:
+            case kwb_HAL_LLegTarget_Ctrl_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_LLegTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kHAL_LLegTarget_Stat_v:
+            case kwb_HAL_LLegTarget_Stat_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_LLegTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kHAL_LLegTarget_Tolr_v:
+            case kwb_HAL_LLegTarget_Tolr_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_LLegTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kHAL_RLegTarget_Ctrl_v:
+            case kwb_HAL_RLegTarget_Ctrl_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_RLegTarget_Ctrl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kHAL_RLegTarget_Stat_v:
+            case kwb_HAL_RLegTarget_Stat_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_RLegTarget_Stat_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kHAL_RLegTarget_Tolr_v:
+            case kwb_HAL_RLegTarget_Tolr_v:
             {
-#ifdef HalLegTarget_DEFINED
+#ifdef HALLEGTARGET_DEFINED
                 class HAL_RLegTarget_Tolr_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HalLegTarget_DEFINED
+#endif //HALLEGTARGET_DEFINED
             }
-            case kVisionDetectionGoals_v:
+            case kwb_VisionDetectionGoals_v:
             {
-#ifdef VisionDetectionGoals_DEFINED
+#ifdef VISIONDETECTIONGOALS_DEFINED
                 class VisionDetectionGoals_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionDetectionGoals_DEFINED
+#endif //VISIONDETECTIONGOALS_DEFINED
             }
-            case kTeleoperationControl_v:
+            case kwb_TeleoperationControl_v:
             {
-#ifdef TeleoperationControl_DEFINED
+#ifdef TELEOPERATIONCONTROL_DEFINED
                 class TeleoperationControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TeleoperationControl_DEFINED
+#endif //TELEOPERATIONCONTROL_DEFINED
             }
-            case kTeleoperationStatus_v:
+            case kwb_TeleoperationStatus_v:
             {
-#ifdef TeleoperationStatus_DEFINED
+#ifdef TELEOPERATIONSTATUS_DEFINED
                 class TeleoperationStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TeleoperationStatus_DEFINED
+#endif //TELEOPERATIONSTATUS_DEFINED
             }
-            case kVisionDetectionBalls_v:
+            case kwb_VisionDetectionBalls_v:
             {
-#ifdef VisionDetectionBalls_DEFINED
+#ifdef VISIONDETECTIONBALLS_DEFINED
                 class VisionDetectionBalls_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionDetectionBalls_DEFINED
+#endif //VISIONDETECTIONBALLS_DEFINED
             }
-            case kTeleoperationControlVR_v:
+            case kwb_TeleoperationControlVR_v:
             {
-#ifdef TeleoperationControlVR_DEFINED
+#ifdef TELEOPERATIONCONTROLVR_DEFINED
                 class TeleoperationControlVR_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TeleoperationControlVR_DEFINED
+#endif //TELEOPERATIONCONTROLVR_DEFINED
             }
-            case kParticleOutputMap_v:
+            case kwb_ParticleOutputMap_v:
             {
 
                 class ParticleOutputMap_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kParticleOutputMapControl_v:
+            case kwb_ParticleOutputMapControl_v:
             {
 
                 class ParticleOutputMapControl_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kFFTControl_v:
+            case kwb_FFTControl_v:
             {
 
                 class FFTControl_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kMachineFilteredNaoVision_v:
+            case kwb_MachineFilteredNaoVision_v:
             {
-#ifdef MachineFilteredVision_DEFINED
+#ifdef MACHINEFILTEREDVISION_DEFINED
                 class MachineFilteredNaoVision_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MachineFilteredVision_DEFINED
+#endif //MACHINEFILTEREDVISION_DEFINED
             }
-            case kMicrowaveStatus_v:
+            case kwb_MicrowaveStatus_v:
             {
-#ifdef MicrowaveStatus_DEFINED
+#ifdef MICROWAVESTATUS_DEFINED
                 class MicrowaveStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MicrowaveStatus_DEFINED
+#endif //MICROWAVESTATUS_DEFINED
             }
-            case kButtons_v:
+            case kwb_Buttons_v:
             {
-#ifdef Buttons_DEFINED
+#ifdef BUTTONS_DEFINED
                 class Buttons_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Buttons_DEFINED
+#endif //BUTTONS_DEFINED
             }
-            case kMachineFilteredLocalisationVision_v:
+            case kwb_MachineFilteredLocalisationVision_v:
             {
-#ifdef MachineFilteredLocalisationVision_DEFINED
+#ifdef MACHINEFILTEREDLOCALISATIONVISION_DEFINED
                 class MachineFilteredLocalisationVision_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MachineFilteredLocalisationVision_DEFINED
+#endif //MACHINEFILTEREDLOCALISATIONVISION_DEFINED
             }
-            case kSensorsJointCurrent_v:
+            case kwb_SensorsJointCurrent_v:
             {
-#ifdef NaoJointListFloat_DEFINED
+#ifdef NAOJOINTLISTFLOAT_DEFINED
                 class SensorsJointCurrent_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NaoJointListFloat_DEFINED
+#endif //NAOJOINTLISTFLOAT_DEFINED
             }
-            case kDataLogger_v:
+            case kwb_DataLogger_v:
             {
-#ifdef DataLogger_DEFINED
+#ifdef DATALOGGER_DEFINED
                 class DataLogger_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //DataLogger_DEFINED
+#endif //DATALOGGER_DEFINED
             }
-            case kMachineFilteredLines_v:
+            case kwb_MachineFilteredLines_v:
             {
-#ifdef MachineFilteredLines_DEFINED
+#ifdef MACHINEFILTEREDLINES_DEFINED
                 class MachineFilteredLines_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MachineFilteredLines_DEFINED
+#endif //MACHINEFILTEREDLINES_DEFINED
             }
-            case kBallLocation_v:
+            case kwb_BallLocation_v:
             {
-#ifdef Location_DEFINED
+#ifdef LOCATION_DEFINED
                 class BallLocation_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Location_DEFINED
+#endif //LOCATION_DEFINED
             }
-            case kLeftGoalPostLocation_v:
+            case kwb_LeftGoalPostLocation_v:
             {
-#ifdef Location_DEFINED
+#ifdef LOCATION_DEFINED
                 class LeftGoalPostLocation_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Location_DEFINED
+#endif //LOCATION_DEFINED
             }
-            case kRightGoalPostLocation_v:
+            case kwb_RightGoalPostLocation_v:
             {
-#ifdef Location_DEFINED
+#ifdef LOCATION_DEFINED
                 class RightGoalPostLocation_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Location_DEFINED
+#endif //LOCATION_DEFINED
             }
-            case kGoalLocation_v:
+            case kwb_GoalLocation_v:
             {
-#ifdef Location_DEFINED
+#ifdef LOCATION_DEFINED
                 class GoalLocation_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Location_DEFINED
+#endif //LOCATION_DEFINED
             }
-            case kNaoSonarProtectedWalkCommand_v:
+            case kwb_NaoSonarProtectedWalkCommand_v:
             {
-#ifdef NaoSonarProtectedWalkCommand_DEFINED
+#ifdef NAOSONARPROTECTEDWALKCOMMAND_DEFINED
                 class NaoSonarProtectedWalkCommand_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NaoSonarProtectedWalkCommand_DEFINED
+#endif //NAOSONARPROTECTEDWALKCOMMAND_DEFINED
             }
-            case kNaoObstacleDirection_v:
+            case kwb_NaoObstacleDirection_v:
             {
-#ifdef NaoObstacleDirection_DEFINED
+#ifdef NAOOBSTACLEDIRECTION_DEFINED
                 class NaoObstacleDirection_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //NaoObstacleDirection_DEFINED
+#endif //NAOOBSTACLEDIRECTION_DEFINED
             }
-            case kDominantFrequencies_v:
+            case kwb_DominantFrequencies_v:
             {
-#ifdef DominantFrequencies_DEFINED
+#ifdef DOMINANTFREQUENCIES_DEFINED
                 class DominantFrequencies_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //DominantFrequencies_DEFINED
+#endif //DOMINANTFREQUENCIES_DEFINED
             }
-            case kMissionPriorityForObstacles_v:
+            case kwb_MissionPriorityForObstacles_v:
             {
-#ifdef MissionPriorityForObstacles_DEFINED
+#ifdef MISSIONPRIORITYFOROBSTACLES_DEFINED
                 class MissionPriorityForObstacles_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MissionPriorityForObstacles_DEFINED
+#endif //MISSIONPRIORITYFOROBSTACLES_DEFINED
             }
-            case kWavLoad_v:
+            case kwb_WavLoad_v:
             {
 
                 class WavLoad_t m(wbd);
                 return msg ? m.get_from(msg) : m.get();
 
             }
-            case kWavPlay_v:
+            case kwb_WavPlay_v:
             {
 
                 class WavPlay_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kReproduceWavNotSilent_v:
+            case kwb_ReproduceWavNotSilent_v:
             {
 
                 class ReproduceWavNotSilent_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kFrequencyControl_v:
+            case kwb_FrequencyControl_v:
             {
-#ifdef FrequencyLimits_DEFINED
+#ifdef FREQUENCYLIMITS_DEFINED
                 class FrequencyControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FrequencyLimits_DEFINED
+#endif //FREQUENCYLIMITS_DEFINED
             }
-            case kFrequencyStatus_v:
+            case kwb_FrequencyStatus_v:
             {
-#ifdef FrequencyLimits_DEFINED
+#ifdef FREQUENCYLIMITS_DEFINED
                 class FrequencyStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //FrequencyLimits_DEFINED
+#endif //FREQUENCYLIMITS_DEFINED
             }
-            case kHeadJointSensors_v:
+            case kwb_HeadJointSensors_v:
             {
-#ifdef HeadJointSensors_DEFINED
+#ifdef HEADJOINTSENSORS_DEFINED
                 class HeadJointSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //HeadJointSensors_DEFINED
+#endif //HEADJOINTSENSORS_DEFINED
             }
-            case kAdjustPositionConfidence_v:
+            case kwb_AdjustPositionConfidence_v:
             {
-#ifdef AdjustPositionConfidence_DEFINED
+#ifdef ADJUSTPOSITIONCONFIDENCE_DEFINED
                 class AdjustPositionConfidence_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //AdjustPositionConfidence_DEFINED
+#endif //ADJUSTPOSITIONCONFIDENCE_DEFINED
             }
-            case kGuVrTeleopVulkanControl_v:
+            case kwb_GuVrTeleopVulkanControl_v:
             {
-#ifdef GuVrTeleopVulkanControl_DEFINED
+#ifdef GUVRTELEOPVULKANCONTROL_DEFINED
                 class GuVrTeleopVulkanControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //GuVrTeleopVulkanControl_DEFINED
+#endif //GUVRTELEOPVULKANCONTROL_DEFINED
             }
-            case kTemperatureSensors_v:
+            case kwb_TemperatureSensors_v:
             {
-#ifdef TemperatureSensors_DEFINED
+#ifdef TEMPERATURESENSORS_DEFINED
                 class TemperatureSensors_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //TemperatureSensors_DEFINED
+#endif //TEMPERATURESENSORS_DEFINED
             }
-            case kOverheating_v:
+            case kwb_Overheating_v:
             {
-#ifdef Overheating_DEFINED
+#ifdef OVERHEATING_DEFINED
                 class Overheating_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //Overheating_DEFINED
+#endif //OVERHEATING_DEFINED
             }
-            case kbuttonPushed_v:
+            case kwb_buttonPushed_v:
             {
 
                 class buttonPushed_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kdoorOpen_v:
+            case kwb_doorOpen_v:
             {
 
                 class doorOpen_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case ktimeLeft_v:
+            case kwb_timeLeft_v:
             {
 
                 class timeLeft_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kmotor_v:
+            case kwb_motor_v:
             {
 
                 class motor_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case ksound_v:
+            case kwb_sound_v:
             {
 
                 class sound_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case klight_v:
+            case kwb_light_v:
             {
 
                 class light_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino2Pin_v:
+            case kwb_Arduino2Pin_v:
             {
 
                 class Arduino2Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino2PinValue_v:
+            case kwb_Arduino2PinValue_v:
             {
 
                 class Arduino2PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino3Pin_v:
+            case kwb_Arduino3Pin_v:
             {
 
                 class Arduino3Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino3PinValue_v:
+            case kwb_Arduino3PinValue_v:
             {
 
                 class Arduino3PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino4Pin_v:
+            case kwb_Arduino4Pin_v:
             {
 
                 class Arduino4Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino4PinValue_v:
+            case kwb_Arduino4PinValue_v:
             {
 
                 class Arduino4PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino5Pin_v:
+            case kwb_Arduino5Pin_v:
             {
 
                 class Arduino5Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino5PinValue_v:
+            case kwb_Arduino5PinValue_v:
             {
 
                 class Arduino5PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino6Pin_v:
+            case kwb_Arduino6Pin_v:
             {
 
                 class Arduino6Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino6PinValue_v:
+            case kwb_Arduino6PinValue_v:
             {
 
                 class Arduino6PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino7Pin_v:
+            case kwb_Arduino7Pin_v:
             {
 
                 class Arduino7Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino7PinValue_v:
+            case kwb_Arduino7PinValue_v:
             {
 
                 class Arduino7PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino8Pin_v:
+            case kwb_Arduino8Pin_v:
             {
 
                 class Arduino8Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino8PinValue_v:
+            case kwb_Arduino8PinValue_v:
             {
 
                 class Arduino8PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino9Pin_v:
+            case kwb_Arduino9Pin_v:
             {
 
                 class Arduino9Pin_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kArduino9PinValue_v:
+            case kwb_Arduino9PinValue_v:
             {
 
                 class Arduino9PinValue_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kBallPosition_v:
+            case kwb_BallPosition_v:
             {
-#ifdef BallPosition_DEFINED
+#ifdef BALLPOSITION_DEFINED
                 class BallPosition_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //BallPosition_DEFINED
+#endif //BALLPOSITION_DEFINED
             }
-            case kMemoryImageControl_v:
+            case kwb_MemoryImageControl_v:
             {
-#ifdef MemoryImageControlStatus_DEFINED
+#ifdef MEMORYIMAGECONTROLSTATUS_DEFINED
                 class MemoryImageControl_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MemoryImageControlStatus_DEFINED
+#endif //MEMORYIMAGECONTROLSTATUS_DEFINED
             }
-            case kMemoryImageStatus_v:
+            case kwb_MemoryImageStatus_v:
             {
-#ifdef MemoryImageControlStatus_DEFINED
+#ifdef MEMORYIMAGECONTROLSTATUS_DEFINED
                 class MemoryImageStatus_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MemoryImageControlStatus_DEFINED
+#endif //MEMORYIMAGECONTROLSTATUS_DEFINED
             }
-            case kLHandGripper_v:
+            case kwb_LHandGripper_v:
             {
 
                 class LHandGripper_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kRHandGripper_v:
+            case kwb_RHandGripper_v:
             {
 
                 class RHandGripper_t m(wbd);
                 return msg ? gu_ltos(long(m.get_from(msg))) : gu_ltos(long(m.get()));
 
             }
-            case kMyPosition_v:
+            case kwb_MyPosition_v:
             {
-#ifdef MyPosition_DEFINED
+#ifdef MYPOSITION_DEFINED
                 class MyPosition_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //MyPosition_DEFINED
+#endif //MYPOSITION_DEFINED
             }
-            case kVisionDetectionLines_v:
+            case kwb_VisionDetectionLines_v:
             {
-#ifdef VisionDetectionLines_DEFINED
+#ifdef VISIONDETECTIONLINES_DEFINED
                 class VisionDetectionLines_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionDetectionLines_DEFINED
+#endif //VISIONDETECTIONLINES_DEFINED
             }
-            case kVisionDetectionFeatures_v:
+            case kwb_VisionDetectionFeatures_v:
             {
-#ifdef VisionDetectionFeatures_DEFINED
+#ifdef VISIONDETECTIONFEATURES_DEFINED
                 class VisionDetectionFeatures_t m(wbd);
                 return msg ? m.get_from(msg).description() : m.get().description();
 #else
                 return "##unsupported##";
-#endif //VisionDetectionFeatures_DEFINED
+#endif //VISIONDETECTIONFEATURES_DEFINED
             }
         }
 #pragma clang diagnostic push
