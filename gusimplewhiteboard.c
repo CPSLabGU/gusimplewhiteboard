@@ -133,6 +133,12 @@ union semun
 
 static gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
+//backwards compat for GU whiteboard defaults
+//used by gsw_new_numbered_whiteboard
+#ifdef BUILD_WB_LIBRARY
+int num_types_defined = WB_NUM_TYPES_DEFINED_DEFAULT;
+const char **WBTypes_stringValues = wb_types_stringValues_default;
+#endif
 
 void gsw_init_semaphores(gsw_sema_t s)
 {
@@ -178,12 +184,6 @@ gsw_sema_t gsw_setup_semaphores(int key)
 #endif
         return s;
 }
-
-//.c
-#ifdef BUILD_WB_LIBRARY
-int num_types_defined = WB_NUM_TYPES_DEFINED_DEFAULT;
-const char **WBTypes_stringValues = wb_types_stringValues_default;
-#endif
 
 gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int n)
 {

@@ -327,11 +327,23 @@ typedef struct gsw_whiteboard_s
  */
 extern const char *gsw_global_whiteboard_name;
 
+//backwards compat for GU whiteboard defaults
+//---------------
+/**
+ * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
+ */
 #define GSW_NUM_TYPES_DEFINED num_types_defined
 
+/**
+ * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
+ */
 extern int num_types_defined;
 
+/**
+ * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
+ */
 extern const char **WBTypes_stringValues;
+//---------------
 
 
 
