@@ -191,7 +191,7 @@ gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, i
         int nmsgs = GSW_NUM_TYPES_DEFINED;
         if (nmsgs > GSW_NUM_RESERVED)
         {
-                fprintf(stderr, "Warning: whiteboard '%s' tries to define %d messages, but only %d reserved\n", name, nmsgs, NUM_TYPES_DEFINED);
+                fprintf(stderr, "Warning: whiteboard '%s' tries to define %d messages, but only %d reserved\n", name, nmsgs, GSW_NUM_TYPES_DEFINED);
                 nmsgs = GSW_NUM_RESERVED;
         }
 
