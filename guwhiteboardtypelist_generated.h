@@ -15,6 +15,7 @@
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wc++98-compat"
 
+#define CPP_WHITEBOARD_NAMESPACE guWhiteboard
 
 namespace guWhiteboard {
 

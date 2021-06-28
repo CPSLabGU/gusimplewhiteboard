@@ -74,8 +74,8 @@ whiteboard_types_map guWhiteboard::types_map; ///< global types map
 
 #pragma clang diagnostic pop
 
-namespace guWhiteboard
-{
+namespace guWhiteboard {
+
     bool post(string message_type, string message_content, gu_simple_whiteboard_descriptor *wbd)
     {
         return postmsg(types_map[message_type], message_content, wbd);
@@ -2276,4 +2276,5 @@ whiteboard_types_map::whiteboard_types_map(): map<string, wb_types>()
     self["VisionDetectionFeatures"] = kVisionDetectionFeatures_v;
 
     (void) self;
-}
+} // guWhiteboard
+

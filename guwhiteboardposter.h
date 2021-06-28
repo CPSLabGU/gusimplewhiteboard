@@ -60,8 +60,8 @@ int whiteboard_type_for_message_named(const char *message_type);
 guWhiteboard::wb_types whiteboard_type_for_message_named(const char *message_type);
 }
 
-namespace guWhiteboard
-{
+namespace guWhiteboard {
+
         /**
          * A generic C++ function that posts to the whiteboard.
          * Both the message type and the message content are strings.
@@ -94,7 +94,8 @@ namespace guWhiteboard
          * Global map from names to message types
          */
         extern struct whiteboard_types_map types_map;
-}
+} // guWhiteboard
+
 #endif // __cplusplus
 
 #endif //WB_GUWHITEBOARDPOSTER_H

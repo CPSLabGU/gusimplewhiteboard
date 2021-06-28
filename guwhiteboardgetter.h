@@ -49,8 +49,8 @@ char *whiteboard_getmsg_from(gu_simple_whiteboard_descriptor *wbd, int message_i
 #ifdef __cplusplus
 } // extern "C"
 
-namespace guWhiteboard
-{
+namespace guWhiteboard {
+
         /**
          * A generic C++ function that gets a string from the whiteboard.
          * Both the message type and the message content are strings.
@@ -70,7 +70,9 @@ namespace guWhiteboard
          * @return the pretty printed data string
          */
         std::string getmsg(guWhiteboard::wb_types message_index, gu_simple_message *msg = NULLPTR, gu_simple_whiteboard_descriptor *wbd = NULLPTR);
-}
+
+} // guWhiteboard
+
 #endif // __cplusplus
 
 #endif //WB_GUWHITEBOARDGETTER_H

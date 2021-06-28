@@ -16,6 +16,8 @@
 
 #define WB_NUM_TYPES_DEFINED 183
 
+#define C_WHITEBOARD_NAMESPACE wb
+
 #if WB_NUM_TYPES_DEFINED > GSW_NUM_RESERVED
 #error *** Error: gusimplewhiteboard: The number of defined types exceeds the total number of reserved types allowed. Increase GSW_NUM_RESERVED to solve this.
 #endif
@@ -206,7 +208,7 @@ typedef enum wb_types
     kwb_MyPosition_v = 180, 		///< Location of the robot relative to where it started.
     kwb_VisionDetectionLines_v = 181, 		///< Reports robocup field lines found with guvision and LineRayTracer.
 
-    kVisionDetectionFeatures_v = 182 		///< Reports robocup field features found with guvision and FeatureDetector.
+    kwb_VisionDetectionFeatures_v = 182 		///< Reports robocup field features found with guvision and FeatureDetector.
 
 
 } wb_types; ///< All the message 'types' for the class based whiteboard 
