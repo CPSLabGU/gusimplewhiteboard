@@ -5,8 +5,9 @@ Purpose: Provides a more generic mechanism for function callbacks.
  Change Log:
         21/1/2013 - Extended to add simple wb compatability, Carl.
 */
-#ifndef WBFUNCTOR_H
-#define WBFUNCTOR_H
+
+#ifndef WB_W_B_FUNCTOR_H
+#define WB_W_B_FUNCTOR_H
 
 #ifdef bool
 #undef bool
@@ -60,19 +61,19 @@ public:
 	virtual void call(guWhiteboard::WBTypes t, gu_simple_message* m) = 0;   //new simple_message callbacks (with type overwrite for subscribe to all special type)
 
 	/** getter for the WB type */
-        virtual guWhiteboard::WBTypes type() = 0;
+    virtual guWhiteboard::WBTypes type() = 0;
 
 	/** getter for the WB event counter */
-        virtual uint16_t get_event_count() = 0;
+    virtual uint16_t get_event_count() = 0;
 
 	/** 
 	* setter for the WB event counter 
 	* @param e new event counter value
 	*/
-        virtual void set_event_count(uint16_t e) = 0;
+    virtual void set_event_count(uint16_t e) = 0;
 
 	/** is this being used by the 'simple whiteboard' or the OLD whiteboard (which is now Deprecated) */
-        virtual bool is_simple_wb_version() = 0;
+    virtual bool is_simple_wb_version() = 0;
 
 	/** destructor */
 	virtual ~WBFunctorBase(){}
@@ -97,7 +98,7 @@ public:
  	* WBFunctor Constructor
 	*/
 	WBFunctor(C* obj, void (C::*pFunc) (guWhiteboard::WBTypes, gu_simple_message*), guWhiteboard::WBTypes t):
-                fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { }
+        fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { }
 
 	/**
  	* Call method for the OLD whiteboard callbacks that used WBMsg - Deprecated
@@ -170,8 +171,10 @@ WBFunctorBase* createWBFunctor(C *obj, void (C::*f) (guWhiteboard::WBTypes, gu_s
 	return new WBFunctor<C>(obj, f, t);
 }
 
+
+
 #pragma clang diagnostic pop
 
 #include "WBFunctor_types_generated.h"
 
-#endif
+#endif //WB_W_B_FUNCTOR_H

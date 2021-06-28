@@ -16,8 +16,9 @@
 #pragma clang diagnostic ignored "-Wc++98-compat"
 
 
-namespace guWhiteboard
-{
+namespace guWhiteboard {
+
+
 extern "C"
 {
 #include "guwhiteboardtypelist_c_generated.h"
@@ -1557,7 +1558,9 @@ RHandGripper_t(int8_t value, gu_simple_whiteboard_descriptor *wbd = NULLPTR): wb
     };
 
 
-}
+
+} // guWhiteboard
+
 
 #pragma clang diagnostic pop
 

@@ -17,7 +17,6 @@
 #include "gusimplewhiteboard.h"
 #include "guwhiteboardtypelist_c_generated_default.h"
 
-
 //Hack for WBTypes_stringValues extern
 #ifndef BUILD_WB_LIBRARY
 int num_types_defined = WB_NUM_TYPES_DEFINED_DEFAULT;

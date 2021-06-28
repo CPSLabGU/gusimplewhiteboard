@@ -6,8 +6,8 @@
  *  All rights reserved.
  */
 
-#ifndef WB_WBFUNCTOR_TYPES_GENERATED_H
-#define WB_WBFUNCTOR_TYPES_GENERATED_H
+#ifndef WB_W_B_FUNCTOR_TYPES_GENERATED_H
+#define WB_W_B_FUNCTOR_TYPES_GENERATED_H
 
 #include <gu_util.h>
 
@@ -4228,4 +4228,4 @@ public:
 
 #pragma clang diagnostic pop
 
-#endif //WB_WBFUNCTOR_TYPES_GENERATED_H
+#endif //WB_W_B_FUNCTOR_TYPES_GENERATED_H
