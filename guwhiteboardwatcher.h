@@ -16,6 +16,7 @@
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wunused-value"
 
+#include "guwhiteboardtypelist_generated.h"
 #include "gusimplewhiteboard.h"
 
 #ifndef WITHOUT_LIBDISPATCH	// requires libdispatch at the moment
@@ -69,7 +70,7 @@ static void do_callback(void *m) //makes the callback call, via GCD queue
         callback_helper *h = static_cast<callback_helper *>(m);
         
         if(h->use_type_overwrite)
-                h->f->call(static_cast<guWhiteboard::WBTypes>(h->t_overwrite), &h->wb->messages[h->offs][h->gen_to_use]);
+                h->f->call(static_cast<CPP_WHITEBOARD_NAMESPACE::WBTypes>(h->t_overwrite), &h->wb->messages[h->offs][h->gen_to_use]);
         else
                 h->f->call(&h->wb->messages[h->offs][h->gen_to_use]);
         delete h;
@@ -173,7 +174,7 @@ public:
                 func->set_event_count(_wbd->wb->event_counters[func->type()]);
                 _sub.push_back(func); //Kept locally for actually making the callbacks
                 
-                if (func->type() == guWhiteboard::kwb_reserved_SubscribeToAllTypes_v)
+                if (func->type() == CPP_WHITEBOARD_NAMESPACE::kwb_reserved_SubscribeToAllTypes_v)
                 {
                         for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++) //get current event counts for all types
                         {
@@ -191,14 +192,14 @@ public:
 	 * @brief Stop getting callbacks for a particular whiteboard type
 	 * @param t the type to unsubscribe from
 	 */
-        void unsubscribe(guWhiteboard::WBTypes t)
+        void unsubscribe(CPP_WHITEBOARD_NAMESPACE::WBTypes t)
         {
                 gsw_procure(_wbd->sem, GSW_SEM_CALLBACK);
                 
                 for (std::list<WBFunctorBase *>::iterator i = _sub.begin(); i != _sub.end(); i++)
                 {
                         WBFunctorBase *f = *i;
-                        guWhiteboard::WBTypes offs = f->type();
+                        CPP_WHITEBOARD_NAMESPACE::WBTypes offs = f->type();
                         if (offs == t)
                         {
                                 _sub.erase(i);
@@ -228,7 +229,7 @@ public:
                          * offs == -1 means all types "*", otherwise only check
                          * new postings for a specific message type
                          */
-                        if (f->type() == guWhiteboard::kwb_reserved_SubscribeToAllTypes_v)
+                        if (f->type() == CPP_WHITEBOARD_NAMESPACE::kwb_reserved_SubscribeToAllTypes_v)
                                 for (int e = 0; e < GSW_TOTAL_MESSAGE_TYPES; e++)      // check all message type event counters
                                 {
                                         if (local_event_counters[e] != wb->event_counters[e]) //check for new event using event counters
