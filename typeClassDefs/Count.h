@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Count_DEFINED
-#define Count_DEFINED
+#ifndef guWhiteboard_Count_h
+#define guWhiteboard_Count_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_count.h"
+
+#undef guWhiteboard_Count_DEFINED
+#define guWhiteboard_Count_DEFINED
+
+#undef Count_DEFINED
+#define Count_DEFINED
 
 namespace guWhiteboard {
 
@@ -297,4 +303,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Count_DEFINED
+#endif /// guWhiteboard_Count_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef FilteredVisionObject_DEFINED
-#define FilteredVisionObject_DEFINED
+#ifndef guWhiteboard_FilteredVisionObject_h
+#define guWhiteboard_FilteredVisionObject_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_filtered_vision_object.h"
+
+#undef guWhiteboard_FilteredVisionObject_DEFINED
+#define guWhiteboard_FilteredVisionObject_DEFINED
+
+#undef FilteredVisionObject_DEFINED
+#define FilteredVisionObject_DEFINED
 
 namespace guWhiteboard {
 
@@ -521,4 +527,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// FilteredVisionObject_DEFINED
+#endif /// guWhiteboard_FilteredVisionObject_h

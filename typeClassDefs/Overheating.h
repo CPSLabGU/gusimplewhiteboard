@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Overheating_DEFINED
-#define Overheating_DEFINED
+#ifndef guWhiteboard_Overheating_h
+#define guWhiteboard_Overheating_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_overheating.h"
+
+#undef guWhiteboard_Overheating_DEFINED
+#define guWhiteboard_Overheating_DEFINED
+
+#undef Overheating_DEFINED
+#define Overheating_DEFINED
 
 namespace guWhiteboard {
 
@@ -293,4 +299,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Overheating_DEFINED
+#endif /// guWhiteboard_Overheating_h

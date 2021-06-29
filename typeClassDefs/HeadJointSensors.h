@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef HeadJointSensors_DEFINED
-#define HeadJointSensors_DEFINED
+#ifndef guWhiteboard_HeadJointSensors_h
+#define guWhiteboard_HeadJointSensors_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_head_joint_sensors.h"
+
+#undef guWhiteboard_HeadJointSensors_DEFINED
+#define guWhiteboard_HeadJointSensors_DEFINED
+
+#undef HeadJointSensors_DEFINED
+#define HeadJointSensors_DEFINED
 
 namespace guWhiteboard {
 
@@ -321,4 +327,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// HeadJointSensors_DEFINED
+#endif /// guWhiteboard_HeadJointSensors_h

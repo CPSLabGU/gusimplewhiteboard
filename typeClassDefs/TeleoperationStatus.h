@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef TeleoperationStatus_DEFINED
-#define TeleoperationStatus_DEFINED
+#ifndef guWhiteboard_TeleoperationStatus_h
+#define guWhiteboard_TeleoperationStatus_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_teleoperation_status.h"
+
+#undef guWhiteboard_TeleoperationStatus_DEFINED
+#define guWhiteboard_TeleoperationStatus_DEFINED
+
+#undef TeleoperationStatus_DEFINED
+#define TeleoperationStatus_DEFINED
 
 namespace guWhiteboard {
 
@@ -212,7 +218,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_TELEOPERATION_STATUS_C_CONVERSION
         }
 
-#ifdef USE_WB_TELEOPERATIONSTATUS_C_CONVERSION
+#ifdef USE_WB_TELEOPERATION_STATUS_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_teleoperation_status_from_string(this, t_str.c_str());
 #else
@@ -304,11 +310,11 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_TELEOPERATIONSTATUS_C_CONVERSION
+#endif /// USE_WB_TELEOPERATION_STATUS_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
     };
 
 } /// namespace guWhiteboard
 
-#endif /// TeleoperationStatus_DEFINED
+#endif /// guWhiteboard_TeleoperationStatus_h

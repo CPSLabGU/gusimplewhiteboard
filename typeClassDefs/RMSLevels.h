@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef RMSLevels_DEFINED
-#define RMSLevels_DEFINED
+#ifndef guWhiteboard_RMSLevels_h
+#define guWhiteboard_RMSLevels_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_r_m_s_levels.h"
+
+#undef guWhiteboard_RMSLevels_DEFINED
+#define guWhiteboard_RMSLevels_DEFINED
+
+#undef RMSLevels_DEFINED
+#define RMSLevels_DEFINED
 
 namespace guWhiteboard {
 
@@ -257,7 +263,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_R_M_S_LEVELS_C_CONVERSION
         }
 
-#ifdef USE_WB_RMS_LEVELS_C_CONVERSION
+#ifdef USE_WB_R_M_S_LEVELS_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_r_m_s_levels_from_string(this, t_str.c_str());
 #else
@@ -370,11 +376,11 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_RMS_LEVELS_C_CONVERSION
+#endif /// USE_WB_R_M_S_LEVELS_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
     };
 
 } /// namespace guWhiteboard
 
-#endif /// RMSLevels_DEFINED
+#endif /// guWhiteboard_RMSLevels_h

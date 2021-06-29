@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionControlStatus_DEFINED
-#define VisionControlStatus_DEFINED
+#ifndef guWhiteboard_VisionControlStatus_h
+#define guWhiteboard_VisionControlStatus_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_vision_control_status.h"
 #include <float.h>
+
+#undef guWhiteboard_VisionControlStatus_DEFINED
+#define guWhiteboard_VisionControlStatus_DEFINED
+
+#undef VisionControlStatus_DEFINED
+#define VisionControlStatus_DEFINED
 
 namespace guWhiteboard {
 
@@ -1323,4 +1329,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionControlStatus_DEFINED
+#endif /// guWhiteboard_VisionControlStatus_h

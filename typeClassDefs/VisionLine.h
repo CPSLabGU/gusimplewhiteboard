@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionLine_DEFINED
-#define VisionLine_DEFINED
+#ifndef guWhiteboard_VisionLine_h
+#define guWhiteboard_VisionLine_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_line.h"
+
+#undef guWhiteboard_VisionLine_DEFINED
+#define guWhiteboard_VisionLine_DEFINED
+
+#undef VisionLine_DEFINED
+#define VisionLine_DEFINED
 
 #include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
 
@@ -327,4 +333,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionLine_DEFINED
+#endif /// guWhiteboard_VisionLine_h

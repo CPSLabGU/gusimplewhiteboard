@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef NaoSonarProtectedWalkCommand_DEFINED
-#define NaoSonarProtectedWalkCommand_DEFINED
+#ifndef guWhiteboard_NaoSonarProtectedWalkCommand_h
+#define guWhiteboard_NaoSonarProtectedWalkCommand_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_nao_sonar_protected_walk_command.h"
+
+#undef guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
+#define guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
+
+#undef NaoSonarProtectedWalkCommand_DEFINED
+#define NaoSonarProtectedWalkCommand_DEFINED
 
 
 
@@ -772,4 +778,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// NaoSonarProtectedWalkCommand_DEFINED
+#endif /// guWhiteboard_NaoSonarProtectedWalkCommand_h

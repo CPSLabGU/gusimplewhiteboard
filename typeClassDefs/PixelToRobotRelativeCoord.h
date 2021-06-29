@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef PixelToRobotRelativeCoord_DEFINED
-#define PixelToRobotRelativeCoord_DEFINED
+#ifndef guWhiteboard_PixelToRobotRelativeCoord_h
+#define guWhiteboard_PixelToRobotRelativeCoord_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_pixel_to_robot_relative_coord.h"
+
+#undef guWhiteboard_PixelToRobotRelativeCoord_DEFINED
+#define guWhiteboard_PixelToRobotRelativeCoord_DEFINED
+
+#undef PixelToRobotRelativeCoord_DEFINED
+#define PixelToRobotRelativeCoord_DEFINED
 
 namespace guWhiteboard {
 
@@ -293,4 +299,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// PixelToRobotRelativeCoord_DEFINED
+#endif /// guWhiteboard_PixelToRobotRelativeCoord_h

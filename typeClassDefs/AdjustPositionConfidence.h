@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef AdjustPositionConfidence_DEFINED
-#define AdjustPositionConfidence_DEFINED
+#ifndef guWhiteboard_AdjustPositionConfidence_h
+#define guWhiteboard_AdjustPositionConfidence_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_adjust_position_confidence.h"
+
+#undef guWhiteboard_AdjustPositionConfidence_DEFINED
+#define guWhiteboard_AdjustPositionConfidence_DEFINED
+
+#undef AdjustPositionConfidence_DEFINED
+#define AdjustPositionConfidence_DEFINED
 
 namespace guWhiteboard {
 
@@ -293,4 +299,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// AdjustPositionConfidence_DEFINED
+#endif /// guWhiteboard_AdjustPositionConfidence_h

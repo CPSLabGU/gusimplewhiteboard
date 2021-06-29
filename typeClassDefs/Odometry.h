@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Odometry_DEFINED
-#define Odometry_DEFINED
+#ifndef guWhiteboard_Odometry_h
+#define guWhiteboard_Odometry_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_odometry.h"
 #include <float.h>
+
+#undef guWhiteboard_Odometry_DEFINED
+#define guWhiteboard_Odometry_DEFINED
+
+#undef Odometry_DEFINED
+#define Odometry_DEFINED
 
 namespace guWhiteboard {
 
@@ -372,4 +378,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Odometry_DEFINED
+#endif /// guWhiteboard_Odometry_h

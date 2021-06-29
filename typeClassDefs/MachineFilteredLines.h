@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MachineFilteredLines_DEFINED
-#define MachineFilteredLines_DEFINED
+#ifndef guWhiteboard_MachineFilteredLines_h
+#define guWhiteboard_MachineFilteredLines_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_machine_filtered_lines.h"
+
+#undef guWhiteboard_MachineFilteredLines_DEFINED
+#define guWhiteboard_MachineFilteredLines_DEFINED
+
+#undef MachineFilteredLines_DEFINED
+#define MachineFilteredLines_DEFINED
 
 #include "LineSighting.h"
 #include <SimpleShapes.h>
@@ -463,4 +469,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MachineFilteredLines_DEFINED
+#endif /// guWhiteboard_MachineFilteredLines_h

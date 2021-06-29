@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionDetectionBalls_DEFINED
-#define VisionDetectionBalls_DEFINED
+#ifndef guWhiteboard_VisionDetectionBalls_h
+#define guWhiteboard_VisionDetectionBalls_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_detection_balls.h"
+
+#undef guWhiteboard_VisionDetectionBalls_DEFINED
+#define guWhiteboard_VisionDetectionBalls_DEFINED
+
+#undef VisionDetectionBalls_DEFINED
+#define VisionDetectionBalls_DEFINED
 
 #include <gusimplewhiteboard/typeClassDefs/VisionDetectionBall.h>
 
@@ -484,4 +490,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionDetectionBalls_DEFINED
+#endif /// guWhiteboard_VisionDetectionBalls_h

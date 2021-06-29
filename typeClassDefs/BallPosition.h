@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef BallPosition_DEFINED
-#define BallPosition_DEFINED
+#ifndef guWhiteboard_BallPosition_h
+#define guWhiteboard_BallPosition_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_ball_position.h"
+
+#undef guWhiteboard_BallPosition_DEFINED
+#define guWhiteboard_BallPosition_DEFINED
+
+#undef BallPosition_DEFINED
+#define BallPosition_DEFINED
 
 namespace guWhiteboard {
 
@@ -458,4 +464,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// BallPosition_DEFINED
+#endif /// guWhiteboard_BallPosition_h

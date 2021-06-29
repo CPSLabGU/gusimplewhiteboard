@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef LandmarkSighting_DEFINED
-#define LandmarkSighting_DEFINED
+#ifndef guWhiteboard_LandmarkSighting_h
+#define guWhiteboard_LandmarkSighting_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_landmark_sighting.h"
+
+#undef guWhiteboard_LandmarkSighting_DEFINED
+#define guWhiteboard_LandmarkSighting_DEFINED
+
+#undef LandmarkSighting_DEFINED
+#define LandmarkSighting_DEFINED
 
 namespace guWhiteboard {
 
@@ -521,4 +527,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// LandmarkSighting_DEFINED
+#endif /// guWhiteboard_LandmarkSighting_h

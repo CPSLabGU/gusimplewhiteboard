@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef PolarCoordinate_DEFINED
-#define PolarCoordinate_DEFINED
+#ifndef guWhiteboard_PolarCoordinate_h
+#define guWhiteboard_PolarCoordinate_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_polar_coordinate.h"
+
+#undef guWhiteboard_PolarCoordinate_DEFINED
+#define guWhiteboard_PolarCoordinate_DEFINED
+
+#undef PolarCoordinate_DEFINED
+#define PolarCoordinate_DEFINED
 
 namespace guWhiteboard {
 
@@ -321,4 +327,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// PolarCoordinate_DEFINED
+#endif /// guWhiteboard_PolarCoordinate_h

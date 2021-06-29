@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef GuVrTeleopVulkanControl_DEFINED
-#define GuVrTeleopVulkanControl_DEFINED
+#ifndef guWhiteboard_GuVrTeleopVulkanControl_h
+#define guWhiteboard_GuVrTeleopVulkanControl_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_gu_vr_teleop_vulkan_control.h"
+
+#undef guWhiteboard_GuVrTeleopVulkanControl_DEFINED
+#define guWhiteboard_GuVrTeleopVulkanControl_DEFINED
+
+#undef GuVrTeleopVulkanControl_DEFINED
+#define GuVrTeleopVulkanControl_DEFINED
 
 namespace guWhiteboard {
 
@@ -485,4 +491,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// GuVrTeleopVulkanControl_DEFINED
+#endif /// guWhiteboard_GuVrTeleopVulkanControl_h

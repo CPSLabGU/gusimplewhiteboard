@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef DominantFrequencies_DEFINED
-#define DominantFrequencies_DEFINED
+#ifndef guWhiteboard_DominantFrequencies_h
+#define guWhiteboard_DominantFrequencies_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_dominant_frequencies.h"
+
+#undef guWhiteboard_DominantFrequencies_DEFINED
+#define guWhiteboard_DominantFrequencies_DEFINED
+
+#undef DominantFrequencies_DEFINED
+#define DominantFrequencies_DEFINED
 
 #include "MicrophoneFrequencies.h"
 #include "RMSLevels.h"
@@ -429,4 +435,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// DominantFrequencies_DEFINED
+#endif /// guWhiteboard_DominantFrequencies_h

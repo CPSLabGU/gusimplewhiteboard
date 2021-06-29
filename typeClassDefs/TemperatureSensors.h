@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef TemperatureSensors_DEFINED
-#define TemperatureSensors_DEFINED
+#ifndef guWhiteboard_TemperatureSensors_h
+#define guWhiteboard_TemperatureSensors_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_temperature_sensors.h"
+
+#undef guWhiteboard_TemperatureSensors_DEFINED
+#define guWhiteboard_TemperatureSensors_DEFINED
+
+#undef TemperatureSensors_DEFINED
+#define TemperatureSensors_DEFINED
 
 namespace guWhiteboard {
 
@@ -433,4 +439,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// TemperatureSensors_DEFINED
+#endif /// guWhiteboard_TemperatureSensors_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Location_DEFINED
-#define Location_DEFINED
+#ifndef guWhiteboard_Location_h
+#define guWhiteboard_Location_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_location.h"
+
+#undef guWhiteboard_Location_DEFINED
+#define guWhiteboard_Location_DEFINED
+
+#undef Location_DEFINED
+#define Location_DEFINED
 
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
@@ -521,4 +527,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Location_DEFINED
+#endif /// guWhiteboard_Location_h

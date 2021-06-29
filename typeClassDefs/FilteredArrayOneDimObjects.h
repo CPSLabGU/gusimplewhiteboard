@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef FilteredArrayOneDimObjects_DEFINED
-#define FilteredArrayOneDimObjects_DEFINED
+#ifndef guWhiteboard_FilteredArrayOneDimObjects_h
+#define guWhiteboard_FilteredArrayOneDimObjects_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_filtered_arrayonedimobjects.h"
+
+#undef guWhiteboard_FilteredArrayOneDimObjects_DEFINED
+#define guWhiteboard_FilteredArrayOneDimObjects_DEFINED
+
+#undef FilteredArrayOneDimObjects_DEFINED
+#define FilteredArrayOneDimObjects_DEFINED
 
 #include "FilteredVisionObject.h"
 
@@ -393,4 +399,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// FilteredArrayOneDimObjects_DEFINED
+#endif /// guWhiteboard_FilteredArrayOneDimObjects_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionDetectionHorizon_DEFINED
-#define VisionDetectionHorizon_DEFINED
+#ifndef guWhiteboard_VisionDetectionHorizon_h
+#define guWhiteboard_VisionDetectionHorizon_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_detection_horizon.h"
+
+#undef guWhiteboard_VisionDetectionHorizon_DEFINED
+#define guWhiteboard_VisionDetectionHorizon_DEFINED
+
+#undef VisionDetectionHorizon_DEFINED
+#define VisionDetectionHorizon_DEFINED
 
 #include "PixelCoordinate.h"
 
@@ -476,4 +482,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionDetectionHorizon_DEFINED
+#endif /// guWhiteboard_VisionDetectionHorizon_h

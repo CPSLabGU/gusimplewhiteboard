@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MissionPriorityForObstacles_DEFINED
-#define MissionPriorityForObstacles_DEFINED
+#ifndef guWhiteboard_MissionPriorityForObstacles_h
+#define guWhiteboard_MissionPriorityForObstacles_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_mission_priority_for_obstacles.h"
+
+#undef guWhiteboard_MissionPriorityForObstacles_DEFINED
+#define guWhiteboard_MissionPriorityForObstacles_DEFINED
+
+#undef MissionPriorityForObstacles_DEFINED
+#define MissionPriorityForObstacles_DEFINED
 
 
 
@@ -297,4 +303,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MissionPriorityForObstacles_DEFINED
+#endif /// guWhiteboard_MissionPriorityForObstacles_h

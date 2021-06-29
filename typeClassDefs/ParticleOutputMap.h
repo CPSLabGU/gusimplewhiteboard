@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef ParticleOutputMap_DEFINED
-#define ParticleOutputMap_DEFINED
+#ifndef guWhiteboard_ParticleOutputMap_h
+#define guWhiteboard_ParticleOutputMap_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_particle_output_map.h"
+
+#undef guWhiteboard_ParticleOutputMap_DEFINED
+#define guWhiteboard_ParticleOutputMap_DEFINED
+
+#undef ParticleOutputMap_DEFINED
+#define ParticleOutputMap_DEFINED
 
 namespace guWhiteboard {
 
@@ -339,4 +345,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// ParticleOutputMap_DEFINED
+#endif /// guWhiteboard_ParticleOutputMap_h

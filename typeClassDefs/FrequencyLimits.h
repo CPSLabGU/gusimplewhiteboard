@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef FrequencyLimits_DEFINED
-#define FrequencyLimits_DEFINED
+#ifndef guWhiteboard_FrequencyLimits_h
+#define guWhiteboard_FrequencyLimits_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_frequency_limits.h"
+
+#undef guWhiteboard_FrequencyLimits_DEFINED
+#define guWhiteboard_FrequencyLimits_DEFINED
+
+#undef FrequencyLimits_DEFINED
+#define FrequencyLimits_DEFINED
 
 namespace guWhiteboard {
 
@@ -321,4 +327,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// FrequencyLimits_DEFINED
+#endif /// guWhiteboard_FrequencyLimits_h

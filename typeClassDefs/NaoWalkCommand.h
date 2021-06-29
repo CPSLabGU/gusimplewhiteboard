@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef NaoWalkCommand_DEFINED
-#define NaoWalkCommand_DEFINED
+#ifndef guWhiteboard_NaoWalkCommand_h
+#define guWhiteboard_NaoWalkCommand_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_nao_walk_command.h"
+
+#undef guWhiteboard_NaoWalkCommand_DEFINED
+#define guWhiteboard_NaoWalkCommand_DEFINED
+
+#undef NaoWalkCommand_DEFINED
+#define NaoWalkCommand_DEFINED
 
 namespace guWhiteboard {
 
@@ -467,7 +473,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_NAO_WALK_COMMAND_C_CONVERSION
         }
 
-#ifdef USE_WB_NAOWALKCOMMAND_C_CONVERSION
+#ifdef USE_WB_NAO_WALK_COMMAND_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_nao_walk_command_from_string(this, t_str.c_str());
 #else
@@ -650,7 +656,7 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_NAOWALKCOMMAND_C_CONVERSION
+#endif /// USE_WB_NAO_WALK_COMMAND_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
@@ -735,4 +741,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// NaoWalkCommand_DEFINED
+#endif /// guWhiteboard_NaoWalkCommand_h

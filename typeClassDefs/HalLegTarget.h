@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef HalLegTarget_DEFINED
-#define HalLegTarget_DEFINED
+#ifndef guWhiteboard_HalLegTarget_h
+#define guWhiteboard_HalLegTarget_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_hal_leg_target.h"
+
+#undef guWhiteboard_HalLegTarget_DEFINED
+#define guWhiteboard_HalLegTarget_DEFINED
+
+#undef HalLegTarget_DEFINED
+#define HalLegTarget_DEFINED
 
 namespace guWhiteboard {
 
@@ -1579,4 +1585,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// HalLegTarget_DEFINED
+#endif /// guWhiteboard_HalLegTarget_h

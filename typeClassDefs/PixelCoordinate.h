@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef PixelCoordinate_DEFINED
-#define PixelCoordinate_DEFINED
+#ifndef guWhiteboard_PixelCoordinate_h
+#define guWhiteboard_PixelCoordinate_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_pixel_coordinate.h"
+
+#undef guWhiteboard_PixelCoordinate_DEFINED
+#define guWhiteboard_PixelCoordinate_DEFINED
+
+#undef PixelCoordinate_DEFINED
+#define PixelCoordinate_DEFINED
 
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
@@ -337,4 +343,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// PixelCoordinate_DEFINED
+#endif /// guWhiteboard_PixelCoordinate_h

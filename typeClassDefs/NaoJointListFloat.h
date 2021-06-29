@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef NaoJointListFloat_DEFINED
-#define NaoJointListFloat_DEFINED
+#ifndef guWhiteboard_NaoJointListFloat_h
+#define guWhiteboard_NaoJointListFloat_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_nao_joint_list_float.h"
 #include <float.h>
+
+#undef guWhiteboard_NaoJointListFloat_DEFINED
+#define guWhiteboard_NaoJointListFloat_DEFINED
+
+#undef NaoJointListFloat_DEFINED
+#define NaoJointListFloat_DEFINED
 
 namespace guWhiteboard {
 
@@ -966,4 +972,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// NaoJointListFloat_DEFINED
+#endif /// guWhiteboard_NaoJointListFloat_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Buttons_DEFINED
-#define Buttons_DEFINED
+#ifndef guWhiteboard_Buttons_h
+#define guWhiteboard_Buttons_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_buttons.h"
+
+#undef guWhiteboard_Buttons_DEFINED
+#define guWhiteboard_Buttons_DEFINED
+
+#undef Buttons_DEFINED
+#define Buttons_DEFINED
 
 namespace guWhiteboard {
 
@@ -321,4 +327,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Buttons_DEFINED
+#endif /// guWhiteboard_Buttons_h

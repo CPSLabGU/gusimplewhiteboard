@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef LineSighting_DEFINED
-#define LineSighting_DEFINED
+#ifndef guWhiteboard_LineSighting_h
+#define guWhiteboard_LineSighting_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_line_sighting.h"
+
+#undef guWhiteboard_LineSighting_DEFINED
+#define guWhiteboard_LineSighting_DEFINED
+
+#undef LineSighting_DEFINED
+#define LineSighting_DEFINED
 
 #include "PolarCoordinate.h"
 #include <SimpleShapes.h>
@@ -399,4 +405,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// LineSighting_DEFINED
+#endif /// guWhiteboard_LineSighting_h

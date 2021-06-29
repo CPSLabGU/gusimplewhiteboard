@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionDetectionGoalPost_DEFINED
-#define VisionDetectionGoalPost_DEFINED
+#ifndef guWhiteboard_VisionDetectionGoalPost_h
+#define guWhiteboard_VisionDetectionGoalPost_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_detection_goal_post.h"
+
+#undef guWhiteboard_VisionDetectionGoalPost_DEFINED
+#define guWhiteboard_VisionDetectionGoalPost_DEFINED
+
+#undef VisionDetectionGoalPost_DEFINED
+#define VisionDetectionGoalPost_DEFINED
 
 #include "PixelCoordinate.h"
 
@@ -579,4 +585,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionDetectionGoalPost_DEFINED
+#endif /// guWhiteboard_VisionDetectionGoalPost_h

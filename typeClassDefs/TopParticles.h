@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef TopParticles_DEFINED
-#define TopParticles_DEFINED
+#ifndef guWhiteboard_TopParticles_h
+#define guWhiteboard_TopParticles_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_top_particles.h"
+
+#undef guWhiteboard_TopParticles_DEFINED
+#define guWhiteboard_TopParticles_DEFINED
+
+#undef TopParticles_DEFINED
+#define TopParticles_DEFINED
 
 #define TOPPARTICLES_PARTICLES_ARRAY_SIZE 4
 
@@ -234,7 +240,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_TOP_PARTICLES_C_CONVERSION
         }
 
-#ifdef USE_WB_TOPPARTICLES_C_CONVERSION
+#ifdef USE_WB_TOP_PARTICLES_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_top_particles_from_string(this, t_str.c_str());
 #else
@@ -388,7 +394,7 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_TOPPARTICLES_C_CONVERSION
+#endif /// USE_WB_TOP_PARTICLES_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
@@ -399,4 +405,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// TopParticles_DEFINED
+#endif /// guWhiteboard_TopParticles_h

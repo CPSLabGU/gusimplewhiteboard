@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MicrophoneFrequencies_DEFINED
-#define MicrophoneFrequencies_DEFINED
+#ifndef guWhiteboard_MicrophoneFrequencies_h
+#define guWhiteboard_MicrophoneFrequencies_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_microphone_frequencies.h"
+
+#undef guWhiteboard_MicrophoneFrequencies_DEFINED
+#define guWhiteboard_MicrophoneFrequencies_DEFINED
+
+#undef MicrophoneFrequencies_DEFINED
+#define MicrophoneFrequencies_DEFINED
 
 namespace guWhiteboard {
 
@@ -377,4 +383,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MicrophoneFrequencies_DEFINED
+#endif /// guWhiteboard_MicrophoneFrequencies_h

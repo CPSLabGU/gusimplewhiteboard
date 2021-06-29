@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef NaoObstacleDirection_DEFINED
-#define NaoObstacleDirection_DEFINED
+#ifndef guWhiteboard_NaoObstacleDirection_h
+#define guWhiteboard_NaoObstacleDirection_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_nao_obstacle_direction.h"
+
+#undef guWhiteboard_NaoObstacleDirection_DEFINED
+#define guWhiteboard_NaoObstacleDirection_DEFINED
+
+#undef NaoObstacleDirection_DEFINED
+#define NaoObstacleDirection_DEFINED
 
 
 
@@ -363,4 +369,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// NaoObstacleDirection_DEFINED
+#endif /// guWhiteboard_NaoObstacleDirection_h

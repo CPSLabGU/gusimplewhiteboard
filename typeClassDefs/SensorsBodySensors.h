@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef SensorsBodySensors_DEFINED
-#define SensorsBodySensors_DEFINED
+#ifndef guWhiteboard_SensorsBodySensors_h
+#define guWhiteboard_SensorsBodySensors_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_sensors_body_sensors.h"
 #include <float.h>
+
+#undef guWhiteboard_SensorsBodySensors_DEFINED
+#define guWhiteboard_SensorsBodySensors_DEFINED
+
+#undef SensorsBodySensors_DEFINED
+#define SensorsBodySensors_DEFINED
 
 namespace guWhiteboard {
 
@@ -826,4 +832,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// SensorsBodySensors_DEFINED
+#endif /// guWhiteboard_SensorsBodySensors_h

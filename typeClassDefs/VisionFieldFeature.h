@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionFieldFeature_DEFINED
-#define VisionFieldFeature_DEFINED
+#ifndef guWhiteboard_VisionFieldFeature_h
+#define guWhiteboard_VisionFieldFeature_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_field_feature.h"
+
+#undef guWhiteboard_VisionFieldFeature_DEFINED
+#define guWhiteboard_VisionFieldFeature_DEFINED
+
+#undef VisionFieldFeature_DEFINED
+#define VisionFieldFeature_DEFINED
 
 #include "PixelCoordinate.h"
 
@@ -333,4 +339,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionFieldFeature_DEFINED
+#endif /// guWhiteboard_VisionFieldFeature_h

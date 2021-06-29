@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef TeleoperationControl_DEFINED
-#define TeleoperationControl_DEFINED
+#ifndef guWhiteboard_TeleoperationControl_h
+#define guWhiteboard_TeleoperationControl_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_teleoperation_control.h"
+
+#undef guWhiteboard_TeleoperationControl_DEFINED
+#define guWhiteboard_TeleoperationControl_DEFINED
+
+#undef TeleoperationControl_DEFINED
+#define TeleoperationControl_DEFINED
 
 namespace guWhiteboard {
 
@@ -317,7 +323,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_TELEOPERATION_CONTROL_C_CONVERSION
         }
 
-#ifdef USE_WB_TELEOPERATIONCONTROL_C_CONVERSION
+#ifdef USE_WB_TELEOPERATION_CONTROL_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_teleoperation_control_from_string(this, t_str.c_str());
 #else
@@ -444,11 +450,11 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_TELEOPERATIONCONTROL_C_CONVERSION
+#endif /// USE_WB_TELEOPERATION_CONTROL_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
     };
 
 } /// namespace guWhiteboard
 
-#endif /// TeleoperationControl_DEFINED
+#endif /// guWhiteboard_TeleoperationControl_h

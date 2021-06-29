@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionLines_DEFINED
-#define VisionLines_DEFINED
+#ifndef guWhiteboard_VisionLines_h
+#define guWhiteboard_VisionLines_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_lines.h"
+
+#undef guWhiteboard_VisionLines_DEFINED
+#define guWhiteboard_VisionLines_DEFINED
+
+#undef VisionLines_DEFINED
+#define VisionLines_DEFINED
 
 #include <gusimplewhiteboard/typeClassDefs/VisionLine.h>
 
@@ -512,4 +518,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionLines_DEFINED
+#endif /// guWhiteboard_VisionLines_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef ParticlePosition_DEFINED
-#define ParticlePosition_DEFINED
+#ifndef guWhiteboard_ParticlePosition_h
+#define guWhiteboard_ParticlePosition_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_particle_position.h"
 #include <float.h>
+
+#undef guWhiteboard_ParticlePosition_DEFINED
+#define guWhiteboard_ParticlePosition_DEFINED
+
+#undef ParticlePosition_DEFINED
+#define ParticlePosition_DEFINED
 
 #include "Point2D.h"
 
@@ -354,4 +360,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// ParticlePosition_DEFINED
+#endif /// guWhiteboard_ParticlePosition_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MemoryImageControlStatus_DEFINED
-#define MemoryImageControlStatus_DEFINED
+#ifndef guWhiteboard_MemoryImageControlStatus_h
+#define guWhiteboard_MemoryImageControlStatus_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_memory_image_control_status.h"
+
+#undef guWhiteboard_MemoryImageControlStatus_DEFINED
+#define guWhiteboard_MemoryImageControlStatus_DEFINED
+
+#undef MemoryImageControlStatus_DEFINED
+#define MemoryImageControlStatus_DEFINED
 
 namespace guWhiteboard {
 
@@ -401,4 +407,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MemoryImageControlStatus_DEFINED
+#endif /// guWhiteboard_MemoryImageControlStatus_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef VisionDetectionFeature_DEFINED
-#define VisionDetectionFeature_DEFINED
+#ifndef guWhiteboard_VisionDetectionFeature_h
+#define guWhiteboard_VisionDetectionFeature_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_vision_detection_feature.h"
+
+#undef guWhiteboard_VisionDetectionFeature_DEFINED
+#define guWhiteboard_VisionDetectionFeature_DEFINED
+
+#undef VisionDetectionFeature_DEFINED
+#define VisionDetectionFeature_DEFINED
 
 #include <gusimplewhiteboard/typeClassDefs/PolarCoordinate.h>
 
@@ -407,4 +413,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// VisionDetectionFeature_DEFINED
+#endif /// guWhiteboard_VisionDetectionFeature_h

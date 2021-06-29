@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MachineFilteredLocalisationVision_DEFINED
-#define MachineFilteredLocalisationVision_DEFINED
+#ifndef guWhiteboard_MachineFilteredLocalisationVision_h
+#define guWhiteboard_MachineFilteredLocalisationVision_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_machine_filtered_localisation_vision.h"
+
+#undef guWhiteboard_MachineFilteredLocalisationVision_DEFINED
+#define guWhiteboard_MachineFilteredLocalisationVision_DEFINED
+
+#undef MachineFilteredLocalisationVision_DEFINED
+#define MachineFilteredLocalisationVision_DEFINED
 
 #include "LandmarkSighting.h"
 
@@ -494,4 +500,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MachineFilteredLocalisationVision_DEFINED
+#endif /// guWhiteboard_MachineFilteredLocalisationVision_h

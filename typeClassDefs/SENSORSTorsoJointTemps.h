@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef SENSORSTorsoJointTemps_DEFINED
-#define SENSORSTorsoJointTemps_DEFINED
+#ifndef guWhiteboard_SENSORSTorsoJointTemps_h
+#define guWhiteboard_SENSORSTorsoJointTemps_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -69,6 +69,12 @@
 #include <gu_util.h>
 #include "wb_sensors_torsojointtemps.h"
 #include <float.h>
+
+#undef guWhiteboard_SENSORSTorsoJointTemps_DEFINED
+#define guWhiteboard_SENSORSTorsoJointTemps_DEFINED
+
+#undef SENSORSTorsoJointTemps_DEFINED
+#define SENSORSTorsoJointTemps_DEFINED
 
 namespace guWhiteboard {
 
@@ -686,4 +692,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// SENSORSTorsoJointTemps_DEFINED
+#endif /// guWhiteboard_SENSORSTorsoJointTemps_h

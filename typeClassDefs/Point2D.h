@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Point2D_DEFINED
-#define Point2D_DEFINED
+#ifndef guWhiteboard_Point2D_h
+#define guWhiteboard_Point2D_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_point2d.h"
+
+#undef guWhiteboard_Point2D_DEFINED
+#define guWhiteboard_Point2D_DEFINED
+
+#undef Point2D_DEFINED
+#define Point2D_DEFINED
 
 namespace guWhiteboard {
 
@@ -321,4 +327,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Point2D_DEFINED
+#endif /// guWhiteboard_Point2D_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef DataLogger_DEFINED
-#define DataLogger_DEFINED
+#ifndef guWhiteboard_DataLogger_h
+#define guWhiteboard_DataLogger_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_data_logger.h"
+
+#undef guWhiteboard_DataLogger_DEFINED
+#define guWhiteboard_DataLogger_DEFINED
+
+#undef DataLogger_DEFINED
+#define DataLogger_DEFINED
 
 namespace guWhiteboard {
 
@@ -497,4 +503,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// DataLogger_DEFINED
+#endif /// guWhiteboard_DataLogger_h

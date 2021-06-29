@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MyPosition_DEFINED
-#define MyPosition_DEFINED
+#ifndef guWhiteboard_MyPosition_h
+#define guWhiteboard_MyPosition_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_my_position.h"
+
+#undef guWhiteboard_MyPosition_DEFINED
+#define guWhiteboard_MyPosition_DEFINED
+
+#undef MyPosition_DEFINED
+#define MyPosition_DEFINED
 
 namespace guWhiteboard {
 
@@ -349,4 +355,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MyPosition_DEFINED
+#endif /// guWhiteboard_MyPosition_h

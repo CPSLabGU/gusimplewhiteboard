@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef MicrowaveStatus_DEFINED
-#define MicrowaveStatus_DEFINED
+#ifndef guWhiteboard_MicrowaveStatus_h
+#define guWhiteboard_MicrowaveStatus_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_microwave_status.h"
+
+#undef guWhiteboard_MicrowaveStatus_DEFINED
+#define guWhiteboard_MicrowaveStatus_DEFINED
+
+#undef MicrowaveStatus_DEFINED
+#define MicrowaveStatus_DEFINED
 
 namespace guWhiteboard {
 
@@ -349,4 +355,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// MicrowaveStatus_DEFINED
+#endif /// guWhiteboard_MicrowaveStatus_h

@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef Input3D_DEFINED
-#define Input3D_DEFINED
+#ifndef guWhiteboard_Input3D_h
+#define guWhiteboard_Input3D_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_input3d.h"
+
+#undef guWhiteboard_Input3D_DEFINED
+#define guWhiteboard_Input3D_DEFINED
+
+#undef Input3D_DEFINED
+#define Input3D_DEFINED
 
 namespace guWhiteboard {
 
@@ -377,4 +383,4 @@ namespace guWhiteboard {
 
 } /// namespace guWhiteboard
 
-#endif /// Input3D_DEFINED
+#endif /// guWhiteboard_Input3D_h

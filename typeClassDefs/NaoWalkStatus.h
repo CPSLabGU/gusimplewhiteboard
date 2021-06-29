@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef NaoWalkStatus_DEFINED
-#define NaoWalkStatus_DEFINED
+#ifndef guWhiteboard_NaoWalkStatus_h
+#define guWhiteboard_NaoWalkStatus_h
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
 #include <cstdlib>
@@ -68,6 +68,12 @@
 
 #include <gu_util.h>
 #include "wb_nao_walk_status.h"
+
+#undef guWhiteboard_NaoWalkStatus_DEFINED
+#define guWhiteboard_NaoWalkStatus_DEFINED
+
+#undef NaoWalkStatus_DEFINED
+#define NaoWalkStatus_DEFINED
 
 #include "Odometry.h"
 
@@ -280,7 +286,7 @@ namespace guWhiteboard {
 #endif /// USE_WB_NAO_WALK_STATUS_C_CONVERSION
         }
 
-#ifdef USE_WB_NAOWALKSTATUS_C_CONVERSION
+#ifdef USE_WB_NAO_WALK_STATUS_C_CONVERSION
         void from_string(const std::string &t_str) {
             wb_nao_walk_status_from_string(this, t_str.c_str());
 #else
@@ -413,11 +419,11 @@ namespace guWhiteboard {
                     varIndex++;
                 }
             } while(index < length);
-#endif /// USE_WB_NAOWALKSTATUS_C_CONVERSION
+#endif /// USE_WB_NAO_WALK_STATUS_C_CONVERSION
         }
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
     };
 
 } /// namespace guWhiteboard
 
-#endif /// NaoWalkStatus_DEFINED
+#endif /// guWhiteboard_NaoWalkStatus_h
