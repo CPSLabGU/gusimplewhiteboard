@@ -55,10 +55,10 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef FSMControlStatus_DEFINED
-#define FSMControlStatus_DEFINED
-#define FSMNames_DEFINED
-#define FSMState_DEFINED
+#ifndef guWhiteboard_FSMControlStatus_DEFINED
+#define guWhiteboard_FSMControlStatus_DEFINED
+#define guWhiteboard_FSMNames_DEFINED 
+#define guWhiteboard_FSMNames_DEFINED 
 
 
 #include <cstdlib>
