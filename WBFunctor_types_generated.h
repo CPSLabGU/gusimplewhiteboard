@@ -177,7 +177,7 @@ public:
 }; 
 
 
-#ifdef GCGAMESTATE_DEFINED
+#ifdef guWhiteboard_GCGameState_DEFINED
 /** WBFunctor definition for GCGameState_WBFunctor_T */ 
 template <typename GCGameState_WBFunctor_T >
 class GCGameState_WBFunctor: public WBFunctor<GCGameState_WBFunctor_T > {
@@ -198,9 +198,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(GCGameState_WBFunctor_T *obj, void (GCGameState_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::GCGameState &), guWhiteboard::wb_types t) { return new GCGameState_WBFunctor<GCGameState_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //GCGAMESTATE_DEFINED
+#endif //guWhiteboard_GCGameState_DEFINED
 
-#ifdef SENSORSHANDSENSORS_DEFINED
+#ifdef guWhiteboard_SensorsHandSensors_DEFINED
 /** WBFunctor definition for SensorsHandSensors_WBFunctor_T */ 
 template <typename SensorsHandSensors_WBFunctor_T >
 class SensorsHandSensors_WBFunctor: public WBFunctor<SensorsHandSensors_WBFunctor_T > {
@@ -221,9 +221,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SensorsHandSensors_WBFunctor_T *obj, void (SensorsHandSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SensorsHandSensors &), guWhiteboard::wb_types t) { return new SensorsHandSensors_WBFunctor<SensorsHandSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSHANDSENSORS_DEFINED
+#endif //guWhiteboard_SensorsHandSensors_DEFINED
 
-#ifdef SENSORSHEADSENSORS_DEFINED
+#ifdef guWhiteboard_SensorsHeadSensors_DEFINED
 /** WBFunctor definition for SensorsHeadSensors_WBFunctor_T */ 
 template <typename SensorsHeadSensors_WBFunctor_T >
 class SensorsHeadSensors_WBFunctor: public WBFunctor<SensorsHeadSensors_WBFunctor_T > {
@@ -244,9 +244,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SensorsHeadSensors_WBFunctor_T *obj, void (SensorsHeadSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SensorsHeadSensors &), guWhiteboard::wb_types t) { return new SensorsHeadSensors_WBFunctor<SensorsHeadSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSHEADSENSORS_DEFINED
+#endif //guWhiteboard_SensorsHeadSensors_DEFINED
 
-#ifdef MOTION_COMMANDS_DEFINED
+#ifdef guWhiteboard_MOTIONCommands_DEFINED
 /** WBFunctor definition for MOTION_Commands_WBFunctor_T */ 
 template <typename MOTION_Commands_WBFunctor_T >
 class MOTION_Commands_WBFunctor: public WBFunctor<MOTION_Commands_WBFunctor_T > {
@@ -267,9 +267,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MOTION_Commands_WBFunctor_T *obj, void (MOTION_Commands_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MOTION_Commands &), guWhiteboard::wb_types t) { return new MOTION_Commands_WBFunctor<MOTION_Commands_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MOTION_COMMANDS_DEFINED
+#endif //guWhiteboard_MOTIONCommands_DEFINED
 
-#ifdef MOTION_STATUS_DEFINED
+#ifdef guWhiteboard_MOTIONStatus_DEFINED
 /** WBFunctor definition for MOTION_Status_WBFunctor_T */ 
 template <typename MOTION_Status_WBFunctor_T >
 class MOTION_Status_WBFunctor: public WBFunctor<MOTION_Status_WBFunctor_T > {
@@ -290,9 +290,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MOTION_Status_WBFunctor_T *obj, void (MOTION_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MOTION_Status &), guWhiteboard::wb_types t) { return new MOTION_Status_WBFunctor<MOTION_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MOTION_STATUS_DEFINED
+#endif //guWhiteboard_MOTIONStatus_DEFINED
 
-#ifdef HAL_HEADTARGET_DEFINED
+#ifdef guWhiteboard_HALHeadTarget_DEFINED
 /** WBFunctor definition for HAL_HeadTarget_WBFunctor_T */ 
 template <typename HAL_HeadTarget_WBFunctor_T >
 class HAL_HeadTarget_WBFunctor: public WBFunctor<HAL_HeadTarget_WBFunctor_T > {
@@ -313,9 +313,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_HeadTarget_WBFunctor_T *obj, void (HAL_HeadTarget_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HAL_HeadTarget &), guWhiteboard::wb_types t) { return new HAL_HeadTarget_WBFunctor<HAL_HeadTarget_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HAL_HEADTARGET_DEFINED
+#endif //guWhiteboard_HALHeadTarget_DEFINED
 
-#ifdef SENSORSFOOTSENSORS_DEFINED
+#ifdef guWhiteboard_SensorsFootSensors_DEFINED
 /** WBFunctor definition for SensorsFootSensors_WBFunctor_T */ 
 template <typename SensorsFootSensors_WBFunctor_T >
 class SensorsFootSensors_WBFunctor: public WBFunctor<SensorsFootSensors_WBFunctor_T > {
@@ -336,9 +336,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SensorsFootSensors_WBFunctor_T *obj, void (SensorsFootSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SensorsFootSensors &), guWhiteboard::wb_types t) { return new SensorsFootSensors_WBFunctor<SensorsFootSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSFOOTSENSORS_DEFINED
+#endif //guWhiteboard_SensorsFootSensors_DEFINED
 
-#ifdef SENSORSBODYSENSORS_DEFINED
+#ifdef guWhiteboard_SensorsBodySensors_DEFINED
 /** WBFunctor definition for SensorsBodySensors_WBFunctor_T */ 
 template <typename SensorsBodySensors_WBFunctor_T >
 class SensorsBodySensors_WBFunctor: public WBFunctor<SensorsBodySensors_WBFunctor_T > {
@@ -359,9 +359,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SensorsBodySensors_WBFunctor_T *obj, void (SensorsBodySensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SensorsBodySensors &), guWhiteboard::wb_types t) { return new SensorsBodySensors_WBFunctor<SensorsBodySensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSBODYSENSORS_DEFINED
+#endif //guWhiteboard_SensorsBodySensors_DEFINED
 
-#ifdef SENSORSLEDSSENSORS_DEFINED
+#ifdef guWhiteboard_SENSORSLedsSensors_DEFINED
 /** WBFunctor definition for SENSORSLedsSensors_WBFunctor_T */ 
 template <typename SENSORSLedsSensors_WBFunctor_T >
 class SENSORSLedsSensors_WBFunctor: public WBFunctor<SENSORSLedsSensors_WBFunctor_T > {
@@ -382,9 +382,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSLedsSensors_WBFunctor_T *obj, void (SENSORSLedsSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSLedsSensors &), guWhiteboard::wb_types t) { return new SENSORSLedsSensors_WBFunctor<SENSORSLedsSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSLEDSSENSORS_DEFINED
+#endif //guWhiteboard_SENSORSLedsSensors_DEFINED
 
-#ifdef SENSORSLEGJOINTTEMPS_DEFINED
+#ifdef guWhiteboard_SENSORSLegJointTemps_DEFINED
 /** WBFunctor definition for SENSORSLegJointTemps_WBFunctor_T */ 
 template <typename SENSORSLegJointTemps_WBFunctor_T >
 class SENSORSLegJointTemps_WBFunctor: public WBFunctor<SENSORSLegJointTemps_WBFunctor_T > {
@@ -405,9 +405,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSLegJointTemps_WBFunctor_T *obj, void (SENSORSLegJointTemps_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSLegJointTemps &), guWhiteboard::wb_types t) { return new SENSORSLegJointTemps_WBFunctor<SENSORSLegJointTemps_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSLEGJOINTTEMPS_DEFINED
+#endif //guWhiteboard_SENSORSLegJointTemps_DEFINED
 
-#ifdef SENSORSTORSOJOINTTEMPS_DEFINED
+#ifdef guWhiteboard_SENSORSTorsoJointTemps_DEFINED
 /** WBFunctor definition for SENSORSTorsoJointTemps_WBFunctor_T */ 
 template <typename SENSORSTorsoJointTemps_WBFunctor_T >
 class SENSORSTorsoJointTemps_WBFunctor: public WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T > {
@@ -428,9 +428,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSTorsoJointTemps_WBFunctor_T *obj, void (SENSORSTorsoJointTemps_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSTorsoJointTemps &), guWhiteboard::wb_types t) { return new SENSORSTorsoJointTemps_WBFunctor<SENSORSTorsoJointTemps_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSTORSOJOINTTEMPS_DEFINED
+#endif //guWhiteboard_SENSORSTorsoJointTemps_DEFINED
 
-#ifdef SENSORSLEGJOINTSENSORS_DEFINED
+#ifdef guWhiteboard_SENSORSLegJointSensors_DEFINED
 /** WBFunctor definition for SENSORSLegJointSensors_WBFunctor_T */ 
 template <typename SENSORSLegJointSensors_WBFunctor_T >
 class SENSORSLegJointSensors_WBFunctor: public WBFunctor<SENSORSLegJointSensors_WBFunctor_T > {
@@ -451,9 +451,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSLegJointSensors_WBFunctor_T *obj, void (SENSORSLegJointSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSLegJointSensors &), guWhiteboard::wb_types t) { return new SENSORSLegJointSensors_WBFunctor<SENSORSLegJointSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSLEGJOINTSENSORS_DEFINED
+#endif //guWhiteboard_SENSORSLegJointSensors_DEFINED
 
-#ifdef SENSORSTORSOJOINTSENSORS_DEFINED
+#ifdef guWhiteboard_SENSORSTorsoJointSensors_DEFINED
 /** WBFunctor definition for SENSORSTorsoJointSensors_WBFunctor_T */ 
 template <typename SENSORSTorsoJointSensors_WBFunctor_T >
 class SENSORSTorsoJointSensors_WBFunctor: public WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T > {
@@ -474,9 +474,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSTorsoJointSensors_WBFunctor_T *obj, void (SENSORSTorsoJointSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSTorsoJointSensors &), guWhiteboard::wb_types t) { return new SENSORSTorsoJointSensors_WBFunctor<SENSORSTorsoJointSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSTORSOJOINTSENSORS_DEFINED
+#endif //guWhiteboard_SENSORSTorsoJointSensors_DEFINED
 
-#ifdef SENSORSSONARSENSORS_DEFINED
+#ifdef guWhiteboard_SENSORSSonarSensors_DEFINED
 /** WBFunctor definition for SENSORSSonarSensors_WBFunctor_T */ 
 template <typename SENSORSSonarSensors_WBFunctor_T >
 class SENSORSSonarSensors_WBFunctor: public WBFunctor<SENSORSSonarSensors_WBFunctor_T > {
@@ -497,9 +497,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SENSORSSonarSensors_WBFunctor_T *obj, void (SENSORSSonarSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SENSORSSonarSensors &), guWhiteboard::wb_types t) { return new SENSORSSonarSensors_WBFunctor<SENSORSSonarSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SENSORSSONARSENSORS_DEFINED
+#endif //guWhiteboard_SENSORSSonarSensors_DEFINED
 
-#ifdef FSMCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_FSMControlStatus_DEFINED
 /** WBFunctor definition for FSM_Control_WBFunctor_T */ 
 template <typename FSM_Control_WBFunctor_T >
 class FSM_Control_WBFunctor: public WBFunctor<FSM_Control_WBFunctor_T > {
@@ -520,9 +520,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FSM_Control_WBFunctor_T *obj, void (FSM_Control_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FSMControlStatus &), guWhiteboard::wb_types t) { return new FSM_Control_WBFunctor<FSM_Control_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FSMCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_FSMControlStatus_DEFINED
 
-#ifdef FSMCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_FSMControlStatus_DEFINED
 /** WBFunctor definition for FSM_Status_WBFunctor_T */ 
 template <typename FSM_Status_WBFunctor_T >
 class FSM_Status_WBFunctor: public WBFunctor<FSM_Status_WBFunctor_T > {
@@ -543,9 +543,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FSM_Status_WBFunctor_T *obj, void (FSM_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FSMControlStatus &), guWhiteboard::wb_types t) { return new FSM_Status_WBFunctor<FSM_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FSMCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_FSMControlStatus_DEFINED
 
-#ifdef FSMNAMES_DEFINED
+#ifdef guWhiteboard_FSMNames_DEFINED
 /** WBFunctor definition for FSM_Names_WBFunctor_T */ 
 template <typename FSM_Names_WBFunctor_T >
 class FSM_Names_WBFunctor: public WBFunctor<FSM_Names_WBFunctor_T > {
@@ -566,7 +566,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FSM_Names_WBFunctor_T *obj, void (FSM_Names_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FSMNames &), guWhiteboard::wb_types t) { return new FSM_Names_WBFunctor<FSM_Names_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FSMNAMES_DEFINED
+#endif //guWhiteboard_FSMNames_DEFINED
 
 
 /** WBFunctor definition for SoloTypeExample_WBFunctor_T */ 
@@ -591,7 +591,7 @@ public:
 }; 
 
 
-#ifdef FILTEREDARRAYONEDIMOBJECTS_DEFINED
+#ifdef guWhiteboard_FilteredArrayOneDimObjects_DEFINED
 /** WBFunctor definition for FilteredGoalSighting_WBFunctor_T */ 
 template <typename FilteredGoalSighting_WBFunctor_T >
 class FilteredGoalSighting_WBFunctor: public WBFunctor<FilteredGoalSighting_WBFunctor_T > {
@@ -612,9 +612,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FilteredGoalSighting_WBFunctor_T *obj, void (FilteredGoalSighting_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FilteredArrayOneDimObjects &), guWhiteboard::wb_types t) { return new FilteredGoalSighting_WBFunctor<FilteredGoalSighting_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FILTEREDARRAYONEDIMOBJECTS_DEFINED
+#endif //guWhiteboard_FilteredArrayOneDimObjects_DEFINED
 
-#ifdef NAO_STATE_DEFINED
+#ifdef guWhiteboard_NAOState_DEFINED
 /** WBFunctor definition for NAO_State_WBFunctor_T */ 
 template <typename NAO_State_WBFunctor_T >
 class NAO_State_WBFunctor: public WBFunctor<NAO_State_WBFunctor_T > {
@@ -635,9 +635,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NAO_State_WBFunctor_T *obj, void (NAO_State_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NAO_State &), guWhiteboard::wb_types t) { return new NAO_State_WBFunctor<NAO_State_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAO_STATE_DEFINED
+#endif //guWhiteboard_NAOState_DEFINED
 
-#ifdef GCGAMESTATE_DEFINED
+#ifdef guWhiteboard_GCGameState_DEFINED
 /** WBFunctor definition for UDPRN_WBFunctor_T */ 
 template <typename UDPRN_WBFunctor_T >
 class UDPRN_WBFunctor: public WBFunctor<UDPRN_WBFunctor_T > {
@@ -658,7 +658,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(UDPRN_WBFunctor_T *obj, void (UDPRN_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::GCGameState &), guWhiteboard::wb_types t) { return new UDPRN_WBFunctor<UDPRN_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //GCGAMESTATE_DEFINED
+#endif //guWhiteboard_GCGameState_DEFINED
 
 
 /** WBFunctor definition for PlayerNumber_WBFunctor_T */ 
@@ -706,7 +706,7 @@ public:
 }; 
 
 
-#ifdef VISIONCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_VisionControlStatus_DEFINED
 /** WBFunctor definition for VisionControl_WBFunctor_T */ 
 template <typename VisionControl_WBFunctor_T >
 class VisionControl_WBFunctor: public WBFunctor<VisionControl_WBFunctor_T > {
@@ -727,9 +727,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionControl_WBFunctor_T *obj, void (VisionControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionControlStatus &), guWhiteboard::wb_types t) { return new VisionControl_WBFunctor<VisionControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_VisionControlStatus_DEFINED
 
-#ifdef VISIONCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_VisionControlStatus_DEFINED
 /** WBFunctor definition for VisionStatus_WBFunctor_T */ 
 template <typename VisionStatus_WBFunctor_T >
 class VisionStatus_WBFunctor: public WBFunctor<VisionStatus_WBFunctor_T > {
@@ -750,9 +750,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionStatus_WBFunctor_T *obj, void (VisionStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionControlStatus &), guWhiteboard::wb_types t) { return new VisionStatus_WBFunctor<VisionStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_VisionControlStatus_DEFINED
 
-#ifdef FFTSTATUS_DEFINED
+#ifdef guWhiteboard_FFTStatus_DEFINED
 /** WBFunctor definition for FFTStatus_WBFunctor_T */ 
 template <typename FFTStatus_WBFunctor_T >
 class FFTStatus_WBFunctor: public WBFunctor<FFTStatus_WBFunctor_T > {
@@ -773,9 +773,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FFTStatus_WBFunctor_T *obj, void (FFTStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FFTStatus &), guWhiteboard::wb_types t) { return new FFTStatus_WBFunctor<FFTStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FFTSTATUS_DEFINED
+#endif //guWhiteboard_FFTStatus_DEFINED
 
-#ifdef FILTEREDARRAYONEDIMSONAR_DEFINED
+#ifdef guWhiteboard_FilteredArrayOneDimSonar_DEFINED
 /** WBFunctor definition for FSOsighting_WBFunctor_T */ 
 template <typename FSOsighting_WBFunctor_T >
 class FSOsighting_WBFunctor: public WBFunctor<FSOsighting_WBFunctor_T > {
@@ -796,9 +796,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FSOsighting_WBFunctor_T *obj, void (FSOsighting_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FilteredArrayOneDimSonar &), guWhiteboard::wb_types t) { return new FSOsighting_WBFunctor<FSOsighting_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FILTEREDARRAYONEDIMSONAR_DEFINED
+#endif //guWhiteboard_FilteredArrayOneDimSonar_DEFINED
 
-#ifdef TOPPARTICLES_DEFINED
+#ifdef guWhiteboard_TopParticles_DEFINED
 /** WBFunctor definition for TopParticles_WBFunctor_T */ 
 template <typename TopParticles_WBFunctor_T >
 class TopParticles_WBFunctor: public WBFunctor<TopParticles_WBFunctor_T > {
@@ -819,9 +819,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TopParticles_WBFunctor_T *obj, void (TopParticles_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TopParticles &), guWhiteboard::wb_types t) { return new TopParticles_WBFunctor<TopParticles_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TOPPARTICLES_DEFINED
+#endif //guWhiteboard_TopParticles_DEFINED
 
-#ifdef FILTEREDARRAYBALLSIGHTINGS_DEFINED
+#ifdef guWhiteboard_FilteredArrayBallSightings_DEFINED
 /** WBFunctor definition for FilteredBallSighting_WBFunctor_T */ 
 template <typename FilteredBallSighting_WBFunctor_T >
 class FilteredBallSighting_WBFunctor: public WBFunctor<FilteredBallSighting_WBFunctor_T > {
@@ -842,7 +842,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FilteredBallSighting_WBFunctor_T *obj, void (FilteredBallSighting_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FilteredArrayBallSightings &), guWhiteboard::wb_types t) { return new FilteredBallSighting_WBFunctor<FilteredBallSighting_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FILTEREDARRAYBALLSIGHTINGS_DEFINED
+#endif //guWhiteboard_FilteredArrayBallSightings_DEFINED
 
 
 /** WBFunctor definition for PF_ControlStatus_Modes_WBFunctor_T */ 
@@ -867,7 +867,7 @@ public:
 }; 
 
 
-#ifdef WEBOTS_NXT_BRIDGE_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTBridge_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_bridge_WBFunctor_T */ 
 template <typename WEBOTS_NXT_bridge_WBFunctor_T >
 class WEBOTS_NXT_bridge_WBFunctor: public WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T > {
@@ -888,9 +888,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_bridge_WBFunctor_T *obj, void (WEBOTS_NXT_bridge_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_bridge &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_bridge_WBFunctor<WEBOTS_NXT_bridge_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_BRIDGE_DEFINED
+#endif //guWhiteboard_WEBOTSNXTBridge_DEFINED
 
-#ifdef WEBOTS_NXT_ENCODERS_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTEncoders_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_encoders_WBFunctor_T */ 
 template <typename WEBOTS_NXT_encoders_WBFunctor_T >
 class WEBOTS_NXT_encoders_WBFunctor: public WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T > {
@@ -911,9 +911,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_encoders_WBFunctor_T *obj, void (WEBOTS_NXT_encoders_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_encoders &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_encoders_WBFunctor<WEBOTS_NXT_encoders_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_ENCODERS_DEFINED
+#endif //guWhiteboard_WEBOTSNXTEncoders_DEFINED
 
-#ifdef WEBOTS_NXT_CAMERA_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTCamera_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_camera_WBFunctor_T */ 
 template <typename WEBOTS_NXT_camera_WBFunctor_T >
 class WEBOTS_NXT_camera_WBFunctor: public WBFunctor<WEBOTS_NXT_camera_WBFunctor_T > {
@@ -934,9 +934,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_camera_WBFunctor_T *obj, void (WEBOTS_NXT_camera_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_camera &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_camera_WBFunctor<WEBOTS_NXT_camera_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_CAMERA_DEFINED
+#endif //guWhiteboard_WEBOTSNXTCamera_DEFINED
 
-#ifdef WEBOTS_NXT_WALK_ISRUNNING_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTWalkIsRunning_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_walk_isRunning_WBFunctor_T */ 
 template <typename WEBOTS_NXT_walk_isRunning_WBFunctor_T >
 class WEBOTS_NXT_walk_isRunning_WBFunctor: public WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T > {
@@ -957,9 +957,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_walk_isRunning_WBFunctor_T *obj, void (WEBOTS_NXT_walk_isRunning_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_walk_isRunning &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_walk_isRunning_WBFunctor<WEBOTS_NXT_walk_isRunning_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_WALK_ISRUNNING_DEFINED
+#endif //guWhiteboard_WEBOTSNXTWalkIsRunning_DEFINED
 
-#ifdef WEBOTS_NXT_DEADREAKONING_WALK_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTDeadReakoningWalk_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_deadReakoning_walk_WBFunctor_T */ 
 template <typename WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >
 class WEBOTS_NXT_deadReakoning_walk_WBFunctor: public WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T > {
@@ -980,9 +980,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_deadReakoning_walk_WBFunctor_T *obj, void (WEBOTS_NXT_deadReakoning_walk_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_deadReakoning_walk &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_deadReakoning_walk_WBFunctor<WEBOTS_NXT_deadReakoning_walk_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_DEADREAKONING_WALK_DEFINED
+#endif //guWhiteboard_WEBOTSNXTDeadReakoningWalk_DEFINED
 
-#ifdef WEBOTS_NXT_COLORLINE_WALK_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTColorLineWalk_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_colorLine_walk_WBFunctor_T */ 
 template <typename WEBOTS_NXT_colorLine_walk_WBFunctor_T >
 class WEBOTS_NXT_colorLine_walk_WBFunctor: public WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T > {
@@ -1003,9 +1003,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_colorLine_walk_WBFunctor_T *obj, void (WEBOTS_NXT_colorLine_walk_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_colorLine_walk &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_colorLine_walk_WBFunctor<WEBOTS_NXT_colorLine_walk_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_COLORLINE_WALK_DEFINED
+#endif //guWhiteboard_WEBOTSNXTColorLineWalk_DEFINED
 
-#ifdef WEBOTS_NXT_GRIDMOTIONS_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTGridMotions_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_gridMotions_WBFunctor_T */ 
 template <typename WEBOTS_NXT_gridMotions_WBFunctor_T >
 class WEBOTS_NXT_gridMotions_WBFunctor: public WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T > {
@@ -1026,9 +1026,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_gridMotions_WBFunctor_T *obj, void (WEBOTS_NXT_gridMotions_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_gridMotions &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_gridMotions_WBFunctor<WEBOTS_NXT_gridMotions_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_GRIDMOTIONS_DEFINED
+#endif //guWhiteboard_WEBOTSNXTGridMotions_DEFINED
 
-#ifdef VISIONBALL_DEFINED
+#ifdef guWhiteboard_VisionBall_DEFINED
 /** WBFunctor definition for VisionBall_WBFunctor_T */ 
 template <typename VisionBall_WBFunctor_T >
 class VisionBall_WBFunctor: public WBFunctor<VisionBall_WBFunctor_T > {
@@ -1049,9 +1049,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionBall_WBFunctor_T *obj, void (VisionBall_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionBall &), guWhiteboard::wb_types t) { return new VisionBall_WBFunctor<VisionBall_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONBALL_DEFINED
+#endif //guWhiteboard_VisionBall_DEFINED
 
-#ifdef VISIONGOALS_DEFINED
+#ifdef guWhiteboard_VisionGoals_DEFINED
 /** WBFunctor definition for VisionGoals_WBFunctor_T */ 
 template <typename VisionGoals_WBFunctor_T >
 class VisionGoals_WBFunctor: public WBFunctor<VisionGoals_WBFunctor_T > {
@@ -1072,9 +1072,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionGoals_WBFunctor_T *obj, void (VisionGoals_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionGoals &), guWhiteboard::wb_types t) { return new VisionGoals_WBFunctor<VisionGoals_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONGOALS_DEFINED
+#endif //guWhiteboard_VisionGoals_DEFINED
 
-#ifdef WALKDATA_DEFINED
+#ifdef guWhiteboard_WalkData_DEFINED
 /** WBFunctor definition for WalkData_WBFunctor_T */ 
 template <typename WalkData_WBFunctor_T >
 class WalkData_WBFunctor: public WBFunctor<WalkData_WBFunctor_T > {
@@ -1095,9 +1095,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WalkData_WBFunctor_T *obj, void (WalkData_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WalkData &), guWhiteboard::wb_types t) { return new WalkData_WBFunctor<WalkData_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WALKDATA_DEFINED
+#endif //guWhiteboard_WalkData_DEFINED
 
-#ifdef TELEOPERATIONCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_TeleoperationControlStatus_DEFINED
 /** WBFunctor definition for TeleoperationControlStatus_WBFunctor_T */ 
 template <typename TeleoperationControlStatus_WBFunctor_T >
 class TeleoperationControlStatus_WBFunctor: public WBFunctor<TeleoperationControlStatus_WBFunctor_T > {
@@ -1118,7 +1118,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TeleoperationControlStatus_WBFunctor_T *obj, void (TeleoperationControlStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TeleoperationControlStatus &), guWhiteboard::wb_types t) { return new TeleoperationControlStatus_WBFunctor<TeleoperationControlStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TELEOPERATIONCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_TeleoperationControlStatus_DEFINED
 
 
 /** WBFunctor definition for TeleoperationConnection_WBFunctor_T */ 
@@ -1166,7 +1166,7 @@ public:
 }; 
 
 
-#ifdef WEBOTS_NXT_BUMPER_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTBumper_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_bumper_WBFunctor_T */ 
 template <typename WEBOTS_NXT_bumper_WBFunctor_T >
 class WEBOTS_NXT_bumper_WBFunctor: public WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T > {
@@ -1187,9 +1187,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_bumper_WBFunctor_T *obj, void (WEBOTS_NXT_bumper_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_bumper &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_bumper_WBFunctor<WEBOTS_NXT_bumper_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_BUMPER_DEFINED
+#endif //guWhiteboard_WEBOTSNXTBumper_DEFINED
 
-#ifdef WEBOTS_NXT_VECTOR_BRIDGE_DEFINED
+#ifdef guWhiteboard_WEBOTSNXTVectorBridge_DEFINED
 /** WBFunctor definition for WEBOTS_NXT_vector_bridge_WBFunctor_T */ 
 template <typename WEBOTS_NXT_vector_bridge_WBFunctor_T >
 class WEBOTS_NXT_vector_bridge_WBFunctor: public WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T > {
@@ -1210,9 +1210,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(WEBOTS_NXT_vector_bridge_WBFunctor_T *obj, void (WEBOTS_NXT_vector_bridge_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::WEBOTS_NXT_vector_bridge &), guWhiteboard::wb_types t) { return new WEBOTS_NXT_vector_bridge_WBFunctor<WEBOTS_NXT_vector_bridge_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //WEBOTS_NXT_VECTOR_BRIDGE_DEFINED
+#endif //guWhiteboard_WEBOTSNXTVectorBridge_DEFINED
 
-#ifdef VISIONLINES_DEFINED
+#ifdef guWhiteboard_VisionLines_DEFINED
 /** WBFunctor definition for TopVisionLines_WBFunctor_T */ 
 template <typename TopVisionLines_WBFunctor_T >
 class TopVisionLines_WBFunctor: public WBFunctor<TopVisionLines_WBFunctor_T > {
@@ -1233,9 +1233,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TopVisionLines_WBFunctor_T *obj, void (TopVisionLines_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionLines &), guWhiteboard::wb_types t) { return new TopVisionLines_WBFunctor<TopVisionLines_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONLINES_DEFINED
+#endif //guWhiteboard_VisionLines_DEFINED
 
-#ifdef VISIONLINES_DEFINED
+#ifdef guWhiteboard_VisionLines_DEFINED
 /** WBFunctor definition for BottomVisionLines_WBFunctor_T */ 
 template <typename BottomVisionLines_WBFunctor_T >
 class BottomVisionLines_WBFunctor: public WBFunctor<BottomVisionLines_WBFunctor_T > {
@@ -1256,9 +1256,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(BottomVisionLines_WBFunctor_T *obj, void (BottomVisionLines_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionLines &), guWhiteboard::wb_types t) { return new BottomVisionLines_WBFunctor<BottomVisionLines_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONLINES_DEFINED
+#endif //guWhiteboard_VisionLines_DEFINED
 
-#ifdef DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_DifferentialRobotControlStatus_DEFINED
 /** WBFunctor definition for DifferentialRobotStatus_WBFunctor_T */ 
 template <typename DifferentialRobotStatus_WBFunctor_T >
 class DifferentialRobotStatus_WBFunctor: public WBFunctor<DifferentialRobotStatus_WBFunctor_T > {
@@ -1279,9 +1279,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(DifferentialRobotStatus_WBFunctor_T *obj, void (DifferentialRobotStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::DifferentialRobotControlStatus &), guWhiteboard::wb_types t) { return new DifferentialRobotStatus_WBFunctor<DifferentialRobotStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_DifferentialRobotControlStatus_DEFINED
 
-#ifdef DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_DifferentialRobotControlStatus_DEFINED
 /** WBFunctor definition for DifferentialRobotControl_WBFunctor_T */ 
 template <typename DifferentialRobotControl_WBFunctor_T >
 class DifferentialRobotControl_WBFunctor: public WBFunctor<DifferentialRobotControl_WBFunctor_T > {
@@ -1302,9 +1302,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(DifferentialRobotControl_WBFunctor_T *obj, void (DifferentialRobotControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::DifferentialRobotControlStatus &), guWhiteboard::wb_types t) { return new DifferentialRobotControl_WBFunctor<DifferentialRobotControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //DIFFERENTIALROBOTCONTROLSTATUS_DEFINED
+#endif //guWhiteboard_DifferentialRobotControlStatus_DEFINED
 
-#ifdef POINT2D_DEFINED
+#ifdef guWhiteboard_Point2D_DEFINED
 /** WBFunctor definition for XEyesPos_WBFunctor_T */ 
 template <typename XEyesPos_WBFunctor_T >
 class XEyesPos_WBFunctor: public WBFunctor<XEyesPos_WBFunctor_T > {
@@ -1325,7 +1325,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(XEyesPos_WBFunctor_T *obj, void (XEyesPos_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Point2D &), guWhiteboard::wb_types t) { return new XEyesPos_WBFunctor<XEyesPos_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //POINT2D_DEFINED
+#endif //guWhiteboard_Point2D_DEFINED
 
 
 /** WBFunctor definition for VisionFace_WBFunctor_T */ 
@@ -1373,7 +1373,7 @@ public:
 }; 
 
 
-#ifdef FSMSTATE_DEFINED
+#ifdef guWhiteboard_FSMState_DEFINED
 /** WBFunctor definition for FSM_States_WBFunctor_T */ 
 template <typename FSM_States_WBFunctor_T >
 class FSM_States_WBFunctor: public WBFunctor<FSM_States_WBFunctor_T > {
@@ -1394,9 +1394,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FSM_States_WBFunctor_T *obj, void (FSM_States_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FSMState &), guWhiteboard::wb_types t) { return new FSM_States_WBFunctor<FSM_States_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FSMSTATE_DEFINED
+#endif //guWhiteboard_FSMState_DEFINED
 
-#ifdef GIRAFF_MAINSERIALINTERFACE_DEFINED
+#ifdef guWhiteboard_GiraffMainSerialInterface_DEFINED
 /** WBFunctor definition for Giraff_Interface_Status_WBFunctor_T */ 
 template <typename Giraff_Interface_Status_WBFunctor_T >
 class Giraff_Interface_Status_WBFunctor: public WBFunctor<Giraff_Interface_Status_WBFunctor_T > {
@@ -1417,9 +1417,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Giraff_Interface_Status_WBFunctor_T *obj, void (Giraff_Interface_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Giraff_MainSerialInterface &), guWhiteboard::wb_types t) { return new Giraff_Interface_Status_WBFunctor<Giraff_Interface_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //GIRAFF_MAINSERIALINTERFACE_DEFINED
+#endif //guWhiteboard_GiraffMainSerialInterface_DEFINED
 
-#ifdef GIRAFF_MAINSERIALINTERFACE_DEFINED
+#ifdef guWhiteboard_GiraffMainSerialInterface_DEFINED
 /** WBFunctor definition for Giraff_Interface_Command_WBFunctor_T */ 
 template <typename Giraff_Interface_Command_WBFunctor_T >
 class Giraff_Interface_Command_WBFunctor: public WBFunctor<Giraff_Interface_Command_WBFunctor_T > {
@@ -1440,9 +1440,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Giraff_Interface_Command_WBFunctor_T *obj, void (Giraff_Interface_Command_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Giraff_MainSerialInterface &), guWhiteboard::wb_types t) { return new Giraff_Interface_Command_WBFunctor<Giraff_Interface_Command_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //GIRAFF_MAINSERIALINTERFACE_DEFINED
+#endif //guWhiteboard_GiraffMainSerialInterface_DEFINED
 
-#ifdef NXT_INTERFACE_DEFINED
+#ifdef guWhiteboard_NXTInterface_DEFINED
 /** WBFunctor definition for NXT_Status_WBFunctor_T */ 
 template <typename NXT_Status_WBFunctor_T >
 class NXT_Status_WBFunctor: public WBFunctor<NXT_Status_WBFunctor_T > {
@@ -1463,9 +1463,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NXT_Status_WBFunctor_T *obj, void (NXT_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NXT_Interface &), guWhiteboard::wb_types t) { return new NXT_Status_WBFunctor<NXT_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NXT_INTERFACE_DEFINED
+#endif //guWhiteboard_NXTInterface_DEFINED
 
-#ifdef NXT_INTERFACE_DEFINED
+#ifdef guWhiteboard_NXTInterface_DEFINED
 /** WBFunctor definition for NXT_Command_WBFunctor_T */ 
 template <typename NXT_Command_WBFunctor_T >
 class NXT_Command_WBFunctor: public WBFunctor<NXT_Command_WBFunctor_T > {
@@ -1486,9 +1486,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NXT_Command_WBFunctor_T *obj, void (NXT_Command_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NXT_Interface &), guWhiteboard::wb_types t) { return new NXT_Command_WBFunctor<NXT_Command_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NXT_INTERFACE_DEFINED
+#endif //guWhiteboard_NXTInterface_DEFINED
 
-#ifdef APM_INTERFACE_DEFINED
+#ifdef guWhiteboard_APMInterface_DEFINED
 /** WBFunctor definition for APM_Status_WBFunctor_T */ 
 template <typename APM_Status_WBFunctor_T >
 class APM_Status_WBFunctor: public WBFunctor<APM_Status_WBFunctor_T > {
@@ -1509,9 +1509,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(APM_Status_WBFunctor_T *obj, void (APM_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::APM_Interface &), guWhiteboard::wb_types t) { return new APM_Status_WBFunctor<APM_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //APM_INTERFACE_DEFINED
+#endif //guWhiteboard_APMInterface_DEFINED
 
-#ifdef APM_INTERFACE_DEFINED
+#ifdef guWhiteboard_APMInterface_DEFINED
 /** WBFunctor definition for APM_Command_WBFunctor_T */ 
 template <typename APM_Command_WBFunctor_T >
 class APM_Command_WBFunctor: public WBFunctor<APM_Command_WBFunctor_T > {
@@ -1532,7 +1532,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(APM_Command_WBFunctor_T *obj, void (APM_Command_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::APM_Interface &), guWhiteboard::wb_types t) { return new APM_Command_WBFunctor<APM_Command_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //APM_INTERFACE_DEFINED
+#endif //guWhiteboard_APMInterface_DEFINED
 
 
 /** WBFunctor definition for REMOVED3_WBFunctor_T */ 
@@ -1603,7 +1603,7 @@ public:
 }; 
 
 
-#ifdef OCULUSPRIMEINTERFACE_DEFINED
+#ifdef guWhiteboard_OculusPrimeInterface_DEFINED
 /** WBFunctor definition for OculusPrime_Command_WBFunctor_T */ 
 template <typename OculusPrime_Command_WBFunctor_T >
 class OculusPrime_Command_WBFunctor: public WBFunctor<OculusPrime_Command_WBFunctor_T > {
@@ -1624,9 +1624,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(OculusPrime_Command_WBFunctor_T *obj, void (OculusPrime_Command_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::OculusPrimeInterface &), guWhiteboard::wb_types t) { return new OculusPrime_Command_WBFunctor<OculusPrime_Command_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //OCULUSPRIMEINTERFACE_DEFINED
+#endif //guWhiteboard_OculusPrimeInterface_DEFINED
 
-#ifdef INPUT3D_DEFINED
+#ifdef guWhiteboard_Input3D_DEFINED
 /** WBFunctor definition for Input3D_WBFunctor_T */ 
 template <typename Input3D_WBFunctor_T >
 class Input3D_WBFunctor: public WBFunctor<Input3D_WBFunctor_T > {
@@ -1647,9 +1647,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Input3D_WBFunctor_T *obj, void (Input3D_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Input3D &), guWhiteboard::wb_types t) { return new Input3D_WBFunctor<Input3D_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //INPUT3D_DEFINED
+#endif //guWhiteboard_Input3D_DEFINED
 
-#ifdef OCULUS_PRIMESERIALINTERFACE_DEFINED
+#ifdef guWhiteboard_OculusPrimeSerialInterface_DEFINED
 /** WBFunctor definition for Oculus_Prime_Command_WBFunctor_T */ 
 template <typename Oculus_Prime_Command_WBFunctor_T >
 class Oculus_Prime_Command_WBFunctor: public WBFunctor<Oculus_Prime_Command_WBFunctor_T > {
@@ -1670,9 +1670,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Oculus_Prime_Command_WBFunctor_T *obj, void (Oculus_Prime_Command_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Oculus_PrimeSerialInterface &), guWhiteboard::wb_types t) { return new Oculus_Prime_Command_WBFunctor<Oculus_Prime_Command_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //OCULUS_PRIMESERIALINTERFACE_DEFINED
+#endif //guWhiteboard_OculusPrimeSerialInterface_DEFINED
 
-#ifdef IOPINS_DEFINED
+#ifdef guWhiteboard_IOPins_DEFINED
 /** WBFunctor definition for IOPins_WBFunctor_T */ 
 template <typename IOPins_WBFunctor_T >
 class IOPins_WBFunctor: public WBFunctor<IOPins_WBFunctor_T > {
@@ -1693,9 +1693,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(IOPins_WBFunctor_T *obj, void (IOPins_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::IOPins &), guWhiteboard::wb_types t) { return new IOPins_WBFunctor<IOPins_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //IOPINS_DEFINED
+#endif //guWhiteboard_IOPins_DEFINED
 
-#ifdef NXT_TWO_TOUCH_STATUS_DEFINED
+#ifdef guWhiteboard_NXTTwoTouchStatus_DEFINED
 /** WBFunctor definition for NXT_Two_Touch_Status_WBFunctor_T */ 
 template <typename NXT_Two_Touch_Status_WBFunctor_T >
 class NXT_Two_Touch_Status_WBFunctor: public WBFunctor<NXT_Two_Touch_Status_WBFunctor_T > {
@@ -1716,9 +1716,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NXT_Two_Touch_Status_WBFunctor_T *obj, void (NXT_Two_Touch_Status_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NXT_Two_Touch_Status &), guWhiteboard::wb_types t) { return new NXT_Two_Touch_Status_WBFunctor<NXT_Two_Touch_Status_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NXT_TWO_TOUCH_STATUS_DEFINED
+#endif //guWhiteboard_NXTTwoTouchStatus_DEFINED
 
-#ifdef NXT_SOUND_CONTROL_DEFINED
+#ifdef guWhiteboard_NXTSoundControl_DEFINED
 /** WBFunctor definition for NXT_Sound_Control_WBFunctor_T */ 
 template <typename NXT_Sound_Control_WBFunctor_T >
 class NXT_Sound_Control_WBFunctor: public WBFunctor<NXT_Sound_Control_WBFunctor_T > {
@@ -1739,9 +1739,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NXT_Sound_Control_WBFunctor_T *obj, void (NXT_Sound_Control_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NXT_Sound_Control &), guWhiteboard::wb_types t) { return new NXT_Sound_Control_WBFunctor<NXT_Sound_Control_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NXT_SOUND_CONTROL_DEFINED
+#endif //guWhiteboard_NXTSoundControl_DEFINED
 
-#ifdef NXT_LIGHTS_CONTROL_DEFINED
+#ifdef guWhiteboard_NXTLightsControl_DEFINED
 /** WBFunctor definition for NXT_Lights_Control_WBFunctor_T */ 
 template <typename NXT_Lights_Control_WBFunctor_T >
 class NXT_Lights_Control_WBFunctor: public WBFunctor<NXT_Lights_Control_WBFunctor_T > {
@@ -1762,9 +1762,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NXT_Lights_Control_WBFunctor_T *obj, void (NXT_Lights_Control_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NXT_Lights_Control &), guWhiteboard::wb_types t) { return new NXT_Lights_Control_WBFunctor<NXT_Lights_Control_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NXT_LIGHTS_CONTROL_DEFINED
+#endif //guWhiteboard_NXTLightsControl_DEFINED
 
-#ifdef CLOCKS_DEFINED
+#ifdef guWhiteboard_Clocks_DEFINED
 /** WBFunctor definition for Clocks_WBFunctor_T */ 
 template <typename Clocks_WBFunctor_T >
 class Clocks_WBFunctor: public WBFunctor<Clocks_WBFunctor_T > {
@@ -1785,9 +1785,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Clocks_WBFunctor_T *obj, void (Clocks_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Clocks &), guWhiteboard::wb_types t) { return new Clocks_WBFunctor<Clocks_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //CLOCKS_DEFINED
+#endif //guWhiteboard_Clocks_DEFINED
 
-#ifdef CHANNELS_DEFINED
+#ifdef guWhiteboard_Channels_DEFINED
 /** WBFunctor definition for Channels_WBFunctor_T */ 
 template <typename Channels_WBFunctor_T >
 class Channels_WBFunctor: public WBFunctor<Channels_WBFunctor_T > {
@@ -1808,9 +1808,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Channels_WBFunctor_T *obj, void (Channels_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Channels &), guWhiteboard::wb_types t) { return new Channels_WBFunctor<Channels_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //CHANNELS_DEFINED
+#endif //guWhiteboard_Channels_DEFINED
 
-#ifdef SWITCHSUBSUMPTION_DEFINED
+#ifdef guWhiteboard_SwitchSubsumption_DEFINED
 /** WBFunctor definition for SwitchSubsumption_WBFunctor_T */ 
 template <typename SwitchSubsumption_WBFunctor_T >
 class SwitchSubsumption_WBFunctor: public WBFunctor<SwitchSubsumption_WBFunctor_T > {
@@ -1831,9 +1831,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SwitchSubsumption_WBFunctor_T *obj, void (SwitchSubsumption_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SwitchSubsumption &), guWhiteboard::wb_types t) { return new SwitchSubsumption_WBFunctor<SwitchSubsumption_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SWITCHSUBSUMPTION_DEFINED
+#endif //guWhiteboard_SwitchSubsumption_DEFINED
 
-#ifdef TOTODOINGMOTION_DEFINED
+#ifdef guWhiteboard_TotoDoingMotion_DEFINED
 /** WBFunctor definition for TotoDoingMotion_WBFunctor_T */ 
 template <typename TotoDoingMotion_WBFunctor_T >
 class TotoDoingMotion_WBFunctor: public WBFunctor<TotoDoingMotion_WBFunctor_T > {
@@ -1854,9 +1854,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TotoDoingMotion_WBFunctor_T *obj, void (TotoDoingMotion_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TotoDoingMotion &), guWhiteboard::wb_types t) { return new TotoDoingMotion_WBFunctor<TotoDoingMotion_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TOTODOINGMOTION_DEFINED
+#endif //guWhiteboard_TotoDoingMotion_DEFINED
 
-#ifdef COUNT_DEFINED
+#ifdef guWhiteboard_Count_DEFINED
 /** WBFunctor definition for Count_WBFunctor_T */ 
 template <typename Count_WBFunctor_T >
 class Count_WBFunctor: public WBFunctor<Count_WBFunctor_T > {
@@ -1877,7 +1877,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Count_WBFunctor_T *obj, void (Count_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Count &), guWhiteboard::wb_types t) { return new Count_WBFunctor<Count_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //COUNT_DEFINED
+#endif //guWhiteboard_Count_DEFINED
 
 
 /** WBFunctor definition for GreenEWon_WBFunctor_T */ 
@@ -2224,7 +2224,7 @@ public:
 }; 
 
 
-#ifdef SWITCHSUBSUMPTIONTRAFFICLIGHTS_DEFINED
+#ifdef guWhiteboard_SwitchSubsumptionTrafficLights_DEFINED
 /** WBFunctor definition for SwitchSubsumptionTrafficLights_WBFunctor_T */ 
 template <typename SwitchSubsumptionTrafficLights_WBFunctor_T >
 class SwitchSubsumptionTrafficLights_WBFunctor: public WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T > {
@@ -2245,7 +2245,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SwitchSubsumptionTrafficLights_WBFunctor_T *obj, void (SwitchSubsumptionTrafficLights_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::SwitchSubsumptionTrafficLights &), guWhiteboard::wb_types t) { return new SwitchSubsumptionTrafficLights_WBFunctor<SwitchSubsumptionTrafficLights_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //SWITCHSUBSUMPTIONTRAFFICLIGHTS_DEFINED
+#endif //guWhiteboard_SwitchSubsumptionTrafficLights_DEFINED
 
 
 /** WBFunctor definition for Ball_Found_WBFunctor_T */ 
@@ -2339,7 +2339,7 @@ public:
 }; 
 
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_LArmTarget_Ctrl_WBFunctor_T */ 
 template <typename HAL_LArmTarget_Ctrl_WBFunctor_T >
 class HAL_LArmTarget_Ctrl_WBFunctor: public WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T > {
@@ -2360,9 +2360,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LArmTarget_Ctrl_WBFunctor_T *obj, void (HAL_LArmTarget_Ctrl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_LArmTarget_Ctrl_WBFunctor<HAL_LArmTarget_Ctrl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_LArmTarget_Stat_WBFunctor_T */ 
 template <typename HAL_LArmTarget_Stat_WBFunctor_T >
 class HAL_LArmTarget_Stat_WBFunctor: public WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T > {
@@ -2383,9 +2383,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LArmTarget_Stat_WBFunctor_T *obj, void (HAL_LArmTarget_Stat_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_LArmTarget_Stat_WBFunctor<HAL_LArmTarget_Stat_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_LArmTarget_Tolr_WBFunctor_T */ 
 template <typename HAL_LArmTarget_Tolr_WBFunctor_T >
 class HAL_LArmTarget_Tolr_WBFunctor: public WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T > {
@@ -2406,9 +2406,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LArmTarget_Tolr_WBFunctor_T *obj, void (HAL_LArmTarget_Tolr_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_LArmTarget_Tolr_WBFunctor<HAL_LArmTarget_Tolr_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_RArmTarget_Ctrl_WBFunctor_T */ 
 template <typename HAL_RArmTarget_Ctrl_WBFunctor_T >
 class HAL_RArmTarget_Ctrl_WBFunctor: public WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T > {
@@ -2429,9 +2429,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RArmTarget_Ctrl_WBFunctor_T *obj, void (HAL_RArmTarget_Ctrl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_RArmTarget_Ctrl_WBFunctor<HAL_RArmTarget_Ctrl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_RArmTarget_Stat_WBFunctor_T */ 
 template <typename HAL_RArmTarget_Stat_WBFunctor_T >
 class HAL_RArmTarget_Stat_WBFunctor: public WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T > {
@@ -2452,9 +2452,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RArmTarget_Stat_WBFunctor_T *obj, void (HAL_RArmTarget_Stat_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_RArmTarget_Stat_WBFunctor<HAL_RArmTarget_Stat_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef HALARMTARGET_DEFINED
+#ifdef guWhiteboard_HalArmTarget_DEFINED
 /** WBFunctor definition for HAL_RArmTarget_Tolr_WBFunctor_T */ 
 template <typename HAL_RArmTarget_Tolr_WBFunctor_T >
 class HAL_RArmTarget_Tolr_WBFunctor: public WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T > {
@@ -2475,9 +2475,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RArmTarget_Tolr_WBFunctor_T *obj, void (HAL_RArmTarget_Tolr_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalArmTarget &), guWhiteboard::wb_types t) { return new HAL_RArmTarget_Tolr_WBFunctor<HAL_RArmTarget_Tolr_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALARMTARGET_DEFINED
+#endif //guWhiteboard_HalArmTarget_DEFINED
 
-#ifdef VISIONFIELDFEATURES_DEFINED
+#ifdef guWhiteboard_VisionFieldFeatures_DEFINED
 /** WBFunctor definition for VisionFieldFeatures_WBFunctor_T */ 
 template <typename VisionFieldFeatures_WBFunctor_T >
 class VisionFieldFeatures_WBFunctor: public WBFunctor<VisionFieldFeatures_WBFunctor_T > {
@@ -2498,7 +2498,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionFieldFeatures_WBFunctor_T *obj, void (VisionFieldFeatures_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionFieldFeatures &), guWhiteboard::wb_types t) { return new VisionFieldFeatures_WBFunctor<VisionFieldFeatures_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONFIELDFEATURES_DEFINED
+#endif //guWhiteboard_VisionFieldFeatures_DEFINED
 
 
 /** WBFunctor definition for WhistleBlown_WBFunctor_T */ 
@@ -2546,7 +2546,7 @@ public:
 }; 
 
 
-#ifdef VISIONROBOTS_DEFINED
+#ifdef guWhiteboard_VisionRobots_DEFINED
 /** WBFunctor definition for VisionRobots_WBFunctor_T */ 
 template <typename VisionRobots_WBFunctor_T >
 class VisionRobots_WBFunctor: public WBFunctor<VisionRobots_WBFunctor_T > {
@@ -2567,9 +2567,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionRobots_WBFunctor_T *obj, void (VisionRobots_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionRobots &), guWhiteboard::wb_types t) { return new VisionRobots_WBFunctor<VisionRobots_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONROBOTS_DEFINED
+#endif //guWhiteboard_VisionRobots_DEFINED
 
-#ifdef VISIONDETECTIONHORIZONS_DEFINED
+#ifdef guWhiteboard_VisionDetectionHorizons_DEFINED
 /** WBFunctor definition for VisionDetectionHorizons_WBFunctor_T */ 
 template <typename VisionDetectionHorizons_WBFunctor_T >
 class VisionDetectionHorizons_WBFunctor: public WBFunctor<VisionDetectionHorizons_WBFunctor_T > {
@@ -2590,9 +2590,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionDetectionHorizons_WBFunctor_T *obj, void (VisionDetectionHorizons_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionDetectionHorizons &), guWhiteboard::wb_types t) { return new VisionDetectionHorizons_WBFunctor<VisionDetectionHorizons_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONDETECTIONHORIZONS_DEFINED
+#endif //guWhiteboard_VisionDetectionHorizons_DEFINED
 
-#ifdef NAOWALKCOMMAND_DEFINED
+#ifdef guWhiteboard_NaoWalkCommand_DEFINED
 /** WBFunctor definition for NaoWalkCommand_WBFunctor_T */ 
 template <typename NaoWalkCommand_WBFunctor_T >
 class NaoWalkCommand_WBFunctor: public WBFunctor<NaoWalkCommand_WBFunctor_T > {
@@ -2613,9 +2613,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NaoWalkCommand_WBFunctor_T *obj, void (NaoWalkCommand_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NaoWalkCommand &), guWhiteboard::wb_types t) { return new NaoWalkCommand_WBFunctor<NaoWalkCommand_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAOWALKCOMMAND_DEFINED
+#endif //guWhiteboard_NaoWalkCommand_DEFINED
 
-#ifdef NAOWALKSTATUS_DEFINED
+#ifdef guWhiteboard_NaoWalkStatus_DEFINED
 /** WBFunctor definition for NaoWalkStatus_WBFunctor_T */ 
 template <typename NaoWalkStatus_WBFunctor_T >
 class NaoWalkStatus_WBFunctor: public WBFunctor<NaoWalkStatus_WBFunctor_T > {
@@ -2636,9 +2636,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NaoWalkStatus_WBFunctor_T *obj, void (NaoWalkStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NaoWalkStatus &), guWhiteboard::wb_types t) { return new NaoWalkStatus_WBFunctor<NaoWalkStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAOWALKSTATUS_DEFINED
+#endif //guWhiteboard_NaoWalkStatus_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_LLegTarget_Ctrl_WBFunctor_T */ 
 template <typename HAL_LLegTarget_Ctrl_WBFunctor_T >
 class HAL_LLegTarget_Ctrl_WBFunctor: public WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T > {
@@ -2659,9 +2659,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LLegTarget_Ctrl_WBFunctor_T *obj, void (HAL_LLegTarget_Ctrl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_LLegTarget_Ctrl_WBFunctor<HAL_LLegTarget_Ctrl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_LLegTarget_Stat_WBFunctor_T */ 
 template <typename HAL_LLegTarget_Stat_WBFunctor_T >
 class HAL_LLegTarget_Stat_WBFunctor: public WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T > {
@@ -2682,9 +2682,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LLegTarget_Stat_WBFunctor_T *obj, void (HAL_LLegTarget_Stat_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_LLegTarget_Stat_WBFunctor<HAL_LLegTarget_Stat_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_LLegTarget_Tolr_WBFunctor_T */ 
 template <typename HAL_LLegTarget_Tolr_WBFunctor_T >
 class HAL_LLegTarget_Tolr_WBFunctor: public WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T > {
@@ -2705,9 +2705,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_LLegTarget_Tolr_WBFunctor_T *obj, void (HAL_LLegTarget_Tolr_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_LLegTarget_Tolr_WBFunctor<HAL_LLegTarget_Tolr_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_RLegTarget_Ctrl_WBFunctor_T */ 
 template <typename HAL_RLegTarget_Ctrl_WBFunctor_T >
 class HAL_RLegTarget_Ctrl_WBFunctor: public WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T > {
@@ -2728,9 +2728,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RLegTarget_Ctrl_WBFunctor_T *obj, void (HAL_RLegTarget_Ctrl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_RLegTarget_Ctrl_WBFunctor<HAL_RLegTarget_Ctrl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_RLegTarget_Stat_WBFunctor_T */ 
 template <typename HAL_RLegTarget_Stat_WBFunctor_T >
 class HAL_RLegTarget_Stat_WBFunctor: public WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T > {
@@ -2751,9 +2751,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RLegTarget_Stat_WBFunctor_T *obj, void (HAL_RLegTarget_Stat_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_RLegTarget_Stat_WBFunctor<HAL_RLegTarget_Stat_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef HALLEGTARGET_DEFINED
+#ifdef guWhiteboard_HalLegTarget_DEFINED
 /** WBFunctor definition for HAL_RLegTarget_Tolr_WBFunctor_T */ 
 template <typename HAL_RLegTarget_Tolr_WBFunctor_T >
 class HAL_RLegTarget_Tolr_WBFunctor: public WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T > {
@@ -2774,9 +2774,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HAL_RLegTarget_Tolr_WBFunctor_T *obj, void (HAL_RLegTarget_Tolr_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HalLegTarget &), guWhiteboard::wb_types t) { return new HAL_RLegTarget_Tolr_WBFunctor<HAL_RLegTarget_Tolr_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HALLEGTARGET_DEFINED
+#endif //guWhiteboard_HalLegTarget_DEFINED
 
-#ifdef VISIONDETECTIONGOALS_DEFINED
+#ifdef guWhiteboard_VisionDetectionGoals_DEFINED
 /** WBFunctor definition for VisionDetectionGoals_WBFunctor_T */ 
 template <typename VisionDetectionGoals_WBFunctor_T >
 class VisionDetectionGoals_WBFunctor: public WBFunctor<VisionDetectionGoals_WBFunctor_T > {
@@ -2797,9 +2797,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionDetectionGoals_WBFunctor_T *obj, void (VisionDetectionGoals_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionDetectionGoals &), guWhiteboard::wb_types t) { return new VisionDetectionGoals_WBFunctor<VisionDetectionGoals_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONDETECTIONGOALS_DEFINED
+#endif //guWhiteboard_VisionDetectionGoals_DEFINED
 
-#ifdef TELEOPERATIONCONTROL_DEFINED
+#ifdef guWhiteboard_TeleoperationControl_DEFINED
 /** WBFunctor definition for TeleoperationControl_WBFunctor_T */ 
 template <typename TeleoperationControl_WBFunctor_T >
 class TeleoperationControl_WBFunctor: public WBFunctor<TeleoperationControl_WBFunctor_T > {
@@ -2820,9 +2820,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TeleoperationControl_WBFunctor_T *obj, void (TeleoperationControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TeleoperationControl &), guWhiteboard::wb_types t) { return new TeleoperationControl_WBFunctor<TeleoperationControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TELEOPERATIONCONTROL_DEFINED
+#endif //guWhiteboard_TeleoperationControl_DEFINED
 
-#ifdef TELEOPERATIONSTATUS_DEFINED
+#ifdef guWhiteboard_TeleoperationStatus_DEFINED
 /** WBFunctor definition for TeleoperationStatus_WBFunctor_T */ 
 template <typename TeleoperationStatus_WBFunctor_T >
 class TeleoperationStatus_WBFunctor: public WBFunctor<TeleoperationStatus_WBFunctor_T > {
@@ -2843,9 +2843,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TeleoperationStatus_WBFunctor_T *obj, void (TeleoperationStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TeleoperationStatus &), guWhiteboard::wb_types t) { return new TeleoperationStatus_WBFunctor<TeleoperationStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TELEOPERATIONSTATUS_DEFINED
+#endif //guWhiteboard_TeleoperationStatus_DEFINED
 
-#ifdef VISIONDETECTIONBALLS_DEFINED
+#ifdef guWhiteboard_VisionDetectionBalls_DEFINED
 /** WBFunctor definition for VisionDetectionBalls_WBFunctor_T */ 
 template <typename VisionDetectionBalls_WBFunctor_T >
 class VisionDetectionBalls_WBFunctor: public WBFunctor<VisionDetectionBalls_WBFunctor_T > {
@@ -2866,9 +2866,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionDetectionBalls_WBFunctor_T *obj, void (VisionDetectionBalls_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionDetectionBalls &), guWhiteboard::wb_types t) { return new VisionDetectionBalls_WBFunctor<VisionDetectionBalls_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONDETECTIONBALLS_DEFINED
+#endif //guWhiteboard_VisionDetectionBalls_DEFINED
 
-#ifdef TELEOPERATIONCONTROLVR_DEFINED
+#ifdef guWhiteboard_TeleoperationControlVR_DEFINED
 /** WBFunctor definition for TeleoperationControlVR_WBFunctor_T */ 
 template <typename TeleoperationControlVR_WBFunctor_T >
 class TeleoperationControlVR_WBFunctor: public WBFunctor<TeleoperationControlVR_WBFunctor_T > {
@@ -2889,7 +2889,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TeleoperationControlVR_WBFunctor_T *obj, void (TeleoperationControlVR_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TeleoperationControlVR &), guWhiteboard::wb_types t) { return new TeleoperationControlVR_WBFunctor<TeleoperationControlVR_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TELEOPERATIONCONTROLVR_DEFINED
+#endif //guWhiteboard_TeleoperationControlVR_DEFINED
 
 
 /** WBFunctor definition for ParticleOutputMap_WBFunctor_T */ 
@@ -2960,7 +2960,7 @@ public:
 }; 
 
 
-#ifdef MACHINEFILTEREDVISION_DEFINED
+#ifdef guWhiteboard_MachineFilteredVision_DEFINED
 /** WBFunctor definition for MachineFilteredNaoVision_WBFunctor_T */ 
 template <typename MachineFilteredNaoVision_WBFunctor_T >
 class MachineFilteredNaoVision_WBFunctor: public WBFunctor<MachineFilteredNaoVision_WBFunctor_T > {
@@ -2981,9 +2981,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MachineFilteredNaoVision_WBFunctor_T *obj, void (MachineFilteredNaoVision_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MachineFilteredVision &), guWhiteboard::wb_types t) { return new MachineFilteredNaoVision_WBFunctor<MachineFilteredNaoVision_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MACHINEFILTEREDVISION_DEFINED
+#endif //guWhiteboard_MachineFilteredVision_DEFINED
 
-#ifdef MICROWAVESTATUS_DEFINED
+#ifdef guWhiteboard_MicrowaveStatus_DEFINED
 /** WBFunctor definition for MicrowaveStatus_WBFunctor_T */ 
 template <typename MicrowaveStatus_WBFunctor_T >
 class MicrowaveStatus_WBFunctor: public WBFunctor<MicrowaveStatus_WBFunctor_T > {
@@ -3004,9 +3004,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MicrowaveStatus_WBFunctor_T *obj, void (MicrowaveStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MicrowaveStatus &), guWhiteboard::wb_types t) { return new MicrowaveStatus_WBFunctor<MicrowaveStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MICROWAVESTATUS_DEFINED
+#endif //guWhiteboard_MicrowaveStatus_DEFINED
 
-#ifdef BUTTONS_DEFINED
+#ifdef guWhiteboard_Buttons_DEFINED
 /** WBFunctor definition for Buttons_WBFunctor_T */ 
 template <typename Buttons_WBFunctor_T >
 class Buttons_WBFunctor: public WBFunctor<Buttons_WBFunctor_T > {
@@ -3027,9 +3027,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Buttons_WBFunctor_T *obj, void (Buttons_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Buttons &), guWhiteboard::wb_types t) { return new Buttons_WBFunctor<Buttons_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //BUTTONS_DEFINED
+#endif //guWhiteboard_Buttons_DEFINED
 
-#ifdef MACHINEFILTEREDLOCALISATIONVISION_DEFINED
+#ifdef guWhiteboard_MachineFilteredLocalisationVision_DEFINED
 /** WBFunctor definition for MachineFilteredLocalisationVision_WBFunctor_T */ 
 template <typename MachineFilteredLocalisationVision_WBFunctor_T >
 class MachineFilteredLocalisationVision_WBFunctor: public WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T > {
@@ -3050,9 +3050,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MachineFilteredLocalisationVision_WBFunctor_T *obj, void (MachineFilteredLocalisationVision_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MachineFilteredLocalisationVision &), guWhiteboard::wb_types t) { return new MachineFilteredLocalisationVision_WBFunctor<MachineFilteredLocalisationVision_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MACHINEFILTEREDLOCALISATIONVISION_DEFINED
+#endif //guWhiteboard_MachineFilteredLocalisationVision_DEFINED
 
-#ifdef NAOJOINTLISTFLOAT_DEFINED
+#ifdef guWhiteboard_NaoJointListFloat_DEFINED
 /** WBFunctor definition for SensorsJointCurrent_WBFunctor_T */ 
 template <typename SensorsJointCurrent_WBFunctor_T >
 class SensorsJointCurrent_WBFunctor: public WBFunctor<SensorsJointCurrent_WBFunctor_T > {
@@ -3073,9 +3073,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(SensorsJointCurrent_WBFunctor_T *obj, void (SensorsJointCurrent_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NaoJointListFloat &), guWhiteboard::wb_types t) { return new SensorsJointCurrent_WBFunctor<SensorsJointCurrent_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAOJOINTLISTFLOAT_DEFINED
+#endif //guWhiteboard_NaoJointListFloat_DEFINED
 
-#ifdef DATALOGGER_DEFINED
+#ifdef guWhiteboard_DataLogger_DEFINED
 /** WBFunctor definition for DataLogger_WBFunctor_T */ 
 template <typename DataLogger_WBFunctor_T >
 class DataLogger_WBFunctor: public WBFunctor<DataLogger_WBFunctor_T > {
@@ -3096,9 +3096,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(DataLogger_WBFunctor_T *obj, void (DataLogger_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::DataLogger &), guWhiteboard::wb_types t) { return new DataLogger_WBFunctor<DataLogger_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //DATALOGGER_DEFINED
+#endif //guWhiteboard_DataLogger_DEFINED
 
-#ifdef MACHINEFILTEREDLINES_DEFINED
+#ifdef guWhiteboard_MachineFilteredLines_DEFINED
 /** WBFunctor definition for MachineFilteredLines_WBFunctor_T */ 
 template <typename MachineFilteredLines_WBFunctor_T >
 class MachineFilteredLines_WBFunctor: public WBFunctor<MachineFilteredLines_WBFunctor_T > {
@@ -3119,9 +3119,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MachineFilteredLines_WBFunctor_T *obj, void (MachineFilteredLines_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MachineFilteredLines &), guWhiteboard::wb_types t) { return new MachineFilteredLines_WBFunctor<MachineFilteredLines_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MACHINEFILTEREDLINES_DEFINED
+#endif //guWhiteboard_MachineFilteredLines_DEFINED
 
-#ifdef LOCATION_DEFINED
+#ifdef guWhiteboard_Location_DEFINED
 /** WBFunctor definition for BallLocation_WBFunctor_T */ 
 template <typename BallLocation_WBFunctor_T >
 class BallLocation_WBFunctor: public WBFunctor<BallLocation_WBFunctor_T > {
@@ -3142,9 +3142,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(BallLocation_WBFunctor_T *obj, void (BallLocation_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Location &), guWhiteboard::wb_types t) { return new BallLocation_WBFunctor<BallLocation_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //LOCATION_DEFINED
+#endif //guWhiteboard_Location_DEFINED
 
-#ifdef LOCATION_DEFINED
+#ifdef guWhiteboard_Location_DEFINED
 /** WBFunctor definition for LeftGoalPostLocation_WBFunctor_T */ 
 template <typename LeftGoalPostLocation_WBFunctor_T >
 class LeftGoalPostLocation_WBFunctor: public WBFunctor<LeftGoalPostLocation_WBFunctor_T > {
@@ -3165,9 +3165,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(LeftGoalPostLocation_WBFunctor_T *obj, void (LeftGoalPostLocation_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Location &), guWhiteboard::wb_types t) { return new LeftGoalPostLocation_WBFunctor<LeftGoalPostLocation_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //LOCATION_DEFINED
+#endif //guWhiteboard_Location_DEFINED
 
-#ifdef LOCATION_DEFINED
+#ifdef guWhiteboard_Location_DEFINED
 /** WBFunctor definition for RightGoalPostLocation_WBFunctor_T */ 
 template <typename RightGoalPostLocation_WBFunctor_T >
 class RightGoalPostLocation_WBFunctor: public WBFunctor<RightGoalPostLocation_WBFunctor_T > {
@@ -3188,9 +3188,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(RightGoalPostLocation_WBFunctor_T *obj, void (RightGoalPostLocation_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Location &), guWhiteboard::wb_types t) { return new RightGoalPostLocation_WBFunctor<RightGoalPostLocation_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //LOCATION_DEFINED
+#endif //guWhiteboard_Location_DEFINED
 
-#ifdef LOCATION_DEFINED
+#ifdef guWhiteboard_Location_DEFINED
 /** WBFunctor definition for GoalLocation_WBFunctor_T */ 
 template <typename GoalLocation_WBFunctor_T >
 class GoalLocation_WBFunctor: public WBFunctor<GoalLocation_WBFunctor_T > {
@@ -3211,9 +3211,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(GoalLocation_WBFunctor_T *obj, void (GoalLocation_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Location &), guWhiteboard::wb_types t) { return new GoalLocation_WBFunctor<GoalLocation_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //LOCATION_DEFINED
+#endif //guWhiteboard_Location_DEFINED
 
-#ifdef NAOSONARPROTECTEDWALKCOMMAND_DEFINED
+#ifdef guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
 /** WBFunctor definition for NaoSonarProtectedWalkCommand_WBFunctor_T */ 
 template <typename NaoSonarProtectedWalkCommand_WBFunctor_T >
 class NaoSonarProtectedWalkCommand_WBFunctor: public WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T > {
@@ -3234,9 +3234,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NaoSonarProtectedWalkCommand_WBFunctor_T *obj, void (NaoSonarProtectedWalkCommand_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NaoSonarProtectedWalkCommand &), guWhiteboard::wb_types t) { return new NaoSonarProtectedWalkCommand_WBFunctor<NaoSonarProtectedWalkCommand_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAOSONARPROTECTEDWALKCOMMAND_DEFINED
+#endif //guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
 
-#ifdef NAOOBSTACLEDIRECTION_DEFINED
+#ifdef guWhiteboard_NaoObstacleDirection_DEFINED
 /** WBFunctor definition for NaoObstacleDirection_WBFunctor_T */ 
 template <typename NaoObstacleDirection_WBFunctor_T >
 class NaoObstacleDirection_WBFunctor: public WBFunctor<NaoObstacleDirection_WBFunctor_T > {
@@ -3257,9 +3257,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(NaoObstacleDirection_WBFunctor_T *obj, void (NaoObstacleDirection_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::NaoObstacleDirection &), guWhiteboard::wb_types t) { return new NaoObstacleDirection_WBFunctor<NaoObstacleDirection_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //NAOOBSTACLEDIRECTION_DEFINED
+#endif //guWhiteboard_NaoObstacleDirection_DEFINED
 
-#ifdef DOMINANTFREQUENCIES_DEFINED
+#ifdef guWhiteboard_DominantFrequencies_DEFINED
 /** WBFunctor definition for DominantFrequencies_WBFunctor_T */ 
 template <typename DominantFrequencies_WBFunctor_T >
 class DominantFrequencies_WBFunctor: public WBFunctor<DominantFrequencies_WBFunctor_T > {
@@ -3280,9 +3280,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(DominantFrequencies_WBFunctor_T *obj, void (DominantFrequencies_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::DominantFrequencies &), guWhiteboard::wb_types t) { return new DominantFrequencies_WBFunctor<DominantFrequencies_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //DOMINANTFREQUENCIES_DEFINED
+#endif //guWhiteboard_DominantFrequencies_DEFINED
 
-#ifdef MISSIONPRIORITYFOROBSTACLES_DEFINED
+#ifdef guWhiteboard_MissionPriorityForObstacles_DEFINED
 /** WBFunctor definition for MissionPriorityForObstacles_WBFunctor_T */ 
 template <typename MissionPriorityForObstacles_WBFunctor_T >
 class MissionPriorityForObstacles_WBFunctor: public WBFunctor<MissionPriorityForObstacles_WBFunctor_T > {
@@ -3303,7 +3303,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MissionPriorityForObstacles_WBFunctor_T *obj, void (MissionPriorityForObstacles_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MissionPriorityForObstacles &), guWhiteboard::wb_types t) { return new MissionPriorityForObstacles_WBFunctor<MissionPriorityForObstacles_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MISSIONPRIORITYFOROBSTACLES_DEFINED
+#endif //guWhiteboard_MissionPriorityForObstacles_DEFINED
 
 
 /** WBFunctor definition for WavLoad_WBFunctor_T */ 
@@ -3374,7 +3374,7 @@ public:
 }; 
 
 
-#ifdef FREQUENCYLIMITS_DEFINED
+#ifdef guWhiteboard_FrequencyLimits_DEFINED
 /** WBFunctor definition for FrequencyControl_WBFunctor_T */ 
 template <typename FrequencyControl_WBFunctor_T >
 class FrequencyControl_WBFunctor: public WBFunctor<FrequencyControl_WBFunctor_T > {
@@ -3395,9 +3395,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FrequencyControl_WBFunctor_T *obj, void (FrequencyControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FrequencyLimits &), guWhiteboard::wb_types t) { return new FrequencyControl_WBFunctor<FrequencyControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FREQUENCYLIMITS_DEFINED
+#endif //guWhiteboard_FrequencyLimits_DEFINED
 
-#ifdef FREQUENCYLIMITS_DEFINED
+#ifdef guWhiteboard_FrequencyLimits_DEFINED
 /** WBFunctor definition for FrequencyStatus_WBFunctor_T */ 
 template <typename FrequencyStatus_WBFunctor_T >
 class FrequencyStatus_WBFunctor: public WBFunctor<FrequencyStatus_WBFunctor_T > {
@@ -3418,9 +3418,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(FrequencyStatus_WBFunctor_T *obj, void (FrequencyStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::FrequencyLimits &), guWhiteboard::wb_types t) { return new FrequencyStatus_WBFunctor<FrequencyStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //FREQUENCYLIMITS_DEFINED
+#endif //guWhiteboard_FrequencyLimits_DEFINED
 
-#ifdef HEADJOINTSENSORS_DEFINED
+#ifdef guWhiteboard_HeadJointSensors_DEFINED
 /** WBFunctor definition for HeadJointSensors_WBFunctor_T */ 
 template <typename HeadJointSensors_WBFunctor_T >
 class HeadJointSensors_WBFunctor: public WBFunctor<HeadJointSensors_WBFunctor_T > {
@@ -3441,9 +3441,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(HeadJointSensors_WBFunctor_T *obj, void (HeadJointSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::HeadJointSensors &), guWhiteboard::wb_types t) { return new HeadJointSensors_WBFunctor<HeadJointSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //HEADJOINTSENSORS_DEFINED
+#endif //guWhiteboard_HeadJointSensors_DEFINED
 
-#ifdef ADJUSTPOSITIONCONFIDENCE_DEFINED
+#ifdef guWhiteboard_AdjustPositionConfidence_DEFINED
 /** WBFunctor definition for AdjustPositionConfidence_WBFunctor_T */ 
 template <typename AdjustPositionConfidence_WBFunctor_T >
 class AdjustPositionConfidence_WBFunctor: public WBFunctor<AdjustPositionConfidence_WBFunctor_T > {
@@ -3464,9 +3464,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(AdjustPositionConfidence_WBFunctor_T *obj, void (AdjustPositionConfidence_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::AdjustPositionConfidence &), guWhiteboard::wb_types t) { return new AdjustPositionConfidence_WBFunctor<AdjustPositionConfidence_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //ADJUSTPOSITIONCONFIDENCE_DEFINED
+#endif //guWhiteboard_AdjustPositionConfidence_DEFINED
 
-#ifdef GUVRTELEOPVULKANCONTROL_DEFINED
+#ifdef guWhiteboard_GuVrTeleopVulkanControl_DEFINED
 /** WBFunctor definition for GuVrTeleopVulkanControl_WBFunctor_T */ 
 template <typename GuVrTeleopVulkanControl_WBFunctor_T >
 class GuVrTeleopVulkanControl_WBFunctor: public WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T > {
@@ -3487,9 +3487,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(GuVrTeleopVulkanControl_WBFunctor_T *obj, void (GuVrTeleopVulkanControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::GuVrTeleopVulkanControl &), guWhiteboard::wb_types t) { return new GuVrTeleopVulkanControl_WBFunctor<GuVrTeleopVulkanControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //GUVRTELEOPVULKANCONTROL_DEFINED
+#endif //guWhiteboard_GuVrTeleopVulkanControl_DEFINED
 
-#ifdef TEMPERATURESENSORS_DEFINED
+#ifdef guWhiteboard_TemperatureSensors_DEFINED
 /** WBFunctor definition for TemperatureSensors_WBFunctor_T */ 
 template <typename TemperatureSensors_WBFunctor_T >
 class TemperatureSensors_WBFunctor: public WBFunctor<TemperatureSensors_WBFunctor_T > {
@@ -3510,9 +3510,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(TemperatureSensors_WBFunctor_T *obj, void (TemperatureSensors_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::TemperatureSensors &), guWhiteboard::wb_types t) { return new TemperatureSensors_WBFunctor<TemperatureSensors_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //TEMPERATURESENSORS_DEFINED
+#endif //guWhiteboard_TemperatureSensors_DEFINED
 
-#ifdef OVERHEATING_DEFINED
+#ifdef guWhiteboard_Overheating_DEFINED
 /** WBFunctor definition for Overheating_WBFunctor_T */ 
 template <typename Overheating_WBFunctor_T >
 class Overheating_WBFunctor: public WBFunctor<Overheating_WBFunctor_T > {
@@ -3533,7 +3533,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(Overheating_WBFunctor_T *obj, void (Overheating_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::Overheating &), guWhiteboard::wb_types t) { return new Overheating_WBFunctor<Overheating_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //OVERHEATING_DEFINED
+#endif //guWhiteboard_Overheating_DEFINED
 
 
 /** WBFunctor definition for buttonPushed_WBFunctor_T */ 
@@ -4041,7 +4041,7 @@ public:
 }; 
 
 
-#ifdef BALLPOSITION_DEFINED
+#ifdef guWhiteboard_BallPosition_DEFINED
 /** WBFunctor definition for BallPosition_WBFunctor_T */ 
 template <typename BallPosition_WBFunctor_T >
 class BallPosition_WBFunctor: public WBFunctor<BallPosition_WBFunctor_T > {
@@ -4062,9 +4062,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(BallPosition_WBFunctor_T *obj, void (BallPosition_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::BallPosition &), guWhiteboard::wb_types t) { return new BallPosition_WBFunctor<BallPosition_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //BALLPOSITION_DEFINED
+#endif //guWhiteboard_BallPosition_DEFINED
 
-#ifdef MEMORYIMAGECONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_MemoryImageControlStatus_DEFINED
 /** WBFunctor definition for MemoryImageControl_WBFunctor_T */ 
 template <typename MemoryImageControl_WBFunctor_T >
 class MemoryImageControl_WBFunctor: public WBFunctor<MemoryImageControl_WBFunctor_T > {
@@ -4085,9 +4085,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MemoryImageControl_WBFunctor_T *obj, void (MemoryImageControl_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MemoryImageControlStatus &), guWhiteboard::wb_types t) { return new MemoryImageControl_WBFunctor<MemoryImageControl_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MEMORYIMAGECONTROLSTATUS_DEFINED
+#endif //guWhiteboard_MemoryImageControlStatus_DEFINED
 
-#ifdef MEMORYIMAGECONTROLSTATUS_DEFINED
+#ifdef guWhiteboard_MemoryImageControlStatus_DEFINED
 /** WBFunctor definition for MemoryImageStatus_WBFunctor_T */ 
 template <typename MemoryImageStatus_WBFunctor_T >
 class MemoryImageStatus_WBFunctor: public WBFunctor<MemoryImageStatus_WBFunctor_T > {
@@ -4108,7 +4108,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MemoryImageStatus_WBFunctor_T *obj, void (MemoryImageStatus_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MemoryImageControlStatus &), guWhiteboard::wb_types t) { return new MemoryImageStatus_WBFunctor<MemoryImageStatus_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MEMORYIMAGECONTROLSTATUS_DEFINED
+#endif //guWhiteboard_MemoryImageControlStatus_DEFINED
 
 
 /** WBFunctor definition for LHandGripper_WBFunctor_T */ 
@@ -4156,7 +4156,7 @@ public:
 }; 
 
 
-#ifdef MYPOSITION_DEFINED
+#ifdef guWhiteboard_MyPosition_DEFINED
 /** WBFunctor definition for MyPosition_WBFunctor_T */ 
 template <typename MyPosition_WBFunctor_T >
 class MyPosition_WBFunctor: public WBFunctor<MyPosition_WBFunctor_T > {
@@ -4177,9 +4177,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(MyPosition_WBFunctor_T *obj, void (MyPosition_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::MyPosition &), guWhiteboard::wb_types t) { return new MyPosition_WBFunctor<MyPosition_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //MYPOSITION_DEFINED
+#endif //guWhiteboard_MyPosition_DEFINED
 
-#ifdef VISIONDETECTIONLINES_DEFINED
+#ifdef guWhiteboard_VisionDetectionLines_DEFINED
 /** WBFunctor definition for VisionDetectionLines_WBFunctor_T */ 
 template <typename VisionDetectionLines_WBFunctor_T >
 class VisionDetectionLines_WBFunctor: public WBFunctor<VisionDetectionLines_WBFunctor_T > {
@@ -4200,9 +4200,9 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionDetectionLines_WBFunctor_T *obj, void (VisionDetectionLines_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionDetectionLines &), guWhiteboard::wb_types t) { return new VisionDetectionLines_WBFunctor<VisionDetectionLines_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONDETECTIONLINES_DEFINED
+#endif //guWhiteboard_VisionDetectionLines_DEFINED
 
-#ifdef VISIONDETECTIONFEATURES_DEFINED
+#ifdef guWhiteboard_VisionDetectionFeatures_DEFINED
 /** WBFunctor definition for VisionDetectionFeatures_WBFunctor_T */ 
 template <typename VisionDetectionFeatures_WBFunctor_T >
 class VisionDetectionFeatures_WBFunctor: public WBFunctor<VisionDetectionFeatures_WBFunctor_T > {
@@ -4223,7 +4223,7 @@ public:
     /** internal method of linking classes */
     static WBFunctorBase *bind(VisionDetectionFeatures_WBFunctor_T *obj, void (VisionDetectionFeatures_WBFunctor_T::*f)(guWhiteboard::wb_types, guWhiteboard::VisionDetectionFeatures &), guWhiteboard::wb_types t) { return new VisionDetectionFeatures_WBFunctor<VisionDetectionFeatures_WBFunctor_T >(obj, f, t); }
 }; 
-#endif //VISIONDETECTIONFEATURES_DEFINED
+#endif //guWhiteboard_VisionDetectionFeatures_DEFINED
 
 
 #pragma clang diagnostic pop
