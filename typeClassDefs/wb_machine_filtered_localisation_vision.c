@@ -139,7 +139,7 @@ const char* wb_machine_filtered_localisation_vision_description(const struct wb_
         return descString;
     }
     len = gu_strlcat(descString, "sightings={", bufferSize);
-    for (int sightings_index = 0; sightings_index < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_index++) {
+    for (int sightings_index = 0; sightings_index < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -150,9 +150,9 @@ const char* wb_machine_filtered_localisation_vision_description(const struct wb_
         if (len >= bufferSize) {
             return descString;
         }
-        char sightings_1_buffer[LANDMARK_SIGHTING_DESC_BUFFER_SIZE];
+        char sightings_1_buffer[WB_LANDMARK_SIGHTING_DESC_BUFFER_SIZE];
         char* sightings_1_p = sightings_1_buffer;
-        const char* sightings_1_description = wb_landmark_sighting_description(&self->sightings[sightings_index], sightings_1_p, LANDMARK_SIGHTING_DESC_BUFFER_SIZE);
+        const char* sightings_1_description = wb_landmark_sighting_description(&self->sightings[sightings_index], sightings_1_p, WB_LANDMARK_SIGHTING_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, sightings_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -187,7 +187,7 @@ const char* wb_machine_filtered_localisation_vision_to_string(const struct wb_ma
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int sightings_index = 0; sightings_index < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_index++) {
+    for (int sightings_index = 0; sightings_index < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -198,9 +198,9 @@ const char* wb_machine_filtered_localisation_vision_to_string(const struct wb_ma
         if (len >= bufferSize) {
             return toString;
         }
-        char sightings_1_buffer[LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE];
+        char sightings_1_buffer[WB_LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE];
         char* sightings_1_p = sightings_1_buffer;
-        const char* sightings_1_to_string = wb_landmark_sighting_to_string(&self->sightings[sightings_index], sightings_1_p, LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE);
+        const char* sightings_1_to_string = wb_landmark_sighting_to_string(&self->sightings[sightings_index], sightings_1_p, WB_LANDMARK_SIGHTING_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, sightings_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -222,10 +222,10 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[18];
     char* key = &key_buffer[0];
@@ -315,7 +315,7 @@ struct wb_machine_filtered_localisation_vision* wb_machine_filtered_localisation
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int sightings_0_index = 0; sightings_0_index < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
+                for (int sightings_0_index = 0; sightings_0_index < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

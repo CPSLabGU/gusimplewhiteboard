@@ -93,10 +93,10 @@ namespace guWhiteboard {
          */
         void init(const struct wb_particle_position t_particles[4] = NULLPTR) {
             if (t_particles != NULLPTR) {
-                std::memcpy(wb_top_particles::particles, t_particles, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
+                std::memcpy(wb_top_particles::particles, t_particles, WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             } else {
-                struct wb_particle_position particles_temp[TOPPARTICLES_PARTICLES_ARRAY_SIZE] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()};
-                std::memcpy(wb_top_particles::particles, particles_temp, TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
+                struct wb_particle_position particles_temp[WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE] = {wb_particle_position(),wb_particle_position(),wb_particle_position(),wb_particle_position()};
+                std::memcpy(wb_top_particles::particles, particles_temp, WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE * sizeof (struct wb_particle_position));
             }
         }
 
@@ -170,7 +170,7 @@ namespace guWhiteboard {
 
         size_t particles_size() const
         {
-            return TOPPARTICLES_PARTICLES_ARRAY_SIZE;
+            return WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE;
         }
 
         ParticlePosition & particles(int t_i)
@@ -185,7 +185,7 @@ namespace guWhiteboard {
 
         void set_particles(const ParticlePosition *t_newValue)
         {
-            memcpy(wb_top_particles::particles, static_cast<const struct wb_particle_position *>(t_newValue), TOPPARTICLES_PARTICLES_ARRAY_SIZE * (sizeof (struct wb_particle_position)));
+            memcpy(wb_top_particles::particles, static_cast<const struct wb_particle_position *>(t_newValue), WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE * (sizeof (struct wb_particle_position)));
         }
 
         void set_particles(const ParticlePosition &t_newValue, int t_i)
@@ -204,7 +204,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_TOP_PARTICLES_C_CONVERSION
-            char buffer[TOPPARTICLES_DESC_BUFFER_SIZE];
+            char buffer[WB_TOPPARTICLES_DESC_BUFFER_SIZE];
             wb_top_particles_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -212,7 +212,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool particles_first = true;
             ss << "particles={";
-            for (int i = 0; i < TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
                 ss << (particles_first ? "" : ", ") << "{" << ParticlePosition(this->particles(i)).description() << "}";
                 particles_first = false;
             }
@@ -223,7 +223,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_TOP_PARTICLES_C_CONVERSION
-            char buffer[TOPPARTICLES_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_TOPPARTICLES_TO_STRING_BUFFER_SIZE];
             wb_top_particles_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -231,7 +231,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool particles_first = true;
             ss << "{";
-            for (int i = 0; i < TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; i++) {
                 ss << (particles_first ? "" : ", ") << "{" << ParticlePosition(this->particles(i)).to_string() << "}";
                 particles_first = false;
             }
@@ -248,10 +248,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > TOPPARTICLES_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_TOPPARTICLES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[TOPPARTICLES_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_TOPPARTICLES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[10];
             char* key = &key_buffer[0];
@@ -334,7 +334,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int particles_0_index = 0; particles_0_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_0_index++) {
+                        for (int particles_0_index = 0; particles_0_index < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

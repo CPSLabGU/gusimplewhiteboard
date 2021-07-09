@@ -190,10 +190,10 @@ struct wb_odometry* wb_odometry_from_string(struct wb_odometry* self, const char
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > ODOMETRY_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_ODOMETRY_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[ODOMETRY_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_ODOMETRY_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[8];
     char* key = &key_buffer[0];

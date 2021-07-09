@@ -131,7 +131,7 @@ const char* wb_filtered_arrayonedimobjects_description(const struct wb_filtered_
         return descString;
     }
     len = gu_strlcat(descString, "objects={", bufferSize);
-    for (int objects_index = 0; objects_index < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_index++) {
+    for (int objects_index = 0; objects_index < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -142,9 +142,9 @@ const char* wb_filtered_arrayonedimobjects_description(const struct wb_filtered_
         if (len >= bufferSize) {
             return descString;
         }
-        char objects_1_buffer[FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE];
+        char objects_1_buffer[WB_FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE];
         char* objects_1_p = objects_1_buffer;
-        const char* objects_1_description = wb_filtered_vision_object_description(&self->objects[objects_index], objects_1_p, FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE);
+        const char* objects_1_description = wb_filtered_vision_object_description(&self->objects[objects_index], objects_1_p, WB_FILTERED_VISION_OBJECT_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, objects_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -171,7 +171,7 @@ const char* wb_filtered_arrayonedimobjects_to_string(const struct wb_filtered_ar
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int objects_index = 0; objects_index < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_index++) {
+    for (int objects_index = 0; objects_index < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -182,9 +182,9 @@ const char* wb_filtered_arrayonedimobjects_to_string(const struct wb_filtered_ar
         if (len >= bufferSize) {
             return toString;
         }
-        char objects_1_buffer[FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE];
+        char objects_1_buffer[WB_FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE];
         char* objects_1_p = objects_1_buffer;
-        const char* objects_1_to_string = wb_filtered_vision_object_to_string(&self->objects[objects_index], objects_1_p, FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE);
+        const char* objects_1_to_string = wb_filtered_vision_object_to_string(&self->objects[objects_index], objects_1_p, WB_FILTERED_VISION_OBJECT_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, objects_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -206,10 +206,10 @@ struct wb_filtered_arrayonedimobjects* wb_filtered_arrayonedimobjects_from_strin
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[8];
     char* key = &key_buffer[0];
@@ -292,7 +292,7 @@ struct wb_filtered_arrayonedimobjects* wb_filtered_arrayonedimobjects_from_strin
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int objects_0_index = 0; objects_0_index < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_0_index++) {
+                for (int objects_0_index = 0; objects_0_index < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

@@ -163,9 +163,9 @@ const char* wb_nao_walk_status_description(const struct wb_nao_walk_status* self
     if (len >= bufferSize) {
         return descString;
     }
-    char odometry_buffer[ODOMETRY_DESC_BUFFER_SIZE];
+    char odometry_buffer[WB_ODOMETRY_DESC_BUFFER_SIZE];
     char* odometry_p = odometry_buffer;
-    const char* odometry_description = wb_odometry_description(&self->odometry, odometry_p, ODOMETRY_DESC_BUFFER_SIZE);
+    const char* odometry_description = wb_odometry_description(&self->odometry, odometry_p, WB_ODOMETRY_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, odometry_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -227,9 +227,9 @@ const char* wb_nao_walk_status_to_string(const struct wb_nao_walk_status* self, 
     if (len >= bufferSize) {
         return toString;
     }
-    char odometry_buffer[ODOMETRY_TO_STRING_BUFFER_SIZE];
+    char odometry_buffer[WB_ODOMETRY_TO_STRING_BUFFER_SIZE];
     char* odometry_p = odometry_buffer;
-    const char* odometry_to_string = wb_odometry_to_string(&self->odometry, odometry_p, ODOMETRY_TO_STRING_BUFFER_SIZE);
+    const char* odometry_to_string = wb_odometry_to_string(&self->odometry, odometry_p, WB_ODOMETRY_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, odometry_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -254,10 +254,10 @@ struct wb_nao_walk_status* wb_nao_walk_status_from_string(struct wb_nao_walk_sta
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > NAOWALKSTATUS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_NAOWALKSTATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[NAOWALKSTATUS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_NAOWALKSTATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[21];
     char* key = &key_buffer[0];

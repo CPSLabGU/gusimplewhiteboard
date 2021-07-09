@@ -163,9 +163,9 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    char leftCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char leftCoordinate_buffer[WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE];
     char* leftCoordinate_p = leftCoordinate_buffer;
-    const char* leftCoordinate_description = wb_pixel_coordinate_description(&self->leftCoordinate, leftCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    const char* leftCoordinate_description = wb_pixel_coordinate_description(&self->leftCoordinate, leftCoordinate_p, WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, leftCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -182,9 +182,9 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    char centerCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char centerCoordinate_buffer[WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE];
     char* centerCoordinate_p = centerCoordinate_buffer;
-    const char* centerCoordinate_description = wb_pixel_coordinate_description(&self->centerCoordinate, centerCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    const char* centerCoordinate_description = wb_pixel_coordinate_description(&self->centerCoordinate, centerCoordinate_p, WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, centerCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -201,9 +201,9 @@ const char* wb_vision_detection_horizon_description(const struct wb_vision_detec
     if (len >= bufferSize) {
         return descString;
     }
-    char rightCoordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char rightCoordinate_buffer[WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE];
     char* rightCoordinate_p = rightCoordinate_buffer;
-    const char* rightCoordinate_description = wb_pixel_coordinate_description(&self->rightCoordinate, rightCoordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    const char* rightCoordinate_description = wb_pixel_coordinate_description(&self->rightCoordinate, rightCoordinate_p, WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, rightCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -257,9 +257,9 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    char leftCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char leftCoordinate_buffer[WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* leftCoordinate_p = leftCoordinate_buffer;
-    const char* leftCoordinate_to_string = wb_pixel_coordinate_to_string(&self->leftCoordinate, leftCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* leftCoordinate_to_string = wb_pixel_coordinate_to_string(&self->leftCoordinate, leftCoordinate_p, WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, leftCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -276,9 +276,9 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    char centerCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char centerCoordinate_buffer[WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* centerCoordinate_p = centerCoordinate_buffer;
-    const char* centerCoordinate_to_string = wb_pixel_coordinate_to_string(&self->centerCoordinate, centerCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* centerCoordinate_to_string = wb_pixel_coordinate_to_string(&self->centerCoordinate, centerCoordinate_p, WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, centerCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -295,9 +295,9 @@ const char* wb_vision_detection_horizon_to_string(const struct wb_vision_detecti
     if (len >= bufferSize) {
         return toString;
     }
-    char rightCoordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char rightCoordinate_buffer[WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* rightCoordinate_p = rightCoordinate_buffer;
-    const char* rightCoordinate_to_string = wb_pixel_coordinate_to_string(&self->rightCoordinate, rightCoordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* rightCoordinate_to_string = wb_pixel_coordinate_to_string(&self->rightCoordinate, rightCoordinate_p, WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, rightCoordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -314,10 +314,10 @@ struct wb_vision_detection_horizon* wb_vision_detection_horizon_from_string(stru
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[17];
     char* key = &key_buffer[0];

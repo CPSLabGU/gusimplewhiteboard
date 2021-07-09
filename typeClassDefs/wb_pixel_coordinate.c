@@ -174,10 +174,10 @@ struct wb_pixel_coordinate* wb_pixel_coordinate_from_string(struct wb_pixel_coor
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > PIXEL_COORDINATE_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[2];
     char* key = &key_buffer[0];

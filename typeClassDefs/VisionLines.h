@@ -91,10 +91,10 @@ namespace guWhiteboard {
          */
         void init(const struct wb_vision_line t_lines[7] = NULLPTR, uint8_t t_numLines = 0, uint64_t t_frameNumber = 0, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
             if (t_lines != NULLPTR) {
-                std::memcpy(wb_vision_lines::lines, t_lines, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+                std::memcpy(wb_vision_lines::lines, t_lines, WB_VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             } else {
-                struct wb_vision_line lines_temp[VISION_LINES_LINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
-                std::memcpy(wb_vision_lines::lines, lines_temp, VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
+                struct wb_vision_line lines_temp[WB_VISION_LINES_LINES_ARRAY_SIZE] = {wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line(), wb_vision_line()};
+                std::memcpy(wb_vision_lines::lines, lines_temp, WB_VISION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_line));
             }
             set_numLines(t_numLines);
             set_frameNumber(t_frameNumber);
@@ -179,7 +179,7 @@ namespace guWhiteboard {
 
         size_t lines_size() const
         {
-            return VISION_LINES_LINES_ARRAY_SIZE;
+            return WB_VISION_LINES_LINES_ARRAY_SIZE;
         }
 
         VisionLine & lines(int t_i)
@@ -194,7 +194,7 @@ namespace guWhiteboard {
 
         void set_lines(const VisionLine *t_newValue)
         {
-            memcpy(wb_vision_lines::lines, static_cast<const struct wb_vision_line *>(t_newValue), VISION_LINES_LINES_ARRAY_SIZE * (sizeof (struct wb_vision_line)));
+            memcpy(wb_vision_lines::lines, static_cast<const struct wb_vision_line *>(t_newValue), WB_VISION_LINES_LINES_ARRAY_SIZE * (sizeof (struct wb_vision_line)));
         }
 
         void set_lines(const VisionLine &t_newValue, int t_i)
@@ -273,7 +273,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_VISION_LINES_C_CONVERSION
-            char buffer[VISION_LINES_DESC_BUFFER_SIZE];
+            char buffer[WB_VISION_LINES_DESC_BUFFER_SIZE];
             wb_vision_lines_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -281,7 +281,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool lines_first = true;
             ss << "lines={";
-            for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_LINES_LINES_ARRAY_SIZE; i++) {
                 ss << (lines_first ? "" : ", ") << "{" << VisionLine(this->lines(i)).description() << "}";
                 lines_first = false;
             }
@@ -300,7 +300,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_VISION_LINES_C_CONVERSION
-            char buffer[VISION_LINES_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_VISION_LINES_TO_STRING_BUFFER_SIZE];
             wb_vision_lines_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -308,7 +308,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool lines_first = true;
             ss << "{";
-            for (int i = 0; i < VISION_LINES_LINES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_LINES_LINES_ARRAY_SIZE; i++) {
                 ss << (lines_first ? "" : ", ") << "{" << VisionLine(this->lines(i)).to_string() << "}";
                 lines_first = false;
             }
@@ -333,10 +333,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > VISION_LINES_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_VISION_LINES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_LINES_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_VISION_LINES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -427,7 +427,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int lines_0_index = 0; lines_0_index < VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
+                        for (int lines_0_index = 0; lines_0_index < WB_VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

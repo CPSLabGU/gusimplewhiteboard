@@ -278,10 +278,10 @@ struct wb_gu_vr_teleop_vulkan_control* wb_gu_vr_teleop_vulkan_control_from_strin
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[16];
     char* key = &key_buffer[0];

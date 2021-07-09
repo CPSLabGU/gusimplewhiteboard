@@ -206,10 +206,10 @@ struct wb_microphone_frequencies* wb_microphone_frequencies_from_string(struct w
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];

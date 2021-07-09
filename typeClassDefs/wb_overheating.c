@@ -158,10 +158,10 @@ struct wb_overheating* wb_overheating_from_string(struct wb_overheating* self, c
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > OVERHEATING_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_OVERHEATING_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[OVERHEATING_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_OVERHEATING_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];

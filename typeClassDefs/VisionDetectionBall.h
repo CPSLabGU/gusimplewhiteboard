@@ -232,7 +232,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
-            char buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE];
+            char buffer[WB_VISION_DETECTION_BALL_DESC_BUFFER_SIZE];
             wb_vision_detection_ball_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -262,7 +262,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_VISION_DETECTION_BALL_C_CONVERSION
-            char buffer[VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_VISION_DETECTION_BALL_TO_STRING_BUFFER_SIZE];
             wb_vision_detection_ball_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -298,10 +298,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[17];
             char* key = &key_buffer[0];

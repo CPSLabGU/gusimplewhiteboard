@@ -87,16 +87,16 @@
 
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature_array.h>
 
-#define VISION_DETECTION_FEATURES_GENERATED 
-#define VISION_DETECTION_FEATURES_C_STRUCT wb_vision_detection_features 
-#define VISION_DETECTION_FEATURES_NUMBER_OF_VARIABLES 2
+#define WB_VISION_DETECTION_FEATURES_GENERATED 
+#define WB_VISION_DETECTION_FEATURES_C_STRUCT wb_vision_detection_features 
+#define WB_VISION_DETECTION_FEATURES_NUMBER_OF_VARIABLES 2
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE 556
-#define VISION_DETECTION_FEATURES_TO_STRING_BUFFER_SIZE 535
+#define WB_VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE 556
+#define WB_VISION_DETECTION_FEATURES_TO_STRING_BUFFER_SIZE 535
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE 2
+#define WB_VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE 2
 
 #ifdef __cplusplus
 extern "C" {
@@ -116,7 +116,7 @@ struct wb_vision_detection_features
     /**
      * Features reported for each camera.
      */
-    struct wb_vision_detection_feature_array features[VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE];
+    struct wb_vision_detection_feature_array features[WB_VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE];
 
 };
 

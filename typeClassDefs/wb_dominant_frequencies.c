@@ -135,9 +135,9 @@ const char* wb_dominant_frequencies_description(const struct wb_dominant_frequen
     if (len >= bufferSize) {
         return descString;
     }
-    char rms_buffer[RMS_LEVELS_DESC_BUFFER_SIZE];
+    char rms_buffer[WB_RMS_LEVELS_DESC_BUFFER_SIZE];
     char* rms_p = rms_buffer;
-    const char* rms_description = wb_r_m_s_levels_description(&self->rms, rms_p, RMS_LEVELS_DESC_BUFFER_SIZE);
+    const char* rms_description = wb_r_m_s_levels_description(&self->rms, rms_p, WB_RMS_LEVELS_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, rms_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -151,7 +151,7 @@ const char* wb_dominant_frequencies_description(const struct wb_dominant_frequen
         return descString;
     }
     len = gu_strlcat(descString, "frequencies={", bufferSize);
-    for (int frequencies_index = 0; frequencies_index < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_index++) {
+    for (int frequencies_index = 0; frequencies_index < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -162,9 +162,9 @@ const char* wb_dominant_frequencies_description(const struct wb_dominant_frequen
         if (len >= bufferSize) {
             return descString;
         }
-        char frequencies_1_buffer[MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE];
+        char frequencies_1_buffer[WB_MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE];
         char* frequencies_1_p = frequencies_1_buffer;
-        const char* frequencies_1_description = wb_microphone_frequencies_description(&self->frequencies[frequencies_index], frequencies_1_p, MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE);
+        const char* frequencies_1_description = wb_microphone_frequencies_description(&self->frequencies[frequencies_index], frequencies_1_p, WB_MICROPHONE_FREQUENCIES_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, frequencies_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -194,9 +194,9 @@ const char* wb_dominant_frequencies_to_string(const struct wb_dominant_frequenci
     if (len >= bufferSize) {
         return toString;
     }
-    char rms_buffer[RMS_LEVELS_TO_STRING_BUFFER_SIZE];
+    char rms_buffer[WB_RMS_LEVELS_TO_STRING_BUFFER_SIZE];
     char* rms_p = rms_buffer;
-    const char* rms_to_string = wb_r_m_s_levels_to_string(&self->rms, rms_p, RMS_LEVELS_TO_STRING_BUFFER_SIZE);
+    const char* rms_to_string = wb_r_m_s_levels_to_string(&self->rms, rms_p, WB_RMS_LEVELS_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, rms_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -210,7 +210,7 @@ const char* wb_dominant_frequencies_to_string(const struct wb_dominant_frequenci
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int frequencies_index = 0; frequencies_index < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_index++) {
+    for (int frequencies_index = 0; frequencies_index < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -221,9 +221,9 @@ const char* wb_dominant_frequencies_to_string(const struct wb_dominant_frequenci
         if (len >= bufferSize) {
             return toString;
         }
-        char frequencies_1_buffer[MICROPHONE_FREQUENCIES_TO_STRING_BUFFER_SIZE];
+        char frequencies_1_buffer[WB_MICROPHONE_FREQUENCIES_TO_STRING_BUFFER_SIZE];
         char* frequencies_1_p = frequencies_1_buffer;
-        const char* frequencies_1_to_string = wb_microphone_frequencies_to_string(&self->frequencies[frequencies_index], frequencies_1_p, MICROPHONE_FREQUENCIES_TO_STRING_BUFFER_SIZE);
+        const char* frequencies_1_to_string = wb_microphone_frequencies_to_string(&self->frequencies[frequencies_index], frequencies_1_p, WB_MICROPHONE_FREQUENCIES_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, frequencies_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -245,10 +245,10 @@ struct wb_dominant_frequencies* wb_dominant_frequencies_from_string(struct wb_do
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -338,7 +338,7 @@ struct wb_dominant_frequencies* wb_dominant_frequencies_from_string(struct wb_do
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int frequencies_0_index = 0; frequencies_0_index < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_0_index++) {
+                for (int frequencies_0_index = 0; frequencies_0_index < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

@@ -143,7 +143,7 @@ const char* wb_vision_detection_horizons_description(const struct wb_vision_dete
         return descString;
     }
     len = gu_strlcat(descString, "horizons={", bufferSize);
-    for (int horizons_index = 0; horizons_index < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_index++) {
+    for (int horizons_index = 0; horizons_index < WB_VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -154,9 +154,9 @@ const char* wb_vision_detection_horizons_description(const struct wb_vision_dete
         if (len >= bufferSize) {
             return descString;
         }
-        char horizons_1_buffer[VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE];
+        char horizons_1_buffer[WB_VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE];
         char* horizons_1_p = horizons_1_buffer;
-        const char* horizons_1_description = wb_vision_detection_horizon_description(&self->horizons[horizons_index], horizons_1_p, VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE);
+        const char* horizons_1_description = wb_vision_detection_horizon_description(&self->horizons[horizons_index], horizons_1_p, WB_VISION_DETECTION_HORIZON_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, horizons_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -211,7 +211,7 @@ const char* wb_vision_detection_horizons_to_string(const struct wb_vision_detect
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int horizons_index = 0; horizons_index < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_index++) {
+    for (int horizons_index = 0; horizons_index < WB_VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -222,9 +222,9 @@ const char* wb_vision_detection_horizons_to_string(const struct wb_vision_detect
         if (len >= bufferSize) {
             return toString;
         }
-        char horizons_1_buffer[VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE];
+        char horizons_1_buffer[WB_VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE];
         char* horizons_1_p = horizons_1_buffer;
-        const char* horizons_1_to_string = wb_vision_detection_horizon_to_string(&self->horizons[horizons_index], horizons_1_p, VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE);
+        const char* horizons_1_to_string = wb_vision_detection_horizon_to_string(&self->horizons[horizons_index], horizons_1_p, WB_VISION_DETECTION_HORIZON_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, horizons_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -262,10 +262,10 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_VISION_DETECTION_HORIZONS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -363,7 +363,7 @@ struct wb_vision_detection_horizons* wb_vision_detection_horizons_from_string(st
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int horizons_0_index = 0; horizons_0_index < VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_0_index++) {
+                for (int horizons_0_index = 0; horizons_0_index < WB_VISION_DETECTION_HORIZONS_HORIZONS_ARRAY_SIZE; horizons_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

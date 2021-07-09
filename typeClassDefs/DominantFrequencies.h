@@ -93,10 +93,10 @@ namespace guWhiteboard {
         void init(struct wb_r_m_s_levels t_rms = wb_r_m_s_levels(), const struct wb_microphone_frequencies t_frequencies[DOMINANT_NUMFREQi] = NULLPTR) {
             set_rms(t_rms);
             if (t_frequencies != NULLPTR) {
-                std::memcpy(wb_dominant_frequencies::frequencies, t_frequencies, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
+                std::memcpy(wb_dominant_frequencies::frequencies, t_frequencies, WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
             } else {
-                struct wb_microphone_frequencies frequencies_temp[DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE] = {};
-                std::memcpy(wb_dominant_frequencies::frequencies, frequencies_temp, DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
+                struct wb_microphone_frequencies frequencies_temp[WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE] = {};
+                std::memcpy(wb_dominant_frequencies::frequencies, frequencies_temp, WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * sizeof (struct wb_microphone_frequencies));
             }
         }
 
@@ -189,7 +189,7 @@ namespace guWhiteboard {
 
         size_t frequencies_size() const
         {
-            return DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE;
+            return WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE;
         }
 
         MicrophoneFrequencies & frequencies(int t_i)
@@ -204,7 +204,7 @@ namespace guWhiteboard {
 
         void set_frequencies(const MicrophoneFrequencies *t_newValue)
         {
-            memcpy(wb_dominant_frequencies::frequencies, static_cast<const struct wb_microphone_frequencies *>(t_newValue), DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * (sizeof (struct wb_microphone_frequencies)));
+            memcpy(wb_dominant_frequencies::frequencies, static_cast<const struct wb_microphone_frequencies *>(t_newValue), WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE * (sizeof (struct wb_microphone_frequencies)));
         }
 
         void set_frequencies(const MicrophoneFrequencies &t_newValue, int t_i)
@@ -223,7 +223,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_DOMINANT_FREQUENCIES_C_CONVERSION
-            char buffer[DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE];
+            char buffer[WB_DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE];
             wb_dominant_frequencies_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -233,7 +233,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool frequencies_first = true;
             ss << "frequencies={";
-            for (int i = 0; i < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
                 ss << (frequencies_first ? "" : ", ") << "{" << MicrophoneFrequencies(this->frequencies(i)).description() << "}";
                 frequencies_first = false;
             }
@@ -244,7 +244,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_DOMINANT_FREQUENCIES_C_CONVERSION
-            char buffer[DOMINANT_FREQUENCIES_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_DOMINANT_FREQUENCIES_TO_STRING_BUFFER_SIZE];
             wb_dominant_frequencies_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -254,7 +254,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool frequencies_first = true;
             ss << "{";
-            for (int i = 0; i < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; i++) {
                 ss << (frequencies_first ? "" : ", ") << "{" << MicrophoneFrequencies(this->frequencies(i)).to_string() << "}";
                 frequencies_first = false;
             }
@@ -271,10 +271,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_DOMINANT_FREQUENCIES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -366,7 +366,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int frequencies_0_index = 0; frequencies_0_index < DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_0_index++) {
+                        for (int frequencies_0_index = 0; frequencies_0_index < WB_DOMINANT_FREQUENCIES_FREQUENCIES_ARRAY_SIZE; frequencies_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

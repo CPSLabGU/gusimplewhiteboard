@@ -91,10 +91,10 @@ namespace guWhiteboard {
          */
         void init(const struct wb_filtered_vision_object t_objects[4] = NULLPTR) {
             if (t_objects != NULLPTR) {
-                std::memcpy(wb_filtered_arrayonedimobjects::objects, t_objects, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
+                std::memcpy(wb_filtered_arrayonedimobjects::objects, t_objects, WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
             } else {
-                struct wb_filtered_vision_object objects_temp[FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE] = {wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object()};
-                std::memcpy(wb_filtered_arrayonedimobjects::objects, objects_temp, FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
+                struct wb_filtered_vision_object objects_temp[WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE] = {wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object(), wb_filtered_vision_object()};
+                std::memcpy(wb_filtered_arrayonedimobjects::objects, objects_temp, WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * sizeof (struct wb_filtered_vision_object));
             }
         }
 
@@ -168,7 +168,7 @@ namespace guWhiteboard {
 
         size_t objects_size() const
         {
-            return FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE;
+            return WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE;
         }
 
         FilteredVisionObject & objects(int t_i)
@@ -183,7 +183,7 @@ namespace guWhiteboard {
 
         void set_objects(const FilteredVisionObject *t_newValue)
         {
-            memcpy(wb_filtered_arrayonedimobjects::objects, static_cast<const struct wb_filtered_vision_object *>(t_newValue), FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * (sizeof (struct wb_filtered_vision_object)));
+            memcpy(wb_filtered_arrayonedimobjects::objects, static_cast<const struct wb_filtered_vision_object *>(t_newValue), WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE * (sizeof (struct wb_filtered_vision_object)));
         }
 
         void set_objects(const FilteredVisionObject &t_newValue, int t_i)
@@ -202,7 +202,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_FILTERED_ARRAYONEDIMOBJECTS_C_CONVERSION
-            char buffer[FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE];
+            char buffer[WB_FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE];
             wb_filtered_arrayonedimobjects_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -210,7 +210,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool objects_first = true;
             ss << "objects={";
-            for (int i = 0; i < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
                 ss << (objects_first ? "" : ", ") << "{" << FilteredVisionObject(this->objects(i)).description() << "}";
                 objects_first = false;
             }
@@ -221,7 +221,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_FILTERED_ARRAYONEDIMOBJECTS_C_CONVERSION
-            char buffer[FILTERED_ARRAYONEDIMOBJECTS_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_FILTERED_ARRAYONEDIMOBJECTS_TO_STRING_BUFFER_SIZE];
             wb_filtered_arrayonedimobjects_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -229,7 +229,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool objects_first = true;
             ss << "{";
-            for (int i = 0; i < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; i++) {
                 ss << (objects_first ? "" : ", ") << "{" << FilteredVisionObject(this->objects(i)).to_string() << "}";
                 objects_first = false;
             }
@@ -246,10 +246,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_FILTERED_ARRAYONEDIMOBJECTS_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[8];
             char* key = &key_buffer[0];
@@ -332,7 +332,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int objects_0_index = 0; objects_0_index < FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_0_index++) {
+                        for (int objects_0_index = 0; objects_0_index < WB_FILTERED_ARRAYONEDIMOBJECTS_OBJECTS_ARRAY_SIZE; objects_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

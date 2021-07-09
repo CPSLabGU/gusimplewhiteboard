@@ -91,22 +91,22 @@ namespace guWhiteboard {
          */
         void init(const struct wb_vision_field_feature t_fieldCorner[8] = NULLPTR, const struct wb_vision_field_feature t_fieldIntersection[8] = NULLPTR, const struct wb_vision_field_feature t_fieldCrosses[3] = NULLPTR, uint8_t t_numCorners = 0, uint8_t t_numIntersections = 0, uint8_t t_numCrosses = 0, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
             if (t_fieldCorner != NULLPTR) {
-                std::memcpy(wb_vision_field_features::fieldCorner, t_fieldCorner, VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                std::memcpy(wb_vision_field_features::fieldCorner, t_fieldCorner, WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
-                struct wb_vision_field_feature fieldCorner_temp[VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
-                std::memcpy(wb_vision_field_features::fieldCorner, fieldCorner_temp, VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                struct wb_vision_field_feature fieldCorner_temp[WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
+                std::memcpy(wb_vision_field_features::fieldCorner, fieldCorner_temp, WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             }
             if (t_fieldIntersection != NULLPTR) {
-                std::memcpy(wb_vision_field_features::fieldIntersection, t_fieldIntersection, VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                std::memcpy(wb_vision_field_features::fieldIntersection, t_fieldIntersection, WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
-                struct wb_vision_field_feature fieldIntersection_temp[VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
-                std::memcpy(wb_vision_field_features::fieldIntersection, fieldIntersection_temp, VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                struct wb_vision_field_feature fieldIntersection_temp[WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
+                std::memcpy(wb_vision_field_features::fieldIntersection, fieldIntersection_temp, WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             }
             if (t_fieldCrosses != NULLPTR) {
-                std::memcpy(wb_vision_field_features::fieldCrosses, t_fieldCrosses, VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                std::memcpy(wb_vision_field_features::fieldCrosses, t_fieldCrosses, WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             } else {
-                struct wb_vision_field_feature fieldCrosses_temp[VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
-                std::memcpy(wb_vision_field_features::fieldCrosses, fieldCrosses_temp, VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
+                struct wb_vision_field_feature fieldCrosses_temp[WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE] = { wb_vision_field_feature(), wb_vision_field_feature(), wb_vision_field_feature() };
+                std::memcpy(wb_vision_field_features::fieldCrosses, fieldCrosses_temp, WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * sizeof (struct wb_vision_field_feature));
             }
             set_numCorners(t_numCorners);
             set_numIntersections(t_numIntersections);
@@ -201,7 +201,7 @@ namespace guWhiteboard {
 
         size_t fieldCorner_size() const
         {
-            return VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE;
+            return WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE;
         }
 
         VisionFieldFeature & fieldCorner(int t_i)
@@ -216,7 +216,7 @@ namespace guWhiteboard {
 
         void set_fieldCorner(const VisionFieldFeature *t_newValue)
         {
-            memcpy(wb_vision_field_features::fieldCorner, static_cast<const struct wb_vision_field_feature *>(t_newValue), VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
+            memcpy(wb_vision_field_features::fieldCorner, static_cast<const struct wb_vision_field_feature *>(t_newValue), WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
         }
 
         void set_fieldCorner(const VisionFieldFeature &t_newValue, int t_i)
@@ -231,7 +231,7 @@ namespace guWhiteboard {
 
         size_t fieldIntersection_size() const
         {
-            return VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE;
+            return WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE;
         }
 
         VisionFieldFeature & fieldIntersection(int t_i)
@@ -246,7 +246,7 @@ namespace guWhiteboard {
 
         void set_fieldIntersection(const VisionFieldFeature *t_newValue)
         {
-            memcpy(wb_vision_field_features::fieldIntersection, static_cast<const struct wb_vision_field_feature *>(t_newValue), VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
+            memcpy(wb_vision_field_features::fieldIntersection, static_cast<const struct wb_vision_field_feature *>(t_newValue), WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
         }
 
         void set_fieldIntersection(const VisionFieldFeature &t_newValue, int t_i)
@@ -261,7 +261,7 @@ namespace guWhiteboard {
 
         size_t fieldCrosses_size() const
         {
-            return VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE;
+            return WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE;
         }
 
         VisionFieldFeature & fieldCrosses(int t_i)
@@ -276,7 +276,7 @@ namespace guWhiteboard {
 
         void set_fieldCrosses(const VisionFieldFeature *t_newValue)
         {
-            memcpy(wb_vision_field_features::fieldCrosses, static_cast<const struct wb_vision_field_feature *>(t_newValue), VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
+            memcpy(wb_vision_field_features::fieldCrosses, static_cast<const struct wb_vision_field_feature *>(t_newValue), WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE * (sizeof (struct wb_vision_field_feature)));
         }
 
         void set_fieldCrosses(const VisionFieldFeature &t_newValue, int t_i)
@@ -370,7 +370,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
-            char buffer[VISION_FIELD_FEATURES_DESC_BUFFER_SIZE];
+            char buffer[WB_VISION_FIELD_FEATURES_DESC_BUFFER_SIZE];
             wb_vision_field_features_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -378,7 +378,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool fieldCorner_first = true;
             ss << "fieldCorner={";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; i++) {
                 ss << (fieldCorner_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldCorner(i)).description() << "}";
                 fieldCorner_first = false;
             }
@@ -386,7 +386,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool fieldIntersection_first = true;
             ss << "fieldIntersection={";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; i++) {
                 ss << (fieldIntersection_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldIntersection(i)).description() << "}";
                 fieldIntersection_first = false;
             }
@@ -394,7 +394,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool fieldCrosses_first = true;
             ss << "fieldCrosses={";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
                 ss << (fieldCrosses_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldCrosses(i)).description() << "}";
                 fieldCrosses_first = false;
             }
@@ -415,7 +415,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_VISION_FIELD_FEATURES_C_CONVERSION
-            char buffer[VISION_FIELD_FEATURES_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_VISION_FIELD_FEATURES_TO_STRING_BUFFER_SIZE];
             wb_vision_field_features_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -423,7 +423,7 @@ namespace guWhiteboard {
             std::ostringstream ss;
             bool fieldCorner_first = true;
             ss << "{";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; i++) {
                 ss << (fieldCorner_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldCorner(i)).to_string() << "}";
                 fieldCorner_first = false;
             }
@@ -431,7 +431,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool fieldIntersection_first = true;
             ss << "{";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; i++) {
                 ss << (fieldIntersection_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldIntersection(i)).to_string() << "}";
                 fieldIntersection_first = false;
             }
@@ -439,7 +439,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool fieldCrosses_first = true;
             ss << "{";
-            for (int i = 0; i < VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; i++) {
                 ss << (fieldCrosses_first ? "" : ", ") << "{" << VisionFieldFeature(this->fieldCrosses(i)).to_string() << "}";
                 fieldCrosses_first = false;
             }
@@ -466,10 +466,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > VISION_FIELD_FEATURES_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_VISION_FIELD_FEATURES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[VISION_FIELD_FEATURES_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_VISION_FIELD_FEATURES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[18];
             char* key = &key_buffer[0];
@@ -566,7 +566,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int fieldCorner_0_index = 0; fieldCorner_0_index < VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_0_index++) {
+                        for (int fieldCorner_0_index = 0; fieldCorner_0_index < WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE; fieldCorner_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
@@ -629,7 +629,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_0_index++) {
+                        for (int fieldIntersection_0_index = 0; fieldIntersection_0_index < WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE; fieldIntersection_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {
@@ -692,7 +692,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_0_index++) {
+                        for (int fieldCrosses_0_index = 0; fieldCrosses_0_index < WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE; fieldCrosses_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

@@ -92,10 +92,10 @@ namespace guWhiteboard {
         void init(uint8_t t_numberOfSightings = 0, const struct wb_landmark_sighting t_sightings[12] = NULLPTR) {
             set_numberOfSightings(t_numberOfSightings);
             if (t_sightings != NULLPTR) {
-                std::memcpy(wb_machine_filtered_localisation_vision::sightings, t_sightings, MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
+                std::memcpy(wb_machine_filtered_localisation_vision::sightings, t_sightings, WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
             } else {
-                struct wb_landmark_sighting sightings_temp[MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE] = {wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting()};
-                std::memcpy(wb_machine_filtered_localisation_vision::sightings, sightings_temp, MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
+                struct wb_landmark_sighting sightings_temp[WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE] = {wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting(), wb_landmark_sighting()};
+                std::memcpy(wb_machine_filtered_localisation_vision::sightings, sightings_temp, WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * sizeof (struct wb_landmark_sighting));
             }
         }
 
@@ -188,7 +188,7 @@ namespace guWhiteboard {
 
         size_t sightings_size() const
         {
-            return MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE;
+            return WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE;
         }
 
         LandmarkSighting & sightings(int t_i)
@@ -203,7 +203,7 @@ namespace guWhiteboard {
 
         void set_sightings(const LandmarkSighting *t_newValue)
         {
-            memcpy(wb_machine_filtered_localisation_vision::sightings, static_cast<const struct wb_landmark_sighting *>(t_newValue), MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * (sizeof (struct wb_landmark_sighting)));
+            memcpy(wb_machine_filtered_localisation_vision::sightings, static_cast<const struct wb_landmark_sighting *>(t_newValue), WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE * (sizeof (struct wb_landmark_sighting)));
         }
 
         void set_sightings(const LandmarkSighting &t_newValue, int t_i)
@@ -222,7 +222,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_MACHINE_FILTERED_LOCALISATION_VISION_C_CONVERSION
-            char buffer[MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE];
+            char buffer[WB_MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE];
             wb_machine_filtered_localisation_vision_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -232,7 +232,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool sightings_first = true;
             ss << "sightings={";
-            for (int i = 0; i < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; i++) {
                 ss << (sightings_first ? "" : ", ") << "{" << LandmarkSighting(this->sightings(i)).description() << "}";
                 sightings_first = false;
             }
@@ -243,7 +243,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_MACHINE_FILTERED_LOCALISATION_VISION_C_CONVERSION
-            char buffer[MACHINE_FILTERED_LOCALISATION_VISION_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_MACHINE_FILTERED_LOCALISATION_VISION_TO_STRING_BUFFER_SIZE];
             wb_machine_filtered_localisation_vision_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -253,7 +253,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool sightings_first = true;
             ss << "{";
-            for (int i = 0; i < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; i++) {
+            for (int i = 0; i < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; i++) {
                 ss << (sightings_first ? "" : ", ") << "{" << LandmarkSighting(this->sightings(i)).to_string() << "}";
                 sightings_first = false;
             }
@@ -270,10 +270,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_MACHINE_FILTERED_LOCALISATION_VISION_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[18];
             char* key = &key_buffer[0];
@@ -363,7 +363,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int sightings_0_index = 0; sightings_0_index < MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
+                        for (int sightings_0_index = 0; sightings_0_index < WB_MACHINE_FILTERED_LOCALISATION_VISION_SIGHTINGS_ARRAY_SIZE; sightings_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

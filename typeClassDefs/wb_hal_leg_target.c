@@ -695,10 +695,10 @@ struct wb_hal_leg_target* wb_hal_leg_target_from_string(struct wb_hal_leg_target
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > HAL_LEG_TARGET_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_HAL_LEG_TARGET_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[HAL_LEG_TARGET_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_HAL_LEG_TARGET_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[28];
     char* key = &key_buffer[0];

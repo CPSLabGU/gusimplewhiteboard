@@ -134,9 +134,9 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     if (len >= bufferSize) {
         return descString;
     }
-    char lineEdgeTop_buffer[PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE];
+    char lineEdgeTop_buffer[WB_PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE];
     char* lineEdgeTop_p = lineEdgeTop_buffer;
-    const char* lineEdgeTop_description = wb_pixel_coordinate_line_description(&self->lineEdgeTop, lineEdgeTop_p, PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE);
+    const char* lineEdgeTop_description = wb_pixel_coordinate_line_description(&self->lineEdgeTop, lineEdgeTop_p, WB_PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, lineEdgeTop_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -153,9 +153,9 @@ const char* wb_vision_line_description(const struct wb_vision_line* self, char* 
     if (len >= bufferSize) {
         return descString;
     }
-    char lineEdgeBottom_buffer[PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE];
+    char lineEdgeBottom_buffer[WB_PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE];
     char* lineEdgeBottom_p = lineEdgeBottom_buffer;
-    const char* lineEdgeBottom_description = wb_pixel_coordinate_line_description(&self->lineEdgeBottom, lineEdgeBottom_p, PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE);
+    const char* lineEdgeBottom_description = wb_pixel_coordinate_line_description(&self->lineEdgeBottom, lineEdgeBottom_p, WB_PIXEL_COORDINATE_LINE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, lineEdgeBottom_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -180,9 +180,9 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    char lineEdgeTop_buffer[PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE];
+    char lineEdgeTop_buffer[WB_PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE];
     char* lineEdgeTop_p = lineEdgeTop_buffer;
-    const char* lineEdgeTop_to_string = wb_pixel_coordinate_line_to_string(&self->lineEdgeTop, lineEdgeTop_p, PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE);
+    const char* lineEdgeTop_to_string = wb_pixel_coordinate_line_to_string(&self->lineEdgeTop, lineEdgeTop_p, WB_PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, lineEdgeTop_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -199,9 +199,9 @@ const char* wb_vision_line_to_string(const struct wb_vision_line* self, char* to
     if (len >= bufferSize) {
         return toString;
     }
-    char lineEdgeBottom_buffer[PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE];
+    char lineEdgeBottom_buffer[WB_PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE];
     char* lineEdgeBottom_p = lineEdgeBottom_buffer;
-    const char* lineEdgeBottom_to_string = wb_pixel_coordinate_line_to_string(&self->lineEdgeBottom, lineEdgeBottom_p, PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE);
+    const char* lineEdgeBottom_to_string = wb_pixel_coordinate_line_to_string(&self->lineEdgeBottom, lineEdgeBottom_p, WB_PIXEL_COORDINATE_LINE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, lineEdgeBottom_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -218,10 +218,10 @@ struct wb_vision_line* wb_vision_line_from_string(struct wb_vision_line* self, c
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > VISION_LINE_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_VISION_LINE_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[VISION_LINE_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_VISION_LINE_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[15];
     char* key = &key_buffer[0];

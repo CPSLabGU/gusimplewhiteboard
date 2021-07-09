@@ -334,10 +334,10 @@ struct wb_sensors_torsojointsensors* wb_sensors_torsojointsensors_from_string(st
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > SENSORS_TORSOJOINTSENSORS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_SENSORS_TORSOJOINTSENSORS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[SENSORS_TORSOJOINTSENSORS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_SENSORS_TORSOJOINTSENSORS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[15];
     char* key = &key_buffer[0];

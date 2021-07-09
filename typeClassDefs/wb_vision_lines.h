@@ -87,16 +87,16 @@
 
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_line.h>
 
-#define VISION_LINES_GENERATED 
-#define VISION_LINES_C_STRUCT wb_vision_lines 
-#define VISION_LINES_NUMBER_OF_VARIABLES 5
+#define WB_VISION_LINES_GENERATED 
+#define WB_VISION_LINES_C_STRUCT wb_vision_lines 
+#define WB_VISION_LINES_NUMBER_OF_VARIABLES 5
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_LINES_DESC_BUFFER_SIZE 602
-#define VISION_LINES_TO_STRING_BUFFER_SIZE 554
+#define WB_VISION_LINES_DESC_BUFFER_SIZE 602
+#define WB_VISION_LINES_TO_STRING_BUFFER_SIZE 554
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define VISION_LINES_LINES_ARRAY_SIZE 7
+#define WB_VISION_LINES_LINES_ARRAY_SIZE 7
 
 #ifdef __cplusplus
 extern "C" {
@@ -112,7 +112,7 @@ struct wb_vision_lines
     /**
      * Lines reported from the camera.
      */
-    struct wb_vision_line lines[VISION_LINES_LINES_ARRAY_SIZE];
+    struct wb_vision_line lines[WB_VISION_LINES_LINES_ARRAY_SIZE];
 
     /**
      * The number of lines reported on the camera.

@@ -158,10 +158,10 @@ struct wb_teleoperation_status* wb_teleoperation_status_from_string(struct wb_te
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > TELEOPERATIONSTATUS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > WB_TELEOPERATIONSTATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[TELEOPERATIONSTATUS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[WB_TELEOPERATIONSTATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[10];
     char* key = &key_buffer[0];

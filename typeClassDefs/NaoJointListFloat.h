@@ -585,7 +585,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_NAO_JOINT_LIST_FLOAT_C_CONVERSION
-            char buffer[NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE];
+            char buffer[WB_NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE];
             wb_nao_joint_list_float_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -646,7 +646,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_NAO_JOINT_LIST_FLOAT_C_CONVERSION
-            char buffer[NAO_JOINT_LIST_FLOAT_TO_STRING_BUFFER_SIZE];
+            char buffer[WB_NAO_JOINT_LIST_FLOAT_TO_STRING_BUFFER_SIZE];
             wb_nao_joint_list_float_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -713,10 +713,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > WB_NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[WB_NAO_JOINT_LIST_FLOAT_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[15];
             char* key = &key_buffer[0];

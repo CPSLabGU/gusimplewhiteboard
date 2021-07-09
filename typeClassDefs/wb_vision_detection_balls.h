@@ -88,16 +88,16 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_ball.h>
 #include <stdint.h>
 
-#define VISION_DETECTION_BALLS_GENERATED 
-#define VISION_DETECTION_BALLS_C_STRUCT wb_vision_detection_balls 
-#define VISION_DETECTION_BALLS_NUMBER_OF_VARIABLES 4
+#define WB_VISION_DETECTION_BALLS_GENERATED 
+#define WB_VISION_DETECTION_BALLS_C_STRUCT wb_vision_detection_balls 
+#define WB_VISION_DETECTION_BALLS_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define VISION_DETECTION_BALLS_DESC_BUFFER_SIZE 588
-#define VISION_DETECTION_BALLS_TO_STRING_BUFFER_SIZE 549
+#define WB_VISION_DETECTION_BALLS_DESC_BUFFER_SIZE 588
+#define WB_VISION_DETECTION_BALLS_TO_STRING_BUFFER_SIZE 549
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE 2
+#define WB_VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE 2
 
 #ifdef __cplusplus
 extern "C" {
@@ -121,7 +121,7 @@ struct wb_vision_detection_balls
     /**
      * ball objects
      */
-    struct wb_vision_detection_ball balls[VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE];
+    struct wb_vision_detection_ball balls[WB_VISION_DETECTION_BALLS_BALLS_ARRAY_SIZE];
 
     /**
      * The resolution width.
