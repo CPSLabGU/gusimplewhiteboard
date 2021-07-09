@@ -264,20 +264,20 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kVisionControl_v:
             {
-#ifdef VISION_CONTROL_STATUS_GENERATED
-                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
+#ifdef WB_VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(WB_VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct WB_VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_CONTROL_STATUS_GENERATED
+#endif //WB_VISION_CONTROL_STATUS_GENERATED
                 break;
             }
             case kVisionStatus_v:
             {
-#ifdef VISION_CONTROL_STATUS_GENERATED
-                return DESERIALISE(VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct VISION_CONTROL_STATUS_C_STRUCT *)message_out)
+#ifdef WB_VISION_CONTROL_STATUS_GENERATED
+                return DESERIALISE(WB_VISION_CONTROL_STATUS_C_STRUCT, serialised_in, (struct WB_VISION_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_CONTROL_STATUS_GENERATED
+#endif //WB_VISION_CONTROL_STATUS_GENERATED
                 break;
             }
             case kFFTStatus_v:
@@ -300,11 +300,11 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kTopParticles_v:
             {
-#ifdef TOPPARTICLES_GENERATED
-                return DESERIALISE(TOPPARTICLES_C_STRUCT, serialised_in, (struct TOPPARTICLES_C_STRUCT *)message_out)
+#ifdef WB_TOPPARTICLES_GENERATED
+                return DESERIALISE(WB_TOPPARTICLES_C_STRUCT, serialised_in, (struct WB_TOPPARTICLES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //TOPPARTICLES_GENERATED
+#endif //WB_TOPPARTICLES_GENERATED
                 break;
             }
             case kFilteredBallSighting_v:
@@ -450,20 +450,20 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kTopVisionLines_v:
             {
-#ifdef VISION_LINES_GENERATED
-                return DESERIALISE(VISION_LINES_C_STRUCT, serialised_in, (struct VISION_LINES_C_STRUCT *)message_out)
+#ifdef WB_VISION_LINES_GENERATED
+                return DESERIALISE(WB_VISION_LINES_C_STRUCT, serialised_in, (struct WB_VISION_LINES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_LINES_GENERATED
+#endif //WB_VISION_LINES_GENERATED
                 break;
             }
             case kBottomVisionLines_v:
             {
-#ifdef VISION_LINES_GENERATED
-                return DESERIALISE(VISION_LINES_C_STRUCT, serialised_in, (struct VISION_LINES_C_STRUCT *)message_out)
+#ifdef WB_VISION_LINES_GENERATED
+                return DESERIALISE(WB_VISION_LINES_C_STRUCT, serialised_in, (struct WB_VISION_LINES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_LINES_GENERATED
+#endif //WB_VISION_LINES_GENERATED
                 break;
             }
             case kDifferentialRobotStatus_v:
@@ -486,11 +486,11 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kXEyesPos_v:
             {
-#ifdef POINT2D_GENERATED
-                return DESERIALISE(POINT2D_C_STRUCT, serialised_in, (struct POINT2D_C_STRUCT *)message_out)
+#ifdef WB_POINT2D_GENERATED
+                return DESERIALISE(WB_POINT2D_C_STRUCT, serialised_in, (struct WB_POINT2D_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //POINT2D_GENERATED
+#endif //WB_POINT2D_GENERATED
                 break;
             }
             case kVisionFace_v:
@@ -682,11 +682,11 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kCount_v:
             {
-#ifdef COUNT_GENERATED
-                return DESERIALISE(COUNT_C_STRUCT, serialised_in, (struct COUNT_C_STRUCT *)message_out)
+#ifdef WB_COUNT_GENERATED
+                return DESERIALISE(WB_COUNT_C_STRUCT, serialised_in, (struct WB_COUNT_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //COUNT_GENERATED
+#endif //WB_COUNT_GENERATED
                 break;
             }
             case kGreenEWon_v:
@@ -849,11 +849,11 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kVisionFieldFeatures_v:
             {
-#ifdef VISION_FIELD_FEATURES_GENERATED
-                return DESERIALISE(VISION_FIELD_FEATURES_C_STRUCT, serialised_in, (struct VISION_FIELD_FEATURES_C_STRUCT *)message_out)
+#ifdef WB_VISION_FIELD_FEATURES_GENERATED
+                return DESERIALISE(WB_VISION_FIELD_FEATURES_C_STRUCT, serialised_in, (struct WB_VISION_FIELD_FEATURES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_FIELD_FEATURES_GENERATED
+#endif //WB_VISION_FIELD_FEATURES_GENERATED
                 break;
             }
             case kWhistleBlown_v:
@@ -877,29 +877,29 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kVisionDetectionHorizons_v:
             {
-#ifdef VISION_DETECTION_HORIZONS_GENERATED
-                return DESERIALISE(VISION_DETECTION_HORIZONS_C_STRUCT, serialised_in, (struct VISION_DETECTION_HORIZONS_C_STRUCT *)message_out)
+#ifdef WB_VISION_DETECTION_HORIZONS_GENERATED
+                return DESERIALISE(WB_VISION_DETECTION_HORIZONS_C_STRUCT, serialised_in, (struct WB_VISION_DETECTION_HORIZONS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_DETECTION_HORIZONS_GENERATED
+#endif //WB_VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
             case kNaoWalkCommand_v:
             {
-#ifdef NAOWALKCOMMAND_GENERATED
-                return DESERIALISE(NAOWALKCOMMAND_C_STRUCT, serialised_in, (struct NAOWALKCOMMAND_C_STRUCT *)message_out)
+#ifdef WB_NAOWALKCOMMAND_GENERATED
+                return DESERIALISE(WB_NAOWALKCOMMAND_C_STRUCT, serialised_in, (struct WB_NAOWALKCOMMAND_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //NAOWALKCOMMAND_GENERATED
+#endif //WB_NAOWALKCOMMAND_GENERATED
                 break;
             }
             case kNaoWalkStatus_v:
             {
-#ifdef NAOWALKSTATUS_GENERATED
-                return DESERIALISE(NAOWALKSTATUS_C_STRUCT, serialised_in, (struct NAOWALKSTATUS_C_STRUCT *)message_out)
+#ifdef WB_NAOWALKSTATUS_GENERATED
+                return DESERIALISE(WB_NAOWALKSTATUS_C_STRUCT, serialised_in, (struct WB_NAOWALKSTATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //NAOWALKSTATUS_GENERATED
+#endif //WB_NAOWALKSTATUS_GENERATED
                 break;
             }
             case kHAL_LLegTarget_Ctrl_v:
@@ -958,47 +958,47 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kVisionDetectionGoals_v:
             {
-#ifdef VISION_DETECTION_GOALS_GENERATED
-                return DESERIALISE(VISION_DETECTION_GOALS_C_STRUCT, serialised_in, (struct VISION_DETECTION_GOALS_C_STRUCT *)message_out)
+#ifdef WB_VISION_DETECTION_GOALS_GENERATED
+                return DESERIALISE(WB_VISION_DETECTION_GOALS_C_STRUCT, serialised_in, (struct WB_VISION_DETECTION_GOALS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_DETECTION_GOALS_GENERATED
+#endif //WB_VISION_DETECTION_GOALS_GENERATED
                 break;
             }
             case kTeleoperationControl_v:
             {
-#ifdef TELEOPERATIONCONTROL_GENERATED
-                return DESERIALISE(TELEOPERATIONCONTROL_C_STRUCT, serialised_in, (struct TELEOPERATIONCONTROL_C_STRUCT *)message_out)
+#ifdef WB_TELEOPERATIONCONTROL_GENERATED
+                return DESERIALISE(WB_TELEOPERATIONCONTROL_C_STRUCT, serialised_in, (struct WB_TELEOPERATIONCONTROL_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //TELEOPERATIONCONTROL_GENERATED
+#endif //WB_TELEOPERATIONCONTROL_GENERATED
                 break;
             }
             case kTeleoperationStatus_v:
             {
-#ifdef TELEOPERATIONSTATUS_GENERATED
-                return DESERIALISE(TELEOPERATIONSTATUS_C_STRUCT, serialised_in, (struct TELEOPERATIONSTATUS_C_STRUCT *)message_out)
+#ifdef WB_TELEOPERATIONSTATUS_GENERATED
+                return DESERIALISE(WB_TELEOPERATIONSTATUS_C_STRUCT, serialised_in, (struct WB_TELEOPERATIONSTATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //TELEOPERATIONSTATUS_GENERATED
+#endif //WB_TELEOPERATIONSTATUS_GENERATED
                 break;
             }
             case kVisionDetectionBalls_v:
             {
-#ifdef VISION_DETECTION_BALLS_GENERATED
-                return DESERIALISE(VISION_DETECTION_BALLS_C_STRUCT, serialised_in, (struct VISION_DETECTION_BALLS_C_STRUCT *)message_out)
+#ifdef WB_VISION_DETECTION_BALLS_GENERATED
+                return DESERIALISE(WB_VISION_DETECTION_BALLS_C_STRUCT, serialised_in, (struct WB_VISION_DETECTION_BALLS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_DETECTION_BALLS_GENERATED
+#endif //WB_VISION_DETECTION_BALLS_GENERATED
                 break;
             }
             case kTeleoperationControlVR_v:
             {
-#ifdef TELEOPERATIONCONTROLVR_GENERATED
-                return DESERIALISE(TELEOPERATIONCONTROLVR_C_STRUCT, serialised_in, (struct TELEOPERATIONCONTROLVR_C_STRUCT *)message_out)
+#ifdef WB_TELEOPERATIONCONTROLVR_GENERATED
+                return DESERIALISE(WB_TELEOPERATIONCONTROLVR_C_STRUCT, serialised_in, (struct WB_TELEOPERATIONCONTROLVR_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //TELEOPERATIONCONTROLVR_GENERATED
+#endif //WB_TELEOPERATIONCONTROLVR_GENERATED
                 break;
             }
             case kParticleOutputMap_v:
@@ -1018,38 +1018,38 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kMachineFilteredNaoVision_v:
             {
-#ifdef MACHINE_FILTERED_VISION_GENERATED
-                return DESERIALISE(MACHINE_FILTERED_VISION_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_VISION_C_STRUCT *)message_out)
+#ifdef WB_MACHINE_FILTERED_VISION_GENERATED
+                return DESERIALISE(WB_MACHINE_FILTERED_VISION_C_STRUCT, serialised_in, (struct WB_MACHINE_FILTERED_VISION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MACHINE_FILTERED_VISION_GENERATED
+#endif //WB_MACHINE_FILTERED_VISION_GENERATED
                 break;
             }
             case kMicrowaveStatus_v:
             {
-#ifdef MICROWAVE_STATUS_GENERATED
-                return DESERIALISE(MICROWAVE_STATUS_C_STRUCT, serialised_in, (struct MICROWAVE_STATUS_C_STRUCT *)message_out)
+#ifdef WB_MICROWAVE_STATUS_GENERATED
+                return DESERIALISE(WB_MICROWAVE_STATUS_C_STRUCT, serialised_in, (struct WB_MICROWAVE_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MICROWAVE_STATUS_GENERATED
+#endif //WB_MICROWAVE_STATUS_GENERATED
                 break;
             }
             case kButtons_v:
             {
-#ifdef BUTTONS_GENERATED
-                return DESERIALISE(BUTTONS_C_STRUCT, serialised_in, (struct BUTTONS_C_STRUCT *)message_out)
+#ifdef WB_BUTTONS_GENERATED
+                return DESERIALISE(WB_BUTTONS_C_STRUCT, serialised_in, (struct WB_BUTTONS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //BUTTONS_GENERATED
+#endif //WB_BUTTONS_GENERATED
                 break;
             }
             case kMachineFilteredLocalisationVision_v:
             {
-#ifdef MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
-                return DESERIALISE(MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_out)
+#ifdef WB_MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+                return DESERIALISE(WB_MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT, serialised_in, (struct WB_MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
+#endif //WB_MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
             case kSensorsJointCurrent_v:
@@ -1063,92 +1063,92 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kDataLogger_v:
             {
-#ifdef DATA_LOGGER_GENERATED
-                return DESERIALISE(DATA_LOGGER_C_STRUCT, serialised_in, (struct DATA_LOGGER_C_STRUCT *)message_out)
+#ifdef WB_DATA_LOGGER_GENERATED
+                return DESERIALISE(WB_DATA_LOGGER_C_STRUCT, serialised_in, (struct WB_DATA_LOGGER_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //DATA_LOGGER_GENERATED
+#endif //WB_DATA_LOGGER_GENERATED
                 break;
             }
             case kMachineFilteredLines_v:
             {
-#ifdef MACHINE_FILTERED_LINES_GENERATED
-                return DESERIALISE(MACHINE_FILTERED_LINES_C_STRUCT, serialised_in, (struct MACHINE_FILTERED_LINES_C_STRUCT *)message_out)
+#ifdef WB_MACHINE_FILTERED_LINES_GENERATED
+                return DESERIALISE(WB_MACHINE_FILTERED_LINES_C_STRUCT, serialised_in, (struct WB_MACHINE_FILTERED_LINES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MACHINE_FILTERED_LINES_GENERATED
+#endif //WB_MACHINE_FILTERED_LINES_GENERATED
                 break;
             }
             case kBallLocation_v:
             {
-#ifdef LOCATION_GENERATED
-                return DESERIALISE(LOCATION_C_STRUCT, serialised_in, (struct LOCATION_C_STRUCT *)message_out)
+#ifdef WB_LOCATION_GENERATED
+                return DESERIALISE(WB_LOCATION_C_STRUCT, serialised_in, (struct WB_LOCATION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //LOCATION_GENERATED
+#endif //WB_LOCATION_GENERATED
                 break;
             }
             case kLeftGoalPostLocation_v:
             {
-#ifdef LOCATION_GENERATED
-                return DESERIALISE(LOCATION_C_STRUCT, serialised_in, (struct LOCATION_C_STRUCT *)message_out)
+#ifdef WB_LOCATION_GENERATED
+                return DESERIALISE(WB_LOCATION_C_STRUCT, serialised_in, (struct WB_LOCATION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //LOCATION_GENERATED
+#endif //WB_LOCATION_GENERATED
                 break;
             }
             case kRightGoalPostLocation_v:
             {
-#ifdef LOCATION_GENERATED
-                return DESERIALISE(LOCATION_C_STRUCT, serialised_in, (struct LOCATION_C_STRUCT *)message_out)
+#ifdef WB_LOCATION_GENERATED
+                return DESERIALISE(WB_LOCATION_C_STRUCT, serialised_in, (struct WB_LOCATION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //LOCATION_GENERATED
+#endif //WB_LOCATION_GENERATED
                 break;
             }
             case kGoalLocation_v:
             {
-#ifdef LOCATION_GENERATED
-                return DESERIALISE(LOCATION_C_STRUCT, serialised_in, (struct LOCATION_C_STRUCT *)message_out)
+#ifdef WB_LOCATION_GENERATED
+                return DESERIALISE(WB_LOCATION_C_STRUCT, serialised_in, (struct WB_LOCATION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //LOCATION_GENERATED
+#endif //WB_LOCATION_GENERATED
                 break;
             }
             case kNaoSonarProtectedWalkCommand_v:
             {
-#ifdef NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
-                return DESERIALISE(NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT, serialised_in, (struct NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT *)message_out)
+#ifdef WB_NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
+                return DESERIALISE(WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT, serialised_in, (struct WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
+#endif //WB_NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
                 break;
             }
             case kNaoObstacleDirection_v:
             {
-#ifdef NAO_OBSTACLE_DIRECTION_GENERATED
-                return DESERIALISE(NAO_OBSTACLE_DIRECTION_C_STRUCT, serialised_in, (struct NAO_OBSTACLE_DIRECTION_C_STRUCT *)message_out)
+#ifdef WB_NAO_OBSTACLE_DIRECTION_GENERATED
+                return DESERIALISE(WB_NAO_OBSTACLE_DIRECTION_C_STRUCT, serialised_in, (struct WB_NAO_OBSTACLE_DIRECTION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //NAO_OBSTACLE_DIRECTION_GENERATED
+#endif //WB_NAO_OBSTACLE_DIRECTION_GENERATED
                 break;
             }
             case kDominantFrequencies_v:
             {
-#ifdef DOMINANT_FREQUENCIES_GENERATED
-                return DESERIALISE(DOMINANT_FREQUENCIES_C_STRUCT, serialised_in, (struct DOMINANT_FREQUENCIES_C_STRUCT *)message_out)
+#ifdef WB_DOMINANT_FREQUENCIES_GENERATED
+                return DESERIALISE(WB_DOMINANT_FREQUENCIES_C_STRUCT, serialised_in, (struct WB_DOMINANT_FREQUENCIES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //DOMINANT_FREQUENCIES_GENERATED
+#endif //WB_DOMINANT_FREQUENCIES_GENERATED
                 break;
             }
             case kMissionPriorityForObstacles_v:
             {
-#ifdef MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
-                return DESERIALISE(MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT, serialised_in, (struct MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT *)message_out)
+#ifdef WB_MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
+                return DESERIALISE(WB_MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT, serialised_in, (struct WB_MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
+#endif //WB_MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
             case kWavLoad_v:
@@ -1168,65 +1168,65 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kFrequencyControl_v:
             {
-#ifdef FREQUENCY_LIMITS_GENERATED
-                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#ifdef WB_FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(WB_FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct WB_FREQUENCY_LIMITS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FREQUENCY_LIMITS_GENERATED
+#endif //WB_FREQUENCY_LIMITS_GENERATED
                 break;
             }
             case kFrequencyStatus_v:
             {
-#ifdef FREQUENCY_LIMITS_GENERATED
-                return DESERIALISE(FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct FREQUENCY_LIMITS_C_STRUCT *)message_out)
+#ifdef WB_FREQUENCY_LIMITS_GENERATED
+                return DESERIALISE(WB_FREQUENCY_LIMITS_C_STRUCT, serialised_in, (struct WB_FREQUENCY_LIMITS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //FREQUENCY_LIMITS_GENERATED
+#endif //WB_FREQUENCY_LIMITS_GENERATED
                 break;
             }
             case kHeadJointSensors_v:
             {
-#ifdef HEAD_JOINT_SENSORS_GENERATED
-                return DESERIALISE(HEAD_JOINT_SENSORS_C_STRUCT, serialised_in, (struct HEAD_JOINT_SENSORS_C_STRUCT *)message_out)
+#ifdef WB_HEAD_JOINT_SENSORS_GENERATED
+                return DESERIALISE(WB_HEAD_JOINT_SENSORS_C_STRUCT, serialised_in, (struct WB_HEAD_JOINT_SENSORS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //HEAD_JOINT_SENSORS_GENERATED
+#endif //WB_HEAD_JOINT_SENSORS_GENERATED
                 break;
             }
             case kAdjustPositionConfidence_v:
             {
-#ifdef ADJUST_POSITION_CONFIDENCE_GENERATED
-                return DESERIALISE(ADJUST_POSITION_CONFIDENCE_C_STRUCT, serialised_in, (struct ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_out)
+#ifdef WB_ADJUST_POSITION_CONFIDENCE_GENERATED
+                return DESERIALISE(WB_ADJUST_POSITION_CONFIDENCE_C_STRUCT, serialised_in, (struct WB_ADJUST_POSITION_CONFIDENCE_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //ADJUST_POSITION_CONFIDENCE_GENERATED
+#endif //WB_ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
             case kGuVrTeleopVulkanControl_v:
             {
-#ifdef GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
-                return DESERIALISE(GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, serialised_in, (struct GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_out)
+#ifdef WB_GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+                return DESERIALISE(WB_GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT, serialised_in, (struct WB_GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
+#endif //WB_GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
                 break;
             }
             case kTemperatureSensors_v:
             {
-#ifdef TEMPERATURE_SENSORS_GENERATED
-                return DESERIALISE(TEMPERATURE_SENSORS_C_STRUCT, serialised_in, (struct TEMPERATURE_SENSORS_C_STRUCT *)message_out)
+#ifdef WB_TEMPERATURE_SENSORS_GENERATED
+                return DESERIALISE(WB_TEMPERATURE_SENSORS_C_STRUCT, serialised_in, (struct WB_TEMPERATURE_SENSORS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //TEMPERATURE_SENSORS_GENERATED
+#endif //WB_TEMPERATURE_SENSORS_GENERATED
                 break;
             }
             case kOverheating_v:
             {
-#ifdef OVERHEATING_GENERATED
-                return DESERIALISE(OVERHEATING_C_STRUCT, serialised_in, (struct OVERHEATING_C_STRUCT *)message_out)
+#ifdef WB_OVERHEATING_GENERATED
+                return DESERIALISE(WB_OVERHEATING_C_STRUCT, serialised_in, (struct WB_OVERHEATING_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //OVERHEATING_GENERATED
+#endif //WB_OVERHEATING_GENERATED
                 break;
             }
             case kbuttonPushed_v:
@@ -1341,29 +1341,29 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kBallPosition_v:
             {
-#ifdef BALL_POSITION_GENERATED
-                return DESERIALISE(BALL_POSITION_C_STRUCT, serialised_in, (struct BALL_POSITION_C_STRUCT *)message_out)
+#ifdef WB_BALL_POSITION_GENERATED
+                return DESERIALISE(WB_BALL_POSITION_C_STRUCT, serialised_in, (struct WB_BALL_POSITION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //BALL_POSITION_GENERATED
+#endif //WB_BALL_POSITION_GENERATED
                 break;
             }
             case kMemoryImageControl_v:
             {
-#ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
-                return DESERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
+#ifdef WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+                return DESERIALISE(WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+#endif //WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
             case kMemoryImageStatus_v:
             {
-#ifdef MEMORY_IMAGE_CONTROL_STATUS_GENERATED
-                return DESERIALISE(MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
+#ifdef WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+                return DESERIALISE(WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT, serialised_in, (struct WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MEMORY_IMAGE_CONTROL_STATUS_GENERATED
+#endif //WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
             case kLHandGripper_v:
@@ -1378,29 +1378,29 @@ int32_t deserialisemsg(wb_types message_index, const void *serialised_in, void *
             }
             case kMyPosition_v:
             {
-#ifdef MY_POSITION_GENERATED
-                return DESERIALISE(MY_POSITION_C_STRUCT, serialised_in, (struct MY_POSITION_C_STRUCT *)message_out)
+#ifdef WB_MY_POSITION_GENERATED
+                return DESERIALISE(WB_MY_POSITION_C_STRUCT, serialised_in, (struct WB_MY_POSITION_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //MY_POSITION_GENERATED
+#endif //WB_MY_POSITION_GENERATED
                 break;
             }
             case kVisionDetectionLines_v:
             {
-#ifdef VISION_DETECTION_LINES_GENERATED
-                return DESERIALISE(VISION_DETECTION_LINES_C_STRUCT, serialised_in, (struct VISION_DETECTION_LINES_C_STRUCT *)message_out)
+#ifdef WB_VISION_DETECTION_LINES_GENERATED
+                return DESERIALISE(WB_VISION_DETECTION_LINES_C_STRUCT, serialised_in, (struct WB_VISION_DETECTION_LINES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_DETECTION_LINES_GENERATED
+#endif //WB_VISION_DETECTION_LINES_GENERATED
                 break;
             }
             case kVisionDetectionFeatures_v:
             {
-#ifdef VISION_DETECTION_FEATURES_GENERATED
-                return DESERIALISE(VISION_DETECTION_FEATURES_C_STRUCT, serialised_in, (struct VISION_DETECTION_FEATURES_C_STRUCT *)message_out)
+#ifdef WB_VISION_DETECTION_FEATURES_GENERATED
+                return DESERIALISE(WB_VISION_DETECTION_FEATURES_C_STRUCT, serialised_in, (struct WB_VISION_DETECTION_FEATURES_C_STRUCT *)message_out)
 #else
                 return -1;
-#endif //VISION_DETECTION_FEATURES_GENERATED
+#endif //WB_VISION_DETECTION_FEATURES_GENERATED
                 break;
             }
     }
