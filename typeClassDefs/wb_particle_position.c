@@ -134,9 +134,9 @@ const char* wb_particle_position_description(const struct wb_particle_position* 
     if (len >= bufferSize) {
         return descString;
     }
-    char position_buffer[WB_POINT2D_DESC_BUFFER_SIZE];
+    char position_buffer[POINT2D_DESC_BUFFER_SIZE];
     char* position_p = position_buffer;
-    const char* position_description = wb_point2d_description(&self->position, position_p, WB_POINT2D_DESC_BUFFER_SIZE);
+    const char* position_description = wb_point2d_description(&self->position, position_p, POINT2D_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, position_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -177,9 +177,9 @@ const char* wb_particle_position_to_string(const struct wb_particle_position* se
     if (len >= bufferSize) {
         return toString;
     }
-    char position_buffer[WB_POINT2D_TO_STRING_BUFFER_SIZE];
+    char position_buffer[POINT2D_TO_STRING_BUFFER_SIZE];
     char* position_p = position_buffer;
-    const char* position_to_string = wb_point2d_to_string(&self->position, position_p, WB_POINT2D_TO_STRING_BUFFER_SIZE);
+    const char* position_to_string = wb_point2d_to_string(&self->position, position_p, POINT2D_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, position_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -212,10 +212,10 @@ struct wb_particle_position* wb_particle_position_from_string(struct wb_particle
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_PARTICLE_POSITION_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > PARTICLE_POSITION_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_PARTICLE_POSITION_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[PARTICLE_POSITION_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[17];
     char* key = &key_buffer[0];

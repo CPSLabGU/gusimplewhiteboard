@@ -92,10 +92,10 @@ namespace guWhiteboard {
         void init(uint64_t t_frameNumber = 0, const struct wb_vision_detection_line_array t_lines[2] = NULLPTR, uint16_t t_res_width = 0, uint16_t t_res_height = 0) {
             set_frameNumber(t_frameNumber);
             if (t_lines != NULLPTR) {
-                std::memcpy(wb_vision_detection_lines::lines, t_lines, WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_detection_line_array));
+                std::memcpy(wb_vision_detection_lines::lines, t_lines, VISION_DETECTION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_detection_line_array));
             } else {
-                struct wb_vision_detection_line_array lines_temp[WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE] = {wb_vision_detection_line_array(), wb_vision_detection_line_array()};
-                std::memcpy(wb_vision_detection_lines::lines, lines_temp, WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_detection_line_array));
+                struct wb_vision_detection_line_array lines_temp[VISION_DETECTION_LINES_LINES_ARRAY_SIZE] = {wb_vision_detection_line_array(), wb_vision_detection_line_array()};
+                std::memcpy(wb_vision_detection_lines::lines, lines_temp, VISION_DETECTION_LINES_LINES_ARRAY_SIZE * sizeof (struct wb_vision_detection_line_array));
             }
             set_res_width(t_res_width);
             set_res_height(t_res_height);
@@ -192,7 +192,7 @@ namespace guWhiteboard {
 
         size_t lines_size() const
         {
-            return WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE;
+            return VISION_DETECTION_LINES_LINES_ARRAY_SIZE;
         }
 
         VisionDetectionLineArray & lines(int t_i)
@@ -207,7 +207,7 @@ namespace guWhiteboard {
 
         void set_lines(const VisionDetectionLineArray *t_newValue)
         {
-            memcpy(wb_vision_detection_lines::lines, static_cast<const struct wb_vision_detection_line_array *>(t_newValue), WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE * (sizeof (struct wb_vision_detection_line_array)));
+            memcpy(wb_vision_detection_lines::lines, static_cast<const struct wb_vision_detection_line_array *>(t_newValue), VISION_DETECTION_LINES_LINES_ARRAY_SIZE * (sizeof (struct wb_vision_detection_line_array)));
         }
 
         void set_lines(const VisionDetectionLineArray &t_newValue, int t_i)
@@ -256,7 +256,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_LINES_C_CONVERSION
-            char buffer[WB_VISION_DETECTION_LINES_DESC_BUFFER_SIZE];
+            char buffer[VISION_DETECTION_LINES_DESC_BUFFER_SIZE];
             wb_vision_detection_lines_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -266,7 +266,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool lines_first = true;
             ss << "lines={";
-            for (int i = 0; i < WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < VISION_DETECTION_LINES_LINES_ARRAY_SIZE; i++) {
                 ss << (lines_first ? "" : ", ") << "{" << VisionDetectionLineArray(this->lines(i)).description() << "}";
                 lines_first = false;
             }
@@ -281,7 +281,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_VISION_DETECTION_LINES_C_CONVERSION
-            char buffer[WB_VISION_DETECTION_LINES_TO_STRING_BUFFER_SIZE];
+            char buffer[VISION_DETECTION_LINES_TO_STRING_BUFFER_SIZE];
             wb_vision_detection_lines_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -291,7 +291,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool lines_first = true;
             ss << "{";
-            for (int i = 0; i < WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < VISION_DETECTION_LINES_LINES_ARRAY_SIZE; i++) {
                 ss << (lines_first ? "" : ", ") << "{" << VisionDetectionLineArray(this->lines(i)).to_string() << "}";
                 lines_first = false;
             }
@@ -312,10 +312,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > WB_VISION_DETECTION_LINES_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > VISION_DETECTION_LINES_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[WB_VISION_DETECTION_LINES_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_LINES_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -413,7 +413,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int lines_0_index = 0; lines_0_index < WB_VISION_DETECTION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
+                        for (int lines_0_index = 0; lines_0_index < VISION_DETECTION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

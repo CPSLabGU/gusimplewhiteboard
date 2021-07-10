@@ -742,10 +742,10 @@ struct wb_vision_control_status* wb_vision_control_status_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_CONTROL_STATUS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_CONTROL_STATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_CONTROL_STATUS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_CONTROL_STATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[20];
     char* key = &key_buffer[0];

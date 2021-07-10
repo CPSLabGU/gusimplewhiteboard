@@ -366,10 +366,10 @@ struct wb_nao_walk_command* wb_nao_walk_command_from_string(struct wb_nao_walk_c
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_NAOWALKCOMMAND_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > NAOWALKCOMMAND_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_NAOWALKCOMMAND_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[NAOWALKCOMMAND_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[21];
     char* key = &key_buffer[0];

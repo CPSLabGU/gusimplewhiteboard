@@ -174,10 +174,10 @@ struct wb_point2d* wb_point2d_from_string(struct wb_point2d* self, const char* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_POINT2D_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > POINT2D_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_POINT2D_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[POINT2D_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[2];
     char* key = &key_buffer[0];

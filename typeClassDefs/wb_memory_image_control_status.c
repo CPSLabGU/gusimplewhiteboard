@@ -222,10 +222,10 @@ struct wb_memory_image_control_status* wb_memory_image_control_status_from_strin
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_MEMORY_IMAGE_CONTROL_STATUS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > MEMORY_IMAGE_CONTROL_STATUS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_MEMORY_IMAGE_CONTROL_STATUS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[MEMORY_IMAGE_CONTROL_STATUS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];

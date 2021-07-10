@@ -92,10 +92,10 @@ namespace guWhiteboard {
         void init(uint8_t t_numFeatures = 0, const struct wb_vision_detection_feature t_features[7] = NULLPTR) {
             set_numFeatures(t_numFeatures);
             if (t_features != NULLPTR) {
-                std::memcpy(wb_vision_detection_feature_array::features, t_features, WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
+                std::memcpy(wb_vision_detection_feature_array::features, t_features, VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
             } else {
-                struct wb_vision_detection_feature features_temp[WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE] = {wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature()};
-                std::memcpy(wb_vision_detection_feature_array::features, features_temp, WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
+                struct wb_vision_detection_feature features_temp[VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE] = {wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature(), wb_vision_detection_feature()};
+                std::memcpy(wb_vision_detection_feature_array::features, features_temp, VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * sizeof (struct wb_vision_detection_feature));
             }
         }
 
@@ -188,7 +188,7 @@ namespace guWhiteboard {
 
         size_t features_size() const
         {
-            return WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE;
+            return VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE;
         }
 
         VisionDetectionFeature & features(int t_i)
@@ -203,7 +203,7 @@ namespace guWhiteboard {
 
         void set_features(const VisionDetectionFeature *t_newValue)
         {
-            memcpy(wb_vision_detection_feature_array::features, static_cast<const struct wb_vision_detection_feature *>(t_newValue), WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * (sizeof (struct wb_vision_detection_feature)));
+            memcpy(wb_vision_detection_feature_array::features, static_cast<const struct wb_vision_detection_feature *>(t_newValue), VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE * (sizeof (struct wb_vision_detection_feature)));
         }
 
         void set_features(const VisionDetectionFeature &t_newValue, int t_i)
@@ -222,7 +222,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_VISION_DETECTION_FEATURE_ARRAY_C_CONVERSION
-            char buffer[WB_VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE];
+            char buffer[VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE];
             wb_vision_detection_feature_array_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -232,7 +232,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool features_first = true;
             ss << "features={";
-            for (int i = 0; i < WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; i++) {
                 ss << (features_first ? "" : ", ") << "{" << VisionDetectionFeature(this->features(i)).description() << "}";
                 features_first = false;
             }
@@ -243,7 +243,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_VISION_DETECTION_FEATURE_ARRAY_C_CONVERSION
-            char buffer[WB_VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE];
+            char buffer[VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE];
             wb_vision_detection_feature_array_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -253,7 +253,7 @@ namespace guWhiteboard {
             ss << ", ";
             bool features_first = true;
             ss << "{";
-            for (int i = 0; i < WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; i++) {
+            for (int i = 0; i < VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; i++) {
                 ss << (features_first ? "" : ", ") << "{" << VisionDetectionFeature(this->features(i)).to_string() << "}";
                 features_first = false;
             }
@@ -270,10 +270,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > WB_VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[WB_VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[12];
             char* key = &key_buffer[0];
@@ -363,7 +363,7 @@ namespace guWhiteboard {
                         startKey = startVar;
                         endKey = -1;
                         bracecount = 0;
-                        for (int features_0_index = 0; features_0_index < WB_VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; features_0_index++) {
+                        for (int features_0_index = 0; features_0_index < VISION_DETECTION_FEATURE_ARRAY_FEATURES_ARRAY_SIZE; features_0_index++) {
                             for (int i = index; i < length; i++) {
                                 index = i + 1;
                                 if (bracecount == 0 && str_cstr[i] == '=') {

@@ -334,10 +334,10 @@ struct wb_sensors_legjointsensors* wb_sensors_legjointsensors_from_string(struct
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_SENSORS_LEGJOINTSENSORS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > SENSORS_LEGJOINTSENSORS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_SENSORS_LEGJOINTSENSORS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[SENSORS_LEGJOINTSENSORS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];

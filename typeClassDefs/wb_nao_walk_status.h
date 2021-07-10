@@ -94,13 +94,13 @@ enum WalkEngineState {
   wes_StoppedStanding     ///< In the Standing position, this position uses less power than Stopped / Crouched, it is a minimal stiffness posture. The robot it standing taller than the StoppedReady pose, with the legs straight.
 };
 
-#define WB_NAOWALKSTATUS_GENERATED 
-#define WB_NAOWALKSTATUS_C_STRUCT wb_nao_walk_status 
-#define WB_NAOWALKSTATUS_NUMBER_OF_VARIABLES 3
+#define NAOWALKSTATUS_GENERATED 
+#define NAOWALKSTATUS_C_STRUCT wb_nao_walk_status 
+#define NAOWALKSTATUS_NUMBER_OF_VARIABLES 3
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WB_NAOWALKSTATUS_DESC_BUFFER_SIZE 1078
-#define WB_NAOWALKSTATUS_TO_STRING_BUFFER_SIZE 1032
+#define NAOWALKSTATUS_DESC_BUFFER_SIZE 1078
+#define NAOWALKSTATUS_TO_STRING_BUFFER_SIZE 1032
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
 #ifdef __cplusplus

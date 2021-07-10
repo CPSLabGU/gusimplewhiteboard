@@ -134,9 +134,9 @@ const char* wb_line_sighting_description(const struct wb_line_sighting* self, ch
     if (len >= bufferSize) {
         return descString;
     }
-    char leftPoint_buffer[WB_POLAR_COORDINATE_DESC_BUFFER_SIZE];
+    char leftPoint_buffer[POLAR_COORDINATE_DESC_BUFFER_SIZE];
     char* leftPoint_p = leftPoint_buffer;
-    const char* leftPoint_description = wb_polar_coordinate_description(&self->leftPoint, leftPoint_p, WB_POLAR_COORDINATE_DESC_BUFFER_SIZE);
+    const char* leftPoint_description = wb_polar_coordinate_description(&self->leftPoint, leftPoint_p, POLAR_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, leftPoint_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -153,9 +153,9 @@ const char* wb_line_sighting_description(const struct wb_line_sighting* self, ch
     if (len >= bufferSize) {
         return descString;
     }
-    char rightPoint_buffer[WB_POLAR_COORDINATE_DESC_BUFFER_SIZE];
+    char rightPoint_buffer[POLAR_COORDINATE_DESC_BUFFER_SIZE];
     char* rightPoint_p = rightPoint_buffer;
-    const char* rightPoint_description = wb_polar_coordinate_description(&self->rightPoint, rightPoint_p, WB_POLAR_COORDINATE_DESC_BUFFER_SIZE);
+    const char* rightPoint_description = wb_polar_coordinate_description(&self->rightPoint, rightPoint_p, POLAR_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, rightPoint_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -199,9 +199,9 @@ const char* wb_line_sighting_to_string(const struct wb_line_sighting* self, char
     if (len >= bufferSize) {
         return toString;
     }
-    char leftPoint_buffer[WB_POLAR_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char leftPoint_buffer[POLAR_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* leftPoint_p = leftPoint_buffer;
-    const char* leftPoint_to_string = wb_polar_coordinate_to_string(&self->leftPoint, leftPoint_p, WB_POLAR_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* leftPoint_to_string = wb_polar_coordinate_to_string(&self->leftPoint, leftPoint_p, POLAR_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, leftPoint_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -218,9 +218,9 @@ const char* wb_line_sighting_to_string(const struct wb_line_sighting* self, char
     if (len >= bufferSize) {
         return toString;
     }
-    char rightPoint_buffer[WB_POLAR_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char rightPoint_buffer[POLAR_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* rightPoint_p = rightPoint_buffer;
-    const char* rightPoint_to_string = wb_polar_coordinate_to_string(&self->rightPoint, rightPoint_p, WB_POLAR_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* rightPoint_to_string = wb_polar_coordinate_to_string(&self->rightPoint, rightPoint_p, POLAR_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, rightPoint_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -256,10 +256,10 @@ struct wb_line_sighting* wb_line_sighting_from_string(struct wb_line_sighting* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_LINE_SIGHTING_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > LINE_SIGHTING_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_LINE_SIGHTING_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[LINE_SIGHTING_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];

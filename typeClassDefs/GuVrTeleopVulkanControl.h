@@ -193,7 +193,7 @@ namespace guWhiteboard {
 
         std::string description() {
 #ifdef USE_WB_GU_VR_TELEOP_VULKAN_CONTROL_C_CONVERSION
-            char buffer[WB_GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE];
+            char buffer[GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE];
             wb_gu_vr_teleop_vulkan_control_description(this, buffer, sizeof(buffer));
             std::string descr = buffer;
             return descr;
@@ -260,7 +260,7 @@ namespace guWhiteboard {
 
         std::string to_string() {
 #ifdef USE_WB_GU_VR_TELEOP_VULKAN_CONTROL_C_CONVERSION
-            char buffer[WB_GU_VR_TELEOP_VULKAN_CONTROL_TO_STRING_BUFFER_SIZE];
+            char buffer[GU_VR_TELEOP_VULKAN_CONTROL_TO_STRING_BUFFER_SIZE];
             wb_gu_vr_teleop_vulkan_control_to_string(this, buffer, sizeof(buffer));
             std::string toString = buffer;
             return toString;
@@ -333,10 +333,10 @@ namespace guWhiteboard {
             char * str_cstr = const_cast<char *>(t_str.c_str());
             size_t temp_length = strlen(str_cstr);
             int length = (temp_length <= INT_MAX) ? static_cast<int>(static_cast<ssize_t>(temp_length)) : -1;
-            if (length < 1 || length > WB_GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE) {
+            if (length < 1 || length > GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE) {
                 return;
             }
-            char var_str_buffer[WB_GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE + 1];
+            char var_str_buffer[GU_VR_TELEOP_VULKAN_CONTROL_DESC_BUFFER_SIZE + 1];
             char* var_str = &var_str_buffer[0];
             char key_buffer[16];
             char* key = &key_buffer[0];

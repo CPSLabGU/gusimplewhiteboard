@@ -158,9 +158,9 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    char post1_buffer[WB_VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE];
+    char post1_buffer[VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE];
     char* post1_p = post1_buffer;
-    const char* post1_description = wb_vision_detection_goal_post_description(&self->post1, post1_p, WB_VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE);
+    const char* post1_description = wb_vision_detection_goal_post_description(&self->post1, post1_p, VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, post1_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -177,9 +177,9 @@ const char* wb_vision_detection_goal_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    char post2_buffer[WB_VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE];
+    char post2_buffer[VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE];
     char* post2_p = post2_buffer;
-    const char* post2_description = wb_vision_detection_goal_post_description(&self->post2, post2_p, WB_VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE);
+    const char* post2_description = wb_vision_detection_goal_post_description(&self->post2, post2_p, VISION_DETECTION_GOAL_POST_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, post2_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -228,9 +228,9 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    char post1_buffer[WB_VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE];
+    char post1_buffer[VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE];
     char* post1_p = post1_buffer;
-    const char* post1_to_string = wb_vision_detection_goal_post_to_string(&self->post1, post1_p, WB_VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE);
+    const char* post1_to_string = wb_vision_detection_goal_post_to_string(&self->post1, post1_p, VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, post1_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -247,9 +247,9 @@ const char* wb_vision_detection_goal_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    char post2_buffer[WB_VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE];
+    char post2_buffer[VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE];
     char* post2_p = post2_buffer;
-    const char* post2_to_string = wb_vision_detection_goal_post_to_string(&self->post2, post2_p, WB_VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE);
+    const char* post2_to_string = wb_vision_detection_goal_post_to_string(&self->post2, post2_p, VISION_DETECTION_GOAL_POST_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, post2_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -266,10 +266,10 @@ struct wb_vision_detection_goal* wb_vision_detection_goal_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_DETECTION_GOAL_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_DETECTION_GOAL_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_GOAL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[13];
     char* key = &key_buffer[0];

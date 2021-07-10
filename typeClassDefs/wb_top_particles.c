@@ -131,7 +131,7 @@ const char* wb_top_particles_description(const struct wb_top_particles* self, ch
         return descString;
     }
     len = gu_strlcat(descString, "particles={", bufferSize);
-    for (int particles_index = 0; particles_index < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -142,9 +142,9 @@ const char* wb_top_particles_description(const struct wb_top_particles* self, ch
         if (len >= bufferSize) {
             return descString;
         }
-        char particles_1_buffer[WB_PARTICLE_POSITION_DESC_BUFFER_SIZE];
+        char particles_1_buffer[PARTICLE_POSITION_DESC_BUFFER_SIZE];
         char* particles_1_p = particles_1_buffer;
-        const char* particles_1_description = wb_particle_position_description(&self->particles[particles_index], particles_1_p, WB_PARTICLE_POSITION_DESC_BUFFER_SIZE);
+        const char* particles_1_description = wb_particle_position_description(&self->particles[particles_index], particles_1_p, PARTICLE_POSITION_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, particles_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -171,7 +171,7 @@ const char* wb_top_particles_to_string(const struct wb_top_particles* self, char
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int particles_index = 0; particles_index < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
+    for (int particles_index = 0; particles_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -182,9 +182,9 @@ const char* wb_top_particles_to_string(const struct wb_top_particles* self, char
         if (len >= bufferSize) {
             return toString;
         }
-        char particles_1_buffer[WB_PARTICLE_POSITION_TO_STRING_BUFFER_SIZE];
+        char particles_1_buffer[PARTICLE_POSITION_TO_STRING_BUFFER_SIZE];
         char* particles_1_p = particles_1_buffer;
-        const char* particles_1_to_string = wb_particle_position_to_string(&self->particles[particles_index], particles_1_p, WB_PARTICLE_POSITION_TO_STRING_BUFFER_SIZE);
+        const char* particles_1_to_string = wb_particle_position_to_string(&self->particles[particles_index], particles_1_p, PARTICLE_POSITION_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, particles_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -206,10 +206,10 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_TOPPARTICLES_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > TOPPARTICLES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_TOPPARTICLES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[TOPPARTICLES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[10];
     char* key = &key_buffer[0];
@@ -292,7 +292,7 @@ struct wb_top_particles* wb_top_particles_from_string(struct wb_top_particles* s
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int particles_0_index = 0; particles_0_index < WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_0_index++) {
+                for (int particles_0_index = 0; particles_0_index < TOPPARTICLES_PARTICLES_ARRAY_SIZE; particles_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

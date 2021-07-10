@@ -158,10 +158,10 @@ struct wb_adjust_position_confidence* wb_adjust_position_confidence_from_string(
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_ADJUST_POSITION_CONFIDENCE_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > ADJUST_POSITION_CONFIDENCE_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_ADJUST_POSITION_CONFIDENCE_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[ADJUST_POSITION_CONFIDENCE_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[11];
     char* key = &key_buffer[0];

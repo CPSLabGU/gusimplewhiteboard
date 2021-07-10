@@ -143,7 +143,7 @@ const char* wb_vision_detection_goals_description(const struct wb_vision_detecti
         return descString;
     }
     len = gu_strlcat(descString, "goals={", bufferSize);
-    for (int goals_index = 0; goals_index < WB_VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_index++) {
+    for (int goals_index = 0; goals_index < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -154,9 +154,9 @@ const char* wb_vision_detection_goals_description(const struct wb_vision_detecti
         if (len >= bufferSize) {
             return descString;
         }
-        char goals_1_buffer[WB_VISION_DETECTION_GOAL_DESC_BUFFER_SIZE];
+        char goals_1_buffer[VISION_DETECTION_GOAL_DESC_BUFFER_SIZE];
         char* goals_1_p = goals_1_buffer;
-        const char* goals_1_description = wb_vision_detection_goal_description(&self->goals[goals_index], goals_1_p, WB_VISION_DETECTION_GOAL_DESC_BUFFER_SIZE);
+        const char* goals_1_description = wb_vision_detection_goal_description(&self->goals[goals_index], goals_1_p, VISION_DETECTION_GOAL_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, goals_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -211,7 +211,7 @@ const char* wb_vision_detection_goals_to_string(const struct wb_vision_detection
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int goals_index = 0; goals_index < WB_VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_index++) {
+    for (int goals_index = 0; goals_index < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -222,9 +222,9 @@ const char* wb_vision_detection_goals_to_string(const struct wb_vision_detection
         if (len >= bufferSize) {
             return toString;
         }
-        char goals_1_buffer[WB_VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE];
+        char goals_1_buffer[VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE];
         char* goals_1_p = goals_1_buffer;
-        const char* goals_1_to_string = wb_vision_detection_goal_to_string(&self->goals[goals_index], goals_1_p, WB_VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE);
+        const char* goals_1_to_string = wb_vision_detection_goal_to_string(&self->goals[goals_index], goals_1_p, VISION_DETECTION_GOAL_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, goals_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -262,10 +262,10 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_DETECTION_GOALS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_DETECTION_GOALS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_DETECTION_GOALS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_GOALS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -363,7 +363,7 @@ struct wb_vision_detection_goals* wb_vision_detection_goals_from_string(struct w
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int goals_0_index = 0; goals_0_index < WB_VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_0_index++) {
+                for (int goals_0_index = 0; goals_0_index < VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE; goals_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

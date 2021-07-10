@@ -131,7 +131,7 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
         return descString;
     }
     len = gu_strlcat(descString, "lines={", bufferSize);
-    for (int lines_index = 0; lines_index < WB_VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
+    for (int lines_index = 0; lines_index < VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -142,9 +142,9 @@ const char* wb_vision_lines_description(const struct wb_vision_lines* self, char
         if (len >= bufferSize) {
             return descString;
         }
-        char lines_1_buffer[WB_VISION_LINE_DESC_BUFFER_SIZE];
+        char lines_1_buffer[VISION_LINE_DESC_BUFFER_SIZE];
         char* lines_1_p = lines_1_buffer;
-        const char* lines_1_description = wb_vision_line_description(&self->lines[lines_index], lines_1_p, WB_VISION_LINE_DESC_BUFFER_SIZE);
+        const char* lines_1_description = wb_vision_line_description(&self->lines[lines_index], lines_1_p, VISION_LINE_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, lines_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -207,7 +207,7 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int lines_index = 0; lines_index < WB_VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
+    for (int lines_index = 0; lines_index < VISION_LINES_LINES_ARRAY_SIZE; lines_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -218,9 +218,9 @@ const char* wb_vision_lines_to_string(const struct wb_vision_lines* self, char* 
         if (len >= bufferSize) {
             return toString;
         }
-        char lines_1_buffer[WB_VISION_LINE_TO_STRING_BUFFER_SIZE];
+        char lines_1_buffer[VISION_LINE_TO_STRING_BUFFER_SIZE];
         char* lines_1_p = lines_1_buffer;
-        const char* lines_1_to_string = wb_vision_line_to_string(&self->lines[lines_index], lines_1_p, WB_VISION_LINE_TO_STRING_BUFFER_SIZE);
+        const char* lines_1_to_string = wb_vision_line_to_string(&self->lines[lines_index], lines_1_p, VISION_LINE_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, lines_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -278,10 +278,10 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_LINES_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_LINES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_LINES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_LINES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -372,7 +372,7 @@ struct wb_vision_lines* wb_vision_lines_from_string(struct wb_vision_lines* self
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int lines_0_index = 0; lines_0_index < WB_VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
+                for (int lines_0_index = 0; lines_0_index < VISION_LINES_LINES_ARRAY_SIZE; lines_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

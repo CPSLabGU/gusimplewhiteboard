@@ -153,9 +153,9 @@ const char* wb_vision_detection_ball_description(const struct wb_vision_detectio
     if (len >= bufferSize) {
         return descString;
     }
-    char coordinate_buffer[WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE];
+    char coordinate_buffer[PIXEL_COORDINATE_DESC_BUFFER_SIZE];
     char* coordinate_p = coordinate_buffer;
-    const char* coordinate_description = wb_pixel_coordinate_description(&self->coordinate, coordinate_p, WB_PIXEL_COORDINATE_DESC_BUFFER_SIZE);
+    const char* coordinate_description = wb_pixel_coordinate_description(&self->coordinate, coordinate_p, PIXEL_COORDINATE_DESC_BUFFER_SIZE);
     len = gu_strlcat(descString, coordinate_p, bufferSize);
     if (len >= bufferSize) {
         return descString;
@@ -215,9 +215,9 @@ const char* wb_vision_detection_ball_to_string(const struct wb_vision_detection_
     if (len >= bufferSize) {
         return toString;
     }
-    char coordinate_buffer[WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
+    char coordinate_buffer[PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE];
     char* coordinate_p = coordinate_buffer;
-    const char* coordinate_to_string = wb_pixel_coordinate_to_string(&self->coordinate, coordinate_p, WB_PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
+    const char* coordinate_to_string = wb_pixel_coordinate_to_string(&self->coordinate, coordinate_p, PIXEL_COORDINATE_TO_STRING_BUFFER_SIZE);
     len = gu_strlcat(toString, coordinate_p, bufferSize);
     if (len >= bufferSize) {
         return toString;
@@ -250,10 +250,10 @@ struct wb_vision_detection_ball* wb_vision_detection_ball_from_string(struct wb_
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_DETECTION_BALL_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_BALL_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[17];
     char* key = &key_buffer[0];

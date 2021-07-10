@@ -87,16 +87,16 @@
 
 #include <gusimplewhiteboard/typeClassDefs/wb_pixel_coordinate_line.h>
 
-#define WB_VISION_DETECTION_LINE_ARRAY_GENERATED 
-#define WB_VISION_DETECTION_LINE_ARRAY_C_STRUCT wb_vision_detection_line_array 
-#define WB_VISION_DETECTION_LINE_ARRAY_NUMBER_OF_VARIABLES 2
+#define VISION_DETECTION_LINE_ARRAY_GENERATED 
+#define VISION_DETECTION_LINE_ARRAY_C_STRUCT wb_vision_detection_line_array 
+#define VISION_DETECTION_LINE_ARRAY_NUMBER_OF_VARIABLES 2
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WB_VISION_DETECTION_LINE_ARRAY_DESC_BUFFER_SIZE 533
-#define WB_VISION_DETECTION_LINE_ARRAY_TO_STRING_BUFFER_SIZE 518
+#define VISION_DETECTION_LINE_ARRAY_DESC_BUFFER_SIZE 533
+#define VISION_DETECTION_LINE_ARRAY_TO_STRING_BUFFER_SIZE 518
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define WB_VISION_DETECTION_LINE_ARRAY_LINES_ARRAY_SIZE 7
+#define VISION_DETECTION_LINE_ARRAY_LINES_ARRAY_SIZE 7
 
 #ifdef __cplusplus
 extern "C" {
@@ -117,7 +117,7 @@ struct wb_vision_detection_line_array
     /**
      * Lines reported from the camera.
      */
-    struct wb_pixel_coordinate_line lines[WB_VISION_DETECTION_LINE_ARRAY_LINES_ARRAY_SIZE];
+    struct wb_pixel_coordinate_line lines[VISION_DETECTION_LINE_ARRAY_LINES_ARRAY_SIZE];
 
 };
 

@@ -174,10 +174,10 @@ struct wb_buttons* wb_buttons_from_string(struct wb_buttons* self, const char* s
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_BUTTONS_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > BUTTONS_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_BUTTONS_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[BUTTONS_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[14];
     char* key = &key_buffer[0];

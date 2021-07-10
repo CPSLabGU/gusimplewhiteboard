@@ -100,16 +100,16 @@
 
         };
 
-#define WB_TOPPARTICLES_GENERATED 
-#define WB_TOPPARTICLES_C_STRUCT wb_top_particles 
-#define WB_TOPPARTICLES_NUMBER_OF_VARIABLES 1
+#define TOPPARTICLES_GENERATED 
+#define TOPPARTICLES_C_STRUCT wb_top_particles 
+#define TOPPARTICLES_NUMBER_OF_VARIABLES 1
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WB_TOPPARTICLES_DESC_BUFFER_SIZE 523
-#define WB_TOPPARTICLES_TO_STRING_BUFFER_SIZE 513
+#define TOPPARTICLES_DESC_BUFFER_SIZE 523
+#define TOPPARTICLES_TO_STRING_BUFFER_SIZE 513
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE 4
+#define TOPPARTICLES_PARTICLES_ARRAY_SIZE 4
 
 #ifdef __cplusplus
 extern "C" {
@@ -124,7 +124,7 @@ struct wb_top_particles
     /**
      * these 4 should be the constant NUM_TOP_PARTICLES
      */
-    struct wb_particle_position particles[WB_TOPPARTICLES_PARTICLES_ARRAY_SIZE];
+    struct wb_particle_position particles[TOPPARTICLES_PARTICLES_ARRAY_SIZE];
 
 };
 

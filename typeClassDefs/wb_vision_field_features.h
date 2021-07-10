@@ -88,18 +88,18 @@
 #include "wb_vision_field_feature.h"
 #include <stdint.h>
 
-#define WB_VISION_FIELD_FEATURES_GENERATED 
-#define WB_VISION_FIELD_FEATURES_C_STRUCT wb_vision_field_features 
-#define WB_VISION_FIELD_FEATURES_NUMBER_OF_VARIABLES 8
+#define VISION_FIELD_FEATURES_GENERATED 
+#define VISION_FIELD_FEATURES_C_STRUCT wb_vision_field_features 
+#define VISION_FIELD_FEATURES_NUMBER_OF_VARIABLES 8
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WB_VISION_FIELD_FEATURES_DESC_BUFFER_SIZE 1673
-#define WB_VISION_FIELD_FEATURES_TO_STRING_BUFFER_SIZE 1570
+#define VISION_FIELD_FEATURES_DESC_BUFFER_SIZE 1673
+#define VISION_FIELD_FEATURES_TO_STRING_BUFFER_SIZE 1570
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE 8
-#define WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE 8
-#define WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE 3
+#define VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE 8
+#define VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE 8
+#define VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE 3
 
 #ifdef __cplusplus
 extern "C" {
@@ -114,17 +114,17 @@ struct wb_vision_field_features
     /**
      * Location of corners on the field.
      */
-    struct wb_vision_field_feature fieldCorner[WB_VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE];
+    struct wb_vision_field_feature fieldCorner[VISION_FIELD_FEATURES_FIELDCORNER_ARRAY_SIZE];
 
     /**
      * Location of T-Intersections on the field.
      */
-    struct wb_vision_field_feature fieldIntersection[WB_VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE];
+    struct wb_vision_field_feature fieldIntersection[VISION_FIELD_FEATURES_FIELDINTERSECTION_ARRAY_SIZE];
 
     /**
      * Location of T-Intersections on the field.
      */
-    struct wb_vision_field_feature fieldCrosses[WB_VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE];
+    struct wb_vision_field_feature fieldCrosses[VISION_FIELD_FEATURES_FIELDCROSSES_ARRAY_SIZE];
 
     /**
      * Number of corners in this message.

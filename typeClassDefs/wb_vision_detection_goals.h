@@ -87,16 +87,16 @@
 
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
 
-#define WB_VISION_DETECTION_GOALS_GENERATED 
-#define WB_VISION_DETECTION_GOALS_C_STRUCT wb_vision_detection_goals 
-#define WB_VISION_DETECTION_GOALS_NUMBER_OF_VARIABLES 4
+#define VISION_DETECTION_GOALS_GENERATED 
+#define VISION_DETECTION_GOALS_C_STRUCT wb_vision_detection_goals 
+#define VISION_DETECTION_GOALS_NUMBER_OF_VARIABLES 4
 
 #ifdef WHITEBOARD_POSTER_STRING_CONVERSION
-#define WB_VISION_DETECTION_GOALS_DESC_BUFFER_SIZE 588
-#define WB_VISION_DETECTION_GOALS_TO_STRING_BUFFER_SIZE 549
+#define VISION_DETECTION_GOALS_DESC_BUFFER_SIZE 588
+#define VISION_DETECTION_GOALS_TO_STRING_BUFFER_SIZE 549
 #endif /// WHITEBOARD_POSTER_STRING_CONVERSION
 
-#define WB_VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE 2
+#define VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE 2
 
 #ifdef __cplusplus
 extern "C" {
@@ -116,7 +116,7 @@ struct wb_vision_detection_goals
     /**
      * goal objects
      */
-    struct wb_vision_detection_goal goals[WB_VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE];
+    struct wb_vision_detection_goal goals[VISION_DETECTION_GOALS_GOALS_ARRAY_SIZE];
 
     /**
      * The resolution width.

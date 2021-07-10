@@ -143,7 +143,7 @@ const char* wb_vision_detection_features_description(const struct wb_vision_dete
         return descString;
     }
     len = gu_strlcat(descString, "features={", bufferSize);
-    for (int features_index = 0; features_index < WB_VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_index++) {
+    for (int features_index = 0; features_index < VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_index++) {
         if (len >= bufferSize) {
             return descString;
         }
@@ -154,9 +154,9 @@ const char* wb_vision_detection_features_description(const struct wb_vision_dete
         if (len >= bufferSize) {
             return descString;
         }
-        char features_1_buffer[WB_VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE];
+        char features_1_buffer[VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE];
         char* features_1_p = features_1_buffer;
-        const char* features_1_description = wb_vision_detection_feature_array_description(&self->features[features_index], features_1_p, WB_VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE);
+        const char* features_1_description = wb_vision_detection_feature_array_description(&self->features[features_index], features_1_p, VISION_DETECTION_FEATURE_ARRAY_DESC_BUFFER_SIZE);
         len = gu_strlcat(descString, features_1_p, bufferSize);
         if (len >= bufferSize) {
             return descString;
@@ -195,7 +195,7 @@ const char* wb_vision_detection_features_to_string(const struct wb_vision_detect
         return toString;
     }
     len = gu_strlcat(toString, "{", bufferSize);
-    for (int features_index = 0; features_index < WB_VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_index++) {
+    for (int features_index = 0; features_index < VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_index++) {
         if (len >= bufferSize) {
             return toString;
         }
@@ -206,9 +206,9 @@ const char* wb_vision_detection_features_to_string(const struct wb_vision_detect
         if (len >= bufferSize) {
             return toString;
         }
-        char features_1_buffer[WB_VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE];
+        char features_1_buffer[VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE];
         char* features_1_p = features_1_buffer;
-        const char* features_1_to_string = wb_vision_detection_feature_array_to_string(&self->features[features_index], features_1_p, WB_VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE);
+        const char* features_1_to_string = wb_vision_detection_feature_array_to_string(&self->features[features_index], features_1_p, VISION_DETECTION_FEATURE_ARRAY_TO_STRING_BUFFER_SIZE);
         len = gu_strlcat(toString, features_1_p, bufferSize);
         if (len >= bufferSize) {
             return toString;
@@ -230,10 +230,10 @@ struct wb_vision_detection_features* wb_vision_detection_features_from_string(st
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[VISION_DETECTION_FEATURES_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[12];
     char* key = &key_buffer[0];
@@ -327,7 +327,7 @@ struct wb_vision_detection_features* wb_vision_detection_features_from_string(st
                 startKey = startVar;
                 endKey = -1;
                 bracecount = 0;
-                for (int features_0_index = 0; features_0_index < WB_VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_0_index++) {
+                for (int features_0_index = 0; features_0_index < VISION_DETECTION_FEATURES_FEATURES_ARRAY_SIZE; features_0_index++) {
                     for (int i = index; i < length; i++) {
                         index = i + 1;
                         if (bracecount == 0 && str[i] == '=') {

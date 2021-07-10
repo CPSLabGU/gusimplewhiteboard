@@ -174,10 +174,10 @@ struct wb_particle_output_map* wb_particle_output_map_from_string(struct wb_part
 {
     size_t temp_length = strlen(str);
     int length = (temp_length <= INT_MAX) ? ((int)((ssize_t)temp_length)) : -1;
-    if (length < 1 || length > WB_PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE) {
+    if (length < 1 || length > PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE) {
         return self;
     }
-    char var_str_buffer[WB_PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE + 1];
+    char var_str_buffer[PARTICLE_OUTPUT_MAP_DESC_BUFFER_SIZE + 1];
     char* var_str = &var_str_buffer[0];
     char key_buffer[9];
     char* key = &key_buffer[0];
