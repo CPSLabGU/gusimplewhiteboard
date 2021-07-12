@@ -87,7 +87,7 @@ namespace guWhiteboard {
         /**
          * Set the members of the class.
          */
-        void init(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA;) {
+        void init(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA) {
             set_res_width(t_res_width);
             set_res_height(t_res_height);
             set_pixelFormat(t_pixelFormat);
@@ -98,7 +98,7 @@ namespace guWhiteboard {
         /**
          * Create a new `MemoryImageControlStatus`.
          */
-        MemoryImageControlStatus(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA;) {
+        MemoryImageControlStatus(uint16_t t_res_width = 0, uint16_t t_res_height = 0, enum MemoryImagePixelFormat t_pixelFormat = MI_RGBA) {
             this->init(t_res_width, t_res_height, t_pixelFormat);
         }
 

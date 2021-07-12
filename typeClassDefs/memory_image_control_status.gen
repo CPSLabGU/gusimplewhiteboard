@@ -17,4 +17,4 @@ enum MemoryImagePixelFormat {
 
 -properties
 
-enum MemoryImagePixelFormat pixelFormat = MI_RGBA; // The pixel format of the images.
+enum MemoryImagePixelFormat pixelFormat = MI_RGBA // The pixel format of the images.
