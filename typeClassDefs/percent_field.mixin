@@ -92,7 +92,7 @@ void {{structName}}_set_{{label}}_percent(struct {{structName}} *strct, const do
  */
 double {{label}}Percent() const
 {
-    return static_cast<double>(strct.{{label}} - {{min}}) / static_cast<double>({{max}} - {{min}});
+    return static_cast<double>({{label}}() - {{min}}) / static_cast<double>({{max}} - {{min}});
 }
 
 /**

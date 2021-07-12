@@ -445,7 +445,7 @@ namespace guWhiteboard {
          */
         double confidencePercent() const
         {
-            return static_cast<double>(strct.confidence - 0) / static_cast<double>(255 - 0);
+            return static_cast<double>(confidence() - 0) / static_cast<double>(255 - 0);
         }
 
         /**
