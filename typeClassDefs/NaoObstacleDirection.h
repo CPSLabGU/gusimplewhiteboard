@@ -358,11 +358,11 @@ namespace guWhiteboard {
 
         /**
          */
-        static NaoObstacleDirection sonar_direction(bool left, bool  front, bool right) {
+        static NaoObstacleDirection sonar_direction(bool _left, bool  _front, bool _right) {
             NaoObstacleDirection obstacles = NaoObstacleDirection();
-            obstacles.set_left(left);
-            obstacles.set_front(front);
-            obstacles.set_right(right);
+            obstacles.set_left(_left);
+            obstacles.set_front(_front);
+            obstacles.set_right(_right);
             return obstacles;
         }
     };
