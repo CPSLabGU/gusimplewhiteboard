@@ -87,7 +87,7 @@ namespace guWhiteboard {
         switch (message_index)
         {
 
-case kwb_reserved_SubscribeToAllTypes_v:
+case kwb_wb_reserved_SubscribeToAllTypes_v:
 {
 
     class wb_reserved_SubscribeToAllTypes_t msg_ptr(wbd);
@@ -96,7 +96,7 @@ case kwb_reserved_SubscribeToAllTypes_v:
     return true;
 
 }
-case kPrint_v:
+case kwb_Print_v:
 {
 
     class Print_t msg_ptr(wbd);
@@ -105,7 +105,7 @@ case kPrint_v:
     return true;
 
 }
-case kSay_v:
+case kwb_Say_v:
 {
 
     class Say_t msg_ptr(wbd);
@@ -114,7 +114,7 @@ case kSay_v:
     return true;
 
 }
-case kSpeech_v:
+case kwb_Speech_v:
 {
 
     class Speech_t msg_ptr(wbd);
@@ -123,7 +123,7 @@ case kSpeech_v:
     return true;
 
 }
-case kQSay_v:
+case kwb_QSay_v:
 {
 
     class QSay_t msg_ptr(wbd);
@@ -132,7 +132,7 @@ case kQSay_v:
     return true;
 
 }
-case kQSpeech_v:
+case kwb_QSpeech_v:
 {
 
     class QSpeech_t msg_ptr(wbd);
@@ -141,7 +141,7 @@ case kQSpeech_v:
     return true;
 
 }
-case kSpeechOutput_v:
+case kwb_SpeechOutput_v:
 {
 
     class SpeechOutput_t msg_ptr(wbd);
@@ -150,7 +150,7 @@ case kSpeechOutput_v:
     return true;
 
 }
-case kGCGameState_v:
+case kwb_GCGameState_v:
 {
 #ifdef guWhiteboard_GCGameState_DEFINED
     class GCGameState_t msg_ptr(wbd);
@@ -162,7 +162,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_GCGameState_DEFINED
 }
-case kSensorsHandSensors_v:
+case kwb_SensorsHandSensors_v:
 {
 #ifdef guWhiteboard_SensorsHandSensors_DEFINED
     class SensorsHandSensors_t msg_ptr(wbd);
@@ -174,7 +174,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SensorsHandSensors_DEFINED
 }
-case kSensorsHeadSensors_v:
+case kwb_SensorsHeadSensors_v:
 {
 #ifdef guWhiteboard_SensorsHeadSensors_DEFINED
     class SensorsHeadSensors_t msg_ptr(wbd);
@@ -186,7 +186,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SensorsHeadSensors_DEFINED
 }
-case kMOTION_Commands_v:
+case kwb_MOTION_Commands_v:
 {
 #ifdef guWhiteboard_MOTIONCommands_DEFINED
     class MOTION_Commands_t msg_ptr(wbd);
@@ -198,7 +198,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MOTIONCommands_DEFINED
 }
-case kMOTION_Status_v:
+case kwb_MOTION_Status_v:
 {
 #ifdef guWhiteboard_MOTIONStatus_DEFINED
     class MOTION_Status_t msg_ptr(wbd);
@@ -210,7 +210,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MOTIONStatus_DEFINED
 }
-case kHAL_HeadTarget_v:
+case kwb_HAL_HeadTarget_v:
 {
 #ifdef guWhiteboard_HALHeadTarget_DEFINED
     class HAL_HeadTarget_t msg_ptr(wbd);
@@ -222,7 +222,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HALHeadTarget_DEFINED
 }
-case kSensorsFootSensors_v:
+case kwb_SensorsFootSensors_v:
 {
 #ifdef guWhiteboard_SensorsFootSensors_DEFINED
     class SensorsFootSensors_t msg_ptr(wbd);
@@ -234,7 +234,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SensorsFootSensors_DEFINED
 }
-case kSensorsBodySensors_v:
+case kwb_SensorsBodySensors_v:
 {
 #ifdef guWhiteboard_SensorsBodySensors_DEFINED
     class SensorsBodySensors_t msg_ptr(wbd);
@@ -246,7 +246,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SensorsBodySensors_DEFINED
 }
-case kSENSORSLedsSensors_v:
+case kwb_SENSORSLedsSensors_v:
 {
 #ifdef guWhiteboard_SENSORSLedsSensors_DEFINED
     class SENSORSLedsSensors_t msg_ptr(wbd);
@@ -258,7 +258,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSLedsSensors_DEFINED
 }
-case kSENSORSLegJointTemps_v:
+case kwb_SENSORSLegJointTemps_v:
 {
 #ifdef guWhiteboard_SENSORSLegJointTemps_DEFINED
     class SENSORSLegJointTemps_t msg_ptr(wbd);
@@ -270,7 +270,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSLegJointTemps_DEFINED
 }
-case kSENSORSTorsoJointTemps_v:
+case kwb_SENSORSTorsoJointTemps_v:
 {
 #ifdef guWhiteboard_SENSORSTorsoJointTemps_DEFINED
     class SENSORSTorsoJointTemps_t msg_ptr(wbd);
@@ -282,7 +282,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSTorsoJointTemps_DEFINED
 }
-case kSENSORSLegJointSensors_v:
+case kwb_SENSORSLegJointSensors_v:
 {
 #ifdef guWhiteboard_SENSORSLegJointSensors_DEFINED
     class SENSORSLegJointSensors_t msg_ptr(wbd);
@@ -294,7 +294,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSLegJointSensors_DEFINED
 }
-case kSENSORSTorsoJointSensors_v:
+case kwb_SENSORSTorsoJointSensors_v:
 {
 #ifdef guWhiteboard_SENSORSTorsoJointSensors_DEFINED
     class SENSORSTorsoJointSensors_t msg_ptr(wbd);
@@ -306,7 +306,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSTorsoJointSensors_DEFINED
 }
-case kSENSORSSonarSensors_v:
+case kwb_SENSORSSonarSensors_v:
 {
 #ifdef guWhiteboard_SENSORSSonarSensors_DEFINED
     class SENSORSSonarSensors_t msg_ptr(wbd);
@@ -318,7 +318,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SENSORSSonarSensors_DEFINED
 }
-case kFSM_Control_v:
+case kwb_FSM_Control_v:
 {
 #ifdef guWhiteboard_FSMControlStatus_DEFINED
     class FSM_Control_t msg_ptr(wbd);
@@ -330,7 +330,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FSMControlStatus_DEFINED
 }
-case kFSM_Status_v:
+case kwb_FSM_Status_v:
 {
 #ifdef guWhiteboard_FSMControlStatus_DEFINED
     class FSM_Status_t msg_ptr(wbd);
@@ -342,7 +342,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FSMControlStatus_DEFINED
 }
-case kFSM_Names_v:
+case kwb_FSM_Names_v:
 {
 #ifdef guWhiteboard_FSMNames_DEFINED
     class FSM_Names_t msg_ptr(wbd);
@@ -354,7 +354,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FSMNames_DEFINED
 }
-case kSoloTypeExample_v:
+case kwb_SoloTypeExample_v:
 {
 
     class SoloTypeExample_t msg_ptr(wbd);
@@ -363,7 +363,7 @@ case kSoloTypeExample_v:
     return true;
 
 }
-case kFilteredGoalSighting_v:
+case kwb_FilteredGoalSighting_v:
 {
 #ifdef guWhiteboard_FilteredArrayOneDimObjects_DEFINED
     class FilteredGoalSighting_t msg_ptr(wbd);
@@ -375,7 +375,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FilteredArrayOneDimObjects_DEFINED
 }
-case kNAO_State_v:
+case kwb_NAO_State_v:
 {
 #ifdef guWhiteboard_NAOState_DEFINED
     class NAO_State_t msg_ptr(wbd);
@@ -387,7 +387,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NAOState_DEFINED
 }
-case kUDPRN_v:
+case kwb_UDPRN_v:
 {
 #ifdef guWhiteboard_GCGameState_DEFINED
     class UDPRN_t msg_ptr(wbd);
@@ -399,7 +399,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_GCGameState_DEFINED
 }
-case kPlayerNumber_v:
+case kwb_PlayerNumber_v:
 {
 
     class PlayerNumber_t msg_ptr(wbd);
@@ -408,7 +408,7 @@ case kPlayerNumber_v:
     return true;
 
 }
-case kManuallyPenalized_v:
+case kwb_ManuallyPenalized_v:
 {
 
     class ManuallyPenalized_t msg_ptr(wbd);
@@ -417,7 +417,7 @@ case kManuallyPenalized_v:
     return true;
 
 }
-case kVisionControl_v:
+case kwb_VisionControl_v:
 {
 #ifdef guWhiteboard_VisionControlStatus_DEFINED
     class VisionControl_t msg_ptr(wbd);
@@ -429,7 +429,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionControlStatus_DEFINED
 }
-case kVisionStatus_v:
+case kwb_VisionStatus_v:
 {
 #ifdef guWhiteboard_VisionControlStatus_DEFINED
     class VisionStatus_t msg_ptr(wbd);
@@ -441,7 +441,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionControlStatus_DEFINED
 }
-case kFFTStatus_v:
+case kwb_FFTStatus_v:
 {
 #ifdef guWhiteboard_FFTStatus_DEFINED
     class FFTStatus_t msg_ptr(wbd);
@@ -453,7 +453,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FFTStatus_DEFINED
 }
-case kFSOsighting_v:
+case kwb_FSOsighting_v:
 {
 #ifdef guWhiteboard_FilteredArrayOneDimSonar_DEFINED
     class FSOsighting_t msg_ptr(wbd);
@@ -465,7 +465,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FilteredArrayOneDimSonar_DEFINED
 }
-case kTopParticles_v:
+case kwb_TopParticles_v:
 {
 #ifdef guWhiteboard_TopParticles_DEFINED
     class TopParticles_t msg_ptr(wbd);
@@ -477,7 +477,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TopParticles_DEFINED
 }
-case kFilteredBallSighting_v:
+case kwb_FilteredBallSighting_v:
 {
 #ifdef guWhiteboard_FilteredArrayBallSightings_DEFINED
     class FilteredBallSighting_t msg_ptr(wbd);
@@ -489,7 +489,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FilteredArrayBallSightings_DEFINED
 }
-case kPF_ControlStatus_Modes_v:
+case kwb_PF_ControlStatus_Modes_v:
 {
 
     class PF_ControlStatus_Modes_t msg_ptr(wbd);
@@ -498,7 +498,7 @@ case kPF_ControlStatus_Modes_v:
     return true;
 
 }
-case kWEBOTS_NXT_bridge_v:
+case kwb_WEBOTS_NXT_bridge_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTBridge_DEFINED
     class WEBOTS_NXT_bridge_t msg_ptr(wbd);
@@ -510,7 +510,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTBridge_DEFINED
 }
-case kWEBOTS_NXT_encoders_v:
+case kwb_WEBOTS_NXT_encoders_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTEncoders_DEFINED
     class WEBOTS_NXT_encoders_t msg_ptr(wbd);
@@ -522,7 +522,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTEncoders_DEFINED
 }
-case kWEBOTS_NXT_camera_v:
+case kwb_WEBOTS_NXT_camera_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTCamera_DEFINED
     class WEBOTS_NXT_camera_t msg_ptr(wbd);
@@ -534,7 +534,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTCamera_DEFINED
 }
-case kWEBOTS_NXT_walk_isRunning_v:
+case kwb_WEBOTS_NXT_walk_isRunning_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTWalkIsRunning_DEFINED
     class WEBOTS_NXT_walk_isRunning_t msg_ptr(wbd);
@@ -546,7 +546,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTWalkIsRunning_DEFINED
 }
-case kWEBOTS_NXT_deadReakoning_walk_v:
+case kwb_WEBOTS_NXT_deadReakoning_walk_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTDeadReakoningWalk_DEFINED
     class WEBOTS_NXT_deadReakoning_walk_t msg_ptr(wbd);
@@ -558,7 +558,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTDeadReakoningWalk_DEFINED
 }
-case kWEBOTS_NXT_colorLine_walk_v:
+case kwb_WEBOTS_NXT_colorLine_walk_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTColorLineWalk_DEFINED
     class WEBOTS_NXT_colorLine_walk_t msg_ptr(wbd);
@@ -570,7 +570,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTColorLineWalk_DEFINED
 }
-case kWEBOTS_NXT_gridMotions_v:
+case kwb_WEBOTS_NXT_gridMotions_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTGridMotions_DEFINED
     class WEBOTS_NXT_gridMotions_t msg_ptr(wbd);
@@ -582,7 +582,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTGridMotions_DEFINED
 }
-case kVisionBall_v:
+case kwb_VisionBall_v:
 {
 #ifdef guWhiteboard_VisionBall_DEFINED
     class VisionBall_t msg_ptr(wbd);
@@ -594,7 +594,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionBall_DEFINED
 }
-case kVisionGoals_v:
+case kwb_VisionGoals_v:
 {
 #ifdef guWhiteboard_VisionGoals_DEFINED
     class VisionGoals_t msg_ptr(wbd);
@@ -606,7 +606,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionGoals_DEFINED
 }
-case kWalkData_v:
+case kwb_WalkData_v:
 {
 #ifdef guWhiteboard_WalkData_DEFINED
     class WalkData_t msg_ptr(wbd);
@@ -618,7 +618,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WalkData_DEFINED
 }
-case kTeleoperationControlStatus_v:
+case kwb_TeleoperationControlStatus_v:
 {
 #ifdef guWhiteboard_TeleoperationControlStatus_DEFINED
     class TeleoperationControlStatus_t msg_ptr(wbd);
@@ -630,7 +630,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TeleoperationControlStatus_DEFINED
 }
-case kTeleoperationConnection_v:
+case kwb_TeleoperationConnection_v:
 {
 
     class TeleoperationConnection_t msg_ptr(wbd);
@@ -639,7 +639,7 @@ case kTeleoperationConnection_v:
     return true;
 
 }
-case kUDPWBNumber_v:
+case kwb_UDPWBNumber_v:
 {
 
     class UDPWBNumber_t msg_ptr(wbd);
@@ -648,7 +648,7 @@ case kUDPWBNumber_v:
     return true;
 
 }
-case kWEBOTS_NXT_bumper_v:
+case kwb_WEBOTS_NXT_bumper_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTBumper_DEFINED
     class WEBOTS_NXT_bumper_t msg_ptr(wbd);
@@ -660,7 +660,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTBumper_DEFINED
 }
-case kWEBOTS_NXT_vector_bridge_v:
+case kwb_WEBOTS_NXT_vector_bridge_v:
 {
 #ifdef guWhiteboard_WEBOTSNXTVectorBridge_DEFINED
     class WEBOTS_NXT_vector_bridge_t msg_ptr(wbd);
@@ -672,7 +672,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_WEBOTSNXTVectorBridge_DEFINED
 }
-case kTopVisionLines_v:
+case kwb_TopVisionLines_v:
 {
 #ifdef guWhiteboard_VisionLines_DEFINED
     class TopVisionLines_t msg_ptr(wbd);
@@ -684,7 +684,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionLines_DEFINED
 }
-case kBottomVisionLines_v:
+case kwb_BottomVisionLines_v:
 {
 #ifdef guWhiteboard_VisionLines_DEFINED
     class BottomVisionLines_t msg_ptr(wbd);
@@ -696,7 +696,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionLines_DEFINED
 }
-case kDifferentialRobotStatus_v:
+case kwb_DifferentialRobotStatus_v:
 {
 #ifdef guWhiteboard_DifferentialRobotControlStatus_DEFINED
     class DifferentialRobotStatus_t msg_ptr(wbd);
@@ -708,7 +708,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_DifferentialRobotControlStatus_DEFINED
 }
-case kDifferentialRobotControl_v:
+case kwb_DifferentialRobotControl_v:
 {
 #ifdef guWhiteboard_DifferentialRobotControlStatus_DEFINED
     class DifferentialRobotControl_t msg_ptr(wbd);
@@ -720,7 +720,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_DifferentialRobotControlStatus_DEFINED
 }
-case kXEyesPos_v:
+case kwb_XEyesPos_v:
 {
 #ifdef guWhiteboard_Point2D_DEFINED
     class XEyesPos_t msg_ptr(wbd);
@@ -732,7 +732,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Point2D_DEFINED
 }
-case kVisionFace_v:
+case kwb_VisionFace_v:
 {
 
     class VisionFace_t msg_ptr(wbd);
@@ -741,7 +741,7 @@ case kVisionFace_v:
     return true;
 
 }
-case kDraw_v:
+case kwb_Draw_v:
 {
 
     class Draw_t msg_ptr(wbd);
@@ -750,7 +750,7 @@ case kDraw_v:
     return true;
 
 }
-case kFSM_States_v:
+case kwb_FSM_States_v:
 {
 #ifdef guWhiteboard_FSMState_DEFINED
     class FSM_States_t msg_ptr(wbd);
@@ -762,7 +762,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FSMState_DEFINED
 }
-case kGiraff_Interface_Status_v:
+case kwb_Giraff_Interface_Status_v:
 {
 #ifdef guWhiteboard_GiraffMainSerialInterface_DEFINED
     class Giraff_Interface_Status_t msg_ptr(wbd);
@@ -774,7 +774,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_GiraffMainSerialInterface_DEFINED
 }
-case kGiraff_Interface_Command_v:
+case kwb_Giraff_Interface_Command_v:
 {
 #ifdef guWhiteboard_GiraffMainSerialInterface_DEFINED
     class Giraff_Interface_Command_t msg_ptr(wbd);
@@ -786,7 +786,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_GiraffMainSerialInterface_DEFINED
 }
-case kNXT_Status_v:
+case kwb_NXT_Status_v:
 {
 #ifdef guWhiteboard_NXTInterface_DEFINED
     class NXT_Status_t msg_ptr(wbd);
@@ -798,7 +798,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NXTInterface_DEFINED
 }
-case kNXT_Command_v:
+case kwb_NXT_Command_v:
 {
 #ifdef guWhiteboard_NXTInterface_DEFINED
     class NXT_Command_t msg_ptr(wbd);
@@ -810,7 +810,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NXTInterface_DEFINED
 }
-case kAPM_Status_v:
+case kwb_APM_Status_v:
 {
 #ifdef guWhiteboard_APMInterface_DEFINED
     class APM_Status_t msg_ptr(wbd);
@@ -822,7 +822,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_APMInterface_DEFINED
 }
-case kAPM_Command_v:
+case kwb_APM_Command_v:
 {
 #ifdef guWhiteboard_APMInterface_DEFINED
     class APM_Command_t msg_ptr(wbd);
@@ -834,7 +834,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_APMInterface_DEFINED
 }
-case kREMOVED3_v:
+case kwb_REMOVED3_v:
 {
 
     class REMOVED3_t msg_ptr(wbd);
@@ -843,7 +843,7 @@ case kREMOVED3_v:
     return true;
 
 }
-case kREMOVED4_v:
+case kwb_REMOVED4_v:
 {
 
     class REMOVED4_t msg_ptr(wbd);
@@ -852,7 +852,7 @@ case kREMOVED4_v:
     return true;
 
 }
-case kCBall_v:
+case kwb_CBall_v:
 {
 
     class CBall_t msg_ptr(wbd);
@@ -861,7 +861,7 @@ case kCBall_v:
     return true;
 
 }
-case kOculusPrime_Command_v:
+case kwb_OculusPrime_Command_v:
 {
 #ifdef guWhiteboard_OculusPrimeInterface_DEFINED
     class OculusPrime_Command_t msg_ptr(wbd);
@@ -873,7 +873,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_OculusPrimeInterface_DEFINED
 }
-case kInput3D_v:
+case kwb_Input3D_v:
 {
 #ifdef guWhiteboard_Input3D_DEFINED
     class Input3D_t msg_ptr(wbd);
@@ -885,7 +885,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Input3D_DEFINED
 }
-case kOculus_Prime_Command_v:
+case kwb_Oculus_Prime_Command_v:
 {
 #ifdef guWhiteboard_OculusPrimeSerialInterface_DEFINED
     class Oculus_Prime_Command_t msg_ptr(wbd);
@@ -897,7 +897,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_OculusPrimeSerialInterface_DEFINED
 }
-case kIOPins_v:
+case kwb_IOPins_v:
 {
 #ifdef guWhiteboard_IOPins_DEFINED
     class IOPins_t msg_ptr(wbd);
@@ -909,7 +909,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_IOPins_DEFINED
 }
-case kNXT_Two_Touch_Status_v:
+case kwb_NXT_Two_Touch_Status_v:
 {
 #ifdef guWhiteboard_NXTTwoTouchStatus_DEFINED
     class NXT_Two_Touch_Status_t msg_ptr(wbd);
@@ -921,7 +921,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NXTTwoTouchStatus_DEFINED
 }
-case kNXT_Sound_Control_v:
+case kwb_NXT_Sound_Control_v:
 {
 #ifdef guWhiteboard_NXTSoundControl_DEFINED
     class NXT_Sound_Control_t msg_ptr(wbd);
@@ -933,7 +933,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NXTSoundControl_DEFINED
 }
-case kNXT_Lights_Control_v:
+case kwb_NXT_Lights_Control_v:
 {
 #ifdef guWhiteboard_NXTLightsControl_DEFINED
     class NXT_Lights_Control_t msg_ptr(wbd);
@@ -945,7 +945,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NXTLightsControl_DEFINED
 }
-case kClocks_v:
+case kwb_Clocks_v:
 {
 #ifdef guWhiteboard_Clocks_DEFINED
     class Clocks_t msg_ptr(wbd);
@@ -957,7 +957,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Clocks_DEFINED
 }
-case kChannels_v:
+case kwb_Channels_v:
 {
 #ifdef guWhiteboard_Channels_DEFINED
     class Channels_t msg_ptr(wbd);
@@ -969,7 +969,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Channels_DEFINED
 }
-case kSwitchSubsumption_v:
+case kwb_SwitchSubsumption_v:
 {
 #ifdef guWhiteboard_SwitchSubsumption_DEFINED
     class SwitchSubsumption_t msg_ptr(wbd);
@@ -981,7 +981,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SwitchSubsumption_DEFINED
 }
-case kTotoDoingMotion_v:
+case kwb_TotoDoingMotion_v:
 {
 #ifdef guWhiteboard_TotoDoingMotion_DEFINED
     class TotoDoingMotion_t msg_ptr(wbd);
@@ -993,7 +993,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TotoDoingMotion_DEFINED
 }
-case kCount_v:
+case kwb_Count_v:
 {
 #ifdef guWhiteboard_Count_DEFINED
     class Count_t msg_ptr(wbd);
@@ -1005,7 +1005,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Count_DEFINED
 }
-case kGreenEWon_v:
+case kwb_GreenEWon_v:
 {
 
     class GreenEWon_t msg_ptr(wbd);
@@ -1014,7 +1014,7 @@ case kGreenEWon_v:
     return true;
 
 }
-case kWarnEW_v:
+case kwb_WarnEW_v:
 {
 
     class WarnEW_t msg_ptr(wbd);
@@ -1023,7 +1023,7 @@ case kWarnEW_v:
     return true;
 
 }
-case kTimeGTthirty_v:
+case kwb_TimeGTthirty_v:
 {
 
     class TimeGTthirty_t msg_ptr(wbd);
@@ -1032,7 +1032,7 @@ case kTimeGTthirty_v:
     return true;
 
 }
-case kAmberEWon_v:
+case kwb_AmberEWon_v:
 {
 
     class AmberEWon_t msg_ptr(wbd);
@@ -1041,7 +1041,7 @@ case kAmberEWon_v:
     return true;
 
 }
-case kTurnRedEW_v:
+case kwb_TurnRedEW_v:
 {
 
     class TurnRedEW_t msg_ptr(wbd);
@@ -1050,7 +1050,7 @@ case kTurnRedEW_v:
     return true;
 
 }
-case kTimeGTfive_v:
+case kwb_TimeGTfive_v:
 {
 
     class TimeGTfive_t msg_ptr(wbd);
@@ -1059,7 +1059,7 @@ case kTimeGTfive_v:
     return true;
 
 }
-case kRedEWon_v:
+case kwb_RedEWon_v:
 {
 
     class RedEWon_t msg_ptr(wbd);
@@ -1068,7 +1068,7 @@ case kRedEWon_v:
     return true;
 
 }
-case kGreenNSon_v:
+case kwb_GreenNSon_v:
 {
 
     class GreenNSon_t msg_ptr(wbd);
@@ -1077,7 +1077,7 @@ case kGreenNSon_v:
     return true;
 
 }
-case kWarnNS_v:
+case kwb_WarnNS_v:
 {
 
     class WarnNS_t msg_ptr(wbd);
@@ -1086,7 +1086,7 @@ case kWarnNS_v:
     return true;
 
 }
-case kAmberNSon_v:
+case kwb_AmberNSon_v:
 {
 
     class AmberNSon_t msg_ptr(wbd);
@@ -1095,7 +1095,7 @@ case kAmberNSon_v:
     return true;
 
 }
-case kTurnRedNS_v:
+case kwb_TurnRedNS_v:
 {
 
     class TurnRedNS_t msg_ptr(wbd);
@@ -1104,7 +1104,7 @@ case kTurnRedNS_v:
     return true;
 
 }
-case kRedNSon_v:
+case kwb_RedNSon_v:
 {
 
     class RedNSon_t msg_ptr(wbd);
@@ -1113,7 +1113,7 @@ case kRedNSon_v:
     return true;
 
 }
-case kTimerReset_v:
+case kwb_TimerReset_v:
 {
 
     class TimerReset_t msg_ptr(wbd);
@@ -1122,7 +1122,7 @@ case kTimerReset_v:
     return true;
 
 }
-case kSLOT_UNUSED_v:
+case kwb_SLOT_UNUSED_v:
 {
 
     class SLOT_UNUSED_t msg_ptr(wbd);
@@ -1131,7 +1131,7 @@ case kSLOT_UNUSED_v:
     return true;
 
 }
-case kCarSensorPressed_v:
+case kwb_CarSensorPressed_v:
 {
 
     class CarSensorPressed_t msg_ptr(wbd);
@@ -1140,7 +1140,7 @@ case kCarSensorPressed_v:
     return true;
 
 }
-case kSwitchSubsumptionTrafficLights_v:
+case kwb_SwitchSubsumptionTrafficLights_v:
 {
 #ifdef guWhiteboard_SwitchSubsumptionTrafficLights_DEFINED
     class SwitchSubsumptionTrafficLights_t msg_ptr(wbd);
@@ -1152,7 +1152,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_SwitchSubsumptionTrafficLights_DEFINED
 }
-case kBall_Found_v:
+case kwb_Ball_Found_v:
 {
 
     class Ball_Found_t msg_ptr(wbd);
@@ -1161,7 +1161,7 @@ case kBall_Found_v:
     return true;
 
 }
-case kBall_Calibration_File_v:
+case kwb_Ball_Calibration_File_v:
 {
 
     class Ball_Calibration_File_t msg_ptr(wbd);
@@ -1170,7 +1170,7 @@ case kBall_Calibration_File_v:
     return true;
 
 }
-case kBall_Calibration_Num_v:
+case kwb_Ball_Calibration_Num_v:
 {
 
     class Ball_Calibration_Num_t msg_ptr(wbd);
@@ -1179,7 +1179,7 @@ case kBall_Calibration_Num_v:
     return true;
 
 }
-case kBall_Color_Num_v:
+case kwb_Ball_Color_Num_v:
 {
 
     class Ball_Color_Num_t msg_ptr(wbd);
@@ -1188,7 +1188,7 @@ case kBall_Color_Num_v:
     return true;
 
 }
-case kHAL_LArmTarget_Ctrl_v:
+case kwb_HAL_LArmTarget_Ctrl_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_LArmTarget_Ctrl_t msg_ptr(wbd);
@@ -1200,7 +1200,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kHAL_LArmTarget_Stat_v:
+case kwb_HAL_LArmTarget_Stat_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_LArmTarget_Stat_t msg_ptr(wbd);
@@ -1212,7 +1212,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kHAL_LArmTarget_Tolr_v:
+case kwb_HAL_LArmTarget_Tolr_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_LArmTarget_Tolr_t msg_ptr(wbd);
@@ -1224,7 +1224,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kHAL_RArmTarget_Ctrl_v:
+case kwb_HAL_RArmTarget_Ctrl_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_RArmTarget_Ctrl_t msg_ptr(wbd);
@@ -1236,7 +1236,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kHAL_RArmTarget_Stat_v:
+case kwb_HAL_RArmTarget_Stat_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_RArmTarget_Stat_t msg_ptr(wbd);
@@ -1248,7 +1248,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kHAL_RArmTarget_Tolr_v:
+case kwb_HAL_RArmTarget_Tolr_v:
 {
 #ifdef guWhiteboard_HalArmTarget_DEFINED
     class HAL_RArmTarget_Tolr_t msg_ptr(wbd);
@@ -1260,7 +1260,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalArmTarget_DEFINED
 }
-case kVisionFieldFeatures_v:
+case kwb_VisionFieldFeatures_v:
 {
 #ifdef guWhiteboard_VisionFieldFeatures_DEFINED
     class VisionFieldFeatures_t msg_ptr(wbd);
@@ -1272,7 +1272,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionFieldFeatures_DEFINED
 }
-case kWhistleBlown_v:
+case kwb_WhistleBlown_v:
 {
 
     class WhistleBlown_t msg_ptr(wbd);
@@ -1281,7 +1281,7 @@ case kWhistleBlown_v:
     return true;
 
 }
-case kVolumeControl_v:
+case kwb_VolumeControl_v:
 {
 
     class VolumeControl_t msg_ptr(wbd);
@@ -1290,7 +1290,7 @@ case kVolumeControl_v:
     return true;
 
 }
-case kVisionRobots_v:
+case kwb_VisionRobots_v:
 {
 #ifdef guWhiteboard_VisionRobots_DEFINED
     class VisionRobots_t msg_ptr(wbd);
@@ -1302,7 +1302,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionRobots_DEFINED
 }
-case kVisionDetectionHorizons_v:
+case kwb_VisionDetectionHorizons_v:
 {
 #ifdef guWhiteboard_VisionDetectionHorizons_DEFINED
     class VisionDetectionHorizons_t msg_ptr(wbd);
@@ -1314,7 +1314,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionDetectionHorizons_DEFINED
 }
-case kNaoWalkCommand_v:
+case kwb_NaoWalkCommand_v:
 {
 #ifdef guWhiteboard_NaoWalkCommand_DEFINED
     class NaoWalkCommand_t msg_ptr(wbd);
@@ -1326,7 +1326,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NaoWalkCommand_DEFINED
 }
-case kNaoWalkStatus_v:
+case kwb_NaoWalkStatus_v:
 {
 #ifdef guWhiteboard_NaoWalkStatus_DEFINED
     class NaoWalkStatus_t msg_ptr(wbd);
@@ -1338,7 +1338,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NaoWalkStatus_DEFINED
 }
-case kHAL_LLegTarget_Ctrl_v:
+case kwb_HAL_LLegTarget_Ctrl_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_LLegTarget_Ctrl_t msg_ptr(wbd);
@@ -1350,7 +1350,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kHAL_LLegTarget_Stat_v:
+case kwb_HAL_LLegTarget_Stat_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_LLegTarget_Stat_t msg_ptr(wbd);
@@ -1362,7 +1362,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kHAL_LLegTarget_Tolr_v:
+case kwb_HAL_LLegTarget_Tolr_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_LLegTarget_Tolr_t msg_ptr(wbd);
@@ -1374,7 +1374,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kHAL_RLegTarget_Ctrl_v:
+case kwb_HAL_RLegTarget_Ctrl_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_RLegTarget_Ctrl_t msg_ptr(wbd);
@@ -1386,7 +1386,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kHAL_RLegTarget_Stat_v:
+case kwb_HAL_RLegTarget_Stat_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_RLegTarget_Stat_t msg_ptr(wbd);
@@ -1398,7 +1398,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kHAL_RLegTarget_Tolr_v:
+case kwb_HAL_RLegTarget_Tolr_v:
 {
 #ifdef guWhiteboard_HalLegTarget_DEFINED
     class HAL_RLegTarget_Tolr_t msg_ptr(wbd);
@@ -1410,7 +1410,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HalLegTarget_DEFINED
 }
-case kVisionDetectionGoals_v:
+case kwb_VisionDetectionGoals_v:
 {
 #ifdef guWhiteboard_VisionDetectionGoals_DEFINED
     class VisionDetectionGoals_t msg_ptr(wbd);
@@ -1422,7 +1422,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionDetectionGoals_DEFINED
 }
-case kTeleoperationControl_v:
+case kwb_TeleoperationControl_v:
 {
 #ifdef guWhiteboard_TeleoperationControl_DEFINED
     class TeleoperationControl_t msg_ptr(wbd);
@@ -1434,7 +1434,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TeleoperationControl_DEFINED
 }
-case kTeleoperationStatus_v:
+case kwb_TeleoperationStatus_v:
 {
 #ifdef guWhiteboard_TeleoperationStatus_DEFINED
     class TeleoperationStatus_t msg_ptr(wbd);
@@ -1446,7 +1446,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TeleoperationStatus_DEFINED
 }
-case kVisionDetectionBalls_v:
+case kwb_VisionDetectionBalls_v:
 {
 #ifdef guWhiteboard_VisionDetectionBalls_DEFINED
     class VisionDetectionBalls_t msg_ptr(wbd);
@@ -1458,7 +1458,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionDetectionBalls_DEFINED
 }
-case kTeleoperationControlVR_v:
+case kwb_TeleoperationControlVR_v:
 {
 #ifdef guWhiteboard_TeleoperationControlVR_DEFINED
     class TeleoperationControlVR_t msg_ptr(wbd);
@@ -1470,7 +1470,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TeleoperationControlVR_DEFINED
 }
-case kParticleOutputMap_v:
+case kwb_ParticleOutputMap_v:
 {
 
     class ParticleOutputMap_t msg_ptr(wbd);
@@ -1479,7 +1479,7 @@ case kParticleOutputMap_v:
     return true;
 
 }
-case kParticleOutputMapControl_v:
+case kwb_ParticleOutputMapControl_v:
 {
 
     class ParticleOutputMapControl_t msg_ptr(wbd);
@@ -1488,7 +1488,7 @@ case kParticleOutputMapControl_v:
     return true;
 
 }
-case kFFTControl_v:
+case kwb_FFTControl_v:
 {
 
     class FFTControl_t msg_ptr(wbd);
@@ -1497,7 +1497,7 @@ case kFFTControl_v:
     return true;
 
 }
-case kMachineFilteredNaoVision_v:
+case kwb_MachineFilteredNaoVision_v:
 {
 #ifdef guWhiteboard_MachineFilteredVision_DEFINED
     class MachineFilteredNaoVision_t msg_ptr(wbd);
@@ -1509,7 +1509,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MachineFilteredVision_DEFINED
 }
-case kMicrowaveStatus_v:
+case kwb_MicrowaveStatus_v:
 {
 #ifdef guWhiteboard_MicrowaveStatus_DEFINED
     class MicrowaveStatus_t msg_ptr(wbd);
@@ -1521,7 +1521,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MicrowaveStatus_DEFINED
 }
-case kButtons_v:
+case kwb_Buttons_v:
 {
 #ifdef guWhiteboard_Buttons_DEFINED
     class Buttons_t msg_ptr(wbd);
@@ -1533,7 +1533,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Buttons_DEFINED
 }
-case kMachineFilteredLocalisationVision_v:
+case kwb_MachineFilteredLocalisationVision_v:
 {
 #ifdef guWhiteboard_MachineFilteredLocalisationVision_DEFINED
     class MachineFilteredLocalisationVision_t msg_ptr(wbd);
@@ -1545,7 +1545,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MachineFilteredLocalisationVision_DEFINED
 }
-case kSensorsJointCurrent_v:
+case kwb_SensorsJointCurrent_v:
 {
 #ifdef guWhiteboard_NaoJointListFloat_DEFINED
     class SensorsJointCurrent_t msg_ptr(wbd);
@@ -1557,7 +1557,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NaoJointListFloat_DEFINED
 }
-case kDataLogger_v:
+case kwb_DataLogger_v:
 {
 #ifdef guWhiteboard_DataLogger_DEFINED
     class DataLogger_t msg_ptr(wbd);
@@ -1569,7 +1569,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_DataLogger_DEFINED
 }
-case kMachineFilteredLines_v:
+case kwb_MachineFilteredLines_v:
 {
 #ifdef guWhiteboard_MachineFilteredLines_DEFINED
     class MachineFilteredLines_t msg_ptr(wbd);
@@ -1581,7 +1581,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MachineFilteredLines_DEFINED
 }
-case kBallLocation_v:
+case kwb_BallLocation_v:
 {
 #ifdef guWhiteboard_Location_DEFINED
     class BallLocation_t msg_ptr(wbd);
@@ -1593,7 +1593,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Location_DEFINED
 }
-case kLeftGoalPostLocation_v:
+case kwb_LeftGoalPostLocation_v:
 {
 #ifdef guWhiteboard_Location_DEFINED
     class LeftGoalPostLocation_t msg_ptr(wbd);
@@ -1605,7 +1605,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Location_DEFINED
 }
-case kRightGoalPostLocation_v:
+case kwb_RightGoalPostLocation_v:
 {
 #ifdef guWhiteboard_Location_DEFINED
     class RightGoalPostLocation_t msg_ptr(wbd);
@@ -1617,7 +1617,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Location_DEFINED
 }
-case kGoalLocation_v:
+case kwb_GoalLocation_v:
 {
 #ifdef guWhiteboard_Location_DEFINED
     class GoalLocation_t msg_ptr(wbd);
@@ -1629,7 +1629,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Location_DEFINED
 }
-case kNaoSonarProtectedWalkCommand_v:
+case kwb_NaoSonarProtectedWalkCommand_v:
 {
 #ifdef guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
     class NaoSonarProtectedWalkCommand_t msg_ptr(wbd);
@@ -1641,7 +1641,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NaoSonarProtectedWalkCommand_DEFINED
 }
-case kNaoObstacleDirection_v:
+case kwb_NaoObstacleDirection_v:
 {
 #ifdef guWhiteboard_NaoObstacleDirection_DEFINED
     class NaoObstacleDirection_t msg_ptr(wbd);
@@ -1653,7 +1653,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_NaoObstacleDirection_DEFINED
 }
-case kDominantFrequencies_v:
+case kwb_DominantFrequencies_v:
 {
 #ifdef guWhiteboard_DominantFrequencies_DEFINED
     class DominantFrequencies_t msg_ptr(wbd);
@@ -1665,7 +1665,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_DominantFrequencies_DEFINED
 }
-case kMissionPriorityForObstacles_v:
+case kwb_MissionPriorityForObstacles_v:
 {
 #ifdef guWhiteboard_MissionPriorityForObstacles_DEFINED
     class MissionPriorityForObstacles_t msg_ptr(wbd);
@@ -1677,7 +1677,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MissionPriorityForObstacles_DEFINED
 }
-case kWavLoad_v:
+case kwb_WavLoad_v:
 {
 
     class WavLoad_t msg_ptr(wbd);
@@ -1686,7 +1686,7 @@ case kWavLoad_v:
     return true;
 
 }
-case kWavPlay_v:
+case kwb_WavPlay_v:
 {
 
     class WavPlay_t msg_ptr(wbd);
@@ -1695,7 +1695,7 @@ case kWavPlay_v:
     return true;
 
 }
-case kReproduceWavNotSilent_v:
+case kwb_ReproduceWavNotSilent_v:
 {
 
     class ReproduceWavNotSilent_t msg_ptr(wbd);
@@ -1704,7 +1704,7 @@ case kReproduceWavNotSilent_v:
     return true;
 
 }
-case kFrequencyControl_v:
+case kwb_FrequencyControl_v:
 {
 #ifdef guWhiteboard_FrequencyLimits_DEFINED
     class FrequencyControl_t msg_ptr(wbd);
@@ -1716,7 +1716,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FrequencyLimits_DEFINED
 }
-case kFrequencyStatus_v:
+case kwb_FrequencyStatus_v:
 {
 #ifdef guWhiteboard_FrequencyLimits_DEFINED
     class FrequencyStatus_t msg_ptr(wbd);
@@ -1728,7 +1728,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_FrequencyLimits_DEFINED
 }
-case kHeadJointSensors_v:
+case kwb_HeadJointSensors_v:
 {
 #ifdef guWhiteboard_HeadJointSensors_DEFINED
     class HeadJointSensors_t msg_ptr(wbd);
@@ -1740,7 +1740,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_HeadJointSensors_DEFINED
 }
-case kAdjustPositionConfidence_v:
+case kwb_AdjustPositionConfidence_v:
 {
 #ifdef guWhiteboard_AdjustPositionConfidence_DEFINED
     class AdjustPositionConfidence_t msg_ptr(wbd);
@@ -1752,7 +1752,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_AdjustPositionConfidence_DEFINED
 }
-case kGuVrTeleopVulkanControl_v:
+case kwb_GuVrTeleopVulkanControl_v:
 {
 #ifdef guWhiteboard_GuVrTeleopVulkanControl_DEFINED
     class GuVrTeleopVulkanControl_t msg_ptr(wbd);
@@ -1764,7 +1764,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_GuVrTeleopVulkanControl_DEFINED
 }
-case kTemperatureSensors_v:
+case kwb_TemperatureSensors_v:
 {
 #ifdef guWhiteboard_TemperatureSensors_DEFINED
     class TemperatureSensors_t msg_ptr(wbd);
@@ -1776,7 +1776,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_TemperatureSensors_DEFINED
 }
-case kOverheating_v:
+case kwb_Overheating_v:
 {
 #ifdef guWhiteboard_Overheating_DEFINED
     class Overheating_t msg_ptr(wbd);
@@ -1788,7 +1788,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_Overheating_DEFINED
 }
-case kbuttonPushed_v:
+case kwb_buttonPushed_v:
 {
 
     class buttonPushed_t msg_ptr(wbd);
@@ -1797,7 +1797,7 @@ case kbuttonPushed_v:
     return true;
 
 }
-case kdoorOpen_v:
+case kwb_doorOpen_v:
 {
 
     class doorOpen_t msg_ptr(wbd);
@@ -1806,7 +1806,7 @@ case kdoorOpen_v:
     return true;
 
 }
-case ktimeLeft_v:
+case kwb_timeLeft_v:
 {
 
     class timeLeft_t msg_ptr(wbd);
@@ -1815,7 +1815,7 @@ case ktimeLeft_v:
     return true;
 
 }
-case kmotor_v:
+case kwb_motor_v:
 {
 
     class motor_t msg_ptr(wbd);
@@ -1824,7 +1824,7 @@ case kmotor_v:
     return true;
 
 }
-case ksound_v:
+case kwb_sound_v:
 {
 
     class sound_t msg_ptr(wbd);
@@ -1833,7 +1833,7 @@ case ksound_v:
     return true;
 
 }
-case klight_v:
+case kwb_light_v:
 {
 
     class light_t msg_ptr(wbd);
@@ -1842,7 +1842,7 @@ case klight_v:
     return true;
 
 }
-case kArduino2Pin_v:
+case kwb_Arduino2Pin_v:
 {
 
     class Arduino2Pin_t msg_ptr(wbd);
@@ -1851,7 +1851,7 @@ case kArduino2Pin_v:
     return true;
 
 }
-case kArduino2PinValue_v:
+case kwb_Arduino2PinValue_v:
 {
 
     class Arduino2PinValue_t msg_ptr(wbd);
@@ -1860,7 +1860,7 @@ case kArduino2PinValue_v:
     return true;
 
 }
-case kArduino3Pin_v:
+case kwb_Arduino3Pin_v:
 {
 
     class Arduino3Pin_t msg_ptr(wbd);
@@ -1869,7 +1869,7 @@ case kArduino3Pin_v:
     return true;
 
 }
-case kArduino3PinValue_v:
+case kwb_Arduino3PinValue_v:
 {
 
     class Arduino3PinValue_t msg_ptr(wbd);
@@ -1878,7 +1878,7 @@ case kArduino3PinValue_v:
     return true;
 
 }
-case kArduino4Pin_v:
+case kwb_Arduino4Pin_v:
 {
 
     class Arduino4Pin_t msg_ptr(wbd);
@@ -1887,7 +1887,7 @@ case kArduino4Pin_v:
     return true;
 
 }
-case kArduino4PinValue_v:
+case kwb_Arduino4PinValue_v:
 {
 
     class Arduino4PinValue_t msg_ptr(wbd);
@@ -1896,7 +1896,7 @@ case kArduino4PinValue_v:
     return true;
 
 }
-case kArduino5Pin_v:
+case kwb_Arduino5Pin_v:
 {
 
     class Arduino5Pin_t msg_ptr(wbd);
@@ -1905,7 +1905,7 @@ case kArduino5Pin_v:
     return true;
 
 }
-case kArduino5PinValue_v:
+case kwb_Arduino5PinValue_v:
 {
 
     class Arduino5PinValue_t msg_ptr(wbd);
@@ -1914,7 +1914,7 @@ case kArduino5PinValue_v:
     return true;
 
 }
-case kArduino6Pin_v:
+case kwb_Arduino6Pin_v:
 {
 
     class Arduino6Pin_t msg_ptr(wbd);
@@ -1923,7 +1923,7 @@ case kArduino6Pin_v:
     return true;
 
 }
-case kArduino6PinValue_v:
+case kwb_Arduino6PinValue_v:
 {
 
     class Arduino6PinValue_t msg_ptr(wbd);
@@ -1932,7 +1932,7 @@ case kArduino6PinValue_v:
     return true;
 
 }
-case kArduino7Pin_v:
+case kwb_Arduino7Pin_v:
 {
 
     class Arduino7Pin_t msg_ptr(wbd);
@@ -1941,7 +1941,7 @@ case kArduino7Pin_v:
     return true;
 
 }
-case kArduino7PinValue_v:
+case kwb_Arduino7PinValue_v:
 {
 
     class Arduino7PinValue_t msg_ptr(wbd);
@@ -1950,7 +1950,7 @@ case kArduino7PinValue_v:
     return true;
 
 }
-case kArduino8Pin_v:
+case kwb_Arduino8Pin_v:
 {
 
     class Arduino8Pin_t msg_ptr(wbd);
@@ -1959,7 +1959,7 @@ case kArduino8Pin_v:
     return true;
 
 }
-case kArduino8PinValue_v:
+case kwb_Arduino8PinValue_v:
 {
 
     class Arduino8PinValue_t msg_ptr(wbd);
@@ -1968,7 +1968,7 @@ case kArduino8PinValue_v:
     return true;
 
 }
-case kArduino9Pin_v:
+case kwb_Arduino9Pin_v:
 {
 
     class Arduino9Pin_t msg_ptr(wbd);
@@ -1977,7 +1977,7 @@ case kArduino9Pin_v:
     return true;
 
 }
-case kArduino9PinValue_v:
+case kwb_Arduino9PinValue_v:
 {
 
     class Arduino9PinValue_t msg_ptr(wbd);
@@ -1986,7 +1986,7 @@ case kArduino9PinValue_v:
     return true;
 
 }
-case kBallPosition_v:
+case kwb_BallPosition_v:
 {
 #ifdef guWhiteboard_BallPosition_DEFINED
     class BallPosition_t msg_ptr(wbd);
@@ -1998,7 +1998,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_BallPosition_DEFINED
 }
-case kMemoryImageControl_v:
+case kwb_MemoryImageControl_v:
 {
 #ifdef guWhiteboard_MemoryImageControlStatus_DEFINED
     class MemoryImageControl_t msg_ptr(wbd);
@@ -2010,7 +2010,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MemoryImageControlStatus_DEFINED
 }
-case kMemoryImageStatus_v:
+case kwb_MemoryImageStatus_v:
 {
 #ifdef guWhiteboard_MemoryImageControlStatus_DEFINED
     class MemoryImageStatus_t msg_ptr(wbd);
@@ -2022,7 +2022,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MemoryImageControlStatus_DEFINED
 }
-case kLHandGripper_v:
+case kwb_LHandGripper_v:
 {
 
     class LHandGripper_t msg_ptr(wbd);
@@ -2031,7 +2031,7 @@ case kLHandGripper_v:
     return true;
 
 }
-case kRHandGripper_v:
+case kwb_RHandGripper_v:
 {
 
     class RHandGripper_t msg_ptr(wbd);
@@ -2040,7 +2040,7 @@ case kRHandGripper_v:
     return true;
 
 }
-case kMyPosition_v:
+case kwb_MyPosition_v:
 {
 #ifdef guWhiteboard_MyPosition_DEFINED
     class MyPosition_t msg_ptr(wbd);
@@ -2052,7 +2052,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_MyPosition_DEFINED
 }
-case kVisionDetectionLines_v:
+case kwb_VisionDetectionLines_v:
 {
 #ifdef guWhiteboard_VisionDetectionLines_DEFINED
     class VisionDetectionLines_t msg_ptr(wbd);
@@ -2064,7 +2064,7 @@ v.from_string(message_content);
     return false;
 #endif //guWhiteboard_VisionDetectionLines_DEFINED
 }
-case kVisionDetectionFeatures_v:
+case kwb_VisionDetectionFeatures_v:
 {
 #ifdef guWhiteboard_VisionDetectionFeatures_DEFINED
     class VisionDetectionFeatures_t msg_ptr(wbd);
@@ -2091,189 +2091,189 @@ whiteboard_types_map::whiteboard_types_map(): map<string, wb_types>()
 {
     whiteboard_types_map &self = *this;
 
-    self["wb_reserved_SubscribeToAllTypes"] = kwb_reserved_SubscribeToAllTypes_v;
-    self["Print"] = kPrint_v;
-    self["Say"] = kSay_v;
-    self["Speech"] = kSpeech_v;
-    self["QSay"] = kQSay_v;
-    self["QSpeech"] = kQSpeech_v;
-    self["SpeechOutput"] = kSpeechOutput_v;
-    self["GCGameState"] = kGCGameState_v;
-    self["SensorsHandSensors"] = kSensorsHandSensors_v;
-    self["SensorsHeadSensors"] = kSensorsHeadSensors_v;
-    self["MOTION_Commands"] = kMOTION_Commands_v;
-    self["MOTION_Status"] = kMOTION_Status_v;
-    self["HAL_HeadTarget"] = kHAL_HeadTarget_v;
-    self["SensorsFootSensors"] = kSensorsFootSensors_v;
-    self["SensorsBodySensors"] = kSensorsBodySensors_v;
-    self["SENSORSLedsSensors"] = kSENSORSLedsSensors_v;
-    self["SENSORSLegJointTemps"] = kSENSORSLegJointTemps_v;
-    self["SENSORSTorsoJointTemps"] = kSENSORSTorsoJointTemps_v;
-    self["SENSORSLegJointSensors"] = kSENSORSLegJointSensors_v;
-    self["SENSORSTorsoJointSensors"] = kSENSORSTorsoJointSensors_v;
-    self["SENSORSSonarSensors"] = kSENSORSSonarSensors_v;
-    self["FSM_Control"] = kFSM_Control_v;
-    self["FSM_Status"] = kFSM_Status_v;
-    self["FSM_Names"] = kFSM_Names_v;
-    self["SoloTypeExample"] = kSoloTypeExample_v;
-    self["FilteredGoalSighting"] = kFilteredGoalSighting_v;
-    self["NAO_State"] = kNAO_State_v;
-    self["UDPRN"] = kUDPRN_v;
-    self["PlayerNumber"] = kPlayerNumber_v;
-    self["ManuallyPenalized"] = kManuallyPenalized_v;
-    self["VisionControl"] = kVisionControl_v;
-    self["VisionStatus"] = kVisionStatus_v;
-    self["FFTStatus"] = kFFTStatus_v;
-    self["FSOsighting"] = kFSOsighting_v;
-    self["TopParticles"] = kTopParticles_v;
-    self["FilteredBallSighting"] = kFilteredBallSighting_v;
-    self["PF_ControlStatus_Modes"] = kPF_ControlStatus_Modes_v;
-    self["WEBOTS_NXT_bridge"] = kWEBOTS_NXT_bridge_v;
-    self["WEBOTS_NXT_encoders"] = kWEBOTS_NXT_encoders_v;
-    self["WEBOTS_NXT_camera"] = kWEBOTS_NXT_camera_v;
-    self["WEBOTS_NXT_walk_isRunning"] = kWEBOTS_NXT_walk_isRunning_v;
-    self["WEBOTS_NXT_deadReakoning_walk"] = kWEBOTS_NXT_deadReakoning_walk_v;
-    self["WEBOTS_NXT_colorLine_walk"] = kWEBOTS_NXT_colorLine_walk_v;
-    self["WEBOTS_NXT_gridMotions"] = kWEBOTS_NXT_gridMotions_v;
-    self["VisionBall"] = kVisionBall_v;
-    self["VisionGoals"] = kVisionGoals_v;
-    self["WalkData"] = kWalkData_v;
-    self["TeleoperationControlStatus"] = kTeleoperationControlStatus_v;
-    self["TeleoperationConnection"] = kTeleoperationConnection_v;
-    self["UDPWBNumber"] = kUDPWBNumber_v;
-    self["WEBOTS_NXT_bumper"] = kWEBOTS_NXT_bumper_v;
-    self["WEBOTS_NXT_vector_bridge"] = kWEBOTS_NXT_vector_bridge_v;
-    self["TopVisionLines"] = kTopVisionLines_v;
-    self["BottomVisionLines"] = kBottomVisionLines_v;
-    self["DifferentialRobotStatus"] = kDifferentialRobotStatus_v;
-    self["DifferentialRobotControl"] = kDifferentialRobotControl_v;
-    self["XEyesPos"] = kXEyesPos_v;
-    self["VisionFace"] = kVisionFace_v;
-    self["Draw"] = kDraw_v;
-    self["FSM_States"] = kFSM_States_v;
-    self["Giraff_Interface_Status"] = kGiraff_Interface_Status_v;
-    self["Giraff_Interface_Command"] = kGiraff_Interface_Command_v;
-    self["NXT_Status"] = kNXT_Status_v;
-    self["NXT_Command"] = kNXT_Command_v;
-    self["APM_Status"] = kAPM_Status_v;
-    self["APM_Command"] = kAPM_Command_v;
-    self["REMOVED3"] = kREMOVED3_v;
-    self["REMOVED4"] = kREMOVED4_v;
-    self["CBall"] = kCBall_v;
-    self["OculusPrime_Command"] = kOculusPrime_Command_v;
-    self["Input3D"] = kInput3D_v;
-    self["Oculus_Prime_Command"] = kOculus_Prime_Command_v;
-    self["IOPins"] = kIOPins_v;
-    self["NXT_Two_Touch_Status"] = kNXT_Two_Touch_Status_v;
-    self["NXT_Sound_Control"] = kNXT_Sound_Control_v;
-    self["NXT_Lights_Control"] = kNXT_Lights_Control_v;
-    self["Clocks"] = kClocks_v;
-    self["Channels"] = kChannels_v;
-    self["SwitchSubsumption"] = kSwitchSubsumption_v;
-    self["TotoDoingMotion"] = kTotoDoingMotion_v;
-    self["Count"] = kCount_v;
-    self["GreenEWon"] = kGreenEWon_v;
-    self["WarnEW"] = kWarnEW_v;
-    self["TimeGTthirty"] = kTimeGTthirty_v;
-    self["AmberEWon"] = kAmberEWon_v;
-    self["TurnRedEW"] = kTurnRedEW_v;
-    self["TimeGTfive"] = kTimeGTfive_v;
-    self["RedEWon"] = kRedEWon_v;
-    self["GreenNSon"] = kGreenNSon_v;
-    self["WarnNS"] = kWarnNS_v;
-    self["AmberNSon"] = kAmberNSon_v;
-    self["TurnRedNS"] = kTurnRedNS_v;
-    self["RedNSon"] = kRedNSon_v;
-    self["TimerReset"] = kTimerReset_v;
-    self["SLOT_UNUSED"] = kSLOT_UNUSED_v;
-    self["CarSensorPressed"] = kCarSensorPressed_v;
-    self["SwitchSubsumptionTrafficLights"] = kSwitchSubsumptionTrafficLights_v;
-    self["Ball_Found"] = kBall_Found_v;
-    self["Ball_Calibration_File"] = kBall_Calibration_File_v;
-    self["Ball_Calibration_Num"] = kBall_Calibration_Num_v;
-    self["Ball_Color_Num"] = kBall_Color_Num_v;
-    self["HAL_LArmTarget_Ctrl"] = kHAL_LArmTarget_Ctrl_v;
-    self["HAL_LArmTarget_Stat"] = kHAL_LArmTarget_Stat_v;
-    self["HAL_LArmTarget_Tolr"] = kHAL_LArmTarget_Tolr_v;
-    self["HAL_RArmTarget_Ctrl"] = kHAL_RArmTarget_Ctrl_v;
-    self["HAL_RArmTarget_Stat"] = kHAL_RArmTarget_Stat_v;
-    self["HAL_RArmTarget_Tolr"] = kHAL_RArmTarget_Tolr_v;
-    self["VisionFieldFeatures"] = kVisionFieldFeatures_v;
-    self["WhistleBlown"] = kWhistleBlown_v;
-    self["VolumeControl"] = kVolumeControl_v;
-    self["VisionRobots"] = kVisionRobots_v;
-    self["VisionDetectionHorizons"] = kVisionDetectionHorizons_v;
-    self["NaoWalkCommand"] = kNaoWalkCommand_v;
-    self["NaoWalkStatus"] = kNaoWalkStatus_v;
-    self["HAL_LLegTarget_Ctrl"] = kHAL_LLegTarget_Ctrl_v;
-    self["HAL_LLegTarget_Stat"] = kHAL_LLegTarget_Stat_v;
-    self["HAL_LLegTarget_Tolr"] = kHAL_LLegTarget_Tolr_v;
-    self["HAL_RLegTarget_Ctrl"] = kHAL_RLegTarget_Ctrl_v;
-    self["HAL_RLegTarget_Stat"] = kHAL_RLegTarget_Stat_v;
-    self["HAL_RLegTarget_Tolr"] = kHAL_RLegTarget_Tolr_v;
-    self["VisionDetectionGoals"] = kVisionDetectionGoals_v;
-    self["TeleoperationControl"] = kTeleoperationControl_v;
-    self["TeleoperationStatus"] = kTeleoperationStatus_v;
-    self["VisionDetectionBalls"] = kVisionDetectionBalls_v;
-    self["TeleoperationControlVR"] = kTeleoperationControlVR_v;
-    self["ParticleOutputMap"] = kParticleOutputMap_v;
-    self["ParticleOutputMapControl"] = kParticleOutputMapControl_v;
-    self["FFTControl"] = kFFTControl_v;
-    self["MachineFilteredNaoVision"] = kMachineFilteredNaoVision_v;
-    self["MicrowaveStatus"] = kMicrowaveStatus_v;
-    self["Buttons"] = kButtons_v;
-    self["MachineFilteredLocalisationVision"] = kMachineFilteredLocalisationVision_v;
-    self["SensorsJointCurrent"] = kSensorsJointCurrent_v;
-    self["DataLogger"] = kDataLogger_v;
-    self["MachineFilteredLines"] = kMachineFilteredLines_v;
-    self["BallLocation"] = kBallLocation_v;
-    self["LeftGoalPostLocation"] = kLeftGoalPostLocation_v;
-    self["RightGoalPostLocation"] = kRightGoalPostLocation_v;
-    self["GoalLocation"] = kGoalLocation_v;
-    self["NaoSonarProtectedWalkCommand"] = kNaoSonarProtectedWalkCommand_v;
-    self["NaoObstacleDirection"] = kNaoObstacleDirection_v;
-    self["DominantFrequencies"] = kDominantFrequencies_v;
-    self["MissionPriorityForObstacles"] = kMissionPriorityForObstacles_v;
-    self["WavLoad"] = kWavLoad_v;
-    self["WavPlay"] = kWavPlay_v;
-    self["ReproduceWavNotSilent"] = kReproduceWavNotSilent_v;
-    self["FrequencyControl"] = kFrequencyControl_v;
-    self["FrequencyStatus"] = kFrequencyStatus_v;
-    self["HeadJointSensors"] = kHeadJointSensors_v;
-    self["AdjustPositionConfidence"] = kAdjustPositionConfidence_v;
-    self["GuVrTeleopVulkanControl"] = kGuVrTeleopVulkanControl_v;
-    self["TemperatureSensors"] = kTemperatureSensors_v;
-    self["Overheating"] = kOverheating_v;
-    self["buttonPushed"] = kbuttonPushed_v;
-    self["doorOpen"] = kdoorOpen_v;
-    self["timeLeft"] = ktimeLeft_v;
-    self["motor"] = kmotor_v;
-    self["sound"] = ksound_v;
-    self["light"] = klight_v;
-    self["Arduino2Pin"] = kArduino2Pin_v;
-    self["Arduino2PinValue"] = kArduino2PinValue_v;
-    self["Arduino3Pin"] = kArduino3Pin_v;
-    self["Arduino3PinValue"] = kArduino3PinValue_v;
-    self["Arduino4Pin"] = kArduino4Pin_v;
-    self["Arduino4PinValue"] = kArduino4PinValue_v;
-    self["Arduino5Pin"] = kArduino5Pin_v;
-    self["Arduino5PinValue"] = kArduino5PinValue_v;
-    self["Arduino6Pin"] = kArduino6Pin_v;
-    self["Arduino6PinValue"] = kArduino6PinValue_v;
-    self["Arduino7Pin"] = kArduino7Pin_v;
-    self["Arduino7PinValue"] = kArduino7PinValue_v;
-    self["Arduino8Pin"] = kArduino8Pin_v;
-    self["Arduino8PinValue"] = kArduino8PinValue_v;
-    self["Arduino9Pin"] = kArduino9Pin_v;
-    self["Arduino9PinValue"] = kArduino9PinValue_v;
-    self["BallPosition"] = kBallPosition_v;
-    self["MemoryImageControl"] = kMemoryImageControl_v;
-    self["MemoryImageStatus"] = kMemoryImageStatus_v;
-    self["LHandGripper"] = kLHandGripper_v;
-    self["RHandGripper"] = kRHandGripper_v;
-    self["MyPosition"] = kMyPosition_v;
-    self["VisionDetectionLines"] = kVisionDetectionLines_v;
-    self["VisionDetectionFeatures"] = kVisionDetectionFeatures_v;
+    self["wb_reserved_SubscribeToAllTypes"] = kwb_wb_reserved_SubscribeToAllTypes_v;
+    self["Print"] = kwb_Print_v;
+    self["Say"] = kwb_Say_v;
+    self["Speech"] = kwb_Speech_v;
+    self["QSay"] = kwb_QSay_v;
+    self["QSpeech"] = kwb_QSpeech_v;
+    self["SpeechOutput"] = kwb_SpeechOutput_v;
+    self["GCGameState"] = kwb_GCGameState_v;
+    self["SensorsHandSensors"] = kwb_SensorsHandSensors_v;
+    self["SensorsHeadSensors"] = kwb_SensorsHeadSensors_v;
+    self["MOTION_Commands"] = kwb_MOTION_Commands_v;
+    self["MOTION_Status"] = kwb_MOTION_Status_v;
+    self["HAL_HeadTarget"] = kwb_HAL_HeadTarget_v;
+    self["SensorsFootSensors"] = kwb_SensorsFootSensors_v;
+    self["SensorsBodySensors"] = kwb_SensorsBodySensors_v;
+    self["SENSORSLedsSensors"] = kwb_SENSORSLedsSensors_v;
+    self["SENSORSLegJointTemps"] = kwb_SENSORSLegJointTemps_v;
+    self["SENSORSTorsoJointTemps"] = kwb_SENSORSTorsoJointTemps_v;
+    self["SENSORSLegJointSensors"] = kwb_SENSORSLegJointSensors_v;
+    self["SENSORSTorsoJointSensors"] = kwb_SENSORSTorsoJointSensors_v;
+    self["SENSORSSonarSensors"] = kwb_SENSORSSonarSensors_v;
+    self["FSM_Control"] = kwb_FSM_Control_v;
+    self["FSM_Status"] = kwb_FSM_Status_v;
+    self["FSM_Names"] = kwb_FSM_Names_v;
+    self["SoloTypeExample"] = kwb_SoloTypeExample_v;
+    self["FilteredGoalSighting"] = kwb_FilteredGoalSighting_v;
+    self["NAO_State"] = kwb_NAO_State_v;
+    self["UDPRN"] = kwb_UDPRN_v;
+    self["PlayerNumber"] = kwb_PlayerNumber_v;
+    self["ManuallyPenalized"] = kwb_ManuallyPenalized_v;
+    self["VisionControl"] = kwb_VisionControl_v;
+    self["VisionStatus"] = kwb_VisionStatus_v;
+    self["FFTStatus"] = kwb_FFTStatus_v;
+    self["FSOsighting"] = kwb_FSOsighting_v;
+    self["TopParticles"] = kwb_TopParticles_v;
+    self["FilteredBallSighting"] = kwb_FilteredBallSighting_v;
+    self["PF_ControlStatus_Modes"] = kwb_PF_ControlStatus_Modes_v;
+    self["WEBOTS_NXT_bridge"] = kwb_WEBOTS_NXT_bridge_v;
+    self["WEBOTS_NXT_encoders"] = kwb_WEBOTS_NXT_encoders_v;
+    self["WEBOTS_NXT_camera"] = kwb_WEBOTS_NXT_camera_v;
+    self["WEBOTS_NXT_walk_isRunning"] = kwb_WEBOTS_NXT_walk_isRunning_v;
+    self["WEBOTS_NXT_deadReakoning_walk"] = kwb_WEBOTS_NXT_deadReakoning_walk_v;
+    self["WEBOTS_NXT_colorLine_walk"] = kwb_WEBOTS_NXT_colorLine_walk_v;
+    self["WEBOTS_NXT_gridMotions"] = kwb_WEBOTS_NXT_gridMotions_v;
+    self["VisionBall"] = kwb_VisionBall_v;
+    self["VisionGoals"] = kwb_VisionGoals_v;
+    self["WalkData"] = kwb_WalkData_v;
+    self["TeleoperationControlStatus"] = kwb_TeleoperationControlStatus_v;
+    self["TeleoperationConnection"] = kwb_TeleoperationConnection_v;
+    self["UDPWBNumber"] = kwb_UDPWBNumber_v;
+    self["WEBOTS_NXT_bumper"] = kwb_WEBOTS_NXT_bumper_v;
+    self["WEBOTS_NXT_vector_bridge"] = kwb_WEBOTS_NXT_vector_bridge_v;
+    self["TopVisionLines"] = kwb_TopVisionLines_v;
+    self["BottomVisionLines"] = kwb_BottomVisionLines_v;
+    self["DifferentialRobotStatus"] = kwb_DifferentialRobotStatus_v;
+    self["DifferentialRobotControl"] = kwb_DifferentialRobotControl_v;
+    self["XEyesPos"] = kwb_XEyesPos_v;
+    self["VisionFace"] = kwb_VisionFace_v;
+    self["Draw"] = kwb_Draw_v;
+    self["FSM_States"] = kwb_FSM_States_v;
+    self["Giraff_Interface_Status"] = kwb_Giraff_Interface_Status_v;
+    self["Giraff_Interface_Command"] = kwb_Giraff_Interface_Command_v;
+    self["NXT_Status"] = kwb_NXT_Status_v;
+    self["NXT_Command"] = kwb_NXT_Command_v;
+    self["APM_Status"] = kwb_APM_Status_v;
+    self["APM_Command"] = kwb_APM_Command_v;
+    self["REMOVED3"] = kwb_REMOVED3_v;
+    self["REMOVED4"] = kwb_REMOVED4_v;
+    self["CBall"] = kwb_CBall_v;
+    self["OculusPrime_Command"] = kwb_OculusPrime_Command_v;
+    self["Input3D"] = kwb_Input3D_v;
+    self["Oculus_Prime_Command"] = kwb_Oculus_Prime_Command_v;
+    self["IOPins"] = kwb_IOPins_v;
+    self["NXT_Two_Touch_Status"] = kwb_NXT_Two_Touch_Status_v;
+    self["NXT_Sound_Control"] = kwb_NXT_Sound_Control_v;
+    self["NXT_Lights_Control"] = kwb_NXT_Lights_Control_v;
+    self["Clocks"] = kwb_Clocks_v;
+    self["Channels"] = kwb_Channels_v;
+    self["SwitchSubsumption"] = kwb_SwitchSubsumption_v;
+    self["TotoDoingMotion"] = kwb_TotoDoingMotion_v;
+    self["Count"] = kwb_Count_v;
+    self["GreenEWon"] = kwb_GreenEWon_v;
+    self["WarnEW"] = kwb_WarnEW_v;
+    self["TimeGTthirty"] = kwb_TimeGTthirty_v;
+    self["AmberEWon"] = kwb_AmberEWon_v;
+    self["TurnRedEW"] = kwb_TurnRedEW_v;
+    self["TimeGTfive"] = kwb_TimeGTfive_v;
+    self["RedEWon"] = kwb_RedEWon_v;
+    self["GreenNSon"] = kwb_GreenNSon_v;
+    self["WarnNS"] = kwb_WarnNS_v;
+    self["AmberNSon"] = kwb_AmberNSon_v;
+    self["TurnRedNS"] = kwb_TurnRedNS_v;
+    self["RedNSon"] = kwb_RedNSon_v;
+    self["TimerReset"] = kwb_TimerReset_v;
+    self["SLOT_UNUSED"] = kwb_SLOT_UNUSED_v;
+    self["CarSensorPressed"] = kwb_CarSensorPressed_v;
+    self["SwitchSubsumptionTrafficLights"] = kwb_SwitchSubsumptionTrafficLights_v;
+    self["Ball_Found"] = kwb_Ball_Found_v;
+    self["Ball_Calibration_File"] = kwb_Ball_Calibration_File_v;
+    self["Ball_Calibration_Num"] = kwb_Ball_Calibration_Num_v;
+    self["Ball_Color_Num"] = kwb_Ball_Color_Num_v;
+    self["HAL_LArmTarget_Ctrl"] = kwb_HAL_LArmTarget_Ctrl_v;
+    self["HAL_LArmTarget_Stat"] = kwb_HAL_LArmTarget_Stat_v;
+    self["HAL_LArmTarget_Tolr"] = kwb_HAL_LArmTarget_Tolr_v;
+    self["HAL_RArmTarget_Ctrl"] = kwb_HAL_RArmTarget_Ctrl_v;
+    self["HAL_RArmTarget_Stat"] = kwb_HAL_RArmTarget_Stat_v;
+    self["HAL_RArmTarget_Tolr"] = kwb_HAL_RArmTarget_Tolr_v;
+    self["VisionFieldFeatures"] = kwb_VisionFieldFeatures_v;
+    self["WhistleBlown"] = kwb_WhistleBlown_v;
+    self["VolumeControl"] = kwb_VolumeControl_v;
+    self["VisionRobots"] = kwb_VisionRobots_v;
+    self["VisionDetectionHorizons"] = kwb_VisionDetectionHorizons_v;
+    self["NaoWalkCommand"] = kwb_NaoWalkCommand_v;
+    self["NaoWalkStatus"] = kwb_NaoWalkStatus_v;
+    self["HAL_LLegTarget_Ctrl"] = kwb_HAL_LLegTarget_Ctrl_v;
+    self["HAL_LLegTarget_Stat"] = kwb_HAL_LLegTarget_Stat_v;
+    self["HAL_LLegTarget_Tolr"] = kwb_HAL_LLegTarget_Tolr_v;
+    self["HAL_RLegTarget_Ctrl"] = kwb_HAL_RLegTarget_Ctrl_v;
+    self["HAL_RLegTarget_Stat"] = kwb_HAL_RLegTarget_Stat_v;
+    self["HAL_RLegTarget_Tolr"] = kwb_HAL_RLegTarget_Tolr_v;
+    self["VisionDetectionGoals"] = kwb_VisionDetectionGoals_v;
+    self["TeleoperationControl"] = kwb_TeleoperationControl_v;
+    self["TeleoperationStatus"] = kwb_TeleoperationStatus_v;
+    self["VisionDetectionBalls"] = kwb_VisionDetectionBalls_v;
+    self["TeleoperationControlVR"] = kwb_TeleoperationControlVR_v;
+    self["ParticleOutputMap"] = kwb_ParticleOutputMap_v;
+    self["ParticleOutputMapControl"] = kwb_ParticleOutputMapControl_v;
+    self["FFTControl"] = kwb_FFTControl_v;
+    self["MachineFilteredNaoVision"] = kwb_MachineFilteredNaoVision_v;
+    self["MicrowaveStatus"] = kwb_MicrowaveStatus_v;
+    self["Buttons"] = kwb_Buttons_v;
+    self["MachineFilteredLocalisationVision"] = kwb_MachineFilteredLocalisationVision_v;
+    self["SensorsJointCurrent"] = kwb_SensorsJointCurrent_v;
+    self["DataLogger"] = kwb_DataLogger_v;
+    self["MachineFilteredLines"] = kwb_MachineFilteredLines_v;
+    self["BallLocation"] = kwb_BallLocation_v;
+    self["LeftGoalPostLocation"] = kwb_LeftGoalPostLocation_v;
+    self["RightGoalPostLocation"] = kwb_RightGoalPostLocation_v;
+    self["GoalLocation"] = kwb_GoalLocation_v;
+    self["NaoSonarProtectedWalkCommand"] = kwb_NaoSonarProtectedWalkCommand_v;
+    self["NaoObstacleDirection"] = kwb_NaoObstacleDirection_v;
+    self["DominantFrequencies"] = kwb_DominantFrequencies_v;
+    self["MissionPriorityForObstacles"] = kwb_MissionPriorityForObstacles_v;
+    self["WavLoad"] = kwb_WavLoad_v;
+    self["WavPlay"] = kwb_WavPlay_v;
+    self["ReproduceWavNotSilent"] = kwb_ReproduceWavNotSilent_v;
+    self["FrequencyControl"] = kwb_FrequencyControl_v;
+    self["FrequencyStatus"] = kwb_FrequencyStatus_v;
+    self["HeadJointSensors"] = kwb_HeadJointSensors_v;
+    self["AdjustPositionConfidence"] = kwb_AdjustPositionConfidence_v;
+    self["GuVrTeleopVulkanControl"] = kwb_GuVrTeleopVulkanControl_v;
+    self["TemperatureSensors"] = kwb_TemperatureSensors_v;
+    self["Overheating"] = kwb_Overheating_v;
+    self["buttonPushed"] = kwb_buttonPushed_v;
+    self["doorOpen"] = kwb_doorOpen_v;
+    self["timeLeft"] = kwb_timeLeft_v;
+    self["motor"] = kwb_motor_v;
+    self["sound"] = kwb_sound_v;
+    self["light"] = kwb_light_v;
+    self["Arduino2Pin"] = kwb_Arduino2Pin_v;
+    self["Arduino2PinValue"] = kwb_Arduino2PinValue_v;
+    self["Arduino3Pin"] = kwb_Arduino3Pin_v;
+    self["Arduino3PinValue"] = kwb_Arduino3PinValue_v;
+    self["Arduino4Pin"] = kwb_Arduino4Pin_v;
+    self["Arduino4PinValue"] = kwb_Arduino4PinValue_v;
+    self["Arduino5Pin"] = kwb_Arduino5Pin_v;
+    self["Arduino5PinValue"] = kwb_Arduino5PinValue_v;
+    self["Arduino6Pin"] = kwb_Arduino6Pin_v;
+    self["Arduino6PinValue"] = kwb_Arduino6PinValue_v;
+    self["Arduino7Pin"] = kwb_Arduino7Pin_v;
+    self["Arduino7PinValue"] = kwb_Arduino7PinValue_v;
+    self["Arduino8Pin"] = kwb_Arduino8Pin_v;
+    self["Arduino8PinValue"] = kwb_Arduino8PinValue_v;
+    self["Arduino9Pin"] = kwb_Arduino9Pin_v;
+    self["Arduino9PinValue"] = kwb_Arduino9PinValue_v;
+    self["BallPosition"] = kwb_BallPosition_v;
+    self["MemoryImageControl"] = kwb_MemoryImageControl_v;
+    self["MemoryImageStatus"] = kwb_MemoryImageStatus_v;
+    self["LHandGripper"] = kwb_LHandGripper_v;
+    self["RHandGripper"] = kwb_RHandGripper_v;
+    self["MyPosition"] = kwb_MyPosition_v;
+    self["VisionDetectionLines"] = kwb_VisionDetectionLines_v;
+    self["VisionDetectionFeatures"] = kwb_VisionDetectionFeatures_v;
 
     (void) self;
 } // guWhiteboard

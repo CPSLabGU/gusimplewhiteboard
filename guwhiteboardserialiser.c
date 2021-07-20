@@ -33,42 +33,42 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
     switch (message_index)
     {
 
-            case kwb_reserved_SubscribeToAllTypes_v:
+            case kwb_wb_reserved_SubscribeToAllTypes_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kPrint_v:
+            case kwb_Print_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSay_v:
+            case kwb_Say_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSpeech_v:
+            case kwb_Speech_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kQSay_v:
+            case kwb_QSay_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kQSpeech_v:
+            case kwb_QSpeech_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSpeechOutput_v:
+            case kwb_SpeechOutput_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kGCGameState_v:
+            case kwb_GCGameState_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(GCGAMESTATE_GENERATED) // GCGAMESTATE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -83,7 +83,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsHandSensors_v:
+            case kwb_SensorsHandSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSHANDSENSORS_GENERATED) // SENSORSHANDSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -98,7 +98,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsHeadSensors_v:
+            case kwb_SensorsHeadSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSHEADSENSORS_GENERATED) // SENSORSHEADSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -113,7 +113,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kMOTION_Commands_v:
+            case kwb_MOTION_Commands_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(MOTION_COMMANDS_GENERATED) // MOTION_COMMANDS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -128,7 +128,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kMOTION_Status_v:
+            case kwb_MOTION_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(MOTION_STATUS_GENERATED) // MOTION_STATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -143,7 +143,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_HeadTarget_v:
+            case kwb_HAL_HeadTarget_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HAL_HEADTARGET_GENERATED) // HAL_HEADTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -158,7 +158,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsFootSensors_v:
+            case kwb_SensorsFootSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSFOOTSENSORS_GENERATED) // SENSORSFOOTSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -173,7 +173,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSensorsBodySensors_v:
+            case kwb_SensorsBodySensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSBODYSENSORS_GENERATED) // SENSORSBODYSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -188,7 +188,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLedsSensors_v:
+            case kwb_SENSORSLedsSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSLEDSSENSORS_GENERATED) // SENSORSLEDSSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -203,7 +203,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLegJointTemps_v:
+            case kwb_SENSORSLegJointTemps_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSLEGJOINTTEMPS_GENERATED) // SENSORSLEGJOINTTEMPS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -218,7 +218,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSTorsoJointTemps_v:
+            case kwb_SENSORSTorsoJointTemps_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSTORSOJOINTTEMPS_GENERATED) // SENSORSTORSOJOINTTEMPS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -233,7 +233,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSLegJointSensors_v:
+            case kwb_SENSORSLegJointSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSLEGJOINTSENSORS_GENERATED) // SENSORSLEGJOINTSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -248,7 +248,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSTorsoJointSensors_v:
+            case kwb_SENSORSTorsoJointSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSTORSOJOINTSENSORS_GENERATED) // SENSORSTORSOJOINTSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -263,7 +263,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSENSORSSonarSensors_v:
+            case kwb_SENSORSSonarSensors_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SENSORSSONARSENSORS_GENERATED) // SENSORSSONARSENSORS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -278,7 +278,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Control_v:
+            case kwb_FSM_Control_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FSMCONTROLSTATUS_GENERATED) // FSMCONTROLSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -293,7 +293,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Status_v:
+            case kwb_FSM_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FSMCONTROLSTATUS_GENERATED) // FSMCONTROLSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -308,7 +308,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSM_Names_v:
+            case kwb_FSM_Names_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FSMNAMES_GENERATED) // FSMNAMES_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -323,12 +323,12 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSoloTypeExample_v:
+            case kwb_SoloTypeExample_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFilteredGoalSighting_v:
+            case kwb_FilteredGoalSighting_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FILTEREDARRAYONEDIMOBJECTS_GENERATED) // FILTEREDARRAYONEDIMOBJECTS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -343,7 +343,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNAO_State_v:
+            case kwb_NAO_State_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NAO_STATE_GENERATED) // NAO_STATE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -358,7 +358,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kUDPRN_v:
+            case kwb_UDPRN_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(GCGAMESTATE_GENERATED) // GCGAMESTATE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -373,17 +373,17 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kPlayerNumber_v:
+            case kwb_PlayerNumber_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kManuallyPenalized_v:
+            case kwb_ManuallyPenalized_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVisionControl_v:
+            case kwb_VisionControl_v:
             {
 #if defined(WB_VISION_CONTROL_STATUS_GENERATED)  || defined(VISION_CONTROL_STATUS_GENERATED) // VISION_CONTROL_STATUS_GENERATED is legacy, don't use
 #ifdef WB_VISION_CONTROL_STATUS_C_STRUCT
@@ -398,7 +398,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kVisionStatus_v:
+            case kwb_VisionStatus_v:
             {
 #if defined(WB_VISION_CONTROL_STATUS_GENERATED)  || defined(VISION_CONTROL_STATUS_GENERATED) // VISION_CONTROL_STATUS_GENERATED is legacy, don't use
 #ifdef WB_VISION_CONTROL_STATUS_C_STRUCT
@@ -413,7 +413,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kFFTStatus_v:
+            case kwb_FFTStatus_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FFTSTATUS_GENERATED) // FFTSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -428,7 +428,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kFSOsighting_v:
+            case kwb_FSOsighting_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FILTEREDARRAYONEDIMSONAR_GENERATED) // FILTEREDARRAYONEDIMSONAR_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -443,7 +443,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTopParticles_v:
+            case kwb_TopParticles_v:
             {
 #if defined(WB_TOPPARTICLES_GENERATED)  || defined(TOPPARTICLES_GENERATED) // TOPPARTICLES_GENERATED is legacy, don't use
 #ifdef WB_TOPPARTICLES_C_STRUCT
@@ -458,7 +458,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_TOPPARTICLES_GENERATED
                 break;
             }
-            case kFilteredBallSighting_v:
+            case kwb_FilteredBallSighting_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FILTEREDARRAYBALLSIGHTINGS_GENERATED) // FILTEREDARRAYBALLSIGHTINGS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -473,12 +473,12 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kPF_ControlStatus_Modes_v:
+            case kwb_PF_ControlStatus_Modes_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWEBOTS_NXT_bridge_v:
+            case kwb_WEBOTS_NXT_bridge_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_BRIDGE_GENERATED) // WEBOTS_NXT_BRIDGE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -493,7 +493,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_encoders_v:
+            case kwb_WEBOTS_NXT_encoders_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_ENCODERS_GENERATED) // WEBOTS_NXT_ENCODERS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -508,7 +508,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_camera_v:
+            case kwb_WEBOTS_NXT_camera_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_CAMERA_GENERATED) // WEBOTS_NXT_CAMERA_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -523,7 +523,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_walk_isRunning_v:
+            case kwb_WEBOTS_NXT_walk_isRunning_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_WALK_ISRUNNING_GENERATED) // WEBOTS_NXT_WALK_ISRUNNING_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -538,7 +538,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_deadReakoning_walk_v:
+            case kwb_WEBOTS_NXT_deadReakoning_walk_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_DEADREAKONING_WALK_GENERATED) // WEBOTS_NXT_DEADREAKONING_WALK_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -553,7 +553,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_colorLine_walk_v:
+            case kwb_WEBOTS_NXT_colorLine_walk_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_COLORLINE_WALK_GENERATED) // WEBOTS_NXT_COLORLINE_WALK_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -568,7 +568,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_gridMotions_v:
+            case kwb_WEBOTS_NXT_gridMotions_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_GRIDMOTIONS_GENERATED) // WEBOTS_NXT_GRIDMOTIONS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -583,7 +583,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionBall_v:
+            case kwb_VisionBall_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(VISIONBALL_GENERATED) // VISIONBALL_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -598,7 +598,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionGoals_v:
+            case kwb_VisionGoals_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(VISIONGOALS_GENERATED) // VISIONGOALS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -613,7 +613,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWalkData_v:
+            case kwb_WalkData_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WALKDATA_GENERATED) // WALKDATA_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -628,7 +628,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTeleoperationControlStatus_v:
+            case kwb_TeleoperationControlStatus_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(TELEOPERATIONCONTROLSTATUS_GENERATED) // TELEOPERATIONCONTROLSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -643,17 +643,17 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTeleoperationConnection_v:
+            case kwb_TeleoperationConnection_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kUDPWBNumber_v:
+            case kwb_UDPWBNumber_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWEBOTS_NXT_bumper_v:
+            case kwb_WEBOTS_NXT_bumper_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_BUMPER_GENERATED) // WEBOTS_NXT_BUMPER_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -668,7 +668,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kWEBOTS_NXT_vector_bridge_v:
+            case kwb_WEBOTS_NXT_vector_bridge_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(WEBOTS_NXT_VECTOR_BRIDGE_GENERATED) // WEBOTS_NXT_VECTOR_BRIDGE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -683,7 +683,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTopVisionLines_v:
+            case kwb_TopVisionLines_v:
             {
 #if defined(WB_VISION_LINES_GENERATED)  || defined(VISION_LINES_GENERATED) // VISION_LINES_GENERATED is legacy, don't use
 #ifdef WB_VISION_LINES_C_STRUCT
@@ -698,7 +698,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_LINES_GENERATED
                 break;
             }
-            case kBottomVisionLines_v:
+            case kwb_BottomVisionLines_v:
             {
 #if defined(WB_VISION_LINES_GENERATED)  || defined(VISION_LINES_GENERATED) // VISION_LINES_GENERATED is legacy, don't use
 #ifdef WB_VISION_LINES_C_STRUCT
@@ -713,7 +713,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_LINES_GENERATED
                 break;
             }
-            case kDifferentialRobotStatus_v:
+            case kwb_DifferentialRobotStatus_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(DIFFERENTIALROBOTCONTROLSTATUS_GENERATED) // DIFFERENTIALROBOTCONTROLSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -728,7 +728,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kDifferentialRobotControl_v:
+            case kwb_DifferentialRobotControl_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(DIFFERENTIALROBOTCONTROLSTATUS_GENERATED) // DIFFERENTIALROBOTCONTROLSTATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -743,7 +743,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kXEyesPos_v:
+            case kwb_XEyesPos_v:
             {
 #if defined(WB_POINT2D_GENERATED)  || defined(POINT2D_GENERATED) // POINT2D_GENERATED is legacy, don't use
 #ifdef WB_POINT2D_C_STRUCT
@@ -758,17 +758,17 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_POINT2D_GENERATED
                 break;
             }
-            case kVisionFace_v:
+            case kwb_VisionFace_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kDraw_v:
+            case kwb_Draw_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFSM_States_v:
+            case kwb_FSM_States_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(FSMSTATE_GENERATED) // FSMSTATE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -783,7 +783,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kGiraff_Interface_Status_v:
+            case kwb_Giraff_Interface_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(GIRAFF_MAINSERIALINTERFACE_GENERATED) // GIRAFF_MAINSERIALINTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -798,7 +798,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kGiraff_Interface_Command_v:
+            case kwb_Giraff_Interface_Command_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(GIRAFF_MAINSERIALINTERFACE_GENERATED) // GIRAFF_MAINSERIALINTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -813,7 +813,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Status_v:
+            case kwb_NXT_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NXT_INTERFACE_GENERATED) // NXT_INTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -828,7 +828,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Command_v:
+            case kwb_NXT_Command_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NXT_INTERFACE_GENERATED) // NXT_INTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -843,7 +843,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kAPM_Status_v:
+            case kwb_APM_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(APM_INTERFACE_GENERATED) // APM_INTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -858,7 +858,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kAPM_Command_v:
+            case kwb_APM_Command_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(APM_INTERFACE_GENERATED) // APM_INTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -873,22 +873,22 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kREMOVED3_v:
+            case kwb_REMOVED3_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kREMOVED4_v:
+            case kwb_REMOVED4_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kCBall_v:
+            case kwb_CBall_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kOculusPrime_Command_v:
+            case kwb_OculusPrime_Command_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(OCULUSPRIMEINTERFACE_GENERATED) // OCULUSPRIMEINTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -903,7 +903,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kInput3D_v:
+            case kwb_Input3D_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(INPUT3D_GENERATED) // INPUT3D_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -918,7 +918,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kOculus_Prime_Command_v:
+            case kwb_Oculus_Prime_Command_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(OCULUS_PRIMESERIALINTERFACE_GENERATED) // OCULUS_PRIMESERIALINTERFACE_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -933,7 +933,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kIOPins_v:
+            case kwb_IOPins_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(IOPINS_GENERATED) // IOPINS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -948,7 +948,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Two_Touch_Status_v:
+            case kwb_NXT_Two_Touch_Status_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NXT_TWO_TOUCH_STATUS_GENERATED) // NXT_TWO_TOUCH_STATUS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -963,7 +963,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Sound_Control_v:
+            case kwb_NXT_Sound_Control_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NXT_SOUND_CONTROL_GENERATED) // NXT_SOUND_CONTROL_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -978,7 +978,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kNXT_Lights_Control_v:
+            case kwb_NXT_Lights_Control_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NXT_LIGHTS_CONTROL_GENERATED) // NXT_LIGHTS_CONTROL_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -993,7 +993,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kClocks_v:
+            case kwb_Clocks_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(CLOCKS_GENERATED) // CLOCKS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1008,7 +1008,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kChannels_v:
+            case kwb_Channels_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(CHANNELS_GENERATED) // CHANNELS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1023,7 +1023,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kSwitchSubsumption_v:
+            case kwb_SwitchSubsumption_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SWITCHSUBSUMPTION_GENERATED) // SWITCHSUBSUMPTION_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1038,7 +1038,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kTotoDoingMotion_v:
+            case kwb_TotoDoingMotion_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(TOTODOINGMOTION_GENERATED) // TOTODOINGMOTION_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1053,7 +1053,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kCount_v:
+            case kwb_Count_v:
             {
 #if defined(WB_COUNT_GENERATED)  || defined(COUNT_GENERATED) // COUNT_GENERATED is legacy, don't use
 #ifdef WB_COUNT_C_STRUCT
@@ -1068,82 +1068,82 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_COUNT_GENERATED
                 break;
             }
-            case kGreenEWon_v:
+            case kwb_GreenEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWarnEW_v:
+            case kwb_WarnEW_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimeGTthirty_v:
+            case kwb_TimeGTthirty_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kAmberEWon_v:
+            case kwb_AmberEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTurnRedEW_v:
+            case kwb_TurnRedEW_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimeGTfive_v:
+            case kwb_TimeGTfive_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRedEWon_v:
+            case kwb_RedEWon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kGreenNSon_v:
+            case kwb_GreenNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWarnNS_v:
+            case kwb_WarnNS_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kAmberNSon_v:
+            case kwb_AmberNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTurnRedNS_v:
+            case kwb_TurnRedNS_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRedNSon_v:
+            case kwb_RedNSon_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kTimerReset_v:
+            case kwb_TimerReset_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSLOT_UNUSED_v:
+            case kwb_SLOT_UNUSED_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kCarSensorPressed_v:
+            case kwb_CarSensorPressed_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kSwitchSubsumptionTrafficLights_v:
+            case kwb_SwitchSubsumptionTrafficLights_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(SWITCHSUBSUMPTIONTRAFFICLIGHTS_GENERATED) // SWITCHSUBSUMPTIONTRAFFICLIGHTS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1158,27 +1158,27 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kBall_Found_v:
+            case kwb_Ball_Found_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Calibration_File_v:
+            case kwb_Ball_Calibration_File_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Calibration_Num_v:
+            case kwb_Ball_Calibration_Num_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBall_Color_Num_v:
+            case kwb_Ball_Color_Num_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kHAL_LArmTarget_Ctrl_v:
+            case kwb_HAL_LArmTarget_Ctrl_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1193,7 +1193,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LArmTarget_Stat_v:
+            case kwb_HAL_LArmTarget_Stat_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1208,7 +1208,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LArmTarget_Tolr_v:
+            case kwb_HAL_LArmTarget_Tolr_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1223,7 +1223,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Ctrl_v:
+            case kwb_HAL_RArmTarget_Ctrl_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1238,7 +1238,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Stat_v:
+            case kwb_HAL_RArmTarget_Stat_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1253,7 +1253,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RArmTarget_Tolr_v:
+            case kwb_HAL_RArmTarget_Tolr_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALARMTARGET_GENERATED) // HALARMTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1268,7 +1268,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionFieldFeatures_v:
+            case kwb_VisionFieldFeatures_v:
             {
 #if defined(WB_VISION_FIELD_FEATURES_GENERATED)  || defined(VISION_FIELD_FEATURES_GENERATED) // VISION_FIELD_FEATURES_GENERATED is legacy, don't use
 #ifdef WB_VISION_FIELD_FEATURES_C_STRUCT
@@ -1283,17 +1283,17 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_FIELD_FEATURES_GENERATED
                 break;
             }
-            case kWhistleBlown_v:
+            case kwb_WhistleBlown_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVolumeControl_v:
+            case kwb_VolumeControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kVisionRobots_v:
+            case kwb_VisionRobots_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(VISIONROBOTS_GENERATED) // VISIONROBOTS_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1308,7 +1308,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionDetectionHorizons_v:
+            case kwb_VisionDetectionHorizons_v:
             {
 #if defined(WB_VISION_DETECTION_HORIZONS_GENERATED)  || defined(VISION_DETECTION_HORIZONS_GENERATED) // VISION_DETECTION_HORIZONS_GENERATED is legacy, don't use
 #ifdef WB_VISION_DETECTION_HORIZONS_C_STRUCT
@@ -1323,7 +1323,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_DETECTION_HORIZONS_GENERATED
                 break;
             }
-            case kNaoWalkCommand_v:
+            case kwb_NaoWalkCommand_v:
             {
 #if defined(WB_NAOWALKCOMMAND_GENERATED)  || defined(NAOWALKCOMMAND_GENERATED) // NAOWALKCOMMAND_GENERATED is legacy, don't use
 #ifdef WB_NAOWALKCOMMAND_C_STRUCT
@@ -1338,7 +1338,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_NAOWALKCOMMAND_GENERATED
                 break;
             }
-            case kNaoWalkStatus_v:
+            case kwb_NaoWalkStatus_v:
             {
 #if defined(WB_NAOWALKSTATUS_GENERATED)  || defined(NAOWALKSTATUS_GENERATED) // NAOWALKSTATUS_GENERATED is legacy, don't use
 #ifdef WB_NAOWALKSTATUS_C_STRUCT
@@ -1353,7 +1353,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_NAOWALKSTATUS_GENERATED
                 break;
             }
-            case kHAL_LLegTarget_Ctrl_v:
+            case kwb_HAL_LLegTarget_Ctrl_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1368,7 +1368,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LLegTarget_Stat_v:
+            case kwb_HAL_LLegTarget_Stat_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1383,7 +1383,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_LLegTarget_Tolr_v:
+            case kwb_HAL_LLegTarget_Tolr_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1398,7 +1398,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Ctrl_v:
+            case kwb_HAL_RLegTarget_Ctrl_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1413,7 +1413,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Stat_v:
+            case kwb_HAL_RLegTarget_Stat_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1428,7 +1428,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kHAL_RLegTarget_Tolr_v:
+            case kwb_HAL_RLegTarget_Tolr_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(HALLEGTARGET_GENERATED) // HALLEGTARGET_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1443,7 +1443,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kVisionDetectionGoals_v:
+            case kwb_VisionDetectionGoals_v:
             {
 #if defined(WB_VISION_DETECTION_GOALS_GENERATED)  || defined(VISION_DETECTION_GOALS_GENERATED) // VISION_DETECTION_GOALS_GENERATED is legacy, don't use
 #ifdef WB_VISION_DETECTION_GOALS_C_STRUCT
@@ -1458,7 +1458,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_DETECTION_GOALS_GENERATED
                 break;
             }
-            case kTeleoperationControl_v:
+            case kwb_TeleoperationControl_v:
             {
 #if defined(WB_TELEOPERATIONCONTROL_GENERATED)  || defined(TELEOPERATIONCONTROL_GENERATED) // TELEOPERATIONCONTROL_GENERATED is legacy, don't use
 #ifdef WB_TELEOPERATIONCONTROL_C_STRUCT
@@ -1473,7 +1473,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_TELEOPERATIONCONTROL_GENERATED
                 break;
             }
-            case kTeleoperationStatus_v:
+            case kwb_TeleoperationStatus_v:
             {
 #if defined(WB_TELEOPERATIONSTATUS_GENERATED)  || defined(TELEOPERATIONSTATUS_GENERATED) // TELEOPERATIONSTATUS_GENERATED is legacy, don't use
 #ifdef WB_TELEOPERATIONSTATUS_C_STRUCT
@@ -1488,7 +1488,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_TELEOPERATIONSTATUS_GENERATED
                 break;
             }
-            case kVisionDetectionBalls_v:
+            case kwb_VisionDetectionBalls_v:
             {
 #if defined(WB_VISION_DETECTION_BALLS_GENERATED)  || defined(VISION_DETECTION_BALLS_GENERATED) // VISION_DETECTION_BALLS_GENERATED is legacy, don't use
 #ifdef WB_VISION_DETECTION_BALLS_C_STRUCT
@@ -1503,7 +1503,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_DETECTION_BALLS_GENERATED
                 break;
             }
-            case kTeleoperationControlVR_v:
+            case kwb_TeleoperationControlVR_v:
             {
 #if defined(WB_TELEOPERATIONCONTROLVR_GENERATED)  || defined(TELEOPERATIONCONTROLVR_GENERATED) // TELEOPERATIONCONTROLVR_GENERATED is legacy, don't use
 #ifdef WB_TELEOPERATIONCONTROLVR_C_STRUCT
@@ -1518,22 +1518,22 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_TELEOPERATIONCONTROLVR_GENERATED
                 break;
             }
-            case kParticleOutputMap_v:
+            case kwb_ParticleOutputMap_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kParticleOutputMapControl_v:
+            case kwb_ParticleOutputMapControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFFTControl_v:
+            case kwb_FFTControl_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kMachineFilteredNaoVision_v:
+            case kwb_MachineFilteredNaoVision_v:
             {
 #if defined(WB_MACHINE_FILTERED_VISION_GENERATED)  || defined(MACHINE_FILTERED_VISION_GENERATED) // MACHINE_FILTERED_VISION_GENERATED is legacy, don't use
 #ifdef WB_MACHINE_FILTERED_VISION_C_STRUCT
@@ -1548,7 +1548,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MACHINE_FILTERED_VISION_GENERATED
                 break;
             }
-            case kMicrowaveStatus_v:
+            case kwb_MicrowaveStatus_v:
             {
 #if defined(WB_MICROWAVE_STATUS_GENERATED)  || defined(MICROWAVE_STATUS_GENERATED) // MICROWAVE_STATUS_GENERATED is legacy, don't use
 #ifdef WB_MICROWAVE_STATUS_C_STRUCT
@@ -1563,7 +1563,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MICROWAVE_STATUS_GENERATED
                 break;
             }
-            case kButtons_v:
+            case kwb_Buttons_v:
             {
 #if defined(WB_BUTTONS_GENERATED)  || defined(BUTTONS_GENERATED) // BUTTONS_GENERATED is legacy, don't use
 #ifdef WB_BUTTONS_C_STRUCT
@@ -1578,7 +1578,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_BUTTONS_GENERATED
                 break;
             }
-            case kMachineFilteredLocalisationVision_v:
+            case kwb_MachineFilteredLocalisationVision_v:
             {
 #if defined(WB_MACHINE_FILTERED_LOCALISATION_VISION_GENERATED)  || defined(MACHINE_FILTERED_LOCALISATION_VISION_GENERATED) // MACHINE_FILTERED_LOCALISATION_VISION_GENERATED is legacy, don't use
 #ifdef WB_MACHINE_FILTERED_LOCALISATION_VISION_C_STRUCT
@@ -1593,7 +1593,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MACHINE_FILTERED_LOCALISATION_VISION_GENERATED
                 break;
             }
-            case kSensorsJointCurrent_v:
+            case kwb_SensorsJointCurrent_v:
             {
 #if defined(SerialisationNotSupportedWithLegacyNaming)  || defined(NAOJOINTLISTFLOAT_GENERATED) // NAOJOINTLISTFLOAT_GENERATED is legacy, don't use
 #ifdef NotSupportedWithLegacyNaming
@@ -1608,7 +1608,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //SerialisationNotSupportedWithLegacyNaming
                 break;
             }
-            case kDataLogger_v:
+            case kwb_DataLogger_v:
             {
 #if defined(WB_DATA_LOGGER_GENERATED)  || defined(DATA_LOGGER_GENERATED) // DATA_LOGGER_GENERATED is legacy, don't use
 #ifdef WB_DATA_LOGGER_C_STRUCT
@@ -1623,7 +1623,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_DATA_LOGGER_GENERATED
                 break;
             }
-            case kMachineFilteredLines_v:
+            case kwb_MachineFilteredLines_v:
             {
 #if defined(WB_MACHINE_FILTERED_LINES_GENERATED)  || defined(MACHINE_FILTERED_LINES_GENERATED) // MACHINE_FILTERED_LINES_GENERATED is legacy, don't use
 #ifdef WB_MACHINE_FILTERED_LINES_C_STRUCT
@@ -1638,7 +1638,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MACHINE_FILTERED_LINES_GENERATED
                 break;
             }
-            case kBallLocation_v:
+            case kwb_BallLocation_v:
             {
 #if defined(WB_LOCATION_GENERATED)  || defined(LOCATION_GENERATED) // LOCATION_GENERATED is legacy, don't use
 #ifdef WB_LOCATION_C_STRUCT
@@ -1653,7 +1653,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_LOCATION_GENERATED
                 break;
             }
-            case kLeftGoalPostLocation_v:
+            case kwb_LeftGoalPostLocation_v:
             {
 #if defined(WB_LOCATION_GENERATED)  || defined(LOCATION_GENERATED) // LOCATION_GENERATED is legacy, don't use
 #ifdef WB_LOCATION_C_STRUCT
@@ -1668,7 +1668,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_LOCATION_GENERATED
                 break;
             }
-            case kRightGoalPostLocation_v:
+            case kwb_RightGoalPostLocation_v:
             {
 #if defined(WB_LOCATION_GENERATED)  || defined(LOCATION_GENERATED) // LOCATION_GENERATED is legacy, don't use
 #ifdef WB_LOCATION_C_STRUCT
@@ -1683,7 +1683,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_LOCATION_GENERATED
                 break;
             }
-            case kGoalLocation_v:
+            case kwb_GoalLocation_v:
             {
 #if defined(WB_LOCATION_GENERATED)  || defined(LOCATION_GENERATED) // LOCATION_GENERATED is legacy, don't use
 #ifdef WB_LOCATION_C_STRUCT
@@ -1698,7 +1698,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_LOCATION_GENERATED
                 break;
             }
-            case kNaoSonarProtectedWalkCommand_v:
+            case kwb_NaoSonarProtectedWalkCommand_v:
             {
 #if defined(WB_NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED)  || defined(NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED) // NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED is legacy, don't use
 #ifdef WB_NAO_SONAR_PROTECTED_WALK_COMMAND_C_STRUCT
@@ -1713,7 +1713,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_NAO_SONAR_PROTECTED_WALK_COMMAND_GENERATED
                 break;
             }
-            case kNaoObstacleDirection_v:
+            case kwb_NaoObstacleDirection_v:
             {
 #if defined(WB_NAO_OBSTACLE_DIRECTION_GENERATED)  || defined(NAO_OBSTACLE_DIRECTION_GENERATED) // NAO_OBSTACLE_DIRECTION_GENERATED is legacy, don't use
 #ifdef WB_NAO_OBSTACLE_DIRECTION_C_STRUCT
@@ -1728,7 +1728,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_NAO_OBSTACLE_DIRECTION_GENERATED
                 break;
             }
-            case kDominantFrequencies_v:
+            case kwb_DominantFrequencies_v:
             {
 #if defined(WB_DOMINANT_FREQUENCIES_GENERATED)  || defined(DOMINANT_FREQUENCIES_GENERATED) // DOMINANT_FREQUENCIES_GENERATED is legacy, don't use
 #ifdef WB_DOMINANT_FREQUENCIES_C_STRUCT
@@ -1743,7 +1743,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_DOMINANT_FREQUENCIES_GENERATED
                 break;
             }
-            case kMissionPriorityForObstacles_v:
+            case kwb_MissionPriorityForObstacles_v:
             {
 #if defined(WB_MISSION_PRIORITY_FOR_OBSTACLES_GENERATED)  || defined(MISSION_PRIORITY_FOR_OBSTACLES_GENERATED) // MISSION_PRIORITY_FOR_OBSTACLES_GENERATED is legacy, don't use
 #ifdef WB_MISSION_PRIORITY_FOR_OBSTACLES_C_STRUCT
@@ -1758,22 +1758,22 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MISSION_PRIORITY_FOR_OBSTACLES_GENERATED
                 break;
             }
-            case kWavLoad_v:
+            case kwb_WavLoad_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kWavPlay_v:
+            case kwb_WavPlay_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kReproduceWavNotSilent_v:
+            case kwb_ReproduceWavNotSilent_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kFrequencyControl_v:
+            case kwb_FrequencyControl_v:
             {
 #if defined(WB_FREQUENCY_LIMITS_GENERATED)  || defined(FREQUENCY_LIMITS_GENERATED) // FREQUENCY_LIMITS_GENERATED is legacy, don't use
 #ifdef WB_FREQUENCY_LIMITS_C_STRUCT
@@ -1788,7 +1788,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_FREQUENCY_LIMITS_GENERATED
                 break;
             }
-            case kFrequencyStatus_v:
+            case kwb_FrequencyStatus_v:
             {
 #if defined(WB_FREQUENCY_LIMITS_GENERATED)  || defined(FREQUENCY_LIMITS_GENERATED) // FREQUENCY_LIMITS_GENERATED is legacy, don't use
 #ifdef WB_FREQUENCY_LIMITS_C_STRUCT
@@ -1803,7 +1803,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_FREQUENCY_LIMITS_GENERATED
                 break;
             }
-            case kHeadJointSensors_v:
+            case kwb_HeadJointSensors_v:
             {
 #if defined(WB_HEAD_JOINT_SENSORS_GENERATED)  || defined(HEAD_JOINT_SENSORS_GENERATED) // HEAD_JOINT_SENSORS_GENERATED is legacy, don't use
 #ifdef WB_HEAD_JOINT_SENSORS_C_STRUCT
@@ -1818,7 +1818,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_HEAD_JOINT_SENSORS_GENERATED
                 break;
             }
-            case kAdjustPositionConfidence_v:
+            case kwb_AdjustPositionConfidence_v:
             {
 #if defined(WB_ADJUST_POSITION_CONFIDENCE_GENERATED)  || defined(ADJUST_POSITION_CONFIDENCE_GENERATED) // ADJUST_POSITION_CONFIDENCE_GENERATED is legacy, don't use
 #ifdef WB_ADJUST_POSITION_CONFIDENCE_C_STRUCT
@@ -1833,7 +1833,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_ADJUST_POSITION_CONFIDENCE_GENERATED
                 break;
             }
-            case kGuVrTeleopVulkanControl_v:
+            case kwb_GuVrTeleopVulkanControl_v:
             {
 #if defined(WB_GU_VR_TELEOP_VULKAN_CONTROL_GENERATED)  || defined(GU_VR_TELEOP_VULKAN_CONTROL_GENERATED) // GU_VR_TELEOP_VULKAN_CONTROL_GENERATED is legacy, don't use
 #ifdef WB_GU_VR_TELEOP_VULKAN_CONTROL_C_STRUCT
@@ -1848,7 +1848,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_GU_VR_TELEOP_VULKAN_CONTROL_GENERATED
                 break;
             }
-            case kTemperatureSensors_v:
+            case kwb_TemperatureSensors_v:
             {
 #if defined(WB_TEMPERATURE_SENSORS_GENERATED)  || defined(TEMPERATURE_SENSORS_GENERATED) // TEMPERATURE_SENSORS_GENERATED is legacy, don't use
 #ifdef WB_TEMPERATURE_SENSORS_C_STRUCT
@@ -1863,7 +1863,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_TEMPERATURE_SENSORS_GENERATED
                 break;
             }
-            case kOverheating_v:
+            case kwb_Overheating_v:
             {
 #if defined(WB_OVERHEATING_GENERATED)  || defined(OVERHEATING_GENERATED) // OVERHEATING_GENERATED is legacy, don't use
 #ifdef WB_OVERHEATING_C_STRUCT
@@ -1878,117 +1878,117 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_OVERHEATING_GENERATED
                 break;
             }
-            case kbuttonPushed_v:
+            case kwb_buttonPushed_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kdoorOpen_v:
+            case kwb_doorOpen_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case ktimeLeft_v:
+            case kwb_timeLeft_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kmotor_v:
+            case kwb_motor_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case ksound_v:
+            case kwb_sound_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case klight_v:
+            case kwb_light_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino2Pin_v:
+            case kwb_Arduino2Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino2PinValue_v:
+            case kwb_Arduino2PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino3Pin_v:
+            case kwb_Arduino3Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino3PinValue_v:
+            case kwb_Arduino3PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino4Pin_v:
+            case kwb_Arduino4Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino4PinValue_v:
+            case kwb_Arduino4PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino5Pin_v:
+            case kwb_Arduino5Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino5PinValue_v:
+            case kwb_Arduino5PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino6Pin_v:
+            case kwb_Arduino6Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino6PinValue_v:
+            case kwb_Arduino6PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino7Pin_v:
+            case kwb_Arduino7Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino7PinValue_v:
+            case kwb_Arduino7PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino8Pin_v:
+            case kwb_Arduino8Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino8PinValue_v:
+            case kwb_Arduino8PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino9Pin_v:
+            case kwb_Arduino9Pin_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kArduino9PinValue_v:
+            case kwb_Arduino9PinValue_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kBallPosition_v:
+            case kwb_BallPosition_v:
             {
 #if defined(WB_BALL_POSITION_GENERATED)  || defined(BALL_POSITION_GENERATED) // BALL_POSITION_GENERATED is legacy, don't use
 #ifdef WB_BALL_POSITION_C_STRUCT
@@ -2003,7 +2003,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_BALL_POSITION_GENERATED
                 break;
             }
-            case kMemoryImageControl_v:
+            case kwb_MemoryImageControl_v:
             {
 #if defined(WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED)  || defined(MEMORY_IMAGE_CONTROL_STATUS_GENERATED) // MEMORY_IMAGE_CONTROL_STATUS_GENERATED is legacy, don't use
 #ifdef WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT
@@ -2018,7 +2018,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kMemoryImageStatus_v:
+            case kwb_MemoryImageStatus_v:
             {
 #if defined(WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED)  || defined(MEMORY_IMAGE_CONTROL_STATUS_GENERATED) // MEMORY_IMAGE_CONTROL_STATUS_GENERATED is legacy, don't use
 #ifdef WB_MEMORY_IMAGE_CONTROL_STATUS_C_STRUCT
@@ -2033,17 +2033,17 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MEMORY_IMAGE_CONTROL_STATUS_GENERATED
                 break;
             }
-            case kLHandGripper_v:
+            case kwb_LHandGripper_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kRHandGripper_v:
+            case kwb_RHandGripper_v:
             {
                 return -1; /*TODO, add support for POD types.*/
                 break;
             }
-            case kMyPosition_v:
+            case kwb_MyPosition_v:
             {
 #if defined(WB_MY_POSITION_GENERATED)  || defined(MY_POSITION_GENERATED) // MY_POSITION_GENERATED is legacy, don't use
 #ifdef WB_MY_POSITION_C_STRUCT
@@ -2058,7 +2058,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_MY_POSITION_GENERATED
                 break;
             }
-            case kVisionDetectionLines_v:
+            case kwb_VisionDetectionLines_v:
             {
 #if defined(WB_VISION_DETECTION_LINES_GENERATED)  || defined(VISION_DETECTION_LINES_GENERATED) // VISION_DETECTION_LINES_GENERATED is legacy, don't use
 #ifdef WB_VISION_DETECTION_LINES_C_STRUCT
@@ -2073,7 +2073,7 @@ int32_t serialisemsg(wb_types message_index, const void *message_in, void *seria
 #endif //WB_VISION_DETECTION_LINES_GENERATED
                 break;
             }
-            case kVisionDetectionFeatures_v:
+            case kwb_VisionDetectionFeatures_v:
             {
 #if defined(WB_VISION_DETECTION_FEATURES_GENERATED)  || defined(VISION_DETECTION_FEATURES_GENERATED) // VISION_DETECTION_FEATURES_GENERATED is legacy, don't use
 #ifdef WB_VISION_DETECTION_FEATURES_C_STRUCT
