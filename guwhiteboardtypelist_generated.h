@@ -15,15 +15,21 @@
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wc++98-compat"
 
+#undef CPP_WHITEBOARD_NAMESPACE
 #define CPP_WHITEBOARD_NAMESPACE guWhiteboard
-
-namespace guWhiteboard {
-
 
 extern "C"
 {
 #include "guwhiteboardtypelist_c_generated.h"
 }
+
+namespace guWhiteboard {
+
+
+typedef ::wb_types wb_types;
+
+typedef wb_types WBTypes;
+
 
     /** WB Ptr Class: wb_reserved_SubscribeToAllTypes_t @brief Global subscription type. Do not add content to this type, it is for global subscriptions only */ 
     class wb_reserved_SubscribeToAllTypes_t: public  wb_generic_whiteboard_object<bool > {

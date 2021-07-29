@@ -58,10 +58,10 @@ public:
 	* @param t whiteboard 'type' 
 	* @param m data value
 	*/
-	virtual void call(guWhiteboard::WBTypes t, gu_simple_message* m) = 0;   //new simple_message callbacks (with type overwrite for subscribe to all special type)
+	virtual void call(guWhiteboard::wb_types t, gu_simple_message* m) = 0;   //new simple_message callbacks (with type overwrite for subscribe to all special type)
 
 	/** getter for the WB type */
-    virtual guWhiteboard::WBTypes type() = 0;
+    virtual guWhiteboard::wb_types type() = 0;
 
 	/** getter for the WB event counter */
     virtual uint16_t get_event_count() = 0;
@@ -97,7 +97,7 @@ public:
 	/**
  	* WBFunctor Constructor
 	*/
-	WBFunctor(C* obj, void (C::*pFunc) (guWhiteboard::WBTypes, gu_simple_message*), guWhiteboard::WBTypes t):
+	WBFunctor(C* obj, void (C::*pFunc) (guWhiteboard::wb_types, gu_simple_message*), guWhiteboard::wb_types t):
         fObject(obj), s_fFunction(pFunc), type_enum(t), event_count(0), simple_wb_version(true) { }
 
 	/**
@@ -124,13 +124,13 @@ public:
 	* @param t whiteboard 'type' 
 	* @param m data value
 	*/
-	void call(guWhiteboard::WBTypes t, gu_simple_message* m) OVERRIDE
+	void call(guWhiteboard::wb_types t, gu_simple_message* m) OVERRIDE
 	{
 		(fObject->*s_fFunction)(t, m);
 	}
 
 	/** getter for the WB type */
-	guWhiteboard::WBTypes type() OVERRIDE { return type_enum; }
+	guWhiteboard::wb_types type() OVERRIDE { return type_enum; }
 
 	/** getter for the WB event counter */
 	uint16_t get_event_count() OVERRIDE { return event_count; }
@@ -145,7 +145,7 @@ public:
 	bool is_simple_wb_version() OVERRIDE { return simple_wb_version; }
 
 	/** function prototype for the new 'simple whiteboard' callbacks */
-	typedef void (C::*s_func) (guWhiteboard::WBTypes, gu_simple_message*); //simple wb implementation
+	typedef void (C::*s_func) (guWhiteboard::wb_types, gu_simple_message*); //simple wb implementation
 
 	/** getter */
 	s_func get_s_func_ptr() { return s_fFunction; }
@@ -155,7 +155,7 @@ protected:
 	typedef void (C::*func) (std::string, WBMsg*); ///< OLD function prototype (which is now Deprecated)
 	func fFunction; ///< OLD function object
 	s_func s_fFunction; ///< 'simple' function object
-	guWhiteboard::WBTypes type_enum; ///< 'simple' whiteboard types
+	guWhiteboard::wb_types type_enum; ///< 'simple' whiteboard types
 	uint16_t event_count; ///< the event counter
 	bool simple_wb_version; ///< flag, is this a 'simple' whiteboard usage of WBFunctor
 };
@@ -166,7 +166,7 @@ WBFunctorBase* createWBFunctor(C *obj, void (C::*f) (std::string, WBMsg*))
 	return new WBFunctor<C>(obj, f);
 }
 template <typename C>
-WBFunctorBase* createWBFunctor(C *obj, void (C::*f) (guWhiteboard::WBTypes, gu_simple_message*), guWhiteboard::WBTypes t)
+WBFunctorBase* createWBFunctor(C *obj, void (C::*f) (guWhiteboard::wb_types, gu_simple_message*), guWhiteboard::wb_types t)
 {
 	return new WBFunctor<C>(obj, f, t);
 }
