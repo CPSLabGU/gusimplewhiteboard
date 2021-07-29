@@ -77,6 +77,7 @@ extern gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 */
 template <class object_type> class generic_whiteboard_object
 {
+protected:
         gu_simple_whiteboard_descriptor *_wbd;
         uint16_t type_offset;
         bool atomic;
