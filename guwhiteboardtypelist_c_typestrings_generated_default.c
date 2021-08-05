@@ -18,7 +18,7 @@
 #include "guwhiteboardtypelist_c_generated_default.h"
 
 //Hack for WBTypes_stringValues extern
-#ifndef BUILD_WB_LIBRARY
+#ifdef BUILD_WB_LIBRARY_GUWHITEBOARD_DEFAULT
 int num_types_defined = WB_NUM_TYPES_DEFINED_DEFAULT;
 const char **WBTypes_stringValues = wb_types_stringValues_default;
 #endif
