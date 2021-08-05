@@ -72,13 +72,12 @@ whiteboard-wrapper-defaults: whiteboard-wrapper
     sed \
         -e 's/guwhiteboardtypelist_c_generated.h/guwhiteboardtypelist_c_generated_default.h/g' \
         -e 's/WB_NUM_TYPES_DEFINED/WB_NUM_TYPES_DEFINED_DEFAULT/g' \
+        -e 's/BUILD_WB_LIBRARY_GUWHITEBOARD/BUILD_WB_LIBRARY_GUWHITEBOARD_DEFAULT/g' \
         -e 's/wb_types/wb_types_default/g' \
         -e 's/wb_types_default_stringValues/wb_types_stringValues_default/g' \
         -e 's/wb_types_default_typeValues/wb_types_typeValues_default/g' \
     	< guwhiteboardtypelist_c_typestrings_generated.c > guwhiteboardtypelist_c_typestrings_generated_default.c \
     )
-    
- 
 
 whiteboard-wrapper:
 	cd ${WB_DIR}/../WhiteboardWrapperGenerator && ${MAKE} host SWIFT_BUILD_CONFIG=release && ./.build/release/WhiteboardWrapperGenerator
