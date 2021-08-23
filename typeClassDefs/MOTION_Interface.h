@@ -545,7 +545,7 @@ namespace guWhiteboard
                         p = decide_stance(current, at._s, p); //I would use GoToStance however I need the path step offset
                         memcpy(_stance_action, p._stances, sizeof(p._stances));
 
-                        _stance_action[p.offset()] = Motions::NUM_OF_STANCES + a;
+                        _stance_action[p.offset()] = static_cast<uint8_t>(Motions::NUM_OF_STANCES) + static_cast<uint8_t>(a);
 
                         _num_of_stance_actions = static_cast<int8_t>(p.offset()+1);
                         _stance_action_mask = true;
