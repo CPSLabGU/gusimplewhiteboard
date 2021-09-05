@@ -4,6 +4,7 @@
 # GU localisation module Makefile
 #
 LIB=gusimplewhiteboard
+DEPENDS=gu_util guunits gucoordinates
 
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
