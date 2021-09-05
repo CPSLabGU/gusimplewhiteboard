@@ -45,6 +45,10 @@ WB_MSG_OLD_GEN_FILES!= ls typeClassDefs/*.txt
 
 all: all-real
 
+.include "../../mk/cmake.mk"	# required for cmake
+
+CMAKE_HDIRS+=OLD_WB		# install OLD_WB
+
 generate:
 .for f in ${WB_MSG_GEN_FILES}
 	classgenerator -s -G typeClassDefs --c-header typeClassDefs -n wb:guWhiteboard --squash-defines --squash-files ${f}
