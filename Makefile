@@ -8,6 +8,8 @@ DEPENDS=gu_util guunits gucoordinates
 
 CI_DISPLAYNAME?=wb			# short jenkins display name
 
+DOC_HDRS=mainpage.md
+
 DOC_RECURSIVE=YES			# build doxygen recursively
 
 CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
