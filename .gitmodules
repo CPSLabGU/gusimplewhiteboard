@@ -1,0 +1,3 @@
+[submodule "swift_wb"]
+	path = swift_wb
+	url = https://github.com/mipalgu/swift_wb.git
