@@ -24,7 +24,7 @@ Follow the links below for instructions:
  * [gu_util](https://github.com/mipalgu/gu_util)
  * [guunits](https://github.com/mipalgu/guunits)
  * [gucoordinates](https://github.com/mipalgu/gucoordinates)
- * [guvision_util](https://github.com/mipalgu/guvision_util)
+ * [guvision_utils](https://github.com/mipalgu/guvision_utils)
 
 ## Building and Installation
 
