@@ -16,6 +16,8 @@ CATKIN_COMPILE_WHITEBOARD=yes		# need wb in catkin
 COMPILE_WHITEBOARD_STRING_SOURCES=yes	# add inflection methods to library
 COMPILE_WHITEBOARD_SERIALISATION=yes # add serialisation API
 
+USE_UTIL_LIB=yes # Link against gu_util
+
 BUILD_WB_LIBRARY=yes
 ALL_TARGETS=host-local atom-local analyse test xc whiteboard-wrapper
 
@@ -26,7 +28,7 @@ CC_SRCS=libgusimplewhiteboardmain.cc
 WB_MSG_C_FILES!= cd typeClassDefs && ls *.c
 WBMSG_C_SRCS?=${WB_MSG_C_FILES}
 
-SPECIFIC_LIBS=-lguunits -lgucoordinates
+SPECIFIC_LIBS+=-lguunits -lgucoordinates
 
 #CFLAGS=-stdlib=libc++
 #LDFLAGS=-stdlib=libc++ 
