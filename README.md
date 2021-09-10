@@ -24,7 +24,6 @@ Follow the links below for instructions:
  * [gu_util](https://github.com/mipalgu/gu_util)
  * [guunits](https://github.com/mipalgu/guunits)
  * [gucoordinates](https://github.com/mipalgu/gucoordinates)
- * [SimpleShapes](https://github.com/mipalgu/SimpleShapes)
 
 ## Building and Installation
 
