@@ -1,4 +1,6 @@
-# gusimplewhiteboard
+[gusimplewhiteboard](https://github.com/mipalgu/gusimplewhiteboard) {#mainpage}
+===================================================================
+\tableofcontents
 
 A simple POSIX whiteboard library.
 
