@@ -2,20 +2,29 @@
 
 A simple POSIX whiteboard library.
 
+## Online Documentation
+
+ * [Files](https://mipalgu.github.io/gusimplewhiteboard/files.html)
+   - [gusimplewhiteboard.h](https://mipalgu.github.io/gusimplewhiteboard/gusimplewhiteboard_8h.html)
+   - [gusimplewhiteboard.c](https://mipalgu.github.io/gusimplewhiteboard/gusimplewhiteboardl_8c.html)
+ * [Module](https://mipalgu.github.io/gusimplewhiteboard/globals_defs.html)
+   - [Functions](https://mipalgu.github.io/gusimplewhiteboard/globals_func.html)
+   - [Macros](https://mipalgu.github.io/gusimplewhiteboard/globals_defs.html)
+
 ## Prerequisites
 
 You need a posix system a C/C++ compiler, [cmake](https://cmake.org),
-and a build system supported by [cmake](https://cmake.org), such as
+and a build system supported by cmake, such as
 [Ninja](https://ninja-build.org) or
 [gmake](https://www.gnu.org/software/make/).
+You also need to install the following pre-requisite packages.
+Follow the links below for instructions:
 
-### gu_util
+ * [gu_util](https://github.com/mipalgu/gu_util)
+ * [guunits](https://github.com/mipalgu/guunits)
+ * [gucoordinates](https://github.com/mipalgu/gucoordinates)
 
-### guunits
-
-### gucoordinates
-
-## Building
+## Building and Installation
 
 To build, you simply create a build directory (e.g. `build.ninja`)
 using [cmake](https://cmake.org), then use your build system to
