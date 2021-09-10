@@ -75,7 +75,7 @@
 #undef VisionDetectionFeature_DEFINED
 #define VisionDetectionFeature_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/PolarCoordinate.h>
+#include "PolarCoordinate.h"
 
 namespace guWhiteboard {
 

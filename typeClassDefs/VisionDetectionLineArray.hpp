@@ -75,7 +75,7 @@
 #undef VisionDetectionLineArray_DEFINED
 #define VisionDetectionLineArray_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
+#include "PixelCoordinateLine.h"
 
 namespace guWhiteboard {
 

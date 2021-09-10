@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizon.h>
+#include "wb_vision_detection_horizon.h"
 
 #define VISION_DETECTION_HORIZONS_GENERATED 
 #define VISION_DETECTION_HORIZONS_C_STRUCT wb_vision_detection_horizons 

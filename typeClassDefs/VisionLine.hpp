@@ -75,7 +75,7 @@
 #undef VisionLine_DEFINED
 #define VisionLine_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
+#include "PixelCoordinateLine.h"
 
 namespace guWhiteboard {
 

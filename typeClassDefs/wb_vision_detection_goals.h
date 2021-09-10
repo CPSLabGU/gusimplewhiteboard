@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
+#include "wb_vision_detection_goal.h"
 
 #define VISION_DETECTION_GOALS_GENERATED 
 #define VISION_DETECTION_GOALS_C_STRUCT wb_vision_detection_goals 

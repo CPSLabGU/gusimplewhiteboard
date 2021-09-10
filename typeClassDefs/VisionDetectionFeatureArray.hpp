@@ -75,7 +75,7 @@
 #undef VisionDetectionFeatureArray_DEFINED
 #define VisionDetectionFeatureArray_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionFeature.h>
+#include "VisionDetectionFeature.h"
 
 namespace guWhiteboard {
 

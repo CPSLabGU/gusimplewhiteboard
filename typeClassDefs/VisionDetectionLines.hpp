@@ -75,7 +75,7 @@
 #undef VisionDetectionLines_DEFINED
 #define VisionDetectionLines_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionLineArray.h>
+#include "VisionDetectionLineArray.h"
 
 namespace guWhiteboard {
 

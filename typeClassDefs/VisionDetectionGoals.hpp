@@ -75,7 +75,7 @@
 #undef VisionDetectionGoals_DEFINED
 #define VisionDetectionGoals_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionGoal.h>
+#include "VisionDetectionGoal.h"
 
 namespace guWhiteboard {
 

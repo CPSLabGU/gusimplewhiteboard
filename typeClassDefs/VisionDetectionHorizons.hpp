@@ -75,7 +75,7 @@
 #undef VisionDetectionHorizons_DEFINED
 #define VisionDetectionHorizons_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionHorizon.h>
+#include "VisionDetectionHorizon.h"
 
 namespace guWhiteboard {
 

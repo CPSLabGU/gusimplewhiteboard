@@ -1,9 +1,9 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature.h>
+#include "wb_vision_detection_feature.h"
 -c++
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionFeature.h>
+#include "VisionDetectionFeature.h"
 
 -properties
 uint8_t numFeatures = 0 // The number of features reported on the camera.

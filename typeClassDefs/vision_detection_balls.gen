@@ -1,10 +1,10 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_ball.h>
+#include "wb_vision_detection_ball.h"
 #include <stdint.h>
 -c++
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionBall.h>
+#include "VisionDetectionBall.h"
 
 -properties
 

@@ -1,9 +1,9 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_pixel_coordinate_line.h>
+#include "wb_pixel_coordinate_line.h"
 -c++
-#include <gusimplewhiteboard/typeClassDefs/PixelCoordinateLine.h>
+#include "PixelCoordinateLine.h"
 
 -properties
 uint8_t numLines = 0 // The number of lines reported on the camera.

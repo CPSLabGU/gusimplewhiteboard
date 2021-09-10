@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature_array.h>
+#include "wb_vision_detection_feature_array.h"
 
 #define VISION_DETECTION_FEATURES_GENERATED 
 #define VISION_DETECTION_FEATURES_C_STRUCT wb_vision_detection_features 

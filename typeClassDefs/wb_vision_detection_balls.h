@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_ball.h>
+#include "wb_vision_detection_ball.h"
 #include <stdint.h>
 
 #define VISION_DETECTION_BALLS_GENERATED 

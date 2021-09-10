@@ -1,7 +1,7 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_polar_coordinate.h>
+#include "wb_polar_coordinate.h"
 #include <stdint.h>
 
 enum FeatureTypes {
@@ -13,7 +13,7 @@ enum FeatureTypes {
 };
 
 -c++
-#include <gusimplewhiteboard/typeClassDefs/PolarCoordinate.h>
+#include "PolarCoordinate.h"
 
 -properties
 enum FeatureTypes featureType = NUMBER_OF_FEATURE_TYPES // Type of the Feature

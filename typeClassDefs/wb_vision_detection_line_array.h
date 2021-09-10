@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_pixel_coordinate_line.h>
+#include "wb_pixel_coordinate_line.h"
 
 #define VISION_DETECTION_LINE_ARRAY_GENERATED 
 #define VISION_DETECTION_LINE_ARRAY_C_STRUCT wb_vision_detection_line_array 

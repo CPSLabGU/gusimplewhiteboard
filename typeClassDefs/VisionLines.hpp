@@ -75,7 +75,7 @@
 #undef VisionLines_DEFINED
 #define VisionLines_DEFINED
 
-#include <gusimplewhiteboard/typeClassDefs/VisionLine.h>
+#include "VisionLine.h"
 
 namespace guWhiteboard {
 

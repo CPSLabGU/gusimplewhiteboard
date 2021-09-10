@@ -86,7 +86,7 @@
 #include <stdint.h>
 
 #include <stdint.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal_post.h>
+#include "wb_vision_detection_goal_post.h"
 
 enum GoalOptions {
 	NoGoalDetected = 0,

@@ -1,9 +1,9 @@
 -author Carl Lusty
 
 -c
-#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_feature_array.h>
+#include "wb_vision_detection_feature_array.h"
 -c++
-#include <gusimplewhiteboard/typeClassDefs/VisionDetectionFeatureArray.h>
+#include "VisionDetectionFeatureArray.h"
 
 -properties
 uint64_t frameNumber = 0 // The frame number that these lines were seen in.

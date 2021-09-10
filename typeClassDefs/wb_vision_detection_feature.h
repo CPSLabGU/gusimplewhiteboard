@@ -85,7 +85,7 @@
 #include <gu_util.h>
 #include <stdint.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_polar_coordinate.h>
+#include "wb_polar_coordinate.h"
 #include <stdint.h>
 
 enum FeatureTypes {
