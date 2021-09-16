@@ -19,7 +19,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
         with:
-          repository: gusimplewhiteboard
+          repository: mipalgu/gusimplewhiteboard
           path: gusimplewhiteboard
 
       - name: Add theme to Doxyfile
