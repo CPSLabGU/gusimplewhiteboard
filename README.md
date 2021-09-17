@@ -43,3 +43,60 @@ If you require root permissions, run `ninja install` as root,
 e.g. by using [sudo](https://www.sudo.ws):
 
 	sudo ninja install
+
+## Examples
+
+### C++
+```C++
+#include <guwhiteboardtypelist_generated.h>
+
+int main()
+{
+    using namespace guWhiteboard;
+
+    Print_t print;          // slot definition
+    print("Hello, world!"); // post a message
+
+    return 0;
+}
+```
+
+### C
+```C
+#include <string.h>
+#include <stdio.h>
+#include <guwhiteboardtypelist_c_generated.h>
+
+int main(int argc, char **argv)
+{
+    gu_simple_whiteboard_descriptor *wbd = get_local_singleton_whiteboard();
+    gu_simple_whiteboard *wb = wbd->wb;
+    wb_types print = kwb_Print_v;   /* slot for the 'print' message */
+
+    /* Read the current whiteboard message */
+    gu_simple_message *msg = gsw_current_message(wb, print);
+
+    printf("Read '%s'\n", msg->string);
+
+    /* Write a new message */
+    msg = gsw_next_message(wb, print);
+
+    strcpy(msg->string, "Hello, ");
+    if (argc > 1)
+        strcat(msg->string, argv[1]);
+    else
+        strcat(msg->string, "world!");
+
+    gsw_increment(wb, print);
+    gsw_increment_event_counter(wb, print);
+
+    printf("Wrote '%s'\n", msg->string);
+
+    /* Read the current whiteboard message */
+    msg = gsw_current_message(wb, print);
+
+    printf("Read '%s'\n", msg->string);
+
+    return 0;
+}
+```
