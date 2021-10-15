@@ -1,7 +1,0 @@
-author	Carl Lusty
-float	HeadYaw  	//Head pos in RAD 
-float	HeadPitch  	//Head pos in RAD 
-
-@brief Body joint positions c struct
-
-

@@ -1,1 +1,6 @@
-../../.swiftlint.yml
+disabled_rules:
+    - identifier_name
+    - type_name
+    - opening_brace
+excluded:
+    - .build

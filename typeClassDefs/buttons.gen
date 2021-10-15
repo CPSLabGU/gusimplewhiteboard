@@ -1,8 +1,0 @@
--author	Callum McColl
-
--properties
-bool button1Pushed = false // The first button.
-bool button2Pushed = false // The second button.
-
--comment
-Contains the status of two buttons.

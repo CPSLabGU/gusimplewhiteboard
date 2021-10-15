@@ -1,1 +1,0 @@
-#include "MyPosition.hpp"

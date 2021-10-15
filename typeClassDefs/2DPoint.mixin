@@ -1,6 +1,0 @@
-@mixin(xType = int16_t, xLabel = x, xDefault = 0, xComment = The x coordinate, yType = int16_t, yLabel = y, yDefault = 0, yComment = The y coordinate.)
-
--properties
-
-{{xType}} {{xLabel}} = {{xDefault}} // {{xComment}}
-{{yType}} {{yLabel}} = {{yDefault}} // {{yComment}}
