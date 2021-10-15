@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
-#ifndef gusimplewhiteboard_gusimplewhiteboard_h
-#define gusimplewhiteboard_gusimplewhiteboard_h
+#ifndef c_whiteboard_h
+#define c_whiteboard_h
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
@@ -84,6 +84,11 @@
 #include <stdbool.h>
 #else
 #include <cstdbool>
+#include <cstdint>
+#endif
+
+#ifndef DBG
+#define DBG(x)
 #endif
 
 extern "C"
@@ -112,19 +117,6 @@ extern "C"
 #undef false
 #endif
 #endif // __cplusplus
-
-#ifndef u_int64_t
-# define u_int64_t uint64_t
-#endif
-#ifndef u_int32_t
-# define u_int32_t uint32_t
-#endif
-#ifndef u_int16_t
-# define u_int16_t uint16_t
-#endif
-#ifndef u_int8_t
-# define u_int8_t uint8_t
-#endif
 
 #if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
 #define GSW_IOS_SIMULATOR                               ///< IOS device (but not simulator)
@@ -171,15 +163,6 @@ extern "C"
 #define WHITEBOARD_POLL_PERIOD  10000
 #endif
 
-enum gsw_semaphores
-{
-        GSW_SEM_PUTMSG,                 ///< semaphore for adding to the whiteboard
-        GSW_SEM_CALLBACK,               ///< semaphore for callback data
-        GSW_SEM_MSGTYPE,                ///< semaphore for message type registration
-        GSW_SEM_PROC,                   ///< semaphore for process registration
-        GSW_NUM_SEM                     ///< number of semaphores
-};
-
 struct gsw_whiteboard_s;
 
 typedef void (*gsw_subscription_f)(struct gsw_whiteboard_s *wbd);
@@ -209,10 +192,10 @@ typedef union gsw_simple_message
         /*
          * POSIX defined length types
          */
-        u_int64_t               u64;            ///< unsigned 64 bit value
-        u_int32_t               u32;            ///< unsigned 32 bit value
-        u_int16_t               u16;            ///< unsigned 16 bit value
-        u_int8_t                u8;             ///< unsigned  8 bit value
+        uint64_t               u64;            ///< unsigned 64 bit value
+        uint32_t               u32;            ///< unsigned 32 bit value
+        uint16_t               u16;            ///< unsigned 16 bit value
+        uint8_t                u8;             ///< unsigned  8 bit value
         
         int64_t                 s64;            ///< signed 64 bit value
         int32_t                 s32;            ///< signed 32 bit value
@@ -235,10 +218,10 @@ typedef union gsw_simple_message
         signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];	///< signed char array
         bool                    bvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(bool)];	///< bool array
  
-        u_int64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int64_t)];	///< u_int64_t array
-        u_int32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int32_t)];	///< u_int32_t array
-        u_int16_t               u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(u_int16_t)];	///< u_int16_t array
-        u_int8_t                u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< u_int8_t array
+        uint64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint64_t)];	///< uint64_t array
+        uint32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint32_t)];	///< uint32_t array
+        uint16_t               u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint16_t)];	///< uint16_t array
+        uint8_t                u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< uint8_t array
  
         int64_t                 s64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int64_t)];	///< int64_t array
         int32_t                 s32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int32_t)];	///< int32_t array
@@ -256,7 +239,7 @@ typedef union gsw_simple_message
         char                    string[GU_SIMPLE_WHITEBOARD_BUFSIZE];
 
         /** whiteboard hash type */
-        struct { u_int16_t value; char string[GU_SIMPLE_WHITEBOARD_BUFSIZE-sizeof(u_int16_t)]; } hash;
+        struct { uint16_t value; char string[GU_SIMPLE_WHITEBOARD_BUFSIZE-sizeof(uint16_t)]; } hash;
 
         /** compatibility WBMsg type */
         struct { char data[GU_SIMPLE_WHITEBOARD_BUFSIZE-2]; unsigned char len; unsigned char type; } wbmsg;
@@ -265,13 +248,13 @@ typedef union gsw_simple_message
 /** the actual whiteboard in shared mem */
 typedef struct gsw_simple_whiteboard_s
 {
-        u_int16_t               version;        ///< whiteboard version
-        u_int16_t               eventcount;     ///< current event count
-        u_int16_t               subscribed;     ///< subscribed processes
-        u_int16_t               num_types;      ///< total number of current, registered types
+        uint16_t               version;        ///< whiteboard version
+        uint16_t               eventcount;     ///< current event count
+        uint16_t               subscribed;     ///< subscribed processes
+        uint16_t               num_types;      ///< total number of current, registered types
 
-        u_int8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       ///< ring buffer indexes
-        u_int16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       ///< event counter loops
+        uint8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       ///< ring buffer indexes
+        uint16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       ///< event counter loops
 
         /**
          * the actual messages stored in the whiteboard
@@ -296,20 +279,15 @@ typedef struct gsw_simple_whiteboard_s
         /**
          * end of whiteboard marker
          */
-        u_int64_t               magic;
+        uint64_t               magic;
 } gu_simple_whiteboard;
-
-#ifdef GSW_IOS_DEVICE
-typedef dispatch_semaphore_t __strong *gsw_sema_t;
-#else
-typedef int gsw_sema_t;
-#endif
 
 /** the underlying whiteboard object */
 typedef struct gsw_whiteboard_s
 {
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
-        gsw_sema_t               sem;           ///< semaphore to use
+        const char             **message_names; ///< human-readable name for whiteboard messages
+        int                      num_messages;  ///< number of named messages registered
         int                      fd;            ///< the associated memory-mapped file
 #if __has_feature(objc_arc) || defined(WITHOUT_LIBDISPATCH)
         void                    *callback_queue;///< subscription callback queue
@@ -327,54 +305,15 @@ typedef struct gsw_whiteboard_s
  */
 extern const char *gsw_global_whiteboard_name;
 
-//backwards compat for GU whiteboard defaults
-//---------------
-/**
- * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
- */
-#define GSW_NUM_TYPES_DEFINED num_types_defined
-
-/**
- * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
- */
-extern int num_types_defined;
-
-/**
- * allow whiteboard to use old functions for whiteboard initialisation and choose which messages and consts they get
- */
-extern const char **WBTypes_stringValues;
-//---------------
-
-
-
-/**
- * access a named whiteboard: this is the designated constructore for C programs
- * @param name  name of the whiteboard
- */
-extern gu_simple_whiteboard_descriptor *gsw_new_whiteboard(const char *name);
-
-/**
- * Access a named, custom whiteboard.  This is the designated custom wb constructor for C programs
- * @param name The name of the whiteboard to create/access
- * @param message_names Array of `char *` containing the pre-defined (static) message names
- * @param num_messages Number of messages in the `message_names` array
- * @param semaphore_magic_key Semaphore magic key to use
- */
-extern gu_simple_whiteboard_descriptor *gsw_new_custom_whiteboard(const char *name, const char *message_names[], int num_messages, int semaphore_magic_key);
-
-/**
- * access a remote named whiteboard: this is the designated constructore for C programs
- * @param i  machine id of the remote whiteboard
- */
-extern gu_simple_whiteboard_descriptor *gswr_new_whiteboard(int i);
-
-/**
- * access a named whiteboard: this is the designated standard wb constructor for C programs
- * that want to assign a whiteboard number (uses a different semaphore than the default)
- * @param name  name of the whiteboard
- * @param num   whiteboard number (0 for local, default whiteboard)
- */
-extern gu_simple_whiteboard_descriptor *gsw_new_numbered_whiteboard(const char *name, int num);
+///
+/// Designated whiteboard constructor.
+/// If the whtibeboard witht the given name does not exist, it will be created.
+/// @param name The name of the whiteboard to create/access
+/// @param message_names Array of `char *` containing the pre-defined (static) message names
+/// @param num_messages Number of messages in the `message_names` array
+/// @param semaphore_magic_key Semaphore magic key to use
+///
+extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name, const char *message_names[], int num_messages);
 
 /**
  * free the given whiteboard descriptor
@@ -407,43 +346,11 @@ extern int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, con
 extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *ini);
 	
 /**
- * create a simple whiteboard for the local singleton wb pointer
- */
-extern gu_simple_whiteboard_descriptor *get_local_singleton_whiteboard(void);
-	
-/**
  * free the whiteboard
  * @param wb    whiteboard to free
  * @param fd    file descriptor to close (-1 to skip)
  */
 extern void gsw_free(gu_simple_whiteboard *wb, int fd);
-
-/**
- * set up a semaphore array for the whiteboard
- * @param key   semaphore key
- * @return semaphore array to use
- */
-extern gsw_sema_t gsw_setup_semaphores(int key);
-
-/**
- * grab a whiteboard semaphore
- * @param sem   semaphore descriptor
- * @param s     semaphore to procure
- */
-extern int gsw_procure(gsw_sema_t sem, enum gsw_semaphores s);
-
-/**
- * release a whiteboard semaphore
- * @param sem   semaphore descriptor
- * @param s     semaphore to vacate
- */
-extern int gsw_vacate(gsw_sema_t sem, enum gsw_semaphores s);
-
-/**
- * initialise the whiteboard semaphores
- * @param sem   whiteboard semaphore descriptor
- */
-extern void gsw_init_semaphores(gsw_sema_t sem);
 
 /**
  * get the current shared memory location for the given whiteboard message type i
@@ -469,11 +376,6 @@ void gsw_increment_event_counter(gu_simple_whiteboard *wb, int i);
 #pragma mark - subscription and callbacks
 
 /**
- * subscribe a new process to receive signals
- */
-extern void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
-
-/**
  * add subscription signal handler
  */
 extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
@@ -483,25 +385,10 @@ extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
  */
 extern void gsw_remove_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
 
-/**
- * add process for subscription signalling
- */
-void gsw_add_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
-
-/**
- * remove process for subscription signalling
- */
-void gsw_remove_process(gu_simple_whiteboard_descriptor *wbd, const pid_t proc);
-
-/**
- * signal all subscribing processes
- */
-void gsw_signal_subscribers(gu_simple_whiteboard *wb);
-
 #ifdef __cplusplus
 }
 #endif
 
 #pragma clang diagnostic pop
 
-#endif
+#endif // c_whiteboard_h
