@@ -3,9 +3,7 @@
 
     final class cwhiteboardTests: XCTestCase {
         func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            XCTAssertEqual(cwhiteboard().text, "Hello, World!")
+            let foo = gsw_whiteboard_s()
+            XCTAssertEqual(foo.num_messages, 0)
         }
     }
