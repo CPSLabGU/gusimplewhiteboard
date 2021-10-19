@@ -139,7 +139,6 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
 {
         if (wbd && wbd != local_whiteboard_descriptor)
         {
-                gsw_remove_wbd_signal_handler(wbd);
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);
 #ifndef WITHOUT_LIBDISPATCH
                 if (wbd->callback_queue) dispatch_release(wbd->callback_queue);

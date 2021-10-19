@@ -371,19 +371,6 @@ void gsw_increment(gu_simple_whiteboard *wb, int i);
 * add to a messages event counter on the wb
 */
 void gsw_increment_event_counter(gu_simple_whiteboard *wb, int i);
-        
-
-#pragma mark - subscription and callbacks
-
-/**
- * add subscription signal handler
- */
-extern void gsw_add_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
-
-/**
- * remove subscription signal handler
- */
-extern void gsw_remove_wbd_signal_handler(gu_simple_whiteboard_descriptor *wbd);
 
 #ifdef __cplusplus
 }
