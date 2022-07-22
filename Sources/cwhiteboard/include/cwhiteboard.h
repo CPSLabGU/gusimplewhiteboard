@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -192,10 +192,10 @@ typedef union gsw_simple_message
         /*
          * POSIX defined length types
          */
-        uint64_t               u64;            ///< unsigned 64 bit value
-        uint32_t               u32;            ///< unsigned 32 bit value
-        uint16_t               u16;            ///< unsigned 16 bit value
-        uint8_t                u8;             ///< unsigned  8 bit value
+        uint64_t                u64;            ///< unsigned 64 bit value
+        uint32_t                u32;            ///< unsigned 32 bit value
+        uint16_t                u16;            ///< unsigned 16 bit value
+        uint8_t                 u8;             ///< unsigned  8 bit value
         
         int64_t                 s64;            ///< signed 64 bit value
         int32_t                 s32;            ///< signed 32 bit value
@@ -218,10 +218,10 @@ typedef union gsw_simple_message
         signed char             cvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(signed char)];	///< signed char array
         bool                    bvec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(bool)];	///< bool array
  
-        uint64_t               u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint64_t)];	///< uint64_t array
-        uint32_t               u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint32_t)];	///< uint32_t array
-        uint16_t               u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint16_t)];	///< uint16_t array
-        uint8_t                u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< uint8_t array
+        uint64_t                u64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint64_t)];	///< uint64_t array
+        uint32_t                u32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint32_t)];	///< uint32_t array
+        uint16_t                u16vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(uint16_t)];	///< uint16_t array
+        uint8_t                 u8vec[GU_SIMPLE_WHITEBOARD_BUFSIZE];			///< uint8_t array
  
         int64_t                 s64vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int64_t)];	///< int64_t array
         int32_t                 s32vec[GU_SIMPLE_WHITEBOARD_BUFSIZE/sizeof(int32_t)];	///< int32_t array
