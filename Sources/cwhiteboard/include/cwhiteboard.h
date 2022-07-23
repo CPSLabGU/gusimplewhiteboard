@@ -311,12 +311,12 @@ gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
 gu_simple_message *gsw_next_message(gu_simple_whiteboard *wb, int i);
 
 /**
- * get the next shared memory location for the given whiteboard message type i
+ * Increment the shared memory location for the given whiteboard message type i
  */
 void gsw_increment(gu_simple_whiteboard *wb, int i);
 
 /**
-* add to a messages event counter on the wb
+* Increment the given message's event counter on the wb
 */
 void gsw_increment_event_counter(gu_simple_whiteboard *wb, int i);
 

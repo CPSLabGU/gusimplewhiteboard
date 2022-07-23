@@ -169,7 +169,7 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
         if (wb->magic != WHITEBOARD_MAGIC)      // new whiteboard? -> initialise
         {
                 memset(wb, 0, sizeof(*wb));
-                wb->version      = GU_SIMPLE_WHITEBOARD_VERSION;
+                wb->version = GU_SIMPLE_WHITEBOARD_VERSION;
                 wb->magic = WHITEBOARD_MAGIC;
 
                 if (initial) *initial = true;
