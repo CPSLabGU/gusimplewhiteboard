@@ -276,11 +276,8 @@ typedef struct gsw_whiteboard_s
 /// Designated whiteboard constructor.
 /// If the whtibeboard witht the given name does not exist, it will be created.
 /// @param name The name of the whiteboard to create/access
-/// @param message_names Array of `char *` containing the pre-defined (static) message names
-/// @param num_messages Number of messages in the `message_names` array
-/// @param semaphore_magic_key Semaphore magic key to use
 ///
-extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name, const char *message_names[], int num_messages);
+extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name);
 
 /**
  * free the given whiteboard descriptor

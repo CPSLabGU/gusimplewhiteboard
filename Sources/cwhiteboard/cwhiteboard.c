@@ -106,7 +106,7 @@
 
 static gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
-extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name, const char *message_names[], int num_messages)
+extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name)
 {
     gu_simple_whiteboard_descriptor *wbd = calloc(sizeof(gu_simple_whiteboard_descriptor), 1);
     if (!wbd)
