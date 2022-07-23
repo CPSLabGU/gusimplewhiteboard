@@ -272,11 +272,6 @@ typedef struct gsw_whiteboard_s
         int                      fd;            ///< the associated memory-mapped file
 } gu_simple_whiteboard_descriptor;
 
-/**
- * global whiteboard name
- */
-extern const char *gsw_global_whiteboard_name;
-
 ///
 /// Designated whiteboard constructor.
 /// If the whtibeboard witht the given name does not exist, it will be created.
