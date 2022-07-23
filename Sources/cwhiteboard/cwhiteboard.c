@@ -173,8 +173,6 @@ gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *initial)
                 wb->magic = WHITEBOARD_MAGIC;
 
                 if (initial) *initial = true;
-
-//                DBG(printf("New Whiteboard version %d created and initialised at '%s'\n", wb->version, path));
         }
         else if (initial) *initial = false;
 
@@ -198,44 +196,7 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
                 fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", (void *)wb, fd, strerror(errno));
 }
 
-
-static u_int32_t hash_of(const char *s)
-{
-        u_int32_t hash = *s;
-        while (*s++)
-        {
-                u_int32_t stir = hash & 0xf8000000U;
-                hash &= 0x07ffffffU;
-                hash <<= 5;
-                hash ^= stir >> 27;
-                hash ^= *s;
-        }
-        return hash;
-}
-
-
-static u_int32_t alt_hash(const char *s)
-{
-        u_int32_t hash = *s;
-        while (*s++)
-        {
-                hash &= 0x0fffffffU;
-                hash <<= 4;
-                hash += *s;
-                u_int32_t stir = hash & 0xf0000000U;
-                if (stir != 0)
-                {
-                        hash ^= stir >> 24;
-                        hash ^= stir;
-                }
-        }
-        hash |= 1;              // needs to be an odd number
-
-        return hash;
-}
-
-
-gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
+    gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
 {
         u_int8_t j = wb->indexes[i];
         if (j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
