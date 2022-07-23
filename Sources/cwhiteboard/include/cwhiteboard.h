@@ -151,10 +151,7 @@ extern "C"
 #define GSW_DEFAULT_ENV     "WHITEBOARD_NAME"
 #endif
 #ifndef GSW_DEFAULT_NAME
-#define GSW_DEFAULT_NAME    "guWhiteboard"              ///< fallback default wb
-#endif
-#ifndef GSWR_BASE_NAME
-#define GSWR_BASE_NAME      "guudpwhiteboard"           ///< UDP whiteboard name
+#define GSW_DEFAULT_NAME    "whiteboard"               ///< fallback default wb
 #endif
 #ifndef WHITEBOARD_SIGNAL
 #define WHITEBOARD_SIGNAL       SIGUSR2
