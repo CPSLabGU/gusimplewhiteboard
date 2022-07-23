@@ -1,11 +1,18 @@
-    import XCTest
-    @testable import cwhiteboard
+import XCTest
+@testable import cwhiteboard
+
+private let testWBName = "test-cwhiteboard"
 
 final class cwhiteboardTests: XCTestCase {
-    var wbd: UnsafeMutablePointer<gu_simple_whiteboard_descriptor>! = gsw_new_simple_whiteboard("test-cwhiteboard")
+    var wbd: UnsafeMutablePointer<gu_simple_whiteboard_descriptor>! = gsw_new_simple_whiteboard(testWBName)
 
     deinit {
         gsw_free_whiteboard(wbd)
+        if #available(macOS 13.0, *) {
+            try? FileManager.default.removeItem(at: URL(fileURLWithPath: "/tmp/", isDirectory: true).appending(path: testWBName))
+        } else {
+            try? FileManager.default.removeItem(atPath: "/tmp/" + testWBName)
+        }
     }
 
     /// Test whiteboard invariants
@@ -28,8 +35,8 @@ final class cwhiteboardTests: XCTestCase {
             return
         }
         let postValue: UInt64 = 0xfeed
-        XCTAssertEqual(wb.pointee.indexes.1, 0)
-        XCTAssertEqual(wb.pointee.event_counters.1, 0)
+        let i = wb.pointee.indexes.1
+        let e = wb.pointee.event_counters.1
         guard let next = gsw_next_message(wb, 1) else {
             XCTFail() ; return
         }
@@ -41,5 +48,7 @@ final class cwhiteboardTests: XCTestCase {
         }
         XCTAssertEqual(current, next)
         XCTAssertEqual(current.pointee.u64, postValue)
+        XCTAssertEqual(wb.pointee.indexes.1, (i + 1) % UInt8(GU_SIMPLE_WHITEBOARD_GENERATIONS))
+        XCTAssertEqual(wb.pointee.event_counters.1, e &+ 1)
     }
 }

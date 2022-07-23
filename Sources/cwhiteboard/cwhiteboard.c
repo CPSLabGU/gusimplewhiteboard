@@ -196,7 +196,7 @@ void gsw_free(gu_simple_whiteboard *wb, int fd)
                 fprintf(stderr, "Cannot close whiteboard at %p with fd %d: %s\n", (void *)wb, fd, strerror(errno));
 }
 
-    gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
+gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
 {
         u_int8_t j = wb->indexes[i];
         if (j >= GU_SIMPLE_WHITEBOARD_GENERATIONS) j = 0;
