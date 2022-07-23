@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.c
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -102,7 +102,7 @@
 #include <sys/mman.h>
 #include "cwhiteboard.h"
 
-#define WHITEBOARD_MAGIC        0xfeeda11deadbeef5ULL
+#define WHITEBOARD_MAGIC        0xfeeda11deadbeef6ULL
 
 static gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
 
@@ -122,16 +122,6 @@ extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *na
             gsw_free_whiteboard(wbd);
             return NULL;
     }
-    if (needs_init)
-    {
-        for (int i = 0; i < num_messages; i++)
-                gsw_register_message_type(wbd, message_names[i]);
-    }
-#ifdef WITHOUT_LIBDISPATCH
-    wbd->callback_queue = NULL;
-#else
-    wbd->callback_queue = dispatch_queue_create(NULL, NULL);
-#endif
     return wbd;
 }
 
@@ -140,9 +130,6 @@ void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd)
         if (wbd && wbd != local_whiteboard_descriptor)
         {
                 if (wbd->wb) gsw_free(wbd->wb, wbd->fd);
-#ifndef WITHOUT_LIBDISPATCH
-                if (wbd->callback_queue) dispatch_release(wbd->callback_queue);
-#endif
                 free(wbd);
         }
 }
@@ -247,69 +234,6 @@ static u_int32_t alt_hash(const char *s)
         return hash;
 }
 
-
-int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name)
-{
-        //bool exists = false;
-        gu_simple_whiteboard *wb = wbd->wb;
-        unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
-        gu_simple_message *type = &wb->hashes[offs];
-
-        while (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
-        {
-                type = &wb->hashes[offs];
-                if (!*type->hash.string)
-                {
-                        strncpy(type->hash.string, name, sizeof(type->hash.string));
-                        type->hash.string[sizeof(type->hash.string)-1] = '\0';
-//                        DBG(printf(" - registering wb message type #%d for '%s' at %d\n", wb->num_types, type->hash.string, offs));
-                        type->hash.value = wb->num_types++;
-                        wb->typenames[type->hash.value] = *type;
-                        break;
-                }
-                if (strcmp(type->hash.string, name) == 0)
-                {
-                        //exists = true;
-                        break;
-                }
-                /* collision, add to the offset */
-//                DBG(printf("Hash collision at offset %u: %u == %u %% %d for:\n'%s' <> '%s'",
-//                           offs, hash_of(name), hash_of(type->hash.string), GSW_TOTAL_MESSAGE_TYPES,
-//                           name, type->hash.string));
-                offs += alt_hash(name);
-                offs %= GSW_TOTAL_MESSAGE_TYPES;
-        }
-
-        if (wb->num_types < GSW_TOTAL_MESSAGE_TYPES)
-                return type->hash.value;
-
-        fprintf(stderr, "Cannot register whiteboard message type '%s': hash table capacity %d reached!\n", name, wb->num_types);
-
-        return -1;
-}
-
-
-int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name)
-{
-        gu_simple_whiteboard *wb = wbd->wb;
-        unsigned offs = hash_of(name) % GSW_TOTAL_MESSAGE_TYPES;
-        gu_simple_message *type; // = &wb->hashes[offs];
-        for (int i = 0; i < GSW_TOTAL_MESSAGE_TYPES; i++)
-        {
-                type = &wb->hashes[offs];
-                if (!*type->hash.string)                        // new message type?
-                        return gsw_register_message_type(wbd, name);
-                if (strcmp(type->hash.string, name) == 0)
-                        return type->hash.value;
-                /* hash collision, add to the offset */
-                offs += alt_hash(name);
-                offs %= GSW_TOTAL_MESSAGE_TYPES;
-        }
-
-        fprintf(stderr, "Cannot get offset for message type '%s': hash table full (%d entries)\n", name, wb->num_types);
-
-        return -1;
-}
 
 gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i)
 {

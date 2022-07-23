@@ -130,7 +130,7 @@ extern "C"
 #define GSW_IOS                                         ///< IOS device or simulator
 #endif
 
-#define GU_SIMPLE_WHITEBOARD_VERSION            6       ///< version
+#define GU_SIMPLE_WHITEBOARD_VERSION            2207    ///< version
 #ifndef GU_SIMPLE_WHITEBOARD_GENERATIONS
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
 #endif
@@ -250,8 +250,6 @@ typedef struct gsw_simple_whiteboard_s
 {
         uint16_t               version;        ///< whiteboard version
         uint16_t               eventcount;     ///< current event count
-        uint16_t               subscribed;     ///< subscribed processes
-        uint16_t               num_types;      ///< total number of current, registered types
 
         uint8_t                indexes[GSW_TOTAL_MESSAGE_TYPES];       ///< ring buffer indexes
         uint16_t               event_counters[GSW_TOTAL_MESSAGE_TYPES];       ///< event counter loops
@@ -260,21 +258,6 @@ typedef struct gsw_simple_whiteboard_s
          * the actual messages stored in the whiteboard
          */
         gu_simple_message       messages[GSW_TOTAL_MESSAGE_TYPES][GU_SIMPLE_WHITEBOARD_GENERATIONS];
-
-        /**
-         * hashes for registered message types
-         */
-        gu_simple_message       hashes[GSW_TOTAL_MESSAGE_TYPES];
-
-        /**
-         * message types for numbers
-         */
-        gu_simple_message       typenames[GSW_TOTAL_MESSAGE_TYPES];
-
-        /**
-         * list of subscribed processes
-         */
-        pid_t                   processes[GSW_TOTAL_PROCESSES];
 
         /**
          * end of whiteboard marker
@@ -286,18 +269,7 @@ typedef struct gsw_simple_whiteboard_s
 typedef struct gsw_whiteboard_s
 {
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
-        const char             **message_names; ///< human-readable name for whiteboard messages
-        int                      num_messages;  ///< number of named messages registered
         int                      fd;            ///< the associated memory-mapped file
-#if __has_feature(objc_arc) || defined(WITHOUT_LIBDISPATCH)
-        void                    *callback_queue;///< subscription callback queue
-#else
-        dispatch_queue_t         callback_queue;///< subscription callback queue
-#endif
-        gsw_subscription_f       callback;      ///< subscription callback function
-        void                    *context;       ///< callback context
-        bool                     got_monitor;   ///< have a running monitor
-        bool                     exit_monitor;  ///< exit the monitor
 } gu_simple_whiteboard_descriptor;
 
 /**
@@ -320,22 +292,6 @@ extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *na
  * @param wbd  descriptor for the whiteboard
  */
 extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
-
-/**
- * register a new whiteboard message type
- * @param wbd  descriptor for the whiteboard
- * @param name  string to use for identification
- * @return numerical identifier to use
- */
-extern int gsw_register_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
-
-/**
- * get the numerical index of a whiteboard message type
- * @param wbd  descriptor for the whiteboard
- * @param name  string to use for identification
- * @return numerical identifier to use
- */
-extern int gsw_offset_for_message_type(gu_simple_whiteboard_descriptor *wbd, const char *name);
 
 /**
  * create a simple whiteboard
