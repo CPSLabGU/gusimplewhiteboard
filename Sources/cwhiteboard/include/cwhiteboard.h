@@ -71,9 +71,6 @@
 #  include <AvailabilityMacros.h>
 # endif
 #endif
-#ifndef WITHOUT_LIBDISPATCH
-#include <dispatch/dispatch.h>
-#endif
 #include <sys/types.h>
 
 #ifndef __cplusplus
