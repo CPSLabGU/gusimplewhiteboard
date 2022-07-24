@@ -8,11 +8,7 @@ final class cwhiteboardTests: XCTestCase {
 
     deinit {
         gsw_free_whiteboard(wbd)
-        if #available(macOS 13.0, *) {
-            try? FileManager.default.removeItem(at: URL(fileURLWithPath: "/tmp/", isDirectory: true).appending(path: testWBName))
-        } else {
-            try? FileManager.default.removeItem(atPath: "/tmp/" + testWBName)
-        }
+        try? FileManager.default.removeItem(atPath: "/tmp/" + testWBName)
     }
 
     /// Test whiteboard invariants
