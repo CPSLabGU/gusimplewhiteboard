@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.c
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022, 2023 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,7 +81,6 @@
 #endif
 #include <stdbool.h>
 #include <sys/types.h>
-#include <sys/param.h>
 #include <string.h>
 
 #include "cwhiteboard.h"
