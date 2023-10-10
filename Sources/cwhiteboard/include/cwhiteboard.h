@@ -219,9 +219,8 @@ typedef union gsw_simple_message
         /*
          * simple compound types
          */
-        struct {int16_t x,y,z,a,b,c,d,e; } coord;  ///< simple 16 bit integer coordinates
-        struct {double x,y,z,a,b,c,d,e;} dcoord;///< simple double coordinates
-        struct {float x,y,z,a,b,c,d,e;} fcoord; ///< simple float coordinates
+        struct {int16_t x,y,z,a; } coord; ///< simple 16 bit integer coordinates
+        struct {float x,y;} fcoord;       ///< simple float coordinates
 
         /** string type */
         char                    string[GU_SIMPLE_WHITEBOARD_BUFSIZE];
