@@ -253,13 +253,6 @@ typedef struct gsw_simple_whiteboard_s
         uint64_t               magic;
 } gu_simple_whiteboard;
 
-/** the underlying whiteboard object */
-typedef struct gsw_whiteboard_s
-{
-        gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
-        int                      fd;            ///< the associated memory-mapped file
-} gu_simple_whiteboard_descriptor;
-
 /**
  * get the current shared memory location for the given whiteboard message type i
  */

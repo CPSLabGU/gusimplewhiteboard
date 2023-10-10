@@ -87,8 +87,6 @@
 
 #define WHITEBOARD_MAGIC        0xfeeda11deadbeef6ULL
 
-static gu_simple_whiteboard_descriptor *local_whiteboard_descriptor;
-
 void gsw_init(gu_simple_whiteboard *wb)
 {
         if (wb->version != GU_SIMPLE_WHITEBOARD_VERSION ||
