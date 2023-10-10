@@ -2,7 +2,7 @@
  *  gusimplewhiteboard.h
  *  
  *  Created by René Hexel on 20/12/11.
- *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022 Rene Hexel.
+ *  Copyright (c) 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022, 2023 Rene Hexel.
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -91,11 +91,6 @@
 extern "C"
 {
 #endif // __cplusplus
-#undef __block
-#define __block _xblock
-#include <unistd.h>
-#undef __block
-#define __block __attribute__((__blocks__(byref)))
 
 #ifndef __has_feature           // Optional of course.
 #define __has_feature(x) 0      // Compatibility with non-clang compilers.
@@ -132,7 +127,7 @@ extern "C"
 #define GU_SIMPLE_WHITEBOARD_GENERATIONS        4       ///< lifespan (max)
 #endif
 #ifndef GU_SIMPLE_WHITEBOARD_BUFSIZE
-#define GU_SIMPLE_WHITEBOARD_BUFSIZE            128     ///< message len (max)
+#define GU_SIMPLE_WHITEBOARD_BUFSIZE            8       ///< message len (max)
 #endif
 #ifndef GSW_TOTAL_MESSAGE_TYPES
 #define GSW_TOTAL_MESSAGE_TYPES                 512     ///< message types (max)
@@ -179,7 +174,6 @@ typedef union gsw_simple_message
         signed char             schar;          ///< signed char
         char                    xchar;          ///< standard char
 
-        long double             slongdouble;    ///< long double
         double                  sdouble;        ///< signed double
         float                   sfloat;         ///< signed float
 
@@ -265,34 +259,6 @@ typedef struct gsw_whiteboard_s
         gu_simple_whiteboard    *wb;            ///< the actual whiteboard in shared mem
         int                      fd;            ///< the associated memory-mapped file
 } gu_simple_whiteboard_descriptor;
-
-///
-/// Designated whiteboard constructor.
-/// If the whtibeboard witht the given name does not exist, it will be created.
-/// @param name The name of the whiteboard to create/access
-///
-extern gu_simple_whiteboard_descriptor *gsw_new_simple_whiteboard(const char *name);
-
-/**
- * free the given whiteboard descriptor
- * @param wbd  descriptor for the whiteboard
- */
-extern void gsw_free_whiteboard(gu_simple_whiteboard_descriptor *wbd);
-
-/**
- * create a simple whiteboard
- * @param name  name of the whiteboard
- * @param fdp   pointer to internal file descriptor storage (NULL if not needed)
- * @param ini   pointer to boolean recording wb initialisation
- */
-extern gu_simple_whiteboard *gsw_create(const char *name, int *fdp, bool *ini);
-	
-/**
- * free the whiteboard
- * @param wb    whiteboard to free
- * @param fd    file descriptor to close (-1 to skip)
- */
-extern void gsw_free(gu_simple_whiteboard *wb, int fd);
 
 /**
  * get the current shared memory location for the given whiteboard message type i

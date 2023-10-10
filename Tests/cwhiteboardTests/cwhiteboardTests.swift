@@ -7,7 +7,7 @@ final class cwhiteboardTests: XCTestCase {
     var wbd: UnsafeMutablePointer<gu_simple_whiteboard_descriptor>! = gsw_new_simple_whiteboard(testWBName)
 
     deinit {
-        gsw_free_whiteboard(wbd)
+//        gsw_free_whiteboard(wbd)
         try? FileManager.default.removeItem(atPath: "/tmp/" + testWBName)
     }
 
