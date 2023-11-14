@@ -253,6 +253,11 @@ typedef struct gsw_simple_whiteboard_s
 } gu_simple_whiteboard;
 
 /**
+ * initialize the shared memory
+*/
+void gsw_init(gu_simple_whiteboard *wb);
+
+/**
  * get the current shared memory location for the given whiteboard message type i
  */
 gu_simple_message *gsw_current_message(gu_simple_whiteboard *wb, int i);
